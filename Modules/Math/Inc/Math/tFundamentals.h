@@ -270,7 +270,7 @@ inline void tMath::tNormalizeAngle(float& a, tIntervalBias bias)
 {
 	std::function<bool(float,float)> less = tBiasLess(bias);
 	std::function<bool(float,float)> greater = tBiasGreater(bias);
-	while (less(a, Pi)) a += TwoPi;
+	while (less(a, -Pi)) a += TwoPi;
 	while (greater(a, Pi)) a -= TwoPi;
 }
 
