@@ -24,11 +24,11 @@ namespace tVersion
 
 	// Minor version increments on non-breaking fixes and improvements to the current major version. When the major
 	// version increments, the minor version resets to 0.
-	const uint Minor = 4;
+	const uint Minor = 5;
 
 	// The revision number, also called a patch number, is for minor bug fixes and the like. It Resets to 0 when the
 	// minor version increments.
-	const uint Revision = 2;
+	const uint Revision = 1;
 
 	// Additionally, a change number is specified on Tacent releases. This is a monotonically increasing number that
 	// never resets. @todo At some point I'll make a versioning tool so that this file, including the ChangeNumber
