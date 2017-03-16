@@ -150,11 +150,14 @@ public:
 
 	// Does the same as GetPoint except that t is normalized to be E [0, 1] over all segments. The beginning of the curve
 	// is at t = 0 and the end at t = 1. Closed paths allow a value bigger than 1 in which case they loop.
-	void GetPointNorm(tVector3&, float t) const;
+	void GetPointNorm(tVector3& point, float t) const																	{ GetPoint(point, t * float(NumCurveSegments)); }
 
 	// Similar to GetPoint but returns the tangent at the specified point on the path. The tangent is not normalized.
 	// The longer the tangent the 'more influence' it has pulling the path in that direction.
 	void GetTangent(tVector3&, float t) const;
+
+	// Does the same as GetYangent except that t is normalized to be E [0, 1] over all segments.
+	void GetTangentNorm(tVector3& tangent, float t) const																{ GetTangent(tangent, t * float(NumCurveSegments)); }
 
 	// This is an _optional_ object the client may create and maintain to make the GetClosestParam function work far
 	// more quickly when the position being passed in is not jumping around. The client is not required to call the
