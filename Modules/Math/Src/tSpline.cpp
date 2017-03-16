@@ -411,8 +411,10 @@ void tMath::tBezierPath::GetPoint(tVector3& point, float t) const
 		while (t > float(NumCurveSegments))
 			t -= float(NumCurveSegments);
 	}
-
-	tAssert((t >= 0) && (t <= float(NumCurveSegments)));
+	else
+	{
+		tClamp(t, 0.0f, float(NumCurveSegments));
+	}
 
 	// Segment 0 is for t E [0, 1). The last segment is for t E [NumCurveSegments-1, NumCurveSegments].
 	// The following 'if' statement deals with the final inclusive bracket on the last segment. The cast must truncate.
@@ -422,23 +424,6 @@ void tMath::tBezierPath::GetPoint(tVector3& point, float t) const
 
 	tBezierCurve bc( &ControlVerts[3*segment] );
 	bc.GetPoint(point, t - float(segment));
-}
-
-
-void tMath::tBezierPath::GetPointNorm(tVector3& point, float t) const
-{
-	// Only closed paths accept t values out of range [0, 1]
-	if (Type == tType::Closed)
-	{
-		while (t < 0.0f)
-			t += 1.0f;
-
-		while (t > 1.0f)
-			t -= 1.0f;
-	}
-
-	tAssert((t >= 0.0f) && (t <= 1.0f));
-	GetPoint(point, t * float(NumCurveSegments));
 }
 
 
@@ -456,8 +441,10 @@ void tMath::tBezierPath::GetTangent(tVector3& v, float t) const
 		while (t > float(NumCurveSegments))
 			t -= float(NumCurveSegments);
 	}
-
-	tAssert((t >= 0) && (t <= float(NumCurveSegments)));
+	else
+	{
+		tClamp(t, 0.0f, float(NumCurveSegments));
+	}
 
 	// Segment 0 is for t E [0, 1). The last segment is for t E [NumCurveSegments-1, NumCurveSegments].
 	// The following 'if' statement deals with the final inclusive bracket on the last segment. The cast must truncate.
