@@ -15,7 +15,7 @@ The Tacent source and solution/project files may be downloaded as a 7-zip archiv
 
 [Download the source here.](http://upperboundsinteractive.com/Tacent.7z)
 
-###Overview
+### Overview
 
 Tacent is divided into a number of separate packages called modules. Each module is a collection of related source files. The code requires a C++11 compiler. Some modules depend on others. The current set of modules is:
 
@@ -38,7 +38,7 @@ Process launching with captured output and exit codes, dependency rule checking.
 A scene library that can contain cameras, materials, models, splines, skeletons, lights, materials, attributes, and LOD groups. This is not really a full-on scene graph, but rather a tool to allow an exporter to be built and a geometry pipeline to process exported files. Depends on Foundation, Math, and System.
 
 
-###Design
+### Design
 
 Tacent source code should be mostly self-documenting. Some C++ interfaces use obscure language features to control the valid ways in which the objects and functions can be used, but the cost is high — these interfaces cannot easily be inspected for intended use. In Tacent the goal has been to make the headers easily human-readable.
 
@@ -49,7 +49,7 @@ This lack of redundancy and clutter just makes it all easier to absorb. You will
 The dependencies are reasonable and well-understood. The code should be easy to port to a different environment for this reason. For example, if you need a printf function that supports custom types beyond floats, ints, and strings, as well as supporting different output channels, go ahead and take the tPrintf.h and tPrintf.cpp files in the System module and adapt them to your environment and needs. The dependencies on Tacent types and framework are not overbearing.
 
 
-###Credits and Thanks
+### Credits and Thanks
 
 Credits are found directly in the code where appropriate. Here is a list of some of the helpful contributors:
 * Gregory G. Slabaugh for a paper on Euler angles that was referenced to implement the ExtractRotationEulerXYZ function.
@@ -63,7 +63,7 @@ Credits are found directly in the code where appropriate. Here is a list of some
 * Ignacio Castano and nVidia for nVidia Texture Tools and placing the code under the MIT license.
 * Davide Pizzolato for CxImage and for placing it under the zlib license.
 
-###Notes
+### Notes
 
 The easiest way to see how to use the different modules is to look in the unit tests. There may be more information and comments [on the homepage](http://upperboundsinteractive.com/Tacent). For example, this is how you'd load a png file and save it to a targa. If the png has transparency, so will the tga:
 
