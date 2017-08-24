@@ -65,7 +65,7 @@ Credits are found directly in the code where appropriate. Here is a list of some
 
 ### Notes
 
-The easiest way to see how to use the different modules is to look in the unit tests. There may be more information and comments [on the homepage](http://upperboundsinteractive.com/Tacent). For example, this is how you'd load a png file and save it to a targa. If the png has transparency, so will the tga:
+The easiest way to see how to use the different modules is to look in the unit tests. There may be more information and comments [on the homepage](http://upperboundsinteractive.com/tacent.php). For example, this is how you'd load a png file and save it to a targa. If the png has transparency, so will the tga:
 
 ```C++
 tPicture pngPic("ThoseEyes.png");
