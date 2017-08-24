@@ -30,6 +30,8 @@
 #include "jpeglib.h"
 #include "jmemsys.h"		/* import the system-dependent declarations */
 
+#pragma warning(disable:4267)
+
 #ifndef NO_GETENV
 #ifndef HAVE_STDLIB_H		/* <stdlib.h> should declare getenv() */
 extern char * getenv JPP((const char * name));

@@ -34,6 +34,7 @@
 using namespace nv;
 using namespace nvtt;
 
+#pragma warning(disable:4244)
 
 
 // Solid angle of an axis aligned quad from (0,0,1) to (x,y,1)

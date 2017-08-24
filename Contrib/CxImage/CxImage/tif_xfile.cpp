@@ -15,6 +15,8 @@
 #include "../tiff/tiffvers.h"
 
 #include "xfile.h"
+#pragma warning(disable:4311)
+#pragma warning(disable:4302)
 
 static tsize_t 
 _tiffReadProcEx(thandle_t fd, tdata_t buf, tsize_t size)

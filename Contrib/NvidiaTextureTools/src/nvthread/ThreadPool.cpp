@@ -13,6 +13,8 @@
 extern HTELEMETRY tmContext;
 #endif
 
+#pragma warning(disable:4312)
+
 
 // Most of the time it's not necessary to protect the thread pool, but if it doesn't add a significant overhead, then it'd be safer to do it.
 #define PROTECT_THREAD_POOL 1

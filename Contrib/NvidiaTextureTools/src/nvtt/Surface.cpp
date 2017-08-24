@@ -46,6 +46,8 @@
 #include <math.h> // exp2f and log2f
 #endif
 
+#pragma warning(disable:4244)
+
 using namespace nv;
 using namespace nvtt;
 

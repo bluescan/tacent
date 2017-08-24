@@ -30,6 +30,7 @@
  * Compression Scheme Configuration Support.
  */
 #include "tiffiop.h"
+#pragma warning(disable:4267)
 
 static int
 TIFFNoEncode(TIFF* tif, const char* method)

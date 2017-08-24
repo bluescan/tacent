@@ -32,6 +32,10 @@
  */
 #include "tiffiop.h"
 
+#pragma warning(disable:4133)
+#pragma warning(disable:4267)
+#pragma warning(disable:4244)
+
 /*
  * These are used in the backwards compatibility code...
  */

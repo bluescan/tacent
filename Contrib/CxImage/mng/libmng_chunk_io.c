@@ -259,6 +259,8 @@
 #include "libmng_pixels.h"
 #include "libmng_chunk_io.h"
 
+#pragma warning(disable:4244)
+
 #if defined(__BORLANDC__) && defined(MNG_STRICT_ANSI)
 #pragma option -A                      /* force ANSI-C */
 #endif

@@ -19,6 +19,8 @@
     #include <xmmintrin.h>
 #endif
 
+#pragma warning(push)
+#pragma warning(disable:4244)
 
 
 // Function linkage
@@ -328,5 +330,7 @@ namespace nv
 
 
 } // nv
+
+#pragma warning(pop)
 
 #endif // NV_MATH_H

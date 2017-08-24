@@ -30,6 +30,8 @@
 #include "psd_rect.h"
 #include "psd_math.h"
 
+#pragma warning(disable:4311)
+#pragma warning(disable:4312)
 
 extern void psd_adjustment_blend_image(psd_context * context, psd_layer_record * layer, psd_rect * dst_rect,
 	psd_uchar * lookup_table);

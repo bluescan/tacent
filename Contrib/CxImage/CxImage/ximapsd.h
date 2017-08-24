@@ -13,6 +13,9 @@
 #if !defined(__ximaPSD_h)
 #define __ximaPSD_h
 
+#pragma warning(push)
+#pragma warning(disable:4267)
+
 #include "ximage.h"
 
 #if CXIMAGE_SUPPORT_PSD
@@ -106,5 +109,7 @@ protected:
 };
 
 #endif
+
+#pragma warning(pop)
 
 #endif

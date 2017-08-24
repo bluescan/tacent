@@ -72,6 +72,9 @@
 #ifndef STBI_INCLUDE_STB_IMAGE_H
 #define STBI_INCLUDE_STB_IMAGE_H
 
+#pragma warning(push)
+#pragma warning(disable:4312)
+
 // To get a header file for this, either cut and paste the header,
 // or create stb_image.h, #define STBI_HEADER_FILE_ONLY, and
 // then include stb_image.c from it.
@@ -4876,6 +4879,8 @@ int stbi_info_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *c
        return 1;
    return e("unknown image type", "Image not of any known type, or corrupt");
 }
+
+#pragma warning(pop)
 
 #endif // STBI_HEADER_FILE_ONLY
 

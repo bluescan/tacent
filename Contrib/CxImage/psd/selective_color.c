@@ -30,6 +30,8 @@
 #include "psd_rect.h"
 #include "psd_math.h"
 
+#pragma warning(disable:4311)
+#pragma warning(disable:4312)
 
 typedef void psd_adjustment_blend_proc(psd_uint layer_info_data, psd_int * red, psd_int * green, psd_int * blue);
 extern void psd_adjustment_blend_color(psd_context * context, psd_layer_record * layer, psd_rect * dst_rect, 

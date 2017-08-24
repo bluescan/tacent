@@ -32,6 +32,7 @@
 #include "tiffiop.h"
 #include "tif_predict.h"
 #include <math.h>
+#pragma warning(disable:4267)
 
 tdata_t
 _TIFFCheckRealloc(TIFF* tif, tdata_t buffer,

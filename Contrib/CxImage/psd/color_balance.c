@@ -31,6 +31,8 @@
 #include "psd_rect.h"
 #include "psd_math.h"
 
+#pragma warning(disable:4311)
+#pragma warning(disable:4312)
 
 #define PSD_SQR(x)			((x) * (x))
 

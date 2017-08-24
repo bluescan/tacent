@@ -49,6 +49,9 @@
 
 #include "libdcr.h"
 
+#pragma warning(disable:4267)
+#pragma warning(disable:4244)
+
 // XYZ from RGB
 const double xyz_rgb[3][3] = {
 	{ 0.412453, 0.357580, 0.180423 },

@@ -29,6 +29,7 @@
 #include "psd_color.h"
 #include "psd_rect.h"
 
+#pragma warning(disable:4311)
 
 psd_status psd_get_layer_photo_filter(psd_context * context, psd_layer_record * layer)
 {

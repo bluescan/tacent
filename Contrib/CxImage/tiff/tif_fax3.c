@@ -43,7 +43,9 @@
 #include "t4.h"
 #include <stdio.h>
 
-/*
+#pragma warning(disable:4244)
+#pragma warning(disable:4311)
+ /*
  * Compression+decompression state blocks are
  * derived from this ``base state'' block.
  */

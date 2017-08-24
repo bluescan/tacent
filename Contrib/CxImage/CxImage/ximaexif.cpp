@@ -7,6 +7,7 @@
  */
 
 #include "ximajpg.h"
+#pragma warning(disable:4267)
 
 #if CXIMAGEJPG_SUPPORT_EXIF
 

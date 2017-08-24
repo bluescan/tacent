@@ -29,6 +29,7 @@
 #include "psd_descriptor.h"
 #include "psd_color.h"
 
+#pragma warning(disable:4311)
 
 // Solid color sheet setting (Photoshop 6.0)
 psd_status psd_get_layer_solid_color(psd_context * context, psd_layer_record * layer)

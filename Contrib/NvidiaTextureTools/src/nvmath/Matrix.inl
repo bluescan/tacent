@@ -6,6 +6,9 @@
 
 #include "Matrix.h"
 
+#pragma warning(push)
+#pragma warning(disable:4244)
+
 namespace nv
 {
     inline Matrix3::Matrix3() {}
@@ -1269,6 +1272,8 @@ public:
 
 };
 #endif
+
+#pragma warning(pop)
 
 
 #endif // NV_MATH_MATRIX_INL

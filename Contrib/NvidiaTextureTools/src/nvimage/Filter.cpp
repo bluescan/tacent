@@ -40,6 +40,8 @@
 
 #include <string.h> // memset
 
+#pragma warning(disable:4244)
+
 using namespace nv;
 
 namespace

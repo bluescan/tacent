@@ -6,6 +6,7 @@
  */
 
 #include "ximamng.h"
+#pragma warning(disable:4267)
 
 #if CXIMAGE_SUPPORT_MNG
 

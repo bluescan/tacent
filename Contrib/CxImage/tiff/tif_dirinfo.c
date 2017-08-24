@@ -33,6 +33,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#pragma warning(disable:4267)
+#pragma warning(disable:4133)
+#pragma warning(disable:4996)
+
 /*
  * NB: NB: THIS ARRAY IS ASSUMED TO BE SORTED BY TAG.
  *       If a tag can have both LONG and SHORT types then the LONG must be

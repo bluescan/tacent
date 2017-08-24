@@ -8,6 +8,8 @@
 #include "ximaiter.h" 
 #include "ximabmp.h"
 
+#pragma warning(disable:4244)
+
 ////////////////////////////////////////////////////////////////////////////////
 #if defined (_WIN32_WCE)
 

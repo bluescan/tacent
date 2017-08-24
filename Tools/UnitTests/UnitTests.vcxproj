@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
@@ -20,13 +20,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -118,28 +118,28 @@
     <ProjectReference Include="..\..\Contrib\CxImage\zlib\zlib.vcxproj">
       <Project>{7b53d2c7-1b4a-4a53-a7d3-e25b92470b81}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs2015\bc6h\bc6h.vcxproj">
+    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs\bc6h\bc6h.vcxproj">
       <Project>{c33787e3-5564-4834-9fe3-a9020455a669}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs2015\bc7\bc7.vcxproj">
+    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs\bc7\bc7.vcxproj">
       <Project>{f974f34b-af02-4c88-8e1e-85475094ea78}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs2015\nvcore\nvcore.vcxproj">
+    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs\nvcore\nvcore.vcxproj">
       <Project>{f143d180-d4c4-4037-b3de-be89a21c8d1d}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs2015\nvimage\nvimage.vcxproj">
+    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs\nvimage\nvimage.vcxproj">
       <Project>{4046f392-a18b-4c66-9639-3eabfff5d531}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs2015\nvmath\nvmath.vcxproj">
+    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs\nvmath\nvmath.vcxproj">
       <Project>{50c465fe-b308-42bc-894d-89484482af06}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs2015\nvthread\nvthread.vcxproj">
+    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs\nvthread\nvthread.vcxproj">
       <Project>{4cfd4876-a026-46c2-afcf-fb11346e815d}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs2015\nvtt\nvtt.vcxproj">
+    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs\nvtt\nvtt.vcxproj">
       <Project>{1aeb7681-57d8-48ee-813d-5c41cc38b647}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs2015\squish\squish.vcxproj">
+    <ProjectReference Include="..\..\Contrib\NvidiaTextureTools\project\vs\squish\squish.vcxproj">
       <Project>{ce017322-01fc-4851-9c8b-64e9a8e26c38}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\Modules\Build\Win\Build.vcxproj">

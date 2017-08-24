@@ -31,6 +31,8 @@
 #include "psd_rect.h"
 #include "psd_math.h"
 
+#pragma warning(disable:4311)
+#pragma warning(disable:4312)
 
 extern void psd_adjustment_blend_rgb(psd_context * context, psd_layer_record * layer, psd_rect * dst_rect, 
 	psd_uchar * red_lookup_table, psd_uchar * green_lookup_table, psd_uchar * blue_lookup_table,

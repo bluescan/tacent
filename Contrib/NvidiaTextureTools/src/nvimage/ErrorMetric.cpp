@@ -7,6 +7,7 @@
 #include "nvmath/Vector.inl"
 
 #include <float.h> // FLT_MAX
+#pragma warning(disable:4244)
 
 using namespace nv;
 

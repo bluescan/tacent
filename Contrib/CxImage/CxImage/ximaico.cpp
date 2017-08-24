@@ -6,6 +6,7 @@
  */
 
 #include "ximaico.h"
+#pragma warning(disable:4838)
 
 #if CXIMAGE_SUPPORT_ICO
 

@@ -28,6 +28,7 @@
 #include "psd_stream.h"
 #include "psd_color.h"
 
+#pragma warning(disable:4312)
 
 extern psd_status psd_get_layer_levels(psd_context * context, psd_layer_record * layer, psd_int data_length);
 extern void psd_layer_levels_free(psd_uint info_data);

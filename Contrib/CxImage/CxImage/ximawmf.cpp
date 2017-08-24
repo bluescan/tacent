@@ -47,6 +47,8 @@
 
 #include "ximawmf.h"
 
+#pragma warning(disable:4267)
+
 #if CXIMAGE_SUPPORT_WMF && CXIMAGE_SUPPORT_WINDOWS
 
 ////////////////////////////////////////////////////////////////////////////////

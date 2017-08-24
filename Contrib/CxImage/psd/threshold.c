@@ -29,6 +29,8 @@
 #include "psd_color.h"
 #include "psd_rect.h"
 
+#pragma warning(disable:4311)
+#pragma warning(disable:4312)
 
 extern void psd_adjustment_blend_gray(psd_context * context, psd_layer_record * layer, psd_rect * dst_rect,
 	psd_uchar * lookup_table);

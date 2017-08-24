@@ -11,6 +11,8 @@
 
 #include "ximaiter.h"
 
+#pragma warning(disable:4267)
+
 ////////////////////////////////////////////////////////////////////////////////
 void CxImagePNG::ima_png_error(png_struct *png_ptr, char *message)
 {

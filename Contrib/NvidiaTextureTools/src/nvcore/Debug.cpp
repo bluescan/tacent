@@ -1,5 +1,7 @@
 // This code is in the public domain -- Ignacio Castaño <castano@gmail.com>
 
+#pragma warning(disable:4091)
+
 #include "Debug.h"
 #include "Array.inl"
 #include "StrLib.h" // StringBuilder

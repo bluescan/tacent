@@ -74,6 +74,11 @@
 #endif
 
 
+#if defined(PLATFORM_WIN)
+	#include <xmmintrin.h>
+#endif
+
+
 // Many objects have a Pod member function that returns a plain-old-data version of itself. Useful for cases where POD
 // is required, like to printf functions.
 #define pod(x) (x.Pod())

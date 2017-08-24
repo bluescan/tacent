@@ -31,6 +31,8 @@
 #include "psd_rect.h"
 #include "psd_math.h"
 
+#pragma warning(disable:4311)
+#pragma warning(disable:4312)
 
 typedef psd_double psd_matrix[4][4];
 

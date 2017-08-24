@@ -217,6 +217,8 @@
 #include "libmng_cms.h"
 #include "libmng_pixels.h"
 
+#pragma warning(disable:4267)
+
 #if defined(__BORLANDC__) && defined(MNG_STRICT_ANSI)
 #pragma option -A                      /* force ANSI-C */
 #endif

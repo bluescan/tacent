@@ -15,6 +15,7 @@
  */
 
 #include "pngpriv.h"
+#pragma warning(disable:4477)
 
 #ifdef PNG_READ_SUPPORTED
 

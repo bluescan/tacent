@@ -12,6 +12,9 @@
 #if !defined(__ximaJAS_h)
 #define __ximaJAS_h
 
+#pragma warning(push)
+#pragma warning(disable:4267)
+
 #include "ximage.h"
 
 #if CXIMAGE_SUPPORT_JASPER
@@ -84,5 +87,7 @@ private:
 };
 
 #endif
+
+#pragma warning(pop)
 
 #endif

@@ -39,6 +39,9 @@ extern	void TIFFCvtNativeToIEEEFloat(TIFF*, uint32, float*);
 extern	void TIFFCvtNativeToIEEEDouble(TIFF*, uint32, double*);
 #endif
 
+#pragma warning(disable:4267)
+#pragma warning(disable:4334)
+
 static	int TIFFWriteNormalTag(TIFF*, TIFFDirEntry*, const TIFFFieldInfo*);
 static	void TIFFSetupShortLong(TIFF*, ttag_t, TIFFDirEntry*, uint32);
 static	void TIFFSetupShort(TIFF*, ttag_t, TIFFDirEntry*, uint16);

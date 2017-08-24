@@ -16,6 +16,9 @@
 #if !defined(__ximaRAW_h)
 #define __ximaRAW_h
 
+#pragma warning(push)
+#pragma warning(disable:4267)
+
 #include "ximage.h"
 
 #if CXIMAGE_SUPPORT_RAW
@@ -108,5 +111,7 @@ protected:
 };
 
 #endif
+
+#pragma warning(pop)
 
 #endif
