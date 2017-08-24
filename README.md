@@ -1,7 +1,7 @@
 # Tacent
 Tacent is collection of C++ source files designed to be the basis for a game engine or other interactive project. Tacent is being released under the permissive MIT-style ISC licence. Originally the code was the backbone of the Tactile 3D project. 
 
-Visual Studio 2015 Community Edition is being used to compile and run unit tests. Some (selective) improvements to take advantage of C++11 features are being made.
+Visual Studio 2017 Community Edition is being used to compile and run unit tests. Some (selective) improvements to take advantage of C++11 features are being made.
 
 __Browse the Source__
 
@@ -80,7 +80,7 @@ tChunkWriter writer("Cubemap.tac");
 cubemap.Save(writer);
 ```
 
-The image module uses two excellent third party libraries, both with non-restrictive licences. CxImage (zlib licence) is used to load formats other than tga and dds. nVidia's Texture Tools 2 (MIT licence) is used for block texture compression. Since I wanted the downloadable source to just work, both of these libraries are included in the 7-zip download. They have both been upgraded to vs2015 and are the most recent as of today. They are not built by the Tacent UnitTests solution since the .lib files have also been zipped up, but turning them on is trivial if you want.
+The image module uses two excellent third party libraries, both with non-restrictive licences. CxImage (zlib licence) is used to load formats other than tga and dds. nVidia's Texture Tools 2 (MIT licence) is used for block texture compression. Since I wanted the downloadable source to just work, both of these libraries are included in the 7-zip download. They have both been upgraded to vs2017. The Tacent UnitTests solution will build both of these libraries.
 
 Regarding the command line parsing code, a powerful feature is separation of concerns. In a typical system the knowledge of all the different command line parameters and options is needed in a single place, often in main() where argc and argv are passed in. These values need to somehow be passed all over the place in a large system. With tCommand you specify which options and parameters you care about only in the cpp file you are working in. A command line takes the form:
 
