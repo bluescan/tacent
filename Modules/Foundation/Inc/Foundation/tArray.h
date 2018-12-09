@@ -65,7 +65,7 @@ private:
 // Implementation below this line.
 
 
-template<typename T> inline void tArray<T>::Clear(int capacity = 0, int growCount = -1)
+template<typename T> inline void tArray<T>::Clear(int capacity, int growCount)
 {
 	tAssert((capacity >= 0) && (growCount >= -1))
 	delete[] Elements;

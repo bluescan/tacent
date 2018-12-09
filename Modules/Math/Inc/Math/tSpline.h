@@ -199,6 +199,13 @@ public:
 		const tFastSectionState& = tFastSectionState()
 	) const;
 
+	// Same as GetClosestParam but returns the param normalized to [0.0, 1.0].
+	float GetClosestParamNorm
+	(
+		const tVector3& pos, uint32 coords, float paramThreshold,
+		const tFastSectionState& optObj = tFastSectionState()
+	) const																												{ return GetClosestParam(pos, coords, paramThreshold, optObj) / float(NumCurveSegments); }
+
 private:
 	tMode Mode;
 	tType Type;
