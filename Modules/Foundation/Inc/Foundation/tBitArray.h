@@ -5,7 +5,7 @@
 // not support dynamic growing or shrinking. If the number of bits you need is known at compile time, consider using a
 // tBitField instead as it is more feature-complete.
 //
-// Copyright (c) 2004-2006, 2015, 2017 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -42,7 +42,7 @@ public:
 	void InvertAll();
 	bool AreAll(bool v) const;
 	int GetNumBits() const																								{ return NumBits; }
-	int CountBits(bool v) const;							// Counts how many bits are set to value v.
+	int CountBits(bool = true) const;						// Counts how many bits are set to supplied value.
 
 	// Returns how many uint32 fields are used to store the bit array.
 	int GetNumFields() const																							{ return (NumBits>>5) + ((NumBits & 0x1F) ? 1 : 0); }

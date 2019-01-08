@@ -5,7 +5,7 @@
 // not support dynamic growing or shrinking. If the number of bits you need is known at compile time, consider using a
 // tBitField instead as it is more feature-complete.
 //
-// Copyright (c) 2004-2006, 2015, 2017 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -89,7 +89,7 @@ bool tBitArray::AreAll(bool v) const
 }
 
 
-int tBitArray::CountBits(bool v) const
+int tBitArray::CountBits(bool val) const
 {
 	// Uses technique described here "http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetKernighan".
 	// This is one reason the pad bits must always be cleared.
@@ -99,14 +99,14 @@ int tBitArray::CountBits(bool v) const
 	int count = 0;
 	for (int n = 0; n < numFields; n++)
 	{
-		uint32 v = BitFields[n];			// Count the number of bits set in v.
+		uint32 v = BitFields[n];		// Count the number of bits set in v.
 		uint32 c;						// c accumulates the total bits set in v.
 		for (c = 0; v; c++)
 			v &= v - 1;					// Clear the least significant bit set.
 		count += c;
 	}
 	
-	return v ? count : (NumBits - count);
+	return val ? count : (NumBits - count);
 }
 
 
