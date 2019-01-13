@@ -923,37 +923,41 @@ void tMath::tExtractProjectionPlanes(tVec4 planes[6], const tMat4& m, bool outwa
 }
 
 
-bool tMath::tExtractRotationEulerXYZ(tVec3& sol1, tVec3& sol2, const tMat4& r, float gimbalZ, tIntervalBias bias)
+bool tMath::tExtractRotationEulerXYZ
+(
+	tVec3& sol1, tVec3& sol2, const tMat4& rot,
+	float gimbalZ, tIntervalBias bias
+)
 {
-	// This is based on http://staff.city.ac.uk/~sbbh653/publications/euler.pdf by Gregory G. Slabaugh.
-	// We've attempted to keep the naming and implementation close to the paper to ease in understanding.
+	// Extraction based on http://staff.city.ac.uk/~sbbh653/publications/euler.pdf
 	float gimbalEpsilon = 0.000001f;
-	bool gimbalNeg = tApproxEqual(r.a31, -1.0f, gimbalEpsilon);
-	bool gimbalPos = tApproxEqual(r.a31,  1.0f, gimbalEpsilon);
+	bool gimbalNeg = tApproxEqual(rot.a31, -1.0f, gimbalEpsilon);
+	bool gimbalPos = tApproxEqual(rot.a31,  1.0f, gimbalEpsilon);
 	if (!gimbalNeg && !gimbalPos)
 	{
-		sol1.y = -tArcSin(r.a31);							// [-Pi/2, Pi/2]
+		sol1.y = -tArcSin(rot.a31);							// [-Pi/2, Pi/2]
 		sol2.y = tGetNormalizedAngle( Pi - sol1.y, bias );
 
 		float ct1 = tCos(sol1.y);							// Cos(theta1)
 		float ct2 = tCos(sol2.y);							// Cos(theta2)
-		sol1.x = tGetNormalizedAngle( tArcTan(r.a32/ct1, r.a33/ct1), bias );
-		sol2.x = tGetNormalizedAngle( tArcTan(r.a32/ct2, r.a33/ct2), bias );
-		sol1.z = tGetNormalizedAngle( tArcTan(r.a21/ct1, r.a11/ct1), bias );
-		sol2.z = tGetNormalizedAngle( tArcTan(r.a21/ct2, r.a11/ct2), bias );
+		sol1.x = tGetNormalizedAngle( tArcTan(rot.a32/ct1, rot.a33/ct1), bias );
+		sol2.x = tGetNormalizedAngle( tArcTan(rot.a32/ct2, rot.a33/ct2), bias );
+		sol1.z = tGetNormalizedAngle( tArcTan(rot.a21/ct1, rot.a11/ct1), bias );
+		sol2.z = tGetNormalizedAngle( tArcTan(rot.a21/ct2, rot.a11/ct2), bias );
 	}
 	else
 	{
-		sol1.z = gimbalZ;		// User choice of particular solution returned.
+		// User choice of particular solution returned.
+		sol1.z = gimbalZ;
 		if (gimbalNeg)
 		{
 			sol1.y = PiOver2;
-			sol1.x = tGetNormalizedAngle(sol1.z + tArcTan(r.a12, r.a13), bias);
+			sol1.x = tGetNormalizedAngle(sol1.z + tArcTan(rot.a12, rot.a13), bias);
 		}
 		else
 		{
 			sol1.y = -PiOver2;
-			sol1.x = tGetNormalizedAngle(-sol1.z + tArcTan(-r.a12, -r.a13), bias);
+			sol1.x = tGetNormalizedAngle(-sol1.z + tArcTan(-rot.a12, -rot.a13), bias);
 		}
 		sol2 = sol1;
 	}
