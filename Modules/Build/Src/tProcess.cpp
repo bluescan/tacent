@@ -341,6 +341,9 @@ tProcess::tProcess(const tString& cmd, const tString& wd) :
 
 void tProcess::CreateChildProcess(const tString& cmdLine, const tString& workingDir, bool detached)
 {
+	if (ExitCode)
+		*ExitCode = 0;
+
 	// Create the pipes we'll be using. 
 	SECURITY_ATTRIBUTES secAttr;
 	secAttr.nLength = sizeof(SECURITY_ATTRIBUTES); 
