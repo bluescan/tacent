@@ -2,7 +2,7 @@
 //
 // Tacent unit test framework.
 //
-// Copyright (c) 2017 Tristan Grimmer.
+// Copyright (c) 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -41,16 +41,18 @@ namespace tUnitTest
 	#define tGoal(expr) tCheckGoal((expr) ? true : false, #expr, __FILE__, __LINE__, 0);
 #endif
 
-#define tTestSection(name) void name()
-#define tTest(name)  { tUnitTest::rPrintf("\nTesting Section " #name "\n"); tUnitTest::SectionRequirementNumber = tUnitTest::SectionGoalNumber = 0; tUnitTest::name(); }
+#define tTestUnit(name) void name()
+#define tSkipUnit(name) { tUnitTest::UnitsSkipped++; tUnitTest::rPrintf("Skipping " #name " Tests\n"); return; }
+#define tTest(name)  { tUnitTest::rPrintf("\nTesting " #name "\n"); tUnitTest::UnitRequirementNumber = tUnitTest::UnitGoalNumber = 0; tUnitTest::name(); }
 int tTestResults(bool waitForReturn = true);
 
 
 // Implementation below this line.
 
 
-extern int SectionRequirementNumber;
-extern int SectionGoalNumber;
+extern int UnitRequirementNumber;
+extern int UnitGoalNumber;
+extern int UnitsSkipped;
 extern int TotalRequirements;
 extern int RequirementsPassed;
 extern int TotalGoals;
@@ -67,7 +69,7 @@ inline int rPrintf(const char* f, ...)
 
 inline void tCheckRequire(bool pass, const char* expr, const char* fileName, int lineNum, const char* msg)
 {
-	rPrintf("Require %03d ", SectionRequirementNumber);
+	rPrintf("Require %03d ", UnitRequirementNumber);
 	if (pass)
 	{
 		rPrintf("Pass  [ %s ]\n", expr);
@@ -77,14 +79,14 @@ inline void tCheckRequire(bool pass, const char* expr, const char* fileName, int
 	{;
 		rPrintf("Fail  [ %s ]  File: %s  Line: %d\n", expr, tSystem::tGetFileName(fileName).Pod(), lineNum);
 	}
-	SectionRequirementNumber++;
+	UnitRequirementNumber++;
 	TotalRequirements++;
 }
 
 
 inline void tCheckGoal(bool pass, const char* expr, const char* fileName, int lineNum, const char* msg)
 {
-	rPrintf("Goal    %03d ", SectionGoalNumber);
+	rPrintf("Goal    %03d ", UnitGoalNumber);
 	if (pass)
 	{
 		rPrintf("Pass  [ %s ]\n", expr);
@@ -94,7 +96,7 @@ inline void tCheckGoal(bool pass, const char* expr, const char* fileName, int li
 	{
 		rPrintf("Fail  [ %s ]  File: %s  Line: %d\n", expr, tSystem::tGetFileName(fileName).Pod(), lineNum);
 	}
-	SectionGoalNumber++;
+	UnitGoalNumber++;
 	TotalGoals++;
 }
 
@@ -115,10 +117,11 @@ inline int tTestResults(bool waitForReturn)
 	}
 
 	rPrintf("\nTests Complete\n");
-	rPrintf("Requirements: %d/%d\n", RequirementsPassed, TotalRequirements);
-	rPrintf("Goals Passed: %d/%d\n", GoalsPassed, TotalGoals);
-	rPrintf("Total Passed: %d/%d\n", RequirementsPassed+GoalsPassed, TotalRequirements+TotalGoals);
-	rPrintf("Final Result: %s\n", result);
+	rPrintf("Units Skipped : %d\n", UnitsSkipped);
+	rPrintf("Requirements  : %d/%d\n", RequirementsPassed, TotalRequirements);
+	rPrintf("Goals Passed  : %d/%d\n", GoalsPassed, TotalGoals);
+	rPrintf("Total Passed  : %d/%d\n", RequirementsPassed+GoalsPassed, TotalRequirements+TotalGoals);
+	rPrintf("Final Result  : %s\n", result);
 
 	if (waitForReturn)
 	{

@@ -2,7 +2,7 @@
 //
 // Foundation module tests.
 //
-// Copyright (c) 2017 Tristan Grimmer.
+// Copyright (c) 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -27,7 +27,7 @@ namespace tUnitTest
 {
 
 
-tTestSection(Array)
+tTestUnit(Array)
 {
 	tArray<int> arr(2, 3);
 	arr.Append(1);
@@ -89,7 +89,7 @@ bool LessThanNorm(const NormItem& a, const NormItem& b)
 }
 
 
-tTestSection(List)
+tTestUnit(List)
 {
 	tList<Item> itemList(true);
 	itemList.Append( new Item(7) );
@@ -188,7 +188,7 @@ tTestSection(List)
 bool IntLess(const int& a, const int& b) { return (a < b); }
 
 
-tTestSection(Sort)
+tTestUnit(Sort)
 {
 	int arr[] = { 5, 32, 7, 9, 88, 32, -3, 99, 55 };
 	tPrintf("Before sorting:\n");
@@ -207,7 +207,7 @@ tTestSection(Sort)
 }
 
 
-tTestSection(FixInt)
+tTestUnit(FixInt)
 {
 	tuint256 uvalA = 42;
 	tuint256 uvalB(uvalA);
@@ -301,7 +301,7 @@ tTestSection(FixInt)
 }
 
 
-tTestSection(Bitfield)
+tTestUnit(Bitfield)
 {
 	tString result;
 
@@ -373,7 +373,7 @@ tTestSection(Bitfield)
 }
 
 
-tTestSection(String)
+tTestUnit(String)
 {
 	// Testing the string substitution code.
 	tString src("abc1234abcd12345abcdef123456");
@@ -450,7 +450,7 @@ tTestSection(String)
 }
 
 
-tTestSection(RingBuffer)
+tTestUnit(RingBuffer)
 {
 	// We're going to use the middle 10 characters as our buffer and write a pattern into the full buffer
 	// to check for over and under-runs.
@@ -511,7 +511,7 @@ tTestSection(RingBuffer)
 }
 
 
-tTestSection(PriorityQueue)
+tTestUnit(PriorityQueue)
 {
 	tPQ<int> Q(2, 2);
 	int data = 42;
@@ -534,7 +534,7 @@ tTestSection(PriorityQueue)
 }
 
 
-tTestSection(MemoryPool)
+tTestUnit(MemoryPool)
 {
 	tPrintf("Sizeof (uint8*): %d\n", sizeof(uint8*));
 

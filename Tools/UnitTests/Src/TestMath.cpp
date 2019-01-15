@@ -2,7 +2,7 @@
 //
 // Math module tests.
 //
-// Copyright (c) 2017 Tristan Grimmer.
+// Copyright (c) 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -22,7 +22,7 @@ namespace tUnitTest
 {
 
 
-tTestSection(Fundamentals)
+tTestUnit(Fundamentals)
 {
 	int val = 256;
 	bool isPow2 = tIsPower2(val);
@@ -90,7 +90,7 @@ tTestSection(Fundamentals)
 }
 
 
-tTestSection(Spline)
+tTestUnit(Spline)
 {
 	tVector3 CVs[4];
 	CVs[0] = tVector3(0.0, 0.0, 0.0);
@@ -125,7 +125,7 @@ tTestSection(Spline)
 	tPrintf("Closest Param=%f\n", closestParam);
 }
 
-tTestSection(Hash)
+tTestUnit(Hash)
 {
 	char* testString = "This is the text that is being used for testing hash functions.";
 	tPrintf("%s\n\n", testString);
@@ -177,7 +177,7 @@ tTestSection(Hash)
 }
 
 
-tTestSection(Random)
+tTestUnit(Random)
 {
 	uint32 seeds[1024];
 	for (int i = 0; i < 1024; i++)
@@ -237,7 +237,7 @@ tTestSection(Random)
 }
 
 
-tTestSection(Matrix)
+tTestUnit(Matrix)
 {
 	tMatrix4 a;
 	tMatrix4 b;
@@ -310,7 +310,7 @@ tTestSection(Matrix)
 }
 
 
-tTestSection(Quaternion)
+tTestUnit(Quaternion)
 {
 	tMatrix4 identMat;
 	identMat.Identity();
@@ -346,7 +346,7 @@ tTestSection(Quaternion)
 }
 
 
-tTestSection(Geometry)
+tTestUnit(Geometry)
 {
 	tRay ray;
 	ray.Start.Set(1.0f, 0.5f, 0.5f);

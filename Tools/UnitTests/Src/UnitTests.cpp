@@ -2,7 +2,7 @@
 //
 // Tacent unit tests.
 //
-// Copyright (c) 2017 Tristan Grimmer.
+// Copyright (c) 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -29,8 +29,9 @@ tCommand::tOption PrintAllOutput("Print all output.", 'a', "all");
 
 namespace tUnitTest
 {
-	int SectionRequirementNumber = 0;
-	int SectionGoalNumber = 0;
+	int UnitRequirementNumber = 0;
+	int UnitGoalNumber = 0;
+	int UnitsSkipped = 0;
 	int TotalRequirements = 0;
 	int RequirementsPassed = 0;
 	int TotalGoals = 0;

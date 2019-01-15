@@ -2,7 +2,7 @@
 //
 // Foundation module tests.
 //
-// Copyright (c) 2017 Tristan Grimmer.
+// Copyright (c) 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -18,13 +18,13 @@
 
 namespace tUnitTest
 {
-	tTestSection(Array);
-	tTestSection(List);
-	tTestSection(Sort);
-	tTestSection(FixInt);
-	tTestSection(Bitfield);
-	tTestSection(String);
-	tTestSection(RingBuffer);
-	tTestSection(PriorityQueue);
-	tTestSection(MemoryPool);
+	tTestUnit(Array);
+	tTestUnit(List);
+	tTestUnit(Sort);
+	tTestUnit(FixInt);
+	tTestUnit(Bitfield);
+	tTestUnit(String);
+	tTestUnit(RingBuffer);
+	tTestUnit(PriorityQueue);
+	tTestUnit(MemoryPool);
 }

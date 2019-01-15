@@ -2,7 +2,7 @@
 //
 // Image module tests.
 //
-// Copyright (c) 2017 Tristan Grimmer.
+// Copyright (c) 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -20,13 +20,10 @@ namespace tUnitTest
 {
 
 
-tTestSection(Image)
+tTestUnit(Image)
 {
 	if (!tSystem::tDirExists("TestData/"))
-	{
-		rPrintf("Skipping Image Tests. Working dir has no 'TestData' folder.\n");
-		return;
-	}
+		tSkipUnit(Image)
 
 	// Test dxt1 texture.
 	tImage::tTexture dxt1Tex("TestData/TestDXT1.dds");

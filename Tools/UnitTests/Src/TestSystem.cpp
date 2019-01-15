@@ -2,7 +2,7 @@
 //
 // System module tests.
 //
-// Copyright (c) 2017 Tristan Grimmer.
+// Copyright (c) 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -33,7 +33,7 @@ namespace tUnitTest
 {
 
 
-tTestSection(CmdLine)
+tTestUnit(CmdLine)
 {
 	tPrintf("Testing tCommand command line parsing.\n");
 	tCommand::tParam fromFile(1, "fromFile");
@@ -86,7 +86,7 @@ double MyTask::Execute(double timeDelta)
 }
 
 
-tTestSection(Task)
+tTestUnit(Task)
 {
 	int64 freq = tGetHardwareTimerFrequency();
 	tTaskSet tasks(freq, 0.1);
@@ -163,7 +163,7 @@ void PrintTest(const char* format, ...)
 }
 
 
-tTestSection(Print)
+tTestUnit(Print)
 {
 	tSetDefaultPrecision(6);
 	tPrint("tPrintf Tests.\n");
@@ -281,7 +281,7 @@ tTestSection(Print)
 	tPrintf("tsPrintf buffer:%s\n", buff);
 
 	#else
-	tPrintf("Non-windows platform. Skipping all non-POD tests.\n");
+	tPrintf("Non-windows platform. Skipping all non-POD print tests.\n");
 	#endif
 
 	// Test counting and string printf.
@@ -349,7 +349,7 @@ void RegexPattern(const char* pattern, const char* test, const char* desc)
 }
 
 
-tTestSection(Regex)
+tTestUnit(Regex)
 {
 	tString pattern = "[ABC][DEF]";
 	tRegex regex(pattern);
@@ -422,13 +422,10 @@ tTestSection(Regex)
 }
 
 
-tTestSection(Script)
+tTestUnit(Script)
 {
 	if (!tDirExists("TestData/"))
-	{
-		rPrintf("Skipping Script Tests. Working dir has no 'TestData' folder.\n");
-		return;
-	}
+		tSkipUnit(Script)
 
 	{
 		tScriptWriter ws("TestData/WrittenScript.txt");
@@ -552,13 +549,10 @@ tTestSection(Script)
 }
 
 
-tTestSection(Chunk)
+tTestUnit(Chunk)
 {
 	if (!tDirExists("TestData/"))
-	{
-		rPrintf("Skipping Chunk Tests. Working dir has no 'TestData' folder.\n");
-		return;
-	}
+		tSkipUnit(Chunk)
 
 	tPrintf("Testing writing a chunk file.\n");
 	{
@@ -620,13 +614,10 @@ tTestSection(Chunk)
 }
 
 
-tTestSection(File)
+tTestUnit(File)
 {
 	if (!tDirExists("TestData/"))
-	{
-		rPrintf("Skipping Chunk Tests. Working dir has no 'TestData' folder.\n");
-		return;
-	}
+		tSkipUnit(File)
 
 	tRequire(!tFileExists("TestData/ProbablyDoesntExist.txt"));
 
@@ -674,7 +665,7 @@ tTestSection(File)
 }
 
 
-tTestSection(Timer)
+tTestUnit(Timer)
 {
 	tTimer timer;
 	tPrintf("Timer running: %s\n", timer.IsRunning() ? "true" : "false");

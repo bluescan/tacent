@@ -2,7 +2,7 @@
 //
 // Build module tests.
 //
-// Copyright (c) 2017 Tristan Grimmer.
+// Copyright (c) 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -19,14 +19,24 @@ namespace tUnitTest
 {
 
 
-tTestSection(Process)
+tTestUnit(Process)
 {
-	ulong exitCode = 0;
+	if (!tSystem::tDirExists("TestData/"))
+		tSkipUnit(Process)
+
+	ulong exitCode;
 	tString output;
 
-	// This constructor blocks. It fills in the exitCode if you supply it. Output is appended to the output string.
-	tProcess("cmd.exe dir", "TestData/", output, &exitCode);
-	tPrintf("Output:\n[\n%s\n]\n", output.Pod());
+	try
+	{
+		// This constructor blocks. It fills in the exitCode if you supply it. Output is appended to the output string.
+		tProcess("cmd.exe dir", "TestData/", output, &exitCode);
+		tPrintf("Output:\n[\n%s\n]\n", output.Pod());
+	}
+	catch (tError error)
+	{
+		tPrintf("Error: %s\n", error.Message.Pod());
+	}
 	tRequire(exitCode == 0);
 
 	try
