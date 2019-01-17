@@ -24,8 +24,8 @@ namespace tUnitTest
 {
 
 
-// Use tRequire is it is essential that the expression evaluates to true. A failure of a tRequire means the test will
-// fail and the overall result will be a fail.
+// tRequire takes a boolean expression as input. A failure of a tRequire (false evaluation of the expression)
+// means the test will fail and the overall result of the unit tests will be a fail.
 #ifdef UNIT_TEST_CALLSTACK_ON_FAIL_REQUIREMENT
 	#define tRequire(expr) { tCheckRequire((expr) ? true : false, #expr, __FILE__, __LINE__, 0); tAssert(expr); }
 #else
@@ -40,6 +40,7 @@ namespace tUnitTest
 #else
 	#define tGoal(expr) tCheckGoal((expr) ? true : false, #expr, __FILE__, __LINE__, 0);
 #endif
+
 
 #define tTestUnit(name) void name()
 #define tSkipUnit(name) { tUnitTest::UnitsSkipped++; tUnitTest::rPrintf("Skipping " #name " Tests\n"); return; }

@@ -4,7 +4,7 @@
 // cross/dot products, inversion functions, projections, normalization etc. These POD types are used as superclasses
 // for the more object-oriented and complete derived types. eg. tVector3 derives from the POD type tVec2 found here.
 //
-// Copyright (c) 2004-2006, 2015, 2017 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -675,20 +675,30 @@ void tExtractPerspective
 
 // This function extracts Euler angles from a rotation matrix. It assumes a particular order of rotations were applied.
 // tExtractRotationEulerXYZ assumes an X, Y, Z order meaning the rotation matrix is RzRyRx. The other orders are not yet
-// implemented. tExtractAffineEulerXYZ does this for 'affine' transformations that do NOT include shear because the basis
-// vectors aren't orthogonal (normally affine includes Euclidean rotation/translation plus possibly non-uniform scale,
-// in addition to shear). If you know the matrix is orthonormal, use the Euclidian version (tExtractRotationEulerXYZ) as
-// it will be faster. Any particular orientation can be achieved by at least 2 sets of Euler rotations, so there are 2
-// sets of Euler angles returned. When the middle rotation satisfies Cos(eulerY) = 0 (for the XYZ order, which we
-// will now assume for the rest of this discussion) there are an infinite number of solutions. This is called gimbal
-// lock. In this case you usually want to choose one of the infinity of solutions. When in gimbal lock, the eulerZ angle
-// may be anything, eulerY will be +- Pi/2, and eulerX depends on your choice of eulerZ. This is what gimbalZValue is
-// for, it allows EulerX to be calculated for you. It is your 'choice' of the Z rotation when in gimbal lock. Not that
-// both sol1 and sol2 are equal when in gimbal lock. They both represent the chosen solution. IF you want to know what
-// ALL solutions are, just leave gimbalZValue at zero. Choose any value for EulerZ (myZ). If EulerY > 0, then
-// EulerZ = EulerX + myZ. If EulerY < 0, then EulerZ = EulerX - myZ. All returned angles are in [(-Pi, Pi)]. See
-// comment by tIntervalBias for a description of how bias works. Returns true if in gimbal lock or if it's close to
-// gimbal lock as determined by an internal epsilon on Cos(eulerY). The extraction algorithm is based on this paper:
+// implemented.
+//
+// tExtractAffineEulerXYZ can extract rotations for affine transformations that do NOT include shear because the basis
+// vectors aren't orthogonal. i.e. tExtractAffineEulerXYZ can handle non-uniform scale -- affine transforms preserve
+// parallel lines and include Euclidean rotation/translation, non-uniform scale, and shear (which we are excluding).
+//
+// If you know the matrix is orthonormal (columns are orthogonal AND of unit length), use the Euclidian version:
+// tExtractRotationEulerXYZ). It will be faster.
+//
+// Any particular orientation can be achieved by at least 2 sets of Euler rotations, so there are 2 sets of Euler angles
+// returned. When the middle rotation (eulerY) satisfies Cos(eulerY) = 0 (the middle one is Y for the XYZ order, which
+// we will now assume for the rest of this comment) there are an infinite number of solutions. This is called gimbal
+// lock.
+//
+// In gimbal lock you usually want to choose one of the infinity of solutions. In particular the eulerZ angle may be
+// anything, eulerY will be +- Pi/2 (cos == 0), and eulerX depends on your choice of eulerZ. This is what gimbalZValue
+// is for, it allows EulerX to be calculated for you -- it is your 'choice' of the Z rotation when in gimbal lock. Note
+// that both sol1 and sol2 are equal when in gimbal lock. They both represent the chosen solution. IF you want to know
+// what ALL solutions are, just leave gimbalZValue at zero. Choose any value for EulerZ (myZ). If EulerY > 0, then
+// EulerZ = EulerX + myZ. If EulerY < 0, then EulerZ = EulerX - myZ.
+//
+// All returned angles are in [(-Pi, Pi)]. See comment by tIntervalBias for a description of my bias notation. This
+// function Returns true if in gimbal lock or if it's close to gimbal lock as determined by an internal epsilon on
+// Cos(eulerY). The extraction algorithm is based on this paper:
 // http://staff.city.ac.uk/~sbbh653/publications/euler.pdf by Gregory G. Slabaugh. That's it. Simple, right?
 bool tExtractRotationEulerXYZ
 (
@@ -696,6 +706,7 @@ bool tExtractRotationEulerXYZ
 	const tMat4& rot,
 	float gimbalZValue = 0.0f, tIntervalBias = tIntervalBias::Low
 );
+
 bool tExtractAffineEulerXYZ
 (
 	tVec3& sol1, tVec3& sol2,

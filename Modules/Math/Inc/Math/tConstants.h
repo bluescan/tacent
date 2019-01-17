@@ -2,7 +2,7 @@
 //
 // Physical and mathematical constants.
 //
-// Copyright (c) 2004-2006, 2015, 2017 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -27,7 +27,7 @@ const float KmPerMi																										= 1.609344f;
 const float MpsToKmph																									= 3.6f;
 const float MaxFloat																									= 3.402823466e+38f;
 
-//This is a practical epsilon that can be used in many circumstances. One one millionth.
+// This is a practical epsilon that can be used in many circumstances. One one millionth.
 const float Epsilon																										= 0.000001f;
 
 // This is the smallest effective positive float such that 1.0f+EpsilonEff != 1.0f.

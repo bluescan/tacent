@@ -5,7 +5,7 @@
 // shape is in, not the dimensionality of the shape itself. eg. A tCircle3 is a (2D) circle in R3 while a tCircle2 is a
 // 2D circle in R2. For shapes that are in R3 we drop the 3 because the R3 primitives are more general.
 //
-// Copyright (c) 2006, 2016 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -424,7 +424,7 @@ public:
 	void Set(const tPlane[6]);
 	void Set(const tVector4[6]);
 
-	// Use to index into the mPlane array.
+	// Use to index into the Planes array.
 	enum class Plane
 	{
 		Right,

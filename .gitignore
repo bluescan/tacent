@@ -44,3 +44,7 @@ Contrib/NvidiaTextureTools/project/vs/nvtt/x64/Debug/nvtt\.res
 *.ipch
 
 *.opendb
+
+*.user
+
+Contrib/NvidiaTextureTools/project/vs/nvtt/x64/Release/nvtt\.res

@@ -3,7 +3,7 @@
 // Core math functions needed by the rest or of the module as well as for external use. Functions include trigonometric
 // functions, intervals, angle manipulation, power functions, and other analytic functions.
 //
-// Copyright (c) 2004, 2017 Tristan Grimmer.
+// Copyright (c) 2004, 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -78,11 +78,11 @@ template<typename T> inline bool tApproxEqual(T a, T b, float e = Epsilon)						
 template<typename T> inline bool tEquals(T a, T b)																		{ return a == b; }
 template<typename T> inline bool tNotEqual(T a, T b)																	{ return a != b; }
 
-// Use this instead of casting to int.  The only difference is it rounds instead of truncating and is way faster (FPU
-// stays in rounding mode... pipeline not flushed).  Note also, the floor, ceiling, and frac all need to change the FPU
-// from round mode to truncate.  Could have performance hit.
+// Use this instead of casting to int. The only difference is it rounds instead of truncating and is way faster -- The
+// FPU stays in rounding mode so pipeline not flushed.
 inline int tFloatToInt(float val)																						{ return int(val + 0.5f); }
 
+// tCeiling and tFloor both need to change the FPU from round mode to truncate. Could have performance hit.
 inline float tCeiling(float v)																							{ return ceilf(v); }
 inline float tFloor(float v)																							{ return floorf(v); }
 inline float tMod(float n, float d)																						{ return fmodf(n,d); }
@@ -90,9 +90,9 @@ inline int tAbs(int val)																								{ return (val < 0) ? -val : val;
 inline float tAbs(float val)																							{ return (val < 0.0f) ? -val : val; }
 inline double tAbs(double val)																							{ return (val < 0.0) ? -val : val; }
 
-// The following Abs function deserves a little explanation.  Some linear algebra texts use the term absolute value and
-// norm interchangeably.  However, others suggest that the absolute value of a matrix is the matrix with each component
-// being the absolute value of the original.  This is what the following template function returns... not the L2 norm
+// The following Abs function deserves a little explanation. Some linear algebra texts use the term absolute value and
+// norm interchangeably. Others suggest that the absolute value of a matrix is the matrix with each component
+// being the absolute value of the original. This is what the following template function returns -- not the L2 norm
 // (scalar length).
 template <typename T> inline T tAbs(T v)																				{ T result; for (int c = 0; c < T::GetNumComponents(); c++) result[c] = tAbs(v[c]); return result; }
 inline float tFrac(float val)																							{ return tAbs(val - float(int(val))); }
@@ -117,8 +117,8 @@ inline float tArcTan(float m)																							{ return atanf(m); }
 inline float tExp(float x)																								{ return expf(x); }
 inline float tLog(float x)									/* Natural logarithm. */									{ return logf(x); }
 
-// Returns integral base 2 logarithm.  If v is <=0 returns MinInt32.  If v is a power of 2 you will get an exact
-// result.  If v is not a power of two it will return the logarithm of the next lowest power of 2.  For example,
+// Returns integral base 2 logarithm. If v is <= 0 returns MinInt32. If v is a power of 2 you will get an exact
+// result. If v is not a power of two it will return the logarithm of the next lowest power of 2. For example,
 // Log2(2) = 1, Log2(3) = 1, and Log2(4) = 2.
 inline int tLog2(int v);
 inline float tPow(float a, float b)																						{ return powf(a, b); }

@@ -53,7 +53,7 @@ tString tString::Suffix(const char c) const
 }
 
 
-inline tString tString::Prefix(int i) const
+tString tString::Prefix(int i) const
 {
 	if (i > Length())
 		return tString();
@@ -65,7 +65,7 @@ inline tString tString::Prefix(int i) const
 }
 
 
-inline tString tString::Suffix(int i) const
+tString tString::Suffix(int i) const
 {
 	int length = Length();
 	if (i > length)
