@@ -16,6 +16,8 @@ Contrib/CxImage/CxImage/x64/Debug/cximage\.pdb
 *.idb
 
 *.pdb
+!Contrib/glfw/Debug/*.pdb
+!Contrib/glfw/Release/*.pdb
 
 Tools/UnitTests/TestData/WrittenChunk\.bin
 
