@@ -203,6 +203,7 @@ void PrintRedirectCallback(const char* text, int numChars)
 
 
 tImage::tPicture gPicture;
+GLuint tex = 0;
 
 
 void LoadTextureFromDisk()
@@ -210,15 +211,37 @@ void LoadTextureFromDisk()
 	tString currentDir = tSystem::tGetCurrentDir();
 	tString imagesDir = currentDir + "TestData/";
 
-	tPrintf("Looging for image files in %s\n", imagesDir.ConstText());
+	tPrintf("Looking for image files in %s\n", imagesDir.ConstText());
 
 	tList<tStringItem> foundFiles;
 	tSystem::tFindFilesInDir(foundFiles, imagesDir, "*.jpg");
+
 
 	for (tStringItem* image = foundFiles.First(); image; image = image->Next())
 	{
 		tPrintf("Loading Image: %s\n", image->ConstText());
 		gPicture.Load(*image);
+
+		//upload to GPU texture
+		glGenTextures(1, &tex);
+		glBindTexture(GL_TEXTURE_2D, tex);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		// glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, 8, 8, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, texDat);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, gPicture.GetWidth(), gPicture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, gPicture.GetPixelPointer());
+		//glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, gPicture.GetWidth(), ,
+		//	GL_RGBA, GL_UNSIGNED_BYTE, gPicture.GetPixelPointer());
+
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		//match projection to window resolution (could be in reshape callback)
+	//	glMatrixMode(GL_PROJECTION);
+	//	glOrtho(0, 800, 0, 600, -1, 1);
+	//	glMatrixMode(GL_MODELVIEW);
+
+
+
+
 		break;
 	}
 
@@ -238,7 +261,6 @@ int main(int, char**)
 
 	tPrintf("Tacent Texture Viewer First Line Does Not Display\n");
 	tPrintf("Tacent Texture Viewer\n");
-	LoadTextureFromDisk();
 
 	// Setup window
 	glfwSetErrorCallback(glfw_error_callback);
@@ -291,15 +313,55 @@ int main(int, char**)
 	ImGui_ImplOpenGL3_Init(glsl_version);
 
 	//io.Fonts->AddFontDefault();
-	io.Fonts->AddFontFromFileTTF("Data/Roboto-Medium.ttf", 16.0f);
+//	io.Fonts->AddFontFromFileTTF("Data/Roboto-Medium.ttf", 16.0f);
+	io.Fonts->AddFontFromFileTTF("Data/Roboto-Medium.ttf", 14.0f);
 
 	bool show_demo_window = true;
 	bool show_another_window = false;
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
+
+	LoadTextureFromDisk();
+
+
+	// One time during setup.
+//	uint tex = 0;
+//	GLuint readFboId = 0;
+//	glGenFramebuffers(1, &readFboId);
+//	glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboId);
+//	glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+//		GL_TEXTURE_2D, tex, 0);
+//	glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+
+
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
+
+		// Every time you want to copy the texture to the default framebuffer.
+		//glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboId);
+		//glBlitFramebuffer(0, 0, 512, 512,
+		//	0, 0, 800, 800,
+		//	GL_COLOR_BUFFER_BIT, GL_LINEAR);
+		//glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+
+		//clear and draw quad with texture (could be in display callback)
+		/*
+		glClear(GL_COLOR_BUFFER_BIT);
+		glBindTexture(GL_TEXTURE_2D, tex);
+		glEnable(GL_TEXTURE_2D);
+		glBegin(GL_QUADS);
+		glTexCoord2i(0, 0); glVertex2i(100, 100);
+		glTexCoord2i(0, 1); glVertex2i(100, 500);
+		glTexCoord2i(1, 1); glVertex2i(500, 500);
+		glTexCoord2i(1, 0); glVertex2i(500, 100);
+		glEnd();
+		glDisable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		glFlush(); //don't need this with GLUT_DOUBLE and glutSwapBuffers
+		*/
+
+
 		// Poll and handle events (inputs, window resize, etc.)
 		// You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
 		// - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
