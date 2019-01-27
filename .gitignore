@@ -10,6 +10,8 @@ Contrib/CxImage/CxImage/x64/Debug/cximage\.pdb
 
 !Contrib/imgui/examples/libs/glfw/lib-vc2010-64/*.lib
 !Contrib/imgui/examples/libs/glfw/lib-vc2010-32/*.lib
+!Contrib/glfw/Debug/*.lib
+!Contrib/glfw/Release/*.lib
 
 *.idb
 
@@ -48,3 +50,5 @@ Contrib/NvidiaTextureTools/project/vs/nvtt/x64/Debug/nvtt\.res
 *.user
 
 Contrib/NvidiaTextureTools/project/vs/nvtt/x64/Release/nvtt\.res
+
+Tools/TextureViewer/\.vs/TextureViewer/v15/\.suo
