@@ -52,3 +52,5 @@ Contrib/NvidiaTextureTools/project/vs/nvtt/x64/Debug/nvtt\.res
 Contrib/NvidiaTextureTools/project/vs/nvtt/x64/Release/nvtt\.res
 
 Tools/TextureViewer/\.vs/TextureViewer/v15/\.suo
+
+Tools/TextureViewer/imgui\.ini
