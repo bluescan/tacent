@@ -1,6 +1,6 @@
-// UnitTests.cpp
+// TextureViewer.cpp
 //
-// Tacent unit tests.
+// A texture viewer for various formats.
 //
 // Copyright (c) 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -14,46 +14,146 @@
 
 #include <Foundation/tVersion.h>
 #include <System/tCommand.h>
+#include <Image/tTexture.h>
+#include <System/tFile.h>
 #include "TextureViewer.h"
-#include "TestImage.h"
-
-
-#if 0
-
-
-int main(int argc, char** argv)
-{
-	tCommand::tParse(argc, argv);
-
-	PrintAllOutput.Present = true;
-
-	if (PrintAllOutput)
-		tSystem::tSetChannels(tSystem::tChannel_All);
-	else
-		tSystem::tSetChannels(tSystem::tChannel_TestResult);
-
-	tPrintf("Using Tacent Version %d.%d.%d.%d\n", tVersion::Major, tVersion::Minor, tVersion::Revision, 0);
-
-	// Image tests.
-	tTest(Image);
-
-	return tUnitTest::tTestResults();
-}
-#endif
-
-///////////////////////////////////////////
-// dear imgui: standalone example application for GLFW + OpenGL 3, using programmable pipeline
-// If you are new to dear imgui, see examples/README.txt and documentation at the top of imgui.cpp.
-// (GLFW is a cross-platform general purpose library for handling windows, inputs, OpenGL/Vulkan graphics context creation, etc.)
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include <stdio.h>
-
-
 using namespace tStd;
+
+
 tCommand::tOption PrintAllOutput("Print all output.", 'a', "all");
+
+
+// Usage:
+//  static ExampleAppLog my_log;
+//  my_log.AddLog("Hello %d world\n", 123);
+//  my_log.Draw("title");
+struct TextureViewerLog
+{
+	ImGuiTextBuffer     Buf;
+	ImGuiTextFilter     Filter;
+	ImVector<int>       LineOffsets;        // Index to lines offset. We maintain this with AddLog() calls, allowing us to have a random access on lines
+	bool                ScrollToBottom;
+
+	void    Clear()
+	{
+		Buf.clear();
+		LineOffsets.clear();
+		LineOffsets.push_back(0);
+	}
+
+	void    AddLog(const char* fmt, ...) IM_FMTARGS(2)
+	{
+		int old_size = Buf.size();
+		va_list args;
+		va_start(args, fmt);
+		Buf.appendfv(fmt, args);
+		va_end(args);
+		for (int new_size = Buf.size(); old_size < new_size; old_size++)
+			if (Buf[old_size] == '\n')
+				LineOffsets.push_back(old_size + 1);
+		ScrollToBottom = true;
+	}
+
+	void    Draw(const char* title, bool* p_open = NULL)
+	{
+		if (!ImGui::Begin(title, p_open))
+		{
+			ImGui::End();
+			return;
+		}
+		if (ImGui::Button("Clear")) Clear();
+		ImGui::SameLine();
+		bool copy = ImGui::Button("Copy");
+		ImGui::SameLine();
+		Filter.Draw("Filter", -100.0f);
+		ImGui::Separator();
+		ImGui::BeginChild("scrolling", ImVec2(0, 0), false, ImGuiWindowFlags_HorizontalScrollbar);
+		if (copy)
+			ImGui::LogToClipboard();
+
+		ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
+		const char* buf = Buf.begin();
+		const char* buf_end = Buf.end();
+		if (Filter.IsActive())
+		{
+			for (int line_no = 0; line_no < LineOffsets.Size; line_no++)
+			{
+				const char* line_start = buf + LineOffsets[line_no];
+				const char* line_end = (line_no + 1 < LineOffsets.Size) ? (buf + LineOffsets[line_no + 1] - 1) : buf_end;
+				if (Filter.PassFilter(line_start, line_end))
+					ImGui::TextUnformatted(line_start, line_end);
+			}
+		}
+		else
+		{
+			// The simplest and easy way to display the entire buffer:
+			//   ImGui::TextUnformatted(buf_begin, buf_end); 
+			// And it'll just work. TextUnformatted() has specialization for large blob of text and will fast-forward to skip non-visible lines.
+			// Here we instead demonstrate using the clipper to only process lines that are within the visible area.
+			// If you have tens of thousands of items and their processing cost is non-negligible, coarse clipping them on your side is recommended.
+			// Using ImGuiListClipper requires A) random access into your data, and B) items all being the  same height, 
+			// both of which we can handle since we an array pointing to the beginning of each line of text.
+			// When using the filter (in the block of code above) we don't have random access into the data to display anymore, which is why we don't use the clipper.
+			// Storing or skimming through the search result would make it possible (and would be recommended if you want to search through tens of thousands of entries)
+			ImGuiListClipper clipper;
+			clipper.Begin(LineOffsets.Size);
+			while (clipper.Step())
+			{
+				for (int line_no = clipper.DisplayStart; line_no < clipper.DisplayEnd; line_no++)
+				{
+					const char* line_start = buf + LineOffsets[line_no];
+					const char* line_end = (line_no + 1 < LineOffsets.Size) ? (buf + LineOffsets[line_no + 1] - 1) : buf_end;
+					ImGui::TextUnformatted(line_start, line_end);
+				}
+			}
+			clipper.End();
+		}
+		ImGui::PopStyleVar();
+
+		if (ScrollToBottom)
+			ImGui::SetScrollHereY(1.0f);
+		ScrollToBottom = false;
+		ImGui::EndChild();
+		ImGui::End();
+	}
+};
+
+
+static bool gLogOpen = true;
+static TextureViewerLog gLog;
+
+
+void ShowTextureViewerLog()
+{
+	// For the demo: add a debug button before the normal log window contents
+	// We take advantage of the fact that multiple calls to Begin()/End() are appending to the same window.
+	ImGui::SetNextWindowSize(ImVec2(500, 400), ImGuiCond_FirstUseEver);
+//	ImGui::Begin("Log", &gLogOpen);
+	/*
+	if (ImGui::SmallButton("Add 5 entries"))
+	{
+		static int counter = 0;
+		for (int n = 0; n < 5; n++)
+		{
+			const char* categories[3] = { "info", "warn", "error" };
+			const char* words[] = { "Bumfuzzled", "Cattywampus", "Snickersnee", "Abibliophobia", "Absquatulate", "Nincompoop", "Pauciloquent" };
+			gLog.AddLog("[%05d] [%s] Hello, current time is %.1f, here's a word: '%s'\n",
+				ImGui::GetFrameCount(), categories[counter % IM_ARRAYSIZE(categories)], ImGui::GetTime(), words[counter % IM_ARRAYSIZE(words)]);
+			counter++;
+		}
+	}
+	*/
+//	ImGui::End();
+
+	gLog.Draw("Log", &gLogOpen);
+}
+
+
 
 namespace tUnitTest
 {
@@ -89,37 +189,71 @@ namespace tUnitTest
 #pragma comment(lib, "legacy_stdio_definitions")
 #endif
 
+
 static void glfw_error_callback(int error, const char* description)
 {
 	fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
 
+
+void PrintRedirectCallback(const char* text, int numChars)
+{
+	gLog.AddLog("%s", text);
+}
+
+
+tImage::tPicture gPicture;
+
+
+void LoadTextureFromDisk()
+{
+	tString currentDir = tSystem::tGetCurrentDir();
+	tString imagesDir = currentDir + "TestData/";
+
+	tPrintf("Looging for image files in %s\n", imagesDir.ConstText());
+
+	tList<tStringItem> foundFiles;
+	tSystem::tFindFilesInDir(foundFiles, imagesDir, "*.jpg");
+
+	for (tStringItem* image = foundFiles.First(); image; image = image->Next())
+	{
+		tPrintf("Loading Image: %s\n", image->ConstText());
+		gPicture.Load(*image);
+		break;
+	}
+
+	//if (!tSystem::tDirExists("TestData/"))
+
+		// Test dxt1 texture.
+	//	tImage::tTexture dxt1Tex("TestData/TestDXT1.dds");
+
+	// Test tPicture loading jpg and saving as tga.
+	///tImage::tPicture jpgPic("TestData/WiredDrives.jpg");
+}
+
+
 int main(int, char**)
 {
+	tSystem::tSetStdoutRedirectCallback(PrintRedirectCallback);	
+
+	tPrintf("Tacent Texture Viewer First Line Does Not Display\n");
+	tPrintf("Tacent Texture Viewer\n");
+	LoadTextureFromDisk();
+
 	// Setup window
 	glfwSetErrorCallback(glfw_error_callback);
 	if (!glfwInit())
 		return 1;
 
-	// Decide GL+GLSL versions
-#if __APPLE__
-	// GL 3.2 + GLSL 150
-	const char* glsl_version = "#version 150";
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+ only
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // Required on Mac
-#else
 	// GL 3.0 + GLSL 130
 	const char* glsl_version = "#version 130";
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 	//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+ only
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // 3.0+ only
-#endif
 
 	// Create window with graphics context
-	GLFWwindow* window = glfwCreateWindow(1280, 720, "Dear ImGui GLFW+OpenGL3 example", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(1280, 720, "Tacent Texture Viewer", NULL, NULL);
 	if (window == NULL)
 		return 1;
 	glfwMakeContextCurrent(window);
@@ -156,20 +290,8 @@ int main(int, char**)
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init(glsl_version);
 
-	// Load Fonts
-	// - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.
-	// - AddFontFromFileTTF() will return the ImFont* so you can store it if you need to select the font among multiple.
-	// - If the file cannot be loaded, the function will return NULL. Please handle those errors in your application (e.g. use an assertion, or display an error and quit).
-	// - The fonts will be rasterized at a given size (w/ oversampling) and stored into a texture when calling ImFontAtlas::Build()/GetTexDataAsXXXX(), which ImGui_ImplXXXX_NewFrame below will call.
-	// - Read 'misc/fonts/README.txt' for more instructions and details.
-	// - Remember that in C/C++ if you want to include a backslash \ in a string literal you need to write a double backslash \\ !
 	//io.Fonts->AddFontDefault();
 	io.Fonts->AddFontFromFileTTF("Data/Roboto-Medium.ttf", 16.0f);
-	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf", 15.0f);
-	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f);
-	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/ProggyTiny.ttf", 10.0f);
-	//ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
-	//IM_ASSERT(font != NULL);
 
 	bool show_demo_window = true;
 	bool show_another_window = false;
@@ -190,42 +312,12 @@ int main(int, char**)
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
+		//tPrintf("Logging...\n");
 		// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
 		if (show_demo_window)
 			ImGui::ShowDemoWindow(&show_demo_window);
 
-		// 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
-		{
-			static float f = 0.0f;
-			static int counter = 0;
-
-			ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
-
-			ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-			ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
-			ImGui::Checkbox("Another Window", &show_another_window);
-
-			ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-			ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
-
-			if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
-				counter++;
-			ImGui::SameLine();
-			ImGui::Text("counter = %d", counter);
-
-			ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-			ImGui::End();
-		}
-
-		// 3. Show another simple window.
-		if (show_another_window)
-		{
-			ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-			ImGui::Text("Hello from another window!");
-			if (ImGui::Button("Close Me"))
-				show_another_window = false;
-			ImGui::End();
-		}
+		ShowTextureViewerLog();
 
 		// Rendering
 		ImGui::Render();
@@ -251,3 +343,6 @@ int main(int, char**)
 
 	return 0;
 }
+
+
+

@@ -70,6 +70,16 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\..\..\Contrib\glfw\Debug</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>copy $(TargetDir)$(TargetFileName) $(ProjectDir)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copying exe to project directory.</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -92,6 +102,16 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\..\..\Contrib\glfw\Release</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>copy $(TargetDir)$(TargetFileName) $(ProjectDir)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copying exe to project directory.</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Contrib\CxImage\CxImage\cximage.vcxproj">
