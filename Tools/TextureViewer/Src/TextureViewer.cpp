@@ -199,11 +199,8 @@ void LoadTextureFromDisk()
 	tString imagesDir = currentDir + "TestData/";
 
 	tPrintf("Looking for image files in %s\n", imagesDir.ConstText());
-
 	tList<tStringItem> foundFiles;
 	tSystem::tFindFilesInDir(foundFiles, imagesDir, "*.jpg");
-
-
 	for (tStringItem* image = foundFiles.First(); image; image = image->Next())
 	{
 		tPrintf("Loading Image: %s\n", image->ConstText());

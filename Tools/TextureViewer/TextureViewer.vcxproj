@@ -189,6 +189,7 @@
     <ClInclude Include="..\..\Contrib\imgui\imstb_rectpack.h" />
     <ClInclude Include="..\..\Contrib\imgui\imstb_textedit.h" />
     <ClInclude Include="..\..\Contrib\imgui\imstb_truetype.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Src\TestImage.h" />
     <ClInclude Include="Src\TextureViewer.h" />
   </ItemGroup>
@@ -202,6 +203,15 @@
     <ClCompile Include="..\..\Contrib\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Src\TestImage.cpp" />
     <ClCompile Include="Src\TextureViewer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico" />
+    <Image Include="icon2.ico" />
+    <Image Include="TextureViewer.ico" />
+    <Image Include="TextureViewerTitlebar.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TextureViewer.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
