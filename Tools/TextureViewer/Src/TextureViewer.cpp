@@ -20,7 +20,7 @@
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
+#include "imgui_impl_opengl2.h"
 #include <stdio.h>
 using namespace tStd;
 
@@ -166,28 +166,15 @@ namespace tUnitTest
 	int GoalsPassed = 0;
 }
 
-// About OpenGL function loaders: modern OpenGL doesn't have a standard header file and requires individual function pointers to be loaded manually. 
-// Helper libraries are often used for this purpose! Here we are supporting a few common ones: gl3w, glew, glad.
-// You may use another loader/header of your choice (glext, glLoadGen, etc.), or chose to manually implement your own.
-#if defined(IMGUI_IMPL_OPENGL_LOADER_GL3W)
-#include <GL/gl3w.h>    // Initialize with gl3wInit()
-#elif defined(IMGUI_IMPL_OPENGL_LOADER_GLEW)
-#include <GL/glew.h>    // Initialize with glewInit()
-#elif defined(IMGUI_IMPL_OPENGL_LOADER_GLAD)
-#include <glad/glad.h>  // Initialize with gladLoadGL()
-#else
-#include IMGUI_IMPL_OPENGL_LOADER_CUSTOM
-#endif
-
 // Include glfw3.h after our OpenGL definitions
 #include <GLFW/glfw3.h> 
 
 // [Win32] Our example includes a copy of glfw3.lib pre-compiled with VS2010 to maximize ease of testing and compatibility with old VS compilers.
 // To link with VS2010-era libraries, VS2015+ requires linking with legacy_stdio_definitions.lib, which we do using this pragma. 
 // Your own project should not be affected, as you are likely to link with a newer binary of GLFW that is adequate for your version of Visual Studio.
-#if defined(_MSC_VER) && (_MSC_VER >= 1900) && !defined(IMGUI_DISABLE_WIN32_FUNCTIONS)
-#pragma comment(lib, "legacy_stdio_definitions")
-#endif
+//#if defined(_MSC_VER) && (_MSC_VER >= 1900) && !defined(IMGUI_DISABLE_WIN32_FUNCTIONS)
+//#pragma comment(lib, "legacy_stdio_definitions")
+//#endif
 
 
 static void glfw_error_callback(int error, const char* description)
@@ -226,8 +213,9 @@ void LoadTextureFromDisk()
 		glGenTextures(1, &tex);
 		glBindTexture(GL_TEXTURE_2D, tex);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		// glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		// glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, 8, 8, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, texDat);
+		tPrintf("Width: %d Height: %d\n", gPicture.GetWidth(), gPicture.GetHeight());
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, gPicture.GetWidth(), gPicture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, gPicture.GetPixelPointer());
 		//glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, gPicture.GetWidth(), ,
 		//	GL_RGBA, GL_UNSIGNED_BYTE, gPicture.GetPixelPointer());
@@ -235,12 +223,9 @@ void LoadTextureFromDisk()
 		glBindTexture(GL_TEXTURE_2D, 0);
 
 		//match projection to window resolution (could be in reshape callback)
-	//	glMatrixMode(GL_PROJECTION);
-	//	glOrtho(0, 800, 0, 600, -1, 1);
-	//	glMatrixMode(GL_MODELVIEW);
-
-
-
+		glMatrixMode(GL_PROJECTION);
+		glOrtho(0, 1280, 0, 720, -1, 1);
+		glMatrixMode(GL_MODELVIEW);
 
 		break;
 	}
@@ -261,48 +246,26 @@ int main(int, char**)
 
 	tPrintf("Tacent Texture Viewer First Line Does Not Display\n");
 	tPrintf("Tacent Texture Viewer\n");
+	tPrintf("Tacent Version %d.%d.%d\n", tVersion::Major, tVersion::Minor, tVersion::Revision);
+	tPrintf("Dear IMGUI Version %s (%d)\n", IMGUI_VERSION, IMGUI_VERSION_NUM);
 
 	// Setup window
 	glfwSetErrorCallback(glfw_error_callback);
 	if (!glfwInit())
 		return 1;
 
-	// GL 3.0 + GLSL 130
-	const char* glsl_version = "#version 130";
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-	//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+ only
-	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // 3.0+ only
+    GLFWwindow* window = glfwCreateWindow(1280, 720, "Tacent Texture Viewer", NULL, NULL);
+    if (window == NULL)
+        return 1;
+    glfwMakeContextCurrent(window);
+    glfwSwapInterval(1); // Enable vsync
 
-	// Create window with graphics context
-	GLFWwindow* window = glfwCreateWindow(1280, 720, "Tacent Texture Viewer", NULL, NULL);
-	if (window == NULL)
-		return 1;
-	glfwMakeContextCurrent(window);
-	glfwSwapInterval(1); // Enable vsync
-
-	// Initialize OpenGL loader
-#if defined(IMGUI_IMPL_OPENGL_LOADER_GL3W)
-	bool err = gl3wInit() != 0;
-#elif defined(IMGUI_IMPL_OPENGL_LOADER_GLEW)
-	bool err = glewInit() != GLEW_OK;
-#elif defined(IMGUI_IMPL_OPENGL_LOADER_GLAD)
-	bool err = gladLoadGL() == 0;
-#else
-	bool err = false; // If you use IMGUI_IMPL_OPENGL_LOADER_CUSTOM, your loader is likely to requires some form of initialization.
-#endif
-	if (err)
-	{
-		fprintf(stderr, "Failed to initialize OpenGL loader!\n");
-		return 1;
-	}
-
-	// Setup Dear ImGui context
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
-	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
+    // Setup Dear ImGui context
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
+    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
 
 	// Setup Dear ImGui style
 	ImGui::StyleColorsDark();
@@ -310,58 +273,19 @@ int main(int, char**)
 
 	// Setup Platform/Renderer bindings
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
-	ImGui_ImplOpenGL3_Init(glsl_version);
+    ImGui_ImplOpenGL2_Init();
 
-	//io.Fonts->AddFontDefault();
-//	io.Fonts->AddFontFromFileTTF("Data/Roboto-Medium.ttf", 16.0f);
 	io.Fonts->AddFontFromFileTTF("Data/Roboto-Medium.ttf", 14.0f);
 
 	bool show_demo_window = true;
 	bool show_another_window = false;
-	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
+	ImVec4 clear_color = ImVec4(0.10f, 0.10f, 0.12f, 1.00f);
 
 	LoadTextureFromDisk();
-
-
-	// One time during setup.
-//	uint tex = 0;
-//	GLuint readFboId = 0;
-//	glGenFramebuffers(1, &readFboId);
-//	glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboId);
-//	glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-//		GL_TEXTURE_2D, tex, 0);
-//	glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
-
 
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
-
-		// Every time you want to copy the texture to the default framebuffer.
-		//glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboId);
-		//glBlitFramebuffer(0, 0, 512, 512,
-		//	0, 0, 800, 800,
-		//	GL_COLOR_BUFFER_BIT, GL_LINEAR);
-		//glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
-
-		//clear and draw quad with texture (could be in display callback)
-		/*
-		glClear(GL_COLOR_BUFFER_BIT);
-		glBindTexture(GL_TEXTURE_2D, tex);
-		glEnable(GL_TEXTURE_2D);
-		glBegin(GL_QUADS);
-		glTexCoord2i(0, 0); glVertex2i(100, 100);
-		glTexCoord2i(0, 1); glVertex2i(100, 500);
-		glTexCoord2i(1, 1); glVertex2i(500, 500);
-		glTexCoord2i(1, 0); glVertex2i(500, 100);
-		glEnd();
-		glDisable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, 0);
-		glFlush(); //don't need this with GLUT_DOUBLE and glutSwapBuffers
-		*/
-
-
 		// Poll and handle events (inputs, window resize, etc.)
 		// You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
 		// - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
@@ -369,10 +293,41 @@ int main(int, char**)
 		// Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
 		glfwPollEvents();
 
-		// Start the Dear ImGui frame
-		ImGui_ImplOpenGL3_NewFrame();
+        // Start the Dear ImGui frame
+        ImGui_ImplOpenGL2_NewFrame();
+		
 		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
+
+		int display_w, display_h;
+		glfwGetFramebufferSize(window, &display_w, &display_h);
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0, display_w, 0, display_h, -1, 1);
+		glMatrixMode(GL_MODELVIEW);
+
+
+
+
+		//clear and draw quad with texture (could be in display callback)
+        glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		glBindTexture(GL_TEXTURE_2D, tex);
+		glEnable(GL_TEXTURE_2D);
+		glBegin(GL_QUADS);
+
+
+		glTexCoord2i(0, 0); glVertex2i(10+0, 10+0);
+		glTexCoord2i(0, 1); glVertex2i(10+0, 10+470);
+		glTexCoord2i(1, 1); glVertex2i(10+1024, 10+470);
+		glTexCoord2i(1, 0); glVertex2i(10+1024, 10+0);
+		glEnd();
+		glDisable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		glFlush(); //don't need this with GLUT_DOUBLE and glutSwapBuffers
+
+
+        ImGui::NewFrame();
 
 		//tPrintf("Logging...\n");
 		// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
@@ -381,29 +336,27 @@ int main(int, char**)
 
 		ShowTextureViewerLog();
 
-		// Rendering
-		ImGui::Render();
-		int display_w, display_h;
-		glfwMakeContextCurrent(window);
-		glfwGetFramebufferSize(window, &display_w, &display_h);
-		glViewport(0, 0, display_w, display_h);
-		glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
-		glClear(GL_COLOR_BUFFER_BIT);
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        // Rendering
+        ImGui::Render();
+        glViewport(0, 0, display_w, display_h);
+   //     glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
+   //     glClear(GL_COLOR_BUFFER_BIT);
+        //glUseProgram(0); // You may want this if using this code in an OpenGL 3+ context where shaders may be bound, but prefer using the GL3+ code.
+        ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 
-		glfwMakeContextCurrent(window);
-		glfwSwapBuffers(window);
+        glfwMakeContextCurrent(window);
+        glfwSwapBuffers(window);
 	}
 
-	// Cleanup
-	ImGui_ImplOpenGL3_Shutdown();
-	ImGui_ImplGlfw_Shutdown();
-	ImGui::DestroyContext();
+    // Cleanup
+    ImGui_ImplOpenGL2_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
 
-	glfwDestroyWindow(window);
-	glfwTerminate();
+    glfwDestroyWindow(window);
+    glfwTerminate();
 
-	return 0;
+    return 0;
 }
 
 

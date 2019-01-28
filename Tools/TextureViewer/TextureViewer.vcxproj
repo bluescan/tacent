@@ -180,7 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Contrib\imgui\examples\imgui_impl_glfw.h" />
-    <ClInclude Include="..\..\Contrib\imgui\examples\imgui_impl_opengl3.h" />
+    <ClInclude Include="..\..\Contrib\imgui\examples\imgui_impl_opengl2.h" />
     <ClInclude Include="..\..\Contrib\imgui\examples\libs\gl3w\GL\gl3w.h" />
     <ClInclude Include="..\..\Contrib\imgui\examples\libs\gl3w\GL\glcorearb.h" />
     <ClInclude Include="..\..\Contrib\imgui\imconfig.h" />
@@ -194,7 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Contrib\imgui\examples\imgui_impl_glfw.cpp" />
-    <ClCompile Include="..\..\Contrib\imgui\examples\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="..\..\Contrib\imgui\examples\imgui_impl_opengl2.cpp" />
     <ClCompile Include="..\..\Contrib\imgui\examples\libs\gl3w\GL\gl3w.c" />
     <ClCompile Include="..\..\Contrib\imgui\imgui.cpp" />
     <ClCompile Include="..\..\Contrib\imgui\imgui_demo.cpp" />
