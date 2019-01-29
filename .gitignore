@@ -58,3 +58,9 @@ Tools/TextureViewer/\.vs/TextureViewer/v15/\.suo
 Tools/TextureViewer/imgui\.ini
 
 *.aps
+
+Tools/TextureViewer/Debug/TextureViewer\.res
+
+*.iobj
+
+*.ipdb

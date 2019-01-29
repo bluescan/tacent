@@ -201,7 +201,6 @@
     <ClCompile Include="..\..\Contrib\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\..\Contrib\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\..\Contrib\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="Src\TestImage.cpp" />
     <ClCompile Include="Src\TextureViewer.cpp" />
   </ItemGroup>
   <ItemGroup>

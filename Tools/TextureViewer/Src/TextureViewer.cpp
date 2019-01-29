@@ -38,6 +38,10 @@ struct TextureViewerLog
 	ImGuiTextFilter     Filter;
 	ImVector<int>       LineOffsets;        // Index to lines offset. We maintain this with AddLog() calls, allowing us to have a random access on lines
 	bool                ScrollToBottom;
+	TextureViewerLog() : ScrollToBottom(true)
+	{
+		Clear();
+	}
 
 	void    Clear()
 	{
@@ -92,7 +96,7 @@ struct TextureViewerLog
 		else
 		{
 			// The simplest and easy way to display the entire buffer:
-			//   ImGui::TextUnformatted(buf_begin, buf_end); 
+			//ImGui::TextUnformatted(buf, buf_end); 
 			// And it'll just work. TextUnformatted() has specialization for large blob of text and will fast-forward to skip non-visible lines.
 			// Here we instead demonstrate using the clipper to only process lines that are within the visible area.
 			// If you have tens of thousands of items and their processing cost is non-negligible, coarse clipping them on your side is recommended.
@@ -241,7 +245,6 @@ int main(int, char**)
 {
 	tSystem::tSetStdoutRedirectCallback(PrintRedirectCallback);	
 
-	tPrintf("Tacent Texture Viewer First Line Does Not Display\n");
 	tPrintf("Tacent Texture Viewer\n");
 	tPrintf("Tacent Version %d.%d.%d\n", tVersion::Major, tVersion::Minor, tVersion::Revision);
 	tPrintf("Dear IMGUI Version %s (%d)\n", IMGUI_VERSION, IMGUI_VERSION_NUM);
@@ -326,6 +329,8 @@ int main(int, char**)
 
         ImGui::NewFrame();
 
+		 //ImGui::Button("Next");
+		 //ImGui::Button("Prev");
 		//tPrintf("Logging...\n");
 		// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
 		if (show_demo_window)
