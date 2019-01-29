@@ -195,7 +195,25 @@ void PrintRedirectCallback(const char* text, int numChars)
 
 tImage::tPicture gPicture;
 GLuint tex = 0;
+tList<tStringItem> gFoundFiles;
+tStringItem* gCurrFile = nullptr;
 
+void LoadCurrFile()
+{
+	if (!gCurrFile)
+		return;
+
+	tPrintf("Loading Image: %s\n", gCurrFile->ConstText());
+	gPicture.Load(*gCurrFile);
+
+	glBindTexture(GL_TEXTURE_2D, tex);
+	tPrintf("Width: %d Height: %d\n", gPicture.GetWidth(), gPicture.GetHeight());
+		//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, gPicture.GetWidth(), gPicture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, gPicture.GetPixelPointer());
+//	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, gPicture.GetWidth(), gPicture.GetHeight(), GL_RGBA, GL_UNSIGNED_BYTE, gPicture.GetPixelPointer());
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, gPicture.GetWidth(), gPicture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, gPicture.GetPixelPointer());
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
 
 void LoadTextureFromDisk()
 {
@@ -203,12 +221,17 @@ void LoadTextureFromDisk()
 	tString imagesDir = currentDir + "TestData/";
 
 	tPrintf("Looking for image files in %s\n", imagesDir.ConstText());
-	tList<tStringItem> foundFiles;
-	tSystem::tFindFilesInDir(foundFiles, imagesDir, "*.jpg");
-	for (tStringItem* image = foundFiles.First(); image; image = image->Next())
+	tSystem::tFindFilesInDir(gFoundFiles, imagesDir, "*.jpg");
+	tSystem::tFindFilesInDir(gFoundFiles, imagesDir, "*.gif");
+	tSystem::tFindFilesInDir(gFoundFiles, imagesDir, "*.tga");
+	tSystem::tFindFilesInDir(gFoundFiles, imagesDir, "*.png");
+	tSystem::tFindFilesInDir(gFoundFiles, imagesDir, "*.tiff");
+	//for (tStringItem* image = foundFiles.First(); image; image = image->Next())
+	gCurrFile = gFoundFiles.First();
+	if (gCurrFile)
 	{
-		tPrintf("Loading Image: %s\n", image->ConstText());
-		gPicture.Load(*image);
+		tPrintf("Loading Image: %s\n", gCurrFile->ConstText());
+		gPicture.Load(*gCurrFile);
 
 		//upload to GPU texture
 		glGenTextures(1, &tex);
@@ -222,13 +245,6 @@ void LoadTextureFromDisk()
 		//	GL_RGBA, GL_UNSIGNED_BYTE, gPicture.GetPixelPointer());
 
 		glBindTexture(GL_TEXTURE_2D, 0);
-
-		//match projection to window resolution (could be in reshape callback)
-		glMatrixMode(GL_PROJECTION);
-		glOrtho(0, 1280, 0, 720, -1, 1);
-		glMatrixMode(GL_MODELVIEW);
-
-		break;
 	}
 
 	//if (!tSystem::tDirExists("TestData/"))
@@ -283,6 +299,11 @@ int main(int, char**)
 
 	LoadTextureFromDisk();
 
+	//match projection to window resolution (could be in reshape callback)
+	glMatrixMode(GL_PROJECTION);
+	glOrtho(0, 1280, 0, 720, -1, 1);
+	glMatrixMode(GL_MODELVIEW);
+
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
@@ -309,28 +330,46 @@ int main(int, char**)
 
 
 		//clear and draw quad with texture (could be in display callback)
-        glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
-		glClear(GL_COLOR_BUFFER_BIT);
+		if (gPicture.IsValid())
+		{
+			glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
+			glClear(GL_COLOR_BUFFER_BIT);
 
-		glBindTexture(GL_TEXTURE_2D, tex);
-		glEnable(GL_TEXTURE_2D);
-		glBegin(GL_QUADS);
+			glBindTexture(GL_TEXTURE_2D, tex);
+			glEnable(GL_TEXTURE_2D);
+			glBegin(GL_QUADS);
 
-
-		glTexCoord2i(0, 0); glVertex2i(10+0, 10+0);
-		glTexCoord2i(0, 1); glVertex2i(10+0, 10+470);
-		glTexCoord2i(1, 1); glVertex2i(10+1024, 10+470);
-		glTexCoord2i(1, 0); glVertex2i(10+1024, 10+0);
-		glEnd();
-		glDisable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, 0);
-		glFlush(); //don't need this with GLUT_DOUBLE and glutSwapBuffers
+			int w = gPicture.GetWidth();
+			int h = gPicture.GetHeight();
+			glTexCoord2i(0, 0); glVertex2i(10+0, 10+0);
+			glTexCoord2i(0, 1); glVertex2i(10+0, 10+h);
+			glTexCoord2i(1, 1); glVertex2i(10+w, 10+h);
+			glTexCoord2i(1, 0); glVertex2i(10+w, 10+0);
+			glEnd();
+			glDisable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, 0);
+			glFlush(); //don't need this with GLUT_DOUBLE and glutSwapBuffers
+		}
 
 
         ImGui::NewFrame();
 
-		 //ImGui::Button("Next");
-		 //ImGui::Button("Prev");
+		 if (ImGui::Button("Next"))
+		 {
+			 if (gCurrFile && gCurrFile->Next())
+			 {
+				 gCurrFile = gCurrFile->Next();
+				 LoadCurrFile();
+			 }
+		 }
+		 if (ImGui::Button("Prev"))
+		 {
+			 if (gCurrFile && gCurrFile->Prev())
+			 {
+				 gCurrFile = gCurrFile->Prev();
+				 LoadCurrFile();
+			 }
+		 }
 		//tPrintf("Logging...\n");
 		// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
 		if (show_demo_window)

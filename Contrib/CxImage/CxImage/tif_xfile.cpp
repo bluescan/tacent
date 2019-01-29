@@ -188,7 +188,9 @@ Win32WarningHandler(const char* module, const char* fmt, va_list ap)
 #endif
 #endif
 }
-TIFFErrorHandler _TIFFwarningHandler = Win32WarningHandler;
+
+TIFFErrorHandler _TIFFwarningHandler = nullptr; // @tacent Win32WarningHandler;
+
 
 static void
 Win32ErrorHandler(const char* module, const char* fmt, va_list ap)
