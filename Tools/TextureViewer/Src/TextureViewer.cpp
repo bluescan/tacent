@@ -239,7 +239,7 @@ void LoadTextureFromDisk()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		// glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		// glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, 8, 8, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, texDat);
-		tPrintf("Width: %d Height: %d\n", gPicture.GetWidth(), gPicture.GetHeight());
+		tPrintf("Width: %d Height: %d Opaque: %s\n", gPicture.GetWidth(), gPicture.GetHeight(), gPicture.IsOpaque() ? "true" : "false");
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, gPicture.GetWidth(), gPicture.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, gPicture.GetPixelPointer());
 		//glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, gPicture.GetWidth(), ,
 		//	GL_RGBA, GL_UNSIGNED_BYTE, gPicture.GetPixelPointer());
