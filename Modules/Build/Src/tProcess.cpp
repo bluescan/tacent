@@ -655,8 +655,8 @@ void tProcess::MonitorStdErr()
 				if (Parent)
 					PostMessage(Parent, uint(tMessage::StdErrString), WinWParam(new tString(buf)), 0);
 
-				if (OutputString)
-					*OutputString += buf;
+				//if (OutputString)
+				//	*OutputString += buf;
 
 				if (PrintCallback)
 					PrintCallback(PrintCallbackUserPointer, buf.ConstText());
