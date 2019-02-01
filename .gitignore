@@ -64,3 +64,5 @@ Tools/TextureViewer/Debug/TextureViewer\.res
 *.iobj
 
 *.ipdb
+
+Tools/DynDnsUpdate/\.vs/DynDnsUpdate/v15/\.suo

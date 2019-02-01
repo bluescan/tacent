@@ -43,6 +43,7 @@ public:
 
 private:
 	template<typename T> friend class tList;
+	template<typename T> friend class tListZ;
 	mutable const T* NextItem;
 	mutable const T* PrevItem;
 };
@@ -55,7 +56,7 @@ public:
 	tList()																												{ }
 
 	// If ownsItems is true the objects will be deleted when the list is destroyed.
-	tList(bool ownsItems)					 																			: OwnsItems(ownsItems) { }
+	tList(bool ownsItems)					 				/* ownsItems defaults to true. */							: OwnsItems(ownsItems) { }
 	virtual ~tList()																									{ if (OwnsItems) Empty(); }
 
 	T* Insert(const T* item);								// Insert item at head.	Returns item.
@@ -120,6 +121,45 @@ private:
 	mutable const T* TailItem = nullptr;
 	int ItemCount = 0;
 	bool OwnsItems = true;
+};
+
+
+// A tListZ is an intrusive list implementation that relies on zero initialization of global objects at startup.
+// It can be used for global or static lists but NOT on the stack as a local var. It also does NOT delete objects
+// it contains at shutdown to avoid both the init and de-init fiasco. It also does not contain the sorting functions
+// to keep the implementation small. Transer all the unowned items over to tList after main starts if you need sorting.
+template<typename T> class tListZ
+{
+public:
+	T* Insert(const T* item);								// Insert item at head.	Returns item.
+	T* Insert(const T* item, const T* here);				// Insert item before here. Returns item.
+	T* Append(const T* item);								// Append item at tail.	Returns item.
+	T* Append(const T* item, const T* here);				// Append item after here. Returns item.
+	T* Remove(const T* item);								// Removes and returns item.
+	T* Remove();											// Removes and returns head item.
+	T* Drop();												// Removes and returns tail item.
+
+	void Clear()											/* Clears the list. Same as Reset. */						{ Reset(); }
+	void Reset()											/* Resets the list. Does not delete the objects. */			{ HeadItem = nullptr; TailItem = nullptr; ItemCount = 0; }
+
+	T* Head() const																										{ return (T*)HeadItem; }
+	T* Tail() const																										{ return (T*)TailItem; }
+	T* First() const																									{ return (T*)HeadItem; }
+	T* Last() const																										{ return (T*)TailItem; }
+
+	T* NextCirc(const T* here) const						/* Circular. Gets item after here. */						{ return l->NextItem ? l->NextItem : HeadItem; }
+	T* PrevCirc(const T* here) const						/* Circular. Gets item before here. */						{ return l->PrevItem ? l->PrevItem : TailItem; }
+
+	int GetNumItems() const																								{ return ItemCount; }
+	int NumItems() const																								{ return ItemCount; }
+	int Count() const																									{ return ItemCount; }
+	bool IsEmpty() const																								{ return !HeadItem; }
+	bool Contains(const T& item) const						/* To use this there must be an operator== for type T. */	{ for (const T* n = First(); n; n = n->Next()) if (*n == item) return true; return false; }
+
+private:
+	mutable const T* HeadItem;
+	mutable const T* TailItem;
+	int ItemCount;
 };
 
 
@@ -673,6 +713,134 @@ template<typename T> template<typename CompareFunc> inline int tList<T>::BubbleB
 	return numSwaps;
 }
 
+
+template<typename T> inline T* tListZ<T>::Insert(const T* item)
+{
+	if (HeadItem)
+		HeadItem->PrevItem = item;
+
+	item->NextItem = HeadItem;
+	item->PrevItem = nullptr;
+	HeadItem = item;
+	if (!TailItem)
+		TailItem = item;
+
+	ItemCount++;
+	return (T*)item;
+}
+
+
+template<typename T> inline T* tListZ<T>::Append(const T* item)
+{
+	if (TailItem)
+		TailItem->NextItem = item;
+
+	item->PrevItem = TailItem;
+	item->NextItem = nullptr;
+	TailItem = (T*)item;
+	if (!HeadItem)
+		HeadItem = (T*)item;
+
+	ItemCount++;
+	return (T*)item;
+}
+
+
+template<typename T> inline T* tListZ<T>::Insert(const T* item, const T* where)
+{
+	tAssert(item);
+	if (!where)
+		Insert(item);
+
+	item->NextItem = where;
+	item->PrevItem = where->PrevItem;
+	where->PrevItem = item;
+
+	if (item->PrevItem)
+		item->PrevItem->NextItem = item;
+	else
+		HeadItem = item;
+
+	ItemCount++;
+	return item;
+}
+
+
+template<typename T> inline T* tListZ<T>::Append(const T* item, const T* where)
+{
+	tAssert(item);
+	if (!where)
+		Append(item);
+
+	item->PrevItem = where;
+	item->NextItem = where->NextItem;
+	where->NextItem = item;
+
+	if (item->NextItem)
+		item->NextItem->PrevItem = item;
+	else
+		TailItem = item;
+
+	ItemCount++;
+	return item;
+}
+
+
+template<typename T> inline T* tListZ<T>::Remove()
+{
+	// It's OK to try to remove from an empty list.
+	if (!HeadItem)
+		return nullptr;
+
+	T* removed = (T*)HeadItem;
+	HeadItem = HeadItem->NextItem;
+	if (!HeadItem)
+		TailItem = nullptr;
+	else
+		HeadItem->PrevItem = nullptr;
+
+	ItemCount--;
+	return removed;
+}
+
+
+template<typename T> inline T* tListZ<T>::Drop()
+{
+	// It's OK to try to lose something from an empty list.
+	if (!TailItem)
+		return nullptr;
+
+	T* t = TailItem;
+
+	TailItem = TailItem->PrevItem;
+	if (!TailItem)
+		HeadItem = nullptr;
+	else
+		TailItem->NextItem = nullptr;
+
+	ItemCount--;
+	return t;
+}
+
+
+template<typename T> inline T* tListZ<T>::Remove(const T* l)
+{
+	if (l->PrevItem)
+		l->PrevItem->NextItem = l->NextItem;
+	else
+		HeadItem = l->NextItem;
+
+	if (l->NextItem)
+		l->NextItem->PrevItem = l->PrevItem;
+	else
+		TailItem = l->PrevItem;
+
+	ItemCount--;
+
+	return (T*)l;
+}
+
+///////////////////////////////////
 
 template<typename T> inline T* tItList<T>::Remove(Iter& iter)
 {
