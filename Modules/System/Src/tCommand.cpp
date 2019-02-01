@@ -71,11 +71,9 @@ namespace tCommand
 	// Any single-hyphen combined arguments are expanded here. Ex. -abc becomes -a -b -c.
 	void ExpandArgs(tList<tStringItem>& args);
 
-	// The aggregate-list construction syntax is guaranteed to happen before normal construction. This allows the lists
-	// of modes and options to be properly constructed before they are populated by any globally constructed tCommand
-	// and tOption objects. @todo Actually, I need to check this with the C++11 standard at some point.
-	tList<tParam> Params = { false };
-	tList<tOption> Options = { false };
+	// I'm relying on zero initialization here. It's all zeroes before any tObjects are constructed.
+	tListZ<tParam> Params;
+	tListZ<tOption> Options;
 	tString Program;
 	tString Empty;
 }
