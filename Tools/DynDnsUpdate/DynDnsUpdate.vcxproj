@@ -119,6 +119,9 @@
   <ItemGroup>
     <ClCompile Include="DynDnsUpdate.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="DynDnsUpdate.cfg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
