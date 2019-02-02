@@ -69,6 +69,12 @@
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetDir)$(TargetFileName) $(ProjectDir)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copying exe to project directory.</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -89,6 +95,12 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetDir)$(TargetFileName) $(ProjectDir)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copying exe to project directory.</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Modules\Build\Win\Build.vcxproj">

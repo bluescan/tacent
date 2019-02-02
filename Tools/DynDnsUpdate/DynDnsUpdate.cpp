@@ -21,14 +21,15 @@
 using namespace tStd;
 using namespace tBuild;
 using namespace tSystem;
-tCommand::tOption Username("Username or e-mail.", 'u', "user");
-tCommand::tOption Password("Password.", 'p', "pass");
+tCommand::tOption Force("Force an update even if no change detected.", 'f', "force");
+tCommand::tOption OverrideAddr("Override the address that gets sent. It will autodetect ipv4 or ipv6. You can add an additional option to do both.", 'o', "override");
+tCommand::tParam ConfigFile(1, "ConfigFile");
 
-
+//http://update.spdyn.de/nic/update?hostname=twookes.spdns.org&myip=2001:569:71a5:9100:b5d0:9d40:8f81:9b92
 int main(int argc, char** argv)
 {
 	tCommand::tParse(argc, argv);
-	// tCommand::tPrintUsage();
+	tCommand::tPrintUsage();
 
 	tString result;
 	ulong exitCode = 0;
