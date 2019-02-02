@@ -66,3 +66,7 @@ Tools/TextureViewer/Debug/TextureViewer\.res
 *.ipdb
 
 Tools/DynDnsUpdate/\.vs/DynDnsUpdate/v15/\.suo
+
+Tools/DynDnsUpdate/DynDnsUpdate\.ips
+
+Tools/DynDnsUpdate/DynDnsUpdateTwookes\.cfg

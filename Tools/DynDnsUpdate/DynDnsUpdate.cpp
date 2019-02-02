@@ -28,44 +28,269 @@ tCommand::tOption OverrideAddr("Override the address that gets sent. It will aut
 tCommand::tParam ConfigFile(1, "ConfigFile", "The DynDnsUpdate config file. Defaults to DynDnsUpdate.cfg");
 
 
-// Environment state variables.
-tString StateFile = "DynDnsUpdate.ips";
-tString LogFile = "DynDnsUpdate.log";
-enum class LogVerbosity
+namespace DynDns
 {
-	None,
-	Normal,
-	High
-};
-LogVerbosity Verbosity = LogVerbosity::Normal;
-tString IpService = "ifconfig.co";
-tString Curl = "curl.exe";
+	//								Default
+	enum class eRecord			{	IPV4,		IPV6 };
+	enum class eProtocol		{	HTTPS,		HTTP };
+	enum class eMode			{	Changed,	Always };
+
+	void ParseEnvironmentBlock(tExpr& block);
+	void ParseUpdateBlock(tExpr& block);
+	void ReadCurrentState();
+	void UpdateAllServices();		// This does the updates. It's the workhorse.
+	bool RunCurl
+	(
+		eProtocol protocol, const tString& username, const tString& password,
+		const tString& service, const tString& domain, const tString& ipaddr
+	);
+	void WriteCurrentState();
+
+	// Environment state variables.
+	tString StateFile = "DynDnsUpdate.ips";
+	tString LogFile = "DynDnsUpdate.log";
+	enum class eLogVerbosity
+	{
+		None,
+		Normal,
+		High
+	};
+	eLogVerbosity Verbosity = eLogVerbosity::Normal;
+	tString IpLookup = "ifconfig.co";
+	tString Curl = "curl.exe";
+
+	struct UpdateBlock : public tLink<UpdateBlock>
+	{
+		tString Domain;
+		tString Service;
+		eRecord Record			= eRecord::IPV4;
+		eProtocol Protocol		= eProtocol::HTTPS;
+		tString Username;
+		tString Password;
+		eMode Mode				= eMode::Changed;
+		
+		tString LastUpdateIP;
+	};
+	tList<UpdateBlock> UpdateBlocks;
+}
 
 
-void ParseEnvironmentBlock(tExpr& block)
+void DynDns::ParseEnvironmentBlock(tExpr& block)
 {
 	for (tExpr entry = block.Item1(); entry.IsValid(); entry = entry.Next())
 	{
 		if (tString(entry.Cmd()) == "statefile")
 			StateFile = entry.Arg1().GetAtomString();
 
-		if (tString(entry.Cmd()) == "logfile")
+		else if (tString(entry.Cmd()) == "logfile")
+			LogFile = entry.Arg1().GetAtomString();
+
+		else if (tString(entry.Cmd()) == "verbosity")
 		{
 			tString verb = entry.Arg1().GetAtomString();
 			if (verb == "verbose")
-				Verbosity = LogVerbosity::High;
-
+				Verbosity = eLogVerbosity::High;
 			else if (verb == "none")
-				Verbosity = LogVerbosity::None;
-
-			LogFile = entry.Arg2().GetAtomString();
+				Verbosity = eLogVerbosity::None;
 		}
 
-		if (tString(entry.Cmd()) == "ipservice")
-			IpService = entry.Arg1().GetAtomString();
+		else if (tString(entry.Cmd()) == "iplookup")
+			IpLookup = entry.Arg1().GetAtomString();
 
-		if (tString(entry.Cmd()) == "curl")
+		else if (tString(entry.Cmd()) == "curl")
 			Curl = entry.Arg1().GetAtomString();
+	}
+}
+
+void DynDns::ParseUpdateBlock(tExpr& block)
+{
+	UpdateBlock* update = new UpdateBlock();
+
+	for (tExpr entry = block.Item1(); entry.IsValid(); entry = entry.Next())
+	{
+		if (tString(entry.Cmd()) == "domain")
+			update->Domain = entry.Arg1().GetAtomString();
+
+		else if (tString(entry.Cmd()) == "service")
+			update->Service = entry.Arg1().GetAtomString();
+
+		else if (tString(entry.Cmd()) == "record")
+		{
+			tString rec = entry.Arg1().GetAtomString();
+			if ((rec == "ipv6") || (rec == "AAAA"))
+				update->Record = eRecord::IPV6;
+		}
+
+		else if (tString(entry.Cmd()) == "protocol")
+		{
+			tString prot = entry.Arg1().GetAtomString();
+			if (prot == "http")
+				update->Protocol = eProtocol::HTTP;
+		}
+
+		else if (tString(entry.Cmd()) == "username")
+			update->Username = entry.Arg1().GetAtomString();
+
+		else if (tString(entry.Cmd()) == "password")
+			update->Password = entry.Arg1().GetAtomString();
+
+		else if (tString(entry.Cmd()) == "mode")
+		{
+			tString mode = entry.Arg1().GetAtomString();
+			if (mode == "always")
+				update->Mode = eMode::Always;
+		}
+	}
+
+	UpdateBlocks.Append(update);
+}
+
+
+void DynDns::ReadCurrentState()
+{
+	if (!tFileExists(StateFile))
+		return;
+
+	tScriptReader state(StateFile);
+	tExpr entry = state.Arg0();
+	while (entry.IsValid())
+	{
+		tString domain = entry.Item0();
+		eRecord record = (tString(entry.Item1()) == "ipv6") ? eRecord::IPV6 : eRecord::IPV4;
+		tString ip = entry.Item2();
+
+		for (UpdateBlock* block = UpdateBlocks.First(); block; block = block->Next())
+		{
+			if ((block->Domain == domain) && (block->Record == record))
+				block->LastUpdateIP = ip;
+		}
+
+		entry = entry.Next();
+	}
+}
+
+
+void DynDns::UpdateAllServices()
+{
+	ulong exitCode = 0;
+
+	tString ipv4;
+	tProcess curlIPV4("curl -4 ifconfig.co", tGetCurrentDir(), ipv4, &exitCode);
+	ipv4.Replace('\n', '\0');
+	ipv4.Replace('\r', '\0');
+	tPrintf("Your IPV4 is: ____%s____\n", ipv4.ConstText());
+
+	tString ipv6;
+	tProcess curlIPV6("curl -6 ifconfig.co", tGetCurrentDir(), ipv6, &exitCode);
+	ipv6.Replace('\n', '\0');
+	ipv6.Replace('\r', '\0');
+	tPrintf("Your IPV6 is: ____%s____\n", ipv6.ConstText());
+
+	// Update ipv4 blocks.
+	if (ipv4.CountChar('.') == 3)
+	{
+		for (UpdateBlock* block = UpdateBlocks.First(); block; block = block->Next())
+		{
+			if (block->Record != eRecord::IPV4)
+				continue;
+
+			bool attemptUpdate =
+				Force ||
+				(block->Mode == eMode::Always) ||
+				block->LastUpdateIP.IsEmpty() ||
+				(block->LastUpdateIP != ipv4);
+
+			if (attemptUpdate)
+			{
+				bool updated = RunCurl(block->Protocol, block->Username, block->Password, block->Service, block->Domain, ipv4);
+				if (updated)
+					block->LastUpdateIP = ipv4;
+			}
+			else
+			{
+				tPrintf("Skipping update.\n");
+			}
+		}
+	}
+
+	// Update ipv6 blocks.
+	if (ipv6.CountChar(':') == 7)
+	{
+		for (UpdateBlock* block = UpdateBlocks.First(); block; block = block->Next())
+		{
+			if (block->Record != eRecord::IPV6)
+				continue;
+
+			bool attemptUpdate =
+				Force ||
+				(block->Mode == eMode::Always) ||
+				block->LastUpdateIP.IsEmpty() ||
+				(block->LastUpdateIP != ipv6);
+
+			if (attemptUpdate)
+			{
+				bool updated = RunCurl(block->Protocol, block->Username, block->Password, block->Service, block->Domain, ipv6);
+				if (updated)
+					block->LastUpdateIP = ipv6;
+			}
+			else
+			{
+				tPrintf("Skipping update.\n");
+			}
+		}
+	}
+}
+
+
+bool DynDns::RunCurl
+(
+	eProtocol protocol, const tString& username, const tString& password,
+	const tString& service, const tString& domain, const tString& ipaddr
+)
+{
+	tString user = username;	user.Replace("@", "%40");
+	tString pass = password;	pass.Replace("@", "%40");
+	tString prot = (protocol == eProtocol::HTTPS) ? "HTTPS" : "HTTP";
+	tString cmd;
+	tsPrintf(cmd, "%s \"%s://%s:%s@%s?hostname=%s&myip=%s\"",
+		Curl.Pod(), prot.Pod(), user.Pod(), pass.Pod(), service.Pod(), domain.Pod(), ipaddr.Pod());
+
+	tPrintf("CURL\n%s\n", cmd.Pod());
+
+	ulong exitCode = 0;
+	tString result;
+	tProcess curl(cmd, tGetCurrentDir(), result, &exitCode);
+	result.Replace('\n', '\0');
+	result.Replace('\r', '\0');
+
+	// Result may be "nochg 212.34.22.489" for success/no-change or "good 212.34.22.489" for success/change.
+	tPrintf("Exitcode: %d Result: ____%s____\n", exitCode, result.Pod());
+	bool success = false;
+	if ((exitCode == 0) && ((result.FindString("good") != -1) || (result.FindString("nochg") != -1)))
+		success = true;
+
+	return success;
+}
+
+
+void DynDns::WriteCurrentState()
+{
+	tScriptWriter state(StateFile);
+
+	state.WriteComment("DynDnsUpdate current state data.");
+	state.NewLine();
+
+	for (UpdateBlock* block = UpdateBlocks.First(); block; block = block->Next())
+	{
+		if (!block->LastUpdateIP.IsEmpty())
+		{
+			state.BeginExpression();
+			state.WriteAtom(block->Domain);
+			state.WriteAtom((block->Record == eRecord::IPV4) ? "ipv4" : "ipv6");
+			state.WriteAtom(block->LastUpdateIP);
+			state.EndExpression();
+			state.NewLine();
+		}
 	}
 }
 
@@ -98,27 +323,18 @@ int main(int argc, char** argv)
 		{
 			tString blockType = block.Item0().GetAtomString();
 			if (blockType == "environment")
-			{
-				ParseEnvironmentBlock(block);
-			}
+				DynDns::ParseEnvironmentBlock(block);
 
 			else if (blockType == "update")
-			{
-			}
-
+				DynDns::ParseUpdateBlock(block);
 
 			//tPrintf("Block name:%s\n", .ConstText());
 			block = block.Next();
 		}
 
-		tString result;
-		ulong exitCode = 0;
-		tProcess curlIPV6("curl -6 ifconfig.co", tGetCurrentDir(), result, &exitCode);
-		tPrintf("Your IPV6 is: %s\n", result.ConstText());
-
-		result.Clear();
-		tProcess curlIPV4("curl -4 ifconfig.co", tGetCurrentDir(), result, &exitCode);
-		tPrintf("Your IPV4 is: %s\n", result.ConstText());
+		DynDns::ReadCurrentState();
+		DynDns::UpdateAllServices();
+		DynDns::WriteCurrentState();
 	}
 	catch (tError error)
 	{
