@@ -52,6 +52,9 @@ tTestUnit(CmdLine)
 	tRequire(!stop.IsPresent());
 	tRequire(fromFile.IsPresent());
 	tRequire(toFile.IsPresent());
+
+	// More than one log entry simply adds to the numer option arguments. If an option took 2 args (A B) and was
+	// specified twice, you would get A1 B1 A2 B2 for the arguments.
 	tPrintf("Option log: %s\n", log.IsPresent() ? "present" : "absent");
 	if (log.IsPresent())
 		for (tStringItem* optArg = log.Args.First(); optArg; optArg = optArg->Next())

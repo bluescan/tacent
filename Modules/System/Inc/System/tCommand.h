@@ -71,13 +71,14 @@ namespace tCommand
 {
 	struct tParam : public tLink<tParam>
 	{
-		tParam(int paramNumber, const char* paramDesc = nullptr);
+		tParam(int paramNumber, const char* name = nullptr, const char* description = nullptr);
 		tString Get() const																								{ return Param; }
 		bool IsPresent() const																							{ return !Param.IsEmpty(); }
 		operator bool() const																							{ return IsPresent(); }
 
 		int ParamNumber;				// 1 based.
 		tString Param;
+		tString Name;
 		tString Description;
 	};
 

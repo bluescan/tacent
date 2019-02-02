@@ -79,13 +79,20 @@ namespace tCommand
 }
 
 
-tCommand::tParam::tParam(int paramNumber, const char* paramDesc) :
+tCommand::tParam::tParam(int paramNumber, const char* name, const char* description) :
 	ParamNumber(paramNumber),
 	Param(),
+	Name(),
 	Description()
 {
-	if (paramDesc)
-		Description = tString(paramDesc);
+	if (name)
+		Name = tString(name);
+	else
+		tsPrintf(Name, "Param%d", paramNumber);
+
+	if (description)
+		Description = tString(description);
+
 	Params.Append(this);
 }
 
@@ -343,8 +350,8 @@ more than once. Eg. -i filea.txt -i fileb.txt etc is valid.
 	{
 		if ((param->ParamNumber < 256) && !printedParamNum[param->ParamNumber])
 		{
-			if (!param->Description.IsEmpty())
-				tPrintf("%s ", param->Description.Pod());
+			if (!param->Name.IsEmpty())
+				tPrintf("%s ", param->Name.Pod());
 			else
 				tPrintf("param%d ", param->ParamNumber);
 			printedParamNum[param->ParamNumber] = true;
@@ -352,23 +359,36 @@ more than once. Eg. -i filea.txt -i fileb.txt etc is valid.
 	}
 	tPrintf("\n\n%s", usage.Pod());
 
+	if (!Params.IsEmpty())
+	{
+		tPrintf("Parameters:\n");
+		for (tParam* param = Params.First(); param; param = param->Next())
+		{
+			if (!param->Name.IsEmpty())
+				tPrintf("%s ", param->Name.Pod());
+			else
+				tPrintf("param%d ", param->ParamNumber);
+
+			if (!param->Description.IsEmpty())
+				tPrintf(" : %s", param->Description.Pod());
+
+			tPrintf("\n");
+		}
+		tPrintf("\n\n");
+	}
+
 	tPrintf("Options:\n");
 	for (tOption* option = Options.First(); option; option = option->Next())
 	{
 		if (!option->LongName.IsEmpty())
 		{
 			tPrintf("--%s ", option->LongName.Pod());
-			for (int a = 0; a < option->NumFlagArgs; a++)
-				tPrintf("arg%c ", '1'+a);
-			tPrintf(": %s\n", option->Description.Pod());
-		}
+			if (!option->ShortName.IsEmpty())
+				tPrintf("(-%s) ", option->ShortName.Pod());
 
-		if (!option->ShortName.IsEmpty())
-		{
-			tPrintf("-%s ", option->ShortName.Pod());
 			for (int a = 0; a < option->NumFlagArgs; a++)
 				tPrintf("arg%c ", '1'+a);
-			tPrintf(": %s\n", option->Description.Pod());
+			tPrintf(" : %s\n", option->Description.Pod());
 		}
 	}
 
