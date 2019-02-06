@@ -71,6 +71,7 @@ public:
 	tString GetAtomString() const;
 	bool GetAtomBool() const																							{ return GetAtomString().GetAsBool(); }
 	uint GetAtomUint() const																							{ return GetAtomString().GetAsUInt(); }
+	uint64 GetAtomUint64() const																						{ return GetAtomString().GetAsUInt64(); }
 	int GetAtomInt() const																								{ return GetAtomString().GetAsInt(); }
 	float GetAtomFloat() const																							{ return GetAtomString().GetAsFloat(); }
 	uint32 GetAtomHash() const																							{ tMath::tHashString(GetAtomString()); }
@@ -211,6 +212,7 @@ public:
 	void WriteAtom(const char*);
 	void WriteAtom(const bool);
 	void WriteAtom(const uint32);
+	void WriteAtom(const uint64);
 	void WriteAtom(const int);
 	void WriteAtom(const float);
 	void WriteAtom(const tMath::tVector2&);

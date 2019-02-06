@@ -647,6 +647,14 @@ void tScriptWriter::WriteAtom(const uint32 atom)
 }
 
 
+void tScriptWriter::WriteAtom(const uint64 atom)
+{
+	char val[48];
+	tStd::tItoa(atom, val, 48, 10);
+	WriteAtom(val);
+}
+
+
 void tScriptWriter::WriteAtom(const int atom)
 {
 	char val[36];
