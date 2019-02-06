@@ -334,6 +334,11 @@ tTestUnit(Print)
 	tGoal(PrintCompare("Test %%g:%g\n", 65.12345678f));
 	tGoal(PrintCompare("Test %%e:%e\n", 65e24));
 	tSetDefaultPrecision(4);
+
+	tFileHandle handle = tOpenFile("TestData/Written.log", "wt");
+	ttfPrintf(handle, "Log: Here is some timestamped log data. Index = %d\n", 42);
+	ttfPrintf(handle, "Warning: And a second log line.\n");
+	tCloseFile(handle);
 }
 
 
