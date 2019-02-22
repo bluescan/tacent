@@ -673,8 +673,13 @@ tTestUnit(File)
 }
 
 
-tTestUnit(Timer)
+tTestUnit(Time)
 {
+	uint64 localTime = tGetTimeLocal();	//	us		s				h			d		y
+	uint64 yearsSince1601 = localTime / (	10ULL *	1000000ULL *	3600ULL *	24ULL *	365ULL);
+	tPrintf("LocalTime in years since 1601: %016|64d\n", yearsSince1601);
+	tRequire(yearsSince1601 > 400);
+
 	tTimer timer;
 	tPrintf("Timer running: %s\n", timer.IsRunning() ? "true" : "false");
 

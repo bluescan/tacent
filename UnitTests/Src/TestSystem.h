@@ -25,5 +25,5 @@ namespace tUnitTest
 	tTestUnit(Script);
 	tTestUnit(Chunk);
 	tTestUnit(File);
-	tTestUnit(Timer);
+	tTestUnit(Time);
 }

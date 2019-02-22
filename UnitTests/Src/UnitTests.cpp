@@ -82,7 +82,7 @@ int main(int argc, char** argv)
 	tTest(Script);
 	tTest(Chunk);
 	tTest(File);
-	tTest(Timer);
+	tTest(Time);
 
 	// Build tests.
 	tTest(Process);
