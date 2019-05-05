@@ -46,6 +46,8 @@ tTestUnit(CmdLine)
 	tCommand::tOption stop("Stop early.", "stop", 's', 0);
 
 	tCommand::tParse("-R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere");
+	//tCommand::tParse("MyProg.exe -R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere", true);
+
 	tCommand::tPrintUsage();
 
 	tRequire(log.IsPresent());
