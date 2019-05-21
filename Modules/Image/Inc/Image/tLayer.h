@@ -40,10 +40,12 @@ public:
 	// chunk object exists for the entire lifespan of the layer.
 	tLayer(const tChunk& chunk, bool ownsData = true)																	: PixelFormat(tPixelFormat::Invalid), Width(0), Height(0), Data(nullptr), OwnsData(ownsData) { Load(chunk, ownsData); }
 
-	// Constructs a layer width the supplied width, height, and number of bytes. If steal memory is true, the data
+	// Constructs a layer having the supplied width, height, and number of bytes. If steal memory is true, the data
 	// array is passed off to this class and it will manage the array deleting it when necessary. If steal is false,
 	// the data gets mem-copied into this object.
 	tLayer(tPixelFormat, int width, int height, uint8* data, bool steal = false);
+
+	tLayer(const tLayer&);
 	virtual ~tLayer()																									{ Clear(); }
 
 	bool IsValid() const																								{ return Data ? true : false; }
@@ -103,6 +105,25 @@ inline tLayer::tLayer(tPixelFormat format, int width, int height, uint8* data, b
 		int dataSize = GetDataSize();
 		Data = new uint8[dataSize];
 		tStd::tMemcpy(Data, data, dataSize);
+	}
+}
+
+
+inline tLayer::tLayer(const tLayer& src) :
+	PixelFormat(src.PixelFormat),
+	Width(src.Width),
+	Height(src.Height),
+	OwnsData(src.OwnsData)
+{
+	if (OwnsData)
+	{
+		int dataSize = src.GetDataSize();
+		Data = new uint8[dataSize];
+		tStd::tMemcpy(Data, src.Data, dataSize);
+	}
+	else
+	{
+		Data = src.Data;
 	}
 }
 
