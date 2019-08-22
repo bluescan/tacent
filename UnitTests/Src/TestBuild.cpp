@@ -35,7 +35,7 @@ tTestUnit(Process)
 	}
 	catch (tError error)
 	{
-		tPrintf("Error: %s\n", error.Message.Pod());
+		tPrintf("%s\n", error.Message.Pod());
 	}
 	tRequire(exitCode == 0);
 
@@ -46,7 +46,8 @@ tTestUnit(Process)
 	}
 	catch (tError error)
 	{
-		tPrintf("Error: %s\n", error.Message.Pod());
+		tPrintf("%s\n", error.Message.Pod());
+		tPrintf("We expect an error here since an invalid directory was passed on purpose.\n");
 	}
 	tRequire(exitCode != 0);
 }
