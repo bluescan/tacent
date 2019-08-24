@@ -1305,12 +1305,13 @@ bool tSystem::HandlerHelper_HandleSpecialFloatTypes(tArray<char>& convBuf, doubl
 	tStd::tFloatType ft = tStd::tGetFloatType(value);
 	switch (ft)
 	{
-		case tStd::tFloatType::PSNAN:	convBuf.Append("0.#SNAN", 7);	return true;
-		case tStd::tFloatType::PNAN:	convBuf.Append("0.#QNAN", 7);	return true;
-		case tStd::tFloatType::NSNAN:	convBuf.Append("-0.#SNAN", 8);	return true;
-		case tStd::tFloatType::NNAN:	convBuf.Append("-0.#QNAN", 8);	return true;
-		case tStd::tFloatType::PINF:	convBuf.Append("+1.#INF", 7);	return true;
-		case tStd::tFloatType::NINF:	convBuf.Append("-1.#INF", 7);	return true;
+		case tStd::tFloatType::PSNAN:	convBuf.Append("nan(snan)", 9);		return true;
+		case tStd::tFloatType::PQNAN:	convBuf.Append("nan", 3);			return true;
+		case tStd::tFloatType::NSNAN:	convBuf.Append("-nan(snan)", 10);	return true;
+		case tStd::tFloatType::NQNAN:	convBuf.Append("-nan", 4);			return true;
+		case tStd::tFloatType::IQNAN:	convBuf.Append("-nan(ind)", 9);		return true;
+		case tStd::tFloatType::PINF:	convBuf.Append("inf", 3);			return true;
+		case tStd::tFloatType::NINF:	convBuf.Append("-inf", 4);			return true;
 		default:
 		case tStd::tFloatType::NORM:
 			break;

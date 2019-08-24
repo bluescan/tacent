@@ -127,7 +127,7 @@ tTestUnit(Task)
 // This compares the output of tvsPrintf to the standard vsprintf. Some differences are intended while others are not.
 bool PrintCompare(const char* format, ...)
 {
-	tPrint("Comparing formatted output. Next three entries: (format, tPrintf, printf)\n");
+	tPrint("\nComparing formatted output. Next three entries: (format, tPrintf, printf)\n");
 	tPrint(format);
 	va_list args;
 
@@ -146,7 +146,7 @@ bool PrintCompare(const char* format, ...)
 	bool match = tStd::tStrcmp(tbuf, nbuf) ? false : true;
 	tPrintf
 	(
-		"Str Match: %s  Len Match: %s\n\n", match ? "True" : "False",
+		"Str Match: %s  Len Match: %s\n", match ? "True" : "False",
 		(tcount == ncount) ? "True" : "False"
 	);
 	return match;
@@ -327,10 +327,27 @@ tTestUnit(Print)
 	int negValInt = -42;
 	tRequire(PrintCompare("Lead Zero With Negative Int:%07d\n", negValInt));
 
-	// These are intentionally different.
-	float qnan = tSqrt(-1.0f);
-	PrintCompare("QNan:%f\n", qnan);
-	PrintCompare("QNan:%08.3f\n", qnan);
+	// Test special floating-point bitpatterns.
+	tRequire(PrintCompare("Float PSNAN: %f\n", tStd::tFloatPSNAN()));
+	tRequire(PrintCompare("Float NSNAN: %f\n", tStd::tFloatNSNAN()));
+	tRequire(PrintCompare("Float PQNAN: %f\n", tStd::tFloatPQNAN()));
+	tRequire(PrintCompare("Float IQNAN: %f\n", tStd::tFloatIQNAN()));
+	tRequire(PrintCompare("Float NQNAN: %f\n", tStd::tFloatNQNAN()));
+	tRequire(PrintCompare("Float PINF : %f\n", tStd::tFloatPINF()));
+	tRequire(PrintCompare("Float NINF : %f\n", tStd::tFloatNINF()));
+
+	tRequire(PrintCompare("tSqrt(-1.0f): %08.3f\n", tSqrt(-1.0f)));
+	float fone = 1.0f; float fzero = 0.0f;
+	tRequire(PrintCompare("fone/fzero: %08.3f\n", fone/fzero));
+	tRequire(PrintCompare("fzero/fzero: %08.3f\n", fzero/fzero));
+
+	tRequire(PrintCompare("Double PSNAN: %f\n", tStd::tDoublePSNAN()));
+	tRequire(PrintCompare("Double NSNAN: %f\n", tStd::tDoubleNSNAN()));
+	tRequire(PrintCompare("Double PQNAN: %f\n", tStd::tDoublePQNAN()));
+	tRequire(PrintCompare("Double IQNAN: %f\n", tStd::tDoubleIQNAN()));
+	tRequire(PrintCompare("Double NQNAN: %f\n", tStd::tDoubleNQNAN()));
+	tRequire(PrintCompare("Double PINF : %f\n", tStd::tDoublePINF()));
+	tRequire(PrintCompare("Double NINF : %f\n", tStd::tDoubleNINF()));
 
 	tRequire(PrintCompare("SpaceForPos and Leading zeros:% 08.3f\n", 65.5775f));
 	tGoal(PrintCompare("Test %%g:%g\n", 65.12345678f));
