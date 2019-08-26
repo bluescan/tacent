@@ -350,8 +350,14 @@ tTestUnit(Print)
 	tRequire(PrintCompare("Double NINF : %f\n", tStd::tDoubleNINF()));
 
 	tRequire(PrintCompare("SpaceForPos and Leading zeros:% 08.3f\n", 65.5775f));
-	tGoal(PrintCompare("Test %%g:%g\n", 65.12345678f));
-	tGoal(PrintCompare("Test %%e:%e\n", 65e24));
+	tRequire(PrintCompare("Test %%f:%f\n", 65.12345678f));
+	tRequire(PrintCompare("Test %%e:%e\n", 65e24));
+	tRequire(PrintCompare("Test %%e:%e\n", 123456789.123456789f));
+	tRequire(PrintCompare("Test %%e:%e\n", 12345678900.0f));
+	tRequire(PrintCompare("Test %%e:%e\n", 1.0f));
+	tRequire(PrintCompare("Test %%g:%g\n", 1234567.123456789f));
+	tRequire(PrintCompare("Test %%g:%g\n", 65.12345678f));
+	tRequire(PrintCompare("Test %%g:%g\n", 651.2345678f));
 	tSetDefaultPrecision(4);
 
 	tFileHandle handle = tOpenFile("TestData/Written.log", "wt");
