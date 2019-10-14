@@ -11,7 +11,7 @@ The files that are currently available can be browsed using Woboq, a Clang-based
 
 __Download the Source__
 
-The Tacent source and solution/project files may be downloaded as a 7-zip archive. The instructions are simple: Unzip the archive somewhere, open Tools/UnitTests/UnitTests.sln, press F7 in Visual Studio to build, and press F5 to run.
+The Tacent source and solution/project files are available as a 7-zip archive. The instructions are simple: Unzip the archive somewhere, open Tools/UnitTests/UnitTests.sln, press F7 in Visual Studio to build, and press F5 to run.
 
 [Download the source here.](http://upperboundsinteractive.com/Tacent.7z)
 
