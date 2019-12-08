@@ -27,6 +27,7 @@
 #include <System/tChunk.h>
 #include <System/tTimer.h>
 #include "UnitTests.h"
+#pragma warning (disable: 4723)
 using namespace tSystem;
 using namespace tMath;
 namespace tUnitTest

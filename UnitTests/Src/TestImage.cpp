@@ -58,6 +58,22 @@ tTestUnit(Image)
 
 	pngPic.SaveTGA("TestData/WrittenXeyes.tga");
 	tRequire( tSystem::tFileExists("TestData/WrittenXeyes.tga"));
+
+	// Test saving tPicture in all supported formats.
+	pngPic.Save("TestData/WrittenXeyesTGA.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenXeyesTGA.tga"));
+
+	pngPic.Save("TestData/WrittenXeyesPNG.png");
+	tRequire( tSystem::tFileExists("TestData/WrittenXeyesPNG.png"));
+
+	pngPic.Save("TestData/WrittenXeyesBMP.bmp");
+	tRequire( tSystem::tFileExists("TestData/WrittenXeyesBMP.bmp"));
+
+	pngPic.Save("TestData/WrittenXeyesJPG.jpg");
+	tRequire( tSystem::tFileExists("TestData/WrittenXeyesJPG.jpg"));
+
+	pngPic.Save("TestData/WrittenXeyesGIF.gif");
+	tRequire( tSystem::tFileExists("TestData/WrittenXeyesGIF.gif"));
 }
 
 
