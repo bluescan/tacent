@@ -59,6 +59,7 @@
       <PreprocessorDefinitions>CONFIG_DEBUG;PLATFORM_WIN;ARCHITECTURE_X86;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\Modules\Foundation\Inc;..\Modules\Math\Inc;..\Modules\System\Inc;..\Modules\Image\Inc;..\Modules\Build\Inc;..\Modules\Scene\Inc</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
