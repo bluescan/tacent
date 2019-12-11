@@ -87,6 +87,27 @@ tTestUnit(Fundamentals)
 	for (uint v = 0x7FFFFFF0; v != 0x80000000; v++)
 		tPrintf("Log2(%d) = %d\n", v, tLog2(v));
 
+	tPrintf("tCeiling(-2.5f) : %f.\n", tCeiling(-2.5f));
+	tRequire(tCeiling(-2.5f) == -2.0f);
+
+	// Test rounding.
+	tPrintf("tRound(0.0f) : %f.\n", tRound(0.0f));
+	tRequire(tRound(0.0f) == 0.0f);
+
+	tPrintf("tRound(2.0f) : %f.\n", tRound(2.0f));
+	tRequire(tRound(2.0f) == 2.0f);
+
+	tPrintf("tRound(2.1f) : %f.\n", tRound(2.1f));
+	tRequire(tRound(2.1f) == 2.0f);
+
+	tPrintf("tRound(2.5f) : %f.\n", tRound(2.5f));
+	tRequire(tRound(2.5f) == 3.0f);
+
+	tPrintf("tRound(2.9f) : %f.\n", tRound(2.9f));
+	tRequire(tRound(2.9f) == 3.0f);
+
+	tPrintf("tRound(-1.5f) : %f.\n", tRound(-1.5f));
+	tRequire(tRound(-1.5f) == -1.0f);
 }
 
 
