@@ -3,7 +3,7 @@
 // Simple timer class. Like a stopwatch. Supports keeping track of time in a number of different units. Accuracy is all
 // up to you - you call the update function. This code does not access low-level timer hardware.
 //
-// Copyright (c) 2005, 2017 Tristan Grimmer.
+// Copyright (c) 2005, 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -30,6 +30,10 @@ uint64 tGetTimeLocal();
 uint64 tGetTimeUTC();
 uint64 tGetTimeGMT();
 
+// Gets the number of seconds since application start. Uses the high-performance counter,
+float tGetTime();
+double tGetTimeDouble();
+
 // Return the time as a string.
 enum class tTimeFormat
 {
@@ -53,7 +57,7 @@ public:
 	// (double) member is used to keep track of the elapsed time. You can choose the units it represents, which has
 	// implications for overall timer precision. In general, use an internal unit that matches your domain - timing
 	// oscillations of visible light? Use nanoseconds. If unit is Unspecified seconds are used.
-	tTimer(bool start = true, tUnit::tTime unit = tUnit::tTime::Second)														: UnitInternal(unit), Running(start), Time(0.0f) { if (UnitInternal == tUnit::tTime::Unspecified) UnitInternal = tUnit::tTime::Second; }
+	tTimer(bool start = true, tUnit::tTime unit = tUnit::tTime::Second)													: UnitInternal(unit), Running(start), Time(0.0f) { if (UnitInternal == tUnit::tTime::Unspecified) UnitInternal = tUnit::tTime::Second; }
 
 	// Call this frequently. If Unit is not specified, internal units are used.
 	void Update(float timeElapsed, tUnit::tTime = tUnit::tTime::Unspecified);

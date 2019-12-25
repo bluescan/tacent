@@ -22,6 +22,15 @@
 
 
 #ifdef PLATFORM_WIN
+
+
+namespace tSystem
+{
+	static int64 QPCStartCount = tSystem::tGetHardwareTimerCount();
+	static int64 QPCFrequency = tSystem::tGetHardwareTimerFrequency();
+}
+
+
 uint64 tSystem::tGetTimeLocal()
 {
 	SystemTime sysTime;
@@ -183,6 +192,30 @@ int64 tSystem::tGetHardwareTimerCount()
 void tSystem::tSleep(int milliSeconds)
 {
 	::Sleep(milliSeconds);
+}
+
+
+float tSystem::tGetTime()
+{
+	int64 currCount = tGetHardwareTimerCount();
+
+	// This is organized like this to keep precision as high as possible.
+	int64 elapsedCount = currCount - QPCStartCount;
+	int64 wholeSeconds = elapsedCount / QPCFrequency;
+	int64 remainder = elapsedCount % QPCFrequency;
+	return float(wholeSeconds) + float(remainder)/float(QPCFrequency);
+}
+
+
+double tSystem::tGetTimeDouble()
+{
+	int64 currCount = tGetHardwareTimerCount();
+
+	// This is organized like this to keep precision as high as possible.
+	int64 elapsedCount = currCount - QPCStartCount;
+	int64 wholeSeconds = elapsedCount / QPCFrequency;
+	int64 remainder = elapsedCount % QPCFrequency;
+	return double(wholeSeconds) + double(remainder)/double(QPCFrequency);
 }
 
 

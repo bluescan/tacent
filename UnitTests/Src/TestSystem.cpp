@@ -706,6 +706,17 @@ tTestUnit(Time)
 	tPrintf("LocalTime in years since 1601: %016|64d\n", yearsSince1601);
 	tRequire(yearsSince1601 > 400);
 
+	float startTimeSeconds = tGetTime();
+	double startTimeSecondsD = tGetTimeDouble();
+	tPrintf("Start time seconds: %f %f\n", startTimeSeconds, startTimeSecondsD);
+	tSleep(1000);
+	float endTimeSeconds = tGetTime();
+	double endTimeSecondsD = tGetTimeDouble();
+	tPrintf("End time seconds: %f %f\n", endTimeSeconds, endTimeSecondsD);
+	tPrintf("Elapsed time: %f %f\n", endTimeSeconds - startTimeSeconds, endTimeSecondsD - startTimeSecondsD);
+	tRequire((endTimeSeconds - startTimeSeconds) > 0.99f);
+	tRequire((endTimeSecondsD - startTimeSecondsD) > 0.99);
+
 	tTimer timer;
 	tPrintf("Timer running: %s\n", timer.IsRunning() ? "true" : "false");
 
