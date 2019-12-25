@@ -25,7 +25,7 @@
 #include <System/tRegex.h>
 #include <System/tScript.h>
 #include <System/tChunk.h>
-#include <System/tTimer.h>
+#include <System/tTime.h>
 #include "UnitTests.h"
 #pragma warning (disable: 4723)
 using namespace tSystem;
