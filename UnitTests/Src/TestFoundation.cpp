@@ -106,12 +106,24 @@ tTestUnit(List)
 	tPrintf("\n");
 
 	itemList.Sort( LessThan );
-	//	itemList.Bubble( LessThan , true);
+	// itemList.Bubble( LessThan , true);
 
 	tPrintf("After sorting: ");
 	for (const Item* item = itemList.First(); item; item = item->Next())
 		tPrintf("%d ", item->Value);
 	tPrintf("\n");
+
+	// Test circular on intrusive lists.
+	Item* itm = itemList.First();
+	for (int circ = 0; circ < 100; circ++)
+		itm = itemList.NextCirc(itm);
+	tPrintf("NextCirc Item Val %d\n", itm->Value);
+	tRequire(itm->Value == 4);
+
+	for (int circ = 0; circ < 100; circ++)
+		itm = itemList.PrevCirc(itm);
+	tPrintf("PrevCirc Item Val %d\n", itm->Value);
+	tRequire(itm->Value == 1);
 
 	// We need this if we didn't construct this list with a true flag.
 	//itemList.Empty();
@@ -181,7 +193,7 @@ tTestUnit(List)
 	tPrintf("\n");
 
 	// We need this if we didn't construct this list with a true flag.
-	//	iterList.Empty();
+	// iterList.Empty();
 }
 
 
