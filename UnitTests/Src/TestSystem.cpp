@@ -462,6 +462,41 @@ tTestUnit(Script)
 		tSkipUnit(Script)
 
 	{
+		tScriptWriter ws("TestData/WrittenConfig.cfg");
+		ws.Rem("This is a test config file.");
+		ws.CR();
+		ws.Comp("PosX", 10);
+		ws.Comp("PosY", 20);
+		ws.Comp("SizeW", 30);
+		ws.Comp("SizeH", 40);
+	}
+
+	{
+		tScriptReader rs("TestData/WrittenConfig.cfg");
+		for (tExpression e = rs.First(); e.Valid(); e = e.Next())
+		{
+			switch (e.Command().Hash())
+			{
+				case tMath::tHashCT("PosX"):
+					tRequire(int(e.Item1()) == 10);
+					break;
+
+				case tMath::tHashCT("PosY"):
+					tRequire(int(e.Item1()) == 20);
+					break;
+
+				case tMath::tHashCT("SizeW"):
+					tRequire(int(e.Item1()) == 30);
+					break;
+
+				case tMath::tHashCT("SizeH"):
+					tRequire(int(e.Item1()) == 40);
+					break;
+			}
+		}
+	}
+
+	{
 		tScriptWriter ws("TestData/WrittenScript.txt");
 
 		ws.WriteComment();
