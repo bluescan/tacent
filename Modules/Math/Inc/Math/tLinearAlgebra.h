@@ -732,12 +732,12 @@ template <typename T> inline T tLerp(float t, T min, T max)																{ ret
 
 // Linear interpolation and extrapolation. Requires 2 points on the line. Input the domain values (d) and it'll give you
 // the looked-up range value (r). No clamping.
-template <typename T> inline T tLinearLookup(float d, float d0, float d1, T r0, T r1)									{ return tLinScl((d-d0)/(d1-d0), r0, r1); }
-template <typename T> inline T tLilo(float d, float d0, float d1, T r0, T r1)											{ return tLesc((d-d0)/(d1-d0), r0, r1); }
+template <typename T> inline T tLinearLookup(float d, float d0, float d1, T r0, T r1)									{ return tLinearScale((d-d0)/(d1-d0), r0, r1); }
+template <typename T> inline T tLilo(float d, float d0, float d1, T r0, T r1)											{ return tLisc((d-d0)/(d1-d0), r0, r1); }
 
 // Linear interpolate. Same as tLinearLookup except that it clamps d to [d0, d1].
-template <typename T> inline T tLinearInterp(float d, float d0, float d1, T r0, T r1)									{ return tLinScl(tGetSaturate((d-d0)/(d1-d0)), r0, r1); }
-template <typename T> inline T tLiin(float d, float d0, float d1, T r0, T r1)											{ return tLesc(tGetSaturate((d-d0)/(d1-d0)), r0, r1); }
+template <typename T> inline T tLinearInterp(float d, float d0, float d1, T r0, T r1)									{ return tLinearScale(tSaturate((d-d0)/(d1-d0)), r0, r1); }
+template <typename T> inline T tLiin(float d, float d0, float d1, T r0, T r1)											{ return tLisc(tSaturate((d-d0)/(d1-d0)), r0, r1); }
 
 
 }
