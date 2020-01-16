@@ -21,7 +21,7 @@
 #include <Math/tMatrix4.h>
 #include <System/tCommand.h>
 #include <System/tTask.h>
-#include <System/tUtil.h>
+#include <System/tMachine.h>
 #include <System/tRegex.h>
 #include <System/tScript.h>
 #include <System/tChunk.h>

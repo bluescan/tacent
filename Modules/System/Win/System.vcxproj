@@ -22,6 +22,7 @@
     <ClInclude Include="..\Inc\System\tChunk.h" />
     <ClInclude Include="..\Inc\System\tCommand.h" />
     <ClInclude Include="..\Inc\System\tFile.h" />
+    <ClInclude Include="..\Inc\System\tMachine.h" />
     <ClInclude Include="..\Inc\System\tPrint.h" />
     <ClInclude Include="..\Inc\System\tRegex.h" />
     <ClInclude Include="..\Inc\System\tScript.h" />
@@ -29,19 +30,18 @@
     <ClInclude Include="..\Inc\System\tTask.h" />
     <ClInclude Include="..\Inc\System\tThrow.h" />
     <ClInclude Include="..\Inc\System\tTime.h" />
-    <ClInclude Include="..\Inc\System\tUtil.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Src\tChunk.cpp" />
     <ClCompile Include="..\Src\tCommand.cpp" />
     <ClCompile Include="..\Src\tFile.cpp" />
+    <ClCompile Include="..\Src\tMachine.cpp" />
     <ClCompile Include="..\Src\tPrint.cpp" />
     <ClCompile Include="..\Src\tRegex.cpp" />
     <ClCompile Include="..\Src\tScript.cpp" />
     <ClCompile Include="..\Src\tTask.cpp" />
     <ClCompile Include="..\Src\tThrow.cpp" />
     <ClCompile Include="..\Src\tTime.cpp" />
-    <ClCompile Include="..\Src\tUtil.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E3BAD3CE-E59D-4C1F-9759-7D585C145884}</ProjectGuid>
