@@ -21,6 +21,9 @@ bool CxImageBMP::Encode(CxFile * hFile)
 
 	BITMAPFILEHEADER	hdr;
 
+	// @tacent
+	memset(&hdr, 0, sizeof(hdr));
+
 	hdr.bfType = 0x4d42;   // 'BM' WINDOWS_BITMAP_SIGNATURE
 	hdr.bfSize = GetSize() + 14 /*sizeof(BITMAPFILEHEADER)*/;
 	hdr.bfReserved1 = hdr.bfReserved2 = 0;
@@ -164,18 +167,21 @@ bool CxImageBMP::Decode(CxFile * hFile)
 					if (dwCompression == BI_RGB){
 						AlphaCreate();
 						if (AlphaIsValid()){
-							bool bAlphaOk = false;
+							// @tacent Removed 'alpha fix'. It was making all the pixels opaque if they were intended to all be transparent!
+							// bool bAlphaOk = false;
 							uint8_t* p;
 							for (int32_t y=0; y<head.biHeight; y++){
 								p = buff32 + 3 + head.biWidth * 4 * y;
 								for (int32_t x=0; x<head.biWidth; x++){
-									if (*p) bAlphaOk = true;
+									// @tacent Removed 'alpha fix'. It was making all the pixels opaque if they were intended to all be transparent!
+									//if (*p) bAlphaOk = true;
 									AlphaSet(x,y,*p);
 									p+=4;
 								}
 							}
 							// fix if alpha pixels are all zero
-							if (!bAlphaOk) AlphaInvert();
+							// @tacent Removed 'alpha fix'. It was making all the pixels opaque if they were intended to all be transparent!
+							// if (!bAlphaOk) AlphaInvert();
 						}
 					}
 #endif //CXIMAGE_SUPPORT_ALPHA
