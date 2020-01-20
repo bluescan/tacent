@@ -98,7 +98,7 @@ bool tPicture::CanLoad(tFileType fileType)
 }
 
 
-bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt)
+bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt, float quality)
 {
 	if (!IsValid())
 		return false;
@@ -135,6 +135,9 @@ bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt)
 		image.AlphaDelete();
 	else if ((colourFmt == tPicture::tColourFormat::Auto) && IsOpaque())
 		image.AlphaDelete();
+
+	if (cxImgFormat == CXIMAGE_FORMAT_JPG)
+		image.SetJpegQualityF(quality);
 
 	return image.Save(imageFile.ConstText(), cxImgFormat);
 }
