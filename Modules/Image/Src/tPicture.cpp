@@ -6,7 +6,7 @@
 // functionality is restricted to saving tga files only (targa files are not lossless when RLE compressed). Image
 // manipulation (excluding compression) happens in a tPicture, so there are crop, scale, etc functions in this class.
 //
-// Copyright (c) 2006, 2016, 2017, 2019 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2017, 2019, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -18,7 +18,8 @@
 
 #include "Foundation/tStandard.h"
 #include "Image/tPicture.h"
-#include "Image/tFileTGA.h"
+#include "Image/tImageTGA.h"
+#include "Image/tImageHDR.h"
 #include <CxImage/ximage.h>
 using namespace tImage;
 using namespace tSystem;
@@ -90,6 +91,10 @@ bool tPicture::CanLoad(tFileType fileType)
 	if (fileType == tFileType::TGA)
 		return true;
 
+	// HDR (RGBE) are handled natively.
+	if (fileType == tFileType::HDR)
+		return true;
+
 	// The rest are handled by CxImage.
 	if (GetCxFormat(fileType) != CXIMAGE_FORMAT_UNKNOWN)
 		return true;
@@ -108,7 +113,7 @@ bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt,
 		return false;
 
 	if (fileType == tFileType::TGA)
-		return SaveTGA(imageFile, tImage::tFileTGA::tFormat(colourFmt), tImage::tFileTGA::tCompression::None);
+		return SaveTGA(imageFile, tImage::tImageTGA::tFormat(colourFmt), tImage::tImageTGA::tCompression::None);
 
 	tPixel* reorderedPixelArray = new tPixel[Width*Height];
 	for (int p = 0; p < Width*Height; p++)
@@ -143,15 +148,15 @@ bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt,
 }
 
 
-bool tPicture::SaveTGA(const tString& tgaFile, tFileTGA::tFormat format, tFileTGA::tCompression compression) const
+bool tPicture::SaveTGA(const tString& tgaFile, tImageTGA::tFormat format, tImageTGA::tCompression compression) const
 {
 	tFileType fileType = tGetFileType(tgaFile);
 	if (!IsValid() || (fileType != tFileType::TGA))
 		return false;
 
-	tFileTGA targa(Pixels, Width, Height);
-	tFileTGA::tFormat savedFormat = targa.Save(tgaFile, format, compression);
-	if (savedFormat == tFileTGA::tFormat::Invalid)
+	tImageTGA targa(Pixels, Width, Height);
+	tImageTGA::tFormat savedFormat = targa.Save(tgaFile, format, compression);
+	if (savedFormat == tImageTGA::tFormat::Invalid)
 		return false;
 
 	return true;
@@ -171,7 +176,7 @@ bool tPicture::Load(const tString& imageFile)
 	// We handle tga files natively.
 	if (fileType == tFileType::TGA)
 	{
-		tFileTGA targa(imageFile);
+		tImageTGA targa(imageFile);
 		if (!targa.IsValid())
 			return false;
 
@@ -179,6 +184,17 @@ bool tPicture::Load(const tString& imageFile)
 		Height = targa.GetHeight();
 		Pixels = targa.StealPixels();
 		SrcFileBitDepth = targa.SrcFileBitDepth;
+		return true;
+	}
+
+	if (fileType == tFileType::HDR)
+	{
+		tImageHDR hdr;
+		hdr.Load(imageFile);
+		Width = hdr.GetWidth();
+		Height = hdr.GetHeight();
+		Pixels = hdr.StealPixels();
+		SrcFileBitDepth = 24;
 		return true;
 	}
 

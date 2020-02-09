@@ -168,6 +168,9 @@ tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString& e)
 		{ "jpeg",		tFileType::JPG				},
 		{ "tif",		tFileType::TIFF				},
 		{ "tiff",		tFileType::TIFF				},
+		{ "dds",		tFileType::DDS				},
+		{ "hdr",		tFileType::HDR				},
+		{ "rgbe",		tFileType::HDR				},
 		{ "pcx",		tFileType::PCX				},
 		{ "wbmp",		tFileType::WBMP				},
 		{ "wmf",		tFileType::WMF				},
@@ -179,7 +182,6 @@ tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString& e)
 		{ "ae2",		tFileType::TacentImage		},
 		{ "aec",		tFileType::TacentImageCube	},
 		{ "ae3",		tFileType::TacentImageVol	},
-		{ "dds",		tFileType::DDS				},
 		{ "cfg",		tFileType::TacentConfig		},
 	};
 	int numExtensions = sizeof(extToType)/sizeof(*extToType);
@@ -1436,7 +1438,7 @@ bool tSystem::tLoadFile(const tString& filename, tString& dst, char convertZeroe
 }
 
 
-uint8* tSystem::tLoadFile(const tString& filename, uint8* buffer, int* fileSize)
+uint8* tSystem::tLoadFile(const tString& filename, uint8* buffer, int* fileSize, bool appendEOF)
 {
 	tFileHandle f = tOpenFile(filename.ConstText(), "rb");
 	tAssert(f);
@@ -1457,12 +1459,16 @@ uint8* tSystem::tLoadFile(const tString& filename, uint8* buffer, int* fileSize)
 	bool bufferAllocatedHere = false;
 	if (!buffer)
 	{
-		buffer = new uint8[size];
+		int bufSize = appendEOF ? size+1 : size;
+		buffer = new uint8[bufSize];
 		bufferAllocatedHere = true;
 	}
 
 	int numRead = tReadFile(f, buffer, size);			// Load the entire thing into memory.
 	tAssert(numRead == size);
+
+	if (appendEOF)
+		buffer[numRead] = EOF;
 
 	tCloseFile(f);
 	return buffer;
