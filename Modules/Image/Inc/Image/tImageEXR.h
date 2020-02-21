@@ -24,12 +24,26 @@ namespace tImage
 class tImageEXR
 {
 public:
-	//inline const static double DefaultGammaCorr		= 2.2;
-	//inline const static int DefaultExposureAdj		= 0;
+	// Gamma range [0.6, 3.0]
+	inline const static float DefaultExposure		= 1.0f;		// [ -10.0, 10.0 ]
+	inline const static float DefaultDefog			= 0.0f;		// [   0.0, 0.1 ] Try to keep below 0.01.
+	inline const static float DefaultKneeLow		= 0.0f;		// [  -3.0, 3.0  ]
+	inline const static float DefaultKneeHigh		= 3.5f;		// [   3.5, 7.5  ]
 
 	// Creates an invalid tImageEXR. You must call Load manually.
 	tImageEXR()																											{ }
-	tImageEXR(const tString& exrFile/*, double gamma = DefaultGammaCorr, int exp = DefaultExposureAdj*/)				{ Load(exrFile/*, gamma, exp*/); }
+
+	// If something went wrong (like partNum not existing) image will be invalid.
+	tImageEXR
+	(
+		const tString& exrFile,
+		int partNum				= 0,
+		float gamma				= tMath::DefaultGamma,
+		float exposure			= DefaultExposure,
+		float defog				= DefaultDefog,
+		float kneeLow			= DefaultKneeLow,
+		float kneeHigh			= DefaultKneeHigh
+	)																													{ Load(exrFile, partNum, gamma, exposure, defog, kneeLow, kneeHigh); }
 
 	// This one sets from a supplied pixel array. It just reads the data (or steals the array if steal set).
 	tImageEXR(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
@@ -37,7 +51,16 @@ public:
 	virtual ~tImageEXR()																								{ Clear(); }
 
 	// Clears the current tImageEXR before loading. If false returned object is invalid.
-	bool Load(const tString& exrFile/*, double = DefaultGammaCorr, int = DefaultExposureAdj*/);
+	bool Load
+	(
+		const tString& exrFile,
+		int partNum				= 0,					// Part num to load. 0-based. Returns false if didn't exist.
+		float gamma				= tMath::DefaultGamma,
+		float exposure			= DefaultExposure,
+		float defog				= DefaultDefog,
+		float kneeLow			= DefaultKneeLow,
+		float kneeHigh			= DefaultKneeHigh
+	);
 
 	// This one sets from a supplied pixel array.
 	bool Set(tPixel* pixels, int width, int height, bool steal = false);

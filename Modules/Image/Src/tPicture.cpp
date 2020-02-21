@@ -165,7 +165,7 @@ bool tPicture::SaveTGA(const tString& tgaFile, tImageTGA::tFormat format, tImage
 }
 
 
-bool tPicture::Load(const tString& imageFile, LoadParams params)
+bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 {
 	Clear();
 	if (!tFileExists(imageFile))
@@ -178,6 +178,8 @@ bool tPicture::Load(const tString& imageFile, LoadParams params)
 	// We handle tga files natively.
 	if (fileType == tFileType::TGA)
 	{
+		if (partNum != 0)
+			return false;
 		tImageTGA targa(imageFile);
 		if (!targa.IsValid())
 			return false;
@@ -191,8 +193,15 @@ bool tPicture::Load(const tString& imageFile, LoadParams params)
 	// We handle hdr files natively.
 	if (fileType == tFileType::HDR)
 	{
+		if (partNum != 0)
+			return false;
 		tImageHDR hdr;
-		hdr.Load(imageFile, params.HDR_GammaCorr, params.HDR_ExposureAdj);
+		hdr.Load
+		(
+			imageFile,
+			params.Gamma,
+			params.HDR_Exposure
+		);
 		if (!hdr.IsValid())
 			return false;
 		Width = hdr.GetWidth();
@@ -208,8 +217,17 @@ bool tPicture::Load(const tString& imageFile, LoadParams params)
 	if (fileType == tFileType::EXR)
 	{
 		tImageEXR exr;
-		exr.Load(imageFile);
-		if (!exr.IsValid())
+		bool ok = exr.Load
+		(
+			imageFile,
+			partNum,
+			params.Gamma,
+			params.EXR_Exposure,
+			params.EXR_Defog,
+			params.EXR_KneeLow,
+			params.EXR_KneeHigh
+		);
+		if (!ok || !exr.IsValid())
 			return false;
 		Width = exr.GetWidth();
 		Height = exr.GetHeight();
@@ -219,15 +237,34 @@ bool tPicture::Load(const tString& imageFile, LoadParams params)
 	}
 
 	// For everything else we use the CxImage library for loading.
+	// @todo Support partNum for animated gifs with multiple parts/frames.
+
 	ENUM_CXIMAGE_FORMATS cxFormat = ENUM_CXIMAGE_FORMATS(GetCxFormat(fileType));
 	if (cxFormat == CXIMAGE_FORMAT_UNKNOWN)
 		return false;
 
 	CxImage image;
-	image.Load(imageFile.ConstText(), cxFormat);
-	int width = image.GetWidth();
-	int height = image.GetHeight();
-	if (!image.IsValid() || (width <= 0) || (height <= 0))
+
+	if (fileType == tFileType::GIF)
+		image.SetRetreiveAllFrames(true);
+	else if (partNum != 0)
+		return false;
+
+	bool cxok = image.Load(imageFile.ConstText(), cxFormat);
+	if (!cxok)
+		return false;
+
+	int numCxFrames = (fileType == tFileType::GIF) ? image.GetNumFrames() : 1;
+	if ((numCxFrames < 1) || (partNum >= numCxFrames))
+		return false;
+
+	CxImage* pimg = (fileType == tFileType::GIF) ? image.GetFrame(partNum) : &image;
+	if (!pimg)
+		return false;
+
+	int width = pimg->GetWidth();
+	int height = pimg->GetHeight();
+	if (!pimg->IsValid() || (width <= 0) || (height <= 0))
 		return false;
 
 	Width = width;
@@ -245,7 +282,7 @@ bool tPicture::Load(const tString& imageFile, LoadParams params)
 	{
 		for (int x = 0; x < width; x++)
 		{
-			RGBQUAD rgba = image.GetPixelColor(x, y);
+			RGBQUAD rgba = pimg->GetPixelColor(x, y);
 			tColouri colour;
 			colour.R = rgba.rgbRed;
 			colour.G = rgba.rgbGreen;

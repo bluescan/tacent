@@ -146,10 +146,13 @@ float EXR::Gamma::operator()(half h)
 }
 
 
-bool tImage::tImageEXR::Load(const tString& exrFile/*, double gamma, int exposure*/)
+bool tImage::tImageEXR::Load
+(
+	const tString& exrFile, int partNum, float gamma, float exposure,
+	float defog, float kneeLow, float kneeHigh
+)
 {
 	Clear();
-
 	if (tSystem::tGetFileType(exrFile) != tSystem::tFileType::EXR)
 		return false;
 
@@ -171,9 +174,11 @@ bool tImage::tImageEXR::Load(const tString& exrFile/*, double gamma, int exposur
 	{
 		MultiPartInputFile mpfile(exrFile.Chars());
 		numParts = mpfile.parts();
+		if ((numParts <= 0) || (partNum >= numParts))
+			return false;
 
-		//const char* channels = "AZRGB";
-		//const char* layers = "0";
+		// const char* channels = "AZRGB";
+		// const char* layers = "0";
 		bool preview = false;
 		int lx = -1; int ly = -1;		// For tiled image shows level (lx,ly)
 		bool compositeDeep = true;
@@ -184,15 +189,15 @@ bool tImage::tImageEXR::Load(const tString& exrFile/*, double gamma, int exposur
 			nullptr,			// Channels. Null means all.
 			nullptr,			// Layers. O means first one.
 			preview, lx, ly,
-			0,					// PartNum.
+			partNum,
 			outZsize, outHeader,
 			pixels, zbuffer, sampleCount,
 			compositeDeep
 		);
 	}
-	catch (IEX_NAMESPACE::BaseExc &e)
+	catch (IEX_NAMESPACE::BaseExc& err)
 	{
-		tPrintf("Error: Can't read exr file. %s\n", e.what());
+		tPrintf("Error: Can't read exr file. %s\n", err.what());
 		return false;
 	}
 
@@ -211,16 +216,10 @@ bool tImage::tImageEXR::Load(const tString& exrFile/*, double gamma, int exposur
 	Height = dh;
 	Pixels = new tPixel[Width*Height];
 
-	float gamma		= 2.2f;		// [0.6, 3.0]
-	float exposure	= 1.0f;		// [-10.0, 10.0]
-	float defog		= 0.0f;		// [0.0, 0.01]
-	float kneeLow	= 0.0f;		// [-3.0, 3.0]
-	float kneeHigh	= 3.5f;		// [3.5, 7.5]
-
 	// Map floating-point pixel values 0.0 and 1.0 to the display's white and black respectively.
 	// if bool zerooneexposure true.
-	//_exposure = 1.02607f;
-	//_kneeHigh = 3.5f;
+	// exposure = 1.02607f;
+	// kneeHigh = 3.5f;
 	
 	float fogR = 0.0f;
 	float fogG = 0.0f;
