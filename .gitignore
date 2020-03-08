@@ -8,6 +8,9 @@ UnitTests/.vs/*
 
 *.obj
 
+*.user
+!UnitTests/Win/*.user
+
 Contrib/CxImage/CxImage/x64/Debug/cximage\.pdb
 
 *.lib
@@ -50,8 +53,6 @@ Contrib/NvidiaTextureTools/project/vs/nvtt/x64/Debug/nvtt\.res
 *.ipch
 
 *.opendb
-
-*.user
 
 Contrib/NvidiaTextureTools/project/vs/nvtt/x64/Release/nvtt\.res
 
