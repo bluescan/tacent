@@ -49,7 +49,7 @@ void tAssertPrintBreak(const char* expr, const char* fileName, int lineNum, cons
 		,
 		expr, fileName, lineNum, msg ? msg : "None"
 	);
-	printf(message);
+	printf("%s", message);
 
 	#ifdef PLATFORM_WIN
 	// In windows we bring up a message box.
