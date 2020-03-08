@@ -35,7 +35,7 @@ Tools/UnitTests/TestData/WrittenWiredDrives\.tga
 
 Tools/UnitTests/TestData/WrittenXeyes\.tga
 
-Tools/UnitTests/\.vs/UnitTests/v15/\.suo
+*.suo
 
 *.db
 
@@ -55,8 +55,6 @@ Contrib/NvidiaTextureTools/project/vs/nvtt/x64/Debug/nvtt\.res
 
 Contrib/NvidiaTextureTools/project/vs/nvtt/x64/Release/nvtt\.res
 
-Tools/TextureViewer/\.vs/TextureViewer/v15/\.suo
-
 Tools/TextureViewer/imgui\.ini
 
 *.aps
@@ -67,106 +65,6 @@ Tools/TextureViewer/Debug/TextureViewer\.res
 
 *.ipdb
 
-Tools/DynDnsUpdate/\.vs/DynDnsUpdate/v15/\.suo
-
-Tools/DynDnsUpdate/DynDnsUpdate\.ips
-
-Tools/DynDnsUpdate/DynDnsUpdateTwookes\.cfg
-
 Tools/TextureViewer/Release/
 
-Contrib/CxImage/CxImage/x64/Debug/cximage\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/CxImage/x64/Release/cximage\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/dcr/x64/Debug/libdcr\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/dcr/x64/Release/libdcr\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/jasper/x64/Debug/jasper\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/jasper/x64/Release/jasper\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/jpeg/x64/Debug/Jpeg\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/jpeg/x64/Release/Jpeg\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/mng/x64/Debug/mng\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/mng/x64/Release/mng\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/png/x64/Debug/png\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/png/x64/Release/png\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/psd/x64/Debug/libpsd\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/psd/x64/Release/libpsd\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/tiff/x64/Debug/Tiff\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/tiff/x64/Release/Tiff\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/zlib/x64/Debug/zlib\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/CxImage/zlib/x64/Release/zlib\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/bc6h/x64/Debug/bc6h\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/bc6h/x64/Release/bc6h\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/bc7/x64/Debug/bc7\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/bc7/x64/Release/bc7\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/nvcore/x64/Debug/nvcore\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/nvcore/x64/Release/nvcore\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/nvimage/x64/Debug/nvimage\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/nvimage/x64/Release/nvimage\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/nvmath/x64/Debug/nvmath\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/nvmath/x64/Release/nvmath\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/nvthread/x64/Debug/nvthread\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/nvthread/x64/Release/nvthread\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/nvtt/x64/Debug/nvtt\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/nvtt/x64/Release/nvtt\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/squish/x64/Debug/squish\.vcxproj\.FileListAbsolute\.txt
-
-Contrib/NvidiaTextureTools/project/vs/squish/x64/Release/squish\.vcxproj\.FileListAbsolute\.txt
-
-Modules/Build/Win/Debug/Build\.vcxproj\.FileListAbsolute\.txt
-
-Modules/Build/Win/Release/Build\.vcxproj\.FileListAbsolute\.txt
-
-Modules/Foundation/Win/Debug/Foundation\.vcxproj\.FileListAbsolute\.txt
-
-Modules/Foundation/Win/Release/Foundation\.vcxproj\.FileListAbsolute\.txt
-
-Modules/Image/Win/Debug/Image\.vcxproj\.FileListAbsolute\.txt
-
-Modules/Image/Win/Release/Image\.vcxproj\.FileListAbsolute\.txt
-
-Modules/Math/Win/Debug/Math\.vcxproj\.FileListAbsolute\.txt
-
-Modules/Math/Win/Release/Math\.vcxproj\.FileListAbsolute\.txt
-
-Modules/Scene/Win/Debug/Scene\.vcxproj\.FileListAbsolute\.txt
-
-Modules/Scene/Win/Release/Scene\.vcxproj\.FileListAbsolute\.txt
-
-Modules/System/Win/Debug/System\.vcxproj\.FileListAbsolute\.txt
-
-Modules/System/Win/Release/System\.vcxproj\.FileListAbsolute\.txt
-
-UnitTests/Debug/UnitTests\.vcxproj\.FileListAbsolute\.txt
-
-UnitTests/Release/UnitTests\.vcxproj\.FileListAbsolute\.txt
+*.FileListAbsolute.txt
