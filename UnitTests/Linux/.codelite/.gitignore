@@ -1,0 +1,4 @@
+/subversion.conf
+*.tags
+/UnitTests.session
+/valgrind.memcheck.supp

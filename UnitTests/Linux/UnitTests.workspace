@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="UnitTests" Database="" Version="10.0.0">
+  <Project Name="UnitTests" Path="UnitTests.project" Active="No"/>
+  <Project Name="System" Path="../../Modules/System/Linux/System.project" Active="No"/>
+  <Project Name="Foundation" Path="../../Modules/Foundation/Linux/Foundation.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="no">
+      <Environment/>
+      <Project Name="Foundation" ConfigName="Debug"/>
+      <Project Name="System" ConfigName="Debug"/>
+      <Project Name="UnitTests" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
+      <Project Name="Foundation" ConfigName="Release"/>
+      <Project Name="System" ConfigName="Release"/>
+      <Project Name="UnitTests" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>

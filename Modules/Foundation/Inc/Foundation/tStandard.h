@@ -41,17 +41,28 @@ inline int tMemcmp(const void* a, const void* b, int numBytes)															{ r
 // string literals.
 const int tCharInvalid																									= 0xFF;
 inline int tStrcmp(const char* a, const char* b)																		{ tAssert(a && b); return strcmp(a, b); }
-inline int tStricmp(const char* a, const char* b)																		{ tAssert(a && b); return stricmp(a, b); }
 inline int tStrncmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); return strncmp(a, b, n); }
+#if defined(PLATFORM_WIN)
+inline int tStricmp(const char* a, const char* b)																		{ tAssert(a && b); return stricmp(a, b); }
 inline int tStrnicmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); return strnicmp(a, b, n); }
+#else
+inline int tStricmp(const char* a, const char* b)																		{ tAssert(a && b); return strcasecmp(a, b); }
+inline int tStrnicmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); return strncasecmp(a, b, n); }
+#endif
 inline int tStrlen(const char* s)																						{ tAssert(s); return int(strlen(s)); }
 inline constexpr int tStrlenCT(const char* s)																			{ return *s ? 1 + tStrlenCT(s + 1) : 0; }
 inline char* tStrcpy(char* dst, const char* src)																		{ tAssert(dst && src); return strcpy(dst, src); }
 inline char* tStrncpy(char* dst, const char* src, int n)																{ tAssert(dst && src && n >= 0); return strncpy(dst, src, n); }
 inline char* tStrchr(const char* s, int c)																				{ tAssert(s && c >= 0 && c < 0x100); return (char*)strchr(s, c); }
 inline char* tStrstr(const char* s, const char* r)																		{ tAssert(s && r); return (char*)strstr(s, r); }
+
+#if defined(PLATFORM_WIN)
 inline char* tStrupr(char* s)																							{ tAssert(s); return _strupr(s); }
 inline char* tStrlwr(char* s)																							{ tAssert(s); return _strlwr(s); }
+#else
+inline char* tStrupr(char* s)																							{ tAssert(s); char* c = s; while (*c++) *c = toupper(*c); return s; }
+inline char* tStrlwr(char* s)																							{ tAssert(s); char* c = s; while (*c++) *c = tolower(*c); return s; }
+#endif
 
 // For these conversion calls, unknown digit characters for the supplied base are ignored. If base is not E [2, 36], the
 // base in which to interpret the string is determined by passing a prefix in the string. Base 10 is used if no specific

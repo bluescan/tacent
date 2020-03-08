@@ -1,0 +1,3 @@
+*.d
+*.cpp.o
+/libFoundation.a
