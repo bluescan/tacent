@@ -8,7 +8,7 @@
 // some commonly used sizes. Specifically it allows one to use the types tint128, tint256, tint512, tuint128, tuint256,
 // and tuint512 simply by including this header.
 //
-// Copyright (c) 2004-2006, 2015, 2017 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -86,7 +86,7 @@ public:
 	operator float() const;
 	operator double() const;
 
-	static inline void Swap(tFixIntU& a, tFixIntU& b)																	{ for (int i = 0; i < NumBaseInts; i++) tStd::Swap(a.IntData[i], b.IntData[i]); }
+	static inline void Swap(tFixIntU& a, tFixIntU& b)																	{ for (int i = 0; i < NumBaseInts; i++) tStd::tSwap(a.IntData[i], b.IntData[i]); }
 	tFixIntU& operator=(const tFixInt<NumBits>& v)																		{ return *this = v.AsUnsigned(); }
 	template<int N, bool LhsGreater> struct AssignHelper																{ template <typename T> void operator()(tFixIntU& lhs, const T& rhs) const; };
 	template<int N> struct AssignHelper<N, false>																		{ template <typename T> void operator()(tFixIntU& lhs, const T& rhs) const; };
@@ -185,7 +185,7 @@ public:
 	// Returns how many uint32s are used to store the integer.
 	int GetRawCount() const																								{ return NumBaseInts; }
 	void GetRawData(uint32* dest) const						/* Least significant at the beginning. */					{ tAssert(dest); tMemcpy(dest, IntData, NumBaseInts*4); }
-	void SetRawData(const uint32* src)																					{ tAssert(src); tMemcpy(IntData, src, NumBaseInts*4); int r = B%32; uint32& e = IntData[NumBaseInts-1]; e &= r ? ~((0xFFFFFFFF >> r) << r) : 0xFFFFFFFF; }	// Least significant at the beginning. Clears any unused bits for you.
+	void SetRawData(const uint32* src)																					{ tAssert(src); tMemcpy(IntData, src, NumBaseInts*4); int r = NumBits%32; uint32& e = IntData[NumBaseInts-1]; e &= r ? ~((0xFFFFFFFF >> r) << r) : 0xFFFFFFFF; }	// Least significant at the beginning. Clears any unused bits for you.
 	uint32& RawElement(int i)																							{ return IntData[i]; }
 	uint32 GetRawElement(int i) const																					{ return IntData[i]; }
 
@@ -234,6 +234,8 @@ template<int NumBits> class tFixInt : public tFixIntU<NumBits>
 {
 	using tFixIntU<NumBits>::Init;
 	using tFixIntU<NumBits>::Extract;
+	using tFixIntU<NumBits>::IntData;
+	using tFixIntU<NumBits>::MSIndex;
 
 public:
 	tFixInt()																											{ tStaticAssertMsg(NumBits % 32 == 0, "tFixInt must be a multiple of 32 bits in size."); }
@@ -277,8 +279,8 @@ public:
 	template<int N> tFixInt& operator=(const tFixIntU<N>& v)															{ return *this = v.AsSigned(); }
 	template<int N, bool LhsGreater> struct AssignHelper																{ template <typename T2> void operator()(tFixInt& lhs, const T2& rhs) const; };
 	template<int N> struct AssignHelper<N, false>																		{ template <typename T2> void operator()(tFixInt& lhs, const T2& rhs) const; };
-	template<int N> tFixInt& operator=(const tFixInt<N>& rhs)															{ AssignHelper<N, (B>N)>()(*this, rhs); return *this; }
-	void MakeMin()																										{ *this = tFixIntU<NumBits>(1) << (B-1); }
+	template<int N> tFixInt& operator=(const tFixInt<N>& rhs)															{ AssignHelper< N, (NumBits>N) >()(*this, rhs); return *this; }
+	void MakeMin()																										{ *this = tFixIntU<NumBits>(1) << (NumBits-1); }
 	void MakeMax()																										{ MakeMin(*this); --(*this); }
 
 	const tFixIntU<NumBits>& AsUnsigned() const																			{ return reinterpret_cast< const tFixIntU<NumBits>& >(*this); }
@@ -393,19 +395,19 @@ template<int N> inline void tFixIntU<N>::Set(float v)
 		neg = true;
 	}
 
-	if (f < 1.0f)
+	if (v < 1.0f)
 		return;
 
 	int e;
-	float mant = tStd::tFrexp(f, &e);
+	float mant = tStd::tFrexp(v, &e);
 	while (mant > 0.0f && e-- > 0)
 	{
 		mant *= 2.0f;
 		if (mant >= 1.0f)
 		{
 			mant -= 1.0f;
-			if (e < B)
-				BitSet(e);
+			if (e < N)
+				SetBit(e);
 		}
 	}
 	if (neg)
@@ -437,8 +439,8 @@ template<int N> inline void tFixIntU<N>::Set(double v)
 		if (mant >= 1.0)
 		{
 			mant -= 1.0;
-			if (e < B)
-				BitSet(e);
+			if (e < N)
+				SetBit(e);
 		}
 	}
 
@@ -1021,7 +1023,7 @@ template<int N> inline int tFixIntU<N>::FindLowestBitSet() const
 	{
 		if (IntData[i] != 0)
 		{
-			uint32 temp = x.IntData[i];
+			uint32 temp = IntData[i];
 			uint32 tempMax = 0xFFFFFFFF;
 			int shift = 16;
 			do
@@ -1062,14 +1064,14 @@ template<int N> inline bool tIsPow2(const tFixIntU<N>& v)
 
 template<int N> inline tFixIntU<N> tNextPow2(const tFixIntU<N>& v)
 {
-	tFixIntU result;
-	result = v - (tFixIntU)1U;
+	tFixIntU<N> result;
+	result = v - (tFixIntU<N>)1U;
 	int shift = 1;
 	do
 	{
 		result |= result >> shift;
 		shift <<= 1;
-	} while (shift < B);
+	} while (shift < N);
 	++result;
 	return result;
 }
@@ -1077,9 +1079,9 @@ template<int N> inline tFixIntU<N> tNextPow2(const tFixIntU<N>& v)
 
 template<int N> inline uint32 tCeilLog2(const tFixIntU<N>& v)
 {
-	tFixIntU temp, temp2;
+	tFixIntU<N> temp, temp2;
 	uint32 result = 0u;
-	int shift = B>>1;
+	int shift = N >> 1;
 
 	temp = v;
 	do
@@ -1090,18 +1092,18 @@ template<int N> inline uint32 tCeilLog2(const tFixIntU<N>& v)
 			temp = temp2;
 			result |= shift;
 		}
-	} while ((shift>>=1) > 0);
+	} while ((shift >>= 1) > 0);
 	return result;
 }
 
 
 template<int N> inline tFixIntU<N> tPow(tFixIntU<N> a, int b)
 {
-	tFixIntU result;
+	tFixIntU<N> result;
 	if (b < 0)
-		return (tFixIntU)0;
+		return (tFixIntU<N>)0;
 
-	result = (tFixIntU)1U;
+	result = (tFixIntU<N>)1U;
 
 	if (a == result)
 		return result;
@@ -1118,7 +1120,7 @@ template<int N> inline tFixIntU<N> tPow(tFixIntU<N> a, int b)
 
 template<int N> inline tFixIntU<N> tModPow(tFixIntU<N> base, tFixIntU<N> exp, const tFixIntU<N>& mod)
 {
-	tFixIntU result;
+	tFixIntU<N> result;
 	result = 1;
 	while (exp > 0)
 	{
@@ -1136,7 +1138,7 @@ template<int N> inline void tFixInt<N>::Set(float f)
 	*this = 0;
 	if (f != f || (f == f && f-f != 0.f))		// NAN or +/-inf.
 	{
-		BitSet(B-1);
+		SetBit(N-1);
 		return;
 	}
 	bool neg = false;
@@ -1170,7 +1172,7 @@ template<int N> inline void tFixInt<N>::Set(double d)
 	*this = 0;
 	if (d != d || (d == d && d-d != 0.0))		// nan or +/-inf
 	{
-		BitSet(B-1);
+		SetBit(N-1);
 		return;
 	}
 	bool neg = false;

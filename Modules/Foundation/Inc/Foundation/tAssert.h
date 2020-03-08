@@ -20,14 +20,19 @@
 // compiled out only in profile and ship configurations.
 void tAssertPrintBreak(const char* expr, const char* fileName, int lineNum, const char* message);
 #if defined(CONFIG_PROFILE) || defined(CONFIG_SHIP)
-#define tAssert(expr) ((void)(expr));
-#define tAssertMsg(expr, msg) ((void)(expr));
+	#define tAssert(expr) ((void)(expr));
+	#define tAssertMsg(expr, msg) ((void)(expr));
 #else
-#define tAssert(expr) if (!(expr)) tAssertPrintBreak(#expr, __FILE__, __LINE__, nullptr);
-#define tAssertMsg(expr, msg) if (!(expr)) tAssertPrintBreak(#expr, __FILE__, __LINE__, msg);
+	#define tAssert(expr) if (!(expr)) tAssertPrintBreak(#expr, __FILE__, __LINE__, nullptr);
+	#define tAssertMsg(expr, msg) if (!(expr)) tAssertPrintBreak(#expr, __FILE__, __LINE__, msg);
 #endif
+
 #define tStaticAssert(expr) static_assert(expr, #expr)
-#define tStaticAssertMsg(expr, msg) static_assert(expr, #expr##" \""##msg##"\"")
+#if defined(PLATFORM_WIN)
+	#define tStaticAssertMsg(expr, msg) static_assert(expr, #expr##" \""##msg##"\"")
+#else
+	#define tStaticAssertMsg(expr, msg) static_assert(expr, #expr " \"" msg "\"")
+#endif
 
 
 void tAbort();

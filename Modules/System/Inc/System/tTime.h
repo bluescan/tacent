@@ -77,7 +77,7 @@ public:
 
 private:
 	// @todo Add getters that format the time into a number of different string formats.
-	const static double UnitConversionTable[tUnit::tTime::NumTimeUnits][tUnit::tTime::NumTimeUnits];
+	const static double UnitConversionTable[int(tUnit::tTime::NumTimeUnits)][int(tUnit::tTime::NumTimeUnits)];
 
 	tUnit::tTime UnitInternal;
 	bool Running;
