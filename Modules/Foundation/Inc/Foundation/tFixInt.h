@@ -230,12 +230,12 @@ template<int N> tFixIntU<N> tDivide(tFixIntU<N> a, int b, int* remainder = nullp
 // Now we overload the unsigned functions to provide the necessary differences for signed numbers.
 template<int NumBits> class tFixInt : public tFixIntU<NumBits>
 {
+public:
 	using tFixIntU<NumBits>::Init;
 	using tFixIntU<NumBits>::Extract;
 	using tFixIntU<NumBits>::IntData;
 	using tFixIntU<NumBits>::MSIndex;
 
-public:
 	tFixInt()																											{ tStaticAssertMsg(NumBits % 32 == 0, "tFixInt must be a multiple of 32 bits in size."); }
 	tFixInt(const char* s, int base = -1)																				{ Set(s, base); }
 	tFixInt(int8 v)																										{ Set(v); }
