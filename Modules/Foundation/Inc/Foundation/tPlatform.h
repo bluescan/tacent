@@ -21,8 +21,8 @@
 
 
 // Attempt to auto-detect platform.
-#if !defined(PLATFORM_WIN) && !defined(PLATFORM_LIN) && !defined(PLATFORM_AND) && !defined(PLATFORM_IOS)
-	#if defined(_M_AMD64) || defined(_M_IX86)
+#if (!defined(PLATFORM_WIN) && !defined(PLATFORM_LIN) && !defined(PLATFORM_AND) && !defined(PLATFORM_IOS))
+	#if (defined(_M_AMD64) || defined(_M_IX86) || defined(_WIN32) || defined(_WIN64))
 		#define PLATFORM_WIN
 	#elif defined(__linux__)
 		#define PLATFORM_LIN
@@ -31,8 +31,8 @@
 
 
 // Attempt to auto-detect archetecture.
-#if !defined(ARCHITECTURE_X64) && !defined(ARCHITECTURE_X86) && !defined(ARCHITECTURE_ARM)
-	#if defined(_M_AMD64) || defined(__x86_64__)
+#if (!defined(ARCHITECTURE_X64) && !defined(ARCHITECTURE_X86) && !defined(ARCHITECTURE_ARM))
+	#if (defined(_M_AMD64) || defined(_WIN64) || defined(__x86_64__))
 		#define ARCHITECTURE_X64								// For x86_64
 	#elif defined(__i386)
 		#define ARCHITECTURE_X86
