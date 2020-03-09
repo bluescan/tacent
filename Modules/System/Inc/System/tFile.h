@@ -58,11 +58,13 @@ bool tFileExists(const tString& fileName);
 // Check if a directory or logical drive exists. Valid directory names include "E:/", "C:/Program Files/" etc. Drives
 // without media in them are considered non-existent. For example, if "E:/" refers to a CD ROM drive without media in
 // it, you'll get a false because you can't actually enter that directory. If the drive doesn't exist on the system at
-// all you'll get a false as well. If you want to check if a drive letter exists, use tDriveExists.
+// all you'll get a false as well. If you want to check if a drive letter exists on windows, use tDriveExists.
 bool tDirExists(const tString& dirName);
 
+#if defined(PLATFORM_WIN)
 // Drive letter can be of form "C" or "C:" or "C:/" or with lower case for this function.
 bool tDriveExists(const tString& driveName);
+#endif
 
 // File types are based on file extensions only.
 enum class tFileType

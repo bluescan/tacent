@@ -18,11 +18,13 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#include <io.h>
 #ifdef PLATFORM_WIN
+#include <io.h>
 #include <Windows.h>
 #include <shlobj.h>
 #include <shlwapi.h>
+#else
+#include <sys/stat.h>
 #endif
 #include "System/tTime.h"
 #include "System/tFile.h"
@@ -197,6 +199,7 @@ tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString& e)
 
 bool tSystem::tFileExists(const tString& filename)
 {
+#if defined(PLATFORM_WIN)
 	tString file(filename);
 	file.Replace('/', '\\');
 
@@ -215,17 +218,26 @@ bool tSystem::tFileExists(const tString& filename)
 	FindClose(h);
 	if (fd.dwFileAttributes & _A_SUBDIR)
 		return false;
-
+	
 	return true;
+#else
+	tString file(filename);
+	file.Replace('\\', '/');
+
+	struct stat statbuf;
+	return stat(file.Chars(), &statbuf) == 0;
+#endif
 }
 
 
 bool tSystem::tDirExists(const tString& dirname)
 {
-	tString dir = dirname;
-	if (dir.IsEmpty())
+	if (dirname.IsEmpty())
 		return false;
-
+		
+	tString dir = dirname;
+	
+#if defined(PLATFORM_WIN)
 	dir.Replace('/', '\\');
 	int length = dir.Length();
 	if (dir[ length - 1 ] == '\\')
@@ -250,9 +262,16 @@ bool tSystem::tDirExists(const tString& dirname)
 		return true;
 
 	return false;
+#else
+	dir.Replace('\\', '/');
+
+	struct stat statbuf;
+	return stat(dir.Chars(), &statbuf) == 0;
+#endif
 }
 
 
+#if defined(PLATFORM_WIN)
 bool tSystem::tDriveExists(const tString& driveLetter)
 {
 	tString drive = driveLetter;
@@ -268,6 +287,7 @@ bool tSystem::tDriveExists(const tString& driveLetter)
 
 	return false;
 }
+#endif
 
 
 #ifdef PLATFORM_WIN
@@ -805,6 +825,7 @@ tString tSystem::tGetUpDir(const tString& path, int levels)
 
 tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 {
+#if defined(PLATFORM_WIN)
 	tString relLoc(MAX_PATH);
 	tAssert(basePath[ basePath.Length() - 1 ] == '/');
 	bool isDir = (path[ path.Length() - 1 ] == '/') ? true : false;
@@ -830,6 +851,48 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 		return relLoc.ConstText() + 1;
 	else
 		return relLoc;
+#else
+	tString refPath(basePath);
+	tString absPath(path);
+	
+	int sizer = refPath.Length()+1;
+	int sizea = absPath.Length()+1;
+	if (sizea <= 1)
+		return tString();
+	if (sizer<= 1)
+		return absPath;
+
+	// From stackoverflow cuz I don't feel like thinking.
+	// https://stackoverflow.com/questions/36173695/how-to-retrieve-filepath-relatively-to-a-given-directory-in-c	
+	char relPath[1024];
+	relPath[0] = '\0';
+	char* pathr = refPath.Text();
+	char* patha = absPath.Text();
+	int inc = 0;
+
+	for (; (inc < sizea) && (inc < sizer); inc += tStd::tStrlen(patha+inc)+1)
+	{
+		char* tokena = tStd::tStrchr(patha+inc, '/');
+		char* tokenr = tStd::tStrchr(pathr+inc, '/');
+		
+		if (tokena) *tokena = '\0';
+		if (tokenr) *tokenr = '\0';
+		if (tStd::tStrcmp(patha+inc, pathr+inc) != 0)
+			break;
+	}
+
+	for (int incr = inc; incr < sizer; incr += tStd::tStrlen(pathr+incr)+1)
+	{
+		tStd::tStrcat(relPath, "../");
+		if (!tStd::tStrchr(refPath.Text()+incr, '/'))
+			break;
+	}
+
+	if (inc < sizea)
+		tStd::tStrcat(relPath, absPath.Text()+inc);
+		
+	return tString(relPath);
+#endif
 }
 
 

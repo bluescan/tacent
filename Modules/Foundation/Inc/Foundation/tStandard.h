@@ -55,6 +55,7 @@ inline char* tStrcpy(char* dst, const char* src)																		{ tAssert(dst 
 inline char* tStrncpy(char* dst, const char* src, int n)																{ tAssert(dst && src && n >= 0); return strncpy(dst, src, n); }
 inline char* tStrchr(const char* s, int c)																				{ tAssert(s && c >= 0 && c < 0x100); return (char*)strchr(s, c); }
 inline char* tStrstr(const char* s, const char* r)																		{ tAssert(s && r); return (char*)strstr(s, r); }
+inline char* tStrcat(char* s, const char* r)																			{ tAssert(s && r); return (char*)strcat(s, r); }
 
 #if defined(PLATFORM_WIN)
 inline char* tStrupr(char* s)																							{ tAssert(s); return _strupr(s); }
