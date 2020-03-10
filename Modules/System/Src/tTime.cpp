@@ -181,11 +181,14 @@ tString tSystem::tConvertTimeToString(uint64 time, tTimeFormat format)
 
 int64 tSystem::tGetHardwareTimerFrequency()
 {
-	#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WIN
 	int64 freq;
 	QueryPerformanceFrequency((LargeInteger*)&freq);
 	return freq;
-	#endif
+#else
+	tToDo("Implement");
+	return 0;
+#endif
 }
 
 

@@ -216,6 +216,7 @@ tString tGetDir(const tString& path);
 // eg. "c:/HighDir/MedDir/LowDir/" will return "" if levels = 4.
 tString tGetUpDir(const tString& path, int levels = 1);
 
+#if defined(PLATFORM_WIN)
 // Gets a list of the drive letters available on a system. The strings returned are in the form "C:". For more
 // information on a particular drive, use the DriveInfo functions below. You must empty the strings on the list as you
 // now own that memory, the list destructor won't do it for you.
@@ -255,16 +256,20 @@ bool tGetDriveInfo(tDriveInfo&, const tString& drive, bool getDisplayName = fals
 // some cases the name cannot be set. Read-only volumes or strange volume names will cause this function to return
 // false (failure).
 bool tSetVolumeName(const tString& drive, const tString& newVolumeName);
+#endif
+
 
 // The following paragraph of attribute setting and getting functions work equally well on both files and directories.
 // The "Set" calls return true on success. The "Is" calls return true if the attribute is set, and false if it isn't or
 // an error occurred (like the object didn't exist).
-bool tIsReadOnly(const tString& fileName);
-bool tSetReadOnly(const tString& fileName, bool readOnly = true);
-bool tIsHidden(const tString& fileName);
+bool tIsReadOnly(const tString& fileName);							// For Lixux returns true is user w flag not set and r flag is set.
+bool tSetReadOnly(const tString& fileName, bool readOnly = true);	// For Linux, sets the user w flag as appropriate and the r flag to true.
+bool tIsHidden(const tString& fileName);							// For Linux, checks if first character of filename is a dot.
+#if defined(PLATFORM_WIN)
 bool tSetHidden(const tString& fileName, bool hidden = true);
 bool tIsSystem(const tString& fileName);
 bool tSetSystem(const tString& fileName, bool system = true);
+#endif
 
 tString tGetWindowsDir();
 tString tGetSystemDir();
@@ -443,6 +448,7 @@ inline bool tSystem::tIsRelativePath(const tString& path)
 }
 
 
+#if defined(PLATFORM_WIN)
 inline tSystem::tDriveInfo::tDriveInfo() :
 	Letter(),
 	DisplayName(),
@@ -461,6 +467,7 @@ inline void tSystem::tDriveInfo::Clear()
 	SerialNumber = 0;
 	DriveType = tDriveType::Unknown;
 }
+#endif
 
 
 inline tuint128 tSystem::tHashFile128(const tString& filename, tuint128 iv)

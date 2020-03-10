@@ -48,6 +48,7 @@
         <IncludePath Value="../Inc"/>
         <IncludePath Value="../../Foundation/Inc"/>
         <IncludePath Value="../../Math/Inc"/>
+        <Preprocessor Value="PLATFORM_LIN"/>
         <Preprocessor Value="CONFIG_DEBUG"/>
       </Compiler>
       <Linker Options="" Required="yes"/>
@@ -91,6 +92,7 @@
         <IncludePath Value="../Inc"/>
         <IncludePath Value="../../Foundation/Inc"/>
         <IncludePath Value="../../Math/Inc"/>
+        <Preprocessor Value="PLATFORM_LIN"/>
         <Preprocessor Value="CONFIG_RELEASE"/>
       </Compiler>
       <Linker Options="" Required="yes"/>

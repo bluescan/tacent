@@ -18,12 +18,16 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
+#include <Foundation/tPlatform.h>
 #ifdef PLATFORM_WIN
 #include <io.h>
 #include <Windows.h>
 #include <shlobj.h>
 #include <shlwapi.h>
-#else
+#elif defined(PLATFORM_LIN)
+#include <limits.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include <sys/stat.h>
 #endif
 #include "System/tTime.h"
@@ -220,12 +224,14 @@ bool tSystem::tFileExists(const tString& filename)
 		return false;
 	
 	return true;
+
 #else
 	tString file(filename);
 	file.Replace('\\', '/');
 
 	struct stat statbuf;
 	return stat(file.Chars(), &statbuf) == 0;
+
 #endif
 }
 
@@ -934,11 +940,19 @@ tString tSystem::tGetLinuxPath(const tString& pth, const tString& mountPoint)
 tString tSystem::tGetFileFullName(const tString& filename)
 {
 	tString file(filename);
+	
+	#if defined(PLATFORM_WIN)
 	file.Replace('/', '\\');
-
 	tString ret(_MAX_PATH + 1);
 	_fullpath(ret.Text(), file, _MAX_PATH);
 	ret.Replace('\\', '/');
+	
+	#else
+
+	file.Replace('\\', '/');
+	tString ret(PATH_MAX + 1);
+	realpath(file, ret.Text());	
+	#endif
 
 	return ret;
 }
@@ -1012,6 +1026,8 @@ tuint256 tSystem::tHashFile256(const tString& filename, tuint256 iv)
 bool tSystem::tIsReadOnly(const tString& fileName)
 {
 	tString file(fileName);
+	
+#if defined(PLATFORM_WIN)
 	file.Replace('/', '\\');
 	int length = file.Length();
 	if ((file[length - 1] == '/') || (file[length - 1] == '\\'))
@@ -1027,14 +1043,27 @@ bool tSystem::tIsReadOnly(const tString& fileName)
 		return false;
 
 	return (attribs & FILE_ATTRIBUTE_READONLY) ? true : false;
+
+#else
+	file.Replace('\\', '/');
+
+	struct stat st;
+	int errCode = stat(file, &st);
+	if (errCode != 0)
+		return false;
+
+	bool w = (st.st_mode & S_IWUSR) ? true : false;
+	bool r = (st.st_mode & S_IRUSR) ? true : false;
+	return r && !w;
+#endif
 }
 
 
 bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 {
-	// Removed this cuz don't think it works for directories.
-	// _chmod(filename, readOnly ? _S_IREAD : _S_IWRITE);
 	tString file(fileName);
+	
+#if defined(PLATFORM_WIN)	
 	file.Replace('/', '\\');
 	int length = file.Length();
 	if ((file[length - 1] == '/') || (file[length - 1] == '\\'))
@@ -1057,11 +1086,30 @@ bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 		return true;
 
 	return false;
+
+#else
+	file.Replace('\\', '/');
+	
+	struct stat st;
+	int errCode = stat(file, &st);
+	if (errCode != 0)
+		return false;
+	
+	uint32 permBits = st.st_mode;
+
+	// Set user R and clear user w. Leave rest unchanged.
+	permBits |= S_IRUSR;
+	permBits &= ~S_IWUSR;
+	errCode = chmod(file, permBits);
+	
+	return (errCode == 0);
+#endif
 }
 
 
 bool tSystem::tIsHidden(const tString& fileName)
 {
+#if defined(PLATFORM_WIN)
 	tString file(fileName);
 	file.Replace('/', '\\');
 	int length = file.Length();
@@ -1073,9 +1121,15 @@ bool tSystem::tIsHidden(const tString& fileName)
 		return false;
 
 	return (attribs & FILE_ATTRIBUTE_HIDDEN) ? true : false;
+#else
+	
+	tString file = tGetFileName(fileName);
+	return (file[0] == '.');
+#endif
 }
 
 
+#if defined(PLATFORM_WIN)
 bool tSystem::tSetHidden(const tString& fileName, bool hidden)
 {
 	tString file(fileName);
@@ -1297,10 +1351,12 @@ tString tSystem::tGetSystemDir()
 
 	return sysdir;
 }
+#endif
 
 
 tString tSystem::tGetProgramDir()
 {
+#if defined(PLATFORM_WIN)
 	tString result(MAX_PATH + 1);
 	ulong l = GetModuleFileName(0, result.Text(), MAX_PATH);
 	result.Replace('\\', '/');
@@ -1310,20 +1366,46 @@ tString tSystem::tGetProgramDir()
 
 	result[bi + 1] = '\0';
 	return result;
+
+#elif defined(PLATFORM_LIN)
+	tString result(PATH_MAX+1);
+	readlink("/proc/self/exe", result.Text(), PATH_MAX);
+	
+	int bi = result.FindChar('/', true);
+	tAssert(bi != -1);
+	result[bi + 1] = '\0';
+	return result;
+
+#else
+	return tString();
+
+#endif;
 }
 
 
 tString tSystem::tGetProgramPath()
 {
+#if defined(PLATFORM_WIN)
 	tString result(MAX_PATH + 1);
 	ulong l = GetModuleFileName(0, result.Text(), MAX_PATH);
 	result.Replace('\\', '/');
 	return result;
+
+#elif defined(PLATFORM_LIN)
+	tString result(PATH_MAX+1);
+	readlink("/proc/self/exe", result.Text(), PATH_MAX);
+	return result;
+	
+#else
+	return tString();
+	
+#endif
 }
 
 
 tString tSystem::tGetCurrentDir()
 {
+#ifdef PLATFORM_WIN
 	tString r(MAX_PATH + 1);
 	GetCurrentDirectory(MAX_PATH, r.Text());
 
@@ -1334,6 +1416,13 @@ tString tSystem::tGetCurrentDir()
 		r += "/";
 
 	return r;
+
+#else
+	tString r(PATH_MAX + 1);
+	getcwd(r.Text(), PATH_MAX);
+	return r;
+	
+#endif
 }
 
 
@@ -1343,6 +1432,8 @@ bool tSystem::tSetCurrentDir(const tString& directory)
 		return false;
 
 	tString dir = directory;
+	
+#ifdef PLATFORM_WIN
 	dir.Replace('/', '\\');
 	tString cd;
 
@@ -1368,6 +1459,13 @@ bool tSystem::tSetCurrentDir(const tString& directory)
 	SetErrorMode(prevErrorMode);
 
 	return success ? true : false;
+	
+#else
+	dir.Replace('\\', '/');
+	int errCode = chdir(dir.Chars());
+	return (errCode == 0);
+
+#endif
 }
 
 
