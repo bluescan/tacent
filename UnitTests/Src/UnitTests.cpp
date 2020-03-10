@@ -2,7 +2,7 @@
 //
 // Tacent unit tests.
 //
-// Copyright (c) 2017, 2019 Tristan Grimmer.
+// Copyright (c) 2017, 2019, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -55,6 +55,7 @@ int main(int argc, char** argv)
 	tUnitTest::rPrintf("Testing Tacent Version %d.%d.%d.%d\n", tVersion::Major, tVersion::Minor, tVersion::Revision, 0);
 
 	// Foundation tests.
+	tTest(Types);
 	tTest(Array);
 	tTest(List);
 	tTest(Sort);

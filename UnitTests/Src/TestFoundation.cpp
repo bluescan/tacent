@@ -2,7 +2,7 @@
 //
 // Foundation module tests.
 //
-// Copyright (c) 2017, 2019 Tristan Grimmer.
+// Copyright (c) 2017, 2019, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -26,6 +26,20 @@ using namespace tStd;
 namespace tUnitTest
 {
 
+
+tTestUnit(Types)
+{
+	tRequire(sizeof(uint8) == 1);
+	tRequire(sizeof(uint16) == 2);
+	tRequire(sizeof(uint32) == 4);
+	tRequire(sizeof(uint64) == 8);
+
+	tRequire(sizeof(int8) == 1);
+	tRequire(sizeof(int16) == 2);
+	tRequire(sizeof(int32) == 4);
+	tRequire(sizeof(int64) == 8);
+}
+	
 
 tTestUnit(Array)
 {
