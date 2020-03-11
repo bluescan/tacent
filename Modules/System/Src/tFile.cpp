@@ -29,6 +29,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/stat.h>
+
+#include <fstream>
+#include <iostream>
+#include <filesystem>
 #endif
 #include "System/tTime.h"
 #include "System/tFile.h"
@@ -1379,7 +1383,7 @@ tString tSystem::tGetProgramDir()
 #else
 	return tString();
 
-#endif;
+#endif
 }
 
 
@@ -1432,7 +1436,7 @@ bool tSystem::tSetCurrentDir(const tString& directory)
 		return false;
 
 	tString dir = directory;
-	
+
 #ifdef PLATFORM_WIN
 	dir.Replace('/', '\\');
 	tString cd;
@@ -1557,14 +1561,26 @@ bool tSystem::tCreateFile(const tString& filename, uint8* data, int dataLength)
 
 bool tSystem::tCreateDir(const tString& dir)
 {
-	tString backSlashDir = dir;
-	backSlashDir.Replace('/', '\\');
+	tString dirPath = dir;
+	
+#if defined(PLATFORM_WIN)
+	dirPath.Replace('/', '\\');
 
-	bool success = ::CreateDirectory(backSlashDir.ConstText(), 0) ? true : false;
+	bool success = ::CreateDirectory(dirPath.ConstText(), 0) ? true : false;
 	if (!success)
-		success = tDirExists(backSlashDir.ConstText());
+		success = tDirExists(dirPath.ConstText());
 
 	return success;
+
+#else
+	dirPath.Replace('\\', '/');
+	int errCode = mkdir(dirPath.Chars(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);	// "drwxrwxr-x"
+	if (errCode)
+		return tDirExists(dirPath.Chars());
+		
+	return (errCode == 0);
+	
+#endif
 }
 
 
@@ -1685,6 +1701,7 @@ uint8* tSystem::tLoadFileHead(const tString& fileName, int& bytesToRead, uint8* 
 
 bool tSystem::tCopyFile(const tString& dest, const tString& src, bool overWriteReadOnly)
 {
+#if defined(PLATFORM_WIN)
 	int success = ::CopyFile(src, dest, 0);
 	if (!success && overWriteReadOnly)
 	{
@@ -1693,11 +1710,26 @@ bool tSystem::tCopyFile(const tString& dest, const tString& src, bool overWriteR
 	}
 
 	return success ? true : false;
+
+#else
+	std::filesystem::path pathFrom(src.Chars());
+	std::filesystem::path pathTo(dest.Chars());
+	bool success = std::filesystem::copy_file(pathFrom, pathTo);
+	if (!success && overWriteReadOnly)
+	{
+		tSetReadOnly(dest, false);
+		success = std::filesystem::copy_file(pathFrom, pathTo);
+	}
+		
+	return success;
+	
+#endif
 }
 
 
 bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tString& newName)
 {
+#if defined(PLATFORM_WIN)
 	tString fullOldName = dir + oldName;
 	fullOldName.Replace('/', '\\');
 
@@ -1706,12 +1738,29 @@ bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tStr
 
 	int success = ::MoveFile(fullOldName, fullNewName);
 	return success ? true : false;
+	
+#else
+	tString fullOldName = dir + oldName;
+	fullOldName.Replace('\\', '/');
+	std::filesystem::path oldp(fullOldName.Chars());
+
+	tString fullNewName = dir + newName;
+	fullNewName.Replace('\\', '/');
+	std::filesystem::path newp(fullNewName.Chars());
+
+	std::error_code ec;
+	std::filesystem::rename(oldp, newp, ec);
+	return !bool(ec);
+
+#endif
 }
 
 
 void tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dirMask, bool includeHidden)
 {
-	// First lets massage fileName a little.
+#if defined(PLATFORM_WIN)
+	// I'm keeping all this win32 stuff cuz it's fast on windows. All the C++17 etc stuff eventually calls
+	// the windows OS API functions. First lets massage fileName a little.
 	tString massagedName = dirMask;
 	if ((massagedName[massagedName.Length() - 1] == '/') || (massagedName[massagedName.Length() - 1] == '\\'))
 		massagedName += "*.*";
@@ -1742,6 +1791,11 @@ void tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dirMask, b
 		throw tFileError("FindDirectories failed for: " + dirMask);
 
 	FindClose(h);
+#else
+	std::string path = "/path/to/directory";
+    for (const auto & entry : fs::directory_iterator(path))
+        std::cout << entry.path() << std::endl;
+#endif
 }
 
 

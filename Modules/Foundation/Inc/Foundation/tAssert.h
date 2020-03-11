@@ -47,11 +47,11 @@ void tAbort();
 #if defined(PLATFORM_WIN)
 #define tMsgHelper2(x) #x
 #define tMsgHelper1(x) tMsgHelper2(x)
-#define tMsgTodo __FILE__ "("tMsgHelper1(__LINE__)") : ToDo: "
+#define tMsgToDo __FILE__ "("tMsgHelper1(__LINE__)") : ToDo: "
 #define tMsgNote __FILE__ "("tMsgHelper1(__LINE__)") : Note: "
-#define Todo(x) __pragma(message(tMsgTodo #x))
-#define Note(x) __pragma(message(tMsgNote #x))
+#define tToDo(x) __pragma(message(tMsgToDo #x))
+#define tNote(x) __pragma(message(tMsgNote #x))
 #else
-#define Todo(x) _Pragma(#x)
-#define Note(x) _Pragma(#x)
+#define tToDo(x) _Pragma(#x)
+#define tNote(x) _Pragma(#x)
 #endif

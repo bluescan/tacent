@@ -39,8 +39,10 @@
   </VirtualDirectory>
   <Settings Type="Static Library">
     <GlobalSettings>
-      <Compiler Options="-Wno-switch" C_Options="" Assembler="">
+      <Compiler Options="-Wno-switch;-std=c++17" C_Options="" Assembler="">
         <IncludePath Value="."/>
+        <IncludePath Value="../Inc"/>
+        <Preprocessor Value="PLATFORM_LIN"/>
       </Compiler>
       <Linker Options="">
         <LibraryPath Value="."/>
@@ -49,8 +51,6 @@
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="clang( tags/RELEASE_900/final )" DebuggerType="LLDB Debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g" C_Options="-g" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
-        <IncludePath Value="."/>
-        <IncludePath Value="../Inc"/>
         <Preprocessor Value="CONFIG_DEBUG"/>
       </Compiler>
       <Linker Options="" Required="yes"/>
@@ -89,9 +89,7 @@
       </Completion>
     </Configuration>
     <Configuration Name="Release" CompilerType="clang( tags/RELEASE_900/final )" DebuggerType="LLDB Debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-O2" C_Options="" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
-        <IncludePath Value="."/>
-        <IncludePath Value="../Inc"/>
+      <Compiler Options="-O2" C_Options="-O2" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <Preprocessor Value="CONFIG_RELEASE"/>
       </Compiler>
       <Linker Options="" Required="yes"/>

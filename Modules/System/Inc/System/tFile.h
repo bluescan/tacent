@@ -287,10 +287,9 @@ tString tGetCurrentDir();
 // the c drive as will "C:" by itself. SetCurrentDir(".."); will move the current dir up a directory.
 bool tSetCurrentDir(const tString& dir);
 
-// Overwrites dest if it exists. I would have like to have called this CopyFile but Windows globally #defines the name!
-// Returns true if success. Will return false and not copy if overWriteReadOnly is false and the file already exists
-// and is read-only.
-bool tCopyFile(const tString& dest, const tString& src, bool overWriteReadOnly = true);
+// Overwrites dest if it exists. Returns true if success. Will return false and not copy if overWriteReadOnly is false
+// and the file already exists and is read-only.
+bool tCopyFile(const tString& destFile, const tString& srcFile, bool overWriteReadOnly = true);
 
 // Renames the file or directory specified by oldName to the newName. This function can only be used for renaming, not
 // moving. Returns true on success. The dir variable should contain the path to where the file or dir you want to

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="UnitTests" Database="" Version="10.0.0">
   <Project Name="UnitTests" Path="UnitTests.project" Active="No"/>
-  <Project Name="System" Path="../../Modules/System/Linux/System.project" Active="No"/>
-  <Project Name="Foundation" Path="../../Modules/Foundation/Linux/Foundation.project" Active="Yes"/>
+  <Project Name="System" Path="../../Modules/System/Linux/System.project" Active="Yes"/>
+  <Project Name="Foundation" Path="../../Modules/Foundation/Linux/Foundation.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="no">
       <Environment/>
