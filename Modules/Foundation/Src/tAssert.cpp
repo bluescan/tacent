@@ -14,7 +14,7 @@
 
 #include <stdio.h>
 #include "Foundation/tPlatform.h"
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 #include <signal.h>
 #include <Windows.h>
 #endif
@@ -41,7 +41,7 @@ void tAssertPrintBreak(const char* expr, const char* fileName, int lineNum, cons
 		"File: [%s]\n"
 		"Line: [%d]\n"
 		"Msg : [%s]\n\n"
-		#ifdef PLATFORM_WIN
+		#ifdef PLATFORM_WINDOWS
 		"Press 'Abort' to abort the program completely.\n"
 		"Press 'Retry' to start debugging.\n"
 		"Press 'Ignore' to try and move past this assert and continue running.\n"
@@ -51,7 +51,7 @@ void tAssertPrintBreak(const char* expr, const char* fileName, int lineNum, cons
 	);
 	printf("%s", message);
 
-	#ifdef PLATFORM_WIN
+	#ifdef PLATFORM_WINDOWS
 	// In windows we bring up a message box.
 	int retCode = ::MessageBox
 	(

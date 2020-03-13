@@ -28,7 +28,7 @@ void tAssertPrintBreak(const char* expr, const char* fileName, int lineNum, cons
 #endif
 
 #define tStaticAssert(expr) static_assert(expr, #expr)
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 	#define tStaticAssertMsg(expr, msg) static_assert(expr, #expr##" \""##msg##"\"")
 #else
 	#define tStaticAssertMsg(expr, msg) static_assert(expr, #expr " \"" msg "\"")
@@ -44,7 +44,7 @@ void tAbort();
 // In your source code enter a line like one of the following two:
 // Todo(Do not forget to fix this)
 // Note("Here's a note")
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 #define tMsgHelper2(x) #x
 #define tMsgHelper1(x) tMsgHelper2(x)
 #define tMsgToDo __FILE__ "("tMsgHelper1(__LINE__)") : ToDo: "

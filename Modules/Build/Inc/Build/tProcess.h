@@ -15,7 +15,7 @@
 
 #pragma once
 #include <Foundation/tPlatform.h>
-#ifndef PLATFORM_WIN
+#ifndef PLATFORM_WINDOWS
 #error tProcess only supported on Windows.
 #endif
 #include <Foundation/tString.h>

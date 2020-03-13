@@ -21,11 +21,11 @@
 
 
 // Attempt to auto-detect platform.
-#if (!defined(PLATFORM_WIN) && !defined(PLATFORM_LIN) && !defined(PLATFORM_AND) && !defined(PLATFORM_IOS))
+#if (!defined(PLATFORM_WINDOWS) && !defined(PLATFORM_LINUX) && !defined(PLATFORM_MACOS) && !defined(PLATFORM_ANDROID) && !defined(PLATFORM_IOS))
 	#if (defined(_M_AMD64) || defined(_M_IX86) || defined(_WIN32) || defined(_WIN64))
-		#define PLATFORM_WIN
+		#define PLATFORM_WINDOWS
 	#elif defined(__linux__)
-		#define PLATFORM_LIN
+		#define PLATFORM_LINUX
 	#endif
 #endif
 
@@ -52,13 +52,13 @@
 
 
 // Turn off some annoying windows warnings.
-#if (defined(PLATFORM_WIN) && !defined(_CRT_SECURE_NO_DEPRECATE))
+#if (defined(PLATFORM_WINDOWS) && !defined(_CRT_SECURE_NO_DEPRECATE))
 	#define _CRT_SECURE_NO_DEPRECATE
 #endif
 
 
 // Sanity check. Required defines must be present.
-#if (!defined(PLATFORM_WIN) && !defined(PLATFORM_LIN) && !defined(PLATFORM_AND) && !defined(PLATFORM_IOS))
+#if (!defined(PLATFORM_WINDOWS) && !defined(PLATFORM_LINUX) && !defined(PLATFORM_MACOS) && !defined(PLATFORM_ANDROID) && !defined(PLATFORM_IOS))
 	#error You must define a supported platform.
 #endif
 #if (!defined(ARCHITECTURE_X64) && !defined(ARCHITECTURE_ARM))
@@ -70,14 +70,14 @@
 
 
 // Define the endianness.
-#if (defined(PLATFORM_WIN) || defined(PLATFORM_LIN) || defined(PLATFORM_AND) || defined(PLATFORM_IOS))
+#if (defined(PLATFORM_WINDOWS) || defined(PLATFORM_LINUX) || defined(PLATFORM_MACOS) || defined(PLATFORM_ANDROID) || defined(PLATFORM_IOS))
 	#define ENDIAN_LITTLE
 #else
 	#define ENDIAN_BIG
 #endif
 
 
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 	#include <xmmintrin.h>
 #endif
 
@@ -116,10 +116,10 @@ enum class tPlatform
 {
 	Invalid																												= -1,
 	First,
-	Win																													= First,
-	Lin,													// Linux.
-	OSX,													// Apple OSX.
-	And,													// Google Android.
+	Windows																												= First,
+	Linux,													// Linux.
+	MacOS,													// Apple's desktop OS. It's no longer called OSX.
+	Android,												// Google Android.
 	iOS,													// Apple iOS.
 	All,													// Not counted as a separate platform.
 	NumPlatforms																										= All
@@ -129,10 +129,10 @@ enum class tPlatform
 enum tPlatformFlag
 {
 	tPlatformFlag_None,
-	tPlatformFlag_Win																									= 1 << int(tPlatform::Win),
-	tPlatformFlag_Lin																									= 1 << int(tPlatform::Lin),
-	tPlatformFlag_OSX																									= 1 << int(tPlatform::OSX),
-	tPlatformFlag_And																									= 1 << int(tPlatform::And),
+	tPlatformFlag_Windows																								= 1 << int(tPlatform::Windows),
+	tPlatformFlag_Linux																									= 1 << int(tPlatform::Linux),
+	tPlatformFlag_MacOS																									= 1 << int(tPlatform::MacOS),
+	tPlatformFlag_Android																								= 1 << int(tPlatform::Android),
 	tPlatformFlag_iOS																									= 1 << int(tPlatform::iOS),
 	tPlatformFlag_All																									= 0xFFFFFFFF
 };
@@ -256,7 +256,7 @@ template<typename T> inline T tHtoN(T val)
 
 
 // These defines mitigate Windows all-capital naming ugliness.
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 #define ApiEntry APIENTRY
 #define WinBitmap BITMAP
 #define WinBitmapInfo BITMAPINFO

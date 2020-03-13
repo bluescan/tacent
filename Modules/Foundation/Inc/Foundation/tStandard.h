@@ -42,7 +42,7 @@ inline int tMemcmp(const void* a, const void* b, int numBytes)															{ r
 const int tCharInvalid																									= 0xFF;
 inline int tStrcmp(const char* a, const char* b)																		{ tAssert(a && b); return strcmp(a, b); }
 inline int tStrncmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); return strncmp(a, b, n); }
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 inline int tStricmp(const char* a, const char* b)																		{ tAssert(a && b); return stricmp(a, b); }
 inline int tStrnicmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); return strnicmp(a, b, n); }
 #else
@@ -57,7 +57,7 @@ inline char* tStrchr(const char* s, int c)																				{ tAssert(s && c >
 inline char* tStrstr(const char* s, const char* r)																		{ tAssert(s && r); return (char*)strstr(s, r); }
 inline char* tStrcat(char* s, const char* r)																			{ tAssert(s && r); return (char*)strcat(s, r); }
 
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 inline char* tStrupr(char* s)																							{ tAssert(s); return _strupr(s); }
 inline char* tStrlwr(char* s)																							{ tAssert(s); return _strlwr(s); }
 #else

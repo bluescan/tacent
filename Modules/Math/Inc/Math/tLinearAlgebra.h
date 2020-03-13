@@ -1017,7 +1017,7 @@ inline void tMath::tMulByTranspose(tMat4& d, const tVec4& a, const tVec4& b)
 
 inline void tMath::tTranspose(tMat4& m)
 {
-	#if defined(PLATFORM_WIN)
+	#if defined(PLATFORM_WINDOWS)
 	__m128* a = (__m128*)m.E;
 	if (tIsAligned16(a))
 	{

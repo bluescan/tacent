@@ -13,7 +13,7 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 #include <Windows.h>
 #include <intrin.h>
 #endif
@@ -23,7 +23,7 @@
 
 
 // These functions are all implementable on other platforms. I've only done Windows so far.
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 bool tSystem::tSupportsSSE()
 {
 	int cpuInfo[4];

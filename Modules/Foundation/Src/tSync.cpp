@@ -13,7 +13,7 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 #include <windows.h>
 #else
 #include <pthread.h>
@@ -30,7 +30,7 @@ public:
 	void Unlock();
 
 private:
-	#ifdef PLATFORM_WIN
+	#ifdef PLATFORM_WINDOWS
 	CRITICAL_SECTION CriticalSection;
 	#else
 	pthread_mutex_t Mutex;
@@ -40,7 +40,7 @@ private:
 
 inline tMutex::Implementation::Implementation()
 {
-	#ifdef PLATFORM_WIN
+	#ifdef PLATFORM_WINDOWS
 	InitializeCriticalSection(&CriticalSection);
 	#else
 	pthread_mutex_init(&Mutex, nullptr);
@@ -50,7 +50,7 @@ inline tMutex::Implementation::Implementation()
 
 inline tMutex::Implementation::~Implementation()
 {
-	#ifdef PLATFORM_WIN
+	#ifdef PLATFORM_WINDOWS
 	DeleteCriticalSection(&CriticalSection);
 	#else
 	pthread_mutex_destroy(&Mutex);
@@ -60,7 +60,7 @@ inline tMutex::Implementation::~Implementation()
 
 inline void tMutex::Implementation::Lock()
 {
-	#ifdef PLATFORM_WIN
+	#ifdef PLATFORM_WINDOWS
 	EnterCriticalSection(&CriticalSection);
 	#else
 	pthread_mutex_lock(&Mutex);
@@ -70,7 +70,7 @@ inline void tMutex::Implementation::Lock()
 
 inline void tMutex::Implementation::Unlock()
 {
-	#ifdef PLATFORM_WIN
+	#ifdef PLATFORM_WINDOWS
 	LeaveCriticalSection(&CriticalSection);
 	#else
 	pthread_mutex_unlock(&Mutex);

@@ -19,12 +19,12 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <Foundation/tPlatform.h>
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 #include <io.h>
 #include <Windows.h>
 #include <shlobj.h>
 #include <shlwapi.h>
-#elif defined(PLATFORM_LIN)
+#elif defined(PLATFORM_LINUX)
 #include <limits.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -112,7 +112,7 @@ int tSystem::tGetFileSize(tFileHandle file)
 
 int tSystem::tGetFileSize(const tString& filename)
 {
-	#ifdef PLATFORM_WIN
+	#ifdef PLATFORM_WINDOWS
 	if (filename.IsEmpty())
 		return 0;
 
@@ -207,7 +207,7 @@ tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString& e)
 
 bool tSystem::tFileExists(const tString& filename)
 {
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 	tString file(filename);
 	file.Replace('/', '\\');
 
@@ -247,7 +247,7 @@ bool tSystem::tDirExists(const tString& dirname)
 		
 	tString dir = dirname;
 	
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 	dir.Replace('/', '\\');
 	int length = dir.Length();
 	if (dir[ length - 1 ] == '\\')
@@ -281,7 +281,7 @@ bool tSystem::tDirExists(const tString& dirname)
 }
 
 
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 bool tSystem::tDriveExists(const tString& driveLetter)
 {
 	tString drive = driveLetter;
@@ -300,7 +300,7 @@ bool tSystem::tDriveExists(const tString& driveLetter)
 #endif
 
 
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 bool tSystem::tIsFileNewer(const tString& filenameA, const tString& filenameB)
 {
 	tString fileA(filenameA);
@@ -697,7 +697,7 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 
 	return exeName;
 }
-#endif // PLATFORM_WIN
+#endif // PLATFORM_WINDOWS
 
 
 tString tSystem::tGetSimplifiedPath(const tString& srcPath, bool ensureTrailingSlash)
@@ -835,7 +835,7 @@ tString tSystem::tGetUpDir(const tString& path, int levels)
 
 tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 {
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 	tString relLoc(MAX_PATH);
 	tAssert(basePath[ basePath.Length() - 1 ] == '/');
 	bool isDir = (path[ path.Length() - 1 ] == '/') ? true : false;
@@ -945,7 +945,7 @@ tString tSystem::tGetFileFullName(const tString& filename)
 {
 	tString file(filename);
 	
-	#if defined(PLATFORM_WIN)
+	#if defined(PLATFORM_WINDOWS)
 	file.Replace('/', '\\');
 	tString ret(_MAX_PATH + 1);
 	_fullpath(ret.Text(), file, _MAX_PATH);
@@ -1031,7 +1031,7 @@ bool tSystem::tIsReadOnly(const tString& fileName)
 {
 	tString file(fileName);
 	
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 	file.Replace('/', '\\');
 	int length = file.Length();
 	if ((file[length - 1] == '/') || (file[length - 1] == '\\'))
@@ -1067,7 +1067,7 @@ bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 {
 	tString file(fileName);
 	
-#if defined(PLATFORM_WIN)	
+#if defined(PLATFORM_WINDOWS)	
 	file.Replace('/', '\\');
 	int length = file.Length();
 	if ((file[length - 1] == '/') || (file[length - 1] == '\\'))
@@ -1113,7 +1113,7 @@ bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 
 bool tSystem::tIsHidden(const tString& fileName)
 {
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 	tString file(fileName);
 	file.Replace('/', '\\');
 	int length = file.Length();
@@ -1133,7 +1133,7 @@ bool tSystem::tIsHidden(const tString& fileName)
 }
 
 
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 bool tSystem::tSetHidden(const tString& fileName, bool hidden)
 {
 	tString file(fileName);
@@ -1360,7 +1360,7 @@ tString tSystem::tGetSystemDir()
 
 tString tSystem::tGetProgramDir()
 {
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 	tString result(MAX_PATH + 1);
 	ulong l = GetModuleFileName(0, result.Text(), MAX_PATH);
 	result.Replace('\\', '/');
@@ -1371,7 +1371,7 @@ tString tSystem::tGetProgramDir()
 	result[bi + 1] = '\0';
 	return result;
 
-#elif defined(PLATFORM_LIN)
+#elif defined(PLATFORM_LINUX)
 	tString result(PATH_MAX+1);
 	readlink("/proc/self/exe", result.Text(), PATH_MAX);
 	
@@ -1389,13 +1389,13 @@ tString tSystem::tGetProgramDir()
 
 tString tSystem::tGetProgramPath()
 {
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 	tString result(MAX_PATH + 1);
 	ulong l = GetModuleFileName(0, result.Text(), MAX_PATH);
 	result.Replace('\\', '/');
 	return result;
 
-#elif defined(PLATFORM_LIN)
+#elif defined(PLATFORM_LINUX)
 	tString result(PATH_MAX+1);
 	readlink("/proc/self/exe", result.Text(), PATH_MAX);
 	return result;
@@ -1409,7 +1409,7 @@ tString tSystem::tGetProgramPath()
 
 tString tSystem::tGetCurrentDir()
 {
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 	tString r(MAX_PATH + 1);
 	GetCurrentDirectory(MAX_PATH, r.Text());
 
@@ -1437,7 +1437,7 @@ bool tSystem::tSetCurrentDir(const tString& directory)
 
 	tString dir = directory;
 
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 	dir.Replace('/', '\\');
 	tString cd;
 
@@ -1563,7 +1563,7 @@ bool tSystem::tCreateDir(const tString& dir)
 {
 	tString dirPath = dir;
 	
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 	dirPath.Replace('/', '\\');
 
 	bool success = ::CreateDirectory(dirPath.ConstText(), 0) ? true : false;
@@ -1701,7 +1701,7 @@ uint8* tSystem::tLoadFileHead(const tString& fileName, int& bytesToRead, uint8* 
 
 bool tSystem::tCopyFile(const tString& dest, const tString& src, bool overWriteReadOnly)
 {
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 	int success = ::CopyFile(src, dest, 0);
 	if (!success && overWriteReadOnly)
 	{
@@ -1729,7 +1729,7 @@ bool tSystem::tCopyFile(const tString& dest, const tString& src, bool overWriteR
 
 bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tString& newName)
 {
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 	tString fullOldName = dir + oldName;
 	fullOldName.Replace('/', '\\');
 
@@ -1758,7 +1758,7 @@ bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tStr
 
 void tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dirMask, bool includeHidden)
 {
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 	// I'm keeping all this win32 stuff cuz it's fast on windows. All the C++17 etc stuff eventually calls
 	// the windows OS API functions. First lets massage fileName a little.
 	tString massagedName = dirMask;

@@ -13,7 +13,7 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 #include <Windows.h>
 #endif
 #include "System/tTime.h"
@@ -21,7 +21,7 @@
 #include "System/tFile.h"
 
 
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 
 
 namespace tSystem
@@ -176,12 +176,12 @@ tString tSystem::tConvertTimeToString(uint64 time, tTimeFormat format)
 
 	return timeStr;
 }
-#endif // PLATFORM_WIN
+#endif // PLATFORM_WINDOWS
 
 
 int64 tSystem::tGetHardwareTimerFrequency()
 {
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 	int64 freq;
 	QueryPerformanceFrequency((LargeInteger*)&freq);
 	return freq;
@@ -194,7 +194,7 @@ int64 tSystem::tGetHardwareTimerFrequency()
 
 int64 tSystem::tGetHardwareTimerCount()
 {
-	#ifdef PLATFORM_WIN
+	#ifdef PLATFORM_WINDOWS
 	int64 count;
 	QueryPerformanceCounter((LargeInteger*)&count);
 	return count;

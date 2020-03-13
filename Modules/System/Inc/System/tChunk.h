@@ -54,7 +54,7 @@
 #include <Math/tQuaternion.h>
 #include <Math/tColour.h>
 #include "System/tFile.h"
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 #pragma warning (disable: 4311 4369 4302)
 #endif
 

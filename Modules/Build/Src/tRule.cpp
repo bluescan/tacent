@@ -17,7 +17,7 @@
 #include <System/tPrint.h>
 #include <System/tFile.h>
 #include "Build/tRule.h"
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 #include "Build/tSolution.h"
 #endif
 using namespace tBuild;
@@ -102,7 +102,7 @@ void tRule::AddDependencies(tList<tStringItem>& deps)
 }
 
 
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 void tRule::AddDependenciesVS(const tString& solutionOrProjectFile)
 {
 	if (tSystem::tGetFileExtension(solutionOrProjectFile) == "sln")

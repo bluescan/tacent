@@ -269,7 +269,7 @@ tTestUnit(Print)
 	tRequire(PrintCompare("Char %c\n", 65));
 	tRequire(PrintCompare("Char %c %c %c\n", 65, 66, 67));
 
-	#ifdef PLATFORM_WIN
+	#ifdef PLATFORM_WINDOWS
 	tPrintf("Windows non-POD tString print.\n");
 	tString str = "This sentence is the tString.";
 	PrintTest("The string is '%t'. This is a number:%d.\n", str, 42);

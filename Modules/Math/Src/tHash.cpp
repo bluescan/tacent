@@ -117,7 +117,7 @@ namespace tHash
 
 uint64 tMath::tHashData64(const uint8* data, int length, uint64 iv)
 {
-	#ifndef PLATFORM_WIN
+	#ifndef PLATFORM_WINDOWS
 		tAssert(!"HashData64 has only been tested in windows.");
 	#endif
 	uint64 a,b,c;											// The internal state.
@@ -454,7 +454,7 @@ namespace tHash
 
 tuint256 tMath::tHashData256(const uint8* data, int len, tuint256 iv)
 {
-	#ifndef PLATFORM_WIN
+	#ifndef PLATFORM_WINDOWS
 	// @todo Are there endianness concerns?
 	tAssert(!"HashData256 has only been tested in windows.");
 	#endif

@@ -15,7 +15,7 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 #include <windows.h>
 #endif
 #include <Foundation/tStandard.h>
@@ -230,7 +230,7 @@ int tSystem::tPrint(const char* text, tFileHandle fileHandle)
 		return numPrinted;
 
 	// Print supplimentary output unfiltered.
-	#ifdef PLATFORM_WIN
+	#ifdef PLATFORM_WINDOWS
 	if (!fileHandle && SupplimentaryDebuggerOutput && IsDebuggerPresent())
 		OutputDebugStringA(text);
 	#endif
@@ -243,7 +243,7 @@ int tSystem::tPrint(const char* text, tFileHandle fileHandle)
 		return numChars;
 	}
 
-	#ifdef PLATFORM_WIN
+	#ifdef PLATFORM_WINDOWS
 	// Skip some specific undesirable characters.
 	const char* startValid = text;
 	while (*startValid)

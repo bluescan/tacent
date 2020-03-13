@@ -62,7 +62,7 @@ public:
 	// will be added if they aren't already added.
 	void AddDependencies(tList<tStringItem>& deps);
 
-	#ifdef PLATFORM_WIN
+	#ifdef PLATFORM_WINDOWS
 	// Adds dependencies that are found inside a Visual Studio project or solution file. If the supplied file is a .sln
 	// file, it is parsed for all .vcxproj files it refers to. The vcxproj file contains the actual file names that are
 	// added as dependencies. This function does checks to see if the dependency has already been added.

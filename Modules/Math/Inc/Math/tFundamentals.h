@@ -227,7 +227,7 @@ inline std::function<bool(float,float)> tMath::tBiasGreater(tIntervalBias bias)
 
 inline float tMath::tSqrtFast(float x)
 {
-	#ifdef PLATFORM_WIN
+	#ifdef PLATFORM_WINDOWS
 	__m128 in = _mm_set_ss(x);
 	__m128 out = _mm_sqrt_ss(in);
 	return *(float*)(&out);
@@ -239,7 +239,7 @@ inline float tMath::tSqrtFast(float x)
 
 inline float tMath::tRecipSqrtFast(float x)
 {
-	#ifdef PLATFORM_WIN
+	#ifdef PLATFORM_WINDOWS
 	__m128 in = _mm_set_ss(x);
 	__m128 out = _mm_rsqrt_ss(in);
 	return *(float*)(&out);

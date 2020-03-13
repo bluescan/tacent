@@ -61,7 +61,7 @@ bool tFileExists(const tString& fileName);
 // all you'll get a false as well. If you want to check if a drive letter exists on windows, use tDriveExists.
 bool tDirExists(const tString& dirName);
 
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 // Drive letter can be of form "C" or "C:" or "C:/" or with lower case for this function.
 bool tDriveExists(const tString& driveName);
 #endif
@@ -120,7 +120,7 @@ tString tGetFileName(const tString& filename);
 tString tGetFileBaseName(const tString& filename);
 
 
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 bool tIsFileNewer(const tString& fileA, const tString& fileB);
 
 // The file's last modification time and other time values are reported in 100ns intervals since Midnight Jan 1, 1601
@@ -174,7 +174,7 @@ void tSetFileOpenAssoc(const tString& program, const tList<tStringItem>& extensi
 
 // Gets the program and options associated with a particular extension.
 tString tGetFileOpenAssoc(const tString& extension);
-#endif // PLATFORM_WIN
+#endif // PLATFORM_WINDOWS
 
 
 // Returns a path or fully qualified filename that is as simple as possible. Mainly this involves removing (and
@@ -216,7 +216,7 @@ tString tGetDir(const tString& path);
 // eg. "c:/HighDir/MedDir/LowDir/" will return "" if levels = 4.
 tString tGetUpDir(const tString& path, int levels = 1);
 
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 // Gets a list of the drive letters available on a system. The strings returned are in the form "C:". For more
 // information on a particular drive, use the DriveInfo functions below. You must empty the strings on the list as you
 // now own that memory, the list destructor won't do it for you.
@@ -265,7 +265,7 @@ bool tSetVolumeName(const tString& drive, const tString& newVolumeName);
 bool tIsReadOnly(const tString& fileName);							// For Lixux returns true is user w flag not set and r flag is set.
 bool tSetReadOnly(const tString& fileName, bool readOnly = true);	// For Linux, sets the user w flag as appropriate and the r flag to true.
 bool tIsHidden(const tString& fileName);							// For Linux, checks if first character of filename is a dot.
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 bool tSetHidden(const tString& fileName, bool hidden = true);
 bool tIsSystem(const tString& fileName);
 bool tSetSystem(const tString& fileName, bool system = true);
@@ -411,7 +411,7 @@ inline bool tSystem::tPutc(char ch, tFileHandle file)
 }
 
 
-#ifdef PLATFORM_WIN
+#ifdef PLATFORM_WINDOWS
 inline tSystem::tFileInfo::tFileInfo() :
 	FileName(),
 	FileSize(0),
@@ -447,7 +447,7 @@ inline bool tSystem::tIsRelativePath(const tString& path)
 }
 
 
-#if defined(PLATFORM_WIN)
+#if defined(PLATFORM_WINDOWS)
 inline tSystem::tDriveInfo::tDriveInfo() :
 	Letter(),
 	DisplayName(),
