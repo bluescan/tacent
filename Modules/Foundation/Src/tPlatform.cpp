@@ -23,7 +23,7 @@ tPlatform tGetPlatform()
 	#if defined(PLATFORM_WINDOWS)
 	return tPlatform::Windows;
 	#elif defined(PLATFORM_LINUX)
-	return tPlatform::Linus;
+	return tPlatform::Linux;
 	#elif defined(PLATFORM_MACOS)
 	return tPlatform::MacOS;
 	#elif defined(PLATFORM_ANDROID)
