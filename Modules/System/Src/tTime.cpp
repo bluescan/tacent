@@ -16,7 +16,7 @@
 #include <ctime>
 #ifdef PLATFORM_WINDOWS
 #include <Windows.h>
-#elif defined(PLATFORM_LINUX)
+#else
 #include <time.h>
 #endif
 #include "System/tTime.h"
@@ -26,19 +26,44 @@
 
 namespace tSystem
 {
-	// High accuracy cross platform timing functions.
-	
-#if defined(PLATFORM_WINDOWS)
-	int64 tGetHardwareTimerFrequency();
-	int64 tGetHardwareTimerCount();
-	static int64 QPCStartCount = tSystem::tGetHardwareTimerCount();
-	static int64 QPCFrequency = tSystem::tGetHardwareTimerFrequency();
+	static int64 HPCStartCount = tSystem::tGetHardwareTimerCount();
+	static int64 HPCFrequency = tSystem::tGetHardwareTimerFrequency();
+}
 
-#elif defined(PLATFORM_LINUX)
-	int64 tGetHardwareTimerNanoSecs();
-	int64 NanoSecondsAtStart = tSystem::tGetHardwareTimerNanoSecs();
-	
-#endif
+
+int64 tSystem::tGetHardwareTimerFrequency()
+{
+	if (!HPCFrequency)
+	{
+		#if defined(PLATFORM_WINDOWS)
+		int64 freq;
+		QueryPerformanceFrequency((LargeInteger*)&freq);
+		HPCFrequency = freq;
+		#else
+		HPCFrequency = 1000000000ll;
+		#endif
+	}
+
+	return HPCFrequency;
+}
+
+
+int64 tSystem::tGetHardwareTimerCount()
+{
+	#if defined(PLATFORM_WINDOWS)
+	int64 count;
+	QueryPerformanceCounter((LargeInteger*)&count);
+	return count;
+
+	#else
+	struct timespec ts;
+	int err = clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
+	if (err)
+		return 0;
+	int64 nanoSecs = (1000000000ll * ts.tv_sec) + ts.tv_nsec;
+	return  nanoSecs;
+
+	#endif
 }
 
 
@@ -88,88 +113,57 @@ tString tSystem::tConvertTimeToString(std::tm timePoint, tTimeFormat format)
 }
 
 
-#ifdef PLATFORM_WINDOWS
-int64 tSystem::tGetHardwareTimerFrequency()
-{
-	int64 freq;
-	QueryPerformanceFrequency((LargeInteger*)&freq);
-	return freq;
-}
-
-
-int64 tSystem::tGetHardwareTimerCount()
-{
-	int64 count;
-	QueryPerformanceCounter((LargeInteger*)&count);
-	return count;
-}
-#endif
-
-
-#ifdef PLATFORM_LINUX
-int64 tSystem::tGetHardwareTimerNanoSecs()
-{
-	struct timespec ts;
-	int err = clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
-	if (err)
-		return 0;
-		
-	int64 nanoSecs = (1000000000ll * ts.tv_sec) + ts.tv_nsec;
-	return  nanoSecs;
-}
-#endif
-
-
 void tSystem::tSleep(int milliSeconds)
 {
-#if defined(PLATFORM_WINDOWS)
+	#if defined(PLATFORM_WINDOWS)
 	::Sleep(milliSeconds);
 
-#elif defined(PLATFORM_LINUX)
+	#else
 	struct timespec ts;
 	ts.tv_sec = milliSeconds / 1000;
 	ts.tv_nsec = 1000000*(milliSeconds - (ts.tv_sec*1000));
 	nanosleep(&ts, nullptr);
 
-#endif
+	#endif
 }
 
 
 float tSystem::tGetTime()
 {
-#ifdef PLATFORM_WINDOWS
-	int64 currCount = tGetHardwareTimerCount();
+	#ifdef PLATFORM_WINDOWS
+	int64 freq = tGetHardwareTimerFrequency();
 
 	// This is organized like this to keep precision as high as possible.
-	int64 elapsedCount = currCount - QPCStartCount;
-	int64 wholeSeconds = elapsedCount / QPCFrequency;
-	int64 remainder = elapsedCount % QPCFrequency;
-	return float(wholeSeconds) + float(remainder)/float(QPCFrequency);
+	int64 elapsedCount = tGetHardwareTimerCount() - HPCStartCount;
+	int64 wholeSeconds = elapsedCount / freq;
+	int64 remainder = elapsedCount % freq;
+	return float(wholeSeconds) + float(remainder)/float(freq);
 	
-#elif defined(PLATFORM_LINUX)
-	int64 microSecs = (tGetHardwareTimerNanoSecs() - NanoSecondsAtStart) / 1000ll;
+	#else
+	int64 microSecs = (tGetHardwareTimerCount() - HPCStartCount) / 1000ll;
 	return float(microSecs) / 1000000.0f;
 
-#endif
+	#endif
 }
 
 
 double tSystem::tGetTimeDouble()
 {
-#ifdef PLATFORM_WINDOWS
+	#ifdef PLATFORM_WINDOWS
 	int64 currCount = tGetHardwareTimerCount();
+	int64 freq = tGetHardwareTimerFrequency();
 
 	// This is organized like this to keep precision as high as possible.
-	int64 elapsedCount = currCount - QPCStartCount;
-	int64 wholeSeconds = elapsedCount / QPCFrequency;
-	int64 remainder = elapsedCount % QPCFrequency;
-	return double(wholeSeconds) + double(remainder)/double(QPCFrequency);
+	int64 elapsedCount = currCount - HPCStartCount;
+	int64 wholeSeconds = elapsedCount / freq;
+	int64 remainder = elapsedCount % freq;
+	return double(wholeSeconds) + double(remainder)/double(freq);
 
-#elif defined(PLATFORM_LINUX)
-	int64 nanoSecs = tGetHardwareTimerNanoSecs() - NanoSecondsAtStart;
-	return double(nanoSecs) / 1000000000.0f;
+	#else
+	int64 nanoSecs = tGetHardwareTimerCount() - HPCStartCount;
+	return double(nanoSecs) / 1000000000.0;
 
-#endif
+	#endif
 }
 
 

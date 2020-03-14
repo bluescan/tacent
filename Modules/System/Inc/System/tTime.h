@@ -22,8 +22,14 @@ namespace tSystem
 {
 
 
-// Gets the number of seconds since the absolute time reference
-// of 00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970.
+// High accuracy cross platform timing functions. For windows the frequency is whatever the HW reports. For other
+// platforms it's 1/1ns = 1000000000Hz but counts increment by whatever the internal timer resulution is in ns.
+int64 tGetHardwareTimerFrequency();
+int64 tGetHardwareTimerCount();
+
+
+// Gets the number of seconds since the absolute time reference of 00:00:00 Coordinated Universal Time (UTC),
+// Thursday, 1 January 1970.
 uint64 tGetTimeUTC();
 uint64 tGetTimeGMT();
 

@@ -736,10 +736,12 @@ tTestUnit(File)
 
 tTestUnit(Time)
 {
-	uint64 localTime = tGetTimeLocal();	//	us		s				h			d		y
-	uint64 yearsSince1601 = localTime / (	10ULL *	1000000ULL *	3600ULL *	24ULL *	365ULL);
-	tPrintf("LocalTime in years since 1601: %016|64d\n", yearsSince1601);
-	tRequire(yearsSince1601 > 400);
+	uint64 epochTime = tGetTimeUTC();	//	h			d		y
+	uint64 yearsSince1970 = epochTime / (	3600ULL *	24ULL *	365ULL);
+	tPrintf("Years since 1970 UTC: %016|64d\n", yearsSince1970);
+
+	// I wrote the following assert in 2020.
+	tRequire(yearsSince1970 >= 50);
 
 	float startTimeSeconds = tGetTime();
 	double startTimeSecondsD = tGetTimeDouble();
