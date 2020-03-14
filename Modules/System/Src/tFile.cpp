@@ -29,9 +29,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/stat.h>
-
 #include <fstream>
-#include <iostream>
+///#include <iostream>
 #include <filesystem>
 #endif
 #include "System/tTime.h"
@@ -300,9 +299,9 @@ bool tSystem::tDriveExists(const tString& driveLetter)
 #endif
 
 
-#ifdef PLATFORM_WINDOWS
 bool tSystem::tIsFileNewer(const tString& filenameA, const tString& filenameB)
 {
+#if defined(PLATFORM_WINDOWS)
 	tString fileA(filenameA);
 	fileA.Replace('/', '\\');
 
@@ -327,10 +326,16 @@ bool tSystem::tIsFileNewer(const tString& filenameA, const tString& filenameB)
 	if (CompareFileTime(&timeA, &timeB) > 0)
 		return true;
 
+#elif defined(PLAYFORM_LINUX)
+	tToDo("Implement tISFileNewer.");
+
+#endif
 	return false;
+
 }
 
 
+#ifdef PLATFORM_WINDOWS
 bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 {
 	fileInfo.Clear();
