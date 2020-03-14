@@ -13,52 +13,39 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
+#include <ctime>
 #ifdef PLATFORM_WINDOWS
 #include <Windows.h>
+#elif defined(PLATFORM_LINUX)
+#include <time.h>
 #endif
 #include "System/tTime.h"
 #include "System/tPrint.h"
 #include "System/tFile.h"
 
 
-#ifdef PLATFORM_WINDOWS
-
-
 namespace tSystem
 {
+	// High accuracy cross platform timing functions.
+	
+#if defined(PLATFORM_WINDOWS)
+	int64 tGetHardwareTimerFrequency();
+	int64 tGetHardwareTimerCount();
 	static int64 QPCStartCount = tSystem::tGetHardwareTimerCount();
 	static int64 QPCFrequency = tSystem::tGetHardwareTimerFrequency();
-}
 
-
-uint64 tSystem::tGetTimeLocal()
-{
-	SystemTime sysTime;
-	GetLocalTime(&sysTime);
-
-	FileTime fileTime;
-	tStd::tMemset(&fileTime, 0, sizeof(fileTime));
-	SystemTimeToFileTime(&sysTime, &fileTime);
-
-	uint64 retVal;
-	retVal = fileTime.dwHighDateTime;
-	retVal <<= 32;
-	retVal |= fileTime.dwLowDateTime;
-	return retVal;
+#elif defined(PLATFORM_LINUX)
+	int64 tGetHardwareTimerNanoSecs();
+	int64 NanoSecondsAtStart = tSystem::tGetHardwareTimerNanoSecs();
+	
+#endif
 }
 
 
 uint64 tSystem::tGetTimeUTC()
 {
-	FileTime utcTime;
-	GetSystemTimeAsFileTime(&utcTime);
-
-	uint64 retVal;
-	retVal = utcTime.dwHighDateTime;
-	retVal <<= 32;
-	retVal |= utcTime.dwLowDateTime;
-
-	return retVal;
+	std::time_t secondsSinceEpoch = time(nullptr);
+	return uint64(secondsSinceEpoch);
 }
 
 
@@ -68,148 +55,89 @@ uint64 tSystem::tGetTimeGMT()
 }
 
 
-tString tSystem::tConvertTimeToString(uint64 time, tTimeFormat format)
-{
-	FileTime fileTime;
-	fileTime.dwHighDateTime = (time >> 32);
-	fileTime.dwLowDateTime = (time & 0x00000000FFFFFFFF);
-	SystemTime st;
-	FileTimeToSystemTime(&fileTime, &st);
+std::tm tSystem::tGetTimeLocal()
+{	
+	std::time_t t = std::time(nullptr);
+    return *std::localtime(&t);
+}
 
-	tString timeStr;
+
+tString tSystem::tConvertTimeToString(std::tm timePoint, tTimeFormat format)
+{
+	tString tstr(256);
+
 	switch (format)
 	{
 		case tTimeFormat::Standard:
-			tsPrintf
-			(
-				timeStr,
-				"%04d-%02d-%02d %02d:%02d:%02d",
-				st.wYear, st.wMonth, st.wDay,
-				st.wHour, st.wMinute, st.wSecond
-			);
+			// Eg. 2020-01-14 01:47:12
+			strftime(tstr.Text(), 256, "%F %T", &timePoint);
 			break;
 
 		case tTimeFormat::Extended:
-		{
-			tString day;
-			switch (st.wDayOfWeek)
-			{
-				case 0: day = "Sunday";			break;
-				case 1: day = "Monday";			break;
-				case 2: day = "Tuesday";		break;
-				case 3: day = "Wednesday";		break;
-				case 4: day = "Thursday";		break;
-				case 5: day = "Friday";			break;
-				case 6: day = "Saturday";		break;
-			}
-
-			tString month;
-			switch (st.wMonth)
-			{
-				case 1:  month = "January";		break;
-				case 2:  month = "February";	break;
-				case 3:  month = "March";		break;
-				case 4:  month = "April";		break;
-				case 5:  month = "May";			break;
-				case 6:  month = "June";		break;
-				case 7:  month = "July";		break;
-				case 8:  month = "August";		break;
-				case 9:  month = "September";	break;
-				case 10: month = "October";		break;
-				case 11: month = "November";	break;
-				case 12: month = "December";	break;
-			}
-
-			tsPrintf
-			(
-				timeStr,
-				"%s %s %d %d - %02d:%02d:%02d",
-				day.ConstText(), month.ConstText(), st.wDay, st.wYear,
-				st.wHour, st.wMinute, st.wSecond
-			);
-
+			// Eg. Tuesday January 14 2020 - 01:36:34
+			strftime(tstr.Text(), 256, "%A %B %d %G - %T", &timePoint);
 			break;
-		}
 
 		case tTimeFormat::Short:
-		{
-			tString day("NaD");
-			switch (st.wDayOfWeek)
-			{
-				case 0: day = "Sun"; break;
-				case 1: day = "Mon"; break;
-				case 2: day = "Tue"; break;
-				case 3: day = "Wed"; break;
-				case 4: day = "Thu"; break;
-				case 5: day = "Fri"; break;
-				case 6: day = "Sat"; break;
-			}
-
-			tString month("NaM");
-			switch (st.wMonth)
-			{
-				case 1:  month = "Jan"; break;
-				case 2:  month = "Feb";	break;
-				case 3:  month = "Mar"; break;
-				case 4:  month = "Apr"; break;
-				case 5:  month = "May"; break;
-				case 6:  month = "Jun"; break;
-				case 7:  month = "Jul"; break;
-				case 8:  month = "Aug"; break;
-				case 9:  month = "Sep"; break;
-				case 10: month = "Oct"; break;
-				case 11: month = "Nov"; break;
-				case 12: month = "Dec"; break;
-			}
-
-			tsPrintf
-			(
-				timeStr,
-				"%s %s %2d %4d %2d:%02d:%02d",
-				day.ConstText(), month.ConstText(), st.wDay, st.wYear,
-				st.wHour, st.wMinute, st.wSecond
-			);
-
+			// Eg. Tue Jan 14 14:38:58 2020
+			strftime(tstr.Text(), 256, "%c", &timePoint);
 			break;
-		}
 	}
 
-	return timeStr;
+	return tstr;
 }
-#endif // PLATFORM_WINDOWS
 
 
+#ifdef PLATFORM_WINDOWS
 int64 tSystem::tGetHardwareTimerFrequency()
 {
-#ifdef PLATFORM_WINDOWS
 	int64 freq;
 	QueryPerformanceFrequency((LargeInteger*)&freq);
 	return freq;
-#else
-	tToDo("Implement");
-	return 0;
-#endif
 }
 
 
 int64 tSystem::tGetHardwareTimerCount()
 {
-	#ifdef PLATFORM_WINDOWS
 	int64 count;
 	QueryPerformanceCounter((LargeInteger*)&count);
 	return count;
-	#endif
 }
+#endif
+
+
+#ifdef PLATFORM_LINUX
+int64 tSystem::tGetHardwareTimerNanoSecs()
+{
+	struct timespec ts;
+	int err = clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
+	if (err)
+		return 0;
+		
+	int64 nanoSecs = (1000000000ll * ts.tv_sec) + ts.tv_nsec;
+	return  nanoSecs;
+}
+#endif
 
 
 void tSystem::tSleep(int milliSeconds)
 {
+#if defined(PLATFORM_WINDOWS)
 	::Sleep(milliSeconds);
+
+#elif defined(PLATFORM_LINUX)
+	struct timespec ts;
+	ts.tv_sec = milliSeconds / 1000;
+	ts.tv_nsec = 1000000*(milliSeconds - (ts.tv_sec*1000));
+	nanosleep(&ts, nullptr);
+
+#endif
 }
 
 
 float tSystem::tGetTime()
 {
+#ifdef PLATFORM_WINDOWS
 	int64 currCount = tGetHardwareTimerCount();
 
 	// This is organized like this to keep precision as high as possible.
@@ -217,11 +145,18 @@ float tSystem::tGetTime()
 	int64 wholeSeconds = elapsedCount / QPCFrequency;
 	int64 remainder = elapsedCount % QPCFrequency;
 	return float(wholeSeconds) + float(remainder)/float(QPCFrequency);
+	
+#elif defined(PLATFORM_LINUX)
+	int64 microSecs = (tGetHardwareTimerNanoSecs() - NanoSecondsAtStart) / 1000ll;
+	return float(microSecs) / 1000000.0f;
+
+#endif
 }
 
 
 double tSystem::tGetTimeDouble()
 {
+#ifdef PLATFORM_WINDOWS
 	int64 currCount = tGetHardwareTimerCount();
 
 	// This is organized like this to keep precision as high as possible.
@@ -229,6 +164,12 @@ double tSystem::tGetTimeDouble()
 	int64 wholeSeconds = elapsedCount / QPCFrequency;
 	int64 remainder = elapsedCount % QPCFrequency;
 	return double(wholeSeconds) + double(remainder)/double(QPCFrequency);
+
+#elif defined(PLATFORM_LINUX)
+	int64 nanoSecs = tGetHardwareTimerNanoSecs() - NanoSecondsAtStart;
+	return double(nanoSecs) / 1000000000.0f;
+
+#endif
 }
 
 
@@ -255,7 +196,7 @@ float tSystem::tTimer::GetTime(tUnit::tTime unit) const
 
 void tSystem::tTimer::PrintHighPrecisionConversionTable(const char* outputFile)
 {
-	double inSeconds[tUnit::tTime::NumTimeUnits] =
+	double inSeconds[int(tUnit::tTime::NumTimeUnits)] =
 	{
 		5.39E-44,					// PlankTime
 		6.97E-24,					// Chronon
@@ -312,7 +253,7 @@ void tSystem::tTimer::PrintHighPrecisionConversionTable(const char* outputFile)
 
 // To keep error as low as possible while converting, we explicitly specify the conversions between all possible unit
 // combinations. This is better than converting to a norm, and then to the destination.
-const double tSystem::tTimer::UnitConversionTable[tUnit::tTime::NumTimeUnits][tUnit::tTime::NumTimeUnits] =
+const double tSystem::tTimer::UnitConversionTable[int(tUnit::tTime::NumTimeUnits)][int(tUnit::tTime::NumTimeUnits)] =
 {
 	//                     PlankTime                Chronon                  Attosecond               Femtosecond              Picosecond               Nanosecond               Microsecond              Millisecond              Tick                     Second                   She                      Helek                    Minute                   Hour                     Day                      Week                     Fortnight                Year                     Annum                    Century                  Millennium               GalacticYear             
 	/* PlankTime */      { 1.0000000000000000E+000, 7.7331420373027263E-021, 5.3899999999999997E-026, 5.3899999999999996E-029, 5.3899999999999998E-032, 5.3899999999999992E-035, 5.3899999999999999E-038, 5.3899999999999998E-041, 3.2339999999999997E-042, 5.3899999999999995E-044, 1.7966666666666664E-043, 1.6169999999999997E-044, 8.9833333333333332E-046, 1.4972222222222221E-047, 6.2384259259259255E-049, 8.9120370370370367E-050, 4.4560185185185184E-050, 1.7091577879249111E-051, 1.7091577879249111E-051, 1.7091577879249112E-053, 1.7091577879249110E-054, 6.8366311516996447E-060, },

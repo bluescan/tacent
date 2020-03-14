@@ -1049,6 +1049,7 @@ inline bool tMath::tInvert(tMat2& d, const tMat2& s)
 	d.a22 = s.a11;
 
 	tDiv(d, det);
+	return true;
 }
 
 

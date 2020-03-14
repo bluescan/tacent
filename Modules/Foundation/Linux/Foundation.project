@@ -42,7 +42,7 @@
       <Compiler Options="-Wno-switch;-std=c++17" C_Options="" Assembler="">
         <IncludePath Value="."/>
         <IncludePath Value="../Inc"/>
-        <Preprocessor Value="PLATFORM_LIN"/>
+        <Preprocessor Value="PLATFORM_LINUX"/>
       </Compiler>
       <Linker Options="">
         <LibraryPath Value="."/>

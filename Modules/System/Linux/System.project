@@ -39,7 +39,7 @@
         <IncludePath Value="../Inc"/>
         <IncludePath Value="../../Foundation/Inc"/>
         <IncludePath Value="../../Math/Inc"/>
-        <Preprocessor Value="PLATFORM_LIN"/>
+        <Preprocessor Value="PLATFORM_LINUX"/>
       </Compiler>
       <Linker Options="">
         <LibraryPath Value="."/>
