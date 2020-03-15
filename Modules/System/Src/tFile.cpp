@@ -301,7 +301,7 @@ bool tSystem::tDriveExists(const tString& driveLetter)
 
 bool tSystem::tIsFileNewer(const tString& filenameA, const tString& filenameB)
 {
-#if defined(PLATFORM_WINDOWS)
+	#if defined(PLATFORM_WINDOWS)
 	tString fileA(filenameA);
 	fileA.Replace('/', '\\');
 
@@ -326,12 +326,11 @@ bool tSystem::tIsFileNewer(const tString& filenameA, const tString& filenameB)
 	if (CompareFileTime(&timeA, &timeB) > 0)
 		return true;
 
-#elif defined(PLAYFORM_LINUX)
+	#elif defined(PLAYFORM_LINUX)
 	tToDo("Implement tISFileNewer.");
 
-#endif
+	#endif
 	return false;
-
 }
 
 
@@ -1763,7 +1762,7 @@ bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tStr
 
 void tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dirMask, bool includeHidden)
 {
-#if defined(PLATFORM_WINDOWS)
+	#if defined(PLATFORM_WINDOWS)
 	// I'm keeping all this win32 stuff cuz it's fast on windows. All the C++17 etc stuff eventually calls
 	// the windows OS API functions. First lets massage fileName a little.
 	tString massagedName = dirMask;
@@ -1796,16 +1795,23 @@ void tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dirMask, b
 		throw tFileError("FindDirectories failed for: " + dirMask);
 
 	FindClose(h);
-#else
-	std::string path = "/path/to/directory";
-    for (const auto & entry : fs::directory_iterator(path))
-        std::cout << entry.path() << std::endl;
-#endif
+
+	#else
+	//std::string path = "/path/to/directory";
+    //for (const auto & entry : std::filesystem::directory_iterator(path))
+	//	std::cout << entry.path() << std::endl;
+
+//#pragma message("Hello")
+	tToDo("Implement tFindDirs");
+
+	#endif
 }
 
 
 void tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& fileMask, bool includeHidden)
 {
+	#if defined(PLATFORM_WINDOWS)
+
 	// FindFirstFile etc seem to like backslashes better.
 	tString file(fileMask);
 	file.Replace('/', '\\');
@@ -1847,6 +1853,11 @@ void tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& fileMask
 		throw tFileError("FindFiles failed for: " + fileMask);
 
 	FindClose(h);
+	
+	#else
+	tToDo("Implement tFindFiles.");
+	
+	#endif
 }
 
 
@@ -1859,6 +1870,7 @@ void tSystem::tFindFilesInDir(tList<tStringItem>& foundFiles, const tString& pat
 
 void tSystem::tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString& path, const tString& fileMask, bool includeHidden)
 {
+	#ifdef PLATFORM_WINDOWS
 	// The windows functions seem to like backslashes better.
 	tString pathStr(path);
 	pathStr.Replace('/', '\\');
@@ -1893,11 +1905,16 @@ void tSystem::tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString&
 		throw tFileError("FindFilesRecursive failed for: " + fileMask);
 
 	FindClose(h);
+	
+	#else
+	tToDo("Implement tFindFilesRecursive.");
+	#endif
 }
 
 
 void tSystem::tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& path, const tString& fileMask, bool includeHidden)
 {
+	#ifdef PLATFORM_WINDOWS
 	tString pathStr(path);
 	pathStr.Replace('/', '\\');
 	if (pathStr[pathStr.Length() - 1] != '\\')
@@ -1930,11 +1947,17 @@ void tSystem::tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& p
 		throw tFileError("FindDirectoriesRecursive failed for: " + fileMask);
 
 	FindClose(h);
+	
+	#else
+	tToDo("Implement tFindDirsRecursive");
+		
+	#endif
 }
 
 
 bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool useRecycleBin)
 {
+	#ifdef PLATFORM_WINDOWS
 	tString file(filename);
 	file.Replace('/', '\\');
 	if (deleteReadOnly)
@@ -1959,11 +1982,19 @@ bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool use
 		int errCode = SHFileOperation(&operation);
 		return errCode ? false : true;
 	}
+	
+	#else
+	tToDo("Implement tDeleteFile");
+	return false;
+
+	#endif
 }
 
 
 bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly, bool throwErrorsOnFail)
 {
+	#ifdef PLATFORM_WINDOWS
+
 	// Are we done before we even begin?
 	if (!tDirExists(dir))
 		return false;
@@ -2047,4 +2078,10 @@ bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly, bool throwErro
 	}
 
 	return true;
+	
+	#else
+	tToDo("Implement tDeleteDir");
+	return false;
+	
+	#endif
 }

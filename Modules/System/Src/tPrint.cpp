@@ -271,11 +271,11 @@ int tSystem::tPrint(const char* text, tFileHandle fileHandle)
 	numPrinted = int(startValid - text);
 
 	#else
-	int len = auStrlen(text);
+	int len = tStd::tStrlen(text);
 	if (fileHandle)
-		tSystem::tWriteFile(text, 1, len, fileHandle);
+		tSystem::tWriteFile(fileHandle, text, len);
 	else
-		tSystem::tWriteFile(text, 1, len, stdout);
+		tSystem::tWriteFile(stdout, text, len);
 
 	fflush(stdout);
 	numPrinted = len;
@@ -716,7 +716,7 @@ void tSystem::Process(Receiver& receiver, const char* format, va_list argList)
 				format++;
 			}
 
-			// From docs: If 0 and – appear, the 0 is ignored.
+			// From docs: If 0 and Â– appear, the 0 is ignored.
 			if ((spec.Flags & Flag_LeadingZeros) && (spec.Flags & Flag_LeftJustify))
 				spec.Flags &= ~Flag_LeadingZeros;
 

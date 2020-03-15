@@ -782,6 +782,30 @@ inline void tMath::tGet
 }
 
 
+inline void tMath::tZero(tMat4& d, tComponents c)
+{
+	if (c & tComponent_A11) d.a11 = 0.0f;
+	if (c & tComponent_A21) d.a21 = 0.0f;
+	if (c & tComponent_A31) d.a31 = 0.0f;
+	if (c & tComponent_A41) d.a41 = 0.0f;
+
+	if (c & tComponent_A12) d.a12 = 0.0f;
+	if (c & tComponent_A22) d.a22 = 0.0f;
+	if (c & tComponent_A32) d.a32 = 0.0f;
+	if (c & tComponent_A42) d.a42 = 0.0f;
+
+	if (c & tComponent_A13) d.a13 = 0.0f;
+	if (c & tComponent_A23) d.a23 = 0.0f;
+	if (c & tComponent_A33) d.a33 = 0.0f;
+	if (c & tComponent_A43) d.a43 = 0.0f;
+
+	if (c & tComponent_A14) d.a14 = 0.0f;
+	if (c & tComponent_A24) d.a24 = 0.0f;
+	if (c & tComponent_A34) d.a34 = 0.0f;
+	if (c & tComponent_A44) d.a44 = 0.0f;
+}
+
+
 inline bool tMath::tIsZero(const tMat4& m, tComponents c)
 {
 	return
@@ -861,10 +885,10 @@ inline bool tMath::tEqual(const tMat4& a, const tMat4& b, tComponents c)
 		(!(c & tComponent_A33) || (a.a33 == b.a33)) &&
 		(!(c & tComponent_A43) || (a.a43 == b.a43)) &&
 
-		(!(c & tComponent_A11) || (a.a14 == b.a14)) &&
-		(!(c & tComponent_A21) || (a.a24 == b.a24)) &&
-		(!(c & tComponent_A31) || (a.a34 == b.a34)) &&
-		(!(c & tComponent_A41) || (a.a44 == b.a44));
+		(!(c & tComponent_A14) || (a.a14 == b.a14)) &&
+		(!(c & tComponent_A24) || (a.a24 == b.a24)) &&
+		(!(c & tComponent_A34) || (a.a34 == b.a34)) &&
+		(!(c & tComponent_A44) || (a.a44 == b.a44));
 }
 
 

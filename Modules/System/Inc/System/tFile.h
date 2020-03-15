@@ -119,10 +119,9 @@ tString tGetFileName(const tString& filename);
 // c:/Stuff/Mess.max to Mess
 tString tGetFileBaseName(const tString& filename);
 
-
-#ifdef PLATFORM_WINDOWS
 bool tIsFileNewer(const tString& fileA, const tString& fileB);
 
+#ifdef PLATFORM_WINDOWS
 // The file's last modification time and other time values are reported in 100ns intervals since Midnight Jan 1, 1601
 // (local time). No Y2K or Y3K etc problems.
 struct tFileInfo

@@ -784,7 +784,7 @@ void tChunkReader::Load(const tString& filename, uint8* buffer)
 	}
 
 	// Casting to uint32 is safe even for 64 bit pointers because maxAlign is much smaller than 2^32.
-	tAssert((uint32(ReadBuffer) % maxAlign) == 0);
+	tAssert((uint32(uint64(ReadBuffer)) % maxAlign) == 0);
 	int numRead = tReadFile(fh, ReadBuffer, ReadBufferSize);
 	tAssert(numRead == ReadBufferSize);
 	tCloseFile(fh);
@@ -796,7 +796,7 @@ void tChunkReader::Load(uint8* buffer, int bufferSizeBytes)
 	UnLoad();
 	const int maxAlign = 1 << (int(tChunkWriter::Alignment::Largest) + 2);
 
-	tAssert((uint32(buffer) % maxAlign) == 0);
+	tAssert((uint32(uint64(buffer)) % maxAlign) == 0);
 	IsBufferOwned = false;
 	ReadBufferSize = bufferSizeBytes;
 	ReadBuffer = buffer;
@@ -819,7 +819,7 @@ bool tChunkReader::LoadSafe(const tString& filename)
 	ReadBuffer = (uint8*)tMem::tMalloc(ReadBufferSize, maxAlign);
 	IsBufferOwned = true;
 
-	tAssert((uint32(ReadBuffer) % maxAlign) == 0);
+	tAssert((uint32(uint64(ReadBuffer)) % maxAlign) == 0);
 	int numRead = tReadFile(fh, ReadBuffer, ReadBufferSize);
 	tCloseFile(fh);
 	if (numRead != ReadBufferSize)

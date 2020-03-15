@@ -51,6 +51,9 @@ void tAbort();
 #define tMsgNote __FILE__ "("tMsgHelper1(__LINE__)") : Note: "
 #define tToDo(x) __pragma(message(tMsgToDo #x))
 #define tNote(x) __pragma(message(tMsgNote #x))
+#elif defined(PLATFORM_LINUX)
+#define tToDo(x) _Pragma("message(\"tToDo\")")
+#define tNote(x) _Pragma("message(\"tNote\")")
 #else
 #define tToDo(x) _Pragma(#x)
 #define tNote(x) _Pragma(#x)
