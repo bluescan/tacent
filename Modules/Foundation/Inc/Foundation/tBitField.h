@@ -31,7 +31,10 @@ template<int NumBits> class tBitField
 {
 public:
 	tBitField()												/* All bits cleared. */										{ Clear(); }
-//	tBitField(const tBitField& src)																						{ for (int i = 0; i < NumElements; i++) Elements[i] = src.Elements[i]; }
+
+	// Disabled CopyCons so class remains a POD-type. Allows it to be passed to tPrintf for non MSVC compilers.
+	// tBitField(const tBitField& src)																					{ for (int i = 0; i < NumElements; i++) Elements[i] = src.Elements[i]; }
+
 	tBitField(const tString& str, int base = -1)																		{ Set(str); }
 	tBitField(int val)																									{ Set(val); }
 

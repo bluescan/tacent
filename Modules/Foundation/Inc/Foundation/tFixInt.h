@@ -42,8 +42,10 @@ template<int NumBits> class tFixIntU
 {
 public:
 	tFixIntU()																											{ tStaticAssertMsg(NumBits % 32 == 0, "tFixIntU must be a multiple of 32 bits in size."); }
-//	tFixIntU(const tFixIntU& src)																						{ Set(src); }
-//	tFixIntU(const tFixInt<NumBits>& src)																				{ Set(src); }
+
+	// Disabled CopyCons so class remains a POD-type. Allows it to be passed to tPrintf for non MSVC compilers.
+	// tFixIntU(const tFixIntU& src)																					{ Set(src); }
+	// tFixIntU(const tFixInt<NumBits>& src)																			{ Set(src); }
 
 	// A base argument of < 2 means determine the base from a prefix supplied inside the string itself, like "0x".
 	// See tStd::tStrtoi for a full description of the behaviour.
