@@ -500,7 +500,7 @@ tTestUnit(RingBuffer)
 				if ((ring.GetHeadIndex() != -1) && (ring.GetHeadIndex()==c-2))
 					v = 'H';
 				if ((ring.GetTailIndex() != -1) && (ring.GetTailIndex()==c-2))
-					if (v == 'H') v = 'B'; else v = 'T';
+					{ if (v == 'H') v = 'B'; else v = 'T'; }
 			}
 
 			tPrintf("%c", v);

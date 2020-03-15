@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="System" Version="10.0.0" InternalType="Library">
+<CodeLite_Project Name="Math" Version="10.0.0" InternalType="Library">
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00020001N0005Debug0000000000000001N0007Release000000000000]]>
@@ -8,40 +8,35 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="../Src/tTime.cpp"/>
-    <File Name="../Src/tThrow.cpp"/>
-    <File Name="../Src/tTask.cpp"/>
-    <File Name="../Src/tScript.cpp"/>
-    <File Name="../Src/tRegex.cpp"/>
-    <File Name="../Src/tPrint.cpp"/>
-    <File Name="../Src/tMachine.cpp"/>
-    <File Name="../Src/tFile.cpp"/>
-    <File Name="../Src/tCommand.cpp"/>
-    <File Name="../Src/tChunk.cpp"/>
+    <File Name="../Src/tSpline.cpp"/>
+    <File Name="../Src/tRandom.cpp"/>
+    <File Name="../Src/tLinearAlgebra.cpp"/>
+    <File Name="../Src/tHash.cpp"/>
+    <File Name="../Src/tGeometry.cpp"/>
+    <File Name="../Src/tColour.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
-    <File Name="../Inc/System/tTime.h"/>
-    <File Name="../Inc/System/tThrow.h"/>
-    <File Name="../Inc/System/tTask.h"/>
-    <File Name="../Inc/System/tStream.h"/>
-    <File Name="../Inc/System/tScript.h"/>
-    <File Name="../Inc/System/tRegex.h"/>
-    <File Name="../Inc/System/tPrint.h"/>
-    <File Name="../Inc/System/tMachine.h"/>
-    <File Name="../Inc/System/tFile.h"/>
-    <File Name="../Inc/System/tCommand.h"/>
-    <File Name="../Inc/System/tChunk.h"/>
+    <File Name="../Inc/Math/tVector4.h"/>
+    <File Name="../Inc/Math/tVector3.h"/>
+    <File Name="../Inc/Math/tVector2.h"/>
+    <File Name="../Inc/Math/tSpline.h"/>
+    <File Name="../Inc/Math/tRandom.h"/>
+    <File Name="../Inc/Math/tQuaternion.h"/>
+    <File Name="../Inc/Math/tMatrix4.h"/>
+    <File Name="../Inc/Math/tMatrix2.h"/>
+    <File Name="../Inc/Math/tLinearAlgebra.h"/>
+    <File Name="../Inc/Math/tHash.h"/>
+    <File Name="../Inc/Math/tGeometry.h"/>
+    <File Name="../Inc/Math/tFundamentals.h"/>
+    <File Name="../Inc/Math/tConstants.h"/>
+    <File Name="../Inc/Math/tColour.h"/>
   </VirtualDirectory>
-  <Dependencies Name="Debug">
-    <Project Name="Foundation"/>
-  </Dependencies>
   <Settings Type="Static Library">
     <GlobalSettings>
       <Compiler Options="-Wno-switch;-std=c++17" C_Options="" Assembler="">
         <IncludePath Value="."/>
         <IncludePath Value="../Inc"/>
         <IncludePath Value="../../Foundation/Inc"/>
-        <IncludePath Value="../../Math/Inc"/>
         <Preprocessor Value="PLATFORM_LINUX"/>
       </Compiler>
       <Linker Options="">
@@ -51,6 +46,7 @@
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="clang( tags/RELEASE_900/final )" DebuggerType="LLDB Debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g" C_Options="-g" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="."/>
         <Preprocessor Value="CONFIG_DEBUG"/>
       </Compiler>
       <Linker Options="" Required="yes"/>
@@ -90,6 +86,7 @@
     </Configuration>
     <Configuration Name="Release" CompilerType="clang( tags/RELEASE_900/final )" DebuggerType="LLDB Debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-O2" C_Options="-O2" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="."/>
         <Preprocessor Value="CONFIG_RELEASE"/>
       </Compiler>
       <Linker Options="" Required="yes"/>

@@ -148,14 +148,14 @@ tTestUnit(Spline)
 
 tTestUnit(Hash)
 {
-	char* testString = "This is the text that is being used for testing hash functions.";
+	const char* testString = "This is the text that is being used for testing hash functions.";
 	tPrintf("%s\n\n", testString);
 
 	tPrintf("Fast 32  bit hash: %08x\n", tHashStringFast32(testString));
 	tPrintf("Good 32  bit hash: %08x\n", tHashString32(testString));
 	tPrintf("Good 64  bit hash: %016|64x\n", tHashString64(testString));
 
-	char* md5String = "The quick brown fox jumps over the lazy dog";
+	const char* md5String = "The quick brown fox jumps over the lazy dog";
 	tuint128 md5HashComputed = tHashStringMD5(md5String);
 	tuint128 md5HashCorrect("0x9e107d9d372bb6826bd81d3542a419d6");
 	tPrintf("MD5 String   : %s\n", md5String);

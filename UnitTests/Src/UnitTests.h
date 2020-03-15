@@ -106,7 +106,7 @@ inline void tCheckGoal(bool pass, const char* expr, const char* fileName, int li
 inline int tTestResults(bool waitForReturn)
 {
 	int errorCode = 1;
-	char* result = "Fail";
+	const char* result = "Fail";
 	if (RequirementsPassed+GoalsPassed == TotalRequirements+TotalGoals)
 	{
 		result = "Pass";

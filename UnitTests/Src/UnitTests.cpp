@@ -55,6 +55,7 @@ int main(int argc, char** argv)
 	tUnitTest::rPrintf("Testing Tacent Version %d.%d.%d.%d\n", tVersion::Major, tVersion::Minor, tVersion::Revision, 0);
 
 	#if !defined(UNIT_TEST_ONLY_ONE_TEST)
+
 	// Foundation tests.
 	tTest(Types);
 	tTest(Array);
@@ -81,16 +82,22 @@ int main(int argc, char** argv)
 	tTest(Task);
 	tTest(Print);
 	tTest(Regex);
+	
+	#ifndef PLATFORM_LINUX
 	tTest(Script);
 	tTest(Chunk);
+	#endif
+	
 	tTest(File);
 	tTest(Time);
 
+	#ifndef PLATFORM_LINUX
 	// Build tests.
 	tTest(Process);
 
 	// Image tests.
 	tTest(Image);
+	#endif
 
 	#else
 	tTest(Time);

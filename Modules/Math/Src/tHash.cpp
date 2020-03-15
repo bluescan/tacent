@@ -214,8 +214,8 @@ namespace tHash
 
 	void MD5Update(uint32 count[2], uint32 state[4], const uint8* data, uint32 length, uint8 buffer[iMD5BlockSize]);
 
-	uint32 MD5_F(uint32 x, uint32 y, uint32 z)																			{ return x&y | ~x&z; }
-	uint32 MD5_G(uint32 x, uint32 y, uint32 z)																			{ return x&z | y&~z; }
+	uint32 MD5_F(uint32 x, uint32 y, uint32 z)																			{ return (x&y) | (~x&z); }
+	uint32 MD5_G(uint32 x, uint32 y, uint32 z)																			{ return (x&z) | (y&~z); }
 	uint32 MD5_H(uint32 x, uint32 y, uint32 z)																			{ return x^y^z; }
 	uint32 MD5_I(uint32 x, uint32 y, uint32 z)																			{ return y ^ (x | ~z); }
 	uint32 MD5_RotateLeft(uint32 x, int n)																				{ return (x << n) | (x >> (32-n)); }
