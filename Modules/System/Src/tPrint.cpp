@@ -405,23 +405,23 @@ void tSystem::Receiver::Receive(const tArray<char>& buf)
 // string "%:8X", "%!32X", or "%|256d".
 tSystem::HandlerInfo tSystem::HandlerInfos[] =
 {
-	//	Type Spec	Base Type		Default Size (bytes)	Handler Function		Fast Jump Index
-	{ 'b',			BaseType::Int,	4,						tSystem::Handler_b },	// 0
-	{ 'o',			BaseType::Int,	4,						tSystem::Handler_o },	// 1
-	{ 'd',			BaseType::Int,	4,						tSystem::Handler_d },	// 2
-	{ 'i',			BaseType::Int,	4,						tSystem::Handler_i },	// 3
-	{ 'u',			BaseType::Int,	4,						tSystem::Handler_u },	// 4
-	{ 'x',			BaseType::Int,	4,						tSystem::Handler_x },	// 5
-	{ 'X',			BaseType::Int,	4,						tSystem::Handler_X },	// 6
-	{ 'p',			BaseType::Int,	sizeof(void*),			tSystem::Handler_p },	// 7
-	{ 'e',			BaseType::Dbl,	8,						tSystem::Handler_e },	// 8
-	{ 'f',			BaseType::Dbl,	8,						tSystem::Handler_f },	// 9
-	{ 'g',			BaseType::Dbl,	8,						tSystem::Handler_g },	// 10
-	{ 'v',			BaseType::Flt,	sizeof(tVec3),			tSystem::Handler_v },	// 11
-	{ 'q',			BaseType::Flt,	sizeof(tQuat),			tSystem::Handler_q },	// 12
-	{ 'm',			BaseType::Flt,	sizeof(tMat4),			tSystem::Handler_m },	// 13
-	{ 'c',			BaseType::Int,	4,						tSystem::Handler_c },	// 14
-	{ 's',			BaseType::Int,	sizeof(char*),			tSystem::Handler_s },	// 15
+	//	Type Spec	Base Type					Default Size (bytes)	Handler Function		Fast Jump Index
+	{ 'b',			tSystem::BaseType::Int,		4,						tSystem::Handler_b },	// 0
+	{ 'o',			tSystem::BaseType::Int,		4,						tSystem::Handler_o },	// 1
+	{ 'd',			tSystem::BaseType::Int,		4,						tSystem::Handler_d },	// 2
+	{ 'i',			tSystem::BaseType::Int,		4,						tSystem::Handler_i },	// 3
+	{ 'u',			tSystem::BaseType::Int,		4,						tSystem::Handler_u },	// 4
+	{ 'x',			tSystem::BaseType::Int,		4,						tSystem::Handler_x },	// 5
+	{ 'X',			tSystem::BaseType::Int,		4,						tSystem::Handler_X },	// 6
+	{ 'p',			tSystem::BaseType::Int,		sizeof(void*),			tSystem::Handler_p },	// 7
+	{ 'e',			tSystem::BaseType::Dbl,		8,						tSystem::Handler_e },	// 8
+	{ 'f',			tSystem::BaseType::Dbl,		8,						tSystem::Handler_f },	// 9
+	{ 'g',			tSystem::BaseType::Dbl,		8,						tSystem::Handler_g },	// 10
+	{ 'v',			tSystem::BaseType::Flt,		sizeof(tVec3),			tSystem::Handler_v },	// 11
+	{ 'q',			tSystem::BaseType::Flt,		sizeof(tQuat),			tSystem::Handler_q },	// 12
+	{ 'm',			tSystem::BaseType::Flt,		sizeof(tMat4),			tSystem::Handler_m },	// 13
+	{ 'c',			tSystem::BaseType::Int,		4,						tSystem::Handler_c },	// 14
+	{ 's',			tSystem::BaseType::Int,		sizeof(char*),			tSystem::Handler_s },	// 15
 };
 
 // Filling this in correctly will speed things up. However, not filling it in or filling it in incorrectly will still
