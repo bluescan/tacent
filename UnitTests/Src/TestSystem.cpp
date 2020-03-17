@@ -172,6 +172,7 @@ void PrintTest(const char* format, ...)
 tTestUnit(Print)
 {
 	tSetDefaultPrecision(6);
+	
 	tPrint("tPrintf Tests.\n");
 	tRequire(PrintCompare("Hex %#010X\n", 0x0123ABCD));
 	tRequire(PrintCompare("Hex %#010x\n", 0));
@@ -219,7 +220,15 @@ tTestUnit(Print)
 		"      __%0_24:2o__\n", u64
 	);
 
+	tRequire(PrintCompare("Percent symbol.                      ___%%___\n"));
+
+	// I prefer the behaviour of windows printf here. If char after % is invalid, just print the character and
+	// do NOT print the percent. The only way to get a percent should be %%. Clang and MSVC behave differently.
+	#ifdef PLATFORM_WINDOWS
+	tRequire(PrintCompare("Invalid char after percent.          ___%^___\n"));
 	tRequire(PrintCompare("Invalid char after percent.          ___%%%^___\n"));
+	#endif
+	
 	tRequire(PrintCompare("Float value forty-two:               ___%f___\n", float(42.0f)));
 	tRequire(PrintCompare("Float value neg forty-two:           ___%f___\n", float(-42.0f)));
 	tRequire(PrintCompare("Double value forty-two:              ___%f___\n", double(42.0)));
@@ -350,10 +359,10 @@ tTestUnit(Print)
 	tRequire(PrintCompare("Double PINF : %f\n", tStd::tDoublePINF()));
 	tRequire(PrintCompare("Double NINF : %f\n", tStd::tDoubleNINF()));
 
+	tPrintf("SpaceForPos and Leading zeros:% 08.3f\n", 65.5775f);
 	tRequire(PrintCompare("SpaceForPos and Leading zeros:% 08.3f\n", 65.5775f));
-	tRequire(PrintCompare("Test %%f:%f\n", 65.12345678f));
-	
-	#ifdef PLATFORM_WINDOWS
+
+	tRequire(PrintCompare("Test %%f:%f\n", 65.12345678f));	
 	tRequire(PrintCompare("Test %%e:%e\n", 65e24));
 	tRequire(PrintCompare("Test %%e:%e\n", 123456789.123456789f));
 	tRequire(PrintCompare("Test %%e:%e\n", 12345678900.0f));
@@ -361,9 +370,6 @@ tTestUnit(Print)
 	tRequire(PrintCompare("Test %%g:%g\n", 1234567.123456789f));
 	tRequire(PrintCompare("Test %%g:%g\n", 65.12345678f));
 	tRequire(PrintCompare("Test %%g:%g\n", 651.2345678f));
-	#else
-	tToDo("Make work in Clang.");
-	#endif
 
 	tSetDefaultPrecision(4);
 

@@ -73,3 +73,4 @@ Tools/TextureViewer/Release/
 *.cpp.o.d
 *.a
 *.d
+*.mk

@@ -181,6 +181,7 @@ inline float tFrexp(float arg, int* exp)																				{ return frexpf(arg,
 
 // Examples of non-NORM float types. These are only examples as in many cases there are multiple bitpatterns for the
 // same tFloatType. For example a PSNAN can have any bitpattern between 0x7F800001 and 0x7FBFFFFF (inclusive).
+// P for positive. N for negative. Q for quiet. S for signalling.
 inline float tFloatPSNAN()																								{ union LU { float Nan; uint32 B; } v; v.B = 0x7F800001; return v.Nan; }
 inline float tFloatNSNAN()																								{ union LU { float Nan; uint32 B; } v; v.B = 0xFF800001; return v.Nan; }
 inline float tFloatPQNAN()																								{ union LU { float Nan; uint32 B; } v; v.B = 0x7FC00000; return v.Nan; }

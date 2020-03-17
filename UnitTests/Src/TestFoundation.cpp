@@ -230,11 +230,17 @@ tTestUnit(Sort)
 	for (int i = 0; i < sizeof(arr)/sizeof(*arr); i++)
 		tPrintf("%d, ", arr[i]);
 	tPrintf("\n");
+	
+	tRequire(arr[0] <= arr[1]);
+	tRequire(arr[1] <= arr[2]);
+	tRequire(arr[6] <= arr[7]);
+	tRequire(arr[7] <= arr[8]);
 }
 
 
 tTestUnit(FixInt)
 {
+	// @todo Add a bunch of tRequire calls.
 	tuint256 uvalA = 42;
 	tuint256 uvalB(uvalA);
 	tint256 valA(99);

@@ -100,7 +100,7 @@ int main(int argc, char** argv)
 	#endif
 
 	#else
-	tTest(Time);
+	tTest(Print);
 
 	#endif
 
