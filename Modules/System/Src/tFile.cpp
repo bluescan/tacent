@@ -30,9 +30,8 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <fstream>
-///#include <iostream>
-#include <filesystem>
 #endif
+#include <filesystem>
 #include "System/tTime.h"
 #include "System/tFile.h"
 
@@ -1117,7 +1116,11 @@ bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 
 bool tSystem::tIsHidden(const tString& fileName)
 {
-#if defined(PLATFORM_WINDOWS)
+	tString file = tGetFileName(fileName);
+	if ((file != ".") && (file != "..") && (file[0] == '.'))
+		return true;
+
+	#if defined(PLATFORM_WINDOWS)
 	tString file(fileName);
 	file.Replace('/', '\\');
 	int length = file.Length();
@@ -1129,11 +1132,11 @@ bool tSystem::tIsHidden(const tString& fileName)
 		return false;
 
 	return (attribs & FILE_ATTRIBUTE_HIDDEN) ? true : false;
-#else
-	
-	tString file = tGetFileName(fileName);
-	return (file[0] == '.');
-#endif
+
+	#else
+	return false;
+
+	#endif
 }
 
 
@@ -1760,9 +1763,20 @@ bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tStr
 }
 
 
-void tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dirMask, bool includeHidden)
+void tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden)
 {
-	#if defined(PLATFORM_WINDOWS)
+	tString dirPath(dir);
+	if (dirPath.IsEmpty())
+		dirPath = std::filesystem::current_path().u8string().c_str();
+		
+	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text()))
+	{
+		tString foundDir(entry.path().u8string().c_str());
+		if (includeHidden || tIsHidden(foundDir))
+			foundDirs.Append(new tStringItem(foundDir));
+	}	
+		
+	#if defined(PLATFORM_WINDOWSZZZ)
 	// I'm keeping all this win32 stuff cuz it's fast on windows. All the C++17 etc stuff eventually calls
 	// the windows OS API functions. First lets massage fileName a little.
 	tString massagedName = dirMask;
@@ -1795,15 +1809,6 @@ void tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dirMask, b
 		throw tFileError("FindDirectories failed for: " + dirMask);
 
 	FindClose(h);
-
-	#else
-	//std::string path = "/path/to/directory";
-    //for (const auto & entry : std::filesystem::directory_iterator(path))
-	//	std::cout << entry.path() << std::endl;
-
-//#pragma message("Hello")
-	tToDo("Implement tFindDirs");
-
 	#endif
 }
 

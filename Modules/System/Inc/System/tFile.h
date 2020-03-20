@@ -263,7 +263,7 @@ bool tSetVolumeName(const tString& drive, const tString& newVolumeName);
 // an error occurred (like the object didn't exist).
 bool tIsReadOnly(const tString& fileName);							// For Lixux returns true is user w flag not set and r flag is set.
 bool tSetReadOnly(const tString& fileName, bool readOnly = true);	// For Linux, sets the user w flag as appropriate and the r flag to true.
-bool tIsHidden(const tString& fileName);							// For Linux, checks if first character of filename is a dot.
+bool tIsHidden(const tString& fileName);							// For Linux, checks if first character of filename is a dot (and not ".."). For Windows it checks the fileattribute as well as the first character.
 #if defined(PLATFORM_WINDOWS)
 bool tSetHidden(const tString& fileName, bool hidden = true);
 bool tIsSystem(const tString& fileName);
@@ -331,12 +331,8 @@ void tFindDirsRecursive
 	const tString& fileMask = "*.*", bool includeHidden = true
 );
 
-// dirMask may contain stuff like "c:/Temp/Dir*". All returned path names have a terminating slash.
-// dirMask is case-insensitive.
-void tFindDirs
-(
-	tList<tStringItem>& foundDirs, const tString& dirMask = "*.*", bool includeHidden = true
-);
+// If the dirPath to search is empty, the current dir is used.
+void tFindDirs(tList<tStringItem>& foundDirs, const tString& dirPath = tString(), bool includeHidden = false);
 
 // A relentless delete. Doesn't care about read-only unless deleteReadOnly is false. This call does a recursive delete.
 // If a file has an open handle, however, this fn will fail. You still need to catch any errors. If the directory
