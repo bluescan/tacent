@@ -272,9 +272,13 @@ bool tSystem::tDirExists(const tString& dirname)
 	return false;
 #else
 	dir.Replace('\\', '/');
+	
+	if (dir[dir.Length()-1] == '/')
+		dir[dir.Length()-1] = '\0';
 
-	struct stat statbuf;
-	return stat(dir.Chars(), &statbuf) == 0;
+	std::filesystem::file_status fstat = std::filesystem::status(dir.Chars());
+	
+	return std::filesystem::is_directory(fstat);
 #endif
 }
 
@@ -1581,11 +1585,15 @@ bool tSystem::tCreateDir(const tString& dir)
 
 #else
 	dirPath.Replace('\\', '/');
-	int errCode = mkdir(dirPath.Chars(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);	// "drwxrwxr-x"
-	if (errCode)
+//	if ((dirPath[dirPath.Length()-1] == '/') || (dirPath[dirPath.Length()-1] == '\\'))
+//		dirPath[dirPath.Length()-1] = '\0';
+	bool ok = std::filesystem::create_directory(dirPath.Chars());
+//	int errCode = mkdir(dirPath.Chars(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);	// "drwxrwxr-x"
+//	if (errCode)
+	if (!ok)
 		return tDirExists(dirPath.Chars());
 		
-	return (errCode == 0);
+	return ok; //(errCode == 0);
 	
 #endif
 }
@@ -1771,8 +1779,10 @@ void tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 		
 	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text()))
 	{
+		if (!entry.is_directory())
+			continue;
 		tString foundDir(entry.path().u8string().c_str());
-		if (includeHidden || tIsHidden(foundDir))
+		if (includeHidden || !tIsHidden(foundDir))
 			foundDirs.Append(new tStringItem(foundDir));
 	}	
 		
@@ -1813,9 +1823,22 @@ void tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 }
 
 
-void tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& fileMask, bool includeHidden)
+void tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden)
 {
-	#if defined(PLATFORM_WINDOWS)
+	tString dirPath(dir);
+	if (dirPath.IsEmpty())
+		dirPath = std::filesystem::current_path().u8string().c_str();
+		
+	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text()))
+	{
+		if (!entry.is_regular_file())
+			continue;
+		tString foundFile(entry.path().u8string().c_str());
+		if (includeHidden || !tIsHidden(foundFile))
+			foundFiles.Append(new tStringItem(foundFile));
+	}
+
+	#if defined(PLATFORM_WINDOWSZZZ)
 
 	// FindFirstFile etc seem to like backslashes better.
 	tString file(fileMask);
@@ -1859,23 +1882,19 @@ void tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& fileMask
 
 	FindClose(h);
 	
-	#else
-	tToDo("Implement tFindFiles.");
-	
 	#endif
 }
 
 
-void tSystem::tFindFilesInDir(tList<tStringItem>& foundFiles, const tString& path, const tString& fileMask, bool includeHidden)
+void tSystem::tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden)
 {
-	tString fullFilename = path + fileMask;
-	tFindFiles(foundFiles, fullFilename, includeHidden);
-}
+	for (const std::filesystem::directory_entry& p: std::filesystem::recursive_directory_iterator(dir.Chars()))
+	{
+		if (p.is_regular_file())
+			foundFiles.Append(new tStringItem(p.path().u8string().c_str()));
+	}
 
-
-void tSystem::tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString& path, const tString& fileMask, bool includeHidden)
-{
-	#ifdef PLATFORM_WINDOWS
+	#ifdef PLATFORM_WINDOWSZZZ
 	// The windows functions seem to like backslashes better.
 	tString pathStr(path);
 	pathStr.Replace('/', '\\');
@@ -1910,16 +1929,18 @@ void tSystem::tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString&
 		throw tFileError("FindFilesRecursive failed for: " + fileMask);
 
 	FindClose(h);
-	
-	#else
-	tToDo("Implement tFindFilesRecursive.");
 	#endif
 }
 
 
-void tSystem::tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& path, const tString& fileMask, bool includeHidden)
+void tSystem::tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden)
 {
-	#ifdef PLATFORM_WINDOWS
+	for (const std::filesystem::directory_entry& p: std::filesystem::recursive_directory_iterator(dir.Chars()))
+	{
+		foundDirs.Append(new tStringItem(p.path().u8string().c_str()));
+	}
+				
+	#ifdef PLATFORM_WINDOWSZZZ
 	tString pathStr(path);
 	pathStr.Replace('/', '\\');
 	if (pathStr[pathStr.Length() - 1] != '\\')
@@ -1953,9 +1974,6 @@ void tSystem::tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& p
 
 	FindClose(h);
 	
-	#else
-	tToDo("Implement tFindDirsRecursive");
-		
 	#endif
 }
 
@@ -1989,20 +2007,38 @@ bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool use
 	}
 	
 	#else
-	tToDo("Implement tDeleteFile");
-	return false;
+	if (!deleteReadOnly && tIsReadOnly(filename))
+		return true;
+		
+	std::filesystem::path p(filename.Chars());
+	
+	if (useRecycleBin)
+	{
+		tString recycleDir = "~/.local/share/Trash/files/";
+		if (tDirExists(recycleDir))
+		{
+			tString toFile = recycleDir + tGetFileName(filename);
+			std::filesystem::path toPath(toFile.Chars());
+			std::error_code ec;
+			std::filesystem::rename(p, toPath, ec);
+			return ec ? false : true;
+		}
+		
+		return false;
+	}
 
+	return std::filesystem::remove(p);
 	#endif
 }
 
 
-bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly, bool throwErrorsOnFail)
+bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
 {
-	#ifdef PLATFORM_WINDOWS
-
 	// Are we done before we even begin?
 	if (!tDirExists(dir))
 		return false;
+
+	#ifdef PLATFORM_WINDOWS
 
 	tList<tStringItem> fileList;
 	tFindFilesInDir(fileList, dir);
@@ -2083,10 +2119,18 @@ bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly, bool throwErro
 	}
 
 	return true;
-	
+
 	#else
-	tToDo("Implement tDeleteDir");
-	return false;
-	
+
+	if (tIsReadOnly(dir) && !deleteReadOnly)
+		return true;
+
+	std::filesystem::path p(dir.Chars());
+	std::error_code ec;
+	int numRemoved = std::filesystem::remove_all(p, ec);
+	if (ec)
+		return false;
+
+	return true;
 	#endif
 }

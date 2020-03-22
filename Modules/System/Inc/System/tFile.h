@@ -295,49 +295,20 @@ bool tCopyFile(const tString& destFile, const tString& srcFile, bool overWriteRe
 // rename is located.
 bool tRenameFile(const tString& dir, const tString& oldName, const tString& newName);
 
-// fileMask may contain stuff like 'c:/Scenes/Art*.max'. The foundfiles list is always appended to. You must clear it
-// first if that's what you intend. If no second argument, the contents of the current directory are returned. The
-// filenames in foundFiles are absolute. Use GetFileName if you only care about the filename. If you're looking for
-// files without extensions, you are still required to have ".*" at the end of the filemask. Relic from dos days.
-// FileMask is case-insensitive.
-void tFindFiles
-(
-	tList<tStringItem>& foundFiles,
-	const tString& fileMask = "*.*", bool includeHidden = true
-);
+// The foundfiles list is always appended to. You must clear it first if that's what you intend. If no second argument,
+// the contents of the current directory are returned.
+void tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden = true);
 
-// fileMask may contain stuff like '*.mb'. The foundfiles list is always appended to. You must clear it first if that's
-// what you intend. If the path argument is the empty string the contents of the current directory are returned. The
-// filenames in foundFiles are absolute. Use GetFileName if you only care about the filename. If you're looking for
-// files without extensions, you are still required to have ".*" at the end of the filemask. Relic from dos days.
-// FileMask is case-insensitive.
-void tFindFilesInDir
-(
-	tList<tStringItem>& foundFiles, const tString& path,
-	const tString& fileMask = "*.*", bool includeHidden = true
-);
-
-// Again, fileMask may contain *'s. Path should not include the filename. The filenames in foundFiles are absolute. Use
-// GetFileName if you only care about the filename. If you're looking for files without extensions, you are still
-// required to have ".*" at the end of the filemask. Relic from dos days. fileMask is case-insensitive.
-void tFindFilesRecursive
-(
-	tList<tStringItem>& foundFiles, const tString& path,
-	const tString& fileMask = "*.*", bool includeHidden = true
-);
-void tFindDirsRecursive
-(
-	tList<tStringItem>& foundDirs, const tString& path,
-	const tString& fileMask = "*.*", bool includeHidden = true
-);
+// foundFiles is appened to. Clear first if desired.
+void tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden = true);
+void tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden = true);
 
 // If the dirPath to search is empty, the current dir is used.
 void tFindDirs(tList<tStringItem>& foundDirs, const tString& dirPath = tString(), bool includeHidden = false);
 
 // A relentless delete. Doesn't care about read-only unless deleteReadOnly is false. This call does a recursive delete.
-// If a file has an open handle, however, this fn will fail. You still need to catch any errors. If the directory
-// didn't exist before the call then this function silently returns. Returns true if dir existed and was deleted.
-bool tDeleteDir(const tString& directory, bool deleteReadOnly = true, bool throwErrorsOnFail = true);
+// If a file has an open handle, however, this fn will fail. If the directory didn't exist before the call then this function silently returns. Returns true if dir existed and was deleted.
+bool tDeleteDir(const tString& directory, bool deleteReadOnly = true);
 
 // Creates a directory. It can also handle creating all the directories in a path. Calling with a string like
 // "C:/DirA/DirB/" will ensure that DirA and DirB exist. Returns true if successful.

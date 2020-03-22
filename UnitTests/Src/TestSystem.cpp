@@ -705,26 +705,23 @@ tTestUnit(File)
 	tRequire(!tFileExists("TestData/ProbablyDoesntExist.txt"));
 
 	tList<tStringItem> files;
-	tFindFiles(files, "TestData/*.*");
+	tFindFiles(files, "TestData/");
 	for (tStringItem* file = files.Head(); file; file = file->Next())
 		tPrintf("Found file: %s\n", file->Text());
 
-	tString path = "c:/ADir/file.txt";
-	tRequire(tGetDir(path) == "c:/ADir/");
+	tString testWinPath = "c:/ADir/file.txt";
+	tRequire(tGetDir(testWinPath) == "c:/ADir/");
+
+	tString testLinPath = "/ADir/file.txt";
+	tRequire(tGetDir(testLinPath) == "/ADir/");
+	
+	tList<tStringItem> subDirs;
+	tFindDirs(subDirs, "TestData/", true);
+	for (tStringItem* subd = subDirs.Head(); subd; subd = subd->Next())
+		tPrintf("SubDir: %s\n", subd->Text());
 
 	files.Empty();
-	try
-	{
-		tFindFilesRecursive(files, "TestData/", "*.dds");
-		for (tStringItem* file = files.Head(); file; file = file->Next())
-			tPrintf("Found file: %s\n", file->Text());
-
-	}
-	catch (tError error)
-	{
-		tPrintf(error.Message + "\n");
-	}
-
+	tFindFilesRecursive(files, "TestData/", true);
 	for (tStringItem* file = files.Head(); file; file = file->Next())
 		tPrintf("Recursive Found File: %s\n", file->Text());
 
