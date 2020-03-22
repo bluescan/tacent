@@ -295,12 +295,12 @@ bool tCopyFile(const tString& destFile, const tString& srcFile, bool overWriteRe
 // rename is located.
 bool tRenameFile(const tString& dir, const tString& oldName, const tString& newName);
 
-// The foundfiles list is always appended to. You must clear it first if that's what you intend. If no second argument,
-// the contents of the current directory are returned.
-void tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden = true);
+// The foundfiles list is always appended to. You must clear it first if that's what you intend. If empty second
+// argument, the contents of the current directory are returned. Extension can be something like "txt" (no dot).
+void tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
 
-// foundFiles is appened to. Clear first if desired.
-void tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden = true);
+// foundFiles is appened to. Clear first if desired. Extension can be something like "txt" (no dot).
+void tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
 void tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden = true);
 
 // If the dirPath to search is empty, the current dir is used.

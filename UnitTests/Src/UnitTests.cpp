@@ -86,6 +86,8 @@ int main(int argc, char** argv)
 	#ifndef PLATFORM_LINUX
 	tTest(Script);
 	tTest(Chunk);
+	#else
+	tToDo("Implemnt Script and chunk in Clang");
 	#endif
 	
 	tTest(File);

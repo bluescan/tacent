@@ -132,22 +132,22 @@ void tRule::AddDependenciesVCXProj(const tString& projectFile)
 #endif
 
 
-void tRule::AddDependencyDir(const tString& dir, const tString& filter)
+void tRule::AddDependencyDir(const tString& dir, const tString& ext)
 {
 	tList<tStringItem> deps;
 	bool includeHidden = false;
-	tSystem::tFindFilesInDir(deps, dir, filter, includeHidden);
+	tSystem::tFindFiles(deps, dir, ext, includeHidden);
 
 	AddDependencies(deps);
 	tAssert(deps.IsEmpty());
 }
 
 
-void tRule::AddDependencyDirRec(const tString& dir, const tString& filter)
+void tRule::AddDependencyDirRec(const tString& dir, const tString& ext)
 {
 	tList<tStringItem> deps;
 	bool includeHidden = false;
-	tSystem::tFindFilesRecursive(deps, dir, filter, includeHidden);
+	tSystem::tFindFilesRecursive(deps, dir, ext, includeHidden);
 
 	AddDependencies(deps);
 	tAssert(deps.IsEmpty());

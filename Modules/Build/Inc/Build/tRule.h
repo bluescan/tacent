@@ -75,15 +75,15 @@ public:
 	void AddDependenciesVCXProj(const tString& projectFile);
 	#endif
 
-	// Adds multiple dependencies. Does not act recursively on the directory. Filter can be stuff like "*.txt". Throws
-	// a tRuleError if there are any problems. All dependencies that can be added will be. Checks for duplicate deps.
-	// Ignores hidden files and folders and will not add them or recurse into them.
-	void AddDependencyDir(const tString& dir, const tString& filter = "*.*");
+	// Adds multiple dependencies. Does not act recursively on the directory. Extension can be something like "txt".
+	// Throws a tRuleError if there are any problems. All dependencies that can be added will be. Checks for duplicate
+	// deps. Ignores hidden files and folders and will not add them or recurse into them.
+	void AddDependencyDir(const tString& dir, const tString& extension = tString());
 
-	// Adds multiple dependencies. Acts recursively on the directory. Filter can be stuff like "*.txt".  Throws a
+	// Adds multiple dependencies. Acts recursively on the directory. Extension can be something like "txt". Throws a
 	// tRuleError if there are any problems. All dependencies that can be added will be. Checks for duplicate deps.
 	// Ignores hidden files and folders and will not add them or recurse into them.
-	void AddDependencyDirRec(const tString& dir, const tString& filter = "*.*");
+	void AddDependencyDirRec(const tString& dir, const tString& extension = tString());
 
 	// Returns true if target has been specified and target doesn't exist or is older than any dependency or if a clean
 	// build is requested (the latter only if checkCleanFlag == true). Returns false if there is no need to build.
