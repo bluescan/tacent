@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Project Name="Image" Version="11000" InternalType="Library">
+  <VirtualDirectory Name="Contrib">
+    <VirtualDirectory Name="CxImage">
+      <File Name="../../../Contrib/CxImage/CxImage/xmemfile.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/xmemfile.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/xiofile.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximawnd.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximawmf.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximawmf.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximawbmp.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximawbmp.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximatran.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximatif.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximatif.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximath.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximath.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximatga.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximatga.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximaska.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximaska.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximasel.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximaraw.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximaraw.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximapsd.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximapsd.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximapng.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximapng.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximapcx.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximapcx.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximapal.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximamng.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximamng.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximalyr.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximalpha.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximajpg.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximajpg.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximajbg.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximajbg.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximajas.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximajas.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximaiter.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximaint.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximainfo.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximaico.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximaico.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximahist.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximagif.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximagif.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximage.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximage.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximaexif.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximaenc.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximadsp.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximadef.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximacfg.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximabmp.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/ximabmp.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/xfile.h"/>
+      <File Name="../../../Contrib/CxImage/CxImage/tif_xfile.cpp"/>
+      <File Name="../../../Contrib/CxImage/CxImage/stdint.h"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00020001N0005Debug0000000000000001N0007Release000000000000]]>
+    </Plugin>
+  </Plugins>
+  <Description/>
+  <Dependencies/>
+  <VirtualDirectory Name="src">
+    <File Name="../Src/tTexture.cpp"/>
+    <File Name="../Src/tPixelFormat.cpp"/>
+    <File Name="../Src/tPicture.cpp"/>
+    <File Name="../Src/tLayer.cpp"/>
+    <File Name="../Src/tImageTGA.cpp"/>
+    <File Name="../Src/tImageHDR.cpp"/>
+    <File Name="../Src/tImageGIF.cpp"/>
+    <File Name="../Src/tImageEXR.cpp"/>
+    <File Name="../Src/tImageDDS.cpp"/>
+    <File Name="../Src/tCubemap.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="include">
+    <File Name="../Inc/Image/tTexture.h"/>
+    <File Name="../Inc/Image/tPixelFormat.h"/>
+    <File Name="../Inc/Image/tPicture.h"/>
+    <File Name="../Inc/Image/tLayer.h"/>
+    <File Name="../Inc/Image/tImageTGA.h"/>
+    <File Name="../Inc/Image/tImageHDR.h"/>
+    <File Name="../Inc/Image/tImageGIF.h"/>
+    <File Name="../Inc/Image/tImageEXR.h"/>
+    <File Name="../Inc/Image/tImageDDS.h"/>
+    <File Name="../Inc/Image/tCubemap.h"/>
+  </VirtualDirectory>
+  <Settings Type="Static Library">
+    <GlobalSettings>
+      <Compiler Options="-Wno-switch;-std=c++17" C_Options="" Assembler="">
+        <IncludePath Value="../Inc"/>
+        <IncludePath Value="../../Foundation/Inc"/>
+        <IncludePath Value="../../System/Inc"/>
+        <IncludePath Value="../../Math/Inc"/>
+        <IncludePath Value="../../../Contrib/CxImage"/>
+        <IncludePath Value="../../../Contrib/OpenEXR/IlmImf"/>
+        <IncludePath Value="../../../Contrib/OpenEXR/config"/>
+        <IncludePath Value="../../../Contrib/OpenEXR/IlmBase/Imath"/>
+        <IncludePath Value="../../../Contrib/OpenEXR/IlmBase/config"/>
+        <IncludePath Value="../../../Contrib/OpenEXR/IlmBase/Iex"/>
+        <IncludePath Value="../../../Contrib/OpenEXR/IlmBase/Half"/>
+        <Preprocessor Value="PLATFORM_LINUX"/>
+        <Preprocessor Value="_LINUX"/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Debug" CompilerType="clang( tags/RELEASE_900/final )" DebuggerType="LLDB Debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g" C_Options="-g" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="."/>
+        <Preprocessor Value="CONFIG_DEBUG"/>
+      </Compiler>
+      <Linker Options="" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/lib$(ProjectName).so" IntermediateDirectory="$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName/>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+    <Configuration Name="Release" CompilerType="clang( tags/RELEASE_900/final )" DebuggerType="LLDB Debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-O2" C_Options="-O2" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="."/>
+        <Preprocessor Value="CONFIG_RELEASE"/>
+      </Compiler>
+      <Linker Options="" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/lib$(ProjectName).so" IntermediateDirectory="$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName/>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+  </Settings>
+</CodeLite_Project>

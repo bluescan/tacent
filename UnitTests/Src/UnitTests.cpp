@@ -83,12 +83,8 @@ int main(int argc, char** argv)
 	tTest(Print);
 	tTest(Regex);
 	
-	#ifndef PLATFORM_LINUX
 	tTest(Script);
 	tTest(Chunk);
-	#else
-	tToDo("Implemnt Script and chunk in Clang");
-	#endif
 	
 	tTest(File);
 	tTest(Time);

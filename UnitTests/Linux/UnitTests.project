@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="UnitTests" Version="10.0.0" InternalType="Console">
+<CodeLite_Project Name="UnitTests" Version="11000" InternalType="Console">
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00020001N0005Debug0000000000000001N0007Release000000000000]]>
@@ -21,7 +21,7 @@
     <File Name="../Src/TestSystem.cpp"/>
     <File Name="../Src/TestScene.cpp" ExcludeProjConfig="Debug;Release;"/>
     <File Name="../Src/TestMath.cpp"/>
-    <File Name="../Src/TestImage.cpp" ExcludeProjConfig="Debug;Release;"/>
+    <File Name="../Src/TestImage.cpp" ExcludeProjConfig="Release;"/>
     <File Name="../Src/TestFoundation.cpp"/>
     <File Name="../Src/TestBuild.cpp" ExcludeProjConfig="Debug;Release;"/>
   </VirtualDirectory>
@@ -38,10 +38,10 @@
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="-Wno-switch;-std=c++17" C_Options="" Assembler="">
-        <IncludePath Value="."/>
         <IncludePath Value="../../Modules/Foundation/Inc"/>
         <IncludePath Value="../../Modules/Math/Inc"/>
         <IncludePath Value="../../Modules/System/Inc"/>
+        <IncludePath Value="../../Modules/Image/Inc"/>
         <Preprocessor Value="PLATFORM_LINUX"/>
       </Compiler>
       <Linker Options=""/>
@@ -60,7 +60,7 @@
         <Library Value="Foundation"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)/../.." PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="$(ConfigurationName)" Command="$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(ProjectDirectory)/.." PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
@@ -72,7 +72,9 @@
       </Debugger>
       <PreBuild/>
       <PostBuild>
-        <Command Enabled="yes">cp $(IntermediateDirectory)/$(ProjectName) ..</Command>
+        <Command Enabled="yes">cp $(IntermediateDirectory)/$(ProjectName) $ProjectDirectory)/..</Command>
+        <Command Enabled="yes"/>
+        <Command Enabled="yes"/>
       </PostBuild>
       <CustomBuild Enabled="no">
         <RebuildCommand/>
@@ -108,7 +110,7 @@
         <Library Value="Foundation"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Release" Command="../$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="$(ConfigurationName)" Command="$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(ProjectDirectory)/.." PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
@@ -120,7 +122,7 @@
       </Debugger>
       <PreBuild/>
       <PostBuild>
-        <Command Enabled="yes">cp $(IntermediateDirectory)/$(ProjectName) ..</Command>
+        <Command Enabled="yes">cp $(IntermediateDirectory)/$(ProjectName) $ProjectDirectory)/..</Command>
       </PostBuild>
       <CustomBuild Enabled="no">
         <RebuildCommand/>
