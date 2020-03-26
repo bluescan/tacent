@@ -203,7 +203,7 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 		hdr.Load
 		(
 			imageFile,
-			params.Gamma,
+			params.GammaValue,
 			params.HDR_Exposure
 		);
 		if (!hdr.IsValid())
@@ -225,7 +225,7 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 		(
 			imageFile,
 			partNum,
-			params.Gamma,
+			params.GammaValue,
 			params.EXR_Exposure,
 			params.EXR_Defog,
 			params.EXR_KneeLow,
