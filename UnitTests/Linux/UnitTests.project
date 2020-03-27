@@ -44,7 +44,12 @@
         <IncludePath Value="../../Modules/Image/Inc"/>
         <Preprocessor Value="PLATFORM_LINUX"/>
       </Compiler>
-      <Linker Options=""/>
+      <Linker Options="">
+        <Library Value="Image"/>
+        <Library Value="System"/>
+        <Library Value="Math"/>
+        <Library Value="Foundation"/>
+      </Linker>
       <ResourceCompiler Options=""/>
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="clang( tags/RELEASE_900/final )" DebuggerType="LLDB Debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
@@ -52,12 +57,10 @@
         <Preprocessor Value="CONFIG_DEBUG"/>
       </Compiler>
       <Linker Options="" Required="yes">
+        <LibraryPath Value="../../Modules/Image/Linux/Debug"/>
         <LibraryPath Value="../../Modules/System/Linux/Debug"/>
         <LibraryPath Value="../../Modules/Math/Linux/Debug"/>
         <LibraryPath Value="../../Modules/Foundation/Linux/Debug"/>
-        <Library Value="System"/>
-        <Library Value="Math"/>
-        <Library Value="Foundation"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="$(ConfigurationName)" Command="$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(ProjectDirectory)/.." PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
@@ -102,12 +105,10 @@
         <Preprocessor Value="CONFIG_RELEASE"/>
       </Compiler>
       <Linker Options="" Required="yes">
+        <LibraryPath Value="../../Modules/Image/Linux/Release"/>
         <LibraryPath Value="../../Modules/System/Linux/Release"/>
         <LibraryPath Value="../../Modules/Math/Linux/Release"/>
         <LibraryPath Value="../../Modules/Foundation/Linux/Release"/>
-        <Library Value="System"/>
-        <Library Value="Math"/>
-        <Library Value="Foundation"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="$(ConfigurationName)" Command="$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(ProjectDirectory)/.." PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>

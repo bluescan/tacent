@@ -53,6 +53,9 @@
 #endif 
 
 #ifdef _LINUX
+
+// @tacent
+typedef unsigned char BYTE;
 	
 #ifndef _XOPEN_SOURCE		// @tacent
   #define _XOPEN_SOURCE

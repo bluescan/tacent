@@ -9,6 +9,11 @@
 
 #if CXIMAGE_SUPPORT_PNG
 
+// @tacent
+#ifdef PLATFORM_LINUX
+typedef int32_t DWORD;
+#endif
+
 #include "ximaiter.h"
 
 #pragma warning(disable:4267)

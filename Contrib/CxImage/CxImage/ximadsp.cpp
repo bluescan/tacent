@@ -2807,11 +2807,16 @@ bool CxImage::Lut(uint8_t* pLut)
 		if (pSelection){
 			xmin = info.rSelectionBox.left; xmax = info.rSelectionBox.right;
 			ymin = info.rSelectionBox.bottom; ymax = info.rSelectionBox.top;
-		} else {
+		}
+		else
+		{
 			// faster loop for full image
 			uint8_t *iSrc=info.pImage;
-			for(uint32_t i=0; i < head.biSizeImage ; i++){
-				*iSrc++ = pLut[*iSrc];
+			for(uint32_t i=0; i < head.biSizeImage ; i++)
+			{
+				// @tacent
+				//*iSrc++ = pLut[*iSrc];
+				*iSrc = pLut[*iSrc]; iSrc++;
 			}
 			return true;
 		}
@@ -3303,7 +3308,7 @@ int32_t  CxImage::OptimalThreshold(int32_t method, RECT * pBox, CxImage* pContra
 	}
 
 	//compute total moments 0th,1st,2nd order
-	int32_t i,k;
+	int32_t i;
 	double w_tot = 0;
 	double m_tot = 0;
 	double q_tot = 0;
@@ -3350,21 +3355,29 @@ int32_t  CxImage::OptimalThreshold(int32_t method, RECT * pBox, CxImage* pContra
 
 		//max entropy
 		L = 0;
+		int32_t k;
 		for (k=gray_min;k<=i;k++) if (p[k] > 0)	L -= p[k]*log(p[k]/w1)/w1;
+		
+		// @tacent
+		#ifdef PLATFORM_LINUX
+		for (;k<=gray_max;k++) if (p[k] > 0)	L -= p[k]*log(p[k]/w2)/w2;
+		#else
 		for (k;k<=gray_max;k++) if (p[k] > 0)	L -= p[k]*log(p[k]/w2)/w2;
+		#endif
 		if (L3max < L || th3<0){
 			L3max = L;
 			th3 = i;
 		}
 
 		//potential difference (based on Electrostatic Binarization method by J. Acharya & G. Sreechakra)
-		// L=-fabs(vdiff/vsum); è molto selettivo, sembra che L=-fabs(vdiff) o L=-(vsum)
+		// L=-fabs(vdiff/vsum); Ã¨ molto selettivo, sembra che L=-fabs(vdiff) o L=-(vsum)
 		// abbiano lo stesso valore di soglia... il che semplificherebbe molto la routine
 		double vdiff = 0;
 		for (k=gray_min;k<=i;k++)
 			vdiff += p[k]*(i-k)*(i-k);
 		double vsum = vdiff;
-		for (k;k<=gray_max;k++){
+		// @tacent k; to just ;
+		for (;k<=gray_max;k++){
 			double dv = p[k]*(k-i)*(k-i);
 			vdiff -= dv;
 			vsum += dv;

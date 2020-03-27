@@ -7,6 +7,7 @@
   </Plugins>
   <VirtualDirectory Name="Contrib">
     <VirtualDirectory Name="CxImage">
+      <VirtualDirectory Name="jasper"/>
       <VirtualDirectory Name="zlib">
         <File Name="../../../Contrib/CxImage/zlib/zutil.h"/>
         <File Name="../../../Contrib/CxImage/zlib/zutil.c"/>
@@ -131,8 +132,10 @@
         <IncludePath Value="../../Foundation/Inc"/>
         <IncludePath Value="../../System/Inc"/>
         <IncludePath Value="../../Math/Inc"/>
+        <IncludePath Value="../../../Contrib"/>
         <IncludePath Value="../../../Contrib/CxImage"/>
-        <IncludePath Value="../../../Contrib/zlib"/>
+        <IncludePath Value="../../../Contrib/CxImage/jasper/include"/>
+        <IncludePath Value="../../../Contrib/OpenEXR/zlib"/>
         <IncludePath Value="../../../Contrib/OpenEXR/IlmImf"/>
         <IncludePath Value="../../../Contrib/OpenEXR/config"/>
         <IncludePath Value="../../../Contrib/OpenEXR/IlmBase/Imath"/>

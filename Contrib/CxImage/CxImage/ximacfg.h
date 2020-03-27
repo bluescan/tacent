@@ -18,7 +18,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // CxImage supported formats
 // @tacent
-#ifdef PLATFORM_WINDOWS
+#if defined(PLATFORM_WINDOWS) // || defined(PLATFORM_LINUX)
 #define CXIMAGE_SUPPORT_BMP 1
 #define CXIMAGE_SUPPORT_GIF 1
 #define CXIMAGE_SUPPORT_JPG 1
