@@ -7,7 +7,7 @@
   </Plugins>
   <Description/>
   <Dependencies/>
-  <VirtualDirectory Name="src">
+  <VirtualDirectory Name="Src">
     <File Name="../Src/tUnits.cpp"/>
     <File Name="../Src/tSync.cpp"/>
     <File Name="../Src/tString.cpp"/>
@@ -18,7 +18,7 @@
     <File Name="../Src/tBitArray.cpp"/>
     <File Name="../Src/tAssert.cpp"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="include">
+  <VirtualDirectory Name="Inc">
     <File Name="../Inc/Foundation/tVersion.h"/>
     <File Name="../Inc/Foundation/tUnits.h"/>
     <File Name="../Inc/Foundation/tSync.h"/>

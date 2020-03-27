@@ -10,6 +10,7 @@
 -I/home/tristan/github/tacent/Modules/System/Inc
 -I/home/tristan/github/tacent/Modules/Math/Inc
 -I/home/tristan/github/tacent/Contrib/CxImage
+-I/home/tristan/github/tacent/Contrib/zlib
 -I/home/tristan/github/tacent/Contrib/OpenEXR/IlmImf
 -I/home/tristan/github/tacent/Contrib/OpenEXR/config
 -I/home/tristan/github/tacent/Contrib/OpenEXR/IlmBase/Imath

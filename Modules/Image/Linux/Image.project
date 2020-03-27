@@ -1,74 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Project Name="Image" Version="11000" InternalType="Library">
-  <VirtualDirectory Name="Contrib">
-    <VirtualDirectory Name="CxImage">
-      <File Name="../../../Contrib/CxImage/CxImage/xmemfile.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/xmemfile.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/xiofile.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximawnd.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximawmf.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximawmf.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximawbmp.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximawbmp.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximatran.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximatif.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximatif.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximath.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximath.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximatga.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximatga.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximaska.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximaska.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximasel.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximaraw.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximaraw.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximapsd.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximapsd.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximapng.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximapng.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximapcx.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximapcx.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximapal.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximamng.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximamng.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximalyr.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximalpha.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximajpg.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximajpg.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximajbg.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximajbg.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximajas.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximajas.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximaiter.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximaint.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximainfo.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximaico.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximaico.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximahist.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximagif.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximagif.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximage.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximage.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximaexif.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximaenc.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximadsp.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximadef.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximacfg.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximabmp.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/ximabmp.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/xfile.h"/>
-      <File Name="../../../Contrib/CxImage/CxImage/tif_xfile.cpp"/>
-      <File Name="../../../Contrib/CxImage/CxImage/stdint.h"/>
-    </VirtualDirectory>
-  </VirtualDirectory>
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00020001N0005Debug0000000000000001N0007Release000000000000]]>
     </Plugin>
   </Plugins>
+  <VirtualDirectory Name="Contrib">
+    <VirtualDirectory Name="CxImage">
+      <VirtualDirectory Name="zlib">
+        <File Name="../../../Contrib/CxImage/zlib/zutil.h"/>
+        <File Name="../../../Contrib/CxImage/zlib/zutil.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/zlib.h"/>
+        <File Name="../../../Contrib/CxImage/zlib/zconf.h"/>
+        <File Name="../../../Contrib/CxImage/zlib/uncompr.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/trees.h"/>
+        <File Name="../../../Contrib/CxImage/zlib/trees.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/minigzip.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/inftrees.h"/>
+        <File Name="../../../Contrib/CxImage/zlib/inftrees.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/inflate.h"/>
+        <File Name="../../../Contrib/CxImage/zlib/inflate.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/inffixed.h"/>
+        <File Name="../../../Contrib/CxImage/zlib/inffast.h"/>
+        <File Name="../../../Contrib/CxImage/zlib/inffast.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/infback.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/gzwrite.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/gzread.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/gzlib.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/gzguts.h"/>
+        <File Name="../../../Contrib/CxImage/zlib/gzclose.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/example.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/deflate.h"/>
+        <File Name="../../../Contrib/CxImage/zlib/deflate.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/crc32.h"/>
+        <File Name="../../../Contrib/CxImage/zlib/crc32.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/compress.c"/>
+        <File Name="../../../Contrib/CxImage/zlib/adler32.c"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="CxImage">
+        <File Name="../../../Contrib/CxImage/CxImage/xmemfile.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/xmemfile.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/xiofile.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximawnd.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximawmf.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximawmf.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximawbmp.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximawbmp.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximatran.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximatif.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximatif.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximath.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximath.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximatga.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximatga.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximaska.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximaska.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximasel.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximaraw.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximaraw.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximapsd.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximapsd.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximapng.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximapng.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximapcx.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximapcx.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximapal.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximamng.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximamng.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximalyr.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximalpha.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximajpg.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximajpg.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximajbg.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximajbg.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximajas.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximajas.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximaiter.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximaint.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximainfo.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximaico.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximaico.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximahist.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximagif.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximagif.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximage.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximage.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximaexif.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximaenc.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximadsp.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximadef.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximacfg.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximabmp.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/ximabmp.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/xfile.h"/>
+        <File Name="../../../Contrib/CxImage/CxImage/tif_xfile.cpp"/>
+        <File Name="../../../Contrib/CxImage/CxImage/stdint.h"/>
+      </VirtualDirectory>
+    </VirtualDirectory>
+  </VirtualDirectory>
   <Description/>
   <Dependencies/>
-  <VirtualDirectory Name="src">
+  <VirtualDirectory Name="Src">
     <File Name="../Src/tTexture.cpp"/>
     <File Name="../Src/tPixelFormat.cpp"/>
     <File Name="../Src/tPicture.cpp"/>
@@ -80,7 +112,7 @@
     <File Name="../Src/tImageDDS.cpp"/>
     <File Name="../Src/tCubemap.cpp"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="include">
+  <VirtualDirectory Name="Inc">
     <File Name="../Inc/Image/tTexture.h"/>
     <File Name="../Inc/Image/tPixelFormat.h"/>
     <File Name="../Inc/Image/tPicture.h"/>
@@ -100,6 +132,7 @@
         <IncludePath Value="../../System/Inc"/>
         <IncludePath Value="../../Math/Inc"/>
         <IncludePath Value="../../../Contrib/CxImage"/>
+        <IncludePath Value="../../../Contrib/zlib"/>
         <IncludePath Value="../../../Contrib/OpenEXR/IlmImf"/>
         <IncludePath Value="../../../Contrib/OpenEXR/config"/>
         <IncludePath Value="../../../Contrib/OpenEXR/IlmBase/Imath"/>

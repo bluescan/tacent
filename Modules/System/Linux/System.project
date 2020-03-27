@@ -7,7 +7,7 @@
   </Plugins>
   <Description/>
   <Dependencies/>
-  <VirtualDirectory Name="src">
+  <VirtualDirectory Name="Src">
     <File Name="../Src/tTime.cpp"/>
     <File Name="../Src/tThrow.cpp"/>
     <File Name="../Src/tTask.cpp"/>
@@ -19,7 +19,7 @@
     <File Name="../Src/tCommand.cpp"/>
     <File Name="../Src/tChunk.cpp"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="include">
+  <VirtualDirectory Name="Inc">
     <File Name="../Inc/System/tTime.h"/>
     <File Name="../Inc/System/tThrow.h"/>
     <File Name="../Inc/System/tTask.h"/>

@@ -5,7 +5,7 @@
       <![CDATA[00020001N0005Debug0000000000000001N0007Release000000000000]]>
     </Plugin>
   </Plugins>
-  <VirtualDirectory Name="include">
+  <VirtualDirectory Name="Inc">
     <File Name="../Src/UnitTests.h"/>
     <File Name="../Src/TestSystem.h"/>
     <File Name="../Src/TestScene.h"/>
@@ -16,7 +16,7 @@
   </VirtualDirectory>
   <Description/>
   <Dependencies/>
-  <VirtualDirectory Name="src">
+  <VirtualDirectory Name="Src">
     <File Name="../Src/UnitTests.cpp"/>
     <File Name="../Src/TestSystem.cpp"/>
     <File Name="../Src/TestScene.cpp" ExcludeProjConfig="Debug;Release;"/>
