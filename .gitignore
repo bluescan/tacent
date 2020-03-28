@@ -89,3 +89,4 @@ Tools/TextureViewer/Release/
 /UnitTests/Linux/.build-release/Math
 /UnitTests/Linux/.build-debug/System
 /UnitTests/Linux/.build-release/System
+/UnitTests/Linux/Release/UnitTests
