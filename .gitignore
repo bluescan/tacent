@@ -8,8 +8,8 @@ UnitTests/.vs/*
 
 *.obj
 
-*.user
-!UnitTests/Win/*.user
+*.vcxproj.user
+!UnitTests/Windows/*.vcxproj.user
 
 Contrib/CxImage/CxImage/x64/Debug/cximage\.pdb
 
