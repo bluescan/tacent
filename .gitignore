@@ -1,6 +1,8 @@
 .vs/*
 
 UnitTests/.vs/*
+UnitTests/Linux/.build-release/*
+UnitTests/Linux/.codelite/*
 
 *.log
 
@@ -78,3 +80,4 @@ Tools/TextureViewer/Release/
 *.so
 *.tags
 *.session
+*.c.o
