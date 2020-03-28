@@ -44,7 +44,7 @@
         <IncludePath Value="../../Modules/Image/Inc"/>
         <Preprocessor Value="PLATFORM_LINUX"/>
       </Compiler>
-      <Linker Options="">
+      <Linker Options="-pthread">
         <Library Value="Image"/>
         <Library Value="System"/>
         <Library Value="Math"/>
@@ -63,7 +63,7 @@
         <LibraryPath Value="../../Modules/Foundation/Linux/Debug"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="$(ConfigurationName)" Command="$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(ProjectDirectory)/.." PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="$(ConfigurationName)" Command="$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(ProjectPath)/.." PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
@@ -75,7 +75,7 @@
       </Debugger>
       <PreBuild/>
       <PostBuild>
-        <Command Enabled="yes">cp $(IntermediateDirectory)/$(ProjectName) $ProjectDirectory)/..</Command>
+        <Command Enabled="yes">cp $(IntermediateDirectory)/$(ProjectName) $(ProjectPath)/../$(ProjectName)</Command>
         <Command Enabled="yes"/>
         <Command Enabled="yes"/>
       </PostBuild>
@@ -111,7 +111,7 @@
         <LibraryPath Value="../../Modules/Foundation/Linux/Release"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="$(ConfigurationName)" Command="$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(ProjectDirectory)/.." PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="$(ConfigurationName)" Command="$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(ProjectPath)/.." PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
@@ -123,7 +123,7 @@
       </Debugger>
       <PreBuild/>
       <PostBuild>
-        <Command Enabled="yes">cp $(IntermediateDirectory)/$(ProjectName) $ProjectDirectory)/..</Command>
+        <Command Enabled="yes">cp $(IntermediateDirectory)/$(ProjectName) $(ProjectPath)/../$(ProjectName)</Command>
       </PostBuild>
       <CustomBuild Enabled="no">
         <RebuildCommand/>

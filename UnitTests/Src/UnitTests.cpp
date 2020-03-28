@@ -92,10 +92,10 @@ int main(int argc, char** argv)
 	#ifndef PLATFORM_LINUX
 	// Build tests.
 	tTest(Process);
+	#endif
 
 	// Image tests.
 	tTest(Image);
-	#endif
 
 	#else
 	tTest(File);

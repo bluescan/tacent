@@ -619,6 +619,9 @@ tTestUnit(MemoryPool)
 	tRequire(memPool.GetNumAllocations() == 8);
 
 	tPrintf("free B, free E\n");
+	#ifdef PLATFORM_LINUX
+	tRequire(!"There is a problem with tFastPool free on Linux.");
+	#else
 	memPool.Free(memB);
 	memPool.Free(memE);
 	tRequire(memPool.GetNumAllocations() == 6);
@@ -641,6 +644,7 @@ tTestUnit(MemoryPool)
 	memPool.Free(memG);
 	memPool.Free(memH);
 	tRequire(memPool.GetNumAllocations() == 0);
+	#endif
 }
 
 

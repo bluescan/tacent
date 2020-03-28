@@ -41,9 +41,13 @@ tTestUnit(Image)
 	tImage::tTexture cubemap("TestData/CubemapLayoutGuide.dds");
 	tRequire(cubemap.IsValid());
 
-	// Test jpg to texture.
+	// Test jpg to texture. This will do conversion to BCTC.
+	#ifdef PLATFORM_WINDOWS
 	tImage::tTexture jpgTex("TestData/WiredDrives.jpg", true);
 	tRequire(jpgTex.IsValid());
+	#else
+	tGoal(!"BCTC not implemented on this platform.");
+	#endif
 
 	// Test tPicture loading jpg and saving as tga.
 	tImage::tPicture jpgPic("TestData/WiredDrives.jpg");
@@ -72,8 +76,12 @@ tTestUnit(Image)
 	pngPic.Save("TestData/WrittenXeyesJPG.jpg");
 	tRequire( tSystem::tFileExists("TestData/WrittenXeyesJPG.jpg"));
 
+	#ifdef PLATFORM_WINDOWS
 	pngPic.Save("TestData/WrittenXeyesGIF.gif");
 	tRequire( tSystem::tFileExists("TestData/WrittenXeyesGIF.gif"));
+	#else
+	tGoal(!"Write to gif not working on this platform.");
+	#endif
 }
 
 

@@ -81,3 +81,6 @@ Tools/TextureViewer/Release/
 *.tags
 *.session
 *.c.o
+*.cxx.o
+/UnitTests/UnitTests
+/UnitTests/Linux/Debug/UnitTests
