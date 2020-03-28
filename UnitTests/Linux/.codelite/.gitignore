@@ -1,6 +1,0 @@
-/subversion.conf
-*.tags
-/UnitTests.session
-/valgrind.memcheck.supp
-/UnitTests-tristan.tags-shm
-/UnitTests-tristan.tags-wal

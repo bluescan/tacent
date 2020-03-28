@@ -76,3 +76,5 @@ Tools/TextureViewer/Release/
 *.mk
 /UnitTests/Linux/.build-debug/Image
 *.so
+*.tags
+*.session
