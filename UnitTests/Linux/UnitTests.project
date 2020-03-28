@@ -21,7 +21,7 @@
     <File Name="../Src/TestSystem.cpp"/>
     <File Name="../Src/TestScene.cpp" ExcludeProjConfig="Debug;Release;"/>
     <File Name="../Src/TestMath.cpp"/>
-    <File Name="../Src/TestImage.cpp" ExcludeProjConfig="Release;"/>
+    <File Name="../Src/TestImage.cpp" ExcludeProjConfig=""/>
     <File Name="../Src/TestFoundation.cpp"/>
     <File Name="../Src/TestBuild.cpp" ExcludeProjConfig="Debug;Release;"/>
   </VirtualDirectory>
