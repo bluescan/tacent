@@ -84,3 +84,8 @@ Tools/TextureViewer/Release/
 *.cxx.o
 /UnitTests/UnitTests
 /UnitTests/Linux/Debug/UnitTests
+/UnitTests/Linux/.build-debug/Foundation
+/UnitTests/Linux/.build-debug/Math
+/UnitTests/Linux/.build-release/Math
+/UnitTests/Linux/.build-debug/System
+/UnitTests/Linux/.build-release/System
