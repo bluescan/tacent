@@ -406,7 +406,7 @@
         <File Name="../../../Contrib/CxImage/jpeg/ckconfig.c"/>
         <File Name="../../../Contrib/CxImage/jpeg/cjpeg.c"/>
         <File Name="../../../Contrib/CxImage/jpeg/cdjpeg.c"/>
-        <File Name="../../../Contrib/CxImage/jpeg/ansi2knr.c"/>
+        <File Name="../../../Contrib/CxImage/jpeg/ansi2knr.c" ExcludeProjConfig="Debug;Release;"/>
       </VirtualDirectory>
       <VirtualDirectory Name="tiff">
         <File Name="../../../Contrib/CxImage/tiff/uvcode.h"/>
