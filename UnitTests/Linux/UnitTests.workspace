@@ -6,7 +6,7 @@
   <Project Name="Math" Path="../../Modules/Math/Linux/Math.project" Active="No"/>
   <Project Name="Image" Path="../../Modules/Image/Linux/Image.project" Active="No"/>
   <BuildMatrix>
-    <WorkspaceConfiguration Name="Debug" Selected="yes">
+    <WorkspaceConfiguration Name="Debug" Selected="no">
       <Environment/>
       <Project Name="Foundation" ConfigName="Debug"/>
       <Project Name="System" ConfigName="Debug"/>
@@ -14,7 +14,7 @@
       <Project Name="Math" ConfigName="Debug"/>
       <Project Name="Image" ConfigName="Debug"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Release" Selected="no">
+    <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
       <Project Name="Foundation" ConfigName="Release"/>
       <Project Name="Image" ConfigName="Release"/>

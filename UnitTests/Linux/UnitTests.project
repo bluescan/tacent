@@ -29,11 +29,7 @@
     <Project Name="Foundation"/>
     <Project Name="Math"/>
     <Project Name="System"/>
-  </Dependencies>
-  <Dependencies Name="Debug">
-    <Project Name="Foundation"/>
-    <Project Name="Math"/>
-    <Project Name="System"/>
+    <Project Name="Image"/>
   </Dependencies>
   <Settings Type="Executable">
     <GlobalSettings>
@@ -147,4 +143,10 @@
       </Completion>
     </Configuration>
   </Settings>
+  <Dependencies Name="Debug">
+    <Project Name="Foundation"/>
+    <Project Name="Math"/>
+    <Project Name="System"/>
+    <Project Name="Image"/>
+  </Dependencies>
 </CodeLite_Project>

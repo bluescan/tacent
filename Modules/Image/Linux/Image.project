@@ -426,7 +426,7 @@
         <File Name="../../../Contrib/CxImage/tiff/tif_write.c"/>
         <File Name="../../../Contrib/CxImage/tiff/tif_warning.c"/>
         <File Name="../../../Contrib/CxImage/tiff/tif_version.c"/>
-        <File Name="../../../Contrib/CxImage/tiff/tif_unix.c"/>
+        <File Name="../../../Contrib/CxImage/tiff/tif_unix.c" ExcludeProjConfig="Debug;Release;"/>
         <File Name="../../../Contrib/CxImage/tiff/tif_tile.c"/>
         <File Name="../../../Contrib/CxImage/tiff/tif_thunder.c"/>
         <File Name="../../../Contrib/CxImage/tiff/tif_swab.c"/>
@@ -641,7 +641,7 @@
       </Compiler>
       <Linker Options="" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/lib$(ProjectName).so" IntermediateDirectory="$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <General OutputFile="$(IntermediateDirectory)/lib$(ProjectName).a" IntermediateDirectory="$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
