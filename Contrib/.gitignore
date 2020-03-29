@@ -1,0 +1,5 @@
+!/glfw/Debug/*.lib
+!/glfw/Release/*.lib
+!/glfw/Debug/*.pdb
+!/glfw/Release/*.pdb
+

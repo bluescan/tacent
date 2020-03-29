@@ -9,7 +9,6 @@ Release/
 # Specifc filenames.
 compile_flags.txt
 compile_commands.json
-#Makefile
 
 # Specific filetypes to ignore everywhere.
 *.log
@@ -43,25 +42,8 @@ compile_commands.json
 *.pdb
 *.tac
 
+# Specific filetypes that have exceptions in subdirs.
 *.vcxproj.user
-!UnitTests/Windows/*.vcxproj.user
-
 *.lib
-!Contrib/glfw/Debug/*.lib
-!Contrib/glfw/Release/*.lib
-
 *.pdb
-!Contrib/glfw/Debug/*.pdb
-!Contrib/glfw/Release/*.pdb
-
-# Specific files.
-/Modules/Foundation/Linux/Foundation.txt
-/Modules/Image/Linux/Image.txt
-/Modules/Math/Linux/Math.txt
-/Modules/System/Linux/System.txt
-/UnitTests/Linux/Makefile
-/UnitTests/Linux/UnitTests.txt
-/UnitTests/TestData/Written*.*
-/UnitTests/UnitTests
-
 
