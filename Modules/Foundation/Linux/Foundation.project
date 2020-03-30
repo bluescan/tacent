@@ -9,7 +9,6 @@
   <Dependencies/>
   <VirtualDirectory Name="Src">
     <File Name="../Src/tUnits.cpp"/>
-    <File Name="../Src/tSync.cpp"/>
     <File Name="../Src/tString.cpp"/>
     <File Name="../Src/tStandard.cpp"/>
     <File Name="../Src/tPool.cpp"/>
@@ -21,7 +20,6 @@
   <VirtualDirectory Name="Inc">
     <File Name="../Inc/Foundation/tVersion.h"/>
     <File Name="../Inc/Foundation/tUnits.h"/>
-    <File Name="../Inc/Foundation/tSync.h"/>
     <File Name="../Inc/Foundation/tString.h"/>
     <File Name="../Inc/Foundation/tStandard.h"/>
     <File Name="../Inc/Foundation/tSort.h"/>
