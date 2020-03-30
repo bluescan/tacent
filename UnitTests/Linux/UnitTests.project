@@ -19,17 +19,24 @@
   <VirtualDirectory Name="Src">
     <File Name="../Src/UnitTests.cpp"/>
     <File Name="../Src/TestSystem.cpp"/>
-    <File Name="../Src/TestScene.cpp" ExcludeProjConfig="Debug;Release;"/>
+    <File Name="../Src/TestScene.cpp" ExcludeProjConfig=""/>
     <File Name="../Src/TestMath.cpp"/>
     <File Name="../Src/TestImage.cpp" ExcludeProjConfig=""/>
     <File Name="../Src/TestFoundation.cpp"/>
     <File Name="../Src/TestBuild.cpp" ExcludeProjConfig="Debug;Release;"/>
   </VirtualDirectory>
+  <Dependencies Name="Debug">
+    <Project Name="Foundation"/>
+    <Project Name="Math"/>
+    <Project Name="System"/>
+    <Project Name="Image"/>
+  </Dependencies>
   <Dependencies Name="Release">
     <Project Name="Foundation"/>
     <Project Name="Math"/>
     <Project Name="System"/>
     <Project Name="Image"/>
+    <Project Name="Scene"/>
   </Dependencies>
   <Settings Type="Executable">
     <GlobalSettings>
@@ -38,6 +45,7 @@
         <IncludePath Value="../../Modules/Math/Inc"/>
         <IncludePath Value="../../Modules/System/Inc"/>
         <IncludePath Value="../../Modules/Image/Inc"/>
+        <IncludePath Value="../../Modules/Scene/Inc"/>
         <Preprocessor Value="PLATFORM_LINUX"/>
       </Compiler>
       <Linker Options="-pthread">
@@ -143,10 +151,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <Dependencies Name="Debug">
-    <Project Name="Foundation"/>
-    <Project Name="Math"/>
-    <Project Name="System"/>
-    <Project Name="Image"/>
-  </Dependencies>
 </CodeLite_Project>

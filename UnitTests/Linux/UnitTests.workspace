@@ -5,6 +5,7 @@
   <Project Name="Foundation" Path="../../Modules/Foundation/Linux/Foundation.project" Active="No"/>
   <Project Name="Math" Path="../../Modules/Math/Linux/Math.project" Active="No"/>
   <Project Name="Image" Path="../../Modules/Image/Linux/Image.project" Active="No"/>
+  <Project Name="Scene" Path="../../Modules/Scene/Linux/Scene.project"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="no">
       <Environment/>
@@ -13,6 +14,7 @@
       <Project Name="UnitTests" ConfigName="Debug"/>
       <Project Name="Math" ConfigName="Debug"/>
       <Project Name="Image" ConfigName="Debug"/>
+      <Project Name="Scene" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
@@ -21,6 +23,7 @@
       <Project Name="Math" ConfigName="Release"/>
       <Project Name="System" ConfigName="Release"/>
       <Project Name="UnitTests" ConfigName="Release"/>
+      <Project Name="Scene" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>
