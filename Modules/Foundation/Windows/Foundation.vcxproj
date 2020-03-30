@@ -238,7 +238,6 @@
     <ClCompile Include="..\Src\tPool.cpp" />
     <ClCompile Include="..\Src\tStandard.cpp" />
     <ClCompile Include="..\Src\tString.cpp" />
-    <ClCompile Include="..\Src\tSync.cpp" />
     <ClCompile Include="..\Src\tUnits.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -256,7 +255,6 @@
     <ClInclude Include="..\Inc\Foundation\tSort.h" />
     <ClInclude Include="..\Inc\Foundation\tStandard.h" />
     <ClInclude Include="..\Inc\Foundation\tString.h" />
-    <ClInclude Include="..\Inc\Foundation\tSync.h" />
     <ClInclude Include="..\Inc\Foundation\tUnits.h" />
     <ClInclude Include="..\Inc\Foundation\tVersion.h" />
   </ItemGroup>
