@@ -573,8 +573,9 @@ tTestUnit(MemoryPool)
 	int bytesPerItem = 2;
 	int initNumItems = 4;
 	int growNumItems = 3;
+	bool threadSafe = true;
 
-	tMem::tFastPool memPool(bytesPerItem, initNumItems, growNumItems);
+	tMem::tFastPool memPool(bytesPerItem, initNumItems, growNumItems, threadSafe);
 
 	void* memA = memPool.Malloc();
 	tPrintf("memA: %08X\n", memA);
