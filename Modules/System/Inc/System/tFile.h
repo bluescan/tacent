@@ -19,6 +19,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <ctime>
 #include <Math/tHash.h>
 #include "System/tThrow.h"
 #include "System/tPrint.h"
@@ -121,9 +122,6 @@ tString tGetFileBaseName(const tString& filename);
 
 bool tIsFileNewer(const tString& fileA, const tString& fileB);
 
-#ifdef PLATFORM_WINDOWS
-// The file's last modification time and other time values are reported in 100ns intervals since Midnight Jan 1, 1601
-// (local time). No Y2K or Y3K etc problems.
 struct tFileInfo
 {
 	tFileInfo();
@@ -131,12 +129,11 @@ struct tFileInfo
 
 	tString FileName;
 	uint64 FileSize;
-	uint64 CreationTime;
-	uint64 ModificationTime;
-	uint64 AccessTime;
+	std::time_t CreationTime;
+	std::time_t ModificationTime;
+	std::time_t AccessTime;
 	bool ReadOnly;
 	bool Hidden;
-	bool System;
 	bool Directory;
 };
 
@@ -146,8 +143,9 @@ bool tGetFileInfo(tFileInfo&, const tString& fileName);
 
 // Use this if you already have a FindData structure filled out. It simply parses the info out of it and into a
 // FileInfo struct.
-void tParseFileInfo(tFileInfo&, void* Win32FindData);
+//void tParseFileInfo(tFileInfo&, void* Win32FindData);
 
+#ifdef PLATFORM_WINDOWS
 struct tFileDetails
 {
 	tFileDetails()																										: DetailTitles(), Details() { }
@@ -173,8 +171,7 @@ void tSetFileOpenAssoc(const tString& program, const tList<tStringItem>& extensi
 
 // Gets the program and options associated with a particular extension.
 tString tGetFileOpenAssoc(const tString& extension);
-#endif // PLATFORM_WINDOWS
-
+#endif
 
 // Returns a path or fully qualified filename that is as simple as possible. Mainly this involves removing (and
 // resolving) any "." or ".." strings. For example, if the input is:
@@ -297,14 +294,15 @@ bool tRenameFile(const tString& dir, const tString& oldName, const tString& newN
 
 // The foundfiles list is always appended to. You must clear it first if that's what you intend. If empty second
 // argument, the contents of the current directory are returned. Extension can be something like "txt" (no dot).
-void tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
+// Returns success.
+bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
 
 // foundFiles is appened to. Clear first if desired. Extension can be something like "txt" (no dot).
-void tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
-void tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden = true);
+bool tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
+bool tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden = true);
 
-// If the dirPath to search is empty, the current dir is used.
-void tFindDirs(tList<tStringItem>& foundDirs, const tString& dirPath = tString(), bool includeHidden = false);
+// If the dirPath to search is empty, the current dir is used. Returns success.
+bool tFindDirs(tList<tStringItem>& foundDirs, const tString& dirPath = tString(), bool includeHidden = false);
 
 // A relentless delete. Doesn't care about read-only unless deleteReadOnly is false. This call does a recursive delete.
 // If a file has an open handle, however, this fn will fail. If the directory didn't exist before the call then this function silently returns. Returns true if dir existed and was deleted.
@@ -377,16 +375,15 @@ inline bool tSystem::tPutc(char ch, tFileHandle file)
 }
 
 
-#ifdef PLATFORM_WINDOWS
 inline tSystem::tFileInfo::tFileInfo() :
 	FileName(),
 	FileSize(0),
 	CreationTime(0),
 	ModificationTime(0),
-	AccessTime(0),
+	//AccessTime(0),
 	ReadOnly(false),
 	Hidden(false),
-	System(false),
+	//System(false),
 	Directory(false)
 {
 }
@@ -398,13 +395,12 @@ inline void tSystem::tFileInfo::Clear()
 	FileSize = 0;
 	CreationTime = 0;
 	ModificationTime = 0;
-	AccessTime = 0;
+//	AccessTime = 0;
 	ReadOnly = false;
 	Hidden = false;
-	System = false;
+//	System = false;
 	Directory = false;
 }
-#endif
 
 
 inline bool tSystem::tIsRelativePath(const tString& path)
