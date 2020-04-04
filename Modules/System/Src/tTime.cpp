@@ -67,23 +67,29 @@ int64 tSystem::tGetHardwareTimerCount()
 }
 
 
-uint64 tSystem::tGetTimeUTC()
+std::time_t tSystem::tGetTimeUTC()
 {
 	std::time_t secondsSinceEpoch = time(nullptr);
-	return uint64(secondsSinceEpoch);
+	return secondsSinceEpoch;
 }
 
 
-uint64 tSystem::tGetTimeGMT()
+std::time_t tSystem::tGetTimeGMT()
 {
 	return tGetTimeUTC();
 }
 
 
 std::tm tSystem::tGetTimeLocal()
-{	
+{
 	std::time_t t = std::time(nullptr);
     return *std::localtime(&t);
+}
+
+
+std::tm tSystem::tConvertTimeToLocal(std::time_t tm)
+{
+	return *std::localtime(&tm);
 }
 
 

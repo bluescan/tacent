@@ -29,13 +29,15 @@ int64 tGetHardwareTimerCount();
 
 
 // Gets the number of seconds since the absolute time reference of 00:00:00 Coordinated Universal Time (UTC),
-// Thursday, 1 January 1970.
-uint64 tGetTimeUTC();
-uint64 tGetTimeGMT();
+// Thursday, 1 January 1970. The std::time_t is essentially a big integer.
+std::time_t tGetTimeUTC();
+std::time_t tGetTimeGMT();
 
 
 // Gets the current local time. Takes into account your timezone, DST, etc.
+// std::tm is a field-based time format, HH, MM, SS etc.
 std::tm tGetTimeLocal();
+std::tm tConvertTimeToLocal(std::time_t);
 
 
 // Return a timepoint as a string.
