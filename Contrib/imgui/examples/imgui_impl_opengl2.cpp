@@ -45,13 +45,7 @@
 #if defined(__APPLE__)
 #include <OpenGL/gl.h>
 #else
-
-#ifdef PLATFORM_WINDOWS		// @tacent
 #include <GL/gl.h>
-#else
-#include <glad/glad.h>
-#endif
-
 #endif
 
 // OpenGL Data

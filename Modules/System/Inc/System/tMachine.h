@@ -33,10 +33,12 @@ tString tGetCompName();
 // Returns the number of cores (processors) the current machine has.
 int tGetNumCores();
 
-// Opens the OS's file explorer for the folder and file specified. If file doesn't exist, no file will be selected.
+#ifdef PLATFORM_WINDOWS
+// Opens the Os's file explorer for the folder and file specified. If file doesn't exist, no file will be selected.
 // If dir doesn't exist, an explorer window is opened at a location decided by the system.
 bool tOpenSystemFileExplorer(const tString& dir, const tString& file);
 bool tOpenSystemFileExplorer(const tString& fullFilename);
+#endif
 
 
 }
