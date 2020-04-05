@@ -35,7 +35,5 @@ jobs:
     # use msbuild to build VS solution which has the SSDT project
     - name: Build Solution
       run: |
-        ls
-        dir
-        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\bin\MSBuild.exe UnitTests\Windows\UnitTests.sln"
+        echo "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\bin\MSBuild.exe UnitTests\Windows\UnitTests.sln"
         "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe" "UnitTests\Windows\UnitTests.sln"
