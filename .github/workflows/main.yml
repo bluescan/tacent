@@ -38,13 +38,14 @@ jobs:
         # cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
         # .\MSBuild.exe $Env:GITHUB_WORKSPACE\UnitTests\Windows\UnitTests.sln
         # dir
-        echo Building Solution
+        echo 'Building Solution'
         & 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe' $Env:GITHUB_WORKSPACE\UnitTests\Windows\UnitTests.sln
-        echo Done Building Solution
+        echo 'Done Building Solution'
     
     - name: Unit Tests
       run: |
-        echo Running Unit Tests
-        .\UnitTests\UnitTests.exe
-        echo Done Running Unit Tests
+        echo 'Running Unit Tests'
+        cd UnitTests
+        .\UnitTests.exe
+        echo 'Done Running Unit Tests'
       
