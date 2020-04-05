@@ -43,7 +43,6 @@ jobs:
         echo Done Building Solution
     
     - name: Unit Tests
-    - name: Build Solution
       run: |
         echo Running Unit Tests
         .\UnitTests\UnitTests.exe
