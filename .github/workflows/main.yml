@@ -1,6 +1,6 @@
-# This is a basic workflow to help you get started with Actions
+# This workflow runs actions to pull, build, and run tacent unit tests.
 
-name: Continuous Integration
+name: Unit Tests
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -12,8 +12,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  buildwindows:
+  # The buildrunwindows job builds and runs unit tests on windows.
+  checkoutbuildrunwindows:
     # The type of runner that the job will run on
     runs-on: windows-latest
 
@@ -23,19 +23,20 @@ jobs:
     - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: echo Hello, world!
+    # - name: Run a one-line script
+    #   run: echo Hello, world!
 
     # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
-        
-    # use msbuild to build VS solution which has the SSDT project
+    # - name: Run a multi-line script
+    #   run: |
+    #     echo Add other actions to build,
+    #     echo test, and deploy your project.
+      
+    # Use msbuild to build the VS solution
     - name: Build Solution
       run: |
-        ls
         cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
         .\MSBuild.exe $Env:GITHUB_WORKSPACE\UnitTests\Windows\UnitTests.sln
+        dir
+        C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe" $Env:GITHUB_WORKSPACE\UnitTests\Windows\UnitTests.sln
         
