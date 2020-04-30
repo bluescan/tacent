@@ -103,26 +103,27 @@ bool LessThanNorm(const NormItem& a, const NormItem& b)
 }
 
 
-struct MyTexture : public tLink<MyTexture>
+struct MySuper : public tLink<MySuper>
 {
-	virtual ~MyTexture() { tPrintf("Running ~MyTexture\n"); }
+	virtual ~MySuper()			{ tPrintf("Running ~MySuper\n"); }
 };
 
 
-struct MySheet : public MyTexture
+struct MySub : public MySuper
 {
-	MySheet(int id) : ID(id)	{ }
-	virtual ~MySheet()			{ tPrintf("Running ~MySheet ID %d\n", ID); }
+	MySub(int id) : ID(id)		{ }
+	virtual ~MySub()			{ tPrintf("Running ~MySub ID %d\n", ID); }
 	int ID						= 0;
 };
 
+
 tTestUnit(List)
 {
-	tList<MySheet> sheets;
-	sheets.Append(new MySheet(1));
-	sheets.Append(new MySheet(2));
-	sheets.Append(new MySheet(3));
-	sheets.Clear();
+	tList<MySub> subs;
+	subs.Append(new MySub(1));
+	subs.Append(new MySub(2));
+	subs.Append(new MySub(3));
+	subs.Clear();
 
 	tList<Item> itemList(true);
 	itemList.Append( new Item(7) );
@@ -145,6 +146,8 @@ tTestUnit(List)
 	for (const Item* item = itemList.First(); item; item = item->Next())
 		tPrintf("%d ", item->Value);
 	tPrintf("\n");
+	tRequire(itemList.First()->Value < itemList.First()->Next()->Value);
+	tRequire(itemList.First()->Next()->Value < itemList.First()->Next()->Next()->Value);
 
 	// Test circular on intrusive lists.
 	Item* itm = itemList.First();
