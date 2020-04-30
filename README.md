@@ -7,15 +7,13 @@ Visual Studio 2019 Community Edition (Windows) and Codelite/Clang (Ubuntu) is be
 
 __Browse the Source__
 
-The files that are currently available can be browsed using Woboq, a Clang-based tool that marks-up C++ to web-ready HTML. This tool is being used under the ShareAlike License and the 'What is this' text has been removed. Attribution links remain in tact. Woboq is being run on Windows 10 using the new Linux Subsystem. The source being browsed is out-of-date, but can bu useful for quick references / code-snips. Perhaps eventually a GitHub action can be made for it.
+The files that are currently available can be browsed using Woboq, a Clang-based tool that marks-up C++ to web-ready HTML. This tool is being used under the ShareAlike License and the 'What is this' text has been removed. Attribution links remain in tact. Woboq is being run on Windows 10 using the new Linux Subsystem. The source being browsed is out-of-date, but can bu useful for quick references / code-snips. Perhaps eventually a GitHub action can be made for it... right now the Woboq stuff is out of date.
 
 [Browse the source here.](http://upperboundsinteractive.com/Tacent/Modules/index.html)
 
 __Download the Source__
 
-The Tacent source and solution/project files are available as a 7-zip archive. The instructions are simple: Unzip the archive somewhere, open Tools/UnitTests/UnitTests.sln, press F7 in Visual Studio to build, and press F5 to run. This code is also not as recent as the GitHub repository. Clone (preferred) or grab a release from GitHub for best results.
-
-[Download the source here.](http://upperboundsinteractive.com/Tacent.7z)
+The Tacent source and solution/project files are available as a 7-zip archive. The instructions are simple: Open UnitTests/Windows/UnitTests.sln, press F7 in Visual Studio to build, and press F5 to run. Grab the code from this GitHub repository.
 
 ### Overview
 
