@@ -103,8 +103,27 @@ bool LessThanNorm(const NormItem& a, const NormItem& b)
 }
 
 
+struct MyTexture : public tLink<MyTexture>
+{
+	virtual ~MyTexture() { tPrintf("Running ~MyTexture\n"); }
+};
+
+
+struct MySheet : public MyTexture
+{
+	MySheet(int id) : ID(id)	{ }
+	virtual ~MySheet()			{ tPrintf("Running ~MySheet ID %d\n", ID); }
+	int ID						= 0;
+};
+
 tTestUnit(List)
 {
+	tList<MySheet> sheets;
+	sheets.Append(new MySheet(1));
+	sheets.Append(new MySheet(2));
+	sheets.Append(new MySheet(3));
+	sheets.Clear();
+
 	tList<Item> itemList(true);
 	itemList.Append( new Item(7) );
 	itemList.Append( new Item(3) );
