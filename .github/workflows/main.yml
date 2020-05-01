@@ -61,9 +61,9 @@ jobs:
         cd UnitTests/Linux
         make All
         echo 'Done Build Using Make'
-#    - name: Unit Tests
-#      run: |
-#        echo 'Running Unit Tests'
-#        cd UnitTests
-#        .\UnitTests
-#        echo 'Done Running Unit Tests'
+    - name: Unit Tests
+      run: |
+        echo 'Running Unit Tests'
+        cd UnitTests
+        .\UnitTests
+        echo 'Done Running Unit Tests'
