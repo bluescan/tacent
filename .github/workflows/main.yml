@@ -58,8 +58,7 @@ jobs:
       run: |
         echo 'Build Using Make'
         ./UnitTests/Linux/fixup_makefiles_for_github_runner.sh
-        cd UnitTests
-        cd Linux
+        cd UnitTests/Linux
         make All
         echo 'Done Build Using Make'
 #    - name: Unit Tests
