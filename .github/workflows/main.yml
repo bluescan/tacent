@@ -48,4 +48,23 @@ jobs:
         cd UnitTests
         .\UnitTests.exe
         echo 'Done Running Unit Tests'
-      
+
+  # The checkoutbuildrunubuntu job builds tacittexview on ubuntu.
+  checkoutbuildrunubuntu:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Using Make
+      run: |
+        echo 'Build Using Make'
+        ./UnitTests/Linux/fixup_makefiles_for_github_runner.sh
+        cd UnitTests
+        cd Linux
+        make All
+        echo 'Done Build Using Make'
+#    - name: Unit Tests
+#      run: |
+#        echo 'Running Unit Tests'
+#        cd UnitTests
+#        .\UnitTests
+#        echo 'Done Running Unit Tests'
