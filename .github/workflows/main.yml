@@ -65,5 +65,5 @@ jobs:
       run: |
         echo 'Running Unit Tests'
         cd UnitTests
-        .\UnitTests
+        ./UnitTests
         echo 'Done Running Unit Tests'
