@@ -13,7 +13,7 @@ The files that are currently available can be browsed using Woboq, a Clang-based
 
 __Download the Source__
 
-The Tacent source and solution/project files are available as a 7-zip archive. The instructions are simple: Open UnitTests/Windows/UnitTests.sln, press F7 in Visual Studio to build, and press F5 to run. Grab the code from this GitHub repository.
+The build instructions are simple: Open UnitTests/Windows/UnitTests.sln, press F7 in Visual Studio to build, and press F5 to run. Grab the code from this GitHub repository.
 
 ### Overview
 
@@ -81,7 +81,7 @@ tChunkWriter writer("Cubemap.tac");
 cubemap.Save(writer);
 ```
 
-The image module uses two excellent third party libraries, both with non-restrictive licences. CxImage (zlib licence) is used to load formats other than tga and dds. nVidia's Texture Tools 2 (MIT licence) is used for block texture compression. Since I wanted the downloadable source to just work, both of these libraries are included in the 7-zip download. They have both been upgraded to vs2017. The Tacent UnitTests solution will build both of these libraries.
+The image module uses a few third party libraries, all with non-restrictive licences. CxImage (zlib licence) is used to load some formats like png. Gif and ico loading originated from elsewhere as well. Tga and dds are native. nVidia's Texture Tools 2 (MIT licence) is used for block texture compression. Since I wanted the downloadable source to just work, both of these libraries are included in the repo and have been been upgraded to vs2019. The Tacent UnitTests solution will build all dependent libraries.
 
 Regarding the command line parsing code, a powerful feature is separation of concerns. In a typical system the knowledge of all the different command line parameters and options is needed in a single place, often in main() where argc and argv are passed in. These values need to somehow be passed all over the place in a large system. With tCommand you specify which options and parameters you care about only in the cpp file you are working in. A command line takes the form:
 
@@ -118,5 +118,4 @@ tOption TimeOption("time", 't', 0, "Print timestamp.");
 tParse(argc, argv);
 ```
 
-Again, the unit tests, while not offering full coverage, do show examples of this.
-
+The unit tests, while not offering full coverage, do show examples of this.
