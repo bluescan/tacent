@@ -49,21 +49,6 @@ This lack of redundancy and clutter just makes it all easier to absorb. You will
 The dependencies are reasonable and well-understood. The code should be easy to port to a different environment for this reason. For example, if you need a printf function that supports custom types beyond floats, ints, and strings, as well as supporting different output channels, go ahead and take the tPrintf.h and tPrintf.cpp files in the System module and adapt them to your environment and needs. The dependencies on Tacent types and framework are not overbearing.
 
 
-### Credits and Thanks
-
-Credits are found directly in the code where appropriate. Here is a list of some of the helpful contributors:
-* Gregory G. Slabaugh for a paper on Euler angles that was referenced to implement the ExtractRotationEulerXYZ function.
-* Robert J. Jenkins Jr. for his hash function circa 1997. See burtleburtle.net
-* M Phillips for his BigInt number class that helped structure the tFixInt implementation. The homepage link in tFixInt.h no longer works.
-* Erik B. Dam, Martin Koch, and Martin Lillholm for their paper "Quaternions, Interpolation and Animation."
-* Alberto Demichelis for his TRex regular expression class.
-* Woboq for their code browser.
-* Microsoft for their Community Edition version of Visual Studio.
-* Simon Brown for his SquishLib texture block compression library.
-* Ignacio Castano and nVidia for nVidia Texture Tools and placing the code under the MIT license.
-* Davide Pizzolato for CxImage and for placing it under the zlib license.
-* Omar Cornut for Dear ImGui.
-
 ### Notes
 
 The easiest way to see how to use the different modules is to look in the unit tests. There may be more information and comments [on the homepage](http://upperboundsinteractive.com/tacent.php). For example, this is how you'd load a png file and save it to a targa. If the png has transparency, so will the tga:
@@ -119,3 +104,24 @@ tParse(argc, argv);
 ```
 
 The unit tests, while not offering full coverage, do show examples of this.
+
+
+### Credits and Thanks
+
+Credits are found directly in the code where appropriate. Here is a list of some of the helpful contributors:
+* Gregory G. Slabaugh for a paper on Euler angles that was referenced to implement the ExtractRotationEulerXYZ function.
+* Robert J. Jenkins Jr. for his hash function circa 1997. See burtleburtle.net
+* M Phillips for his BigInt number class that helped structure the tFixInt implementation. The homepage link in tFixInt.h no longer works.
+* Erik B. Dam, Martin Koch, and Martin Lillholm for their paper "Quaternions, Interpolation and Animation."
+* Alberto Demichelis for his TRex regular expression class.
+* Woboq for their code browser.
+* Microsoft for their Community Edition version of Visual Studio.
+* Simon Brown for his SquishLib texture block compression library.
+* Ignacio Castano and nVidia for nVidia Texture Tools and placing the code under the MIT license.
+* Davide Pizzolato for CxImage and for placing it under the zlib license.
+* Omar Cornut for Dear ImGui.
+
+
+### Legal
+
+Any 3rd party credits and licences may be found directly in the code at the top of the file. They all follow in the spirit of the MIT licence or are PD. The image-loading module contains the most 3rd-party code. Of note, The tImageHDR.cpp that loads high-dynamic-range (hdr) images includes Radiance software (http://radsite.lbl.gov/) developed by the Lawrence Berkeley National Laboratory (http://www.lbl.gov/). If the hdr code is incuded in your project, attribution is required either in your end-product or its documentation and the word "Radiance" is not to appear in the product name. See tImageHDR.cpp for more details.
