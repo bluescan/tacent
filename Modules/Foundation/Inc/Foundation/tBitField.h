@@ -93,7 +93,7 @@ public:
 	void SetAll(bool val = true);
 	void InvertAll();
 	bool AreAll(bool val) const;							/* Checks if all bits are set to val. */
-	int GetNumBitsgth() const								/* Returns the number of bits stored by the bit-field. */	{ return NumBits; }
+	int GetNumBits() const									/* Returns the number of bits stored by the bit-field. */	{ return NumBits; }
 	int Count(bool val) const;								/* Returns the number of bits that match val. */
 
 	// These deal with the raw uint32 elements that represent the bit array.
