@@ -30,6 +30,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pipeline", "..\..\Modules\Pipeline\Windows\Pipeline.vcxproj", "{68AB18DA-4DF8-41C1-8C0C-1F753EEA0D20}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4A67D21F-1B1F-42B6-B530-A4D690B21DB4} = {4A67D21F-1B1F-42B6-B530-A4D690B21DB4}
+		{E3BAD3CE-E59D-4C1F-9759-7D585C145884} = {E3BAD3CE-E59D-4C1F-9759-7D585C145884}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Image", "..\..\Modules\Image\Windows\Image.vcxproj", "{50CDB9D0-9406-45CC-A226-1645F18635F5}"
 	ProjectSection(ProjectDependencies) = postProject
