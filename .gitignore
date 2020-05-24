@@ -5,6 +5,7 @@
 .codelite/
 Debug/
 Release/
+build*/
 
 # Specifc filenames.
 compile_flags.txt
