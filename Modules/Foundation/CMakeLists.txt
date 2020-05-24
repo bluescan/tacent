@@ -1,17 +1,15 @@
 cmake_minimum_required(VERSION 3.16)
 
-# I prefer this relative path to setting up the modules path in the root CMakeLists because
-# it allows this project to be built completely independently.
-#include("../../CMakeModules/SetupTacentConfigurations.cmake")
-include("SetupTacentConfigurations")
+# Setup configurations before specifying the project.
+find_package("SetupTacentConfigurations")
 
-# Give the project a name and specify explicitely the launguages used.
-project(libtacentfoundation VERSION 0.7.0 LANGUAGES CXX)
+# Give the project a name and specify explicitly the launguages used.
+project(Foundation VERSION 0.7.0 LANGUAGES CXX)
 
 # Here are the source files. No globbing. We include the headers here
 # so that some generators can include them properly, but they are not required.
 list(
-	APPEND foundationSourceFiles
+	APPEND src
     Src/tAssert.cpp
     Src/tBitArray.cpp
     Src/tMemory.cpp
@@ -38,8 +36,11 @@ list(
     Inc/Foundation/tVersion.h
 )
 
+# Use a SetupTacentProjectProperties common file to call add_library with common build characteristics.
+find_package("SetupTacentProjectProperties" REQUIRED)
+
 # We want to generate a static library.
-add_library(Foundation ${foundationSourceFiles})
+#add_library(Foundation ${foundationSourceFiles})
 
 # Set properties on the target. Include files here. Note:
 # PRIVATE is for building only. Populates INCLUDE_DIRECTORIES
@@ -56,7 +57,7 @@ target_include_directories(
 
 #target_compile_options(foundation PRIVATE -Werror)
 
-target_compile_features(Foundation PRIVATE cxx_std_17)
+#target_compile_features(Foundation PRIVATE cxx_std_17)
 
 # If we had dependencies, we would use target_link_libraries
 
