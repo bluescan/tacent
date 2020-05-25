@@ -31,7 +31,7 @@ File IO, path and file string parsing functions, chunk-based binary format, conf
 * __Image__
 Image loading, saving, manipulation, mipmapping, texture generation, and compression to various pixel formats including BC (like dxt1/3/5). Depends on Foundation, Math, and System.
 
-* __Build__
+* __Pipeline__
 Process launching with captured output and exit codes, dependency rule checking. Depends on Foundation, Math, and System.
 
 * __Scene__
