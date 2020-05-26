@@ -1,5 +1,4 @@
-# tacent
-project(CxImageLibs VERSION 0.1.0)
+project(cximagelibs ${TacentVersion})
 
 add_subdirectory(CxImage)
 add_subdirectory(dcr)

@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION ${TacentMinCMake})
-
 # Setup configurations before specifying the project.
 find_package("SetupTacentConfigurations")
 

@@ -1,9 +1,8 @@
-# tacent
-project(dcr VERSION 0.1.0)
+project(dcr VERSION ${TacentVersion})
 
 list (APPEND src 
-    libdcr.c
-    libdcr.h
+	libdcr.c
+	libdcr.h
 )
 
 find_package(Properties REQUIRED)

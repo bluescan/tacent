@@ -15,7 +15,7 @@ find_package("SetupTacentConfigurations")
 project(tacent VERSION ${TacentVersion} LANGUAGES CXX)
 
 # Sub-projects.
-#add_subdirectory(Contrib)
+add_subdirectory(Contrib)
 add_subdirectory(Modules)
 
 # The UnitTests executable, the only non-library

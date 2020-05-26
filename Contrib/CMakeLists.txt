@@ -1,5 +1,4 @@
-# tacent
-project(Contrib VERSION 0.1.0)
+project(contrib VERSION ${TacentVersion})
 
-add_subdirectory(CxImage)
-add_subdirectory(NvidiaTextureTools/src)
+#add_subdirectory(CxImage)
+#add_subdirectory(NvidiaTextureTools/src)
