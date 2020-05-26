@@ -1,0 +1,12 @@
+# tacent
+project(CxImageLibs VERSION 0.1.0)
+
+add_subdirectory(CxImage)
+add_subdirectory(dcr)
+add_subdirectory(jasper)
+add_subdirectory(jpeg)
+add_subdirectory(mng)
+add_subdirectory(png)
+add_subdirectory(psd)
+add_subdirectory(tiff)
+add_subdirectory(zlib)

@@ -1,32 +1,35 @@
-PROJECT(nvmath)
+# tacent
+project(nvmath VERSION 0.1.0)
 
-SET(MATH_SRCS
-    nvmath.h
-    Box.h Box.inl
-    Color.h Color.inl
-    Fitting.h Fitting.cpp
-    Half.h Half.cpp
+include_directories(
+    ..
+    ../../project/vs
+    ../../src
+    ../../extern/poshlib
+    ../../extern/stb
+)
+
+list (APPEND src
+    Box.h
+    Box.inl
+    Color.h
+    Color.inl
+    Fitting.cpp
+    Fitting.h
+    Half.cpp
+    Half.h
     Matrix.h
-    Plane.h Plane.inl Plane.cpp
-    SphericalHarmonic.h SphericalHarmonic.cpp
-    SimdVector.h SimdVector_SSE.h SimdVector_VE.h
-    Vector.h Vector.inl)
+    nvmath.h
+    Plane.cpp
+    Plane.h
+    Plane.inl
+    SimdVector_SSE.h
+    SimdVector_VE.h
+    SimdVector.h
+    SphericalHarmonic.cpp
+    SphericalHarmonic.h
+    Vector.h
+    Vector.inl
+)
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-
-# targets
-ADD_DEFINITIONS(-DNVMATH_EXPORTS)
-
-IF(NVMATH_SHARED)
-    ADD_DEFINITIONS(-DNVMATH_SHARED=1)
-    ADD_LIBRARY(nvmath SHARED ${MATH_SRCS})
-ELSE(NVMATH_SHARED)
-    ADD_LIBRARY(nvmath ${MATH_SRCS})
-ENDIF(NVMATH_SHARED)
-
-TARGET_LINK_LIBRARIES(nvmath ${LIBS} nvcore)
-
-INSTALL(TARGETS nvmath
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib/static)
+find_package(Properties REQUIRED)

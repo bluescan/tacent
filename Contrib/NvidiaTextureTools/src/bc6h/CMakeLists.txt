@@ -1,22 +1,23 @@
-PROJECT(bc6h)
+# tacent
+project(bc6h VERSION 0.1.0)
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(
+    ..
+    ../../project/vs
+    ../../src
+    ../../extern/poshlib
+)
 
-SET(BC6H_SRCS
-	bits.h
-	shapes_two.h
-	tile.h
-	zoh_utils.cpp
-	zoh_utils.h
-	zoh.cpp
-	zoh.h
-	zohone.cpp
-	zohtwo.cpp)
+list (APPEND src
+    bits.h
+    shapes_two.h
+    tile.h
+    zoh_utils.cpp
+    zoh_utils.h
+    zoh.cpp
+    zoh.h
+    zohone.cpp
+    zohtwo.cpp
+)
 
-ADD_LIBRARY(bc6h STATIC ${BC6H_SRCS})
-
-IF(NOT WIN32)
-    IF(CMAKE_COMPILER_IS_GNUCXX)
-        SET_TARGET_PROPERTIES(bc6h PROPERTIES COMPILE_FLAGS -fPIC)
-    ENDIF(CMAKE_COMPILER_IS_GNUCXX)
-ENDIF(NOT WIN32)
+find_package(Properties REQUIRED)

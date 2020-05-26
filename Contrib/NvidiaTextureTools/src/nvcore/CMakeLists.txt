@@ -1,6 +1,15 @@
-PROJECT(nvcore)
+# tacent
+cmake_minimum_required(VERSION 3.15.0)
+project(nvcore VERSION 0.1.0)
 
-SET(CORE_SRCS
+include_directories(
+    ..
+    ../../project/vs
+    ../../src
+    ../../extern/poshlib
+)
+
+list (APPEND src
     nvcore.h
     Array.h
     Debug.h Debug.cpp
@@ -18,32 +27,7 @@ SET(CORE_SRCS
     StdStream.h
     TextWriter.h TextWriter.cpp
     Timer.h Timer.cpp
-    Utils.h)
+    Utils.h
+)
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-
-# targets
-ADD_DEFINITIONS(-DNVCORE_EXPORTS)
-
-IF(UNIX)
-    SET(LIBS ${LIBS} ${CMAKE_DL_LIBS})
-ENDIF(UNIX)
-
-IF(NVCORE_SHARED)
-    ADD_DEFINITIONS(-DNVCORE_SHARED=1)
-    ADD_LIBRARY(nvcore SHARED ${CORE_SRCS})
-ELSE(NVCORE_SHARED)
-    ADD_LIBRARY(nvcore ${CORE_SRCS})
-ENDIF(NVCORE_SHARED)
-
-TARGET_LINK_LIBRARIES(nvcore ${LIBS})
-
-# On NetBSD backtrace() is provided by libexecinfo, not libc.
-if (CMAKE_SYSTEM_NAME MATCHES "NetBSD")
-     TARGET_LINK_LIBRARIES(nvcore execinfo)
-endif()
-
-INSTALL(TARGETS nvcore
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib/static)
+find_package(Properties REQUIRED)

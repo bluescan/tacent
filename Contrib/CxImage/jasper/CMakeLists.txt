@@ -1,0 +1,96 @@
+# tacent
+project(jasper VERSION 0.1.0)
+
+include_directories(
+    include
+)
+
+list (APPEND src
+    base/jas_cm.c
+    base/jas_debug.c
+    base/jas_getopt.c
+    base/jas_icc.c
+    base/jas_iccdata.c
+    base/jas_image.c
+    base/jas_init.c
+    base/jas_malloc.c
+    base/jas_seq.c
+    base/jas_stream.c
+    base/jas_string.c
+    base/jas_tvp.c
+    base/jas_version.c
+    bmp/bmp_cod.c
+    bmp/bmp_dec.c
+    bmp/bmp_enc.c
+    jp2/jp2_cod.c
+    jp2/jp2_dec.c
+    jp2/jp2_enc.c
+    jpc/jpc_bs.c
+    jpc/jpc_cs.c
+    jpc/jpc_dec.c
+    jpc/jpc_enc.c
+    jpc/jpc_math.c
+    jpc/jpc_mct.c
+    jpc/jpc_mqcod.c
+    jpc/jpc_mqdec.c
+    jpc/jpc_mqenc.c
+    jpc/jpc_qmfb.c
+    jpc/jpc_t1cod.c
+    jpc/jpc_t1dec.c
+    jpc/jpc_t1enc.c
+    jpc/jpc_t2cod.c
+    jpc/jpc_t2dec.c
+    jpc/jpc_t2enc.c
+    jpc/jpc_tagtree.c
+    jpc/jpc_tsfb.c
+    jpc/jpc_util.c
+    jpg/jpg_dummy.c
+    jpg/jpg_val.c
+    mif/mif_cod.c
+    pgx/pgx_cod.c
+    pgx/pgx_dec.c
+    pgx/pgx_enc.c
+    pnm/pnm_cod.c
+    pnm/pnm_dec.c
+    pnm/pnm_enc.c
+    ras/ras_cod.c
+    ras/ras_dec.c
+    ras/ras_enc.c
+    bmp/bmp_cod.h
+    include/jasper/jas_cm.h
+    include/jasper/jas_icc.h
+    include/jasper/jas_image.h
+    jp2/jp2_cod.h
+    jp2/jp2_dec.h
+    jpc/jpc_bs.h
+    jpc/jpc_cod.h
+    jpc/jpc_cs.h
+    jpc/jpc_dec.h
+    jpc/jpc_enc.h
+    jpc/jpc_fix.h
+    jpc/jpc_flt.h
+    jpc/jpc_math.h
+    jpc/jpc_mct.h
+    jpc/jpc_mqcod.h
+    jpc/jpc_mqdec.h
+    jpc/jpc_mqenc.h
+    jpc/jpc_qmfb.h
+    jpc/jpc_t1cod.h
+    jpc/jpc_t1dec.h
+    jpc/jpc_t1enc.h
+    jpc/jpc_t2cod.h
+    jpc/jpc_t2dec.h
+    jpc/jpc_t2enc.h
+    jpc/jpc_tagtree.h
+    jpc/jpc_tsfb.h
+    jpc/jpc_util.h
+    jpg/jpg_cod.h
+    mif/mif_cod.h
+    pgx/pgx_cod.h
+    pnm/pnm_cod.h
+    ras/ras_cod.h
+)
+
+add_definitions(-DEXCLUDE_JPG_SUPPORT)
+
+find_package(Properties REQUIRED)

@@ -1,28 +1,28 @@
-PROJECT(nvthread)
+# tacent
+project(nvthread VERSION 0.1.0)
 
-SET(THREAD_SRCS
-	nvthread.h nvthread.cpp
-	Atomic.h
-	Event.h Event.cpp
-	Mutex.h Mutex.cpp
-	ParallelFor.h ParallelFor.cpp
-	Thread.h Thread.cpp
-	ThreadPool.h ThreadPool.cpp)
+include_directories(
+    ..
+    ../../project/vs
+    ../../src
+    ../../extern/poshlib
+    ../../extern/stb
+)
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+list (APPEND src
+    Atomic.h
+    Event.cpp
+    Event.h
+    Mutex.cpp
+    Mutex.h
+    nvthread.cpp
+    nvthread.h
+    ParallelFor.cpp
+    ParallelFor.h
+    Thread.cpp
+    Thread.h
+    ThreadPool.cpp
+    ThreadPool.h
+)
 
-# targets
-ADD_DEFINITIONS(-DNVTHREAD_EXPORTS)
-
-IF(NVTHREAD_SHARED)
-	ADD_LIBRARY(nvthread SHARED ${THREAD_SRCS})
-ELSE(NVTHREAD_SHARED)
-	ADD_LIBRARY(nvthread ${THREAD_SRCS})
-ENDIF(NVTHREAD_SHARED)
-
-TARGET_LINK_LIBRARIES(nvthread ${LIBS} nvcore)
-
-INSTALL(TARGETS nvthread
-	RUNTIME DESTINATION bin
-	LIBRARY DESTINATION lib
-	ARCHIVE DESTINATION lib/static)
+find_package(Properties REQUIRED)

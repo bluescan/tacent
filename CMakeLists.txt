@@ -8,20 +8,15 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_LIST_DIR}/CMakeModul
 # Setup tacent build configurations before specifying the project.
 find_package("SetupTacentConfigurations")
 
-# Use MultiThreaded libraries
+# Use MultiThreaded libraries.
 #set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
-# tacent is the top level project
+# Tacent is the top level project.
 project(tacent VERSION ${TacentVersion} LANGUAGES CXX)
 
-# Main sub-projects, consisting of many other projects and sub-projects
+# Sub-projects.
 #add_subdirectory(Contrib)
-add_subdirectory(Modules/Foundation)
-add_subdirectory(Modules/Math)
-add_subdirectory(Modules/System)
-#add_subdirectory(Modules/Image)
-message(STATUS "-- Tacent CMAKE_SYSTEM_NAME ${CMAKE_SYSTEM_NAME}")
-if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
-	add_subdirectory(Modules/Pipeline)
-	add_subdirectory(Modules/Scene)
-endif()
+add_subdirectory(Modules)
+
+# The UnitTests executable, the only non-library
+#add_subdirectory(UnitTests)

@@ -1,61 +1,73 @@
-PROJECT(nvtt)
+# tacent
+project(nvtt VERSION 0.1.0)
 
-ADD_SUBDIRECTORY(squish)
+add_subdirectory(squish)
 
-SET(NVTT_SRCS
-    nvtt.h nvtt.cpp
-    nvtt_wrapper.h nvtt_wrapper.cpp
-    ClusterFit.h ClusterFit.cpp
+include_directories(
+    ..
+    ../../project/vs
+    ../../src
+    ../../extern/poshlib
+)
+
+list (APPEND src
+    BlockCompressor.cpp
+    ClusterFit.cpp
+    CompressionOptions.cpp
+    CompressorDX10.cpp
+    CompressorDX11.cpp
+    CompressorDX9.cpp
+    CompressorDXT1.cpp
+    CompressorDXT5_RGBM.cpp
+    CompressorRGB.cpp
+    Context.cpp
+    CubeSurface.cpp
+    cuda/CudaCompressorDXT.cpp
+    cuda/CudaUtils.cpp
+    InputOptions.cpp
+    nvtt_wrapper.cpp
+    nvtt.cpp
+    OptimalCompressDXT.cpp
+    OutputOptions.cpp
+    QuickCompressDXT.cpp
+    SingleColorLookup.cpp
+    Surface.cpp
+    TaskDispatcher.cpp
+    BlockCompressor.h
+    ClusterFit.h
+    CompressionOptions.h
     Compressor.h
-    BlockCompressor.h BlockCompressor.cpp
-    CompressorDX9.h CompressorDX9.cpp
-    CompressorDX10.h CompressorDX10.cpp
-    CompressorDX11.h CompressorDX11.cpp
-    CompressorDXT1.h CompressorDXT1.cpp
-    CompressorDXT5_RGBM.h CompressorDXT5_RGBM.cpp
-    CompressorRGB.h CompressorRGB.cpp
-    Context.h Context.cpp
-    QuickCompressDXT.h QuickCompressDXT.cpp
-    OptimalCompressDXT.h OptimalCompressDXT.cpp
-    SingleColorLookup.h SingleColorLookup.cpp
-    CompressionOptions.h CompressionOptions.cpp
-    InputOptions.h InputOptions.cpp
-    OutputOptions.h OutputOptions.cpp
-    TaskDispatcher.h #TaskDispatcher.cpp
-    Surface.h Surface.cpp
-    CubeSurface.h CubeSurface.cpp
-    cuda/CudaUtils.h cuda/CudaUtils.cpp
+    CompressorDX10.h
+    CompressorDX11.h
+    CompressorDX9.h
+    CompressorDXT1.h
+    CompressorDXT5_RGBM.h
+    CompressorRGB.h
+    Context.h
+    CubeSurface.h
+    cuda/CudaCompressorDXT.h
     cuda/CudaMath.h
-    cuda/BitmapTable.h
-    cuda/CudaCompressorDXT.h cuda/CudaCompressorDXT.cpp)
+    cuda/CudaUtils.h
+    InputOptions.h
+    nvtt_wrapper.h
+    nvtt.h
+    OptimalCompressDXT.h
+    OutputOptions.h
+    QuickCompressDXT.h
+    SingleColorLookup.h
+    Surface.h
+    TaskDispatcher.h
+)
 
-IF (CUDA_FOUND)
-    ADD_DEFINITIONS(-DHAVE_CUDA)
-    CUDA_COMPILE(CUDA_SRCS cuda/CompressKernel.cu)
-    SET(NVTT_SRCS ${NVTT_SRCS} ${CUDA_SRCS})
-    SET(LIBS ${LIBS} ${CUDA_LIBRARIES})
-    INCLUDE_DIRECTORIES(${CUDA_INCLUDE_DIRS})
-ENDIF (CUDA_FOUND)
+# SQW verify these defines
+add_definitions(-D_WINDOWS)
+# add_definitions(-D_USRDLL)
+add_definitions(-DNVTT_EXPORTS)
+add_definitions(-DNVTT_SHARED)
+# add_definitions(-DHAVE_CUDA)
+add_definitions(-D__SSE2__)
+add_definitions(-D__SSE__)
+add_definitions(-D__MMX__)
+add_definitions(-DNV_NO_ASSERT)
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-
-ADD_DEFINITIONS(-DNVTT_EXPORTS)
-
-IF(NVTT_SHARED)	
-    ADD_LIBRARY(nvtt SHARED ${NVTT_SRCS})
-ELSE(NVTT_SHARED)
-    ADD_LIBRARY(nvtt ${NVTT_SRCS})
-ENDIF(NVTT_SHARED)
-
-TARGET_LINK_LIBRARIES(nvtt ${LIBS} nvcore nvimage nvthread squish bc6h bc7 nvmath)
-
-INSTALL(TARGETS nvtt 
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib/static)
-
-INSTALL(FILES nvtt.h DESTINATION include/nvtt)
-
-
-ADD_SUBDIRECTORY(tools)
-ADD_SUBDIRECTORY(tests)
+find_package(Properties REQUIRED)
