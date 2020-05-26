@@ -11,27 +11,27 @@ project(System VERSION ${TacentVersion} LANGUAGES CXX)
 # called src. We should probably make the module just expose some common functions so the structure of this
 # CMakeLists looks a little more familiar.
 list (APPEND src
-    Src/tChunk.cpp
-    Src/tCommand.cpp
-    Src/tFile.cpp
-    Src/tMachine.cpp
-    Src/tPrint.cpp
-    Src/tRegex.cpp
-    Src/tScript.cpp
-    Src/tTask.cpp
-    Src/tThrow.cpp
-    Src/tTime.cpp
-    Inc/System/tChunk.h
-    Inc/System/tCommand.h
-    Inc/System/tFile.h
-    Inc/System/tMachine.h
-    Inc/System/tPrint.h
-    Inc/System/tRegex.h
-    Inc/System/tScript.h
-    Inc/System/tStream.h
-    Inc/System/tTask.h
-    Inc/System/tThrow.h
-    Inc/System/tTime.h
+	Src/tChunk.cpp
+	Src/tCommand.cpp
+	Src/tFile.cpp
+	Src/tMachine.cpp
+	Src/tPrint.cpp
+	Src/tRegex.cpp
+	Src/tScript.cpp
+	Src/tTask.cpp
+	Src/tThrow.cpp
+	Src/tTime.cpp
+	Inc/System/tChunk.h
+	Inc/System/tCommand.h
+	Inc/System/tFile.h
+	Inc/System/tMachine.h
+	Inc/System/tPrint.h
+	Inc/System/tRegex.h
+	Inc/System/tScript.h
+	Inc/System/tStream.h
+	Inc/System/tTask.h
+	Inc/System/tThrow.h
+	Inc/System/tTime.h
 )
 
 # Use a SetupTacentProjectProperties common file to call add_library with common build characteristics.

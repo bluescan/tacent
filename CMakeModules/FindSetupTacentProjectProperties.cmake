@@ -27,9 +27,9 @@ target_compile_definitions(${PROJECT_NAME}
 
 # Make adjustment based on build type
 if(CMAKE_BUILD_TYPE MATCHES Debug)
-    if(NOT CMAKE_DEBUG_POSTFIX)
-        set(CMAKE_DEBUG_POSTFIX "d")
-    endif()
+	if(NOT CMAKE_DEBUG_POSTFIX)
+		set(CMAKE_DEBUG_POSTFIX "d")
+	endif()
 endif()
 
 # Set compiler option flags based on specific compiler and configuration.
@@ -37,7 +37,7 @@ target_compile_options(${PROJECT_NAME}
 	PRIVATE
 		$<$<CXX_COMPILER_ID:MSVC>:/W2 /GS /Gy /Zc:wchar_t /Gm- /Zc:inline /fp:precise /WX- /Zc:forScope /Gd /FC>
 		$<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O0>
-		$<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/O0>
+		$<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/Od>
 		$<$<AND:$<CONFIG:Release>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O2>
 		$<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/O2>
 )
@@ -56,9 +56,9 @@ message(STATUS "Tacent -- TACENT_INSTALL_DIR: ${TACENT_INSTALL_DIR}")
 
 install(
 	TARGETS ${PROJECT_NAME}
-    EXPORT ${PROJECT_NAME}-targets
-    LIBRARY DESTINATION ${TACENT_INSTALL_DIR}
-    ARCHIVE DESTINATION ${TACENT_INSTALL_DIR}
+	EXPORT ${PROJECT_NAME}-targets
+	LIBRARY DESTINATION ${TACENT_INSTALL_DIR}
+	ARCHIVE DESTINATION ${TACENT_INSTALL_DIR}
 )
 
 install(DIRECTORY Inc/ DESTINATION "${TACENT_INSTALL_DIR}/Inc")

@@ -11,32 +11,32 @@ project(Scene VERSION ${TacentVersion} LANGUAGES CXX)
 # called src. We should probably make the module just expose some common functions so the structure of this
 # CMakeLists looks a little more familiar.
 list (APPEND src
-    Src/tAttribute.cpp
-    Src/tCamera.cpp
-    Src/tInstance.cpp
-    Src/tLight.cpp
-    Src/tLodGroup.cpp
-    Src/tMaterial.cpp
-    Src/tMesh.cpp
-    Src/tObject.cpp
-    Src/tPath.cpp
-    Src/tPolyModel.cpp
-    Src/tSelection.cpp
-    Src/tSkeleton.cpp
-    Src/tWorld.cpp
-    Inc/Scene/tAttribute.h
-    Inc/Scene/tCamera.h
-    Inc/Scene/tInstance.h
-    Inc/Scene/tLight.h
-    Inc/Scene/tLodGroup.h
-    Inc/Scene/tMaterial.h
-    Inc/Scene/tMesh.h
-    Inc/Scene/tObject.h
-    Inc/Scene/tPath.h
-    Inc/Scene/tPolyModel.h
-    Inc/Scene/tSelection.h
-    Inc/Scene/tSkeleton.h
-    Inc/Scene/tWorld.h
+	Src/tAttribute.cpp
+	Src/tCamera.cpp
+	Src/tInstance.cpp
+	Src/tLight.cpp
+	Src/tLodGroup.cpp
+	Src/tMaterial.cpp
+	Src/tMesh.cpp
+	Src/tObject.cpp
+	Src/tPath.cpp
+	Src/tPolyModel.cpp
+	Src/tSelection.cpp
+	Src/tSkeleton.cpp
+	Src/tWorld.cpp
+	Inc/Scene/tAttribute.h
+	Inc/Scene/tCamera.h
+	Inc/Scene/tInstance.h
+	Inc/Scene/tLight.h
+	Inc/Scene/tLodGroup.h
+	Inc/Scene/tMaterial.h
+	Inc/Scene/tMesh.h
+	Inc/Scene/tObject.h
+	Inc/Scene/tPath.h
+	Inc/Scene/tPolyModel.h
+	Inc/Scene/tSelection.h
+	Inc/Scene/tSkeleton.h
+	Inc/Scene/tWorld.h
 )
 
 # Use a SetupTacentProjectProperties common file to call add_library with common build characteristics.

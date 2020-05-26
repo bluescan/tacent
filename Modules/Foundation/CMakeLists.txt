@@ -12,30 +12,30 @@ project(Foundation VERSION ${TacentVersion} LANGUAGES CXX)
 # CMakeLists looks a little more familiar.
 list(
 	APPEND src
-    Src/tAssert.cpp
-    Src/tBitArray.cpp
-    Src/tMemory.cpp
-    Src/tPlatform.cpp
-    Src/tPool.cpp
-    Src/tStandard.cpp
-    Src/tString.cpp
-    Src/tUnits.cpp
-    Inc/Foundation/tArray.h
-    Inc/Foundation/tAssert.h
-    Inc/Foundation/tBitArray.h
-    Inc/Foundation/tBitField.h
-    Inc/Foundation/tFixInt.h
-    Inc/Foundation/tList.h
-    Inc/Foundation/tMemory.h
-    Inc/Foundation/tPlatform.h
-    Inc/Foundation/tPool.h
-    Inc/Foundation/tPriorityQueue.h
-    Inc/Foundation/tRingBuffer.h
-    Inc/Foundation/tSort.h
-    Inc/Foundation/tStandard.h
-    Inc/Foundation/tString.h
-    Inc/Foundation/tUnits.h
-    Inc/Foundation/tVersion.h
+	Src/tAssert.cpp
+	Src/tBitArray.cpp
+	Src/tMemory.cpp
+	Src/tPlatform.cpp
+	Src/tPool.cpp
+	Src/tStandard.cpp
+	Src/tString.cpp
+	Src/tUnits.cpp
+	Inc/Foundation/tArray.h
+	Inc/Foundation/tAssert.h
+	Inc/Foundation/tBitArray.h
+	Inc/Foundation/tBitField.h
+	Inc/Foundation/tFixInt.h
+	Inc/Foundation/tList.h
+	Inc/Foundation/tMemory.h
+	Inc/Foundation/tPlatform.h
+	Inc/Foundation/tPool.h
+	Inc/Foundation/tPriorityQueue.h
+	Inc/Foundation/tRingBuffer.h
+	Inc/Foundation/tSort.h
+	Inc/Foundation/tStandard.h
+	Inc/Foundation/tString.h
+	Inc/Foundation/tUnits.h
+	Inc/Foundation/tVersion.h
 )
 
 # Use a SetupTacentProjectProperties common file to call add_library with common build characteristics.
