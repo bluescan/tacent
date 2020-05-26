@@ -10,6 +10,7 @@ build*/
 # Specifc filenames.
 compile_flags.txt
 compile_commands.json
+.vscode/settings.json
 
 # Specific filetypes to ignore everywhere.
 *.log
