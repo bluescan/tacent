@@ -1,21 +1,18 @@
-set(TacentVersion "0.8.0")
-set(TacentMinCMake "3.16.0")
-
-cmake_minimum_required(VERSION ${TacentMinCMake})
-set(CMAKE_BUILD_TYPE_INIT Release)
+cmake_minimum_required(VERSION "3.16.0")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_LIST_DIR}/CMakeModules")
 
-# Setup tacent build configurations before specifying the project.
-find_package("SetupTacentConfigurations")
+# Set default build-type (AKA the configuration in other IDEs).
+set(CMAKE_BUILD_TYPE_INIT Release)
 
-# Use MultiThreaded libraries.
-#set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+# Setup tacent build configurations before specifying the project.
+find_package("TacentConfigurations")
 
 # Tacent is the top level project.
-project(tacent VERSION ${TacentVersion} LANGUAGES CXX)
+set(TACENT_VERSION "0.8.0")
+project(Tacent VERSION ${TACENT_VERSION} LANGUAGES CXX)
 
 # Sub-projects.
-add_subdirectory(Contrib)
+#add_subdirectory(Contrib)
 add_subdirectory(Modules)
 
 # The UnitTests executable, the only non-library

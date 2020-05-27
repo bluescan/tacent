@@ -1,4 +1,4 @@
-project(modules VERSION ${TacentVersion})
+project(Modules VERSION ${TACENT_VERSION})
 
 add_subdirectory(Foundation)
 add_subdirectory(Math)

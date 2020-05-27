@@ -1,14 +1,8 @@
-# Setup configurations before specifying the project.
-find_package("SetupTacentConfigurations")
+find_package("TacentProjectUtilities" REQUIRED)
+project(System VERSION ${TACENT_VERSION} LANGUAGES CXX)
 
-# Give the project a name and specify explicitly the launguages used.
-project(System VERSION ${TacentVersion} LANGUAGES CXX)
-
-# Here are the source files. No globbing. We include the headers here so that some generators can include
-# them properly, but they are not required. Currently SetupTacentProjectProperties requires a variable
-# called src. We should probably make the module just expose some common functions so the structure of this
-# CMakeLists looks a little more familiar.
-list (APPEND src
+add_library(
+	${PROJECT_NAME}
 	Src/tChunk.cpp
 	Src/tCommand.cpp
 	Src/tFile.cpp
@@ -32,13 +26,16 @@ list (APPEND src
 	Inc/System/tTime.h
 )
 
-# Use a SetupTacentProjectProperties common file to call add_library with common build characteristics.
-find_package("SetupTacentProjectProperties" REQUIRED)
+tacent_target_include_directories(${PROJECT_NAME})
+tacent_target_compile_definitions(${PROJECT_NAME})
+tacent_target_compile_options(${PROJECT_NAME})
+tacent_target_compile_features(${PROJECT_NAME})
 
-# Public means dependent interfaces are propagated. Private means they are not. Here we are saying the
-# Tacent System module depends-on/requires the Foundation and Math module.
 # Note that since Math happens to also depend on Foundation, we could have left Foundation out and it would work.
-target_link_libraries(System
+target_link_libraries(
+	System
 	PUBLIC
 		Foundation Math
 )
+
+tacent_install(${PROJECT_NAME})
