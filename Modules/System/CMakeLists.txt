@@ -33,7 +33,7 @@ tacent_target_compile_features(${PROJECT_NAME})
 
 # Note that since Math happens to also depend on Foundation, we could have left Foundation out and it would work.
 target_link_libraries(
-	System
+	${PROJECT_NAME}
 	PUBLIC
 		Foundation Math
 )

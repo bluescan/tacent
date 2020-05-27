@@ -18,7 +18,7 @@ tacent_target_compile_features(${PROJECT_NAME})
 
 # Public means dependent interfaces are propagated. Private means they are not.
 target_link_libraries(
-	Pipeline
+	${PROJECT_NAME}
 	PUBLIC
 		Foundation Math System
 )
