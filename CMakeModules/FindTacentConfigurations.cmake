@@ -2,9 +2,11 @@
 
 # We want control of the available configurations. Here, before project, we allow only Debug and Release.
 if (NOT SETUP_CONFIGURATIONS_COMPLETE)
+
 	# No reason to set CMAKE_CONFIGURATION_TYPES if it's not a multiconfig generator
 	# Also no reason mess with CMAKE_BUILD_TYPE if it's a multiconfig generator.
 	get_property(isMultiConfig GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+
 	if (isMultiConfig)
 		set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "" FORCE) 
 	else()
@@ -18,16 +20,6 @@ if (NOT SETUP_CONFIGURATIONS_COMPLETE)
 		# Set the valid options for cmake-gui drop-down list. CMake tools for vscode does not (but should) respect this.
 		set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release")	
 	endif()
-
-	# Make adjustment based on build type
-	if (CMAKE_BUILD_TYPE MATCHES Debug)
-		if (NOT CMAKE_DEBUG_POSTFIX)
-			set(CMAKE_DEBUG_POSTFIX "d")
-		endif()
-	endif()
-
-	# Use MultiThreaded libraries.
-	set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 	set(SETUP_CONFIGURATIONS_COMPLETE TRUE)
 endif()

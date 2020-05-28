@@ -35,6 +35,7 @@ tacent_target_include_directories(${PROJECT_NAME})
 tacent_target_compile_definitions(${PROJECT_NAME})
 tacent_target_compile_options(${PROJECT_NAME})
 tacent_target_compile_features(${PROJECT_NAME})
+tacent_set_target_properties(${PROJECT_NAME})
 
 # Note that since Math happens to also depend on Foundation, we could have left Foundation out and it would work.
 target_link_libraries(

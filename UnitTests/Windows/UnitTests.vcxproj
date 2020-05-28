@@ -106,7 +106,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Contrib\CxImage\CxImage\cximage.vcxproj">
+    <ProjectReference Include="..\..\Contrib\CxImage\ximage\ximage.vcxproj">
       <Project>{c739151f-5384-41df-a1a6-f089e2c1ad56}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\Contrib\CxImage\dcr\libdcr.vcxproj">

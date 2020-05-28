@@ -34,7 +34,7 @@
 #include <Foundation/tString.h>
 #include <System/tFile.h>
 #include "Image/tImageICO.h"
-#include <CxImage/ximage.h>
+#include <ximage/ximage.h>
 using namespace tSystem;
 namespace tImage
 {

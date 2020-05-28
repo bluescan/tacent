@@ -12,7 +12,7 @@ set(TACENT_VERSION "0.8.0")
 project(Tacent VERSION ${TACENT_VERSION} LANGUAGES CXX)
 
 # Sub-projects.
-#add_subdirectory(Contrib)
+add_subdirectory(Contrib)
 add_subdirectory(Modules)
 
 # The UnitTests executable, the only non-library

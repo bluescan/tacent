@@ -21,7 +21,7 @@
 #include "Image/tImageTGA.h"
 #include "Image/tImageHDR.h"
 #include "Image/tImageEXR.h"
-#include <CxImage/ximage.h>
+#include <ximage/ximage.h>
 using namespace tImage;
 using namespace tSystem;
 

@@ -29,6 +29,7 @@ tacent_target_include_directories(${PROJECT_NAME})
 tacent_target_compile_definitions(${PROJECT_NAME})
 tacent_target_compile_options(${PROJECT_NAME})
 tacent_target_compile_features(${PROJECT_NAME})
+tacent_set_target_properties(${PROJECT_NAME})
 
 # Public means dependent interfaces are propagated. Private means they are not. Here we are saying the
 # Tacent Math module depends-on/requires the Foundation module.

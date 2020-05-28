@@ -47,10 +47,20 @@ function(tacent_target_compile_features PROJNAME)
 	target_compile_features(${PROJNAME} PRIVATE cxx_std_17)
 endfunction(tacent_target_compile_features)
 
+function(tacent_set_target_properties PROJNAME)
+	# This is how you set things like CMAKE_DEBUG_POSTFIX for a target.
+	set_target_properties(
+		${PROJNAME}
+		PROPERTIES
+		DEBUG_POSTFIX "d"												# Add a 'd' before the extension for debug builds.
+		MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"	# Use multithreaded or multithreaded-debug runtime on windows.
+		# More prop-value pairs here.
+	)
+endfunction(tacent_set_target_properties)
 
 function(tacent_install PROJNAME)
-	set(TACENT_INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/Out")
-	#message(STATUS "Tacent -- TACENT_INSTALL_DIR: ${TACENT_INSTALL_DIR}")
+	set(TACENT_INSTALL_DIR "${CMAKE_BINARY_DIR}/Install")
+	message(STATUS "Tacent -- ${PROJECT_NAME} being installed to ${TACENT_INSTALL_DIR}")
 
 	install(
 		TARGETS ${PROJNAME}
