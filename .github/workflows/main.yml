@@ -33,9 +33,9 @@ jobs:
     #     echo test, and deploy your project.
       
     # Use CMake and Ninja
-    - name: Build CMake Ninja
     - uses: actions/checkout@master
     - uses: seanmiddleditch/gha-setup-ninja@master
+    - name: Build CMake Ninja
       run: |
         # cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
         # .\MSBuild.exe $Env:GITHUB_WORKSPACE\UnitTests\Windows\UnitTests.sln
