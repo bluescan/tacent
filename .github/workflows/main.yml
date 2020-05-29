@@ -32,8 +32,10 @@ jobs:
     #     echo Add other actions to build,
     #     echo test, and deploy your project.
       
-    # Use msbuild to build the VS solution
-    - name: Build Solution
+    # Use CMake and Ninja
+    - name: Build CMake Ninja
+    - uses: actions/checkout@master
+    - uses: seanmiddleditch/gha-setup-ninja@master
       run: |
         # cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
         # .\MSBuild.exe $Env:GITHUB_WORKSPACE\UnitTests\Windows\UnitTests.sln
@@ -41,7 +43,7 @@ jobs:
         echo '*** Configuring CMake ***'
         mkdir buildninja
         cd buildninja
-        cmake .. -DCMAKE_BUILD_TYPE=Release -GNinja
+        cmake .. -DCMAKE_BUILD_TYPE=Release -G Ninja
         echo '*** Ninja Build ***'
         ninja install
         # & 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe' $Env:GITHUB_WORKSPACE\UnitTests\Windows\UnitTests.sln
