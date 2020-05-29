@@ -62,11 +62,11 @@ jobs:
     - name: Build Using Make
       run: |
         echo '*** Configuring CMake ***'
-#        mkdir buildninja
-#        cd buildninja
-#        cmake .. -DCMAKE_BUILD_TYPE=Release -GNinja
+        #mkdir buildninja
+        #cd buildninja
+        #cmake .. -DCMAKE_BUILD_TYPE=Release -GNinja
         echo '*** Ninja Build ***'
-#        ninja install
+        #ninja install
         echo '*** Done Building ***'
 #
 #        echo 'Build Using Make'
