@@ -32,11 +32,10 @@ jobs:
     #     echo Add other actions to build,
     #     echo test, and deploy your project.
       
-    # Use CMake and Ninja
+    # Use CMake and NMake
     - uses: actions/checkout@master
-    - uses: seanmiddleditch/gha-setup-ninja@master
     - uses: ilammy/msvc-dev-cmd@v1.2.0
-    - name: Build CMake NMakeMakefiles
+    - name: Build using CMake NMake
       run: |
         # cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
         # .\MSBuild.exe $Env:GITHUB_WORKSPACE\UnitTests\Windows\UnitTests.sln
@@ -62,14 +61,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build Using Make
+    - uses: seanmiddleditch/gha-setup-ninja@master
+    - name: Build Using CMake Ninja
       run: |
         echo '*** Configuring CMake ***'
-        #mkdir buildninja
-        #cd buildninja
-        #cmake .. -DCMAKE_BUILD_TYPE=Release -GNinja
+        mkdir buildninja
+        cd buildninja
+        cmake .. -DCMAKE_BUILD_TYPE=Release -GNinja
         echo '*** Ninja Build ***'
-        #ninja install
+        ninja install
         echo '*** Done Building ***'
 #
 #        echo 'Build Using Make'
