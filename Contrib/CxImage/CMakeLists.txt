@@ -1,11 +1,462 @@
-project(CxImage VERSION ${TACENT_VERSION})
+find_package("TacentProjectUtilities" REQUIRED)
+project(CxImage VERSION ${TACENT_VERSION} LANGUAGES C CXX)
 
-#add_subdirectory(ximage)
-#add_subdirectory(dcr)
-#add_subdirectory(jasper)
-#add_subdirectory(jpeg)
-#add_subdirectory(mng)
-#add_subdirectory(png)
-#add_subdirectory(psd)
-#add_subdirectory(tiff)
-#add_subdirectory(zlib)
+
+# TODO Still need to modernize the stuff below to specify deps (link_libraries) and export 'the modern way'.
+# TODO Make the SetupTacentProjectProperties have a functional interface so we can customize the headers.
+#include_directories(
+#	../jasper/include
+#	../jpeg
+#	../png
+#	../tiff
+#	../zlib
+#)
+
+add_library(
+	${PROJECT_NAME}
+	Src/tif_xfile.cpp
+	Src/ximabmp.cpp
+	Src/ximadsp.cpp
+	Src/ximaenc.cpp
+	Src/ximaexif.cpp
+	Src/xImage.cpp
+	Src/ximagif.cpp
+	Src/ximahist.cpp
+	Src/ximaico.cpp
+	Src/ximainfo.cpp
+	Src/ximaint.cpp
+	Src/ximajas.cpp
+	Src/ximajbg.cpp
+	Src/ximajpg.cpp
+	Src/ximalpha.cpp
+	Src/ximalyr.cpp
+	Src/ximamng.cpp
+	Src/ximapal.cpp
+	Src/ximapcx.cpp
+	Src/ximapng.cpp
+	Src/ximapsd.cpp
+	Src/ximaraw.cpp
+	Src/ximasel.cpp
+	Src/ximaska.cpp
+	Src/ximatga.cpp
+	Src/ximath.cpp
+	Src/ximatif.cpp
+	Src/ximatran.cpp
+	Src/ximawbmp.cpp
+	Src/ximawmf.cpp
+	Src/ximawnd.cpp
+	Src/xmemfile.cpp
+	Inc/xfile.h
+	Inc/ximabmp.h
+	Inc/ximacfg.h
+	Inc/ximadef.h
+	Inc/ximage.h
+	Inc/ximagif.h
+	Inc/ximaico.h
+	Inc/ximaiter.h
+	Inc/ximajas.h
+	Inc/ximajbg.h
+	Inc/ximajpg.h
+	Inc/ximamng.h
+	Inc/ximapcx.h
+	Inc/ximapng.h
+	Inc/ximapsd.h
+	Inc/ximaraw.h
+	Inc/ximaska.h
+	Inc/ximatga.h
+	Inc/ximath.h
+	Inc/ximatif.h
+	Inc/ximawbmp.h
+	Inc/ximawmf.h
+	Inc/xiofile.h
+	Inc/xmemfile.h
+
+	# DCR
+	Src/dcr/libdcr.c
+	Src/dcr/libdcr.h
+
+	# Jasper
+	Src/jasper/base/jas_cm.c
+	Src/jasper/base/jas_debug.c
+	Src/jasper/base/jas_getopt.c
+	Src/jasper/base/jas_icc.c
+	Src/jasper/base/jas_iccdata.c
+	Src/jasper/base/jas_image.c
+	Src/jasper/base/jas_init.c
+	Src/jasper/base/jas_malloc.c
+	Src/jasper/base/jas_seq.c
+	Src/jasper/base/jas_stream.c
+	Src/jasper/base/jas_string.c
+	Src/jasper/base/jas_tvp.c
+	Src/jasper/base/jas_version.c
+	Src/jasper/bmp/bmp_cod.c
+	Src/jasper/bmp/bmp_dec.c
+	Src/jasper/bmp/bmp_enc.c
+	Src/jasper/jp2/jp2_cod.c
+	Src/jasper/jp2/jp2_dec.c
+	Src/jasper/jp2/jp2_enc.c
+	Src/jasper/jpc/jpc_bs.c
+	Src/jasper/jpc/jpc_cs.c
+	Src/jasper/jpc/jpc_dec.c
+	Src/jasper/jpc/jpc_enc.c
+	Src/jasper/jpc/jpc_math.c
+	Src/jasper/jpc/jpc_mct.c
+	Src/jasper/jpc/jpc_mqcod.c
+	Src/jasper/jpc/jpc_mqdec.c
+	Src/jasper/jpc/jpc_mqenc.c
+	Src/jasper/jpc/jpc_qmfb.c
+	Src/jasper/jpc/jpc_t1cod.c
+	Src/jasper/jpc/jpc_t1dec.c
+	Src/jasper/jpc/jpc_t1enc.c
+	Src/jasper/jpc/jpc_t2cod.c
+	Src/jasper/jpc/jpc_t2dec.c
+	Src/jasper/jpc/jpc_t2enc.c
+	Src/jasper/jpc/jpc_tagtree.c
+	Src/jasper/jpc/jpc_tsfb.c
+	Src/jasper/jpc/jpc_util.c
+	Src/jasper/jpg/jpg_dummy.c
+	Src/jasper/jpg/jpg_val.c
+	Src/jasper/mif/mif_cod.c
+	Src/jasper/pgx/pgx_cod.c
+	Src/jasper/pgx/pgx_dec.c
+	Src/jasper/pgx/pgx_enc.c
+	Src/jasper/pnm/pnm_cod.c
+	Src/jasper/pnm/pnm_dec.c
+	Src/jasper/pnm/pnm_enc.c
+	Src/jasper/ras/ras_cod.c
+	Src/jasper/ras/ras_dec.c
+	Src/jasper/ras/ras_enc.c
+	Src/jasper/bmp/bmp_cod.h
+	Src/jasper/include/jasper/jas_cm.h
+	Src/jasper/include/jasper/jas_icc.h
+	Src/jasper/include/jasper/jas_image.h
+	Src/jasper/jp2/jp2_cod.h
+	Src/jasper/jp2/jp2_dec.h
+	Src/jasper/jpc/jpc_bs.h
+	Src/jasper/jpc/jpc_cod.h
+	Src/jasper/jpc/jpc_cs.h
+	Src/jasper/jpc/jpc_dec.h
+	Src/jasper/jpc/jpc_enc.h
+	Src/jasper/jpc/jpc_fix.h
+	Src/jasper/jpc/jpc_flt.h
+	Src/jasper/jpc/jpc_math.h
+	Src/jasper/jpc/jpc_mct.h
+	Src/jasper/jpc/jpc_mqcod.h
+	Src/jasper/jpc/jpc_mqdec.h
+	Src/jasper/jpc/jpc_mqenc.h
+	Src/jasper/jpc/jpc_qmfb.h
+	Src/jasper/jpc/jpc_t1cod.h
+	Src/jasper/jpc/jpc_t1dec.h
+	Src/jasper/jpc/jpc_t1enc.h
+	Src/jasper/jpc/jpc_t2cod.h
+	Src/jasper/jpc/jpc_t2dec.h
+	Src/jasper/jpc/jpc_t2enc.h
+	Src/jasper/jpc/jpc_tagtree.h
+	Src/jasper/jpc/jpc_tsfb.h
+	Src/jasper/jpc/jpc_util.h
+	Src/jasper/jpg/jpg_cod.h
+	Src/jasper/mif/mif_cod.h
+	Src/jasper/pgx/pgx_cod.h
+	Src/jasper/pnm/pnm_cod.h
+	Src/jasper/ras/ras_cod.h
+
+	# JPeg
+	Src/jpeg/jaricom.c
+	Src/jpeg/Jcapimin.c
+	Src/jpeg/Jcapistd.c
+	Src/jpeg/jcarith.c
+	Src/jpeg/Jccoefct.c
+	Src/jpeg/Jccolor.c
+	Src/jpeg/Jcdctmgr.c
+	Src/jpeg/Jchuff.c
+	Src/jpeg/Jcinit.c
+	Src/jpeg/Jcmainct.c
+	Src/jpeg/Jcmarker.c
+	Src/jpeg/Jcmaster.c
+	Src/jpeg/Jcomapi.c
+	Src/jpeg/Jconfig.h
+	Src/jpeg/Jcparam.c
+	Src/jpeg/Jcprepct.c
+	Src/jpeg/Jcsample.c
+	Src/jpeg/Jctrans.c
+	Src/jpeg/Jdapimin.c
+	Src/jpeg/Jdapistd.c
+	Src/jpeg/jdarith.c
+	Src/jpeg/Jdatadst.c
+	Src/jpeg/Jdatasrc.c
+	Src/jpeg/Jdcoefct.c
+	Src/jpeg/Jdcolor.c
+	Src/jpeg/Jdct.h
+	Src/jpeg/Jddctmgr.c
+	Src/jpeg/Jdhuff.c
+	Src/jpeg/Jdinput.c
+	Src/jpeg/Jdmainct.c
+	Src/jpeg/Jdmarker.c
+	Src/jpeg/Jdmaster.c
+	Src/jpeg/Jdmerge.c
+	Src/jpeg/Jdpostct.c
+	Src/jpeg/Jdsample.c
+	Src/jpeg/Jdtrans.c
+	Src/jpeg/Jerror.c
+	Src/jpeg/Jerror.h
+	Src/jpeg/Jfdctflt.c
+	Src/jpeg/Jfdctfst.c
+	Src/jpeg/Jfdctint.c
+	Src/jpeg/Jidctflt.c
+	Src/jpeg/Jidctfst.c
+	Src/jpeg/Jidctint.c
+	Src/jpeg/Jinclude.h
+	Src/jpeg/Jmemmgr.c
+	Src/jpeg/Jmemnobs.c
+	Src/jpeg/Jmemsys.h
+	Src/jpeg/Jmorecfg.h
+	Src/jpeg/Jpegint.h
+	Src/jpeg/Jpeglib.h
+	Src/jpeg/Jquant1.c
+	Src/jpeg/Jquant2.c
+	Src/jpeg/Jutils.c
+	Src/jpeg/Jversion.h
+
+	# Mng
+	Src/mng/libmng_callback_xs.c
+	Src/mng/libmng_chunk_descr.c
+	Src/mng/libmng_chunk_io.c
+	Src/mng/libmng_chunk_prc.c
+	Src/mng/libmng_chunk_xs.c
+	Src/mng/libmng_cms.c
+	Src/mng/libmng_display.c
+	Src/mng/libmng_dither.c
+	Src/mng/libmng_error.c
+	Src/mng/libmng_filter.c
+	Src/mng/libmng_hlapi.c
+	Src/mng/libmng_jpeg.c
+	Src/mng/libmng_object_prc.c
+	Src/mng/libmng_pixels.c
+	Src/mng/libmng_prop_xs.c
+	Src/mng/libmng_read.c
+	Src/mng/libmng_trace.c
+	Src/mng/libmng_write.c
+	Src/mng/libmng_zlib.c
+	Src/mng/libmng_chunk_descr.h
+	Src/mng/libmng_chunk_io.h
+	Src/mng/libmng_chunk_prc.h
+	Src/mng/libmng_chunks.h
+	Src/mng/libmng_cms.h
+	Src/mng/libmng_conf.h
+	Src/mng/libmng_data.h
+	Src/mng/libmng_display.h
+	Src/mng/libmng_dither.h
+	Src/mng/libmng_error.h
+	Src/mng/libmng_filter.h
+	Src/mng/libmng_jpeg.h
+	Src/mng/libmng_memory.h
+	Src/mng/libmng_object_prc.h
+	Src/mng/libmng_objects.h
+	Src/mng/libmng_pixels.h
+	Src/mng/libmng_read.h
+	Src/mng/libmng_trace.h
+	Src/mng/libmng_types.h
+	Src/mng/libmng_write.h
+	Src/mng/libmng_zlib.h
+	Src/mng/libmng.h
+
+	# Png
+	Src/png/png.c
+	Src/png/pngerror.c
+	Src/png/pngget.c
+	Src/png/pngmem.c
+	Src/png/pngpread.c
+	Src/png/pngread.c
+	Src/png/pngrio.c
+	Src/png/pngrtran.c
+	Src/png/pngrutil.c
+	Src/png/pngset.c
+	Src/png/pngtrans.c
+	Src/png/pngwio.c
+	Src/png/pngwrite.c
+	Src/png/pngwtran.c
+	Src/png/pngwutil.c
+	Src/png/png.h
+	Src/png/pngconf.h
+
+	# Psd
+	Src/psd/adjustment.c
+	Src/psd/bevel_emboss.c
+	Src/psd/bitmap.c
+	Src/psd/blend.c
+	Src/psd/boundary.c
+	Src/psd/brightness_contrast.c
+	Src/psd/channel_image.c
+	Src/psd/channel_mixer.c
+	Src/psd/color_balance.c
+	Src/psd/color_mode.c
+	Src/psd/color_overlay.c
+	Src/psd/color.c
+	Src/psd/curves.c
+	Src/psd/descriptor.c
+	Src/psd/drop_shadow.c
+	Src/psd/effects.c
+	Src/psd/file_header.c
+	Src/psd/fixed.c
+	Src/psd/gaussian_blur.c
+	Src/psd/gradient_blend.c
+	Src/psd/gradient_fill.c
+	Src/psd/gradient_map.c
+	Src/psd/gradient_overlay.c
+	Src/psd/hue_saturation.c
+	Src/psd/image_data.c
+	Src/psd/image_resource.c
+	Src/psd/inner_glow.c
+	Src/psd/inner_shadow.c
+	Src/psd/invert.c
+	Src/psd/layer_mask.c
+	Src/psd/levels.c
+	Src/psd/outer_glow.c
+	Src/psd/path.c
+	Src/psd/pattern_fill.c
+	Src/psd/pattern_overlay.c
+	Src/psd/pattern.c
+	Src/psd/photo_filter.c
+	Src/psd/posterize.c
+	Src/psd/psd_system.c
+	Src/psd/psd_zip.c
+	Src/psd/psd.c
+	Src/psd/rect.c
+	Src/psd/satin.c
+	Src/psd/selective_color.c
+	Src/psd/solid_color.c
+	Src/psd/stream.c
+	Src/psd/stroke.c
+	Src/psd/threshold.c
+	Src/psd/thumbnail.c
+	Src/psd/type_tool.c
+	Src/psd/libpsd.h
+	Src/psd/psd_bitmap.h
+	Src/psd/psd_blend.h
+	Src/psd/psd_color.h
+	Src/psd/psd_config.h
+	Src/psd/psd_descriptor.h
+	Src/psd/psd_fixed.h
+	Src/psd/psd_gradient.h
+	Src/psd/psd_math.h
+	Src/psd/psd_rect.h
+	Src/psd/psd_stream.h
+	Src/psd/psd_system.h
+	Src/psd/psd_types.h
+
+	# Tiff
+	Src/tiff/tif_aux.c
+	Src/tiff/tif_close.c
+	Src/tiff/tif_codec.c
+	Src/tiff/tif_color.c
+	Src/tiff/tif_compress.c
+	Src/tiff/tif_dir.c
+	Src/tiff/tif_dirinfo.c
+	Src/tiff/tif_dirread.c
+	Src/tiff/tif_dirwrite.c
+	Src/tiff/tif_dumpmode.c
+	Src/tiff/tif_error.c
+	Src/tiff/tif_fax3.c
+	Src/tiff/tif_fax3sm.c
+	Src/tiff/tif_flush.c
+	Src/tiff/tif_getimage.c
+	Src/tiff/tif_jpeg.c
+	Src/tiff/tif_luv.c
+	Src/tiff/tif_lzw.c
+	Src/tiff/tif_next.c
+	Src/tiff/tif_ojpeg.c
+	Src/tiff/tif_open.c
+	Src/tiff/tif_packbits.c
+	Src/tiff/tif_pixarlog.c
+	Src/tiff/tif_predict.c
+	Src/tiff/tif_print.c
+	Src/tiff/tif_read.c
+	Src/tiff/tif_strip.c
+	Src/tiff/tif_swab.c
+	Src/tiff/tif_thunder.c
+	Src/tiff/tif_tile.c
+	Src/tiff/tif_version.c
+	Src/tiff/tif_warning.c
+	Src/tiff/tif_write.c
+	Src/tiff/tif_zip.c
+	Src/tiff/t4.h
+	Src/tiff/tif_dir.h
+	Src/tiff/tif_fax3.h
+	Src/tiff/tif_predict.h
+	Src/tiff/tiff.h
+	Src/tiff/tiffconf.h
+	Src/tiff/tiffio.h
+	Src/tiff/tiffiop.h
+	Src/tiff/uvcode.h
+
+	# Zlib
+	Src/zlib/adler32.c
+	Src/zlib/compress.c
+	Src/zlib/crc32.c
+	Src/zlib/crc32.h 
+	Src/zlib/deflate.c
+	Src/zlib/deflate.h 
+	Src/zlib/infback.c
+	Src/zlib/inffast.c
+	Src/zlib/inffast.h 
+	Src/zlib/inffixed.h 
+	Src/zlib/inflate.c
+	Src/zlib/inflate.h 
+	Src/zlib/inftrees.c
+	Src/zlib/inftrees.h 
+	Src/zlib/trees.c
+	Src/zlib/trees.h 
+	Src/zlib/uncompr.c
+	Src/zlib/zconf.h 
+	Src/zlib/zlib.h 
+	Src/zlib/zutil.c
+	Src/zlib/zutil.h 
+)
+
+target_include_directories(
+	"${PROJECT_NAME}"
+	PUBLIC
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Inc>
+		$<INSTALL_INTERFACE:Inc>
+	PRIVATE
+		${CMAKE_CURRENT_SOURCE_DIR}/Inc
+		${CMAKE_CURRENT_SOURCE_DIR}/Src/jasper/include
+		${CMAKE_CURRENT_SOURCE_DIR}/Src/jpg
+		${CMAKE_CURRENT_SOURCE_DIR}/Src/zlib
+)
+
+target_compile_definitions(
+	${PROJECT_NAME}
+	PUBLIC
+		ARCHITECTURE_X64
+		EXCLUDE_JPG_SUPPORT
+		$<$<CONFIG:Debug>:CONFIG_DEBUG>
+		$<$<CONFIG:Release>:CONFIG_RELEASE>
+		$<$<CXX_COMPILER_ID:MSVC>:_CRT_SECURE_NO_DEPRECATE _LIB JAS_WIN_MSVC_BUILD>
+		$<$<PLATFORM_ID:Windows>:PLATFORM_WINDOWS>
+		$<$<PLATFORM_ID:Linux>:PLATFORM_LINUX>
+)
+
+tacent_target_compile_options(${PROJECT_NAME})
+tacent_target_compile_features(${PROJECT_NAME})
+tacent_set_target_properties(${PROJECT_NAME})
+
+set(TACENT_INSTALL_DIR "${CMAKE_BINARY_DIR}/Install")
+install(
+	TARGETS ${PROJECT_NAME}
+	EXPORT ${PROJECT_NAME}-targets
+	LIBRARY DESTINATION ${TACENT_INSTALL_DIR}
+	ARCHIVE DESTINATION ${TACENT_INSTALL_DIR}
+)
+
+install(DIRECTORY Inc/ DESTINATION "${TACENT_INSTALL_DIR}/Inc/CxImage")
+
+install(
+	EXPORT ${PROJECT_NAME}-targets
+	FILE
+		${PROJECT_NAME}Targets.cmake
+	NAMESPACE
+		Tacent::
+	DESTINATION
+		${TACENT_INSTALL_DIR}
+)

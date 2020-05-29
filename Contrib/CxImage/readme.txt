@@ -1,0 +1,1 @@
+This is an altered version of cximage. Look for @tacent in the source code where changes were made.

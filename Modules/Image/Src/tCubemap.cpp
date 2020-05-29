@@ -30,6 +30,7 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
+//#include "Math/tFundamentals.h"
 #include "Image/tCubemap.h"
 using namespace tImage;
 

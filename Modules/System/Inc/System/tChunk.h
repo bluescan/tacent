@@ -58,7 +58,6 @@
 #pragma warning (disable: 4311 4369 4302)
 #endif
 
-
 // Use this to write a tChunk file. Chunk data may be guaranteed to be aligned by various amounts from 4 bytes to
 // 512 bytes in powers of 2 only.
 class tChunkWriter
