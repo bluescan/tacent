@@ -1,17 +1,6 @@
 find_package("TacentProjectUtilities" REQUIRED)
 project(CxImage VERSION ${TACENT_VERSION} LANGUAGES C CXX)
 
-
-# TODO Still need to modernize the stuff below to specify deps (link_libraries) and export 'the modern way'.
-# TODO Make the SetupTacentProjectProperties have a functional interface so we can customize the headers.
-#include_directories(
-#	../jasper/include
-#	../jpeg
-#	../png
-#	../tiff
-#	../zlib
-#)
-
 add_library(
 	${PROJECT_NAME}
 	Src/tif_xfile.cpp
