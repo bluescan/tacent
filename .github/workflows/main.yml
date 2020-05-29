@@ -35,6 +35,7 @@ jobs:
     # Use CMake and Ninja
     - uses: actions/checkout@master
     - uses: seanmiddleditch/gha-setup-ninja@master
+    - uses: ilammy/msvc-dev-cmd@v1.2.0
     - name: Build CMake Ninja
       run: |
         # cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
