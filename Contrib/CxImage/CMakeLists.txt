@@ -8,7 +8,7 @@ add_library(
 	Src/ximadsp.cpp
 	Src/ximaenc.cpp
 	Src/ximaexif.cpp
-	Src/xImage.cpp
+	Src/ximage.cpp
 	Src/ximagif.cpp
 	Src/ximahist.cpp
 	Src/ximaico.cpp
