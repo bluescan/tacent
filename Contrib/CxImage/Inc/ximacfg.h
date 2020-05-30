@@ -17,33 +17,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CxImage supported formats
-// @tacent
-#if defined(PLATFORM_WINDOWS) // || defined(PLATFORM_LINUX)
-#define CXIMAGE_SUPPORT_BMP 1
-#define CXIMAGE_SUPPORT_GIF 1
-#define CXIMAGE_SUPPORT_JPG 1
-#define CXIMAGE_SUPPORT_PNG 1
-#define CXIMAGE_SUPPORT_ICO 1
-#define CXIMAGE_SUPPORT_TIF 1
-#define CXIMAGE_SUPPORT_TGA 1
-#define CXIMAGE_SUPPORT_PCX 1
-#define CXIMAGE_SUPPORT_WBMP 1
-#define CXIMAGE_SUPPORT_WMF 1
-
-#define CXIMAGE_SUPPORT_JP2 1
-#define CXIMAGE_SUPPORT_JPC 1
-#define CXIMAGE_SUPPORT_PGX 1
-#define CXIMAGE_SUPPORT_PNM 1
-#define CXIMAGE_SUPPORT_RAS 1
-
-#define CXIMAGE_SUPPORT_JBG 0		// GPL'd see ../jbig/copying.txt & ../jbig/patents.htm
-
-#define CXIMAGE_SUPPORT_MNG 1
-#define CXIMAGE_SUPPORT_SKA 1
-#define CXIMAGE_SUPPORT_RAW 1
-#define CXIMAGE_SUPPORT_PSD 1
-
-#else
+// @tacent begin
 #define CXIMAGE_SUPPORT_BMP 1
 #define CXIMAGE_SUPPORT_GIF 0
 #define CXIMAGE_SUPPORT_JPG 1
@@ -67,7 +41,7 @@
 #define CXIMAGE_SUPPORT_SKA 0
 #define CXIMAGE_SUPPORT_RAW 0
 #define CXIMAGE_SUPPORT_PSD 0
-#endif
+// @tacent end
 
 /////////////////////////////////////////////////////////////////////////////
 #define	CXIMAGE_MAX_MEMORY 268435456

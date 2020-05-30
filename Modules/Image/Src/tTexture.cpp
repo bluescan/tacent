@@ -23,8 +23,8 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <Image/tTexture.h>
-#ifdef PLATFORM_WINDOWS
-#include <nvtt/nvtt.h>
+#if 0
+Replace #include <nvtt/nvtt.h> with equivalent bc7enc headers.
 #endif
 namespace tImage
 {
@@ -309,7 +309,9 @@ void tTexture::ProcessImageTo_G3B5R5G3(tPicture& image, bool generateMipmaps, tQ
 }
 
 
-#ifdef PLATFORM_WINDOWS
+// @todo The code below uses nvtt which is being retired. The refs to nvtt need to be replaced
+// with bc7enc replacements.
+#if 0
 struct tOutputHandler : public nvtt::OutputHandler
 {
 	tOutputHandler()																					{ }
@@ -349,9 +351,11 @@ struct tErrorHandler : public nvtt::ErrorHandler
 
 void tTexture::ProcessImageTo_BCTC(tPicture& image, tPixelFormat pixelFormat, bool generateMipmaps, tQuality quality)
 {
-	#ifdef PLATFORM_LINUX
-	throw tError("BCTC texture compression not implemented for Linux.");
-	#else
+	throw tError("BCTC texture compression not implemeted using bc7enc yet.");
+
+	// @todo The code below uses nvtt which is being retired. The refs to nvtt need to be replaced
+	// with bc7enc replacements.
+	#if 0
 	int width = image.GetWidth();
 	int height = image.GetHeight();
 	tPicture::tFilter filter = DetermineFilter(quality);
@@ -449,108 +453,6 @@ void tTexture::ProcessImageTo_BCTC(tPicture& image, tPixelFormat pixelFormat, bo
 	}
 	#endif
 }
-
-
-// This is legacy code for using Squish directly instead of nVidia Texture Tools 2. Once the Texture Tools version is
-// tested, this can be removed.
-#ifdef TEXTURE_USE_SQUISH_LIB
-#include "../../../SDKs/Squish/squish.h"
-
-
-void tTexture::ProcessImageTo_BCTC_Squish(tPicture& image, tPixelFormat pixelFormat, bool generateMipmaps, tQuality quality)
-{
-	#ifdef PLATFORM_LINUX
-	throw tError("BCTC texture compression not implemented for Linux.");
-	#else
-	int width = image.GetWidth();
-	int height = image.GetHeight();
-	tPicture::tFilter filter = DetermineFilter(quality);
-	if (!tMath::tIsPower2(width) || !tMath::tIsPower2(height))
-		throw tError("Currently only power-of-2 textures can be compressed using Squish.");
-
-	int compressFlags = 0;
-	switch (pixelFormat)
-	{
-		case tPixelFormat::BC1_DXT1:
-		case tPixelFormat::BC1_DXT1BA:
-			// I believe the squish encoder will deal with the binary alpha form of dxt1 automatically based on the
-			// data that is passed to it.
-			compressFlags |= squish::kDxt1;
-			break;
-
-		case tPixelFormat::BC2_DXT3:
-			compressFlags |= squish::kDxt3;
-			break;
-
-		case tPixelFormat::BC3_DXT5:
-			compressFlags |= squish::kDxt5;
-			break;
-
-		default:
-			throw tError("Texture conversion of image to pixel format %d using squish to compress is not supported.", int(pixelFormat));
-	}
-
-	switch (quality)
-	{
-		case tQuality::Fast:		compressFlags |= squish::kColourRangeFit;	break;
-		case tQuality::Production:	compressFlags |= squish::kColourClusterFit;	break;
-	}
-
-	compressFlags |= squish::kColourMetricPerceptual;
-
-	// This loop resamples (reduces) the image multiple times for mipmap generation. In general we should start with
-	// the original image every time so that we're not applying interpolations to interpolations (better quality).
-	// However, since we are only using a box-filter (pixel averaging) there is no benefit to having a fresh src
-	// image each time. The math is equivalent: (a+b/2 + c+d/2)/2 = (a+b+c+d)/4. For now we are saving the extra
-	// effort to start with an original every time. If we ever use a more advanced filter we'll need to change this
-	// behaviour. Note: we're now using bilinear as the lower quality filter. Should probably make the change.
-	while (1)
-	{
-		int numDataBytes = squish::GetStorageRequirements(width, height, compressFlags);
-		uint8* layerData = new uint8[numDataBytes];
-
-		squish::CompressImage
-		(
-			(squish::u8*)image.GetPixelPointer(),
-			tMath::tMax(width, 4),
-			tMath::tMax(height, 4),
-			layerData,
-			compressFlags
-		);
-
-		// The last true in this call allows the layer constructor to steal the data.
-		tLayer* layer = new tLayer(pixelFormat, width, height, layerData, true);
-		Layers.Append(layer);
-
-		// Was this the last one?
-		if (((width == 1) && (height == 1)) || !generateMipmaps)
-			break;
-
-		if (width != 1)
-			width >>= 1;
-
-		if (height != 1)
-			height >>= 1;
-
-		// When using BC compression we don't ever want to scale lower than 4x4 as that is the individual block size.
-		// we need at least that much data so the compressor can do it's job. Consider a 128x4 texture: Ideally we want
-		// that to rescale to 64x4, rather than 64x2. So it's reasonable to just stop once either dimension reaches 4
-		// because otherwise non-uniform scale issues come into play. In short, we either have to deal with this
-		// distortion, or the cropping issue of just stopping. We do the latter because it's just easier.
-		//
-		// Just because we stop downscaling doesn't mean that we don't generate all the mipmap levels! we still
-		// generate all the way to 1x1. It's only the src data that stops being down-sampled.
-		if ((image.GetWidth() >= 8) && (image.GetHeight() >= 8))
-		{
-			// This code scales by half using the correct quality filter.
-			int newWidth = image.GetWidth() / 2;
-			int newHeight = image.GetHeight() / 2;
-			image.Resize(newWidth, newHeight, filter);
-		}
-	}
-	#endif
-}
-#endif // TEXTURE_USE_SQUISH_LIB
 
 
 int tTexture::ComputeMaxNumberOfMipmaps() const

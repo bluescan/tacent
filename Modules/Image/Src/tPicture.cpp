@@ -21,7 +21,7 @@
 #include "Image/tImageTGA.h"
 #include "Image/tImageHDR.h"
 #include "Image/tImageEXR.h"
-#include <ximage/ximage.h>
+#include <ximage.h>
 using namespace tImage;
 using namespace tSystem;
 
@@ -136,10 +136,6 @@ bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt,
 	switch (fileType)
 	{
 		case tFileType::BMP: cxImgFormat = CXIMAGE_FORMAT_BMP; break;
-		
-		#ifdef PLATFORM_WINDOWS
-		case tFileType::GIF: cxImgFormat = CXIMAGE_FORMAT_GIF; break;
-		#endif
 		case tFileType::JPG: cxImgFormat = CXIMAGE_FORMAT_JPG; break;
 		case tFileType::PNG: cxImgFormat = CXIMAGE_FORMAT_PNG; break;
 		// @todo We can probably handle a few more types here.
@@ -629,44 +625,17 @@ int tPicture::GetCxFormat(tFileType fileType)
 {
 	switch (fileType)
 	{
-		#ifdef PLATFORM_WINDOWS
-		case tFileType::TGA:
-			return CXIMAGE_FORMAT_TGA;
-		#endif
-
 		case tFileType::BMP:
 			return CXIMAGE_FORMAT_BMP;
 
 		case tFileType::PNG:
 			return CXIMAGE_FORMAT_PNG;
 
-		#ifdef PLATFORM_WINDOWS
-		case tFileType::GIF:
-			return CXIMAGE_FORMAT_GIF;
-		#endif
-
 		case tFileType::JPG:
 			return CXIMAGE_FORMAT_JPG;
 
 		case tFileType::TIFF:
 			return CXIMAGE_FORMAT_TIF;
-
-		#ifdef PLATFORM_WINDOWS
-		case tFileType::PCX:
-			return CXIMAGE_FORMAT_PCX;
-
-		case tFileType::WBMP:
-			return CXIMAGE_FORMAT_WBMP;
-
-		case tFileType::WMF:
-			return CXIMAGE_FORMAT_WMF;
-
-		case tFileType::JP2:
-			return CXIMAGE_FORMAT_JP2;
-
-		case tFileType::JPC:
-			return CXIMAGE_FORMAT_JPC;
-		#endif
 	}
 
 	return CXIMAGE_FORMAT_UNKNOWN;
