@@ -12,8 +12,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # The buildrunwindows job builds and runs unit tests on windows.
-  checkoutbuildrunwindows:
+  # The buildtestwindows job builds and runs unit tests on windows.
+  buildtestwindows:
     # The type of runner that the job will run on
     runs-on: windows-latest
 
@@ -37,16 +37,12 @@ jobs:
     - uses: ilammy/msvc-dev-cmd@v1.2.0
     - name: Build using CMake NMake
       run: |
-        # cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
-        # .\MSBuild.exe $Env:GITHUB_WORKSPACE\UnitTests\Windows\UnitTests.sln
-        # dir
         echo '*** Configuring CMake ***'
         mkdir buildnmake
         cd buildnmake
         cmake .. -DCMAKE_BUILD_TYPE=Release -G "NMake Makefiles"
         echo '*** NMake Build ***'
         nmake install
-        # & 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe' $Env:GITHUB_WORKSPACE\UnitTests\Windows\UnitTests.sln
         echo '*** Done Building ***'
     
 #    - name: Unit Tests
@@ -56,8 +52,8 @@ jobs:
 #        .\UnitTests.exe
 #        echo 'Done Running Unit Tests'
 
-  # The checkoutbuildrunubuntu job builds tacittexview on ubuntu.
-  checkoutbuildrunubuntu:
+  # The buildtestubuntu job builds tacent on ubuntu.
+  buildtestubuntu:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -67,16 +63,11 @@ jobs:
         echo '*** Configuring CMake ***'
         mkdir buildninja
         cd buildninja
-        #cmake .. -DCMAKE_BUILD_TYPE=Release -GNinja
+        cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang -DCMAKE_C_COMPILER=clang
         echo '*** Ninja Build ***'
-        #ninja install
+        ninja -v install
         echo '*** Done Building ***'
-#
-#        echo 'Build Using Make'
-#        ./UnitTests/Linux/fixup_makefiles_for_github_runner.sh
-#        cd UnitTests/Linux
-#        make All
-#        echo 'Done Build Using Make'
+
 #    - name: Unit Tests
 #      run: |
 #        echo 'Running Unit Tests'
