@@ -83,6 +83,6 @@ jobs:
 
     - name: Unit Test Results
       uses: actions/upload-artifact@v1
-       with:
-         name: unit-test-results
-         path: Install/UnitTestResults.txt
+      with:
+        name: unit-test-results
+        path: Install/UnitTestResults.txt
