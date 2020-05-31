@@ -45,12 +45,18 @@ jobs:
         nmake install
         echo '*** Done Building ***'
     
-#    - name: Unit Tests
-#      run: |
-#        echo 'Running Unit Tests'
-#        cd UnitTests
-#        .\UnitTests.exe
-#        echo 'Done Running Unit Tests'
+    - name: Unit Tests
+      run: |
+        echo 'Running Unit Tests'
+        cd Install
+        powershell ".\UnitTests.exe | tee UnitTestResults.txt"
+        echo 'Done Running Unit Tests'
+
+    - name: Unit Test Results
+      uses: actions/upload-artifact@v1
+      with:
+        name: unit-test-results
+        path: Install/UnitTestResults.txt
 
   # The buildtestubuntu job builds tacent on ubuntu.
   buildtestubuntu:
@@ -68,9 +74,15 @@ jobs:
         ninja -v install
         echo '*** Done Building ***'
 
-#    - name: Unit Tests
-#      run: |
-#        echo 'Running Unit Tests'
-#        cd UnitTests
-#        ./UnitTests
-#        echo 'Done Running Unit Tests'
+    - name: Unit Tests
+      run: |
+        echo 'Running Unit Tests'
+        cd Install
+        ./UnitTests | tee UnitTestResults.txt
+        echo 'Done Running Unit Tests'
+
+    - name: Unit Test Results
+      uses: actions/upload-artifact@v1
+       with:
+         name: unit-test-results
+         path: Install/UnitTestResults.txt
