@@ -50,14 +50,14 @@ jobs:
         echo 'Running Unit Tests'
         cd buildnmake
         cd Install
-        powershell ".\UnitTests.exe | tee UnitTestResults.txt"
+        powershell ".\UnitTests.exe | tee Windows_TestResults.txt"
         echo 'Done Running Unit Tests'
 
     - name: Unit Test Results
       uses: actions/upload-artifact@v1
       with:
         name: unit-test-results
-        path: buildnmake/Install/UnitTestResults.txt
+        path: buildnmake/Install/Windows_TestResults.txt
 
   # The buildtestubuntu job builds tacent on ubuntu.
   buildtestubuntu:
@@ -80,11 +80,11 @@ jobs:
         echo 'Running Unit Tests'
         cd buildninja
         cd Install
-        ./UnitTests | tee UnitTestResults.txt
+        ./UnitTests | tee Ubuntu_TestResults.txt
         echo 'Done Running Unit Tests'
 
     - name: Unit Test Results
       uses: actions/upload-artifact@v1
       with:
         name: unit-test-results
-        path: buildninja/Install/UnitTestResults.txt
+        path: buildninja/Install/Ubuntu_TestResults.txt
