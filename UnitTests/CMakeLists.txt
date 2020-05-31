@@ -28,7 +28,17 @@ tacent_set_target_properties(${PROJECT_NAME})
 target_link_libraries(
 	${PROJECT_NAME}
 	PUBLIC
-		Foundation Math System Image Pipeline Scene m stdc++ # shlwapi.lib Dbghelp.lib
+		Foundation Math System Image Pipeline Scene
+
+		# I'm a little surprised cmake doesn't do these for me on Linux. The odd thing is they are
+		# unnecessary if using VSCode/Cmake Tools, even in Ubuntu. They are, however, needed when
+		# building from bash.
+		$<$<PLATFORM_ID:Linux>:m>
+		$<$<PLATFORM_ID:Linux>:stdc++>
+
+		$<$<PLATFORM_ID:Windows>:shlwapi.lib>
+		# This may be needed for windown at some point. Here just for ref.
+		# Dbghelp.lib
 )
 
 target_include_directories(

@@ -348,6 +348,7 @@ target_include_directories(
 	${CMAKE_CURRENT_SOURCE_DIR}/Src/Contrib/OpenEXR/IlmBase/IlmThread
 	${CMAKE_CURRENT_SOURCE_DIR}/Src/Contrib/OpenEXR/IlmBase/Imath
 	${CMAKE_CURRENT_SOURCE_DIR}/Src/Contrib/OpenEXR/IlmImf
+	${CMAKE_CURRENT_SOURCE_DIR}/Src/Contrib/OpenEXR/zlib
 )
 
 tacent_target_compile_definitions(${PROJECT_NAME})

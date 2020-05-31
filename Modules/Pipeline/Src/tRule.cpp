@@ -102,36 +102,6 @@ void tRule::AddDependencies(tList<tStringItem>& deps)
 }
 
 
-#ifdef PLATFORM_WINDOWS
-void tRule::AddDependenciesVS(const tString& solutionOrProjectFile)
-{
-	if (tSystem::tGetFileExtension(solutionOrProjectFile) == "sln")
-		AddDependenciesVSSln(solutionOrProjectFile);
-	else if (tSystem::tGetFileExtension(solutionOrProjectFile) == "vcxproj")
-		AddDependenciesVCXProj(solutionOrProjectFile);
-}
-
-
-void tRule::AddDependenciesVSSln(const tString& solutionFile)
-{
-	tVisualStudioSolution sln(solutionFile);
-	for (tStringItem* projFile = sln.ProjectFiles.First(); projFile; projFile = projFile->Next())
-		AddDependenciesVCXProj(*projFile);
-}
-
-
-void tRule::AddDependenciesVCXProj(const tString& projectFile)
-{
-	if (tSystem::tGetFileExtension(projectFile) == "vcxproj")
-	{
-		tVisualStudioProject proj(projectFile);
-		for (tStringItem* depFile = proj.Files.First(); depFile; depFile = depFile->Next())
-			MaybeAddToDependenciesCaseInsensitive(*depFile);
-	}
-}
-#endif
-
-
 void tRule::AddDependencyDir(const tString& dir, const tString& ext)
 {
 	tList<tStringItem> deps;
