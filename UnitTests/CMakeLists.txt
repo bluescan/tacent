@@ -28,7 +28,7 @@ tacent_set_target_properties(${PROJECT_NAME})
 target_link_libraries(
 	${PROJECT_NAME}
 	PUBLIC
-		Foundation Math System Image Pipeline Scene # shlwapi.lib Dbghelp.lib
+		Foundation Math System Image Pipeline Scene m stdc++ # shlwapi.lib Dbghelp.lib
 )
 
 target_include_directories(
