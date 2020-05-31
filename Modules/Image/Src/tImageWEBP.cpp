@@ -20,7 +20,7 @@
 #ifdef PLATFORM_WINDOWS
 #include "../../../Contrib/WebP/Windows/include/demux.h"
 #elif defined(PLATFORM_LINUX)
-#include "../../../Contrib/WebP/Linux/include/demux.h"
+#include "WebP/Linux/include/demux.h"
 #endif
 using namespace tSystem;
 namespace tImage

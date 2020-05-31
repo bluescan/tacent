@@ -46,7 +46,7 @@ namespace tUnitTest
 #define tTestUnit(name) void name()
 #define tSkipUnit(name) { tUnitTest::UnitsSkipped++; tUnitTest::rPrintf("Skipping " #name " Tests\n"); return; }
 #define tTest(name)  { tUnitTest::rPrintf("\nTesting " #name "\n"); tUnitTest::UnitRequirementNumber = tUnitTest::UnitGoalNumber = 0; tUnitTest::name(); }
-int tTestResults(bool waitForReturn = true);
+int tTestResults();
 
 
 // Implementation below this line.
@@ -103,7 +103,7 @@ inline void tCheckGoal(bool pass, const char* expr, const char* fileName, int li
 }
 
 
-inline int tTestResults(bool waitForReturn)
+inline int tTestResults()
 {
 	int errorCode = 1;
 	const char* result = "Fail";
@@ -124,12 +124,6 @@ inline int tTestResults(bool waitForReturn)
 	rPrintf("Goals Passed  : %d/%d\n", GoalsPassed, TotalGoals);
 	rPrintf("Total Passed  : %d/%d\n", RequirementsPassed+GoalsPassed, TotalRequirements+TotalGoals);
 	rPrintf("Final Result  : %s\n", result);
-
-	if (waitForReturn)
-	{
-		tUnitTest::rPrintf("Press Enter to exit.\n");
-		int ch = getchar();
-	}
 
 	return errorCode;
 }

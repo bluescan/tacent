@@ -15,5 +15,5 @@ project(Tacent VERSION ${TACENT_VERSION} LANGUAGES CXX)
 add_subdirectory(Contrib)
 add_subdirectory(Modules)
 
-# The UnitTests executable, the only non-library
-#add_subdirectory(UnitTests)
+# The UnitTests executable, the only non-library.
+add_subdirectory(UnitTests)

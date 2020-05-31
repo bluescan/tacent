@@ -24,6 +24,8 @@ tTestUnit(Process)
 	if (!tSystem::tDirExists("TestData/"))
 		tSkipUnit(Process)
 
+	// Currenty tProcess only works on windows.
+	#ifdef PLATFORM_WINDOWS
 	ulong exitCode;
 	tString output;
 
@@ -50,6 +52,7 @@ tTestUnit(Process)
 		tPrintf("We expect an error here since an invalid directory was passed on purpose.\n");
 	}
 	tRequire(exitCode != 0);
+	#endif
 }
 
 

@@ -11,6 +11,7 @@ build*/
 compile_flags.txt
 compile_commands.json
 .vscode/settings.json
+.vscode/c_cpp_properties.json
 
 # Specific filetypes to ignore everywhere.
 *.log

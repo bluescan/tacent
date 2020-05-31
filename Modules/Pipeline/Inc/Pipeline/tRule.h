@@ -62,19 +62,6 @@ public:
 	// will be added if they aren't already added.
 	void AddDependencies(tList<tStringItem>& deps);
 
-	#ifdef PLATFORM_WINDOWS
-	// Adds dependencies that are found inside a Visual Studio project or solution file. If the supplied file is a .sln
-	// file, it is parsed for all .vcxproj files it refers to. The vcxproj file contains the actual file names that are
-	// added as dependencies. This function does checks to see if the dependency has already been added.
-	void AddDependenciesVS(const tString& solutionOrProjectFile);
-
-	// Adds deps from a sln file by parsing it for the individual project files.
-	void AddDependenciesVSSln(const tString& projectFile);
-
-	// Adds deps from a single vcxproj project file.
-	void AddDependenciesVCXProj(const tString& projectFile);
-	#endif
-
 	// Adds multiple dependencies. Does not act recursively on the directory. Extension can be something like "txt".
 	// Throws a tRuleError if there are any problems. All dependencies that can be added will be. Checks for duplicate
 	// deps. Ignores hidden files and folders and will not add them or recurse into them.
@@ -94,7 +81,6 @@ public:
 	void AddDep(const tString& fullDepName)																				{ AddDependency(fullDepName); }
 	void AddDep(tStringItem* fullDepName)																				{ AddDependency(fullDepName); }
 	void AddDeps(tList<tStringItem>& deps)																				{ AddDependencies(deps); }
-	void AddDepsVS(const tString& solnOrProjFile)																		{ AddDependenciesVS(solnOrProjFile); }
 	void AddDepDir(const tString& dir, const tString& filter = "*.*")													{ AddDependencyDir(dir, filter); }
 	void AddDepDirRec(const tString& dir, const tString& filter = "*.*")												{ AddDependencyDirRec(dir, filter); }
 

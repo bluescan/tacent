@@ -15,15 +15,19 @@
 
 #pragma once
 #include <Foundation/tPlatform.h>
-#ifndef PLATFORM_WINDOWS
-#error tProcess only supported on Windows.
-#endif
 #include <Foundation/tString.h>
 #include <Foundation/tList.h>
+#ifdef PLATFORM_WINDOWS
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>					// Requires windows because the build methods can send windows messages.
+#endif
 namespace tPipeline
 {
+
+
+// @todo Currently the process stuff, due to the output stream messaging, is windows only. I'm sure with modern C++
+// this can be abstracted to be multiplatform.
+#ifdef PLATFORM_WINDOWS
 
 
 // Core reserved message IDs that won't conflict with Windows messages.
@@ -180,5 +184,6 @@ private:
 // int tRun(const tString& cmdLine, const tString& workingDir);
 // void tGo(const tString& cmdLine, const tString& workingDir);
 
+#endif
 
 }

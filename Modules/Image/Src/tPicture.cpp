@@ -18,9 +18,6 @@
 
 #include "Foundation/tStandard.h"
 #include "Image/tPicture.h"
-#include "Image/tImageTGA.h"
-#include "Image/tImageHDR.h"
-#include "Image/tImageEXR.h"
 #include <ximage.h>
 using namespace tImage;
 using namespace tSystem;

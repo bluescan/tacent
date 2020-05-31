@@ -98,7 +98,7 @@ void tRule::AddDependencies(tList<tStringItem>& deps)
 	}
 
 	if (!success)
-		throw tRuleError("Cannot add dependency [%s]", badDependency);
+		throw tRuleError("Cannot add dependency [%s]", badDependency.Chars());
 }
 
 

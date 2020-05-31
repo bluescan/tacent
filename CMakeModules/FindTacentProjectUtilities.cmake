@@ -35,7 +35,6 @@ function(tacent_target_compile_options PROJNAME)
 	target_compile_options(
 		${PROJNAME}
 		PRIVATE
-		
 			# MSVC compiler.
 			$<$<CXX_COMPILER_ID:MSVC>:/W2 /GS /Gy /Zc:wchar_t /Gm- /Zc:inline /fp:precise /WX- /Zc:forScope /Gd /FC>
 

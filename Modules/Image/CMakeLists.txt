@@ -5,7 +5,7 @@ add_library(
 	${PROJECT_NAME}
 	Src/tCubemap.cpp
 	Src/tImageDDS.cpp
-#	Src/tImageEXR.cpp
+	Src/tImageEXR.cpp
 	Src/tImageGIF.cpp
 	Src/tImageHDR.cpp
 	Src/tImageICO.cpp
@@ -17,7 +17,7 @@ add_library(
 	Src/tTexture.cpp
 	Inc/Image/tCubemap.h
 	Inc/Image/tImageDDS.h
-#	Inc/Image/tImageEXR.h
+	Inc/Image/tImageEXR.h
 	Inc/Image/tImageGIF.h
 	Inc/Image/tImageHDR.h
 	Inc/Image/tImageICO.h
@@ -27,15 +27,328 @@ add_library(
 	Inc/Image/tPicture.h
 	Inc/Image/tPixelFormat.h
 	Inc/Image/tTexture.h
+	
+	# OpenEXR
+	Src/Contrib/OpenEXR/namespaceAlias.h
+	Src/Contrib/OpenEXR/loadImage.h
+	Src/Contrib/OpenEXR/loadImage.cpp
+
+	Src/Contrib/OpenEXR/zlib/zutil.h
+	Src/Contrib/OpenEXR/zlib/zlib.h
+	Src/Contrib/OpenEXR/zlib/zconf.h
+	Src/Contrib/OpenEXR/zlib/trees.h
+	Src/Contrib/OpenEXR/zlib/inftrees.h
+	Src/Contrib/OpenEXR/zlib/inflate.h
+	Src/Contrib/OpenEXR/zlib/inffixed.h
+	Src/Contrib/OpenEXR/zlib/inffast.h
+	Src/Contrib/OpenEXR/zlib/gzguts.h
+	Src/Contrib/OpenEXR/zlib/deflate.h
+	Src/Contrib/OpenEXR/zlib/crc32.h
+
+	Src/Contrib/OpenEXR/IlmImf/ImfZipCompressor.h
+	Src/Contrib/OpenEXR/IlmImf/ImfZipCompressor.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfZip.h
+	Src/Contrib/OpenEXR/IlmImf/ImfZip.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfXdr.h
+	Src/Contrib/OpenEXR/IlmImf/ImfWav.h
+	Src/Contrib/OpenEXR/IlmImf/ImfWav.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfVersion.h
+	Src/Contrib/OpenEXR/IlmImf/ImfVersion.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfVecAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfVecAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfTimeCodeAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfTimeCodeAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfTimeCode.h
+	Src/Contrib/OpenEXR/IlmImf/ImfTimeCode.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfTileOffsets.h
+	Src/Contrib/OpenEXR/IlmImf/ImfTileOffsets.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfTiledRgbaFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfTiledRgbaFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfTiledOutputPart.h
+	Src/Contrib/OpenEXR/IlmImf/ImfTiledOutputPart.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfTiledOutputFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfTiledOutputFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfTiledMisc.h
+	Src/Contrib/OpenEXR/IlmImf/ImfTiledMisc.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfTiledInputPart.h
+	Src/Contrib/OpenEXR/IlmImf/ImfTiledInputPart.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfTiledInputFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfTiledInputFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfTileDescriptionAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfTileDescriptionAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfTileDescription.h
+	Src/Contrib/OpenEXR/IlmImf/ImfThreading.h
+	Src/Contrib/OpenEXR/IlmImf/ImfThreading.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfTestFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfTestFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfSystemSpecific.h
+	Src/Contrib/OpenEXR/IlmImf/ImfSystemSpecific.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfStringVectorAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfStringVectorAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfStringAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfStringAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfStdIO.h
+	Src/Contrib/OpenEXR/IlmImf/ImfStdIO.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfStandardAttributes.h
+	Src/Contrib/OpenEXR/IlmImf/ImfStandardAttributes.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfSimd.h
+	Src/Contrib/OpenEXR/IlmImf/ImfScanLineInputFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfScanLineInputFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfRleCompressor.h
+	Src/Contrib/OpenEXR/IlmImf/ImfRleCompressor.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfRle.h
+	Src/Contrib/OpenEXR/IlmImf/ImfRle.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfRgbaYca.h
+	Src/Contrib/OpenEXR/IlmImf/ImfRgbaYca.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfRgbaFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfRgbaFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfRgba.h
+	Src/Contrib/OpenEXR/IlmImf/ImfRationalAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfRationalAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfRational.h
+	Src/Contrib/OpenEXR/IlmImf/ImfRational.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfPxr24Compressor.h
+	Src/Contrib/OpenEXR/IlmImf/ImfPxr24Compressor.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfPreviewImageAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfPreviewImageAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfPreviewImage.h
+	Src/Contrib/OpenEXR/IlmImf/ImfPreviewImage.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfPizCompressor.h
+	Src/Contrib/OpenEXR/IlmImf/ImfPizCompressor.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfPixelType.h
+	Src/Contrib/OpenEXR/IlmImf/ImfPartType.h
+	Src/Contrib/OpenEXR/IlmImf/ImfPartType.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfPartHelper.h
+	Src/Contrib/OpenEXR/IlmImf/ImfOutputStreamMutex.h
+	Src/Contrib/OpenEXR/IlmImf/ImfOutputPartData.h
+	Src/Contrib/OpenEXR/IlmImf/ImfOutputPartData.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfOutputPart.h
+	Src/Contrib/OpenEXR/IlmImf/ImfOutputPart.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfOutputFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfOutputFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfOptimizedPixelReading.h
+	Src/Contrib/OpenEXR/IlmImf/ImfOpaqueAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfOpaqueAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfNamespace.h
+	Src/Contrib/OpenEXR/IlmImf/ImfName.h
+	Src/Contrib/OpenEXR/IlmImf/ImfMultiView.h
+	Src/Contrib/OpenEXR/IlmImf/ImfMultiView.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfMultiPartOutputFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfMultiPartOutputFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfMultiPartInputFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfMultiPartInputFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfMisc.h
+	Src/Contrib/OpenEXR/IlmImf/ImfMisc.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfMatrixAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfMatrixAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfLut.h
+	Src/Contrib/OpenEXR/IlmImf/ImfLut.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfLineOrderAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfLineOrderAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfLineOrder.h
+	Src/Contrib/OpenEXR/IlmImf/ImfKeyCodeAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfKeyCodeAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfKeyCode.h
+	Src/Contrib/OpenEXR/IlmImf/ImfKeyCode.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfIO.h
+	Src/Contrib/OpenEXR/IlmImf/ImfIO.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfIntAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfIntAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfInt64.h
+	Src/Contrib/OpenEXR/IlmImf/ImfInputStreamMutex.h
+	Src/Contrib/OpenEXR/IlmImf/ImfInputPartData.h
+	Src/Contrib/OpenEXR/IlmImf/ImfInputPartData.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfInputPart.h
+	Src/Contrib/OpenEXR/IlmImf/ImfInputPart.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfInputFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfInputFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfHuf.h
+	Src/Contrib/OpenEXR/IlmImf/ImfHuf.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfHeader.h
+	Src/Contrib/OpenEXR/IlmImf/ImfHeader.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfGenericOutputFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfGenericOutputFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfGenericInputFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfGenericInputFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfFramesPerSecond.h
+	Src/Contrib/OpenEXR/IlmImf/ImfFramesPerSecond.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfFrameBuffer.h
+	Src/Contrib/OpenEXR/IlmImf/ImfFrameBuffer.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfForward.h
+	Src/Contrib/OpenEXR/IlmImf/ImfFloatVectorAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfFloatVectorAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfFloatAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfFloatAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfFastHuf.h
+	Src/Contrib/OpenEXR/IlmImf/ImfFastHuf.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfExport.h
+	Src/Contrib/OpenEXR/IlmImf/ImfEnvmapAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfEnvmapAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfEnvmap.h
+	Src/Contrib/OpenEXR/IlmImf/ImfEnvmap.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfDwaCompressorSimd.h
+	Src/Contrib/OpenEXR/IlmImf/ImfDwaCompressor.h
+	Src/Contrib/OpenEXR/IlmImf/ImfDwaCompressor.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfDoubleAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfDoubleAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepTiledOutputPart.h
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepTiledOutputPart.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepTiledOutputFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepTiledOutputFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepTiledInputPart.h
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepTiledInputPart.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepTiledInputFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepTiledInputFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepScanLineOutputPart.h
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepScanLineOutputPart.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepScanLineOutputFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepScanLineOutputFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepScanLineInputPart.h
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepScanLineInputPart.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepScanLineInputFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepScanLineInputFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepImageStateAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepImageStateAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepImageState.h
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepFrameBuffer.h
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepFrameBuffer.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepCompositing.h
+	Src/Contrib/OpenEXR/IlmImf/ImfDeepCompositing.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfCRgbaFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfCRgbaFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfConvert.h
+	Src/Contrib/OpenEXR/IlmImf/ImfConvert.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfCompressor.h
+	Src/Contrib/OpenEXR/IlmImf/ImfCompressor.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfCompressionAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfCompressionAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfCompression.h
+	Src/Contrib/OpenEXR/IlmImf/ImfCompositeDeepScanLine.h
+	Src/Contrib/OpenEXR/IlmImf/ImfCompositeDeepScanLine.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfChromaticitiesAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfChromaticitiesAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfChromaticities.h
+	Src/Contrib/OpenEXR/IlmImf/ImfChromaticities.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfCheckedArithmetic.h
+	Src/Contrib/OpenEXR/IlmImf/ImfChannelListAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfChannelListAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfChannelList.h
+	Src/Contrib/OpenEXR/IlmImf/ImfChannelList.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfBoxAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfBoxAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfB44Compressor.h
+	Src/Contrib/OpenEXR/IlmImf/ImfB44Compressor.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfAutoArray.h
+	Src/Contrib/OpenEXR/IlmImf/ImfAttribute.h
+	Src/Contrib/OpenEXR/IlmImf/ImfAttribute.cpp
+	Src/Contrib/OpenEXR/IlmImf/ImfArray.h
+	Src/Contrib/OpenEXR/IlmImf/ImfAcesFile.h
+	Src/Contrib/OpenEXR/IlmImf/ImfAcesFile.cpp
+	Src/Contrib/OpenEXR/IlmImf/dwaLookups.h
+	Src/Contrib/OpenEXR/IlmImf/dwaLookups.cpp
+	Src/Contrib/OpenEXR/IlmImf/b44ExpLogTable.h
+	Src/Contrib/OpenEXR/IlmImf/b44ExpLogTable.cpp
+
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathVecAlgo.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathVec.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathVec.cpp
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathSphere.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathShear.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathRoots.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathRandom.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathRandom.cpp
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathQuat.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathPlatform.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathPlane.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathNamespace.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathMatrixAlgo.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathMatrixAlgo.cpp
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathMatrix.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathMath.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathLineAlgo.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathLine.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathLimits.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathInterval.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathInt64.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathHalfLimits.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathGLU.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathGL.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathFun.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathFun.cpp
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathFrustumTest.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathFrustum.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathFrame.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathForward.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathExport.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathExc.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathExc.cpp
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathEuler.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathColorAlgo.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathColorAlgo.cpp
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathColor.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathBoxAlgo.h
+	Src/Contrib/OpenEXR/IlmBase/Imath/ImathBox.h
+
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadWin32.cpp
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadSemaphoreWin32.cpp
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadSemaphorePosixCompat.cpp
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadSemaphorePosix.cpp
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadSemaphoreOSX.cpp
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadSemaphore.h
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadSemaphore.cpp
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadPosix.cpp
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadPool.h
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadPool.cpp
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadNamespace.h
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadMutexWin32.cpp
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadMutexPosix.cpp
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadMutex.h
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadMutex.cpp
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadForward.h
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadExport.h
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThread.h
+	Src/Contrib/OpenEXR/IlmBase/IlmThread/IlmThread.cpp
+
+	Src/Contrib/OpenEXR/IlmBase/Iex/IexThrowErrnoExc.h
+	Src/Contrib/OpenEXR/IlmBase/Iex/IexThrowErrnoExc.cpp
+	Src/Contrib/OpenEXR/IlmBase/Iex/IexNamespace.h
+	Src/Contrib/OpenEXR/IlmBase/Iex/IexMathExc.h
+	Src/Contrib/OpenEXR/IlmBase/Iex/IexMacros.h
+	Src/Contrib/OpenEXR/IlmBase/Iex/IexForward.h
+	Src/Contrib/OpenEXR/IlmBase/Iex/IexExport.h
+	Src/Contrib/OpenEXR/IlmBase/Iex/IexErrnoExc.h
+	Src/Contrib/OpenEXR/IlmBase/Iex/IexBaseExc.h
+	Src/Contrib/OpenEXR/IlmBase/Iex/IexBaseExc.cpp
+	Src/Contrib/OpenEXR/IlmBase/Iex/Iex.h
+
+	Src/Contrib/OpenEXR/IlmBase/Half/toFloat.h
+	Src/Contrib/OpenEXR/IlmBase/Half/toFloat.cpp
+	Src/Contrib/OpenEXR/IlmBase/Half/halfLimits.h
+	Src/Contrib/OpenEXR/IlmBase/Half/halfFunction.h
+	Src/Contrib/OpenEXR/IlmBase/Half/halfExport.h
+	Src/Contrib/OpenEXR/IlmBase/Half/half.h
+	Src/Contrib/OpenEXR/IlmBase/Half/half.cpp
+	Src/Contrib/OpenEXR/IlmBase/Half/eLut.h
+	Src/Contrib/OpenEXR/IlmBase/Half/eLut.cpp
+
+	Src/Contrib/OpenEXR/IlmBase/config/IlmBaseConfig.h
+
+	Src/Contrib/OpenEXR/config/OpenEXRConfigInternal.h
+	Src/Contrib/OpenEXR/config/OpenEXRConfig.h
 )
 
 tacent_target_include_directories(${PROJECT_NAME})
 target_include_directories(
-	"${PROJECT_NAME}"
-	PRIVATE
-		$<TARGET_PROPERTY:CxImage,INTERFACE_INCLUDE_DIRECTORIES>
+	"${PROJECT_NAME}" PRIVATE
+	${CMAKE_CURRENT_SOURCE_DIR}/Src/Contrib
+	${CMAKE_CURRENT_SOURCE_DIR}/Src/Contrib/OpenEXR/config
+	${CMAKE_CURRENT_SOURCE_DIR}/Src/Contrib/OpenEXR/IlmBase/config
+	${CMAKE_CURRENT_SOURCE_DIR}/Src/Contrib/OpenEXR/IlmBase/Half
+	${CMAKE_CURRENT_SOURCE_DIR}/Src/Contrib/OpenEXR/IlmBase/Iex
+	${CMAKE_CURRENT_SOURCE_DIR}/Src/Contrib/OpenEXR/IlmBase/IlmThread
+	${CMAKE_CURRENT_SOURCE_DIR}/Src/Contrib/OpenEXR/IlmBase/Imath
+	${CMAKE_CURRENT_SOURCE_DIR}/Src/Contrib/OpenEXR/IlmImf
 )
-
 
 tacent_target_compile_definitions(${PROJECT_NAME})
 tacent_target_compile_options(${PROJECT_NAME})
@@ -43,10 +356,21 @@ tacent_target_compile_features(${PROJECT_NAME})
 tacent_set_target_properties(${PROJECT_NAME})
 
 # Dependencies.
+set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+set(THREADS_PREFER_PTHREAD_FLAG TRUE)
+find_package(Threads REQUIRED)
+
+# @todo Setup a tacent_function (var arg) to allow easy specification of deps including dependent headers.
 target_link_libraries(
 	${PROJECT_NAME}
-	PUBLIC
-		Foundation Math System CxImage
+	PUBLIC Foundation Math System
+	PRIVATE Threads::Threads CxImage
+)
+
+target_include_directories(
+	"${PROJECT_NAME}"
+	PRIVATE
+		$<TARGET_PROPERTY:CxImage,INTERFACE_INCLUDE_DIRECTORIES>
 )
 
 tacent_install(${PROJECT_NAME})

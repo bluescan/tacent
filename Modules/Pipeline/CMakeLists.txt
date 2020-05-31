@@ -5,10 +5,10 @@ add_library(
 	${PROJECT_NAME}
 	Src/tProcess.cpp
 	Src/tRule.cpp
-	Src/tSolution.cpp
+	$<$<PLATFORM_ID:Windows>:Src/tSolution.cpp>
 	Inc/Pipeline/tProcess.h
 	Inc/Pipeline/tRule.h
-	Inc/Pipeline/tSolution.h
+	$<$<PLATFORM_ID:Windows>:Inc/Pipeline/tSolution.h>
 )
 
 tacent_target_include_directories(${PROJECT_NAME})

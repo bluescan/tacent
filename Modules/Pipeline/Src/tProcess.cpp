@@ -21,6 +21,11 @@
 using namespace tPipeline;
 
 
+// @todo Currently the process stuff, due to the output stream messaging, is windows only. I'm sure with modern C++
+// this can be abstracted to be multiplatform.
+#ifdef PLATFORM_WINDOWS
+
+
 tProcess::tProcess(const tString& cmdLine, const tString& workDir, WindowHandle parent, uint32 userData, bool clearEnvironmentVars, int numEnvPairs, ...) :
 	Parent(parent),
 	OutputString(nullptr),
@@ -757,3 +762,6 @@ char* tProcess::BuildNewEnvironmentData_Ascii(bool appendToExisting, int numPair
 	::FreeEnvironmentStrings(oldEnviro);
 	return newenvdata;
 }
+
+
+#endif
