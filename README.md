@@ -102,6 +102,41 @@ tParse(argc, argv);
 The unit tests, while not offering full coverage, show examples of this.
 
 
+### Building
+
+The suggested build methods are to eitehr use VSCode with the CMkae Tools extension or from the command line. Both methods work in either Windows or Linux. There are two build-types (AKA configurations) with Tacent: Debug and Release.
+
+#### Windows
+* Install Visual Studio Community 2019 (this gives you CMake, Ninja, and the MSVC compiler)
+* Install VS Code (optional)
+* Open 64bit Command Prompt for VS2019 and cd into the the 'tacent' directory. Do an out-of-source build.
+```
+mkdir buildninja
+cd buildninja
+cmake .. -GNinja
+ninja install
+```    
+
+#### Ubuntu
+* Install ninja and clang
+* Install VS Code from the snap store (optional)
+```
+sudo apt-get install clang
+sudo apt-get install ninja-build
+update-alternatives --config c++     # Choose clang
+update-alternatives --config cc      # Choose clang
+```
+* Open a terminal window and cd into the tacent directory.
+```
+mkdir buildninja
+cd buildninja
+cmake .. -GNinja
+ninja install
+```
+
+The install target creates a directory called Install that has all the built libraries (.a or .lib), exported headers, cmake target files, and the unit test executable. If you want to build debug versions pass -DCMAKE_BUILD_TYPE=Debug to the cmake command.
+
+
 ### Credits and Thanks
 
 Credits are found directly in the code where appropriate. Here is a list of some of the helpful contributors:
