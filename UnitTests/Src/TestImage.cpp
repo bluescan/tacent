@@ -42,13 +42,10 @@ tTestUnit(Image)
 	tRequire(cubemap.IsValid());
 
 	// Test jpg to texture. This will do conversion to BCTC.
-	#ifdef PLATFORM_WINDOWS
-	tImage::tTexture jpgTex("TestData/WiredDrives.jpg", true);
-	tRequire(jpgTex.IsValid());
-	#else
-	tGoal(!"BCTC not implemented on this platform.");
-	#endif
-
+	tGoal(!"BCTC needs to be re-enabled for texture creation.");
+	//tImage::tTexture jpgTex("TestData/WiredDrives.jpg", true);
+	//tRequire(jpgTex.IsValid());
+	
 	// Test tPicture loading jpg and saving as tga.
 	tImage::tPicture jpgPic("TestData/WiredDrives.jpg");
 	tRequire(jpgPic.IsValid());
