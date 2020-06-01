@@ -45,7 +45,7 @@ This lack of redundancy and clutter just makes it all easier to absorb. You will
 The dependencies are reasonable and well-understood. The code should be easy to port to a different environment for this reason. For example, if you need a printf function that supports custom types beyond floats, ints, and strings, as well as supporting different output channels, go ahead and take the tPrintf.h and tPrintf.cpp files in the System module and adapt them to your environment and needs. The dependencies on Tacent types and framework are not overbearing.
 
 
-### Notes
+### Examples
 
 The easiest way to see how to use the different modules is to look in the unit tests. There may be more information in the comments [on the homepage](http://upperboundsinteractive.com/tacent.php). For example, this is how you'd load a png file and save it to a targa. If the png has transparency, so will the tga:
 
@@ -104,7 +104,9 @@ The unit tests, while not offering full coverage, show examples of this.
 
 ### Building
 
-The suggested build methods are to eitehr use VSCode with the CMkae Tools extension or from the command line. Both methods work in either Windows or Linux. There are two build-types (AKA configurations) with Tacent: Debug and Release.
+The suggested build methods are to eitehr use VSCode with the CMake Tools extension or from the command line. Both methods work in either Windows or Linux. There are two build-types (AKA configurations) with Tacent: Debug and Release. If you want to build debug versions pass -DCMAKE_BUILD_TYPE=Debug to the cmake command.
+
+The 'install' target creates a directory called 'Install' that has all the built libraries (.a or .lib), exported headers, cmake target files, and the unit test executable.
 
 #### Windows
 * Install Visual Studio Community 2019 (this gives you CMake, Ninja, and the MSVC compiler)
@@ -134,7 +136,14 @@ cmake .. -GNinja
 ninja install
 ```
 
-The install target creates a directory called Install that has all the built libraries (.a or .lib), exported headers, cmake target files, and the unit test executable. If you want to build debug versions pass -DCMAKE_BUILD_TYPE=Debug to the cmake command.
+#### Visual Studio Code
+Using the VS Code editor along with the CMake Tools extension works surprisingly well. The editor is cross platform so you get the same experience on Ubuntu as well as Windows.
+
+On either platform open up VSCode. Choose File->Open Folder and open the 'tacent' directory. It will automatically detect the CMakeFiles.txt files, suggest installing CMake Tools, ask permission to generate an intellisence detabase for code completion, etc.
+
+On Windows choose the 'Visual Studio 2019 Release -amd64' compiler kit (on the bottom info bar). The build-type to the left can be set to either Debug or Release (tacent ships with a cmake-variants.yaml file since that's one thing CMake Tools doesn't read from CMake). To the right select 'install' for the build type. Hit F7.
+
+The instructions for Ubuntu are nearly identical. The kit should be Clang 9 or 10. You may need to install Clang first using apt-get (see above).
 
 
 ### Credits and Thanks
