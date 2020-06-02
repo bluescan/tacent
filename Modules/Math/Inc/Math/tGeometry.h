@@ -99,11 +99,7 @@ struct tLineSeg2
 	tLineSeg2(float x0, float y0, float x1, float y1)																	{ A.Set(x0, y0); B.Set(x1, y1); }
 	tLineSeg2(const tVector2& a, const tVector2& b)																		: A(a), B(b) { }
 	tLineSeg2(const tLineSeg2& s)																						: A(s.A), B(s.B) { }
-	union
-	{
-		struct { tVector2 A, B; };
-		tVector2 E[2];
-	};
+	tVector2 A, B;
 };
 
 
@@ -115,11 +111,7 @@ struct tLine2
 	tLine2(const tVector2& a, const tVector2& b)																		: A(a), B(b) { }
 	tLine2(const tLineSeg2& s)																							: A(s.A), B(s.B) { }
 	tLine2(const tLine2& s)																								: A(s.A), B(s.B) { }
-	union
-	{
-		struct { tVector2 A, B; };
-		tVector2 E[2];
-	};
+	tVector2 A, B;
 };
 
 
@@ -231,12 +223,7 @@ struct tLineSeg
 	tLineSeg()																											{ }
 	tLineSeg(const tVector3& a, const tVector3& b)																		: A(a), B(b) { }
 	tLineSeg(const tLineSeg& src)																						: A(src.A), B(src.B) { }
-
-	union
-	{
-		struct { tVector3 A, B; };
-		tVector3 E[2];
-	};
+	tVector3 A, B;
 };
 
 
@@ -262,12 +249,8 @@ struct tLine
 	tLine(const tLineSeg& seg)																							{ Set(seg); }
 	void Set(const tRay& ray)																							{ A = ray.Start; B = ray.Start + ray.Dir; }
 	void Set(const tLineSeg& seg)																						{ A = seg.A; B = seg.B; }
-
-	union
-	{
-		struct { tVector3 A, B; };
-		tVector3 E[2];
-	};
+	
+	tVector3 A, B;
 };
 
 
@@ -293,11 +276,7 @@ struct tTriangle
 	tTriangle()																											{ }
 	tTriangle(const tVector3& a, const tVector3& b, const tVector3& c)													: A(a), B(b), C(c) { }
 
-	union
-	{
-		struct { tVector3 A, B, C; };
-		tVector3 E[3];
-	};
+	tVector3 A, B, C;
 };
 
 
@@ -432,23 +411,19 @@ public:
 	void Set(const tVector4[6]);
 
 	// Use to index into the Planes array.
-	enum class Plane
+	enum Plane
 	{
-		Right,
-		Left,
-		Top,
-		Bottom,
-		Near,
-		Far,
-		NumPlanes
+		Plane_Right,
+		Plane_Left,
+		Plane_Top,
+		Plane_Bottom,
+		Plane_Near,
+		Plane_Far,
+		Plane_NumPlanes
 	};
 
 	// Normals are interior-facing. The near distance (mNear.mDist) will be the negative of the far.
-	union
-	{
-		struct { tPlane Right, Left, Top, Bottom, Near, Far; };
-		tPlane Planes[int(Plane::NumPlanes)];
-	};
+	tPlane Planes[int(Plane_NumPlanes)];
 };
 
 

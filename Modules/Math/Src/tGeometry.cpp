@@ -101,19 +101,15 @@ void tMath::tFrustum::Set(const tMatrix4& mat)
 	m.Transpose();
 	tVector4 t;
 
-	tSub(t, m.C4, m.C1);		Right.Set(t);
-	tAdd(t, m.C4, m.C1);		Left.Set(t);
-	tSub(t, m.C4, m.C2);		Top.Set(t);
-	tAdd(t, m.C4, m.C2);		Bottom.Set(t);
-	tSub(t, m.C4, m.C3);		Far.Set(t);
-	tAdd(t, m.C4, m.C3);		Near.Set(t);
+	tSub(t, m.C4, m.C1);		Planes[Plane_Right].Set(t);
+	tAdd(t, m.C4, m.C1);		Planes[Plane_Left].Set(t);
+	tSub(t, m.C4, m.C2);		Planes[Plane_Top].Set(t);
+	tAdd(t, m.C4, m.C2);		Planes[Plane_Bottom].Set(t);
+	tSub(t, m.C4, m.C3);		Planes[Plane_Far].Set(t);
+	tAdd(t, m.C4, m.C3);		Planes[Plane_Near].Set(t);
 
-	Right.Normalize();
-	Left.Normalize();
-	Top.Normalize();
-	Bottom.Normalize();
-	Near.Normalize();
-	Far.Normalize();
+	for (int p = 0; p < Plane_NumPlanes; p++)
+		Planes[p].Normalize();
 }
 
 
@@ -507,7 +503,7 @@ bool tMath::tIntersectTestRayTriangle(const tRay& ray, const tTriangle& tri)
 
 bool tMath::tIntersectTestFrustumSphere(const tFrustum& f, const tSphere& s)
 {
-	for (int p = 0; p < int(tFrustum::Plane::NumPlanes); p++)
+	for (int p = 0; p < int(tFrustum::Plane_NumPlanes); p++)
 	{
 		// Use the sphere's center in the normalized plane equation to get the projected distance to plane.
 		if (s.Center * f.Planes[p].Normal + f.Planes[p].Distance < -s.Radius)

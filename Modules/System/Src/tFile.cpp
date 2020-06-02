@@ -979,7 +979,7 @@ tString tSystem::tGetFileFullName(const tString& filename)
 
 	file.Replace('\\', '/');
 	tString ret(PATH_MAX + 1);
-	realpath(file, ret.Text());	
+	char* retStr = realpath(file, ret.Text());	
 	#endif
 
 	return ret;
@@ -1423,7 +1423,7 @@ tString tSystem::tGetProgramDir()
 
 	#elif defined(PLATFORM_LINUX)
 	tString result(PATH_MAX+1);
-	readlink("/proc/self/exe", result.Text(), PATH_MAX);
+	ssize_t readSize = readlink("/proc/self/exe", result.Text(), PATH_MAX);
 	
 	int bi = result.FindChar('/', true);
 	tAssert(bi != -1);
@@ -1447,7 +1447,7 @@ tString tSystem::tGetProgramPath()
 
 	#elif defined(PLATFORM_LINUX)
 	tString result(PATH_MAX+1);
-	readlink("/proc/self/exe", result.Text(), PATH_MAX);
+	ssize_t readSize = readlink("/proc/self/exe", result.Text(), PATH_MAX);
 	return result;
 
 	#else
@@ -1465,7 +1465,7 @@ tString tSystem::tGetCurrentDir()
 
 	#else
 	tString r(PATH_MAX + 1);
-	getcwd(r.Text(), PATH_MAX);
+	char* dirStr = getcwd(r.Text(), PATH_MAX);
 
 	#endif
 	r.Replace('\\', '/');

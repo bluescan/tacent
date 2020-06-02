@@ -142,7 +142,7 @@ bool tSystem::tOpenSystemFileExplorer(const tString& dir, const tString& file)
 
 	tString sysStr;
 	tsPrintf(sysStr, "/usr/bin/nautilus %s%s", dir.Chars(), file.Chars());
-	system(sysStr.ConstText());
+	int exitCode = system(sysStr.ConstText());
 	return true;
 
 	#else

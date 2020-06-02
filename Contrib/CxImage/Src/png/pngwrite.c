@@ -531,8 +531,8 @@ png_create_write_struct_2,(png_const_charp user_png_ver, png_voidp error_ptr,
         if (user_png_ver)
         {
             png_snprintf2(msg, 80,
-                "Application built with libpng-%.20s"
-                " but running with %.20s",
+                "App built with libpng-%.20s"
+                " but run with %.20s",
                 user_png_ver,
                 png_libpng_ver);
             png_warning(png_ptr, msg);

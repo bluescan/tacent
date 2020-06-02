@@ -40,7 +40,12 @@ function(tacent_target_compile_options PROJNAME)
 
 			# Clang compiler.
 			$<$<CXX_COMPILER_ID:Clang>:-Wno-switch>
-			
+
+			# GNU compiler.
+			$<$<CXX_COMPILER_ID:GNU>:-Wunused-result>
+			$<$<CXX_COMPILER_ID:GNU>:-Wno-multichar>
+			$<$<CXX_COMPILER_ID:GNU>:-Wunused-result>
+
 			$<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O0>
 			$<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/Od>
 			$<$<AND:$<CONFIG:Release>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O2>
@@ -49,7 +54,11 @@ function(tacent_target_compile_options PROJNAME)
 endfunction(tacent_target_compile_options)
 
 function(tacent_target_compile_features PROJNAME)
-	target_compile_features(${PROJNAME} PRIVATE cxx_std_17)
+	target_compile_features(
+		${PROJNAME}
+		PRIVATE
+			cxx_std_17
+	)
 endfunction(tacent_target_compile_features)
 
 function(tacent_set_target_properties PROJNAME)
