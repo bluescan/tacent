@@ -125,8 +125,8 @@ ninja install
 ```
 sudo apt-get install clang
 sudo apt-get install ninja-build
-update-alternatives --config c++     # Choose clang
-update-alternatives --config cc      # Choose clang
+sudo update-alternatives --config c++     # Choose clang
+sudo update-alternatives --config cc      # Choose clang
 ```
 * Open a terminal window and cd into the tacent directory.
 ```
