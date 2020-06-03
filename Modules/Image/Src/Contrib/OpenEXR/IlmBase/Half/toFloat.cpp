@@ -131,6 +131,8 @@ halfToFloat (unsigned short y)
 // Main - prints the half-to-float lookup table
 //---------------------------------------------
 
+// @tacent
+#if 0
 int
 main ()
 {
@@ -162,3 +164,4 @@ main ()
     cout << "};\n";
     return 0;
 }
+#endif

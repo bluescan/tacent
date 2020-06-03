@@ -12,7 +12,7 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#include <Foundation/tVersion.h>
+#include <Foundation/project_tacent_version.cmake.h>
 #include <System/tCommand.h>
 #include "UnitTests.h"
 #include "TestPipeline.h"
@@ -52,7 +52,13 @@ int main(int argc, char** argv)
 	else
 		tSystem::tSetChannels(tSystem::tChannel_TestResult);
 
-	tUnitTest::rPrintf("Testing Tacent Version %d.%d.%d.%d\n", tVersion::Major, tVersion::Minor, tVersion::Revision, 0);
+	tUnitTest::rPrintf
+	(
+		"Testing Tacent Version %d.%d.%d\n",
+		ProjectTacentVersion::Major,
+		ProjectTacentVersion::Minor, 
+		ProjectTacentVersion::Revision
+	);
 
 	#if !defined(UNIT_TEST_ONLY_ONE_TEST)
 

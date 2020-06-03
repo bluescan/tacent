@@ -12,7 +12,7 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#include <Foundation/tVersion.h>
+#include <Foundation/project_tacent_version.cmake.h>
 #include <Foundation/tArray.h>
 #include <Foundation/tFixInt.h>
 #include <Foundation/tBitField.h>

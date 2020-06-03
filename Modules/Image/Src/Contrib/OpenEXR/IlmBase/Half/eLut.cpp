@@ -82,6 +82,8 @@ initELut (unsigned short eLut[])
 // Main - prints the sign-and-exponent conversion lookup table
 //------------------------------------------------------------
 
+// @tacent
+#if 0
 int
 main ()
 {
@@ -112,3 +114,4 @@ main ()
     cout << "};\n";
     return 0;
 }
+#endif

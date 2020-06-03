@@ -1,6 +1,6 @@
-// tVersion.h
+// project_tacent_cersion.cpp
 //
-// Version numbers for Tacent.
+// Version string parser to extract major, minor, and rev fro the header.
 //
 // Copyright (c) 2004-2006, 2016, 2017, 2019, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -12,27 +12,36 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#pragma once
-#include "Foundation/tPlatform.h"
+#include <Foundation/project_tacent_version.cmake.h>
+#include <Foundation/tString.h>
 
 
-namespace tVersion
+namespace ProjectTacentVersion
 {
 	// Any break in binary compatibility must increment the major number, although non-breaking major improvements may
 	// also justify a major version update.
-	const uint Major = 0;
+	int Major = 0;
 
 	// Minor version increments on non-breaking fixes and improvements to the current major version. When the major
 	// version increments, the minor version resets to 0.
-	const uint Minor = 7;
+	int Minor = 0;
 
-	// The revision number, also called a patch number, is for minor bug fixes and the like. It Resets to 0 when the
-	// minor version increments.
-	const uint Revision = 4;
+	// The revision number is for minor bug fixes and the like. It Resets to 0 when the minor version increments.
+	int Revision = 0;
+	bool Parsed = false;
+}
 
-	// Additionally, a change number is specified on Tacent releases. This is a monotonically increasing number that
-	// never resets. @todo At some point I'll make a versioning tool so that this file, including the ChangeNumber
-	// is generated from a script. The tool will use the perforce CL# for the ChangeNumber. If ever the versioning
-	// system is changed or perforce reset, the tool will allow a constant offset to be added so this value never goes
-	// down.
+
+ProjectTacentVersion::Parser::Parser(const char* projStr)
+{
+	if (Parsed)
+		return;
+
+	tList<tStringItem> components;
+	tStd::tExplode(components, tString(projStr), '.');
+
+	tStringItem* comp = components.First();	Major = comp->GetAsInt(10);
+	comp = comp->Next();					Minor = comp->GetAsInt(10);
+	comp = comp->Next();					Revision = comp->GetAsInt(10);
+	Parsed = true;
 }

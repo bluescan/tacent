@@ -60,6 +60,8 @@ using namespace std;
 // Main - prints the half-to-float lookup table
 //---------------------------------------------
 
+// @tacent
+#if 0
 int
 main ()
 {
@@ -134,3 +136,4 @@ main ()
 
     return 0;
 }
+#endif

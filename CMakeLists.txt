@@ -7,9 +7,11 @@ set(CMAKE_BUILD_TYPE_INIT Release)
 # Setup tacent build configurations before specifying the project.
 find_package("TacentConfigurations")
 
-# Tacent is the top level project.
-set(TACENT_VERSION "0.8.0")
-project(Tacent VERSION ${TACENT_VERSION} LANGUAGES CXX)
+# Tacent is the top level project. This include specifies the project and version.
+project(Tacent)
+include("Modules/Foundation/Inc/Foundation/project_tacent_version.cmake.h")
+message(STATUS "Tacent -- ProjectName ${PROJECT_NAME} ProjectVersion ${PROJECT_VERSION}")
+set(TACENT_VERSION "${PROJECT_VERSION}")
 
 # Sub-projects.
 add_subdirectory(Contrib)
