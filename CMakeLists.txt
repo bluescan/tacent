@@ -9,7 +9,7 @@ find_package("TacentConfigurations")
 
 # Tacent is the top level project. This include sets the version string variable.
 include("Modules/Foundation/Inc/Foundation/tVersion.cmake.h")
-project(Tacent VERSION "${TACENT_VERSION}" "LANGUAGES" "C" "CXX")
+project(Tacent VERSION "${TACENT_VERSION}" LANGUAGES C CXX)
 message(STATUS "Tacent -- ProjectName ${PROJECT_NAME} ProjectVersion ${PROJECT_VERSION}")
 
 # Sub-projects.
