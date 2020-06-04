@@ -12,7 +12,7 @@ project(Foundation VERSION ${TACENT_VERSION} LANGUAGES CXX)
 # CMakeLists looks a little more familiar.
 add_library(
 	${PROJECT_NAME}
-	Src/project_tacent_version.cpp
+	Src/tVersion.cpp
 	Src/tAssert.cpp
 	Src/tBitArray.cpp
 	Src/tMemory.cpp
@@ -21,7 +21,7 @@ add_library(
 	Src/tStandard.cpp
 	Src/tString.cpp
 	Src/tUnits.cpp
-	Inc/Foundation/project_tacent_version.cmake.h
+	Inc/Foundation/tVersion.cmake.h
 	Inc/Foundation/tArray.h
 	Inc/Foundation/tAssert.h
 	Inc/Foundation/tBitArray.h

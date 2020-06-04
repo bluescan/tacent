@@ -1,8 +1,8 @@
-// project_tacent_cersion.cpp
+// tVersion.cpp
 //
 // Version string parser to extract major, minor, and rev fro the header.
 //
-// Copyright (c) 2004-2006, 2016, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -12,11 +12,11 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#include <Foundation/project_tacent_version.cmake.h>
+#include <Foundation/tVersion.cmake.h>
 #include <Foundation/tString.h>
 
 
-namespace ProjectTacentVersion
+namespace tVersion
 {
 	// Any break in binary compatibility must increment the major number, although non-breaking major improvements may
 	// also justify a major version update.
@@ -32,13 +32,13 @@ namespace ProjectTacentVersion
 }
 
 
-ProjectTacentVersion::Parser::Parser(const char* projStr)
+tVersion::Parser::Parser(const char* verStr)
 {
 	if (Parsed)
 		return;
 
 	tList<tStringItem> components;
-	tStd::tExplode(components, tString(projStr), '.');
+	tStd::tExplode(components, tString(verStr), '.');
 
 	tStringItem* comp = components.First();	Major = comp->GetAsInt(10);
 	comp = comp->Next();					Minor = comp->GetAsInt(10);
