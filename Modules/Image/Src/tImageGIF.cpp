@@ -16,7 +16,9 @@
 #include <Foundation/tStandard.h>
 #include <Foundation/tString.h>
 #include <System/tFile.h>
+#include <GifLoad/gif_load.h>
 #include "Image/tImageGIF.h"
+
 using namespace tSystem;
 namespace tImage
 {
