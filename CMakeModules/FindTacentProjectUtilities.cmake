@@ -73,7 +73,7 @@ function(tacent_set_target_properties PROJNAME)
 endfunction(tacent_set_target_properties)
 
 function(tacent_install PROJNAME)
-	set(TACENT_INSTALL_DIR "${CMAKE_BINARY_DIR}/Install")
+	set(TACENT_INSTALL_DIR "${CMAKE_BINARY_DIR}/TacentInstall")
 	message(STATUS "Tacent -- ${PROJECT_NAME} will be installed to ${TACENT_INSTALL_DIR}")
 
 	install(

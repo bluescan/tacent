@@ -4,9 +4,9 @@ buildType:
   choices:
     debug:
       short: Debug
-      long: Build with debugging information
+      long: Build Debug
       buildType: Debug
     release:
       short: Release
-      long: Build with optimizations
+      long: Build Release
       buildType: Release

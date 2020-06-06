@@ -231,7 +231,7 @@ tacent_target_compile_options(${PROJECT_NAME})
 tacent_target_compile_features(${PROJECT_NAME})
 tacent_set_target_properties(${PROJECT_NAME})
 
-set(TACENT_INSTALL_DIR "${CMAKE_BINARY_DIR}/Install")
+set(TACENT_INSTALL_DIR "${CMAKE_BINARY_DIR}/TacentInstall")
 install(
 	TARGETS ${PROJECT_NAME}
 	EXPORT ${PROJECT_NAME}-targets

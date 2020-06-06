@@ -55,6 +55,6 @@ target_include_directories(
 install(
 	TARGETS ${PROJECT_NAME}
 	# EXPORT ${PROJECT_NAME}-targets
-	RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/Install"
+	RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/TacentInstall"
 )
-install(DIRECTORY TestData/ DESTINATION "${CMAKE_BINARY_DIR}/Install/TestData")
+install(DIRECTORY TestData/ DESTINATION "${CMAKE_BINARY_DIR}/TacentInstall/TestData")
