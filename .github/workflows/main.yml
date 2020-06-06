@@ -1,5 +1,4 @@
 # This workflow runs actions to pull, build, and run tacent unit tests.
-
 name: Unit Tests
 
 # Controls when the action will run. Triggers the workflow on push or pull request
@@ -21,16 +20,6 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
-    # Runs a single command using the runners shell
-    # - name: Run a one-line script
-    #   run: echo Hello, world!
-
-    # Runs a set of commands using the runners shell
-    # - name: Run a multi-line script
-    #   run: |
-    #     echo Add other actions to build,
-    #     echo test, and deploy your project.
       
     # Use CMake and NMake
     - uses: actions/checkout@master
@@ -49,7 +38,7 @@ jobs:
       run: |
         echo 'Running Unit Tests'
         cd buildnmake
-        cd Install
+        cd TacentInstall
         powershell ".\UnitTests.exe | tee Windows_TestResults.txt"
         echo 'Done Running Unit Tests'
 
@@ -57,7 +46,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: unit-test-results
-        path: buildnmake/Install/Windows_TestResults.txt
+        path: buildnmake/TacentInstall/Windows_TestResults.txt
 
   # The buildtestubuntu job builds tacent on ubuntu.
   buildtestubuntu:
@@ -79,7 +68,7 @@ jobs:
       run: |
         echo 'Running Unit Tests'
         cd buildninja
-        cd Install
+        cd TacentInstall
         ./UnitTests | tee Ubuntu_TestResults.txt
         echo 'Done Running Unit Tests'
 
@@ -87,4 +76,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: unit-test-results
-        path: buildninja/Install/Ubuntu_TestResults.txt
+        path: buildninja/TacentInstall/Ubuntu_TestResults.txt
