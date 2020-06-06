@@ -42,9 +42,8 @@ function(tacent_target_compile_options PROJNAME)
 			$<$<CXX_COMPILER_ID:Clang>:-Wno-switch>
 
 			# GNU compiler.
-			$<$<CXX_COMPILER_ID:GNU>:-Wunused-result>
+			$<$<CXX_COMPILER_ID:GNU>:-Wno-unused-result>
 			$<$<CXX_COMPILER_ID:GNU>:-Wno-multichar>
-			$<$<CXX_COMPILER_ID:GNU>:-Wunused-result>
 
 			$<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O0>
 			$<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/Od>
