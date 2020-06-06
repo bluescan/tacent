@@ -37,18 +37,19 @@ function(tacent_target_compile_options PROJNAME)
 		PRIVATE
 			# MSVC compiler.
 			$<$<CXX_COMPILER_ID:MSVC>:/W2 /GS /Gy /Zc:wchar_t /Gm- /Zc:inline /fp:precise /WX- /Zc:forScope /Gd /FC>
+			$<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/Od>
+			$<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/O2>
 
 			# Clang compiler.
 			$<$<CXX_COMPILER_ID:Clang>:-Wno-switch>
 
 			# GNU compiler.
 			$<$<CXX_COMPILER_ID:GNU>:-Wno-unused-result>
-			$<$<CXX_COMPILER_ID:GNU>:-Wno-multichar>
 
+			# Clang and GNU.
+			$<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wno-multichar>
 			$<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O0>
-			$<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/Od>
 			$<$<AND:$<CONFIG:Release>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O2>
-			$<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/O2>
 	)
 endfunction(tacent_target_compile_options)
 
