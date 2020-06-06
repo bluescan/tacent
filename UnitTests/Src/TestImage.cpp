@@ -13,6 +13,13 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <Image/tTexture.h>
+#include <Image/tImageDDS.h>
+#include <Image/tImageEXR.h>
+#include <Image/tImageGIF.h>
+#include <Image/tImageHDR.h>
+#include <Image/tImageICO.h>
+#include <Image/tImageTGA.h>
+#include <Image/tImageWEBP.h>
 #include <System/tFile.h>
 #include "UnitTests.h"
 using namespace tStd;
@@ -24,6 +31,28 @@ tTestUnit(Image)
 {
 	if (!tSystem::tDirExists("TestData/"))
 		tSkipUnit(Image)
+
+	// Test direct loading classes.
+	tImage::tImageDDS imgDDS("TestData/TestDXT1.dds");
+	tRequire(imgDDS.IsValid());
+
+	tImage::tImageEXR imgEXR("TestData/Desk.exr");
+	tRequire(imgEXR.IsValid());
+
+	tImage::tImageGIF imgGIF("TestData/8-cell-simple.gif");
+	tRequire(imgGIF.IsValid());
+
+	tImage::tImageHDR imgHDR("TestData/mpi_atrium_3.hdr");
+	tRequire(imgHDR.IsValid());
+
+	tImage::tImageICO imgICO("TestData/UpperBounds.ico");
+	tRequire(imgICO.IsValid());
+
+	tImage::tImageTGA imgTGA("TestData/WhiteBorderRLE.tga");
+	tRequire(imgTGA.IsValid());
+
+	tImage::tImageWEBP imgWEBP("TestData/RockyBeach.webp");
+	tRequire(imgWEBP.IsValid());
 
 	// Test dxt1 texture.
 	tImage::tTexture dxt1Tex("TestData/TestDXT1.dds");
