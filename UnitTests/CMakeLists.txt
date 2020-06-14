@@ -37,9 +37,13 @@ target_link_libraries(
 		$<$<PLATFORM_ID:Linux>:stdc++>
 
 		$<$<PLATFORM_ID:Windows>:shlwapi.lib>
-		# This may be needed for windown at some point. Here just for ref.
-		# Dbghelp.lib
 )
+
+if (MSVC)
+	if (CMAKE_BUILD_TYPE MATCHES Debug)
+		target_link_options(${PROJECT_NAME} PRIVATE "/NODEFAULTLIB:LIBCMT.lib")
+	endif()
+endif()
 
 target_include_directories(
 	"${PROJECT_NAME}"
@@ -54,7 +58,6 @@ target_include_directories(
 # Installation.
 install(
 	TARGETS ${PROJECT_NAME}
-	# EXPORT ${PROJECT_NAME}-targets
 	RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/TacentInstall"
 )
 install(DIRECTORY TestData/ DESTINATION "${CMAKE_BINARY_DIR}/TacentInstall/TestData")

@@ -1,5 +1,3 @@
-# add_library(${PROJECT_NAME} ${src})
-
 
 function(tacent_target_include_directories PROJNAME)
 	# Set properties on the target. Include files here. Note:
