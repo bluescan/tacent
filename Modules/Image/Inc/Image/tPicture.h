@@ -31,6 +31,14 @@ namespace tImage
 {
 
 
+// Verion information for the image loaders. This is all in the tImage namespace.
+extern const char* Version_OpenEXR;
+extern const char* Version_ZLIB;
+extern int Version_WEBP_Major;
+extern int Version_WEBP_Minor;
+
+
+
 // A tPicture is a single 2D image. A rectangular collection of RGBA pixels (32bits per pixel). The origin is the lower
 // left, and the rows are ordered from bottom to top in memory. This matches the expectation of OpenGL texture
 // manipulation functions for the most part (there are cases when it is inconsistent with itself).

@@ -18,7 +18,7 @@
 #include <System/tFile.h>
 #include "Image/tImageWEBP.h"
 #ifdef PLATFORM_WINDOWS
-#include "../../../Contrib/WebP/Windows/include/demux.h"
+#include "WebP/Windows/include/demux.h"
 #elif defined(PLATFORM_LINUX)
 #include "WebP/Linux/include/demux.h"
 #endif
