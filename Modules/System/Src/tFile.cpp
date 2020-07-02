@@ -1845,10 +1845,18 @@ bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 	if (dirPath.IsEmpty())
 		dirPath = std::filesystem::current_path().u8string().c_str();
 
-	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text()))
+	std::error_code errorCode;
+	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text(), errorCode))
 	{
+		if (errorCode || (entry == std::filesystem::directory_entry()))
+		{
+			errorCode.clear();
+			continue;
+		}
+
 		if (!entry.is_directory())
 			continue;
+
 		tString foundDir(entry.path().u8string().c_str());
 		
 		// All directories end in a slash in tacent.
@@ -1928,9 +1936,16 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 	//		dirPath[dirPath.Length() - 1] = '\0';
 	if (dirPath[dirPath.Length() - 1] == '\\')
 		dirPath[dirPath.Length() - 1] = '/';
-		
-	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text()))
+
+	std::error_code errorCode;
+	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text(), errorCode))
 	{
+		if (errorCode || (entry == std::filesystem::directory_entry()))
+		{
+			errorCode.clear();
+			continue;
+		}
+
 		if (!entry.is_regular_file())
 			continue;
 
