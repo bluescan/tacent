@@ -22,8 +22,10 @@
 #include <OpenEXR/zlib/zlib.h>
 #include <ximage.h>
 #ifdef PLATFORM_WINDOWS
+#include "TurboJpeg/Windows/jconfig.h"
 #include "WebP/Windows/include/demux.h"
 #elif defined(PLATFORM_LINUX)
+#include "TurboJpeg/Linux/jconfig.h"
 #include "WebP/Linux/include/demux.h"
 #endif
 
@@ -32,6 +34,7 @@ using namespace tImage;
 using namespace tSystem;
 
 
+const char* tImage::Version_TurboJPEG	= LIBJPEG_TURBO_VERSION;
 const char* tImage::Version_OpenEXR		= OPENEXR_VERSION_STRING;
 const char* tImage::Version_ZLIB		= ZLIB_VERSION;
 int tImage::Version_WEBP_Major			= WEBP_DECODER_ABI_VERSION >> 8;

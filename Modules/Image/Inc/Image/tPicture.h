@@ -33,6 +33,7 @@ namespace tImage
 
 
 // Verion information for the image loaders. This is all in the tImage namespace.
+extern const char* Version_TurboJPEG;
 extern const char* Version_OpenEXR;
 extern const char* Version_ZLIB;
 extern int Version_WEBP_Major;
