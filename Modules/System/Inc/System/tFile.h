@@ -319,7 +319,9 @@ bool tDeleteDir(const tString& directory, bool deleteReadOnly = true);
 // "C:/DirA/DirB/" will ensure that DirA and DirB exist. Returns true if successful.
 bool tCreateDir(const tString& dir);
 
-// Returns true if file existed and was deleted.
+// Returns true if file existed and was deleted. If tryUseRecycleBin is true and the function can't find the recycle
+// bin, it will return false. It is up to you to call it again with tryUseRecycleBin false if you really want the
+// file gone.
 bool tDeleteFile(const tString& filename, bool deleteReadOnly = true, bool tryUseRecycleBin = false);
 
 // If either (or both) file doesn't exist you get false. Entire files will temporarily be read into memory so it's not

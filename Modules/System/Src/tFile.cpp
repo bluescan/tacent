@@ -2110,7 +2110,8 @@ bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool use
 	
 	if (useRecycleBin)
 	{
-		tString recycleDir = "~/.local/share/Trash/files/";
+		tString homeDir = tGetHomeDir();
+		tString recycleDir = homeDir + ".local/share/Trash/files/";
 		if (tDirExists(recycleDir))
 		{
 			tString toFile = recycleDir + tGetFileName(filename);
