@@ -23,6 +23,7 @@
 #include <System/tFile.h>
 #include <System/tChunk.h>
 #include "Image/tImageTGA.h"
+#include "Image/tImageJPG.h"
 #include "Image/tImageHDR.h"
 #include "Image/tImageEXR.h"
 #include "Image/tImageGIF.h"
@@ -113,14 +114,16 @@ public:
 
 	// Saves to the image file you specify and examines the extension to determine filetype. Supports tga, png, bmp, jpg,
 	// and gif. If tColourFormat is set to auto, the opacity/alpha channel will be excluded if all pixels are opaque.
-	// Alpha channels are not supported for gif and jpg files. Quality (used for jpg) is in [0.0, 100.0].
-	bool Save(const tString& imageFile, tColourFormat = tColourFormat::Auto, float quality = 90.0f);
+	// Alpha channels are not supported for gif and jpg files. Quality (used for jpg) is in [1, 100].
+	bool Save(const tString& imageFile, tColourFormat = tColourFormat::Auto, int quality = 95);
 
 	bool SaveTGA
 	(
 		const tString& tgaFile, tImageTGA::tFormat = tImageTGA::tFormat::Auto,
 		tImageTGA::tCompression = tImageTGA::tCompression::RLE
 	) const;
+
+	bool SaveJPG(const tString& jpgFile, int quality = 95) const;
 
 	// Always clears the current image before loading. If false returned, you will have an invalid tPicture.
 	bool Load(const tString& imageFile, int partNum, LoadParams params = LoadParams());

@@ -120,7 +120,7 @@ private:
 };
 
 
-// Implementation blow this line.
+// Implementation below this line.
 
 
 inline void tImageHDR::Clear()

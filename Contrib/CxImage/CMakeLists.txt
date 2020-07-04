@@ -60,63 +60,6 @@ add_library(
 	Inc/xiofile.h
 	Inc/xmemfile.h
 
-	# JPeg
-	Src/jpeg/jaricom.c
-	Src/jpeg/jcapimin.c
-	Src/jpeg/jcapistd.c
-	Src/jpeg/jcarith.c
-	Src/jpeg/jccoefct.c
-	Src/jpeg/jccolor.c
-	Src/jpeg/jcdctmgr.c
-	Src/jpeg/jchuff.c
-	Src/jpeg/jcinit.c
-	Src/jpeg/jcmainct.c
-	Src/jpeg/jcmarker.c
-	Src/jpeg/jcmaster.c
-	Src/jpeg/jcomapi.c
-	Src/jpeg/jconfig.h
-	Src/jpeg/jcparam.c
-	Src/jpeg/jcprepct.c
-	Src/jpeg/jcsample.c
-	Src/jpeg/jctrans.c
-	Src/jpeg/jdapimin.c
-	Src/jpeg/jdapistd.c
-	Src/jpeg/jdarith.c
-	Src/jpeg/jdatadst.c
-	Src/jpeg/jdatasrc.c
-	Src/jpeg/jdcoefct.c
-	Src/jpeg/jdcolor.c
-	Src/jpeg/jdct.h
-	Src/jpeg/jddctmgr.c
-	Src/jpeg/jdhuff.c
-	Src/jpeg/jdinput.c
-	Src/jpeg/jdmainct.c
-	Src/jpeg/jdmarker.c
-	Src/jpeg/jdmaster.c
-	Src/jpeg/jdmerge.c
-	Src/jpeg/jdpostct.c
-	Src/jpeg/jdsample.c
-	Src/jpeg/jdtrans.c
-	Src/jpeg/jerror.c
-	Src/jpeg/jerror.h
-	Src/jpeg/jfdctflt.c
-	Src/jpeg/jfdctfst.c
-	Src/jpeg/jfdctint.c
-	Src/jpeg/jidctflt.c
-	Src/jpeg/jidctfst.c
-	Src/jpeg/jidctint.c
-	Src/jpeg/jinclude.h
-	Src/jpeg/jmemmgr.c
-	Src/jpeg/jmemnobs.c
-	Src/jpeg/jmemsys.h
-	Src/jpeg/jmorecfg.h
-	Src/jpeg/jpegint.h
-	Src/jpeg/jpeglib.h
-	Src/jpeg/jquant1.c
-	Src/jpeg/jquant2.c
-	Src/jpeg/jutils.c
-	Src/jpeg/jversion.h
-
 	# Png
 	Src/png/png.c
 	Src/png/pngerror.c

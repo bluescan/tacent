@@ -35,9 +35,9 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	tImageTGA(tPixel* pixels, int width, int height, bool steal = false)													{ Set(pixels, width, height, steal); }
+	tImageTGA(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
-	virtual ~tImageTGA()																									{ Clear(); }
+	virtual ~tImageTGA()																								{ Clear(); }
 
 	// Clears the current tImageTGA before loading. 16, 24, or 32 bit targas can be loaded. The tga may be uncompressed
 	// or RLE compressed. Other compression methods are rare and unsupported. Returns success. If false returned,
@@ -95,7 +95,7 @@ private:
 };
 
 
-// Implementation blow this line.
+// Implementation below this line.
 
 
 inline void tImageTGA::Clear()

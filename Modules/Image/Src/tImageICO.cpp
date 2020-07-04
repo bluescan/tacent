@@ -6,7 +6,6 @@
 // a) Loads all parts of an ico, not just the biggest one.
 // b) Supports embedded png images.
 // c) Supports widths and heights of 256.
-// Victor Laskin's header/licence in the original ico.cpp is shown below.
 //
 // Copyright (c) 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -18,7 +17,8 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 //
-// Includes modified version of code from Victor Laskin.
+// Includes modified version of code from Victor Laskin. Here is Victor Laskin's header/licence in the original ico.cpp:
+
 // Code by Victor Laskin (victor.laskin@gmail.com)
 // Rev 2 - 1bit color was added, fixes for bit mask.
 //

@@ -90,7 +90,7 @@ bool tPicture::CanSave(tFileType fileType)
 {
 	switch (fileType)
 	{
-		case tFileType::TGA:				// Targas handled natively.
+		case tFileType::TGA:		// Targas handled natively.
 		case tFileType::BMP:
 		case tFileType::GIF:
 		case tFileType::JPG:
@@ -109,6 +109,7 @@ bool tPicture::CanLoad(tFileType fileType)
 		case tFileType::TGA:		// Targas are handled natively.
 		case tFileType::HDR:		// HDR and RGBE are handled natively.
 		case tFileType::EXR:		// EXR are handled natively.
+		case tFileType::JPG:		// JPG are handled natively.
 			return true;
 	}
 
@@ -120,7 +121,7 @@ bool tPicture::CanLoad(tFileType fileType)
 }
 
 
-bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt, float quality)
+bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt, int quality)
 {
 	if (!IsValid())
 		return false;
@@ -129,8 +130,11 @@ bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt,
 	if (!CanSave(fileType))
 		return false;
 
+	// Native formats not handled by CxImage.
 	if (fileType == tFileType::TGA)
 		return SaveTGA(imageFile, tImage::tImageTGA::tFormat(colourFmt), tImage::tImageTGA::tCompression::None);
+	else if (fileType == tFileType::JPG)
+		return SaveJPG(imageFile, quality);
 
 	tPixel* reorderedPixelArray = new tPixel[Width*Height];
 	for (int p = 0; p < Width*Height; p++)
@@ -148,7 +152,6 @@ bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt,
 	switch (fileType)
 	{
 		case tFileType::BMP: cxImgFormat = CXIMAGE_FORMAT_BMP; break;
-		case tFileType::JPG: cxImgFormat = CXIMAGE_FORMAT_JPG; break;
 		case tFileType::PNG: cxImgFormat = CXIMAGE_FORMAT_PNG; break;
 		// @todo We can probably handle a few more types here.
 	}
@@ -157,9 +160,6 @@ bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt,
 		image.AlphaDelete();
 	else if ((colourFmt == tPicture::tColourFormat::Auto) && IsOpaque())
 		image.AlphaDelete();
-
-	if (cxImgFormat == CXIMAGE_FORMAT_JPG)
-		image.SetJpegQualityF(quality);
 
 	return image.Save(imageFile.ConstText(), cxImgFormat);
 }
@@ -177,6 +177,18 @@ bool tPicture::SaveTGA(const tString& tgaFile, tImageTGA::tFormat format, tImage
 		return false;
 
 	return true;
+}
+
+
+bool tPicture::SaveJPG(const tString& jpgFile, int quality) const
+{
+	tFileType fileType = tGetFileType(jpgFile);
+	if (!IsValid() || (fileType != tFileType::JPG))
+		return false;
+
+	tImageJPG jpeg(Pixels, Width, Height);
+	bool success = jpeg.Save(jpgFile, quality);
+	return success;
 }
 
 
@@ -205,6 +217,21 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 		return true;
 	}
 
+	// We handle jpg files natively.
+	if (fileType == tFileType::JPG)
+	{
+		if (partNum != 0)
+			return false;
+		tImageJPG jpeg(imageFile);
+		if (!jpeg.IsValid())
+			return false;
+		Width = jpeg.GetWidth();
+		Height = jpeg.GetHeight();
+		Pixels = jpeg.StealPixels();
+		SrcPixelFormat = jpeg.SrcPixelFormat;
+		return true;
+	}
+
 	// We handle hdr files natively.
 	if (fileType == tFileType::HDR)
 	{
@@ -227,8 +254,7 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 	}
 
 	// We handle exr files natively.
-	// @todo It's looking like we should make an abstract tImageBase class at this point
-	// to get rid of all this duplication.
+	// @todo It's looking like we should make an abstract tImageBase class at this point to get rid of all this duplication.
 	if (fileType == tFileType::EXR)
 	{
 		tImageEXR exr;
@@ -642,9 +668,6 @@ int tPicture::GetCxFormat(tFileType fileType)
 
 		case tFileType::PNG:
 			return CXIMAGE_FORMAT_PNG;
-
-		case tFileType::JPG:
-			return CXIMAGE_FORMAT_JPG;
 
 		case tFileType::TIFF:
 			return CXIMAGE_FORMAT_TIF;

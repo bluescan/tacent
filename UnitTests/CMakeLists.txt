@@ -23,7 +23,12 @@ tacent_target_include_directories(${PROJECT_NAME})
 tacent_target_compile_definitions(${PROJECT_NAME})
 tacent_target_compile_options(${PROJECT_NAME})
 tacent_target_compile_features(${PROJECT_NAME})
-tacent_set_target_properties(${PROJECT_NAME})
+
+set_target_properties(
+	${PROJECT_NAME}
+	PROPERTIES
+	MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"	# Use multithreaded or multithreaded-debug runtime on windows.
+)
 
 target_link_libraries(
 	${PROJECT_NAME}

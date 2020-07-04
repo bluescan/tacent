@@ -10,6 +10,7 @@ add_library(
 	Src/tImageHDR.cpp
 	Src/tImageICO.cpp
 	Src/tImageTGA.cpp
+	Src/tImageJPG.cpp
 	Src/tImageWEBP.cpp
 	Src/tLayer.cpp
 	Src/tPicture.cpp
@@ -22,6 +23,7 @@ add_library(
 	Inc/Image/tImageHDR.h
 	Inc/Image/tImageICO.h
 	Inc/Image/tImageTGA.h
+	Inc/Image/tImageJPG.h
 	Inc/Image/tImageWEBP.h
 	Inc/Image/tLayer.h
 	Inc/Image/tPicture.h
@@ -32,7 +34,6 @@ add_library(
 	Contrib/OpenEXR/namespaceAlias.h
 	Contrib/OpenEXR/loadImage.h
 	Contrib/OpenEXR/loadImage.cpp
-
 	Contrib/OpenEXR/zlib/zutil.h
 	Contrib/OpenEXR/zlib/zlib.h
 	Contrib/OpenEXR/zlib/zconf.h
@@ -44,7 +45,6 @@ add_library(
 	Contrib/OpenEXR/zlib/gzguts.h
 	Contrib/OpenEXR/zlib/deflate.h
 	Contrib/OpenEXR/zlib/crc32.h
-
 	Contrib/OpenEXR/IlmImf/ImfZipCompressor.h
 	Contrib/OpenEXR/IlmImf/ImfZipCompressor.cpp
 	Contrib/OpenEXR/IlmImf/ImfZip.h
@@ -248,7 +248,6 @@ add_library(
 	Contrib/OpenEXR/IlmImf/dwaLookups.cpp
 	Contrib/OpenEXR/IlmImf/b44ExpLogTable.h
 	Contrib/OpenEXR/IlmImf/b44ExpLogTable.cpp
-
 	Contrib/OpenEXR/IlmBase/Imath/ImathVecAlgo.h
 	Contrib/OpenEXR/IlmBase/Imath/ImathVec.h
 	Contrib/OpenEXR/IlmBase/Imath/ImathVec.cpp
@@ -288,7 +287,6 @@ add_library(
 	Contrib/OpenEXR/IlmBase/Imath/ImathColor.h
 	Contrib/OpenEXR/IlmBase/Imath/ImathBoxAlgo.h
 	Contrib/OpenEXR/IlmBase/Imath/ImathBox.h
-
 	Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadWin32.cpp
 	Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadSemaphoreWin32.cpp
 	Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadSemaphorePosixCompat.cpp
@@ -308,7 +306,6 @@ add_library(
 	Contrib/OpenEXR/IlmBase/IlmThread/IlmThreadExport.h
 	Contrib/OpenEXR/IlmBase/IlmThread/IlmThread.h
 	Contrib/OpenEXR/IlmBase/IlmThread/IlmThread.cpp
-
 	Contrib/OpenEXR/IlmBase/Iex/IexThrowErrnoExc.h
 	Contrib/OpenEXR/IlmBase/Iex/IexThrowErrnoExc.cpp
 	Contrib/OpenEXR/IlmBase/Iex/IexNamespace.h
@@ -320,7 +317,6 @@ add_library(
 	Contrib/OpenEXR/IlmBase/Iex/IexBaseExc.h
 	Contrib/OpenEXR/IlmBase/Iex/IexBaseExc.cpp
 	Contrib/OpenEXR/IlmBase/Iex/Iex.h
-
 	Contrib/OpenEXR/IlmBase/Half/toFloat.h
 	Contrib/OpenEXR/IlmBase/Half/toFloat.cpp
 	Contrib/OpenEXR/IlmBase/Half/halfLimits.h
@@ -330,9 +326,7 @@ add_library(
 	Contrib/OpenEXR/IlmBase/Half/half.cpp
 	Contrib/OpenEXR/IlmBase/Half/eLut.h
 	Contrib/OpenEXR/IlmBase/Half/eLut.cpp
-
 	Contrib/OpenEXR/IlmBase/config/IlmBaseConfig.h
-
 	Contrib/OpenEXR/config/OpenEXRConfigInternal.h
 	Contrib/OpenEXR/config/OpenEXRConfig.h
 )
@@ -369,11 +363,16 @@ target_link_libraries(
 		Math
 		System
 	PRIVATE
-		Threads::Threads CxImage
+		Threads::Threads
+		CxImage
+
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/Linux/libwebp.a>
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/Linux/libwebpdemux.a>
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/Windows/release-static/x64/lib/libwebp.lib>
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/Windows/release-static/x64/lib/libwebpdemux.lib>
+		
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Linux/libturbojpeg.a>
+		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Windows/libturbojpeg.lib>
 )
 
 target_include_directories(

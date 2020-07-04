@@ -19,6 +19,7 @@
 #include <Image/tImageHDR.h>
 #include <Image/tImageICO.h>
 #include <Image/tImageTGA.h>
+#include <Image/tImageJPG.h>
 #include <Image/tImageWEBP.h>
 #include <System/tFile.h>
 #include "UnitTests.h"
@@ -50,6 +51,9 @@ tTestUnit(Image)
 
 	tImage::tImageTGA imgTGA("TestData/WhiteBorderRLE.tga");
 	tRequire(imgTGA.IsValid());
+
+	tImage::tImageJPG imgJPG("TestData/WiredDrives.jpg");
+	tRequire(imgJPG.IsValid());
 
 	tImage::tImageWEBP imgWEBP("TestData/RockyBeach.webp");
 	tRequire(imgWEBP.IsValid());
