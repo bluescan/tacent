@@ -17,7 +17,11 @@
 
 #include <System/tFile.h>
 #include "Image/tImageJPG.h"
+#if defined(PLATFORM_LINUX)
 #include "TurboJpeg/Linux/turbojpeg.h"
+#elif defined(PLATFORM_WINDOWS)
+#include "TurboJpeg/Windows/turbojpeg.h"
+#endif
 
 using namespace tSystem;
 namespace tImage
