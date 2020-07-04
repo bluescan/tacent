@@ -144,6 +144,7 @@ bool tImageJPG::Save(const tString& jpgFile, int quality) const
 		return false;
 	}
 	bool success = tWriteFile(fileHandle, jpegBuf, jpegSize);
+	tCloseFile(fileHandle);
 	tjFree(jpegBuf);
 
 	return success;
