@@ -1900,6 +1900,9 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 			// It's not a directory... so it's actually a real file.
 			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
 			{
+				tStringItem* newItem = new tStringItem(dirStr + fd.cFileName);
+				newItem->Replace('\\', '/');
+
 				// Holy obscure and annoying FindFirstFile bug! FindFirstFile("*.abc", ...) will also find
 				// files like file.abcd. This isn't correct I guess we have to check the extension here.
 				// FileMask is required to specify an extension, even if it is ".*"
@@ -1907,11 +1910,11 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 				{
 					tString foundExtension = tGetFileExtension(fd.cFileName);
 					if (ext.IsEqualCI(foundExtension))
-						foundFiles.Append(new tStringItem(dirStr + fd.cFileName));
+						foundFiles.Append(newItem);
 				}
 				else
 				{
-					foundFiles.Append(new tStringItem(dirStr + fd.cFileName));
+					foundFiles.Append(newItem);
 				}
 			}
 		}
