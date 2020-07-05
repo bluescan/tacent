@@ -3,7 +3,7 @@
 # Tacent
 Tacent is collection of C++ source files designed to be the basis for a game engine or other interactive project. Tacent is being released under the permissive MIT-style ISC licence. Originally the code was the backbone of the Tactile 3D project. 
 
-Tacent is compiled with the MSVC compiler on windows and Clang on Linux. Some (selective) improvements to take advantage of C++17 features are being made. Modern CMake (target-based) is used to generate the build files. Generators for makefiles, ninja, NMake, and Visual Studio solutions have been tested.
+Tacent is compiled with the MSVC compiler on windows and Clang or GCC on Linux. Some (selective) improvements to take advantage of C++17 features are being made. Modern CMake (target-based) is used to generate the build files. Generators for makefiles, ninja, NMake, and Visual Studio solutions have been tested.
 
 __Browse the Source__
 
@@ -120,13 +120,10 @@ ninja install
 ```    
 
 #### Ubuntu
-* Install ninja and clang
+* Install ninja and either Clang or GCC
 * Install VS Code from the snap store (optional)
 ```
-sudo apt-get install clang
 sudo apt-get install ninja-build
-sudo update-alternatives --config c++     # Choose clang
-sudo update-alternatives --config cc      # Choose clang
 ```
 * Open a terminal window and cd into the tacent directory.
 ```
@@ -139,11 +136,11 @@ ninja install
 #### Visual Studio Code
 Using the VS Code editor along with the CMake Tools extension works surprisingly well. The editor is cross platform so you get the same experience on Ubuntu as well as Windows.
 
-On either platform open up VSCode. Choose File->Open Folder and open the 'tacent' directory. It will automatically detect the CMakeFiles.txt files, suggest installing CMake Tools, ask permission to generate an intellisence detabase for code completion, etc.
+On either platform open up VSCode. Choose File->Open Folder and open the 'tacent' directory. It will automatically detect the CMakeFiles.txt files, suggest installing CMake Tools, ask permission to generate an intellisence database for code completion, etc.
 
 On Windows choose the 'Visual Studio 2019 Release -amd64' compiler kit (on the bottom info bar). The build-type to the left can be set to either Debug or Release (tacent ships with a cmake-variants.yaml file since that's one thing CMake Tools doesn't read from CMake). To the right select 'install' for the build type. Hit F7.
 
-The instructions for Ubuntu are nearly identical. The kit should be Clang 9 or 10. You may need to install Clang first using apt-get (see above).
+The instructions for Ubuntu are nearly identical. The kit can be Clang 9 or 10 or GCC 9.3.
 
 
 ### Credits and Thanks
