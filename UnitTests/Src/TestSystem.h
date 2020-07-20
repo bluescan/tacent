@@ -26,4 +26,5 @@ namespace tUnitTest
 	tTestUnit(Chunk);
 	tTestUnit(File);
 	tTestUnit(Time);
+	tTestUnit(Machine);
 }

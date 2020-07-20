@@ -88,12 +88,11 @@ int main(int argc, char** argv)
 	tTest(Task);
 	tTest(Print);
 	tTest(Regex);
-	
 	tTest(Script);
 	tTest(Chunk);
-	
 	tTest(File);
 	tTest(Time);
+	tTest(Machine);
 
 	#ifndef PLATFORM_LINUX
 	// Build tests.
@@ -104,7 +103,9 @@ int main(int argc, char** argv)
 	tTest(Image);
 
 	#else
-	tTest(List);
+
+	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
+	tTest(Machine);
 
 	#endif
 

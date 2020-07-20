@@ -798,5 +798,24 @@ tTestUnit(Time)
 }
 
 
+tTestUnit(Machine)
+{
+	tString compName = tSystem::tGetCompName();
+	tPrintf("ComputerName:%s\n", compName.Chars());
+	tRequire(!compName.IsEmpty());
+
+	bool supportsSSE = tSystem::tSupportsSSE();
+	bool supportsSSE2 = tSystem::tSupportsSSE2();
+	tPrintf("CPU Support. SSE:%s SSE2:%s\n", supportsSSE ? "True" : "False", supportsSSE2 ? "True" : "False");
+
+	int numCores = tSystem::tGetNumCores();
+	tPrintf("Num Cores:%d\n", numCores);
+	tRequire(numCores >= 1);
+
+	tString pathEnvVar = tSystem::tGetEnvVar("PATH");
+	tPrintf("PATH Env Var:%s\n", pathEnvVar.Chars());
+}
+
+
 }
 

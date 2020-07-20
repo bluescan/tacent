@@ -26,9 +26,9 @@
 #include "System/tMachine.h"
 
 
-#ifdef PLATFORM_WINDOWS
 bool tSystem::tSupportsSSE()
 {
+	#ifdef PLATFORM_WINDOWS
 	int cpuInfo[4];
 	int infoType = 1;
 	__cpuid(cpuInfo, infoType);
@@ -40,11 +40,16 @@ bool tSystem::tSupportsSSE()
 		return true;
 	else
 		return false;
+	#elif defined(PLATFORM_LINUX)
+	// @todo Implement
+	return true;
+	#endif
 }
 
 
 bool tSystem::tSupportsSSE2()
 {
+	#ifdef PLATFORM_WINDOWS
 	int cpuInfo[4];
 	int infoType = 1;
 	__cpuid(cpuInfo, infoType);
@@ -56,8 +61,12 @@ bool tSystem::tSupportsSSE2()
 		return true;
 	else
 		return false;
+
+	#elif defined(PLATFORM_LINUX)
+	// @todo Implement
+	return true;
+	#endif
 }
-#endif
 
 
 tString tSystem::tGetCompName()
@@ -78,6 +87,14 @@ tString tSystem::tGetCompName()
 
 	#endif
 	return tString();
+}
+
+
+tString tSystem::tGetEnvVar(const tString& envVarName)
+{
+	if (envVarName.IsEmpty())
+		return tString();
+	return tString(std::getenv(envVarName.ConstText()));
 }
 
 

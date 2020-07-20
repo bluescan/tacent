@@ -21,14 +21,15 @@ namespace tSystem
 {
 
 	
-#ifdef PLATFORM_WINDOWS
 // Returns true if the processor and the OS support Streaming SIMD Extensions.
 bool tSupportsSSE();
 bool tSupportsSSE2();
-#endif
 
 // Returns the computer's name.
 tString tGetCompName();
+
+// Returns an environment variable value.
+tString tGetEnvVar(const tString& envVarName);
 
 // Returns the number of cores (processors) the current machine has.
 int tGetNumCores();
