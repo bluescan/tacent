@@ -21,6 +21,7 @@
 #include <limits.h>
 #include <sys/sysinfo.h>
 #endif
+#include <cstdlib>
 #include "Foundation/tStandard.h"
 #include "System/tFile.h"
 #include "System/tMachine.h"
