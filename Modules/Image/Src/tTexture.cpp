@@ -23,11 +23,13 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <Image/tTexture.h>
-#if 0
-Replace #include <nvtt/nvtt.h> with equivalent bc7enc headers.
-#endif
+#define RGBCX_IMPLEMENTATION
+#include <BC7Enc/rgbcx.h>
 namespace tImage
 {
+
+
+bool tTexture::BC7EncInitialized = false;
 
 
 bool tTexture::Set(tList<tLayer>& layers)
@@ -309,70 +311,18 @@ void tTexture::ProcessImageTo_G3B5R5G3(tPicture& image, bool generateMipmaps, tQ
 }
 
 
-// @todo The code below uses nvtt which is being retired. The refs to nvtt need to be replaced
-// with bc7enc replacements.
-#if 0
-struct tOutputHandler : public nvtt::OutputHandler
-{
-	tOutputHandler()																					{ }
-	virtual ~tOutputHandler()																			{ }
-	void SetReceiveBuffer(uint8* buffer, int bufferSize)												{ Buffer = buffer; BufferSize = bufferSize; BufferWriteIndex = 0; }
-	void beginImage(int size, int width, int height, int depth, int face, int miplevel) override		{ }
-	void endImage() override																			{ }
-	bool writeData(const void* data, int size) override
-	{
-		if (!data || (size <= 0))
-			return true;
-
-		// This may not be all the data at one go.
-		tPrintf("Compressed data size: %d\n", size);
-		tAssert(Buffer);
-		tAssert(size <= (BufferSize - BufferWriteIndex));
-		tStd::tMemcpy(Buffer+BufferWriteIndex, data, size);
-		BufferWriteIndex += size;
-		return true;
-	}
-
-	int BufferWriteIndex = 0;
-	int BufferSize = 0;
-	uint8* Buffer = nullptr;
-};
-
-
-struct tErrorHandler : public nvtt::ErrorHandler
-{
-	void error(nvtt::Error e) override
-	{
-		tPrintf("Error: '%s'\n", nvtt::errorString(e));
-	}
-};
-#endif
-
-
 void tTexture::ProcessImageTo_BCTC(tPicture& image, tPixelFormat pixelFormat, bool generateMipmaps, tQuality quality)
 {
-	throw tError("BCTC texture compression not implemeted using bc7enc yet.");
-
-	// @todo The code below uses nvtt which is being retired. The refs to nvtt need to be replaced
-	// with bc7enc replacements.
-	#if 0
 	int width = image.GetWidth();
 	int height = image.GetHeight();
 	tPicture::tFilter filter = DetermineFilter(quality);
 	if (!tMath::tIsPower2(width) || !tMath::tIsPower2(height))
 		throw tError("Texture must be power-of-2 to be compressed to a BC format.");
 
-	nvtt::Format format = nvtt::Format_BC1;
-	switch (pixelFormat)
+	if (!BC7EncInitialized)
 	{
-		case tPixelFormat::BC1_DXT1:	format = nvtt::Format_BC1;	break;
-		case tPixelFormat::BC1_DXT1BA:	format = nvtt::Format_BC1a;	break;
-		case tPixelFormat::BC2_DXT3:	format = nvtt::Format_BC2;	break;
-		case tPixelFormat::BC3_DXT5:	format = nvtt::Format_BC3;	break;
-		case tPixelFormat::BC4_ATI1:	format = nvtt::Format_BC4;	break;
-		case tPixelFormat::BC5_ATI2:	format = nvtt::Format_BC5;	break;
-		default:
-			throw tError("Unsupported BC pixel format %d.", int(pixelFormat));
+		rgbcx::init(rgbcx::bc1_approx_mode::cBC1Ideal);
+		BC7EncInitialized = true;
 	}
 
 	// This loop resamples (reduces) the image multiple times for mipmap generation. In general we should start with
@@ -383,42 +333,32 @@ void tTexture::ProcessImageTo_BCTC(tPicture& image, tPixelFormat pixelFormat, bo
 	// behaviour. Note: we're now using bilinear as the lower quality filter. Should probably make the change.
 	while (1)
 	{
-		// We're ready to create the layer.
-		nvtt::InputOptions inputOptions;
-		inputOptions.setMipmapGeneration(false);
-		inputOptions.setAlphaMode(Opaque ? nvtt::AlphaMode_None : nvtt::AlphaMode_Transparency);
-		inputOptions.setWrapMode(nvtt::WrapMode_Clamp);
-		inputOptions.setFormat(nvtt::InputFormat_BGRA_8UB);
-		inputOptions.setTextureLayout(nvtt::TextureType_2D, tMath::tMax(width, 4), tMath::tMax(height, 4));
-		inputOptions.setMipmapData(image.GetPixelPointer(), tMath::tMax(width, 4), tMath::tMax(height, 4));
-
-		nvtt::CompressionOptions compressionOptions;
-		compressionOptions.setFormat(format);
-		if (format == nvtt::Format_BC2)
-			compressionOptions.setQuantization(false, true, false);			// Dither alpha when using BC2.
-		else if (format == nvtt::Format_BC1a)
-			compressionOptions.setQuantization(false, true, true, 127);		// Binary alpha when using BC1a.
-		compressionOptions.setQuality((quality == tQuality::Fast) ? nvtt::Quality_Fastest : nvtt::Quality_Normal);
-
-		tErrorHandler errorHandler;
-		tOutputHandler outputHandler;
-
-		nvtt::OutputOptions outputOptions;
-		outputOptions.setOutputHandler(&outputHandler);
-		outputOptions.setErrorHandler(&errorHandler);
-		outputOptions.setOutputHeader(false);
-
-		nvtt::Context context;
-		context.enableCudaAcceleration(false);
-
 		// Setup the layer data to receive the compressed data.
-		int outputSize = context.estimateSize(inputOptions, compressionOptions);
+		int numBlocks = tMath::tMax(1, width/4) * tMath::tMax(1, height/4);
+		int blockSize = (pixelFormat == tPixelFormat::BC1_DXT1) ? 8 : 16;
+		int outputSize = numBlocks * blockSize;
 		uint8* outputData = new uint8[outputSize];
-		outputHandler.SetReceiveBuffer(outputData, outputSize);
 
-		// This is the compress call where it all happens.
-		bool success = context.process(inputOptions, compressionOptions, outputOptions);
-		tAssert(outputHandler.BufferWriteIndex == outputSize);
+		int encoderQualityLevel = (quality == tQuality::Fast) ? 4 : 10;
+		bool allow3colour = true;
+		bool useTransparentTexelsForBlack = false;
+		switch (pixelFormat)
+		{
+			case tPixelFormat::BC1_DXT1:
+				break;
+			case tPixelFormat::BC3_DXT5:
+				break;
+			default:
+				throw tError("Unsupported BC pixel format %d.", int(pixelFormat));
+		}
+
+		// Compress here.
+		// pDst 8 bytes.
+		// void rgbcx::encode_bc1(uint32_t level, void* pDst, const uint8_t* pPixels, bool allow_3color, bool use_transparent_texels_for_black);
+
+		// pDst 16 bytes.
+		// void rgbcx::encode_bc3(uint32_t level, void* pDst, const uint8_t* pPixels);
+
 
 		// The last true in this call allows the layer constructor to steal the outputData pointer. Avoids extra memcpys.
 		tLayer* layer = new tLayer(pixelFormat, width, height, outputData, true);
@@ -441,7 +381,7 @@ void tTexture::ProcessImageTo_BCTC(tPicture& image, tPixelFormat pixelFormat, bo
 		// because otherwise non-uniform scale issues come into play. In short, we either have to deal with this
 		// distortion, or the cropping issue of just stopping. We do the latter because it's just easier.
 		//
-		// Just because we stop downscaling doesn't mean that we don't generate all the mipmap levels! we still
+		// Just because we stop downscaling doesn't mean that we don't generate all the mipmap levels! We still
 		// generate all the way to 1x1. It's only the src data that stops being down-sampled.
 		if ((image.GetWidth() >= 8) && (image.GetHeight() >= 8))
 		{
@@ -451,7 +391,6 @@ void tTexture::ProcessImageTo_BCTC(tPicture& image, tPixelFormat pixelFormat, bo
 			image.Resize(newWidth, newHeight, filter);
 		}
 	}
-	#endif
 }
 
 

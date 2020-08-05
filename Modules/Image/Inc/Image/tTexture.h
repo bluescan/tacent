@@ -12,7 +12,7 @@
 // useful at both pipeline and for runtime loading. To save to a tChunk file format a tTexture will call the Save
 // method of all the tLayers.
 //
-// Copyright (c) 2006, 2016, 2017, 2019 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2017, 2019, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -57,7 +57,7 @@ public:
 	// Similar to above but accepts an in-memory object. The ddsObject will be invalid after as the layers are stolen
 	// from it. If necessary, a constructor can easily be added that does a copy and keeps it valid, but it will be
 	// less efficient.
-	tTexture(tImageDDS& ddsObject, tImageDDS::tSurfIndex surface = tImageDDS::tSurfIndex_Default)							{ Set(ddsObject, surface); }
+	tTexture(tImageDDS& ddsObject, tImageDDS::tSurfIndex surface = tImageDDS::tSurfIndex_Default)						{ Set(ddsObject, surface); }
 
 	// The other constructors require you to know a quality setting for resampling (mipmap generation) and compression.
 	// For simplicity there is only Fast and Production quality settings, and it affects resampling _and_ compression.
@@ -69,7 +69,7 @@ public:
 
 	// This constructor creates a texture from an image file such as a jpg, gif, tga, or bmp. It does this by creating
 	// a temporary tPicture object. If tPixelFormat is Auto, the constructor automatically chooses the most appropriate
-	// format for the texture based on the image's properties. DXT1 is chosen if the image is perfectly opaque, and
+	// format for the texture based on the image's properties. DXT1/BC1 is chosen if the image is perfectly opaque, and
 	// DXT5 if it has alphas. This constructor forces power-of-2 texture dimensions and will resample to the nearest
 	// power-of-2 if required. If forceWidth is > 0, the image will be resampled if necessary to have that width. The
 	// same logic applies to forceHeight. Both forceWidth and forceHeight, if supplied, must be powers of 2.
@@ -149,17 +149,13 @@ private:
 	void ProcessImageTo_G3B5R5G3(tPicture&, bool generateMipmaps, tQuality);
 	void ProcessImageTo_BCTC(tPicture&, tPixelFormat, bool generateMipmaps, tQuality);
 
-	// This is legacy code for using Squish directly instead of nVidia Texture Tools 2. Once the Texture Tools version
-	// is tested, this can be removed.
-	#ifdef TEXTURE_USE_SQUISH_LIB
-	void ProcessImageTo_BCTC_Squish(tPicture&, tPixelFormat, bool generateMipmaps, tQuality);
-	#endif
-
 	bool Opaque = true;										// Only true if the texture is completely opaque.
 
 	// The tTexture is only valid if there is at least one layer. The texture is considered to have mipmaps if the
 	// number of layers is > 1.
 	tList<tLayer> Layers;
+
+	static bool BC7EncInitialized;
 };
 
 

@@ -17,7 +17,6 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
-// #include <GifLoad/gif_load.h>
 namespace tImage
 {
 
