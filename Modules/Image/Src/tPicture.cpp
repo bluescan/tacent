@@ -113,6 +113,7 @@ bool tPicture::CanLoad(tFileType fileType)
 		case tFileType::HDR:		// HDR and RGBE are handled natively.
 		case tFileType::EXR:		// EXR are handled natively.
 		case tFileType::JPG:		// JPG are handled natively.
+		case tFileType::ICO:		// JPG are handled natively.
 			return true;
 	}
 
@@ -232,6 +233,23 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 		Height = jpeg.GetHeight();
 		Pixels = jpeg.StealPixels();
 		SrcPixelFormat = jpeg.SrcPixelFormat;
+		return true;
+	}
+
+	// We handle ico files natively.
+	if (fileType == tFileType::ICO)
+	{
+		if (partNum != 0)
+			return false;
+		tImageICO icon(imageFile);
+		if (!icon.IsValid())
+			return false;
+		tImageICO::Part* part = icon.StealPart(0);
+		Width = part->Width;
+		Height = part->Height;
+		Pixels = part->Pixels;
+		SrcPixelFormat = part->SrcPixelFormat;
+		delete part;							// Does not delete the pixel array.
 		return true;
 	}
 

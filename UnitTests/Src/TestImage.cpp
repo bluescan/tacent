@@ -74,11 +74,20 @@ tTestUnit(Image)
 	tImage::tTexture cubemap("TestData/CubemapLayoutGuide.dds");
 	tRequire(cubemap.IsValid());
 
-	// Test jpg to texture. This will do conversion to BCTC.
-	tGoal(!"BCTC needs to be re-enabled for texture creation.");
-	//tImage::tTexture jpgTex("TestData/WiredDrives.jpg", true);
-	//tRequire(jpgTex.IsValid());
-	
+	// Test jpg to texture. This will do conversion to BC1.
+	tImage::tTexture bc1Tex("TestData/WiredDrives.jpg", true);
+	tRequire(bc1Tex.IsValid());
+	tChunkWriter chunkWriterBC1("TestData/WrittenBC1.tac");
+	bc1Tex.Save(chunkWriterBC1);
+	tRequire( tSystem::tFileExists("TestData/WrittenBC1.tac"));
+
+	// Test ico with alpha to texture. This will do conversion to BC3.
+	tImage::tTexture bc3Tex("TestData/UpperBounds.ico", true);
+	tRequire(bc3Tex.IsValid());
+	tChunkWriter chunkWriterBC3("TestData/WrittenBC3.tac");
+	bc3Tex.Save(chunkWriterBC3);
+	tRequire( tSystem::tFileExists("TestData/WrittenBC3.tac"));
+
 	// Test tPicture loading jpg and saving as tga.
 	tImage::tPicture jpgPic("TestData/WiredDrives.jpg");
 	tRequire(jpgPic.IsValid());

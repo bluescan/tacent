@@ -342,23 +342,27 @@ void tTexture::ProcessImageTo_BCTC(tPicture& image, tPixelFormat pixelFormat, bo
 		int encoderQualityLevel = (quality == tQuality::Fast) ? 4 : 10;
 		bool allow3colour = true;
 		bool useTransparentTexelsForBlack = false;
-		switch (pixelFormat)
+
+		uint8* blockDest = outputData;
+		uint8* pixelSrc = (uint8*)image.GetPixelPointer();
+		for (int block = 0; block < numBlocks; block++)
 		{
-			case tPixelFormat::BC1_DXT1:
-				break;
-			case tPixelFormat::BC3_DXT5:
-				break;
-			default:
-				throw tError("Unsupported BC pixel format %d.", int(pixelFormat));
+			switch (pixelFormat)
+			{
+				case tPixelFormat::BC1_DXT1:
+					rgbcx::encode_bc1(encoderQualityLevel, blockDest, pixelSrc, allow3colour, useTransparentTexelsForBlack);
+					break;
+
+				case tPixelFormat::BC3_DXT5:
+					rgbcx::encode_bc3(encoderQualityLevel, blockDest, pixelSrc);
+					break;
+
+				default:
+					throw tError("Unsupported BC pixel format %d.", int(pixelFormat));
+			}
+			blockDest += blockSize;
+			pixelSrc += sizeof(tPixel);
 		}
-
-		// Compress here.
-		// pDst 8 bytes.
-		// void rgbcx::encode_bc1(uint32_t level, void* pDst, const uint8_t* pPixels, bool allow_3color, bool use_transparent_texels_for_black);
-
-		// pDst 16 bytes.
-		// void rgbcx::encode_bc3(uint32_t level, void* pDst, const uint8_t* pPixels);
-
 
 		// The last true in this call allows the layer constructor to steal the outputData pointer. Avoids extra memcpys.
 		tLayer* layer = new tLayer(pixelFormat, width, height, outputData, true);

@@ -27,6 +27,7 @@
 #include "Image/tImageHDR.h"
 #include "Image/tImageEXR.h"
 #include "Image/tImageGIF.h"
+#include "Image/tImageICO.h"
 #include "Image/tPixelFormat.h"
 namespace tImage
 {
