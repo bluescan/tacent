@@ -114,13 +114,6 @@ tTestUnit(Image)
 
 	pngPic.Save("TestData/WrittenXeyesJPG.jpg");
 	tRequire( tSystem::tFileExists("TestData/WrittenXeyesJPG.jpg"));
-
-	#ifdef PLATFORM_WINDOWS
-	pngPic.Save("TestData/WrittenXeyesGIF.gif");
-	tRequire( tSystem::tFileExists("TestData/WrittenXeyesGIF.gif"));
-	#else
-	tGoal(!"Write to gif not working on this platform.");
-	#endif
 }
 
 
