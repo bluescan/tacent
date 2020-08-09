@@ -1,10 +1,15 @@
 // tPicture.cpp
 //
-// This class represents a simple one layer image. It is a collection of raw uncompressed 32-bit tPixels. It can load
+// This class represents a simple one-part image. It is a collection of raw uncompressed 32-bit tPixels. It can load
 // various formats from disk such as jpg, tga, png, etc. It intentionally _cannot_ load a dds file. More on that later.
-// This class can load tga files with a native implementation, and uses CxImage for everything else. Saving
-// functionality is restricted to saving tga files only (targa files are not lossless when RLE compressed). Image
-// manipulation (excluding compression) happens in a tPicture, so there are crop, scale, etc functions in this class.
+// This class can load many formats with a 'native implementation'. By native I mean formats for which there are
+// specific and correct tImageAAA loaders. CxImage is used for the remainder (tiff/png/bmp mostly). Saving to different
+// formats is supported natively where possible, and uses CxImage otherwise. Image manipulation (excluding compression)
+// is supported in a tPicture, so there are crop, scale, etc functions in this class.
+//
+// Some image disk formats have more than one 'part' or image inside them. For example, tiff files can have more than
+// layer, and gif/webp images may be animated and have more than one frame. A tPicture can only prepresent _one_ of 
+// these parts.
 //
 // Copyright (c) 2006, 2016, 2017, 2019, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -93,10 +98,9 @@ bool tPicture::CanSave(tFileType fileType)
 {
 	switch (fileType)
 	{
-		case tFileType::TGA:		// Targas handled natively.
+		case tFileType::TGA:		// Handled natively.
 		case tFileType::BMP:
-		case tFileType::GIF:
-		case tFileType::JPG:
+		case tFileType::JPG:		// Handles natively.
 		case tFileType::PNG:
 			return true;
 	}
@@ -109,15 +113,17 @@ bool tPicture::CanLoad(tFileType fileType)
 {
 	switch (fileType)
 	{
-		case tFileType::TGA:		// Targas are handled natively.
-		case tFileType::HDR:		// HDR and RGBE are handled natively.
-		case tFileType::EXR:		// EXR are handled natively.
-		case tFileType::JPG:		// JPG are handled natively.
-		case tFileType::ICO:		// JPG are handled natively.
+		case tFileType::EXR:
+		case tFileType::GIF:
+		case tFileType::HDR:
+		case tFileType::ICO:
+		case tFileType::JPG:
+		case tFileType::TGA:
+		case tFileType::WEBP:
 			return true;
 	}
 
-	// The rest are handled by CxImage.
+	// The rest (bmp/png/tiff) are handled by CxImage.
 	if (GetCxFormat(fileType) != CXIMAGE_FORMAT_UNKNOWN)
 		return true;
 
@@ -134,12 +140,17 @@ bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt,
 	if (!CanSave(fileType))
 		return false;
 
-	// Native formats not handled by CxImage.
-	if (fileType == tFileType::TGA)
-		return SaveTGA(imageFile, tImage::tImageTGA::tFormat(colourFmt), tImage::tImageTGA::tCompression::None);
-	else if (fileType == tFileType::JPG)
-		return SaveJPG(imageFile, quality);
+	// Native formats.
+	switch (fileType)
+	{
+		case tFileType::TGA:
+			return SaveTGA(imageFile, tImage::tImageTGA::tFormat(colourFmt), tImage::tImageTGA::tCompression::None);
 
+		case tFileType::JPG:
+			return SaveJPG(imageFile, quality);
+	}
+
+	// Remaining formats handled by CxImage.
 	tPixel* reorderedPixelArray = new tPixel[Width*Height];
 	for (int p = 0; p < Width*Height; p++)
 	{
@@ -198,6 +209,8 @@ bool tPicture::SaveJPG(const tString& jpgFile, int quality) const
 
 bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 {
+	tMath::tiClampMin(partNum, 0);
+
 	Clear();
 	if (!tFileExists(imageFile))
 		return false;
@@ -206,107 +219,158 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 	if (!CanLoad(fileType))
 		return false;
 
-	// We handle tga files natively.
-	if (fileType == tFileType::TGA)
-	{
-		if (partNum != 0)
-			return false;
-		tImageTGA targa(imageFile);
-		if (!targa.IsValid())
-			return false;
-		Width = targa.GetWidth();
-		Height = targa.GetHeight();
-		Pixels = targa.StealPixels();
-		SrcPixelFormat = targa.SrcPixelFormat;
-		return true;
-	}
-
-	// We handle jpg files natively.
-	if (fileType == tFileType::JPG)
-	{
-		if (partNum != 0)
-			return false;
-		tImageJPG jpeg(imageFile);
-		if (!jpeg.IsValid())
-			return false;
-		Width = jpeg.GetWidth();
-		Height = jpeg.GetHeight();
-		Pixels = jpeg.StealPixels();
-		SrcPixelFormat = jpeg.SrcPixelFormat;
-		return true;
-	}
-
-	// We handle ico files natively.
-	if (fileType == tFileType::ICO)
-	{
-		if (partNum != 0)
-			return false;
-		tImageICO icon(imageFile);
-		if (!icon.IsValid())
-			return false;
-		tImageICO::Part* part = icon.StealPart(0);
-		Width = part->Width;
-		Height = part->Height;
-		Pixels = part->Pixels;
-		SrcPixelFormat = part->SrcPixelFormat;
-		delete part;							// Does not delete the pixel array.
-		return true;
-	}
-
-	// We handle hdr files natively.
-	if (fileType == tFileType::HDR)
-	{
-		if (partNum != 0)
-			return false;
-		tImageHDR hdr;
-		hdr.Load
-		(
-			imageFile,
-			params.GammaValue,
-			params.HDR_Exposure
-		);
-		if (!hdr.IsValid())
-			return false;
-		Width = hdr.GetWidth();
-		Height = hdr.GetHeight();
-		Pixels = hdr.StealPixels();
-		SrcPixelFormat = hdr.SrcPixelFormat;
-		return true;
-	}
-
-	// We handle exr files natively.
+	// Native handlers.
 	// @todo It's looking like we should make an abstract tImageBase class at this point to get rid of all this duplication.
-	if (fileType == tFileType::EXR)
+	switch (fileType)
 	{
-		tImageEXR exr;
-		bool ok = exr.Load
-		(
-			imageFile,
-			partNum,
-			params.GammaValue,
-			params.EXR_Exposure,
-			params.EXR_Defog,
-			params.EXR_KneeLow,
-			params.EXR_KneeHigh
-		);
-		if (!ok || !exr.IsValid())
-			return false;
-		Width = exr.GetWidth();
-		Height = exr.GetHeight();
-		Pixels = exr.StealPixels();
-		SrcPixelFormat = exr.SrcPixelFormat;
-		return true;
+		case tFileType::EXR:
+		{
+			tImageEXR exr;
+			bool ok = exr.Load
+			(
+				imageFile,
+				partNum,
+				params.GammaValue,
+				params.EXR_Exposure,
+				params.EXR_Defog,
+				params.EXR_KneeLow,
+				params.EXR_KneeHigh
+			);
+			if (!ok || !exr.IsValid())
+				return false;
+			Width = exr.GetWidth();
+			Height = exr.GetHeight();
+			Pixels = exr.StealPixels();
+			SrcPixelFormat = exr.SrcPixelFormat;
+			return true;
+		}
+
+		case tFileType::GIF:
+		{
+			tImageGIF gif;
+			bool ok = gif.Load(imageFile);
+			if (!ok || !gif.IsValid())
+				return false;
+
+			if (partNum >= gif.GetNumFrames())
+				return false;
+
+			Width = gif.GetWidth();
+			Height = gif.GetHeight();
+		
+			tImageGIF::Frame* stolenFrame = gif.StealFrame(partNum);
+			Pixels = stolenFrame->Pixels;
+
+			// This is safe as the frame does not own/delete the pixels.
+			delete stolenFrame;
+
+			SrcPixelFormat = gif.SrcPixelFormat;
+			return true;
+		}
+
+		case tFileType::HDR:
+		{
+			// HDRs can only have one part.
+			if (partNum != 0)
+				return false;
+			tImageHDR hdr;
+			hdr.Load
+			(
+				imageFile,
+				params.GammaValue,
+				params.HDR_Exposure
+			);
+			if (!hdr.IsValid())
+				return false;
+			Width = hdr.GetWidth();
+			Height = hdr.GetHeight();
+			Pixels = hdr.StealPixels();
+			SrcPixelFormat = hdr.SrcPixelFormat;
+			return true;
+		}
+
+		case tFileType::ICO:
+		{
+			tImageICO ico;
+			bool ok = ico.Load(imageFile);
+			if (!ok || !ico.IsValid())
+				return false;
+
+			if (partNum >= ico.GetNumParts())
+				return false;
+
+			tImageICO::Part* stolenPart = ico.StealPart(partNum);
+			Pixels = stolenPart->Pixels;
+
+			Width = stolenPart->Width;
+			Height = stolenPart->Height;		
+			SrcPixelFormat = stolenPart->SrcPixelFormat;
+
+			// This is safe as the part does not own/delete the pixels.
+			delete stolenPart;
+			return true;
+		}
+
+		case tFileType::JPG:
+		{
+			// JPGs can only have one part.
+			if (partNum != 0)
+				return false;
+			tImageJPG jpeg(imageFile);
+			if (!jpeg.IsValid())
+				return false;
+			Width = jpeg.GetWidth();
+			Height = jpeg.GetHeight();
+			Pixels = jpeg.StealPixels();
+			SrcPixelFormat = jpeg.SrcPixelFormat;
+			return true;
+		}
+
+		case tFileType::TGA:
+		{
+			// TGAs can only have one part.
+			if (partNum != 0)
+				return false;
+			tImageTGA targa(imageFile);
+			if (!targa.IsValid())
+				return false;
+			Width = targa.GetWidth();
+			Height = targa.GetHeight();
+			Pixels = targa.StealPixels();
+			SrcPixelFormat = targa.SrcPixelFormat;
+			return true;
+		}
+
+		if (fileType == tFileType::WEBP)
+		{
+			tImageWEBP webp;
+			bool ok = webp.Load(imageFile);
+			if (!ok || !webp.IsValid())
+				return false;
+
+			if (partNum >= webp.GetNumFrames())
+				return false;
+
+			tImageWEBP::Frame* stolenFrame = webp.StealFrame(partNum);
+			Width = stolenFrame->Width;
+			Height = stolenFrame->Height;
+			SrcPixelFormat = stolenFrame->SrcPixelFormat;
+		
+			Pixels = stolenFrame->Pixels;
+
+			// This is safe as the frame does not own/delete the pixels.
+			delete stolenFrame;
+			return true;
+		}
 	}
 
-	// For everything else we use the CxImage library for loading.
+	// For everything else (png/bmp/tiff) we use the CxImage library for loading.
+	// @todo Support multi-part tiffs.
 	ENUM_CXIMAGE_FORMATS cxFormat = ENUM_CXIMAGE_FORMATS(GetCxFormat(fileType));
 	if (cxFormat == CXIMAGE_FORMAT_UNKNOWN)
 		return false;
 
 	CxImage image;
-
-	// For gifs CxImage does not get all the colours right.
-	tAssert(fileType != tFileType::GIF)
 	if (partNum != 0)
 		return false;
 

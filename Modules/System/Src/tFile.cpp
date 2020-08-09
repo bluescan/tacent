@@ -202,10 +202,9 @@ tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString& e)
 		{ "tex",		tFileType::TEX				},
 		{ "img",		tFileType::IMG				},
 		{ "cub",		tFileType::CUB				},
-		{ "ae2",		tFileType::TacentImage		},
-		{ "aec",		tFileType::TacentImageCube	},
-		{ "ae3",		tFileType::TacentImageVol	},
-		{ "cfg",		tFileType::TacentConfig		},
+		{ "tac",		tFileType::TAC				},
+		{ "tim",		tFileType::TAC				},
+		{ "cfg",		tFileType::CFG				},
 	};
 	int numExtensions = sizeof(extToType)/sizeof(*extToType);
 

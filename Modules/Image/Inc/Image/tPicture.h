@@ -1,10 +1,15 @@
 // tPicture.h
 //
-// This class represents a simple one layer image. It is a collection of raw uncompressed 32-bit tPixels. It can load
+// This class represents a simple one-part image. It is a collection of raw uncompressed 32-bit tPixels. It can load
 // various formats from disk such as jpg, tga, png, etc. It intentionally _cannot_ load a dds file. More on that later.
-// This class can load tga files with a native implementation, and uses CxImage for everything else. Saving
-// functionality is restricted to saving tga files only (targa files are not lossless when RLE compressed). Image
-// manipulation (excluding compression) happens in a tPicture, so there are crop, scale, etc functions in this class.
+// This class can load many formats with a 'native implementation'. By native I mean formats for which there are
+// specific and correct tImageAAA loaders. CxImage is used for the remainder (tiff/png/bmp mostly). Saving to different
+// formats is supported natively where possible, and uses CxImage otherwise. Image manipulation (excluding compression)
+// is supported in a tPicture, so there are crop, scale, etc functions in this class.
+//
+// Some image disk formats have more than one 'part' or image inside them. For example, tiff files can have more than
+// layer, and gif/webp images may be animated and have more than one frame. A tPicture can only prepresent _one_ of 
+// these parts.
 //
 // Copyright (c) 2006, 2016, 2017, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -22,12 +27,13 @@
 #include <Math/tColour.h>
 #include <System/tFile.h>
 #include <System/tChunk.h>
-#include "Image/tImageTGA.h"
-#include "Image/tImageJPG.h"
-#include "Image/tImageHDR.h"
 #include "Image/tImageEXR.h"
 #include "Image/tImageGIF.h"
+#include "Image/tImageHDR.h"
 #include "Image/tImageICO.h"
+#include "Image/tImageJPG.h"
+#include "Image/tImageTGA.h"
+#include "Image/tImageWEBP.h"
 #include "Image/tPixelFormat.h"
 namespace tImage
 {
@@ -72,8 +78,8 @@ public:
 
 	// Loads the supplied image file. If the image couldn't be loaded, IsValid will return false afterwards. Uses the
 	// filename extension to determine what file type it is loading. dds files may _not_ be loaded into a tPicture.
-	// Use a tTexture if you want to load a dds. Loading tga and hdr files is handled by native code. Other formats like
-	// jpg and png are handled by CxImage.
+	// Use a tTexture if you want to load a dds. For images with more than one part (animated gif, tiff, etc) the
+	// partNum specifies which one to load and will result in an invalid tPicture if you go too high.
 	tPicture(const tString& imageFile, int partNum = 0, LoadParams params = LoadParams())								{ Load(imageFile, partNum, params); }
 
 	// Copy constructor.

@@ -99,10 +99,8 @@ enum class tFileType
 	IMG,							// TextureMap.
 	CUB,							// CubeMap.
 
-	TacentImage,					// Image.				// A Tacent layered 2D image. (tim)
-	TacentImageCube,				// CubeImage.			// A Tacent layered Cube image. (tib)
-	TacentImageVol,					// VolumeImage.			// A Tacent layered Volume image. (tiv)
-	TacentConfig,					// Config.
+	TAC,							// Image.				// A Tacent layered 2D image.
+	CFG,							// Config.
 	NumTypes
 };
 
@@ -389,10 +387,8 @@ inline tSystem::tFileInfo::tFileInfo() :
 	FileSize(0),
 	CreationTime(0),
 	ModificationTime(0),
-	//AccessTime(0),
 	ReadOnly(false),
 	Hidden(false),
-	//System(false),
 	Directory(false)
 {
 }
@@ -404,10 +400,8 @@ inline void tSystem::tFileInfo::Clear()
 	FileSize = 0;
 	CreationTime = 0;
 	ModificationTime = 0;
-//	AccessTime = 0;
 	ReadOnly = false;
 	Hidden = false;
-//	System = false;
 	Directory = false;
 }
 
