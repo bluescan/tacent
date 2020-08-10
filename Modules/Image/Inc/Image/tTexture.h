@@ -70,7 +70,7 @@ public:
 	// This constructor creates a texture from an image file such as a jpg, gif, tga, or bmp. It does this by creating
 	// a temporary tPicture object. If tPixelFormat is Auto, the constructor automatically chooses the most appropriate
 	// format for the texture based on the image's properties. DXT1/BC1 is chosen if the image is perfectly opaque, and
-	// DXT5 if it has alphas. This constructor forces power-of-2 texture dimensions and will resample to the nearest
+	// DXT5/BC3 if it has alphas. This constructor forces power-of-2 texture dimensions and will resample to the nearest
 	// power-of-2 if required. If forceWidth is > 0, the image will be resampled if necessary to have that width. The
 	// same logic applies to forceHeight. Both forceWidth and forceHeight, if supplied, must be powers of 2.
 	tTexture
