@@ -28,7 +28,7 @@ namespace tImage
 {
 
 
-bool tImageJPG::Load(const tString& jpgFile)
+bool tImageJPG::Load(const tString& jpgFile, bool strict)
 {
 	Clear();
 
@@ -40,14 +40,14 @@ bool tImageJPG::Load(const tString& jpgFile)
 
 	int numBytes = 0;
 	uint8* jpgFileInMemory = tLoadFile(jpgFile, nullptr, &numBytes);
-	bool success = Set(jpgFileInMemory, numBytes);
+	bool success = Set(jpgFileInMemory, numBytes, strict);
 	delete[] jpgFileInMemory;
 
 	return success;
 }
 
 
-bool tImageJPG::Set(const uint8* jpgFileInMemory, int numBytes)
+bool tImageJPG::Set(const uint8* jpgFileInMemory, int numBytes, bool strict)
 {
 	Clear();
 	if ((numBytes <= 0) || !jpgFileInMemory)
@@ -73,10 +73,34 @@ bool tImageJPG::Set(const uint8* jpgFileInMemory, int numBytes)
 	//flags |= TJFLAG_FASTDCT;
 	flags |= TJFLAG_ACCURATEDCT;
 
-	int decomResult = tjDecompress2(tjInstance, jpgFileInMemory, numBytes, (uint8*)Pixels, Width, 0, Height,
-		jpgPixelFormat, flags);
-	tjDestroy(tjInstance);
+	int decomResult = tjDecompress2
+	(
+		tjInstance, jpgFileInMemory, numBytes, (uint8*)Pixels,
+		Width, 0, Height, jpgPixelFormat, flags
+	);
+
+	bool abortLoad = false;
 	if (decomResult < 0)
+	{
+		int errorSeverity = tjGetErrorCode(tjInstance);
+		char* errorMsg = tjGetErrorStr2(tjInstance);
+		switch (errorSeverity)
+		{
+			case TJERR_WARNING:
+				tPrintf("Warning: JPG ill-formed: %s\n", errorMsg);
+				if (strict)
+					abortLoad = true;
+				break;
+
+			case TJERR_FATAL:
+				tPrintf("Error: JPG fatally ill-formed: %s\n", errorMsg);
+				abortLoad = true;
+				break;
+		}
+	}
+
+	tjDestroy(tjInstance);
+	if (abortLoad)
 	{
 		Clear();
 		return false;

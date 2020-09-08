@@ -28,10 +28,12 @@ class tImageJPG
 public:
 	// Creates an invalid tImageJPG. You must call Load manually.
 	tImageJPG()																											{ }
-	tImageJPG(const tString& jpgFile)																					{ Load(jpgFile); }
+
+	// If strict is true, if the file is ill-formed even in a non-fatal way, the resultant image will be invalid.
+	tImageJPG(const tString& jpgFile, bool strict = false)																{ Load(jpgFile, strict); }
 
 	// The data is copied out of jpgFileInMemory. Go ahead and delete after if you want.
-	tImageJPG(const uint8* jpgFileInMemory, int numBytes)																{ Set(jpgFileInMemory, numBytes); }
+	tImageJPG(const uint8* jpgFileInMemory, int numBytes, bool strict = false)											{ Set(jpgFileInMemory, numBytes, strict); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -40,8 +42,8 @@ public:
 	virtual ~tImageJPG()																								{ Clear(); }
 
 	// Clears the current tImageJPG before loading. Returns success. If false returned, object is invalid.
-	bool Load(const tString& jpgFile);
-	bool Set(const uint8* jpgFileInMemory, int numBytes);
+	bool Load(const tString& jpgFile, bool strict = false);
+	bool Set(const uint8* jpgFileInMemory, int numBytes, bool strict = false);
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
