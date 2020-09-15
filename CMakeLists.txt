@@ -16,5 +16,8 @@ message(STATUS "Tacent -- ProjectName ${PROJECT_NAME} ProjectVersion ${PROJECT_V
 add_subdirectory(Contrib)
 add_subdirectory(Modules)
 
-# The UnitTests executable, the only non-library.
+# The UnitTests executable.
 add_subdirectory(UnitTests)
+
+# The WoboqGen executable.
+add_subdirectory(Woboq)

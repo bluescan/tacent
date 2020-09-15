@@ -1,4 +1,4 @@
-#include <System/tCmdLine.h>
+#include <System/tCommand.h>
 #include <System/tScript.h>
 #include <System/tFile.h>
 using namespace tStd;
@@ -9,18 +9,18 @@ int main(int argc, char** argv)
 {
 	tPrintf("Woboq CompilerCommands Tool\n");
 
-	tCmdLine::tOption config('c', "config", "Specify the config file.", 1);
-	tCmdLine::tParse(argc, argv);
+	tCommand::tOption config("config", "Specify the config file.", 'c', 1);
+	tCommand::tParse(argc, argv);
 	if (!config.IsPresent())
 	{
-		tCmdLine::tPrintUsage();
+		tCommand::tPrintUsage();
 		return 0;
 	}
 
 	tString configFile = config.Arg1();
 	tString outputFile = "compile_commands.json";
-	tList<tListString> includePaths;
-	tList<tListString> sourceFiles;
+	tList<tStringItem> includePaths;
+	tList<tStringItem> sourceFiles;
 	tString compileCommand;
 
 	//tPrintf("Config arg: %s\n", config.Arg1().Pod());
@@ -36,13 +36,13 @@ int main(int argc, char** argv)
 		}
 		else if (com == "IncludePath")
 		{
-			tListString* incPath = new tListString( tGetLinuxPath( tGetAbsolutePath( tGetDir(configFile) + arg1 ) ) );
+			tStringItem* incPath = new tStringItem( tGetLinuxPath( tGetAbsolutePath( tGetDir(configFile) + arg1 ) ) );
 			includePaths.Append(incPath);
 			tPrintf("IncludePath : %s\n", incPath->Pod());
 		}
 		else if (com == "SourceFile")
 		{
-			tListString* srcFile = new tListString( tGetLinuxPath( tGetAbsolutePath( tGetDir(configFile) + arg1 ) ) );
+			tStringItem* srcFile = new tStringItem( tGetLinuxPath( tGetAbsolutePath( tGetDir(configFile) + arg1 ) ) );
 			sourceFiles.Append(srcFile);
 			tPrintf("SourceFile : %s\n", srcFile->Pod());
 		}
@@ -61,7 +61,7 @@ int main(int argc, char** argv)
 
 	tFileHandle outFile = tOpenFile(outputFile, "wt");
 	tfPrintf(outFile, "[\n");
-	for (tListString* srcFile = sourceFiles.First(); srcFile; srcFile = srcFile->Next())
+	for (tStringItem* srcFile = sourceFiles.First(); srcFile; srcFile = srcFile->Next())
 	{
 		tfPrintf(outFile, "{\n");
 
@@ -71,7 +71,7 @@ int main(int argc, char** argv)
 		tfPrintf(outFile, "  \"directory\": \"%s\",\n", dir.Pod());
 
 		tfPrintf(outFile, "  \"command\": \"%s ", compileCommand.Pod());
-		for (tListString* incDir = includePaths.First(); incDir; incDir = incDir->Next())
+		for (tStringItem* incDir = includePaths.First(); incDir; incDir = incDir->Next())
 			tfPrintf(outFile, "-I%s ", incDir->Pod());
 		tfPrintf(outFile, " -o %s.o ", srcFile->Pod());
 		tfPrintf(outFile, " -c %s\",\n", srcFile->Pod());
