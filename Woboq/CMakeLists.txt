@@ -27,6 +27,7 @@ target_link_libraries(
 		# building from bash.
 		$<$<PLATFORM_ID:Linux>:m>
 		$<$<PLATFORM_ID:Linux>:stdc++>
+		$<$<PLATFORM_ID:Windows>:Shlwapi>
 )
 
 if (MSVC)
