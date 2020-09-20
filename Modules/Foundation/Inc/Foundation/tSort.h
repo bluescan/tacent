@@ -17,6 +17,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tStandard.h>
 
 
 namespace tSort

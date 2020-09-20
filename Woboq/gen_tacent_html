@@ -1,5 +1,8 @@
-rm -rf ../../HomePage/Tacent/
+#!/usr/bin/bash
 
-../Contrib/Woboq/generator/codebrowser_generator -a -b ./compile_commands_generated.json -o ../../HomePage/Tacent -p Modules:/mnt/d/Perforce/Tacent/Modules:Ver0.1
+rm -rf ./generated/html
 
-../Contrib/Woboq/indexgenerator/codebrowser_indexgenerator ../../HomePage/Tacent
+../Woboq/WoboqGen -c ../Woboq/WoboqTacent.cfg
+
+./codebrowser_generator -a -b ./compile_commands_generated.json -o ./generated/html -p Modules:../Modules:Ver0.1
+./codebrowser_indexgenerator ./generated/html

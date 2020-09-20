@@ -14,7 +14,6 @@
 
 #pragma once
 #include <Scene/tObject.h>
-#include "Scene/tSelection.h"
 namespace tScene
 {
 

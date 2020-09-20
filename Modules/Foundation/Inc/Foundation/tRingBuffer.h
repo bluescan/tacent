@@ -16,6 +16,7 @@
 
 #pragma once
 #include <Foundation/tAssert.h>
+#include <Foundation/tStandard.h>
 
 
 // tRingBuffer allows you to append one or more items (of user-specified type) to the tail of the ring, remove one or

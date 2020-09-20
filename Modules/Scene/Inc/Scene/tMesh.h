@@ -13,6 +13,8 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tStandard.h>
+#include <System/tChunk.h>
 namespace tScene
 {
 
