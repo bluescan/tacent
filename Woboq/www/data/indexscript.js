@@ -232,9 +232,8 @@ $(function() {
             });
         }
     });
-
-//    $("#footer").before("<div><br>&nbsp&nbsp<a href='/tacent.php'>Home</a></div>")
-    $("#footer").before("<div><br>&nbsp&nbsp<a href='/indexscript.js.php'>Home</a></div>")
+	// @tacent
+    $("#footer").before("<div><br>&nbsp&nbsp<a href='/tacent.php'>Home</a></div>")
 
 //    $("#footer").before("<div id='whatisit'><h3>What is this ?</h3><p>This is an online code browser that allows you to browse C/C++ code just like in your IDE, "
 //                        +  "with <b>semantic highlighting</b> and contextual <b>tooltips</b> that show you the usages and cross references.<br/>"

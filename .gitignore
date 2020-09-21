@@ -12,7 +12,7 @@ compile_commands.json
 .vscode/c_cpp_properties.json
 
 # Specific files/directories matching string.
-/Woboq/generated/html
+/Woboq/www/Tacent
 
 # Filetypes everywhere.
 *.ext

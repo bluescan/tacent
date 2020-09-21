@@ -1,8 +1,11 @@
 #!/usr/bin/bash
 
-rm -rf ./generated/html
+rm -rf ./www/Tacent
+./WoboqGen -c ./WoboqTacent.cfg
+./codebrowser_generator -a -b ./compile_commands_generated.json -o ./www/Tacent -p Modules:../Modules:Ver1.0
+./codebrowser_indexgenerator ./www/Tacent
 
-../Woboq/WoboqGen -c ../Woboq/WoboqTacent.cfg
+#scp -r ./www/ root@158.69.215.102:"/home/homepage/www/"
+# Removed 'v' verbose flag.
+rsync -aP ./www/ root@158.69.215.102:"/home/homepage/www/"
 
-./codebrowser_generator -a -b ./compile_commands_generated.json -o ./generated/html -p Modules:../Modules:Ver0.1
-./codebrowser_indexgenerator ./generated/html
