@@ -1,13 +1,13 @@
 ![Unit Tests](https://github.com/bluescan/tacent/workflows/Unit%20Tests/badge.svg)
 
 # Tacent
-Tacent is collection of C++ source files designed to be the basis for a game engine or other interactive project. Tacent is being released under the permissive MIT-style ISC licence. Originally the code was the backbone of the Tactile 3D project. 
+Tacent is collection of C++ source files designed to be the basis for a game engine or other interactive project. It is released under the permissive MIT-style ISC licence. Originally the code was the backbone of the Tactile 3D project. 
 
-Tacent is compiled with the MSVC compiler on windows and Clang or GCC on Linux. Some (selective) improvements to take advantage of C++17 features are being made. Modern CMake (target-based) is used to generate the build files. Generators for makefiles, ninja, NMake, and Visual Studio solutions have been tested.
+Selective improvements to take advantage of C++17 features have been made. Modern CMake (target-based) is used to generate the build files. Generators for makefiles, ninja, NMake, and Visual Studio solutions have been tested.
 
 __Browse the Source__
 
-Older versions cpp files can be browsed online using Woboq, a Clang-based tool that marks-up C++ to web-ready HTML.  Woboq is being run on Windows 10 using the new Linux Subsystem. The source being browsed is out-of-date, but can bu useful for quick references / code-snips. Perhaps eventually a GitHub action can be made for it... right now the Woboq stuff is out of date.
+The source files can be browsed using Woboq -- a Clang-based tool that marks-up C++ to web-ready HTML. This tool is being used under the ShareAlike Licence.
 
 [Browse the source here.](http://upperboundsinteractive.com/Tacent/Modules/index.html)
 
