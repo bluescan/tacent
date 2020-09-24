@@ -20,7 +20,7 @@
 // i.e. It seems the faces should always be specified using a LH coord system. The OpenGL calls for specifying a
 // cubemap are also left handed which is inconsistent with other parts of the OpenGL API.
 //
-// Copyright (c) 2006, 2017, 2019 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -30,7 +30,6 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-//#include "Math/tFundamentals.h"
 #include "Image/tCubemap.h"
 using namespace tImage;
 
