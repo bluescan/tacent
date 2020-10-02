@@ -120,6 +120,7 @@ bool tPicture::CanLoad(tFileType fileType)
 		case tFileType::JPG:
 		case tFileType::TGA:
 		case tFileType::WEBP:
+		case tFileType::XPM:
 			return true;
 	}
 
@@ -341,7 +342,7 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 			return true;
 		}
 
-		if (fileType == tFileType::WEBP)
+		case tFileType::WEBP:
 		{
 			tImageWEBP webp;
 			bool ok = webp.Load(imageFile);
@@ -360,6 +361,21 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 
 			// This is safe as the frame does not own/delete the pixels.
 			delete stolenFrame;
+			return true;
+		}
+
+		case tFileType::XPM:
+		{
+			// XPMs can only have one part.
+			if (partNum != 0)
+				return false;
+			tImageXPM xpm(imageFile);
+			if (!xpm.IsValid())
+				return false;
+			Width = xpm.GetWidth();
+			Height = xpm.GetHeight();
+			Pixels = xpm.StealPixels();
+			SrcPixelFormat = xpm.SrcPixelFormat;
 			return true;
 		}
 	}
