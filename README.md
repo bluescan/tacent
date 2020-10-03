@@ -104,7 +104,7 @@ The unit tests, while not offering full coverage, show examples of this.
 
 ### Building
 
-The suggested build methods are to eitehr use VSCode with the CMake Tools extension or from the command line. Both methods work in either Windows or Linux. There are two build-types (AKA configurations) with Tacent: Debug and Release. If you want to build debug versions pass -DCMAKE_BUILD_TYPE=Debug to the cmake command.
+Either sse VSCode with the CMake Tools extension or from the command line. Both methods work in either Windows or Linux. There are two build-types (AKA configurations) with Tacent: Debug and Release. If you want to build debug versions pass -DCMAKE_BUILD_TYPE=Debug to the cmake command.
 
 The 'install' target creates a directory called 'Install' that has all the built libraries (.a or .lib), exported headers, cmake target files, and the unit test executable.
 
