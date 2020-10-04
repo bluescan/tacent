@@ -185,7 +185,6 @@ tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString& e)
 		{ "png",		tFileType::PNG				},
 		{ "gif",		tFileType::GIF				},
 		{ "webp",		tFileType::WEBP				},
-		{ "xpm",		tFileType::XPM				},
 		{ "jpg",		tFileType::JPG				},
 		{ "jpeg",		tFileType::JPG				},
 		{ "tif",		tFileType::TIFF				},

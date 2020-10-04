@@ -12,7 +12,6 @@ add_library(
 	Src/tImageTGA.cpp
 	Src/tImageJPG.cpp
 	Src/tImageWEBP.cpp
-	Src/tImageXPM.cpp
 	Src/tLayer.cpp
 	Src/tPicture.cpp
 	Src/tPixelFormat.cpp
@@ -26,12 +25,11 @@ add_library(
 	Inc/Image/tImageTGA.h
 	Inc/Image/tImageJPG.h
 	Inc/Image/tImageWEBP.h
-	Inc/Image/tImageXPM.h
 	Inc/Image/tLayer.h
 	Inc/Image/tPicture.h
 	Inc/Image/tPixelFormat.h
 	Inc/Image/tTexture.h
-
+	
 	# OpenEXR
 	Contrib/OpenEXR/namespaceAlias.h
 	Contrib/OpenEXR/loadImage.h
@@ -331,39 +329,6 @@ add_library(
 	Contrib/OpenEXR/IlmBase/config/IlmBaseConfig.h
 	Contrib/OpenEXR/config/OpenEXRConfigInternal.h
 	Contrib/OpenEXR/config/OpenEXRConfig.h
-
-	# LibXPM
-	Contrib/LibXPM/include/X11/xpm.h
-	Contrib/LibXPM/src/CrIFrBuf.c
-	Contrib/LibXPM/src/Attrib.c
-	Contrib/LibXPM/src/CrBufFrI.c
-	# Contrib/LibXPM/src/CrBufFrP.c
-	Contrib/LibXPM/src/CrDatFrI.c
-	# Contrib/LibXPM/src/CrDatFrP.c
-	Contrib/LibXPM/src/create.c
-	Contrib/LibXPM/src/CrIFrBuf.c
-	Contrib/LibXPM/src/CrIFrDat.c
-	# Contrib/LibXPM/src/CrIFrP.c
-	# Contrib/LibXPM/src/CrPFrBuf.c
-	# Contrib/LibXPM/src/CrPFrDat.c
-	# Contrib/LibXPM/src/CrPFrI.c
-	Contrib/LibXPM/src/data.c
-	Contrib/LibXPM/src/hashtab.c
-	Contrib/LibXPM/src/Image.c
-	Contrib/LibXPM/src/Info.c
-	Contrib/LibXPM/src/misc.c
-	Contrib/LibXPM/src/parse.c
-	Contrib/LibXPM/src/RdFToBuf.c
-	Contrib/LibXPM/src/RdFToDat.c
-	Contrib/LibXPM/src/RdFToI.c
-	# Contrib/LibXPM/src/RdFToP.c
-	Contrib/LibXPM/src/rgb.c
-	Contrib/LibXPM/src/scan.c
-	Contrib/LibXPM/src/simx.c
-	Contrib/LibXPM/src/WrFFrBuf.c
-	Contrib/LibXPM/src/WrFFrDat.c
-	Contrib/LibXPM/src/WrFFrI.c
-	# Contrib/LibXPM/src/WrFFrP.c
 )
 
 tacent_target_include_directories(${PROJECT_NAME})
@@ -378,18 +343,9 @@ target_include_directories(
 	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/IlmBase/Imath
 	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/IlmImf
 	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/zlib
-	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibXPM/include/X11
-	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibXPM/src
 )
 
 tacent_target_compile_definitions(${PROJECT_NAME})
-target_compile_definitions(
-	${PROJECT_NAME}
-	PUBLIC
-		$<$<PLATFORM_ID:Windows>:FOR_MSW>
-)
-
-
 tacent_target_compile_options(${PROJECT_NAME})
 tacent_target_compile_features(${PROJECT_NAME})
 tacent_set_target_properties(${PROJECT_NAME})
@@ -414,7 +370,7 @@ target_link_libraries(
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/Linux/libwebpdemux.a>
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/Windows/release-static/x64/lib/libwebp.lib>
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/Windows/release-static/x64/lib/libwebpdemux.lib>
-
+		
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Linux/libturbojpeg.a>
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Windows/turbojpeg-static.lib>
 )

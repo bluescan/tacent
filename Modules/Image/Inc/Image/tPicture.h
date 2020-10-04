@@ -34,7 +34,6 @@
 #include "Image/tImageJPG.h"
 #include "Image/tImageTGA.h"
 #include "Image/tImageWEBP.h"
-#include "Image/tImageXPM.h"
 #include "Image/tPixelFormat.h"
 namespace tImage
 {

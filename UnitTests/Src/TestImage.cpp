@@ -21,7 +21,6 @@
 #include <Image/tImageTGA.h>
 #include <Image/tImageJPG.h>
 #include <Image/tImageWEBP.h>
-#include <Image/tImageXPM.h>
 #include <System/tFile.h>
 #include "UnitTests.h"
 using namespace tStd;
@@ -92,22 +91,18 @@ tTestUnit(Image)
 	// Test tPicture loading jpg and saving as tga.
 	tImage::tPicture jpgPic("TestData/WiredDrives.jpg");
 	tRequire(jpgPic.IsValid());
+
 	jpgPic.Save("TestData/WrittenWiredDrives.tga");
 	tRequire( tSystem::tFileExists("TestData/WrittenWiredDrives.tga"));
-
-	// Test tPicture loading xpm and saving as tga.
-	tImage::tPicture xpmPic("TestData/Crane.xpm");
-	tRequire(xpmPic.IsValid());
-	xpmPic.Save("TestData/WrittenCrane.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenCrane.tga"));
 
 	// Test tPicture loading png (with alpha channel) and saving as tga (with alpha channel).
 	tImage::tPicture pngPic("TestData/Xeyes.png");
 	tRequire(pngPic.IsValid());
+
 	pngPic.SaveTGA("TestData/WrittenXeyes.tga");
 	tRequire( tSystem::tFileExists("TestData/WrittenXeyes.tga"));
 
-	// Test saving tPicture in other supported formats.
+	// Test saving tPicture in all supported formats.
 	pngPic.Save("TestData/WrittenXeyesTGA.tga");
 	tRequire( tSystem::tFileExists("TestData/WrittenXeyesTGA.tga"));
 
