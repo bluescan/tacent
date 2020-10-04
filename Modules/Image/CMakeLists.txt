@@ -1,10 +1,6 @@
 find_package("TacentProjectUtilities" REQUIRED)
 project(Image VERSION ${TACENT_VERSION} LANGUAGES CXX)
 
-if (UNIX)
-	find_package(X11 REQUIRED)
-endif()
-
 add_library(
 	${PROJECT_NAME}
 	Src/tCubemap.cpp
@@ -350,7 +346,7 @@ add_library(
 	# Contrib/LibXPM/src/CrIFrP.c
 	# Contrib/LibXPM/src/CrPFrBuf.c
 	# Contrib/LibXPM/src/CrPFrDat.c
-	$<$<PLATFORM_ID:Linux>:Contrib/LibXPM/src/CrPFrI.c>
+	# Contrib/LibXPM/src/CrPFrI.c
 	Contrib/LibXPM/src/data.c
 	Contrib/LibXPM/src/hashtab.c
 	Contrib/LibXPM/src/Image.c
@@ -384,7 +380,6 @@ target_include_directories(
 	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/zlib
 	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibXPM/include/X11
 	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibXPM/src
-	$<$<PLATFORM_ID:Linux>:${X11_INCLUDE_DIR}>
 )
 
 tacent_target_compile_definitions(${PROJECT_NAME})
@@ -422,8 +417,6 @@ target_link_libraries(
 
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Linux/libturbojpeg.a>
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Windows/turbojpeg-static.lib>
-
-		$<$<PLATFORM_ID:Linux>:${X11_LIBRARIES}>
 )
 
 target_include_directories(
