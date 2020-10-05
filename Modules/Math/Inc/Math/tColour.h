@@ -19,6 +19,7 @@
 #include "Math/tFundamentals.h"
 #include "Math/tVector3.h"
 #include "Math/tVector4.h"
+class tColouri;
 class tColourf;
 class tColour3f;
 
@@ -36,6 +37,9 @@ namespace tMath
 	// in [0.0, 1.0].
 	void tRGBToHSV(float& h, float& s, float& v, float r, float g, float b, tMath::tAngleMode = tMath::tAngleMode::Radians);
 	void tHSVToRGB(float& r, float& g, float& b, float h, float s, float v, tMath::tAngleMode = tMath::tAngleMode::Radians);
+
+	// Convert a standard web colour name (as may be found in rgb.txt for example) into a 32bit RGBA tColouri.
+	tColouri tGetColour(const char* colourName);
 }
 
 

@@ -13,7 +13,9 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
+#include <Foundation/tString.h>
 #include <Math/tColour.h>
+#include <Math/tHash.h>
 using namespace tMath;
 
 
@@ -322,4 +324,23 @@ void tMath::tHSVToRGB(float& r, float& g, float& b, float h, float s, float v, t
 			b = q;
 			break;
 	}
+}
+
+
+tColouri tMath::tGetColour(const char* colourName)
+{
+	tString lowerName(colourName);
+	lowerName.ToLower();
+	uint32 colourHash = tMath::tHashStringFast32(lowerName);
+	tColouri colour = tColouri::white;
+
+	// This switch uses compile-time hashes. Collisions will be automatically detected by the compiler.
+	switch (colourHash)
+	{
+		case tHashCT("none"):		colour = 0xFFFFFFFF;	break;
+		case tHashCT("black"):		colour = 0x000000FF;	break;
+		default:											break;
+	}
+	
+	return colour;	
 }
