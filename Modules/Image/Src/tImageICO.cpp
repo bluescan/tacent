@@ -159,6 +159,7 @@ tImageICO::Part* tImageICO::CreatePart(const uint8* cursor, int width, int heigh
 {
 	IconImage* icon = (IconImage*)cursor;
 	
+	// ICO files may have embedded pngs.
 	if (icon->Header.Size == 0x474e5089)
 	{
 		CxImage image;

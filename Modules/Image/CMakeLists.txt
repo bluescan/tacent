@@ -12,6 +12,7 @@ add_library(
 	Src/tImageTGA.cpp
 	Src/tImageJPG.cpp
 	Src/tImageWEBP.cpp
+	Src/tImageXPM.cpp
 	Src/tLayer.cpp
 	Src/tPicture.cpp
 	Src/tPixelFormat.cpp
@@ -25,6 +26,7 @@ add_library(
 	Inc/Image/tImageTGA.h
 	Inc/Image/tImageJPG.h
 	Inc/Image/tImageWEBP.h
+	Inc/Image/tImageXPM.h
 	Inc/Image/tLayer.h
 	Inc/Image/tPicture.h
 	Inc/Image/tPixelFormat.h

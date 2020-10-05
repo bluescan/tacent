@@ -83,6 +83,7 @@ enum class tFileType
 	JPG,							// Image.
 	GIF,							// Image.
 	WEBP,							// Image.
+	XPM,							// Image.
 	TIFF,							// Image.
 	Bitmap,							// Image.
 	BMP								= Bitmap,
