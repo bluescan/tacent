@@ -35,29 +35,48 @@ const char* tStd::SeparatorDStr								= tStd::SeparatorFileStr;
 const char* tStd::SeparatorEStr								= tStd::SeparatorSubStr;
 
 
-double tStd::tStrtod(const char* text)
+float tStd::tStrtof(const char* s)
 {
-	int l = int(tStrlen(text));
+	char* hash = tStrchr(s, '#');
+	if (hash && (tStrlen(hash+1) == 8))
+	{
+		uint32 bin = tStd::tStrtoui32(hash+1, 16);
+		return *((float*)(&bin));
+	}
+
+	return float( tStrtod(s) );
+}
+
+
+double tStd::tStrtod(const char* s)
+{
+	int l = tStrlen(s);
 	if (!l)
 		return 0.0;
 
+	char* hash = tStrchr(s, '#');
+	if (hash && (tStrlen(hash+1) == 16))
+	{
+		uint64 bin = tStrtoui64(hash+1, 16);
+		return *((double*)&bin);
+	}
+
 	// This error checking is essential. Sometimes NANs are written in text format to a string.
-	// Like "-1.#IND0000". We want these to evaluate to 0.0, not -1 or something else. We allow
+	// Like "nan(snan)". We want these to evaluate to 0.0, not -1 or something else. We allow
 	// 'e' and 'E' for numbers in exponential form like 3.09E08.
 	for (int i = 0; i < l; i++)
 	{
-		char ch = text[i];
+		char ch = s[i];
 		if
 		(
 			((ch >= 'a') && (ch <= 'z') && (ch != 'e')) ||
-			((ch >= 'A') && (ch <= 'Z') && (ch != 'E')) ||
-			(ch == '#')
+			((ch >= 'A') && (ch <= 'Z') && (ch != 'E'))
 		)
-			return 0.0f;
+			return 0.0;
 	}
 
 	// Will be 0.0 if there was a problem.
-	return strtod(text, nullptr);
+	return strtod(s, nullptr);
 }
 
 

@@ -216,14 +216,14 @@ public:
 	void WriteAtom(const uint32);
 	void WriteAtom(const uint64);
 	void WriteAtom(const int);
-	void WriteAtom(const float);
-	void WriteAtom(const double);
-	void WriteAtom(const tMath::tVector2&);
-	void WriteAtom(const tMath::tVector3&);
-	void WriteAtom(const tMath::tVector4&);
-	void WriteAtom(const tMath::tQuaternion&);
-	void WriteAtom(const tMath::tMatrix2&);
-	void WriteAtom(const tMath::tMatrix4&);
+	void WriteAtom(const float, bool incBitRep = true);
+	void WriteAtom(const double, bool incBitRep = true);
+	void WriteAtom(const tMath::tVector2&, bool incBitRep = true);
+	void WriteAtom(const tMath::tVector3&, bool incBitRep = true);
+	void WriteAtom(const tMath::tVector4&, bool incBitRep = true);
+	void WriteAtom(const tMath::tQuaternion&, bool incBitRep = true);
+	void WriteAtom(const tMath::tMatrix2&, bool incBitRep = true);
+	void WriteAtom(const tMath::tMatrix4&, bool incBitRep = true);
 	void WriteAtom(const tColouri&);
 
 	// Writes a single line comment to the script file.
@@ -247,14 +247,14 @@ public:
 	void Atom(const bool b)																								{ WriteAtom(b); }
 	void Atom(const uint32 u)																							{ WriteAtom(u); }
 	void Atom(const int i)																								{ WriteAtom(i); }
-	void Atom(const float f)																							{ WriteAtom(f); }
-	void Atom(const double d)																							{ WriteAtom(d); }
-	void Atom(const tMath::tVector2& v)																					{ WriteAtom(v); }
-	void Atom(const tMath::tVector3& v)																					{ WriteAtom(v); }
-	void Atom(const tMath::tVector4& v)																					{ WriteAtom(v); }
-	void Atom(const tMath::tQuaternion& q)																				{ WriteAtom(q); }
-	void Atom(const tMath::tMatrix2& m)																					{ WriteAtom(m); }
-	void Atom(const tMath::tMatrix4& m)																					{ WriteAtom(m); }
+	void Atom(const float f, bool incBitRep = true)																		{ WriteAtom(f, incBitRep); }
+	void Atom(const double d, bool incBitRep = true)																	{ WriteAtom(d, incBitRep); }
+	void Atom(const tMath::tVector2& v, bool incBitRep = true)															{ WriteAtom(v, incBitRep); }
+	void Atom(const tMath::tVector3& v, bool incBitRep = true)															{ WriteAtom(v, incBitRep); }
+	void Atom(const tMath::tVector4& v, bool incBitRep = true)															{ WriteAtom(v, incBitRep); }
+	void Atom(const tMath::tQuaternion& q, bool incBitRep = true)														{ WriteAtom(q, incBitRep); }
+	void Atom(const tMath::tMatrix2& m, bool incBitRep = true)															{ WriteAtom(m, incBitRep); }
+	void Atom(const tMath::tMatrix4& m, bool incBitRep = true)															{ WriteAtom(m, incBitRep); }
 	void Atom(const tColouri& c)																						{ WriteAtom(c); }
 
 	void Rem(const char* c = 0)																							{ WriteComment(c); }

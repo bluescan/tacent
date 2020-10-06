@@ -481,6 +481,8 @@ tTestUnit(Script)
 		ws.Comp("PosY", 20);
 		ws.Comp("SizeW", 30);
 		ws.Comp("SizeH", 40);
+		ws.Comp("FloatVal", 50.123456789f);
+		ws.Comp("DoubleVal", 60.111122223333444455556666777788889999);
 	}
 
 	{
@@ -504,6 +506,22 @@ tTestUnit(Script)
 				case tMath::tHashCT("SizeH"):
 					tRequire(int(e.Item1()) == 40);
 					break;
+
+				case tMath::tHashCT("FloatVal"):
+				{
+					float readval = float(e.Item1());
+					tPrintf("Read float as: %f\n", readval);
+					tRequire(readval == 50.123456789f);
+					break;
+				}
+
+				case tMath::tHashCT("DoubleVal"):
+				{
+					double readval = double(e.Item1());
+					tPrintf("Read double as: %f\n", readval);
+					tRequire(readval == 60.111122223333444455556666777788889999);
+					break;
+				}
 			}
 		}
 	}

@@ -97,9 +97,12 @@ inline int tStrtoui(const char* s, int base = -1)																		{ return tStr
 inline int tStrtoi(const char* s, int base = -1)																		{ return tStrtoi32(s, base); }
 inline int tAtoi(const char* s)								/* Base 10 only. Use tStrtoi for arbitrary base. */			{ return tStrtoi32(s, 10); }
 
-// These are both base 10 only. They return 0.0f if there is no conversion.
+// These are both base 10 only. They return 0.0 (or 0.0f) if there is no conversion. They also handle converting a
+// possible binary representation in he string. If the string contains a hash(#) and the next 8 or 16 digits are valid
+// hex digits, thay are interpreted as the binary IEEE floating point rep directly. This stops 'wobble' when serializing
+// and deserializing from disk multiple times as would be present in the approximate base 10 representations.
+float tStrtof(const char*);
 double tStrtod(const char*);
-inline float tStrtof(const char* s)																						{ return float( tStrtod(s) ); }
 
 // These are both base 10 only. They return 0.0 if there is no conversion.
 inline float tAtof(const char* s)																						{ return tStrtof(s); }

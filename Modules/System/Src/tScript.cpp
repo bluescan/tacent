@@ -673,68 +673,77 @@ void tScriptWriter::WriteAtom(const int atom)
 }
 
 
-void tScriptWriter::WriteAtom(const float atom)
+void tScriptWriter::WriteAtom(const float atom, bool incBitRep)
 {
-	tString val(32);
-	if (tStd::tIsSpecial(atom))
-		tsPrintf(val.Text(), "0.0");
-	else
-		tsPrintf(val.Text(), "%8.8f", atom);
+	float f = atom;
+	if (tStd::tIsSpecial(f))
+		f = 0.0f;
 
-	int l = val.Length();
+	char val[64];
+	char* cval = val;
+	cval += tsPrintf(cval, "%8.8f", f);
 
 	// Add a trailing 0 because it looks better.
-	if (val[l-1] == '.')
+	if (*(cval-1) == '.')
 	{
-		val[l] = '0';
-		val[l+1] = '\0';
+		*cval++ = '0';
+		*cval = '\0';
 	}
+
+	if (incBitRep)
+		cval += tsPrintf(cval, "#%08X", *((uint32*)&f));
 
 	WriteAtom(val);
 }
 
 
-void tScriptWriter::WriteAtom(const double atom)
+void tScriptWriter::WriteAtom(const double atom, bool incBitRep)
 {
-	tString val(64);
-	if (tStd::tIsSpecial(atom))
-		tsPrintf(val.Text(), "0.0");
-	else
-		tsPrintf(val.Text(), "%16.16f", atom);
+	double d = atom;
+	if (tStd::tIsSpecial(d))
+		d = 0.0;
 
-	int l = val.Length();
+	char val[128];
+	char* cval = val;
+	cval += tsPrintf(cval, "%16.16f", d);
 
 	// Add a trailing 0 because it looks better.
-	if (val[l-1] == '.')
+	if (*(cval-1) == '.')
 	{
-		val[l] = '0';
-		val[l+1] = '\0';
+		*cval++ = '0';
+		*cval = '\0';
 	}
+
+	if (incBitRep)
+		cval += tsPrintf(cval, "#%016|64X", *((uint64*)&d));
 
 	WriteAtom(val);
 }
 
 
-void tScriptWriter::WriteAtom(const tVector2& v)
+void tScriptWriter::WriteAtom(const tVector2& v, bool incBitRep)
 {
 	tString str("(");
 	for (int e = 0; e < 2; e++)
 	{
-		tString val(32);
-		if (tStd::tIsSpecial(v.E[e]))
-			tsPrintf(val.Text(), "0.0");
-		else
-			tsPrintf(val.Text(), "%8.8f", v.E[e]);
+		float f = v.E[e];
+		if (tStd::tIsSpecial(f))
+			f = 0.0f;
 
-		int l = val.Length();
+		char val[64];
+		char* cval = val;
+		cval += tsPrintf(cval, "%8.8f", f);
 
 		// Add a trailing 0 because it looks better.
-		if (val[l-1] == '.')
+		if (*(cval-1) == '.')
 		{
-			val[l] = '0';
-			val[l+1] = '\0';
+			*cval++ = '0';
+			*cval = '\0';
 		}
-		str += val;
+		if (incBitRep)
+			cval += tsPrintf(cval, "#%08X", *((uint32*)&f));
+
+		str += tString(val);
 		if (e != 1)
 			str += ", ";
 	}
@@ -743,26 +752,29 @@ void tScriptWriter::WriteAtom(const tVector2& v)
 }
 
 
-void tScriptWriter::WriteAtom(const tVector3& v)
+void tScriptWriter::WriteAtom(const tVector3& v, bool incBitRep)
 {
 	tString str("(");
 	for (int e = 0; e < 3; e++)
 	{
-		tString val(32);
-		if (tStd::tIsSpecial(v.E[e]))
-			tsPrintf(val.Text(), "0.0");
-		else
-			tsPrintf(val.Text(), "%8.8f", v.E[e]);
+		float f = v.E[e];
+		if (tStd::tIsSpecial(f))
+			f = 0.0f;
 
-		int l = val.Length();
+		char val[64];
+		char* cval = val;
+		cval += tsPrintf(cval, "%8.8f", f);
 
 		// Add a trailing 0 because it looks better.
-		if (val[l-1] == '.')
+		if (*(cval-1) == '.')
 		{
-			val[l] = '0';
-			val[l+1] = '\0';
+			*cval++ = '0';
+			*cval = '\0';
 		}
-		str += val;
+		if (incBitRep)
+			cval += tsPrintf(cval, "#%08X", *((uint32*)&f));
+
+		str += tString(val);
 		if (e != 2)
 			str += ", ";
 	}
@@ -771,26 +783,29 @@ void tScriptWriter::WriteAtom(const tVector3& v)
 }
 
 
-void tScriptWriter::WriteAtom(const tVector4& v)
+void tScriptWriter::WriteAtom(const tVector4& v, bool incBitRep)
 {
 	tString str("(");
 	for (int e = 0; e < 4; e++)
 	{
-		tString val(32);
-		if (tStd::tIsSpecial(v.E[e]))
-			tsPrintf(val.Text(), "0.0");
-		else
-			tsPrintf(val.Text(), "%8.8f", v.E[e]);
+		float f = v.E[e];
+		if (tStd::tIsSpecial(f))
+			f = 0.0f;
 
-		int l = val.Length();
+		char val[64];
+		char* cval = val;
+		cval += tsPrintf(cval, "%8.8f", f);
 
 		// Add a trailing 0 because it looks better.
-		if (val[l-1] == '.')
+		if (*(cval-1) == '.')
 		{
-			val[l] = '0';
-			val[l+1] = '\0';
+			*cval++ = '0';
+			*cval = '\0';
 		}
-		str += val;
+		if (incBitRep)
+			cval += tsPrintf(cval, "#%08X", *((uint32*)&f));
+
+		str += tString(val);
 		if (e != 3)
 			str += ", ";
 	}
@@ -799,26 +814,29 @@ void tScriptWriter::WriteAtom(const tVector4& v)
 }
 
 
-void tScriptWriter::WriteAtom(const tQuaternion& q)
+void tScriptWriter::WriteAtom(const tQuaternion& q, bool incBitRep)
 {
 	tString str("(");
 	for (int e = 0; e < 4; e++)
 	{
-		tString val(32);
-		if (tStd::tIsSpecial(q.E[e]))
-			tsPrintf(val.Text(), "0.0");
-		else
-			tsPrintf(val.Text(), "%8.8f", q.E[e]);
+		float f = q.E[e];
+		if (tStd::tIsSpecial(f))
+			f = 0.0f;
 
-		int l = val.Length();
+		char val[64];
+		char* cval = val;
+		cval += tsPrintf(cval, "%8.8f", f);
 
 		// Add a trailing 0 because it looks better.
-		if (val[l-1] == '.')
+		if (*(cval-1) == '.')
 		{
-			val[l] = '0';
-			val[l+1] = '\0';
+			*cval++ = '0';
+			*cval = '\0';
 		}
-		str += val;
+		if (incBitRep)
+			cval += tsPrintf(cval, "#%08X", *((uint32*)&f));
+
+		str += tString(val);
 		if (e != 3)
 			str += ", ";
 	}
@@ -827,26 +845,29 @@ void tScriptWriter::WriteAtom(const tQuaternion& q)
 }
 
 
-void tScriptWriter::WriteAtom(const tMatrix2& m)
+void tScriptWriter::WriteAtom(const tMatrix2& m, bool incBitRep)
 {
 	tString str("(");
 	for (int e = 0; e < 4; e++)
 	{
-		tString val(32);
-		if (tStd::tIsSpecial(m.E[e]))
-			tsPrintf(val.Text(), "0.0");
-		else
-			tsPrintf(val.Text(), "%8.8f", m.E[e]);
+		float f = m.E[e];
+		if (tStd::tIsSpecial(f))
+			f = 0.0f;
 
-		int l = val.Length();
+		char val[64];
+		char* cval = val;
+		cval += tsPrintf(cval, "%8.8f", f);
 
 		// Add a trailing 0 because it looks better.
-		if (val[l-1] == '.')
+		if (*(cval-1) == '.')
 		{
-			val[l] = '0';
-			val[l+1] = '\0';
+			*cval++ = '0';
+			*cval = '\0';
 		}
-		str += val;
+		if (incBitRep)
+			cval += tsPrintf(cval, "#%08X", *((uint32*)&f));
+
+		str += tString(val);
 		if (e != 3)
 			str += ", ";
 	}
@@ -855,26 +876,29 @@ void tScriptWriter::WriteAtom(const tMatrix2& m)
 }
 
 
-void tScriptWriter::WriteAtom(const tMatrix4& m)
+void tScriptWriter::WriteAtom(const tMatrix4& m, bool incBitRep)
 {
 	tString str("(");
 	for (int e = 0; e < 16; e++)
 	{
-		tString val(32);
-		if (tStd::tIsSpecial(m.E[e]))
-			tsPrintf(val.Text(), "0.0");
-		else
-			tsPrintf(val.Text(), "%8.8f", m.E[e]);
+		float f = m.E[e];
+		if (tStd::tIsSpecial(f))
+			f = 0.0f;
 
-		int l = val.Length();
+		char val[64];
+		char* cval = val;
+		cval += tsPrintf(cval, "%8.8f", f);
 
 		// Add a trailing 0 because it looks better.
-		if (val[l-1] == '.')
+		if (*(cval-1) == '.')
 		{
-			val[l] = '0';
-			val[l+1] = '\0';
+			*cval++ = '0';
+			*cval = '\0';
 		}
-		str += val;
+		if (incBitRep)
+			cval += tsPrintf(cval, "#%08X", *((uint32*)&f));
+
+		str += tString(val);
 		if (e != 15)
 			str += ", ";
 	}

@@ -161,7 +161,7 @@ namespace tSystem
 //											are forced to match).
 //										b)	The prefix is always used, even if the value is 0 (which is not the case
 //											for # in general).
-//		Float:		f g				Handles floats and doubles. g is not implemented and currently behaves as f.
+//		Float:		f g				Handles floats and doubles.
 //		Vector:		v				Use with :typesize for 2, 3, and 4 dimensional vectors. Default is 3. Must call
 //									pod(vec) or vec.Pod() for tVectors, or use tVecNb POD type. All other spec
 //									fields are per vector component. Not the whole thing.
