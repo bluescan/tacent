@@ -163,6 +163,17 @@ private:
 typedef tExpression tExpr;
 
 
+// Convenience.  Get the value and advance the expression to the next.
+inline tString GetAtomString(tExpression& e) 																			{ tString str = e.GetAtomString(); e = e.Next(); return str;}
+inline bool GetAtomBool(tExpression& e)      																			{ return GetAtomString(e).GetAsBool(); }
+inline uint GetAtomUint(tExpression& e)      																			{ return GetAtomString(e).GetAsUInt(); }
+inline uint64 GetAtomUint64(tExpression& e)  																			{ return GetAtomString(e).GetAsUInt64(); }
+inline int GetAtomInt(tExpression& e)        																			{ return GetAtomString(e).GetAsInt(); }
+inline float GetAtomFloat(tExpression& e)    																			{ return GetAtomString(e).GetAsFloat(); }
+inline double GetAtomDouble(tExpression& e)  																			{ return GetAtomString(e).GetAsDouble(); }
+inline uint32 GetAtomHash(tExpression& e)    																			{ return tMath::tHashString(GetAtomString(e)); }
+
+
 // Use this to read and parse an existing script. A script file is a list of expressions without []'s around the
 // entire file. e.g. This is a valid script:
 //
