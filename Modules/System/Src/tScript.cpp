@@ -134,8 +134,11 @@ tExpression tExpression::Next() const
 			while ((*c != ' ') && (*c != '\t') && (*c != '[') && (*c != ']') && (*c != '\0') && (*c != ';') && (*c != '<') && (*c != '"'))
 			{
 				if (*c == '\n')
+				{
 					lineNum++;
-
+					break;
+				}
+				
 				c++;
 			}
 		}
