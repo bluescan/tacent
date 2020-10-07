@@ -131,15 +131,16 @@ tExpression tExpression::Next() const
 		else
 		{
 			// The ';' and '<' should also be terminators for the current argument so that EatWhiteAndComments will get everything.
-			while ((*c != ' ') && (*c != '\t') && (*c != '[') && (*c != ']') && (*c != '\0') && (*c != ';') && (*c != '<') && (*c != '"'))
+			char c1 = *c;
+			while ((c1 != ' ') && (c1 != '\t') && (c1 != '[') && (c1 != ']') && (c1 != '\0') && (c1 != ';') && (c1 != '<') && (c1 != '"'))
 			{
-				if (*c == '\n')
+				c++;
+				if (c1 == '\n')
 				{
 					lineNum++;
 					break;
 				}
-				
-				c++;
+				c1 = *c;
 			}
 		}
 	}
