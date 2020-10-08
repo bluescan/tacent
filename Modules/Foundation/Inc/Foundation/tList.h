@@ -329,23 +329,14 @@ template<typename T> inline T* tList<T>::Append(const T* item)
 template<typename T> template<typename CompareFunc> inline T* tList<T>::Insert(CompareFunc compare, const T* item)
 {
 	if (!Head())
-	{
-		Insert(item);
-		return (T*)item;
-	}
+		return Insert(item);
 
 	// Early exit if it should go before head or after tail.
 	if (compare(*item, *Head()))
-	{
-		Insert(item, Head());
-		return (T*)item;
-	}
+		return Insert(item, Head());
 
 	if (!compare(*item, *Tail()))
-	{
-		Append(item);
-		return (T*)item;
-	}
+		return Append(item);
 
 	// The variables here are named as if compare implements 'bool IsLessThan()'
 	T* insertBefore = Head()->Next();
@@ -376,7 +367,7 @@ template<typename T> inline T* tList<T>::Insert(const T* item, const T* where)
 {
 	tAssert(item);
 	if (!where)
-		Insert(item);
+		return Insert(item);
 
 	item->NextItem = where;
 	item->PrevItem = where->PrevItem;
@@ -396,7 +387,7 @@ template<typename T> inline T* tList<T>::Append(const T* item, const T* where)
 {
 	tAssert(item);
 	if (!where)
-		Append(item);
+		return Append(item);
 
 	item->PrevItem = where;
 	item->NextItem = where->NextItem;
@@ -408,7 +399,7 @@ template<typename T> inline T* tList<T>::Append(const T* item, const T* where)
 		TailItem = item;
 
 	ItemCount++;
-	return item;
+	return (T*)item;
 }
 
 
