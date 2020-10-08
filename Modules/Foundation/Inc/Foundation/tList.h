@@ -742,7 +742,7 @@ template<typename T> inline T* tListZ<T>::Insert(const T* item, const T* where)
 {
 	tAssert(item);
 	if (!where)
-		Insert(item);
+		return Insert(item);
 
 	item->NextItem = where;
 	item->PrevItem = where->PrevItem;
@@ -762,7 +762,7 @@ template<typename T> inline T* tListZ<T>::Append(const T* item, const T* where)
 {
 	tAssert(item);
 	if (!where)
-		Append(item);
+		return Append(item);
 
 	item->PrevItem = where;
 	item->NextItem = where->NextItem;
@@ -832,7 +832,6 @@ template<typename T> inline T* tListZ<T>::Remove(const T* l)
 	return (T*)l;
 }
 
-///////////////////////////////////
 
 template<typename T> inline T* tItList<T>::Remove(Iter& iter)
 {
