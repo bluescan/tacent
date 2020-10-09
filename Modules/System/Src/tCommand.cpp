@@ -364,12 +364,42 @@ more than once. Eg. -i filea.txt -i fileb.txt etc is valid.
 }
 
 
-void tCommand::tPrintUsage()
+void tCommand::tPrintUsage(int versionMajor, int versionMinor, int revision)
+{
+	tPrintUsage(nullptr, versionMajor, versionMinor, revision);
+}
+
+
+void tCommand::tPrintUsage(const char* author, int versionMajor, int versionMinor, int revision)
+{
+	tAssert(versionMajor >= 0);
+	tAssert((versionMinor >= 0) || (revision < 0));		// Not allowed a valid revision number if minor is not also valid.
+
+	char verAuth[128];
+	char* va = verAuth;
+	va += tsPrintf(va, "Version %d", versionMajor);
+	if (versionMinor >= 0)
+	{
+		va += tsPrintf(va, ".%d", versionMinor);
+		if (revision >= 0)
+			va += tsPrintf(va, ".%d", revision);
+	}
+
+	if (author)
+		va += tsPrintf(va, " By %s", author);
+
+	tPrintUsage(verAuth);
+}
+
+
+void tCommand::tPrintUsage(const char* versionAuthorString)
 {
 	tString exeName = "Program.exe";
 	if (!tCommand::Program.IsEmpty())
 		exeName = tSystem::tGetFileName(tCommand::Program);
 
+	if (versionAuthorString)
+		tPrintf("%s %s\n", tPod(exeName), versionAuthorString);
 	tPrintf("USAGE: %s [options] ", exeName.Pod());
 
 	// Support 256 parameters.

@@ -12,6 +12,7 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
+#include <Foundation/tVersion.cmake.h>
 #include <Foundation/tAssert.h>
 #include <Foundation/tMemory.h>
 #include <Math/tVector2.h>
@@ -49,9 +50,19 @@ tTestUnit(CmdLine)
 
 	// Normally you would call tParse from main with argc and argv. The call below allows one to test command lines
 	// by entering the command line arguments directly as a string.
-	tCommand::tParse("-R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere --enj");
+	// tCommand::tParse("-R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere --enj");
 
-	tCommand::tPrintUsage();
+	// This is another way of entering a test command line. The true means the first entry is the program name.
+	tCommand::tParse("UnitTests.exe -R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere --enj", true);
+
+	// There are a few differnt ways of calling PrintUsage:
+	// tCommand::tPrintUsage();
+	// tCommand::tPrintUsage(tVersion::Major, tVersion::Minor);
+	// tCommand::tPrintUsage(tVersion::Major);
+	tCommand::tPrintUsage(tVersion::Major, tVersion::Minor, tVersion::Revision);
+	// tCommand::tPrintUsage("Tony Tekhead", tVersion::Major, tVersion::Minor);
+	// tCommand::tPrintUsage("Tony Tekhead", tVersion::Major, tVersion::Minor, tVersion::Revision);
+	// tCommand::tPrintUsage("Version 42.67 By Patty Programmer");
 
 	tPrintf("SharedOption: %s\n", SharedOption.IsPresent() ? "true" : "false");
 	tRequire(log.IsPresent());
@@ -252,10 +263,10 @@ tTestUnit(Print)
 	tVector4 v4(1.0f, 2.0f, 3.0f, 4.0f);
 
 	PrintTest("Vector 2D:                           ___%:2v___\n", v2.Pod());
-	PrintTest("Vector 3D pod:                       ___%.3v___\n", pod(v3));
+	PrintTest("Vector 3D pod:                       ___%.3v___\n", tPod(v3));
 	PrintTest("Vector 3D base:                      ___%:3v___\n", v3b);
-	PrintTest("Vector 4D:                           ___%:4v___\n", pod(v4));
-	PrintTest("Vector 4D %%06.2:4v:                 ___%06.2:4v___\n", pod(v4));
+	PrintTest("Vector 4D:                           ___%:4v___\n", tPod(v4));
+	PrintTest("Vector 4D %%06.2:4v:                 ___%06.2:4v___\n", tPod(v4));
 	PrintTest("Vector 4D Alternative:               ___%_:4v___\n", v4.Pod());
 
 	tQuaternion quat(8.0f, 7.0f, 6.0f, 5.0f);
@@ -264,19 +275,19 @@ tTestUnit(Print)
 	tStaticAssert(sizeof(tVector3) == 12);
 	tStaticAssert(sizeof(tVector2) == 8);
 	tStaticAssert(sizeof(tMatrix4) == 64);
-	PrintTest("Quaternion: %q\n", pod(quat));
-	PrintTest("Quaternion Alternate: %_q\n", pod(quat));
+	PrintTest("Quaternion: %q\n", tPod(quat));
+	PrintTest("Quaternion Alternate: %_q\n", tPod(quat));
 
 	tMatrix4 mat;
 	mat.Identity();
 	tVector4 c4(1.0f, 2.0f, 3.0f, 4.0f);
 	mat.C4 = c4;
 
-	PrintTest("Matrix Normal:\n%05.2m\n", pod(mat));
+	PrintTest("Matrix Normal:\n%05.2m\n", tPod(mat));
 	PrintTest("Matrix Decorated:\n%_m\n", mat.Pod());
 
 	tString test("This is the tString.");
-	tRequire(PrintCompare("tString: %s\n", pod(test)));
+	tRequire(PrintCompare("tString: %s\n", tPod(test)));
 	tRequire(PrintCompare("Reg String: %s\n", "A regular string"));
 
 	tRequire(PrintCompare("Char %c\n", 65));
@@ -307,11 +318,11 @@ tTestUnit(Print)
 	tVector3 vv(1.0f, 2.0f, 3.0f);
 	char buf[256];
 	tStd::tMemset(buf, 1, 256);
-	int len = tsPrintf(buf, "Vector in string is: %v", pod(vv));
+	int len = tsPrintf(buf, "Vector in string is: %v", tPod(vv));
 	tPrintf("Str: [%s] LenRet:%d LenAct:%d\n", buf, len, strlen(buf));
 
 	tStd::tMemset(buf, 'Z', 256);
-	tsPrintf(buf, 24, "string len 24 vec: %v", pod(vv));
+	tsPrintf(buf, 24, "string len 24 vec: %v", tPod(vv));
 	tPrintf("Str: [%s] LenRet:%d LenAct:%d\n", buf, len, strlen(buf));
 
 	tPrint("Buffer contains:\n");
@@ -323,7 +334,7 @@ tTestUnit(Print)
 			tPrintf("%c", buf[i]);
 
 	tStd::tMemset(buf, 'Z', 256);
-	tsPrintf(buf, 24, "v: %4.2v", pod(vv));
+	tsPrintf(buf, 24, "v: %4.2v", tPod(vv));
 	tPrint("\n\nBuffer contains:\n");
 	tPrint("123456789012345678901234567890\n");
 	for (int i = 0; i < 30; i++)

@@ -242,7 +242,7 @@ tTestUnit(Random)
 	for (int i = 0; i < 16; i++)
 	{
 		tVector2 r = tRandom::tGetBounded(tVector2(-10.0f), tVector2(10.0f));
-		tPrintf("Vector2 %02d : %:2v\n", i, pod(r));
+		tPrintf("Vector2 %02d : %:2v\n", i, tPod(r));
 		tRequire(tInRange(r.x, -10.0f, 10.0f));
 		tRequire(tInRange(r.y, -10.0f, 10.0f));
 	}
@@ -251,7 +251,7 @@ tTestUnit(Random)
 	for (int i = 0; i < 16; i++)
 	{
 		tVector2 r = tRandom::tGetExtentBounded(tVector2(50.0f), tVector2(10.0f));
-		tPrintf("Vector2 %02d : %:2v\n", i, pod(r));
+		tPrintf("Vector2 %02d : %:2v\n", i, tPod(r));
 		tRequire(tInRange(r.x, 40.0f, 60.0f));
 		tRequire(tInRange(r.y, 40.0f, 60.0f));
 	}

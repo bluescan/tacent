@@ -84,7 +84,7 @@
 
 // Many objects have a Pod member function that returns a plain-old-data version of itself. Useful for cases where POD
 // is required, like to printf functions.
-#define pod(x) (x.Pod())
+#define tPod(x) (x.Pod())
 #define tAlign16 __declspec(align(16))
 #define tIsAligned16(addr) ((uint64(addr) & 0xF) == 0)
 

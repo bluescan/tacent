@@ -123,7 +123,9 @@ namespace tCommand
 
 	void tParse(int argc, char** argv);
 	void tParse(const char* commandLine, bool fullCommandLine = false);
-	void tPrintUsage();
+	void tPrintUsage(const char* versionAuthor = nullptr);
+	void tPrintUsage(int versionMajor, int versionMinor = -1, int revision = -1);
+	void tPrintUsage(const char* author, int versionMajor, int versionMinor = -1, int revision = -1);
 	void tPrintSyntax();
 }
 

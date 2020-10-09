@@ -558,7 +558,7 @@ tScriptWriter::tScriptWriter(const tString& filename) :
 	ScriptFile = tSystem::tOpenFile(filename, "wt");
 
 	if (!ScriptFile)
-		throw tScriptError("Cannot open file [%s].", pod(filename));
+		throw tScriptError("Cannot open file [%s].", tPod(filename));
 }
 
 
@@ -608,7 +608,7 @@ void tScriptWriter::WriteAtom(const tString& atom)
 	numWritten += tSystem::tWriteFile(ScriptFile, &sp, 1);
 
 	if (numWritten != (1 + (useQuotes ? 2 : 0) + atomLen))
-		throw tScriptError("Cannot write atom [%s] to script file.", pod(atom));
+		throw tScriptError("Cannot write atom [%s] to script file.", tPod(atom));
 }
 
 
