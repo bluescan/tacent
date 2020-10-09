@@ -7,13 +7,14 @@ build*/
 
 # Filenames everywhere.
 compile_flags.txt
-compile_commands.json
 .vscode/settings.json
 .vscode/c_cpp_properties.json
 
 # Specific files/directories matching string.
 /Woboq/www/Tacent
 
+# Specific files.
+/Woboq/compile_commands_generated.json
+
 # Filetypes everywhere.
 *.ext
-
