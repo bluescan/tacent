@@ -23,7 +23,7 @@ jobs:
       
     # Use CMake and NMake
     #- uses: actions/checkout@master
-    - uses: ilammy/msvc-dev-cmd@v1.2.0
+    - uses: ilammy/msvc-dev-cmd@v1.4.1
     - name: Build using CMake NMake
       run: |
         echo '*** Configuring CMake ***'
