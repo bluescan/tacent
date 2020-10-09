@@ -30,6 +30,7 @@
 #pragma warning (disable: 4723)
 using namespace tSystem;
 using namespace tMath;
+extern tCommand::tOption SharedOption;
 namespace tUnitTest
 {
 
@@ -46,15 +47,18 @@ tTestUnit(CmdLine)
 	tCommand::tOption time("Print timestamp.", "time", 't', 0);
 	tCommand::tOption stop("Stop early.", "stop", 's', 0);
 
-	tCommand::tParse("-R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere");
-	//tCommand::tParse("MyProg.exe -R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere", true);
+	// Normally you would call tParse from main with argc and argv. The call below allows one to test command lines
+	// by entering the command line arguments directly as a string.
+	tCommand::tParse("-R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere --enj");
 
 	tCommand::tPrintUsage();
 
+	tPrintf("SharedOption: %s\n", SharedOption.IsPresent() ? "true" : "false");
 	tRequire(log.IsPresent());
 	tRequire(!stop.IsPresent());
 	tRequire(fromFile.IsPresent());
 	tRequire(toFile.IsPresent());
+	tRequire(SharedOption.IsPresent());
 
 	// More than one log entry simply adds to the numer option arguments. If an option took 2 args (A B) and was
 	// specified twice, you would get A1 B1 A2 B2 for the arguments.
