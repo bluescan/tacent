@@ -129,7 +129,7 @@ namespace tCommand
 	void tPrintSyntax();
 
 	// Returns the program name assuming you have already called tParse.
-	tString GetProgram();
+	tString tGetProgram();
 }
 
 

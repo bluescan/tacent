@@ -81,7 +81,7 @@ namespace tCommand
 }
 
 
-tString tCommand::GetProgram()
+tString tCommand::tGetProgram()
 {
 	return Program;
 }
