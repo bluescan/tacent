@@ -81,6 +81,12 @@ namespace tCommand
 }
 
 
+tString tCommand::GetProgram()
+{
+	return Program;
+}
+
+
 tCommand::tParam::tParam(int paramNumber, const char* name, const char* description) :
 	ParamNumber(paramNumber),
 	Param(),

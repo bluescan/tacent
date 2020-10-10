@@ -127,6 +127,9 @@ namespace tCommand
 	void tPrintUsage(int versionMajor, int versionMinor = -1, int revision = -1);
 	void tPrintUsage(const char* author, int versionMajor, int versionMinor = -1, int revision = -1);
 	void tPrintSyntax();
+
+	// Returns the program name assuming you have already called tParse.
+	tString GetProgram();
 }
 
 
