@@ -162,37 +162,17 @@ tTestUnit(List)
 	tRequire(itm->Value == 1);
 
 	// Insert an item at the right place to keep sorted.
-	itemList.Insert(LessThan, new Item(6));
+	itemList.Insert(new Item(6), LessThan);
 	tPrintf("After sorted insert: ");
 	for (const Item* item = itemList.First(); item; item = item->Next())
 		tPrintf("%d ", item->Value);
 	tPrintf("\n");
 
+	itemList.Drop();
+	itemList.Remove();
+
 	// We need this if we didn't construct this list with a true flag.
 	//itemList.Empty();
-
-	// Lets try the same thing with const objects.
-	tList<const Item> citemList(true);
-	citemList.Append( new Item(7) );
-	citemList.Append( new Item(3) );
-	citemList.Append( new Item(4) );
-	citemList.Append( new Item(9) );
-	citemList.Append( new Item(1) );
-	citemList.Append( new Item(5) );
-	citemList.Append( new Item(4) );
-
-	tPrintf("Before sorting: ");
-	for (const Item* item = citemList.First(); item; item = item->Next())
-		tPrintf("%d ", item->Value);
-	tPrintf("\n");
-
-	citemList.Sort( LessThan );
-	//	itemList.Bubble( LessThan , true);
-
-	tPrintf("After sorting: ");
-	for (const Item* item = citemList.First(); item; item = item->Next())
-		tPrintf("%d ", item->Value);
-	tPrintf("\n");
 
 	tItList<NormItem> iterList(true);
 	iterList.Append( new NormItem(7) );
@@ -237,6 +217,63 @@ tTestUnit(List)
 
 	// We need this if we didn't construct this list with a true flag.
 	// iterList.Empty();
+}
+
+
+// Stefan's extra list tests.
+template <class T> struct NamedLink : public tLink<T>
+{
+	NamedLink<T>(int id) { tsPrintf(Name, "Name%d", id); }
+	tString Name;
+};
+
+
+template <class T> struct NamedList : public tList<T>
+{
+	T* FindNodeByName(const tString& name);
+};
+
+
+template<class T> T* NamedList<T>::FindNodeByName(const tString& name)
+{
+	T* node = Head();
+	while (node)
+	{
+		if (node->Name == name)
+			return node;
+		node = node->Next();
+	}
+	return nullptr;
+}
+
+
+struct NamedNode : public NamedLink<NamedNode>
+{
+	NamedNode(int id) : NamedLink(id+1), ID(id) { }
+	int ID;
+};
+
+
+tTestUnit(ListExtra)
+{
+	NamedList<NamedNode> nodes;
+
+	for (int i = 0; i < 4; i++)
+		nodes.Append(new NamedNode(i));
+
+	for (NamedNode* nn = nodes.First(); nn; nn = nn->Next())
+		tPrintf("ListExtra: ID:%d  Name:%s\n", nn->ID, nn->Name.Chars());
+
+	NamedNode* movedNode = nodes.Remove(nodes.Head());
+	nodes.Insert(movedNode, nodes.Head()->Next());
+
+	tPrintf("\nListExtra: Reordered\n");
+	for (NamedNode* nn = nodes.First(); nn; nn = nn->Next())
+		tPrintf("ListExtra: ID:%d  Name:%s\n", nn->ID, nn->Name.Chars());
+
+	NamedNode* foundNode = nodes.FindNodeByName("Name4");
+	tRequire(foundNode);
+	tPrintf("ListExtra: Found ID%d:%s\n", foundNode->ID, tPod(foundNode->Name));
 }
 
 

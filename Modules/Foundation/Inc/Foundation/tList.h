@@ -38,14 +38,14 @@ template<typename T> class tLink
 public:
 	tLink()																												: NextItem(nullptr), PrevItem(nullptr) { }
 	tLink(const tLink&)																									: NextItem(nullptr), PrevItem(nullptr) { }
-	T* Next() const																										{ return (T*)NextItem; }
-	T* Prev() const																										{ return (T*)PrevItem; }
+	T* Next() const																										{ return NextItem; }
+	T* Prev() const																										{ return PrevItem; }
 
 private:
 	template<typename U> friend class tList;
 	template<typename U> friend class tListZ;
-	mutable const T* NextItem;
-	mutable const T* PrevItem;
+	T* NextItem;
+	T* PrevItem;
 };
 
 
@@ -59,11 +59,11 @@ public:
 	tList(bool ownsItems)					 				/* ownsItems defaults to true. */							: OwnsItems(ownsItems) { }
 	virtual ~tList()																									{ if (OwnsItems) Empty(); }
 
-	T* Insert(const T* item);								// Insert item at head.	Returns item.
-	T* Insert(const T* item, const T* here);				// Insert item before here. Returns item.
-	T* Append(const T* item);								// Append item at tail.	Returns item.
-	T* Append(const T* item, const T* here);				// Append item after here. Returns item.
-	T* Remove(const T* item);								// Removes and returns item.
+	T* Insert(T* item);										// Insert item at head.	Returns item.
+	T* Insert(T* item, T* here);							// Insert item before here. Returns item.
+	T* Append(T* item);										// Append item at tail.	Returns item.
+	T* Append(T* item, T* here);							// Append item after here. Returns item.
+	T* Remove(T* item);										// Removes and returns item.
 	T* Remove();											// Removes and returns head item.
 	T* Drop();												// Removes and returns tail item.
 
@@ -91,7 +91,7 @@ public:
 	template<typename CompareFunc> int Sort(CompareFunc, tListSortAlgorithm alg = tListSortAlgorithm::Merge);
 
 	// Inserts item in a sorted list. It will remain sorted.
-	template<typename CompareFunc> T* Insert(CompareFunc, const T* item);
+	template<typename CompareFunc> T* Insert(T* item, CompareFunc);
 
 	// This does an O(n) single pass of a bubble sort iteration. Allows the cost of sorting to be distributed over time
 	// for objects that do not change their order very often. Do the expensive merge sort when the list is initially
@@ -117,8 +117,8 @@ private:
 	template<typename CompareFunc> int SortMerge(CompareFunc);
 	template<typename CompareFunc> int SortBubble(CompareFunc);
 
-	mutable const T* HeadItem = nullptr;
-	mutable const T* TailItem = nullptr;
+	T* HeadItem = nullptr;
+	T* TailItem = nullptr;
 	int ItemCount = 0;
 	bool OwnsItems = true;
 };
@@ -131,11 +131,11 @@ private:
 template<typename T> class tListZ
 {
 public:
-	T* Insert(const T* item);								// Insert item at head.	Returns item.
-	T* Insert(const T* item, const T* here);				// Insert item before here. Returns item.
-	T* Append(const T* item);								// Append item at tail.	Returns item.
-	T* Append(const T* item, const T* here);				// Append item after here. Returns item.
-	T* Remove(const T* item);								// Removes and returns item.
+	T* Insert(T* item);										// Insert item at head.	Returns item.
+	T* Insert(T* item, T* here);							// Insert item before here. Returns item.
+	T* Append(T* item);										// Append item at tail.	Returns item.
+	T* Append(T* item, T* here);							// Append item after here. Returns item.
+	T* Remove(T* item);										// Removes and returns item.
 	T* Remove();											// Removes and returns head item.
 	T* Drop();												// Removes and returns tail item.
 
@@ -158,8 +158,8 @@ public:
 	bool Contains(const T& item) const						/* To use this there must be an operator== for type T. */	{ for (const T* n = First(); n; n = n->Next()) if (*n == item) return true; return false; }
 
 private:
-	mutable const T* HeadItem;
-	mutable const T* TailItem;
+	T* HeadItem;
+	T* TailItem;
 	int ItemCount;
 };
 
@@ -294,7 +294,7 @@ private:
 // Implementation below this line.
 
 
-template<typename T> inline T* tList<T>::Insert(const T* item)
+template<typename T> inline T* tList<T>::Insert(T* item)
 {
 	if (HeadItem)
 		HeadItem->PrevItem = item;
@@ -306,27 +306,27 @@ template<typename T> inline T* tList<T>::Insert(const T* item)
 		TailItem = item;
 
 	ItemCount++;
-	return (T*)item;
+	return item;
 }
 
 
-template<typename T> inline T* tList<T>::Append(const T* item)
+template<typename T> inline T* tList<T>::Append(T* item)
 {
 	if (TailItem)
 		TailItem->NextItem = item;
 
 	item->PrevItem = TailItem;
 	item->NextItem = nullptr;
-	TailItem = (T*)item;
+	TailItem = item;
 	if (!HeadItem)
 		HeadItem = (T*)item;
 
 	ItemCount++;
-	return (T*)item;
+	return item;
 }
 
 
-template<typename T> template<typename CompareFunc> inline T* tList<T>::Insert(CompareFunc compare, const T* item)
+template<typename T> template<typename CompareFunc> inline T* tList<T>::Insert(T* item, CompareFunc compare)
 {
 	if (!Head())
 		return Insert(item);
@@ -359,11 +359,11 @@ template<typename T> template<typename CompareFunc> inline T* tList<T>::Insert(C
 
 	// Found it... so this is the item we insert before.
 	Insert(item, insertBefore);
-	return (T*)item;
+	return item;
 }
 
 
-template<typename T> inline T* tList<T>::Insert(const T* item, const T* where)
+template<typename T> inline T* tList<T>::Insert(T* item, T* where)
 {
 	tAssert(item);
 	if (!where)
@@ -379,11 +379,11 @@ template<typename T> inline T* tList<T>::Insert(const T* item, const T* where)
 		HeadItem = item;
 
 	ItemCount++;
-	return (T*)item;
+	return item;
 }
 
 
-template<typename T> inline T* tList<T>::Append(const T* item, const T* where)
+template<typename T> inline T* tList<T>::Append(T* item, T* where)
 {
 	tAssert(item);
 	if (!where)
@@ -409,7 +409,7 @@ template<typename T> inline T* tList<T>::Remove()
 	if (!HeadItem)
 		return nullptr;
 
-	T* removed = (T*)HeadItem;
+	T* removed = HeadItem;
 	HeadItem = (T*)HeadItem->NextItem;
 	if (!HeadItem)
 		TailItem = nullptr;
@@ -429,7 +429,7 @@ template<typename T> inline T* tList<T>::Drop()
 
 	T* t = TailItem;
 
-	TailItem = TailItem->PrevItem;
+	TailItem = (T*)TailItem->PrevItem;
 	if (!TailItem)
 		HeadItem = nullptr;
 	else
@@ -440,21 +440,20 @@ template<typename T> inline T* tList<T>::Drop()
 }
 
 
-template<typename T> inline T* tList<T>::Remove(const T* l)
+template<typename T> inline T* tList<T>::Remove(T* item)
 {
-	if (l->PrevItem)
-		l->PrevItem->NextItem = l->NextItem;
+	if (item->PrevItem)
+		item->PrevItem->NextItem = item->NextItem;
 	else
-		HeadItem = l->NextItem;
+		HeadItem = item->NextItem;
 
-	if (l->NextItem)
-		l->NextItem->PrevItem = l->PrevItem;
+	if (item->NextItem)
+		item->NextItem->PrevItem = item->PrevItem;
 	else
-		TailItem = l->PrevItem;
+		TailItem = item->PrevItem;
 
 	ItemCount--;
-
-	return (T*)l;
+	return item;
 }
 
 
@@ -487,7 +486,7 @@ template<typename T> template<typename CompareFunc> inline int tList<T>::SortMer
 
 	while (1)
 	{
-		const T* p = HeadItem;
+		T* p = HeadItem;
 		HeadItem = nullptr;
 		TailItem = nullptr;
 
@@ -497,7 +496,7 @@ template<typename T> template<typename CompareFunc> inline int tList<T>::SortMer
 		while (p)
 		{
 			numMerges++;
-			const T* q = p;
+			T* q = p;
 			int numPNodes = 0;
 			for (int i = 0; i < numNodesPerList; i++)
 			{
@@ -513,7 +512,7 @@ template<typename T> template<typename CompareFunc> inline int tList<T>::SortMer
 			while (numPNodes > 0 || (numQNodes > 0 && q))
 			{
 				// Decide whether next tBaseLink of merge comes from p or q.
-				const T* e;
+				T* e;
 
 				if (numPNodes == 0)
 				{
@@ -605,13 +604,13 @@ template<typename T> template<typename CompareFunc> inline int tList<T>::BubbleF
 	if ((ItemCount < 2) || (maxCompares == 0))
 		return 0;
 
-	const T* a = HeadItem;
+	T* a = HeadItem;
 	int numSwaps = 0;
 	int numCompares = 0;
 
 	while ((a != TailItem) && (numCompares < maxCompares))
 	{
-		const T* b = a->NextItem;
+		T* b = a->NextItem;
 
 		// We're sorting from lowest to biggest, so if b < a we need to swap them.
 		if (compare(*b, *a))
@@ -706,7 +705,7 @@ template<typename T> template<typename CompareFunc> inline int tList<T>::BubbleB
 }
 
 
-template<typename T> inline T* tListZ<T>::Insert(const T* item)
+template<typename T> inline T* tListZ<T>::Insert(T* item)
 {
 	if (HeadItem)
 		HeadItem->PrevItem = item;
@@ -718,11 +717,11 @@ template<typename T> inline T* tListZ<T>::Insert(const T* item)
 		TailItem = item;
 
 	ItemCount++;
-	return (T*)item;
+	return item;
 }
 
 
-template<typename T> inline T* tListZ<T>::Append(const T* item)
+template<typename T> inline T* tListZ<T>::Append(T* item)
 {
 	if (TailItem)
 		TailItem->NextItem = item;
@@ -734,19 +733,19 @@ template<typename T> inline T* tListZ<T>::Append(const T* item)
 		HeadItem = (T*)item;
 
 	ItemCount++;
-	return (T*)item;
+	return item;
 }
 
 
-template<typename T> inline T* tListZ<T>::Insert(const T* item, const T* where)
+template<typename T> inline T* tListZ<T>::Insert(T* item, T* here)
 {
 	tAssert(item);
-	if (!where)
+	if (!here)
 		return Insert(item);
 
-	item->NextItem = where;
-	item->PrevItem = where->PrevItem;
-	where->PrevItem = item;
+	item->NextItem = here;
+	item->PrevItem = here->PrevItem;
+	here->PrevItem = item;
 
 	if (item->PrevItem)
 		item->PrevItem->NextItem = item;
@@ -758,15 +757,15 @@ template<typename T> inline T* tListZ<T>::Insert(const T* item, const T* where)
 }
 
 
-template<typename T> inline T* tListZ<T>::Append(const T* item, const T* where)
+template<typename T> inline T* tListZ<T>::Append(T* item, T* here)
 {
 	tAssert(item);
-	if (!where)
+	if (!here)
 		return Append(item);
 
-	item->PrevItem = where;
-	item->NextItem = where->NextItem;
-	where->NextItem = item;
+	item->PrevItem = here;
+	item->NextItem = here->NextItem;
+	here->NextItem = item;
 
 	if (item->NextItem)
 		item->NextItem->PrevItem = item;
@@ -784,7 +783,7 @@ template<typename T> inline T* tListZ<T>::Remove()
 	if (!HeadItem)
 		return nullptr;
 
-	T* removed = (T*)HeadItem;
+	T* removed = HeadItem;
 	HeadItem = HeadItem->NextItem;
 	if (!HeadItem)
 		TailItem = nullptr;
@@ -815,21 +814,20 @@ template<typename T> inline T* tListZ<T>::Drop()
 }
 
 
-template<typename T> inline T* tListZ<T>::Remove(const T* l)
+template<typename T> inline T* tListZ<T>::Remove(T* item)
 {
-	if (l->PrevItem)
-		l->PrevItem->NextItem = l->NextItem;
+	if (item->PrevItem)
+		item->PrevItem->NextItem = item->NextItem;
 	else
-		HeadItem = l->NextItem;
+		HeadItem = item->NextItem;
 
-	if (l->NextItem)
-		l->NextItem->PrevItem = l->PrevItem;
+	if (item->NextItem)
+		item->NextItem->PrevItem = item->PrevItem;
 	else
-		TailItem = l->PrevItem;
+		TailItem = item->PrevItem;
 
 	ItemCount--;
-
-	return (T*)l;
+	return item;
 }
 
 
@@ -837,7 +835,7 @@ template<typename T> inline T* tItList<T>::Remove(Iter& iter)
 {
 	// It is perfectly valid to try to remove an object referenced by an invalid iterator.
 	if (!iter.IsValid() || (this != iter.List))
-		return 0;
+		return nullptr;
 
 	IterNode* node = Nodes.Remove(iter.Node);
 	T* obj = (T*)node->Object;
