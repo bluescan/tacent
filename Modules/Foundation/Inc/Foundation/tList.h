@@ -328,29 +328,12 @@ template<typename T> inline T* tList<T>::Append(T* item)
 
 template<typename T> template<typename CompareFunc> inline T* tList<T>::Insert(T* item, CompareFunc compare)
 {
-	if (!Head())
-		return Insert(item);
-
-	// Early exit if it should go before head or after tail.
-	if (compare(*item, *Head()))
-		return Insert(item, Head());
-
-	// The variables here are named as if compare implements 'bool IsLessThan()'
-	// Find the first item (starting from the largest/tail) that our item is less than.
-	T* found = nullptr;
-	for (T* contender = Tail(); contender; contender = contender->Prev())
-	{
+	// Find the first item (starting from the smallest/head) that our item is less than.
+	for (T* contender = Head(); contender; contender = contender->Next())
 		if (compare(*item, *contender))
-		{
-			found = contender;
-			break;
-		}
-	}
+			return Insert(item, contender);
 	
-	if (!found)
-		return Append(item);
-	
-	return Insert(item, found);
+	return Append(item);	
 }
 
 

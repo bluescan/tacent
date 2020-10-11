@@ -149,6 +149,15 @@ tTestUnit(List)
 	tRequire(itemList.First()->Value < itemList.First()->Next()->Value);
 	tRequire(itemList.First()->Next()->Value < itemList.First()->Next()->Next()->Value);
 
+	// 1 3 4 4 5 7 9
+	Item* inoutItem = new Item(5);
+	itemList.Insert(inoutItem, LessThan);
+	tPrintf("After insert sorted 5: ");
+	for (const Item* item = itemList.First(); item; item = item->Next())
+		tPrintf("%d ", item->Value);
+	tPrintf("\n");
+	itemList.Remove(inoutItem);
+
 	// Test circular on intrusive lists.
 	Item* itm = itemList.First();
 	for (int circ = 0; circ < 100; circ++)
@@ -163,7 +172,7 @@ tTestUnit(List)
 
 	// Insert an item at the right place to keep sorted.
 	itemList.Insert(new Item(6), LessThan);
-	tPrintf("After sorted insert: ");
+	tPrintf("After sorted insert 6: ");
 	for (const Item* item = itemList.First(); item; item = item->Next())
 		tPrintf("%d ", item->Value);
 	tPrintf("\n");
