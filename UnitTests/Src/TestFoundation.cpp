@@ -223,7 +223,8 @@ tTestUnit(List)
 // Stefan's extra list tests.
 template <class T> struct NamedLink : public tLink<T>
 {
-	NamedLink<T>(int id) { tsPrintf(Name, "Name%d", id); }
+	NamedLink<T>(const char* name)		{ Name.Set(name); }
+	NamedLink<T>(int id)				{ tsPrintf(Name, "Name%d", id); }
 	tString Name;
 };
 
@@ -236,13 +237,10 @@ template <class T> struct NamedList : public tList<T>
 
 template<class T> T* NamedList<T>::FindNodeByName(const tString& name)
 {
-	T* node = NamedList::Head();
-	while (node)
-	{
+	for (T* node = NamedList::Head(); node; node = node->Next())
 		if (node->Name == name)
 			return node;
-		node = node->Next();
-	}
+
 	return nullptr;
 }
 
@@ -252,6 +250,38 @@ struct NamedNode : public NamedLink<NamedNode>
 	NamedNode(int id) : NamedLink(id+1), ID(id) { }
 	int ID;
 };
+
+
+struct BigNode : public NamedLink<BigNode>
+{
+	BigNode(const char* name, const char* dependsOn, bool gen, bool always)		:
+		NamedLink(name),
+		DependsOn(dependsOn),
+		Generate(gen),
+		Always(always)															{ }
+
+	tString DependsOn;
+	bool Generate;
+	bool Always;
+};
+
+
+bool BigSort(const BigNode& lhs, const BigNode& rhs)
+{
+	// Always always comes first.
+	if (lhs.Always)
+		return true;
+
+	// Generate comes before non-generate.
+	if(lhs.Generate && !rhs.Generate)
+		return true;
+
+	// If the rhs depends on the lhs, the lhs has to come before the node that depends on it.
+	if (rhs.DependsOn == lhs.Name)
+		return true;
+
+	return false;
+}
 
 
 tTestUnit(ListExtra)
@@ -274,6 +304,52 @@ tTestUnit(ListExtra)
 	NamedNode* foundNode = nodes.FindNodeByName("Name4");
 	tRequire(foundNode);
 	tPrintf("ListExtra: Found ID%d:%s\n", foundNode->ID, tPod(foundNode->Name));
+
+	tPrintf("Big Node\n");
+	NamedList<BigNode> bigList;
+	BigNode* bigNode = nullptr;
+
+	// Always is only true if generated is true. The order is always, generated, not generated. Only generated nodes
+	// will have dependencies. You can depend on exatly 1 node. There are no circular dependencies. You may be added
+	// (as in this case) before the node you depend on. The desired outcome is thus:
+	// Always at the front, master, dependent pairs intermixed with other generated or alwyas generated nodes,
+	// followed by non-generated nodes.
+
+	// Goes in at head since it's the 1st node. Const args: Name, Dep, Gen, Always.
+	bigNode = new BigNode("A", nullptr, true, false);
+	bigList.Insert(bigNode, BigSort);
+
+	// Goes in at the head since Always is true
+	bigNode = new BigNode("B", nullptr, true, true);
+	bigList.Insert(bigNode, BigSort);
+
+	// Goes in after all other generate nodes (so after "E" if "E" is already there)
+	bigNode = new BigNode("C", "E", true, false);
+	bigList.Insert(bigNode, BigSort);
+
+	// Goes in after all the generate nodes
+	bigNode = new BigNode("D", nullptr, true, false);
+	bigList.Insert(bigNode, BigSort);
+
+	// Should go in before C since C depends on it.
+	bigNode = new BigNode("E", nullptr, true, false);
+	bigList.Insert(bigNode, BigSort);
+
+	tPrintf("Expected:\nB A E C D\nActual:\n");
+	tString result;
+	for (BigNode* mn = bigList.Head(); mn; mn = mn->Next())
+	{
+		tPrintf("%s ", mn->Name.Chars());
+		result += mn->Name;
+	}
+	tPrintf("\n");
+	tRequire(result == "BAECD");
+
+	bigList.Sort(BigSort);
+	tString result2;
+	for (BigNode* mn = bigList.Head(); mn; mn = mn->Next())
+		result2 += mn->Name;
+	tRequire(result2 == "BAECD");
 }
 
 

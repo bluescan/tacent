@@ -10,7 +10,7 @@
 // iterator syntax similar to the STL containers. Supports the new C++11 range-based for loop syntax.
 // tItList disadvantages: More memory allocs. Not quite as fast.
 //
-// Copyright (c) 2004-2006, 2015, 2017 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -335,31 +335,22 @@ template<typename T> template<typename CompareFunc> inline T* tList<T>::Insert(T
 	if (compare(*item, *Head()))
 		return Insert(item, Head());
 
-	if (!compare(*item, *Tail()))
-		return Append(item);
-
 	// The variables here are named as if compare implements 'bool IsLessThan()'
-	T* insertBefore = Head()->Next();
-	bool isLessThan = compare(*item, *insertBefore);
-	bool isGreaterThanOrEqualTo = !isLessThan;
-
-	bool searching = true;
-	while (searching)
+	// Find the first item (starting from the largest/tail) that our item is less than.
+	T* found = nullptr;
+	for (T* contender = Tail(); contender; contender = contender->Prev())
 	{
-		// We are searching for the first existing item that is greater than our item that we wish to insert...
-		// ie. Keep searching when (item >= insertBefore) .. stop searchign when .. (item < insertBefore)
-		searching = isGreaterThanOrEqualTo;
-		if (searching)
+		if (compare(*item, *contender))
 		{
-			insertBefore = insertBefore->Next();
-			isLessThan = compare(*item, *insertBefore);
-			isGreaterThanOrEqualTo = !isLessThan;
-		}		
+			found = contender;
+			break;
+		}
 	}
-
-	// Found it... so this is the item we insert before.
-	Insert(item, insertBefore);
-	return item;
+	
+	if (!found)
+		return Append(item);
+	
+	return Insert(item, found);
 }
 
 
@@ -429,7 +420,7 @@ template<typename T> inline T* tList<T>::Drop()
 
 	T* t = TailItem;
 
-	TailItem = (T*)TailItem->PrevItem;
+	TailItem = TailItem->PrevItem;
 	if (!TailItem)
 		HeadItem = nullptr;
 	else
