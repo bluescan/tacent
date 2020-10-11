@@ -71,13 +71,13 @@ public:
 	void Reset()											/* Resets the list. Never deletes the objects. */			{ HeadItem = nullptr; TailItem = nullptr; ItemCount = 0; }
 	void Empty()											/* Empties the list. Always deletes the objects. */			{ while (!IsEmpty()) delete Remove(); }
 
-	T* Head() const																										{ return (T*)HeadItem; }
-	T* Tail() const																										{ return (T*)TailItem; }
-	T* First() const																									{ return (T*)HeadItem; }
-	T* Last() const																										{ return (T*)TailItem; }
+	T* Head() const																										{ return HeadItem; }
+	T* Tail() const																										{ return TailItem; }
+	T* First() const																									{ return HeadItem; }
+	T* Last() const																										{ return TailItem; }
 
-	T* NextCirc(const T* here) const						/* Circular. Gets item after here. */ 						{ return here->NextItem ? (T*)here->NextItem : (T*)HeadItem; }
-	T* PrevCirc(const T* here) const						/* Circular. Gets item before here. */						{ return here->PrevItem ? (T*)here->PrevItem : (T*)TailItem; }
+	T* NextCirc(const T* here) const						/* Circular. Gets item after here. */ 						{ return here->NextItem ? here->NextItem : HeadItem; }
+	T* PrevCirc(const T* here) const						/* Circular. Gets item before here. */						{ return here->PrevItem ? here->PrevItem : TailItem; }
 
 	int GetNumItems() const																								{ return ItemCount; }
 	int NumItems() const																								{ return ItemCount; }
@@ -143,13 +143,13 @@ public:
 	void Reset()											/* Resets the list. Does not delete the objects. */			{ HeadItem = nullptr; TailItem = nullptr; ItemCount = 0; }
 	void Empty()											/* Empties the list. Always deletes the objects. */			{ while (!IsEmpty()) delete Remove(); }
 
-	T* Head() const																										{ return (T*)HeadItem; }
-	T* Tail() const																										{ return (T*)TailItem; }
-	T* First() const																									{ return (T*)HeadItem; }
-	T* Last() const																										{ return (T*)TailItem; }
+	T* Head() const																										{ return HeadItem; }
+	T* Tail() const																										{ return TailItem; }
+	T* First() const																									{ return HeadItem; }
+	T* Last() const																										{ return TailItem; }
 
-	T* NextCirc(const T* here) const						/* Circular. Gets item after here. */						{ return here->NextItem ? (T*)here->NextItem : (T*)HeadItem; }
-	T* PrevCirc(const T* here) const						/* Circular. Gets item before here. */						{ return here->PrevItem ? (T*)here->PrevItem : (T*)TailItem; }
+	T* NextCirc(const T* here) const						/* Circular. Gets item after here. */						{ return here->NextItem ? here->NextItem : HeadItem; }
+	T* PrevCirc(const T* here) const						/* Circular. Gets item before here. */						{ return here->PrevItem ? here->PrevItem : TailItem; }
 
 	int GetNumItems() const																								{ return ItemCount; }
 	int NumItems() const																								{ return ItemCount; }

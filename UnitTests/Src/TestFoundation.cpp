@@ -236,7 +236,7 @@ template <class T> struct NamedList : public tList<T>
 
 template<class T> T* NamedList<T>::FindNodeByName(const tString& name)
 {
-	T* node = Head();
+	T* node = NamedList::Head();
 	while (node)
 	{
 		if (node->Name == name)
