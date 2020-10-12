@@ -78,7 +78,7 @@ namespace tSystem
 	// Channel system. This is lazy initialized (using the name hash as the state) without any need for shutdown.
 	uint32 ComputerNameHash																								= 0;
 	tChannel OutputChannels																								= tChannel_Systems;
-	bool SupplimentaryDebuggerOutput																					= false;
+	bool SupplementaryDebuggerOutput																					= false;
 	RedirectCallback* StdoutRedirectCallback																			= nullptr;
 
 	// A format specification consists of the information stored in the expression:
@@ -220,9 +220,9 @@ void tSystem::tSetStdoutRedirectCallback(RedirectCallback cb)
 }
 
 
-void tSystem::tSetSupplimentaryDebuggerOutput(bool enable)
+void tSystem::tSetSupplementaryDebuggerOutput(bool enable)
 {
-	SupplimentaryDebuggerOutput = enable;
+	SupplementaryDebuggerOutput = enable;
 }
 
 
@@ -241,9 +241,9 @@ int tSystem::tPrint(const char* text, tFileHandle fileHandle)
 	if (!text || (*text == '\0'))
 		return numPrinted;
 
-	// Print supplimentary output unfiltered.
+	// Print supplementary output unfiltered.
 	#ifdef PLATFORM_WINDOWS
-	if (!fileHandle && SupplimentaryDebuggerOutput && IsDebuggerPresent())
+	if (!fileHandle && SupplementaryDebuggerOutput && IsDebuggerPresent())
 		OutputDebugStringA(text);
 	#endif
 

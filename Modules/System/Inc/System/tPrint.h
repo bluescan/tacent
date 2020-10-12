@@ -81,8 +81,8 @@ namespace tSystem
 
 	// Windows only. Sets supplementary output to include any attached debugger. Defaults to true. Only output
 	// normally destined to stdout will also be sent to the debugger. If a StdoutRedirectCallback is set, it will
-	// still be called regardless of what you call SetSupplimentaryDebuggerOutput with.
-	void tSetSupplimentaryDebuggerOutput(bool enable = true);
+	// still be called regardless of what you call SetSupplementaryDebuggerOutput with.
+	void tSetSupplementaryDebuggerOutput(bool enable = true);
 
 	// This is a non-formatting print. Just prints the string you give it to the supplied FileHandle. If the supplied
 	// FileHandle is set to 0 then stdout is used. When stdout is the destination this function performs filtering on
