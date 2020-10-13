@@ -32,10 +32,6 @@ struct tString
 	virtual ~tString();
 
 	tString& operator=(const tString&);
-	bool operator==(const tString& s) const																				{ return( !tStd::tStrcmp(TextData, s.TextData) ); }
-	bool operator==(const char* s) const																				{ return( !tStd::tStrcmp(TextData, s) ); }
-	bool operator!=(const tString& s) const																				{ return( !!tStd::tStrcmp(TextData, s.TextData) ); }
-	bool operator!=(const char* s) const																				{ return( !!tStd::tStrcmp(TextData, s) ); }
 
 	bool IsEqual(const tString& s) const																				{ return( !tStd::tStrcmp(TextData, s.TextData) ); }
 	bool IsEqual(const char* s) const																					{ return( !tStd::tStrcmp(TextData, s) ); }
@@ -169,6 +165,16 @@ protected:
 	char* TextData;
 	static char EmptyChar;										// All empty strings can use this.
 };
+
+
+// Binary operator overloads should be outside the class so we can do things like if ("a" == b) where b is a tString.
+inline bool operator==(const tString& a, const tString& b)																{ return !tStd::tStrcmp(a.Chars(), b.Chars()); }
+inline bool operator!=(const tString& a, const tString& b)																{ return !!tStd::tStrcmp(a.Chars(), b.Chars()); }
+inline bool operator==(const tString& a, const char* b)																	{ return !tStd::tStrcmp(a.Chars(), b); }
+inline bool operator!=(const tString& a, const char* b)																	{ return !!tStd::tStrcmp(a.Chars(), b); }
+inline bool operator==(const char* a, const tString& b)																	{ return !tStd::tStrcmp(a, b.Chars()); }
+inline bool operator!=(const char* a, const tString& b)																	{ return !!tStd::tStrcmp(a, b.Chars()); }
+
 
 
 // The tStringItem class is just the tString class except they can be placed on tLists.

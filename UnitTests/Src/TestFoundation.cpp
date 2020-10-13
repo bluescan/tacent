@@ -630,6 +630,21 @@ tTestUnit(String)
 	tString aa("aa");
 	tString exaa = aa.ExtractFirstWord('a');
 	tPrintf("\n\naa extract first word to a: Extracted:###%s###  Left:###%s###\n", exaa.ConstText(), aa.ConstText());
+
+	tString sa1 = "A";
+	tString sa2 = "A";
+	tString sb1 = "B";
+	const char* ca1 = "A";
+	const char* ca2 = "A";
+	const char* cb1 = "B";
+
+	//Test string/string, string/char*, char*/string. char*char* cannot be overloaded in C++.
+	tRequire(sa1 == sa2);
+	tRequire(sa1 != sb1);
+	tRequire(sa1 == ca1);
+	tRequire(sa1 != cb1);
+	tRequire(ca1 == sa1);
+	tRequire(ca1 != sb1);
 }
 
 

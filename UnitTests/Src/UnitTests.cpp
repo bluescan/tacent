@@ -109,7 +109,8 @@ int main(int argc, char** argv)
 	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
 	// tTest(Script);
 	// tTest(CmdLine);
-	tTest(List);
+	// tTest(String);
+	// tTest(List);
 	tTest(ListExtra);
 
 	#endif
