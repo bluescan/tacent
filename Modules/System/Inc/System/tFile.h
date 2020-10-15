@@ -176,16 +176,23 @@ tString tGetFileOpenAssoc(const tString& extension);
 #endif
 
 // Returns a path or fully qualified filename that is as simple as possible. Mainly this involves removing (and
-// resolving) any "." or ".." strings. For example, if the input is:
+// resolving) any "." or ".." strings. This is a string manipulation call only -- it does not query the filesystem.
+// For example, if the input is:
 //
 // "E:/Projects/Calamity/Crypto/../../Reign/./Squiggle/"
 // the returned string will be
 // "E:/Projects/Reign/Squiggle/".
 //
-// This function also works if a filename is specified at the end.
-tString tGetSimplifiedPath(const tString& path, bool ensureTrailingSlash = false);
+// This function also works if a filename is specified at the end. If forceTreatAsDir is false, paths ending with a /
+// are treated as directories and paths without a / are treated as files. If force is true, both are treated as dirs
+// and the returned path will end with a /.
+tString tGetSimplifiedPath(const tString& path, bool forceTreatAsDir = false);
 bool tIsRelativePath(const tString& path);
 bool tIsAbsolutePath(const tString& path);
+
+// Drive paths are DOS/Windows style absolute paths that begin with a drive letter followed by a colon.
+// For example, "C:/Hello" would return true, "/mnt/c/Hello" would return false.
+bool tIsDrivePath(const tString& path);
 
 // Returns the relative location of path from basePath. Both these input strings must have a common prefix for this to
 // succeed. Returns an empty string if it fails.

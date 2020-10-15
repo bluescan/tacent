@@ -703,23 +703,26 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 #endif // PLATFORM_WINDOWS
 
 
-tString tSystem::tGetSimplifiedPath(const tString& srcPath, bool ensureTrailingSlash)
+tString tSystem::tGetSimplifiedPath(const tString& srcPath, bool forceTreatAsDir)
 {
 	tString path = srcPath;
 	path.Replace('\\', '/');
 
-	// We do support filenames at the end.  However, if the name ends with a "." (or "..") we
+	// We do support filenames at the end. However, if the name ends with a "." (or "..") we
 	// know it is a folder and so add a trailing "/".
 	if (path[path.Length()-1] == '.')
 		path += "/";
 
-	if (tIsAbsolutePath(path))
+	if (forceTreatAsDir && (path[path.Length()-1] != '/'))
+		path += "/";
+
+	if (tIsDrivePath(path))
 	{
 		if ((path[0] >= 'a') && (path[0] <= 'z'))
 			path[0] = 'A' + (path[0] - 'a');
 	}
 
-	// First we'll replace any "../" strings with "|/".  Note that pipe indicators are not allowed
+	// First we'll replace any "../" strings with "|".  Note that pipe indicators are not allowed
 	// in filenames so we can safely use them.
 	int numUps = path.Replace("../", "|");
 
@@ -742,16 +745,22 @@ tString tSystem::tGetSimplifiedPath(const tString& srcPath, bool ensureTrailingS
 	}
 
 	tString res = simp + path;
-	if (ensureTrailingSlash && (res.Length() > 1) && (res[res.Length()-1] != '/'))
-		res += "/";
-
 	return res;
+}
+
+
+bool tSystem::tIsDrivePath(const tString& path)
+{
+	if ((path.Length() > 1) && (path[1] == ':'))
+		return true;
+
+	return false;
 }
 
 
 bool tSystem::tIsAbsolutePath(const tString& path)
 {
-	if ((path.Length() > 1) && (path[1] == ':'))
+	if (tIsDrivePath(path))
 		return true;
 
 	if ((path.Length() > 0) && ((path[0] == '/') || (path[0] == '\\')))
@@ -819,6 +828,17 @@ tString tSystem::tGetUpDir(const tString& path, int levels)
 
 	bool isNetLoc = false;
 	ret.Replace('\\', '/');
+
+	// Can't go up from here.
+	if (ret == "/")
+		return ret;
+	if (tIsDrivePath(ret))
+	{
+		if (ret.Length() == 2)
+			return ret + "/";
+		if ((ret.Length() == 3) && (ret[2] == '/'))
+			return ret;
+	}
 
 	#ifdef PLATFORM_WINDOWS
 	// Are we a network location starting with two slashes?

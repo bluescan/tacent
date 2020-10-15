@@ -769,10 +769,34 @@ tTestUnit(File)
 
 	tString normalPath = "Q:/Projects/Calamity/Crypto/../../Reign/./Squiggle/";
 	tPrintf("Testing GetSimplifiedPath on '%s'\n", normalPath.Pod());
-
 	tString simpPath = tGetSimplifiedPath(normalPath);
 	tPrintf("Simplified Path '%s'\n", simpPath.Pod());
-	tRequire(simpPath =="Q:/Projects/Reign/Squiggle/");
+	tRequire(simpPath == "Q:/Projects/Reign/Squiggle/");
+
+	normalPath = "E:\\Projects\\Calamity\\Crypto";
+	simpPath = tGetSimplifiedPath(normalPath, true);
+	tRequire(simpPath == "E:/Projects/Calamity/Crypto/");
+
+	normalPath = "E:\\Projects\\Calamity\\..\\Crypto.txt";
+	simpPath = tGetSimplifiedPath(normalPath);
+	tRequire(simpPath == "E:/Projects/Crypto.txt");
+
+	normalPath = "/";
+	simpPath = tGetSimplifiedPath(normalPath);
+	tRequire(simpPath == "/");
+
+	normalPath = "/";
+	simpPath = tGetUpDir(normalPath);
+	tRequire(simpPath == "/");
+
+	// Test some invalid ones.
+	normalPath = "/Dir/../..";
+	simpPath = tGetSimplifiedPath(normalPath);
+	tRequire(simpPath == "/");
+
+	normalPath = "z:/Dir/../..";
+	simpPath = tGetSimplifiedPath(normalPath);
+	tRequire(simpPath == "Z:/");
 }
 
 
