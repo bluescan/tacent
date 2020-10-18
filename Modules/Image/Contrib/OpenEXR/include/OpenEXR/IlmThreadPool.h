@@ -69,26 +69,77 @@ ILMTHREAD_INTERNAL_NAMESPACE_HEADER_ENTER
 class TaskGroup;
 class Task;
 
+//-------------------------------------------------------
+// ThreadPoolProvider -- this is a pure virtual interface
+// enabling custom overloading of the threads used and how
+// the implementation of the processing of tasks
+// is implemented
+//-------------------------------------------------------
+class ILMTHREAD_EXPORT ThreadPoolProvider
+{
+  public:
+    ThreadPoolProvider();
+    virtual ~ThreadPoolProvider();
+
+    // as in ThreadPool below
+    virtual int numThreads () const = 0;
+    // as in ThreadPool below
+    virtual void setNumThreads (int count) = 0;
+    // as in ThreadPool below
+    virtual void addTask (Task* task) = 0;
+
+    // Ensure that all tasks in this set are finished
+    // and threads shutdown
+    virtual void finish () = 0;
+
+    // Make the provider non-copyable
+#if __cplusplus >= 201103L
+    ThreadPoolProvider (const ThreadPoolProvider &) = delete;
+    ThreadPoolProvider &operator= (const ThreadPoolProvider &) = delete;
+    ThreadPoolProvider (ThreadPoolProvider &&) = delete;
+    ThreadPoolProvider &operator= (ThreadPoolProvider &&) = delete;
+#else
+  private:
+    ThreadPoolProvider (const ThreadPoolProvider &);
+    ThreadPoolProvider &operator= (const ThreadPoolProvider &);
+#endif
+};  
 
 class ILMTHREAD_EXPORT ThreadPool  
 {
   public:
+    //-------------------------------------------------------
+    // static routine to query how many processors should be
+    // used for processing exr files. The user of ThreadPool
+    // is free to use std::thread::hardware_concurrency or
+    // whatever number of threads is appropriate based on the
+    // application. However, this routine exists such that
+    // in the future, if core counts expand faster than
+    // memory bandwidth, or higher order NUMA machines are built
+    // that we can query, this routine gives a place where we
+    // can centralize that logic
+    //-------------------------------------------------------
+    static unsigned estimateThreadCountForFileIO ();
 
     //-------------------------------------------------------
     // Constructor -- creates numThreads worker threads which
-    // wait until a task is available. 
+    // wait until a task is available,
+    // using a default ThreadPoolProvider
     //-------------------------------------------------------
 
     ThreadPool (unsigned numThreads = 0);
-    
-    
+
+
     //-----------------------------------------------------------
     // Destructor -- waits for all tasks to complete, joins all
     // the threads to the calling thread, and then destroys them.
     //-----------------------------------------------------------
 
     virtual ~ThreadPool ();
-    
+    ThreadPool (const ThreadPool&) = delete;
+    ThreadPool& operator= (const ThreadPool&) = delete;
+    ThreadPool (ThreadPool&&) = delete;
+    ThreadPool& operator= (ThreadPool&&) = delete;
 
     //--------------------------------------------------------
     // Query and set the number of worker threads in the pool.
@@ -100,8 +151,20 @@ class ILMTHREAD_EXPORT ThreadPool
     
     int		numThreads () const;
     void	setNumThreads (int count);
-    
-    
+
+    //--------------------------------------------------------
+    // Set the thread provider for the pool.
+    //
+    // The ThreadPool takes ownership of the ThreadPoolProvider
+    // and will call delete on it when it is finished or when
+    // it is changed
+    //
+    // Warning: never call setThreadProvider from within a worker
+    // thread as this will almost certainly cause a deadlock
+    // or crash.
+    //--------------------------------------------------------
+    void    setThreadProvider (ThreadPoolProvider *provider);
+
     //------------------------------------------------------------
     // Add a task for processing.  The ThreadPool can handle any
     // number of tasks regardless of the number of worker threads.
@@ -133,6 +196,10 @@ class ILMTHREAD_EXPORT Task
 
     Task (TaskGroup* g);
     virtual ~Task ();
+    Task (const Task&) = delete;
+    Task &operator= (const Task&) = delete;
+    Task (Task&&) = delete;
+    Task& operator= (Task&&) = delete;
 
     virtual void	execute () = 0;
     TaskGroup *		group();
@@ -149,6 +216,16 @@ class ILMTHREAD_EXPORT TaskGroup
 
     TaskGroup();
     ~TaskGroup();
+
+    TaskGroup (const TaskGroup& other) = delete;
+    TaskGroup& operator = (const TaskGroup& other) = delete;
+    TaskGroup (TaskGroup&& other) = delete;
+    TaskGroup& operator = (TaskGroup&& other) = delete;
+    
+    // marks one task as finished
+    // should be used by the thread pool provider to notify
+    // as it finishes tasks
+    void finishOneTask ();
 
     struct Data;
     Data* const		_data;

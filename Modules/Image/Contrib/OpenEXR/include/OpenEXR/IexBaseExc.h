@@ -57,7 +57,7 @@ IEX_INTERNAL_NAMESPACE_HEADER_ENTER
 // Our most basic exception class
 //-------------------------------
 
-class BaseExc: public std::string, public std::exception
+class BaseExc: public std::exception
 {
   public:
 
@@ -65,16 +65,20 @@ class BaseExc: public std::string, public std::exception
     // Constructors and destructor
     //----------------------------
 
-    IEX_EXPORT BaseExc (const char *s = 0) throw();     // std::string (s)
-    IEX_EXPORT BaseExc (const std::string &s) throw();  // std::string (s)
-    IEX_EXPORT BaseExc (std::stringstream &s) throw();  // std::string (s.str())
+    IEX_EXPORT BaseExc (const char *s = nullptr) throw();     // std::string (s)
+    IEX_EXPORT BaseExc (const std::string &s) throw();        // std::string (s)
+    IEX_EXPORT BaseExc (std::stringstream &s) throw();        // std::string (s.str())
 
     IEX_EXPORT BaseExc (const BaseExc &be) throw();
+    IEX_EXPORT BaseExc (BaseExc &&be) throw();
     IEX_EXPORT virtual ~BaseExc () throw ();
 
-    //--------------------------------------------
-    // what() method -- e.what() returns e.c_str()
-    //--------------------------------------------
+    IEX_EXPORT BaseExc & operator = (const BaseExc& be) throw ();
+    IEX_EXPORT BaseExc & operator = (BaseExc&& be) throw ();
+
+    //---------------------------------------------------
+    // what() method -- e.what() returns _message.c_str()
+    //---------------------------------------------------
 
     IEX_EXPORT virtual const char * what () const throw ();
 
@@ -101,6 +105,11 @@ class BaseExc: public std::string, public std::exception
     IEX_EXPORT BaseExc &            append (const char *s);
     IEX_EXPORT BaseExc &            operator += (const char *s);
 
+    //---------------------------------------------------
+    // Access to the string representation of the message
+    //---------------------------------------------------
+
+    IEX_EXPORT const std::string &  message () const;
 
     //--------------------------------------------------
     // Stack trace for the point at which the exception
@@ -113,6 +122,7 @@ class BaseExc: public std::string, public std::exception
 
   private:
 
+    std::string                     _message;
     std::string                     _stackTrace;
 };
 
@@ -122,16 +132,31 @@ class BaseExc: public std::string, public std::exception
 // class derived directly or indirectly from BaseExc:
 //-----------------------------------------------------
 
-#define DEFINE_EXC_EXP(exp, name, base)                         \
-    class exp name: public base                                 \
-    {                                                           \
-      public:                                                   \
-        name()                         throw(): base (0)    {}  \
-        name (const char* text)        throw(): base (text) {}  \
-        name (const std::string &text) throw(): base (text) {}  \
-        name (std::stringstream &text) throw(): base (text) {}  \
-        ~name() throw() { }                                     \
+#define DEFINE_EXC_EXP(exp, name, base)                             \
+    class name: public base                                         \
+    {                                                               \
+      public:                                                       \
+        exp name() throw();                                         \
+        exp name (const char* text) throw();                        \
+        exp name (const std::string &text) throw();                 \
+        exp name (std::stringstream &text) throw();                 \
+        exp name (const name &other) throw();                       \
+        exp name (name &&other) throw();                            \
+        exp name& operator = (name &other) throw();                 \
+        exp name& operator = (name &&other) throw();                \
+        exp ~name() throw();                                        \
     };
+
+#define DEFINE_EXC_EXP_IMPL(exp, name, base)                       \
+exp name::name () throw () : base () {}                            \
+exp name::name (const char* text) throw () : base (text) {}        \
+exp name::name (const std::string& text) throw () : base (text) {} \
+exp name::name (std::stringstream& text) throw () : base (text) {} \
+exp name::name (const name &other) throw() : base (other) {}       \
+exp name::name (name &&other) throw() : base (other) {}            \
+exp name& name::operator = (name &other) throw() { base::operator=(other); return *this; } \
+exp name& name::operator = (name &&other) throw() { base::operator=(other); return *this; } \
+exp name::~name () throw () {}
 
 // For backward compatibility.
 #define DEFINE_EXC(name, base) DEFINE_EXC_EXP(, name, base)
@@ -202,61 +227,6 @@ typedef std::string (* StackTracer) ();
 
 IEX_EXPORT void        setStackTracer (StackTracer stackTracer);
 IEX_EXPORT StackTracer stackTracer ();
-
-
-//-----------------
-// Inline functions
-//-----------------
-
-inline BaseExc &
-BaseExc::operator = (std::stringstream &s)
-{
-    return assign (s);
-}
-
-
-inline BaseExc &
-BaseExc::operator += (std::stringstream &s)
-{
-    return append (s);
-}
-
-
-inline BaseExc &
-BaseExc::assign (const char *s)
-{
-    std::string::assign(s);
-    return *this;
-}
-
-
-inline BaseExc &
-BaseExc::operator = (const char *s)
-{
-    return assign(s);
-}
-
-
-inline BaseExc &
-BaseExc::append (const char *s)
-{
-    std::string::append(s);
-    return *this;
-}
-
-
-inline BaseExc &
-BaseExc::operator += (const char *s)
-{
-    return append(s);
-}
-
-
-inline const std::string &
-BaseExc::stackTrace () const
-{
-    return _stackTrace;
-}
 
 
 IEX_INTERNAL_NAMESPACE_HEADER_EXIT

@@ -53,7 +53,7 @@
 OPENEXR_IMF_INTERNAL_NAMESPACE_HEADER_ENTER
 
 
-class IMF_EXPORT Attribute
+class Attribute
 {
   public:
 
@@ -61,7 +61,9 @@ class IMF_EXPORT Attribute
     // Constructor and destructor
     //---------------------------
 
+    IMF_EXPORT
     Attribute ();
+    IMF_EXPORT
     virtual ~Attribute ();
 
 
@@ -97,6 +99,7 @@ class IMF_EXPORT Attribute
     // Attribute factory
     //------------------
 
+    IMF_EXPORT
     static Attribute *		newAttribute (const char typeName[]);
 
 
@@ -104,6 +107,7 @@ class IMF_EXPORT Attribute
     // Test if a given attribute type has already been registered
     //-----------------------------------------------------------
 
+    IMF_EXPORT
     static bool			knownType (const char typeName[]);
 
 
@@ -114,6 +118,7 @@ class IMF_EXPORT Attribute
     // knows how to make objects of this type.
     //--------------------------------------------------
 
+    IMF_EXPORT
     static void		registerAttributeType (const char typeName[],
 					       Attribute *(*newAttribute)());
 
@@ -123,6 +128,7 @@ class IMF_EXPORT Attribute
     // debugging only).
     //------------------------------------------------------
 
+    IMF_EXPORT
     static void		unRegisterAttributeType (const char typeName[]);
 };
 
@@ -136,16 +142,21 @@ class TypedAttribute: public Attribute
 {
   public:
 
-    //----------------------------
-    // Constructors and destructor
-    //------------_---------------
+    //------------------------------------------------------------
+    // Constructors and destructor: default behavior. This assumes
+    // that the type T is copyable/assignable/moveable.
+    //------------------------------------------------------------
 
-    TypedAttribute ();
+    TypedAttribute () = default;
     TypedAttribute (const T &value);
-    TypedAttribute (const TypedAttribute<T> &other);
-    virtual ~TypedAttribute ();
+    TypedAttribute (const TypedAttribute<T> &other) = default;
+    TypedAttribute (TypedAttribute<T> &&other) = default;
 
+    virtual ~TypedAttribute () = default;
 
+    TypedAttribute& operator = (const TypedAttribute<T>& other) = default;
+    TypedAttribute& operator = (TypedAttribute<T>&& other) = default;
+    
     //--------------------------------
     // Access to the attribute's value
     //--------------------------------
@@ -238,14 +249,6 @@ class TypedAttribute: public Attribute
 //------------------------------------
 // Implementation of TypedAttribute<T>
 //------------------------------------
-template <class T>
-TypedAttribute<T>::TypedAttribute ():
-    Attribute (),
-    _value (T())
-{
-    // empty
-}
-
 
 template <class T>
 TypedAttribute<T>::TypedAttribute (const T & value):
@@ -254,23 +257,6 @@ TypedAttribute<T>::TypedAttribute (const T & value):
 {
     // empty
 }
-
-
-template <class T>
-TypedAttribute<T>::TypedAttribute (const TypedAttribute<T> &other):
-    Attribute (other),
-    _value ()
-{
-    copyValueFrom (other);
-}
-
-
-template <class T>
-TypedAttribute<T>::~TypedAttribute ()
-{
-    // empty
-}
-
 
 template <class T>
 inline T &

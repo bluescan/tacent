@@ -113,9 +113,13 @@ class halfFunction
 		  T nanValue     = 0);
 
 #ifndef ILMBASE_HAVE_LARGE_STACK
-    ~halfFunction () { delete [] _lut; }    
+    ~halfFunction () { delete [] _lut; }
+    halfFunction (const halfFunction &) = delete;
+    halfFunction& operator= (const halfFunction &) = delete;
+    halfFunction (halfFunction &&) = delete;
+    halfFunction& operator= (halfFunction &&) = delete;
 #endif
-    
+
     //-----------
     // Evaluation
     //-----------
@@ -148,7 +152,6 @@ halfFunction<T>::halfFunction (Function f,
 {
 #ifndef ILMBASE_HAVE_LARGE_STACK
     _lut = new T[1<<16];
-    memset (_lut, 0 , (1<<16) * sizeof(T));
 #endif
     
     for (int i = 0; i < (1 << 16); i++)

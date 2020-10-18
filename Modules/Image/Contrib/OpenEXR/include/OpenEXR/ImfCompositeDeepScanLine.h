@@ -66,18 +66,22 @@
 
 OPENEXR_IMF_INTERNAL_NAMESPACE_HEADER_ENTER
 
-class IMF_EXPORT CompositeDeepScanLine
+class CompositeDeepScanLine
 {
     public:
+        IMF_EXPORT
         CompositeDeepScanLine();
-       virtual ~CompositeDeepScanLine();
+        IMF_EXPORT
+        virtual ~CompositeDeepScanLine();
         
         /// set the source data as a part
         ///@note all parts must remain valid until after last interaction with DeepComp
+        IMF_EXPORT
         void addSource(DeepScanLineInputPart * part);
         
         /// set the source data as a file
         ///@note all file must remain valid until after last interaction with DeepComp
+        IMF_EXPORT
         void addSource(DeepScanLineInputFile * file);
         
         
@@ -88,6 +92,7 @@ class IMF_EXPORT CompositeDeepScanLine
         // to handle the dataWindow() 
         //
         /////////////////////////////////////////
+        IMF_EXPORT
         void setFrameBuffer(const FrameBuffer & fr);
         
         
@@ -97,6 +102,7 @@ class IMF_EXPORT CompositeDeepScanLine
         // retrieve frameBuffer
         //
         ////////////////////////////////////////
+        IMF_EXPORT
         const FrameBuffer & frameBuffer() const;
         
         
@@ -107,8 +113,10 @@ class IMF_EXPORT CompositeDeepScanLine
         //
         //////////////////////////////////////////////////
         
+        IMF_EXPORT
         void readPixels(int start,int end);
         
+        IMF_EXPORT
         int sources() const; // return number of sources
         
         /////////////////////////////////////////////////
@@ -119,6 +127,7 @@ class IMF_EXPORT CompositeDeepScanLine
         //
         ////////////////////////////////////////////////
         
+        IMF_EXPORT
         const IMATH_NAMESPACE::Box2i & dataWindow() const;
         
  
@@ -127,14 +136,17 @@ class IMF_EXPORT CompositeDeepScanLine
         // (otherwise an instance of the base class will be used)
         //
         
+        IMF_EXPORT
         void setCompositing(DeepCompositing *);
         
       struct Data; 
     private :  
       struct Data *_Data;
       
-      CompositeDeepScanLine(const CompositeDeepScanLine &); // not implemented
-      const CompositeDeepScanLine & operator=(const CompositeDeepScanLine &);  // not implemented
+    CompositeDeepScanLine(const CompositeDeepScanLine &) = delete;
+    CompositeDeepScanLine & operator=(const CompositeDeepScanLine &) = delete;
+    CompositeDeepScanLine(CompositeDeepScanLine &&) = delete;
+    CompositeDeepScanLine & operator=(CompositeDeepScanLine &&) = delete;
 };
 
 OPENEXR_IMF_INTERNAL_NAMESPACE_HEADER_EXIT

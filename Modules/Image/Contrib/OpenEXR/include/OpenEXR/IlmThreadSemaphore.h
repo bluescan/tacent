@@ -47,15 +47,26 @@
 #include "IlmThreadNamespace.h"
 
 #if defined _WIN32 || defined _WIN64
-    #ifdef NOMINMAX
-        #undef NOMINMAX
-    #endif
-    #define NOMINMAX
-    #include <windows.h>
-#elif HAVE_PTHREAD && !HAVE_POSIX_SEMAPHORES
-    #include <pthread.h>
-#elif HAVE_PTHREAD && HAVE_POSIX_SEMAPHORES
-    #include <semaphore.h>
+#   ifdef NOMINMAX
+#      undef NOMINMAX
+#   endif
+#   define NOMINMAX
+#   include <windows.h>
+#endif
+
+#ifdef HAVE_POSIX_SEMAPHORES
+#   include <semaphore.h>
+#elif defined(__APPLE__)
+#   include <dispatch/dispatch.h>
+#else
+#   ifdef ILMBASE_FORCE_CXX03
+#      ifdef HAVE_PTHREAD
+#         include <pthread.h>
+#      endif
+#   else
+#      include <mutex>
+#      include <condition_variable>
+#   endif
 #endif
 
 ILMTHREAD_INTERNAL_NAMESPACE_HEADER_ENTER
@@ -75,12 +86,18 @@ class ILMTHREAD_EXPORT Semaphore
 
   private:
 
-    #if defined _WIN32 || defined _WIN64
+#if (defined (_WIN32) || defined (_WIN64)) && !defined (HAVE_POSIX_SEMAPHORES)
 
 	mutable HANDLE _semaphore;
 
-    #elif HAVE_PTHREAD && !HAVE_POSIX_SEMAPHORES
+#elif defined(HAVE_POSIX_SEMAPHORES)
 
+	mutable sem_t _semaphore;
+
+#elif defined(__APPLE__)
+	mutable dispatch_semaphore_t _semaphore;
+
+#else
 	//
 	// If the platform has Posix threads but no semapohores,
 	// then we implement them ourselves using condition variables
@@ -90,17 +107,22 @@ class ILMTHREAD_EXPORT Semaphore
 	{
 	    unsigned int count;
 	    unsigned long numWaiting;
+#   if ILMBASE_FORCE_CXX03
+#      if HAVE_PTHREAD
 	    pthread_mutex_t mutex;
 	    pthread_cond_t nonZero;
+#      else
+#         error unhandled legacy setup
+#      endif
+#   else
+        std::mutex mutex;
+        std::condition_variable nonZero;
+#   endif
 	};
 
 	mutable sema_t _semaphore;
-
-    #elif HAVE_PTHREAD && HAVE_POSIX_SEMAPHORES
-
-	mutable sem_t _semaphore;
-
-    #endif
+  
+#endif
 
     void operator = (const Semaphore& s);	// not implemented
     Semaphore (const Semaphore& s);		// not implemented

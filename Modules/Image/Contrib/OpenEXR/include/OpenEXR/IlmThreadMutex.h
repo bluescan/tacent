@@ -70,20 +70,40 @@
 #include "IlmBaseConfig.h"
 #include "IlmThreadNamespace.h"
 
-#if defined _WIN32 || defined _WIN64
-    #ifdef NOMINMAX
-        #undef NOMINMAX
-    #endif
-    #define NOMINMAX
-    #include <windows.h>
-#elif HAVE_PTHREAD
-    #include <pthread.h>
+#ifdef ILMBASE_FORCE_CXX03
+#   if defined (_WIN32) || defined (_WIN64)
+#      ifdef NOMINMAX
+#         undef NOMINMAX
+#      endif
+#      define NOMINMAX
+#      include <windows.h>
+#   endif
+#   ifdef HAVE_PTHREAD
+#      include <pthread.h>
+#   endif
+#else
+#   include <mutex>
 #endif
 
 ILMTHREAD_INTERNAL_NAMESPACE_HEADER_ENTER
 
-class Lock;
 
+// in c++11, this can just be
+//
+// using Mutex = std::mutex;
+// unfortunately we can't use std::unique_lock as a replacement for Lock since
+// they have different API.
+//
+// if we decide to break the API, we can just
+//
+// using Lock = std::lock_guard<std::mutex>;
+// or
+// using Lock = std::unique_lock<std::mutex>;
+//
+// (or eliminate the type completely and have people use the std library) 
+#ifdef ILMBASE_FORCE_CXX03
+
+class Lock;
 
 class ILMTHREAD_EXPORT Mutex
 {
@@ -97,9 +117,9 @@ class ILMTHREAD_EXPORT Mutex
     void	lock () const;
     void	unlock () const;
 
-    #if defined _WIN32 || defined _WIN64
+    #if (defined (_WIN32) || defined (_WIN64)) && !defined (HAVE_PTHREAD)
 	mutable CRITICAL_SECTION _mutex;
-    #elif HAVE_PTHREAD
+    #elif defined (HAVE_PTHREAD)
 	mutable pthread_mutex_t _mutex;
     #endif
 
@@ -108,15 +128,16 @@ class ILMTHREAD_EXPORT Mutex
     
     friend class Lock;
 };
-
+#else
+using Mutex = std::mutex;
+#endif
 
 class ILMTHREAD_EXPORT Lock
 {
   public:
 
     Lock (const Mutex& m, bool autoLock = true):
-	_mutex (m),
-	_locked (false)
+        _mutex (const_cast<Mutex &>(m)), _locked (false)
     {
         if (autoLock)
         {
@@ -130,7 +151,11 @@ class ILMTHREAD_EXPORT Lock
         if (_locked)
             _mutex.unlock();
     }
-    
+    Lock (const Lock&) = delete;
+    Lock &operator= (const Lock&) = delete;
+    Lock (Lock&&) = delete;
+    Lock& operator= (Lock&&) = delete;
+
     void acquire ()
     {
         _mutex.lock();
@@ -150,8 +175,8 @@ class ILMTHREAD_EXPORT Lock
 
   private:
 
-    const Mutex &	_mutex;
-    bool		_locked;
+    Mutex & _mutex;
+    bool    _locked;
 };
 
 

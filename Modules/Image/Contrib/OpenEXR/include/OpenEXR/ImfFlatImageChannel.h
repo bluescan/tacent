@@ -45,7 +45,10 @@
 //
 //----------------------------------------------------------------------------
 
-#include <ImfImageChannel.h>
+#include "ImfImageChannel.h"
+#include "ImfUtilExport.h"
+#include "ImfImageLevel.h"
+
 #include <ImfPixelType.h>
 #include <ImfFrameBuffer.h>
 #include <ImathBox.h>
@@ -81,20 +84,30 @@ class FlatImageChannel: public ImageChannel
     // Access to the flat image level to which this channel belongs.
     //
 
+    IMFUTIL_EXPORT
     FlatImageLevel &        flatLevel ();
+    IMFUTIL_EXPORT
     const FlatImageLevel &  flatLevel () const;
 
   protected:
 
     friend class FlatImageLevel;
 
+    IMFUTIL_EXPORT
     FlatImageChannel (FlatImageLevel &level,
                       int xSampling,
                       int ySampling,
                       bool pLinear);
 
+    IMFUTIL_EXPORT
     virtual ~FlatImageChannel();
 
+    FlatImageChannel (const FlatImageChannel& other) = delete;
+    FlatImageChannel& operator = (const FlatImageChannel& other) = delete;
+    FlatImageChannel (FlatImageChannel&& other) = delete;
+    FlatImageChannel& operator = (FlatImageChannel&& other) = delete;
+
+    IMFUTIL_EXPORT
     virtual void            resize ();
 
     virtual void            resetBasePointer () = 0;
@@ -165,6 +178,11 @@ class TypedFlatImageChannel: public FlatImageChannel
                            bool pLinear);
 
     virtual ~TypedFlatImageChannel ();
+
+    TypedFlatImageChannel (const TypedFlatImageChannel& other) = delete;
+    TypedFlatImageChannel& operator = (const TypedFlatImageChannel& other) = delete;    
+    TypedFlatImageChannel (TypedFlatImageChannel&& other) = delete;
+    TypedFlatImageChannel& operator = (TypedFlatImageChannel&& other) = delete;    
 
     virtual void        resize ();
 

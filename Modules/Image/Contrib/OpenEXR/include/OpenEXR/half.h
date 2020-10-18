@@ -96,9 +96,12 @@ class half
     // Constructors
     //-------------
 
-    half ();			// no initialization
+    half () = default;			// no initialization
     half (float f);
-
+    // rule of 5
+    ~half () = default;
+    half (const half &) = default;
+    half (half &&) noexcept = default;
 
     //--------------------
     // Conversion to float
@@ -118,7 +121,8 @@ class half
     // Assignment
     //-----------
 
-    half &		operator = (half  h);
+    half &		operator = (const half  &h) = default;
+    half &		operator = (half  &&h) noexcept = default;
     half &		operator = (float f);
 
     half &		operator += (half  h);
@@ -274,8 +278,15 @@ HALF_EXPORT void        printBits   (char  c[35], float f);
 #define HALF_MANT_DIG	11		// Number of digits in mantissa
 					// (significand + hidden leading 1)
 
-#define HALF_DIG	2		// Number of base 10 digits that
+// 
+// floor( (HALF_MANT_DIG - 1) * log10(2) ) => 3.01... -> 3
+#define HALF_DIG	3		// Number of base 10 digits that
 					// can be represented without change
+
+// ceil(HALF_MANT_DIG * log10(2) + 1) => 4.31... -> 5
+#define HALF_DECIMAL_DIG	5	// Number of base-10 digits that are
+					// necessary to uniquely represent all
+					// distinct values
 
 #define HALF_RADIX	2		// Base of the exponent
 
@@ -408,17 +419,6 @@ HALF_EXPORT void        printBits   (char  c[35], float f);
 //	done using only simple table lookups.
 //
 //---------------------------------------------------------------------------
-
-
-//--------------------
-// Simple constructors
-//--------------------
-
-inline
-half::half ()
-{
-    // no initialization
-}
 
 
 //----------------------------
@@ -565,14 +565,6 @@ half::operator - () const
     half h;
     h._h = _h ^ 0x8000;
     return h;
-}
-
-
-inline half &
-half::operator = (half h)
-{
-    _h = h._h;
-    return *this;
 }
 
 

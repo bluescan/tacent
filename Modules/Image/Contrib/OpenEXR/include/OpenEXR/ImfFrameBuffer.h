@@ -2,9 +2,9 @@
 //
 // Copyright (c) 2002, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -16,8 +16,8 @@
 // distribution.
 // *       Neither the name of Industrial Light & Magic nor the names of
 // its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
+// from this software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -48,13 +48,14 @@
 #include "ImfPixelType.h"
 #include "ImfExport.h"
 #include "ImfNamespace.h"
+#include "ImathBox.h"
 
 #include <map>
 #include <string>
+#include <cstdint>
 
 
 OPENEXR_IMF_INTERNAL_NAMESPACE_HEADER_ENTER
-
 
 //-------------------------------------------------------
 // Description of a single slice of the frame buffer:
@@ -65,7 +66,7 @@ OPENEXR_IMF_INTERNAL_NAMESPACE_HEADER_ENTER
 // component is called a "slice".
 //-------------------------------------------------------
 
-struct IMF_EXPORT Slice
+struct Slice
 {
     //------------------------------
     // Data type; see ImfPixelType.h
@@ -100,7 +101,7 @@ struct IMF_EXPORT Slice
 
     //--------------------------------------------
     // Subsampling: pixel (x, y) is present in the
-    // slice only if 
+    // slice only if
     //
     //  x % xSampling == 0 && y % ySampling == 0
     //
@@ -116,7 +117,7 @@ struct IMF_EXPORT Slice
     //----------------------------------------------------------
 
     double              fillValue;
-    
+
 
     //-------------------------------------------------------
     // For tiled files, the xTileCoords and yTileCoords flags
@@ -138,6 +139,7 @@ struct IMF_EXPORT Slice
     // Constructor
     //------------
 
+    IMF_EXPORT
     Slice (PixelType type = HALF,
            char * base = 0,
            size_t xStride = 0,
@@ -147,10 +149,42 @@ struct IMF_EXPORT Slice
            double fillValue = 0.0,
            bool xTileCoords = false,
            bool yTileCoords = false);
+
+    // Does the heavy lifting of computing the base pointer for a slice,
+    // avoiding overflow issues with large origin offsets
+    //
+    // if xStride == 0, assumes sizeof(pixeltype)
+    // if yStride == 0, assumes xStride * ( w / xSampling )
+    IMF_EXPORT
+    static Slice Make(PixelType type,
+                      const void *ptr,
+                      const IMATH_NAMESPACE::V2i &origin,
+                      int64_t w,
+                      int64_t h,
+                      size_t xStride = 0,
+                      size_t yStride = 0,
+                      int xSampling = 1,
+                      int ySampling = 1,
+                      double fillValue = 0.0,
+                      bool xTileCoords = false,
+                      bool yTileCoords = false);
+    // same as above, just computes w and h for you
+    // from a data window
+    IMF_EXPORT
+    static Slice Make(PixelType type,
+                      const void *ptr,
+                      const IMATH_NAMESPACE::Box2i &dataWindow,
+                      size_t xStride = 0,
+                      size_t yStride = 0,
+                      int xSampling = 1,
+                      int ySampling = 1,
+                      double fillValue = 0.0,
+                      bool xTileCoords = false,
+                      bool yTileCoords = false);
 };
 
 
-class IMF_EXPORT FrameBuffer
+class FrameBuffer
 {
   public:
 
@@ -158,9 +192,11 @@ class IMF_EXPORT FrameBuffer
     // Add a slice
     //------------
 
+    IMF_EXPORT
     void                        insert (const char name[],
                                         const Slice &slice);
 
+    IMF_EXPORT
     void                        insert (const std::string &name,
                                         const Slice &slice);
 
@@ -176,16 +212,24 @@ class IMF_EXPORT FrameBuffer
     //
     //----------------------------------------------------------------
 
+    IMF_EXPORT
     Slice &                     operator [] (const char name[]);
+    IMF_EXPORT
     const Slice &               operator [] (const char name[]) const;
 
+    IMF_EXPORT
     Slice &                     operator [] (const std::string &name);
+    IMF_EXPORT
     const Slice &               operator [] (const std::string &name) const;
 
+    IMF_EXPORT
     Slice *                     findSlice (const char name[]);
+    IMF_EXPORT
     const Slice *               findSlice (const char name[]) const;
 
+    IMF_EXPORT
     Slice *                     findSlice (const std::string &name);
+    IMF_EXPORT
     const Slice *               findSlice (const std::string &name) const;
 
 
@@ -198,16 +242,24 @@ class IMF_EXPORT FrameBuffer
     class Iterator;
     class ConstIterator;
 
+    IMF_EXPORT
     Iterator                    begin ();
+    IMF_EXPORT
     ConstIterator               begin () const;
 
+    IMF_EXPORT
     Iterator                    end ();
+    IMF_EXPORT
     ConstIterator               end () const;
 
+    IMF_EXPORT
     Iterator                    find (const char name[]);
+    IMF_EXPORT
     ConstIterator               find (const char name[]) const;
 
+    IMF_EXPORT
     Iterator                    find (const std::string &name);
+    IMF_EXPORT
     ConstIterator               find (const std::string &name) const;
 
   private:
@@ -224,13 +276,19 @@ class FrameBuffer::Iterator
 {
   public:
 
+    IMF_EXPORT
     Iterator ();
+    IMF_EXPORT
     Iterator (const FrameBuffer::SliceMap::iterator &i);
 
+    IMF_EXPORT
     Iterator &                  operator ++ ();
+    IMF_EXPORT
     Iterator                    operator ++ (int);
 
+    IMF_EXPORT
     const char *                name () const;
+    IMF_EXPORT
     Slice &                     slice () const;
 
   private:
@@ -245,14 +303,21 @@ class FrameBuffer::ConstIterator
 {
   public:
 
+    IMF_EXPORT
     ConstIterator ();
+    IMF_EXPORT
     ConstIterator (const FrameBuffer::SliceMap::const_iterator &i);
+    IMF_EXPORT
     ConstIterator (const FrameBuffer::Iterator &other);
 
+    IMF_EXPORT
     ConstIterator &             operator ++ ();
+    IMF_EXPORT
     ConstIterator               operator ++ (int);
 
+    IMF_EXPORT
     const char *                name () const;
+    IMF_EXPORT
     const Slice &               slice () const;
 
   private:
