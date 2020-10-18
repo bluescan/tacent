@@ -89,7 +89,7 @@ target_link_libraries(
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/debug/zlibstatic.lib>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/release/zlibstatic.lib>
 
-		// Only linking to release libs in Linux.
+		# Only linking to release libs in Linux.
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/release/libIlmImf.a>
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/release/libHalf.a>
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/release/libIex.a>
