@@ -24,7 +24,7 @@
 #include "Foundation/tStandard.h"
 #include "Image/tPicture.h"
 #include <OpenEXR/loadImage.h>
-#include <OpenEXR/zlib/zlib.h>
+#include <OpenEXR/Include/zlib.h>
 #include <ximage.h>
 #ifdef PLATFORM_WINDOWS
 #include "TurboJpeg/Windows/jconfig.h"

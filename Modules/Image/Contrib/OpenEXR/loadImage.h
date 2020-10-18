@@ -46,9 +46,9 @@
 //----------------------------------------------------------------------------
 #include "namespaceAlias.h"
 
-#include <ImfRgba.h>
-#include <ImfArray.h>
-#include <ImfHeader.h>
+#include <OpenEXR/ImfRgba.h>
+#include <OpenEXR/ImfArray.h>
+#include <OpenEXR/ImfHeader.h>
 
 
 namespace EXR

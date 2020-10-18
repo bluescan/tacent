@@ -95,6 +95,11 @@ tTestUnit(Image)
 	jpgPic.Save("TestData/WrittenWiredDrives.tga");
 	tRequire( tSystem::tFileExists("TestData/WrittenWiredDrives.tga"));
 
+	tImage::tPicture exrPic("TestData/Desk.exr");
+	tRequire(exrPic.IsValid());
+	exrPic.Save("TestData/WrittenDesk.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenDesk.tga"));
+
 	// Test tPicture loading xpm and saving as tga.
 	tImage::tPicture xpmPic("TestData/Crane.xpm");
 	tRequire(xpmPic.IsValid());

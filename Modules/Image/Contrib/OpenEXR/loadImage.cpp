@@ -44,23 +44,23 @@
 
 #include "loadImage.h"
 
-#include <ImfRgbaFile.h>
-#include <ImfTiledRgbaFile.h>
-#include <ImfInputFile.h>
-#include <ImfTiledInputFile.h>
-#include <ImfPreviewImage.h>
-#include <ImfChannelList.h>
-#include <Iex.h>
+#include <OpenEXR/ImfRgbaFile.h>
+#include <OpenEXR/ImfTiledRgbaFile.h>
+#include <OpenEXR/ImfInputFile.h>
+#include <OpenEXR/ImfTiledInputFile.h>
+#include <OpenEXR/ImfPreviewImage.h>
+#include <OpenEXR/ImfChannelList.h>
+#include <OpenEXR/Iex.h>
 
-#include <ImfPartType.h>
-#include <ImfMultiPartInputFile.h>
-#include <ImfInputPart.h>
-#include <ImfTiledInputPart.h>
-#include <ImfDeepScanLineInputPart.h>
-#include <ImfDeepFrameBuffer.h>
-#include <ImfCompositeDeepScanLine.h>
-#include <ImfDeepCompositing.h>
-#include <ImfDeepTiledInputPart.h>
+#include <OpenEXR/ImfPartType.h>
+#include <OpenEXR/ImfMultiPartInputFile.h>
+#include <OpenEXR/ImfInputPart.h>
+#include <OpenEXR/ImfTiledInputPart.h>
+#include <OpenEXR/ImfDeepScanLineInputPart.h>
+#include <OpenEXR/ImfDeepFrameBuffer.h>
+#include <OpenEXR/ImfCompositeDeepScanLine.h>
+#include <OpenEXR/ImfDeepCompositing.h>
+#include <OpenEXR/ImfDeepTiledInputPart.h>
 
 #include <vector>
 

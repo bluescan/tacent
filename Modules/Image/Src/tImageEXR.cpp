@@ -31,10 +31,11 @@
 #include <Foundation/tString.h>
 #include <System/tMachine.h>
 #include <System/tFile.h>
-#include <OpenEXR/loadImage.h>
-#include <OpenEXR/IlmImf/ImfMultiPartInputFile.h>
-#include <halfFunction.h>
 #include "Image/tImageEXR.h"
+#include <OpenEXR/loadImage.h>
+//#include <OpenEXR/IlmImf/ImfMultiPartInputFile.h>
+#include <OpenEXR/ImfMultiPartInputFile.h>
+#include <OpenEXR/halfFunction.h>
 using namespace tSystem;
 using namespace IMF;
 using namespace IMATH;

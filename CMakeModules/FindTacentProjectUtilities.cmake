@@ -23,6 +23,7 @@ function(tacent_target_compile_definitions PROJNAME)
 			$<$<CONFIG:Debug>:CONFIG_DEBUG>
 			$<$<CONFIG:Release>:CONFIG_RELEASE>
 			$<$<CXX_COMPILER_ID:MSVC>:_CRT_SECURE_NO_DEPRECATE _LIB>
+			# $<$<PLATFORM_ID:Windows>:_ITERATOR_DEBUG_LEVEL=0>
 			$<$<PLATFORM_ID:Windows>:PLATFORM_WINDOWS>
 			$<$<PLATFORM_ID:Linux>:PLATFORM_LINUX>
 	)
