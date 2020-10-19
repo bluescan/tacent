@@ -49,6 +49,7 @@ struct tMatrix2 : public tMat2
 	float Determinant() const																							{ return tDeterminant(*this); }
 	float Trace() const																									{ return tTrace(*this); }
 	void Invert()																										{ tInvert(*this); }
+	void MakeRotateZ(float angle)																						{ tMakeRotateZ(*this, angle); }
 
 	tMatrix2& operator=(const tMat2& m)																					{ tSet(*this, m); return *this; }
 	tMatrix2& operator+=(const tMat2& a)																				{ tAdd(*this, a); return *this; }

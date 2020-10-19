@@ -557,6 +557,7 @@ inline void tMakeTranslate(tMat4& d, const tVec3& t)																	{ tIdentity
 void tMakeRotateX(tMat4& d, float angle);
 void tMakeRotateY(tMat4& d, float angle);
 void tMakeRotateZ(tMat4& d, float angle);
+void tMakeRotateZ(tMat2& d, float angle);
 void tMakeRotate(tMat4& d, const tVec3& axis, float angle);
 void tMakeRotate(tMat4& d, const tVec3& a, const tVec3& b);	// Rotates from from a to b. Normalize a and b first.
 
@@ -1160,6 +1161,16 @@ inline void tMath::tMakeRotateZ(tMat4& d, float a)
 	d.a12 = -sin;	d.a22 =  cos;	d.a32 = 0.0f;	d.a42 = 0.0f;
 	d.a13 = 0.0f;	d.a23 = 0.0f;	d.a33 = 1.0f;	d.a43 = 0.0f;
 	d.a14 = 0.0f;	d.a24 = 0.0f;	d.a34 = 0.0f;	d.a44 = 1.0f;
+}
+
+
+inline void tMath::tMakeRotateZ(tMat2& d, float a)
+{
+	float cos = tCos(a);
+	float sin = tSin(a);
+
+	d.a11 =  cos;	d.a21 =  sin;
+	d.a12 = -sin;	d.a22 =  cos;
 }
 
 

@@ -23,6 +23,7 @@
 
 #include "Foundation/tStandard.h"
 #include "Image/tPicture.h"
+#include "Math/tMatrix2.h"
 #include <OpenEXR/loadImage.h>
 #include <OpenEXR/include/zlib.h>
 #include <ximage.h>
@@ -35,6 +36,7 @@
 #endif
 
 
+using namespace tMath;
 using namespace tImage;
 using namespace tSystem;
 
@@ -553,6 +555,17 @@ void tPicture::Rotate90(bool antiClockwise)
 	Width = newW;
 	Height = newH;
 	Pixels = newPixels;
+}
+
+
+void tPicture::RotateCenter(float angle, const tPixel& fill)
+{
+	tMatrix2 rotMat;
+	rotMat.MakeRotateZ(angle);
+
+	tAssertMsg(false, "RotateCenter not implemented");
+
+	// @todo Rotate all corners to get new size. Memfill it with fill colour. Map from old to new
 }
 
 

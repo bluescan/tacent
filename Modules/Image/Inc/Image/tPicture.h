@@ -159,6 +159,9 @@ public:
 	int GetNumPixels() const																							{ return Width*Height; }
 
 	void Rotate90(bool antiClockWise);
+
+	// Rotates image about center point. Might add another call for choosing the center point.
+	void RotateCenter(float angle, const tPixel& fill = tPixel::transparent);
 	void Flip(bool horizontal);
 
 	// Cropping. If width or height are smaller than the current size the image is cropped. (0, 0) is the anchor. If
