@@ -33,7 +33,6 @@
 #include <System/tFile.h>
 #include "Image/tImageEXR.h"
 #include <OpenEXR/loadImage.h>
-//#include <OpenEXR/IlmImf/ImfMultiPartInputFile.h>
 #include <OpenEXR/ImfMultiPartInputFile.h>
 #include <OpenEXR/halfFunction.h>
 using namespace tSystem;

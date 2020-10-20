@@ -23,8 +23,6 @@ const float TwoPi								= Pi * 2.0f;
 const float PiOver2								= Pi / 2.0f;
 const float PiOver3								= Pi / 3.0f;
 const float PiOver4								= Pi / 4.0f;
-const float KmPerMi								= 1.609344f;
-const float MpsToKmph							= 3.6f;
 const float DefaultGamma						= 2.2f;
 const float MaxFloat							= 3.402823466e+38f;
 

@@ -17,6 +17,18 @@
 
 namespace tUnit
 {
+	// Conversion constants.
+	// Prefixes (SI):
+	//	n=nano, u=micro, m=milli
+	//	K=kilo, M=mega, G=giga.
+	// p=per
+	// Units:
+	// mi = mile.
+	// m = meter.
+	// L = litre.
+	const float Conv_Km_per_mi			= 1.609344f;
+	const float Conv_Kmph_per_mps		= 3.6f;
+
 	enum class tPrefix
 	{
 		Invalid																											= -1,
@@ -88,8 +100,8 @@ namespace tUnit
 
 		Fortnight,						// Precisely 2 weeks.
 										// No months because they vary in duration.
-		Year,							// Precisely 365 days.
-		Annum,							// Precisely 365 days.
+		Year,							// Precisely 365 canonical days.
+		Annum,							// Precisely 365 canonical days.
 		Century,						// 100 years.
 		Millennium,						// 1000 years.
 		GalacticYear,					// One GY is 250 million years.

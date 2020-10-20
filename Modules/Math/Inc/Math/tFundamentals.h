@@ -96,12 +96,16 @@ inline int tFloatToInt(float val)																						{ return int(val + 0.5f);
 inline float tCeiling(float v)																							{ return ceilf(v); }
 inline float tFloor(float v)																							{ return floorf(v); }
 inline float tRound(float v)																							{ return floorf(v + 0.5f); }
+
+// This round lets you say round to the nearest [value]. For example, tRound(5.17f, 0.2f) = 5.2f
+float tRound(float v, float nearest);
 inline float tMod(float n, float d)																						{ return fmodf(n,d); }
 
 // For the 'ti' versions of the below functions, the 'i' means 'in-place' (ref var) rather than returning the value.
 inline void tiCeiling(float& v)																							{ v = ceilf(v); }
 inline void tiFloor(float& v)																							{ v = floorf(v); }
 inline void tiRound(float& v)																							{ v = floorf(v + 0.5f); }
+inline void tiRound(float& v, float nearest)																			{ v = tRound(v, nearest); }
 inline void tiAbs(int& val)																								{ val = (val < 0) ? -val : val; }
 inline void tiAbs(float& val)																							{ val = (val < 0.0f) ? -val : val; }
 inline void tiAbs(double& val)																							{ val = (val < 0.0) ? -val : val; }
@@ -223,6 +227,18 @@ inline std::function<bool(float,float)> tMath::tBiasGreater(tIntervalBias bias)
 		default:
 			return [](float a, float b) { return a > b; };
 	}
+}
+
+
+inline float tMath::tRound(float v, float nearest)
+{
+	if (tApproxEqual(nearest, 0.0f))
+		return v;
+
+	tiClamp(nearest, 0.000001f, 1000000.0f);
+	float numNearests = v/nearest;
+	float rnded = tRound(numNearests);
+	return rnded * nearest;
 }
 
 

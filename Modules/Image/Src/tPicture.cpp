@@ -560,12 +560,60 @@ void tPicture::Rotate90(bool antiClockwise)
 
 void tPicture::RotateCenter(float angle, const tPixel& fill)
 {
+	if (!IsValid())
+		return;
+
 	tMatrix2 rotMat;
 	rotMat.MakeRotateZ(angle);
 
-	tAssertMsg(false, "RotateCenter not implemented");
+	// Rotate all corners to get new size. Memfill it with fill colour. Map from old to new.
+	float ohalfW = float(Width)/2.0f;
+	float ohalfH = float(Height)/2.0f;
+	tVector2 tl(-ohalfW,  ohalfH);
+	tVector2 tr( ohalfW,  ohalfH);
+	tVector2 bl(-ohalfW, -ohalfH);
+	tVector2 br( ohalfW, -ohalfH);
+	tl = rotMat*tl;	tr = rotMat*tr;	bl = rotMat*bl;	br = rotMat*br;
+	float epsilon = 0.0001f;
+	int minx = int(tFloor(tRound(tMin(tl.x, tr.x, bl.x, br.x), epsilon)));
+	int miny = int(tFloor(tRound(tMin(tl.y, tr.y, bl.y, br.y), epsilon)));
+	int maxx = int(tCeiling(tRound(tMax(tl.x, tr.x, bl.x, br.x), epsilon)));
+	int maxy = int(tCeiling(tRound(tMax(tl.y, tr.y, bl.y, br.y), epsilon)));
 
-	// @todo Rotate all corners to get new size. Memfill it with fill colour. Map from old to new
+	int origW = Width;
+	int origH = Height;
+	tPixel* origPixels = Pixels;
+	Width = maxx - minx;
+	Height = maxy - miny;
+	Pixels = new tPixel[Width*Height];
+
+	float halfW = float(Width)/2.0f;
+	float halfH = float(Height)/2.0f;
+
+	// Matrix is orthonormal so inverse is transpose.
+	tMatrix2 invRot(rotMat);
+	invRot.Transpose();
+
+	// We now need to loop through every pixel in the new image and do a weighted sample of
+	// the pixels it maps to in the original image.
+	for (int y = 0; y < Height; y++)
+	{
+		for (int x = 0; x < Width; x++)
+		{
+			// Lets start with nearest pixel. We can get fancier after.
+			tVector2 dstPos(float(x) - halfW, float(y) - halfH);
+			tVector2 srcPos = invRot*dstPos;
+			srcPos += tVector2(ohalfW, ohalfH);
+			int srcX = int(tRound(srcPos.x));
+			int srcY = int(tRound(srcPos.y));
+			bool useFill = (srcX < 0) || (srcX >= origW) || (srcY < 0) || (srcY >= origH);
+
+			tPixel srcCol = useFill ? fill : origPixels[ GetIndex(srcX, srcY, origW, origH) ];
+			Pixels[ GetIndex(x, y) ] = srcCol;
+		}
+	}
+
+	delete[] origPixels;
 }
 
 
