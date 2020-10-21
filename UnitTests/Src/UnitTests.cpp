@@ -26,6 +26,10 @@
 using namespace tStd;
 tCommand::tOption PrintAllOutput("Print all output.", 'a', "all");
 tCommand::tOption SharedOption("Share and enjoy.", 'e', "enj");
+tCommand::tOption HelpOption("Display help.", "help", 'h', 0);
+tCommand::tOption NumberOption("Number option.", "num", 'n', 1);
+tCommand::tParam Param1("Parameter One", "Param1", 1);
+tCommand::tParam Param2("Parameter Two", "Param2", 2);
 
 
 namespace tUnitTest
@@ -42,7 +46,30 @@ namespace tUnitTest
 
 int main(int argc, char** argv)
 {
+	// Try calling with a command line like:
+	// UnitTests.exe -n '-35' ~10 hello20
+	// UnitTests.exe --help
+	// UnitTests.exe -h
 	tCommand::tParse(argc, argv);
+
+	if (HelpOption)
+	{
+		tCommand::tPrintUsage();
+		tCommand::tPrintSyntax();
+		return 0;
+	}
+
+	if (Param1)
+		tPrintf("Param1:%s AsInt:%d\n", Param1.Get().Pod(), Param1.Get().AsInt32());
+
+	if (Param2)
+		tPrintf("Param2:%s AsInt:%d\n", Param2.Get().Pod(), Param2.Get().AsInt32());
+
+	if (NumberOption)
+		tPrintf("NumOption Arg1:%s AsInt:%d\n", NumberOption.Arg1().Pod(), NumberOption.Arg1().AsInt32());
+
+	if (Param1 || Param2 || NumberOption)
+		return 0;
 
 #ifdef UNIT_TEST_FORCE_PRINT_ALL_OUTPUT
 	PrintAllOutput.Present = true;

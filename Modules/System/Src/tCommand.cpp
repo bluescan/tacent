@@ -235,7 +235,7 @@ void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 	line.Replace("\\'", tStd::SeparatorAStr);
 	line.Replace("\\\"", tStd::SeparatorBStr);
 
-	// Mark the spaces inside normal (non escaped) quotes.
+	// Mark the spaces and hyphens inside normal (non escaped) quotes.
 	bool inside = false;
 	for (char* ch = line.Text(); *ch; ch++)
 	{
@@ -247,6 +247,9 @@ void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 
 		if (*ch == ' ')
 			*ch = tStd::SeparatorC;
+
+		if (*ch == '-')
+			*ch = tStd::SeparatorD;
 	}
 
 	line.Remove('\'');
@@ -288,7 +291,10 @@ void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 				for (int optArgNum = 0; optArgNum < option->NumFlagArgs; optArgNum++)
 				{
 					arg = arg->Next();
-					option->Args.Append(new tStringItem(*arg));
+					tStringItem* argItem = new tStringItem(*arg);
+					argItem->Replace(tStd::SeparatorD, '-');
+					argItem->Replace('~', '-');
+					option->Args.Append(argItem);
 				}
 			}
 		}
@@ -324,6 +330,8 @@ void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 	int paramNumber = 1;
 	for (tStringItem* arg = commandLineParams.First(); arg; arg = arg->Next(), paramNumber++)
 	{
+		arg->Replace(tStd::SeparatorD, '-');
+		arg->Replace('~', '-');
 		for (tParam* param = Params.First(); param; param = param->Next())
 		{
 			if (param->ParamNumber == paramNumber)
@@ -337,36 +345,47 @@ void tCommand::tPrintSyntax()
 {
 	tString syntax =
 R"U5AG3(
+Syntax: my.exe [arguments]
+
 Arguments are separated by spaces. An argument must be enclosed in quotes
-(single or double) if it has a space in it. Use escape sequences to put either
-type of quote inside. If you need to specify paths, I suggest using forward
-slashes, although backslashes will work so long as the filename does not have
-a single or double quote next.
+(single or double) if it has a space or hyphen in it. Use escape sequences to
+put either type of quote inside. If you need to specify paths, I suggest using
+forward slashes, although backslashes will work so long as the filename does
+not have a single or double quote next.
 
 An argument may be an 'option' or 'parameter'.
 An option is a combination of a 'flag' specified using a single or double
 hyphen, and zero or more option arguments. A parameter is a single string.
+A parameter is simply an argument that does not start with a single or double
+hypen. It can be read as a string and parsed arbitrarily -- converted to a
+number if desired etc.
 
 Example:
 mycopy.exe -R --overwrite fileA.txt -pat fileB.txt --log log.txt
 
 The fileA.txt and fileB.txt in the above example are parameters (assuming
-overwrite does not take any option arguments). The order in which parameters
-are specified is important. fileA.txt is the first parameter, and fileB.txt is
-the second. Options on the other hand can be specified in any order. All
-options take a specific number (zero or more) of option arguments. If an
-option takes zero arguments you can only test for its presence (or lack of).
+the overwrite option does not take any option arguments). The order in which
+parameters are specified is important. fileA.txt is the first parameter, and
+fileB.txt is the second.
+
+Options on the other hand can be specified in any
+order. All options take a specific number (zero or more) of option arguments.
+If an option takes zero arguments you can only test for its presence.
 
 The '--log log.txt' is an option with a single option argument, log.txt.
 Single character flags specified with a single hyphen may be combined. The
 -pat in the example expands to -p -a -t. It is suggested not to combine flags
 when options take arguments as only the last flag would get them.
 
-Variable argument counts are not supported but you may list the same option
-more than once. Eg. -i filea.txt -i fileb.txt etc is valid.
+If you need to specify a negative number (either as an option argument or 
+parameter, it will need to be in quotes like '-43'. As a syntactic convenience
+the tilde may be used as the negative sign as in ~43.
+
+Variable option argument counts are not supported but you may list the same
+option more than once. Eg. -i filea.txt -i fileb.txt etc is valid.
 )U5AG3";
 
-	tPrintf("\n\n%s", syntax.Pod());
+	tPrintf("%s", syntax.Pod());
 }
 
 
@@ -494,6 +513,4 @@ void tCommand::tPrintUsage(const char* versionAuthorString)
 			}
 		}
 	}
-
-	tPrintf("\n\n");
 }
