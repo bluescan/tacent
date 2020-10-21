@@ -24,7 +24,7 @@
 #include <Image/tImageXPM.h>
 #include <System/tFile.h>
 #include "UnitTests.h"
-using namespace tStd;
+using namespace tImage;
 namespace tUnitTest
 {
 
@@ -35,32 +35,32 @@ tTestUnit(Image)
 		tSkipUnit(Image)
 
 	// Test direct loading classes.
-	tImage::tImageDDS imgDDS("TestData/TestDXT1.dds");
+	tImageDDS imgDDS("TestData/TestDXT1.dds");
 	tRequire(imgDDS.IsValid());
 
-	tImage::tImageEXR imgEXR("TestData/Desk.exr");
+	tImageEXR imgEXR("TestData/Desk.exr");
 	tRequire(imgEXR.IsValid());
 
-	tImage::tImageGIF imgGIF("TestData/8-cell-simple.gif");
+	tImageGIF imgGIF("TestData/8-cell-simple.gif");
 	tRequire(imgGIF.IsValid());
 
-	tImage::tImageHDR imgHDR("TestData/mpi_atrium_3.hdr");
+	tImageHDR imgHDR("TestData/mpi_atrium_3.hdr");
 	tRequire(imgHDR.IsValid());
 
-	tImage::tImageICO imgICO("TestData/UpperBounds.ico");
+	tImageICO imgICO("TestData/UpperBounds.ico");
 	tRequire(imgICO.IsValid());
 
-	tImage::tImageTGA imgTGA("TestData/WhiteBorderRLE.tga");
+	tImageTGA imgTGA("TestData/WhiteBorderRLE.tga");
 	tRequire(imgTGA.IsValid());
 
-	tImage::tImageJPG imgJPG("TestData/WiredDrives.jpg");
+	tImageJPG imgJPG("TestData/WiredDrives.jpg");
 	tRequire(imgJPG.IsValid());
 
-	tImage::tImageWEBP imgWEBP("TestData/RockyBeach.webp");
+	tImageWEBP imgWEBP("TestData/RockyBeach.webp");
 	tRequire(imgWEBP.IsValid());
 
 	// Test dxt1 texture.
-	tImage::tTexture dxt1Tex("TestData/TestDXT1.dds");
+	tTexture dxt1Tex("TestData/TestDXT1.dds");
 	tRequire(dxt1Tex.IsValid());
 
 	tChunkWriter writer("TestData/WrittenTestDXT1.tac");
@@ -72,42 +72,42 @@ tTestUnit(Image)
 	tRequire(dxt1Tex.IsValid());
 
 	// Test cubemap.
-	tImage::tTexture cubemap("TestData/CubemapLayoutGuide.dds");
+	tTexture cubemap("TestData/CubemapLayoutGuide.dds");
 	tRequire(cubemap.IsValid());
 
 	// Test jpg to texture. This will do conversion to BC1.
-	tImage::tTexture bc1Tex("TestData/WiredDrives.jpg", true);
+	tTexture bc1Tex("TestData/WiredDrives.jpg", true);
 	tRequire(bc1Tex.IsValid());
 	tChunkWriter chunkWriterBC1("TestData/WrittenBC1.tac");
 	bc1Tex.Save(chunkWriterBC1);
 	tRequire( tSystem::tFileExists("TestData/WrittenBC1.tac"));
 
 	// Test ico with alpha to texture. This will do conversion to BC3.
-	tImage::tTexture bc3Tex("TestData/UpperBounds.ico", true);
+	tTexture bc3Tex("TestData/UpperBounds.ico", true);
 	tRequire(bc3Tex.IsValid());
 	tChunkWriter chunkWriterBC3("TestData/WrittenBC3.tac");
 	bc3Tex.Save(chunkWriterBC3);
 	tRequire( tSystem::tFileExists("TestData/WrittenBC3.tac"));
 
 	// Test tPicture loading jpg and saving as tga.
-	tImage::tPicture jpgPic("TestData/WiredDrives.jpg");
+	tPicture jpgPic("TestData/WiredDrives.jpg");
 	tRequire(jpgPic.IsValid());
 	jpgPic.Save("TestData/WrittenWiredDrives.tga");
 	tRequire( tSystem::tFileExists("TestData/WrittenWiredDrives.tga"));
 
-	tImage::tPicture exrPic("TestData/Desk.exr");
+	tPicture exrPic("TestData/Desk.exr");
 	tRequire(exrPic.IsValid());
 	exrPic.Save("TestData/WrittenDesk.tga");
 	tRequire( tSystem::tFileExists("TestData/WrittenDesk.tga"));
 
 	// Test tPicture loading xpm and saving as tga.
-	tImage::tPicture xpmPic("TestData/Crane.xpm");
+	tPicture xpmPic("TestData/Crane.xpm");
 	tRequire(xpmPic.IsValid());
 	xpmPic.Save("TestData/WrittenCrane.tga");
 	tRequire( tSystem::tFileExists("TestData/WrittenCrane.tga"));
 
 	// Test tPicture loading png (with alpha channel) and saving as tga (with alpha channel).
-	tImage::tPicture pngPic("TestData/Xeyes.png");
+	tPicture pngPic("TestData/Xeyes.png");
 	tRequire(pngPic.IsValid());
 	pngPic.SaveTGA("TestData/WrittenXeyes.tga");
 	tRequire( tSystem::tFileExists("TestData/WrittenXeyes.tga"));
@@ -126,7 +126,7 @@ tTestUnit(Image)
 	tRequire( tSystem::tFileExists("TestData/WrittenXeyesJPG.jpg"));
 
 	// Test writing rotated images.
-	tImage::tPicture icoPic("TestData/UpperBounds.ico");
+	tPicture icoPic("TestData/UpperBounds.ico");
 	tRequire(icoPic.IsValid());
 
 	tPrintf("Image dimensions before rotate: W:%d H:%d\n", icoPic.GetWidth(), icoPic.GetHeight());
@@ -134,7 +134,7 @@ tTestUnit(Image)
 	int numRotations = 12;
 	for (int rotNum = 0; rotNum < numRotations; rotNum++)
 	{
-		tImage::tPicture rotPic(icoPic);
+		tPicture rotPic(icoPic);
 		float angle = float(rotNum) * tMath::TwoPi / numRotations;
 		rotPic.RotateCenter(angle, tColouri::transparent);
 
@@ -145,8 +145,12 @@ tTestUnit(Image)
 	}
 
 	tPrintf("Test 'plane' rotation.\n");
-	tImage::tPicture planePic("TestData/plane.png");
-	planePic.RotateCenter(-tMath::PiOver2, tColouri::black);
+	tPicture planePic("TestData/plane.png");
+	int w = planePic.GetWidth();
+	int h = planePic.GetHeight();
+	planePic.RotateCenter(-tMath::PiOver4, tColouri::black);
+	planePic.Crop(tColouri::black, tMath::ColourChannel_RGB);
+	planePic.Crop(w, h, tPicture::Anchor::MiddleMiddle, tColouri::black);
 	planePic.Save("TestData/WrittenPlane.png");
 }
 

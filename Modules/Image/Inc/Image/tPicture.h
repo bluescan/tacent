@@ -160,20 +160,36 @@ public:
 
 	void Rotate90(bool antiClockWise);
 
-	// Rotates image about center point. Might add another call for choosing the center point.
-	void RotateCenter(float angle, const tPixel& fill = tPixel::transparent);
+	// Rotates image about center point. Might add another call for choosing the center point. The resultant image size
+	// is always big enough to hold every possible source pixel. Call one or more of the crop functions after if you
+	// need to change the canvas size or remove transparent sides.
+	enum class RotateFilter
+	{
+		NearestPixel,
+		WeightedSamples			// @todo Not implemeted yet.
+	};
+	void RotateCenter
+	(
+		float angle,
+		const tPixel& fill		= tPixel::transparent,
+		RotateFilter			= RotateFilter::NearestPixel
+	);
+
 	void Flip(bool horizontal);
 
-	// Cropping. If width or height are smaller than the current size the image is cropped. (0, 0) is the anchor. If
-	// larger, transparent (alpha 0) black pixels are added.
+	// Cropping. Can also perform a canvas enlargement. If width or height are smaller than the current size the image
+	// is cropped. If larger, the fill colour is used. Fill defaults to transparent-zero-alpha black pixels.
 	enum class Anchor
 	{
 		LeftTop,		MiddleTop,		RightTop,
 		LeftMiddle,		MiddleMiddle,	RightMiddle,
 		LeftBottom,		MiddleBottom,	RightBottom
 	};
-	void Crop(int newWidth, int newHeight, Anchor = Anchor::MiddleMiddle);
-	void Crop(int newWidth, int newHeight, int originX, int originY);
+	void Crop(int newWidth, int newHeight, Anchor = Anchor::MiddleMiddle, const tColouri& fill = tColouri::transparent);
+	void Crop(int newWidth, int newHeight, int originX, int originY, const tColouri& fill = tColouri::transparent);
+
+	// Crops sides that match the specified colour. Optionally select only some channels to be considered.
+	void Crop(const tColouri& = tColouri::transparent, uint32 channels = tMath::ColourChannel_A);
 
 	// This function scales the image by half. Useful for generating mipmaps. Only use this if speed is an issue.
 	// Offline mipmap generation should use a higher quality filter like Lanczos-Windowed or Kaiser or Kaiser-Gamma. I

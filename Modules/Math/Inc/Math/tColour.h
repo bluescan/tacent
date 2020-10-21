@@ -40,6 +40,17 @@ namespace tMath
 
 	// Convert a standard web colour name (as may be found in rgb.txt for example) into a 32bit RGBA tColouri.
 	tColouri tGetColour(const char* colourName);
+
+	enum ColourChannel
+	{
+		ColourChannel_R			= 1 << 0,
+		ColourChannel_G			= 1 << 1,
+		ColourChannel_B			= 1 << 2,
+		ColourChannel_A			= 1 << 3,
+		ColourChannel_RGB		= ColourChannel_R | ColourChannel_G | ColourChannel_B,
+		ColourChannel_RGBA		= ColourChannel_R | ColourChannel_G | ColourChannel_B | ColourChannel_A,
+		ColourChannel_All		= ColourChannel_RGBA
+	};
 }
 
 
@@ -109,6 +120,7 @@ public:
 	void RGBToHSV();										// Assumes current values are RGB.
 	void HSVToRGB();										// Assumes current values are HSV.
 
+	bool Equal(const tColouri&, uint32 channels = tMath::ColourChannel_All) const;
 	bool operator==(const tColouri& c) const																			{ return (BP == c.BP); }
 	bool operator!=(const tColouri& c) const 																			{ return (BP != c.BP); }
 	tColouri& operator=(const tColouri& c)																				{ BP = c.BP; return *this; }
@@ -401,6 +413,24 @@ inline void tColouri::HSVToRGB()
 	R = r;
 	G = g;
 	B = b;
+}
+
+
+inline bool tColouri::Equal(const tColouri& colour, uint32 channels) const
+{
+	if ((channels & tMath::ColourChannel_R) && (R != colour.R))
+		return false;
+
+	if ((channels & tMath::ColourChannel_G) && (R != colour.G))
+		return false;
+
+	if ((channels & tMath::ColourChannel_B) && (R != colour.B))
+		return false;
+
+	if ((channels & tMath::ColourChannel_A) && (R != colour.A))
+		return false;
+
+	return true;
 }
 
 

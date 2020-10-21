@@ -486,7 +486,7 @@ void tPicture::Load(const tChunk& chunk)
 }
 
 
-void tPicture::Crop(int newW, int newH, Anchor anchor)
+void tPicture::Crop(int newW, int newH, Anchor anchor, const tColouri& fill)
 {
 	int originx = 0;
 	int originy = 0;
@@ -506,13 +506,18 @@ void tPicture::Crop(int newW, int newH, Anchor anchor)
 		case Anchor::RightBottom:	originx = Width - newW;		originy = 0;				break;
 	}
 
-	Crop(newW, newH, originx, originy);
+	Crop(newW, newH, originx, originy, fill);
 }
 
 
-void tPicture::Crop(int newW, int newH, int originX, int originY)
+void tPicture::Crop(int newW, int newH, int originX, int originY, const tColouri& fill)
 {
-	tAssert((newW > 0) && (newH > 0));
+	if ((newW <= 0) || (newH <= 0))
+	{
+		Clear();
+		return;
+	}
+
 	if ((newW == Width) && (newH == Height) && (originX == 0) && (originY == 0))
 		return;
 
@@ -526,10 +531,9 @@ void tPicture::Crop(int newW, int newH, int originX, int originY)
 			// If we're in range of the old picture we just copy the colour. If the old image is invalid no problem, as
 			// we'll fall through to the else and the pixel will be set to black.
 			if (tMath::tInIntervalIE(originX + x, 0, Width) && tMath::tInIntervalIE(originY + y, 0, Height))
-			//if ((originX + x < Width) && (originY + y < Height))
 				newPixels[y * newW + x] = GetPixel(originX + x, originY + y);
 			else
-				newPixels[y * newW + x].MakeZero();
+				newPixels[y * newW + x] = fill;
 		}
 	}
 
@@ -537,6 +541,88 @@ void tPicture::Crop(int newW, int newH, int originX, int originY)
 	Width = newW;
 	Height = newH;
 	Pixels = newPixels;
+}
+
+
+void tPicture::Crop(const tColouri& colour, uint32 channels)
+{
+	// Count bottom rows to crop.
+	int numBottomRows = 0;
+	for (int y = 0; y < Height; y++)
+	{
+		bool allMatch = true;
+		for (int x = 0; x < Width; x++)
+		{
+			if (!colour.Equal(Pixels[ GetIndex(x, y) ], channels))
+			{
+				allMatch = false;
+				break;
+			}
+		}
+		if (allMatch)
+			numBottomRows++;
+		else
+			break;
+	}
+
+	// Count top rows to crop.
+	int numTopRows = 0;
+	for (int y = Height-1; y >= 0; y--)
+	{
+		bool allMatch = true;
+		for (int x = 0; x < Width; x++)
+		{
+			if (!colour.Equal(Pixels[ GetIndex(x, y) ], channels))
+			{
+				allMatch = false;
+				break;
+			}
+		}
+		if (allMatch)
+			numTopRows++;
+		else
+			break;
+	}
+
+	// Count left columns to crop.
+	int numLeftCols = 0;
+	for (int x = 0; x < Width; x++)
+	{
+		bool allMatch = true;
+		for (int y = 0; y < Height; y++)
+		{
+			if (!colour.Equal(Pixels[ GetIndex(x, y) ], channels))
+			{
+				allMatch = false;
+				break;
+			}
+		}
+		if (allMatch)
+			numLeftCols++;
+		else
+			break;
+	}
+
+	// Count right columns to crop.
+	int numRightCols = 0;
+	for (int x = Width-1; x >= 0; x--)
+	{
+		bool allMatch = true;
+		for (int y = 0; y < Height; y++)
+		{
+			if (!colour.Equal(Pixels[ GetIndex(x, y) ], channels))
+			{
+				allMatch = false;
+				break;
+			}
+		}
+		if (allMatch)
+			numRightCols++;
+		else
+			break;
+	}
+
+	Crop(Width - numLeftCols - numRightCols, Height - numBottomRows - numTopRows, numLeftCols, numBottomRows);
 }
 
 
@@ -558,35 +644,37 @@ void tPicture::Rotate90(bool antiClockwise)
 }
 
 
-void tPicture::RotateCenter(float angle, const tPixel& fill)
+void tPicture::RotateCenter(float angle, const tPixel& fill, RotateFilter filter)
 {
+	tAssert(filter == RotateFilter::NearestPixel);
 	if (!IsValid())
 		return;
 
 	tMatrix2 rotMat;
 	rotMat.MakeRotateZ(angle);
 
+	int srcW = Width;
+	int srcH = Height;
+
 	// Rotate all corners to get new size. Memfill it with fill colour. Map from old to new.
-	float ohalfW = float(Width)/2.0f;
-	float ohalfH = float(Height)/2.0f;
-	tVector2 tl(-ohalfW,  ohalfH);
-	tVector2 tr( ohalfW,  ohalfH);
-	tVector2 bl(-ohalfW, -ohalfH);
-	tVector2 br( ohalfW, -ohalfH);
+	float srcHalfW = float(Width)/2.0f;
+	float srcHalfH = float(Height)/2.0f;
+	tPixel* srcPixels = Pixels;
+
+	tVector2 tl(-srcHalfW,  srcHalfH);
+	tVector2 tr( srcHalfW,  srcHalfH);
+	tVector2 bl(-srcHalfW, -srcHalfH);
+	tVector2 br( srcHalfW, -srcHalfH);
 	tl = rotMat*tl;	tr = rotMat*tr;	bl = rotMat*bl;	br = rotMat*br;
 	float epsilon = 0.0001f;
 	int minx = int(tFloor(tRound(tMin(tl.x, tr.x, bl.x, br.x), epsilon)));
 	int miny = int(tFloor(tRound(tMin(tl.y, tr.y, bl.y, br.y), epsilon)));
 	int maxx = int(tCeiling(tRound(tMax(tl.x, tr.x, bl.x, br.x), epsilon)));
 	int maxy = int(tCeiling(tRound(tMax(tl.y, tr.y, bl.y, br.y), epsilon)));
-
-	int origW = Width;
-	int origH = Height;
-	tPixel* origPixels = Pixels;
 	Width = maxx - minx;
 	Height = maxy - miny;
-	Pixels = new tPixel[Width*Height];
 
+	Pixels = new tPixel[Width*Height];
 	float halfW = float(Width)/2.0f;
 	float halfH = float(Height)/2.0f;
 
@@ -595,7 +683,8 @@ void tPicture::RotateCenter(float angle, const tPixel& fill)
 	invRot.Transpose();
 
 	// We now need to loop through every pixel in the new image and do a weighted sample of
-	// the pixels it maps to in the original image.
+	// the pixels it maps to in the original image. Actually weighted is not implemented yet
+	// so do nearest.
 	for (int y = 0; y < Height; y++)
 	{
 		for (int x = 0; x < Width; x++)
@@ -604,17 +693,17 @@ void tPicture::RotateCenter(float angle, const tPixel& fill)
 			// dstPos is the middle of the pixel we are writing to. srcPos is the original we are coming from.
 			tVector2 dstPos(float(x)+0.5f - halfW, float(y)+0.5f - halfH);
 			tVector2 srcPos = invRot*dstPos;
-			srcPos += tVector2(ohalfW, ohalfH);
+			srcPos += tVector2(srcHalfW, srcHalfH);
 			int srcX = int(tRound(srcPos.x-0.5f));
 			int srcY = int(tRound(srcPos.y-0.5f));
-			bool useFill = (srcX < 0) || (srcX >= origW) || (srcY < 0) || (srcY >= origH);
+			bool useFill = (srcX < 0) || (srcX >= srcW) || (srcY < 0) || (srcY >= srcH);
 
-			tPixel srcCol = useFill ? fill : origPixels[ GetIndex(srcX, srcY, origW, origH) ];
+			tPixel srcCol = useFill ? fill : srcPixels[ GetIndex(srcX, srcY, srcW, srcH) ];
 			Pixels[ GetIndex(x, y) ] = srcCol;
 		}
 	}
 
-	delete[] origPixels;
+	delete[] srcPixels;
 }
 
 

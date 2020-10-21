@@ -18,11 +18,12 @@ namespace tMath
 {
 
 
-const float Pi									= 3.14159265358979323f;
-const float TwoPi								= Pi * 2.0f;
-const float PiOver2								= Pi / 2.0f;
-const float PiOver3								= Pi / 3.0f;
-const float PiOver4								= Pi / 4.0f;
+const float Pi									= 3.14159265358979323f;		// 180 degrees.
+const float TwoPi								= Pi * 2.0f;				// 360 degrees.
+const float PiOver2								= Pi / 2.0f;				// 90  degrees.
+const float PiOver3								= Pi / 3.0f;				// 60  degrees.
+const float PiOver4								= Pi / 4.0f;				// 45  degrees;
+const float PiOver6								= Pi / 6.0f;				// 30  degrees;
 const float DefaultGamma						= 2.2f;
 const float MaxFloat							= 3.402823466e+38f;
 
