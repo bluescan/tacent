@@ -601,11 +601,12 @@ void tPicture::RotateCenter(float angle, const tPixel& fill)
 		for (int x = 0; x < Width; x++)
 		{
 			// Lets start with nearest pixel. We can get fancier after.
-			tVector2 dstPos(float(x) - halfW, float(y) - halfH);
+			// dstPos is the middle of the pixel we are writing to. srcPos is the original we are coming from.
+			tVector2 dstPos(float(x)+0.5f - halfW, float(y)+0.5f - halfH);
 			tVector2 srcPos = invRot*dstPos;
 			srcPos += tVector2(ohalfW, ohalfH);
-			int srcX = int(tRound(srcPos.x));
-			int srcY = int(tRound(srcPos.y));
+			int srcX = int(tRound(srcPos.x-0.5f));
+			int srcY = int(tRound(srcPos.y-0.5f));
 			bool useFill = (srcX < 0) || (srcX >= origW) || (srcY < 0) || (srcY >= origH);
 
 			tPixel srcCol = useFill ? fill : origPixels[ GetIndex(srcX, srcY, origW, origH) ];

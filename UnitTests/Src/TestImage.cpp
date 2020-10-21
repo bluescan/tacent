@@ -143,6 +143,11 @@ tTestUnit(Image)
 		tsPrintf(writeFile, "TestData/WrittenUpperBounds_Rot%03d.tga", int(tMath::tRadToDeg(angle)));
 		rotPic.Save(writeFile);
 	}
+
+	tPrintf("Test 'plane' rotation.\n");
+	tImage::tPicture planePic("TestData/plane.png");
+	planePic.RotateCenter(-tMath::PiOver2, tColouri::black);
+	planePic.Save("TestData/WrittenPlane.png");
 }
 
 
