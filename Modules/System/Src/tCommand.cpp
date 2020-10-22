@@ -210,7 +210,27 @@ void tCommand::ExpandArgs(tList<tStringItem>& args)
 			expArgs.Append(arg);
 			continue;
 		}
+		// It's now a single hyphen with something after it.
 
+		bool recognized = false;
+		for (tOption* option = Options.First(); option; option = option->Next())
+		{
+			if ( option->ShortName == tString((*arg)[1]) )
+			{
+				recognized = true;
+				break;
+			}
+		}
+
+		// Unrecognized options are left unmodified. Means you can put -10 and have it treated as a parameter.
+		// as long as you don't have an option with shortname "1".
+		if (!recognized)
+		{
+			expArgs.Append(arg);
+			continue;
+		}
+
+		// By now it's a single hyphen and is expandble. eg. -abc -> -a -b -c
 		for (int flag = 1; flag < arg->Length(); flag++)
 		{
 			tString newArg = "-" + tString((*arg)[flag]);
@@ -293,7 +313,6 @@ void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 					arg = arg->Next();
 					tStringItem* argItem = new tStringItem(*arg);
 					argItem->Replace(tStd::SeparatorD, '-');
-					argItem->Replace('~', '-');
 					option->Args.Append(argItem);
 				}
 			}
@@ -312,10 +331,12 @@ void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 		{
 			if (*(arg->Text()) == '-')
 			{
-				candidate = nullptr;
 				tString flagArg = *arg;
+
+				// We only skip flags we recognize.
 				if ( (flagArg == tString("--") + option->LongName) || (flagArg == tString("-") + option->ShortName) )
 				{
+					candidate = nullptr;
 					for (int optArgNum = 0; optArgNum < option->NumFlagArgs; optArgNum++)
 						arg = arg->Next();
 				}
@@ -331,7 +352,6 @@ void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 	for (tStringItem* arg = commandLineParams.First(); arg; arg = arg->Next(), paramNumber++)
 	{
 		arg->Replace(tStd::SeparatorD, '-');
-		arg->Replace('~', '-');
 		for (tParam* param = Params.First(); param; param = param->Next())
 		{
 			if (param->ParamNumber == paramNumber)
@@ -344,8 +364,8 @@ void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 void tCommand::tPrintSyntax()
 {
 	tString syntax =
-R"U5AG3(
-Syntax: my.exe [arguments]
+R"U5AG3(Syntax Help:
+tool.exe [arguments]
 
 Arguments are separated by spaces. An argument must be enclosed in quotes
 (single or double) if it has a space or hyphen in it. Use escape sequences to
@@ -353,9 +373,9 @@ put either type of quote inside. If you need to specify paths, I suggest using
 forward slashes, although backslashes will work so long as the filename does
 not have a single or double quote next.
 
-An argument may be an 'option' or 'parameter'.
+An argument may be an 'option' or a 'parameter'.
 An option is a combination of a 'flag' specified using a single or double
-hyphen, and zero or more option arguments. A parameter is a single string.
+hyphen, followed by zero or more option arguments. A parameter is a single string.
 A parameter is simply an argument that does not start with a single or double
 hypen. It can be read as a string and parsed arbitrarily -- converted to a
 number if desired etc.
@@ -368,21 +388,26 @@ the overwrite option does not take any option arguments). The order in which
 parameters are specified is important. fileA.txt is the first parameter, and
 fileB.txt is the second.
 
-Options on the other hand can be specified in any
-order. All options take a specific number (zero or more) of option arguments.
-If an option takes zero arguments you can only test for its presence.
+Options on the other hand can be specified in any order. All options take a
+specific number (zero or more) of option arguments. If an option takes zero
+arguments you can only test for its presence.
 
 The '--log log.txt' is an option with a single option argument, log.txt.
-Single character flags specified with a single hyphen may be combined. The
--pat in the example expands to -p -a -t. It is suggested not to combine flags
-when options take arguments as only the last flag would get them.
+Single character flags are specified with a single hyphen and may be combined.
+The -pat in the example expands to -p -a -t. It is suggested not to combine
+flags when options take arguments as only the last flag would get them.
 
-If you need to specify a negative number (either as an option argument or 
-parameter, it will need to be in quotes like '-43'. As a syntactic convenience
-the tilde may be used as the negative sign as in ~43.
+If you wish to interpret a hyphen directly instead of as an option specifier
+this will happen automatically if there are no supported flags matching what
+comes after the hyphen. Eg. tool.exe -.85 --add 33 -87.98
+works just fine as long as there are no flags that are digits or a decimal.
+In this example the -.85 will be the first parameter, and the add takes in two
+numbers.
 
-Variable option argument counts are not supported but you may list the same
-option more than once. Eg. -i filea.txt -i fileb.txt etc is valid.
+Variable argument options are not supported due to the extra syntax that would
+be needed. You may enter the same option more than once for a similar effect.
+Eg. tool.exe -i filea.txt -i fileb.txt
+
 )U5AG3";
 
 	tPrintf("%s", syntax.Pod());
@@ -396,6 +421,12 @@ void tCommand::tPrintUsage(int versionMajor, int versionMinor, int revision)
 
 
 void tCommand::tPrintUsage(const char* author, int versionMajor, int versionMinor, int revision)
+{
+	tPrintUsage(author, nullptr, versionMajor, versionMinor, revision);
+}
+
+
+void tCommand::tPrintUsage(const char* author, const char* desc, int versionMajor, int versionMinor, int revision)
 {
 	tAssert(versionMajor >= 0);
 	tAssert((versionMinor >= 0) || (revision < 0));		// Not allowed a valid revision number if minor is not also valid.
@@ -411,21 +442,25 @@ void tCommand::tPrintUsage(const char* author, int versionMajor, int versionMino
 	}
 
 	if (author)
-		va += tsPrintf(va, " By %s", author);
+		va += tsPrintf(va, " by %s", author);
 
-	tPrintUsage(verAuth);
+	tPrintUsage(verAuth, desc);
 }
 
 
-void tCommand::tPrintUsage(const char* versionAuthorString)
+void tCommand::tPrintUsage(const char* versionAuthorString, const char* desc)
 {
 	tString exeName = "Program.exe";
 	if (!tCommand::Program.IsEmpty())
 		exeName = tSystem::tGetFileName(tCommand::Program);
 
 	if (versionAuthorString)
-		tPrintf("%s %s\n", tPod(exeName), versionAuthorString);
-	tPrintf("USAGE: %s [options] ", exeName.Pod());
+		tPrintf("%s %s\n\n", tPod(tSystem::tGetFileBaseName(exeName)), versionAuthorString);
+
+	if (Options.IsEmpty())
+		tPrintf("USAGE: %s ", exeName.Pod());
+	else
+		tPrintf("USAGE: %s [options] ", exeName.Pod());
 
 	// Support 256 parameters.
 	bool printedParamNum[256];
@@ -443,37 +478,9 @@ void tCommand::tPrintUsage(const char* versionAuthorString)
 	}
 
 	tPrintf("\n\n");
-	if (!Params.IsEmpty())
-	{
-		tPrintf("Parameters:\n");
-		int indent = 0;
-		for (tParam* param = Params.First(); param; param = param->Next())
-		{
-			int numPrint = 0;
-			if (!param->Name.IsEmpty())
-				numPrint = tcPrintf("%s ", param->Name.Pod());
-			else
-				numPrint = tcPrintf("param%d ", param->ParamNumber);
-			indent = tMath::tMax(indent, numPrint);
-		}
-
-		for (tParam* param = Params.First(); param; param = param->Next())
-		{
-			int numPrinted = 0;
-			if (!param->Name.IsEmpty())
-				numPrinted = tPrintf("%s ", param->Name.Pod());
-			else
-				numPrinted = tPrintf("param%d ", param->ParamNumber);
-
-			IndentSpaces(indent - numPrinted);
-
-			if (!param->Description.IsEmpty())
-				tPrintf(" : %s", param->Description.Pod());
-
-			tPrintf("\n");
-		}
-		tPrintf("\n");
-	}
+	if (desc)
+		tPrintf("%s", desc);
+	tPrintf("\n\n");
 
 	if (!Options.IsEmpty())
 	{
@@ -512,5 +519,38 @@ void tCommand::tPrintUsage(const char* versionAuthorString)
 				tPrintf(" : %s\n", option->Description.Pod());
 			}
 		}
+		tPrintf("\n");
+	}
+
+	if (!Params.IsEmpty())
+	{
+		tPrintf("Parameters:\n");
+		int indent = 0;
+		for (tParam* param = Params.First(); param; param = param->Next())
+		{
+			int numPrint = 0;
+			if (!param->Name.IsEmpty())
+				numPrint = tcPrintf("%s ", param->Name.Pod());
+			else
+				numPrint = tcPrintf("param%d ", param->ParamNumber);
+			indent = tMath::tMax(indent, numPrint);
+		}
+
+		for (tParam* param = Params.First(); param; param = param->Next())
+		{
+			int numPrinted = 0;
+			if (!param->Name.IsEmpty())
+				numPrinted = tPrintf("%s ", param->Name.Pod());
+			else
+				numPrinted = tPrintf("param%d ", param->ParamNumber);
+
+			IndentSpaces(indent - numPrinted);
+
+			if (!param->Description.IsEmpty())
+				tPrintf(" : %s", param->Description.Pod());
+
+			tPrintf("\n");
+		}
+		tPrintf("\n");
 	}
 }

@@ -27,7 +27,7 @@ using namespace tStd;
 tCommand::tOption PrintAllOutput("Print all output.", 'a', "all");
 tCommand::tOption SharedOption("Share and enjoy.", 'e', "enj");
 tCommand::tOption HelpOption("Display help.", "help", 'h', 0);
-tCommand::tOption NumberOption("Number option.", "num", 'n', 1);
+tCommand::tOption NumberOption("Number option.", "num", 'n', 2);
 tCommand::tParam Param1("Parameter One", "Param1", 1);
 tCommand::tParam Param2("Parameter Two", "Param2", 2);
 
@@ -47,14 +47,20 @@ namespace tUnitTest
 int main(int argc, char** argv)
 {
 	// Try calling with a command line like:
-	// UnitTests.exe -n '-35' ~10 hello20
+	// UnitTests.exe -n -35 3.0 -10 hello20
 	// UnitTests.exe --help
 	// UnitTests.exe -h
 	tCommand::tParse(argc, argv);
 
 	if (HelpOption)
 	{
-		tCommand::tPrintUsage();
+		tCommand::tPrintUsage
+		(
+			"Tristan Grimmer",
+			"This program takes wingnuts and twists them into dingwags. This description\n"
+			"should not end in a newline.",
+			3, 12
+		);
 		tCommand::tPrintSyntax();
 		return 0;
 	}
@@ -66,7 +72,10 @@ int main(int argc, char** argv)
 		tPrintf("Param2:%s AsInt:%d\n", Param2.Get().Pod(), Param2.Get().AsInt32());
 
 	if (NumberOption)
+	{
 		tPrintf("NumOption Arg1:%s AsInt:%d\n", NumberOption.Arg1().Pod(), NumberOption.Arg1().AsInt32());
+		tPrintf("NumOption Arg2:%s AsFlt:%f\n", NumberOption.Arg2().Pod(), NumberOption.Arg2().GetAsFloat());
+	}
 
 	if (Param1 || Param2 || NumberOption)
 		return 0;
