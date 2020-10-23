@@ -31,7 +31,7 @@
 #pragma warning (disable: 4723)
 using namespace tSystem;
 using namespace tMath;
-extern tCommand::tOption SharedOption;
+extern tCommand::tOption OptionShared;
 namespace tUnitTest
 {
 
@@ -64,12 +64,12 @@ tTestUnit(CmdLine)
 	// tCommand::tPrintUsage("Tony Tekhead", tVersion::Major, tVersion::Minor, tVersion::Revision);
 	// tCommand::tPrintUsage("Version 42.67 By Patty Programmer");
 
-	tPrintf("SharedOption: %s\n", SharedOption.IsPresent() ? "true" : "false");
+	tPrintf("OptionShared: %s\n", OptionShared.IsPresent() ? "true" : "false");
 	tRequire(log.IsPresent());
 	tRequire(!stop.IsPresent());
 	tRequire(fromFile.IsPresent());
 	tRequire(toFile.IsPresent());
-	tRequire(SharedOption.IsPresent());
+	tRequire(OptionShared.IsPresent());
 
 	// More than one log entry simply adds to the numer option arguments. If an option took 2 args (A B) and was
 	// specified twice, you would get A1 B1 A2 B2 for the arguments.

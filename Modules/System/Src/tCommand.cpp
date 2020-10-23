@@ -349,44 +349,46 @@ tool.exe [arguments]
 
 Arguments are separated by spaces. An argument must be enclosed in quotes
 (single or double) if it has a space or hyphen in it. Use escape sequences to
-put either type of quote inside. If you need to specify paths, I suggest using
-forward slashes, although backslashes will work so long as the filename does
-not have a single or double quote next.
+put either type of quote inside. If you need to specify paths, it is suggested
+to use forward slashes, although backslashes will work so long as the filename
+does not have a single or double quote next.
 
 An argument may be an 'option' or a 'parameter'.
-An option is a combination of a 'flag' specified using a single or double
-hyphen, followed by zero or more option arguments. A parameter is a single string.
-A parameter is simply an argument that does not start with a single or double
-hypen. It can be read as a string and parsed arbitrarily -- converted to a
-number if desired etc.
+
+Options:
+An option has a short syntax and a long syntax. Short syntax is a - followed by
+a single non-hyphen character. The long form is -- followed by a word. All
+options support either long, short, or both forms. Options may have 0 or more
+arguments. If an option takes zero arguments it is called a flag and you can
+only test for its presence or lack of. Options can be specified in any order.
+Short form options may be combined: Eg. -al expands to -a -l
+
+Parameters:
+A parameter is simply an argument that does not start with a - or --. It can be
+read as a string and parsed arbitrarily (converted to an integer or float etc.)
+Order is important when specifying parameters.
 
 Example:
 mycopy.exe -R --overwrite fileA.txt -pat fileB.txt --log log.txt
 
 The fileA.txt and fileB.txt in the above example are parameters (assuming
-the overwrite option does not take any option arguments). The order in which
-parameters are specified is important. fileA.txt is the first parameter, and
+the overwrite option is a flag). fileA.txt is the first parameter and
 fileB.txt is the second.
 
-Options on the other hand can be specified in any order. All options take a
-specific number (zero or more) of option arguments. If an option takes zero
-arguments you can only test for its presence.
-
-The '--log log.txt' is an option with a single option argument, log.txt.
-Single character flags are specified with a single hyphen and may be combined.
-The -pat in the example expands to -p -a -t. It is suggested not to combine
-flags when options take arguments as only the last flag would get them.
+The '--log log.txt' is an option with a single argument, log.txt. Flags may be
+combined. The -pat in the example expands to -p -a -t. It is suggested only to
+combine flag options as only the last option would get any arguments.
 
 If you wish to interpret a hyphen directly instead of as an option specifier
-this will happen automatically if there are no supported flags matching what
-comes after the hyphen. Eg. tool.exe -.85 --add 33 -87.98
-works just fine as long as there are no flags that are digits or a decimal.
-In this example the -.85 will be the first parameter, and the add takes in two
-numbers.
+this will happen automatically if there are no options matching what comes
+after the hyphen. Eg. 'tool.exe -.85 --add 33 -87.98 -notpresent' works just
+fine as long as there are no options that have a short form with digits or a
+decimal. In this example the -.85 will be the first parameter, --notpresent
+will be the second, and the --add takes in two number arguments.
 
 Variable argument options are not supported due to the extra syntax that would
-be needed. You may enter the same option more than once for a similar effect.
-Eg. tool.exe -i filea.txt -i fileb.txt
+be needed. The same result is achieved by entering the same option more than
+once. Eg. tool.exe -I /patha/include/ -I /pathb/include
 
 )U5AG3";
 
@@ -462,52 +464,26 @@ void tCommand::tPrintUsage(const char* versionAuthorString, const char* desc)
 		tPrintf("%s", desc);
 	tPrintf("\n\n");
 
+	int indent = 0;
 	if (!Options.IsEmpty())
 	{
-		tPrintf("Options:\n");
-
-		int indent = 0;
 		for (tOption* option = Options.First(); option; option = option->Next())
 		{
+			int numPrint = 0;
 			if (!option->LongName.IsEmpty())
-			{
-				int numPrint = 0;
 				numPrint += tcPrintf("--%s ", option->LongName.Pod());
-				if (!option->ShortName.IsEmpty())
-					numPrint += tcPrintf("(-%s) ", option->ShortName.Pod());
+			if (!option->ShortName.IsEmpty())
+				numPrint += tcPrintf("-%s ", option->ShortName.Pod());
+			for (int a = 0; a < option->NumFlagArgs; a++)
+				numPrint += tcPrintf("arg%c ", '1'+a);
 
-				for (int a = 0; a < option->NumFlagArgs; a++)
-					numPrint += tcPrintf("arg%c ", '1'+a);
-
-				indent = tMath::tMax(indent, numPrint);
-			}
+			indent = tMath::tMax(indent, numPrint);
 		}
-
-		for (tOption* option = Options.First(); option; option = option->Next())
-		{
-			if (!option->LongName.IsEmpty())
-			{
-				int numPrinted = 0;
-				numPrinted += tPrintf("--%s ", option->LongName.Pod());
-				if (!option->ShortName.IsEmpty())
-					numPrinted += tPrintf("(-%s) ", option->ShortName.Pod());
-
-				for (int a = 0; a < option->NumFlagArgs; a++)
-					numPrinted += tPrintf("arg%c ", '1'+a);
-
-				IndentSpaces(indent-numPrinted);
-				tPrintf(" : %s\n", option->Description.Pod());
-			}
-		}
-		tPrintf("\n");
 	}
 
 	if (!Params.IsEmpty())
 	{
-		tPrintf("Parameters:\n");
-
 		// Loop through them all to figure out how far to indent.
-		int indent = 0;
 		for (tParam* param = Params.First(); param; param = param->Next())
 		{
 			int numPrint = 0;
@@ -517,7 +493,31 @@ void tCommand::tPrintUsage(const char* versionAuthorString, const char* desc)
 				numPrint = tcPrintf("param%d ", param->ParamNumber);
 			indent = tMath::tMax(indent, numPrint);
 		}
+	}
 
+	if (!Options.IsEmpty())
+	{
+		tPrintf("Options:\n");
+		for (tOption* option = Options.First(); option; option = option->Next())
+		{
+			int numPrinted = 0;
+			if (!option->LongName.IsEmpty())
+				numPrinted += tPrintf("--%s ", option->LongName.Pod());
+			if (!option->ShortName.IsEmpty())
+				numPrinted += tPrintf("-%s ", option->ShortName.Pod());
+
+			for (int a = 0; a < option->NumFlagArgs; a++)
+				numPrinted += tPrintf("arg%c ", '1'+a);
+
+			IndentSpaces(indent-numPrinted);
+			tPrintf(" : %s\n", option->Description.Pod());
+		}
+		tPrintf("\n");
+	}
+
+	if (!Params.IsEmpty())
+	{
+		tPrintf("Parameters:\n");
 		for (tParam* param = Params.First(); param; param = param->Next())
 		{
 			int numPrinted = 0;

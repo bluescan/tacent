@@ -24,10 +24,12 @@
 
 
 using namespace tStd;
-tCommand::tOption PrintAllOutput("Print all output.", 'a', "all");
-tCommand::tOption SharedOption("Share and enjoy.", 'e', "enj");
-tCommand::tOption HelpOption("Display help.", "help", 'h', 0);
-tCommand::tOption NumberOption("Number option.", "num", 'n', 2);
+tCommand::tOption OptionPrintAllOutput("Print all output.", 'a', "all");
+tCommand::tOption OptionShared("Share and enjoy.", 'e', "enj");
+tCommand::tOption OptionHelp("Display help.", "help", 'h', 0);
+tCommand::tOption OptionNumber("Number option.", "num", 'n', 2);
+tCommand::tOption OptionLongOnly("Long Only.", "longonly");
+tCommand::tOption OptionShortOnly("Short Only.", 's');
 tCommand::tParam Param2("Parameter Two", "Param2", 2);
 tCommand::tParam Param1("Parameter One", "Param1", 1);
 
@@ -52,7 +54,7 @@ int main(int argc, char** argv)
 	// UnitTests.exe -h
 	tCommand::tParse(argc, argv);
 
-	if (HelpOption)
+	if (OptionHelp)
 	{
 		tCommand::tPrintUsage
 		(
@@ -71,20 +73,20 @@ int main(int argc, char** argv)
 	if (Param2)
 		tPrintf("Param2:%s AsInt:%d\n", Param2.Get().Pod(), Param2.Get().AsInt32());
 
-	if (NumberOption)
+	if (OptionNumber)
 	{
-		tPrintf("NumOption Arg1:%s AsInt:%d\n", NumberOption.Arg1().Pod(), NumberOption.Arg1().AsInt32());
-		tPrintf("NumOption Arg2:%s AsFlt:%f\n", NumberOption.Arg2().Pod(), NumberOption.Arg2().GetAsFloat());
+		tPrintf("NumOption Arg1:%s AsInt:%d\n", OptionNumber.Arg1().Pod(), OptionNumber.Arg1().AsInt32());
+		tPrintf("NumOption Arg2:%s AsFlt:%f\n", OptionNumber.Arg2().Pod(), OptionNumber.Arg2().GetAsFloat());
 	}
 
-	if (Param1 || Param2 || NumberOption)
+	if (Param1 || Param2 || OptionNumber)
 		return 0;
 
 #ifdef UNIT_TEST_FORCE_PRINT_ALL_OUTPUT
 	PrintAllOutput.Present = true;
 #endif
 
-	if (PrintAllOutput)
+	if (OptionPrintAllOutput)
 		tSystem::tSetChannels(tSystem::tChannel_All);
 	else
 		tSystem::tSetChannels(tSystem::tChannel_TestResult);
