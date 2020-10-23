@@ -2,28 +2,49 @@
 //
 // Parses a command line. A command line takes the form:
 // program.exe [arg1 arg2 arg3 ...]
-// Arguments are separated by spaces. An argument must be enclosed in quotes (single or double) if it has a space in it.
-// Use escape sequences to put either type of quote inside. If you need to specify paths, I suggest using forward
-// slashes, although backslashes will work so long as the filename does not have a single or double quote next.
 //
-// An argument may be an 'option' or 'parameter'.
-// An option is a combination of a 'flag' specified using a single or double hyphen, and zero or more option arguments.
-// A parameter is just a single string.
+// Arguments are separated by spaces. An argument must be enclosed in quotes
+// (single or double) if it has a space or hyphen in it. Use escape sequences to
+// put either type of quote inside. If you need to specify paths, it is suggested
+// to use forward slashes, although backslashes will work so long as the filename
+// does not have a single or double quote next.
+//
+// An argument may be an 'option' or a 'parameter'.
+//
+// Options:
+// An option has a short syntax and a long syntax. Short syntax is a - followed by
+// a single non-hyphen character. The long form is -- followed by a word. All
+// options support either long, short, or both forms. Options may have 0 or more
+// arguments. If an option takes zero arguments it is called a flag and you can
+// only test for its presence or lack of. Options can be specified in any order.
+// Short form options may be combined: Eg. -al expands to -a -l
+//
+// Parameters:
+// A parameter is simply an argument that does not start with a - or --. It can be
+// read as a string and parsed arbitrarily (converted to an integer or float etc.)
+// Order is important when specifying parameters.
 //
 // Example:
 // mycopy.exe -R --overwrite fileA.txt -pat fileB.txt --log log.txt
 //
-// The fileA.txt and fileB.txt in the above example are parameters (assuming overwrite does not take any option
-// arguments). The order in which parameters are specified is important. fileA.txt is the first parameter, and fileB.txt
-// is the second. Options on the other hand can be specified in any order. All options take a specific number (zero or
-// more) of option arguments. If an option takes zero arguments you can only test for its presence (or lack of).
+// The fileA.txt and fileB.txt in the above example are parameters (assuming
+// the overwrite option is a flag). fileA.txt is the first parameter and
+// fileB.txt is the second.
 //
-// The '--log log.txt' is an option with a single option argument, log.txt. Single character flags specified with a
-// single hyphen may be combined. The -pat in the example expands to -p -a -t. It is suggested not to combine flags
-// when options take arguments as only the last flag would get them.
+// The '--log log.txt' is an option with a single argument, log.txt. Flags may be
+// combined. The -pat in the example expands to -p -a -t. It is suggested only to
+// combine flag options as only the last option would get any arguments.
 //
-// Variable argument counts are not supported but you may list the same option more than once. Eg.
-// -i filea.txt -i fileb.txt etc is valid.
+// If you wish to interpret a hyphen directly instead of as an option specifier
+// this will happen automatically if there are no options matching what comes
+// after the hyphen. Eg. 'tool.exe -.85 --add 33 -87.98 -notpresent' works just
+// fine as long as there are no options that have a short form with digits or a
+// decimal. In this example the -.85 will be the first parameter, --notpresent
+// will be the second, and the --add takes in two number arguments.
+//
+// Variable argument options are not supported due to the extra syntax that would
+// be needed. The same result is achieved by entering the same option more than
+// once. Eg. tool.exe -I /patha/include/ -I /pathb/include
 //
 // A powerful feature of the design of this parsing system is separation of concerns. In a typical system the knowledge
 // of all the different command line parameters and options is needed in a single place, often in main() where argc and
@@ -52,7 +73,7 @@
 // command line when the tParse call is made. You may have more than one tOption that responds to the same option name.
 // You may have more than one tParam that responds to the same parameter number.
 //
-// Copyright (c) 2017 Tristan Grimmer.
+// Copyright (c) 2017, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
