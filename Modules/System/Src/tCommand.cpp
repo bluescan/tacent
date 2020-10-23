@@ -200,12 +200,33 @@ void tCommand::ExpandArgs(tList<tStringItem>& args)
 }
 
 
+static bool ParamSortFn(const tCommand::tParam& a, const tCommand::tParam& b)
+{
+	return (a.ParamNumber < b.ParamNumber);
+}
+
+
+static bool OptionSortFnShort(const tCommand::tOption& a, const tCommand::tOption& b)
+{
+	return tStd::tStrcmp(a.ShortName.Pod(), b.ShortName.Pod()) < 0;
+}
+
+
+static bool OptionSortFnLong(const tCommand::tOption& a, const tCommand::tOption& b)
+{
+	return tStd::tStrcmp(a.LongName.Pod(), b.LongName.Pod()) < 0;
+}
+
+
 void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 {
 	// At this point the constructors for all tOptions and tParams will have been called and both Params and Options
 	// lists are populated. Options can be specified in any order, but we're going to order them alphabetically by short
 	// flag name so they get printed nicely by tPrintUsage. Params must be printed in order based on their param num
-	// so we'll do that here too.
+	// so we'll do that sort here too.
+	Params.Sort(ParamSortFn);
+	Options.Sort(OptionSortFnShort);
+	Options.Sort(OptionSortFnLong);
 
 	tString line(commandLine);
 
@@ -258,12 +279,6 @@ void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 	}
 
 	ExpandArgs(args);
-
-	tPrintf("DEBUG AFTER Expand\n");
-	for (tStringItem* arg = args.First(); arg; arg = arg->Next())
-		tPrintf("arg: %s\n", arg->Pod());
-	for (tOption* option = Options.First(); option; option = option->Next())
-		tPrintf("opt: %s\n", option->LongName.Pod());
 
 	// Process all options.
 	for (tStringItem* arg = args.First(); arg; arg = arg->Next())
