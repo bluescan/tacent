@@ -4,7 +4,7 @@
 // found here must not call new or delete. The reason for this is to allow a user of the pool to overload operator new.
 // We would get into an infinite loop if we called new from inside the pool implementation.
 //
-// Copyright (c) 2004-2006, 2017 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -48,7 +48,7 @@ void tMem::tFastPool::SlotBlock::Init(int slotSizeInBytes, int numSlots)
 
 
 tMem::tFastPool::tFastPool(int maxItemSizeInBytes, int initialSlotsInBlock, int slotsPerExpansionBlock, bool threadSafe) :
-	Blocks(false),
+	Blocks(tListMode::UserOwns),
 	FreeSlot(nullptr),
 	SlotSize(maxItemSizeInBytes),
 	SlotsInitialBlock(initialSlotsInBlock),

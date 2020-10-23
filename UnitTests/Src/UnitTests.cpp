@@ -28,8 +28,8 @@ tCommand::tOption PrintAllOutput("Print all output.", 'a', "all");
 tCommand::tOption SharedOption("Share and enjoy.", 'e', "enj");
 tCommand::tOption HelpOption("Display help.", "help", 'h', 0);
 tCommand::tOption NumberOption("Number option.", "num", 'n', 2);
-tCommand::tParam Param1("Parameter One", "Param1", 1);
 tCommand::tParam Param2("Parameter Two", "Param2", 2);
+tCommand::tParam Param1("Parameter One", "Param1", 1);
 
 
 namespace tUnitTest
@@ -149,7 +149,8 @@ int main(int argc, char** argv)
 	// tTest(String);
 	// tTest(List);
 	// tTest(ListExtra);
-	tTest(Image);
+	// tTest(Image);
+	tTest(CmdLine);
 
 	#endif
 

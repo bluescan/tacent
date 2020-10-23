@@ -10,7 +10,7 @@
 // word 'path' is used for a composite of Bezier curves or a composite of line segments, and we reserve the word spline
 // for paths composed of multiple cubic polynomial pieces.
 //
-// Copyright (c) 2006, 2017 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -164,7 +164,7 @@ public:
 	// member functions of this object.
 	struct tFastSectionState
 	{
-		tFastSectionState()																								: Components(tComponent_All), Sections(true) { }
+		tFastSectionState()																								: Components(tComponent_All), Sections(tListMode::ListOwns) { }
 		tFastSectionState(const tFastSectionState&);
 		tFastSectionState& operator=(const tFastSectionState&);
 		~tFastSectionState()																							{ }

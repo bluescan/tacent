@@ -125,7 +125,7 @@ tTestUnit(List)
 	subs.Append(new MySub(3));
 	subs.Clear();
 
-	tList<Item> itemList(true);
+	tList<Item> itemList(tListMode::ListOwns);
 	itemList.Append( new Item(7) );
 	itemList.Append( new Item(3) );
 	itemList.Append( new Item(4) );
@@ -183,7 +183,7 @@ tTestUnit(List)
 	// We need this if we didn't construct this list with a true flag.
 	//itemList.Empty();
 
-	tItList<NormItem> iterList(true);
+	tItList<NormItem> iterList(tListMode::ListOwns);
 	iterList.Append( new NormItem(7) );
 	iterList.Append( new NormItem(3) );
 	iterList.Append( new NormItem(4) );
@@ -600,8 +600,8 @@ tTestUnit(String)
 	tPrintf("src1: %s\n", src1.ConstText());
 	tPrintf("src2: %s\n", src2.ConstText());
 
-	tList<tStringItem> exp1(true);
-	tList<tStringItem> exp2(true);
+	tList<tStringItem> exp1(tListMode::ListOwns);
+	tList<tStringItem> exp2(tListMode::ListOwns);
 	int count1 = tExplode(exp1, src1, '_');
 	int count2 = tExplode(exp2, src2, "XX");
 
@@ -613,14 +613,14 @@ tTestUnit(String)
 	for (tStringItem* comp = exp2.First(); comp; comp = comp->Next())
 		tPrintf("   Comp: '%s'\n", comp->ConstText());
 
-	tList<tStringItem> expl(true);
+	tList<tStringItem> expl(tListMode::ListOwns);
 	tString exdup = "abc__def_ghi";
 	tExplode(expl, exdup, '_');
 	tPrintf("Exploded: ###%s### to:\n", exdup.ConstText());
 	for (tStringItem* comp = expl.First(); comp; comp = comp->Next())
 		tPrintf("   Comp:###%s###\n", comp->ConstText());
 
-	tList<tStringItem> expl2(true);
+	tList<tStringItem> expl2(tListMode::ListOwns);
 	tString exdup2 = "__a__b_";
 	tExplode(expl2, exdup2, '_');
 	tPrintf("Exploded: ###%s### to:\n", exdup2.ConstText());

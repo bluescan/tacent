@@ -3,7 +3,7 @@
 // This module contains a class for spawning other processes and receiving their exit-codes as well as some simple
 // commands for spawning one or many processes at once. Windows platform only.
 //
-// Copyright (c) 2005, 2017, 2019 Tristan Grimmer.
+// Copyright (c) 2005, 2017, 2019, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -714,8 +714,8 @@ char* tProcess::BuildNewEnvironmentData_Ascii(bool appendToExisting, int numPair
 
 	const char pairSeparatingCharacter = '\0';
 
-	tList<tStringItem> names(true);
-	tList<tStringItem> values(true);
+	tList<tStringItem> names(tListMode::ListOwns);
+	tList<tStringItem> values(tListMode::ListOwns);
 
 	int oldSize = 0;
 	if (oldEnviro)

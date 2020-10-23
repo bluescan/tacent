@@ -1,58 +1,12 @@
 // tCommand.cpp
 //
-// Parses a command line. A command line takes the form:
-// program.exe [arg1 arg2 arg3 ...]
-// Arguments are separated by spaces. An argument must be enclosed in quotes (single or double) if it has a space in it.
-// Use escape sequences to put either type of quote inside. If you need to specify paths, I suggest using forward
-// slashes, although backslashes will work so long as the filename does not have a single or double quote next.
+// Parses a command line. A description of how to use the parser is in the header. Internally the first step is the
+// expansion of combined single hyphen options. Next the parameters and options are parsed out. For each registered
+// tOption and tParam object, its members are set to reflect the current command line when the tParse call is made.
+// You may have more than one tOption that responds to the same option name. You may have more than one tParam that
+// responds to the same parameter number.
 //
-// An argument may be an 'option' or 'parameter'.
-// An option is a combination of a 'flag' specified using a single or double hyphen, and zero or more option arguments.
-// A parameter is just a single string.
-//
-// Example:
-// mycopy.exe -R --overwrite fileA.txt -pat fileB.txt --log log.txt
-//
-// The fileA.txt and fileB.txt in the above example are parameters (assuming overwrite does not take any option
-// arguments). The order in which parameters are specified is important. fileA.txt is the first parameter, and fileB.txt
-// is the second. Options on the other hand can be specified in any order. All options take a specific number (zero or
-// more) of option arguments. If an option takes zero arguments you can only test for its presence (or lack of).
-//
-// The '--log log.txt' is an option with a single option argument, log.txt. Single character flags specified with a
-// single hyphen may be combined. The -pat in the example expands to -p -a -t. It is suggested not to combine flags
-// when options take arguments as only the last flag would get them.
-//
-// Variable argument counts are not supported but you may list the same option more than once. Eg.
-// -i filea.txt -i fileb.txt etc is valid.
-//
-// A powerful feature of the design of this parsing system is separation of concerns. In a typical system the knowledge
-// of all the different command line parameters and options is needed in a single place, often in main() where argc and
-// argv are passed in. These values need to somehow be passed all over the place in a large system. With tCommand you
-// specify which options and parameters you care about only in the cpp file you are working in.
-//
-// To use the command line class, you start by registering your options and parameters. This is done using the tOption
-// and tParam types to create static objects. After main calls the parse function, your objects get populated
-// appropriately. For example,
-//
-// FileA.cpp:
-// tParam FromFile(1, "FromFile");	// The 1 means this is the first parameter. The description is optional.
-// tParam ToFile(2, "ToFile");		// The 2 means this is the second parameter. The description is optional.
-// tOption("log", 'l', 1, "Specify log file");	// The 1 means there is one option argument to --log or -l.
-//
-// FileB.cpp:
-// tOption ProgramOption('p', 0, "Program mode.");
-// tOption AllOption('a', "ALL", 0, "Include all widgets.");
-// tOption TimeOption("time", 't', 0, "Print timestamp.");
-//
-// Main.cpp:
-// tParse(argc, argv);
-//
-// Internal Processing. The first step is the expansion of combined single hyphen options. Next the parameters and
-// options are parsed out. For each registered tOption and tParam object, its members are set to reflect the current
-// command line when the tParse call is made. You may have more than one tOption that responds to the same option name.
-// You may have more than one tParam that responds to the same parameter number.
-//
-// Copyright (c) 2017 Tristan Grimmer.
+// Copyright (c) 2017, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -73,9 +27,9 @@ namespace tCommand
 	void ExpandArgs(tList<tStringItem>& args);
 	int IndentSpaces(int numSpaces);
 
-	// I'm relying on zero initialization here. It's all zeroes before any tObjects are constructed.
-	tListZ<tParam> Params;
-	tListZ<tOption> Options;
+	// I'm relying on zero initialization here. It's all zeroes before any items are constructed.
+	tList<tParam> Params(tListMode::StaticZero);
+	tList<tOption> Options(tListMode::StaticZero);
 	tString Program;
 	tString Empty;
 }
@@ -110,7 +64,7 @@ tCommand::tOption::tOption(const char* description, char shortName, const char* 
 	LongName(longName),
 	Description(description),
 	NumFlagArgs(numArgs),
-	Args(),
+	Args(tListMode::ListOwns),
 	Present(false)
 {
 	Options.Append(this);
@@ -122,7 +76,7 @@ tCommand::tOption::tOption(const char* description, const char* longName, char s
 	LongName(longName),
 	Description(description),
 	NumFlagArgs(numArgs),
-	Args(),
+	Args(tListMode::ListOwns),
 	Present(false)
 {
 	Options.Append(this);
@@ -134,7 +88,7 @@ tCommand::tOption::tOption(const char* description, char shortName, int numArgs)
 	LongName(),
 	Description(description),
 	NumFlagArgs(numArgs),
-	Args(),
+	Args(tListMode::ListOwns),
 	Present(false)
 {
 	Options.Append(this);
@@ -146,7 +100,7 @@ tCommand::tOption::tOption(const char* description, const char* longName, int nu
 	LongName(longName),
 	Description(description),
 	NumFlagArgs(numArgs),
-	Args(),
+	Args(tListMode::ListOwns),
 	Present(false)
 {
 	Options.Append(this);
@@ -202,7 +156,7 @@ void tCommand::tParse(int argc, char** argv)
 
 void tCommand::ExpandArgs(tList<tStringItem>& args)
 {
-	tList<tStringItem> expArgs;
+	tList<tStringItem> expArgs(tListMode::ListOwns);
 	while (tStringItem* arg = args.Remove())
 	{
 		if ((arg->Length() < 2) || ((*arg)[0] != '-') || (((*arg)[0] == '-') && ((*arg)[1] == '-')))
@@ -248,6 +202,11 @@ void tCommand::ExpandArgs(tList<tStringItem>& args)
 
 void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 {
+	// At this point the constructors for all tOptions and tParams will have been called and both Params and Options
+	// lists are populated. Options can be specified in any order, but we're going to order them alphabetically by short
+	// flag name so they get printed nicely by tPrintUsage. Params must be printed in order based on their param num
+	// so we'll do that here too.
+
 	tString line(commandLine);
 
 	// Mark both kinds of escaped quotes that may be present. These may be found when the caller
@@ -275,7 +234,7 @@ void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 	line.Remove('\'');
 	line.Remove('\"');
 
-	tList<tStringItem> args;
+	tList<tStringItem> args(tListMode::ListOwns);
 	tStd::tExplode(args, line, ' ');
 
 	// Now that the arguments are exploded into separate elements we replace the separators with the correct characters.
@@ -300,6 +259,12 @@ void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 
 	ExpandArgs(args);
 
+	tPrintf("DEBUG AFTER Expand\n");
+	for (tStringItem* arg = args.First(); arg; arg = arg->Next())
+		tPrintf("arg: %s\n", arg->Pod());
+	for (tOption* option = Options.First(); option; option = option->Next())
+		tPrintf("opt: %s\n", option->LongName.Pod());
+
 	// Process all options.
 	for (tStringItem* arg = args.First(); arg; arg = arg->Next())
 	{
@@ -321,7 +286,7 @@ void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 
 	// Now we're going to create a list of just the parameters by skipping any options as we encounter them.
 	// For any option that we know about we'll also have to skip its option arguments.
-	tList<tStringItem> commandLineParams;
+	tList<tStringItem> commandLineParams(tListMode::ListOwns);
 	for (tStringItem* arg = args.First(); arg; arg = arg->Next())
 	{
 		tStringItem* candidate = arg;
@@ -525,6 +490,8 @@ void tCommand::tPrintUsage(const char* versionAuthorString, const char* desc)
 	if (!Params.IsEmpty())
 	{
 		tPrintf("Parameters:\n");
+
+		// Loop through them all to figure out how far to indent.
 		int indent = 0;
 		for (tParam* param = Params.First(); param; param = param->Next())
 		{
