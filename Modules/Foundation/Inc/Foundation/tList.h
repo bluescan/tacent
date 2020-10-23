@@ -60,23 +60,18 @@ enum class tListMode
 // A tList may be used in the cdata (global) memory section where zero-initialization is guaranteed. In this mode it
 // does NOT delete its items on destruction to avoid both the init and de-init fiasco. tLists may also be used on the
 // stack or heap, in which case it is optional construct with the ListOwns flag. It is vital that for zero-init you
-// call the constructor with mode as StaticZero. This is because we don't know when things will have already been put
-// on the list in C++ (init fiasco). The constructor in StaticZero mode does NOT clear the state variables!
+// call the constructor with mode as StaticZero IF you intend to have it populated by other statically initialized
+// objects before main() is entered. This is because we don't know what items will have already been put on the list
+// before the constructor is called (the C++ init fiasco). The constructor in StaticZero mode does NOT clear the state
+// variables so it doesn't matter when.
 template<typename T> class tList
 {
 public:
 	// The default constructor has the list owning the items.
-	tList() :
-		Mode(tListMode::ListOwns),
-		HeadItem(nullptr),
-		TailItem(nullptr),
-		ItemCount(0)
-	{ }
+	tList()																												: Mode(tListMode::ListOwns), HeadItem(nullptr), TailItem(nullptr), ItemCount(0) { }
 
 	// If mode is external the objects will not be deleted when the list is destroyed. You manage item lifetime.
-	tList(tListMode mode) :
-		Mode(mode)
-	{ if (mode != tListMode::StaticZero) { HeadItem = nullptr; TailItem = nullptr; ItemCount = 0; } }
+	tList(tListMode mode)																								: Mode(mode) { if (mode != tListMode::StaticZero) { HeadItem = nullptr; TailItem = nullptr; ItemCount = 0; } }
 		
 	virtual ~tList()																									{ if (Owns()) Empty(); }
 	
