@@ -362,6 +362,14 @@ tTestUnit(ListExtra)
 }
 
 
+tTestUnit(Map)
+{
+	tString testString("The real string");
+	tPrintf("Opertor() on string:%s\n", (const char*)testString);
+	tPrintf("uint32 Opertor() on string:%d\n", (uint32)testString);
+}
+
+
 bool IntLess(const int& a, const int& b) { return (a < b); }
 
 

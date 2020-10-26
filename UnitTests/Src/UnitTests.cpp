@@ -83,7 +83,7 @@ int main(int argc, char** argv)
 		return 0;
 
 #ifdef UNIT_TEST_FORCE_PRINT_ALL_OUTPUT
-	PrintAllOutput.Present = true;
+	OptionPrintAllOutput.Present = true;
 #endif
 
 	if (OptionPrintAllOutput)
@@ -152,7 +152,8 @@ int main(int argc, char** argv)
 	// tTest(List);
 	// tTest(ListExtra);
 	// tTest(Image);
-	tTest(CmdLine);
+	// tTest(CmdLine);
+	tTest(Map);
 
 	#endif
 

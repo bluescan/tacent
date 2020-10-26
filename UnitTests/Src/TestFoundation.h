@@ -22,6 +22,7 @@ namespace tUnitTest
 	tTestUnit(Array);
 	tTestUnit(List);
 	tTestUnit(ListExtra);
+	tTestUnit(Map);
 	tTestUnit(Sort);
 	tTestUnit(FixInt);
 	tTestUnit(Bitfield);

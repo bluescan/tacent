@@ -38,8 +38,12 @@ struct tString
 	bool IsEqualCI(const tString& s) const																				{ return( !tStd::tStricmp(TextData, s.TextData) ); }
 	bool IsEqualCI(const char* s) const																					{ return( !tStd::tStricmp(TextData, s) ); }
 
+	// These allow for implicit conversion to a character pointer.
 	operator const char*()																								{ return TextData; }
 	operator const char*() const																						{ return TextData; }
+
+	explicit operator uint32() { return 0xFFFFFFFF; /* @wip Compute hash. */ }
+
 	char& operator[](int i)																								{ return TextData[i]; }
 	friend tString operator+(const tString& prefix, const tString& suffix);
 	tString& operator+=(const tString&);
