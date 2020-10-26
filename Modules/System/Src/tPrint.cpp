@@ -20,8 +20,8 @@
 #endif
 #include <Foundation/tStandard.h>
 #include <Foundation/tArray.h>
+#include <Foundation/tHash.h>
 #include <Math/tLinearAlgebra.h>
-#include <Math/tHash.h>
 #include "System/tMachine.h"
 #include "System/tTime.h"
 #include "System/tFile.h"
@@ -192,7 +192,7 @@ namespace tSystem
 void tSystem::tRegister(uint32 machineNameHash, tSystem::tChannel channelsToSee)
 {
 	if (!ComputerNameHash)
-		ComputerNameHash = tMath::tHashStringFast32( tSystem::tGetCompName() );
+		ComputerNameHash = tHash::tHashStringFast32( tSystem::tGetCompName() );
 
 	if (machineNameHash == ComputerNameHash)
 		tSetChannels(channelsToSee);
@@ -204,7 +204,7 @@ void tSystem::tRegister(const char* machineName, tSystem::tChannel channelsToSee
 	if (!machineName)
 		return;
 
-	tRegister(tMath::tHashStringFast32(machineName), channelsToSee);
+	tRegister(tHash::tHashStringFast32(machineName), channelsToSee);
 }
 
 

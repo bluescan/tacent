@@ -1013,7 +1013,7 @@ uint32 tSystem::tHashFileFast32(const tString& filename, uint32 iv)
 	if (!data)
 		return iv;
 
-	uint32 hash = tMath::tHashDataFast32(data, dataSize, iv);
+	uint32 hash = tHash::tHashDataFast32(data, dataSize, iv);
 	delete[] data;
 	return hash;
 }
@@ -1026,7 +1026,7 @@ uint32 tSystem::tHashFile32(const tString& filename, uint32 iv)
 	if (!data)
 		return iv;
 
-	uint32 hash = tMath::tHashData32(data, dataSize, iv);
+	uint32 hash = tHash::tHashData32(data, dataSize, iv);
 	delete[] data;
 	return hash;
 }
@@ -1039,7 +1039,7 @@ uint64 tSystem::tHashFile64(const tString& filename, uint64 iv)
 	if (!data)
 		return iv;
 
-	uint64 hash = tMath::tHashData64(data, dataSize, iv);
+	uint64 hash = tHash::tHashData64(data, dataSize, iv);
 	delete[] data;
 	return hash;
 }
@@ -1052,7 +1052,7 @@ tuint128 tSystem::tHashFileMD5(const tString& filename, tuint128 iv)
 	if (!data)
 		return iv;
 
-	tuint128 hash = tMath::tHashData128(data, dataSize, iv);
+	tuint128 hash = tHash::tHashData128(data, dataSize, iv);
 	delete[] data;
 	return hash;
 }
@@ -1065,7 +1065,7 @@ tuint256 tSystem::tHashFile256(const tString& filename, tuint256 iv)
 	if (!data)
 		return iv;
 
-	tuint256 hash = tMath::tHashData256(data, dataSize, iv);
+	tuint256 hash = tHash::tHashData256(data, dataSize, iv);
 	delete[] data;
 	return hash;
 }

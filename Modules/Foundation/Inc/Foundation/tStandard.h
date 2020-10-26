@@ -30,6 +30,11 @@
 namespace tStd
 {
 
+// Returns integral base 2 logarithm. If v is <= 0 returns MinInt32. If v is a power of 2 you will get an exact
+// result. If v is not a power of two it will return the logarithm of the next lowest power of 2. For example,
+// Log2(2) = 1, Log2(3) = 1, and Log2(4) = 2.
+inline int tLog2(int v);
+
 // The 3 XOR trick is slower in most cases so we'll use a standard swap.
 template<typename T> inline void tSwap(T& a, T& b)																		{ T t = a; a = b; b = t; }
 inline void* tMemcpy(void* dest, const void* src, int numBytes)															{ return memcpy(dest, src, numBytes); }
@@ -231,6 +236,16 @@ extern const char* SeparatorEStr;
 
 
 // Implementation below this line.
+
+
+inline int tStd::tLog2(int x)
+{
+	if (x <= 0)
+		return 0x80000000;
+
+	float f = float(x);
+	return ((( *(uint32*)((void*)&f) ) & 0x7f800000) >> 23) - 127;
+}
 
 
 inline tStd::tDivt tStd::tDiv(int numerator, int denominator)

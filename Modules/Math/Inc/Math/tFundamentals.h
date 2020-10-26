@@ -141,10 +141,6 @@ inline float tLog(float x)									/* Natural logarithm. */									{ return log
 inline void tiDegToRad(float& ang)																						{ ang = ang * Pi / 180.0f; }
 inline void tiRadToDeg(float& ang)																						{ ang = ang * 180.0f / Pi; }
 
-// Returns integral base 2 logarithm. If v is <= 0 returns MinInt32. If v is a power of 2 you will get an exact
-// result. If v is not a power of two it will return the logarithm of the next lowest power of 2. For example,
-// Log2(2) = 1, Log2(3) = 1, and Log2(4) = 2.
-inline int tLog2(int v);
 inline float tPow(float a, float b)																						{ return powf(a, b); }
 inline double tPow(double a, double b)																					{ return pow(a, b); }
 
@@ -294,16 +290,6 @@ inline void tMath::tCosSinFast(float& c, float& s, float x)
 	// The fast versions are domain limited so we can use pythagoras without worrying about the negative roots.
 	s = tSinFast(x);
 	c = tSqrtFast(1.0f - s*s);
-}
-
-
-inline int tMath::tLog2(int x)
-{
-	if (x <= 0)
-		return MinInt32;
-
-	float f = float(x);
-	return ((( *(uint32*)((void*)&f) ) & 0x7f800000) >> 23) - 127;
 }
 
 

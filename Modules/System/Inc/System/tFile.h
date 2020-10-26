@@ -20,7 +20,7 @@
 
 #pragma once
 #include <ctime>
-#include <Math/tHash.h>
+#include <Foundation/tHash.h>
 #include "System/tThrow.h"
 #include "System/tPrint.h"
 #include "System/tStream.h"
@@ -357,13 +357,13 @@ bool tCreateFile(const tString& filename);					// Creates an empty file.
 bool tCreateFile(const tString& filename, const tString& contents);
 bool tCreateFile(const tString& filename, uint8* data, int dataLength);
 
-// File hash functions using tMath standard hash algorithms.
-uint32 tHashFileFast32(const tString& filename, uint32 iv = tMath::HashIV32);
-uint32 tHashFile32(const tString& filename, uint32 iv = tMath::HashIV32);
-uint64 tHashFile64(const tString& filename, uint64 iv = tMath::HashIV64);
-tuint128 tHashFileMD5(const tString& filename, tuint128 iv = tMath::HashIV128);
-tuint128 tHashFile128(const tString& filename, tuint128 iv = tMath::HashIV128);
-tuint256 tHashFile256(const tString& filename, const tuint256 iv = tMath::HashIV256);
+// File hash functions using tHash standard hash algorithms.
+uint32 tHashFileFast32(const tString& filename, uint32 iv = tHash::HashIV32);
+uint32 tHashFile32(const tString& filename, uint32 iv = tHash::HashIV32);
+uint64 tHashFile64(const tString& filename, uint64 iv = tHash::HashIV64);
+tuint128 tHashFileMD5(const tString& filename, tuint128 iv = tHash::HashIV128);
+tuint128 tHashFile128(const tString& filename, tuint128 iv = tHash::HashIV128);
+tuint256 tHashFile256(const tString& filename, const tuint256 iv = tHash::HashIV256);
 
 
 };

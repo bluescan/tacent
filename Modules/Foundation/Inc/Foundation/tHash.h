@@ -20,7 +20,7 @@
 #include <Foundation/tStandard.h>
 #include <Foundation/tString.h>
 #include <Foundation/tFixInt.h>
-namespace tMath
+namespace tHash
 {
 
 

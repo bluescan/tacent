@@ -17,10 +17,10 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <Foundation/tStandard.h>
-#include "Math/tHash.h"
+#include <Foundation/tHash.h>
 
 
-uint32 tMath::tHashDataFast32(const uint8* data, int length, uint32 iv)
+uint32 tHash::tHashDataFast32(const uint8* data, int length, uint32 iv)
 {
 	uint32 hash = iv;
 	while (length--)
@@ -52,7 +52,7 @@ namespace tHash
 }
 
 
-uint32 tMath::tHashData32(const uint8* data, int length, uint32 iv)
+uint32 tHash::tHashData32(const uint8* data, int length, uint32 iv)
 {
 	uint32 a,b,c;											// The internal state.
 	int len;												// How many key bytes still need mixing.
@@ -115,7 +115,7 @@ namespace tHash
 }
 
 
-uint64 tMath::tHashData64(const uint8* data, int length, uint64 iv)
+uint64 tHash::tHashData64(const uint8* data, int length, uint64 iv)
 {
 	uint64 a,b,c;											// The internal state.
 	int len;												// How many key bytes still need mixing.
@@ -371,7 +371,7 @@ void tHash::MD5Update(uint32 count[2], uint32 state[4], const uint8* data, uint3
 }
 
 
-tuint128 tMath::tHashDataMD5(const uint8* data, int len, tuint128 iv)
+tuint128 tHash::tHashDataMD5(const uint8* data, int len, tuint128 iv)
 {
 	uint32 length = len;
 	uint8 buffer[tHash::iMD5BlockSize];						// Bytes that didn't fit in last 64 byte chunk.
@@ -449,7 +449,7 @@ namespace tHash
 }
 
 
-tuint256 tMath::tHashData256(const uint8* data, int len, tuint256 iv)
+tuint256 tHash::tHashData256(const uint8* data, int len, tuint256 iv)
 {
 	uint32 a, b, c, d, e, f, g, h, length;
 

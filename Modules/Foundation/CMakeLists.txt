@@ -15,6 +15,7 @@ add_library(
 	Src/tVersion.cpp
 	Src/tAssert.cpp
 	Src/tBitArray.cpp
+	Src/tHash.cpp
 	Src/tMemory.cpp
 	Src/tPlatform.cpp
 	Src/tPool.cpp
@@ -27,6 +28,7 @@ add_library(
 	Inc/Foundation/tBitArray.h
 	Inc/Foundation/tBitField.h
 	Inc/Foundation/tFixInt.h
+	Inc/Foundation/tHash.h
 	Inc/Foundation/tList.h
 	Inc/Foundation/tMemory.h
 	Inc/Foundation/tPlatform.h

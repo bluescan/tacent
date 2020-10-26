@@ -17,6 +17,7 @@
 #include <Foundation/tFixInt.h>
 #include <Foundation/tBitField.h>
 #include <Foundation/tList.h>
+#include <Foundation/tMap.h>
 #include <Foundation/tRingBuffer.h>
 #include <Foundation/tSort.h>
 #include <Foundation/tPriorityQueue.h>
@@ -367,6 +368,16 @@ tTestUnit(Map)
 	tString testString("The real string");
 	tPrintf("Opertor() on string:%s\n", (const char*)testString);
 	tPrintf("uint32 Opertor() on string:%d\n", (uint32)testString);
+
+	tMap<tString, tString> nameDescMap(8);
+	tPrintf("initialLog2Size %d  HashTableSize %d\n", 8, nameDescMap.HashTableSize);
+
+	nameDescMap.Insert("fred", "Fred is smart and happy.");
+	nameDescMap.Insert("joan", "Joan is sly and sad.");
+	nameDescMap.Insert("kim", "Kim is tall and contemplative.");
+
+	tString joanDesc = nameDescMap.Get("joan");
+	tPrintf("joan: %s\n", joanDesc.Pod());
 }
 
 

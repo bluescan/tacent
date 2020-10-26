@@ -42,7 +42,8 @@ struct tString
 	operator const char*()																								{ return TextData; }
 	operator const char*() const																						{ return TextData; }
 
-	explicit operator uint32() { return 0xFFFFFFFF; /* @wip Compute hash. */ }
+	explicit operator uint32();
+	explicit operator uint32() const;
 
 	char& operator[](int i)																								{ return TextData[i]; }
 	friend tString operator+(const tString& prefix, const tString& suffix);

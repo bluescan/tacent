@@ -14,8 +14,8 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <Foundation/tString.h>
+#include <Foundation/tHash.h>
 #include <Math/tColour.h>
-#include <Math/tHash.h>
 using namespace tMath;
 
 
@@ -331,14 +331,14 @@ tColouri tMath::tGetColour(const char* colourName)
 {
 	tString lowerName(colourName);
 	lowerName.ToLower();
-	uint32 colourHash = tMath::tHashStringFast32(lowerName);
+	uint32 colourHash = tHash::tHashStringFast32(lowerName);
 	tColouri colour = tColouri::white;
 
 	// This switch uses compile-time hashes. Collisions will be automatically detected by the compiler.
 	switch (colourHash)
 	{
-		case tHashCT("none"):		colour = 0xFFFFFFFF;	break;
-		case tHashCT("black"):		colour = 0x000000FF;	break;
+		case tHash::tHashCT("none"):		colour = 0xFFFFFFFF;	break;
+		case tHash::tHashCT("black"):		colour = 0x000000FF;	break;
 		default:											break;
 	}
 	

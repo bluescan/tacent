@@ -16,9 +16,23 @@
 
 #include "Foundation/tString.h"
 #include "Foundation/tStandard.h"
+#include "Foundation/tHash.h"
 
 
 char tString::EmptyChar = '\0';
+
+
+tString::operator uint32()
+{
+	return tHash::tHashStringFast32(TextData);
+
+}
+
+
+tString::operator uint32() const
+{
+	return tHash::tHashStringFast32(TextData);
+}
 
 
 tString tString::Prefix(const char c) const

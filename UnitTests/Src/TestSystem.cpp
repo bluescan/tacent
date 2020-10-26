@@ -15,6 +15,7 @@
 #include <Foundation/tVersion.cmake.h>
 #include <Foundation/tAssert.h>
 #include <Foundation/tMemory.h>
+#include <Foundation/tHash.h>
 #include <Math/tVector2.h>
 #include <Math/tVector3.h>
 #include <Math/tVector4.h>
@@ -506,23 +507,23 @@ tTestUnit(Script)
 		{
 			switch (e.Command().Hash())
 			{
-				case tMath::tHashCT("PosX"):
+				case tHash::tHashCT("PosX"):
 					tRequire(int(e.Item1()) == 10);
 					break;
 
-				case tMath::tHashCT("PosY"):
+				case tHash::tHashCT("PosY"):
 					tRequire(int(e.Item1()) == 20);
 					break;
 
-				case tMath::tHashCT("SizeW"):
+				case tHash::tHashCT("SizeW"):
 					tRequire(int(e.Item1()) == 30);
 					break;
 
-				case tMath::tHashCT("SizeH"):
+				case tHash::tHashCT("SizeH"):
 					tRequire(int(e.Item1()) == 40);
 					break;
 
-				case tMath::tHashCT("FloatVal"):
+				case tHash::tHashCT("FloatVal"):
 				{
 					float readval = float(e.Item1());
 					tPrintf("Read float as: %f\n", readval);
@@ -530,7 +531,7 @@ tTestUnit(Script)
 					break;
 				}
 
-				case tMath::tHashCT("DoubleVal"):
+				case tHash::tHashCT("DoubleVal"):
 				{
 					double readval = double(e.Item1());
 					tPrintf("Read double as: %f\n", readval);

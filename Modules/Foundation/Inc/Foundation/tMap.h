@@ -24,37 +24,87 @@
 #pragma once
 #include "Foundation/tAssert.h"
 #include "Foundation/tPlatform.h"
+#include "Math/tFundamentals.h"
 
 
-template<typename K, typename V) class tMap
+template<typename K, typename V> class tMap
 {
 public:
-	tMap(int initialCount = 128);
+	tMap(int initialLog2Size = 8);
+	~tMap();
 	void Insert(const K&, const V&);
-	void Remove(const K&);
+	V& Get(const K&);
+	V& Remove(const K&);
 
 	V& operator[](const K&);
 
-private:
-	struct Pair
+//private:
+	struct HashTableItem
 	{
-		uint32 Hash;
-		int32 BitsToUse
+		uint32 InUse = 0;
+		V Value;
 	};
 	int HashTableSize;
-	V* HashTable;
+	HashTableItem* HashTable;
 };
 
 
-template<typename K, typename V> inline tMap<K,V>::tMap(int initialCount)
+// Implementation below this line.
+
+
+template<typename K, typename V> inline tMap<K,V>::tMap(int initialLog2Size)
 {
-	HashTableSize = initialCount;
-	HashTable = new V[HashTableSize];
+	tAssert(initialLog2Size >= 0);
+	HashTableSize = 1 << initialLog2Size;
+	HashTable = new HashTableItem[HashTableSize];
 }
 
 
-template<typename K, typename V> inline void tMap<K,V>::Remove(const K& key)
+template<typename K, typename V> inline tMap<K,V>::~tMap()
+{
+	delete[] HashTable;
+}
+
+
+template<typename K, typename V> inline void tMap<K,V>::Insert(const K& key, const V& value)
 {
 	// Relies on overloaded cast operator of the key type.
 	uint32 hash = uint32(key);
+	int hashBits = 	tStd::tLog2(HashTableSize);
+	hash = hash & (0xFFFFFFFF >> (32-hashBits));
+	tAssert(hash < HashTableSize);
+
+	HashTableItem& item = HashTable[hash];
+	if (item.InUse)
+	{
+		// @wip deal with collision.
+	}
+	else
+	{
+		item.InUse = 1;
+		item.Value = value;
+	}
 }
+
+
+template<typename K, typename V> inline V& tMap<K,V>::Get(const K& key)
+{
+	uint32 hash = uint32(key);
+	int hashBits = 	tStd::tLog2(HashTableSize);
+	hash = hash & (0xFFFFFFFF >> (32-hashBits));
+	tAssert(hash < HashTableSize);
+
+	HashTableItem& item = HashTable[hash];
+	return item.Value;
+}
+
+
+template<typename K, typename V> inline V& tMap<K,V>::Remove(const K& key)
+{
+	// Relies on overloaded cast operator of the key type.
+	uint32 hash = uint32(key);
+
+	// @wip
+}
+
+

@@ -22,6 +22,7 @@
 #pragma once
 #include <Foundation/tList.h>
 #include <Foundation/tString.h>
+#include <Foundation/tHash.h>
 #include <Math/tFundamentals.h>
 #include <Math/tQuaternion.h>
 #include <Math/tVector2.h>
@@ -30,7 +31,6 @@
 #include <Math/tMatrix2.h>
 #include <Math/tMatrix4.h>
 #include <Math/tColour.h>
-#include <Math/tHash.h>
 #include "System/tThrow.h"
 #include "System/tPrint.h"
 #include "System/tFile.h"
@@ -75,7 +75,7 @@ public:
 	int GetAtomInt() const																								{ return GetAtomString().GetAsInt(); }
 	float GetAtomFloat() const																							{ return GetAtomString().GetAsFloat(); }
 	double GetAtomDouble() const																						{ return GetAtomString().GetAsDouble(); }
-	uint32 GetAtomHash() const																							{ return tMath::tHashString(GetAtomString()); }
+	uint32 GetAtomHash() const																							{ return tHash::tHashString(GetAtomString()); }
 	uint32 Hash() const																									{ return GetAtomHash(); }
 
 	// Vectors, quaternions, matrices, and colours should be of the form (x, y, z). Colours are represented as
@@ -171,7 +171,7 @@ inline uint64 GetAtomUint64(tExpression& e)  																			{ return GetAtom
 inline int GetAtomInt(tExpression& e)        																			{ return GetAtomString(e).GetAsInt(); }
 inline float GetAtomFloat(tExpression& e)    																			{ return GetAtomString(e).GetAsFloat(); }
 inline double GetAtomDouble(tExpression& e)  																			{ return GetAtomString(e).GetAsDouble(); }
-inline uint32 GetAtomHash(tExpression& e)    																			{ return tMath::tHashString(GetAtomString(e)); }
+inline uint32 GetAtomHash(tExpression& e)    																			{ return tHash::tHashString(GetAtomString(e)); }
 
 
 // Use this to read and parse an existing script. A script file is a list of expressions without []'s around the

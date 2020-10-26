@@ -5,7 +5,6 @@ add_library(
 	${PROJECT_NAME}
 	Src/tColour.cpp
 	Src/tGeometry.cpp
-	Src/tHash.cpp
 	Src/tLinearAlgebra.cpp
 	Src/tRandom.cpp
 	Src/tSpline.cpp
@@ -13,7 +12,6 @@ add_library(
 	Inc/Math/tConstants.h
 	Inc/Math/tFundamentals.h
 	Inc/Math/tGeometry.h
-	Inc/Math/tHash.h
 	Inc/Math/tLinearAlgebra.h
 	Inc/Math/tMatrix2.h
 	Inc/Math/tMatrix4.h
