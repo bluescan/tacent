@@ -378,6 +378,7 @@ tTestUnit(Map)
 
 	tString joanDesc = nameDescMap.Get("joan");
 	tPrintf("joan: %s\n", joanDesc.Pod());
+	tRequire(joanDesc == "Joan is sly and sad.");
 }
 
 

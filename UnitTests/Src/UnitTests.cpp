@@ -106,6 +106,7 @@ int main(int argc, char** argv)
 	tTest(Array);
 	tTest(List);
 	tTest(ListExtra);
+	tTest(Map);
 	tTest(Sort);
 	tTest(FixInt);
 	tTest(Bitfield);
