@@ -158,7 +158,7 @@ template<typename K, typename V> inline void tMap<K,V>::Rekey(int newSize)
 			hashNew = hashNew & (0xFFFFFFFF >> (32-hashBitsNew));
 
 			tAssert(hashNew < newSize);
-			newTable[hashNew].Pairs.Append(new Pair(pair));
+			newTable[hashNew].Pairs.Append(new Pair<K,V>(pair));
 		}
 		HashTable[i].Pairs.Clear();
 	}
