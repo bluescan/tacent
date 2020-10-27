@@ -15,7 +15,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <System/tFile.h>
-#include <Math/tFundamentals.h>
+#include <Foundation/tFundamentals.h>
 #include "Pipeline/tSolution.h"
 using namespace tPipeline;
 
