@@ -24,38 +24,58 @@
 #pragma once
 #include "Foundation/tAssert.h"
 #include "Foundation/tPlatform.h"
-#include "Math/tFundamentals.h"
+#include "Foundation/tFundamentals.h"
 
 
 template<typename K, typename V> class tMap
 {
 public:
-	tMap(int initialLog2Size = 8);
+	tMap(int initialLog2Size = 8, float rehashPercent = 0.6f);
 	~tMap();
-	void Insert(const K&, const V&);
-	V& Get(const K&);
-	V& Remove(const K&);
 
+	V& GetInsert(const K&);
 	V& operator[](const K&);
+	bool Remove(const K&);
 
-//private:
+	int GetNumItems() const																								{ return NumItems; }
+	int GetHashTableSize() const																						{ return HashTableSize; }
+	float GetPercentFull() const																						{ return float(HashTableEntryCount)/float(HashTableSize); }
+
+private:
+	template<typename KK, typename VV> struct Pair
+	{
+		Pair(const Pair& pair) : Key(pair.Key), Value(pair.Value) { }
+		Pair(const K& key) : Key(key), Value() { }
+		KK Key; VV Value;
+	};
 	struct HashTableItem
 	{
-		uint32 InUse = 0;
-		V Value;
+		tItList<Pair<K,V>> Pairs;
 	};
+	int NumItems;
 	int HashTableSize;
+	int HashTableEntryCount;
 	HashTableItem* HashTable;
+	float RehashPercent;
+
+	void Rekey(int newSize);
 };
 
 
 // Implementation below this line.
 
 
-template<typename K, typename V> inline tMap<K,V>::tMap(int initialLog2Size)
+template<typename K, typename V> inline tMap<K,V>::tMap(int initialLog2Size, float rehashPercent)
 {
+	NumItems = 0;
+
 	tAssert(initialLog2Size >= 0);
 	HashTableSize = 1 << initialLog2Size;
+
+	tAssert((rehashPercent >= 0.0f) && (rehashPercent <= 1.0f));
+	RehashPercent = rehashPercent;
+
+	HashTableEntryCount = 0;
 	HashTable = new HashTableItem[HashTableSize];
 }
 
@@ -66,45 +86,84 @@ template<typename K, typename V> inline tMap<K,V>::~tMap()
 }
 
 
-template<typename K, typename V> inline void tMap<K,V>::Insert(const K& key, const V& value)
+template<typename K, typename V> inline V& tMap<K,V>::GetInsert(const K& key)
 {
-	// Relies on overloaded cast operator of the key type.
+	// Do we need to grow the hash table?
+	if (GetPercentFull() >= RehashPercent)
+		Rekey(2*HashTableSize);
+
 	uint32 hash = uint32(key);
-	int hashBits = 	tStd::tLog2(HashTableSize);
+	int hashBits = 	tMath::tLog2(HashTableSize);
 	hash = hash & (0xFFFFFFFF >> (32-hashBits));
 	tAssert(hash < HashTableSize);
 
 	HashTableItem& item = HashTable[hash];
-	if (item.InUse)
+	for (Pair<K,V>& pair : item.Pairs)
 	{
-		// @wip deal with collision.
+		if (pair.Key == key)
+			return pair.Value;
 	}
-	else
-	{
-		item.InUse = 1;
-		item.Value = value;
-	}
+
+	if (item.Pairs.IsEmpty())
+		HashTableEntryCount++;
+	NumItems++;
+	return item.Pairs.Append(new Pair<K,V>(key))->Value;
 }
 
 
-template<typename K, typename V> inline V& tMap<K,V>::Get(const K& key)
+template<typename K, typename V> inline V& tMap<K,V>::operator[](const K& key)
+{
+	return GetInsert(key);
+}
+
+
+template<typename K, typename V> inline bool tMap<K,V>::Remove(const K& key)
 {
 	uint32 hash = uint32(key);
-	int hashBits = 	tStd::tLog2(HashTableSize);
+	int hashBits = 	tMath::tLog2(HashTableSize);
 	hash = hash & (0xFFFFFFFF >> (32-hashBits));
 	tAssert(hash < HashTableSize);
 
 	HashTableItem& item = HashTable[hash];
-	return item.Value;
+
+	for (auto iter = item.Pairs.First(); iter; iter++)
+	//for (Pair& pair : item.Pairs)
+	{
+		if (iter->Key == key)
+		{
+			delete item.Pairs.Remove(iter);
+			if (item.Pairs.IsEmpty())
+				HashTableEntryCount--;
+			NumItems--;
+			return true;
+		}
+	}
+
+	return false;
 }
 
 
-template<typename K, typename V> inline V& tMap<K,V>::Remove(const K& key)
+template<typename K, typename V> inline void tMap<K,V>::Rekey(int newSize)
 {
-	// Relies on overloaded cast operator of the key type.
-	uint32 hash = uint32(key);
+	tAssert((newSize > HashTableSize) && tMath::tIsPower2(newSize));
+	HashTableItem* newTable = new HashTableItem[newSize];
 
-	// @wip
+	// Loop throught existing keys and rekey them into the new table
+	for (int i = 0; i < HashTableSize; i++)
+	{
+		for (Pair<K,V>& pair : HashTable[i].Pairs)
+		{
+			uint32 hashNew = uint32(pair.Key);
+			int hashBitsNew = tMath::tLog2(newSize);
+			hashNew = hashNew & (0xFFFFFFFF >> (32-hashBitsNew));
+
+			tAssert(hashNew < newSize);
+			newTable[hashNew].Pairs.Append(new Pair(pair));
+		}
+		HashTable[i].Pairs.Clear();
+	}
+
+	HashTableSize = newSize;
+	delete[] HashTable;
+	HashTable = newTable;
 }
-
-

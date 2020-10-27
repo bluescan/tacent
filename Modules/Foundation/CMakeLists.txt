@@ -27,7 +27,9 @@ add_library(
 	Inc/Foundation/tAssert.h
 	Inc/Foundation/tBitArray.h
 	Inc/Foundation/tBitField.h
+	Inc/Foundation/tConstants.h
 	Inc/Foundation/tFixInt.h
+	Inc/Foundation/tFundamentals.h
 	Inc/Foundation/tHash.h
 	Inc/Foundation/tList.h
 	Inc/Foundation/tMemory.h

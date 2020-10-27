@@ -17,7 +17,7 @@
 #include <math.h>
 #include <functional>
 #include "Foundation/tPlatform.h"
-#include "Math/tConstants.h"
+#include "Foundation/tConstants.h"
 namespace tMath
 {
 
@@ -88,6 +88,17 @@ template<typename T> inline void tiClampMin(T& val, T min)																{ val 
 template<typename T> inline void tiClampMax(T& val, T max)																{ val = (val > max) ? max : val; }
 template<typename T> inline void tiSaturate(T& val)																		{ val = (val < T(0)) ? T(0) : ((val > T(1)) ? T(1) : val); }
 
+struct tDivt																											{ int Quotient; int Remainder; };
+tDivt tDiv(int numerator, int denominator);
+struct tDiv32t																											{ int32 Quotient; int32 Remainder; };
+tDiv32t tDiv32(int32 numerator, int32 denominator);
+struct tDivU32t																											{ uint32 Quotient; uint32 Remainder; };
+tDivU32t tDivU32(uint32 numerator, uint32 denominator);
+struct tDiv64t																											{ int64 Quotient; int64 Remainder; };
+tDiv64t tDiv64(int64 numerator, int64 denominator);
+struct tDivU64t																											{ uint64 Quotient; uint64 Remainder; };
+tDivU64t tDivU64(uint64 numerator, uint64 denominator);
+
 // Use this instead of casting to int. The only difference is it rounds instead of truncating and is way faster -- The
 // FPU stays in rounding mode so pipeline not flushed.
 inline int tFloatToInt(float val)																						{ return int(val + 0.5f); }
@@ -143,6 +154,11 @@ inline void tiRadToDeg(float& ang)																						{ ang = ang * 180.0f / P
 
 inline float tPow(float a, float b)																						{ return powf(a, b); }
 inline double tPow(double a, double b)																					{ return pow(a, b); }
+
+// Returns integral base 2 logarithm. If v is <= 0 returns MinInt32. If v is a power of 2 you will get an exact
+// result. If v is not a power of two it will return the logarithm of the next lowest power of 2. For example,
+// Log2(2) = 1, Log2(3) = 1, and Log2(4) = 2.
+inline int tLog2(int v);
 
 // For the 'ti' versions of the functions, the 'i' means 'in-place' (ref var) rather than returning the value.
 inline bool tIsPower2(int v)																							{ if (v < 1) return false; return (v & (v-1)) ? false : true; }
@@ -226,6 +242,54 @@ inline std::function<bool(float,float)> tMath::tBiasGreater(tIntervalBias bias)
 }
 
 
+inline tMath::tDivt tMath::tDiv(int numerator, int denominator)
+{
+	div_t d = div(numerator, denominator);
+	tDivt r;
+	r.Quotient = d.quot;
+	r.Remainder = d.rem;
+	return r;
+}
+
+
+inline tMath::tDiv32t tMath::tDiv32(int32 numerator, int32 denominator)
+{
+	div_t d = div(numerator, denominator);
+	tDiv32t r;
+	r.Quotient = d.quot;
+	r.Remainder = d.rem;
+	return r;
+}
+
+
+inline tMath::tDivU32t tMath::tDivU32(uint32 numerator, uint32 denominator)
+{
+	tDivU32t r;
+	r.Quotient = numerator/denominator;
+	r.Remainder = numerator - r.Quotient*denominator;
+	return r;
+}
+
+
+inline tMath::tDiv64t tMath::tDiv64(int64 numerator, int64 denominator)
+{
+	lldiv_t d = div(numerator, denominator);
+	tDiv64t r;
+	r.Quotient = d.quot;
+	r.Remainder = d.rem;
+	return r;
+}
+
+
+inline tMath::tDivU64t tMath::tDivU64(uint64 numerator, uint64 denominator)
+{
+	tDivU64t r;
+	r.Quotient = numerator/denominator;
+	r.Remainder = numerator - r.Quotient*denominator;
+	return r;
+}
+
+
 inline float tMath::tRound(float v, float nearest)
 {
 	if (tApproxEqual(nearest, 0.0f))
@@ -235,6 +299,16 @@ inline float tMath::tRound(float v, float nearest)
 	float numNearests = v/nearest;
 	float rnded = tRound(numNearests);
 	return rnded * nearest;
+}
+
+
+inline int tMath::tLog2(int x)
+{
+	if (x <= 0)
+		return 0x80000000;
+
+	float f = float(x);
+	return ((( *(uint32*)((void*)&f) ) & 0x7f800000) >> 23) - 127;
 }
 
 

@@ -16,7 +16,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include "Math/tFundamentals.h"
+#include <Foundation/tFundamentals.h>
 #include "Math/tVector3.h"
 #include "Math/tVector4.h"
 class tColouri;

@@ -23,7 +23,7 @@
 #include <Foundation/tList.h>
 #include <Foundation/tString.h>
 #include <Foundation/tHash.h>
-#include <Math/tFundamentals.h>
+#include <Foundation/tFundamentals.h>
 #include <Math/tQuaternion.h>
 #include <Math/tVector2.h>
 #include <Math/tVector3.h>

@@ -9,8 +9,6 @@ add_library(
 	Src/tRandom.cpp
 	Src/tSpline.cpp
 	Inc/Math/tColour.h
-	Inc/Math/tConstants.h
-	Inc/Math/tFundamentals.h
 	Inc/Math/tGeometry.h
 	Inc/Math/tLinearAlgebra.h
 	Inc/Math/tMatrix2.h

@@ -2,7 +2,7 @@
 //
 // This file implements tScene polygonal models. A tPolyModel contains a tMesh and a functional interface over it.
 //
-// Copyright (c) 2006, 2017 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -12,7 +12,7 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#include <Math/tFundamentals.h>
+#include <Foundation/tFundamentals.h>
 #include "Scene/tPolyModel.h"
 using namespace tMath;
 namespace tScene

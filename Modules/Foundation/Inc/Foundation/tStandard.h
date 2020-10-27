@@ -30,11 +30,6 @@
 namespace tStd
 {
 
-// Returns integral base 2 logarithm. If v is <= 0 returns MinInt32. If v is a power of 2 you will get an exact
-// result. If v is not a power of two it will return the logarithm of the next lowest power of 2. For example,
-// Log2(2) = 1, Log2(3) = 1, and Log2(4) = 2.
-inline int tLog2(int v);
-
 // The 3 XOR trick is slower in most cases so we'll use a standard swap.
 template<typename T> inline void tSwap(T& a, T& b)																		{ T t = a; a = b; b = t; }
 inline void* tMemcpy(void* dest, const void* src, int numBytes)															{ return memcpy(dest, src, numBytes); }
@@ -152,16 +147,6 @@ inline char tChrlwr(char c)																								{ return tIslower(c) ? c : c 
 inline char tChrupr(char c)																								{ return tIsupper(c) ? c : c - ('a' - 'A'); }
 void tStrrev(char* begin, char* end);
 
-struct tDivt																											{ int Quotient; int Remainder; };
-tDivt tDiv(int numerator, int denominator);
-struct tDiv32t																											{ int32 Quotient; int32 Remainder; };
-tDiv32t tDiv32(int32 numerator, int32 denominator);
-struct tDivU32t																											{ uint32 Quotient; uint32 Remainder; };
-tDivU32t tDivU32(uint32 numerator, uint32 denominator);
-struct tDiv64t																											{ int64 Quotient; int64 Remainder; };
-tDiv64t tDiv64(int64 numerator, int64 denominator);
-struct tDivU64t																											{ uint64 Quotient; uint64 Remainder; };
-tDivU64t tDivU64(uint64 numerator, uint64 denominator);
 
 // NAN means not a number. P for positive. N for negative. I for indefinite. S for signaling. Q for quiet.
 enum class tFloatType
@@ -236,64 +221,6 @@ extern const char* SeparatorEStr;
 
 
 // Implementation below this line.
-
-
-inline int tStd::tLog2(int x)
-{
-	if (x <= 0)
-		return 0x80000000;
-
-	float f = float(x);
-	return ((( *(uint32*)((void*)&f) ) & 0x7f800000) >> 23) - 127;
-}
-
-
-inline tStd::tDivt tStd::tDiv(int numerator, int denominator)
-{
-	div_t d = div(numerator, denominator);
-	tDivt r;
-	r.Quotient = d.quot;
-	r.Remainder = d.rem;
-	return r;
-}
-
-
-inline tStd::tDiv32t tStd::tDiv32(int32 numerator, int32 denominator)
-{
-	div_t d = div(numerator, denominator);
-	tDiv32t r;
-	r.Quotient = d.quot;
-	r.Remainder = d.rem;
-	return r;
-}
-
-
-inline tStd::tDivU32t tStd::tDivU32(uint32 numerator, uint32 denominator)
-{
-	tDivU32t r;
-	r.Quotient = numerator/denominator;
-	r.Remainder = numerator - r.Quotient*denominator;
-	return r;
-}
-
-
-inline tStd::tDiv64t tStd::tDiv64(int64 numerator, int64 denominator)
-{
-	lldiv_t d = div(numerator, denominator);
-	tDiv64t r;
-	r.Quotient = d.quot;
-	r.Remainder = d.rem;
-	return r;
-}
-
-
-inline tStd::tDivU64t tStd::tDivU64(uint64 numerator, uint64 denominator)
-{
-	tDivU64t r;
-	r.Quotient = numerator/denominator;
-	r.Remainder = numerator - r.Quotient*denominator;
-	return r;
-}
 
 
 template<typename IntegralType> inline IntegralType tStd::tStrtoiT(const char* str, int base)

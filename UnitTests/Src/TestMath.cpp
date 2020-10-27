@@ -12,7 +12,7 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#include <Math/tFundamentals.h>
+#include <Foundation/tFundamentals.h>
 #include <Math/tSpline.h>
 #include <Math/tRandom.h>
 #include <Math/tQuaternion.h>
@@ -82,10 +82,10 @@ tTestUnit(Fundamentals)
 
 	tPrintf("Log2 Tests.\n");
 	for (int v = -3; v < 257; v++)
-		tPrintf("Log2(%d) = %d\n", v, tStd::tLog2(v));
+		tPrintf("Log2(%d) = %d\n", v, tMath::tLog2(v));
 
 	for (uint v = 0x7FFFFFF0; v != 0x80000000; v++)
-		tPrintf("Log2(%d) = %d\n", v, tStd::tLog2(v));
+		tPrintf("Log2(%d) = %d\n", v, tMath::tLog2(v));
 
 	tPrintf("tCeiling(-2.5f) : %f.\n", tCeiling(-2.5f));
 	tRequire(tCeiling(-2.5f) == -2.0f);

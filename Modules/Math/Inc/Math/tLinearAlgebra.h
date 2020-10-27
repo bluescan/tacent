@@ -16,7 +16,7 @@
 
 #pragma once
 #include <Foundation/tStandard.h>
-#include "Math/tFundamentals.h"
+#include <Foundation/tFundamentals.h>
 namespace tMath
 {
 

@@ -23,7 +23,7 @@
 
 #pragma once
 #include <Foundation/tList.h>
-#include <Math/tConstants.h>
+#include <Foundation/tConstants.h>
 #include <Math/tColour.h>
 #include <System/tFile.h>
 #include <System/tChunk.h>

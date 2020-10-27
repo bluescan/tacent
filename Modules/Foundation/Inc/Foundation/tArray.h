@@ -3,7 +3,7 @@
 // A simple array implementation that can grow its memory as needed. Adding elements or to an array or adding two
 // arrays together are the sorts if things that may cause an internal grow of the memory.
 //
-// Copyright (c) 2004-2005, 2017 Tristan Grimmer.
+// Copyright (c) 2004-2005, 2017, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -15,6 +15,7 @@
 
 #pragma once
 #include "Foundation/tStandard.h"
+#include "Foundation/tFundamentals.h"
 
 
 template<typename T> class tArray
@@ -132,7 +133,7 @@ template<typename T> inline bool tArray<T>::Append(const T* elements, int numEle
 	// There are some left so we need to grow the array. We grow once in multiples of GrowCount.
 	// At this point, GrowCount should be guaranteed to be > 0 since we early exited.
 	tAssert(GrowCount > 0);
-	tStd::tDivt quotRem = tStd::tDiv(numElementToAppend, GrowCount);
+	tMath::tDivt quotRem = tMath::tDiv(numElementToAppend, GrowCount);
 	int numGrows = quotRem.Quotient;
 	if (quotRem.Remainder > 0)
 		numGrows++;

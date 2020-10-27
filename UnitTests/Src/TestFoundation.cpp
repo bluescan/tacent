@@ -366,19 +366,29 @@ tTestUnit(ListExtra)
 tTestUnit(Map)
 {
 	tString testString("The real string");
-	tPrintf("Opertor() on string:%s\n", (const char*)testString);
-	tPrintf("uint32 Opertor() on string:%d\n", (uint32)testString);
+	tPrintf("const char* Opertor() on string:%s\n", (const char*)testString);
+	tPrintf("uint32 Opertor() on string:%08X\n", (uint32)testString);
 
 	tMap<tString, tString> nameDescMap(8);
-	tPrintf("initialLog2Size %d  HashTableSize %d\n", 8, nameDescMap.HashTableSize);
+	tPrintf("initialLog2Size %d  HashTableSize %d\n", 8, nameDescMap.GetHashTableSize());
 
-	nameDescMap.Insert("fred", "Fred is smart and happy.");
-	nameDescMap.Insert("joan", "Joan is sly and sad.");
-	nameDescMap.Insert("kim", "Kim is tall and contemplative.");
+	nameDescMap.GetInsert("fred") = "Fred is smart and happy.";
+	nameDescMap.GetInsert("joan") = "Joan is sly and sad.";
+	nameDescMap.GetInsert("kim") = "Kim is tall and contemplative.";
+	nameDescMap["john"] = "John cannot ego-surf.";
+	tRequire(nameDescMap.GetNumItems() == 4);
 
-	tString joanDesc = nameDescMap.Get("joan");
+	bool fredRemoved = nameDescMap.Remove("fred");
+	tRequire(fredRemoved);
+	tRequire(nameDescMap.GetNumItems() == 3);
+
+	tString joanDesc = nameDescMap.GetInsert("joan");
 	tPrintf("joan: %s\n", joanDesc.Pod());
 	tRequire(joanDesc == "Joan is sly and sad.");
+
+	tString johnDesc = nameDescMap.GetInsert("john");
+	tPrintf("john: %s\n", johnDesc.Pod());
+	tRequire(johnDesc == "John cannot ego-surf.");
 }
 
 

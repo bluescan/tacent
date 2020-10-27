@@ -16,7 +16,7 @@
 #include <System/tThrow.h>
 #include <System/tPrint.h>
 #include <System/tTime.h>
-#include <Math/tFundamentals.h>
+#include <Foundation/tFundamentals.h>
 #include "Pipeline/tProcess.h"
 using namespace tPipeline;
 

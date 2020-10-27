@@ -16,9 +16,9 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
+#include <Foundation/tFundamentals.h>
 #include "System/tCommand.h"
 #include "System/tFile.h"
-#include "Math/tFundamentals.h"
 
 
 namespace tCommand
