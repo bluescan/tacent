@@ -657,6 +657,27 @@ tTestUnit(String)
 	for (tStringItem* comp = expl2.First(); comp; comp = comp->Next())
 		tPrintf("   Comp:###%s###\n", comp->ConstText());
 
+	src = "abc1234abcd12345abcdef123456";
+	tPrintf("Before: '%s'\n", src.ConstText());
+	src = src.Left(3);
+	tPrintf("Extracting abc with Left(3)\n");
+	tPrintf("After : '%s'\n\n", src.ConstText());
+	tRequire(src == "abc");
+
+	src = "abc1234abcd12345abcdef123456";
+	tPrintf("Before: '%s'\n", src.ConstText());
+	src = src.Right(3);
+	tPrintf("Extracting 456 with Right(3)\n");
+	tPrintf("After : '%s'\n\n", src.ConstText());
+	tRequire(src == "456");
+
+	src = "abc1234abcd12345abcdef123456";
+	tPrintf("Before: '%s'\n", src.ConstText());
+	src = src.Mid(3, 3);
+	tPrintf("Extracting 123 with Mid(3, 3)\n");
+	tPrintf("After : '%s'\n\n", src.ConstText());
+	tRequire(src == "123");
+
 	tString aa("aa");
 	tString exaa = aa.ExtractFirstWord('a');
 	tPrintf("\n\naa extract first word to a: Extracted:###%s###  Left:###%s###\n", exaa.ConstText(), aa.ConstText());

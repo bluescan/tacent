@@ -165,6 +165,99 @@ bool tExpression::IsAtom() const
 		return false;
 }
 
+tString tExpression::GetExpressionString() const
+{
+	tAssert( IsValid() );
+
+	const char* c = ValueData;
+	int count = 0;
+	int lineNum = LineNumber;
+
+	if (!IsAtom())
+	{
+		// Skip the expression by counting square brackets till we are at zero again. Opening bracket adds 1, closing subtracts 1. Simple.
+		// @todo Slight bug here. If there is a string inside the expression with []s, they must match.
+		do
+		{
+			if (*c == '[')
+				count++;
+
+			if (*c == ']')
+				count--;
+
+			if (*c == '\0')
+				break; // return tString(ValueData);
+
+			if (*c == '\r')
+				lineNum++;
+
+			c++;
+		}
+		while (count);
+	}
+	else
+	{
+		// It's an atom. If it begins with a quote we must find where it ends.
+		if (*c == '"')
+		{
+			c++;
+
+			// Keep going until next quote.
+			c = strchr(c, '"');
+
+			if (!c)
+			{
+				if (lineNum != -1)
+					throw tScriptError("Begin quote found but no end quote on line %d.", lineNum);
+				else
+					throw tScriptError("Begin quote found but no end quote.");
+			}
+			c++;
+		}
+
+		// If it begins with an open bracket (not a square bracket, a British bracket... a parenthesis in "American") we must find the closing bracket.
+		else if (*c == '(')
+		{
+			c++;
+
+			// Keep going until closing bracket.
+			c = strchr(c, ')');
+
+			if (!c)
+			{
+				if (lineNum != -1)
+					throw tScriptError("Opening bracket found but no closing bracket on line %d.", lineNum);
+				else
+					throw tScriptError("Opening bracket found but no closing bracket.");
+			}
+			c++;
+		}
+		else
+		{
+			// The ';' and '<' should also be terminators for the current argument so that EatWhiteAndComments will get everything.
+			char c1 = *c;
+			while ((c1 != ' ') && (c1 != '\t') && (c1 != '[') && (c1 != ']') && (c1 != '\0') && (c1 != ';') && (c1 != '<') && (c1 != '"'))
+			{
+				c++;
+				if (c1 == '\n')
+				{
+					lineNum++;
+					break;
+				}
+				c1 = *c;
+			}
+		}
+	}
+
+	int lineCount;
+	c = EatWhiteAndComments(c, lineCount);
+	lineNum += lineCount;
+
+	tString result(ValueData);
+	result = result.Left(c - ValueData);
+
+	return result;
+}
 
 tString tExpression::GetAtomString() const
 {

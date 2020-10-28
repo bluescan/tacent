@@ -85,6 +85,10 @@ struct tString
 	// divider isn't found, the entire string is returned and the tString is left empty.
 	tString ExtractLastWord(const char divider = ' ');
 
+	tString Left(int count);
+	tString Right(int count);
+	tString Mid(int start, int count);
+
 	char* Text()																										{ return TextData; }
 	const char* ConstText() const																						{ return TextData; }
 

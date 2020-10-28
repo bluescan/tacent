@@ -68,6 +68,7 @@ public:
 	bool IsValid() const																								{ return ValueData ? true : false; }
 	bool IsAtom() const;
 
+	tString GetExpressionString() const;
 	tString GetAtomString() const;
 	bool GetAtomBool() const																							{ return GetAtomString().GetAsBool(); }
 	uint GetAtomUint() const																							{ return GetAtomString().GetAsUInt(); }

@@ -180,6 +180,34 @@ tString tString::ExtractFirstWord(const char divider)
 }
 
 
+tString tString::Left(int count)
+{
+	tString buf(count);
+	tStd::tStrncpy(buf.TextData, TextData, count);
+	return buf;
+}
+
+
+tString tString::Right(int count)
+{
+	int start = Length() - count < 0 ? 0 : Length() - count;
+	tString buf(count);
+	tStd::tStrncpy(buf.TextData, TextData + start, count);
+	return buf;
+}
+
+
+tString tString::Mid(int start, int count)
+{
+	if(start >= Length())
+		return tString();
+
+	tString buf(count);
+	tStd::tStrncpy(buf.TextData, TextData + start, count);
+	return buf;
+}
+
+
 tString tString::ExtractLastWord(const char divider)
 {
 	int pos = FindChar(divider, true);
