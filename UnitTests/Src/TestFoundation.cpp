@@ -659,13 +659,6 @@ tTestUnit(String)
 
 	src = "abc1234abcd12345abcdef123456";
 	tPrintf("Before: '%s'\n", src.ConstText());
-	src = src.Mid(3, 4);
-	tPrintf("Replacing with 1234 using Mid(3, 4)\n");
-	tPrintf("After : '%s'\n\n", src.ConstText());
-	tRequire(src == "1234");
-
-	src = "abc1234abcd12345abcdef123456";
-	tPrintf("Before: '%s'\n", src.ConstText());
 	tString tgt = src.ExtractMid(3, 4);
 	tPrintf("Extracting 1234 with ExtractMid(3, 4)\n");
 	tPrintf("After (Extracted): '%s'\n\n", tgt.ConstText());

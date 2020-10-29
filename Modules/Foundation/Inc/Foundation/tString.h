@@ -67,17 +67,17 @@ struct tString
 	tString Suffix(const char marker) const;				// Same as Prefix but chars after last marker.
 	
 	// Returns a tString of the first count chars. If there are not enough characters, an empty string is returned.
-	tString Prefix(int count) const;
-	tString Suffix(int count) const;						// Same as Prefix but returns last count chars.
+	tString Left(int count) const;
+	tString Right(int count) const;							// Same as Prefix but returns last count chars.
 	tString Mid(int start, int count) const;				// Returns count chars from start.
 
 	// Returns a tString of the first count chars. Removes these from the current string. If the count is greater than
 	// the string length nothing is extracted.
-	tString ExtractPrefix(int count);
+	tString ExtractLeft(int count);
 
 	// Returns a tString of the last count chars. Removes these from the current string. If the count is greater than
 	// the string length nothing is extracted.
-	tString ExtractSuffix(int count);
+	tString ExtractRight(int count);
 
 	// Returns chars from start to count, but also removes that from the tString.  If start + count > length then
 	// you get what's between start and the end of the string

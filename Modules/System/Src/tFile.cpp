@@ -978,7 +978,7 @@ tString tSystem::tGetLinuxPath(const tString& pth, const tString& mountPoint)
 			mnt += "/";
 
 		char drive = tStd::tChrlwr(path[0]);
-		path.ExtractPrefix(2);
+		path.ExtractLeft(2);
 		path = mnt + tString(drive) + path;
 	}
 	return path;
