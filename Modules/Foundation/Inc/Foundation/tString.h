@@ -67,20 +67,30 @@ struct tString
 	tString Suffix(const char marker) const;				// Same as Prefix but chars after last marker.
 	
 	// Returns a tString of the first count chars. If there are not enough characters, an empty string is returned.
-	tString Left(int count) const;
-	tString Right(int count) const;							// Same as Prefix but returns last count chars.
-	tString Mid(int start, int count) const;				// Returns count chars from start.
+	tString Prefix(int count) const;						// Returns count characters or empty string if count not available
+	tString Suffix(int count) const;						// Same as Prefix but returns characters after count.
+	tString Left(int count) const;							// Like Prefix but will return what's available if count > length
+	tString Right(int count) const;							// Same as Left but returns last count chars (differs from Suffix, counts from right)
+	tString Mid(int start, int count) const;				// Returns count chars from start, or what's available if start+count > length.
 
 	// Returns a tString of the first count chars. Removes these from the current string. If the count is greater than
 	// the string length nothing is extracted.
-	tString ExtractLeft(int count);
+	tString ExtractPrefix(int count);
 
 	// Returns a tString of the last count chars. Removes these from the current string. If the count is greater than
-	// the string length nothing is extracted.
+	// the string length nothing is extracted.  ExtractSuffix is inconsistent with Suffix (Suffix counts from the start).
+	tString ExtractSuffix(int count);
+
+	// Returns a tString of the first count chars. Removes these from the current string. If count > length then what's
+	// available is extracted.
+	tString ExtractLeft(int count);
+
+	// Returns a tString of the last count chars. Removes these from the current string. If count > length then what's
+	// available is extracted.
 	tString ExtractRight(int count);
 
-	// Returns chars from start to count, but also removes that from the tString.  If start + count > length then
-	// you get what's between start and the end of the string
+	// Returns chars from start to count, but also removes that from the tString.  If start + count > length then what's
+	// available is extracted.
 	tString ExtractMid(int start, int count);
 
 	// Extracts first word up to and not including first divider encountered. The tString is left with the remainder,

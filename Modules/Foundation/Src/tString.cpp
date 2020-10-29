@@ -67,6 +67,91 @@ tString tString::Suffix(const char c) const
 }
 
 
+tString tString::Prefix(int i) const
+{
+	if (i > Length())
+		return tString();
+
+	// Remember, this zeros the memory, so tStrncpy not dealing with the terminating null is ok.
+	tString buf(i);
+	tStd::tStrncpy(buf.TextData, TextData, i);
+	return buf;
+}
+
+
+tString tString::Suffix(int i) const
+{
+	int length = Length();
+	if (i > length)
+		return tString();
+
+	// Remember, this zeros the memory, so tStrncpy not dealing with the terminating null is ok.
+	tString buf( length - 1 - i );
+	tStd::tStrncpy(buf.TextData, TextData + i + 1, length - 1 - i );
+	return buf;
+}
+
+
+tString tString::ExtractPrefix(int i)
+{
+	tAssert(i >= 0)
+	int length = Length();
+	if ((i == 0) || (i > length))
+		return tString();
+	
+	tString prefix = Prefix(i);
+
+	int newLength = length - i;
+	if (newLength == 0)
+	{
+		if (TextData != &EmptyChar)
+			delete[] TextData;
+		TextData = &EmptyChar;
+		return prefix;
+	}
+
+	char* newText = new char[newLength+1];
+	strcpy(newText, TextData+i);
+
+	if (TextData != &EmptyChar)
+		delete[] TextData;
+	TextData = newText;
+
+	return prefix;
+}
+
+
+tString tString::ExtractSuffix(int i)
+{
+	tAssert(i >= 0);
+	int length = Length();
+	if ((i == 0) || (i > length))
+		return tString();
+	
+	tString suffix = Suffix(i);
+
+	int newLength = length - i;
+	if (newLength == 0)
+	{
+		// It couldn't have been empty before.
+		delete TextData;
+		TextData = &EmptyChar;
+		return suffix;
+	}
+
+	char* newText = new char[newLength+1];
+	TextData[length - i] = '\0';
+
+	tStd::tStrcpy(newText, TextData);
+
+	if (TextData != &EmptyChar)
+		delete[] TextData;
+	TextData = newText;
+
+	return suffix;
+}
+
+
 tString tString::Left(int count) const
 {
 	if(count <= 0)
