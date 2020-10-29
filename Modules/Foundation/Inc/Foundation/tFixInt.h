@@ -581,12 +581,15 @@ template<int N> template<int B, bool LhsGreater> template<typename T> inline voi
 	const uint32* const rhsData = (uint32*)&rhs;
 	int i = 0;
 	#ifdef ENDIAN_BIG
+	tAssert(!"Fix this to take into account smaller sized type.");
 	for (; i < NumBaseInts - N / 32; i++)
 		lhs.IntData[BaseIndex(i)] = 0u;
 	for (; i < NumBaseInts; i++)
 		lhs.IntData[BaseIndex(i)] = rhsData[BaseIndex(i)];
 	#else
-	for (; i < N / 32; i++)
+	// If rhs is smaller, copy what we can over and fill in the rest with 0.
+	// If lhs is smaller, we may lose info (like casting an int to a short).
+	for (; i < tMath::tMin(rhs.NumBaseInts, lhs.NumBaseInts); i++)
 		lhs.IntData[BaseIndex(i)] = rhsData[BaseIndex(i)];
 	for (; i < NumBaseInts; i++)
 		lhs.IntData[BaseIndex(i)] = 0u;
@@ -1214,6 +1217,7 @@ template<int B> template<int N, bool LhsGreater> template<typename T2> inline vo
 	int i = 0;
 	
 	#ifdef ENDIAN_BIG
+	tAssert(!"Fix this to take into account smaller sized type.");
 	if (rhs < tFixInt<N>(0u))		// Sign extend.
 	{
 		for (; i < tFixIntU<B>::NumBaseInts - N / 32; i++)
@@ -1229,8 +1233,7 @@ template<int B> template<int N, bool LhsGreater> template<typename T2> inline vo
 		lhs.IntData[tFixIntU<B>::BaseIndex(i)] = accessorHack[tFixIntU<B>::BaseIndex(i)];
 
 	#else
-
-	for (; i < N / 32; i++)
+	for (; i < tMath::tMin(rhs.NumBaseInts, lhs.NumBaseInts); i++)
 		lhs.IntData[tFixInt<B>::BaseIndex(i)] = accessorHack[tFixInt<B>::BaseIndex(i)];
 
 	if (rhs < tFixInt<N>(0u))		// Sign extend.

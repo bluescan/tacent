@@ -3,6 +3,7 @@
 // tString is a simple and readable string class that implements sensible operators, including implicit casts. There is
 // no UCS2 or UTF16 support since UTF8 is, in my opinion, superior and the way forward. tStrings will work with UTF8.
 // You cannot stream (from cin etc) more than 512 chars into a string. This restriction is only for wacky << streaming.
+// For conversions of arbitrary types to tStrings, see tsPrint in the higher level System module.
 //
 // Copyright (c) 2004-2006, 2015, 2017, 2019 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby

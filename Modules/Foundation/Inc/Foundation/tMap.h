@@ -1,15 +1,10 @@
 // tMap.h
 //
-// tMap is implemented as a hash table with incremented resolves.
-// 256 expected items.
-// 512 table sise.
-// x = 8 bit hash E [0, 256)
-// n = number of items.
-// Exspected unique U = x(1 - (1 - 1/x)^n)
-// At n=256, U = 256(1 - (1 - 1/256)^256) = 162   (256/162)=1,58items with space per item)
-// Collisions = 256-162 = 94. Free94/256Total is the probability of next one being free = 36%
-// x = 512 -> U = 201  -> C = 55. Free(512-201)/512 = 60%
-// 512/201 =2.54
+// A map class (dictionary) that keeps track of keys and associated values, both of which may be any type. The
+// requirements are: The key type must be copyable, comparable, and convertable to a uint32. The value type must be
+// copyable. tMap is implemented as a hash-table with lists to resolve collisions and has expected O(1) running
+// time for insertions and value retrievals. The hash table automatically grows when a threshold percentage of the hash
+// table is used (defaulting to 60%). Keys are unique -- the last value assigned to a key is the one stored in the tMap.
 //
 // Copyright (c) 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -37,6 +32,8 @@ public:
 	V& operator[](const K&);
 	bool Remove(const K&);
 
+	// @todo Add interators with the caveat that they are slow.
+
 	int GetNumItems() const																								{ return NumItems; }
 	int GetHashTableSize() const																						{ return HashTableSize; }
 	float GetPercentFull() const																						{ return float(HashTableEntryCount)/float(HashTableSize); }
@@ -44,8 +41,8 @@ public:
 private:
 	template<typename KK, typename VV> struct Pair
 	{
-		Pair(const Pair& pair) : Key(pair.Key), Value(pair.Value) { }
-		Pair(const K& key) : Key(key), Value() { }
+		Pair(const Pair& pair)																							: Key(pair.Key), Value(pair.Value) { }
+		Pair(const KK& key)																								: Key(key), Value() { }
 		KK Key; VV Value;
 	};
 	struct HashTableItem
@@ -127,7 +124,6 @@ template<typename K, typename V> inline bool tMap<K,V>::Remove(const K& key)
 	HashTableItem& item = HashTable[hash];
 
 	for (auto iter = item.Pairs.First(); iter; iter++)
-	//for (Pair& pair : item.Pairs)
 	{
 		if (iter->Key == key)
 		{

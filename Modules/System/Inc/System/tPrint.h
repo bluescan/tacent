@@ -17,6 +17,8 @@
 
 #pragma once
 #include <Foundation/tString.h>
+#include <Foundation/tFixInt.h>
+#include <Math/tLinearAlgebra.h>
 
 
 namespace tSystem
@@ -190,12 +192,10 @@ namespace tSystem
 // tuint256 c = 42;
 // tPrintf("%064|256X or %064!32X or %064:8X", c, c);
 
-
 int tPrintf(const char* format, ...);						// Prints to generic channel.
 int tvPrintf(const char* format, va_list);					// Prints to generic channel.
 int tPrintf(tSystem::tChannel channels, const char* format, ...);
 int tvPrintf(tSystem::tChannel channels, const char* format, va_list);
-
 
 // These are a few shortcut functions. Notice that in release, these become inline empty functions. By these, I only
 // mean the ones below that output to the screen or stdout.
@@ -208,12 +208,10 @@ int tPrintAI(const char* format, ...);
 int tPrintInput(const char* format, ...);
 int tPrintT(const char* format, ...);
 
-
 // In some cases, possibly before reserving buffer space, you need to know how many characters would be used in an
 // actual printf call. The next two functions work that out. They are not affected by what channels are turned on.
 int tcPrintf(const char* format, ...);
 int tvcPrintf(const char* format, va_list);
-
 
 // Formatted print functions that print into a character buffer. The dest buffer must be big enough. Use tcPrintf or
 // tvcPrintf to find out how big. The tString versions will do the size calc first and return a ref to the same string
@@ -225,6 +223,25 @@ tString& tsPrintf(tString& dest, const char* format, ...);
 inline tString tvsPrintf(const char* format, va_list args)																{ tString dest; return tvsPrintf(dest, format, args); }
 inline tString tsPrintf(const char* format, ...)																		{ va_list marker; va_start(marker, format); return tvsPrintf(format, marker); }
 
+// Non-formatted print. Allows simple conversion from arbitrary type to a string formatted in a reasonabe way.
+//template<typename T> tString tsPrint(T);
+inline tString tsPrint(int value)					{ return tsPrintf("%d", value); }
+inline tString tsPrint(uint32 value)				{ return tsPrintf("0x%08X", value); }
+inline tString tsPrint(int64 value)					{ return tsPrintf("%|64d", value); }
+inline tString tsPrint(uint64 value)				{ return tsPrintf("0x%016|64X", value); }
+inline tString tsPrint(tint128 value)				{ return tsPrintf("%|128d", value); }
+inline tString tsPrint(tuint128 value)				{ return tsPrintf("0x%032|128X", value); }
+inline tString tsPrint(tint256 value)				{ return tsPrintf("%|256d", value); }
+inline tString tsPrint(tuint256 value)				{ return tsPrintf("0x%064|256X", value); }
+inline tString tsPrint(tint512 value)				{ return tsPrintf("%|512d", value); }
+inline tString tsPrint(tuint512 value)				{ return tsPrintf("0x%0128|512X", value); }
+inline tString tsPrint(float value)					{ return tsPrintf("%f", value); }
+inline tString tsPrint(double value)				{ return tsPrintf("%f", value); }
+inline tString tsPrint(bool value)					{ return value ? "true" : "false"; }
+inline tString tsPrint(const tMath::tVec2& value)	{ return tsPrintf("%:2v", value); }
+inline tString tsPrint(const tMath::tVec3& value)	{ return tsPrintf("%:3v", value); }
+inline tString tsPrint(const tMath::tVec4& value)	{ return tsPrintf("%:4v", value); }
+inline tString tsPrint(const tMath::tQuat& value)	{ return tsPrintf("%q", value); }
 
 // These overloads are 'safe' in that they guarantee no overrun of the dest buffer. You enter the full number of bytes
 // in the dest buffer. The dest buffer is guaranteed to be null terminated afterwards, and the number of characters
@@ -235,11 +252,9 @@ inline tString tsPrintf(const char* format, ...)																		{ va_list mark
 int tvsPrintf(char* dest, int destSize, const char* format, va_list);
 int tsPrintf(char* dest, int destSize, const char* format, ...);
 
-
 // Here is the file handle print
 int tfPrintf(tFileHandle dest, const char* format, ...);
 int tvfPrintf(tFileHandle dest, const char* format, va_list);
-
 
 // These variants print a timestamp (ttf = tacent timestamp file) before any content is printed.
 int ttfPrintf(tFileHandle dest, const char* format, ...);
@@ -248,7 +263,6 @@ int ttvfPrintf(tFileHandle dest, const char* format, va_list);
 // tFlush may be called with any FileHandle such as stdout or stderr as well as other file handles opened with
 // tSystem::tOpenFile.
 void tFlush(tFileHandle);
-
 
 // The tdPrintf variations print to both the destination string or file, as well as printing to whatever channels are
 // specified. The 'd' is for dual. Useful for things like log files and unit tests that also need to print to stdout.

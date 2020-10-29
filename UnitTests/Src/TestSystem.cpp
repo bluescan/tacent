@@ -185,6 +185,13 @@ void PrintTest(const char* format, ...)
 }
 
 
+template<typename T> static tString ConvertToString(T value)
+{
+	tString valStr = tsPrint(value);
+	return valStr;
+}
+
+
 tTestUnit(Print)
 {
 	tSetDefaultPrecision(6);
@@ -393,6 +400,37 @@ tTestUnit(Print)
 	ttfPrintf(handle, "Log: Here is some timestamped log data. Index = %d\n", 42);
 	ttfPrintf(handle, "Warning: And a second log line.\n");
 	tCloseFile(handle);
+
+	// Test tsPrint to convert various types to strings easily.
+	tRequire(ConvertToString(64) 					== "64");
+	tRequire(ConvertToString(-64)					== "-64");
+	tRequire(ConvertToString(uint32(0xF123ABCD))	== "0xF123ABCD");
+
+	tRequire(ConvertToString(65ll)					== "65");
+	tRequire(ConvertToString(-65ll)					== "-65");
+	tRequire(ConvertToString(66ull)					== "0x0000000000000042");
+
+	tRequire(ConvertToString(tint128(67))			== "67");
+	tRequire(ConvertToString(tint128(-67))			== "-67");
+	tRequire(ConvertToString(tuint128(68))			== "0x00000000000000000000000000000044");
+
+	tRequire(ConvertToString(tint256(69))			== "69");
+	tRequire(ConvertToString(tint256(-69))			== "-69");
+	tRequire(ConvertToString(tuint256(70))			== "0x0000000000000000000000000000000000000000000000000000000000000046");
+
+	tRequire(ConvertToString(tint512(71))			== "71");
+	tRequire(ConvertToString(tint512(-71))			== "-71");
+	tRequire(ConvertToString(tuint512(72))			== "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000048");
+
+	tRequire(ConvertToString(137.1f)				== "137.1000");
+	tRequire(ConvertToString(137.2)					== "137.2000");
+	tRequire(ConvertToString(true)					== "true");
+	tRequire(ConvertToString(false)					== "false");
+
+	tRequire(ConvertToString(tVector2(1.0f, 2.0f))					== "(1.0000, 2.0000)");
+	tRequire(ConvertToString(tVector3(1.0f, 2.0f, 3.0f))			== "(1.0000, 2.0000, 3.0000)");
+	tRequire(ConvertToString(tVector4(1.0f, 2.0f, 3.0f, 4.0f))		== "(1.0000, 2.0000, 3.0000, 4.0000)");
+	tRequire(ConvertToString(tQuaternion(1.0f, 2.0f, 3.0f, 4.0f))	== "(1.0000, 2.0000, 3.0000, 4.0000)");
 }
 
 
