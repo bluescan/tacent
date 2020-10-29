@@ -32,6 +32,7 @@
 
 #pragma once
 #include "Foundation/tString.h"
+#include "Foundation/tFundamentals.h"
 template<int> class tFixInt;
 
 
@@ -589,7 +590,9 @@ template<int N> template<int B, bool LhsGreater> template<typename T> inline voi
 	#else
 	// If rhs is smaller, copy what we can over and fill in the rest with 0.
 	// If lhs is smaller, we may lose info (like casting an int to a short).
-	for (; i < tMath::tMin(rhs.NumBaseInts, lhs.NumBaseInts); i++)
+	int lhsNum = lhs.NumBaseInts;
+	int rhsNum = rhs.NumBaseInts;
+	for (; i < tMath::tMin(lhsNum, rhsNum); i++)
 		lhs.IntData[BaseIndex(i)] = rhsData[BaseIndex(i)];
 	for (; i < NumBaseInts; i++)
 		lhs.IntData[BaseIndex(i)] = 0u;
@@ -1233,7 +1236,9 @@ template<int B> template<int N, bool LhsGreater> template<typename T2> inline vo
 		lhs.IntData[tFixIntU<B>::BaseIndex(i)] = accessorHack[tFixIntU<B>::BaseIndex(i)];
 
 	#else
-	for (; i < tMath::tMin(rhs.NumBaseInts, lhs.NumBaseInts); i++)
+	int lhsNum = lhs.NumBaseInts;
+	int rhsNum = rhs.NumBaseInts;
+	for (; i < tMath::tMin(lhsNum, rhsNum); i++)
 		lhs.IntData[tFixInt<B>::BaseIndex(i)] = accessorHack[tFixInt<B>::BaseIndex(i)];
 
 	if (rhs < tFixInt<N>(0u))		// Sign extend.
