@@ -780,7 +780,7 @@ tString tSystem::tGetFileName(const tString& filename)
 	if (lastSlash == -1)
 		return retStr;
 
-	return retStr.Suffix(lastSlash);
+	return retStr.Right(lastSlash);
 }
 
 
@@ -792,7 +792,7 @@ tString tSystem::tGetFileBaseName(const tString& filename)
 	if (dot == -1)
 		return r;
 
-	return r.Prefix(dot);
+	return r.Left(dot);
 }
 
 
