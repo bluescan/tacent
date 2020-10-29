@@ -659,24 +659,18 @@ tTestUnit(String)
 
 	src = "abc1234abcd12345abcdef123456";
 	tPrintf("Before: '%s'\n", src.ConstText());
-	src = src.Left(3);
-	tPrintf("Extracting abc with Left(3)\n");
+	src = src.Mid(3, 4);
+	tPrintf("Replacing with 1234 using Mid(3, 4)\n");
 	tPrintf("After : '%s'\n\n", src.ConstText());
-	tRequire(src == "abc");
+	tRequire(src == "1234");
 
 	src = "abc1234abcd12345abcdef123456";
 	tPrintf("Before: '%s'\n", src.ConstText());
-	src = src.Right(3);
-	tPrintf("Extracting 456 with Right(3)\n");
-	tPrintf("After : '%s'\n\n", src.ConstText());
-	tRequire(src == "456");
-
-	src = "abc1234abcd12345abcdef123456";
-	tPrintf("Before: '%s'\n", src.ConstText());
-	src = src.Mid(3, 3);
-	tPrintf("Extracting 123 with Mid(3, 3)\n");
-	tPrintf("After : '%s'\n\n", src.ConstText());
-	tRequire(src == "123");
+	tString tgt = src.ExtractMid(3, 4);
+	tPrintf("Extracting 1234 with ExtractMid(3, 4)\n");
+	tPrintf("After (Extracted): '%s'\n\n", tgt.ConstText());
+	tPrintf("After (Remain)   : '%s'\n\n", src.ConstText());
+	tRequire(tgt == "1234" && src == "abcabcd12345abcdef123456");
 
 	tString aa("aa");
 	tString exaa = aa.ExtractFirstWord('a');

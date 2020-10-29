@@ -92,6 +92,18 @@ tString tString::Suffix(int i) const
 }
 
 
+tString tString::Mid(int start, int i) const
+{
+	int length = Length();
+	if(start >= length || start + i > length)
+		return tString();
+
+	tString buf(i);
+	tStd::tStrncpy(buf.TextData, TextData + start, i);
+	return buf;
+}
+
+
 tString tString::ExtractPrefix(int i)
 {
 	tAssert(i >= 0)
@@ -152,6 +164,36 @@ tString tString::ExtractSuffix(int i)
 }
 
 
+tString tString::ExtractMid(int start, int i)
+{
+	int length = Length();
+	if(start < 0 || start >= length || start + i > length)
+		return tString();
+
+	tString buf(i);
+	tStd::tStrncpy(buf.TextData, TextData + start, i);
+	int newLength = length - i;
+	if(newLength == 0)
+	{
+		Clear();
+		return buf;
+	}
+
+	char* newText = new char[newLength+1];
+	newText[newLength] = '\0';
+
+	tStd::tStrncpy(newText, TextData, start);
+	if(start + i < length)
+		tStd::tStrncpy(newText+start, TextData+start+i, newLength-start);
+
+	if (TextData != &EmptyChar)
+		delete[] TextData;
+	TextData = newText;
+
+	return buf;
+}
+
+
 tString tString::ExtractFirstWord(const char divider)
 {
 	int pos = FindChar(divider);
@@ -176,34 +218,6 @@ tString tString::ExtractFirstWord(const char divider)
 		delete[] TextData;
 	TextData = newText;
 
-	return buf;
-}
-
-
-tString tString::Left(int count)
-{
-	tString buf(count);
-	tStd::tStrncpy(buf.TextData, TextData, count);
-	return buf;
-}
-
-
-tString tString::Right(int count)
-{
-	int start = Length() - count < 0 ? 0 : Length() - count;
-	tString buf(count);
-	tStd::tStrncpy(buf.TextData, TextData + start, count);
-	return buf;
-}
-
-
-tString tString::Mid(int start, int count)
-{
-	if(start >= Length())
-		return tString();
-
-	tString buf(count);
-	tStd::tStrncpy(buf.TextData, TextData + start, count);
 	return buf;
 }
 

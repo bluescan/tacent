@@ -68,6 +68,7 @@ struct tString
 	// Returns a tString of the first count chars. If there are not enough characters, an empty string is returned.
 	tString Prefix(int count) const;
 	tString Suffix(int count) const;						// Same as Prefix but returns last count chars.
+	tString Mid(int start, int count) const;				// Returns count chars from start.
 
 	// Returns a tString of the first count chars. Removes these from the current string. If the count is greater than
 	// the string length nothing is extracted.
@@ -77,6 +78,10 @@ struct tString
 	// the string length nothing is extracted.
 	tString ExtractSuffix(int count);
 
+	// Returns chars from start to count, but also removes that from the tString.  If start + count > length then
+	// you get what's between start and the end of the string
+	tString ExtractMid(int start, int count);
+
 	// Extracts first word up to and not including first divider encountered. The tString is left with the remainder,
 	// not including the divider. If divider isn't found, the entire string is returned and the tString is left empty.
 	tString ExtractFirstWord(const char divider = ' ');
@@ -85,9 +90,6 @@ struct tString
 	// divider isn't found, the entire string is returned and the tString is left empty.
 	tString ExtractLastWord(const char divider = ' ');
 
-	tString Left(int count);
-	tString Right(int count);
-	tString Mid(int start, int count);
 
 	char* Text()																										{ return TextData; }
 	const char* ConstText() const																						{ return TextData; }

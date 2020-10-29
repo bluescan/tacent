@@ -254,7 +254,7 @@ tString tExpression::GetExpressionString() const
 	lineNum += lineCount;
 
 	tString result(ValueData);
-	result = result.Left(c - ValueData);
+	result = result.Prefix(int(c - ValueData));
 
 	return result;
 }
