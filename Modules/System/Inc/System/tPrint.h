@@ -224,8 +224,11 @@ inline tString tvsPrintf(const char* format, va_list args)																{ tStr
 inline tString tsPrintf(const char* format, ...)																		{ va_list marker; va_start(marker, format); return tvsPrintf(format, marker); }
 
 // Non-formatted print. Allows simple conversion from arbitrary type to a string formatted in a reasonabe way.
-//template<typename T> tString tsPrint(T);
-inline tString tsPrint(int value)					{ return tsPrintf("%d", value); }
+inline tString tsPrint(int8 value)					{ return tsPrintf("%d", value); }
+inline tString tsPrint(uint8 value)					{ return tsPrintf("0x%02X", value); }
+inline tString tsPrint(int16 value)					{ return tsPrintf("%d", value); }
+inline tString tsPrint(uint16 value)				{ return tsPrintf("0x%04X", value); }
+inline tString tsPrint(int32 value)					{ return tsPrintf("%d", value); }
 inline tString tsPrint(uint32 value)				{ return tsPrintf("0x%08X", value); }
 inline tString tsPrint(int64 value)					{ return tsPrintf("%|64d", value); }
 inline tString tsPrint(uint64 value)				{ return tsPrintf("0x%016|64X", value); }

@@ -402,6 +402,14 @@ tTestUnit(Print)
 	tCloseFile(handle);
 
 	// Test tsPrint to convert various types to strings easily.
+	tRequire(ConvertToString(int8(62)) 				== "62");
+	tRequire(ConvertToString(int8(-62))				== "-62");
+	tRequire(ConvertToString(uint8(0x0A))			== "0x0A");
+
+	tRequire(ConvertToString(int16(63)) 			== "63");
+	tRequire(ConvertToString(int16(-63))			== "-63");
+	tRequire(ConvertToString(uint16(0xAF98))		== "0xAF98");
+
 	tRequire(ConvertToString(64) 					== "64");
 	tRequire(ConvertToString(-64)					== "-64");
 	tRequire(ConvertToString(uint32(0xF123ABCD))	== "0xF123ABCD");
