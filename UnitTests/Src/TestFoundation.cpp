@@ -432,6 +432,18 @@ tTestUnit(Map)
 	PrintMapStats(mymap);
 	for (auto pair : mymap)
 		tPrintf("mymap KV: [%s] [%s]\n", pair.Key().Pod(), pair.Value().Pod());
+
+	tMap<int, uint64> intMap;
+	intMap[4] = 12;
+	intMap[33] = 23;
+	intMap[78] = 1718;
+	intMap[9] = 19;
+	tRequire(intMap[4] == 12);
+	tRequire(intMap[33] == 23);
+	tRequire(intMap[78] == 1718);
+	tRequire(intMap[9] == 19);
+	for (auto pair : intMap)
+		tPrintf("intmap KV: [%d] [%d]\n", pair.Key(), pair.Value());
 }
 
 
