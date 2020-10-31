@@ -183,13 +183,15 @@ public:
 		const Iter operator--(int)																						{ Iter curr(*this); Prev(); return curr; }
 		const Iter operator++()																							{ Next(); return *this; }
 		const Iter operator--()																							{ Prev(); return *this; }
-		const Iter operator+(int offset) const																			{ Iter i = *this; while (offset--) i.Next(); return i; }
-		const Iter operator-(int offset) const																			{ Iter i = *this; while (offset--) i.Prev(); return i; }
+		const Iter operator+(int offset) const																			{ tAssert(offset >= 0); Iter i = *this; while (offset--) i.Next(); return i; }
+		const Iter operator-(int offset) const																			{ tAssert(offset >= 0); Iter i = *this; while (offset--) i.Prev(); return i; }
+		Iter& operator+=(int offset)																					{ tAssert(offset >= 0); while (offset--) Next(); return *this; }
+		Iter& operator-=(int offset)																					{ tAssert(offset >= 0); while (offset--) Prev(); return *this; }
 		bool operator==(const Iter& i) const																			{ return (Node == i.Node) && (List == i.List); }
 		bool operator!=(const Iter& i) const																			{ return (Node != i.Node) || (List != i.List); }
 
 		bool IsValid() const																							{ return Node ? true : false; }
-		void Claer()																									{ Node = nullptr; List = nullptr; }
+		void Clear()																									{ Node = nullptr; List = nullptr; }
 		void Next()																										{ if (Node) Node = Node->Next(); }
 		void Prev()																										{ if (Node) Node = Node->Prev(); }
 
@@ -234,8 +236,11 @@ public:
 	bool IsEmpty()	const																								{ return Nodes.IsEmpty(); }
 	bool Owns() const																									{ return (Mode == tListMode::ListOwns); }
 
-	Iter begin() const										/* For range-based iteration supported by C++11. */			{ return Head(); }
-	Iter end() const										/* For range-based iteration supported by C++11. */			{ return Iter(nullptr, this); }
+	// For range-based iteration supported in C++11. It worth noting that ++Iter must return a value that matches
+	// whatever end() returns here. That is != must return false when comparing the final ++Iter next call with
+	// what is returned by end(). That is why we return an Iter with a null Node but a _valid_ List pointer.
+	Iter begin() const																									{ return Head(); }
+	Iter end() const																									{ return Iter(nullptr, this); }
 
 	const T& operator[](const Iter& iter) const																			{ tAssert(iter.IsValid() && (iter.List == this)); return *iter.Node->Object; }
 	T& operator[](const Iter& iter)																						{ tAssert(iter.IsValid() && (iter.List == this)); return *((T*)iter.Node->Object); }

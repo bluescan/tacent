@@ -6,6 +6,9 @@
 // time for insertions and value retrievals. The hash table automatically grows when a threshold percentage of the hash
 // table is used (defaulting to 60%). Keys are unique -- the last value assigned to a key is the one stored in the tMap.
 //
+// You may iterate through a tMap to retrieve all keys and values. Range-based for loops are supported. Note that this
+// is slightly less efficient than iterating through a tList though, as empty nodes in the hash table are visited.
+//
 // Copyright (c) 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
@@ -38,7 +41,7 @@ public:
 	float GetPercentFull() const																						{ return float(HashTableEntryCount)/float(HashTableSize); }
 
 private:
-	/*template<typename KK, typename VV> */struct Pair
+	struct Pair
 	{
 		Pair(const Pair& pair)																							: Key(pair.Key), Value(pair.Value) { }
 		Pair(const K& key)																								: Key(key), Value() { }
@@ -65,81 +68,38 @@ public:
 		Iter()																											: Map(nullptr), TableIndex(-1), PairIter() { }
 		Iter(const Iter& src)																							: Map(src.Map), TableIndex(src.TableIndex), PairIter(src.PairIter) { }
 
-		// Iterators may be dereferenced to get to the value.
-		V& operator*() const																							{ return PairIter->Value; }
-		V* operator->() const																							{ return &PairIter->Value; }
-		operator bool() const																							{ return PairIter.IsValid(); }
-
-		// Iterators may be treated as pointers to the value.
-//		operator V*()																									{ return &Value(); }
-		operator const V*() const																						{ return &Value(); }
-		Iter& operator=(const Iter& i)																					{ if (this != &i) { Map = i.Map; TableIndex = i.TableIndex; PairIter = i.PairIter; } return *this; }
-
-		// Use ++iter instead of iter++ when possible.
-		const Iter operator++(int)																						{ Iter curr(*this); Next(); return curr; }
-		const Iter operator--(int)																						{ Iter curr(*this); Prev(); return curr; }
-		const Iter operator++()																							{ Next(); return *this; }
-		const Iter operator--()																							{ Prev(); return *this; }
-		const Iter operator+(int offset) const																			{ Iter i = *this; while (offset--) i.Next(); return i; }
-		const Iter operator-(int offset) const																			{ Iter i = *this; while (offset--) i.Prev(); return i; }
-		bool operator==(const Iter& i) const																			{ return (PairIter == i.PairIter) && (Map == i.Map); }
-		bool operator!=(const Iter& i) const																			{ return (PairIter != i.PairIter) || (Map != i.Map); }
-
 		bool IsValid() const																							{ return PairIter.IsValid(); }
 		void Clear()																									{ Map = nullptr; TableIndex = -1; PairIter.Clear(); }
-		void Next()
-		{
-			// If we can just advance the PairIter, we're done.
-			PairIter++;
-			if (PairIter.IsValid())
-				return;
-
-			// Try next hash table entries until we either find a non-empty one or reach the end of the table.
-			while (++TableIndex < Map->HashTableSize)
-			{
-				HashTableItem& item = Map->HashTable[TableIndex];
-				if (!item.Pairs.IsEmpty())
-				{
-					PairIter = item.Pairs.First();
-					return;
-				}
-			};
-		}
-
-		void Prev();
+		void Next();
 		V& Value() const																								{ return PairIter->Value; }
 		K& Key() const																									{ return PairIter->Key; }
 
+		Iter& operator*()																								{ return *this; }
+		Iter* operator->() const																						{ return this; }
+		operator bool() const																							{ return PairIter.IsValid(); }
+		Iter& operator=(const Iter& i)																					{ if (this != &i) { Map = i.Map; TableIndex = i.TableIndex; PairIter = i.PairIter; } return *this; }
+
+		// Use ++iter instead of iter++ when possible. Since the hash table is unordered, there's no point in offering
+		// both forward and backwards iteration. Therefore there's only First, Next, operator++ etc.
+		const Iter operator++(int)																						{ Iter curr(*this); Next(); return curr; }
+		const Iter operator++()																							{ Next(); return *this; }
+		const Iter operator+(int offset) const																			{ Iter i = *this; while (offset--) i.Next(); return i; }
+		Iter& operator+=(int offset)																					{ tAssert(offset >= 0); while (offset--) Next(); return *this; }
+		bool operator==(const Iter& i) const																			{ return (Map == i.Map) && (TableIndex == i.TableIndex) && (PairIter == i.PairIter); }
+		bool operator!=(const Iter& i) const																			{ return (Map != i.Map) || (TableIndex != i.TableIndex) || (PairIter != i.PairIter); }
+
 	private:
-//		friend class tMap<K,V>;
 		friend class tMap;
-		Iter(
-			const tMap<K,V>* map,
-			int tableIndex,
-//			tItList<Pair<K,V>>::Iter iter)		
-			typename tItList<Pair>::Iter iter)		
-											: Map(map), TableIndex(tableIndex), PairIter(iter) { }
+		Iter(const tMap<K,V>* map, int tableIndex, typename tItList<Pair>::Iter iter)									: Map(map), TableIndex(tableIndex), PairIter(iter) { }
 		const tMap<K,V>* Map;
 		int TableIndex;
-//		tItList<tMap<K,V>::Pair>::Iter pPairIter;
 		typename tItList<Pair>::Iter PairIter;
-		// pPairIterww::Iter ieeei;
 	};
 
 public:
-	Iter First() const
-	{
-		for (int tableIndex = 0; tableIndex < HashTableSize; tableIndex++)
-		{
-			HashTableItem& item = HashTable[tableIndex];
-			if (!item.Pairs.IsEmpty())
-				return Iter(this, tableIndex, item.Pairs.First());
-		}
-		return Iter();
-	}
+	Iter First() const;
 	Iter begin() const										/* For range-based iteration supported by C++11. */			{ return First(); }
 	Iter end() const										/* For range-based iteration supported by C++11. */			{ return Iter(this, -1, tItList<Pair>::Iter()); }
-	//Iter end() const										/* For range-based iteration supported by C++11. */			{ return Iter(this, -1, tItList<Pair<K,V>>::Iter()); }
 };
 
 
@@ -180,7 +140,6 @@ template<typename K, typename V> inline V& tMap<K,V>::GetInsert(const K& key)
 
 	HashTableItem& item = HashTable[hash];
 	for (Pair& pair : item.Pairs)
-//	for (Pair<K,V>& pair : item.Pairs)
 	{
 		if (pair.Key == key)
 			return pair.Value;
@@ -190,7 +149,6 @@ template<typename K, typename V> inline V& tMap<K,V>::GetInsert(const K& key)
 		HashTableEntryCount++;
 	NumItems++;
 	return item.Pairs.Append(new Pair(key))->Value;
-//	return item.Pairs.Append(new Pair<K,V>(key))->Value;
 }
 
 
@@ -234,7 +192,6 @@ template<typename K, typename V> inline void tMap<K,V>::Rekey(int newSize)
 	for (int i = 0; i < HashTableSize; i++)
 	{
 		for (Pair& pair : HashTable[i].Pairs)
-//		for (Pair<K,V>& pair : HashTable[i].Pairs)
 		{
 			uint32 hashNew = uint32(pair.Key);
 			int hashBitsNew = tMath::tLog2(newSize);
@@ -242,7 +199,6 @@ template<typename K, typename V> inline void tMap<K,V>::Rekey(int newSize)
 
 			tAssert(hashNew < newSize);
 			newTable[hashNew].Pairs.Append(new Pair(pair));
-//			newTable[hashNew].Pairs.Append(new Pair<K,V>(pair));
 		}
 		HashTable[i].Pairs.Clear();
 	}
@@ -250,4 +206,42 @@ template<typename K, typename V> inline void tMap<K,V>::Rekey(int newSize)
 	HashTableSize = newSize;
 	delete[] HashTable;
 	HashTable = newTable;
+}
+
+
+template<typename K, typename V> inline void tMap<K,V>::Iter::Next()
+{
+	// If we can just advance the PairIter, we're done.
+	PairIter++;
+	if (PairIter.IsValid())
+		return;
+
+	// Try next hash table entries until we either find a non-empty one or reach the end of the table.
+	while (++TableIndex < Map->HashTableSize)
+	{
+		HashTableItem& item = Map->HashTable[TableIndex];
+		if (!item.Pairs.IsEmpty())
+		{
+			PairIter = item.Pairs.First();
+			return;
+		}
+	};
+
+	// It is vital to have 'this' be the same as end() here, as ranged-based for loops must return false when
+	// comparing the last Next() with end() using != operator. This is why must set the index to -1. To  make
+	// sure it matches end().
+	TableIndex = -1;
+	PairIter = tItList<Pair>::Iter();	
+}
+
+
+template<typename K, typename V> inline typename tMap<K,V>::Iter tMap<K,V>::First() const
+{
+	for (int tableIndex = 0; tableIndex < HashTableSize; tableIndex++)
+	{
+		HashTableItem& item = HashTable[tableIndex];
+		if (!item.Pairs.IsEmpty())
+			return Iter(this, tableIndex, item.Pairs.First());
+	}
+	return Iter(this, -1, tItList<Pair>::Iter());
 }
