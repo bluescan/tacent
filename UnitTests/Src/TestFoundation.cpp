@@ -378,16 +378,26 @@ tTestUnit(Map)
 	nameDescMap["john"] = "John cannot ego-surf.";
 	tRequire(nameDescMap.GetNumItems() == 4);
 
+	for (auto iter = nameDescMap.First(); iter; ++iter)
+		tPrintf("tMap Val: %s\n", iter.Value().Pod());
+
+	// Test range-based iteration.
+///	for (typename tMap<tString, tString>::Iter pair : nameDescMap)
+
+//	for (auto pair : nameDescMap)
+//	{
+////		tPrintf("Range-based %s\n", pair.Value().Pod());
+//		tPrintf("Range-based %s\n", pair.Pod());
+//	}
+
 	bool fredRemoved = nameDescMap.Remove("fred");
 	tRequire(fredRemoved);
 	tRequire(nameDescMap.GetNumItems() == 3);
 
 	tString joanDesc = nameDescMap.GetInsert("joan");
-	tPrintf("joan: %s\n", joanDesc.Pod());
 	tRequire(joanDesc == "Joan is sly and sad.");
 
 	tString johnDesc = nameDescMap.GetInsert("john");
-	tPrintf("john: %s\n", johnDesc.Pod());
 	tRequire(johnDesc == "John cannot ego-surf.");
 }
 

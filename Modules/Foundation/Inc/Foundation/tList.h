@@ -189,7 +189,7 @@ public:
 		bool operator!=(const Iter& i) const																			{ return (Node != i.Node) || (List != i.List); }
 
 		bool IsValid() const																							{ return Node ? true : false; }
-		void Invalidate()																								{ Node = nullptr; List = nullptr; }
+		void Claer()																									{ Node = nullptr; List = nullptr; }
 		void Next()																										{ if (Node) Node = Node->Next(); }
 		void Prev()																										{ if (Node) Node = Node->Prev(); }
 
@@ -380,16 +380,15 @@ template<typename T> inline T* tList<T>::Drop()
 	if (!TailItem)
 		return nullptr;
 
-	T* t = TailItem;
-
-	TailItem = TailItem->PrevItem;
+	T* dropped = TailItem;
+	TailItem = (T*)TailItem->PrevItem;
 	if (!TailItem)
 		HeadItem = nullptr;
 	else
 		TailItem->NextItem = nullptr;
 
 	ItemCount--;
-	return t;
+	return dropped;
 }
 
 

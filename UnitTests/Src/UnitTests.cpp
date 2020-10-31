@@ -154,8 +154,8 @@ int main(int argc, char** argv)
 	// tTest(ListExtra);
 	// tTest(Image);
 	// tTest(CmdLine);
-	// tTest(Map);
-	tTest(Print);
+	tTest(Map);
+	// tTest(Print);
 
 	#endif
 

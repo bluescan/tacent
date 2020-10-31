@@ -20,6 +20,7 @@
 #include "Foundation/tAssert.h"
 #include "Foundation/tPlatform.h"
 #include "Foundation/tFundamentals.h"
+#include "Foundation/tList.h"
 
 
 template<typename K, typename V> class tMap
@@ -28,34 +29,117 @@ public:
 	tMap(int initialLog2Size = 8, float rehashPercent = 0.6f);
 	~tMap();
 
+	// These are fast with expected O(1) running time.
 	V& GetInsert(const K&);
 	V& operator[](const K&);
 	bool Remove(const K&);
-
-	// @todo Add interators with the caveat that they are slow.
-
 	int GetNumItems() const																								{ return NumItems; }
 	int GetHashTableSize() const																						{ return HashTableSize; }
 	float GetPercentFull() const																						{ return float(HashTableEntryCount)/float(HashTableSize); }
 
 private:
-	template<typename KK, typename VV> struct Pair
+	/*template<typename KK, typename VV> */struct Pair
 	{
 		Pair(const Pair& pair)																							: Key(pair.Key), Value(pair.Value) { }
-		Pair(const KK& key)																								: Key(key), Value() { }
-		KK Key; VV Value;
+		Pair(const K& key)																								: Key(key), Value() { }
+		K Key; V Value;
 	};
 	struct HashTableItem
 	{
-		tItList<Pair<K,V>> Pairs;
+		tItList<Pair> Pairs;
 	};
+	void Rekey(int newSize);
 	int NumItems;
 	int HashTableSize;
 	int HashTableEntryCount;
 	HashTableItem* HashTable;
 	float RehashPercent;
 
-	void Rekey(int newSize);
+public:
+	// If needed you can use this iterator to query every key and/or value in the tMap. Note that the keys and values
+	// are stored unordered. Further, since not all hash table entries will have valid data, it is slightly less
+	// efficient to iterate through a tMap vs interating through, for example, a tItList, since empties must be skipped.
+	class Iter
+	{
+	public:
+		Iter()																											: Map(nullptr), TableIndex(-1), PairIter() { }
+		Iter(const Iter& src)																							: Map(src.Map), TableIndex(src.TableIndex), PairIter(src.PairIter) { }
+
+		// Iterators may be dereferenced to get to the value.
+		V& operator*() const																							{ return PairIter->Value; }
+		V* operator->() const																							{ return &PairIter->Value; }
+		operator bool() const																							{ return PairIter.IsValid(); }
+
+		// Iterators may be treated as pointers to the value.
+//		operator V*()																									{ return &Value(); }
+		operator const V*() const																						{ return &Value(); }
+		Iter& operator=(const Iter& i)																					{ if (this != &i) { Map = i.Map; TableIndex = i.TableIndex; PairIter = i.PairIter; } return *this; }
+
+		// Use ++iter instead of iter++ when possible.
+		const Iter operator++(int)																						{ Iter curr(*this); Next(); return curr; }
+		const Iter operator--(int)																						{ Iter curr(*this); Prev(); return curr; }
+		const Iter operator++()																							{ Next(); return *this; }
+		const Iter operator--()																							{ Prev(); return *this; }
+		const Iter operator+(int offset) const																			{ Iter i = *this; while (offset--) i.Next(); return i; }
+		const Iter operator-(int offset) const																			{ Iter i = *this; while (offset--) i.Prev(); return i; }
+		bool operator==(const Iter& i) const																			{ return (PairIter == i.PairIter) && (Map == i.Map); }
+		bool operator!=(const Iter& i) const																			{ return (PairIter != i.PairIter) || (Map != i.Map); }
+
+		bool IsValid() const																							{ return PairIter.IsValid(); }
+		void Clear()																									{ Map = nullptr; TableIndex = -1; PairIter.Clear(); }
+		void Next()
+		{
+			// If we can just advance the PairIter, we're done.
+			PairIter++;
+			if (PairIter.IsValid())
+				return;
+
+			// Try next hash table entries until we either find a non-empty one or reach the end of the table.
+			while (++TableIndex < Map->HashTableSize)
+			{
+				HashTableItem& item = Map->HashTable[TableIndex];
+				if (!item.Pairs.IsEmpty())
+				{
+					PairIter = item.Pairs.First();
+					return;
+				}
+			};
+		}
+
+		void Prev();
+		V& Value() const																								{ return PairIter->Value; }
+		K& Key() const																									{ return PairIter->Key; }
+
+	private:
+//		friend class tMap<K,V>;
+		friend class tMap;
+		Iter(
+			const tMap<K,V>* map,
+			int tableIndex,
+//			tItList<Pair<K,V>>::Iter iter)		
+			typename tItList<Pair>::Iter iter)		
+											: Map(map), TableIndex(tableIndex), PairIter(iter) { }
+		const tMap<K,V>* Map;
+		int TableIndex;
+//		tItList<tMap<K,V>::Pair>::Iter pPairIter;
+		typename tItList<Pair>::Iter PairIter;
+		// pPairIterww::Iter ieeei;
+	};
+
+public:
+	Iter First() const
+	{
+		for (int tableIndex = 0; tableIndex < HashTableSize; tableIndex++)
+		{
+			HashTableItem& item = HashTable[tableIndex];
+			if (!item.Pairs.IsEmpty())
+				return Iter(this, tableIndex, item.Pairs.First());
+		}
+		return Iter();
+	}
+	Iter begin() const										/* For range-based iteration supported by C++11. */			{ return First(); }
+	Iter end() const										/* For range-based iteration supported by C++11. */			{ return Iter(this, -1, tItList<Pair>::Iter()); }
+	//Iter end() const										/* For range-based iteration supported by C++11. */			{ return Iter(this, -1, tItList<Pair<K,V>>::Iter()); }
 };
 
 
@@ -95,7 +179,8 @@ template<typename K, typename V> inline V& tMap<K,V>::GetInsert(const K& key)
 	tAssert(hash < HashTableSize);
 
 	HashTableItem& item = HashTable[hash];
-	for (Pair<K,V>& pair : item.Pairs)
+	for (Pair& pair : item.Pairs)
+//	for (Pair<K,V>& pair : item.Pairs)
 	{
 		if (pair.Key == key)
 			return pair.Value;
@@ -104,7 +189,8 @@ template<typename K, typename V> inline V& tMap<K,V>::GetInsert(const K& key)
 	if (item.Pairs.IsEmpty())
 		HashTableEntryCount++;
 	NumItems++;
-	return item.Pairs.Append(new Pair<K,V>(key))->Value;
+	return item.Pairs.Append(new Pair(key))->Value;
+//	return item.Pairs.Append(new Pair<K,V>(key))->Value;
 }
 
 
@@ -147,14 +233,16 @@ template<typename K, typename V> inline void tMap<K,V>::Rekey(int newSize)
 	// Loop throught existing keys and rekey them into the new table
 	for (int i = 0; i < HashTableSize; i++)
 	{
-		for (Pair<K,V>& pair : HashTable[i].Pairs)
+		for (Pair& pair : HashTable[i].Pairs)
+//		for (Pair<K,V>& pair : HashTable[i].Pairs)
 		{
 			uint32 hashNew = uint32(pair.Key);
 			int hashBitsNew = tMath::tLog2(newSize);
 			hashNew = hashNew & (0xFFFFFFFF >> (32-hashBitsNew));
 
 			tAssert(hashNew < newSize);
-			newTable[hashNew].Pairs.Append(new Pair<K,V>(pair));
+			newTable[hashNew].Pairs.Append(new Pair(pair));
+//			newTable[hashNew].Pairs.Append(new Pair<K,V>(pair));
 		}
 		HashTable[i].Pairs.Clear();
 	}
