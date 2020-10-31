@@ -29,7 +29,8 @@
 template<typename K, typename V> class tMap
 {
 public:
-	tMap(int initialLog2Size = 8, float rehashPercent = 0.6f);
+	// Set therekey percent > 1.0f to prevent all rekeying / resizing.
+	tMap(int initialLog2Size = 8, float rekeyPercent = 0.6f);
 	~tMap();
 
 	// These are fast with expected O(1) running time.
@@ -37,8 +38,12 @@ public:
 	V& operator[](const K&);
 	bool Remove(const K&);
 	int GetNumItems() const																								{ return NumItems; }
+
+	// These are mostly for debugging or checking performance of the hash table.
 	int GetHashTableSize() const																						{ return HashTableSize; }
-	float GetPercentFull() const																						{ return float(HashTableEntryCount)/float(HashTableSize); }
+	int GetHashTableEntryCount() const																					{ return HashTableEntryCount; }
+	int GetHashTableCollisions() const																					{ return NumItems - HashTableEntryCount; }
+	float GetHashTablePercent() const																					{ return float(HashTableEntryCount)/float(HashTableSize); }
 
 private:
 	struct Pair
@@ -56,7 +61,7 @@ private:
 	int HashTableSize;
 	int HashTableEntryCount;
 	HashTableItem* HashTable;
-	float RehashPercent;
+	float RekeyPercent;
 
 public:
 	// If needed you can use this iterator to query every key and/or value in the tMap. Note that the keys and values
@@ -106,15 +111,15 @@ public:
 // Implementation below this line.
 
 
-template<typename K, typename V> inline tMap<K,V>::tMap(int initialLog2Size, float rehashPercent)
+template<typename K, typename V> inline tMap<K,V>::tMap(int initialLog2Size, float rekeyPercent)
 {
 	NumItems = 0;
 
 	tAssert(initialLog2Size >= 0);
 	HashTableSize = 1 << initialLog2Size;
 
-	tAssert((rehashPercent >= 0.0f) && (rehashPercent <= 1.0f));
-	RehashPercent = rehashPercent;
+	tAssert(rekeyPercent >= 0.0f);
+	RekeyPercent = rekeyPercent;
 
 	HashTableEntryCount = 0;
 	HashTable = new HashTableItem[HashTableSize];
@@ -130,7 +135,7 @@ template<typename K, typename V> inline tMap<K,V>::~tMap()
 template<typename K, typename V> inline V& tMap<K,V>::GetInsert(const K& key)
 {
 	// Do we need to grow the hash table?
-	if (GetPercentFull() >= RehashPercent)
+	if (GetHashTablePercent() >= RekeyPercent)
 		Rekey(2*HashTableSize);
 
 	uint32 hash = uint32(key);

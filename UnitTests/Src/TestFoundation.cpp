@@ -363,6 +363,12 @@ tTestUnit(ListExtra)
 }
 
 
+static void PrintMapStats(const tMap<tString, tString>& mp)
+{
+	tPrintf("NumItems HTsize HTcount percent coll: %02d %02d %02d %04.1f%% %02d\n", mp.GetNumItems(), mp.GetHashTableSize(), mp.GetHashTableEntryCount(), 100.0f*mp.GetHashTablePercent(), mp.GetHashTableCollisions());
+}
+
+
 tTestUnit(Map)
 {
 	tString testString("The real string");
@@ -395,6 +401,37 @@ tTestUnit(Map)
 
 	tString johnDesc = nameDescMap.GetInsert("john");
 	tRequire(johnDesc == "John cannot ego-surf.");
+
+	tPrintf("Tests that require the tMap to rekey itself (grow)\n");
+	// tMap<tString, tString> mymap(1, 2.0f);		// Tablesize 2, no rekey.
+	// tMap<tString, tString> mymap(2, 2.0f);		// Tablesize 4, no rekey.
+	// tMap<tString, tString> mymap(1, 0.25f);		// Tablesize 2, aggressive rekey.
+	tMap<tString, tString> mymap(1, 0.9f);			// Tablesize 2, conservative rekey.
+	PrintMapStats(mymap);
+	tPrintf("\n");
+
+	mymap["KAhy"] = "VA";
+	PrintMapStats(mymap);
+
+	mymap["KBrf"] = "VB";
+	PrintMapStats(mymap);
+
+	mymap["KCcd"] = "VC";
+	PrintMapStats(mymap);
+
+	mymap["KDjj"] = "VD";
+	PrintMapStats(mymap);
+
+	mymap["KE"] = "VE";
+	PrintMapStats(mymap);
+
+	mymap["KF"] = "VF";
+	PrintMapStats(mymap);
+
+	mymap["KG"] = "VG";
+	PrintMapStats(mymap);
+	for (auto pair : mymap)
+		tPrintf("mymap KV: [%s] [%s]\n", pair.Key().Pod(), pair.Value().Pod());
 }
 
 
