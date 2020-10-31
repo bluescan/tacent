@@ -99,7 +99,7 @@ public:
 public:
 	Iter First() const;
 	Iter begin() const										/* For range-based iteration supported by C++11. */			{ return First(); }
-	Iter end() const										/* For range-based iteration supported by C++11. */			{ return Iter(this, -1, tItList<Pair>::Iter()); }
+	Iter end() const										/* For range-based iteration supported by C++11. */			{ return Iter(this, -1, typename tItList<Pair>::Iter()); }
 };
 
 
@@ -231,7 +231,7 @@ template<typename K, typename V> inline void tMap<K,V>::Iter::Next()
 	// comparing the last Next() with end() using != operator. This is why must set the index to -1. To  make
 	// sure it matches end().
 	TableIndex = -1;
-	PairIter = tItList<Pair>::Iter();	
+	PairIter = typename tItList<Pair>::Iter();	
 }
 
 
@@ -243,5 +243,5 @@ template<typename K, typename V> inline typename tMap<K,V>::Iter tMap<K,V>::Firs
 		if (!item.Pairs.IsEmpty())
 			return Iter(this, tableIndex, item.Pairs.First());
 	}
-	return Iter(this, -1, tItList<Pair>::Iter());
+	return Iter(this, -1, typename tItList<Pair>::Iter());
 }
