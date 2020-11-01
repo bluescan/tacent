@@ -1600,8 +1600,8 @@ int tWorld::GenerateLodGroupsFromModelNamingConvention()
 		// fine for non-lod names. We check if the end of the name contains "LOD_n", where n is a percent. If it isn't
 		// then it's a normal model and we have nothing to do here.
 		tString baseName = model->Name;
-		tString lodThreshold = baseName.ExtractLastWord('_');
-		tString lodTag = baseName.ExtractLastWord('_');
+		tString lodThreshold = baseName.ExtractRight('_');
+		tString lodTag = baseName.ExtractRight('_');
 
 		lodTag.LowCase();
 		if (lodTag != "lod")

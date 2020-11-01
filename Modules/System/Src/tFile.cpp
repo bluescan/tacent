@@ -740,7 +740,7 @@ tString tSystem::tGetSimplifiedPath(const tString& srcPath, bool forceTreatAsDir
 	tString simp;
 	for (int i = 0; i < numUps; i++)
 	{
-		simp += path.ExtractFirstWord('|');
+		simp += path.ExtractLeft('|');
 		simp = tGetUpDir(simp);
 	}
 

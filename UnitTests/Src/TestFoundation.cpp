@@ -721,8 +721,8 @@ tTestUnit(String)
 	tRequire(tgt == "1234" && src == "abcabcd12345abcdef123456");
 
 	tString aa("aa");
-	tString exaa = aa.ExtractFirstWord('a');
-	tPrintf("\n\naa extract first word to a: Extracted:###%s###  Left:###%s###\n", exaa.ConstText(), aa.ConstText());
+	tString exaa = aa.ExtractLeft('a');
+	tPrintf("\n\naa extract left word to a: Extracted:###%s###  Left:###%s###\n", exaa.ConstText(), aa.ConstText());
 
 	tString sa1 = "A";
 	tString sa2 = "A";

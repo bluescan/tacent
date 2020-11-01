@@ -67,19 +67,19 @@ struct tString
 	tString Suffix(const char marker) const;				// Same as Prefix but chars after last marker.
 	
 	// Returns a tString of the first count chars. If there are not enough characters, an empty string is returned.
-	tString Prefix(int count) const;						// Returns count characters or empty string if count not available
-	tString Suffix(int count) const;						// Same as Prefix but returns characters after count.
+//	tString Prefix(int count) const;						// Returns count characters or empty string if count not available
+//	tString Suffix(int count) const;						// Same as Prefix but returns characters after count.
 	tString Left(int count) const;							// Like Prefix but will return what's available if count > length
 	tString Right(int count) const;							// Same as Left but returns last count chars (differs from Suffix, counts from right)
 	tString Mid(int start, int count) const;				// Returns count chars from start, or what's available if start+count > length.
 
 	// Returns a tString of the first count chars. Removes these from the current string. If the count is greater than
 	// the string length nothing is extracted.
-	tString ExtractPrefix(int count);
+//	tString ExtractPrefix(int count);
 
 	// Returns a tString of the last count chars. Removes these from the current string. If the count is greater than
 	// the string length nothing is extracted.  ExtractSuffix is inconsistent with Suffix (Suffix counts from the start).
-	tString ExtractSuffix(int count);
+//	tString ExtractSuffix(int count);
 
 	// Returns a tString of the first count chars. Removes these from the current string. If count > length then what's
 	// available is extracted.
@@ -95,12 +95,11 @@ struct tString
 
 	// Extracts first word up to and not including first divider encountered. The tString is left with the remainder,
 	// not including the divider. If divider isn't found, the entire string is returned and the tString is left empty.
-	tString ExtractFirstWord(const char divider = ' ');
+	tString ExtractLeft(const char divider = ' ');
 
 	// Extracts word after last divider. The tString is left with the remainder, not including the divider. If the
 	// divider isn't found, the entire string is returned and the tString is left empty.
-	tString ExtractLastWord(const char divider = ' ');
-
+	tString ExtractRight(const char divider = ' ');
 
 	char* Text()																										{ return TextData; }
 	const char* ConstText() const																						{ return TextData; }

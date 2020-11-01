@@ -66,7 +66,7 @@ tString tString::Suffix(const char c) const
 	return buf;
 }
 
-
+/*
 tString tString::Prefix(int i) const
 {
 	if (i > Length())
@@ -77,8 +77,9 @@ tString tString::Prefix(int i) const
 	tStd::tStrncpy(buf.TextData, TextData, i);
 	return buf;
 }
+*/
 
-
+/*
 tString tString::Suffix(int i) const
 {
 	int length = Length();
@@ -90,8 +91,9 @@ tString tString::Suffix(int i) const
 	tStd::tStrncpy(buf.TextData, TextData + i + 1, length - 1 - i );
 	return buf;
 }
+*/
 
-
+/*
 tString tString::ExtractPrefix(int i)
 {
 	tAssert(i >= 0)
@@ -150,7 +152,7 @@ tString tString::ExtractSuffix(int i)
 
 	return suffix;
 }
-
+*/
 
 tString tString::Left(int count) const
 {
@@ -303,7 +305,7 @@ tString tString::ExtractMid(int start, int count)
 }
 
 
-tString tString::ExtractFirstWord(const char divider)
+tString tString::ExtractLeft(const char divider)
 {
 	int pos = FindChar(divider);
 	if (pos == -1)
@@ -331,7 +333,7 @@ tString tString::ExtractFirstWord(const char divider)
 }
 
 
-tString tString::ExtractLastWord(const char divider)
+tString tString::ExtractRight(const char divider)
 {
 	int pos = FindChar(divider, true);
 	if (pos == -1)
@@ -551,7 +553,7 @@ int tStd::tExplode(tList<tStringItem>& components, const tString& src, char divi
 	int startCount = components.GetNumItems();
 	while (source.FindChar(divider) != -1)
 	{
-		tString component = source.ExtractFirstWord(divider);
+		tString component = source.ExtractLeft(divider);
 		components.Append(new tStringItem(component));
 	}
 
