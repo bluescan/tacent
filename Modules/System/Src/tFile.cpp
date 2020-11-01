@@ -774,14 +774,14 @@ tString tSystem::tGetFileName(const tString& filename)
 {
 	tString retStr(filename);
 	retStr.Replace('\\', '/');
-	return retStr.Rightc('/');
+	return retStr.Right('/');
 }
 
 
 tString tSystem::tGetFileBaseName(const tString& filename)
 {
 	tString r = tGetFileName(filename);
-	return r.Leftc('.');
+	return r.Left('.');
 }
 
 

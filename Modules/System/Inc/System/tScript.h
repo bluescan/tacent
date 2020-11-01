@@ -92,7 +92,7 @@ public:
 
 	// Implicit casting to various types. They can be used instead of the GetAtom methods. Notice that some of the
 	// common math types, like vectors, are supported also.
-	operator tString() const																							{ if (IsAtom()) return GetAtomString(); else return tString(); }
+	operator tString() const																							{ if (IsAtom()) return GetAtomString(); else return GetExpressionString(); }
 	operator bool() const																								{ if (IsAtom()) return GetAtomBool(); else return false; }
 	operator int() const																								{ if (IsAtom()) return GetAtomInt(); else return 0; }
 	operator uint32() const																								{ if (IsAtom()) return GetAtomUint(); else return 0; }
@@ -339,7 +339,28 @@ private:
 // The following error objects may be thrown by script parsing functions.
 struct tScriptError : public tError
 {
-	tScriptError(const char* format, ...)																				: tError("tScript Module. ") { va_list marker; va_start(marker, format); tString msg; Message += tvsPrintf(msg, format, marker); }
-	tScriptError(const tString& m)																						: tError("tScript Module. ") { Message += m; }
+	tScriptError(const char* format, ...) :
+		tError("tScript Module. ")
+	{
+		va_list marker;
+		va_start(marker, format);
+		tString msg;
+		Message += tvsPrintf(msg, format, marker);
+	}
+
+	tScriptError(int lineNumber, const char* format, ...) :
+		tError("tScript Module. ")
+	{
+		va_list marker;
+		va_start(marker, format);
+		tString msg;
+		tvsPrintf(msg, format, marker);
+		if (lineNumber > 0)
+		{
+			tString line;
+			Message += tsPrintf(line, "Line %d. ", lineNumber);
+		}
+		Message += msg;
+	}
 	tScriptError()																										: tError("tScript Module.") { }
 };

@@ -36,7 +36,7 @@ tString::operator uint32() const
 }
 
 
-tString tString::Leftc(const char c) const
+tString tString::Left(const char c) const
 {
 	int pos = FindChar(c);
 	if (pos == -1)
@@ -51,7 +51,7 @@ tString tString::Leftc(const char c) const
 }
 
 
-tString tString::Rightc(const char c) const
+tString tString::Right(const char c) const
 {
 	int pos = FindChar(c, true);
 	if (pos == -1)
@@ -68,7 +68,7 @@ tString tString::Rightc(const char c) const
 }
 
 
-tString tString::Lefti(int count) const
+tString tString::Left(int count) const
 {
 	if(count <= 0)
 		return tString();
@@ -83,7 +83,7 @@ tString tString::Lefti(int count) const
 }
 
 
-tString tString::Righti(int count) const
+tString tString::Right(int count) const
 {
 	if (count <= 0)
 		return tString();

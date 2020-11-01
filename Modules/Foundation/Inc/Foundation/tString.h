@@ -63,10 +63,10 @@ struct tString
 	// Current string data is lost and enough space is reserved for length characters. The reserved memory is zeroed.
 	void Reserve(int length);
 
-	tString Leftc(const char marker = ' ') const;			// Returns a tString of the characters before the first marker. Returns the entire string if marker was not found.
-	tString Rightc(const char marker = ' ') const;			// Same as Left but chars after last marker.
-	tString Lefti(int count) const;							// Returns a tString of the first count chars. Return what's available if count > length.
-	tString Righti(int count) const;							// Same as Left but returns last count chars.
+	tString Left(const char marker = ' ') const;			// Returns a tString of the characters before the first marker. Returns the entire string if marker was not found.
+	tString Right(const char marker = ' ') const;			// Same as Left but chars after last marker.
+	tString Left(int count) const;							// Returns a tString of the first count chars. Return what's available if count > length.
+	tString Right(int count) const;							// Same as Left but returns last count chars.
 	tString Mid(int start, int count) const;				// Returns count chars from start (inclusive), or what's available if start+count > length.
 
 	// Extracts first word up to and not including first divider encountered. The tString is left with the remainder,

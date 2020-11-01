@@ -111,7 +111,7 @@ tFileType tGetFileType(const tString& file);
 tFileType tGetFileTypeFromExtension(const tString& ext);
 
 // c:/Stuff/Mess.max to max
-inline tString tGetFileExtension(const tString& filename)																{ return filename.Rightc('.'); }
+inline tString tGetFileExtension(const tString& filename)																{ return filename.Right('.'); }
 
 // Uses working dir. Mess.max to c:/Stuff/Mess.max. This function always assumes filename is relative.
 tString tGetFileFullName(const tString& filename);

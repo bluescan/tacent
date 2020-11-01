@@ -545,12 +545,14 @@ tTestUnit(Script)
 		ws.Comp("SizeH", 40);
 		ws.Comp("FloatVal", 50.123456789f);
 		ws.Comp("DoubleVal", 60.111122223333444455556666777788889999);
+		ws.Comp("Vec3", tVector3(1.0f, 2.0f, 3.0f));
 	}
 
 	{
 		tScriptReader rs("TestData/WrittenConfig.cfg");
 		for (tExpression e = rs.First(); e.Valid(); e = e.Next())
 		{
+			tPrintf("ExpressionString: ___%s___\n", e.GetExpressionString().Pod());
 			switch (e.Command().Hash())
 			{
 				case tHash::tHashCT("PosX"):
@@ -582,6 +584,14 @@ tTestUnit(Script)
 					double readval = double(e.Item1());
 					tPrintf("Read double as: %f\n", readval);
 					tRequire(readval == 60.111122223333444455556666777788889999);
+					break;
+				}
+
+				case tHash::tHashCT("Vec3"):
+				{
+					tVector3 readval = tVector3(e.Item1());
+					tPrintf("Read double as: %v\n", readval);
+					tRequire(readval == tVector3(1.0f, 2.0f, 3.0f));
 					break;
 				}
 			}

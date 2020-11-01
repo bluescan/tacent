@@ -99,7 +99,7 @@ tExpression tExpression::Next() const
 			c++;
 
 			// Keep going until next quote.
-			c = strchr(c, '"');
+			c = tStd::tStrchr(c, '"');
 
 			if (!c)
 			{
@@ -117,7 +117,7 @@ tExpression tExpression::Next() const
 			c++;
 
 			// Keep going until closing bracket.
-			c = strchr(c, ')');
+			c = tStd::tStrchr(c, ')');
 
 			if (!c)
 			{
@@ -135,6 +135,8 @@ tExpression tExpression::Next() const
 			while ((c1 != ' ') && (c1 != '\t') && (c1 != '[') && (c1 != ']') && (c1 != '\0') && (c1 != ';') && (c1 != '<') && (c1 != '"'))
 			{
 				c++;
+
+				// Newline is also considered a terminator.
 				if (c1 == '\n')
 				{
 					lineNum++;
@@ -169,131 +171,66 @@ bool tExpression::IsAtom() const
 tString tExpression::GetExpressionString() const
 {
 	tAssert( IsValid() );
+	if (!ValueData)
+		return tString();
 
-	const char* c = ValueData;
-	int count = 0;
-	int lineNum = LineNumber;
+	if (IsAtom())
+		return GetAtomString();
 
-	if (!IsAtom())
-	{
-		// Skip the expression by counting square brackets till we are at zero again. Opening bracket adds 1, closing subtracts 1. Simple.
-		// @todo Slight bug here. If there is a string inside the expression with []s, they must match.
-		do
-		{
-			if (*c == '[')
-				count++;
+	tAssert(*ValueData == '[');
+	const char* start = ValueData;
+	const char* end = tStd::tStrchr(start, ']');
 
-			if (*c == ']')
-				count--;
-
-			if (*c == '\0')
-				break; // return tString(ValueData);
-
-			if (*c == '\r')
-				lineNum++;
-
-			c++;
-		}
-		while (count);
-	}
+	if (end)
+		end++;
 	else
-	{
-		// It's an atom. If it begins with a quote we must find where it ends.
-		if (*c == '"')
-		{
-			c++;
+		throw tScriptError(LineNumber, "Begin brcket found but no end bracket.");
 
-			// Keep going until next quote.
-			c = strchr(c, '"');
-
-			if (!c)
-			{
-				if (lineNum != -1)
-					throw tScriptError("Begin quote found but no end quote on line %d.", lineNum);
-				else
-					throw tScriptError("Begin quote found but no end quote.");
-			}
-			c++;
-		}
-
-		// If it begins with an open bracket (not a square bracket, a British bracket... a parenthesis in "American") we must find the closing bracket.
-		else if (*c == '(')
-		{
-			c++;
-
-			// Keep going until closing bracket.
-			c = strchr(c, ')');
-
-			if (!c)
-			{
-				if (lineNum != -1)
-					throw tScriptError("Opening bracket found but no closing bracket on line %d.", lineNum);
-				else
-					throw tScriptError("Opening bracket found but no closing bracket.");
-			}
-			c++;
-		}
-		else
-		{
-			// The ';' and '<' should also be terminators for the current argument so that EatWhiteAndComments will get everything.
-			char c1 = *c;
-			while ((c1 != ' ') && (c1 != '\t') && (c1 != '[') && (c1 != ']') && (c1 != '\0') && (c1 != ';') && (c1 != '<') && (c1 != '"'))
-			{
-				c++;
-				if (c1 == '\n')
-				{
-					lineNum++;
-					break;
-				}
-				c1 = *c;
-			}
-		}
-	}
-
-	int lineCount;
-	c = EatWhiteAndComments(c, lineCount);
-	lineNum += lineCount;
-
-	tString result(ValueData);
-	result = result.Lefti( int(c - ValueData) );
-
-	return result;
+	// Creates a tString full of '\0's.
+	tString estr(int(end - start));
+	tStd::tStrncpy(estr.Text(), start, int(end - start));
+	return estr;
 }
 
 
 tString tExpression::GetAtomString() const
 {
 	if (!IsAtom())
-	{
-		if (LineNumber)
-			throw tScriptError("Atom expected on line %d near: %s", LineNumber, GetContext().Pod());
-		else
-			throw tScriptError("Atom expected near: %s", GetContext().Pod());
-	}
+		throw tScriptError(LineNumber, "Atom expected near: %s", GetContext().Pod());
 
 	const char* start;
 	const char* end;
 	if (*ValueData == '"')
 	{
 		start = ValueData + 1;
-		end = strchr(start, '"');
+		end = tStd::tStrchr(start, '"');
 
 		// Keep going until next quote.
 		if (!end)
-		{
-			if (LineNumber)
-				throw tScriptError("Begin quote found but no end quote on line %d.", LineNumber);
-			else
-				throw tScriptError("Begin quote found but no end quote.");
-		}
+			throw tScriptError(LineNumber, "Begin quote found but no end quote.");
+	}
+
+	// It may be a tuple atom in form (a, b, c)
+	else if (*ValueData == '(')
+	{
+		start = ValueData;
+		end = tStd::tStrchr(start, ')');
+
+		// Keep going until next paren.
+		if (end)
+			end++;
+		else
+			throw tScriptError(LineNumber, "Begin paren found but no end paren.");
 	}
 	else
 	{
 		start = ValueData;
 		end = ValueData;
-
-		while ((*end != ' ') && (*end != '\t') && (*end != '[') && (*end != ']') && (*end != '\0') && (*end != '\r') && (*end != '\n'))
-			end++;
+		while
+		(
+			(*end != ' ') && (*end != '\t') && (*end != '[') && (*end != ']') && (*end != '\0') &&
+			(*end != '\r') && (*end != '\n') && (*end != ';') && (*end != '<') && (*end != '"')
+		) end++;
 	}
 
 	// Creates a tString full of '\0's.
@@ -307,35 +244,17 @@ tString tExpression::GetAtomString() const
 tString tExpression::GetAtomTupleString() const
 {
 	if (!IsAtom())
-	{
-		if (LineNumber)
-			throw tScriptError("Atom expected on line %d near: %s", LineNumber, GetContext().Pod());
-		else
-			throw tScriptError("Atom expected near: %s", GetContext().Pod());
-	}
-
-	const char* start = 0;
-	const char* end = 0;
+		throw tScriptError(LineNumber, "Atom expected near: %s", GetContext().Pod());
 
 	if (*ValueData != '(')
-	{
-		if (LineNumber)
-			throw tScriptError("Tuple atom expected on line %d near: %s", LineNumber, GetContext().Pod());
-		else
-			throw tScriptError("Tuple atom expected but not found.");
-	}
+		throw tScriptError(LineNumber, "Tuple atom expected near: %s", GetContext().Pod());
 
-	start = ValueData + 1;
-	end = strchr(start, ')');
+	const char* start = ValueData + 1;
+	const char* end = tStd::tStrchr(start, ')');
 
-	// If no end bracket was found we're in trouble.
+	// If no end paren was found we're in trouble.
 	if (!end)
-	{
-		if (LineNumber)
-			throw tScriptError("Opening bracket but no corresponding closing bracket on line %d.", LineNumber);
-		else
-			throw tScriptError("Opening bracket but no corresponding closing bracket.");
-	}
+		throw tScriptError(LineNumber, "Opening paren but no corresponding closing paren.");
 
 	// Creates a tString full of '\0's.
 	tString tuple(int(end - start));
@@ -514,7 +433,7 @@ const char* tExpression::EatWhiteAndComments(const char* c, int& lineCount)
 		else if (inMultiLineComment && (*c == '"'))
 			inString = !inString;
 
-		if ((*c == '\n'))
+		if (*c == '\n')
 			lineCount++;
 
 		c++;
@@ -1195,7 +1114,7 @@ void tFunScript::Load(const tString& fileName)
 		Expressions.Append(new tFunExtression(currChar));
 
 		// Get to the next expression.
-		currChar = strchr(currChar, '(');
+		currChar = tStd::tStrchr(currChar, '(');
 		int openCount = 0;
 		while (1)
 		{
