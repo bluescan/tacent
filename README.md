@@ -44,6 +44,7 @@ The dependencies are reasonable and the code should be easy to port to a differe
 The unit tests are a good reference. There may be more information in the comments [on the homepage](http://upperboundsinteractive.com/tacent.php).
 
 __Example: Image Loading__
+
 This is how you'd load a png file and save it to a targa. If the png has transparency, so will the tga:
 
 ```C++
@@ -88,12 +89,12 @@ tParse(argc, argv);
 
 ### Building
 
-The suggested build methods are to eitehr use VSCode with the CMake Tools extension or from the command line. Both methods work in either Windows or Linux. There are two build-types (AKA configurations) with Tacent: Debug and Release. If you want to build debug versions pass -DCMAKE_BUILD_TYPE=Debug to the cmake command.
+You may use VSCode with the CMake Tools extension or from the command line. Both methods work in Windows and Linux. There are two build-types (AKA configurations) with Tacent: Debug and Release. If you want to build debug versions pass -DCMAKE_BUILD_TYPE=Debug to the cmake command.
 
 The 'install' target creates a directory called 'Install' that has all the built libraries (.a or .lib), exported headers, cmake target files, and the unit test executable.
 
 #### Windows
-* Install Visual Studio Community 2019 (this gives you CMake, Ninja, and the MSVC compiler)
+* Install Visual Studio Community 2019
 * Install VS Code (optional)
 * Open 64bit Command Prompt for VS2019 and cd into the the 'tacent' directory. Do an out-of-source build.
 ```
@@ -104,8 +105,8 @@ ninja install
 ```    
 
 #### Ubuntu
-* Install ninja and either Clang or GCC
-* Install VS Code from the snap store (optional)
+* Install ninja, Clang and/or GCC
+* Install VS Code (optional)
 ```
 sudo apt-get install ninja-build
 ```
@@ -118,13 +119,13 @@ ninja install
 ```
 
 #### Visual Studio Code
-Using the VS Code editor along with the CMake Tools extension works surprisingly well. The editor is cross platform so you get the same experience on Ubuntu as well as Windows.
+Using the VS Code editor along with the CMake Tools extension works really well. The editor is cross platform so you get the same experience on Ubuntu as well as Windows.
 
 On either platform open up VSCode. Choose File->Open Folder and open the 'tacent' directory. It will automatically detect the CMakeFiles.txt files, suggest installing CMake Tools, ask permission to generate an intellisence database for code completion, etc.
 
 On Windows choose the 'Visual Studio 2019 Release -amd64' compiler kit (on the bottom info bar). The build-type to the left can be set to either Debug or Release (tacent ships with a cmake-variants.yaml file since that's one thing CMake Tools doesn't read from CMake). To the right select 'install' for the build type. Hit F7.
 
-The instructions for Ubuntu are nearly identical. The kit can be Clang 9 or 10 or GCC 9.3.
+The instructions for Ubuntu are nearly identical. The kit can be Clang 10 or GCC 9.3.
 
 
 ### Credits and Thanks
