@@ -5,7 +5,8 @@
 // You cannot stream (from cin etc) more than 512 chars into a string. This restriction is only for wacky << streaming.
 // For conversions of arbitrary types to tStrings, see tsPrint in the higher level System module.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2020 Stefan Wessels.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -62,24 +63,19 @@ struct tString
 	// Current string data is lost and enough space is reserved for length characters. The reserved memory is zeroed.
 	void Reserve(int length);
 
-	// Returns a tString of the characters before the first marker. Returns the entire string if marker was not found.
-	tString Prefix(const char marker) const;
-	tString Suffix(const char marker) const;				// Same as Prefix but chars after last marker.
-	
-	// Returns a tString of the first count chars. If there are not enough characters, an empty string is returned.
-//	tString Prefix(int count) const;						// Returns count characters or empty string if count not available
-//	tString Suffix(int count) const;						// Same as Prefix but returns characters after count.
-	tString Left(int count) const;							// Like Prefix but will return what's available if count > length
-	tString Right(int count) const;							// Same as Left but returns last count chars (differs from Suffix, counts from right)
-	tString Mid(int start, int count) const;				// Returns count chars from start, or what's available if start+count > length.
+	tString Leftc(const char marker = ' ') const;			// Returns a tString of the characters before the first marker. Returns the entire string if marker was not found.
+	tString Rightc(const char marker = ' ') const;			// Same as Left but chars after last marker.
+	tString Lefti(int count) const;							// Returns a tString of the first count chars. Return what's available if count > length.
+	tString Righti(int count) const;							// Same as Left but returns last count chars.
+	tString Mid(int start, int count) const;				// Returns count chars from start (inclusive), or what's available if start+count > length.
 
-	// Returns a tString of the first count chars. Removes these from the current string. If the count is greater than
-	// the string length nothing is extracted.
-//	tString ExtractPrefix(int count);
+	// Extracts first word up to and not including first divider encountered. The tString is left with the remainder,
+	// not including the divider. If divider isn't found, the entire string is returned and the tString is left empty.
+	tString ExtractLeft(const char divider = ' ');
 
-	// Returns a tString of the last count chars. Removes these from the current string. If the count is greater than
-	// the string length nothing is extracted.  ExtractSuffix is inconsistent with Suffix (Suffix counts from the start).
-//	tString ExtractSuffix(int count);
+	// Extracts word after last divider. The tString is left with the remainder, not including the divider. If the
+	// divider isn't found, the entire string is returned and the tString is left empty.
+	tString ExtractRight(const char divider = ' ');
 
 	// Returns a tString of the first count chars. Removes these from the current string. If count > length then what's
 	// available is extracted.
@@ -92,14 +88,6 @@ struct tString
 	// Returns chars from start to count, but also removes that from the tString.  If start + count > length then what's
 	// available is extracted.
 	tString ExtractMid(int start, int count);
-
-	// Extracts first word up to and not including first divider encountered. The tString is left with the remainder,
-	// not including the divider. If divider isn't found, the entire string is returned and the tString is left empty.
-	tString ExtractLeft(const char divider = ' ');
-
-	// Extracts word after last divider. The tString is left with the remainder, not including the divider. If the
-	// divider isn't found, the entire string is returned and the tString is left empty.
-	tString ExtractRight(const char divider = ' ');
 
 	char* Text()																										{ return TextData; }
 	const char* ConstText() const																						{ return TextData; }

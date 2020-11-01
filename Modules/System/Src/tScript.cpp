@@ -9,7 +9,7 @@
 //
 // The second format is a functional format. ex. a(b,c) See tFunExtression.
 //
-// Copyright (c) 2006, 2017, 2019 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -165,6 +165,7 @@ bool tExpression::IsAtom() const
 		return false;
 }
 
+
 tString tExpression::GetExpressionString() const
 {
 	tAssert( IsValid() );
@@ -254,10 +255,11 @@ tString tExpression::GetExpressionString() const
 	lineNum += lineCount;
 
 	tString result(ValueData);
-	result = result.Left(c - ValueData);
+	result = result.Lefti( int(c - ValueData) );
 
 	return result;
 }
+
 
 tString tExpression::GetAtomString() const
 {
