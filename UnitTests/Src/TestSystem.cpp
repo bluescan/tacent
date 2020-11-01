@@ -573,7 +573,7 @@ tTestUnit(Script)
 
 				case tHash::tHashCT("FloatVal"):
 				{
-					float readval = float(e.Item1());
+					float readval = e.Item1();
 					tPrintf("Read float as: %f\n", readval);
 					tRequire(readval == 50.123456789f);
 					break;
@@ -581,7 +581,7 @@ tTestUnit(Script)
 
 				case tHash::tHashCT("DoubleVal"):
 				{
-					double readval = double(e.Item1());
+					double readval = e.Item1();
 					tPrintf("Read double as: %f\n", readval);
 					tRequire(readval == 60.111122223333444455556666777788889999);
 					break;
@@ -589,7 +589,7 @@ tTestUnit(Script)
 
 				case tHash::tHashCT("Vec3"):
 				{
-					tVector3 readval = tVector3(e.Item1());
+					tVector3 readval = e.Item1();
 					tPrintf("Read double as: %v\n", readval);
 					tRequire(readval == tVector3(1.0f, 2.0f, 3.0f));
 					break;
