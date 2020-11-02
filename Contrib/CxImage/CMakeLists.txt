@@ -123,29 +123,6 @@ add_library(
 	Src/tiff/tiffio.h
 	Src/tiff/tiffiop.h
 	Src/tiff/uvcode.h
-
-	# Zlib
-	Src/zlib/adler32.c
-	Src/zlib/compress.c
-	Src/zlib/crc32.c
-	Src/zlib/crc32.h 
-	Src/zlib/deflate.c
-	Src/zlib/deflate.h 
-	Src/zlib/infback.c
-	Src/zlib/inffast.c
-	Src/zlib/inffast.h 
-	Src/zlib/inffixed.h 
-	Src/zlib/inflate.c
-	Src/zlib/inflate.h 
-	Src/zlib/inftrees.c
-	Src/zlib/inftrees.h 
-	Src/zlib/trees.c
-	Src/zlib/trees.h 
-	Src/zlib/uncompr.c
-	Src/zlib/zconf.h 
-	Src/zlib/zlib.h 
-	Src/zlib/zutil.c
-	Src/zlib/zutil.h 
 )
 
 target_include_directories(
@@ -154,6 +131,7 @@ target_include_directories(
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Inc>
 		$<INSTALL_INTERFACE:Inc>
 	PRIVATE
+		${CMAKE_SOURCE_DIR}/Contrib/ZLib/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Inc
 		${CMAKE_CURRENT_SOURCE_DIR}/Src
 )

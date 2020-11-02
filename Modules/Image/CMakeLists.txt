@@ -41,6 +41,7 @@ tacent_target_include_directories(${PROJECT_NAME})
 target_include_directories(
 	"${PROJECT_NAME}" PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}/Contrib
+	${CMAKE_SOURCE_DIR}/Contrib/ZLib/include
 	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include
 	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include/OpenEXR
 )
@@ -74,6 +75,8 @@ target_link_libraries(
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Linux/libturbojpeg.a>
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Windows/turbojpeg-static.lib>
 
+		# $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/lib/libpng16.lib>
+
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Half-2_5_d.lib>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Half-2_5.lib>
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Iex-2_5_d.lib>
@@ -86,8 +89,6 @@ target_link_libraries(
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IlmThread-2_5.lib>
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Imath-2_5_d.lib>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Imath-2_5.lib>
-		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/zlibstaticd.lib>
-		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/zlibstatic.lib>
 
 		# Only linking to release libs in Linux.
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/libIlmImf-2_5.a>
@@ -96,7 +97,11 @@ target_link_libraries(
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/libIexMath-2_5.a>
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/libIlmThread-2_5.a>
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/libImath-2_5.a>
-		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/libz.a>
+
+		# Link ZLib. Shared by a few different image formats.
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_SOURCE_DIR}/Contrib/ZLib/lib/zlibstaticd.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
+		$<$<PLATFORM_ID:Linux>:${CMAKE_SOURCE_DIR}/Contrib/ZLib/lib/libz.a>
 )
 
 target_include_directories(

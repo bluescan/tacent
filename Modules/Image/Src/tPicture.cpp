@@ -25,7 +25,7 @@
 #include "Image/tPicture.h"
 #include "Math/tMatrix2.h"
 #include <OpenEXR/loadImage.h>
-#include <OpenEXR/include/zlib.h>
+#include <zlib.h>
 #include <ximage.h>
 #ifdef PLATFORM_WINDOWS
 #include "TurboJpeg/Windows/jconfig.h"
