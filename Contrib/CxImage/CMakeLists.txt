@@ -152,6 +152,15 @@ tacent_target_compile_options(${PROJECT_NAME})
 tacent_target_compile_features(${PROJECT_NAME})
 tacent_set_target_properties(${PROJECT_NAME})
 
+target_link_libraries(
+	${PROJECT_NAME}
+	PRIVATE
+		# Link ZLib. Shared by a few different image formats.
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_SOURCE_DIR}/Contrib/ZLib/lib/zlibstaticd.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
+		$<$<PLATFORM_ID:Linux>:${CMAKE_SOURCE_DIR}/Contrib/ZLib/lib/libz.a>
+)
+
 set(TACENT_INSTALL_DIR "${CMAKE_BINARY_DIR}/TacentInstall")
 install(
 	TARGETS ${PROJECT_NAME}
