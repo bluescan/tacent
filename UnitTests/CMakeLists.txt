@@ -44,6 +44,7 @@ target_link_libraries(
 		$<$<PLATFORM_ID:Windows>:shlwapi.lib>
 )
 
+# Why do we still need this?
 if (MSVC)
 	if (CMAKE_BUILD_TYPE MATCHES Debug)
 		target_link_options(${PROJECT_NAME} PRIVATE "/NODEFAULTLIB:LIBCMT.lib")

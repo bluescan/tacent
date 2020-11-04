@@ -73,11 +73,11 @@ endfunction(tacent_set_target_properties)
 
 function(tacent_install PROJNAME)
 	set(TACENT_INSTALL_DIR "${CMAKE_BINARY_DIR}/TacentInstall")
-	message(STATUS "Tacent -- ${PROJECT_NAME} will be installed to ${TACENT_INSTALL_DIR}")
+	message(STATUS "Tacent -- ${PROJNAME} will be installed to ${TACENT_INSTALL_DIR}")
 
 	install(
 		TARGETS ${PROJNAME}
-		EXPORT ${PROJECT_NAME}-targets
+		EXPORT ${PROJNAME}-targets
 		LIBRARY DESTINATION ${TACENT_INSTALL_DIR}
 		ARCHIVE DESTINATION ${TACENT_INSTALL_DIR}
 	)
