@@ -152,15 +152,17 @@ tacent_target_compile_options(${PROJECT_NAME})
 tacent_target_compile_features(${PROJECT_NAME})
 tacent_set_target_properties(${PROJECT_NAME})
 
-set(TACENT_INSTALL_DIR "${CMAKE_BINARY_DIR}/TacentInstall")
+# This path is relative to CMAKE_INSTALL_PREFIX. Do not use an absolute path if you want
+# the exports to work properly (the will have bad absolute paths if you do).
+set(TACENT_INSTALL_RELDIR "TacentInstall")
 install(
 	TARGETS ${PROJECT_NAME}
 	EXPORT ${PROJECT_NAME}-targets
-	LIBRARY DESTINATION ${TACENT_INSTALL_DIR}
-	ARCHIVE DESTINATION ${TACENT_INSTALL_DIR}
+	LIBRARY DESTINATION ${TACENT_INSTALL_RELDIR}
+	ARCHIVE DESTINATION ${TACENT_INSTALL_RELDIR}
 )
 
-install(DIRECTORY Inc/ DESTINATION "${TACENT_INSTALL_DIR}/Inc/CxImage")
+install(DIRECTORY Inc/ DESTINATION "${TACENT_INSTALL_RELDIR}/Inc/CxImage")
 
 install(
 	EXPORT ${PROJECT_NAME}-targets
@@ -169,5 +171,5 @@ install(
 	NAMESPACE
 		Tacent::
 	DESTINATION
-		${TACENT_INSTALL_DIR}
+		${TACENT_INSTALL_RELDIR}
 )

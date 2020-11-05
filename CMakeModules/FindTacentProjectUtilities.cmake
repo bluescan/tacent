@@ -72,17 +72,19 @@ function(tacent_set_target_properties PROJNAME)
 endfunction(tacent_set_target_properties)
 
 function(tacent_install PROJNAME)
-	set(TACENT_INSTALL_DIR "${CMAKE_BINARY_DIR}/TacentInstall")
-	message(STATUS "Tacent -- ${PROJNAME} will be installed to ${TACENT_INSTALL_DIR}")
+	# This path is relative to CMAKE_INSTALL_PREFIX. Do not use an absolute path if you want
+	# the exports to work properly (the will have bad absolute paths if you do).
+	set(TACENT_INSTALL_RELDIR "TacentInstall")
+	message(STATUS "Tacent -- ${PROJNAME} will be installed to ${TACENT_INSTALL_RELDIR}")
 
 	install(
 		TARGETS ${PROJNAME}
 		EXPORT ${PROJNAME}-targets
-		LIBRARY DESTINATION ${TACENT_INSTALL_DIR}
-		ARCHIVE DESTINATION ${TACENT_INSTALL_DIR}
+		LIBRARY DESTINATION ${TACENT_INSTALL_RELDIR}
+		ARCHIVE DESTINATION ${TACENT_INSTALL_RELDIR}
 	)
 
-	install(DIRECTORY Inc/ DESTINATION "${TACENT_INSTALL_DIR}/Inc")
+	install(DIRECTORY Inc/ DESTINATION "${TACENT_INSTALL_RELDIR}/Inc")
 
 	install(
 		EXPORT ${PROJNAME}-targets
@@ -91,6 +93,6 @@ function(tacent_install PROJNAME)
 		NAMESPACE
 			Tacent::
 		DESTINATION
-			${TACENT_INSTALL_DIR}
+			${TACENT_INSTALL_RELDIR}
 	)
 endfunction(tacent_install)
