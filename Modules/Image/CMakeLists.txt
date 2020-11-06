@@ -1,6 +1,8 @@
 find_package("TacentProjectUtilities" REQUIRED)
 project(Image VERSION ${TACENT_VERSION} LANGUAGES CXX)
 
+add_subdirectory(Contrib/CxImage)
+
 add_library(
 	${PROJECT_NAME}
 	Src/tCubemap.cpp
@@ -41,7 +43,7 @@ tacent_target_include_directories(${PROJECT_NAME})
 target_include_directories(
 	"${PROJECT_NAME}" PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}/Contrib
-	${CMAKE_SOURCE_DIR}/Contrib/ZLib/include
+	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/include
 	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include
 	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include/OpenEXR
 )
@@ -99,9 +101,9 @@ target_link_libraries(
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/libImath-2_5.a>
 
 		# Link ZLib. Shared by a few different image formats.
-		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_SOURCE_DIR}/Contrib/ZLib/lib/zlibstaticd.lib>
-		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
-		$<$<PLATFORM_ID:Linux>:${CMAKE_SOURCE_DIR}/Contrib/ZLib/lib/libz.a>
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstaticd.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/libz.a>
 )
 
 target_include_directories(

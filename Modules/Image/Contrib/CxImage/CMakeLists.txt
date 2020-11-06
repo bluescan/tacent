@@ -131,7 +131,7 @@ target_include_directories(
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Inc>
 		$<INSTALL_INTERFACE:Inc>
 	PRIVATE
-		${CMAKE_SOURCE_DIR}/Contrib/ZLib/include
+		${CMAKE_CURRENT_SOURCE_DIR}/../ZLib/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Inc
 		${CMAKE_CURRENT_SOURCE_DIR}/Src
 )

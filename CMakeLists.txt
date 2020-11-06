@@ -21,8 +21,7 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif()
 message(STATUS "Tacent -- InstallPrefix ${CMAKE_INSTALL_PREFIX}")
 
-# Sub-projects.
-add_subdirectory(Contrib)
+# All the tacent modules.
 add_subdirectory(Modules)
 
 # The UnitTests executable.
