@@ -11,8 +11,9 @@ add_library(
 	Src/tImageGIF.cpp
 	Src/tImageHDR.cpp
 	Src/tImageICO.cpp
-	Src/tImageTGA.cpp
 	Src/tImageJPG.cpp
+	Src/tImagePNG.cpp
+	Src/tImageTGA.cpp
 	Src/tImageWEBP.cpp
 	Src/tImageXPM.cpp
 	Src/tLayer.cpp
@@ -25,8 +26,9 @@ add_library(
 	Inc/Image/tImageGIF.h
 	Inc/Image/tImageHDR.h
 	Inc/Image/tImageICO.h
-	Inc/Image/tImageTGA.h
 	Inc/Image/tImageJPG.h
+	Inc/Image/tImagePNG.h
+	Inc/Image/tImageTGA.h
 	Inc/Image/tImageWEBP.h
 	Inc/Image/tImageXPM.h
 	Inc/Image/tLayer.h
