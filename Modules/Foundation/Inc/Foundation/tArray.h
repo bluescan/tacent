@@ -161,13 +161,13 @@ template<typename T> inline const tArray<T>& tArray<T>::operator=(const tArray<T
 		return *this;
 
 	Clear(0, src.GrowCount);
-	NumElements = src.NumElements;
+	NumAppendedElements = src.NumAppendedElements;
 	Capacity = src.Capacity;
 	if (Capacity > 0)
 		Elements = new T[Capacity];
 
-	for (int i = 0; i < NumElements; i++)
-		Elements[i] = src.Elements[i];
+	for (int e = 0; e < Capacity; e++)
+		Elements[e] = src.Elements[e];
 
 	return *this;
 }
@@ -175,11 +175,14 @@ template<typename T> inline const tArray<T>& tArray<T>::operator=(const tArray<T
 
 template<typename T> inline bool tArray<T>::operator==(const tArray& rhs) const
 {
-	if (NumElements != rhs.NumElements)
+	if (Capacity != rhs.Capacity)
 		return false;
 
-	for (int i = 0; i < NumElements; i++)
-		if (Elements[i] != rhs.Elements[i])
+	if (NumAppendedElements != rhs.NumAppendedElements)
+		return false;
+
+	for (int e = 0; e < Capacity; e++)
+		if (Elements[e] != rhs.Elements[e])
 			return false;
 
 	return true;
