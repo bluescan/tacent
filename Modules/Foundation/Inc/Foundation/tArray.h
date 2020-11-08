@@ -30,16 +30,16 @@ public:
 	// Frees the current content. Allows you to optionally set the new initial capacity. If growCount == -1, the
 	// growCount remains unchanged.
 	void Clear(int capacity = 0, int growCount = -1);
-	int GetNumElements() const																							{ return NumElements; }
+	int GetNumAppendedElements() const																					{ return NumAppendedElements; }
 	T* GetElements() const																								{ return Elements; }
 
 	// Returns the number of elements that may be stored in the array before a costly grow operation.
 	int GetCapacity() const																								{ return Capacity; }
 
-	// Grows the max size of the array by the specified number of items.
-	bool Grow(int numElementsGrow);
+	// Grows the max size (capacity) of the array by the specified number of items.
+	bool GrowCapacity(int numElementsGrow);
 
-	// The append calls will grow the array as necessary. If growCount is 0 and there's no more room, false is returned.
+	// The append calls will grow the array if necessary. If growCount is 0 and there's no more room, false is returned.
 	bool Append(const T&);
 
 	// For this append call if the GrowCount is 0 and there is not enough current room, false is returned and the array
@@ -47,8 +47,12 @@ public:
 	// It does this in one shot, but grows by a multiple of the GrowCount.
 	bool Append(const T*, int numElements);
 
-	T& operator[](int index)																							{ tAssert((index < NumElements) && (index >= 0)); return Elements[index]; }
-	const T operator[](int index) const																					{ tAssert((index < NumElements) && (index >= 0)); return Elements[index]; }
+	operator T*()																										{ return Elements; }
+	operator T*() const																									{ return Elements; }
+	operator const T*()																									{ return Elements; }
+	operator const T*() const																							{ return Elements; }
+	T& operator[](int index)																							{ tAssert((index < Capacity) && (index >= 0)); return Elements[index]; }
+	const T operator[](int index) const																					{ tAssert((index < Capacity) && (index >= 0)); return Elements[index]; }
 	bool operator==(const tArray&) const;					// Empty arrays are considered equal.
 	bool operator!=(const tArray& rhs) const																			{ return !(*this == rhs); }
 	const tArray& operator+(const tArray& src)																			{ Append(src.GetElements(), src.GetNumElements()); }
@@ -56,7 +60,7 @@ public:
 
 private:
 	T* Elements = nullptr;
-	int NumElements = 0;
+	int NumAppendedElements = 0;
 
 	int Capacity = 0;
 	int GrowCount = 256;
@@ -72,7 +76,7 @@ template<typename T> inline void tArray<T>::Clear(int capacity, int growCount)
 	delete[] Elements;
 	Elements = nullptr;
 	Capacity = capacity;
-	NumElements = 0;
+	NumAppendedElements = 0;
 
 	if (Capacity > 0)
 		Elements = new T[Capacity];
@@ -82,31 +86,33 @@ template<typename T> inline void tArray<T>::Clear(int capacity, int growCount)
 }
 
 
-template<typename T> inline bool tArray<T>::Grow(int numElementsGrow)
+template<typename T> inline bool tArray<T>::GrowCapacity(int numElementsGrow)
 {
 	if (numElementsGrow <= 0)
 		return false;
-	Capacity += numElementsGrow;
-	T* newItems = new T[Capacity];
-	for (int i = 0; i < NumElements; i++)
-		newItems[i] = Elements[i];
+
+	int newCap = Capacity + numElementsGrow;
+	T* newItems = new T[newCap];
+	for (int e = 0; e < Capacity; e++)
+		newItems[e] = Elements[e];
 
 	delete[] Elements;
 	Elements = newItems;
+	Capacity = newCap;
 	return true;
 }
 
 
 template<typename T> inline bool tArray<T>::Append(const T& item)
 {
-	if (NumElements >= Capacity)
-		Grow(GrowCount);
+	if (NumAppendedElements >= Capacity)
+		GrowCapacity(GrowCount);
 
-	if (NumElements >= Capacity)
+	if (NumAppendedElements >= Capacity)
 		return false;
 
-	tAssert(NumElements < Capacity);
-	Elements[NumElements++] = item;
+	tAssert(NumAppendedElements < Capacity);
+	Elements[NumAppendedElements++] = item;
 	return true;
 }
 
@@ -114,7 +120,7 @@ template<typename T> inline bool tArray<T>::Append(const T& item)
 template<typename T> inline bool tArray<T>::Append(const T* elements, int numElementToAppend)
 {
 	tAssert(elements && (numElementToAppend > 0));
-	int numAvail = Capacity - NumElements;
+	int numAvail = Capacity - NumAppendedElements;
 	if ((GrowCount <= 0) && (numElementToAppend > numAvail))
 		return false;
 
@@ -123,9 +129,9 @@ template<typename T> inline bool tArray<T>::Append(const T* elements, int numEle
 	int count = (numElementToAppend < numAvail) ? numElementToAppend : numAvail;
 	int index = 0;
 	for (; index < count; index++)
-		Elements[NumElements + index] = elements[index];
+		Elements[NumAppendedElements + index] = elements[index];
 
-	NumElements += count;
+	NumAppendedElements += count;
 	numElementToAppend -= count;
 	if (numElementToAppend <= 0)
 		return true;
@@ -138,13 +144,13 @@ template<typename T> inline bool tArray<T>::Append(const T* elements, int numEle
 	if (quotRem.Remainder > 0)
 		numGrows++;
 
-	Grow(GrowCount * numGrows);
+	GrowCapacity(GrowCount * numGrows);
 
 	// And now we just have a tight loop to copy them in.
 	for (int i = 0; i < numElementToAppend; i++)
-		Elements[NumElements + i] = elements[index++];
+		Elements[NumAppendedElements + i] = elements[index++];
 
-	NumElements += numElementToAppend;
+	NumAppendedElements += numElementToAppend;
 	return true;
 }
 

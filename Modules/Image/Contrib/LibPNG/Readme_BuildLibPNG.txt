@@ -7,6 +7,9 @@ Open the vsstudio sln in vstudio directory.
 Add x64 architecture.
 Select Release_Library (uses the Multithreaded non-dll libs. /MT)
 You may need to disable one of the switch warnings.
+Turn off /GL (whole prog opt in compiler settings)
+Turn off /LTCG (link time code gen, in librarian)
+Add ;5045 in advanced compiler warnings to disable.
 
 Look for the .lib files in vstudio/x64/Release Library
 

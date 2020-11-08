@@ -17,6 +17,7 @@
 // The loading and saving code in here is roughly based on the example code from the LibPNG library. The licence may be
 // found in the file Licence_LibPNG.txt.
 
+#include <Foundation/tArray.h>
 #include <System/tFile.h>
 #include "png.h"
 #include "Image/tImagePNG.h"
@@ -213,12 +214,13 @@ bool tImagePNG::Save(const tString& pngFile) const
 	//
 	// Swap bytes of 16-bit files to most significant byte first.
 	// png_set_swap(pngPtr);
-	png_bytep rowPointers[Height];
+	tArray<png_bytep> rowPointers(Height);
 
 	// Set up pointers into the src data.
 	for (int r = 0; r < Height; r++)
 		rowPointers[Height-1-r] = srcPixels + r * Width * srcBytesPerPixel;
 
+	// tArray has an implicit cast operator. rowPointers is equivalient to rowPointers.GetElements().
 	png_write_image(pngPtr, rowPointers);
 
 	// Finish writing the rest of the file.

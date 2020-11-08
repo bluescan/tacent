@@ -43,11 +43,13 @@ add_library(
 
 tacent_target_include_directories(${PROJECT_NAME})
 target_include_directories(
-	"${PROJECT_NAME}" PRIVATE
-	${CMAKE_CURRENT_SOURCE_DIR}/Contrib
-	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/include
-	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include
-	${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include/OpenEXR
+	"${PROJECT_NAME}"
+	PRIVATE
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/include
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include/OpenEXR
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/include
 )
 
 tacent_target_compile_definitions(${PROJECT_NAME})
@@ -107,12 +109,6 @@ target_link_libraries(
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstaticd.lib>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/libz.a>
-)
-
-target_include_directories(
-	"${PROJECT_NAME}"
-	PRIVATE
-		$<TARGET_PROPERTY:CxImage,INTERFACE_INCLUDE_DIRECTORIES>
 )
 
 tacent_install(${PROJECT_NAME})
