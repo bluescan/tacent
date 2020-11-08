@@ -227,6 +227,13 @@ tTestUnit(List)
 
 	// We need this if we didn't construct this list with a true flag.
 	// iterList.Empty();
+
+	// Test static list.
+	static tList<MySub> staticList(tListMode::Static);
+	staticList.Append(new MySub(1));
+	staticList.Append(new MySub(2));
+	staticList.Append(new MySub(3));
+	staticList.Empty();
 }
 
 

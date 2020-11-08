@@ -64,6 +64,11 @@ enum class tListMode
 // objects before main() is entered. This is because we don't know what items will have already been put on the list
 // before the constructor is called (the C++ init fiasco). The constructor in StaticZero mode does NOT clear the state
 // variables so it doesn't matter when.
+//
+// Note: In static mode, the list does not consider itself to own the things on the list. It is safe to add 'this'
+// pointers to globally constructed objects for instance. If however you do want the list to delete the items, tList
+// will allow you to call Empty on a static-zero list. You can also call Reset (no deletes). Clear will be the same
+// as Reset for static-zero lists.
 template<typename T> class tList
 {
 public:
@@ -85,7 +90,7 @@ public:
 
 	void Clear()											/* Clears the list. Deletes items if list owns them. */		{ if (Owns()) Empty(); else Reset(); }
 	void Reset()											/* Resets the list. Never deletes the objects. */			{ HeadItem = nullptr; TailItem = nullptr; ItemCount = 0; }
-	void Empty()											/* Empties the list. Always deletes the objects. */			{ tAssert(Owns()); while (!IsEmpty()) delete Remove(); }
+	void Empty()											/* Empties the list. Always deletes the objects. */			{ tAssert(Owns() || (Mode == tListMode::StaticZero)); while (!IsEmpty()) delete Remove(); }
 
 	T* Head() const																										{ return HeadItem; }
 	T* Tail() const																										{ return TailItem; }
@@ -135,10 +140,10 @@ private:
 	template<typename CompareFunc> int SortBubble(CompareFunc);
 
 	// Since tList supports static zero-initialization, all defaults for all member vars should be 0.
-	tListMode Mode;// = tListMode::External;
-	T* HeadItem;// = nullptr;
-	T* TailItem;// = nullptr;
-	int ItemCount;// = 0;
+	tListMode Mode;
+	T* HeadItem;
+	T* TailItem;
+	int ItemCount;
 };
 
 
