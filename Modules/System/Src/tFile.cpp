@@ -183,6 +183,7 @@ tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString& e)
 		{ "tga",		tFileType::TGA				},
 		{ "bmp",		tFileType::BMP				},
 		{ "png",		tFileType::PNG				},
+		{ "apng",		tFileType::APNG				},
 		{ "gif",		tFileType::GIF				},
 		{ "webp",		tFileType::WEBP				},
 		{ "xpm",		tFileType::XPM				},

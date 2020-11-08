@@ -6,6 +6,7 @@ add_subdirectory(Contrib/CxImage)
 add_library(
 	${PROJECT_NAME}
 	Src/tCubemap.cpp
+	Src/tImageAPNG.cpp
 	Src/tImageDDS.cpp
 	Src/tImageEXR.cpp
 	Src/tImageGIF.cpp
@@ -21,6 +22,7 @@ add_library(
 	Src/tPixelFormat.cpp
 	Src/tTexture.cpp
 	Inc/Image/tCubemap.h
+	Inc/Image/tImageAPNG.h
 	Inc/Image/tImageDDS.h
 	Inc/Image/tImageEXR.h
 	Inc/Image/tImageGIF.h

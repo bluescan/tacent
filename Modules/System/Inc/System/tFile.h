@@ -77,6 +77,7 @@ enum class tFileType
 	TGA								= Targa,
 	Ping,							// Image.
 	PNG								= Ping,
+	APNG,							// Animated PNG.
 	DDS,							// TextureMap/CubeMap.
 	HDR,							// Radiance High Dynamic Range image.
 	EXR,							// OpenEXR High Dynamic Range image.
