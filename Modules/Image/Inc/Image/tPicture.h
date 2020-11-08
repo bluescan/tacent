@@ -32,6 +32,7 @@
 #include "Image/tImageHDR.h"
 #include "Image/tImageICO.h"
 #include "Image/tImageJPG.h"
+#include "Image/tImagePNG.h"
 #include "Image/tImageTGA.h"
 #include "Image/tImageWEBP.h"
 #include "Image/tImageXPM.h"
@@ -44,6 +45,7 @@ namespace tImage
 extern const char* Version_TurboJPEG;
 extern const char* Version_OpenEXR;
 extern const char* Version_ZLIB;
+extern const char* Version_LibPNG;
 extern int Version_WEBP_Major;
 extern int Version_WEBP_Minor;
 
@@ -120,8 +122,8 @@ public:
 		ColourAndAlpha
 	};
 
-	// Saves to the image file you specify and examines the extension to determine filetype. Supports tga, png, bmp, jpg,
-	// and gif. If tColourFormat is set to auto, the opacity/alpha channel will be excluded if all pixels are opaque.
+	// Saves to the image file you specify and examines the extension to determine filetype. Supports tga, png, bmp, jpg.
+	// If tColourFormat is set to auto, the opacity/alpha channel will be excluded if all pixels are opaque.
 	// Alpha channels are not supported for gif and jpg files. Quality (used for jpg) is in [1, 100].
 	bool Save(const tString& imageFile, tColourFormat = tColourFormat::Auto, int quality = 95);
 
@@ -132,6 +134,7 @@ public:
 	) const;
 
 	bool SaveJPG(const tString& jpgFile, int quality = 95) const;
+	bool SavePNG(const tString& pngFile) const;
 
 	// Always clears the current image before loading. If false returned, you will have an invalid tPicture.
 	bool Load(const tString& imageFile, int partNum, LoadParams params = LoadParams());

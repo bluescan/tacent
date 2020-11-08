@@ -60,25 +60,6 @@ add_library(
 	Inc/xiofile.h
 	Inc/xmemfile.h
 
-	# Png
-	Src/png/png.c
-	Src/png/pngerror.c
-	Src/png/pngget.c
-	Src/png/pngmem.c
-	Src/png/pngpread.c
-	Src/png/pngread.c
-	Src/png/pngrio.c
-	Src/png/pngrtran.c
-	Src/png/pngrutil.c
-	Src/png/pngset.c
-	Src/png/pngtrans.c
-	Src/png/pngwio.c
-	Src/png/pngwrite.c
-	Src/png/pngwtran.c
-	Src/png/pngwutil.c
-	Src/png/png.h
-	Src/png/pngconf.h
-
 	# Tiff
 	Src/tiff/tif_aux.c
 	Src/tiff/tif_close.c

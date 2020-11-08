@@ -13,11 +13,13 @@
 // INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
+//
+// The loading and saving code in here is roughly based on the example code from the LibPNG library. The licence may be
+// found in the file Licence_LibPNG.txt.
 
 #include <System/tFile.h>
+#include "png.h"
 #include "Image/tImagePNG.h"
-// include libpng.
-
 using namespace tSystem;
 namespace tImage
 {
@@ -48,13 +50,41 @@ bool tImagePNG::Set(const uint8* pngFileInMemory, int numBytes)
 	if ((numBytes <= 0) || !pngFileInMemory)
 		return false;
 
-	// Load the png and figure out width and height.
-	int numPixels = Width * Height;
-	Pixels = new tPixel[numPixels];
-	for (int p = 0; p < numPixels; p++)
-		Pixels[p] = tColouri::black;
+	png_image pngImage;
+	tStd::tMemset(&pngImage, 0, sizeof(pngImage));
+	pngImage.version = PNG_IMAGE_VERSION;
+	int successCode = png_image_begin_read_from_memory(&pngImage, pngFileInMemory, numBytes);
+	if (!successCode)
+	{
+		png_image_free(&pngImage);
+		return false;
+	}
 
-	SrcPixelFormat = tPixelFormat::R8G8B8;
+	SrcPixelFormat = (pngImage.format & PNG_FORMAT_FLAG_ALPHA) ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
+
+	// We need to modify the format to match the type of the pixels we want to load into.
+	pngImage.format = PNG_FORMAT_RGBA;
+	Width = pngImage.width;
+	Height = pngImage.height;
+
+	int numPixels = Width * Height;
+	tPixel* reversedPixels = new tPixel[numPixels];
+	successCode = png_image_finish_read(&pngImage, nullptr, (uint8*)reversedPixels, 0, nullptr);
+	if (!successCode)
+	{
+		png_image_free(&pngImage);
+		delete[] reversedPixels;
+		Clear();
+		return false;
+	}
+
+	// Reverse rows.
+	Pixels = new tPixel[numPixels];
+	int bytesPerRow = Width*4;
+	for (int y = Height-1; y >= 0; y--)
+		tStd::tMemcpy((uint8*)Pixels + ((Height-1)-y)*bytesPerRow, (uint8*)reversedPixels + y*bytesPerRow, bytesPerRow);
+	delete[] reversedPixels;
+
 	return true;
 }
 
@@ -90,19 +120,130 @@ bool tImagePNG::Save(const tString& pngFile) const
 	if (tSystem::tGetFileType(pngFile) != tSystem::tFileType::PNG)
 		return false;
 
-	tFileHandle fileHandle = tOpenFile(pngFile.Chars(), "wb");
-	if (!fileHandle)
+	bool isOpaque = IsOpaque();
+	int srcBytesPerPixel = isOpaque ? 3 : 4;
+
+	// Guard against integer overflow.
+	if (Height > PNG_SIZE_MAX / (Width * srcBytesPerPixel))
+		return false;
+
+	// If it's opaque we use the alternate no-alpha buffer. This should not be necessary
+	// but I can't figure out how to get libpng reading 32bit and writing 24.
+	uint8* srcPixels = (uint8*)Pixels;
+	if (isOpaque)
 	{
+		srcPixels = new uint8[Width*Height*srcBytesPerPixel];
+		int dindex = 0;
+		for (int p = 0; p < Width*Height; p++)
+		{
+			srcPixels[dindex++] = Pixels[p].R;
+			srcPixels[dindex++] = Pixels[p].G;
+			srcPixels[dindex++] = Pixels[p].B;
+		}
+	}
+
+	FILE* fp = fopen(pngFile, "wb");
+	if (!fp)
+		return false;
+
+	// Create and initialize the png_struct with the desired error handler functions.
+	png_structp pngPtr = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+	if (!pngPtr)
+	{
+		fclose(fp);
 		return false;
 	}
 
-	uint8 pngBuf[64];
-	int pngBufSize = sizeof(pngBuf) / sizeof(*pngBuf);
-	for (int a = 0; a < pngBufSize; a++)
-		pngBuf[a] = 0;
+	png_infop infoPtr = png_create_info_struct(pngPtr);
+	if (!infoPtr)
+	{
+		fclose(fp);
+		png_destroy_write_struct(&pngPtr, 0);
+		return false;
+	}
 
-	bool success = tWriteFile(fileHandle, pngBuf, pngBufSize);
-	tCloseFile(fileHandle);
+	// Set up default error handling.
+	if (setjmp(png_jmpbuf(pngPtr)))
+	{
+		fclose(fp);
+		png_destroy_write_struct(&pngPtr, &infoPtr);
+		return false;
+	}
+
+	png_init_io(pngPtr, fp);
+	int bitDepth = 8;		// Supported depths are 1, 2, 4, 8, 16.
+
+	// We write either 24 or 32 bit images depending on whether we have an alpha channel.
+	uint32 pngColourType = isOpaque ? PNG_COLOR_TYPE_RGB : PNG_COLOR_TYPE_RGB_ALPHA;
+	png_set_IHDR
+	(
+		pngPtr, infoPtr, Width, Height, bitDepth, pngColourType,
+		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE
+	);
+
+	// Optional significant bit (sBIT) chunk.
+	png_color_8 sigBit;
+	sigBit.red = 8;
+	sigBit.green = 8;
+	sigBit.blue = 8;
+	sigBit.alpha = isOpaque ? 0 : 8;
+	png_set_sBIT(pngPtr, infoPtr, &sigBit);
+
+	// Optional gamma chunk is strongly suggested if you have any guess as to the correct gamma of the image.
+	// png_set_gAMA(pngPtr, infoPtr, 2.2f);
+
+	png_write_info(pngPtr, infoPtr);
+
+	// Shift the pixels up to a legal bit depth and fill in as appropriate to correctly scale the image.
+	// png_set_shift(pngPtr, &sigBit);
+	//
+	// Pack pixels into bytes.
+	// png_set_packing(pngPtr);
+	//
+	// Swap location of alpha bytes from ARGB to RGBA.
+	// png_set_swap_alpha(pngPtr);
+	//
+	// Get rid of filler (OR ALPHA) bytes, pack XRGB/RGBX/ARGB/RGBA into RGB (4 channels -> 3 channels). The second parameter is not used.
+	// png_set_filler(pngPtr, 0, PNG_FILLER_BEFORE);
+	//
+	// png_set_strip_alpha(pngPtr);
+	//
+	// Flip BGR pixels to RGB.
+	// png_set_bgr(pngPtr);
+	//
+	// Swap bytes of 16-bit files to most significant byte first.
+	// png_set_swap(pngPtr);
+	png_bytep rowPointers[Height];
+
+	// Set up pointers into the src data.
+	for (int r = 0; r < Height; r++)
+		rowPointers[Height-1-r] = srcPixels + r * Width * srcBytesPerPixel;
+
+	png_write_image(pngPtr, rowPointers);
+
+	// Finish writing the rest of the file.
+	png_write_end(pngPtr, infoPtr);
+
+	// Clear the srcPixels if we created the buffer.
+	if (isOpaque)
+		delete srcPixels;
+	srcPixels = nullptr;
+
+	// Clean up.
+	png_destroy_write_struct(&pngPtr, &infoPtr);
+	fclose(fp);
+
+	return true;
+}
+
+
+bool tImagePNG::IsOpaque() const
+{
+	for (int p = 0; p < (Width*Height); p++)
+	{
+		if (Pixels[p].A < 255)
+			return false;
+	}
 
 	return true;
 }

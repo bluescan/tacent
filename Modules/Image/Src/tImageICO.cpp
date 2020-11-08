@@ -34,7 +34,7 @@
 #include <Foundation/tString.h>
 #include <System/tFile.h>
 #include "Image/tImageICO.h"
-#include <ximage.h>
+#include "Image/tImagePNG.h"
 using namespace tSystem;
 namespace tImage
 {
@@ -162,45 +162,19 @@ tImageICO::Part* tImageICO::CreatePart(const uint8* cursor, int width, int heigh
 	// ICO files may have embedded pngs.
 	if (icon->Header.Size == 0x474e5089)
 	{
-		CxImage image;
-		bool cxok = image.Decode((uint8_t*)cursor, uint32_t(numBytes), CXIMAGE_FORMAT_PNG);
-		if (!cxok)
+		tImagePNG pngImage(cursor, numBytes);
+		if (!pngImage.IsValid())
 			return nullptr;
 
-		width = image.GetWidth();
-		height = image.GetHeight();
-		if (!image.IsValid() || (width <= 0) || (height <= 0))
-			return nullptr;
+		width = pngImage.GetWidth();
+		height = pngImage.GetHeight();
+		tAssert((width > 0) && (height > 0));
 
-		tPixel* pixels = new tPixel[width*height];
-
-		// CxImage alpha oddness. If we request the alpha using GetPixelColor and there is no alpha channel, it returns 0
-		// for the alpha, which is incorrect as alpha is normally interpreted as opacity, not transparency. It should be
-		// returning full opacity. That's why we need imageHasValidAlphas -- so we can check if the channel exists at all.
-		bool imageHasValidAlphas = image.AlphaIsValid();
-
-		int index = 0;
-		for (int y = 0; y < height; y++)
-		{
-			for (int x = 0; x < width; x++)
-			{
-				RGBQUAD rgba = image.GetPixelColor(x, y);
-				tColouri colour;
-				colour.R = rgba.rgbRed;
-				colour.G = rgba.rgbGreen;
-				colour.B = rgba.rgbBlue;
-
-				if (imageHasValidAlphas)
-					colour.A = rgba.rgbReserved;
-				else
-					colour.A = 255;
-
-				pixels[index++] = colour;
-			}
-		}
+		tPixel* pixels = pngImage.StealPixels();
+		bool isOpaque = pngImage.IsOpaque();
 		
 		Part* newPart = new Part;
-		newPart->SrcPixelFormat = imageHasValidAlphas ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
+		newPart->SrcPixelFormat = isOpaque ? tPixelFormat::R8G8B8 : tPixelFormat::R8G8B8A8;
 		newPart->Width = width;
 		newPart->Height = height;
 		newPart->Pixels = pixels;

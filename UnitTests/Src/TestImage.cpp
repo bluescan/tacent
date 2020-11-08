@@ -18,8 +18,9 @@
 #include <Image/tImageGIF.h>
 #include <Image/tImageHDR.h>
 #include <Image/tImageICO.h>
-#include <Image/tImageTGA.h>
 #include <Image/tImageJPG.h>
+#include <Image/tImagePNG.h>
+#include <Image/tImageTGA.h>
 #include <Image/tImageWEBP.h>
 #include <Image/tImageXPM.h>
 #include <System/tFile.h>
@@ -116,9 +117,6 @@ tTestUnit(Image)
 	pngPic.Save("TestData/WrittenXeyesTGA.tga");
 	tRequire( tSystem::tFileExists("TestData/WrittenXeyesTGA.tga"));
 
-	pngPic.Save("TestData/WrittenXeyesPNG.png");
-	tRequire( tSystem::tFileExists("TestData/WrittenXeyesPNG.png"));
-
 	pngPic.Save("TestData/WrittenXeyesBMP.bmp");
 	tRequire( tSystem::tFileExists("TestData/WrittenXeyesBMP.bmp"));
 
@@ -148,10 +146,22 @@ tTestUnit(Image)
 	tPicture planePic("TestData/plane.png");
 	int w = planePic.GetWidth();
 	int h = planePic.GetHeight();
-	planePic.RotateCenter(-tMath::PiOver4, tColouri::black);
+	planePic.RotateCenter(-tMath::PiOver4, tColouri::transparent);
+
+	// Crop black pixels ignoring alpha (RGB channels only).
 	planePic.Crop(tColouri::black, tMath::ColourChannel_RGB);
-	planePic.Crop(w, h, tPicture::Anchor::MiddleMiddle, tColouri::black);
+	planePic.Crop(w, h, tPicture::Anchor::MiddleMiddle, tColouri::transparent);
 	planePic.Save("TestData/WrittenPlane.png");
+
+	tPicture newPngA("TestData/Xeyes.png");
+	newPngA.Save("TestData/WrittenNewA.png");
+	tRequire( tSystem::tFileExists("TestData/WrittenNewA.png"));
+
+	tPicture newPngB("TestData/TextCursor.png");
+	newPngB.Save("TestData/WrittenNewB.png");
+	tRequire( tSystem::tFileExists("TestData/WrittenNewB.png"));
+
+	return;
 }
 
 

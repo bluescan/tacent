@@ -3,7 +3,7 @@
 // This class represents a simple one-part image. It is a collection of raw uncompressed 32-bit tPixels. It can load
 // various formats from disk such as jpg, tga, png, etc. It intentionally _cannot_ load a dds file. More on that later.
 // This class can load many formats with a 'native implementation'. By native I mean formats for which there are
-// specific and correct tImageAAA loaders. CxImage is used for the remainder (tiff/png/bmp mostly). Saving to different
+// specific and correct tImageAAA loaders. CxImage is used for the remainder (tiff/bmp mostly). Saving to different
 // formats is supported natively where possible, and uses CxImage otherwise. Image manipulation (excluding compression)
 // is supported in a tPicture, so there are crop, scale, etc functions in this class.
 //
@@ -27,6 +27,7 @@
 #include <OpenEXR/loadImage.h>
 #include <zlib.h>
 #include <ximage.h>
+#include <png.h>
 #ifdef PLATFORM_WINDOWS
 #include "TurboJpeg/Windows/jconfig.h"
 #include "WebP/Windows/include/demux.h"
@@ -44,6 +45,7 @@ using namespace tSystem;
 const char* tImage::Version_TurboJPEG	= LIBJPEG_TURBO_VERSION;
 const char* tImage::Version_OpenEXR		= OPENEXR_VERSION_STRING;
 const char* tImage::Version_ZLIB		= ZLIB_VERSION;
+const char* tImage::Version_LibPNG		= PNG_LIBPNG_VER_STRING;
 int tImage::Version_WEBP_Major			= WEBP_DECODER_ABI_VERSION >> 8;
 int tImage::Version_WEBP_Minor			= WEBP_DECODER_ABI_VERSION & 0xFF;
 
@@ -100,9 +102,9 @@ bool tPicture::CanSave(tFileType fileType)
 {
 	switch (fileType)
 	{
-		case tFileType::TGA:		// Handled natively.
-		case tFileType::BMP:
-		case tFileType::JPG:		// Handles natively.
+		case tFileType::TGA:
+		case tFileType::BMP:		// CxImage.
+		case tFileType::JPG:
 		case tFileType::PNG:
 			return true;
 	}
@@ -120,6 +122,7 @@ bool tPicture::CanLoad(tFileType fileType)
 		case tFileType::HDR:
 		case tFileType::ICO:
 		case tFileType::JPG:
+		case tFileType::PNG:
 		case tFileType::TGA:
 		case tFileType::WEBP:
 		case tFileType::XPM:
@@ -151,9 +154,15 @@ bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt,
 
 		case tFileType::JPG:
 			return SaveJPG(imageFile, quality);
+
+		case tFileType::PNG:
+			return SavePNG(imageFile);
 	}
 
 	// Remaining formats handled by CxImage.
+	if (fileType != tFileType::BMP)
+		return false;
+
 	tPixel* reorderedPixelArray = new tPixel[Width*Height];
 	for (int p = 0; p < Width*Height; p++)
 	{
@@ -166,14 +175,7 @@ bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt,
 	image.CreateFromArray((uint8*)reorderedPixelArray, Width, Height, 32, Width*4, false);
 	delete[] reorderedPixelArray;
 
-	uint32 cxImgFormat = CXIMAGE_FORMAT_PNG;
-	switch (fileType)
-	{
-		case tFileType::BMP: cxImgFormat = CXIMAGE_FORMAT_BMP; break;
-		case tFileType::PNG: cxImgFormat = CXIMAGE_FORMAT_PNG; break;
-		// @todo We can probably handle a few more types here.
-	}
-
+	uint32 cxImgFormat = CXIMAGE_FORMAT_BMP;
 	if (colourFmt == tPicture::tColourFormat::Colour)
 		image.AlphaDelete();
 	else if ((colourFmt == tPicture::tColourFormat::Auto) && IsOpaque())
@@ -206,6 +208,18 @@ bool tPicture::SaveJPG(const tString& jpgFile, int quality) const
 
 	tImageJPG jpeg(Pixels, Width, Height);
 	bool success = jpeg.Save(jpgFile, quality);
+	return success;
+}
+
+
+bool tPicture::SavePNG(const tString& pngFile) const
+{
+	tFileType fileType = tGetFileType(pngFile);
+	if (!IsValid() || (fileType != tFileType::PNG))
+		return false;
+
+	tImagePNG png(Pixels, Width, Height);
+	bool success = png.Save(pngFile);
 	return success;
 }
 
@@ -326,6 +340,21 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 			Height = jpeg.GetHeight();
 			Pixels = jpeg.StealPixels();
 			SrcPixelFormat = jpeg.SrcPixelFormat;
+			return true;
+		}
+
+		case tFileType::PNG:
+		{
+			// PNGs can only have one part.
+			if (partNum != 0)
+				return false;
+			tImagePNG png(imageFile);
+			if (!png.IsValid())
+				return false;
+			Width = png.GetWidth();
+			Height = png.GetHeight();
+			Pixels = png.StealPixels();
+			SrcPixelFormat = png.SrcPixelFormat;
 			return true;
 		}
 
@@ -917,9 +946,6 @@ int tPicture::GetCxFormat(tFileType fileType)
 	{
 		case tFileType::BMP:
 			return CXIMAGE_FORMAT_BMP;
-
-		case tFileType::PNG:
-			return CXIMAGE_FORMAT_PNG;
 
 		case tFileType::TIFF:
 			return CXIMAGE_FORMAT_TIF;
