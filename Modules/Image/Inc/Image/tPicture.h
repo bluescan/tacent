@@ -33,6 +33,7 @@
 #include "Image/tImageICO.h"
 #include "Image/tImageJPG.h"
 #include "Image/tImagePNG.h"
+#include "Image/tImageAPNG.h"
 #include "Image/tImageTGA.h"
 #include "Image/tImageWEBP.h"
 #include "Image/tImageXPM.h"
@@ -46,6 +47,7 @@ extern const char* Version_TurboJPEG;
 extern const char* Version_OpenEXR;
 extern const char* Version_ZLIB;
 extern const char* Version_LibPNG;
+extern const char* Version_ApngDis;
 extern int Version_WEBP_Major;
 extern int Version_WEBP_Minor;
 

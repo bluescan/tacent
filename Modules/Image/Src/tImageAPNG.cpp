@@ -17,6 +17,7 @@
 #include <Foundation/tString.h>
 #include <System/tFile.h>
 #include "Image/tImageAPNG.h"
+#include "apngdis.h"
 using namespace tSystem;
 namespace tImage
 {
@@ -32,26 +33,40 @@ bool tImageAPNG::Load(const tString& apngFile)
 	if (!tFileExists(apngFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* apngFileInMemory = tLoadFile(apngFile, nullptr, &numBytes);
+	std::vector<Image> frames;
+	int result = load_apng(apngFile.Chars(), frames);
+	if (result < 0)
+		return false;
 
 	// Now we load and populate the frames.
-	SrcPixelFormat = tPixelFormat::R8G8B8;
-	for (int f = 0; f < 1; f++)
+	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	for (int f = 0; f < frames.size(); f++)
 	{
+		Image& srcFrame = frames[f];
 		Frame* newFrame = new Frame;
 		newFrame->SrcPixelFormat = tPixelFormat::R8G8B8A8;
-		int width = 64;
-		int height = 64;
+		int width = srcFrame.w;
+		int height = srcFrame.h;
 		newFrame->Width = width;
 		newFrame->Height = height;
 		newFrame->Pixels = new tPixel[width * height];
-		newFrame->Duration = 0.1f;
-		for (int p = 0; p < width*height; p++)
-			newFrame->Pixels[p] = tPixel::black;
+
+		newFrame->Duration = (srcFrame.delay_den > 0) ? float(srcFrame.delay_num) / float(srcFrame.delay_den) : 1.0f;
+		tAssert(srcFrame.bpp == 4);
+		for (int r = 0; r < height; r++)
+		{
+			uint8* srcRowData = srcFrame.rows[r];
+			// uint8* dstRowData = (uint8*)newFrame->Pixels + r * (width*4);
+			uint8* dstRowData = (uint8*)newFrame->Pixels + ((height-1)-r) * (width*4);
+			tStd::tMemcpy(dstRowData, srcRowData, width*4);
+		}
 
 		Frames.Append(newFrame);
 	}
+
+	for (int f = 0; f < frames.size(); f++)
+		frames[f].free();
+	frames.clear();
 
 	return true;
 }

@@ -28,6 +28,7 @@
 #include <zlib.h>
 #include <ximage.h>
 #include <png.h>
+#include <apngdis.h>
 #ifdef PLATFORM_WINDOWS
 #include "TurboJpeg/Windows/jconfig.h"
 #include "WebP/Windows/include/demux.h"
@@ -46,6 +47,7 @@ const char* tImage::Version_TurboJPEG	= LIBJPEG_TURBO_VERSION;
 const char* tImage::Version_OpenEXR		= OPENEXR_VERSION_STRING;
 const char* tImage::Version_ZLIB		= ZLIB_VERSION;
 const char* tImage::Version_LibPNG		= PNG_LIBPNG_VER_STRING;
+const char* tImage::Version_ApngDis		= APNGDIS_VERSION_STRING;
 int tImage::Version_WEBP_Major			= WEBP_DECODER_ABI_VERSION >> 8;
 int tImage::Version_WEBP_Minor			= WEBP_DECODER_ABI_VERSION & 0xFF;
 
@@ -123,6 +125,7 @@ bool tPicture::CanLoad(tFileType fileType)
 		case tFileType::ICO:
 		case tFileType::JPG:
 		case tFileType::PNG:
+		case tFileType::APNG:
 		case tFileType::TGA:
 		case tFileType::WEBP:
 		case tFileType::XPM:
@@ -355,6 +358,28 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 			Height = png.GetHeight();
 			Pixels = png.StealPixels();
 			SrcPixelFormat = png.SrcPixelFormat;
+			return true;
+		}
+
+		case tFileType::APNG:
+		{
+			tImageAPNG apng;
+			bool ok = apng.Load(imageFile);
+			if (!ok || !apng.IsValid())
+				return false;
+
+			if (partNum >= apng.GetNumFrames())
+				return false;
+
+			tImageAPNG::Frame* stolenFrame = apng.StealFrame(partNum);
+			Width = stolenFrame->Width;
+			Height = stolenFrame->Height;
+			SrcPixelFormat = stolenFrame->SrcPixelFormat;
+		
+			Pixels = stolenFrame->Pixels;
+
+			// This is safe as the frame does not own/delete the pixels.
+			delete stolenFrame;
 			return true;
 		}
 

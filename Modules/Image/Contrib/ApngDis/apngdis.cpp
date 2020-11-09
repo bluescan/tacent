@@ -27,12 +27,24 @@
  * 3. This notice may not be removed or altered from any source distribution.
  *
  */
+//////////////////////////////////////////////////////////////////////////////////
+// This is a modified version of apngdis.cpp
+//
+// The modifications were made by Tristan Grimmer and are primarily to remove
+// main so the functionality can be called directly from other source files.
+// A header file has been created to allow external access. Search for @tacent
+// to see where modifications have been made.
+//
+// All modifications should be considered to be covered by the zlib license above.
+//////////////////////////////////////////////////////////////////////////////////
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <vector>
 #include "png.h"     /* original (unpatched) libpng is ok */
 #include "zlib.h"
+#include "apngdis.h"	// @tacent
 
 #define notabc(c) ((c) < 65 || (c) > 122 || ((c) > 90 && (c) < 97))
 
@@ -48,26 +60,6 @@
 #endif
 
 struct CHUNK { unsigned char * p; unsigned int size; };
-struct Image
-{
-  typedef unsigned char * ROW;
-  unsigned int w, h, bpp, delay_num, delay_den;
-  unsigned char * p;
-  ROW * rows;
-  Image() : w(0), h(0), bpp(0), delay_num(1), delay_den(10), p(0), rows(0) { }
-  ~Image() { }
-  void init(unsigned int w1, unsigned int h1, unsigned int bpp1)
-  {
-    w = w1; h = h1; bpp = bpp1;
-    int rowbytes = w * bpp;
-    rows = new ROW[h];
-    rows[0] = p = new unsigned char[h * rowbytes];
-    for (unsigned int j=1; j<h; j++)
-      rows[j] = rows[j-1] + rowbytes;
-  }
-  void free() { delete[] rows; delete[] p; }
-};
-
 const unsigned long cMaxPNGSize = 16384UL;
 
 void info_fn(png_structp png_ptr, png_infop info_ptr)
@@ -204,9 +196,9 @@ int processing_finish(png_structp png_ptr, png_infop info_ptr)
   return 0;
 }
 
-int load_apng(char * szIn, std::vector<Image>& img)
+int load_apng(const char * szIn, std::vector<Image>& img)
 {
-  FILE * f;
+  FILE * fileHandle;
   unsigned int id, i, j, w, h, w0, h0, x0, y0;
   unsigned int delay_num, delay_den, dop, bop, imagesize;
   unsigned char sig[8];
@@ -223,16 +215,16 @@ int load_apng(char * szIn, std::vector<Image>& img)
   Image frameNext;
   int res = -1;
 
-  printf("Reading '%s'...\n", szIn);
+  // @tacent printf("Reading '%s'...\n", szIn);
 
-  if ((f = fopen(szIn, "rb")) != 0)
+  if ((fileHandle = fopen(szIn, "rb")) != 0)
   {
-    if (fread(sig, 1, 8, f) == 8 && png_sig_cmp(sig, 0, 8) == 0)
+    if (fread(sig, 1, 8, fileHandle) == 8 && png_sig_cmp(sig, 0, 8) == 0)
     {
-      id = read_chunk(f, &chunkIHDR);
+      id = read_chunk(fileHandle, &chunkIHDR);
       if (!id)
       {
-        fclose(f);
+        fclose(fileHandle);
         return res;
       }
 
@@ -243,7 +235,7 @@ int load_apng(char * szIn, std::vector<Image>& img)
 
         if (!w || w > cMaxPNGSize || !h || h > cMaxPNGSize)
         {
-          fclose(f);
+          fclose(fileHandle);
           return res;
         }
 
@@ -261,9 +253,9 @@ int load_apng(char * szIn, std::vector<Image>& img)
         {
           frameCur.init(w, h, 4);
 
-          while ( !feof(f) )
+          while ( !feof(fileHandle) )
           {
-            id = read_chunk(f, &chunk);
+            id = read_chunk(fileHandle, &chunk);
             if (!id)
               break;
 
@@ -417,7 +409,7 @@ int load_apng(char * szIn, std::vector<Image>& img)
       chunksInfo.clear();
       delete[] chunkIHDR.p;
     }
-    fclose(f);
+    fclose(fileHandle);
   }
 
   return res;
@@ -495,6 +487,8 @@ void save_txt(char * szOut, Image * image)
   }
 }
 
+// @tacent
+#if 0
 int main(int argc, char** argv)
 {
   unsigned int i, j;
@@ -587,3 +581,4 @@ int main(int argc, char** argv)
 
   return 0;
 }
+#endif

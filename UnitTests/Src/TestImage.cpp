@@ -20,6 +20,7 @@
 #include <Image/tImageICO.h>
 #include <Image/tImageJPG.h>
 #include <Image/tImagePNG.h>
+#include <Image/tImageAPNG.h>
 #include <Image/tImageTGA.h>
 #include <Image/tImageWEBP.h>
 #include <Image/tImageXPM.h>
@@ -59,6 +60,9 @@ tTestUnit(Image)
 
 	tImageWEBP imgWEBP("TestData/RockyBeach.webp");
 	tRequire(imgWEBP.IsValid());
+
+	tImageAPNG imgAPNG("TestData/Flame.apng");
+	tRequire(imgAPNG.IsValid());
 
 	// Test dxt1 texture.
 	tTexture dxt1Tex("TestData/TestDXT1.dds");
@@ -100,6 +104,11 @@ tTestUnit(Image)
 	tRequire(exrPic.IsValid());
 	exrPic.Save("TestData/WrittenDesk.tga");
 	tRequire( tSystem::tFileExists("TestData/WrittenDesk.tga"));
+
+	tPicture apngPic("TestData/Flame.apng", 100);
+	tRequire(apngPic.IsValid());
+	apngPic.Save("TestData/WrittenFlame.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenFlame.tga"));
 
 	// Test tPicture loading xpm and saving as tga.
 	tPicture xpmPic("TestData/Crane.xpm");
