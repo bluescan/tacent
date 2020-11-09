@@ -58,6 +58,7 @@ tacent_target_compile_definitions(${PROJECT_NAME})
 tacent_target_compile_options(${PROJECT_NAME})
 tacent_target_compile_features(${PROJECT_NAME})
 tacent_set_target_properties(${PROJECT_NAME})
+tacent_target_link_options(${PROJECT_NAME})
 
 # Dependencies.
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
