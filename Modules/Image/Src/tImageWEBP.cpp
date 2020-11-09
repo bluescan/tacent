@@ -54,6 +54,7 @@ bool tImageWEBP::Load(const tString& webpFile)
 	if ((width <= 0) || (height <= 0) || (numFrames <= 0))
 	{
 		WebPDemuxDelete(demux);
+		delete[] webpFileInMemory;
 		return false;
 	}
 
@@ -93,6 +94,7 @@ bool tImageWEBP::Load(const tString& webpFile)
 	}
 
 	WebPDemuxDelete(demux);
+	delete[] webpFileInMemory;
 	return true;
 }
 
