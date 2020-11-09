@@ -32,16 +32,17 @@ A scene library that can contain cameras, materials, models, splines, skeletons,
 
 ### Design
 
-Tacent source code is largely self-documenting. The goal has been to make the headers easily human-readable.
+The source code is largely self-documenting. The goal is to to make the headers easily human-readable.
 
 Implementations in Tacent are intended to be both readable and efficient. There are ample comments but no 'comment-litter'. eg. An 'in-only' comment is redundant if const is being used. eg. A function argument declared as tList<Item> does not need a dummy variable called 'items' afterwards.
 
 The dependencies are reasonable and the code should be easy to port to a different environments. eg. if you need a formatted print function that supports custom types (perhaps vectors), or output channels, it should be fairly straightforward to take tPrintf.h and tPrintf.cpp and adapt them to your needs.
 
 
-### Examples
+### Getting Started
 
-The unit tests are a good reference. There may be more information in the comments [on the homepage](http://upperboundsinteractive.com/tacent.php).
+Examples of using the tacent libraries may be found in [tacentexamples](https://github.com/bluescan/tacentexamples).
+A larger project using the libraries is [tacentview](https://github.com/bluescan/tacentview). These projects show how to setup cmake to pull in and use the libraries. The [unittests](https://github.com/bluescan/tacent/tree/master/UnitTests) in this repository are also a useful reference. The external [tacent page](http://upperboundsinteractive.com/tacent.php) supports Disqus comments. For quick reference the source code can be [browsed online](http://upperboundsinteractive.com/Tacent/Modules/index.html).
 
 __Example: Image Loading__
 
