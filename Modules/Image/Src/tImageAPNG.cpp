@@ -51,7 +51,17 @@ bool tImageAPNG::Load(const tString& apngFile)
 		newFrame->Height = height;
 		newFrame->Pixels = new tPixel[width * height];
 
-		newFrame->Duration = (srcFrame.delay_den > 0) ? float(srcFrame.delay_num) / float(srcFrame.delay_den) : 1.0f;
+		// From the official apng spec:
+		// The delay_num and delay_den parameters together specify a fraction indicating the time to display
+		// the current frame, in seconds. If the denominator is 0, it is to be treated as if it were 100 (that
+		// is, delay_num then specifies 1/100ths of a second). If the the value of the numerator is 0 the decoder
+		// should render the next frame as quickly as possible, though viewers may impose a reasonable lower bound.
+		uint dnum = srcFrame.delay_num;
+		uint dden = srcFrame.delay_den;
+		if (dden == 0)
+			dden = 100;
+		newFrame->Duration = (dnum == 0) ? 1.0f/60.0f : float(dnum) / float(dden);
+
 		tAssert(srcFrame.bpp == 4);
 		for (int r = 0; r < height; r++)
 		{
