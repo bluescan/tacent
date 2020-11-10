@@ -351,8 +351,8 @@ bool tLoadFile(const tString& filename, tString& dst, char convertZeroesTo = 31)
 // Same as LoadFile except only the first bytesToRead bytes are read. Also the actual number read is returned in
 // bytesToRead. This will be smaller than the number requested if the file is too small. If there are any problems,
 // bytesToRead will contain 0 and if a buffer was supplied it will be returned (perhaps modified). If one wasn't
-// supplied and there is a read problem, 0 will be returned.
-uint8* tLoadFileHead(const tString& filename, int& bytesToRead, uint8* buffer = 0);
+// supplied and there is a read problem, nullptr will be returned.
+uint8* tLoadFileHead(const tString& filename, int& bytesToRead, uint8* buffer = nullptr);
 uint8* tLoadFileHead(const tString& filename, int bytesToRead, tString& dest);
 bool tCreateFile(const tString& filename);					// Creates an empty file.
 bool tCreateFile(const tString& filename, const tString& contents);

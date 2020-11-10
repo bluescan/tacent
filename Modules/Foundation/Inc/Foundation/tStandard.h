@@ -34,7 +34,14 @@ namespace tStd
 template<typename T> inline void tSwap(T& a, T& b)																		{ T t = a; a = b; b = t; }
 inline void* tMemcpy(void* dest, const void* src, int numBytes)															{ return memcpy(dest, src, numBytes); }
 inline void* tMemset(void* dest, uint8 val, int numBytes)																{ return memset(dest, val, numBytes); }
+inline void* tMemchr(void* data, uint8 val, int numBytes)																{ return memchr(data, val, numBytes); }
+inline const void* tMemchr(const void* data, uint8 val, int numBytes)													{ return memchr(data, val, numBytes); }
 inline int tMemcmp(const void* a, const void* b, int numBytes)															{ return memcmp(a, b, numBytes); }
+
+// This one is new but handy, Searches for memory sequence needle of length needleNumBytes in haystack of length
+// haystackNumBytes. Returns nullptr if whole needle not found or a pointer to the first found needle otherwise.
+void* tMemmem(void* haystack, int haystackNumBytes, void* needle, int needleNumBytes);
+inline const void* tMemmem(const void* haystack, int haystackNumBytes, const void* needle, int needleNumBytes)			{ return tMemmem(haystack, haystackNumBytes, needle, needleNumBytes); }
 
 // For character strings we support regular 8 bit characters (ASCII) and full unicode via UTF8. We do not support either
 // USC2 or UTF16. The CT (Compile-Time) strlen variant below can compute the string length at compile-time for constant

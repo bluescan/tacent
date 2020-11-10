@@ -35,6 +35,23 @@ const char* tStd::SeparatorDStr								= tStd::SeparatorFileStr;
 const char* tStd::SeparatorEStr								= tStd::SeparatorSubStr;
 
 
+void* tStd::tMemmem(void* haystack, int haystackNumBytes, void* needle, int needleNumBytes)
+{
+	if ((haystackNumBytes <= 0) || (needleNumBytes <= 0) || (haystackNumBytes < needleNumBytes))
+		return nullptr;
+
+	// Serach for the pattern from the first haystack byte (0) to numNeedleBytes from the end. For example, if we are
+	// seraching for 4 bytes in 8, there will be 5 mem compares of 4 bytes each.
+	for (int i = 0; i <= haystackNumBytes-needleNumBytes; i++)
+	{
+		if (tMemcmp((uint8*)haystack + i, needle, needleNumBytes) == 0)
+			return (uint8*)haystack + i;
+	}
+
+	return nullptr;
+}
+
+
 float tStd::tStrtof(const char* s)
 {
 	char* hash = tStrchr(s, '#');

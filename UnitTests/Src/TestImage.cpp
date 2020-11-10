@@ -170,6 +170,16 @@ tTestUnit(Image)
 	newPngB.Save("TestData/WrittenNewB.png");
 	tRequire( tSystem::tFileExists("TestData/WrittenNewB.png"));
 
+	// Test APNG detection.
+	bool isAnimA = tImageAPNG::IsAnimatedPNG("TestData/TextCursor.png");
+	tRequire(!isAnimA);
+
+	bool isAnimB = tImageAPNG::IsAnimatedPNG("TestData/Icos4D.apng");
+	tRequire(isAnimB);
+
+	bool isAnimC = tImageAPNG::IsAnimatedPNG("TestData/Icos4D.png");
+	tRequire(isAnimC);
+
 	return;
 }
 

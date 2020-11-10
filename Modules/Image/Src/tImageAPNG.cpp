@@ -23,11 +23,35 @@ namespace tImage
 {
 
 
+bool tImageAPNG::IsAnimatedPNG(const tString& pngFile)
+{
+	int numBytes = 1024;
+	uint8* headData = tSystem::tLoadFileHead(pngFile, numBytes);
+	if (!headData)
+		return false;
+
+	uint8 acTL[] = { 'a', 'c', 'T', 'L' };
+	uint8 IDAT[] = { 'I', 'D', 'A', 'T' };
+	uint8* actlLoc = (uint8*)tStd::tMemmem(headData, numBytes, acTL, sizeof(acTL));
+	if (!actlLoc)
+		return false;
+
+	// Now for safety we also make sure there is an IDAT after the acTL.
+	uint8* idatLoc = (uint8*)tStd::tMemmem(actlLoc+sizeof(acTL), numBytes - (actlLoc-headData) - sizeof(acTL), IDAT, sizeof(IDAT));
+
+	bool found = idatLoc ? true : false;
+	delete[] headData;
+	return found;
+}
+
+
 bool tImageAPNG::Load(const tString& apngFile)
 {
 	Clear();
 
-	if (tSystem::tGetFileType(apngFile) != tSystem::tFileType::APNG)
+	// Note that many apng files still have a .png extension/filetype, so we support both here.
+	tSystem::tFileType filetype = tSystem::tGetFileType(apngFile);
+	if ((filetype != tSystem::tFileType::APNG) && (filetype != tSystem::tFileType::PNG))
 		return false;
 
 	if (!tFileExists(apngFile))

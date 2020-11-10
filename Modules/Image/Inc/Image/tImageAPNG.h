@@ -53,6 +53,16 @@ public:
 	Frame* GetFrame(int frameNum);
 	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
 
+	// Since some apng files may have a .png extension, it is hand to quickly be able to tell if a particular .png
+	// file is an apng. Probably no one will ever read this comment, but the Mozilla apng people should probably not
+	// have insisted that apngs be encoded in pngs. In any case, this slightly crappy code cannot guarantee that a
+	// return value of true means it is an apng (although such a false positive is extremely unlikely). Even in these
+	// cases, it just means the APNG reading code will be used -- it will still successfully extract the single frame.
+	//
+	// The preference is, however, that non-apng files be loaded by tImagePNG. It is faster and reads the src format
+	// better than APngDis, which could be further modified but is unfamiliar code.
+	static bool IsAnimatedPNG(const tString& pngFile);
+
 private:
 	tList<Frame> Frames;
 };
