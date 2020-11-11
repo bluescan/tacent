@@ -59,6 +59,12 @@
 #define PNG_USER_CHUNK_MALLOC_MAX 8000000
 #endif
 
+
+// @tacent Wrapped in a namespace.
+namespace APngDis
+{
+
+
 struct CHUNK { unsigned char * p; unsigned int size; };
 const unsigned long cMaxPNGSize = 16384UL;
 
@@ -486,6 +492,10 @@ void save_txt(char * szOut, Image * image)
     fclose(f);
   }
 }
+
+
+}
+
 
 // @tacent
 #if 0

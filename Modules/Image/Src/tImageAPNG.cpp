@@ -57,8 +57,8 @@ bool tImageAPNG::Load(const tString& apngFile)
 	if (!tFileExists(apngFile))
 		return false;
 
-	std::vector<Image> frames;
-	int result = load_apng(apngFile.Chars(), frames);
+	std::vector<APngDis::Image> frames;
+	int result = APngDis::load_apng(apngFile.Chars(), frames);
 	if (result < 0)
 		return false;
 
@@ -66,7 +66,7 @@ bool tImageAPNG::Load(const tString& apngFile)
 	SrcPixelFormat = tPixelFormat::R8G8B8A8;
 	for (int f = 0; f < frames.size(); f++)
 	{
-		Image& srcFrame = frames[f];
+		APngDis::Image& srcFrame = frames[f];
 		Frame* newFrame = new Frame;
 		newFrame->SrcPixelFormat = tPixelFormat::R8G8B8A8;
 		int width = srcFrame.w;

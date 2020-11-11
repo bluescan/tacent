@@ -43,30 +43,37 @@
 #include <stdlib.h>
 #include <string.h>
 #include <vector>
-//#include "png.h"     /* original (unpatched) libpng is ok */
 
 // @tacent Added version string. Value taken from printf in main().
 #define APNGDIS_VERSION_STRING "2.9"
 
+// @tacent Put it all in a namespace.
+namespace APngDis
+{
+
+
 struct Image
 {
-  typedef unsigned char * ROW;
-  unsigned int w, h, bpp, delay_num, delay_den;
-  unsigned char * p;
-  ROW * rows;
-  Image() : w(0), h(0), bpp(0), delay_num(1), delay_den(10), p(0), rows(0) { }
-  ~Image() { }
-  void init(unsigned int w1, unsigned int h1, unsigned int bpp1)
-  {
-    w = w1; h = h1; bpp = bpp1;
-    int rowbytes = w * bpp;
-    rows = new ROW[h];
-    rows[0] = p = new unsigned char[h * rowbytes];
-    for (unsigned int j=1; j<h; j++)
-      rows[j] = rows[j-1] + rowbytes;
-  }
-  void free() { delete[] rows; delete[] p; }
+	typedef unsigned char * ROW;
+	unsigned int w, h, bpp, delay_num, delay_den;
+	unsigned char * p;
+	ROW * rows;
+	Image() : w(0), h(0), bpp(0), delay_num(1), delay_den(10), p(0), rows(0) { }
+	~Image() { }
+	void init(unsigned int w1, unsigned int h1, unsigned int bpp1)
+	{
+		w = w1; h = h1; bpp = bpp1;
+		int rowbytes = w * bpp;
+		rows = new ROW[h];
+		rows[0] = p = new unsigned char[h * rowbytes];
+		for (unsigned int j=1; j<h; j++)
+		rows[j] = rows[j-1] + rowbytes;
+	}
+	void free() { delete[] rows; delete[] p; }
 };
 
 // Returns -1 on error.
 int load_apng(const char * szIn, std::vector<Image>& img);
+
+
+}
