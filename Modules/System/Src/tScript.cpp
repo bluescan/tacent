@@ -179,12 +179,20 @@ tString tExpression::GetExpressionString() const
 
 	tAssert(*ValueData == '[');
 	const char* start = ValueData;
-	const char* end = tStd::tStrchr(start, ']');
+	const char* end = start;
+	int bracketCount = 1;
+	while(*++end)
+	{
+		if(*end == '[')
+			bracketCount++;
+		else if(*end == ']' && !--bracketCount)
+			break;
+	}
 
 	if (end)
 		end++;
 	else
-		throw tScriptError(LineNumber, "Begin brcket found but no end bracket.");
+		throw tScriptError(LineNumber, "Begin bracket found but no end bracket.");
 
 	// Creates a tString full of '\0's.
 	tString estr(int(end - start));
