@@ -189,7 +189,7 @@ tString tExpression::GetExpressionString() const
 			break;
 	}
 
-	if (end)
+	if (*end)
 		end++;
 	else
 		throw tScriptError(LineNumber, "Begin bracket found but no end bracket.");
