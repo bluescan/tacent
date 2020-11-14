@@ -282,6 +282,7 @@ tTestUnit(Print)
 	tStaticAssert(sizeof(tVector4) == 16);
 	tStaticAssert(sizeof(tVector3) == 12);
 	tStaticAssert(sizeof(tVector2) == 8);
+	tStaticAssert(sizeof(tMatrix2) == 16);
 	tStaticAssert(sizeof(tMatrix4) == 64);
 	PrintTest("Quaternion: %q\n", tPod(quat));
 	PrintTest("Quaternion Alternate: %_q\n", tPod(quat));
@@ -291,8 +292,13 @@ tTestUnit(Print)
 	tVector4 c4(1.0f, 2.0f, 3.0f, 4.0f);
 	mat.C4 = c4;
 
-	PrintTest("Matrix Normal:\n%05.2m\n", tPod(mat));
-	PrintTest("Matrix Decorated:\n%_m\n", mat.Pod());
+	PrintTest("Matrix 4x4 Normal:\n%05.2m\n", tPod(mat));
+	PrintTest("Matrix 4x4 Decorated:\n%_m\n", mat.Pod());
+
+	tMatrix2 mat2x2;
+	mat2x2.Identity();
+	PrintTest("Matrix 2x2 Normal:\n%:4m\n", tPod(mat2x2));
+	PrintTest("Matrix 2x2 Decorated:\n%_:4m\n", tPod(mat2x2));
 
 	tString test("This is the tString.");
 	tRequire(PrintCompare("tString: %s\n", tPod(test)));
@@ -546,6 +552,12 @@ tTestUnit(Script)
 		ws.Comp("FloatVal", 50.123456789f);
 		ws.Comp("DoubleVal", 60.111122223333444455556666777788889999);
 		ws.Comp("Vec3", tVector3(1.0f, 2.0f, 3.0f));
+
+		tMatrix2 mat2x2(11,21,12,22);
+		ws.Comp("Mat2x2", mat2x2);
+
+		tMatrix4 mat4x4(11,21,31,41, 12,22,32,42, 13,23,33,43, 14,24,34,44);
+		ws.Comp("Mat4x4", mat4x4);
 	}
 
 	{
@@ -590,8 +602,24 @@ tTestUnit(Script)
 				case tHash::tHashCT("Vec3"):
 				{
 					tVector3 readval = e.Item1();
-					tPrintf("Read double as: %v\n", readval);
+					tPrintf("Read vec3 as: %v\n", readval);
 					tRequire(readval == tVector3(1.0f, 2.0f, 3.0f));
+					break;
+				}
+
+				case tHash::tHashCT("Mat2x2"):
+				{
+					tMatrix2 readval = e.Item1();
+					tPrintf("Read mat2x2 as: %:4m\n", readval.Pod());
+					tRequire(readval == tMatrix2(11,21,12,22));
+					break;
+				}
+
+				case tHash::tHashCT("Mat4x4"):
+				{
+					tMatrix4 readval = e.Item1();
+					tPrintf("Read mat4x4 as: %m\n", readval.Pod());
+					tRequire(readval == tMatrix4(11,21,31,41, 12,22,32,42, 13,23,33,43, 14,24,34,44));
 					break;
 				}
 			}
@@ -706,6 +734,17 @@ tTestUnit(Script)
 		tVector4 v6 = vectors.Item5().GetAtomVector4();
 		tPrintf("Vector5: (%f, %f, %f, %f)\n", v5.x, v5.y, v5.z, v5.w);
 		tPrintf("Vector6: (%f, %f, %f, %f)\n", v6.x, v6.y, v6.z, v6.w);
+
+		tExpression mat2x2expA = vectors.Next();
+		tExpression mat2x2expB = mat2x2expA.Next();
+		tExpression mat4x4expA = mat2x2expB.Next();
+
+		tMatrix2 mat2x2A = mat2x2expA;
+		tMatrix2 mat2x2B = mat2x2expB;
+		tMatrix4 mat4x4A = mat4x4expA;
+		tPrintf("Mat2x2A: %:4m\n", mat2x2A);
+		tPrintf("Mat2x2B: %:4m\n", mat2x2B);
+		tPrintf("Mat4x4A: %m\n", mat4x4A);
 
 		// This should generate an exception. Need to test that too.
 		arg3.GetAtomString();

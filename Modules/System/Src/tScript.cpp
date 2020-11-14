@@ -25,6 +25,15 @@
 using namespace tMath;
 
 
+namespace tScript
+{
+	// Block comment begin and end characters. Putting them here in case we need to change them (again).
+	static char BCB = '{';
+	static char BCE = '}';
+};
+using namespace tScript;
+
+
 tExpression tExpression::Car() const
 {
 	tAssert( IsValid() );
@@ -130,9 +139,9 @@ tExpression tExpression::Next() const
 		}
 		else
 		{
-			// The ';' and '<' should also be terminators for the current argument so that EatWhiteAndComments will get everything.
+			// The ';' and BCB should also be terminators for the current argument so that EatWhiteAndComments will get everything.
 			char c1 = *c;
-			while ((c1 != ' ') && (c1 != '\t') && (c1 != '[') && (c1 != ']') && (c1 != '\0') && (c1 != ';') && (c1 != '<') && (c1 != '"'))
+			while ((c1 != ' ') && (c1 != '\t') && (c1 != '[') && (c1 != ']') && (c1 != '\0') && (c1 != ';') && (c1 != BCB) && (c1 != '"'))
 			{
 				c++;
 
@@ -237,7 +246,7 @@ tString tExpression::GetAtomString() const
 		while
 		(
 			(*end != ' ') && (*end != '\t') && (*end != '[') && (*end != ']') && (*end != '\0') &&
-			(*end != '\r') && (*end != '\n') && (*end != ';') && (*end != '<') && (*end != '"')
+			(*end != '\r') && (*end != '\n') && (*end != ';') && (*end != BCB) && (*end != '"')
 		) end++;
 	}
 
@@ -412,8 +421,8 @@ tColouri tExpression::GetAtomColour() const
 const char* tExpression::EatWhiteAndComments(const char* c, int& lineCount)
 {
 	// There are two types of comment. Single-line comments using a semi-colon go to the end of the current line.
-	// Multi-line comments are delimited with less-than and greater-than characters <>. Note that <> are still allowed
-	// inside a string "like > this" without being considered as begin or end comment markers.
+	// Block (multi-line) comments are delimited with { and }. Note that { } are still allowed inside a string
+	// such as "this { string" without being considered as begin or end comment markers.
 	bool inSingleLineComment = false;
 	int inMultiLineComment = 0;
 	bool inString = false;
@@ -423,13 +432,13 @@ const char* tExpression::EatWhiteAndComments(const char* c, int& lineCount)
 	while
 	(
 		(*c == ' ') || (*c == '\t') || (*c == '\n') || (*c == '\r') || (*c == 9) ||
-		(*c == ';') || (*c == '<') || (*c == '>') || inSingleLineComment || inMultiLineComment
+		(*c == ';') || (*c == BCB) || (*c == BCE) || inSingleLineComment || inMultiLineComment
 	)
 	{
-		if ((*c == '<') && !inSingleLineComment && !inString)
+		if ((*c == BCB) && !inSingleLineComment && !inString)
 			inMultiLineComment++;
 
-		else if ((*c == '>') && !inSingleLineComment && inMultiLineComment && !inString)
+		else if ((*c == BCE) && !inSingleLineComment && inMultiLineComment && !inString)
 			inMultiLineComment--;
 
 		else if ((*c == ';') && !inMultiLineComment)
@@ -971,6 +980,7 @@ void tScriptWriter::WriteComment(const char* comment)
 void tScriptWriter::WriteCommentBegin()
 {
 	char sc[] = "<\n";
+	sc[0] = BCB;
 	int numWritten = tSystem::tWriteFile(ScriptFile, sc, 2);
 	if (numWritten != 2)
 		throw tScriptError("Cannot write to script file.");
@@ -997,6 +1007,7 @@ void tScriptWriter::WriteCommentLine(const char* comment)
 void tScriptWriter::WriteCommentEnd()
 {
 	char sc[] = ">\n";
+	sc[0] = BCE;
 	int numWritten = tSystem::tWriteFile(ScriptFile, sc, 2);
 	if (numWritten != 2)
 		throw tScriptError("Cannot write to script file.");
