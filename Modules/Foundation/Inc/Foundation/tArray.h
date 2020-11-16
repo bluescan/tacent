@@ -42,6 +42,9 @@ public:
 	// The append calls will grow the array if necessary. If growCount is 0 and there's no more room, false is returned.
 	bool Append(const T&);
 
+	// The truncate call will return the last appended element and will reduce NumAppendedElements by 1
+	T& Truncate()																										{ tAssert(NumAppendedElements); return Elements[--NumAppendedElements]; }
+
 	// For this append call if the GrowCount is 0 and there is not enough current room, false is returned and the array
 	// is left unmodified. If growing is necessary, it will succeed even if the space needed exceeds a single grow.
 	// It does this in one shot, but grows by a multiple of the GrowCount.
