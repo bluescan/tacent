@@ -171,7 +171,7 @@ public:
 	enum class RotateFilter
 	{
 		NearestPixel,
-		WeightedSamples			// @todo Not implemeted yet.
+		Resampled			// Slower but higher quality results. May introduce new (interpolated) colours.
 	};
 	void RotateCenter
 	(
@@ -236,6 +236,9 @@ private:
 	static int GetCxFormat(tSystem::tFileType);
 	int GetIndex(int x, int y) const																					{ tAssert((x >= 0) && (y >= 0) && (x < Width) && (y < Height)); return y * Width + x; }
 	static int GetIndex(int x, int y, int w, int h)																		{ tAssert((x >= 0) && (y >= 0) && (x < w) && (y < h)); return y * w + x; }
+
+	void RotateCenterNearest(const tMath::tMatrix2& rotMat, const tMath::tMatrix2& invRot, const tPixel& fill);
+	void RotateCenterResampled(const tMath::tMatrix2& rotMat, const tMath::tMatrix2& invRot, const tPixel& fill);
 
 	int Width = 0;
 	int Height = 0;

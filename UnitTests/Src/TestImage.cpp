@@ -133,21 +133,34 @@ tTestUnit(Image)
 	tRequire( tSystem::tFileExists("TestData/WrittenXeyesJPG.jpg"));
 
 	// Test writing rotated images.
-	tPicture icoPic("TestData/UpperBounds.ico");
-	tRequire(icoPic.IsValid());
+	tPicture aroPic("TestData/RightArrow.png");
+	tRequire(aroPic.IsValid());
 
-	tPrintf("Image dimensions before rotate: W:%d H:%d\n", icoPic.GetWidth(), icoPic.GetHeight());
+	tPrintf("Image dimensions before rotate: W:%d H:%d\n", aroPic.GetWidth(), aroPic.GetHeight());
 	float angleDelta = tMath::tDegToRad(30.0f);
 	int numRotations = 12;
 	for (int rotNum = 0; rotNum < numRotations; rotNum++)
 	{
-		tPicture rotPic(icoPic);
+		tPicture rotPic(aroPic);
 		float angle = float(rotNum) * tMath::TwoPi / numRotations;
 		rotPic.RotateCenter(angle, tColouri::transparent);
 
 		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
 		tString writeFile;
-		tsPrintf(writeFile, "TestData/WrittenUpperBounds_Rot%03d.tga", int(tMath::tRadToDeg(angle)));
+		tsPrintf(writeFile, "TestData/WrittenRightArrow_Rot%03d.tga", int(tMath::tRadToDeg(angle)));
+		rotPic.Save(writeFile);
+	}
+
+	// Test resampled (higher quality) rotations.
+	for (int rotNum = 0; rotNum < numRotations; rotNum++)
+	{
+		tPicture rotPic(aroPic);
+		float angle = float(rotNum) * tMath::TwoPi / numRotations;
+		rotPic.RotateCenter(angle, tColouri::transparent, tImage::tPicture::RotateFilter::Resampled);
+
+		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
+		tString writeFile;
+		tsPrintf(writeFile, "TestData/WrittenRightArrow_BilinearResampleRot%03d.tga", int(tMath::tRadToDeg(angle)));
 		rotPic.Save(writeFile);
 	}
 

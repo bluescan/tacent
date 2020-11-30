@@ -700,13 +700,31 @@ void tPicture::Rotate90(bool antiClockwise)
 
 void tPicture::RotateCenter(float angle, const tPixel& fill, RotateFilter filter)
 {
-	tAssert(filter == RotateFilter::NearestPixel);
 	if (!IsValid())
 		return;
 
 	tMatrix2 rotMat;
 	rotMat.MakeRotateZ(angle);
 
+	// Matrix is orthonormal so inverse is transpose.
+	tMatrix2 invRot(rotMat);
+	invRot.Transpose();
+
+	switch (filter)
+	{
+		case RotateFilter::NearestPixel:
+			RotateCenterNearest(rotMat, invRot, fill);
+			break;
+
+		case RotateFilter::Resampled:
+			RotateCenterResampled(rotMat, invRot, fill);
+			break;
+	}
+}
+
+
+void tPicture::RotateCenterNearest(const tMatrix2& rotMat, const tMatrix2& invRot, const tPixel& fill)
+{
 	int srcW = Width;
 	int srcH = Height;
 
@@ -720,7 +738,7 @@ void tPicture::RotateCenter(float angle, const tPixel& fill, RotateFilter filter
 	tVector2 bl(-srcHalfW, -srcHalfH);
 	tVector2 br( srcHalfW, -srcHalfH);
 	tl = rotMat*tl;	tr = rotMat*tr;	bl = rotMat*bl;	br = rotMat*br;
-	float epsilon = 0.0001f;
+	float epsilon = 0.0002f;
 	int minx = int(tFloor(tRound(tMin(tl.x, tr.x, bl.x, br.x), epsilon)));
 	int miny = int(tFloor(tRound(tMin(tl.y, tr.y, bl.y, br.y), epsilon)));
 	int maxx = int(tCeiling(tRound(tMax(tl.x, tr.x, bl.x, br.x), epsilon)));
@@ -732,10 +750,6 @@ void tPicture::RotateCenter(float angle, const tPixel& fill, RotateFilter filter
 	float halfW = float(Width)/2.0f;
 	float halfH = float(Height)/2.0f;
 
-	// Matrix is orthonormal so inverse is transpose.
-	tMatrix2 invRot(rotMat);
-	invRot.Transpose();
-
 	// We now need to loop through every pixel in the new image and do a weighted sample of
 	// the pixels it maps to in the original image. Actually weighted is not implemented yet
 	// so do nearest.
@@ -745,19 +759,41 @@ void tPicture::RotateCenter(float angle, const tPixel& fill, RotateFilter filter
 		{
 			// Lets start with nearest pixel. We can get fancier after.
 			// dstPos is the middle of the pixel we are writing to. srcPos is the original we are coming from.
+			// The origin' of a pixel is the lower-left corner. The 0.5s get us to the center (and back).
 			tVector2 dstPos(float(x)+0.5f - halfW, float(y)+0.5f - halfH);
 			tVector2 srcPos = invRot*dstPos;
 			srcPos += tVector2(srcHalfW, srcHalfH);
-			int srcX = int(tRound(srcPos.x-0.5f));
-			int srcY = int(tRound(srcPos.y-0.5f));
-			bool useFill = (srcX < 0) || (srcX >= srcW) || (srcY < 0) || (srcY >= srcH);
+			srcPos -= tVector2(0.5f, 0.5f);
 
-			tPixel srcCol = useFill ? fill : srcPixels[ GetIndex(srcX, srcY, srcW, srcH) ];
+			tPixel srcCol = tPixel::black;
+
+			int srcX = int(tRound(srcPos.x));
+			int srcY = int(tRound(srcPos.y));
+			bool useFill = (srcX < 0) || (srcX >= srcW) || (srcY < 0) || (srcY >= srcH);
+			srcCol = useFill ? fill : srcPixels[ GetIndex(srcX, srcY, srcW, srcH) ];
 			Pixels[ GetIndex(x, y) ] = srcCol;
 		}
 	}
 
 	delete[] srcPixels;
+}
+
+
+void tPicture::RotateCenterResampled(const tMatrix2& rotMat, const tMatrix2& invRot, const tPixel& fill)
+{
+	Resample(Width*4, Height*4, tFilter::NearestNeighbour);
+	RotateCenterNearest(rotMat, invRot, fill);
+
+	// There are subtle bugs with the CxImage resampler. Use simple box filter if possible.
+	if (!(Width % 4) && !(Height % 4))
+	{
+		ScaleHalf();
+		ScaleHalf();
+	}
+	else
+	{
+		Resample(Width/4, Height/4, tFilter::Bilinear);
+	}
 }
 
 

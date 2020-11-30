@@ -202,6 +202,7 @@ public:
 	void Get(tMath::tVector4& dest) const																				{ dest.x = R; dest.y = G; dest.z = B; dest.w = A; }
 	void Get(float& r, float&g, float& b, float& a) const																{ r = R; g = G; b = B; a = A; }
 	void Get(tColourf& c) const																							{ c.BP0 = BP0; c.BP1 = BP1;}
+	void Saturate()																										{ tMath::tiSaturate(R); tMath::tiSaturate(G); tMath::tiSaturate(B); tMath::tiSaturate(A); }
 
 	void MakeBlack()																									{ R = 0.0f; G = 0.0f; B = 0.0f; A = 1.0f; }
 	void MakeWhite()																									{ R = 1.0f; G = 1.0f; B = 1.0f; A = 1.0f; }
@@ -243,6 +244,10 @@ public:
 	bool operator==(const tColourf& c) const																			{ return ((BP0 == c.BP0) && (BP1 == c.BP1)); }
 	bool operator!=(const tColourf& c) const 																			{ return ((BP0 != c.BP0) || (BP1 != c.BP1)); }
 	tColourf& operator=(const tColourf& c)																				{ BP0 = c.BP0; BP1 = c.BP1; return *this; }
+	tColourf& operator*=(float f)																						{ R *= f; G *= f; B *= f; A *= f; return *this; }
+	const tColourf operator*(float f) const																				{ tColourf res(*this); res *= f; return res; }
+	tColourf& operator+=(const tColourf& c)																				{ R += c.R; G += c.G; B += c.B; A += c.A; return *this; }
+	const tColourf operator+(const tColourf& c) const																	{ tColourf res(*this); res += c; return res; }
 
 	// Predefined colours.
 	const static tColourf invalid;
