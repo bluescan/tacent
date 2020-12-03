@@ -153,6 +153,13 @@ struct tString
 	uint32 GetAsUInt32(int base = -1) const																				{ return tStd::tStrtoui32(TextData, base); }
 	uint64 GetAsUInt64(int base = -1) const																				{ return tStd::tStrtoui64(TextData, base); }
 
+	int GetAsIntStrict(bool& success, int base = -1) const																{ return GetAsInt32Strict(success, base); }
+	int32 GetAsInt32Strict(bool& success, int base = -1) const															{ return tStd::tStrtoi32Strict(TextData, success, base); }
+	int64 GetAsInt64Strict(bool& success, int base = -1) const															{ return tStd::tStrtoi64Strict(TextData, success, base); }
+	uint GetAsUIntStrict(bool& success, int base = -1) const															{ return GetAsUInt32Strict(success, base); }
+	uint32 GetAsUInt32Strict(bool& success, int base = -1) const														{ return tStd::tStrtoui32Strict(TextData, success, base); }
+	uint64 GetAsUInt64Strict(bool& success, int base = -1) const														{ return tStd::tStrtoui64Strict(TextData, success, base); }
+
 	// Case insensitive. Interprets "true", "t", "yes", "y", "on", "enable", "enabled", "1", "+", and strings that
 	// represent non-zero integers as boolean true. Otherwise false.
 	bool GetAsBool() const																								{ return tStd::tStrtob(TextData); }

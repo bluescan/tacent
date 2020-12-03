@@ -104,6 +104,15 @@ inline int tStrtoui(const char* s, int base = -1)																		{ return tStr
 inline int tStrtoi(const char* s, int base = -1)																		{ return tStrtoi32(s, base); }
 inline int tAtoi(const char* s)								/* Base 10 only. Use tStrtoi for arbitrary base. */			{ return tStrtoi32(s, 10); }
 
+template <typename IntegralType> IntegralType tStrtoiTStrict(const char* str, bool& success, int base = -1);
+inline int32 tStrtoi32Strict(const char* s, bool& success, int base = -1)												{ return tStrtoiTStrict<int32>(s, success, base); }
+inline uint32 tStrtoui32Strict(const char* s, bool& success, int base = -1)												{ return tStrtoiTStrict<uint32>(s, success, base); }
+inline int64 tStrtoi64Strict(const char* s, bool& success, int base = -1)												{ return tStrtoiTStrict<int64>(s, success, base); }
+inline uint64 tStrtoui64Strict(const char* s, bool& success, int base = -1)												{ return tStrtoiTStrict<uint64>(s, success, base); }
+inline int tStrtouiStrict(const char* s, bool& success, int base = -1)													{ return tStrtoui32Strict(s, success, base); }
+inline int tStrtoiStrict(const char* s, bool& success, int base = -1)													{ return tStrtoi32Strict(s, success, base); }
+inline int tAtoiStrict(const char* s, bool& success)																	{ return tStrtoi32Strict(s, success, 10); }
+
 // These are both base 10 only. They return 0.0 (or 0.0f) if there is no conversion. They also handle converting a
 // possible binary representation in he string. If the string contains a hash(#) and the next 8 or 16 digits are valid
 // hex digits, thay are interpreted as the binary IEEE floating point rep directly. This stops 'wobble' when serializing
@@ -285,6 +294,77 @@ template<typename IntegralType> inline IntegralType tStd::tStrtoiT(const char* s
 
 		if ((digVal == -1) || (digVal > base-1))
 			continue;
+
+		val += IntegralType(digVal)*colVal;
+		colVal *= IntegralType(base);
+	}
+
+	return val;
+}
+
+
+template<typename IntegralType> inline IntegralType tStd::tStrtoiTStrict(const char* str, bool& success, int base)
+{
+	success = false;
+
+	if (!str || (*str == '\0'))
+		return IntegralType(0);
+
+	success = true;
+	int len = tStrlen(str);
+	const char* start = str;
+	const char* end = str + len - 1;
+
+	if ((base < 2) || (base > 36))
+		base = -1;
+
+	if (base == -1)
+	{
+		// Base is -1. Need to determine based on prefix.
+		if ((len > 1) && (*start == '0'))
+			start++;
+
+		if ((*start == 'x') || (*start == 'X') || (*start == '#'))
+			base = 16;
+		else if ((*start == 'd') || (*start == 'D'))
+			base = 10;
+		else if ((*start == 'o') || (*start == 'O') || (*start == '@'))
+			base = 8;
+		else if ((*start == 'n') || (*start == 'N'))
+			base = 4;
+		else if ((*start == 'b') || (*start == 'B') || (*start == '!'))
+			base = 2;
+
+		if (base == -1)
+			base = 10;
+		else
+			start++;
+	}
+
+	IntegralType val = 0;
+	IntegralType colVal = 1;
+	for (const char* curr = end; curr >= start; curr--)
+	{
+		if ((curr == start) && (*curr == '-') && (base == 10))
+		{
+			val = -val;
+			continue;
+		}
+
+		int digVal = -1;
+		if (*curr >= '0' && *curr <= '9')
+			digVal = *curr - '0';
+		else if (*curr >= 'a' && *curr <= 'z')
+			digVal = 10 + (*curr - 'a');
+		else if (*curr >= 'A' && *curr <= 'Z')
+			digVal = 10 + (*curr - 'A');
+
+		if ((digVal == -1) || (digVal > base-1))
+		{
+			success = false;
+			val = 0;
+			break;
+		}
 
 		val += IntegralType(digVal)*colVal;
 		colVal *= IntegralType(base);
