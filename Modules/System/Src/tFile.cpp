@@ -975,6 +975,16 @@ tString tSystem::tGetLinuxPath(const tString& pth, const tString& mountPoint)
 }
 
 
+tString tSystem::tGetFileExtension(const tString& filename)																
+{
+	tString ext = filename.Right('.'); 
+	if(ext == filename)
+		ext.Clear();
+
+	return ext;
+}
+
+
 tString tSystem::tGetFileFullName(const tString& filename)
 {
 	tString file(filename);
