@@ -125,6 +125,11 @@ public:
 	bool operator!=(const tColouri& c) const 																			{ return (BP != c.BP); }
 	tColouri& operator=(const tColouri& c)																				{ BP = c.BP; return *this; }
 
+	tColouri& operator*=(float f)																						{ R = uint8(float(R)*f); G = uint8(float(G)*f); B = uint8(float(B)*f); A = uint8(float(A)*f); return *this; }
+	const tColouri operator*(float f) const																				{ tColouri res(*this); res *= f; return res; }
+	tColouri& operator+=(const tColouri& c)																				{ R += c.R; G += c.G; B += c.B; A += c.A; return *this; }
+	const tColouri operator+(const tColouri& c) const																	{ tColouri res(*this); res += c; return res; }
+
 	// Predefined colours. Initialized using the C++11 aggregate initializer syntax. These may be used before main()
 	// in normally (non-aggregate syntax) constructed objects.
 	const static tColouri black;

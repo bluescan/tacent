@@ -21,6 +21,7 @@ add_library(
 	Src/tPicture.cpp
 	Src/tPixelFormat.cpp
 	Src/tTexture.cpp
+	Src/tResample.cpp
 	Inc/Image/tCubemap.h
 	Inc/Image/tImageAPNG.h
 	Inc/Image/tImageDDS.h
@@ -37,6 +38,7 @@ add_library(
 	Inc/Image/tPicture.h
 	Inc/Image/tPixelFormat.h
 	Inc/Image/tTexture.h
+	Inc/Image/tResample.h
 	
 	# OpenEXR
 	Contrib/OpenEXR/loadImage.h

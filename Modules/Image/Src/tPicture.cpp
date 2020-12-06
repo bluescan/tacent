@@ -36,6 +36,7 @@
 #include "TurboJpeg/Linux/jconfig.h"
 #include "WebP/Linux/include/demux.h"
 #endif
+#include "Image/tResample.h"
 
 
 using namespace tMath;
@@ -996,6 +997,23 @@ bool tPicture::Resample(int width, int height, tFilter filter)
 			Pixels[index++] = colour;
 		}
 	}
+
+	return true;
+}
+
+
+bool tPicture::Resample2(int width, int height)
+{
+	if (!IsValid() || (width <= 0) || (height <= 0))
+		return false;
+
+	tPixel* newPixels = new tPixel[width*height];
+	tImage::Resample(Pixels, Width, Height, newPixels, width, height);
+
+	delete[] Pixels;
+	Pixels = newPixels;
+	Width = width;
+	Height = height;
 
 	return true;
 }

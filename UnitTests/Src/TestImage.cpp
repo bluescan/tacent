@@ -193,6 +193,9 @@ tTestUnit(Image)
 	bool isAnimC = tImageAPNG::IsAnimatedPNG("TestData/Icos4D.png");
 	tRequire(isAnimC);
 
+	tPicture resamplePic("TestData/TextCursor.png");	// 512x256.
+	resamplePic.Resample2(800, 128);
+	resamplePic.SaveTGA("TestData/WrittenResampled.tga");
 	return;
 }
 
