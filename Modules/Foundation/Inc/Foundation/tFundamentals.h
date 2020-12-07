@@ -59,6 +59,13 @@ inline int tAbs(int val)																								{ return (val < 0) ? -val : val;
 inline float tAbs(float val)																							{ return (val < 0.0f) ? -val : val; }
 inline double tAbs(double val)																							{ return (val < 0.0) ? -val : val; }
 
+// A mathematical modulo. Does not just return remainder like the % operator. i.e. Handles negatives 'properly'.
+// The & and fmod functions are also here but called more appropriately tRem (for remainder). 
+inline int tMod(int n, int d)																							{ int m = n % d; if (m < 0) m = (d < 0) ? m - d : m + d; return m; }
+inline float tMod(float n, float d)																						{ float m = fmod(n, d); if (m < 0.0f) m = (d < 0.0f) ? m - d : m + d; return m; }
+inline int tRem(int n, int d)																							{ return n % d; }
+inline float tRem(float n, float d)																						{ return fmodf(n, d); }
+
 template<typename T> inline T tMin(const T& a, const T& b)																{ return a < b ? a : b; }
 template<typename T> inline T tMax(const T& a, const T& b)																{ return a > b ? a : b; }
 template<typename T> inline T tMin(const T& a, const T& b, const T& c)													{ T ab = a < b ? a : b; return ab < c ? ab : c; }
@@ -110,7 +117,6 @@ inline float tRound(float v)																							{ return floorf(v + 0.5f); }
 
 // This round lets you say round to the nearest [value]. For example, tRound(5.17f, 0.2f) = 5.2f
 float tRound(float v, float nearest);
-inline float tMod(float n, float d)																						{ return fmodf(n,d); }
 
 // For the 'ti' versions of the below functions, the 'i' means 'in-place' (ref var) rather than returning the value.
 inline void tiCeiling(float& v)																							{ v = ceilf(v); }

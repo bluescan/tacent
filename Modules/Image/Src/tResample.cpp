@@ -24,28 +24,22 @@ namespace tImage
 		Horizontal,
 		Vertical
 	};
-	tPixel KernelNearest(tPixel* src,int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode);
-	tPixel KernelBilinear(tPixel* src,int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode);
+	tPixel KernelFilterNearest(tPixel* src,int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode);
+	tPixel KernelFilterBilinear(tPixel* src,int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode);
 	int GetSrcIndex(int idx, int count, tResampleEdgeMode);
 }
 
 
 inline int tImage::GetSrcIndex(int idx, int count, tResampleEdgeMode edgeMode)
 {
+	tAssert(count > 0);
 	switch (edgeMode)
 	{
 		case tResampleEdgeMode::Clamp:
 			return tClamp(idx, 0, count-1);
 
 		case tResampleEdgeMode::Wrap:
-		{
-			if (idx >= count)
-				return idx-count;
-			else if (idx < 0)
-				return count - idx;
-			else
-				return idx;
-		}
+			return tMod(idx, count);
 	}
 
 	return -1;
@@ -56,7 +50,7 @@ bool tImage::Resample
 (
 	tPixel* src, int srcW, int srcH,
 	tPixel* dst, int dstW, int dstH,
-	tResampleKernel resampleKernel,
+	tResampleFilter resampleFilter,
 	tResampleEdgeMode edgeMode
 )
 {
@@ -72,16 +66,16 @@ bool tImage::Resample
 	}
 
 	// Decide what filer kernel to use.
-	typedef tPixel (*KernelFn)(tPixel* src,int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode);
-	KernelFn kernel;
-	switch (resampleKernel)
+	typedef tPixel (*KernelFilterFn)(tPixel* src,int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode);
+	KernelFilterFn kernel;
+	switch (resampleFilter)
 	{
-		case tResampleKernel::Nearest:
-			kernel = KernelNearest;
+		case tResampleFilter::Nearest:
+			kernel = KernelFilterNearest;
 			break;
 
-		case tResampleKernel::Bilinear:
-			kernel = KernelBilinear;
+		case tResampleFilter::Bilinear:
+			kernel = KernelFilterBilinear;
 			break;
 
 		default:
@@ -121,7 +115,7 @@ bool tImage::Resample
 }
 
 
-tPixel tImage::KernelNearest(tPixel* src,int srcW, int srcH, float x, float y, FilterDirection dir, tResampleEdgeMode edgeMode)
+tPixel tImage::KernelFilterNearest(tPixel* src,int srcW, int srcH, float x, float y, FilterDirection dir, tResampleEdgeMode edgeMode)
 {
 	int ix = tClamp(int(x + 0.5f), 0, srcW-1);
 	int iy = tClamp(int(y + 0.5f), 0, srcH-1);
@@ -129,7 +123,7 @@ tPixel tImage::KernelNearest(tPixel* src,int srcW, int srcH, float x, float y, F
 }
 
 
-tPixel tImage::KernelBilinear(tPixel* src,int srcW, int srcH, float x, float y, FilterDirection dir, tResampleEdgeMode edgeMode)
+tPixel tImage::KernelFilterBilinear(tPixel* src,int srcW, int srcH, float x, float y, FilterDirection dir, tResampleEdgeMode edgeMode)
 {
 	int ix = int(x);
 	int iy = int(y);

@@ -994,13 +994,13 @@ bool tPicture::Resample(int width, int height, tFilter filter)
 }
 
 
-bool tPicture::Resample2(int width, int height, tResampleKernel kernel, tResampleEdgeMode edgeMode)
+bool tPicture::Resample2(int width, int height, tResampleFilter filter, tResampleEdgeMode edgeMode)
 {
 	if (!IsValid() || (width <= 0) || (height <= 0))
 		return false;
 
 	tPixel* newPixels = new tPixel[width*height];
-	tImage::Resample(Pixels, Width, Height, newPixels, width, height, kernel, edgeMode);
+	tImage::Resample(Pixels, Width, Height, newPixels, width, height, filter, edgeMode);
 
 	delete[] Pixels;
 	Pixels = newPixels;

@@ -226,7 +226,7 @@ public:
 	bool Resample2
 	(
 		int width, int height,
-		tResampleKernel = tResampleKernel::Bilinear,
+		tResampleFilter = tResampleFilter::Bilinear,
 		tResampleEdgeMode = tResampleEdgeMode::Clamp
 	);
 	bool Resize(int width, int height, tFilter filter = tFilter::Bilinear)												{ return Resample(width, height, filter); }
