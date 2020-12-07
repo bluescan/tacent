@@ -18,9 +18,9 @@ namespace tImage
 {
 
 
-enum class tResampleFilter
+enum class tResampleKernel
 {
-	NearestNeighbour,
+	Nearest,
 	Bilinear,
 	Bicubic
 };
@@ -45,7 +45,7 @@ bool Resample
 (
 	tPixel* src, int srcW, int srcH,
 	tPixel* dst, int dstW, int dstH,
-	tResampleFilter = tResampleFilter::Bilinear,
+	tResampleKernel = tResampleKernel::Bilinear,
 	tResampleEdgeMode = tResampleEdgeMode::Clamp
 );
 

@@ -785,16 +785,8 @@ void tPicture::RotateCenterResampled(const tMatrix2& rotMat, const tMatrix2& inv
 	Resample(Width*4, Height*4, tFilter::NearestNeighbour);
 	RotateCenterNearest(rotMat, invRot, fill);
 
-	// There are subtle bugs with the CxImage resampler. Use simple box filter if possible.
-	if (!(Width % 4) && !(Height % 4))
-	{
-		ScaleHalf();
-		ScaleHalf();
-	}
-	else
-	{
-		Resample(Width/4, Height/4, tFilter::Bilinear);
-	}
+	ScaleHalf();
+	ScaleHalf();
 }
 
 
@@ -1002,13 +994,13 @@ bool tPicture::Resample(int width, int height, tFilter filter)
 }
 
 
-bool tPicture::Resample2(int width, int height)
+bool tPicture::Resample2(int width, int height, tResampleKernel kernel, tResampleEdgeMode edgeMode)
 {
 	if (!IsValid() || (width <= 0) || (height <= 0))
 		return false;
 
 	tPixel* newPixels = new tPixel[width*height];
-	tImage::Resample(Pixels, Width, Height, newPixels, width, height);
+	tImage::Resample(Pixels, Width, Height, newPixels, width, height, kernel, edgeMode);
 
 	delete[] Pixels;
 	Pixels = newPixels;

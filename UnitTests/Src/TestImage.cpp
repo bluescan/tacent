@@ -193,9 +193,13 @@ tTestUnit(Image)
 	bool isAnimC = tImageAPNG::IsAnimatedPNG("TestData/Icos4D.png");
 	tRequire(isAnimC);
 
-	tPicture resamplePic("TestData/TextCursor.png");	// 512x256.
-	resamplePic.Resample2(800, 128);
-	resamplePic.SaveTGA("TestData/WrittenResampled.tga");
+	tPicture resamplePicNearest("TestData/TextCursor.png");	// 512x256.
+	resamplePicNearest.Resample2(800, 300, tResampleKernel::Nearest);
+	resamplePicNearest.SaveTGA("TestData/WrittenResampledNearest.tga");
+
+	tPicture resamplePicBilinear("TestData/TextCursor.png");	// 512x256.
+	resamplePicBilinear.Resample2(800, 300, tResampleKernel::Bilinear);
+	resamplePicBilinear.SaveTGA("TestData/WrittenResampledBilinear.tga");
 	return;
 }
 

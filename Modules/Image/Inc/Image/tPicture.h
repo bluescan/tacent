@@ -38,6 +38,7 @@
 #include "Image/tImageWEBP.h"
 #include "Image/tImageXPM.h"
 #include "Image/tPixelFormat.h"
+#include "Image/tResample.h"
 namespace tImage
 {
 
@@ -222,7 +223,12 @@ public:
 
 	// Resizes the image using the specified filter. Returns success. If the resample fails the tPicture is unmodified.
 	bool Resample(int width, int height, tFilter filter = tFilter::Bilinear);
-	bool Resample2(int width, int height);
+	bool Resample2
+	(
+		int width, int height,
+		tResampleKernel = tResampleKernel::Bilinear,
+		tResampleEdgeMode = tResampleEdgeMode::Clamp
+	);
 	bool Resize(int width, int height, tFilter filter = tFilter::Bilinear)												{ return Resample(width, height, filter); }
 
 	bool operator==(const tPicture&) const;
