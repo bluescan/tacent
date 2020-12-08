@@ -1687,7 +1687,12 @@ bool tSystem::tLoadFile(const tString& filename, tString& dst, char convertZeroe
 uint8* tSystem::tLoadFile(const tString& filename, uint8* buffer, int* fileSize, bool appendEOF)
 {
 	tFileHandle f = tOpenFile(filename.ConstText(), "rb");
-	tAssert(f);
+	if (!f)
+	{
+		if (fileSize)
+			*fileSize = 0;
+		return nullptr;
+	}
 
 	int size = tGetFileSize(f);
 	if (fileSize)
@@ -1699,7 +1704,7 @@ uint8* tSystem::tLoadFile(const tString& filename, uint8* buffer, int* fileSize,
 		// In this case we always return 0 even if a non-zero buffer was passed in.
 		// The fileSize member will already be set if necessary.
 		tCloseFile(f);
-		return 0;
+		return nullptr;
 	}
 
 	bool bufferAllocatedHere = false;
