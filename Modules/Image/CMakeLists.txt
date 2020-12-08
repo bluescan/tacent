@@ -52,8 +52,14 @@ add_library(
 tacent_target_include_directories(${PROJECT_NAME})
 target_include_directories(
 	"${PROJECT_NAME}"
+
+	# PRIVATE is for building only. Populates INCLUDE_DIRECTORIES
+	# INTERFACE is for users of the library. Populates INTERFACE_INCLUDE_DIRECTORIES
+	# PUBLIC means both building and for users of the lib. Populates both.
+	PUBLIC
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib>
+		$<INSTALL_INTERFACE:Contrib>
 	PRIVATE
-		${CMAKE_CURRENT_SOURCE_DIR}/Contrib
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include/OpenEXR
