@@ -14,6 +14,7 @@
 
 #pragma once
 #include "Image/tResample.h"
+#include "System/tPrint.h"
 using namespace tMath;
 
 
@@ -24,8 +25,17 @@ namespace tImage
 		Horizontal,
 		Vertical
 	};
-	tPixel KernelFilterNearest(tPixel* src,int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode);
-	tPixel KernelFilterBilinear(tPixel* src,int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode);
+
+	struct FilterParams
+	{
+		FilterParams() : RatioH(0.0f), RatioV(0.0f) { }
+		union { float RatioH; float CoeffA; };
+		union { float RatioV; float CoeffB; };
+	};
+
+	tPixel KernelFilterNearest (const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
+	tPixel KernelFilterBox	 (const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
+	tPixel KernelFilterBilinear(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
 	int GetSrcIndex(int idx, int count, tResampleEdgeMode);
 }
 
@@ -65,13 +75,23 @@ bool tImage::Resample
 		return true;
 	}
 
-	// Decide what filer kernel to use.
-	typedef tPixel (*KernelFilterFn)(tPixel* src,int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode);
+	float ratioH = (dstW > 1) ? (float(srcW) - 1.0f) / float(dstW - 1) : 1.0f;
+	float ratioV = (dstH > 1) ? (float(srcH) - 1.0f) / float(dstH - 1) : 1.0f;
+
+	// Decide what filer kernel to use. Different kernels may set different values in FilterParams.
+	FilterParams params;
+	typedef tPixel (*KernelFilterFn)(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
 	KernelFilterFn kernel;
 	switch (resampleFilter)
 	{
 		case tResampleFilter::Nearest:
 			kernel = KernelFilterNearest;
+			break;
+
+		case tResampleFilter::Box:
+			params.RatioH = ratioH;
+			params.RatioV = ratioV;
+			kernel = KernelFilterBox;
 			break;
 
 		case tResampleFilter::Bilinear:
@@ -83,39 +103,42 @@ bool tImage::Resample
 	}	
 
 	// By convention do horizontal first. Outer loop is for each src row.
-	float wratio = (dstW > 1) ? (float(srcW) - 1.0f) / float(dstW - 1) : 1.0f;
-	tPixel* horizResampledImage = new tPixel[dstW*srcH];
+	// hri stands for hozontal-resized-image.
+	tPixel* hri = new tPixel[dstW*srcH];
 	for (int r = 0; r < srcH; r++)
 	{
 		// Fill in each dst pixel for the src row,
 		float y = float(r);
 		for (int c = 0; c < dstW; c++)
 		{
-			tPixel& dstPixel = horizResampledImage[dstW*r + c];
-			float x = float(c) * wratio;
-			dstPixel = kernel(src, srcW, srcH, x, y, FilterDirection::Horizontal, edgeMode);
+			tPixel& dstPixel = hri[dstW*r + c];
+			float x = float(c) * ratioH;
+			dstPixel = kernel(src, srcW, srcH, x, y, FilterDirection::Horizontal, edgeMode, params);
 		}
 	}
 
-	// Vertical resampling. Source is the horizontally scaled image.
-	float hratio = (dstH > 1) ? (float(srcH) - 1.0f) / float(dstH - 1) : 1.0f;
+	// Vertical resampling. Source is the horizontally resized image.
 	for (int c = 0; c < dstW; c++)
 	{
 		float x = float(c);
 		for (int r = 0; r < dstH; r++)
 		{
 			tPixel& dstPixel = dst[dstW*r + c];
-			float y = float(r) * hratio;
-			dstPixel = kernel(horizResampledImage, dstW, srcH, x, y, FilterDirection::Vertical, edgeMode);
+			float y = float(r) * ratioV;
+			dstPixel = kernel(hri, dstW, srcH, x, y, FilterDirection::Vertical, edgeMode, params);
 		}
 	}
 
-	delete[] horizResampledImage;
+	delete[] hri;
 	return true;
 }
 
 
-tPixel tImage::KernelFilterNearest(tPixel* src,int srcW, int srcH, float x, float y, FilterDirection dir, tResampleEdgeMode edgeMode)
+tPixel tImage::KernelFilterNearest
+(
+	const tPixel* src, int srcW, int srcH, float x, float y,
+	FilterDirection dir, tResampleEdgeMode edgeMode, const FilterParams& params
+)
 {
 	int ix = tClamp(int(x + 0.5f), 0, srcW-1);
 	int iy = tClamp(int(y + 0.5f), 0, srcH-1);
@@ -123,7 +146,68 @@ tPixel tImage::KernelFilterNearest(tPixel* src,int srcW, int srcH, float x, floa
 }
 
 
-tPixel tImage::KernelFilterBilinear(tPixel* src,int srcW, int srcH, float x, float y, FilterDirection dir, tResampleEdgeMode edgeMode)
+tPixel tImage::KernelFilterBox
+(
+	const tPixel* src, int srcW, int srcH, float x, float y,
+	FilterDirection dir, tResampleEdgeMode edgeMode, const FilterParams& params
+)
+{
+	float ratio = (dir == FilterDirection::Horizontal) ? params.RatioH : params.RatioV;
+	int domain = int(ratio + 1.0f);
+	float maxDistance = ratio;
+	float weightTotal = 0.0f;
+	tVector4 sampleTotal = tVector4::zero;
+
+	for (int i = 1-domain; i <= domain; i++)
+	{
+		int ix = (dir == FilterDirection::Horizontal) ? int(x) + i : int(x);
+		int iy = (dir == FilterDirection::Horizontal) ? int(y)     : int(y) + i;
+
+		float delta = (dir == FilterDirection::Horizontal) ? x - ix : y - iy;
+		float distance = tAbs(delta);
+		float weight = 0.0f;
+
+		int srcX = GetSrcIndex(ix ,srcW, edgeMode);
+		int srcY = GetSrcIndex(iy ,srcH, edgeMode);
+		tPixel srcPixel = src[srcW*srcY + srcX];
+
+		if (ratio >= 1.0f)
+		{
+			distance = tMin(maxDistance, distance);
+			weight = 1.0f - distance/maxDistance;
+		}
+		else
+		{
+			if (distance >= (0.5f - ratio))
+				weight = 1.0f - distance;
+			else
+				return srcPixel;		// Box is inside src pixel. Done.
+		}
+
+		sampleTotal.x += srcPixel.R * weight;
+		sampleTotal.y += srcPixel.G * weight;
+		sampleTotal.z += srcPixel.B * weight;
+		sampleTotal.w += srcPixel.A * weight;
+		weightTotal += weight;
+	}
+
+	// Renormalize totalSamples back to [0, 256).
+	sampleTotal /= weightTotal;
+	return tPixel
+	(
+		tClamp(int(tRound(sampleTotal.x)), 0, 255),
+		tClamp(int(tRound(sampleTotal.y)), 0, 255),
+		tClamp(int(tRound(sampleTotal.z)), 0, 255),
+		tClamp(int(tRound(sampleTotal.w)), 0, 255)
+	);
+}
+
+
+tPixel tImage::KernelFilterBilinear
+(
+	const tPixel* src, int srcW, int srcH, float x, float y,
+	FilterDirection dir, tResampleEdgeMode edgeMode, const FilterParams& params
+)
 {
 	int ix = int(x);
 	int iy = int(y);
@@ -135,9 +219,19 @@ tPixel tImage::KernelFilterBilinear(tPixel* src,int srcW, int srcH, float x, flo
 
 	tPixel a = src[srcW*srcYa + srcXa];
 	tPixel b = (dir == FilterDirection::Horizontal) ?
-		src[srcW*srcYa  + srcXb] :
+		src[srcW*srcYa + srcXb] :
 		src[srcW*srcYb + srcXa];
 
 	float weight = (dir == FilterDirection::Horizontal) ? float(x)-ix : float(y)-iy;
-	return a*(1.0f-weight) + b*weight;
+
+	tVector4 av, bv, rv;
+	a.GetDenorm(av);
+	b.GetDenorm(bv);
+	rv = av*(1.0f-weight) + bv*weight;
+	tiClamp(tiRound(rv.x), 0.0f, 255.0f);
+	tiClamp(tiRound(rv.y), 0.0f, 255.0f);
+	tiClamp(tiRound(rv.z), 0.0f, 255.0f);
+	tiClamp(tiRound(rv.w), 0.0f, 255.0f);
+
+	return tPixel(int(rv.x), int(rv.y), int(rv.z), int(rv.w));
 }

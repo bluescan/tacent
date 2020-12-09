@@ -197,6 +197,10 @@ tTestUnit(Image)
 	resamplePicNearest.Resample2(800, 300, tResampleFilter::Nearest);
 	resamplePicNearest.SaveTGA("TestData/WrittenResampledNearest.tga");
 
+	tPicture resamplePicBox("TestData/TextCursor.png");		// 512x256.
+	resamplePicBox.Resample2(800, 300, tResampleFilter::Box);
+	resamplePicBox.SaveTGA("TestData/WrittenResampledBox.tga");
+
 	tPicture resamplePicBilinear("TestData/TextCursor.png");	// 512x256.
 	resamplePicBilinear.Resample2(800, 300, tResampleFilter::Bilinear);
 	resamplePicBilinear.SaveTGA("TestData/WrittenResampledBilinear.tga");

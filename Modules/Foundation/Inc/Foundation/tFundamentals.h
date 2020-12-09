@@ -89,11 +89,11 @@ template<typename T> inline bool tApproxEqual(T a, T b, float e = Epsilon)						
 template<typename T> inline bool tEquals(T a, T b)																		{ return a == b; }
 template<typename T> inline bool tNotEqual(T a, T b)																	{ return a != b; }
 
-// For the 'ti' versions of the below functions, the 'i' means 'in-place' (ref var) rather than returning the value.
-template<typename T> inline void tiClamp(T& val, T min, T max)															{ val = (val < min) ? min : ((val > max) ? max : val); }
-template<typename T> inline void tiClampMin(T& val, T min)																{ val = (val < min) ? min : val; }
-template<typename T> inline void tiClampMax(T& val, T max)																{ val = (val > max) ? max : val; }
-template<typename T> inline void tiSaturate(T& val)																		{ val = (val < T(0)) ? T(0) : ((val > T(1)) ? T(1) : val); }
+// For the 'ti' versions of the below functions, the 'i' means 'in-place' (ref var). Supports chaining.
+template<typename T> inline T& tiClamp(T& val, T min, T max)															{ val = (val < min) ? min : ((val > max) ? max : val); return val; }
+template<typename T> inline T& tiClampMin(T& val, T min)																{ val = (val < min) ? min : val; return val; }
+template<typename T> inline T& tiClampMax(T& val, T max)																{ val = (val > max) ? max : val; return val; }
+template<typename T> inline T& tiSaturate(T& val)																		{ val = (val < T(0)) ? T(0) : ((val > T(1)) ? T(1) : val); return val; }
 
 struct tDivt																											{ int Quotient; int Remainder; };
 tDivt tDiv(int numerator, int denominator);
@@ -118,14 +118,15 @@ inline float tRound(float v)																							{ return floorf(v + 0.5f); }
 // This round lets you say round to the nearest [value]. For example, tRound(5.17f, 0.2f) = 5.2f
 float tRound(float v, float nearest);
 
-// For the 'ti' versions of the below functions, the 'i' means 'in-place' (ref var) rather than returning the value.
-inline void tiCeiling(float& v)																							{ v = ceilf(v); }
-inline void tiFloor(float& v)																							{ v = floorf(v); }
-inline void tiRound(float& v)																							{ v = floorf(v + 0.5f); }
-inline void tiRound(float& v, float nearest)																			{ v = tRound(v, nearest); }
-inline void tiAbs(int& val)																								{ val = (val < 0) ? -val : val; }
-inline void tiAbs(float& val)																							{ val = (val < 0.0f) ? -val : val; }
-inline void tiAbs(double& val)																							{ val = (val < 0.0) ? -val : val; }
+// For the 'ti' versions of the below functions, the 'i' means 'in-place' (ref var). A ref is also returned so it's
+// easy to chain calls.
+inline float& tiCeiling(float& v)																						{ v = ceilf(v); return v; }
+inline float& tiFloor(float& v)																							{ v = floorf(v); return v; }
+inline float& tiRound(float& v)																							{ v = floorf(v + 0.5f); return v; }
+inline float& tiRound(float& v, float nearest)																			{ v = tRound(v, nearest); return v; }
+inline int& tiAbs(int& v)																								{ v = (v < 0) ? -v : v; return v; }
+inline float& tiAbs(float& v)																							{ v = (v < 0.0f) ? -v : v; return v; }
+inline double& tiAbs(double& v)																							{ v = (v < 0.0) ? -v : v; return v; }
 
 // The following Abs function deserves a little explanation. Some linear algebra texts use the term absolute value and
 // norm interchangeably. Others suggest that the absolute value of a matrix is the matrix with each component
@@ -154,9 +155,9 @@ inline float tArcTan(float m)																							{ return atanf(m); }
 inline float tExp(float x)																								{ return expf(x); }
 inline float tLog(float x)									/* Natural logarithm. */									{ return logf(x); }
 
-// For the 'ti' versions of the below functions, the 'i' means 'in-place' (ref var) rather than returning the value.
-inline void tiDegToRad(float& ang)																						{ ang = ang * Pi / 180.0f; }
-inline void tiRadToDeg(float& ang)																						{ ang = ang * 180.0f / Pi; }
+// For the 'ti' versions of the below functions, the 'i' means 'in-place' (ref var).
+inline float& tiDegToRad(float& ang)																					{ ang = ang * Pi / 180.0f; return ang; }
+inline float& tiRadToDeg(float& ang)																					{ ang = ang * 180.0f / Pi; return ang; }
 
 inline float tPow(float a, float b)																						{ return powf(a, b); }
 inline double tPow(double a, double b)																					{ return pow(a, b); }
@@ -166,17 +167,17 @@ inline double tPow(double a, double b)																					{ return pow(a, b); }
 // Log2(2) = 1, Log2(3) = 1, and Log2(4) = 2.
 inline int tLog2(int v);
 
-// For the 'ti' versions of the functions, the 'i' means 'in-place' (ref var) rather than returning the value.
+// For the 'ti' versions of the functions, the 'i' means 'in-place' (ref var).
 inline bool tIsPower2(int v)																							{ if (v < 1) return false; return (v & (v-1)) ? false : true; }
-inline void tiNextLowerPower2(uint& v)																					{ uint pow2 = 1; while (pow2 < v) pow2 <<= 1; pow2 >>= 1; v = pow2 ? pow2 : 1; }
+inline uint& tiNextLowerPower2(uint& v)																					{ uint pow2 = 1; while (pow2 < v) pow2 <<= 1; pow2 >>= 1; v = pow2 ? pow2 : 1; return v; }
 inline uint tNextLowerPower2(uint v)																					{ uint pow2 = 1; while (pow2 < v) pow2 <<= 1; pow2 >>= 1; return pow2 ? pow2 : 1; }
-inline void tiNextHigherPower2(uint& v)																					{ uint pow2 = 1; while (pow2 <= v) pow2 <<= 1; v = pow2; }
+inline uint& tiNextHigherPower2(uint& v)																				{ uint pow2 = 1; while (pow2 <= v) pow2 <<= 1; v = pow2; return v; }
 inline uint tNextHigherPower2(uint v)																					{ uint pow2 = 1; while (pow2 <= v) pow2 <<= 1; return pow2; }
-inline void tiClosestPower2(uint& v)																					{ if (tIsPower2(v)) return; int h = tNextHigherPower2(v); int l = tNextLowerPower2(v); v = ((h - v) < (v - l)) ? h : l; }
+inline uint& tiClosestPower2(uint& v)																					{ if (tIsPower2(v)) return v; int h = tNextHigherPower2(v); int l = tNextLowerPower2(v); v = ((h - v) < (v - l)) ? h : l; return v; }
 inline uint tClosestPower2(uint v)																						{ if (tIsPower2(v)) return v; int h = tNextHigherPower2(v); int l = tNextLowerPower2(v); return ((h - v) < (v - l)) ? h : l; }
-void tiNormalizeAngle(float& angle, tIntervalBias = tIntervalBias::Low);		// Results in angle E [(-Pi,Pi)].
+float& tiNormalizeAngle(float& angle, tIntervalBias = tIntervalBias::Low);		// Results in angle E [(-Pi,Pi)].
 inline float tNormalizedAngle(float angle, tIntervalBias bias = tIntervalBias::Low)										{ tiNormalizeAngle(angle, bias); return angle; }
-void tiNormalizeAngle2Pi(float& angle, tIntervalBias = tIntervalBias::Low);		// Results in angle E [(0,2Pi)].
+float& tiNormalizeAngle2Pi(float& angle, tIntervalBias = tIntervalBias::Low);		// Results in angle E [(0,2Pi)].
 inline float tNormalizedAngle2Pi(float angle, tIntervalBias bias = tIntervalBias::Low)									{ tiNormalizeAngle2Pi(angle, bias); return angle; }
 
 // Gets the range (y) value of a normal distribution with mean = 0, and given variance. Pass in the domain (x) value.
@@ -373,21 +374,23 @@ inline void tMath::tCosSinFast(float& c, float& s, float x)
 }
 
 
-inline void tMath::tiNormalizeAngle(float& a, tIntervalBias bias)
+inline float& tMath::tiNormalizeAngle(float& a, tIntervalBias bias)
 {
 	std::function<bool(float,float)> less = tBiasLess(bias);
 	std::function<bool(float,float)> greater = tBiasGreater(bias);
 	while (less(a, -Pi)) a += TwoPi;
 	while (greater(a, Pi)) a -= TwoPi;
+	return a;
 }
 
 
-inline void tMath::tiNormalizeAngle2Pi(float& a, tIntervalBias bias)
+inline float& tMath::tiNormalizeAngle2Pi(float& a, tIntervalBias bias)
 {
 	std::function<bool(float,float)> less = tBiasLess(bias);
 	std::function<bool(float,float)> greater = tBiasGreater(bias);
 	while (less(a, 0.0f)) a += TwoPi;
 	while (greater(a, TwoPi)) a -= TwoPi;
+	return a;
 }
 
 

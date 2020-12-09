@@ -71,13 +71,15 @@ public:
 	void Set(int r, int g, int b, int a = 255)																			{ R = uint8(r); G = uint8(g); B = uint8(b); A = uint8(a); }
 	void Set(const tColourf& c);
 	void Set(const float* src)																							{ SetR(src[0]); SetG(src[1]); SetB(src[2]); SetA(src[3]); }
+
+	// The floating point set methods use a range of [0.0, 1.0] for each component.
 	void Set(float r, float g, float b, float a = 1.0f)																	{ SetR(r); SetG(g); SetB(b); SetA(a); }
 	void SetR(float r)																									{ R = tMath::tClamp( tMath::tFloatToInt(r*255.0f), 0, 0xFF ); }
 	void SetG(float g)																									{ G = tMath::tClamp( tMath::tFloatToInt(g*255.0f), 0, 0xFF ); }
 	void SetB(float b)																									{ B = tMath::tClamp( tMath::tFloatToInt(b*255.0f), 0, 0xFF ); }
 	void SetA(float a)																									{ A = tMath::tClamp( tMath::tFloatToInt(a*255.0f), 0, 0xFF ); }
 
-	// The floating point get and set methods use a range of [0.0, 1.0] for each component.
+	// The floating point get methods use a range of [0.0, 1.0] for each component.
 	float GetR() const																									{ return float(R) / 255.0f; }
 	float GetG() const																									{ return float(G) / 255.0f; }
 	float GetB() const																									{ return float(B) / 255.0f; }
@@ -86,8 +88,18 @@ public:
 	void Get(tMath::tVector3& dest) const																				{ dest.x = GetR(); dest.y = GetG(); dest.z = GetB(); }
 	void Get(tMath::tVector4& dest) const																				{ dest.x = GetR(); dest.y = GetG(); dest.z = GetB(); dest.w = GetA(); }
 	void Get(float& r, float&g, float& b, float& a) const																{ r = GetR(); g = GetG(); b = GetB(); a = GetA(); }
-	void Get(tColouri& c) const																							{ c.BP = BP; }
 
+	// These floating point get methods use a range of [0.0, 255.0] for each component.
+	float GetDenormR() const																							{ return float(R); }
+	float GetDenormG() const																							{ return float(G); }
+	float GetDenormB() const																							{ return float(B); }
+	float GetDenormA() const																							{ return float(A); }
+	void GetDenorm(float* dest) const																					{ dest[0] = GetDenormR(); dest[1] = GetDenormG(); dest[2] = GetDenormB(); dest[3] = GetDenormA(); }
+	void GetDenorm(tMath::tVector3& dest) const																			{ dest.x = GetDenormR(); dest.y = GetDenormG(); dest.z = GetDenormB(); }
+	void GetDenorm(tMath::tVector4& dest) const																			{ dest.x = GetDenormR(); dest.y = GetDenormG(); dest.z = GetDenormB(); dest.w = GetDenormA(); }
+	void GetDenorm(float& r, float&g, float& b, float& a) const															{ r = GetDenormR(); g = GetDenormG(); b = GetDenormB(); a = GetDenormA(); }
+
+	void Get(tColouri& c) const																							{ c.BP = BP; }
 	void MakeZero()																										{ R = 0x00; G = 0x00; B = 0x00; A = 0x00; }
 	void MakeBlack()																									{ R = 0x00; G = 0x00; B = 0x00; A = 0xFF; }
 	void MakeWhite()																									{ R = 0xFF; G = 0xFF; B = 0xFF; A = 0xFF; }

@@ -21,6 +21,7 @@ namespace tImage
 enum class tResampleFilter
 {
 	Nearest,
+	Box,
 	Bilinear,
 	Bicubic
 };
