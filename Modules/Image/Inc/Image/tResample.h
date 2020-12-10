@@ -1,6 +1,6 @@
 // tResample.h
 //
-// Resample an image using various filers like nearest-neighbour, bilinear, and bicubic.
+// Resample an image using various filers like nearest-neighbour, box, bilinear, and various bicubics.
 //
 // Copyright (c) 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -23,7 +23,18 @@ enum class tResampleFilter
 	Nearest,
 	Box,
 	Bilinear,
-	Bicubic
+
+	// The bicubic filter coefficients (b,c) and names are described here:
+	// https://entropymine.com/imageworsener/bicubic/
+	// The order in which the cubic filters are list below matches my opinion of overall quality.
+	Bicubic_Standard,		// Cardinal.				B=0		C=3/4
+	Bicubic_CatmullRom,		// Cardinal.				B=0		C=1/2
+	Bicubic_Mitchell,		// Balanced.				B=1/3	C=1/3
+	Bicubic_Cardinal,		// Pure Cardinal.			B=0		C=1
+	Bicubic_BSpline,		// Pure BSpline. Blurry.	B=1		C=0
+
+	// Aliaes.
+	Bicubic					= Bicubic_Standard
 };
 
 

@@ -204,6 +204,27 @@ tTestUnit(Image)
 	tPicture resamplePicBilinear("TestData/TextCursor.png");	// 512x256.
 	resamplePicBilinear.Resample2(800, 300, tResampleFilter::Bilinear);
 	resamplePicBilinear.SaveTGA("TestData/WrittenResampledBilinear.tga");
+
+	tPicture resamplePicBicubicStandard("TestData/TextCursor.png");	// 512x256.
+	resamplePicBicubicStandard.Resample2(800, 300, tResampleFilter::Bicubic_Standard);
+	resamplePicBicubicStandard.SaveTGA("TestData/WrittenResampledBicubicStandard.tga");
+
+	tPicture resamplePicBicubicCatmullRom("TestData/TextCursor.png");	// 512x256.
+	resamplePicBicubicCatmullRom.Resample2(800, 300, tResampleFilter::Bicubic_CatmullRom);
+	resamplePicBicubicCatmullRom.SaveTGA("TestData/WrittenResampledBicubicCatmullRom.tga");
+
+	tPicture resamplePicBicubicMitchell("TestData/TextCursor.png");	// 512x256.
+	resamplePicBicubicMitchell.Resample2(800, 300, tResampleFilter::Bicubic_Mitchell);
+	resamplePicBicubicMitchell.SaveTGA("TestData/WrittenResampledBicubicMitchell.tga");
+
+	tPicture resamplePicBicubicCardinal("TestData/TextCursor.png");	// 512x256.
+	resamplePicBicubicCardinal.Resample2(800, 300, tResampleFilter::Bicubic_Cardinal);
+	resamplePicBicubicCardinal.SaveTGA("TestData/WrittenResampledBicubicCardinal.tga");
+
+	tPicture resamplePicBicubicBSpline("TestData/TextCursor.png");	// 512x256.
+	resamplePicBicubicBSpline.Resample2(800, 300, tResampleFilter::Bicubic_BSpline);
+	resamplePicBicubicBSpline.SaveTGA("TestData/WrittenResampledBicubicBSpline.tga");
+
 	return;
 }
 

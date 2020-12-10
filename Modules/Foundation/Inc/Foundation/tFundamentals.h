@@ -134,6 +134,8 @@ inline double& tiAbs(double& v)																							{ v = (v < 0.0) ? -v : v; 
 // (scalar length).
 template <typename T> inline T tAbs(T v)																				{ T result; for (int c = 0; c < T::GetNumComponents(); c++) result[c] = tAbs(v[c]); return result; }
 inline float tFrac(float val)																							{ return tAbs(val - float(int(val))); }
+inline float tSquare(float v)																							{ return v*v; }
+inline float tCube(float v)																								{ return v*v*v; }
 inline float tSqrt(float x)																								{ return sqrtf(x); }
 float tSqrtFast(float x);
 inline float tRecipSqrt(float x)																						{ return 1.0f/sqrtf(x); }

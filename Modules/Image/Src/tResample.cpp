@@ -1,6 +1,6 @@
 // tResample.cpp
 //
-// Resample an image using various filers like nearest-neighbour, bilinear, and bicubic.
+// Resample an image using various filers like nearest-neighbour, box, bilinear, and various bicubics.
 //
 // Copyright (c) 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -29,14 +29,17 @@ namespace tImage
 	struct FilterParams
 	{
 		FilterParams() : RatioH(0.0f), RatioV(0.0f) { }
-		union { float RatioH; float CoeffA; };
-		union { float RatioV; float CoeffB; };
+		union { float RatioH; float CubicCoeffB; };
+		union { float RatioV; float CubicCoeffC; };
 	};
 
-	tPixel KernelFilterNearest (const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
-	tPixel KernelFilterBox	 (const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
-	tPixel KernelFilterBilinear(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
+	tPixel KernelFilterNearest			(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
+	tPixel KernelFilterBox				(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
+	tPixel KernelFilterBilinear			(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
+	tPixel KernelFilterBicubic			(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
+
 	int GetSrcIndex(int idx, int count, tResampleEdgeMode);
+	float ComputeCubicWeight(float coeffB, float coeffC, float distance);
 }
 
 
@@ -96,6 +99,36 @@ bool tImage::Resample
 
 		case tResampleFilter::Bilinear:
 			kernel = KernelFilterBilinear;
+			break;
+
+		case tResampleFilter::Bicubic_Standard:		// Cardinal.				B=0		C=3/4
+			params.CubicCoeffB = 0.0f;
+			params.CubicCoeffC = 3.0f/4.0f;
+			kernel = KernelFilterBicubic;
+			break;
+
+		case tResampleFilter::Bicubic_CatmullRom:	// Cardinal.				B=0		C=1/2
+			params.CubicCoeffB = 0.0f;
+			params.CubicCoeffC = 1.0f/2.0f;
+			kernel = KernelFilterBicubic;
+			break;
+
+		case tResampleFilter::Bicubic_Mitchell:		// Balanced.				B=1/3	C=1/3
+			params.CubicCoeffB = 1.0f/3.0f;
+			params.CubicCoeffC = 1.0f/3.0f;
+			kernel = KernelFilterBicubic;
+			break;
+
+		case tResampleFilter::Bicubic_Cardinal:		// Pure Cardinal.			B=0		C=1
+			params.CubicCoeffB = 0.0f;
+			params.CubicCoeffC = 1.0f;
+			kernel = KernelFilterBicubic;
+			break;
+
+		case tResampleFilter::Bicubic_BSpline:		// Pure BSpline. Blurry.	B=1		C=0
+			params.CubicCoeffB = 1.0f;
+			params.CubicCoeffC = 0.0f;
+			kernel = KernelFilterBicubic;
 			break;
 
 		default:
@@ -158,10 +191,10 @@ tPixel tImage::KernelFilterBox
 	float weightTotal = 0.0f;
 	tVector4 sampleTotal = tVector4::zero;
 
-	for (int i = 1-domain; i <= domain; i++)
+	for (int samp = 1-domain; samp <= domain; samp++)
 	{
-		int ix = (dir == FilterDirection::Horizontal) ? int(x) + i : int(x);
-		int iy = (dir == FilterDirection::Horizontal) ? int(y)     : int(y) + i;
+		int ix = (dir == FilterDirection::Horizontal) ? int(x) + samp : int(x);
+		int iy = (dir == FilterDirection::Horizontal) ? int(y)        : int(y) + samp;
 
 		float delta = (dir == FilterDirection::Horizontal) ? x - ix : y - iy;
 		float distance = tAbs(delta);
@@ -234,4 +267,85 @@ tPixel tImage::KernelFilterBilinear
 	tiClamp(tiRound(rv.w), 0.0f, 255.0f);
 
 	return tPixel(int(rv.x), int(rv.y), int(rv.z), int(rv.w));
+}
+
+
+// This function is the cubic filter workhorse. It implements the weight function k(x) found
+// at https://entropymine.com/imageworsener/bicubic/
+// If that site ever goes down, the original paper is from Mitchell and Netravali (1988).
+float tImage::ComputeCubicWeight(float x, float b, float c)
+{
+	float xa = tAbs(x);
+
+	// Case 3. Early exit the 'otherwise' case.
+	if (xa >= 2.0f)
+		return 0.0f;
+
+	// Common terms in the other two cases.
+	float c6  = 6.0f*c;
+	float xc  = tCube(xa);
+	float b12 = 12.0f*b;
+	float xs  = tSquare(xa);
+	float r = 0.0f;
+
+	if (xa < 1.0f)
+	{
+		// Case 1.
+		float b9 = 9.0f*b;
+		float b2 = 2.0f*b;
+		r = (12.0f-b9-c6)*xc + (-18.0f+b12+c6)*xs + (6.0f-b2);
+	}
+	else
+	{
+		// Case 2.
+		float b6 = 6.0f*b;
+		float c30 = 30.0f*c;
+		float c48 = 48.0f*c;
+		float b8 = 8.0f*b;
+		float c24 = 24.0f*c;
+		r = (-b-c6)*xc + (b6+c30)*xs + (-b12-c48)*xa + (b8+c24);
+	}
+
+	return tClampMin(r/6.0f, 0.0f);
+}
+
+
+tPixel tImage::KernelFilterBicubic
+(
+	const tPixel* src, int srcW, int srcH, float x, float y,
+	FilterDirection dir, tResampleEdgeMode edgeMode, const FilterParams& params
+)
+{
+	float weightTotal = 0.0f;
+	tVector4 sampleTotal = tVector4::zero;
+
+	for (int samp = -2; samp < 2; samp++)
+	{
+		int ix = (dir == FilterDirection::Horizontal) ? int(x) + samp  : int(x);
+		int iy = (dir == FilterDirection::Horizontal) ? int(y)         : int(y) + samp;
+
+		float d = (dir == FilterDirection::Horizontal) ? x - float(ix) : y - float(iy);
+		float weight = ComputeCubicWeight(d, params.CubicCoeffB, params.CubicCoeffC);
+
+		int srcX = GetSrcIndex(ix, srcW, edgeMode);
+		int srcY = GetSrcIndex(iy, srcH, edgeMode);
+
+		tPixel srcPixel = src[srcW*srcY + srcX];
+
+		sampleTotal.x += srcPixel.R * weight;
+		sampleTotal.y += srcPixel.G * weight;
+		sampleTotal.z += srcPixel.B * weight;
+		sampleTotal.w += srcPixel.A * weight;
+		weightTotal += weight;
+	}
+
+	// Renormalize totalSamples back to [0, 256).
+	sampleTotal /= weightTotal;
+	return tPixel
+	(
+		tClamp(int(tRound(sampleTotal.x)), 0, 255),
+		tClamp(int(tRound(sampleTotal.y)), 0, 255),
+		tClamp(int(tRound(sampleTotal.z)), 0, 255),
+		tClamp(int(tRound(sampleTotal.w)), 0, 255)
+	);
 }
