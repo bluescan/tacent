@@ -33,8 +33,15 @@ enum class tResampleFilter
 	Bicubic_Cardinal,		// Pure Cardinal.			B=0		C=1
 	Bicubic_BSpline,		// Pure BSpline. Blurry.	B=1		C=0
 
+	// Lanczos is useful for cases where increased contrast is needed, esp at edges. Overall is a bit 'ringy'.
+	// See https://en.wikipedia.org/wiki/Lanczos_resampling for a description of the Lanczos kernel.
+	Lanczos_Narrow,			// Sinc-based.				A = 2
+	Lanczos_Normal,			// Sinc-based.				A = 3
+	Lanczos_Wide,			// Sinc-based.				A = 4
+
 	// Aliaes.
-	Bicubic					= Bicubic_Standard
+	Bicubic					= Bicubic_Standard,
+	Lanczos					= Lanczos_Normal
 };
 
 

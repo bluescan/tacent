@@ -225,6 +225,18 @@ tTestUnit(Image)
 	resamplePicBicubicBSpline.Resample2(800, 300, tResampleFilter::Bicubic_BSpline);
 	resamplePicBicubicBSpline.SaveTGA("TestData/WrittenResampledBicubicBSpline.tga");
 
+	tPicture resamplePicLanczosNarrow("TestData/TextCursor.png");	// 512x256.
+	resamplePicLanczosNarrow.Resample2(800, 300, tResampleFilter::Lanczos_Narrow);
+	resamplePicLanczosNarrow.SaveTGA("TestData/WrittenResampledLanczosNarrow.tga");
+
+	tPicture resamplePicLanczosNormal("TestData/TextCursor.png");	// 512x256.
+	resamplePicLanczosNormal.Resample2(800, 300, tResampleFilter::Lanczos_Normal);
+	resamplePicLanczosNormal.SaveTGA("TestData/WrittenResampledLanczosNormal.tga");
+
+	tPicture resamplePicLanczosWide("TestData/TextCursor.png");	// 512x256.
+	resamplePicLanczosWide.Resample2(800, 300, tResampleFilter::Lanczos_Wide);
+	resamplePicLanczosWide.SaveTGA("TestData/WrittenResampledLanczosWide.tga");
+
 	return;
 }
 

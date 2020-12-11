@@ -29,7 +29,7 @@ namespace tImage
 	struct FilterParams
 	{
 		FilterParams() : RatioH(0.0f), RatioV(0.0f) { }
-		union { float RatioH; float CubicCoeffB; };
+		union { float RatioH; float CubicCoeffB; float LanczosA; };
 		union { float RatioV; float CubicCoeffC; };
 	};
 
@@ -37,9 +37,11 @@ namespace tImage
 	tPixel KernelFilterBox				(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
 	tPixel KernelFilterBilinear			(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
 	tPixel KernelFilterBicubic			(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
+	tPixel KernelFilterLanczos			(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
 
 	int GetSrcIndex(int idx, int count, tResampleEdgeMode);
-	float ComputeCubicWeight(float coeffB, float coeffC, float distance);
+	float ComputeCubicWeight(float x, float b, float c);
+	float ComputeLanczosWeight(float x, float a);
 }
 
 
@@ -131,6 +133,21 @@ bool tImage::Resample
 			kernel = KernelFilterBicubic;
 			break;
 
+		case tResampleFilter::Lanczos_Narrow:		// Lanczos. Ringy/Sharp.	A=2
+			params.LanczosA = 2.0f;
+			kernel = KernelFilterLanczos;
+			break;
+
+		case tResampleFilter::Lanczos_Normal:		// Lanczos. Ringy/Sharp.	A=3
+			params.LanczosA = 3.0f;
+			kernel = KernelFilterLanczos;
+			break;
+
+		case tResampleFilter::Lanczos_Wide:			// Lanczos. Ringy/Sharp.	A=4
+			params.LanczosA = 4.0f;
+			kernel = KernelFilterLanczos;
+			break;
+
 		default:
 			return false;
 	}	
@@ -186,18 +203,17 @@ tPixel tImage::KernelFilterBox
 )
 {
 	float ratio = (dir == FilterDirection::Horizontal) ? params.RatioH : params.RatioV;
-	int domain = int(ratio + 1.0f);
-	float maxDistance = ratio;
+	int pixelDist = int(ratio + 1.0f);
+	float maxDist = ratio;
 	float weightTotal = 0.0f;
 	tVector4 sampleTotal = tVector4::zero;
 
-	for (int samp = 1-domain; samp <= domain; samp++)
+	for (int ks = 1 - pixelDist; ks <= pixelDist; ks++)
 	{
-		int ix = (dir == FilterDirection::Horizontal) ? int(x) + samp : int(x);
-		int iy = (dir == FilterDirection::Horizontal) ? int(y)        : int(y) + samp;
+		int ix = (dir == FilterDirection::Horizontal) ? int(x) + ks : int(x);
+		int iy = (dir == FilterDirection::Horizontal) ? int(y)      : int(y) + ks;
 
-		float delta = (dir == FilterDirection::Horizontal) ? x - ix : y - iy;
-		float distance = tAbs(delta);
+		float dist = tAbs( (dir == FilterDirection::Horizontal) ? x - float(ix) : y - float(iy) );
 		float weight = 0.0f;
 
 		int srcX = GetSrcIndex(ix ,srcW, edgeMode);
@@ -206,13 +222,12 @@ tPixel tImage::KernelFilterBox
 
 		if (ratio >= 1.0f)
 		{
-			distance = tMin(maxDistance, distance);
-			weight = 1.0f - distance/maxDistance;
+			weight = 1.0f - tMin(maxDist, dist)/maxDist;
 		}
 		else
 		{
-			if (distance >= (0.5f - ratio))
-				weight = 1.0f - distance;
+			if (dist >= (0.5f - ratio))
+				weight = 1.0f - dist;
 			else
 				return srcPixel;		// Box is inside src pixel. Done.
 		}
@@ -224,7 +239,7 @@ tPixel tImage::KernelFilterBox
 		weightTotal += weight;
 	}
 
-	// Renormalize totalSamples back to [0, 256).
+	// Renormalize sampleTotal back to [0, 256).
 	sampleTotal /= weightTotal;
 	return tPixel
 	(
@@ -319,17 +334,64 @@ tPixel tImage::KernelFilterBicubic
 	float weightTotal = 0.0f;
 	tVector4 sampleTotal = tVector4::zero;
 
-	for (int samp = -2; samp < 2; samp++)
+	for (int ks = -2; ks < 2; ks++)
 	{
-		int ix = (dir == FilterDirection::Horizontal) ? int(x) + samp  : int(x);
-		int iy = (dir == FilterDirection::Horizontal) ? int(y)         : int(y) + samp;
+		int ix = (dir == FilterDirection::Horizontal) ? int(x) + ks  : int(x);
+		int iy = (dir == FilterDirection::Horizontal) ? int(y)       : int(y) + ks;
 
-		float d = (dir == FilterDirection::Horizontal) ? x - float(ix) : y - float(iy);
-		float weight = ComputeCubicWeight(d, params.CubicCoeffB, params.CubicCoeffC);
+		float diff = (dir == FilterDirection::Horizontal) ? x - float(ix) : y - float(iy);
+		float weight = ComputeCubicWeight(diff, params.CubicCoeffB, params.CubicCoeffC);
 
 		int srcX = GetSrcIndex(ix, srcW, edgeMode);
 		int srcY = GetSrcIndex(iy, srcH, edgeMode);
+		tPixel srcPixel = src[srcW*srcY + srcX];
 
+		sampleTotal.x += srcPixel.R * weight;
+		sampleTotal.y += srcPixel.G * weight;
+		sampleTotal.z += srcPixel.B * weight;
+		sampleTotal.w += srcPixel.A * weight;
+		weightTotal += weight;
+	}
+
+	// Renormalize sampleTotal back to [0, 256).
+	sampleTotal /= weightTotal;
+	return tPixel
+	(
+		tClamp(int(tRound(sampleTotal.x)), 0, 255),
+		tClamp(int(tRound(sampleTotal.y)), 0, 255),
+		tClamp(int(tRound(sampleTotal.z)), 0, 255),
+		tClamp(int(tRound(sampleTotal.w)), 0, 255)
+	);
+}
+
+
+inline float tImage::ComputeLanczosWeight(float x, float a)
+{
+	// See https://en.wikipedia.org/wiki/Lanczos_resampling
+	return ((x >= -a) && (x <= a)) ? tSinc(x) * tSinc(x/a) : 0.0f;
+}
+
+
+tPixel tImage::KernelFilterLanczos
+(
+	const tPixel* src, int srcW, int srcH, float x, float y,
+	FilterDirection dir, tResampleEdgeMode edgeMode, const FilterParams& params
+)
+{
+	int pixelDist = int(params.LanczosA);
+	float weightTotal = 0.0f;
+	tVector4 sampleTotal = tVector4::zero;
+
+	for (int ks = -pixelDist; ks < pixelDist; ks++)
+	{
+		int ix = (dir == FilterDirection::Horizontal) ? int(x) + ks : int(x);
+		int iy = (dir == FilterDirection::Horizontal) ? int(y)      : int(y) + ks;
+
+		float diff = (dir == FilterDirection::Horizontal) ? x - float(ix) : y - float(iy);
+		float weight = ComputeLanczosWeight(tAbs(diff), params.LanczosA);
+
+		int srcX = GetSrcIndex(ix, srcW, edgeMode);
+		int srcY = GetSrcIndex(iy, srcH, edgeMode);
 		tPixel srcPixel = src[srcW*srcY + srcX];
 
 		sampleTotal.x += srcPixel.R * weight;

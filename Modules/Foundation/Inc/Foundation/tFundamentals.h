@@ -156,6 +156,8 @@ inline float tArcTan(float y, float x)						/* Order is y, x. Returns angle of a
 inline float tArcTan(float m)																							{ return atanf(m); }
 inline float tExp(float x)																								{ return expf(x); }
 inline float tLog(float x)									/* Natural logarithm. */									{ return logf(x); }
+inline float tSa(float x)									/* Unnormalized (sampling) sinc. */							{ if (x == 0.0f) return 1.0f; return tSin(x) / x; }
+inline float tSinc(float x)									/* Normalized sinc. */										{ if (x == 0.0f) return 1.0f; float pix = Pi*x; return tSin(pix) / pix; }
 
 // For the 'ti' versions of the below functions, the 'i' means 'in-place' (ref var).
 inline float& tiDegToRad(float& ang)																					{ ang = ang * Pi / 180.0f; return ang; }
