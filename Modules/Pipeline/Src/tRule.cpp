@@ -23,6 +23,15 @@
 using namespace tPipeline;
 
 
+tRuleError::tRuleError(const char* format, ...) :
+	tError("[tRule] ")
+{
+	va_list marker;
+	va_start(marker, format);
+	Message += tvsPrintf(Message, format, marker);
+}
+
+
 void tRule::SetTarget(const tString& target)
 {
 	while (tStringItem* s = Dependencies.Remove())

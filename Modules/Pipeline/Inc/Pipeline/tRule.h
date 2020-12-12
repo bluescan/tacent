@@ -3,7 +3,7 @@
 // The base class for a rule. Rules support functionality such as setting targets/dependencies, and checking if the
 // build rule is out of date.
 //
-// Copyright (c) 2006, 2017 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -98,10 +98,9 @@ private:
 }
 
 
-// @todo Move into PCH when we set them up.
 struct tRuleError : public tError
 {
-	tRuleError(const char* format, ...)																					: tError("[tRule] ") { va_list marker; va_start(marker, format); Message += tvsPrintf(Message, format, marker); }
+	tRuleError(const char* format, ...);
 	tRuleError(const tString& m)																						: tError("[tRule] ") { Message += m; }
 	tRuleError()																										: tError("[tRule] ") { }
 };
