@@ -437,7 +437,7 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 		}
 	}
 
-	// For everything else (png/bmp/tiff) we use the CxImage library for loading.
+	// For bmp and tiff we use the CxImage library for loading.
 	// @todo Support multi-part tiffs.
 	ENUM_CXIMAGE_FORMATS cxFormat = ENUM_CXIMAGE_FORMATS(GetCxFormat(fileType));
 	if (cxFormat == CXIMAGE_FORMAT_UNKNOWN)
@@ -699,7 +699,7 @@ void tPicture::Rotate90(bool antiClockwise)
 }
 
 
-void tPicture::RotateCenter(float angle, const tPixel& fill, RotateFilter filter)
+void tPicture::RotateCenter(float angle, const tPixel& fill, tResampleFilter filter)
 {
 	if (!IsValid())
 		return;
@@ -711,16 +711,10 @@ void tPicture::RotateCenter(float angle, const tPixel& fill, RotateFilter filter
 	tMatrix2 invRot(rotMat);
 	invRot.Transpose();
 
-	switch (filter)
-	{
-		case RotateFilter::NearestPixel:
-			RotateCenterNearest(rotMat, invRot, fill);
-			break;
-
-		case RotateFilter::Resampled:
-			RotateCenterResampled(rotMat, invRot, fill);
-			break;
-	}
+	if (filter != tResampleFilter::None)
+		RotateCenterResampled(rotMat, invRot, fill, filter);
+	else
+		RotateCenterNearest(rotMat, invRot, fill);
 }
 
 
@@ -780,11 +774,20 @@ void tPicture::RotateCenterNearest(const tMatrix2& rotMat, const tMatrix2& invRo
 }
 
 
-void tPicture::RotateCenterResampled(const tMatrix2& rotMat, const tMatrix2& invRot, const tPixel& fill)
+void tPicture::RotateCenterResampled(const tMatrix2& rotMat, const tMatrix2& invRot, const tPixel& fill, tResampleFilter filter)
 {
-	Resample(Width*4, Height*4, tFilter::NearestNeighbour);
+	tAssert(filter != tResampleFilter::None);
+	if (filter == tResampleFilter::Nearest)
+	{
+		Resample(Width*2, Height*2, filter);
+		Resample(Width*2, Height*2, filter);
+	}
+	else
+	{
+		Resample(Width*4, Height*4, filter);
+	}
+	
 	RotateCenterNearest(rotMat, invRot, fill);
-
 	ScaleHalf();
 	ScaleHalf();
 }
@@ -903,104 +906,21 @@ bool tPicture::ScaleHalf()
 }
 
 
-bool tPicture::Resample(int width, int height, tFilter filter)
-{
-	if (!IsValid())
-		return false;
-
-	int origWidth = GetWidth();
-	int origHeight = GetHeight(); 
-	tAssert((origWidth > 0) && (origHeight > 0));
-
-	if ((width == origWidth) && (height == origHeight))
-		return true;
-
-	// For now we're using CxImage because it's there.
-	CxImage image(origWidth, origHeight, 32);
-
-	// Saying 32bbp isn't enough for CxImage to do alphas. Odd.
-	image.AlphaCreate();
-
-	for (int y = 0; y < origHeight; y++)
-	{
-		for (int x = 0; x < origWidth; x++)
-		{
-			tPixel p = GetPixel(x, y);
-			RGBQUAD q;
-			q.rgbBlue = p.B;
-			q.rgbGreen = p.G;
-			q.rgbRed = p.R;
-			q.rgbReserved = p.A;
-			image.SetPixelColor(x, y, q, true);
-		}
-	}
-
-	CxImage::InterpolationMethod interpolation = CxImage::IM_NEAREST_NEIGHBOUR;
-	switch (filter)
-	{
-		case tFilter::NearestNeighbour:
-			interpolation = CxImage::IM_NEAREST_NEIGHBOUR;
-			break;
-
-		case tFilter::Box:
-			interpolation = CxImage::IM_BOX;
-			break;
-
-		case tFilter::Bilinear:
-			interpolation = CxImage::IM_BILINEAR;
-			break;
-
-		case tFilter::Bicubic:
-			interpolation = CxImage::IM_BICUBIC2;
-			break;
-
-		case tFilter::Quadratic:
-			interpolation = CxImage::IM_QUADRATIC;
-			break;
-
-		case tFilter::Hamming:
-			interpolation = CxImage::IM_HAMMING;
-			break;
-	}
-
-	// Here's where the work is done.
-	bool ok = image.Resample2(width, height, interpolation);
-	if (!ok)
-		return false;
-
-	Clear();
-	Width = width;
-	Height = height;
-	Pixels = new tPixel[Width*Height];
-
-	// Now we just pull the pixels from the CxImage.
-	int index = 0;
-	for (int y = 0; y < height; y++)
-	{
-		for (int x = 0; x < width; x++)
-		{
-			// GetPixelColor gets the alpha as well.
-			RGBQUAD rgba = image.GetPixelColor(x, y);
-			tColouri colour;
-			colour.R = rgba.rgbRed;
-			colour.G = rgba.rgbGreen;
-			colour.B = rgba.rgbBlue;
-			colour.A = rgba.rgbReserved;
-			Pixels[index++] = colour;
-		}
-	}
-
-	return true;
-}
-
-
-bool tPicture::Resample2(int width, int height, tResampleFilter filter, tResampleEdgeMode edgeMode)
+bool tPicture::Resample(int width, int height, tResampleFilter filter, tResampleEdgeMode edgeMode)
 {
 	if (!IsValid() || (width <= 0) || (height <= 0))
 		return false;
 
+	if ((width == Width) && (height == Height))
+		return true;
+
 	tPixel* newPixels = new tPixel[width*height];
-	tImage::Resample(Pixels, Width, Height, newPixels, width, height, filter, edgeMode);
+	bool success = tImage::Resample(Pixels, Width, Height, newPixels, width, height, filter, edgeMode);
+	if (!success)
+	{
+		delete newPixels;
+		return false;
+	}
 
 	delete[] Pixels;
 	Pixels = newPixels;

@@ -28,6 +28,7 @@
 #include <System/tChunk.h>
 #include "Image/tImageDDS.h"
 #include "Image/tPicture.h"
+#include "Image/tResample.h"
 namespace tImage
 {
 
@@ -63,8 +64,9 @@ public:
 	// For simplicity there is only Fast and Production quality settings, and it affects resampling _and_ compression.
 	enum class tQuality
 	{
-		Fast,		// Bilinear resample filter. Fast BCn compress mode.
-		Production	// Lanczos or Kaiser sinc-based resample filter. High quality BCn compression.
+		Fast,			// Bilinear resample filter. Fast BCn compress mode.
+		Development,	// Bicubic resample filter. High quality BCn compression.
+		Production		// Lanczos sinc-based resample filter. High quality BCn compression.
 	};
 
 	// This constructor creates a texture from an image file such as a jpg, gif, tga, or bmp. It does this by creating
@@ -144,7 +146,9 @@ public:
 
 private:
 	tPixelFormat DeterminePixelFormat(const tPicture&);
-	tPicture::tFilter DetermineFilter(tQuality);
+	tResampleFilter DetermineFilter(tQuality);
+	int DetermineBlockEncodeQualityLevel(tQuality);
+
 	void ProcessImageTo_R8G8B8_Or_R8G8B8A8(tPicture&, tPixelFormat, bool generateMipmaps, tQuality);
 	void ProcessImageTo_G3B5R5G3(tPicture&, bool generateMipmaps, tQuality);
 	void ProcessImageTo_BCTC(tPicture&, tPixelFormat, bool generateMipmaps, tQuality);
@@ -181,17 +185,27 @@ inline tPixelFormat tTexture::DeterminePixelFormat(const tPicture& image)
 }
 
 
-inline tPicture::tFilter tTexture::DetermineFilter(tQuality quality)
+inline tResampleFilter tTexture::DetermineFilter(tQuality quality)
 {
 	switch (quality)
 	{
-		case tQuality::Fast:
-			return tPicture::tFilter::Bilinear;
-
-		case tQuality::Production:
-			return tPicture::tFilter::Bicubic;
+		case tQuality::Fast:		return tResampleFilter::Bilinear;
+		case tQuality::Development:	return tResampleFilter::Bicubic;
+		case tQuality::Production:	return tResampleFilter::Lanczos;
 	}
-	return tPicture::tFilter::Bilinear;
+	return tResampleFilter::Bicubic;
+}
+
+
+inline int tTexture::DetermineBlockEncodeQualityLevel(tQuality quality)
+{
+	switch (quality)
+	{
+		case tQuality::Fast:		return 4;
+		case tQuality::Development:	return 10;
+		case tQuality::Production:	return 10;
+	}
+	return 4;
 }
 
 

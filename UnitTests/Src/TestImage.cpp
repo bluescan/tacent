@@ -147,7 +147,7 @@ tTestUnit(Image)
 
 		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
 		tString writeFile;
-		tsPrintf(writeFile, "TestData/WrittenRightArrow_Rot%03d.tga", int(tMath::tRadToDeg(angle)));
+		tsPrintf(writeFile, "TestData/WrittenRightArrow_NoResampRot%03d.tga", int(tMath::tRadToDeg(angle)));
 		rotPic.Save(writeFile);
 	}
 
@@ -156,7 +156,7 @@ tTestUnit(Image)
 	{
 		tPicture rotPic(aroPic);
 		float angle = float(rotNum) * tMath::TwoPi / numRotations;
-		rotPic.RotateCenter(angle, tColouri::transparent, tImage::tPicture::RotateFilter::Resampled);
+		rotPic.RotateCenter(angle, tColouri::transparent, tImage::tResampleFilter::Bilinear);
 
 		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
 		tString writeFile;
@@ -194,47 +194,47 @@ tTestUnit(Image)
 	tRequire(isAnimC);
 
 	tPicture resamplePicNearest("TestData/TextCursor.png");		// 512x256.
-	resamplePicNearest.Resample2(800, 300, tResampleFilter::Nearest);
+	resamplePicNearest.Resample(800, 300, tResampleFilter::Nearest);
 	resamplePicNearest.SaveTGA("TestData/WrittenResampledNearest.tga");
 
 	tPicture resamplePicBox("TestData/TextCursor.png");		// 512x256.
-	resamplePicBox.Resample2(800, 300, tResampleFilter::Box);
+	resamplePicBox.Resample(800, 300, tResampleFilter::Box);
 	resamplePicBox.SaveTGA("TestData/WrittenResampledBox.tga");
 
 	tPicture resamplePicBilinear("TestData/TextCursor.png");	// 512x256.
-	resamplePicBilinear.Resample2(800, 300, tResampleFilter::Bilinear);
+	resamplePicBilinear.Resample(800, 300, tResampleFilter::Bilinear);
 	resamplePicBilinear.SaveTGA("TestData/WrittenResampledBilinear.tga");
 
 	tPicture resamplePicBicubicStandard("TestData/TextCursor.png");	// 512x256.
-	resamplePicBicubicStandard.Resample2(800, 300, tResampleFilter::Bicubic_Standard);
+	resamplePicBicubicStandard.Resample(800, 300, tResampleFilter::Bicubic_Standard);
 	resamplePicBicubicStandard.SaveTGA("TestData/WrittenResampledBicubicStandard.tga");
 
 	tPicture resamplePicBicubicCatmullRom("TestData/TextCursor.png");	// 512x256.
-	resamplePicBicubicCatmullRom.Resample2(800, 300, tResampleFilter::Bicubic_CatmullRom);
+	resamplePicBicubicCatmullRom.Resample(800, 300, tResampleFilter::Bicubic_CatmullRom);
 	resamplePicBicubicCatmullRom.SaveTGA("TestData/WrittenResampledBicubicCatmullRom.tga");
 
 	tPicture resamplePicBicubicMitchell("TestData/TextCursor.png");	// 512x256.
-	resamplePicBicubicMitchell.Resample2(800, 300, tResampleFilter::Bicubic_Mitchell);
+	resamplePicBicubicMitchell.Resample(800, 300, tResampleFilter::Bicubic_Mitchell);
 	resamplePicBicubicMitchell.SaveTGA("TestData/WrittenResampledBicubicMitchell.tga");
 
 	tPicture resamplePicBicubicCardinal("TestData/TextCursor.png");	// 512x256.
-	resamplePicBicubicCardinal.Resample2(800, 300, tResampleFilter::Bicubic_Cardinal);
+	resamplePicBicubicCardinal.Resample(800, 300, tResampleFilter::Bicubic_Cardinal);
 	resamplePicBicubicCardinal.SaveTGA("TestData/WrittenResampledBicubicCardinal.tga");
 
 	tPicture resamplePicBicubicBSpline("TestData/TextCursor.png");	// 512x256.
-	resamplePicBicubicBSpline.Resample2(800, 300, tResampleFilter::Bicubic_BSpline);
+	resamplePicBicubicBSpline.Resample(800, 300, tResampleFilter::Bicubic_BSpline);
 	resamplePicBicubicBSpline.SaveTGA("TestData/WrittenResampledBicubicBSpline.tga");
 
 	tPicture resamplePicLanczosNarrow("TestData/TextCursor.png");	// 512x256.
-	resamplePicLanczosNarrow.Resample2(800, 300, tResampleFilter::Lanczos_Narrow);
+	resamplePicLanczosNarrow.Resample(800, 300, tResampleFilter::Lanczos_Narrow);
 	resamplePicLanczosNarrow.SaveTGA("TestData/WrittenResampledLanczosNarrow.tga");
 
 	tPicture resamplePicLanczosNormal("TestData/TextCursor.png");	// 512x256.
-	resamplePicLanczosNormal.Resample2(800, 300, tResampleFilter::Lanczos_Normal);
+	resamplePicLanczosNormal.Resample(800, 300, tResampleFilter::Lanczos_Normal);
 	resamplePicLanczosNormal.SaveTGA("TestData/WrittenResampledLanczosNormal.tga");
 
 	tPicture resamplePicLanczosWide("TestData/TextCursor.png");	// 512x256.
-	resamplePicLanczosWide.Resample2(800, 300, tResampleFilter::Lanczos_Wide);
+	resamplePicLanczosWide.Resample(800, 300, tResampleFilter::Lanczos_Wide);
 	resamplePicLanczosWide.SaveTGA("TestData/WrittenResampledLanczosWide.tga");
 
 	return;

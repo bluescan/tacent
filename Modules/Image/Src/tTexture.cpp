@@ -160,17 +160,7 @@ bool tTexture::Set(tPicture& image, bool generateMipmaps, tPixelFormat pixelForm
 	{
 		// Might want to let user know that we're resampling here. This resize happens when the artist didn't submit
 		// proper power-of-2-sized images or if dimensions were forced.
-		bool ok = false;
-		switch (quality)
-		{
-			case tQuality::Fast:
-				ok = image.Resize(newWidth, newHeight, tPicture::tFilter::Bilinear);
-				break;
-
-			case tQuality::Production:
-				ok = image.Resize(newWidth, newHeight, tPicture::tFilter::Bicubic);
-				break;
-		}
+		bool ok = image.Resize(newWidth, newHeight, DetermineFilter(quality));
 		if (!ok)
 			throw tError("Problem resampling texture '%s' to %dx%d.", tSystem::tGetFileBaseName(image.Filename).Pod(), newWidth, newHeight);
 	}
@@ -216,7 +206,7 @@ void tTexture::ProcessImageTo_R8G8B8_Or_R8G8B8A8(tPicture& image, tPixelFormat f
 	int width = image.GetWidth();
 	int height = image.GetHeight();
 	int bytesPerPixel = (format == tPixelFormat::R8G8B8) ? 3 : 4;
-	tPicture::tFilter filter = DetermineFilter(quality);
+	tResampleFilter filter = DetermineFilter(quality);
 
 	// This loop resamples (reduces) the image multiple times for mipmap generation. In general we should start with
 	// the original image every time so that we're not applying interpolations to interpolations (better quality).
@@ -265,7 +255,7 @@ void tTexture::ProcessImageTo_G3B5R5G3(tPicture& image, bool generateMipmaps, tQ
 	int width = image.GetWidth();
 	int height = image.GetHeight();
 	int bytesPerPixel = 2;
-	tPicture::tFilter filter = DetermineFilter(quality);
+	tResampleFilter filter = DetermineFilter(quality);
 
 	// This loop resamples (reduces) the image multiple times for mipmap generation. In general we should start with
 	// the original image every time so that we're not applying interpolations to interpolations (better quality).
@@ -315,7 +305,7 @@ void tTexture::ProcessImageTo_BCTC(tPicture& image, tPixelFormat pixelFormat, bo
 {
 	int width = image.GetWidth();
 	int height = image.GetHeight();
-	tPicture::tFilter filter = DetermineFilter(quality);
+	tResampleFilter filter = DetermineFilter(quality);
 	if (!tMath::tIsPower2(width) || !tMath::tIsPower2(height))
 		throw tError("Texture must be power-of-2 to be compressed to a BC format.");
 
@@ -339,7 +329,7 @@ void tTexture::ProcessImageTo_BCTC(tPicture& image, tPixelFormat pixelFormat, bo
 		int outputSize = numBlocks * blockSize;
 		uint8* outputData = new uint8[outputSize];
 
-		int encoderQualityLevel = (quality == tQuality::Fast) ? 4 : 10;
+		int encoderQualityLevel = DetermineBlockEncodeQualityLevel(quality);
 		bool allow3colour = true;
 		bool useTransparentTexelsForBlack = false;
 

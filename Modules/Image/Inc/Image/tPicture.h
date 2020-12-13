@@ -168,17 +168,15 @@ public:
 
 	// Rotates image about center point. Might add another call for choosing the center point. The resultant image size
 	// is always big enough to hold every possible source pixel. Call one or more of the crop functions after if you
-	// need to change the canvas size or remove transparent sides.
-	enum class RotateFilter
-	{
-		NearestPixel,
-		Resampled			// Slower but higher quality results. May introduce new (interpolated) colours.
-	};
+	// need to change the canvas size or remove transparent sides. If rotate filter is set to something other than
+	// None, this function scales up the image 4 times using the supplied filter. It then rotates and scales back
+	// down using a box filter which is fast/hi-quality for multiples of 2. If filter is set to None, no upsampling
+	// occurs and a straight nearest-neighbour rotation is performed (useful for pixel art and preserves colours).
 	void RotateCenter
 	(
 		float angle,
 		const tPixel& fill		= tPixel::transparent,
-		RotateFilter			= RotateFilter::NearestPixel
+		tResampleFilter			= tResampleFilter::None
 	);
 
 	void Flip(bool horizontal);
@@ -197,39 +195,26 @@ public:
 	// Crops sides that match the specified colour. Optionally select only some channels to be considered.
 	void Crop(const tColouri& = tColouri::transparent, uint32 channels = tMath::ColourChannel_A);
 
-	// This function scales the image by half. Useful for generating mipmaps. Only use this if speed is an issue.
-	// Offline mipmap generation should use a higher quality filter like Lanczos-Windowed or Kaiser or Kaiser-Gamma. I
-	// believe all of these are based on the sinc function. Anyways, we need to generate some mipmaps at runtime, and
-	// this simple box-filter (pixel averaging) should be reasonable. Note that bilinear and box filters work arguably
-	// better for minification purposes anyways. This function returns false if the rescale could not be performed. For
-	// this function to succeed:
-	//		- The image needs to be valid AND
-	//		- The width must be divisible by two if it is not equal to 1 AND
-	//		- The height must be divisible by two if it is not equal to 1.
-	// Note I'm saying _divisible_ by 2. Non-powers of 2 are fine! We handle dimensions of 1 because it's handy for
-	// mipmap generation. Eg. If width=10 and height=1, we'd end up with a 5x1 image. An 11x1 image would yield an
-	// error and return false. A 1x1 successfully yields the same 1x1 image.
+	// This function scales the image by half using a box filter. Useful for generating mipmaps. This function returns
+	// false if the rescale could not be performed. For this function to succeed:
+	//  - The image needs to be valid AND
+	//  - The width must be divisible by two if it is not equal to 1 AND
+	//  - The height must be divisible by two if it is not equal to 1.
+	// Dimensions of 1 are handled since it's handy for mipmap generation. If width=10 and height=1, we'd end up with a
+	// 5x1 image. An 11x1 image would yield an error and return false. A 1x1 successfully yields the same 1x1 image.
 	bool ScaleHalf();
 
-	enum class tFilter
-	{
-		NearestNeighbour,				// Useless.
-		Box,							// Fast pixel averaging.
-		Bilinear,						// Also known as a triangle filter.  Fast and not too bad quality.
-		Bicubic,						// Your standard good PS filter.
-		Quadratic,
-		Hamming
-	};
-
 	// Resizes the image using the specified filter. Returns success. If the resample fails the tPicture is unmodified.
-	bool Resample(int width, int height, tFilter filter = tFilter::Bilinear);
-	bool Resample2
+	bool Resample
 	(
 		int width, int height,
-		tResampleFilter = tResampleFilter::Bilinear,
-		tResampleEdgeMode = tResampleEdgeMode::Clamp
+		tResampleFilter = tResampleFilter::Bilinear, tResampleEdgeMode = tResampleEdgeMode::Clamp
 	);
-	bool Resize(int width, int height, tFilter filter = tFilter::Bilinear)												{ return Resample(width, height, filter); }
+	bool Resize
+	(
+		int width, int height,
+		tResampleFilter filter = tResampleFilter::Bilinear, tResampleEdgeMode edgeMode = tResampleEdgeMode::Clamp
+	)																													{ return Resample(width, height, filter, edgeMode); }
 
 	bool operator==(const tPicture&) const;
 	bool operator!=(const tPicture&) const;
@@ -245,7 +230,7 @@ private:
 	static int GetIndex(int x, int y, int w, int h)																		{ tAssert((x >= 0) && (y >= 0) && (x < w) && (y < h)); return y * w + x; }
 
 	void RotateCenterNearest(const tMath::tMatrix2& rotMat, const tMath::tMatrix2& invRot, const tPixel& fill);
-	void RotateCenterResampled(const tMath::tMatrix2& rotMat, const tMath::tMatrix2& invRot, const tPixel& fill);
+	void RotateCenterResampled(const tMath::tMatrix2& rotMat, const tMath::tMatrix2& invRot, const tPixel& fill, tResampleFilter);
 
 	int Width = 0;
 	int Height = 0;
