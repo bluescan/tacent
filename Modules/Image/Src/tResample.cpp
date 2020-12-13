@@ -61,6 +61,13 @@ const char* tImage::tResampleFilterNames[int(tResampleFilter::NumFilters)] =
 };
 
 
+const char* tImage::tResampleEdgeModeNames[int(tResampleEdgeMode::NumEdgeModes)] =
+{
+	"Clamp",
+	"Wrap"
+};
+
+
 inline int tImage::GetSrcIndex(int idx, int count, tResampleEdgeMode edgeMode)
 {
 	tAssert(count > 0);

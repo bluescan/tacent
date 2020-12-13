@@ -46,16 +46,16 @@ enum class tResampleFilter
 	Bicubic					= Bicubic_Standard,
 	Lanczos					= Lanczos_Normal
 };
-
-
 extern const char* tResampleFilterNames[int(tResampleFilter::NumFilters)];
 
 
 enum class tResampleEdgeMode
 {
 	Clamp,
-	Wrap
+	Wrap,
+	NumEdgeModes
 };
+extern const char* tResampleEdgeModeNames[int(tResampleEdgeMode::NumEdgeModes)];
 
 
 // Resample the image using the supplied filter. All channels are treated equally. With some resamplers the alpha
