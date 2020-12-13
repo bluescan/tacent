@@ -48,7 +48,7 @@ enum class tResampleFilter
 };
 
 
-extern const char* tResampleFilterItems[int(tResampleFilter::NumFilters)];
+extern const char* tResampleFilterNames[int(tResampleFilter::NumFilters)];
 
 
 enum class tResampleEdgeMode

@@ -193,6 +193,9 @@ tTestUnit(Image)
 	bool isAnimC = tImageAPNG::IsAnimatedPNG("TestData/Icos4D.png");
 	tRequire(isAnimC);
 
+	for (int filt = 0; filt < int(tResampleFilter::NumFilters); filt++)
+		tPrintf("Filter Name %d: %s\n", filt, tResampleFilterNames[filt]);
+
 	tPicture resamplePicNearest("TestData/TextCursor.png");		// 512x256.
 	resamplePicNearest.Resample(800, 300, tResampleFilter::Nearest);
 	resamplePicNearest.SaveTGA("TestData/WrittenResampledNearest.tga");

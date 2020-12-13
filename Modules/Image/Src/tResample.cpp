@@ -45,7 +45,7 @@ namespace tImage
 }
 
 
-const char* tImage::tResampleFilterItems[tResampleFilter::NumFilters] =
+const char* tImage::tResampleFilterNames[int(tResampleFilter::NumFilters)] =
 {
 	"Nearest Neighbour",
 	"Box",
