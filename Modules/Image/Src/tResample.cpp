@@ -45,6 +45,22 @@ namespace tImage
 }
 
 
+const char* tImage::tResampleFilterItems[tResampleFilter::NumFilters] =
+{
+	"Nearest Neighbour",
+	"Box",
+	"Bilinear",
+	"Bicubic Standard",
+	"Bicubic CatmullRom",
+	"Bicubic Mitchell",
+	"Bicubic Cardinal",
+	"Bicubic BSpline",
+	"Lanczos Narrow",
+	"Lanczos Normal",
+	"Lanczos Wide"
+};
+
+
 inline int tImage::GetSrcIndex(int idx, int count, tResampleEdgeMode edgeMode)
 {
 	tAssert(count > 0);

@@ -48,6 +48,9 @@ enum class tResampleFilter
 };
 
 
+extern const char* tResampleFilterItems[int(tResampleFilter::NumFilters)];
+
+
 enum class tResampleEdgeMode
 {
 	Clamp,
