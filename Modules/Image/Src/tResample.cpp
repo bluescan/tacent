@@ -148,7 +148,7 @@ bool tImage::Resample
 			kernel = KernelFilterLanczos;
 			break;
 
-		case tResampleFilter::None:
+		case tResampleFilter::Invalid:
 		default:
 			return false;
 	}	

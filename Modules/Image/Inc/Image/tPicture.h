@@ -170,13 +170,13 @@ public:
 	// is always big enough to hold every possible source pixel. Call one or more of the crop functions after if you
 	// need to change the canvas size or remove transparent sides. If rotate filter is set to something other than
 	// None, this function scales up the image 4 times using the supplied filter. It then rotates and scales back
-	// down using a box filter which is fast/hi-quality for multiples of 2. If filter is set to None, no upsampling
+	// down using a box filter which is fast/hi-quality for multiples of 2. If filter is set to Invalid, no upsampling
 	// occurs and a straight nearest-neighbour rotation is performed (useful for pixel art and preserves colours).
 	void RotateCenter
 	(
 		float angle,
 		const tPixel& fill		= tPixel::transparent,
-		tResampleFilter			= tResampleFilter::None
+		tResampleFilter			= tResampleFilter::Invalid
 	);
 
 	void Flip(bool horizontal);

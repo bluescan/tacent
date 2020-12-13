@@ -711,7 +711,7 @@ void tPicture::RotateCenter(float angle, const tPixel& fill, tResampleFilter fil
 	tMatrix2 invRot(rotMat);
 	invRot.Transpose();
 
-	if (filter != tResampleFilter::None)
+	if (filter != tResampleFilter::Invalid)
 		RotateCenterResampled(rotMat, invRot, fill, filter);
 	else
 		RotateCenterNearest(rotMat, invRot, fill);
@@ -776,7 +776,7 @@ void tPicture::RotateCenterNearest(const tMatrix2& rotMat, const tMatrix2& invRo
 
 void tPicture::RotateCenterResampled(const tMatrix2& rotMat, const tMatrix2& invRot, const tPixel& fill, tResampleFilter filter)
 {
-	tAssert(filter != tResampleFilter::None);
+	tAssert(filter != tResampleFilter::Invalid);
 	if (filter == tResampleFilter::Nearest)
 	{
 		Resample(Width*2, Height*2, filter);

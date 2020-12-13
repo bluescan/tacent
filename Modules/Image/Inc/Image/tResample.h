@@ -20,7 +20,6 @@ namespace tImage
 
 enum class tResampleFilter
 {
-	None,
 	Nearest,
 	Box,
 	Bilinear,
@@ -39,6 +38,9 @@ enum class tResampleFilter
 	Lanczos_Narrow,			// Sinc-based.				A = 2
 	Lanczos_Normal,			// Sinc-based.				A = 3
 	Lanczos_Wide,			// Sinc-based.				A = 4
+
+	Invalid,
+	NumFilters				= Invalid,
 
 	// Aliaes.
 	Bicubic					= Bicubic_Standard,
