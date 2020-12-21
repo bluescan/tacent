@@ -29,6 +29,7 @@
 #include <ximage.h>
 #include <png.h>
 #include <apngdis.h>
+#include "LibTIFF/include/tiffvers.h"
 #ifdef PLATFORM_WINDOWS
 #include "TurboJpeg/Windows/jconfig.h"
 #include "WebP/Windows/include/demux.h"
@@ -44,13 +45,14 @@ using namespace tImage;
 using namespace tSystem;
 
 
-const char* tImage::Version_TurboJPEG	= LIBJPEG_TURBO_VERSION;
-const char* tImage::Version_OpenEXR		= OPENEXR_VERSION_STRING;
-const char* tImage::Version_ZLIB		= ZLIB_VERSION;
-const char* tImage::Version_LibPNG		= PNG_LIBPNG_VER_STRING;
-const char* tImage::Version_ApngDis		= APNGDIS_VERSION_STRING;
-int tImage::Version_WEBP_Major			= WEBP_DECODER_ABI_VERSION >> 8;
-int tImage::Version_WEBP_Minor			= WEBP_DECODER_ABI_VERSION & 0xFF;
+const char* tImage::Version_LibJpegTurbo	= LIBJPEG_TURBO_VERSION;
+const char* tImage::Version_OpenEXR			= OPENEXR_VERSION_STRING;
+const char* tImage::Version_ZLIB			= ZLIB_VERSION;
+const char* tImage::Version_LibPNG			= PNG_LIBPNG_VER_STRING;
+const char* tImage::Version_ApngDis			= APNGDIS_VERSION_STRING;
+const char* tImage::Version_LibTIFF			= TIFFLIB_STANDARD_VERSION_STR;
+int tImage::Version_WEBP_Major				= WEBP_DECODER_ABI_VERSION >> 8;
+int tImage::Version_WEBP_Minor				= WEBP_DECODER_ABI_VERSION & 0xFF;
 
 
 void tPicture::Set(int width, int height, const tPixel& colour)

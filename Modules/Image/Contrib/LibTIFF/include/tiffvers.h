@@ -1,4 +1,5 @@
 #define TIFFLIB_VERSION_STR "LIBTIFF, Version 4.2.0\nCopyright (c) 1988-1996 Sam Leffler\nCopyright (c) 1991-1996 Silicon Graphics, Inc."
+#define TIFFLIB_STANDARD_VERSION_STR "4.2.0"
 /*
  * This define can be used in code that requires
  * compilation-related definitions specific to a
