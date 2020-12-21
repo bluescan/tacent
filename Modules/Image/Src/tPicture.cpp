@@ -128,6 +128,7 @@ bool tPicture::CanLoad(tFileType fileType)
 		case tFileType::PNG:
 		case tFileType::APNG:
 		case tFileType::TGA:
+		case tFileType::TIFF:
 		case tFileType::WEBP:
 		case tFileType::XPM:
 			return true;
@@ -399,6 +400,28 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 			return true;
 		}
 
+		case tFileType::TIFF:
+		{
+			tImageTIFF tiff;
+			bool ok = tiff.Load(imageFile);
+			if (!ok || !tiff.IsValid())
+				return false;
+
+			if (partNum >= tiff.GetNumFrames())
+				return false;
+
+			tImageTIFF::Frame* stolenFrame = tiff.StealFrame(partNum);
+			Width = stolenFrame->Width;
+			Height = stolenFrame->Height;
+			SrcPixelFormat = stolenFrame->SrcPixelFormat;
+		
+			Pixels = stolenFrame->Pixels;
+
+			// This is safe as the frame does not own/delete the pixels.
+			delete stolenFrame;
+			return true;
+		}
+
 		case tFileType::WEBP:
 		{
 			tImageWEBP webp;
@@ -437,8 +460,7 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 		}
 	}
 
-	// For bmp and tiff we use the CxImage library for loading.
-	// @todo Support multi-part tiffs.
+	// For bmp we use the CxImage library for loading.
 	ENUM_CXIMAGE_FORMATS cxFormat = ENUM_CXIMAGE_FORMATS(GetCxFormat(fileType));
 	if (cxFormat == CXIMAGE_FORMAT_UNKNOWN)
 		return false;
@@ -937,9 +959,6 @@ int tPicture::GetCxFormat(tFileType fileType)
 	{
 		case tFileType::BMP:
 			return CXIMAGE_FORMAT_BMP;
-
-		case tFileType::TIFF:
-			return CXIMAGE_FORMAT_TIF;
 	}
 
 	return CXIMAGE_FORMAT_UNKNOWN;

@@ -55,6 +55,9 @@ tTestUnit(Image)
 	tImageTGA imgTGA("TestData/WhiteBorderRLE.tga");
 	tRequire(imgTGA.IsValid());
 
+	tImageTIFF imgTIFF("TestData/Tiff_NoComp.tif");
+	tRequire(imgTIFF.IsValid());
+
 	tImageJPG imgJPG("TestData/WiredDrives.jpg");
 	tRequire(imgJPG.IsValid());
 
@@ -131,6 +134,43 @@ tTestUnit(Image)
 
 	pngPic.Save("TestData/WrittenXeyesJPG.jpg");
 	tRequire( tSystem::tFileExists("TestData/WrittenXeyesJPG.jpg"));
+
+	// Test tiff file loading and saving.
+	tPicture tifPic_NoComp("TestData/Tiff_NoComp.tif");
+	tRequire(tifPic_NoComp.IsValid());
+	tifPic_NoComp.Save("TestData/WrittenTiff_NoComp.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenTiff_NoComp.tga"));
+
+	tPicture tifPic_Pack("TestData/Tiff_Pack.tif");
+	tRequire(tifPic_Pack.IsValid());
+	tifPic_Pack.Save("TestData/WrittenTiff_Pack.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenTiff_Pack.tga"));
+
+	tPicture tifPic_LZW("TestData/Tiff_LZW.tif");
+	tRequire(tifPic_LZW.IsValid());
+	tifPic_LZW.Save("TestData/WrittenTiff_LZW.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenTiff_LZW.tga"));
+
+	tPicture tifPic_ZIP("TestData/Tiff_ZIP.tif");
+	tRequire(tifPic_ZIP.IsValid());
+	tifPic_ZIP.Save("TestData/WrittenTiff_ZIP.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenTiff_ZIP.tga"));
+
+	// And a multipage tiff.
+	tPicture tifPic_Multipage_ZIP_P1("TestData/Tiff_Multipage_ZIP.tif", 0);
+	tRequire(tifPic_Multipage_ZIP_P1.IsValid());
+	tifPic_Multipage_ZIP_P1.Save("TestData/WrittenTiff_Multipage_ZIP_P1.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenTiff_Multipage_ZIP_P1.tga"));
+
+	tPicture tifPic_Multipage_ZIP_P2("TestData/Tiff_Multipage_ZIP.tif", 1);
+	tRequire(tifPic_Multipage_ZIP_P2.IsValid());
+	tifPic_Multipage_ZIP_P2.Save("TestData/WrittenTiff_Multipage_ZIP_P2.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenTiff_Multipage_ZIP_P2.tga"));
+
+	tPicture tifPic_Multipage_ZIP_P3("TestData/Tiff_Multipage_ZIP.tif", 2);
+	tRequire(tifPic_Multipage_ZIP_P3.IsValid());
+	tifPic_Multipage_ZIP_P3.Save("TestData/WrittenTiff_Multipage_ZIP_P3.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenTiff_Multipage_ZIP_P3.tga"));
 
 	// Test writing rotated images.
 	tPicture aroPic("TestData/RightArrow.png");

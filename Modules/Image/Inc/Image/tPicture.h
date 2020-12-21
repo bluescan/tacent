@@ -35,6 +35,7 @@
 #include "Image/tImagePNG.h"
 #include "Image/tImageAPNG.h"
 #include "Image/tImageTGA.h"
+#include "Image/tImageTIFF.h"
 #include "Image/tImageWEBP.h"
 #include "Image/tImageXPM.h"
 #include "Image/tPixelFormat.h"

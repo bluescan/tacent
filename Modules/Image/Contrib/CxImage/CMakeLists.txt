@@ -59,51 +59,6 @@ add_library(
 	Inc/ximawmf.h
 	Inc/xiofile.h
 	Inc/xmemfile.h
-
-	# Tiff
-	Src/tiff/tif_aux.c
-	Src/tiff/tif_close.c
-	Src/tiff/tif_codec.c
-	Src/tiff/tif_color.c
-	Src/tiff/tif_compress.c
-	Src/tiff/tif_dir.c
-	Src/tiff/tif_dirinfo.c
-	Src/tiff/tif_dirread.c
-	Src/tiff/tif_dirwrite.c
-	Src/tiff/tif_dumpmode.c
-	Src/tiff/tif_error.c
-	Src/tiff/tif_fax3.c
-	Src/tiff/tif_fax3sm.c
-	Src/tiff/tif_flush.c
-	Src/tiff/tif_getimage.c
-	Src/tiff/tif_jpeg.c
-	Src/tiff/tif_luv.c
-	Src/tiff/tif_lzw.c
-	Src/tiff/tif_next.c
-	Src/tiff/tif_ojpeg.c
-	Src/tiff/tif_open.c
-	Src/tiff/tif_packbits.c
-	Src/tiff/tif_pixarlog.c
-	Src/tiff/tif_predict.c
-	Src/tiff/tif_print.c
-	Src/tiff/tif_read.c
-	Src/tiff/tif_strip.c
-	Src/tiff/tif_swab.c
-	Src/tiff/tif_thunder.c
-	Src/tiff/tif_tile.c
-	Src/tiff/tif_version.c
-	Src/tiff/tif_warning.c
-	Src/tiff/tif_write.c
-	Src/tiff/tif_zip.c
-	Src/tiff/t4.h
-	Src/tiff/tif_dir.h
-	Src/tiff/tif_fax3.h
-	Src/tiff/tif_predict.h
-	Src/tiff/tiff.h
-	Src/tiff/tiffconf.h
-	Src/tiff/tiffio.h
-	Src/tiff/tiffiop.h
-	Src/tiff/uvcode.h
 )
 
 target_include_directories(
