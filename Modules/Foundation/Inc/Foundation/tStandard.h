@@ -104,14 +104,14 @@ inline int tStrtoui(const char* s, int base = -1)																		{ return tStr
 inline int tStrtoi(const char* s, int base = -1)																		{ return tStrtoi32(s, base); }
 inline int tAtoi(const char* s)								/* Base 10 only. Use tStrtoi for arbitrary base. */			{ return tStrtoi32(s, 10); }
 
-template <typename IntegralType> IntegralType tStrtoiTStrict(const char* str, bool& success, int base = -1);
-inline int32 tStrtoi32Strict(const char* s, bool& success, int base = -1)												{ return tStrtoiTStrict<int32>(s, success, base); }
-inline uint32 tStrtoui32Strict(const char* s, bool& success, int base = -1)												{ return tStrtoiTStrict<uint32>(s, success, base); }
-inline int64 tStrtoi64Strict(const char* s, bool& success, int base = -1)												{ return tStrtoiTStrict<int64>(s, success, base); }
-inline uint64 tStrtoui64Strict(const char* s, bool& success, int base = -1)												{ return tStrtoiTStrict<uint64>(s, success, base); }
-inline int tStrtouiStrict(const char* s, bool& success, int base = -1)													{ return tStrtoui32Strict(s, success, base); }
-inline int tStrtoiStrict(const char* s, bool& success, int base = -1)													{ return tStrtoi32Strict(s, success, base); }
-inline int tAtoiStrict(const char* s, bool& success)																	{ return tStrtoi32Strict(s, success, 10); }
+template <typename IntegralType> bool tStrtoiTStrict(const char* str, IntegralType& val, int base = -1);
+inline bool tStrtoi32Strict(const char* s, int32& Int32Value, int base = -1)											{ return tStrtoiTStrict<int32>(s, Int32Value, base); }
+inline bool tStrtoui32Strict(const char* s, uint32& UInt32Value, int base = -1)											{ return tStrtoiTStrict<uint32>(s, UInt32Value, base); }
+inline bool tStrtoi64Strict(const char* s, int64& Int64Value, int base = -1)											{ return tStrtoiTStrict<int64>(s, Int64Value, base); }
+inline bool tStrtoui64Strict(const char* s, uint64& UInt64Value, int base = -1)											{ return tStrtoiTStrict<uint64>(s, UInt64Value, base); }
+inline bool tStrtouiStrict(const char* s, uint32& IntValue, int base = -1)												{ return tStrtoui32Strict(s, IntValue, base); }
+inline bool tStrtoiStrict(const char* s, int& IntValue, int base = -1)													{ return tStrtoi32Strict(s, IntValue, base); }
+inline bool tAtoiStrict(const char* s, int& IntValue)																	{ return tStrtoi32Strict(s, IntValue, 10); }
 
 // These are both base 10 only. They return 0.0 (or 0.0f) if there is no conversion. They also handle converting a
 // possible binary representation in he string. If the string contains a hash(#) and the next 8 or 16 digits are valid
@@ -303,17 +303,23 @@ template<typename IntegralType> inline IntegralType tStd::tStrtoiT(const char* s
 }
 
 
-template<typename IntegralType> inline IntegralType tStd::tStrtoiTStrict(const char* str, bool& success, int base)
+template<typename IntegralType> inline bool tStd::tStrtoiTStrict(const char* str, IntegralType& val, int base)
 {
-	success = false;
-
+	val = 0;
 	if (!str || (*str == '\0'))
-		return IntegralType(0);
+		return false;
 
-	success = true;
 	int len = tStrlen(str);
 	const char* start = str;
 	const char* end = str + len - 1;
+	bool negate = false;
+
+	// If the number starts with a '-', before the base modifier, it should be applied
+	if((*start == '-'))
+	{
+		negate = true;
+		start++;
+	}
 
 	if ((base < 2) || (base > 36))
 		base = -1;
@@ -341,12 +347,18 @@ template<typename IntegralType> inline IntegralType tStd::tStrtoiTStrict(const c
 			start++;
 	}
 
-	IntegralType val = 0;
 	IntegralType colVal = 1;
 	for (const char* curr = end; curr >= start; curr--)
 	{
-		if ((curr == start) && (*curr == '-') && (base == 10))
+		if ((curr == start) && (*curr == '-'))
 		{
+			// a '-' after the base specifier or a double minus in base 10 is an error
+			if(negate || base != 10)
+			{
+				val = 0;
+				return false;
+			}
+
 			val = -val;
 			continue;
 		}
@@ -361,16 +373,18 @@ template<typename IntegralType> inline IntegralType tStd::tStrtoiTStrict(const c
 
 		if ((digVal == -1) || (digVal > base-1))
 		{
-			success = false;
 			val = 0;
-			break;
+			return false;
 		}
 
 		val += IntegralType(digVal)*colVal;
 		colVal *= IntegralType(base);
 	}
 
-	return val;
+	if(negate)
+		val = -val;
+
+	return true;
 }
 
 
