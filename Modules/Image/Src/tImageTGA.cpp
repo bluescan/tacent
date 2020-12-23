@@ -1,9 +1,8 @@
 // tImageTGA.cpp
 //
-// This clas knows how to load and save a targa (.tga) file.
-// It does zero processing of image data. It knows the details of the tga file format and loads the
-// data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if a targa file is specified.
-// After the array is stolen the tImageTGA is invalid. This is purely for performance.
+// This class knows how to load and save targa (.tga) files into tPixel arrays. These tPixels may be 'stolen' by the
+// tPicture's constructor if a targa file is specified. After the array is stolen the tImageTGA is invalid. This is
+// purely for performance.
 //
 // Copyright (c) 2006, 2017, 2019, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby

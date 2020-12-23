@@ -1,12 +1,11 @@
 find_package("TacentProjectUtilities" REQUIRED)
 project(Image VERSION ${TACENT_VERSION} LANGUAGES CXX)
 
-add_subdirectory(Contrib/CxImage)
-
 add_library(
 	${PROJECT_NAME}
 	Src/tCubemap.cpp
 	Src/tImageAPNG.cpp
+	Src/tImageBMP.cpp
 	Src/tImageDDS.cpp
 	Src/tImageEXR.cpp
 	Src/tImageGIF.cpp
@@ -25,6 +24,7 @@ add_library(
 	Src/tResample.cpp
 	Inc/Image/tCubemap.h
 	Inc/Image/tImageAPNG.h
+	Inc/Image/tImageBMP.h
 	Inc/Image/tImageDDS.h
 	Inc/Image/tImageEXR.h
 	Inc/Image/tImageGIF.h
@@ -89,7 +89,6 @@ target_link_libraries(
 		System
 	PRIVATE
 		Threads::Threads
-		CxImage
 
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/Linux/libwebp.a>
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/Linux/libwebpdemux.a>

@@ -1,15 +1,13 @@
 // tPicture.cpp
 //
-// This class represents a simple one-part image. It is a collection of raw uncompressed 32-bit tPixels. It can load
+// This class represents a simple one-frame image. It is a collection of raw uncompressed 32-bit tPixels. It can load
 // various formats from disk such as jpg, tga, png, etc. It intentionally _cannot_ load a dds file. More on that later.
-// This class can load many formats with a 'native implementation'. By native I mean formats for which there are
-// specific and correct tImageAAA loaders. CxImage is used for the remainder (tiff/bmp mostly). Saving to different
-// formats is supported natively where possible, and uses CxImage otherwise. Image manipulation (excluding compression)
-// is supported in a tPicture, so there are crop, scale, etc functions in this class.
+// Image manipulation (excluding compression) is supported in a tPicture, so there are crop, scale, rotate, etc
+// functions in this class.
 //
-// Some image disk formats have more than one 'part' or image inside them. For example, tiff files can have more than
+// Some image disk formats have more than one 'frame' or image inside them. For example, tiff files can have more than
 // layer, and gif/webp images may be animated and have more than one frame. A tPicture can only prepresent _one_ of 
-// these parts.
+// these frames.
 //
 // Copyright (c) 2006, 2016, 2017, 2019, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -26,7 +24,6 @@
 #include "Math/tMatrix2.h"
 #include <OpenEXR/loadImage.h>
 #include <zlib.h>
-#include <ximage.h>
 #include <png.h>
 #include <apngdis.h>
 #include "LibTIFF/include/tiffvers.h"
@@ -108,7 +105,7 @@ bool tPicture::CanSave(tFileType fileType)
 	switch (fileType)
 	{
 		case tFileType::TGA:
-		case tFileType::BMP:		// CxImage.
+		case tFileType::BMP:
 		case tFileType::JPG:
 		case tFileType::PNG:
 			return true;
@@ -122,23 +119,20 @@ bool tPicture::CanLoad(tFileType fileType)
 {
 	switch (fileType)
 	{
+		case tFileType::APNG:
+		case tFileType::BMP:
 		case tFileType::EXR:
 		case tFileType::GIF:
 		case tFileType::HDR:
 		case tFileType::ICO:
 		case tFileType::JPG:
 		case tFileType::PNG:
-		case tFileType::APNG:
 		case tFileType::TGA:
 		case tFileType::TIFF:
 		case tFileType::WEBP:
 		case tFileType::XPM:
 			return true;
 	}
-
-	// The rest (bmp/png/tiff) are handled by CxImage.
-	if (GetCxFormat(fileType) != CXIMAGE_FORMAT_UNKNOWN)
-		return true;
 
 	return false;
 }
@@ -156,54 +150,32 @@ bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt,
 	// Native formats.
 	switch (fileType)
 	{
-		case tFileType::TGA:
-			return SaveTGA(imageFile, tImage::tImageTGA::tFormat(colourFmt), tImage::tImageTGA::tCompression::None);
+		case tFileType::BMP:
+			return SaveBMP(imageFile);
 
 		case tFileType::JPG:
 			return SaveJPG(imageFile, quality);
 
 		case tFileType::PNG:
 			return SavePNG(imageFile);
+
+		case tFileType::TGA:
+			return SaveTGA(imageFile, tImage::tImageTGA::tFormat(colourFmt), tImage::tImageTGA::tCompression::None);
 	}
 
-	// Remaining formats handled by CxImage.
-	if (fileType != tFileType::BMP)
-		return false;
-
-	tPixel* reorderedPixelArray = new tPixel[Width*Height];
-	for (int p = 0; p < Width*Height; p++)
-	{
-		tPixel pixel = Pixels[p];
-		tStd::tSwap(pixel.R, pixel.B);
-		reorderedPixelArray[p] = pixel;
-	}
-
-	CxImage image;
-	image.CreateFromArray((uint8*)reorderedPixelArray, Width, Height, 32, Width*4, false);
-	delete[] reorderedPixelArray;
-
-	uint32 cxImgFormat = CXIMAGE_FORMAT_BMP;
-	if (colourFmt == tPicture::tColourFormat::Colour)
-		image.AlphaDelete();
-	else if ((colourFmt == tPicture::tColourFormat::Auto) && IsOpaque())
-		image.AlphaDelete();
-
-	return image.Save(imageFile.ConstText(), cxImgFormat);
+	return false;
 }
 
 
-bool tPicture::SaveTGA(const tString& tgaFile, tImageTGA::tFormat format, tImageTGA::tCompression compression) const
+bool tPicture::SaveBMP(const tString& bmpFile) const
 {
-	tFileType fileType = tGetFileType(tgaFile);
-	if (!IsValid() || (fileType != tFileType::TGA))
+	tFileType fileType = tGetFileType(bmpFile);
+	if (!IsValid() || (fileType != tFileType::BMP))
 		return false;
 
-	tImageTGA targa(Pixels, Width, Height);
-	tImageTGA::tFormat savedFormat = targa.Save(tgaFile, format, compression);
-	if (savedFormat == tImageTGA::tFormat::Invalid)
-		return false;
-
-	return true;
+	tImageBMP bmp(Pixels, Width, Height);
+	tImageBMP::tFormat savedFormat = bmp.Save(bmpFile);
+	return int(savedFormat) ? true : false;
 }
 
 
@@ -231,9 +203,24 @@ bool tPicture::SavePNG(const tString& pngFile) const
 }
 
 
-bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
+bool tPicture::SaveTGA(const tString& tgaFile, tImageTGA::tFormat format, tImageTGA::tCompression compression) const
 {
-	tMath::tiClampMin(partNum, 0);
+	tFileType fileType = tGetFileType(tgaFile);
+	if (!IsValid() || (fileType != tFileType::TGA))
+		return false;
+
+	tImageTGA targa(Pixels, Width, Height);
+	tImageTGA::tFormat savedFormat = targa.Save(tgaFile, format, compression);
+	if (savedFormat == tImageTGA::tFormat::Invalid)
+		return false;
+
+	return true;
+}
+
+
+bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
+{
+	tMath::tiClampMin(frameNum, 0);
 
 	Clear();
 	if (!tFileExists(imageFile))
@@ -243,17 +230,57 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 	if (!CanLoad(fileType))
 		return false;
 
+	Filename = imageFile;
+
 	// Native handlers.
 	// @todo It's looking like we should make an abstract tImageBase class at this point to get rid of all this duplication.
 	switch (fileType)
 	{
+		case tFileType::APNG:
+		{
+			tImageAPNG apng;
+			bool ok = apng.Load(imageFile);
+			if (!ok || !apng.IsValid())
+				return false;
+
+			if (frameNum >= apng.GetNumFrames())
+				return false;
+
+			tImageAPNG::Frame* stolenFrame = apng.StealFrame(frameNum);
+			Width = stolenFrame->Width;
+			Height = stolenFrame->Height;
+			SrcPixelFormat = stolenFrame->SrcPixelFormat;
+		
+			Pixels = stolenFrame->Pixels;
+
+			// This is safe as the frame does not own/delete the pixels.
+			delete stolenFrame;
+			return true;
+		}
+
+		case tFileType::BMP:
+		{
+			// BMPs can only have one frame.
+			if (frameNum != 0)
+				return false;
+			tImageBMP bmp;
+			bmp.Load(imageFile);
+			if (!bmp.IsValid())
+				return false;
+			Width = bmp.GetWidth();
+			Height = bmp.GetHeight();
+			Pixels = bmp.StealPixels();
+			SrcPixelFormat = bmp.SrcPixelFormat;
+			return true;
+		}
+
 		case tFileType::EXR:
 		{
 			tImageEXR exr;
 			bool ok = exr.Load
 			(
 				imageFile,
-				partNum,
+				frameNum,
 				params.GammaValue,
 				params.EXR_Exposure,
 				params.EXR_Defog,
@@ -276,13 +303,13 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 			if (!ok || !gif.IsValid())
 				return false;
 
-			if (partNum >= gif.GetNumFrames())
+			if (frameNum >= gif.GetNumFrames())
 				return false;
 
 			Width = gif.GetWidth();
 			Height = gif.GetHeight();
 		
-			tImageGIF::Frame* stolenFrame = gif.StealFrame(partNum);
+			tImageGIF::Frame* stolenFrame = gif.StealFrame(frameNum);
 			Pixels = stolenFrame->Pixels;
 
 			// This is safe as the frame does not own/delete the pixels.
@@ -294,8 +321,8 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 
 		case tFileType::HDR:
 		{
-			// HDRs can only have one part.
-			if (partNum != 0)
+			// HDRs can only have one frame.
+			if (frameNum != 0)
 				return false;
 			tImageHDR hdr;
 			hdr.Load
@@ -320,25 +347,25 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 			if (!ok || !ico.IsValid())
 				return false;
 
-			if (partNum >= ico.GetNumParts())
+			if (frameNum >= ico.GetNumFrames())
 				return false;
 
-			tImageICO::Part* stolenPart = ico.StealPart(partNum);
-			Pixels = stolenPart->Pixels;
+			tImageICO::Frame* stolenFrame = ico.StealFrame(frameNum);
+			Pixels = stolenFrame->Pixels;
 
-			Width = stolenPart->Width;
-			Height = stolenPart->Height;		
-			SrcPixelFormat = stolenPart->SrcPixelFormat;
+			Width = stolenFrame->Width;
+			Height = stolenFrame->Height;		
+			SrcPixelFormat = stolenFrame->SrcPixelFormat;
 
-			// This is safe as the part does not own/delete the pixels.
-			delete stolenPart;
+			// This is safe as the frame does not own/delete the pixels.
+			delete stolenFrame;
 			return true;
 		}
 
 		case tFileType::JPG:
 		{
-			// JPGs can only have one part.
-			if (partNum != 0)
+			// JPGs can only have one frame.
+			if (frameNum != 0)
 				return false;
 			tImageJPG jpeg(imageFile);
 			if (!jpeg.IsValid())
@@ -352,8 +379,8 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 
 		case tFileType::PNG:
 		{
-			// PNGs can only have one part.
-			if (partNum != 0)
+			// PNGs can only have one frame.
+			if (frameNum != 0)
 				return false;
 			tImagePNG png(imageFile);
 			if (!png.IsValid())
@@ -365,32 +392,10 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 			return true;
 		}
 
-		case tFileType::APNG:
-		{
-			tImageAPNG apng;
-			bool ok = apng.Load(imageFile);
-			if (!ok || !apng.IsValid())
-				return false;
-
-			if (partNum >= apng.GetNumFrames())
-				return false;
-
-			tImageAPNG::Frame* stolenFrame = apng.StealFrame(partNum);
-			Width = stolenFrame->Width;
-			Height = stolenFrame->Height;
-			SrcPixelFormat = stolenFrame->SrcPixelFormat;
-		
-			Pixels = stolenFrame->Pixels;
-
-			// This is safe as the frame does not own/delete the pixels.
-			delete stolenFrame;
-			return true;
-		}
-
 		case tFileType::TGA:
 		{
-			// TGAs can only have one part.
-			if (partNum != 0)
+			// TGAs can only have one frame.
+			if (frameNum != 0)
 				return false;
 			tImageTGA targa(imageFile);
 			if (!targa.IsValid())
@@ -409,10 +414,10 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 			if (!ok || !tiff.IsValid())
 				return false;
 
-			if (partNum >= tiff.GetNumFrames())
+			if (frameNum >= tiff.GetNumFrames())
 				return false;
 
-			tImageTIFF::Frame* stolenFrame = tiff.StealFrame(partNum);
+			tImageTIFF::Frame* stolenFrame = tiff.StealFrame(frameNum);
 			Width = stolenFrame->Width;
 			Height = stolenFrame->Height;
 			SrcPixelFormat = stolenFrame->SrcPixelFormat;
@@ -431,10 +436,10 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 			if (!ok || !webp.IsValid())
 				return false;
 
-			if (partNum >= webp.GetNumFrames())
+			if (frameNum >= webp.GetNumFrames())
 				return false;
 
-			tImageWEBP::Frame* stolenFrame = webp.StealFrame(partNum);
+			tImageWEBP::Frame* stolenFrame = webp.StealFrame(frameNum);
 			Width = stolenFrame->Width;
 			Height = stolenFrame->Height;
 			SrcPixelFormat = stolenFrame->SrcPixelFormat;
@@ -448,8 +453,8 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 
 		case tFileType::XPM:
 		{
-			// XPMs can only have one part.
-			if (partNum != 0)
+			// XPMs can only have one frame.
+			if (frameNum != 0)
 				return false;
 			tImageXPM xpm(imageFile);
 			if (!xpm.IsValid())
@@ -462,55 +467,7 @@ bool tPicture::Load(const tString& imageFile, int partNum, LoadParams params)
 		}
 	}
 
-	// For bmp we use the CxImage library for loading.
-	ENUM_CXIMAGE_FORMATS cxFormat = ENUM_CXIMAGE_FORMATS(GetCxFormat(fileType));
-	if (cxFormat == CXIMAGE_FORMAT_UNKNOWN)
-		return false;
-
-	CxImage image;
-	if (partNum != 0)
-		return false;
-
-	bool cxok = image.Load(imageFile.ConstText(), cxFormat);
-	if (!cxok)
-		return false;
-
-	int width = image.GetWidth();
-	int height = image.GetHeight();
-	if (!image.IsValid() || (width <= 0) || (height <= 0))
-		return false;
-
-	Width = width;
-	Height = height;
-	Pixels = new tPixel[Width*Height];
-
-	// CxImage alpha oddness. If we request the alpha using GetPixelColor and there is no alpha channel, it returns 0
-	// for the alpha, which is incorrect as alpha is normally interpreted as opacity, not transparency. It should be
-	// returning full opacity. That's why we need imageHasValidAlphas -- so we can check if the channel exists at all.
-	bool imageHasValidAlphas = image.AlphaIsValid();
-	SrcPixelFormat = imageHasValidAlphas ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
-
-	int index = 0;
-	for (int y = 0; y < height; y++)
-	{
-		for (int x = 0; x < width; x++)
-		{
-			RGBQUAD rgba = image.GetPixelColor(x, y);
-			tColouri colour;
-			colour.R = rgba.rgbRed;
-			colour.G = rgba.rgbGreen;
-			colour.B = rgba.rgbBlue;
-
-			if (imageHasValidAlphas)
-				colour.A = rgba.rgbReserved;
-			else
-				colour.A = 255;
-
-			Pixels[index++] = colour;
-		}
-	}
-	Filename = imageFile;
-	return true;
+	return false;
 }
 
 
@@ -952,16 +909,4 @@ bool tPicture::Resample(int width, int height, tResampleFilter filter, tResample
 	Height = height;
 
 	return true;
-}
-
-
-int tPicture::GetCxFormat(tFileType fileType)
-{
-	switch (fileType)
-	{
-		case tFileType::BMP:
-			return CXIMAGE_FORMAT_BMP;
-	}
-
-	return CXIMAGE_FORMAT_UNKNOWN;
 }

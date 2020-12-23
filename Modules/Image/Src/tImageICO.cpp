@@ -101,14 +101,14 @@ bool tImageICO::Load(const tString& icoFile)
 
 	int numBytes = 0;
 	uint8* icoFileInMemory = tLoadFile(icoFile, nullptr, &numBytes);
-	bool success = PopulateParts(icoFileInMemory, numBytes);	
+	bool success = PopulateFrames(icoFileInMemory, numBytes);	
 	delete[] icoFileInMemory;
 
 	return success;
 }
 
 
-bool tImageICO::PopulateParts(const uint8* buffer, int numBytes)
+bool tImageICO::PopulateFrames(const uint8* buffer, int numBytes)
 {
 	IconDir* icoDir = (IconDir*)buffer;
 	int iconsCount = icoDir->Count;
@@ -143,19 +143,19 @@ bool tImageICO::PopulateParts(const uint8* buffer, int numBytes)
 		if (!offset || (offset >= numBytes))
 			continue;
 			
-		Part* newPart = CreatePart(buffer+offset, w, h, numBytes);
-		if (!newPart)
+		Frame* newFrame = CreateFrame(buffer+offset, w, h, numBytes);
+		if (!newFrame)
 			continue;
 
-		Parts.Append(newPart);
+		Frames.Append(newFrame);
 		dirEntry++;
 	}
 
-	return !Parts.IsEmpty();
+	return !Frames.IsEmpty();
 }
 
 
-tImageICO::Part* tImageICO::CreatePart(const uint8* cursor, int width, int height, int numBytes)
+tImageICO::Frame* tImageICO::CreateFrame(const uint8* cursor, int width, int height, int numBytes)
 {
 	IconImage* icon = (IconImage*)cursor;
 	
@@ -173,12 +173,12 @@ tImageICO::Part* tImageICO::CreatePart(const uint8* cursor, int width, int heigh
 		tPixel* pixels = pngImage.StealPixels();
 		bool isOpaque = pngImage.IsOpaque();
 		
-		Part* newPart = new Part;
-		newPart->SrcPixelFormat = isOpaque ? tPixelFormat::R8G8B8 : tPixelFormat::R8G8B8A8;
-		newPart->Width = width;
-		newPart->Height = height;
-		newPart->Pixels = pixels;
-		return newPart;
+		Frame* newFrame = new Frame;
+		newFrame->SrcPixelFormat = isOpaque ? tPixelFormat::R8G8B8 : tPixelFormat::R8G8B8A8;
+		newFrame->Width = width;
+		newFrame->Height = height;
+		newFrame->Pixels = pixels;
+		return newFrame;
 	}
 	
 	int realBitsCount = int(icon->Header.BitCount);
@@ -358,13 +358,13 @@ tImageICO::Part* tImageICO::CreatePart(const uint8* cursor, int width, int heigh
 		}
 	}
 	
-	Part* newPart = new Part;
-	newPart->SrcPixelFormat = srcPixelFormat;
-	newPart->Width = width;
-	newPart->Height = height;
-	newPart->Pixels = pixels;
+	Frame* newFrame = new Frame;
+	newFrame->SrcPixelFormat = srcPixelFormat;
+	newFrame->Width = width;
+	newFrame->Height = height;
+	newFrame->Pixels = pixels;
 
-	return newPart;
+	return newFrame;
 }
 
 

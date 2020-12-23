@@ -41,13 +41,15 @@ void tCloseFile(tFileHandle);
 int tReadFile(tFileHandle, void* buffer, int sizeBytes);
 int tWriteFile(tFileHandle, const void* buffer, int sizeBytes);
 bool tPutc(char, tFileHandle);
+int tGetc(tFileHandle);
 int tFileTell(tFileHandle);
 
 enum class tSeekOrigin
 {
 	Beginning,		// AKA seek_set.
 	Current,
-	End
+	End,
+	Set				= Beginning
 };
 int tFileSeek(tFileHandle, int offsetBytes, tSeekOrigin = tSeekOrigin::Beginning);
 
@@ -388,6 +390,12 @@ inline bool tSystem::tPutc(char ch, tFileHandle file)
 	if (ret == EOF)
 		return false;
 	return true;
+}
+
+
+inline int tSystem::tGetc(tFileHandle file)
+{
+	return fgetc(file);
 }
 
 

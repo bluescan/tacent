@@ -1,9 +1,9 @@
 // tImageICO.h
 //
 // This class knows how to load windows icon (ico) files. It loads the data into multiple tPixel arrays, one for each
-// part (ico files may be multiple images at different resolutions). These arrays may be 'stolen' by tPictures. The
+// frame (ico files may be multiple images at different resolutions). These arrays may be 'stolen' by tPictures. The
 // loading code is a modificaton of code from Victor Laskin. In particular the code now:
-// a) Loads all parts of an ico, not just the biggest one.
+// a) Loads all frames of an ico, not just the biggest one.
 // b) Supports embedded png images.
 // c) Supports widths and heights of 256.
 // Victor Laskin's header/licence in the original ico.cpp is shown below.
@@ -52,11 +52,11 @@ public:
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear();
-	bool IsValid() const																								{ return (GetNumParts() >= 1); }
-	int GetNumParts() const																								{ return Parts.GetNumItems(); }
+	bool IsValid() const																								{ return (GetNumFrames() >= 1); }
+	int GetNumFrames() const																							{ return Frames.GetNumItems(); }
 	tPixelFormat GetBestSrcPixelFormat() const;
 
-	struct Part : public tLink<Part>
+	struct Frame : public tLink<Frame>
 	{
 		int Width					= 0;
 		int Height					= 0;
@@ -64,51 +64,51 @@ public:
 		tPixelFormat SrcPixelFormat	= tPixelFormat::Invalid;
 	};
 
-	// After this call you are the owner of the part and must eventually delete it. The part you stole will no
-	// longer be a valid part of the tImageICO, but the remaining ones will still be valid.
-	Part* StealPart(int partNum);
-	Part* GetPart(int partNum);
+	// After this call you are the owner of the frame and must eventually delete it. The frame you stole will no
+	// longer be a valid frame of the tImageICO, but the remaining ones will still be valid.
+	Frame* StealFrame(int frameNum);
+	Frame* GetFrame(int frameNum);
 
 private:
-	bool PopulateParts(const uint8* buffer, int numBytes);	
-	Part* CreatePart(const uint8* buffer, int width, int height, int numBytes);
+	bool PopulateFrames(const uint8* buffer, int numBytes);	
+	Frame* CreateFrame(const uint8* buffer, int width, int height, int numBytes);
 
-	tList<Part> Parts;
+	tList<Frame> Frames;
 };
 
 
 // Implementation only below.
 
 
-inline tImageICO::Part* tImage::tImageICO::StealPart(int partNum)
+inline tImageICO::Frame* tImage::tImageICO::StealFrame(int frameNum)
 {
-	Part* p = GetPart(partNum);
+	Frame* p = GetFrame(frameNum);
 	if (!p)
 		return nullptr;
 
-	return Parts.Remove(p);
+	return Frames.Remove(p);
 }
 
 
-inline tImageICO::Part* tImage::tImageICO::GetPart(int partNum)
+inline tImageICO::Frame* tImage::tImageICO::GetFrame(int frameNum)
 {
-	if ((partNum >= Parts.GetNumItems()) || (partNum < 0))
+	if ((frameNum >= Frames.GetNumItems()) || (frameNum < 0))
 		return nullptr;
 
-	Part* p = Parts.First();
-	while (partNum--)
-		p = p->Next();
+	Frame* f = Frames.First();
+	while (frameNum--)
+		f = f->Next();
 
-	return p;
+	return f;
 }
 
 
 inline void tImageICO::Clear()
 {
-	while (Part* part = Parts.Remove())
+	while (Frame* frame = Frames.Remove())
 	{
-		delete[] part->Pixels;
-		delete part;
+		delete[] frame->Pixels;
+		delete frame;
 	}
 }
 
@@ -116,14 +116,14 @@ inline void tImageICO::Clear()
 inline tPixelFormat tImageICO::GetBestSrcPixelFormat() const
 {
 	tPixelFormat bestFormat = tPixelFormat::Invalid;
-	for (Part* part = Parts.First(); part; part = part->Next())
+	for (Frame* frame = Frames.First(); frame; frame = frame->Next())
 	{
-		if (part->SrcPixelFormat == tPixelFormat::Invalid)
+		if (frame->SrcPixelFormat == tPixelFormat::Invalid)
 			continue;
-		if (part->SrcPixelFormat == tPixelFormat::R8G8B8A8)
+		if (frame->SrcPixelFormat == tPixelFormat::R8G8B8A8)
 			return tPixelFormat::R8G8B8A8;
-		else if (part->SrcPixelFormat < bestFormat)
-			bestFormat = part->SrcPixelFormat;
+		else if (frame->SrcPixelFormat < bestFormat)
+			bestFormat = frame->SrcPixelFormat;
 	}
 	
 	return bestFormat;

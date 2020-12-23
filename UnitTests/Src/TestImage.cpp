@@ -37,6 +37,9 @@ tTestUnit(Image)
 		tSkipUnit(Image)
 
 	// Test direct loading classes.
+	tImageAPNG imgAPNG("TestData/Flame.apng");
+	tRequire(imgAPNG.IsValid());
+
 	tImageDDS imgDDS("TestData/TestDXT1.dds");
 	tRequire(imgDDS.IsValid());
 
@@ -52,20 +55,17 @@ tTestUnit(Image)
 	tImageICO imgICO("TestData/UpperBounds.ico");
 	tRequire(imgICO.IsValid());
 
+	tImageJPG imgJPG("TestData/WiredDrives.jpg");
+	tRequire(imgJPG.IsValid());
+
 	tImageTGA imgTGA("TestData/WhiteBorderRLE.tga");
 	tRequire(imgTGA.IsValid());
 
 	tImageTIFF imgTIFF("TestData/Tiff_NoComp.tif");
 	tRequire(imgTIFF.IsValid());
 
-	tImageJPG imgJPG("TestData/WiredDrives.jpg");
-	tRequire(imgJPG.IsValid());
-
 	tImageWEBP imgWEBP("TestData/RockyBeach.webp");
 	tRequire(imgWEBP.IsValid());
-
-	tImageAPNG imgAPNG("TestData/Flame.apng");
-	tRequire(imgAPNG.IsValid());
 
 	// Test dxt1 texture.
 	tTexture dxt1Tex("TestData/TestDXT1.dds");
@@ -96,6 +96,37 @@ tTestUnit(Image)
 	tChunkWriter chunkWriterBC3("TestData/WrittenBC3.tac");
 	bc3Tex.Save(chunkWriterBC3);
 	tRequire( tSystem::tFileExists("TestData/WrittenBC3.tac"));
+
+	// Test tPicture loading bmp and saving as tga.
+	tPicture bmpPicUB("TestData/UpperB.bmp");
+	tRequire(bmpPicUB.IsValid());
+	bmpPicUB.Save("TestData/WrittenUpperB.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenUpperB.tga"));
+
+	tPicture bmpPicA("TestData/Bmp_Alpha.bmp");
+	tRequire(bmpPicA.IsValid());
+	bmpPicA.Save("TestData/WrittenBmp_Alpha.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenBmp_Alpha.tga"));
+
+	tPicture bmpPicL("TestData/Bmp_Lambda.bmp");
+	tRequire(bmpPicL.IsValid());
+	bmpPicL.Save("TestData/WrittenBmp_Lambda.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenBmp_Lambda.tga"));
+
+	tPicture bmpPicRL("TestData/Bmp_RefLena.bmp");
+	tRequire(bmpPicRL.IsValid());
+	bmpPicRL.Save("TestData/WrittenBmp_RefLena.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenBmp_RefLena.tga"));
+
+	tPicture bmpPicRL101("TestData/Bmp_RefLena101.bmp");
+	tRequire(bmpPicRL101.IsValid());
+	bmpPicRL101.Save("TestData/WrittenBmp_RefLena101.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenBmp_RefLena101.tga"));
+
+	tPicture bmpPicRLFlip("TestData/Bmp_RefLenaFlip.bmp");
+	tRequire(bmpPicRLFlip.IsValid());
+	bmpPicRLFlip.Save("TestData/WrittenBmp_RefLenaFlip.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenBmp_RefLenaFlip.tga"));
 
 	// Test tPicture loading jpg and saving as tga.
 	tPicture jpgPic("TestData/WiredDrives.jpg");

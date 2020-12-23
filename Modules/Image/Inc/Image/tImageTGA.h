@@ -1,9 +1,8 @@
 // tImageTGA.h
 //
-// This clas knows how to load and save a targa (.tga) file.
-// It does zero processing of image data. It knows the details of the tga file format and loads the
-// data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if a targa file is specified.
-// After the array is stolen the tImageTGA is invalid. This is purely for performance.
+// This class knows how to load and save targa (.tga) files into tPixel arrays. These tPixels may be 'stolen' by the
+// tPicture's constructor if a targa file is specified. After the array is stolen the tImageTGA is invalid. This is
+// purely for performance.
 //
 // Copyright (c) 2006, 2017, 2019, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -62,7 +61,7 @@ public:
 		RLE			// Run Length Encoding.
 	};
 
-	// Saves the tImageTGA to the Targa file specified. The extension of filename must be ".tga". If TargaFormat is Auto,
+	// Saves the tImageTGA to the Targa file specified. The extension of filename must be ".tga". If tFormat is Auto,
 	// this function will decide the format. Bit24 if all image pixels are opaque and Bit32 otherwise. Returns the format
 	// that the file was saved in, or tFormat::Invalid if there was a problem. Since Invalid is 0, you can use an 'if'.
 	tFormat Save(const tString& tgaFile, tFormat = tFormat::Auto, tCompression = tCompression::RLE) const;

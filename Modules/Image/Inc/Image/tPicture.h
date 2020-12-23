@@ -1,15 +1,13 @@
 // tPicture.h
 //
-// This class represents a simple one-part image. It is a collection of raw uncompressed 32-bit tPixels. It can load
+// This class represents a simple one-frame image. It is a collection of raw uncompressed 32-bit tPixels. It can load
 // various formats from disk such as jpg, tga, png, etc. It intentionally _cannot_ load a dds file. More on that later.
-// This class can load many formats with a 'native implementation'. By native I mean formats for which there are
-// specific and correct tImageAAA loaders. CxImage is used for the remainder (tiff/png/bmp mostly). Saving to different
-// formats is supported natively where possible, and uses CxImage otherwise. Image manipulation (excluding compression)
-// is supported in a tPicture, so there are crop, scale, etc functions in this class.
+// Image manipulation (excluding compression) is supported in a tPicture, so there are crop, scale, rotate, etc
+// functions in this class.
 //
-// Some image disk formats have more than one 'part' or image inside them. For example, tiff files can have more than
-// layer, and gif/webp images may be animated and have more than one frame. A tPicture can only prepresent _one_ of 
-// these parts.
+// Some image disk formats have more than one 'frame' or image inside them. For example, tiff files can have more than
+// page, and gif/webp images may be animated and have more than one frame. A tPicture can only prepresent _one_ of 
+// these frames.
 //
 // Copyright (c) 2006, 2016, 2017, 2020 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -27,13 +25,14 @@
 #include <Math/tColour.h>
 #include <System/tFile.h>
 #include <System/tChunk.h>
+#include "Image/tImageAPNG.h"
+#include "Image/tImageBMP.h"
 #include "Image/tImageEXR.h"
 #include "Image/tImageGIF.h"
 #include "Image/tImageHDR.h"
 #include "Image/tImageICO.h"
 #include "Image/tImageJPG.h"
 #include "Image/tImagePNG.h"
-#include "Image/tImageAPNG.h"
 #include "Image/tImageTGA.h"
 #include "Image/tImageTIFF.h"
 #include "Image/tImageWEBP.h"
@@ -86,9 +85,9 @@ public:
 
 	// Loads the supplied image file. If the image couldn't be loaded, IsValid will return false afterwards. Uses the
 	// filename extension to determine what file type it is loading. dds files may _not_ be loaded into a tPicture.
-	// Use a tTexture if you want to load a dds. For images with more than one part (animated gif, tiff, etc) the
-	// partNum specifies which one to load and will result in an invalid tPicture if you go too high.
-	tPicture(const tString& imageFile, int partNum = 0, LoadParams params = LoadParams())								{ Load(imageFile, partNum, params); }
+	// Use a tTexture if you want to load a dds. For images with more than one frame (animated gif, tiff, etc) the
+	// frameNum specifies which one to load and will result in an invalid tPicture if you go too high.
+	tPicture(const tString& imageFile, int frameNum = 0, LoadParams params = LoadParams())								{ Load(imageFile, frameNum, params); }
 
 	// Copy constructor.
 	tPicture(const tPicture& src)																						: tPicture() { Set(src); }
@@ -132,17 +131,17 @@ public:
 	// Alpha channels are not supported for gif and jpg files. Quality (used for jpg) is in [1, 100].
 	bool Save(const tString& imageFile, tColourFormat = tColourFormat::Auto, int quality = 95);
 
+	bool SaveBMP(const tString& bmpFile) const;
+	bool SaveJPG(const tString& jpgFile, int quality = 95) const;
+	bool SavePNG(const tString& pngFile) const;
 	bool SaveTGA
 	(
 		const tString& tgaFile, tImageTGA::tFormat = tImageTGA::tFormat::Auto,
 		tImageTGA::tCompression = tImageTGA::tCompression::RLE
 	) const;
 
-	bool SaveJPG(const tString& jpgFile, int quality = 95) const;
-	bool SavePNG(const tString& pngFile) const;
-
 	// Always clears the current image before loading. If false returned, you will have an invalid tPicture.
-	bool Load(const tString& imageFile, int partNum, LoadParams params = LoadParams());
+	bool Load(const tString& imageFile, int frameNum = 0, LoadParams params = LoadParams());
 
 	// Save and Load to tChunk format.
 	void Save(tChunkWriter&) const;
@@ -227,7 +226,6 @@ public:
 	float Duration = 0.5f;
 
 private:
-	static int GetCxFormat(tSystem::tFileType);
 	int GetIndex(int x, int y) const																					{ tAssert((x >= 0) && (y >= 0) && (x < Width) && (y < Height)); return y * Width + x; }
 	static int GetIndex(int x, int y, int w, int h)																		{ tAssert((x >= 0) && (y >= 0) && (x < w) && (y < h)); return y * w + x; }
 
