@@ -25,4 +25,5 @@ namespace tUnitTest
 	tTestUnit(Matrix);
 	tTestUnit(Quaternion);
 	tTestUnit(Geometry);
+	tTestUnit(Colour);
 }

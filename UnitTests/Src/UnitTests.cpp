@@ -123,6 +123,7 @@ int main(int argc, char** argv)
 	tTest(Matrix);
 	tTest(Quaternion);
 	tTest(Geometry);
+	tTest(Colour);
 
 	// System tests.
 	tTest(CmdLine);
@@ -151,7 +152,8 @@ int main(int argc, char** argv)
 	// tTest(String);
 	// tTest(List);
 	// tTest(ListExtra);
-	tTest(Image);
+	// tTest(Image);
+	tTest(Colour);
 	// tTest(Print);
 	// tTest(Map);
 	// tTest(Script);

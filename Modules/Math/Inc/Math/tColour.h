@@ -41,6 +41,11 @@ namespace tMath
 	// Convert a standard web colour name (as may be found in rgb.txt for example) into a 32bit RGBA tColouri.
 	tColouri tGetColour(const char* colourName);
 
+	// Alpha is ignored for these colour difference functions.
+	float tColourDiffEuclideanSq(const tColouri& a, const tColouri& b);		// Returns value E [0.0, 195075.0]
+	float tColourDiffEuclidean(const tColouri& a, const tColouri& b);		// Returns value E [0.0, 441.672956]
+	float tColourDiffRedmean(const tColouri& a, const tColouri& b);			// Returns value E [0.0, 764.8340]
+
 	enum ColourChannel
 	{
 		ColourChannel_R			= 1 << 0,
@@ -471,4 +476,20 @@ inline void tColourf::HSVToRGB()
 	float s = S;
 	float v = V;
 	tHSVToRGB(R, G, B, h, s, v, tMath::tAngleMode::NormOne);
+}
+
+
+inline float tMath::tColourDiffEuclideanSq(const tColouri& aa, const tColouri& bb)
+{
+	tVector3 a; aa.GetDenorm(a);
+	tVector3 b; bb.GetDenorm(b);
+	return tDistBetweenSq(a, b);
+}
+
+
+inline float tMath::tColourDiffEuclidean(const tColouri& aa, const tColouri& bb)
+{
+	tVector3 a; aa.GetDenorm(a);
+	tVector3 b; bb.GetDenorm(b);
+	return tDistBetween(a, b);
 }

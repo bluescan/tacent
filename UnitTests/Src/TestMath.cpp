@@ -16,6 +16,7 @@
 #include <Math/tSpline.h>
 #include <Math/tRandom.h>
 #include <Math/tQuaternion.h>
+#include <Math/tColour.h>
 #include "UnitTests.h"
 using namespace tMath;
 namespace tUnitTest
@@ -145,6 +146,7 @@ tTestUnit(Spline)
 	tRequire(tMath::tApproxEqual(closestParam, 1.0f));	
 	tPrintf("Closest Param=%f\n", closestParam);
 }
+
 
 tTestUnit(Hash)
 {
@@ -388,6 +390,40 @@ tTestUnit(Geometry)
 	intersects = tIntersectTestRayTriangle(ray, tri);
 	tPrintf("Ray intersects triangle: %s\n", intersects ? "true" : "false");
 	tRequire(!intersects);
+}
+
+
+tTestUnit(Colour)
+{
+	tColouri a = tColouri::black;
+	tColouri b = tColouri::white;
+	float colDiffLinSq = tColourDiffEuclideanSq(a, b);
+	tPrintf("Colour Diff (black white) Euclidean Squared: %f\n", colDiffLinSq);
+	float colDiffLin = tColourDiffEuclidean(a, b);
+	tPrintf("Colour Diff (black white) Euclidean: %f\n", colDiffLin);
+	float colDiffRedmean = tColourDiffRedmean(a, b);
+	tPrintf("Colour Diff (black white) Redmean: %f\n", colDiffRedmean);
+	tRequire(colDiffLinSq >= colDiffLin);
+
+	a = tColouri::grey;
+	b = tColouri::cyan;
+	colDiffLinSq = tColourDiffEuclideanSq(a, b);
+	tPrintf("Colour Diff (grey cyan) Euclidean Squared: %f\n", colDiffLinSq);
+	colDiffLin = tColourDiffEuclidean(a, b);
+	tPrintf("Colour Diff (grey cyan) Euclidean: %f\n", colDiffLin);
+	colDiffRedmean = tColourDiffRedmean(a, b);
+	tPrintf("Colour Diff (grey cyan) Redmean: %f\n", colDiffRedmean);
+	tRequire(colDiffLinSq >= colDiffLin);
+
+	a = tColouri::yellow;
+	b = tColouri::yellow;
+	colDiffLinSq = tColourDiffEuclideanSq(a, b);
+	tPrintf("Colour Diff (yellow yellow) Euclidean Squared: %f\n", colDiffLinSq);
+	colDiffLin = tColourDiffEuclidean(a, b);
+	tPrintf("Colour Diff (yellow yellow) Euclidean: %f\n", colDiffLin);
+	colDiffRedmean = tColourDiffRedmean(a, b);
+	tPrintf("Colour Diff (yellow yellow) Redmean: %f\n", colDiffRedmean);
+	tRequire(colDiffLinSq >= colDiffLin);
 }
 
 
