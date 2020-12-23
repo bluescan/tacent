@@ -502,17 +502,22 @@ tImageBMP::tFormat tImageBMP::Save(const tString& bmpFile, tFormat format) const
 	tWriteFile(file, &infoHeader, sizeof(InfoHeader));
 	
 	uint8* p = (uint8*)Pixels;
+	int rowPad = (Width*bytesPerPixel % 4) ? 4 - (Width*bytesPerPixel % 4) : 0;
+	uint8 zeroPad[4];
+	tStd::tMemset(zeroPad, 0, 4);
 	for (int y = 0; y < Height; y++)
 	{
 		for (int x = 0; x < Width; x++)
 		{
 			uint8 sample[4];
-			sample[0] = *p++;
-			sample[1] = *p++;
 			sample[2] = *p++;
+			sample[1] = *p++;
+			sample[0] = *p++;
 			sample[3] = *p++;
 			tWriteFile(file, sample, bytesPerPixel);
 		}
+		if (rowPad)
+			tWriteFile(file, zeroPad, rowPad);
 	}
 	
 	tCloseFile(file);

@@ -101,32 +101,44 @@ tTestUnit(Image)
 	tPicture bmpPicUB("TestData/UpperB.bmp");
 	tRequire(bmpPicUB.IsValid());
 	bmpPicUB.Save("TestData/WrittenUpperB.tga");
+	bmpPicUB.Save("TestData/WrittenUpperB.bmp");
 	tRequire( tSystem::tFileExists("TestData/WrittenUpperB.tga"));
 
 	tPicture bmpPicA("TestData/Bmp_Alpha.bmp");
 	tRequire(bmpPicA.IsValid());
 	bmpPicA.Save("TestData/WrittenBmp_Alpha.tga");
+	bmpPicA.Save("TestData/WrittenBmp_Alpha.bmp");
 	tRequire( tSystem::tFileExists("TestData/WrittenBmp_Alpha.tga"));
 
 	tPicture bmpPicL("TestData/Bmp_Lambda.bmp");
 	tRequire(bmpPicL.IsValid());
 	bmpPicL.Save("TestData/WrittenBmp_Lambda.tga");
+	bmpPicL.Save("TestData/WrittenBmp_Lambda.bmp");
 	tRequire( tSystem::tFileExists("TestData/WrittenBmp_Lambda.tga"));
 
 	tPicture bmpPicRL("TestData/Bmp_RefLena.bmp");
 	tRequire(bmpPicRL.IsValid());
 	bmpPicRL.Save("TestData/WrittenBmp_RefLena.tga");
+	bmpPicRL.Save("TestData/WrittenBmp_RefLena.bmp");
 	tRequire( tSystem::tFileExists("TestData/WrittenBmp_RefLena.tga"));
 
 	tPicture bmpPicRL101("TestData/Bmp_RefLena101.bmp");
 	tRequire(bmpPicRL101.IsValid());
 	bmpPicRL101.Save("TestData/WrittenBmp_RefLena101.tga");
+	bmpPicRL101.Save("TestData/WrittenBmp_RefLena101.bmp");
 	tRequire( tSystem::tFileExists("TestData/WrittenBmp_RefLena101.tga"));
 
 	tPicture bmpPicRLFlip("TestData/Bmp_RefLenaFlip.bmp");
 	tRequire(bmpPicRLFlip.IsValid());
 	bmpPicRLFlip.Save("TestData/WrittenBmp_RefLenaFlip.tga");
+	bmpPicRLFlip.Save("TestData/WrittenBmp_RefLenaFlip.bmp");
 	tRequire( tSystem::tFileExists("TestData/WrittenBmp_RefLenaFlip.tga"));
+
+	tPicture pngPicIcos("TestData/Icos4D.png");
+	tRequire(pngPicIcos.IsValid());
+	pngPicIcos.Save("TestData/WrittenBmp_Icos4D.bmp");
+	pngPicIcos.Save("TestData/WrittenBmp_Icos4D.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenBmp_Icos4D.tga"));
 
 	// Test tPicture loading jpg and saving as tga.
 	tPicture jpgPic("TestData/WiredDrives.jpg");
