@@ -61,24 +61,20 @@ bool tImageTIFF::Load(const tString& tiffFile)
 		frame->Width = width;
 		frame->Height = height;
 		frame->Pixels = new tPixel[width*height];
-		frame->SrcPixelFormat = tPixelFormat::B8G8R8A8;
+		frame->SrcPixelFormat = tPixelFormat::R8G8B8A8;
 
 		for (int p = 0; p < width*height; p++)
 			frame->Pixels[p] = pixels[p];
-			/*
-					uint32& TiffPixel = raster[y*width+x]; // read the current pixel of the TIF
-					Vec4b& pixel = image.at<Vec4b>(Point(y, x)); // read the current pixel of the matrix
-					pixel[0] = TIFFGetB(TiffPixel); // Set the pixel values as BGRA
-					pixel[1] = TIFFGetG(TiffPixel);
-					pixel[2] = TIFFGetR(TiffPixel);
-					pixel[3] = TIFFGetA(TiffPixel);
-			*/
 
 		_TIFFfree(pixels);
 		Frames.Append(frame);
 	} while (TIFFReadDirectory(tiff));
 
-	TIFFClose(tiff); // close the tif file
+	TIFFClose(tiff);
+	if (Frames.GetNumItems() == 0)
+		return false;
+
+	SrcPixelFormat = tPixelFormat::R8G8B8A8;
 	return true;
 }
 
