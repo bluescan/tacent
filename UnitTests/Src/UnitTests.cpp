@@ -152,8 +152,8 @@ int main(int argc, char** argv)
 	// tTest(String);
 	// tTest(List);
 	// tTest(ListExtra);
-	// tTest(Image);
-	tTest(Colour);
+	tTest(Image);
+	// tTest(Colour);
 	// tTest(Print);
 	// tTest(Map);
 	// tTest(Script);

@@ -44,7 +44,7 @@ namespace tImage
 }
 
 
-const char* tImage::tResampleFilterNames[int(tResampleFilter::NumFilters)] =
+const char* tImage::tResampleFilterNames[int(tResampleFilter::NumFilters)+1] =
 {
 	"Nearest Neighbour",
 	"Box",
@@ -56,7 +56,8 @@ const char* tImage::tResampleFilterNames[int(tResampleFilter::NumFilters)] =
 	"Bicubic BSpline",
 	"Lanczos Narrow",
 	"Lanczos Normal",
-	"Lanczos Wide"
+	"Lanczos Wide",
+	"None"
 };
 
 

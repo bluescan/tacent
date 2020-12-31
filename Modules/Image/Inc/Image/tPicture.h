@@ -167,17 +167,21 @@ public:
 
 	void Rotate90(bool antiClockWise);
 
-	// Rotates image about center point. Might add another call for choosing the center point. The resultant image size
-	// is always big enough to hold every possible source pixel. Call one or more of the crop functions after if you
-	// need to change the canvas size or remove transparent sides. If rotate filter is set to something other than
-	// None, this function scales up the image 4 times using the supplied filter. It then rotates and scales back
-	// down using a box filter which is fast/hi-quality for multiples of 2. If filter is set to Invalid, no upsampling
-	// occurs and a straight nearest-neighbour rotation is performed (useful for pixel art and preserves colours).
+	// Rotates image about center point. The resultant image size is always big enough to hold every source pixel. Call
+	// one or more of the crop functions after if you need to change the canvas size or remove transparent sides. The
+	// rotate algorithm first upscales the image x4, rotates, then downscales. That is what upFilter and downFilter are
+	// for. If you want to rotate pixel-art (nearest neighbour, no up/dowuse upFilter = none.
+	//
+	// UpFilter		DownFilter		Description
+	// None			NA				No up/down scaling. Preserves colours. Nearest Neighbour. Fast. Good for pixel art.
+	// Valid		Valid			Up/down scaling. Smooth. Good results with up=bilinear, down=box.
+	// Valid		None			Up/down scaling. Use alternate (sharper) downscaling scheme (pad + 2 X ScaleHalf).
 	void RotateCenter
 	(
 		float angle,
-		const tPixel& fill		= tPixel::transparent,
-		tResampleFilter			= tResampleFilter::Invalid
+		const tPixel& fill			= tPixel::transparent,
+		tResampleFilter	upFilter	= tResampleFilter::None,
+		tResampleFilter	downFilter	= tResampleFilter::None
 	);
 
 	void Flip(bool horizontal);
@@ -230,7 +234,11 @@ private:
 	static int GetIndex(int x, int y, int w, int h)																		{ tAssert((x >= 0) && (y >= 0) && (x < w) && (y < h)); return y * w + x; }
 
 	void RotateCenterNearest(const tMath::tMatrix2& rotMat, const tMath::tMatrix2& invRot, const tPixel& fill);
-	void RotateCenterResampled(const tMath::tMatrix2& rotMat, const tMath::tMatrix2& invRot, const tPixel& fill, tResampleFilter);
+	void RotateCenterResampled
+	(
+		const tMath::tMatrix2& rotMat, const tMath::tMatrix2& invRot, const tPixel& fill,
+		tResampleFilter upFilter, tResampleFilter downFilter
+	);
 
 	int Width = 0;
 	int Height = 0;

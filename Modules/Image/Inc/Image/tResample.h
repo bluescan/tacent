@@ -38,15 +38,17 @@ enum class tResampleFilter
 	Lanczos_Narrow,			// Sinc-based.				A = 2
 	Lanczos_Normal,			// Sinc-based.				A = 3
 	Lanczos_Wide,			// Sinc-based.				A = 4
-
-	Invalid,
-	NumFilters				= Invalid,
+	NumFilters,
 
 	// Aliaes.
+	Invalid					= NumFilters,
+	None					= NumFilters,
 	Bicubic					= Bicubic_Standard,
 	Lanczos					= Lanczos_Normal
 };
-extern const char* tResampleFilterNames[int(tResampleFilter::NumFilters)];
+
+// Warning. The 'None' filter name is included in this array.
+extern const char* tResampleFilterNames[int(tResampleFilter::NumFilters)+1];
 
 
 enum class tResampleEdgeMode

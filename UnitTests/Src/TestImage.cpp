@@ -234,12 +234,12 @@ tTestUnit(Image)
 		rotPic.Save(writeFile);
 	}
 
-	// Test resampled (higher quality) rotations.
+	// Test resampled (high quality) rotations.
 	for (int rotNum = 0; rotNum < numRotations; rotNum++)
 	{
 		tPicture rotPic(aroPic);
 		float angle = float(rotNum) * tMath::TwoPi / numRotations;
-		rotPic.RotateCenter(angle, tColouri::transparent, tImage::tResampleFilter::Bilinear);
+		rotPic.RotateCenter(angle, tColouri::transparent, tImage::tResampleFilter::Bilinear, tImage::tResampleFilter::None);
 
 		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
 		tString writeFile;
