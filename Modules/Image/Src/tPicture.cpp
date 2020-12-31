@@ -769,8 +769,12 @@ void tPicture::RotateCenterResampled(const tMatrix2& rotMat, const tMatrix2& inv
 	}
 	
 	RotateCenterNearest(rotMat, invRot, fill);
-	ScaleHalf();
-	ScaleHalf();
+
+	// After this call we are not guaranteed that the with and height are multiples of 4.
+	// so we can't assume we can just call ScaleHalf twice. We now do a regular box filter downscale.
+	// ScaleHalf();
+	// ScaleHalf();
+	Resample(Width/4, Height/4, tResampleFilter::Box);
 }
 
 
