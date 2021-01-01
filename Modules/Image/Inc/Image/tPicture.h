@@ -9,7 +9,7 @@
 // page, and gif/webp images may be animated and have more than one frame. A tPicture can only prepresent _one_ of 
 // these frames.
 //
-// Copyright (c) 2006, 2016, 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2017, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -198,7 +198,8 @@ public:
 	void Crop(int newWidth, int newHeight, int originX, int originY, const tColouri& fill = tColouri::transparent);
 
 	// Crops sides that match the specified colour. Optionally select only some channels to be considered.
-	void Crop(const tColouri& = tColouri::transparent, uint32 channels = tMath::ColourChannel_A);
+	// If this function wants to remove everything it returns false and leaves the image untouched.
+	bool Crop(const tColouri& = tColouri::transparent, uint32 channels = tMath::ColourChannel_A);
 
 	// This function scales the image by half using a box filter. Useful for generating mipmaps. This function returns
 	// false if the rescale could not be performed. For this function to succeed:

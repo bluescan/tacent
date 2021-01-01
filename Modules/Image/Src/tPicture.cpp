@@ -9,7 +9,7 @@
 // layer, and gif/webp images may be animated and have more than one frame. A tPicture can only prepresent _one_ of 
 // these frames.
 //
-// Copyright (c) 2006, 2016, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2017, 2019, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -580,7 +580,7 @@ void tPicture::Crop(int newW, int newH, int originX, int originY, const tColouri
 }
 
 
-void tPicture::Crop(const tColouri& colour, uint32 channels)
+bool tPicture::Crop(const tColouri& colour, uint32 channels)
 {
 	// Count bottom rows to crop.
 	int numBottomRows = 0;
@@ -658,7 +658,13 @@ void tPicture::Crop(const tColouri& colour, uint32 channels)
 			break;
 	}
 
-	Crop(Width - numLeftCols - numRightCols, Height - numBottomRows - numTopRows, numLeftCols, numBottomRows);
+	int newWidth = Width - numLeftCols - numRightCols;
+	int newHeight = Height - numBottomRows - numTopRows;
+	if ((newWidth <= 0) || (newHeight <= 0))
+		return false;
+
+	Crop(newWidth, newHeight, numLeftCols, numBottomRows);
+	return true;
 }
 
 
