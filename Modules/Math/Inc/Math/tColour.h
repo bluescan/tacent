@@ -448,13 +448,13 @@ inline bool tColouri::Equal(const tColouri& colour, uint32 channels) const
 	if ((channels & tMath::ColourChannel_R) && (R != colour.R))
 		return false;
 
-	if ((channels & tMath::ColourChannel_G) && (R != colour.G))
+	if ((channels & tMath::ColourChannel_G) && (G != colour.G))
 		return false;
 
-	if ((channels & tMath::ColourChannel_B) && (R != colour.B))
+	if ((channels & tMath::ColourChannel_B) && (B != colour.B))
 		return false;
 
-	if ((channels & tMath::ColourChannel_A) && (R != colour.A))
+	if ((channels & tMath::ColourChannel_A) && (A != colour.A))
 		return false;
 
 	return true;
