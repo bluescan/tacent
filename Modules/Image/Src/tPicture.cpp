@@ -930,7 +930,7 @@ bool tPicture::Resample(int width, int height, tResampleFilter filter, tResample
 	bool success = tImage::Resample(Pixels, Width, Height, newPixels, width, height, filter, edgeMode);
 	if (!success)
 	{
-		delete newPixels;
+		delete[] newPixels;
 		return false;
 	}
 
