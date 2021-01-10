@@ -35,7 +35,13 @@ public:
 
 	// Clears the current tImageWEBP before loading. If false returned object is invalid.
 	bool Load(const tString& webpFile);
-	bool Save(const tString& webpFile);
+	bool Save
+	(
+		const tString& webpFile,
+		bool lossy = false,
+		float quality = 90.0f,					// E [0.0, 100.0]. Compression size for lossy.
+		float overrideframeDuration = -1.0f		// In seconds. Set to >= 0.0 to override all frames.
+	);
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
 	// After this call no memory will be consumed by the object and it will be invalid.

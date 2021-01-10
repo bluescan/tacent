@@ -323,11 +323,25 @@ tTestUnit(Image)
 	resamplePicLanczosWide.Resample(800, 300, tResampleFilter::Lanczos_Wide);
 	resamplePicLanczosWide.SaveTGA("TestData/WrittenResampledLanczosWide.tga");
 
-	// tImageWEBP supports saving multi-frame webp files.
-	tPicture webpForSave("TestData/Flame.apng");
-	webpForSave.SaveWEBP("TestData/WrittenFlame.webp");
-	tRequire(tSystem::tFileExists("TestData/WrittenFlame.webp"));
+	tPicture apngPicForSave("TestData/Flame.apng");
+	apngPicForSave.SaveWEBP("TestData/WrittenFlameOneFrame.webp");
+	tRequire(tSystem::tFileExists("TestData/WrittenFlameOneFrame.webp"));
 
+	// Test writing webp images.
+	tPicture exrPicForSave("TestData/Desk.exr");
+	exrPicForSave.SaveWEBP("TestData/WrittenDesk.webp");
+	tRequire(tSystem::tFileExists("TestData/WrittenDesk.webp"));
+
+	// tImageWEBP also supports saving multi-frame webp files.
+	tImageAPNG apngSrc("TestData/Flame.apng");
+	tImageWEBP webpDst( apngSrc.Frames, true);
+	webpDst.Save("TestData/WrittenFlameManyFrames.webp");
+	tRequire(tSystem::tFileExists("TestData/WrittenFlameManyFrames.webp"));
+
+	tImageAPNG apngSrc2("TestData/Icos4D.apng");
+	tImageWEBP webpDst2( apngSrc2.Frames, true);
+	webpDst2.Save("TestData/WrittenIcos4DManyFrames.webp");
+	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames.webp"));
 	return;
 }
 

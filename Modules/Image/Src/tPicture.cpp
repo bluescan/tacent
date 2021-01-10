@@ -29,11 +29,10 @@
 #include "LibTIFF/include/tiffvers.h"
 #ifdef PLATFORM_WINDOWS
 #include "TurboJpeg/Windows/jconfig.h"
-#include "WebP/Windows/include/demux.h"
 #elif defined(PLATFORM_LINUX)
 #include "TurboJpeg/Linux/jconfig.h"
-#include "WebP/Linux/include/demux.h"
 #endif
+#include "WebP/include/demux.h"
 #include "Image/tResample.h"
 
 

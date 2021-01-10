@@ -36,6 +36,7 @@ struct tFrame : public tLink<tFrame>
 	tPixel* StealPixels()																								{ tPixel* p = Pixels; Pixels = nullptr; return p; }
 	void Clear();
 	bool IsValid() const																								{ return (Width > 0) && (Height > 0) && Pixels; }
+	void ReverseRows();
 
 	int Width																	= 0;
 	int Height																	= 0;
@@ -106,6 +107,20 @@ inline void tFrame::Clear()
 	Pixels = nullptr;
 	Duration = 0.0f;
 	SrcPixelFormat = tPixelFormat::Invalid;
+}
+
+
+inline void tFrame::ReverseRows()
+{
+	int numPixels = Width * Height;
+	tPixel* origPixels = Pixels;
+	Pixels = new tPixel[numPixels];
+
+	int bytesPerRow = Width*sizeof(tPixel);
+	for (int y = Height-1; y >= 0; y--)
+		tStd::tMemcpy((uint8*)Pixels + ((Height-1)-y)*bytesPerRow, (uint8*)origPixels + y*bytesPerRow, bytesPerRow);
+
+	delete[] origPixels;
 }
 
 

@@ -55,7 +55,6 @@ public:
 	// better than APngDis, which could be further modified but is unfamiliar code.
 	static bool IsAnimatedPNG(const tString& pngFile);
 
-private:
 	tList<tFrame> Frames;
 };
 

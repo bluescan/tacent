@@ -17,13 +17,19 @@
 #include <Foundation/tString.h>
 #include <System/tFile.h>
 #include "Image/tImageWEBP.h"
-#ifdef PLATFORM_WINDOWS
-#include "WebP/Windows/include/demux.h"
-#include "WebP/Windows/include/encode.h"
-#elif defined(PLATFORM_LINUX)
-#include "WebP/Linux/include/demux.h"
-#include "WebP/Linux/include/encode.h"
-#endif
+#include "WebP/include/mux.h"
+#include "WebP/include/demux.h"
+#include "WebP/include/encode.h"
+
+//#ifdef PLATFORM_WINDOWS
+//#include "WebP/Windows/include/mux.h"
+//#include "WebP/Windows/include/demux.h"
+//#include "WebP/Windows/include/encode.h"
+//#elif defined(PLATFORM_LINUX)
+//#include "WebP/Linux/include/mux.h"
+//#include "WebP/Linux/include/demux.h"
+//#include "WebP/Linux/include/encode.h"
+//#endif
 using namespace tSystem;
 namespace tImage
 {
@@ -122,51 +128,107 @@ bool tImageWEBP::Set(tList<tFrame>& srcFrames, bool stealFrames)
 }
 
 
-bool tImageWEBP::Save(const tString& webpFile)
+bool tImageWEBP::Save(const tString& webpFile, bool lossy, float quality, float overrideframeDuration)
 {
 	if (!IsValid())
 		return false;
 
 	WebPConfig config;
-	float quality = 90.0f;
-	int success = WebPConfigPreset(&config, WEBP_PRESET_PHOTO, quality);
+	int success = WebPConfigPreset(&config, WEBP_PRESET_PHOTO, tMath::tClamp(quality, 0.0f, 100.0f));
 	if (!success)
 		return false;
 
-	// Additional parameters.
-	config.sns_strength = 90;
-	config.filter_sharpness = 6;
-	config.alpha_quality = 90;
+	// config.method is the quality/speed trade-off (0=fast, 6=slower-better).
+	config.lossless = lossy ? 0 : 1;
+
+	// Additional config parameters in lossy mode.
+	if (lossy)
+	{
+		config.sns_strength = 90;
+		config.filter_sharpness = 6;
+		config.alpha_quality = 90;
+	}
+
 	success = WebPValidateConfig(&config);
 	if (!success)
 		return false;
 
-	// Multiple frames probably done here.
-	WebPPicture pic;
-	success = WebPPictureInit(&pic);
-	if (!success)
-		return false;
+	// Setup the muxer so we can put more than one image in a file.
+	WebPMux* mux = WebPMuxNew();
 
-	// Let's get one frame going first.
-	tFrame* frame = Frames.Head();
-	pic.width = frame->Width;
-	pic.height = frame->Height;
-	success = WebPPictureImportRGBA(&pic, (uint8*)frame->Pixels, 4);
+	WebPMuxAnimParams animParams;
+	animParams.bgcolor = 0x00000000;
+	animParams.loop_count = 0;
+    WebPMuxSetAnimationParams(mux, &animParams);
 
-	WebPMemoryWriter writer;
-	WebPMemoryWriterInit(&writer);
-	pic.writer = WebPMemoryWrite;
-	pic.custom_ptr = &writer;
+	bool animated = Frames.GetNumItems() > 1;
+	for (tFrame* frame = Frames.First(); frame; frame = frame->Next())
+	{
+		WebPPicture pic;
+		success = WebPPictureInit(&pic);
+		if (!success)
+			continue;
 
-	success = WebPEncode(&config, &pic);
+		// This is inefficient here. I'm reversing the rows so I can use the simple
+		// WebPPictureImportRGBA. But this is a waste of memory and time.
+		tFrame normFrame(*frame);
+		normFrame.ReverseRows();
 
-	// Done with pic.
-	WebPPictureFree(&pic);
+		// Let's get one frame going first.
+		//tFrame* frame = Frames.Head();
+		pic.width = normFrame.Width;
+		pic.height = normFrame.Height;
+		success = WebPPictureImportRGBA(&pic, (uint8*)normFrame.Pixels, normFrame.Width*sizeof(tPixel));
+		if (!success)
+			continue;
 
-	bool ok = tCreateFile(webpFile, writer.mem, writer.size);
+		WebPMemoryWriter writer;
+		WebPMemoryWriterInit(&writer);
+		pic.writer = WebPMemoryWrite;
+		pic.custom_ptr = &writer;
 
-	// Done with writer.
-	WebPMemoryWriterClear(&writer);
+		success = WebPEncode(&config, &pic);
+		if (!success)
+			continue;
+
+		// Done with pic.
+		WebPPictureFree(&pic);
+
+		WebPData webpData;		
+		webpData.bytes = writer.mem;
+		webpData.size = writer.size;
+
+		int copyData = 1;
+		if (animated)
+		{
+			WebPMuxFrameInfo frameInfo;
+			tStd::tMemset(&frameInfo, 0, sizeof(WebPMuxFrameInfo));
+
+			// Frame duration is in integral milliseconds.
+			frameInfo.duration = int( ((overrideframeDuration >= 0.0f) ? overrideframeDuration : frame->Duration) * 1000.0f );
+			frameInfo.bitstream = webpData;
+			frameInfo.id = WEBP_CHUNK_ANMF;
+			frameInfo.blend_method = WEBP_MUX_NO_BLEND;
+			frameInfo.dispose_method = WEBP_MUX_DISPOSE_BACKGROUND;
+			WebPMuxPushFrame(mux, &frameInfo, copyData);
+		}
+		else
+		{
+			// One frame. Not animated.
+			WebPMuxSetImage(mux, &webpData, copyData);
+		}
+
+		WebPMemoryWriterClear(&writer);
+	}
+
+	// Get data from mux in WebP RIFF format.
+	WebPData assembledData;
+	tStd::tMemset(&assembledData, 0, sizeof(WebPData));
+	WebPMuxAssemble(mux, &assembledData);
+	WebPMuxDelete(mux);
+
+	bool ok = tCreateFile(webpFile, (uint8*)assembledData.bytes, assembledData.size);
+	WebPDataClear(&assembledData);
 	return ok;
 }
 
