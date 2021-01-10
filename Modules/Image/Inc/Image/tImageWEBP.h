@@ -3,7 +3,7 @@
 // This knows how to load WebPs. It knows the details of the webp file format and loads the data into multiple tPixel
 // arrays, one for each frame (WebPs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -17,6 +17,7 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tFrame.h>
 namespace tImage
 {
 
@@ -28,42 +29,37 @@ public:
 	tImageWEBP()																										{ }
 	tImageWEBP(const tString& webpFile)																					{ Load(webpFile); }
 
+	// Creates a tImageWEBP from a bunch of frames. If steal is true, the srcFrames will be empty after.
+	tImageWEBP(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
 	virtual ~tImageWEBP()																								{ Clear(); }
 
 	// Clears the current tImageWEBP before loading. If false returned object is invalid.
 	bool Load(const tString& webpFile);
+	bool Save(const tString& webpFile);
+	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear();
 	bool IsValid() const																								{ return (GetNumFrames() >= 1); }
 	int GetNumFrames() const																							{ return Frames.GetNumItems(); }
 
-	struct Frame : public tLink<Frame>
-	{
-		int Width = 0;
-		int Height = 0;
-		tPixel* Pixels = nullptr;
-		float Duration = 0.0f;			// Frame duration in seconds. Converted from the WebPs 1ms count.
-		tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
-	};
-
 	// After this call you are the owner of the frame and must eventually delete it. The frame you stole will no
 	// longer be a valid frame of the tImageWEBP, but the remaining ones will still be valid.
-	Frame* StealFrame(int frameNum);
-	Frame* GetFrame(int frameNum);
+	tFrame* StealFrame(int frameNum);
+	tFrame* GetFrame(int frameNum);
 	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
 
 private:
-	tList<Frame> Frames;
+	tList<tFrame> Frames;
 };
 
 
 // Implementation only below.
 
 
-inline tImageWEBP::Frame* tImage::tImageWEBP::StealFrame(int frameNum)
+inline tFrame* tImage::tImageWEBP::StealFrame(int frameNum)
 {
-	Frame* f = GetFrame(frameNum);
+	tFrame* f = GetFrame(frameNum);
 	if (!f)
 		return nullptr;
 
@@ -71,12 +67,12 @@ inline tImageWEBP::Frame* tImage::tImageWEBP::StealFrame(int frameNum)
 }
 
 
-inline tImageWEBP::Frame* tImage::tImageWEBP::GetFrame(int frameNum)
+inline tFrame* tImage::tImageWEBP::GetFrame(int frameNum)
 {
 	if ((frameNum >= Frames.GetNumItems()) || (frameNum < 0))
 		return nullptr;
 
-	Frame* f = Frames.First();
+	tFrame* f = Frames.First();
 	while (frameNum--)
 		f = f->Next();
 
@@ -86,11 +82,8 @@ inline tImageWEBP::Frame* tImage::tImageWEBP::GetFrame(int frameNum)
 
 inline void tImageWEBP::Clear()
 {
-	while (Frame* frame = Frames.Remove())
-	{
-		delete[] frame->Pixels;
+	while (tFrame* frame = Frames.Remove())
 		delete frame;
-	}
 
 	SrcPixelFormat = tPixelFormat::Invalid;
 }

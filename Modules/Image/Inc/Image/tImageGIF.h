@@ -3,7 +3,7 @@
 // This knows how to load gifs. It knows the details of the gif file format and loads the data into multiple tPixel
 // arrays, one for each frame (gifs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -17,6 +17,7 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tFrame.h>
 namespace tImage
 {
 
@@ -41,16 +42,10 @@ public:
 	int GetHeight() const																								{ return Height; }
 	int GetNumFrames() const																							{ return Frames.GetNumItems(); }
 
-	struct Frame : public tLink<Frame>
-	{
-		tPixel* Pixels = nullptr;
-		float Duration = 0.0f;			// Frame duration in seconds. Converted from the gif 10ms count.
-	};
-
 	// After this call you are the owner of the frame and must eventually delete it. The frame you stole will no
 	// longer be a valid frame of the tImageGIF, but the remaining ones will still be valid.
-	Frame* StealFrame(int frameNum);
-	Frame* GetFrame(int frameNum);
+	tFrame* StealFrame(int frameNum);
+	tFrame* GetFrame(int frameNum);
 	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
 
 private:
@@ -64,7 +59,7 @@ private:
 
 	int Width				= 0;
 	int Height				= 0;
-	tList<Frame> Frames;
+	tList<tFrame> Frames;
 };
 
 
@@ -78,9 +73,9 @@ inline void tImageGIF::FrameCallbackBridge(void* imgGifRaw, struct GIF_WHDR* whd
 }
 
 
-inline tImageGIF::Frame* tImage::tImageGIF::StealFrame(int frameNum)
+inline tFrame* tImage::tImageGIF::StealFrame(int frameNum)
 {
-	Frame* f = GetFrame(frameNum);
+	tFrame* f = GetFrame(frameNum);
 	if (!f)
 		return nullptr;
 
@@ -88,12 +83,12 @@ inline tImageGIF::Frame* tImage::tImageGIF::StealFrame(int frameNum)
 }
 
 
-inline tImageGIF::Frame* tImage::tImageGIF::GetFrame(int frameNum)
+inline tFrame* tImage::tImageGIF::GetFrame(int frameNum)
 {
 	if ((frameNum >= Frames.GetNumItems()) || (frameNum < 0))
 		return nullptr;
 
-	Frame* f = Frames.First();
+	tFrame* f = Frames.First();
 	while (frameNum--)
 		f = f->Next();
 
@@ -105,11 +100,9 @@ inline void tImageGIF::Clear()
 {
 	Width = 0;
 	Height = 0;
-	while (Frame* frame = Frames.Remove())
-	{
-		delete[] frame->Pixels;
+	while (tFrame* frame = Frames.Remove())
 		delete frame;
-	}
+
 	SrcPixelFormat = tPixelFormat::Invalid;
 }
 

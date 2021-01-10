@@ -3,7 +3,7 @@
 // This knows how to load TIFFs. It knows the details of the tiff file format and loads the data into multiple tPixel
 // arrays, one for each frame (in a TIFF thay are called pages). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -57,7 +57,7 @@ bool tImageTIFF::Load(const tString& tiffFile)
 			break;
 		}
 
-		Frame* frame = new Frame;
+		tFrame* frame = new tFrame;
 		frame->Width = width;
 		frame->Height = height;
 		frame->Pixels = new tPixel[width*height];

@@ -3,7 +3,7 @@
 // This knows how to load animated PNGs (APNGs). It knows the details of the apng file format and loads the data into
 // multiple tPixel arrays, one for each frame. These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -17,6 +17,7 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tFrame.h>
 namespace tImage
 {
 
@@ -38,19 +39,10 @@ public:
 	bool IsValid() const																								{ return (GetNumFrames() >= 1); }
 	int GetNumFrames() const																							{ return Frames.GetNumItems(); }
 
-	struct Frame : public tLink<Frame>
-	{
-		int Width = 0;
-		int Height = 0;
-		tPixel* Pixels = nullptr;
-		float Duration = 0.0f;			// Frame duration in seconds.
-		tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
-	};
-
 	// After this call you are the owner of the frame and must eventually delete it. The frame you stole will no
 	// longer be a valid frame of the tImageAPNG, but the remaining ones will still be valid.
-	Frame* StealFrame(int frameNum);
-	Frame* GetFrame(int frameNum);
+	tFrame* StealFrame(int frameNum);
+	tFrame* GetFrame(int frameNum);
 	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
 
 	// Since some apng files may have a .png extension, it is hand to quickly be able to tell if a particular .png
@@ -64,16 +56,16 @@ public:
 	static bool IsAnimatedPNG(const tString& pngFile);
 
 private:
-	tList<Frame> Frames;
+	tList<tFrame> Frames;
 };
 
 
 // Implementation only below.
 
 
-inline tImageAPNG::Frame* tImage::tImageAPNG::StealFrame(int frameNum)
+inline tFrame* tImage::tImageAPNG::StealFrame(int frameNum)
 {
-	Frame* f = GetFrame(frameNum);
+	tFrame* f = GetFrame(frameNum);
 	if (!f)
 		return nullptr;
 
@@ -81,12 +73,12 @@ inline tImageAPNG::Frame* tImage::tImageAPNG::StealFrame(int frameNum)
 }
 
 
-inline tImageAPNG::Frame* tImage::tImageAPNG::GetFrame(int frameNum)
+inline tFrame* tImage::tImageAPNG::GetFrame(int frameNum)
 {
 	if ((frameNum >= Frames.GetNumItems()) || (frameNum < 0))
 		return nullptr;
 
-	Frame* f = Frames.First();
+	tFrame* f = Frames.First();
 	while (frameNum--)
 		f = f->Next();
 
@@ -96,11 +88,8 @@ inline tImageAPNG::Frame* tImage::tImageAPNG::GetFrame(int frameNum)
 
 inline void tImageAPNG::Clear()
 {
-	while (Frame* frame = Frames.Remove())
-	{
-		delete[] frame->Pixels;
+	while (tFrame* frame = Frames.Remove())
 		delete frame;
-	}
 
 	SrcPixelFormat = tPixelFormat::Invalid;
 }

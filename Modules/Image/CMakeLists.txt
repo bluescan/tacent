@@ -23,6 +23,7 @@ add_library(
 	Src/tTexture.cpp
 	Src/tResample.cpp
 	Inc/Image/tCubemap.h
+	Inc/Image/tFrame.h
 	Inc/Image/tImageAPNG.h
 	Inc/Image/tImageBMP.h
 	Inc/Image/tImageDDS.h

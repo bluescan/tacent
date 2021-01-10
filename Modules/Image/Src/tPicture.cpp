@@ -108,6 +108,7 @@ bool tPicture::CanSave(tFileType fileType)
 		case tFileType::BMP:
 		case tFileType::JPG:
 		case tFileType::PNG:
+		case tFileType::WEBP:
 			return true;
 	}
 
@@ -161,6 +162,9 @@ bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt,
 
 		case tFileType::TGA:
 			return SaveTGA(imageFile, tImage::tImageTGA::tFormat(colourFmt), tImage::tImageTGA::tCompression::None);
+
+		case tFileType::WEBP:
+			return SaveWEBP(imageFile);
 	}
 
 	return false;
@@ -218,6 +222,22 @@ bool tPicture::SaveTGA(const tString& tgaFile, tImageTGA::tFormat format, tImage
 }
 
 
+bool tPicture::SaveWEBP(const tString& webpFile) const
+{
+	tFileType fileType = tGetFileType(webpFile);
+	if (!IsValid() || (fileType != tFileType::WEBP))
+		return false;
+
+	// tPictures only have one frame.
+	tList<tFrame> frames;
+	frames.Append(new tFrame(Pixels, Width, Height));
+	tImageWEBP webp(frames, true);
+	bool success = webp.Save(webpFile);
+
+	return success;
+}
+
+
 bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 {
 	tMath::tiClampMin(frameNum, 0);
@@ -246,14 +266,12 @@ bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 			if (frameNum >= apng.GetNumFrames())
 				return false;
 
-			tImageAPNG::Frame* stolenFrame = apng.StealFrame(frameNum);
+			tFrame* stolenFrame = apng.StealFrame(frameNum);
 			Width = stolenFrame->Width;
 			Height = stolenFrame->Height;
 			SrcPixelFormat = stolenFrame->SrcPixelFormat;
 		
-			Pixels = stolenFrame->Pixels;
-
-			// This is safe as the frame does not own/delete the pixels.
+			Pixels = stolenFrame->StealPixels();
 			delete stolenFrame;
 			return true;
 		}
@@ -309,10 +327,8 @@ bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 			Width = gif.GetWidth();
 			Height = gif.GetHeight();
 		
-			tImageGIF::Frame* stolenFrame = gif.StealFrame(frameNum);
-			Pixels = stolenFrame->Pixels;
-
-			// This is safe as the frame does not own/delete the pixels.
+			tFrame* stolenFrame = gif.StealFrame(frameNum);
+			Pixels = stolenFrame->StealPixels();
 			delete stolenFrame;
 
 			SrcPixelFormat = gif.SrcPixelFormat;
@@ -350,14 +366,12 @@ bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 			if (frameNum >= ico.GetNumFrames())
 				return false;
 
-			tImageICO::Frame* stolenFrame = ico.StealFrame(frameNum);
-			Pixels = stolenFrame->Pixels;
-
+			tFrame* stolenFrame = ico.StealFrame(frameNum);
+			Pixels = stolenFrame->StealPixels();
 			Width = stolenFrame->Width;
-			Height = stolenFrame->Height;		
+			Height = stolenFrame->Height;
 			SrcPixelFormat = stolenFrame->SrcPixelFormat;
 
-			// This is safe as the frame does not own/delete the pixels.
 			delete stolenFrame;
 			return true;
 		}
@@ -417,14 +431,12 @@ bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 			if (frameNum >= tiff.GetNumFrames())
 				return false;
 
-			tImageTIFF::Frame* stolenFrame = tiff.StealFrame(frameNum);
+			tFrame* stolenFrame = tiff.StealFrame(frameNum);
 			Width = stolenFrame->Width;
 			Height = stolenFrame->Height;
 			SrcPixelFormat = stolenFrame->SrcPixelFormat;
 		
-			Pixels = stolenFrame->Pixels;
-
-			// This is safe as the frame does not own/delete the pixels.
+			Pixels = stolenFrame->StealPixels();
 			delete stolenFrame;
 			return true;
 		}
@@ -439,14 +451,12 @@ bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 			if (frameNum >= webp.GetNumFrames())
 				return false;
 
-			tImageWEBP::Frame* stolenFrame = webp.StealFrame(frameNum);
+			tFrame* stolenFrame = webp.StealFrame(frameNum);
 			Width = stolenFrame->Width;
 			Height = stolenFrame->Height;
 			SrcPixelFormat = stolenFrame->SrcPixelFormat;
-		
-			Pixels = stolenFrame->Pixels;
 
-			// This is safe as the frame does not own/delete the pixels.
+			Pixels = stolenFrame->StealPixels();
 			delete stolenFrame;
 			return true;
 		}

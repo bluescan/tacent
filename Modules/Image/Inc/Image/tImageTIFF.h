@@ -3,7 +3,7 @@
 // This knows how to load TIFFs. It knows the details of the tiff file format and loads the data into multiple tPixel
 // arrays, one for each frame (in a TIFF thay are called pages). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -17,6 +17,7 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tFrame.h>
 namespace tImage
 {
 
@@ -38,31 +39,23 @@ public:
 	bool IsValid() const																								{ return (GetNumFrames() >= 1); }
 	int GetNumFrames() const																							{ return Frames.GetNumItems(); }
 
-	struct Frame : public tLink<Frame>
-	{
-		int Width = 0;
-		int Height = 0;
-		tPixel* Pixels = nullptr;
-		tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
-	};
-
 	// After this call you are the owner of the frame and must eventually delete it. The frame you stole will no
 	// longer be a valid frame of the tImageTIFF, but the remaining ones will still be valid.
-	Frame* StealFrame(int frameNum);
-	Frame* GetFrame(int frameNum);
+	tFrame* StealFrame(int frameNum);
+	tFrame* GetFrame(int frameNum);
 	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
 
 private:
-	tList<Frame> Frames;
+	tList<tFrame> Frames;
 };
 
 
 // Implementation only below.
 
 
-inline tImageTIFF::Frame* tImage::tImageTIFF::StealFrame(int frameNum)
+inline tFrame* tImage::tImageTIFF::StealFrame(int frameNum)
 {
-	Frame* f = GetFrame(frameNum);
+	tFrame* f = GetFrame(frameNum);
 	if (!f)
 		return nullptr;
 
@@ -70,12 +63,12 @@ inline tImageTIFF::Frame* tImage::tImageTIFF::StealFrame(int frameNum)
 }
 
 
-inline tImageTIFF::Frame* tImage::tImageTIFF::GetFrame(int frameNum)
+inline tFrame* tImage::tImageTIFF::GetFrame(int frameNum)
 {
 	if ((frameNum >= Frames.GetNumItems()) || (frameNum < 0))
 		return nullptr;
 
-	Frame* f = Frames.First();
+	tFrame* f = Frames.First();
 	while (frameNum--)
 		f = f->Next();
 
@@ -85,11 +78,8 @@ inline tImageTIFF::Frame* tImage::tImageTIFF::GetFrame(int frameNum)
 
 inline void tImageTIFF::Clear()
 {
-	while (Frame* frame = Frames.Remove())
-	{
-		delete[] frame->Pixels;
+	while (tFrame* frame = Frames.Remove())
 		delete frame;
-	}
 
 	SrcPixelFormat = tPixelFormat::Invalid;
 }

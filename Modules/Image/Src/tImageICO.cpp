@@ -7,7 +7,7 @@
 // b) Supports embedded png images.
 // c) Supports widths and heights of 256.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -143,7 +143,7 @@ bool tImageICO::PopulateFrames(const uint8* buffer, int numBytes)
 		if (!offset || (offset >= numBytes))
 			continue;
 			
-		Frame* newFrame = CreateFrame(buffer+offset, w, h, numBytes);
+		tFrame* newFrame = CreateFrame(buffer+offset, w, h, numBytes);
 		if (!newFrame)
 			continue;
 
@@ -155,7 +155,7 @@ bool tImageICO::PopulateFrames(const uint8* buffer, int numBytes)
 }
 
 
-tImageICO::Frame* tImageICO::CreateFrame(const uint8* cursor, int width, int height, int numBytes)
+tFrame* tImageICO::CreateFrame(const uint8* cursor, int width, int height, int numBytes)
 {
 	IconImage* icon = (IconImage*)cursor;
 	
@@ -173,7 +173,7 @@ tImageICO::Frame* tImageICO::CreateFrame(const uint8* cursor, int width, int hei
 		tPixel* pixels = pngImage.StealPixels();
 		bool isOpaque = pngImage.IsOpaque();
 		
-		Frame* newFrame = new Frame;
+		tFrame* newFrame = new tFrame;
 		newFrame->SrcPixelFormat = isOpaque ? tPixelFormat::R8G8B8 : tPixelFormat::R8G8B8A8;
 		newFrame->Width = width;
 		newFrame->Height = height;
@@ -358,7 +358,7 @@ tImageICO::Frame* tImageICO::CreateFrame(const uint8* cursor, int width, int hei
 		}
 	}
 	
-	Frame* newFrame = new Frame;
+	tFrame* newFrame = new tFrame;
 	newFrame->SrcPixelFormat = srcPixelFormat;
 	newFrame->Width = width;
 	newFrame->Height = height;

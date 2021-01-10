@@ -3,7 +3,7 @@
 // This knows how to load animated PNGs (APNGs). It knows the details of the apng file format and loads the data into
 // multiple tPixel arrays, one for each frame. These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -67,7 +67,7 @@ bool tImageAPNG::Load(const tString& apngFile)
 	for (int f = 0; f < frames.size(); f++)
 	{
 		APngDis::Image& srcFrame = frames[f];
-		Frame* newFrame = new Frame;
+		tFrame* newFrame = new tFrame;
 		newFrame->SrcPixelFormat = tPixelFormat::R8G8B8A8;
 		int width = srcFrame.w;
 		int height = srcFrame.h;

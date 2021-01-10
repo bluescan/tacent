@@ -3,7 +3,7 @@
 // This knows how to load gifs. It knows the details of the gif file format and loads the data into multiple tPixel
 // arrays, one for each frame (gifs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -64,7 +64,7 @@ void tImageGIF::FrameCallback(struct GIF_WHDR* whdr)
 				if (whdr->tran != (long)whdr->bptr[++dsrc])
 					pict[whdr->xdim * y + x + ddst].BP = RGBA(dsrc);
 
-	tImageGIF::Frame* frame = new tImageGIF::Frame();
+	tFrame* frame = new tFrame();
 	Frames.Append(frame);
 	frame->Pixels = new tPixel[numPixels];
 	frame->Duration = float(whdr->time) / 100.0f;

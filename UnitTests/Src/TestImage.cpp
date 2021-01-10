@@ -2,7 +2,7 @@
 //
 // Image module tests.
 //
-// Copyright (c) 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2017, 2019, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -322,6 +322,11 @@ tTestUnit(Image)
 	tPicture resamplePicLanczosWide("TestData/TextCursor.png");	// 512x256.
 	resamplePicLanczosWide.Resample(800, 300, tResampleFilter::Lanczos_Wide);
 	resamplePicLanczosWide.SaveTGA("TestData/WrittenResampledLanczosWide.tga");
+
+	// tImageWEBP supports saving multi-frame webp files.
+	tPicture webpForSave("TestData/Flame.apng");
+	webpForSave.SaveWEBP("TestData/WrittenFlame.webp");
+	tRequire(tSystem::tFileExists("TestData/WrittenFlame.webp"));
 
 	return;
 }
