@@ -40,7 +40,7 @@ public:
 		const tString& webpFile,
 		bool lossy = false,
 		float quality = 90.0f,					// E [0.0, 100.0]. Compression size for lossy.
-		float overrideframeDuration = -1.0f		// In seconds. Set to >= 0.0 to override all frames.
+		int overrideframeDuration = -1			// In milliseconds. Set to >= 0 to override all frames.
 	);
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 

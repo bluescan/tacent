@@ -128,7 +128,7 @@ bool tImageWEBP::Set(tList<tFrame>& srcFrames, bool stealFrames)
 }
 
 
-bool tImageWEBP::Save(const tString& webpFile, bool lossy, float quality, float overrideframeDuration)
+bool tImageWEBP::Save(const tString& webpFile, bool lossy, float quality, int overrideframeDuration)
 {
 	if (!IsValid())
 		return false;
@@ -204,8 +204,8 @@ bool tImageWEBP::Save(const tString& webpFile, bool lossy, float quality, float 
 			WebPMuxFrameInfo frameInfo;
 			tStd::tMemset(&frameInfo, 0, sizeof(WebPMuxFrameInfo));
 
-			// Frame duration is in integral milliseconds.
-			frameInfo.duration = int( ((overrideframeDuration >= 0.0f) ? overrideframeDuration : frame->Duration) * 1000.0f );
+			// Frame duration is an integer in milliseconds.
+			frameInfo.duration = (overrideframeDuration >= 0) ? overrideframeDuration : int(frame->Duration * 1000.0f);
 			frameInfo.bitstream = webpData;
 			frameInfo.id = WEBP_CHUNK_ANMF;
 			frameInfo.blend_method = WEBP_MUX_NO_BLEND;
