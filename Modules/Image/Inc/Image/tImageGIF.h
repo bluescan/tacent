@@ -29,10 +29,18 @@ public:
 	tImageGIF()																											{ }
 	tImageGIF(const tString& gifFile)																					{ Load(gifFile); }
 
+	// Creates a tImageGIF from a bunch of frames. If steal is true, the srcFrames will be empty after.
+	tImageGIF(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
+
 	virtual ~tImageGIF()																								{ Clear(); }
 
 	// Clears the current tImageGIF before loading. If false returned object is invalid.
 	bool Load(const tString& gifFile);
+
+	// OverrideframeDuration is in 1/100 seconds. Set to >= 0 to override all frames. Note that values of 0 or 1 get
+	// min-clamped to 2 during save since many viewers do not handle values below 2 properly.
+	bool Save(const tString& webpFile, int overrideFrameDuration = -1);
+	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear();

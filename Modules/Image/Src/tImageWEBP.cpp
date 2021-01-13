@@ -20,16 +20,6 @@
 #include "WebP/include/mux.h"
 #include "WebP/include/demux.h"
 #include "WebP/include/encode.h"
-
-//#ifdef PLATFORM_WINDOWS
-//#include "WebP/Windows/include/mux.h"
-//#include "WebP/Windows/include/demux.h"
-//#include "WebP/Windows/include/encode.h"
-//#elif defined(PLATFORM_LINUX)
-//#include "WebP/Linux/include/mux.h"
-//#include "WebP/Linux/include/demux.h"
-//#include "WebP/Linux/include/encode.h"
-//#endif
 using namespace tSystem;
 namespace tImage
 {
@@ -128,7 +118,7 @@ bool tImageWEBP::Set(tList<tFrame>& srcFrames, bool stealFrames)
 }
 
 
-bool tImageWEBP::Save(const tString& webpFile, bool lossy, float quality, int overrideframeDuration)
+bool tImageWEBP::Save(const tString& webpFile, bool lossy, float quality, int overrideFrameDuration)
 {
 	if (!IsValid())
 		return false;
@@ -205,7 +195,7 @@ bool tImageWEBP::Save(const tString& webpFile, bool lossy, float quality, int ov
 			tStd::tMemset(&frameInfo, 0, sizeof(WebPMuxFrameInfo));
 
 			// Frame duration is an integer in milliseconds.
-			frameInfo.duration = (overrideframeDuration >= 0) ? overrideframeDuration : int(frame->Duration * 1000.0f);
+			frameInfo.duration = (overrideFrameDuration >= 0) ? overrideFrameDuration : int(frame->Duration * 1000.0f);
 			frameInfo.bitstream = webpData;
 			frameInfo.id = WEBP_CHUNK_ANMF;
 			frameInfo.blend_method = WEBP_MUX_NO_BLEND;

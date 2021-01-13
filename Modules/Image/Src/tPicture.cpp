@@ -237,6 +237,22 @@ bool tPicture::SaveWEBP(const tString& webpFile) const
 }
 
 
+bool tPicture::SaveGIF(const tString& gifFile) const
+{
+	tFileType fileType = tGetFileType(gifFile);
+	if (!IsValid() || (fileType != tFileType::GIF))
+		return false;
+
+	// tPictures only have one frame.
+	tList<tFrame> frames;
+	frames.Append(new tFrame(Pixels, Width, Height));
+	tImageGIF gif(frames, true);
+	bool success = gif.Save(gifFile);
+
+	return success;
+}
+
+
 bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 {
 	tMath::tiClampMin(frameNum, 0);

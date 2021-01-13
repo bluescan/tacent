@@ -342,6 +342,16 @@ tTestUnit(Image)
 	tImageWEBP webpDst2( apngSrc2.Frames, true);
 	webpDst2.Save("TestData/WrittenIcos4DManyFrames.webp");
 	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames.webp"));
+
+	tPicture exrPicForSave2("TestData/Desk.exr");
+	exrPicForSave2.SaveGIF("TestData/WrittenDesk.gif");
+	tRequire(tSystem::tFileExists("TestData/WrittenDesk.gif"));
+
+	// tImageGIF supports saving multi-frame gif files.
+	tImageAPNG apngSrc3("TestData/Icos4D.apng");
+	tImageGIF gifDst( apngSrc3.Frames, true);
+	gifDst.Save("TestData/WrittenIcos4DManyFrames.gif");
+	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames.gif"));
 	return;
 }
 

@@ -140,6 +140,7 @@ public:
 		tImageTGA::tCompression = tImageTGA::tCompression::RLE
 	) const;
 	bool SaveWEBP(const tString& webpFile) const;
+	bool SaveGIF(const tString& gifFile) const;
 
 	// Always clears the current image before loading. If false returned, you will have an invalid tPicture.
 	bool Load(const tString& imageFile, int frameNum = 0, LoadParams params = LoadParams());

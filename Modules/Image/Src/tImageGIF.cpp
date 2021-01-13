@@ -17,8 +17,8 @@
 #include <Foundation/tString.h>
 #include <System/tFile.h>
 #include <GifLoad/gif_load.h>
+#include <GifSave/gif.h>
 #include "Image/tImageGIF.h"
-
 using namespace tSystem;
 namespace tImage
 {
@@ -132,6 +132,55 @@ bool tImageGIF::Load(const tString& gifFile)
 		return false;
 
 	SrcPixelFormat = tPixelFormat::PAL_8BIT;
+	return true;
+}
+
+
+bool tImageGIF::Set(tList<tFrame>& srcFrames, bool stealFrames)
+{
+	Clear();
+	if (srcFrames.GetNumItems() <= 0)
+		return false;
+
+	Width = srcFrames.Head()->Width;
+	Height = srcFrames.Head()->Height;
+	tPixelFormat SrcPixelFormat = tPixelFormat::R8G8B8A8;
+
+	if (stealFrames)
+	{
+		while (tFrame* frame = srcFrames.Remove())
+			Frames.Append(frame);
+		return true;
+	}
+
+	for (tFrame* frame = srcFrames.Head(); frame; frame = frame->Next())
+		Frames.Append(new tFrame(*frame));
+
+	return true;
+}
+
+
+bool tImageGIF::Save(const tString& gifFile, int overrideFrameDuration)
+{
+	if (!IsValid())
+		return false;
+
+	GifWriter writer;
+	GifBegin(&writer, gifFile.Chars(), Width, Height, 100);
+
+	for (tFrame* frame = Frames.First(); frame; frame = frame->Next())
+	{
+		// There's some evidence on various websites that delays lower than 2 (2/100 second) do not
+		// animate at the proper speed in many viewers. Currently we clamp at 2.
+		int delay = tMath::tClampMin((overrideFrameDuration < 0) ? int(frame->Duration * 100.0f) : overrideFrameDuration, 2);
+
+		// This is not great, but the rows are in the wrong order.
+		tFrame frameReordered(*frame);
+		frameReordered.ReverseRows();
+		GifWriteFrame(&writer, (uint8*)frameReordered.Pixels, frame->Width, frame->Height, delay);
+	}
+	GifEnd(&writer);
+
 	return true;
 }
 
