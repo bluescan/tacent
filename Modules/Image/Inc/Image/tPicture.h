@@ -303,12 +303,13 @@ inline void tPicture::SetAll(const tColouri& clearColour)
 inline void tPicture::Set(const tPicture& src)
 {
 	Clear();
-	if (src.Pixels)
-	{
-		Set(src.Width, src.Height, src.Pixels);
-		Filename = src.Filename;
-	}
+	if (!src.IsValid())
+		return;
+
+	Set(src.Width, src.Height, src.Pixels);
+	Filename = src.Filename;
 	SrcPixelFormat = src.SrcPixelFormat;
+	Duration = src.Duration;
 }
 
 
