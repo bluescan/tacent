@@ -50,6 +50,10 @@ add_library(
 	# ApngDis
 	Contrib/ApngDis/apngdis.h
 	Contrib/ApngDis/apngdis.cpp
+
+	# ApngAsm
+	Contrib/ApngAsm/apngasm.h
+	Contrib/ApngAsm/apngasm.cpp
 )
 
 tacent_target_include_directories(${PROJECT_NAME})
@@ -68,6 +72,7 @@ target_include_directories(
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include/OpenEXR
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ApngDis
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ApngAsm
 )
 
 tacent_target_compile_definitions(${PROJECT_NAME})

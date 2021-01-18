@@ -1,7 +1,7 @@
 // tImageWEBP.cpp
 //
-// This knows how to load WebPs. It knows the details of the webp file format and loads the data into multiple tPixel
-// arrays, one for each frame (WebPs may be animated). These arrays may be 'stolen' by tPictures.
+// This knows how to load/save WebPs. It knows the details of the webp file format and loads the data into multiple
+// tPixel arrays, one for each frame (WebPs may be animated). These arrays may be 'stolen' by tPictures.
 //
 // Copyright (c) 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby

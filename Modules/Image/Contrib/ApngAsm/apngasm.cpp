@@ -27,9 +27,19 @@
  * 3. This notice may not be removed or altered from any source distribution.
  *
  */
+//////////////////////////////////////////////////////////////////////////////////////
+// This is a modified version of apngasm											//
+//																					//
+// The modifications were made by Tristan Grimmer and are primarily to remove		//
+// main so the functionality can be called directly from other source files.		//
+// A header file has been created to allow external access.							//
+//																					//
+// All modifications should be considered to be covered by the zlib license above.	//
+//////////////////////////////////////////////////////////////////////////////////////
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "image.h"
+#include "apngasm.h"
 #include "png.h"     /* original (unpatched) libpng is ok */
 #include "zlib.h"
 #ifdef FEATURE_7ZIP
@@ -38,6 +48,12 @@
 #ifdef FEATURE_ZOPFLI
 #include "zopfli.h"
 #endif
+
+
+// @tacent Wrapped in a namespace.
+namespace APngAsm
+{
+
 
 typedef struct { Image * image; unsigned int size; int x, y, w, h, valid, filters; } OP;
 OP   op[6];
@@ -501,186 +517,6 @@ void get_rect(unsigned int w, unsigned int h, Image * image1, Image * image2, Im
     deflate_rect_op(temp, x0, y0, w0, h0, bpp, zbuf_size, n*2+1);
 }
 
-void hstrip2images(Image * image, unsigned int w, std::vector<Image>& img, int delay_num, int delay_den)
-{
-  unsigned int i, x, y;
-  unsigned int rowbytes = w * image->bpp;
-
-  for (i=0, x=0; i<img.size(); i++, x+=rowbytes)
-  {
-    img[i].init(w, image->h, image);
-    img[i].delay_num = delay_num;
-    img[i].delay_den = delay_den;
-    for (y=0; y<image->h; y++)
-      memcpy(img[i].rows[y], image->rows[y] + x, rowbytes);
-  }
-}
-
-void vstrip2images(Image * image, unsigned int h, std::vector<Image>& img, int delay_num, int delay_den)
-{
-  unsigned int i, y, row;
-  unsigned int rowbytes = image->w * image->bpp;
-
-  for (i=0, row=0; i<img.size(); i++)
-  {
-    img[i].init(image->w, h, image);
-    img[i].delay_num = delay_num;
-    img[i].delay_den = delay_den;
-    for (y=0; y<h; y++)
-      memcpy(img[i].rows[y], image->rows[row++], rowbytes);
-  }
-}
-
-int load_from_horizontal_strip(char * szImage, int hs, std::vector<Image>& img, int delay_num, int delay_den, unsigned char * coltype)
-{
-  Image image;
-  printf("loading %s\n", szImage);
-  if (load_image(szImage, &image))
-    return 1;
-
-  unsigned int w = image.w / hs;
-  if (w * hs != image.w)
-  {
-    printf("Error loading image strip: Image width %d not divisible by %d\n", image.w, hs);
-    return 1;
-  }
-  *coltype = image.type;
-
-  img.resize(hs);
-  hstrip2images(&image, w, img, delay_num, delay_den);
-
-  return 0;
-}
-
-int load_from_vertical_strip(char * szImage, int vs, std::vector<Image>& img, int delay_num, int delay_den, unsigned char * coltype)
-{
-  Image image;
-  printf("loading %s\n", szImage);
-  if (load_image(szImage, &image))
-    return 1;
-
-  unsigned int h = image.h / vs;
-  if (h * vs != image.h)
-  {
-    printf("Error loading image strip: Image height %d not divisible by %d\n", image.h, vs);
-    return 1;
-  }
-  *coltype = image.type;
-
-  img.resize(vs);
-  vstrip2images(&image, h, img, delay_num, delay_den);
-
-  return 0;
-}
-
-int load_image_sequence(char * szImage, unsigned int first, std::vector<Image>& img, int delay_num, int delay_den, unsigned char * coltype)
-{
-  char szFormat[256];
-  char szNext[256];
-  char * szExt = strrchr(szImage, '.');
-  unsigned int i, cur = 0, frames = 0;
-  FILE * f;
-
-  if (szExt == NULL || szExt == szImage)
-  {
-    printf("Error: *%s sequence not found\n", szExt);
-    return 1;
-  }
-  else
-  if (*(szExt-1) == '*')
-  {
-    f = NULL;
-    for (i=1; i<6; i++)
-    {
-      strcpy(szFormat, szImage);
-      sprintf(szFormat+(szExt-1-szImage), "%%0%dd%%s", i);
-      cur = 0;
-      sprintf(szNext, szFormat, cur, szExt);
-      if ((f = fopen(szNext, "rb")) != 0) break;
-      cur = 1;
-      sprintf(szNext, szFormat, cur, szExt);
-      if ((f = fopen(szNext, "rb")) != 0) break;
-    }
-
-    if (f != NULL)
-      fclose(f);
-    else
-    {
-      printf("Error: *%s sequence not found\n", szExt);
-      return 1;
-    }
-  }
-  else
-  {
-    for (i=0; i<6; i++)
-    {
-      if (szImage == szExt-i) break;
-      if (*(szExt-i-1) < '0') break;
-      if (*(szExt-i-1) > '9') break;
-    }
-    cur = atoi(szExt-i);
-    strcpy(szFormat, szImage);
-    sprintf(szFormat+(szExt-i-szImage), "%%0%dd%%s", i);
-    strcpy(szNext, szImage);
-  }
-
-  if ((f = fopen(szNext, "rb")) == 0)
-  {
-    printf("Error: can't open the file '%s'", szNext);
-    return 1;
-  }
-
-  do
-  {
-    frames++;
-    fclose(f);
-    sprintf(szNext, szFormat, cur+frames, szExt);
-    f = fopen(szNext, "rb");
-  }
-  while (f != 0);
-
-  img.resize(frames);
-
-  for (i=0; i<frames; i++)
-  {
-    sprintf(szNext, szFormat, cur+i, szExt);
-    printf("loading %s (%d of %d)\n", szNext, i-first+1, frames-first);
-
-    if (load_image(szNext, &img[i]))
-      return 1;
-
-    img[i].delay_num = delay_num;
-    img[i].delay_den = delay_den;
-
-    sprintf(szNext, szFormat, cur+i, ".txt");
-    f = fopen(szNext, "rt");
-    if (f != 0)
-    {
-      char szStr[256];
-      if (fgets(szStr, 256, f) != NULL)
-      {
-        int d1, d2;
-        if (sscanf(szStr, "delay=%d/%d", &d1, &d2) == 2)
-        {
-          if (d1 != 0) img[i].delay_num = d1;
-          if (d2 != 0) img[i].delay_den = d2;
-        }
-      }
-      fclose(f);
-    }
-
-    if (img[0].w != img[i].w || img[0].h != img[i].h)
-    {
-      printf("Error at %s: different image size\n", szNext);
-      return 1;
-    }
-  }
-
-  *coltype = find_common_coltype(img);
-
-  return 0;
-}
-
 int save_apng(char * szOut, std::vector<Image>& img, unsigned int loops, unsigned int first, int deflate_method, int iter)
 {
   unsigned char coltype = img[0].type;
@@ -953,180 +789,5 @@ int save_apng(char * szOut, std::vector<Image>& img, unsigned int loops, unsigne
   return 0;
 }
 
-int main(int argc, char** argv)
-{
-  std::vector<Image> img;
-  unsigned int i;
-  unsigned int first = 0;
-  unsigned int loops = 0;
-  int delay_num = -1;
-  int delay_den = -1;
-  int hs = 0;
-  int vs = 0;
-  int keep_palette = 0;
-  int keep_coltype = 0;
-  int deflate_method = 0;
-  int iter = 15;
-  int res = 0;
 
-  printf("\nAPNG Assembler 2.91");
-
-#ifdef FEATURE_ZOPFLI
-  deflate_method = 2;
-#endif
-#ifdef FEATURE_7ZIP
-  deflate_method = 1;
-#endif
-
-  if (argc <= 2)
-  {
-    printf("\n\nUsage   : apngasm output.png frame001.png [options]\n"
-               "          apngasm output.png frame*.png   [options]\n\n"
-               "Options :\n"
-               "1 10    : frame delay is 1/10 sec. (default)\n"
-               "-l2     : 2 loops (default is 0, forever)\n"
-               "-f      : skip the first frame\n"
-               "-hs##   : input is horizontal strip of ## frames (example: -hs12)\n"
-               "-vs##   : input is vertical strip of ## frames   (example: -vs12)\n"
-               "-kp     : keep palette\n"
-               "-kc     : keep color type\n"
-               "-z0     : zlib compression\n");
-#ifdef FEATURE_7ZIP
-    printf(    "-z1     : 7zip compression%s\n", (deflate_method == 1) ? " (default)" : "");
-#endif
-#ifdef FEATURE_ZOPFLI
-    printf(    "-z2     : Zopfli compression%s\n", (deflate_method == 2) ? " (default)" : "");
-#endif
-    if (deflate_method)
-      printf(  "-i##    : number of iterations (default -i%d)\n", iter);
-    return 1;
-  }
-
-  char * szOut = argv[1];
-  char * szImage = argv[2];
-
-  for (int c=3; c<argc; c++)
-  {
-    char * szOption = argv[c];
-
-    if (szOption[0] == '/' || szOption[0] == '-')
-    {
-      if (szOption[1] == 'f' || szOption[1] == 'F')
-        first = 1;
-      else
-      if (szOption[1] == 'l' || szOption[1] == 'L')
-        loops = atoi(szOption+2);
-      else
-      if (szOption[1] == 'k' || szOption[1] == 'K')
-      {
-        if (szOption[2] == 'p' || szOption[2] == 'P')
-          keep_palette = 1;
-        else
-        if (szOption[2] == 'c' || szOption[2] == 'C')
-          keep_coltype = 1;
-      }
-      else
-      if (szOption[1] == 'z' || szOption[1] == 'Z')
-      {
-        if (szOption[2] == '0')
-          deflate_method = 0;
-#ifdef FEATURE_7ZIP
-        if (szOption[2] == '1')
-          deflate_method = 1;
-#endif
-#ifdef FEATURE_ZOPFLI
-        if (szOption[2] == '2')
-          deflate_method = 2;
-#endif
-      }
-      else
-      if (szOption[1] == 'i' || szOption[1] == 'I')
-      {
-        iter = atoi(szOption+2);
-        if (iter < 1) iter = 1;
-      }
-      else
-      if ((szOption[1] == 'h' || szOption[1] == 'H') && (szOption[2] == 's' || szOption[2] == 'S'))
-      {
-        hs = atoi(szOption+3);
-        if (hs < 1) hs = 1;
-      }
-      else
-      if ((szOption[1] == 'v' || szOption[1] == 'V') && (szOption[2] == 's' || szOption[2] == 'S'))
-      {
-        vs = atoi(szOption+3);
-        if (vs < 1) vs = 1;
-      }
-    }
-    else
-    {
-      int n = atoi(szOption);
-      if ((n != 0) || (strcmp(szOption, "0") == 0))
-      {
-        if (delay_num == -1) delay_num = n;
-        else
-        if (delay_den == -1) delay_den = n;
-      }
-    }
-  }
-
-  if (delay_num <= 0) delay_num = 1;
-  if (delay_den <= 0) delay_den = 10;
-
-  if (deflate_method == 0)
-    printf(" using ZLIB\n\n");
-  else if (deflate_method == 1)
-    printf(" using 7ZIP with %d iterations\n\n", iter);
-  else if (deflate_method == 2)
-    printf(" using ZOPFLI with %d iterations\n\n", iter);
-
-  unsigned char coltype = 6;
-
-  if (vs > 1)
-    res = load_from_vertical_strip(szImage, vs, img, delay_num, delay_den, &coltype);
-  else
-  if (hs > 1)
-    res = load_from_horizontal_strip(szImage, hs, img, delay_num, delay_den, &coltype);
-  else
-    res = load_image_sequence(szImage, first, img, delay_num, delay_den, &coltype);
-
-  if (res)
-    return 1;
-
-  for (i=0; i<img.size(); i++)
-  {
-    if (img[i].type != coltype)
-      optim_upconvert(&img[i], coltype);
-  }
-
-  if (coltype == 6 || coltype == 4)
-  {
-    for (i=0; i<img.size(); i++)
-      optim_dirty_transp(&img[i]);
-  }
-
-  optim_duplicates(img, first);
-
-  if (!keep_coltype)
-    optim_downconvert(img);
-
-  coltype = img[0].type;
-
-  if (coltype == 3 && !keep_palette)
-    optim_palette(img);
-
-  if (coltype == 2 || coltype == 0)
-    optim_add_transp(img);
-
-  res = save_apng(szOut, img, loops, first, deflate_method, iter);
-
-  for (i=0; i<img.size(); i++)
-    img[i].free();
-
-  if (res)
-    return 1;
-
-  printf("all done\n");
-
-  return 0;
 }

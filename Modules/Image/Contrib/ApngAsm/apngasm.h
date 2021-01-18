@@ -23,10 +23,29 @@
  * 3. This notice may not be removed or altered from any source distribution.
  *
  */
+//////////////////////////////////////////////////////////////////////////////////////
+// This is a modified version of apngasm											//
+//																					//
+// The modifications were made by Tristan Grimmer and are primarily to remove		//
+// main so the functionality can be called directly from other source files.		//
+// A header file has been created to allow external access.							//
+//																					//
+// All modifications should be considered to be covered by the zlib license above.	//
+//////////////////////////////////////////////////////////////////////////////////////
+
 #ifndef IMAGE_H
 #define IMAGE_H
 #include <string.h>
 #include <vector>
+
+
+// @tacent Added version string. Value taken from printf in main().
+#define APNGASM_VERSION_STRING "2.91"
+
+// @tacent Put it all in a namespace.
+namespace APngAsm
+{
+
 
 struct rgb { unsigned char r, g, b; };
 
@@ -46,6 +65,8 @@ struct Image
     memset(tr, 255, sizeof(tr));
   }
   ~Image() { }
+  // bpp is bytes per pixel.
+  // type = 2 for RGB. type = 6 for RGBA
   void init(unsigned int w1, unsigned int h1, unsigned int bpp1, unsigned int type1)
   {
     w = w1; h = h1; bpp = bpp1; type = type1;
@@ -74,5 +95,16 @@ void optim_dirty_transp(Image * image);
 void optim_downconvert(std::vector<Image>& img);
 void optim_palette(std::vector<Image>& img);
 void optim_add_transp(std::vector<Image>& img);
+
+
+// @tacent
+// deflate_method = 0 for zlib (only one supported).
+// iter is ignored for zlib.
+// first is the index of the first frame (usually 0).
+int save_apng(char * szOut, std::vector<Image>& img, unsigned int loops, unsigned int first, int deflate_method, int iter);
+
+
+}
+
 
 #endif /* IMAGE_H */

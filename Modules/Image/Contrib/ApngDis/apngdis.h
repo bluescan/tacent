@@ -27,16 +27,15 @@
  * 3. This notice may not be removed or altered from any source distribution.
  *
  */
-//////////////////////////////////////////////////////////////////////////////////
-// This is a modified version of apngdis.cpp
-//
-// The modifications were made by Tristan Grimmer and are primarily to remove
-// main so the functionality can be called directly from other source files.
-// A header file has been created to allow external access. Search for @tacent
-// to see where modifications have been made.
-//
-// All modifications should be considered to be covered by the zlib license above.
-//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+// This is a modified version of apngdis											//
+//																					//
+// The modifications were made by Tristan Grimmer and are primarily to remove		//
+// main so the functionality can be called directly from other source files.		//
+// A header file has been created to allow external access.							//
+//																					//
+// All modifications should be considered to be covered by the zlib license above.	//
+//////////////////////////////////////////////////////////////////////////////////////
 
 #pragma once
 #include <stdio.h>

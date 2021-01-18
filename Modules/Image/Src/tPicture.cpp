@@ -6,8 +6,8 @@
 // functions in this class.
 //
 // Some image disk formats have more than one 'frame' or image inside them. For example, tiff files can have more than
-// layer, and gif/webp images may be animated and have more than one frame. A tPicture can only prepresent _one_ of 
-// these frames.
+// layer, and gif/webp/apng images may be animated and have more than one frame. A tPicture can only prepresent _one_
+// of these frames.
 //
 // Copyright (c) 2006, 2016, 2017, 2019, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -26,6 +26,7 @@
 #include <zlib.h>
 #include <png.h>
 #include <apngdis.h>
+#include <apngasm.h>
 #include "LibTIFF/include/tiffvers.h"
 #ifdef PLATFORM_WINDOWS
 #include "TurboJpeg/Windows/jconfig.h"
@@ -46,6 +47,7 @@ const char* tImage::Version_OpenEXR			= OPENEXR_VERSION_STRING;
 const char* tImage::Version_ZLIB			= ZLIB_VERSION;
 const char* tImage::Version_LibPNG			= PNG_LIBPNG_VER_STRING;
 const char* tImage::Version_ApngDis			= APNGDIS_VERSION_STRING;
+const char* tImage::Version_ApngAsm			= APNGASM_VERSION_STRING;
 const char* tImage::Version_LibTIFF			= TIFFLIB_STANDARD_VERSION_STR;
 int tImage::Version_WEBP_Major				= WEBP_DECODER_ABI_VERSION >> 8;
 int tImage::Version_WEBP_Minor				= WEBP_DECODER_ABI_VERSION & 0xFF;
@@ -108,6 +110,7 @@ bool tPicture::CanSave(tFileType fileType)
 		case tFileType::JPG:
 		case tFileType::PNG:
 		case tFileType::WEBP:
+		case tFileType::APNG:
 			return true;
 	}
 
@@ -164,6 +167,9 @@ bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt,
 
 		case tFileType::WEBP:
 			return SaveWEBP(imageFile);
+
+		case tFileType::APNG:
+			return SaveAPNG(imageFile);
 	}
 
 	return false;
@@ -232,6 +238,22 @@ bool tPicture::SaveWEBP(const tString& webpFile) const
 	frames.Append(new tFrame(Pixels, Width, Height));
 	tImageWEBP webp(frames, true);
 	bool success = webp.Save(webpFile);
+
+	return success;
+}
+
+
+bool tPicture::SaveAPNG(const tString& apngFile) const
+{
+	tFileType fileType = tGetFileType(apngFile);
+	if (!IsValid() || (fileType != tFileType::APNG))
+		return false;
+
+	// tPictures only have one frame.
+	tList<tFrame> frames;
+	frames.Append(new tFrame(Pixels, Width, Height));
+	tImageAPNG apng(frames, true);
+	bool success = apng.Save(apngFile);
 
 	return success;
 }

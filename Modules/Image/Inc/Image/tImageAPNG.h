@@ -1,7 +1,7 @@
 // tImageAPNG.h
 //
-// This knows how to load animated PNGs (APNGs). It knows the details of the apng file format and loads the data into
-// multiple tPixel arrays, one for each frame. These arrays may be 'stolen' by tPictures.
+// This knows how to load/save animated PNGs (APNGs). It knows the details of the apng file format and loads the data
+// into multiple tPixel arrays, one for each frame. These arrays may be 'stolen' by tPictures.
 //
 // Copyright (c) 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -29,15 +29,24 @@ public:
 	tImageAPNG()																										{ }
 	tImageAPNG(const tString& apngFile)																					{ Load(apngFile); }
 
+	// Creates a tImageAPNG from a bunch of frames. If steal is true, the srcFrames will be empty after.
+	tImageAPNG(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
 	virtual ~tImageAPNG()																								{ Clear(); }
 
 	// Clears the current tImageAPNG before loading. If false returned object is invalid.
 	bool Load(const tString& apngFile);
 
+	// OverrideframeDuration is in milliseconds. Set to >= 0 to override all frames.
+	bool Save(const tString& apngFile, int overrideframeDuration = -1);
+	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
+
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear();
 	bool IsValid() const																								{ return (GetNumFrames() >= 1); }
 	int GetNumFrames() const																							{ return Frames.GetNumItems(); }
+
+	// Returns true if ALL frames are opaque. Slow. Checks all pixels.
+	bool IsOpaque() const;
 
 	// After this call you are the owner of the frame and must eventually delete it. The frame you stole will no
 	// longer be a valid frame of the tImageAPNG, but the remaining ones will still be valid.

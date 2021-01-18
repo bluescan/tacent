@@ -1,7 +1,7 @@
 // tImageAPNG.cpp
 //
-// This knows how to load animated PNGs (APNGs). It knows the details of the apng file format and loads the data into
-// multiple tPixel arrays, one for each frame. These arrays may be 'stolen' by tPictures.
+// This knows how to load/save animated PNGs (APNGs). It knows the details of the apng file format and loads the data
+// into multiple tPixel arrays, one for each frame. These arrays may be 'stolen' by tPictures.
 //
 // Copyright (c) 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -18,6 +18,7 @@
 #include <System/tFile.h>
 #include "Image/tImageAPNG.h"
 #include "apngdis.h"
+#include "apngasm.h"
 using namespace tSystem;
 namespace tImage
 {
@@ -90,7 +91,6 @@ bool tImageAPNG::Load(const tString& apngFile)
 		for (int r = 0; r < height; r++)
 		{
 			uint8* srcRowData = srcFrame.rows[r];
-			// uint8* dstRowData = (uint8*)newFrame->Pixels + r * (width*4);
 			uint8* dstRowData = (uint8*)newFrame->Pixels + ((height-1)-r) * (width*4);
 			tStd::tMemcpy(dstRowData, srcRowData, width*4);
 		}
@@ -102,7 +102,118 @@ bool tImageAPNG::Load(const tString& apngFile)
 		frames[f].free();
 	frames.clear();
 
+	if (IsOpaque())
+	{
+		SrcPixelFormat = tPixelFormat::R8G8B8;
+		for (tFrame* frame = Frames.Head(); frame; frame = frame->Next())
+			frame->SrcPixelFormat = SrcPixelFormat;
+	}
+
 	return true;
+}
+
+
+bool tImageAPNG::Set(tList<tFrame>& srcFrames, bool stealFrames)
+{
+	Clear();
+	if (srcFrames.GetNumItems() <= 0)
+		return false;
+
+	tPixelFormat SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	if (stealFrames)
+	{
+		while (tFrame* frame = srcFrames.Remove())
+			Frames.Append(frame);
+		return true;
+	}
+
+	for (tFrame* frame = srcFrames.Head(); frame; frame = frame->Next())
+		Frames.Append(new tFrame(*frame));
+
+	return true;
+}
+
+
+bool tImageAPNG::IsOpaque() const
+{
+	for (tFrame* frame = Frames.Head(); frame; frame = frame->Next())
+	{
+		for (int p = 0; p < (frame->Width * frame->Height); p++)
+		{
+			if (frame->Pixels[p].A < 255)
+				return false;
+		}
+	}
+
+	return true;
+}
+
+
+
+bool tImageAPNG::Save(const tString& apngFile, int overrideFrameDuration)
+{
+	if (!IsValid())
+		return false;
+	tMath::tiClampMax(overrideFrameDuration, 65535);
+	bool isOpaque = IsOpaque();
+	int bytesPerPixel = isOpaque ? 3 : 4;
+
+	std::vector<APngAsm::Image> images;
+	images.resize(Frames.GetNumItems());
+
+	int frameIndex = 0;
+	for (tFrame* frame = Frames.Head(); frame; frame = frame->Next(), frameIndex++)
+	{
+		APngAsm::Image& img = images[frameIndex];
+		int w = frame->Width;
+		int h = frame->Height;
+
+		// Use coltype = 6 for RGBA. Use coltype = 2 for RGB.
+		int coltype = (bytesPerPixel == 4) ? 6 : 2;
+		img.init(frame->Width, frame->Height, bytesPerPixel, coltype);
+
+		// Initing does not populate the pixel data. We do that here.
+		for (int r = 0; r < h; r++)
+		{
+			uint8* row = img.rows[h-r-1];
+			for (int x = 0; x < w; x++)
+			{
+				int idx = r*w + x;
+				row[x*bytesPerPixel + 0] = frame->Pixels[idx].R;
+				row[x*bytesPerPixel + 1] = frame->Pixels[idx].G;
+				row[x*bytesPerPixel + 2] = frame->Pixels[idx].B;
+				if (bytesPerPixel == 4)
+					row[x*bytesPerPixel + 3] = frame->Pixels[idx].A;
+			}
+		}
+
+		// From the official apng spec:
+		// The delay_num and delay_den parameters together specify a fraction indicating the time to display
+		// the current frame, in seconds. If the denominator is 0, it is to be treated as if it were 100 (that
+		// is, delay_num then specifies 1/100ths of a second). If the the value of the numerator is 0 the decoder
+		// should render the next frame as quickly as possible, though viewers may impose a reasonable lower bound.
+		// Default is numerator = 0. Fast as possible. Use when frameDur = 0.
+		uint delayNumer = 0;
+		uint delayDenom = 1000;
+		if (overrideFrameDuration < 0)
+		{
+			// We use milliseconds here since the apng format uses 16bit unsigned (65535 max) for numerator and denominator.
+			// A max numerator of 65535 gives us ~65 seconds max per frame, which seems reasonable.
+			float frameDur = frame->Duration;
+			if (frameDur > 0.0f)
+				delayNumer = uint(frameDur * 1000.0f);
+		}
+		else
+		{
+			if (overrideFrameDuration > 0)
+				delayNumer = overrideFrameDuration;
+		}
+		img.delay_num = delayNumer;
+		img.delay_den = delayDenom;
+	}
+
+	int errCode = APngAsm::save_apng((char*)apngFile.Chars(), images, 0, 0, 0, 0);
+	return errCode ? false : true;
 }
 
 

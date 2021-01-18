@@ -50,6 +50,7 @@ extern const char* Version_ZLIB;
 extern const char* Version_LibPNG;
 extern const char* Version_LibTIFF;
 extern const char* Version_ApngDis;
+extern const char* Version_ApngAsm;
 extern int Version_WEBP_Major;
 extern int Version_WEBP_Minor;
 
@@ -140,6 +141,7 @@ public:
 		tImageTGA::tCompression = tImageTGA::tCompression::RLE
 	) const;
 	bool SaveWEBP(const tString& webpFile) const;
+	bool SaveAPNG(const tString& apngFile) const;
 	bool SaveGIF(const tString& gifFile) const;
 
 	// Always clears the current image before loading. If false returned, you will have an invalid tPicture.

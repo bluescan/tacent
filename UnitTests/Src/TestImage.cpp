@@ -349,9 +349,20 @@ tTestUnit(Image)
 
 	// tImageGIF supports saving multi-frame gif files.
 	tImageAPNG apngSrc3("TestData/Icos4D.apng");
-	tImageGIF gifDst( apngSrc3.Frames, true);
+	tImageGIF gifDst(apngSrc3.Frames, true);
 	gifDst.Save("TestData/WrittenIcos4DManyFrames.gif");
 	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames.gif"));
+
+	tPicture exrPicToSaveAsAPNG("TestData/Desk.exr");
+	exrPicToSaveAsAPNG.SaveAPNG("TestData/WrittenDesk.apng");
+	tRequire(tSystem::tFileExists("TestData/WrittenDesk.apng"));
+
+	// tImageAPNG supports saving multi-frame apng files.
+	tImageAPNG apngSrc4("TestData/Icos4D.apng");
+	tImageAPNG apngDst(apngSrc4.Frames, true);
+	apngDst.Save("TestData/WrittenIcos4DManyFrames.apng");
+	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames.apng"));
+
 	return;
 }
 

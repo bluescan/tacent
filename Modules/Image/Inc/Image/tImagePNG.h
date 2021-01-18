@@ -27,7 +27,6 @@ class tImagePNG
 public:
 	// Creates an invalid tImagePNG. You must call Load manually.
 	tImagePNG()																											{ }
-
 	tImagePNG(const tString& pngFile)																					{ Load(pngFile); }
 
 	// The data is copied out of pngFileInMemory. Go ahead and delete after if you want.
@@ -36,7 +35,6 @@ public:
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
 	tImagePNG(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
-
 	virtual ~tImagePNG()																								{ Clear(); }
 
 	// Clears the current tImagePNG before loading. Returns success. If false returned, object is invalid.
