@@ -137,23 +137,18 @@ bool tImageAPNG::Set(tList<tFrame>& srcFrames, bool stealFrames)
 bool tImageAPNG::IsOpaque() const
 {
 	for (tFrame* frame = Frames.Head(); frame; frame = frame->Next())
-	{
-		for (int p = 0; p < (frame->Width * frame->Height); p++)
-		{
-			if (frame->Pixels[p].A < 255)
-				return false;
-		}
-	}
+		if (!frame->IsOpaque())
+			return false;
 
 	return true;
 }
-
 
 
 bool tImageAPNG::Save(const tString& apngFile, int overrideFrameDuration)
 {
 	if (!IsValid())
 		return false;
+
 	tMath::tiClampMax(overrideFrameDuration, 65535);
 	bool isOpaque = IsOpaque();
 	int bytesPerPixel = isOpaque ? 3 : 4;

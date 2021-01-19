@@ -142,7 +142,8 @@ public:
 	) const;
 	bool SaveWEBP(const tString& webpFile) const;
 	bool SaveAPNG(const tString& apngFile) const;
-	bool SaveGIF(const tString& gifFile) const;
+	bool SaveTIFF(const tString& tiffFile, bool compress = true) const;
+	bool SaveGIF (const tString& gifFile ) const;
 
 	// Always clears the current image before loading. If false returned, you will have an invalid tPicture.
 	bool Load(const tString& imageFile, int frameNum = 0, LoadParams params = LoadParams());

@@ -37,6 +37,7 @@ struct tFrame : public tLink<tFrame>
 	void Clear();
 	bool IsValid() const																								{ return (Width > 0) && (Height > 0) && Pixels; }
 	void ReverseRows();
+	bool IsOpaque() const;
 
 	int Width																	= 0;
 	int Height																	= 0;
@@ -121,6 +122,15 @@ inline void tFrame::ReverseRows()
 		tStd::tMemcpy((uint8*)Pixels + ((Height-1)-y)*bytesPerRow, (uint8*)origPixels + y*bytesPerRow, bytesPerRow);
 
 	delete[] origPixels;
+}
+
+
+inline bool tFrame::IsOpaque() const
+{
+	for (int p = 0; p < (Width * Height); p++)
+		if (Pixels[p].A < 255)
+			return false;
+	return true;
 }
 
 

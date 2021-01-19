@@ -363,6 +363,16 @@ tTestUnit(Image)
 	apngDst.Save("TestData/WrittenIcos4DManyFrames.apng");
 	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames.apng"));
 
+	tPicture exrPicToSaveAsTIFF("TestData/Desk.exr");
+	exrPicToSaveAsTIFF.SaveTIFF("TestData/WrittenDesk.tiff");
+	tRequire(tSystem::tFileExists("TestData/WrittenDesk.tiff"));
+
+	// tImageTIFF supports saving multi-frame tiff files.
+	tImageAPNG apngSrc5("TestData/Icos4D.apng");
+	tImageTIFF tiffDst(apngSrc5.Frames, true);
+	tiffDst.Save("TestData/WrittenIcos4DManyFrames.tiff");
+	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames.tiff"));
+
 	return;
 }
 

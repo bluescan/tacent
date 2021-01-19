@@ -1,7 +1,7 @@
 // tImageTIFF.h
 //
-// This knows how to load TIFFs. It knows the details of the tiff file format and loads the data into multiple tPixel
-// arrays, one for each frame (in a TIFF thay are called pages). These arrays may be 'stolen' by tPictures.
+// This knows how to load/save TIFFs. It knows the details of the tiff file format and loads the data into multiple
+// tPixel arrays, one for each frame (in a TIFF thay are called pages). These arrays may be 'stolen' by tPictures.
 //
 // Copyright (c) 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -29,15 +29,23 @@ public:
 	tImageTIFF()																										{ }
 	tImageTIFF(const tString& tiffFile)																					{ Load(tiffFile); }
 
+	// Creates a tImageAPNG from a bunch of frames. If steal is true, the srcFrames will be empty after.
+	tImageTIFF(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
+
 	virtual ~tImageTIFF()																								{ Clear(); }
 
 	// Clears the current tImageTIFF before loading. If false returned object is invalid.
 	bool Load(const tString& tiffFile);
+	bool Save(const tString& tiffFile, bool useZLibComp = true);
+	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear();
 	bool IsValid() const																								{ return (GetNumFrames() >= 1); }
 	int GetNumFrames() const																							{ return Frames.GetNumItems(); }
+
+	// Returns true if ALL frames are opaque. Slow. Checks all pixels.
+	bool IsOpaque() const;
 
 	// After this call you are the owner of the frame and must eventually delete it. The frame you stole will no
 	// longer be a valid frame of the tImageTIFF, but the remaining ones will still be valid.

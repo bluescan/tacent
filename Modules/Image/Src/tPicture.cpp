@@ -111,6 +111,7 @@ bool tPicture::CanSave(tFileType fileType)
 		case tFileType::PNG:
 		case tFileType::WEBP:
 		case tFileType::APNG:
+		case tFileType::TIFF:
 			return true;
 	}
 
@@ -170,6 +171,9 @@ bool tPicture::Save(const tString& imageFile, tPicture::tColourFormat colourFmt,
 
 		case tFileType::APNG:
 			return SaveAPNG(imageFile);
+
+		case tFileType::TIFF:
+			return SaveTIFF(imageFile);
 	}
 
 	return false;
@@ -254,6 +258,22 @@ bool tPicture::SaveAPNG(const tString& apngFile) const
 	frames.Append(new tFrame(Pixels, Width, Height));
 	tImageAPNG apng(frames, true);
 	bool success = apng.Save(apngFile);
+
+	return success;
+}
+
+
+bool tPicture::SaveTIFF(const tString& tiffFile, bool compress) const
+{
+	tFileType fileType = tGetFileType(tiffFile);
+	if (!IsValid() || (fileType != tFileType::TIFF))
+		return false;
+
+	// tPictures only have one frame.
+	tList<tFrame> frames;
+	frames.Append(new tFrame(Pixels, Width, Height));
+	tImageTIFF tiff(frames, true);
+	bool success = tiff.Save(tiffFile, compress);
 
 	return success;
 }
