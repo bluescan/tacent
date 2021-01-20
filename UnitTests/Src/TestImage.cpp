@@ -31,12 +31,15 @@ namespace tUnitTest
 {
 
 
-tTestUnit(Image)
+tTestUnit(ImageLoad)
 {
 	if (!tSystem::tDirExists("TestData/"))
-		tSkipUnit(Image)
+		tSkipUnit(ImageTGA)
 
 	// Test direct loading classes.
+	tImageTGA imgTGA("TestData/WhiteBorderRLE.tga");
+	tRequire(imgTGA.IsValid());
+
 	tImageAPNG imgAPNG("TestData/Flame.apng");
 	tRequire(imgAPNG.IsValid());
 
@@ -58,14 +61,42 @@ tTestUnit(Image)
 	tImageJPG imgJPG("TestData/WiredDrives.jpg");
 	tRequire(imgJPG.IsValid());
 
-	tImageTGA imgTGA("TestData/WhiteBorderRLE.tga");
-	tRequire(imgTGA.IsValid());
-
 	tImageTIFF imgTIFF("TestData/Tiff_NoComp.tif");
 	tRequire(imgTIFF.IsValid());
 
 	tImageWEBP imgWEBP("TestData/RockyBeach.webp");
 	tRequire(imgWEBP.IsValid());
+}
+
+
+tTestUnit(ImageSave)
+{
+	if (!tSystem::tDirExists("TestData/"))
+		tSkipUnit(Image)
+
+	tPicture newPngA("TestData/Xeyes.png");
+	newPngA.Save("TestData/WrittenNewA.png");
+	tRequire( tSystem::tFileExists("TestData/WrittenNewA.png"));
+
+	tPicture newPngB("TestData/TextCursor.png");
+	newPngB.Save("TestData/WrittenNewB.png");
+	tRequire( tSystem::tFileExists("TestData/WrittenNewB.png"));
+
+	tPicture apngPicForSave("TestData/Flame.apng");
+	apngPicForSave.SaveWEBP("TestData/WrittenFlameOneFrame.webp");
+	tRequire(tSystem::tFileExists("TestData/WrittenFlameOneFrame.webp"));
+
+	// Test writing webp images.
+	tPicture exrPicForSave("TestData/Desk.exr");
+	exrPicForSave.SaveWEBP("TestData/WrittenDesk.webp");
+	tRequire(tSystem::tFileExists("TestData/WrittenDesk.webp"));
+}
+
+
+tTestUnit(ImageTexture)
+{
+	if (!tSystem::tDirExists("TestData/"))
+		tSkipUnit(Image)
 
 	// Test dxt1 texture.
 	tTexture dxt1Tex("TestData/TestDXT1.dds");
@@ -96,6 +127,13 @@ tTestUnit(Image)
 	tChunkWriter chunkWriterBC3("TestData/WrittenBC3.tac");
 	bc3Tex.Save(chunkWriterBC3);
 	tRequire( tSystem::tFileExists("TestData/WrittenBC3.tac"));
+}
+
+
+tTestUnit(ImagePicture)
+{
+	if (!tSystem::tDirExists("TestData/"))
+		tSkipUnit(Image)
 
 	// Test tPicture loading bmp and saving as tga.
 	tPicture bmpPicUB("TestData/UpperB.bmp");
@@ -199,21 +237,24 @@ tTestUnit(Image)
 	tifPic_ZIP.Save("TestData/WrittenTiff_ZIP.tga");
 	tRequire( tSystem::tFileExists("TestData/WrittenTiff_ZIP.tga"));
 
-	// And a multipage tiff.
-	tPicture tifPic_Multipage_ZIP_P1("TestData/Tiff_Multipage_ZIP.tif", 0);
-	tRequire(tifPic_Multipage_ZIP_P1.IsValid());
-	tifPic_Multipage_ZIP_P1.Save("TestData/WrittenTiff_Multipage_ZIP_P1.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenTiff_Multipage_ZIP_P1.tga"));
+	tPicture exrPicForSave2("TestData/Desk.exr");
+	exrPicForSave2.SaveGIF("TestData/WrittenDesk.gif");
+	tRequire(tSystem::tFileExists("TestData/WrittenDesk.gif"));
 
-	tPicture tifPic_Multipage_ZIP_P2("TestData/Tiff_Multipage_ZIP.tif", 1);
-	tRequire(tifPic_Multipage_ZIP_P2.IsValid());
-	tifPic_Multipage_ZIP_P2.Save("TestData/WrittenTiff_Multipage_ZIP_P2.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenTiff_Multipage_ZIP_P2.tga"));
+	tPicture exrPicToSaveAsAPNG("TestData/Desk.exr");
+	exrPicToSaveAsAPNG.SaveAPNG("TestData/WrittenDesk.apng");
+	tRequire(tSystem::tFileExists("TestData/WrittenDesk.apng"));
 
-	tPicture tifPic_Multipage_ZIP_P3("TestData/Tiff_Multipage_ZIP.tif", 2);
-	tRequire(tifPic_Multipage_ZIP_P3.IsValid());
-	tifPic_Multipage_ZIP_P3.Save("TestData/WrittenTiff_Multipage_ZIP_P3.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenTiff_Multipage_ZIP_P3.tga"));
+	tPicture exrPicToSaveAsTIFF("TestData/Desk.exr");
+	exrPicToSaveAsTIFF.SaveTIFF("TestData/WrittenDesk.tiff");
+	tRequire(tSystem::tFileExists("TestData/WrittenDesk.tiff"));
+}
+
+
+tTestUnit(ImageRotation)
+{
+	if (!tSystem::tDirExists("TestData/"))
+		tSkipUnit(Image)
 
 	// Test writing rotated images.
 	tPicture aroPic("TestData/RightArrow.png");
@@ -252,19 +293,28 @@ tTestUnit(Image)
 	int w = planePic.GetWidth();
 	int h = planePic.GetHeight();
 	planePic.RotateCenter(-tMath::PiOver4, tColouri::transparent);
+}
+
+
+tTestUnit(ImageCrop)
+{
+	if (!tSystem::tDirExists("TestData/"))
+		tSkipUnit(Image)
 
 	// Crop black pixels ignoring alpha (RGB channels only).
+	tPicture planePic("TestData/plane.png");
+	int w = planePic.GetWidth();
+	int h = planePic.GetHeight();
 	planePic.Crop(tColouri::black, tMath::ColourChannel_RGB);
 	planePic.Crop(w, h, tPicture::Anchor::MiddleMiddle, tColouri::transparent);
 	planePic.Save("TestData/WrittenPlane.png");
+}
 
-	tPicture newPngA("TestData/Xeyes.png");
-	newPngA.Save("TestData/WrittenNewA.png");
-	tRequire( tSystem::tFileExists("TestData/WrittenNewA.png"));
 
-	tPicture newPngB("TestData/TextCursor.png");
-	newPngB.Save("TestData/WrittenNewB.png");
-	tRequire( tSystem::tFileExists("TestData/WrittenNewB.png"));
+tTestUnit(ImageDetection)
+{
+	if (!tSystem::tDirExists("TestData/"))
+		tSkipUnit(Image)
 
 	// Test APNG detection.
 	bool isAnimA = tImageAPNG::IsAnimatedPNG("TestData/TextCursor.png");
@@ -275,6 +325,13 @@ tTestUnit(Image)
 
 	bool isAnimC = tImageAPNG::IsAnimatedPNG("TestData/Icos4D.png");
 	tRequire(isAnimC);
+}
+
+
+tTestUnit(ImageFilter)
+{
+	if (!tSystem::tDirExists("TestData/"))
+		tSkipUnit(Image)
 
 	for (int filt = 0; filt < int(tResampleFilter::NumFilters); filt++)
 		tPrintf("Filter Name %d: %s\n", filt, tResampleFilterNames[filt]);
@@ -322,15 +379,29 @@ tTestUnit(Image)
 	tPicture resamplePicLanczosWide("TestData/TextCursor.png");	// 512x256.
 	resamplePicLanczosWide.Resample(800, 300, tResampleFilter::Lanczos_Wide);
 	resamplePicLanczosWide.SaveTGA("TestData/WrittenResampledLanczosWide.tga");
+}
 
-	tPicture apngPicForSave("TestData/Flame.apng");
-	apngPicForSave.SaveWEBP("TestData/WrittenFlameOneFrame.webp");
-	tRequire(tSystem::tFileExists("TestData/WrittenFlameOneFrame.webp"));
 
-	// Test writing webp images.
-	tPicture exrPicForSave("TestData/Desk.exr");
-	exrPicForSave.SaveWEBP("TestData/WrittenDesk.webp");
-	tRequire(tSystem::tFileExists("TestData/WrittenDesk.webp"));
+tTestUnit(ImageMultiFrame)
+{
+	if (!tSystem::tDirExists("TestData/"))
+		tSkipUnit(Image)
+
+	// A multipage tiff.
+	tPicture tifPic_Multipage_ZIP_P1("TestData/Tiff_Multipage_ZIP.tif", 0);
+	tRequire(tifPic_Multipage_ZIP_P1.IsValid());
+	tifPic_Multipage_ZIP_P1.Save("TestData/WrittenTiff_Multipage_ZIP_P1.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenTiff_Multipage_ZIP_P1.tga"));
+
+	tPicture tifPic_Multipage_ZIP_P2("TestData/Tiff_Multipage_ZIP.tif", 1);
+	tRequire(tifPic_Multipage_ZIP_P2.IsValid());
+	tifPic_Multipage_ZIP_P2.Save("TestData/WrittenTiff_Multipage_ZIP_P2.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenTiff_Multipage_ZIP_P2.tga"));
+
+	tPicture tifPic_Multipage_ZIP_P3("TestData/Tiff_Multipage_ZIP.tif", 2);
+	tRequire(tifPic_Multipage_ZIP_P3.IsValid());
+	tifPic_Multipage_ZIP_P3.Save("TestData/WrittenTiff_Multipage_ZIP_P3.tga");
+	tRequire( tSystem::tFileExists("TestData/WrittenTiff_Multipage_ZIP_P3.tga"));
 
 	// tImageWEBP also supports saving multi-frame webp files.
 	tImageAPNG apngSrc("TestData/Flame.apng");
@@ -343,19 +414,11 @@ tTestUnit(Image)
 	webpDst2.Save("TestData/WrittenIcos4DManyFrames.webp");
 	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames.webp"));
 
-	tPicture exrPicForSave2("TestData/Desk.exr");
-	exrPicForSave2.SaveGIF("TestData/WrittenDesk.gif");
-	tRequire(tSystem::tFileExists("TestData/WrittenDesk.gif"));
-
 	// tImageGIF supports saving multi-frame gif files.
 	tImageAPNG apngSrc3("TestData/Icos4D.apng");
 	tImageGIF gifDst(apngSrc3.Frames, true);
 	gifDst.Save("TestData/WrittenIcos4DManyFrames.gif");
 	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames.gif"));
-
-	tPicture exrPicToSaveAsAPNG("TestData/Desk.exr");
-	exrPicToSaveAsAPNG.SaveAPNG("TestData/WrittenDesk.apng");
-	tRequire(tSystem::tFileExists("TestData/WrittenDesk.apng"));
 
 	// tImageAPNG supports saving multi-frame apng files.
 	tImageAPNG apngSrc4("TestData/Icos4D.apng");
@@ -363,17 +426,21 @@ tTestUnit(Image)
 	apngDst.Save("TestData/WrittenIcos4DManyFrames.apng");
 	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames.apng"));
 
-	tPicture exrPicToSaveAsTIFF("TestData/Desk.exr");
-	exrPicToSaveAsTIFF.SaveTIFF("TestData/WrittenDesk.tiff");
-	tRequire(tSystem::tFileExists("TestData/WrittenDesk.tiff"));
+	// Load a multipage tiff with no page duration info.
+	tPrintf("Test multipage TIFF load.\n");
+	tImageTIFF tiffMultipage("TestData/Tiff_Multipage_ZIP.tif");
+	tRequire(tiffMultipage.IsValid());
 
-	// tImageTIFF supports saving multi-frame tiff files.
+	// Create a multipage tiff with page duration info.
 	tImageAPNG apngSrc5("TestData/Icos4D.apng");
 	tImageTIFF tiffDst(apngSrc5.Frames, true);
 	tiffDst.Save("TestData/WrittenIcos4DManyFrames.tiff");
 	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames.tiff"));
 
-	return;
+	// Load a multipage tiff with page duration info since it was saved from Tacent.
+	tImageTIFF tiffWithDur("TestData/WrittenIcos4DManyFrames.tiff");
+	tiffWithDur.Save("TestData/WrittenIcos4DManyFrames2.tiff");
+	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames2.tiff"));
 }
 
 

@@ -13,9 +13,11 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
+#include <Foundation/tVersion.cmake.h>
 #include <Foundation/tStandard.h>
 #include <Foundation/tString.h>
 #include <System/tFile.h>
+#include <System/tScript.h>
 #include "Image/tImageTIFF.h"
 #include "LibTIFF/include/tiff.h"
 #include "LibTIFF/include/tiffio.h"
@@ -23,6 +25,42 @@
 using namespace tSystem;
 namespace tImage
 {
+
+
+int tImageTIFF::ReadSoftwarePageDuration(TIFF* tiff) const
+{
+	void* data = nullptr;
+	int durationMilliSec = -1;
+	int success = TIFFGetField(tiff, TIFFTAG_SOFTWARE, &data);
+	if (!success || !data)
+		return durationMilliSec;
+
+	tString softwareStr((char*)data);
+	tScriptReader script(softwareStr, false);
+	tExpression tacentView = script.First();
+	if (tacentView.GetAtomString() == "TacentLibrary")
+	{
+		tExpression tacentVers = tacentView.Next();
+		tExpression durationEx = tacentVers.Next();
+		tExpression durCmd = durationEx.Item0();
+		if (durCmd.GetAtomString() == "PageDur")
+		{
+			tExpression durVal = durationEx.Item1();
+			durationMilliSec = durVal.GetAtomInt();
+		}
+	}
+
+	return durationMilliSec;
+}
+
+
+bool tImageTIFF::WriteSoftwarePageDuration(TIFF* tiff, int milliseconds)
+{
+	tString softwareDesc;
+	tsPrintf(softwareDesc, "TacentLibrary V%d.%d.%d [PageDur d]", tVersion::Major, tVersion::Minor, tVersion::Revision, milliseconds);
+	int success = TIFFSetField(tiff, TIFFTAG_SOFTWARE, softwareDesc.Chars());
+	return success ? true : false;
+}
 
 
 bool tImageTIFF::Load(const tString& tiffFile)
@@ -35,7 +73,7 @@ bool tImageTIFF::Load(const tString& tiffFile)
 	if (!tFileExists(tiffFile))
 		return false;
 
-	TIFF* tiff = TIFFOpen(tiffFile.Chars(), "r");
+	TIFF* tiff = TIFFOpen(tiffFile.Chars(), "rb");
 	if (!tiff)
 		return false;
 
@@ -47,8 +85,10 @@ bool tImageTIFF::Load(const tString& tiffFile)
 		TIFFGetField(tiff, TIFFTAG_IMAGELENGTH, &height);
 		if ((width <= 0) || (height <= 0))
 			break;
+
 		int numPixels = width*height;
-			
+		int durationMilliSeconds = ReadSoftwarePageDuration(tiff);
+
 		uint32* pixels = (uint32*)_TIFFmalloc(numPixels * sizeof(uint32));
 		int successCode = TIFFReadRGBAImage(tiff, width, height, pixels, 0);
 		if (!successCode)
@@ -62,6 +102,9 @@ bool tImageTIFF::Load(const tString& tiffFile)
 		frame->Height = height;
 		frame->Pixels = new tPixel[width*height];
 		frame->SrcPixelFormat = tPixelFormat::R8G8B8A8;
+
+		// If duration not set we use a default of 1 second.
+		frame->Duration = (durationMilliSeconds >= 0) ? float(durationMilliSeconds)/1000.0f : 1.0f;
 
 		for (int p = 0; p < width*height; p++)
 			frame->Pixels[p] = pixels[p];
@@ -110,7 +153,7 @@ bool tImageTIFF::IsOpaque() const
 }
 
 
-bool tImageTIFF::Save(const tString& tiffFilename, bool useZLibComp)
+bool tImageTIFF::Save(const tString& tiffFilename, bool useZLibComp, int overrideFrameDuration)
 {
 	if (!IsValid())
 		return false;
@@ -123,11 +166,9 @@ bool tImageTIFF::Save(const tString& tiffFilename, bool useZLibComp)
 	uint8* rowBuf = nullptr;
 	for (tFrame* frame = Frames.First(); frame; frame = frame->Next())
 	{
+		// Writes image from last loop and starts a new directory.
 		if (frame != Frames.First())
-		{
-			// Writes image from last loop and starts a new directory.
 			TIFFWriteDirectory(tiffFile);
-		}
 
 		bool isOpaque = frame->IsOpaque();
 		int bytesPerPixel = isOpaque ? 3 : 4;
@@ -142,6 +183,10 @@ bool tImageTIFF::Save(const tString& tiffFilename, bool useZLibComp)
 		TIFFSetField(tiffFile, TIFFTAG_COMPRESSION, useZLibComp ? COMPRESSION_DEFLATE : COMPRESSION_NONE);
 		TIFFSetField(tiffFile, TIFFTAG_PLANARCONFIG, PLANARCONFIG_CONTIG);
 		TIFFSetField(tiffFile, TIFFTAG_PHOTOMETRIC, PHOTOMETRIC_RGB);
+
+		int pageDurMilliSec = (overrideFrameDuration >= 0) ? overrideFrameDuration : int(frame->Duration*1000.0f);
+		WriteSoftwarePageDuration(tiffFile, pageDurMilliSec);
+
 		int rowSizeNeeded = TIFFScanlineSize(tiffFile);
 		tAssert(rowSizeNeeded == (w*bytesPerPixel));
 

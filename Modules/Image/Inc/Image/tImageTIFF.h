@@ -18,6 +18,7 @@
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
 #include <Image/tFrame.h>
+#include <LibTIFF/include/tiffio.h>
 namespace tImage
 {
 
@@ -36,7 +37,9 @@ public:
 
 	// Clears the current tImageTIFF before loading. If false returned object is invalid.
 	bool Load(const tString& tiffFile);
-	bool Save(const tString& tiffFile, bool useZLibComp = true);
+
+	// OverrideframeDuration is in milliseconds. Set to >= 0 to override all frames.
+	bool Save(const tString& tiffFile, bool useZLibComp = true, int overrideFrameDuration = -1);
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
 	// After this call no memory will be consumed by the object and it will be invalid.
@@ -54,6 +57,9 @@ public:
 	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
 
 private:
+	int ReadSoftwarePageDuration(TIFF* tiff) const;
+	bool WriteSoftwarePageDuration(TIFF* tiff, int milliseconds);
+
 	tList<tFrame> Frames;
 };
 

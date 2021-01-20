@@ -2,7 +2,7 @@
 //
 // Tacent unit tests.
 //
-// Copyright (c) 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2017, 2019, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -36,13 +36,13 @@ tCommand::tParam Param1("Parameter One", "Param1", 1);
 
 namespace tUnitTest
 {
-	int UnitRequirementNumber = 0;
-	int UnitGoalNumber = 0;
-	int UnitsSkipped = 0;
-	int TotalRequirements = 0;
-	int RequirementsPassed = 0;
-	int TotalGoals = 0;
-	int GoalsPassed = 0;
+	int UnitRequirementNumber	= 0;
+	int UnitGoalNumber			= 0;
+	int UnitsSkipped			= 0;
+	int TotalRequirements		= 0;
+	int RequirementsPassed		= 0;
+	int TotalGoals				= 0;
+	int GoalsPassed				= 0;
 }
 
 
@@ -142,7 +142,15 @@ int main(int argc, char** argv)
 	#endif
 
 	// Image tests.
-	tTest(Image);
+	tTest(ImageLoad);
+	tTest(ImageSave);
+	tTest(ImageTexture);
+	tTest(ImagePicture);
+	tTest(ImageRotation);
+	tTest(ImageCrop);
+	tTest(ImageDetection);
+	tTest(ImageFilter);
+	tTest(ImageMultiFrame);
 
 	#else
 
@@ -152,12 +160,12 @@ int main(int argc, char** argv)
 	// tTest(String);
 	// tTest(List);
 	// tTest(ListExtra);
-	tTest(Image);
 	// tTest(Colour);
 	// tTest(Print);
 	// tTest(Map);
 	// tTest(Script);
 	// tTest(Rule);
+	tTest(ImageMultiFrame);
 
 	#endif
 
