@@ -57,7 +57,7 @@ int tImageTIFF::ReadSoftwarePageDuration(TIFF* tiff) const
 bool tImageTIFF::WriteSoftwarePageDuration(TIFF* tiff, int milliseconds)
 {
 	tString softwareDesc;
-	tsPrintf(softwareDesc, "TacentLibrary V%d.%d.%d [PageDur d]", tVersion::Major, tVersion::Minor, tVersion::Revision, milliseconds);
+	tsPrintf(softwareDesc, "TacentLibrary V%d.%d.%d [PageDur %d]", tVersion::Major, tVersion::Minor, tVersion::Revision, milliseconds);
 	int success = TIFFSetField(tiff, TIFFTAG_SOFTWARE, softwareDesc.Chars());
 	return success ? true : false;
 }
