@@ -183,6 +183,12 @@ bool tImageTIFF::Save(const tString& tiffFilename, bool useZLibComp, int overrid
 		TIFFSetField(tiffFile, TIFFTAG_COMPRESSION, useZLibComp ? COMPRESSION_DEFLATE : COMPRESSION_NONE);
 		TIFFSetField(tiffFile, TIFFTAG_PLANARCONFIG, PLANARCONFIG_CONTIG);
 		TIFFSetField(tiffFile, TIFFTAG_PHOTOMETRIC, PHOTOMETRIC_RGB);
+		if (bytesPerPixel == 4)
+		{
+			// Unassociated alpha means the extra channel is not a premultiplied alpha channel.
+			uint16 extraSampleTypes[] = { EXTRASAMPLE_UNASSALPHA };
+			TIFFSetField(tiffFile, TIFFTAG_EXTRASAMPLES, tNumElements(extraSampleTypes), extraSampleTypes);
+		}
 
 		int pageDurMilliSec = (overrideFrameDuration >= 0) ? overrideFrameDuration : int(frame->Duration*1000.0f);
 		WriteSoftwarePageDuration(tiffFile, pageDurMilliSec);
