@@ -71,6 +71,16 @@ public:
 // Implementation only below.
 
 
+inline bool tImage::tImageAPNG::IsOpaque() const
+{
+	for (tFrame* frame = Frames.Head(); frame; frame = frame->Next())
+		if (!frame->IsOpaque())
+			return false;
+
+	return true;
+}
+
+
 inline tFrame* tImage::tImageAPNG::StealFrame(int frameNum)
 {
 	tFrame* f = GetFrame(frameNum);

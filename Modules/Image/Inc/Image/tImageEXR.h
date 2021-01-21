@@ -84,6 +84,16 @@ private:
 // Implementation only below.
 
 
+inline bool tImage::tImageEXR::IsOpaque() const
+{
+	for (tFrame* frame = Frames.Head(); frame; frame = frame->Next())
+		if (!frame->IsOpaque())
+			return false;
+
+	return true;
+}
+
+
 inline tFrame* tImage::tImageEXR::StealFrame(int frameNum)
 {
 	tFrame* f = GetFrame(frameNum);
