@@ -557,7 +557,7 @@ int save_apng(char * szOut, std::vector<Image>& img, unsigned int loops, unsigne
   FILE * f;
   if ((f = fopen(szOut, "wb")) == 0)
   {
-    printf("Error: can't save to file '%s'\n", szOut);
+    // printf("Error: can't save to file '%s'\n", szOut);
     return 1;
   }
 
@@ -645,7 +645,7 @@ int save_apng(char * szOut, std::vector<Image>& img, unsigned int loops, unsigne
   unsigned char dop = 0;
   next_seq_num = 0;
 
-  printf("saving %s (frame %d of %d)\n", szOut, 1-first, visible);
+  // printf("saving %s (frame %d of %d)\n", szOut, 1-first, visible);
   for (j=0; j<6; j++)
     op[j].valid = 0;
   deflate_rect_op(&img[0], x0, y0, w0, h0, bpp, zbuf_size, 0);
@@ -655,7 +655,7 @@ int save_apng(char * szOut, std::vector<Image>& img, unsigned int loops, unsigne
   {
     write_IDATs(f, 0, zbuf, zsize, idat_size);
 
-    printf("saving %s (frame %d of %d)\n", szOut, 1, visible);
+    // printf("saving %s (frame %d of %d)\n", szOut, 1, visible);
     for (j=0; j<6; j++)
       op[j].valid = 0;
     deflate_rect_op(&img[1], x0, y0, w0, h0, bpp, zbuf_size, 0);
@@ -667,7 +667,7 @@ int save_apng(char * szOut, std::vector<Image>& img, unsigned int loops, unsigne
     unsigned int op_min;
     int          op_best;
 
-    printf("saving %s (frame %d of %d)\n", szOut, i-first+2, visible);
+    // printf("saving %s (frame %d of %d)\n", szOut, i-first+2, visible);
     for (j=0; j<6; j++)
       op[j].valid = 0;
 
