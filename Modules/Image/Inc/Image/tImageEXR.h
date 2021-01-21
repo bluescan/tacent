@@ -4,7 +4,7 @@
 // file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if
 // an EXR file is specified. After the array is stolen the tImageEXR is invalid. This is purely for performance.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -18,6 +18,7 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tFrame.h>
 namespace tImage
 {
 
@@ -33,29 +34,24 @@ public:
 
 	// Creates an invalid tImageEXR. You must call Load manually.
 	tImageEXR()																											{ }
-
-	// If something went wrong (like partNum not existing) image will be invalid.
 	tImageEXR
 	(
 		const tString& exrFile,
-		int partNum				= 0,
 		float gamma				= tMath::DefaultGamma,
 		float exposure			= DefaultExposure,
 		float defog				= DefaultDefog,
 		float kneeLow			= DefaultKneeLow,
 		float kneeHigh			= DefaultKneeHigh
-	)																													{ Load(exrFile, partNum, gamma, exposure, defog, kneeLow, kneeHigh); }
+	)																													{ Load(exrFile, gamma, exposure, defog, kneeLow, kneeHigh); }
 
-	// This one sets from a supplied pixel array. It just reads the data (or steals the array if steal set).
-	tImageEXR(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
-
+	// Creates a tImageAPNG from a bunch of frames. If steal is true, the srcFrames will be empty after.
+	tImageEXR(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
 	virtual ~tImageEXR()																								{ Clear(); }
 
 	// Clears the current tImageEXR before loading. If false returned object is invalid.
 	bool Load
 	(
 		const tString& exrFile,
-		int partNum				= 0,					// Part num to load. 0-based. Returns false if didn't exist.
 		float gamma				= tMath::DefaultGamma,
 		float exposure			= DefaultExposure,
 		float defog				= DefaultDefog,
@@ -64,40 +60,58 @@ public:
 	);
 
 	// This one sets from a supplied pixel array.
-	bool Set(tPixel* pixels, int width, int height, bool steal = false);
-
-	// Saves the tImageEXR to the exr file specified. The extension of filename must be "exr". Returns success.
-	bool Save(const tString& exrFile) const;
+	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear();
-	bool IsValid() const																								{ return Pixels ? true : false; }
+	bool IsValid() const																								{ return (GetNumFrames() >= 1); }
+	int GetNumFrames() const																							{ return Frames.GetNumItems(); }
 
-	int GetWidth() const																								{ return Width; }
-	int GetHeight() const																								{ return Height; }
+	// Returns true if ALL frames are opaque. Slow. Checks all pixels.
+	bool IsOpaque() const;
 
-	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageEXR object is
-	// invalid afterwards.
-	tPixel* StealPixels();
-	tPixel* GetPixels() const																							{ return Pixels; }
+	// After this call you are the owner of the frame and must eventually delete it. The frame you stole will no
+	// longer be a valid frame of the tImageAPNG, but the remaining ones will still be valid.
+	tFrame* StealFrame(int frameNum);
+	tFrame* GetFrame(int frameNum);
 	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
 
 private:
-	int Width				= 0;
-	int Height				= 0;
-	tPixel* Pixels			= nullptr;
+	tList<tFrame> Frames;
 };
 
 
-// Implementation blow this line.
+// Implementation only below.
+
+
+inline tFrame* tImage::tImageEXR::StealFrame(int frameNum)
+{
+	tFrame* f = GetFrame(frameNum);
+	if (!f)
+		return nullptr;
+
+	return Frames.Remove(f);
+}
+
+
+inline tFrame* tImage::tImageEXR::GetFrame(int frameNum)
+{
+	if ((frameNum >= Frames.GetNumItems()) || (frameNum < 0))
+		return nullptr;
+
+	tFrame* f = Frames.First();
+	while (frameNum--)
+		f = f->Next();
+
+	return f;
+}
 
 
 inline void tImageEXR::Clear()
 {
-	Width = 0;
-	Height = 0;
-	delete[] Pixels;
-	Pixels = nullptr;
+	while (tFrame* frame = Frames.Remove())
+		delete frame;
+
 	SrcPixelFormat = tPixelFormat::Invalid;
 }
 

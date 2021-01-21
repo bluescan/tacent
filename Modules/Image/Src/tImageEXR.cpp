@@ -4,7 +4,7 @@
 // file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if
 // an EXR file is specified. After the array is stolen the tImageEXR is invalid. This is purely for performance.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -148,7 +148,7 @@ float EXR::Gamma::operator()(half h)
 
 bool tImage::tImageEXR::Load
 (
-	const tString& exrFile, int partNum, float gamma, float exposure,
+	const tString& exrFile, float gamma, float exposure,
 	float defog, float kneeLow, float kneeHigh
 )
 {
@@ -163,108 +163,112 @@ bool tImage::tImageEXR::Load
 	int numThreads = tMath::tClampMin((tSystem::tGetNumCores()) - 2, 2);
 	setGlobalThreadCount(numThreads);
 
-	int numParts = 0;
 	int outZsize = 0;
 	Header outHeader;
 	IMF::Array<IMF::Rgba> pixels;
 	IMF::Array<float*> zbuffer;
 	IMF::Array<uint> sampleCount;
 
-	try
-	{
-		MultiPartInputFile mpfile(exrFile.Chars());
-		numParts = mpfile.parts();
-		if ((numParts <= 0) || (partNum >= numParts))
-			return false;
-
-		// const char* channels = "AZRGB";
-		// const char* layers = "0";
-		bool preview = false;
-		int lx = -1; int ly = -1;		// For tiled image shows level (lx,ly)
-		bool compositeDeep = true;
-
-		EXR::loadImage
-		(
-			exrFile.Chars(),
-			nullptr,			// Channels. Null means all.
-			nullptr,			// Layers. O means first one.
-			preview, lx, ly,
-			partNum,
-			outZsize, outHeader,
-			pixels, zbuffer, sampleCount,
-			compositeDeep
-		);
-	}
-	catch (IEX_NAMESPACE::BaseExc& err)
-	{
-		tPrintf("Error: Can't read exr file. %s\n", err.what());
+	MultiPartInputFile mpfile(exrFile.Chars());
+	int numParts = mpfile.parts();
+	if (numParts <= 0)
 		return false;
-	}
 
-	const Box2i& displayWindow = outHeader.displayWindow();
-	const Box2i& dataWindow = outHeader.dataWindow();
-	float pixelAspectRatio = outHeader.pixelAspectRatio();
-	int w  = displayWindow.max.x - displayWindow.min.x + 1;
-	int h  = displayWindow.max.y - displayWindow.min.y + 1;
-	int dw = dataWindow.max.x - dataWindow.min.x + 1;
-	int dh = dataWindow.max.y - dataWindow.min.y + 1;
-	int dx = dataWindow.min.x - displayWindow.min.x;
-	int dy = dataWindow.min.y - displayWindow.min.y;
-
-	// Set width, height, and allocate and set Pixels.
-	Width = dw;
-	Height = dh;
-	Pixels = new tPixel[Width*Height];
-
-	// Map floating-point pixel values 0.0 and 1.0 to the display's white and black respectively.
-	// if bool zerooneexposure true.
-	// exposure = 1.02607f;
-	// kneeHigh = 3.5f;
-	
-	float fogR = 0.0f;
-	float fogG = 0.0f;
-	float fogB = 0.0f;
-
-	// Save some time if we can.
-	if (defog > 0.0f)
-		EXR::ComputeFogColour(fogR, fogG, fogB, pixels);
-
-	halfFunction<float> redGamma(EXR::Gamma(gamma, exposure, defog * fogR, kneeLow, kneeHigh), -HALF_MAX, HALF_MAX, 0.0f, 255.0f, 0.0f, 0.0f);
-	halfFunction<float> grnGamma(EXR::Gamma(gamma, exposure, defog * fogG, kneeLow, kneeHigh), -HALF_MAX, HALF_MAX, 0.0f, 255.0f, 0.0f, 0.0f);
-	halfFunction<float> bluGamma(EXR::Gamma(gamma, exposure, defog * fogB, kneeLow, kneeHigh), -HALF_MAX, HALF_MAX, 0.0f, 255.0f, 0.0f, 0.0f);
-
-	// Conversion from raw pixel data to data for the OpenGL frame buffer:
-	// 1) Compensate for fogging by subtracting defog from the raw pixel values.
-	// 2) Multiply the defogged pixel values by 2^(exposure + 2.47393).
-	// 3) Values that are now 1.0 are called "middle gray". If defog and exposure are both set to 0.0, then middle gray
-	//    corresponds to a raw pixel value of 0.18. In step 6, middle gray values will be mapped to an intensity 3.5
-	//    f-stops below the display's maximum intensity.
-	// 4) Apply a knee function. The knee function has two parameters, kneeLow and kneeHigh. Pixel values below
-	//    2^kneeLow are not changed by the knee function. Pixel values above kneeLow are lowered according to a
-	//    logarithmic curve, such that the value 2^kneeHigh is mapped to 2^3.5. (In step 6 this value will be mapped to
-	//    the the display's maximum intensity.)
-	// 5) Gamma-correct the pixel values, according to the screen's gamma. (We assume that the gamma curve is a simple
-	//    power function.)
-	// 6) Scale the values such that middle gray pixels are mapped to a frame buffer value that is 3.5 f-stops below the
-	//    display's maximum intensity. (84.65 if the screen's gamma is 2.2)
-	// 7) Clamp the values to [0, 255].
-	//
-	// Texview has 0,0 at bottom-left. Rows start from bottom.
-	int p = 0;
-	for (int yi = Height-1; yi >= 0; yi--)
+	for (int partNum = 0; partNum < numParts; partNum++)
 	{
-		for (int xi = 0; xi < Width; xi++)
+		try
 		{
-			int idx = yi*Width + xi;
-			const IMF::Rgba& rawPixel = pixels[idx];
-			Pixels[p++] = tPixel
+			bool preview = false;
+			int lx = -1; int ly = -1;		// For tiled image shows level (lx,ly)
+			bool compositeDeep = true;
+
+			EXR::loadImage
 			(
-				EXR::Dither( redGamma(rawPixel.r), xi, yi ),
-				EXR::Dither( grnGamma(rawPixel.g), xi, yi ),
-				EXR::Dither( bluGamma(rawPixel.b), xi, yi ),
-				uint8( tMath::tClamp( tMath::tFloatToInt(float(rawPixel.a)*255.0f), 0, 0xFF ) )
+				exrFile.Chars(),
+				nullptr,					// Channels. Null means all.
+				nullptr,					// Layers. O means first one.
+				preview, lx, ly,
+				partNum,
+				outZsize, outHeader,
+				pixels, zbuffer, sampleCount,
+				compositeDeep
 			);
 		}
+		catch (IEX_NAMESPACE::BaseExc& err)
+		{
+			tPrintf("Error: Can't read exr file. %s\n", err.what());
+			return false;
+		}
+
+		const Box2i& displayWindow = outHeader.displayWindow();
+		const Box2i& dataWindow = outHeader.dataWindow();
+		float pixelAspectRatio = outHeader.pixelAspectRatio();
+		int w		= displayWindow.max.x - displayWindow.min.x + 1;
+		int h		= displayWindow.max.y - displayWindow.min.y + 1;
+		int dx		= dataWindow.min.x - displayWindow.min.x;
+		int dy		= dataWindow.min.y - displayWindow.min.y;
+		int width	= dataWindow.max.x - dataWindow.min.x + 1;
+		int height	= dataWindow.max.y - dataWindow.min.y + 1;
+
+		// Set width, height, and allocate and set Pixels.
+		tFrame* newFrame = new tFrame;
+		newFrame->SrcPixelFormat = tPixelFormat::HDR_EXR;
+		newFrame->Width = width;
+		newFrame->Height = height;
+		newFrame->Pixels = new tPixel[width*height];
+
+		// Map floating-point pixel values 0.0 and 1.0 to the display's white and black respectively.
+		// if bool zerooneexposure true.
+		// exposure = 1.02607f;
+		// kneeHigh = 3.5f;
+		
+		float fogR = 0.0f;
+		float fogG = 0.0f;
+		float fogB = 0.0f;
+
+		// Save some time if we can.
+		if (defog > 0.0f)
+			EXR::ComputeFogColour(fogR, fogG, fogB, pixels);
+
+		halfFunction<float> redGamma(EXR::Gamma(gamma, exposure, defog * fogR, kneeLow, kneeHigh), -HALF_MAX, HALF_MAX, 0.0f, 255.0f, 0.0f, 0.0f);
+		halfFunction<float> grnGamma(EXR::Gamma(gamma, exposure, defog * fogG, kneeLow, kneeHigh), -HALF_MAX, HALF_MAX, 0.0f, 255.0f, 0.0f, 0.0f);
+		halfFunction<float> bluGamma(EXR::Gamma(gamma, exposure, defog * fogB, kneeLow, kneeHigh), -HALF_MAX, HALF_MAX, 0.0f, 255.0f, 0.0f, 0.0f);
+
+		// Conversion from raw pixel data to data for the OpenGL frame buffer:
+		// 1) Compensate for fogging by subtracting defog from the raw pixel values.
+		// 2) Multiply the defogged pixel values by 2^(exposure + 2.47393).
+		// 3) Values that are now 1.0 are called "middle gray". If defog and exposure are both set to 0.0, then middle gray
+		//    corresponds to a raw pixel value of 0.18. In step 6, middle gray values will be mapped to an intensity 3.5
+		//    f-stops below the display's maximum intensity.
+		// 4) Apply a knee function. The knee function has two parameters, kneeLow and kneeHigh. Pixel values below
+		//    2^kneeLow are not changed by the knee function. Pixel values above kneeLow are lowered according to a
+		//    logarithmic curve, such that the value 2^kneeHigh is mapped to 2^3.5. (In step 6 this value will be mapped to
+		//    the the display's maximum intensity.)
+		// 5) Gamma-correct the pixel values, according to the screen's gamma. (We assume that the gamma curve is a simple
+		//    power function.)
+		// 6) Scale the values such that middle gray pixels are mapped to a frame buffer value that is 3.5 f-stops below the
+		//    display's maximum intensity. (84.65 if the screen's gamma is 2.2)
+		// 7) Clamp the values to [0, 255].
+		//
+		// Texview has 0,0 at bottom-left. Rows start from bottom.
+		int p = 0;
+		for (int yi = height-1; yi >= 0; yi--)
+		{
+			for (int xi = 0; xi < width; xi++)
+			{
+				int idx = yi*width + xi;
+				const IMF::Rgba& rawPixel = pixels[idx];
+				newFrame->Pixels[p++] = tPixel
+				(
+					EXR::Dither( redGamma(rawPixel.r), xi, yi ),
+					EXR::Dither( grnGamma(rawPixel.g), xi, yi ),
+					EXR::Dither( bluGamma(rawPixel.b), xi, yi ),
+					uint8( tMath::tClamp( tMath::tFloatToInt(float(rawPixel.a)*255.0f), 0, 0xFF ) )
+				);
+			}
+		}
+
+		Frames.Append(newFrame);
 	}
 
 	SrcPixelFormat = tPixelFormat::HDR_EXR;
@@ -272,54 +276,22 @@ bool tImage::tImageEXR::Load
 }
 
 
-bool tImage::tImageEXR::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImage::tImageEXR::Set(tList<tFrame>& srcFrames, bool stealFrames)
 {
 	Clear();
-	if (!pixels || (width <= 0) || (height <= 0))
+	if (srcFrames.GetNumItems() <= 0)
 		return false;
 
-	Width = width;
-	Height = height;
-	if (steal)
+	tPixelFormat SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	if (stealFrames)
 	{
-		Pixels = pixels;
-	}
-	else
-	{
-		Pixels = new tPixel[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
+		while (tFrame* frame = srcFrames.Remove())
+			Frames.Append(frame);
+		return true;
 	}
 
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	for (tFrame* frame = srcFrames.Head(); frame; frame = frame->Next())
+		Frames.Append(new tFrame(*frame));
+
 	return true;
-}
-
-
-bool tImage::tImageEXR::Save(const tString& exrFile) const
-{
-	tAssertMsg(false, "EXR Save not implemented.");
-	if (!IsValid())
-		return false;
-
-	if (tSystem::tGetFileType(exrFile) != tSystem::tFileType::EXR)
-		return false;
-
-	tFileHandle file = tOpenFile(exrFile.ConstText(), "wb");
-	if (!file)
-		return false;
-
-	// Write the data....
-
-	tCloseFile(file);
-	return true;
-}
-
-
-tPixel* tImage::tImageEXR::StealPixels()
-{
-	tPixel* pixels = Pixels;
-	Pixels = nullptr;
-	Width = 0;
-	Height = 0;
-	return pixels;
 }

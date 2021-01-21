@@ -338,6 +338,7 @@ bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 			// BMPs can only have one frame.
 			if (frameNum != 0)
 				return false;
+
 			tImageBMP bmp;
 			bmp.Load(imageFile);
 			if (!bmp.IsValid())
@@ -355,7 +356,6 @@ bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 			bool ok = exr.Load
 			(
 				imageFile,
-				frameNum,
 				params.GammaValue,
 				params.EXR_Exposure,
 				params.EXR_Defog,
@@ -364,10 +364,17 @@ bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 			);
 			if (!ok || !exr.IsValid())
 				return false;
-			Width = exr.GetWidth();
-			Height = exr.GetHeight();
-			Pixels = exr.StealPixels();
-			SrcPixelFormat = exr.SrcPixelFormat;
+
+			if (frameNum >= exr.GetNumFrames())
+				return false;
+
+			tFrame* stolenFrame = exr.StealFrame(frameNum);
+			Width = stolenFrame->Width;
+			Height = stolenFrame->Height;
+			SrcPixelFormat = stolenFrame->SrcPixelFormat;
+		
+			Pixels = stolenFrame->StealPixels();
+			delete stolenFrame;
 			return true;
 		}
 
