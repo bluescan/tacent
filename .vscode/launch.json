@@ -34,7 +34,7 @@
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}/build/TacentInstall",
 			"environment": [],
-			"externalConsole": false,
+			"console": "internalConsole",	// Or externalConsole.
 		}
 	]
 }

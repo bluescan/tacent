@@ -173,33 +173,33 @@ tSystem::tFileType tSystem::tGetFileType(const tString& file)
 
 tSystem::ExtTypePair tSystem::ExtTypePairs[] =
 {
-	{ "tga",		tFileType::TGA				},
-	{ "bmp",		tFileType::BMP				},
-	{ "png",		tFileType::PNG				},
-	{ "apng",		tFileType::APNG				},
-	{ "gif",		tFileType::GIF				},
-	{ "webp",		tFileType::WEBP				},
-	{ "xpm",		tFileType::XPM				},
-	{ "jpg",		tFileType::JPG				},
-	{ "jpeg",		tFileType::JPG				},
-	{ "tif",		tFileType::TIFF				},
-	{ "tiff",		tFileType::TIFF				},
-	{ "dds",		tFileType::DDS				},
-	{ "hdr",		tFileType::HDR				},
-	{ "rgbe",		tFileType::HDR				},
-	{ "exr",		tFileType::EXR				},
-	{ "pcx",		tFileType::PCX				},
-	{ "wbmp",		tFileType::WBMP				},
-	{ "wmf",		tFileType::WMF				},
-	{ "jp2",		tFileType::JP2				},
-	{ "jpc",		tFileType::JPC				},
-	{ "ico",		tFileType::ICO				},
-	{ "tex",		tFileType::TEX				},
-	{ "img",		tFileType::IMG				},
-	{ "cub",		tFileType::CUB				},
-	{ "tac",		tFileType::TAC				},
-	{ "tim",		tFileType::TAC				},
-	{ "cfg",		tFileType::CFG				},
+	{ "tga",		tSystem::tFileType::TGA		},
+	{ "bmp",		tSystem::tFileType::BMP		},
+	{ "png",		tSystem::tFileType::PNG		},
+	{ "apng",		tSystem::tFileType::APNG	},
+	{ "gif",		tSystem::tFileType::GIF		},
+	{ "webp",		tSystem::tFileType::WEBP	},
+	{ "xpm",		tSystem::tFileType::XPM		},
+	{ "jpg",		tSystem::tFileType::JPG		},
+	{ "jpeg",		tSystem::tFileType::JPG		},
+	{ "tif",		tSystem::tFileType::TIFF	},
+	{ "tiff",		tSystem::tFileType::TIFF	},
+	{ "dds",		tSystem::tFileType::DDS		},
+	{ "hdr",		tSystem::tFileType::HDR		},
+	{ "rgbe",		tSystem::tFileType::HDR		},
+	{ "exr",		tSystem::tFileType::EXR		},
+	{ "pcx",		tSystem::tFileType::PCX		},
+	{ "wbmp",		tSystem::tFileType::WBMP	},
+	{ "wmf",		tSystem::tFileType::WMF		},
+	{ "jp2",		tSystem::tFileType::JP2		},
+	{ "jpc",		tSystem::tFileType::JPC		},
+	{ "ico",		tSystem::tFileType::ICO		},
+	{ "tex",		tSystem::tFileType::TEX		},
+	{ "img",		tSystem::tFileType::IMG		},
+	{ "cub",		tSystem::tFileType::CUB		},
+	{ "tac",		tSystem::tFileType::TAC		},
+	{ "tim",		tSystem::tFileType::TAC		},
+	{ "cfg",		tSystem::tFileType::CFG		},
 };
 
 
@@ -1931,9 +1931,16 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 	if (dirStr[dirStr.Length() - 1] != '\\')
 		dirStr += "\\";
 
-	// There's some complexity here with wndows, but it's still very fast. We need to loop through all the
+	// There's some complexity here with windows, but it's still very fast. We need to loop through all the
 	// extensions doing the FidFirstFile business, while modifying the path appropriately for each one.
-	for (tStringItem* extItem = extensions.First(); extItem; extItem = extItem->Next())
+	tExtensions exts(extensions);
+
+	// Insert a special empty extension if extensions is empty. This will cause all file types to be included.
+	if (extensions.IsEmpty())
+		exts.Extensions.Append(new tStringItem());
+
+	bool allOk = true;
+	for (tStringItem* extItem = exts.First(); extItem; extItem = extItem->Next())
 	{
 		tString ext(*extItem);
 		tString path = dirStr + "*.";
@@ -1945,7 +1952,10 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 		Win32FindData fd;
 		WinHandle h = FindFirstFile(path, &fd);
 		if (h == INVALID_HANDLE_VALUE)
-			return false;
+		{
+			allOk = false;
+			continue;
+		}
 
 		do
 		{
@@ -1976,8 +1986,9 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 
 		FindClose(h);
 		if (GetLastError() != ERROR_NO_MORE_FILES)
-			return false;
+			return false;		
 	}
+	return allOk;
 
 	#else
 	tString dirPath(dir);
@@ -2015,9 +2026,9 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 		if (includeHidden || !tIsHidden(foundFile))
 			foundFiles.Append(new tStringItem(foundFile));
 	}
-	#endif
 
 	return true;
+	#endif
 }
 
 

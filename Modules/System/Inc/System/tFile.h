@@ -126,7 +126,7 @@ struct tExtensions
 	int Count() const																									{ return Extensions.GetNumItems(); }
 	bool IsEmpty() const																								{ return Extensions.IsEmpty(); }
 	bool Contains(const tString& ext) const;
-	tStringItem* First()																								{ return Extensions.First(); }
+	tStringItem* First() const																							{ return Extensions.First(); }
 
 	// This list stored the extensions lower-case without the dot.
 	tList<tStringItem> Extensions;

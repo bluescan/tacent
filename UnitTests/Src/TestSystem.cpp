@@ -840,7 +840,7 @@ tTestUnit(File)
 	tGetExtensions(extensions, tFileType::TIFF);
 	tGetExtensions(extensions, tFileType::HDR);
 	for (tStringItem* ext = extensions.First(); ext; ext = ext->Next())
-		tPrintf("TIFF extension: %s\n", ext->Text());
+		tPrintf("TIFF or HDR extension: %s\n", ext->Text());
 	tRequire(extensions.Count() == 4);
 
 	tList<tStringItem> filesMult;
