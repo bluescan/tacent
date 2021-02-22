@@ -2,7 +2,7 @@
 //
 // System module tests.
 //
-// Copyright (c) 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2017, 2019, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -835,6 +835,21 @@ tTestUnit(File)
 	tFindFiles(files, "TestData/");
 	for (tStringItem* file = files.Head(); file; file = file->Next())
 		tPrintf("Found file: %s\n", file->Text());
+
+	tExtensions extensions;
+	tGetExtensions(extensions, tFileType::TIFF);
+	tGetExtensions(extensions, tFileType::HDR);
+	for (tStringItem* ext = extensions.First(); ext; ext = ext->Next())
+		tPrintf("TIFF extension: %s\n", ext->Text());
+	tRequire(extensions.Count() == 4);
+
+	tList<tStringItem> filesMult;
+	extensions.Clear();
+	extensions.Add("bmp").Add("txT");
+	extensions.Add("ZZZ");
+	tFindFiles(filesMult, "TestData/", extensions);
+	for (tStringItem* file = filesMult.Head(); file; file = file->Next())
+		tPrintf("Found file (bmp, txt, zzz): %s\n", file->Text());
 
 	tString testWinPath = "c:/ADir/file.txt";
 	tRequire(tGetDir(testWinPath) == "c:/ADir/");

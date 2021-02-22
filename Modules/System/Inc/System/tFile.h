@@ -69,11 +69,13 @@ bool tDirExists(const tString& dirName);
 bool tDriveExists(const tString& driveName);
 #endif
 
-// File types are based on file extensions only.
+// File types are based on file extensions only. If this enum is modified there is a table
+// in tFile.cpp that needs to be updated as well.
 enum class tFileType
 {
 	// Type							// Category				// Desc
-	Unknown,						// Unknown.
+	Unknown,
+	Invalid							= Unknown,
 
 	Targa,							// Image.
 	TGA								= Targa,
@@ -112,6 +114,27 @@ enum class tFileType
 // file type.
 tFileType tGetFileType(const tString& file);
 tFileType tGetFileTypeFromExtension(const tString& ext);
+
+// A little helper type that holds file extension strings. Extensions are case-insensitive and do not include the dot.
+struct tExtensions
+{
+	tExtensions()																										: Extensions() { }
+	tExtensions(const tExtensions& src);
+
+	tExtensions& Add(const tString& ext);
+	void Clear()																										{ Extensions.Clear(); }
+	int Count() const																									{ return Extensions.GetNumItems(); }
+	bool IsEmpty() const																								{ return Extensions.IsEmpty(); }
+	bool Contains(const tString& ext) const;
+	tStringItem* First()																								{ return Extensions.First(); }
+
+	// This list stored the extensions lower-case without the dot.
+	tList<tStringItem> Extensions;
+};
+
+// Get extensions used by a particular filetype. If tExtensions already has extensions in it, it is
+// appended to so you can collect them for different filetypes.
+void tGetExtensions(tExtensions&, tFileType);
 
 // c:/Stuff/Mess.max to max
 tString tGetFileExtension(const tString& filename);
@@ -310,8 +333,14 @@ bool tRenameFile(const tString& dir, const tString& oldName, const tString& newN
 
 // The foundfiles list is always appended to. You must clear it first if that's what you intend. If empty second
 // argument, the contents of the current directory are returned. Extension can be something like "txt" (no dot).
-// On all platforms the extension is not case sensitive. eg. giF will match Gif. Returns success.
+// On all platforms the extension is not case sensitive. eg. giF will match Gif. If ext is empty, all filetypes
+// are included. Returns success.
 bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
+
+// This is similar to the above function but lets you specify more than one extension at a time. This has huge
+// performance implications (esp on Linux) if you need to find more than one extension in a directory. If extensions
+// is empty, all filetypes are included. Returns success.
+bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden = true);
 
 // foundFiles is appened to. Clear first if desired. Extension can be something like "txt" (no dot).
 bool tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
@@ -382,6 +411,39 @@ struct tFileError : public tError
 
 
 // Implementation below this line.
+
+
+inline tSystem::tExtensions::tExtensions(const tExtensions& src)
+{
+	for (tStringItem* ext = src.Extensions.First(); ext; ext = ext->Next())
+		Extensions.Append(new tStringItem(*ext));
+}
+
+
+inline tSystem::tExtensions& tSystem::tExtensions::Add(const tString& ext)
+{
+	if (ext.IsEmpty())
+		return *this;
+
+	tStringItem* item = new tStringItem(ext);
+	item->ToLower();
+	item->Remove('.');
+	Extensions.Append(item);
+
+	return *this;
+}
+
+
+inline bool tSystem::tExtensions::Contains(const tString& searchExt) const
+{
+	for (tStringItem* ext = Extensions.First(); ext; ext = ext->Next())
+	{
+		if (ext->IsEqualCI(searchExt))
+			return true;
+	}
+
+	return false;
+}
 
 
 inline bool tSystem::tPutc(char ch, tFileHandle file)

@@ -45,6 +45,13 @@ namespace tSystem
 	#ifdef PLATFORM_WINDOWS
 	std::time_t tFileTimeToPosixEpoch(FILETIME);
 	#endif
+
+	struct ExtTypePair
+	{
+		const char* Ext;
+		tFileType Type;
+	};
+	extern ExtTypePair ExtTypePairs[];
 }
 
 
@@ -164,57 +171,65 @@ tSystem::tFileType tSystem::tGetFileType(const tString& file)
 }
 
 
+tSystem::ExtTypePair tSystem::ExtTypePairs[] =
+{
+	{ "tga",		tFileType::TGA				},
+	{ "bmp",		tFileType::BMP				},
+	{ "png",		tFileType::PNG				},
+	{ "apng",		tFileType::APNG				},
+	{ "gif",		tFileType::GIF				},
+	{ "webp",		tFileType::WEBP				},
+	{ "xpm",		tFileType::XPM				},
+	{ "jpg",		tFileType::JPG				},
+	{ "jpeg",		tFileType::JPG				},
+	{ "tif",		tFileType::TIFF				},
+	{ "tiff",		tFileType::TIFF				},
+	{ "dds",		tFileType::DDS				},
+	{ "hdr",		tFileType::HDR				},
+	{ "rgbe",		tFileType::HDR				},
+	{ "exr",		tFileType::EXR				},
+	{ "pcx",		tFileType::PCX				},
+	{ "wbmp",		tFileType::WBMP				},
+	{ "wmf",		tFileType::WMF				},
+	{ "jp2",		tFileType::JP2				},
+	{ "jpc",		tFileType::JPC				},
+	{ "ico",		tFileType::ICO				},
+	{ "tex",		tFileType::TEX				},
+	{ "img",		tFileType::IMG				},
+	{ "cub",		tFileType::CUB				},
+	{ "tac",		tFileType::TAC				},
+	{ "tim",		tFileType::TAC				},
+	{ "cfg",		tFileType::CFG				},
+};
+
+
 tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString& e)
 {
 	tString ext(e);
 	if (ext.IsEmpty())
 		return tFileType::Unknown;
 
-	ext.ToLower();
-
-	struct ExtTypePair
-	{
-		const char* Ext;
-		tFileType Type;
-	};
-	
-	ExtTypePair extToType[] =
-	{
-		{ "tga",		tFileType::TGA				},
-		{ "bmp",		tFileType::BMP				},
-		{ "png",		tFileType::PNG				},
-		{ "apng",		tFileType::APNG				},
-		{ "gif",		tFileType::GIF				},
-		{ "webp",		tFileType::WEBP				},
-		{ "xpm",		tFileType::XPM				},
-		{ "jpg",		tFileType::JPG				},
-		{ "jpeg",		tFileType::JPG				},
-		{ "tif",		tFileType::TIFF				},
-		{ "tiff",		tFileType::TIFF				},
-		{ "dds",		tFileType::DDS				},
-		{ "hdr",		tFileType::HDR				},
-		{ "rgbe",		tFileType::HDR				},
-		{ "exr",		tFileType::EXR				},
-		{ "pcx",		tFileType::PCX				},
-		{ "wbmp",		tFileType::WBMP				},
-		{ "wmf",		tFileType::WMF				},
-		{ "jp2",		tFileType::JP2				},
-		{ "jpc",		tFileType::JPC				},
-		{ "ico",		tFileType::ICO				},
-		{ "tex",		tFileType::TEX				},
-		{ "img",		tFileType::IMG				},
-		{ "cub",		tFileType::CUB				},
-		{ "tac",		tFileType::TAC				},
-		{ "tim",		tFileType::TAC				},
-		{ "cfg",		tFileType::CFG				},
-	};
-	int numExtensions = sizeof(extToType)/sizeof(*extToType);
-
+	ext.ToLower();	
+	int numExtensions = sizeof(ExtTypePairs)/sizeof(*ExtTypePairs);
 	for (int e = 0; e < numExtensions; e++)
-		if (ext == extToType[e].Ext)
-			return extToType[e].Type;
+		if (ext == ExtTypePairs[e].Ext)
+			return ExtTypePairs[e].Type;
 
-	return tFileType::Unknown;	
+	return tFileType::Unknown;
+}
+
+
+void tSystem::tGetExtensions(tExtensions& extensions, tFileType fileType)
+{
+	if (fileType == tFileType::Unknown)
+		return;
+
+	int numExtensions = sizeof(ExtTypePairs)/sizeof(*ExtTypePairs);
+	for (int e = 0; e < numExtensions; e++)
+	{
+		if (ExtTypePairs[e].Type == fileType)
+			extensions.Add(ExtTypePairs[e].Ext);
+	}
 }
 
 
@@ -1898,6 +1913,15 @@ bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 
 bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden)
 {
+	tExtensions extensions;
+	if (!ext.IsEmpty())
+		extensions.Add(ext);
+	return tFindFiles(foundFiles, dir, extensions, includeHidden);
+}
+
+
+bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden)
+{
 	#ifdef PLATFORM_WINDOWS
 
 	// FindFirstFile etc seem to like backslashes better.
@@ -1907,47 +1931,53 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 	if (dirStr[dirStr.Length() - 1] != '\\')
 		dirStr += "\\";
 
-	tString path = dirStr + "*.";
-	if (ext.IsEmpty())
-		path += "*";
-	else
-		path += ext;
-
-	Win32FindData fd;
-	WinHandle h = FindFirstFile(path, &fd);
-	if (h == INVALID_HANDLE_VALUE)
-		return false;
-
-	do
+	// There's some complexity here with wndows, but it's still very fast. We need to loop through all the
+	// extensions doing the FidFirstFile business, while modifying the path appropriately for each one.
+	for (tStringItem* extItem = extensions.First(); extItem; extItem = extItem->Next())
 	{
-		if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
-		{
-			// It's not a directory... so it's actually a real file.
-			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
-			{
-				tStringItem* newItem = new tStringItem(dirStr + fd.cFileName);
-				newItem->Replace('\\', '/');
+		tString ext(*extItem);
+		tString path = dirStr + "*.";
+		if (ext.IsEmpty())
+			path += "*";
+		else
+			path += ext;
 
-				// Holy obscure and annoying FindFirstFile bug! FindFirstFile("*.abc", ...) will also find
-				// files like file.abcd. This isn't correct I guess we have to check the extension here.
-				// FileMask is required to specify an extension, even if it is ".*"
-				if (path[path.Length() - 1] != '*')
+		Win32FindData fd;
+		WinHandle h = FindFirstFile(path, &fd);
+		if (h == INVALID_HANDLE_VALUE)
+			return false;
+
+		do
+		{
+			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+			{
+				// It's not a directory... so it's actually a real file.
+				if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
 				{
-					tString foundExtension = tGetFileExtension(fd.cFileName);
-					if (ext.IsEqualCI(foundExtension))
+					tStringItem* newItem = new tStringItem(dirStr + fd.cFileName);
+					newItem->Replace('\\', '/');
+
+					// Holy obscure and annoying FindFirstFile bug! FindFirstFile("*.abc", ...) will also find
+					// files like file.abcd. This isn't correct I guess we have to check the extension here.
+					// FileMask is required to specify an extension, even if it is ".*"
+					if (path[path.Length() - 1] != '*')
+					{
+						tString foundExtension = tGetFileExtension(fd.cFileName);
+						if (ext.IsEqualCI(foundExtension))
+							foundFiles.Append(newItem);
+					}
+					else
+					{
 						foundFiles.Append(newItem);
-				}
-				else
-				{
-					foundFiles.Append(newItem);
+					}
 				}
 			}
-		}
-	} while (FindNextFile(h, &fd));
+		} while (FindNextFile(h, &fd));
 
-	FindClose(h);
-	if (GetLastError() != ERROR_NO_MORE_FILES)
-		return false;
+		FindClose(h);
+		if (GetLastError() != ERROR_NO_MORE_FILES)
+			return false;
+	}
 
 	#else
 	tString dirPath(dir);
@@ -1960,8 +1990,6 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 	if (dirPath.IsEmpty())
 		return false;
 
-	//	if ((dirPath[dirPath.Length() - 1] == '/') || (dirPath[dirPath.Length() - 1] == '\\'))
-	//		dirPath[dirPath.Length() - 1] = '\0';
 	if (dirPath[dirPath.Length() - 1] == '\\')
 		dirPath[dirPath.Length() - 1] = '/';
 
@@ -1978,7 +2006,10 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 			continue;
 
 		tString foundFile(entry.path().u8string().c_str());
-		if (!ext.IsEmpty() && (!ext.IsEqualCI(tGetFileExtension(foundFile))))
+		tString foundExt = tGetFileExtension(foundFile);
+
+		// If extension list present and no match continue.
+		if (!extensions.IsEmpty() && !extensions.Contains(foundExt))
 			continue;
 
 		if (includeHidden || !tIsHidden(foundFile))
