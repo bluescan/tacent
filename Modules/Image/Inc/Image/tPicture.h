@@ -39,6 +39,7 @@
 #include "Image/tImageXPM.h"
 #include "Image/tPixelFormat.h"
 #include "Image/tResample.h"
+#include "Image/tLayer.h"
 namespace tImage
 {
 
@@ -229,6 +230,17 @@ public:
 		tResampleFilter filter = tResampleFilter::Bilinear, tResampleEdgeMode edgeMode = tResampleEdgeMode::Clamp
 	)																													{ return Resample(width, height, filter, edgeMode); }
 
+	// A convenience. This is sort of light tTexture functionality -- generate layers that may be passed off to HW.
+	// Unlike tTexture that compresses to a BC format, this function always uses R8G8B8A8 pixel format and does not
+	// require power-of-2 dimensions. If generating mipmap layers, each layer is half (truncated) in width and height
+	// until a 1x1 is reached. There is no restriction on starting dimensions (they may be odd for example). Populates
+	// (appends) to the supplied tLayer list. If resampleFilter is None no mipmap layers are generated, only a single
+	// layer will be appened. In this case edgeMode is ignored. Returns number of appended layers.
+	int GenerateLayers
+	(
+		tList<tLayer>&, tResampleFilter filter = tResampleFilter::Bilinear,
+		tResampleEdgeMode edgeMode = tResampleEdgeMode::Clamp
+	);
 	bool operator==(const tPicture&) const;
 	bool operator!=(const tPicture&) const;
 

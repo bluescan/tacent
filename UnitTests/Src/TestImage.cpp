@@ -135,6 +135,17 @@ tTestUnit(ImagePicture)
 	if (!tSystem::tDirExists("TestData/"))
 		tSkipUnit(Image)
 
+	// Test generate layers.
+	tPicture srcPic("TestData/UpperB.bmp");
+	tRequire(srcPic.IsValid());
+	tPrintf("GenLayers Orig W=%d H=%d\n", srcPic.GetWidth(), srcPic.GetHeight());
+	tList<tLayer> layers;
+	srcPic.GenerateLayers(layers);
+	int lev = 0;
+	for (tLayer* lay = layers.First(); lay; lay = lay->Next(), lev++)
+		tPrintf("GenLayers Mip:%02d W=%d H=%d\n", lev, lay->Width, lay->Height);
+	tRequire(layers.GetNumItems() == 10);
+
 	// Test tPicture loading bmp and saving as tga.
 	tPicture bmpPicUB("TestData/UpperB.bmp");
 	tRequire(bmpPicUB.IsValid());

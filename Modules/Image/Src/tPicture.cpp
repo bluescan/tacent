@@ -1015,3 +1015,46 @@ bool tPicture::Resample(int width, int height, tResampleFilter filter, tResample
 
 	return true;
 }
+
+
+int tPicture::GenerateLayers(tList<tLayer>& layers, tResampleFilter filter, tResampleEdgeMode edgeMode)
+{
+	if (!IsValid())
+		return 0;
+
+	int numAppended = 0;
+
+	// We always append a fullsize layer.
+	layers.Append(new tLayer(tPixelFormat::R8G8B8A8, Width, Height, (uint8*)GetPixelPointer()));
+	numAppended++;
+
+	if (filter == tResampleFilter::None)
+		return numAppended;
+
+	int srcW = Width;
+	int srcH = Height;
+	uint8* srcPixels = (uint8*)GetPixelPointer();
+
+	// We base the next mip level on previous -- mostly because it's faster than resampling from the full
+	// image each time. It's unclear to me which would generate better results.
+	while ((srcW > 1) || (srcH > 1))
+	{
+		int dstW = srcW >> 1; tiClampMin(dstW, 1);
+		int dstH = srcH >> 1; tiClampMin(dstH, 1);
+		uint8* dstPixels = new uint8[dstW*dstH*sizeof(tPixel)];
+
+		bool success = tImage::Resample((tPixel*)srcPixels, srcW, srcH, (tPixel*)dstPixels, dstW, dstH, filter, edgeMode);
+		if (!success)
+			break;
+
+		layers.Append(new tLayer(tPixelFormat::R8G8B8A8, dstW, dstH, dstPixels, true));
+		numAppended++;
+
+		// Het ready for next loop.
+		srcH = dstH;
+		srcW = dstW;
+		srcPixels = dstPixels;
+	}
+
+	return numAppended;
+}
