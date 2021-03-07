@@ -240,9 +240,9 @@ public:
 	// layers.
 	int GenerateLayers
 	(
-		tList<tLayer>&, tResampleFilter filter = tResampleFilter::Bilinear,
+		tList<tLayer>&, tResampleFilter filter = tResampleFilter::Lanczos_Narrow,
 		tResampleEdgeMode edgeMode = tResampleEdgeMode::Clamp,
-		bool chainGeneration = false
+		bool chainGeneration = true
 	);
 	bool operator==(const tPicture&) const;
 	bool operator!=(const tPicture&) const;
