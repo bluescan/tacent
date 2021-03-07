@@ -1017,7 +1017,7 @@ bool tPicture::Resample(int width, int height, tResampleFilter filter, tResample
 }
 
 
-int tPicture::GenerateLayers(tList<tLayer>& layers, tResampleFilter filter, tResampleEdgeMode edgeMode)
+int tPicture::GenerateLayers(tList<tLayer>& layers, tResampleFilter filter, tResampleEdgeMode edgeMode, bool chain)
 {
 	if (!IsValid())
 		return 0;
@@ -1043,7 +1043,11 @@ int tPicture::GenerateLayers(tList<tLayer>& layers, tResampleFilter filter, tRes
 		int dstH = srcH >> 1; tiClampMin(dstH, 1);
 		uint8* dstPixels = new uint8[dstW*dstH*sizeof(tPixel)];
 
-		bool success = tImage::Resample((tPixel*)srcPixels, srcW, srcH, (tPixel*)dstPixels, dstW, dstH, filter, edgeMode);
+		bool success = false;
+		if (chain)
+			success = tImage::Resample((tPixel*)srcPixels, srcW, srcH, (tPixel*)dstPixels, dstW, dstH, filter, edgeMode);
+		else
+			success = tImage::Resample(GetPixelPointer(), Width, Height, (tPixel*)dstPixels, dstW, dstH, filter, edgeMode);
 		if (!success)
 			break;
 

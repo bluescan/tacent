@@ -235,11 +235,14 @@ public:
 	// require power-of-2 dimensions. If generating mipmap layers, each layer is half (truncated) in width and height
 	// until a 1x1 is reached. There is no restriction on starting dimensions (they may be odd for example). Populates
 	// (appends) to the supplied tLayer list. If resampleFilter is None no mipmap layers are generated, only a single
-	// layer will be appened. In this case edgeMode is ignored. Returns number of appended layers.
+	// layer will be appened. In this case edgeMode is ignored. If chainGeneration is true, the previous mip texture
+	// is gused to generate the next -- this is faster but may not be as good quality. Returns number of appended
+	// layers.
 	int GenerateLayers
 	(
 		tList<tLayer>&, tResampleFilter filter = tResampleFilter::Bilinear,
-		tResampleEdgeMode edgeMode = tResampleEdgeMode::Clamp
+		tResampleEdgeMode edgeMode = tResampleEdgeMode::Clamp,
+		bool chainGeneration = false
 	);
 	bool operator==(const tPicture&) const;
 	bool operator!=(const tPicture&) const;
