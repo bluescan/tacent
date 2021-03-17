@@ -8,7 +8,7 @@
 // use backslashes, but consistency in using forward slashes is advised. Directory path specifications always end with
 // a trailing slash. Without the trailing separator the path will be interpreted as a file.
 //
-// Copyright (c) 2004-2006, 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -249,8 +249,7 @@ tString tGetUpDir(const tString& path, int levels = 1);
 
 #if defined(PLATFORM_WINDOWS)
 // Gets a list of the drive letters available on a system. The strings returned are in the form "C:". For more
-// information on a particular drive, use the DriveInfo functions below. You must empty the strings on the list as you
-// now own that memory, the list destructor won't do it for you.
+// information on a particular drive, use the DriveInfo functions below.
 void tGetDrives(tList<tStringItem>& drives);
 
 enum class tDriveType
