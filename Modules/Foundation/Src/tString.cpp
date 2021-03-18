@@ -4,7 +4,7 @@
 // no UCS2 or UTF16 support since UTF8 is, in my opinion, superior and the way forward. tStrings will work with UTF8.
 // You cannot stream (from cin etc) more than 512 chars into a string. This restriction is only for wacky << streaming.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021 Tristan Grimmer.
 // Copyright (c) 2020 Stefan Wessels.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
@@ -241,6 +241,48 @@ tString tString::ExtractRight(int count)
 }
 
 
+tString tString::ExtractLeft(const char* prefix)
+{
+	if (!TextData || (TextData == &EmptyChar) || !prefix)
+		return tString();
+
+	int len = tStd::tStrlen(prefix);
+	if ((len <= 0) || (Length() < len))
+		return tString();
+
+	if (tStd::tStrncmp(TextData, prefix, len) == 0)
+	{
+		int oldlen = Length();
+		char* newtext = new char[oldlen-len+1];
+		tStd::tStrcpy(newtext, &TextData[len]);
+		delete[] TextData;
+		TextData = newtext;
+		return tString(prefix);
+	}
+
+	return tString();
+}
+
+
+tString tString::ExtractRight(const char* suffix)
+{
+	if (!TextData || (TextData == &EmptyChar) || !suffix)
+		return tString();
+
+	int len = tStd::tStrlen(suffix);
+	if ((len <= 0) || (Length() < len))
+		return tString();
+
+	if (tStd::tStrncmp(&TextData[Length()-len], suffix, len) == 0)
+	{
+		TextData[Length()-len] = '\0';
+		return tString(suffix);
+	}
+
+	return tString();
+}
+
+
 tString tString::ExtractMid(int start, int count)
 {
 	int length = Length();
@@ -423,6 +465,7 @@ int tString::RemoveLeading(const char* removeThese)
 		int oldlen = Length();
 		char* newtext = new char[oldlen-cnt+1];
 		tStd::tStrcpy(newtext, &TextData[cnt]);
+		delete[] TextData;
 		TextData = newtext;
 	}
 

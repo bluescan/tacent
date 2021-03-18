@@ -745,6 +745,36 @@ tTestUnit(String)
 	tRequire(sa1 != cb1);
 	tRequire(ca1 == sa1);
 	tRequire(ca1 != sb1);
+
+	// Test remove leading and trailing.
+	tString leadtrail("cbbabaccMIDDLEbbccaab");
+	tPrintf("LeadTrail [%s]\n", leadtrail.Chars());
+
+	leadtrail.RemoveLeading("abc");
+	tPrintf("LeadTrail [%s]\n", leadtrail.Chars());
+	tRequire(leadtrail == "MIDDLEbbccaab");
+
+	leadtrail.RemoveTrailing("abc");
+	tPrintf("LeadTrail [%s]\n", leadtrail.Chars());
+	tRequire(leadtrail == "MIDDLE");
+
+	// Test remove prefix and suffix.
+	tString presuf("prepreMIDDLEsufsuf");
+	tPrintf("PreSuf [%s]\n", presuf.Chars());
+
+	presuf.ExtractLeft("not");
+	presuf.ExtractRight("not");
+	tPrintf("PreSuf [%s]\n", presuf.Chars());
+	tRequire(presuf == "prepreMIDDLEsufsuf");
+
+	presuf.ExtractLeft("pre");
+	tPrintf("PreSuf [%s]\n", presuf.Chars());
+	tRequire(presuf == "preMIDDLEsufsuf");
+
+	presuf.ExtractRight("suf");
+	tPrintf("PreSuf [%s]\n", presuf.Chars());
+	tRequire(presuf == "preMIDDLEsuf");
+
 }
 
 

@@ -5,7 +5,7 @@
 // You cannot stream (from cin etc) more than 512 chars into a string. This restriction is only for wacky << streaming.
 // For conversions of arbitrary types to tStrings, see tsPrint in the higher level System module.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019, 2020, 2021 Tristan Grimmer.
 // Copyright (c) 2020 Stefan Wessels.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
@@ -85,6 +85,12 @@ struct tString
 	// available is extracted.
 	tString ExtractRight(int count);
 
+	// If this string starts with prefix, removes and returns it. If not, returns empty string and no modification.
+	tString ExtractLeft(const char* prefix);
+
+	// If this string ends with suffix, removes and returns it. If not, returns empty string and no modification.
+	tString ExtractRight(const char* suffix);
+
 	// Returns chars from start to count, but also removes that from the tString.  If start + count > length then what's
 	// available is extracted.
 	tString ExtractMid(int start, int count);
@@ -127,10 +133,15 @@ struct tString
 	// Removing a string simply calls Replace with a null second string. Returns how many rem strings were removed.
 	int Remove(const char* rem)																							{ return Replace(rem, nullptr); }
 
-	int RemoveLeading(const char* removeThese);				// removeThese is a null-terminated list of chars to remove.
-	int RemoveTrailing(const char* removeThese);			// removeThese is a null-terminated list of chars to remove.
-	int CountChar(char c) const;							// Counts the number of occurrences of c.
+	// Removes all leading characters in this string that match any of the characters in the null-erminated theseChars
+	// eg. Calling RemoveLeading on "cbbabZING" with "abc" yields "ZING". Returns the number of characters removed.
+	int RemoveLeading(const char* theseChars);
 
+	// Removes all trailing characters in this string that match any of the characters in the null-erminated theseChars
+	// eg. Calling RemoveTrailing on "ZINGabcaab" with "abc" yields "ZING". Returns the number of characters removed.
+	int RemoveTrailing(const char* theseChars);
+
+	int CountChar(char c) const;							// Counts the number of occurrences of c.
 	void ToUpper()																										{ tStd::tStrupr(TextData); }
 	void ToLower()																										{ tStd::tStrlwr(TextData); }
 

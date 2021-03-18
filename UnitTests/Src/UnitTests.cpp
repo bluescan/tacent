@@ -157,7 +157,7 @@ int main(int argc, char** argv)
 	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
 	// tTest(File);
 	// tTest(CmdLine);
-	// tTest(String);
+	tTest(String);
 	// tTest(List);
 	// tTest(ListExtra);
 	// tTest(Colour);
@@ -166,7 +166,7 @@ int main(int argc, char** argv)
 	// tTest(Script);
 	// tTest(Rule);
 	// tTest(ImageMultiFrame);
-	tTest(ImagePicture);
+	// tTest(ImagePicture);
 
 	#endif
 
