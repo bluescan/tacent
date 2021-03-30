@@ -8,7 +8,7 @@
 // use backslashes, but consistency in using forward slashes is advised. Directory path specifications always end with
 // a trailing slash. Without the trailing separator the path will be interpreted as a file.
 //
-// Copyright (c) 2004-2006, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2019, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -37,6 +37,224 @@
 #include "System/tTime.h"
 #include "System/tFile.h"
 
+
+#ifdef PLATFORM_WINDOWS
+
+LPMALLOC Malloc;
+int NumLevels = 2;
+
+tString WideToString(wchar_t* orig)
+{
+	// Convert the wchar_t string to a char* string. Record
+    // the length of the original string and add 1 to it to
+    // account for the terminating null character.
+    size_t origsize = wcslen(orig) + 1;
+    size_t convertedChars = 0;
+
+    // Allocate two bytes in the multibyte output string for every wide
+    // character in the input string (including a wide character
+    // null). Because a multibyte character can be one or two bytes,
+    // you should allot two bytes for each character. Having extra
+    // space for the new string is not an error, but having
+    // insufficient space is a potential security problem.
+    int newsize = origsize*2;
+
+    // The new string will contain a converted copy of the original string plus the type of string appended to it.
+	tString nstring(newsize);
+
+    // Put a copy of the converted string into nstring.
+    wcstombs_s(&convertedChars, nstring.Text(), newsize, orig, _TRUNCATE);	
+	return nstring;
+}
+
+tString GetDisplayName(LPITEMIDLIST Pidl, IShellFolder* folderInterface, DWORD type)
+{
+	STRRET StrRet;
+	// Request the string as a char* although Windows will likely ignore the request.
+	StrRet.uType = STRRET_CSTR;
+	// Call GetDisplayNameOf() to fill in the STRRET structure.
+	HRESULT hr = folderInterface->GetDisplayNameOf(Pidl, type, &StrRet);
+	if (!SUCCEEDED(hr))
+		return tString();
+
+	// Extract the string based on the value of the uType member of STRRET.
+	switch (StrRet.uType)
+	{
+		case STRRET_CSTR:
+			return tString(StrRet.cStr);
+		
+		case STRRET_WSTR:
+			return WideToString(StrRet.pOleStr);
+		
+		case STRRET_OFFSET :
+			return tString(((char*)Pidl) + StrRet.uOffset);
+	}
+	return tString();
+}
+
+void EnumerateRec(IShellFolder* folderInterface, bool EnumNonFolders, int Levels)
+{
+	LPITEMIDLIST Pidl;
+	LPENUMIDLIST Enum;
+	DWORD EnumFlags = SHCONTF_FOLDERS;
+	if (EnumNonFolders) EnumFlags |= SHCONTF_NONFOLDERS;
+	DWORD Result = folderInterface->EnumObjects(0, EnumFlags, &Enum);
+	if (Result != NOERROR)
+    	return;
+	tString DisplayName;
+	Result = Enum->Next(1, &Pidl, 0);			// Get the pidl for the first item in the folder.
+	while (Result != S_FALSE)
+	{
+		int CurrentLevel = Levels;
+		if (Result != NOERROR)
+			break;
+		// Get the "normal" display name.
+//		DisplayName = GetDisplayName(Pidl, folderInterface, SHGDN_NORMAL);
+//		DisplayName = GetDisplayName(Pidl, folderInterface, SHGDN_FORPARSING);
+		DisplayName = GetDisplayName(Pidl, folderInterface, SHGDN_INFOLDER);
+		if (!DisplayName.IsEmpty())
+		{
+			tString PadStr;
+			for (int i = 0; i < (NumLevels - CurrentLevel) * 4; i++)
+				PadStr += " ";
+			DisplayName = PadStr + DisplayName;
+			tPrintf("NAME: %s\n", DisplayName.Chars());
+		}
+
+    	CurrentLevel--;
+
+		// See if this shell item is a folder.
+    	DWORD Attr = SFGAO_FOLDER;
+		folderInterface->GetAttributesOf(1, (LPCITEMIDLIST*)&Pidl, &Attr);
+		if ((CurrentLevel > 0) && (Attr & SFGAO_FOLDER) == SFGAO_FOLDER)
+		{
+			LPSHELLFOLDER Folder;
+			// Get the IShellFolder for the pidl.
+			int res = folderInterface->BindToObject(Pidl, 0, IID_IShellFolder, (void**)&Folder);
+			if (res == NOERROR)
+			{
+				EnumerateRec(Folder, EnumNonFolders, CurrentLevel);	// Recurse.
+				Folder->Release();
+			}
+		}
+    	Malloc->Free(Pidl);
+		Result = Enum->Next(1, &Pidl, 0);		// Next pidl.
+	}
+
+	Enum->Release();
+}
+
+
+void shell_attempt()
+{
+	SHGetMalloc(&Malloc);
+
+	// Start with the desktop folder.
+	//LPSHELLFOLDER DesktopFolder;
+	//SHGetDesktopFolder(&DesktopFolder);
+	LPITEMIDLIST pidlSystem = nullptr;
+	HRESULT hr = SHGetSpecialFolderLocation(0, CSIDL_NETWORK, &pidlSystem);
+    if (!SUCCEEDED(hr))
+    {
+        tPrintf("hr bad\n");
+        return ;
+    }
+
+	IShellFolder *psf = nullptr;
+    LPCITEMIDLIST pidlRelative = nullptr;
+	
+	hr = SHBindToObject(0, pidlSystem, 0, IID_IShellFolder, (void **) &psf);
+    if (!SUCCEEDED(hr))
+	{
+		CoTaskMemFree(pidlSystem);
+		return;
+	}
+
+	NumLevels = 2;
+	//	EnumerateRec(DesktopFolder, 0, NumLevels);
+	EnumerateRec(psf, 0, NumLevels);
+
+	// Free the IShellFolder for the desktop folder.
+	//DesktopFolder->Release();
+
+	psf->Release();
+	CoTaskMemFree(pidlSystem);
+
+	Malloc->Release();
+
+#if 0
+	LPMALLOC Malloc;
+    STRRET strDispName;
+    TCHAR szDisplayName[MAX_PATH];
+    HRESULT hr;
+
+//    hr = SHGetFolderLocation(NULL, CSIDL_DESKTOP, NULL, NULL, &pidlSystem);
+    LPITEMIDLIST pidlSystem = NULL;
+//    hr = SHGetFolderLocation(NULL, CSIDL_NETWORK, NULL, NULL, &pidlSystem);
+	hr = SHGetSpecialFolderLocation(0, CSIDL_NETWORK, &pidlSystem);
+    if (!SUCCEEDED(hr))
+    {
+        printf("hr bad\n");
+        return ;
+    }
+
+	IShellFolder *psfParent = NULL;
+    LPCITEMIDLIST pidlRelative = NULL;
+    hr = SHBindToParent(pidlSystem, IID_IShellFolder, (void **) &psfParent, &pidlRelative);
+    if(SUCCEEDED(hr))
+    {
+        hr = psfParent->GetDisplayNameOf(pidlRelative, SHGDN_NORMAL, &strDispName);
+        hr = StrRetToBuf(&strDispName, pidlSystem, szDisplayName, sizeof(szDisplayName));
+        printf("DISPNAME: %s\n", szDisplayName);
+
+		// Enumerate children folders.
+		LPENUMIDLIST Enum;
+		psfParent->EnumObjects(0, SHCONTF_FOLDERS, &Enum);
+
+		LPITEMIDLIST Pidl;
+		DWORD Result = Enum->Next(1, &Pidl, 0);
+		while (Result != S_FALSE)
+		{
+			if (Result != NOERROR)
+				break;
+
+			// do something with Pidl
+			IShellFolder *shellFolderServer = NULL;
+		    LPCITEMIDLIST pidlServRelative = NULL;	
+			hr = SHBindToParent(Pidl, IID_IShellFolder, (void **) &shellFolderServer, &pidlServRelative);
+			if(SUCCEEDED(hr))
+			{
+				hr = shellFolderServer->GetDisplayNameOf(pidlServRelative, SHGDN_NORMAL, &strDispName);
+				hr = StrRetToBuf(&strDispName, Pidl, szDisplayName, sizeof(szDisplayName));
+				printf("SERVERNAME: %s\n", szDisplayName);
+			}
+			shellFolderServer->Release();
+			//CoTaskMemFree(pidlSystem);
+
+
+			SHGetMalloc(&Malloc);
+			Malloc->Free(Pidl);
+			Malloc->Release();
+			Result = Enum->Next(1, &Pidl, 0);
+		}
+		Enum->Release();
+
+		psfParent->Release();
+
+    }
+	CoTaskMemFree(pidlSystem);
+#endif
+}
+
+int PrintNetworkShares()
+{
+	printf("Start\n");
+	shell_attempt();
+	printf("Finish\n");
+
+	return 0;
+}
+#endif // Windows
 
 namespace tSystem
 {

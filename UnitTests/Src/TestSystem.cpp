@@ -33,6 +33,11 @@
 using namespace tSystem;
 using namespace tMath;
 extern tCommand::tOption OptionShared;
+
+#ifdef PLATFORM_WINDOWS
+extern int PrintNetworkShares();
+#endif
+
 namespace tUnitTest
 {
 
@@ -826,6 +831,10 @@ tTestUnit(Chunk)
 
 tTestUnit(File)
 {
+	#ifdef PLATFORM_WINDOWS
+	PrintNetworkShares();
+	#endif
+
 	if (!tDirExists("TestData/"))
 		tSkipUnit(File)
 
