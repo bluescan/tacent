@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <mutex>
 #include "Foundation/tList.h"
 
 
@@ -33,7 +34,7 @@ public:
 	T* operator->() const																								{ return ObjPointer; }
 	T& operator*() const																								{ return *ObjPointer; }
 
-	int GetNumRefs() const									/* Debugging. */											{ return SatData ? SatData->RefCount : 0; }
+	int GetNumRefs() const;									// Debugging.
 	bool IsValid() const																								{ return ObjPointer ? true : false; }
 
 private:
@@ -44,6 +45,10 @@ private:
 	{
 		SatelliteData(int count)																						: RefCount(count) { }
 		int RefCount = 0;
+
+		// Mods to the satellite information are considered as critical sections.
+		std::mutex Mutex;
+
 		// @todo Keep track of weak references here. Will need a tList of them. May need ti invalidate them.
 	};
 
@@ -61,7 +66,11 @@ template<typename T> inline tSharedPtr<T>::tSharedPtr(const tSharedPtr<T>& src)
 	ObjPointer = src.ObjPointer;
 	SatData = src.SatData;
 	if (IsValid())
+	{
+		SatData->Mutex.lock();
 		(SatData->RefCount)++;
+		SatData->Mutex.unlock();
+	}
 }
 
 
@@ -86,7 +95,11 @@ template<typename T> inline tSharedPtr<T>& tSharedPtr<T>::operator=(const tShare
 	ObjPointer = src.ObjPointer;
 	SatData = src.SatData;
 	if (src.IsValid())
+	{
+		SatData->Mutex.lock();
 		(SatData->RefCount)++;
+		SatData->Mutex.unlock();
+	}
 }
 
 
@@ -101,10 +114,29 @@ template<typename T> inline	tSharedPtr<T>& tSharedPtr<T>::operator=(tSharedPtr&&
 }
 
 
+template<typename T> inline	int tSharedPtr<T>::GetNumRefs() const	
+{
+	int numRefs = 0;
+	if (!SatData)
+		return numRefs;
+	SatData->Mutex.lock();
+	numRefs = SatData->RefCount;
+	SatData->Mutex.unlock();
+	return refCount;
+}
+
+
 template<typename T> inline void tSharedPtr<T>::DerefDelete()
 {
+	bool deleteData = false;
+	tAssert(SatData);
+	SatData->Mutex.lock();
 	(SatData->RefCount)--;
 	if (SatData->RefCount == 0)
+		deleteData = true;
+	SatData->Mutex.unlock();
+
+	if (deleteData)
 	{
 		delete ObjPointer;
 		ObjPointer = nullptr;
