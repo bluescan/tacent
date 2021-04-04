@@ -2,7 +2,7 @@
 //
 // Foundation module tests.
 //
-// Copyright (c) 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2017, 2019, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -18,6 +18,7 @@
 #include <Foundation/tBitField.h>
 #include <Foundation/tList.h>
 #include <Foundation/tMap.h>
+#include <Foundation/tSmartPointers.h>
 #include <Foundation/tRingBuffer.h>
 #include <Foundation/tSort.h>
 #include <Foundation/tPriorityQueue.h>
@@ -451,6 +452,17 @@ tTestUnit(Map)
 	tRequire(intMap[9] == 19);
 	for (auto pair : intMap)
 		tPrintf("intmap KV: [%d] [%d]\n", pair.Key(), pair.Value());
+}
+
+
+tTestUnit(SmartPointers)
+{
+	tSharedPtr<float> pfloatA = new float(4.0f);
+	tSharedPtr<float> pfloatB = pfloatA;
+
+	// A and B point to same object. When they go out of scope, the float will be deleted.
+	tPrintf("FloatA: %f\n", *pfloatA);
+	tPrintf("FloatB: %f\n", *pfloatA);
 }
 
 

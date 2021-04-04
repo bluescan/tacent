@@ -245,16 +245,8 @@ void shell_attempt()
 	CoTaskMemFree(pidlSystem);
 #endif
 }
-
-int PrintNetworkShares()
-{
-	printf("Start\n");
-	shell_attempt();
-	printf("Finish\n");
-
-	return 0;
-}
 #endif // Windows
+
 
 namespace tSystem
 {
@@ -2061,6 +2053,16 @@ bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tStr
 
 	#endif
 }
+
+
+#ifdef PLATFORM_WINDOWS
+void tSystem::tPrintNetworkShares()
+{
+	tPrintf("Start PrintNetworkShares\n");
+	shell_attempt();
+	tPrintf("Finish PrintNetworkShares\n");
+}
+#endif
 
 
 bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden)

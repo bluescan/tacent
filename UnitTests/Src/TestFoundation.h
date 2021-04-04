@@ -23,6 +23,7 @@ namespace tUnitTest
 	tTestUnit(List);
 	tTestUnit(ListExtra);
 	tTestUnit(Map);
+	tTestUnit(SmartPointers);
 	tTestUnit(Sort);
 	tTestUnit(FixInt);
 	tTestUnit(Bitfield);

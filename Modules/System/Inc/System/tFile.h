@@ -330,6 +330,12 @@ bool tCopyFile(const tString& destFile, const tString& srcFile, bool overWriteRe
 // rename is located.
 bool tRenameFile(const tString& dir, const tString& oldName, const tString& newName);
 
+#ifdef PLATFORM_WINDOWS
+// Find network shares on windows. Since this is so slow, we use a promise to as a way of implementing this asynchronously.
+// @wip Use promises to return results one at a time. This fn will be renamed not to just print them.
+void tPrintNetworkShares();
+#endif
+
 // The foundfiles list is always appended to. You must clear it first if that's what you intend. If empty second
 // argument, the contents of the current directory are returned. Extension can be something like "txt" (no dot).
 // On all platforms the extension is not case sensitive. eg. giF will match Gif. If ext is empty, all filetypes

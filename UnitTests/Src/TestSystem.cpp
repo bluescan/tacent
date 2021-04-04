@@ -34,9 +34,6 @@ using namespace tSystem;
 using namespace tMath;
 extern tCommand::tOption OptionShared;
 
-#ifdef PLATFORM_WINDOWS
-extern int PrintNetworkShares();
-#endif
 
 namespace tUnitTest
 {
@@ -832,7 +829,8 @@ tTestUnit(Chunk)
 tTestUnit(File)
 {
 	#ifdef PLATFORM_WINDOWS
-	PrintNetworkShares();
+	// @wip This is disabled until I get promises going to make it asynchronous.
+	// tPrintNetworkShares();
 	#endif
 
 	if (!tDirExists("TestData/"))

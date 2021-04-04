@@ -107,6 +107,7 @@ int main(int argc, char** argv)
 	tTest(List);
 	tTest(ListExtra);
 	tTest(Map);
+	tTest(SmartPointers);
 	tTest(Sort);
 	tTest(FixInt);
 	tTest(Bitfield);
@@ -155,7 +156,7 @@ int main(int argc, char** argv)
 	#else
 
 	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
-	tTest(File);
+	// tTest(File);
 	// tTest(CmdLine);
 	// tTest(String);
 	// tTest(List);
@@ -163,6 +164,7 @@ int main(int argc, char** argv)
 	// tTest(Colour);
 	// tTest(Print);
 	// tTest(Map);
+	tTest(SmartPointers);
 	// tTest(Script);
 	// tTest(Rule);
 	// tTest(ImageMultiFrame);

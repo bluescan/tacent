@@ -32,6 +32,8 @@ add_library(
 	Inc/Foundation/tFundamentals.h
 	Inc/Foundation/tHash.h
 	Inc/Foundation/tList.h
+	Inc/Foundation/tMap.h
+	Inc/Foundation/tSmartPointers.h
 	Inc/Foundation/tMemory.h
 	Inc/Foundation/tPlatform.h
 	Inc/Foundation/tPool.h
