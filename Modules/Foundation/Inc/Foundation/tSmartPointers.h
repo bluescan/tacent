@@ -34,11 +34,11 @@ public:
 	T* operator->() const																								{ return ObjPointer; }
 	T& operator*() const																								{ return *ObjPointer; }
 
-	int GetNumRefs() const;									// Debugging.
+	int GetRefCount() const;									// Debugging.
 	bool IsValid() const																								{ return ObjPointer ? true : false; }
 
 private:
-	void Invalidate()																									{ ObjPointer = nullptr; SetData = nullptr; }
+	void Invalidate()																									{ ObjPointer = nullptr; SatData = nullptr; }
 	void DerefDelete();
 
 	struct SatelliteData
@@ -110,17 +110,17 @@ template<typename T> inline	tSharedPtr<T>& tSharedPtr<T>::operator=(tSharedPtr&&
 	// We share both the object pointer and satellite data (inc ref count) of the source.
 	ObjPointer = src.ObjPointer;
 	SatData = src.SatData;
-	Src.Invalidate();
+	src.Invalidate();
 }
 
 
-template<typename T> inline	int tSharedPtr<T>::GetNumRefs() const	
+template<typename T> inline	int tSharedPtr<T>::GetRefCount() const	
 {
-	int numRefs = 0;
+	int refCount = 0;
 	if (!SatData)
-		return numRefs;
+		return refCount;
 	SatData->Mutex.lock();
-	numRefs = SatData->RefCount;
+	refCount = SatData->RefCount;
 	SatData->Mutex.unlock();
 	return refCount;
 }

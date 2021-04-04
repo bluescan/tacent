@@ -3,7 +3,7 @@
 // Pixel formats in Tacent. Not all formats are fully supported. Certainly BC 4, 5, and 7 may not have extensive HW
 // support at this time.
 //
-// Copyright (c) 2004-2006, 2017, 2019 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2019, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //

@@ -40,13 +40,14 @@ function(tacent_target_compile_options PROJNAME)
 			$<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/O2>
 
 			# Clang compiler.
-			$<$<CXX_COMPILER_ID:Clang>:-Wno-switch>
 
 			# GNU compiler.
 			$<$<CXX_COMPILER_ID:GNU>:-Wno-unused-result>
 
 			# Clang and GNU.
 			$<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wno-multichar>
+			$<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wno-switch>
+
 			$<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O0>
 			$<$<AND:$<CONFIG:Release>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O2>
 	)
