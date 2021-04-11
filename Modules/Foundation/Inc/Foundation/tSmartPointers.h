@@ -104,6 +104,8 @@ template<typename T> inline tSharedPtr<T>& tSharedPtr<T>::operator=(const tShare
 		(SatData->RefCount)++;
 		SatData->Mutex.unlock();
 	}
+
+	return *this;
 }
 
 

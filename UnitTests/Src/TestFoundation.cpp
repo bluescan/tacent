@@ -12,6 +12,8 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
+#include <thread>
+#include <chrono>
 #include <Foundation/tVersion.cmake.h>
 #include <Foundation/tArray.h>
 #include <Foundation/tFixInt.h>
@@ -493,8 +495,35 @@ tTestUnit(SmartPointers)
 }
 
 
+void GenerateFloats(tPromise<float>* floatPromise)
+{
+	// Lets generate 5 floats.
+	for (int f = 0; f < 1; f++)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+		floatPromise->Fulfill(3.0f+float(f));
+	}
+}
+
+
 tTestUnit(Promise)
 {
+	// Promiser.
+	tPromise<float> promiseFloats;
+	std::thread floatThread(GenerateFloats, &promiseFloats);
+
+	while (promiseFloats.GetState() == tPromise<float>::State::Pending)
+	{
+		tPrintf("Waiting...\n");
+		std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	}
+
+	if (promiseFloats.GetState() == tPromise<float>::State::Fulfilled)
+	{
+		tPrintf("Promise resulted in: %f\n", promiseFloats.GetItem());
+	}
+
+	floatThread.join();
 }
 
 
