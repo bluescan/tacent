@@ -33,38 +33,86 @@
 
 #pragma once
 #include <mutex>
-//#include "Foundation/tList.h"
+#include <Foundation/tSmartPointers.h>
 
-#if 0
-template<typename T> class Promise
+
+template<typename T> class tPromise
 {
+public:
 	enum class State
 	{
 		Pending,
-		Fulfilled,				// Settled
-		Reneged
+		Fulfilled,							// Settled.
+		Reneged								// Settled.
 	};
 
-	Promise() { State = Pending }
-	State_Pending,
-	State_Fulfilled,
-	State_Reneged
+	tPromise()								: PromiseState(State::Pending), PromisePackage() { }
 
-	State WaitUntilSettled();		// Blocks.
-	State GetState(); // Called by promisee. Non-blocking. Promisee may poll.
-	T GetItem(); Called by promisee. Will be default obj if state not fulfilled.
+	State WaitUntilSettled();				// Blocks.
+	State GetState();						// Called by promisee. Non-blocking. Promisee may poll.
+	T GetItem();							// Called by promisee. Will be default obj if state not fulfilled.
 
-	Renege(); // Called by promiser. Non-blocking. Promiser reneges on a promise when it can't fulfill it. For example,
-	// getting windows share names can be painfully slow, and the promiser doesn't know a-priori how many there are.
-	// It can call Fulfill each time and supply another promise, but on the last one (when it knows there are no more)
-	// it will have to renege. 
-	Fulfill(T, NextPromise* = null); // Called by promiser. Non-blocking. Promiser may optionally make another promise.
-	
-	State
+	// Called by promiser. Non-blocking. Promiser reneges on a promise when it can't fulfill it. For example, getting
+	// windows share names can be painfully slow, and the promiser doesn't know a-priori how many there are. It can
+	// call Fulfill each time and supply another promise, but on the last one (when it knows there are no more) it will
+	// have to renege.
+	void Renege();
+
+	// Called by promiser. Non-blocking. Promiser may optionally make another promise.
+	void Fulfill(T, tSharedPtr<tPromise> nextPromise = nullptr);
+
+private:
+	std::mutex Mutex;						// Both PromiseState and PromisePackage are mutex protected.
+	State PromiseState;
 	struct Package
 	{
-		T Item;		// Only valid if promise fulfilled.
-		Promise* NextPromise;	// Does promiser have something else for ya?
-	}
+		T Item;								// Only valid if promise fulfilled.
+		tSharedPtr<tPromise> NextPromise;	// Does promiser have something else for ya?
+	};
+	Package PromisePackage;
+};
+
+
+// Implementation below this line.
+
+
+template<typename T> inline typename tPromise<T>::State tPromise<T>::WaitUntilSettled()
+{
+	// Block until settled.
 }
-#endif
+
+
+template<typename T> inline typename tPromise<T>::State tPromise<T>::GetState()
+{
+	Mutex.lock();
+	tPromise<T>::State state = PromiseState;
+	Mutex.unlock();
+	return state;
+}
+
+
+template<typename T> inline T tPromise<T>::GetItem()
+{
+	Mutex.lock();
+	T item = PromisePackage.Item;
+	Mutex.unlock();
+	return item;
+}
+
+
+template<typename T> inline void tPromise<T>::Renege()
+{
+	Mutex.lock();
+	PromiseState = State::Reneged;
+	Mutex.unlock();
+}
+
+
+template<typename T> inline void tPromise<T>::Fulfill(T item, tSharedPtr<tPromise> nextPromise)
+{
+	Mutex.lock();
+	PromiseState = State::Fulfilled;
+	PromisePackage.Item = item;
+	PromisePackage.NextPromise = nextPromise;
+	Mutex.unlock();
+}

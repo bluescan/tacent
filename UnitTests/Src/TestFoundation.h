@@ -24,6 +24,7 @@ namespace tUnitTest
 	tTestUnit(ListExtra);
 	tTestUnit(Map);
 	tTestUnit(SmartPointers);
+	tTestUnit(Promise);
 	tTestUnit(Sort);
 	tTestUnit(FixInt);
 	tTestUnit(Bitfield);

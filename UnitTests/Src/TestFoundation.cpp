@@ -456,6 +456,14 @@ tTestUnit(Map)
 }
 
 
+struct TestObject
+{
+	TestObject()		{ tPrintf("TestObject Constructor\n"); }
+	~TestObject()		{ tPrintf("TestObject Destructor\n"); }
+	int Val = 55;
+};
+
+
 tTestUnit(SmartPointers)
 {
 	tSharedPtr<float> pfloatA = new float(4.0f);
@@ -463,7 +471,30 @@ tTestUnit(SmartPointers)
 
 	// A and B point to same object. When they go out of scope, the float will be deleted.
 	tPrintf("FloatA: %f\n", *pfloatA);
-	tPrintf("FloatB: %f\n", *pfloatA);
+	tPrintf("FloatB: %f\n", *pfloatB);
+	tRequire(pfloatA.IsValid());
+	tRequire(pfloatB.IsValid());
+
+	pfloatA = nullptr;
+	tRequire(!pfloatA.IsValid());
+	tRequire(pfloatB.IsValid());
+
+	pfloatB = nullptr;
+	tRequire(!pfloatA.IsValid());
+	tRequire(!pfloatB.IsValid());
+
+	tPrintf("Begin Scope\n");
+	{
+		tSharedPtr<TestObject> pfloatTA = new TestObject();
+		tSharedPtr<TestObject> pfloatTB = pfloatTA;
+		tRequire((pfloatTA.GetRefCount() == 2) && (pfloatTB.GetRefCount() == 2));
+	}
+	tPrintf("End Scope\n");
+}
+
+
+tTestUnit(Promise)
+{
 }
 
 

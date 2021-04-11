@@ -21,10 +21,11 @@
 template<typename T> class tSharedPtr
 {
 public:
-	tSharedPtr()																										{ SatData = new SatelliteData(); }
+	// Default constructor. Invalid pointer. No satellite data.
+	tSharedPtr()																										{ }
 	tSharedPtr(const tSharedPtr& src);						// Copy cons.
 	tSharedPtr(tSharedPtr&& src);							// Move cons.
-	tSharedPtr(T* src)																									: ObjPointer(src) { SatData = new SatelliteData(1); }
+	tSharedPtr(T* src)																									: ObjPointer(src) { SatData = new SatelliteData(); }
 	~tSharedPtr()																										{ DerefDelete(); }
 
 	tSharedPtr& operator=(const tSharedPtr& src);			// Copy.
@@ -34,17 +35,19 @@ public:
 	T* operator->() const																								{ return ObjPointer; }
 	T& operator*() const																								{ return *ObjPointer; }
 
-	int GetRefCount() const;									// Debugging.
+	int GetRefCount() const;								// Debugging.
 	bool IsValid() const																								{ return ObjPointer ? true : false; }
 
 private:
+	// Careful. This invalidate is for private use only and does not delete anything.
 	void Invalidate()																									{ ObjPointer = nullptr; SatData = nullptr; }
+
 	void DerefDelete();
 
 	struct SatelliteData
 	{
-		SatelliteData(int count)																						: RefCount(count) { }
-		int RefCount = 0;
+		SatelliteData()																									{ }
+		int RefCount = 1;
 
 		// Mods to the satellite information are considered as critical sections.
 		std::mutex Mutex;
@@ -77,6 +80,7 @@ template<typename T> inline tSharedPtr<T>::tSharedPtr(const tSharedPtr<T>& src)
 template<typename T> inline tSharedPtr<T>::tSharedPtr(tSharedPtr&& src)
 {
 	// We share both the object pointer and satellite data (inc ref count) of the source.
+	// Since we're moving, no need to adjust ref count.
 	ObjPointer = src.ObjPointer;
 	SatData = src.SatData;
 	src.Invalidate();
@@ -111,14 +115,17 @@ template<typename T> inline	tSharedPtr<T>& tSharedPtr<T>::operator=(tSharedPtr&&
 	ObjPointer = src.ObjPointer;
 	SatData = src.SatData;
 	src.Invalidate();
+
+	return *this;
 }
 
 
 template<typename T> inline	int tSharedPtr<T>::GetRefCount() const	
 {
-	int refCount = 0;
 	if (!SatData)
-		return refCount;
+		return 0;
+
+	int refCount = 0;
 	SatData->Mutex.lock();
 	refCount = SatData->RefCount;
 	SatData->Mutex.unlock();
@@ -128,6 +135,9 @@ template<typename T> inline	int tSharedPtr<T>::GetRefCount() const
 
 template<typename T> inline void tSharedPtr<T>::DerefDelete()
 {
+	if (!IsValid())
+		return;
+		
 	bool deleteData = false;
 	tAssert(SatData);
 	SatData->Mutex.lock();
