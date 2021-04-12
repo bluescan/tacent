@@ -41,7 +41,7 @@ function(tacent_target_compile_options PROJNAME)
 
 			# Clang compiler.
 
-			# GNU compiler.
+			# GNU compiler. -std=c++20
 			$<$<CXX_COMPILER_ID:GNU>:-Wno-unused-result>
 
 			# Clang and GNU.
@@ -57,7 +57,7 @@ function(tacent_target_compile_features PROJNAME)
 	target_compile_features(
 		${PROJNAME}
 		PRIVATE
-			cxx_std_20
+			cxx_std_17
 	)
 endfunction(tacent_target_compile_features)
 

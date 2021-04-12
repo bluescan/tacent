@@ -86,8 +86,10 @@ private:
 
 template<typename T> inline bool tPromise<T>::WaitUntilSettled() const
 {
+	#if 0 // WIP
 	// Block until settled.
 	SettledFlag.wait(false);
+	#endif
 
 	// Since the promise is settled, no need to mutex protect the state var here.
 	return (PromiseState == tPromise<T>::State::Fulfilled);
@@ -154,8 +156,10 @@ template<typename T> inline void tPromise<T>::Renege()
 	PromiseState = State::Reneged;
 	Mutex.unlock();
 
+#if 0	// WIP
 	SettledFlag.test_and_set();
 	SettledFlag.notify_all();
+#endif
 }
 
 
@@ -167,6 +171,8 @@ template<typename T> inline void tPromise<T>::Fulfill(T item, tSharedPtr<tPromis
 	PromisePackage.NextPromise = nextPromise;
 	Mutex.unlock();
 
+#if 0	// WIP
 	SettledFlag.test_and_set();
 	SettledFlag.notify_all();
+#endif
 }
