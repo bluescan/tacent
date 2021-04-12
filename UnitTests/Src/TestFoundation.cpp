@@ -498,10 +498,14 @@ tTestUnit(SmartPointers)
 void GenerateFloats(tPromise<float>* floatPromise)
 {
 	// Lets generate 5 floats.
-	for (int f = 0; f < 1; f++)
+	for (int f = 0; f < 5; f++)
 	{
 		std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-		floatPromise->Fulfill(3.0f+float(f));
+		float floatProduct = 3.0f+float(f);
+
+		tSharedPtr<tPromise<float>> nextPromise = (f == 4) ? nullptr : new tPromise<float>();
+		floatPromise->Fulfill(floatProduct, nextPromise);
+		floatPromise = nextPromise.GetObject();
 	}
 }
 
@@ -509,21 +513,42 @@ void GenerateFloats(tPromise<float>* floatPromise)
 tTestUnit(Promise)
 {
 	// Promiser.
-	tPromise<float> promiseFloats;
-	std::thread floatThread(GenerateFloats, &promiseFloats);
+	tPromise<float> promiseFloatsA;
+	std::thread floatThreadA(GenerateFloats, &promiseFloatsA);
+	floatThreadA.detach();
 
-	while (promiseFloats.GetState() == tPromise<float>::State::Pending)
+	// Promisee. Poll for results.
+	while (promiseFloatsA.GetState() == tPromise<float>::State::Pending)
 	{
-		tPrintf("Waiting...\n");
+		tPrintf("Promise A Pending...\n");
 		std::this_thread::sleep_for(std::chrono::milliseconds(500));
 	}
 
-	if (promiseFloats.GetState() == tPromise<float>::State::Fulfilled)
+	if (promiseFloatsA.IsFulfilled())
+		tPrintf("Promise A resulted in: %f\n", promiseFloatsA.GetItem());
+	else if (promiseFloatsA.IsReneged())
+		tPrintf("Promise A was reneged.\n");
+
+	// Promiser.
+	tSharedPtr<tPromise<float>> promiseFloatsB = new tPromise<float>();
+	std::thread floatThreadB(GenerateFloats, promiseFloatsB.GetObject());
+
+	tSharedPtr<tPromise<float>> currPromise = promiseFloatsB;
+	while (currPromise.IsValid())
 	{
-		tPrintf("Promise resulted in: %f\n", promiseFloats.GetItem());
+		// Promisee. Blocking, non-spinning wait.
+		tPrintf("Promise Pending...\n");
+		bool fulfilled = currPromise->WaitUntilSettled();
+		if (fulfilled)
+			tPrintf("Promise B resulted in: %f\n", currPromise->GetItem());
+		else
+			tPrintf("Promise was reneged.\n");
+
+		currPromise = currPromise->GetNextPromise();
 	}
 
-	floatThread.join();
+
+	floatThreadB.join();
 }
 
 

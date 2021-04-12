@@ -57,7 +57,7 @@ function(tacent_target_compile_features PROJNAME)
 	target_compile_features(
 		${PROJNAME}
 		PRIVATE
-			cxx_std_17
+			cxx_std_20
 	)
 endfunction(tacent_target_compile_features)
 

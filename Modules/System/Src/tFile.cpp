@@ -2103,7 +2103,7 @@ bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 	#else
 	tString dirPath(dir);
 	if (dirPath.IsEmpty())
-		dirPath = std::filesystem::current_path().u8string().c_str();
+		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
 
 	std::error_code errorCode;
 	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text(), errorCode))
@@ -2117,7 +2117,7 @@ bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 		if (!entry.is_directory())
 			continue;
 
-		tString foundDir(entry.path().u8string().c_str());
+		tString foundDir((char*)entry.path().u8string().c_str());
 		
 		// All directories end in a slash in tacent.
 		if (foundDir[foundDir.Length()-1] != '/')
@@ -2215,7 +2215,7 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 
 	// Use current directory if no dirPath supplied.
 	if (dirPath.IsEmpty())
-		dirPath = std::filesystem::current_path().u8string().c_str();
+		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
 
 	// Even root should look like "/".
 	if (dirPath.IsEmpty())
@@ -2236,7 +2236,7 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 		if (!entry.is_regular_file())
 			continue;
 
-		tString foundFile(entry.path().u8string().c_str());
+		tString foundFile((char*)entry.path().u8string().c_str());
 		tString foundExt = tGetFileExtension(foundFile);
 
 		// If extension list present and no match continue.
@@ -2297,7 +2297,7 @@ bool tSystem::tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString&
 		if (!entry.is_regular_file())
 			continue;
 
-		tString foundFile(entry.path().u8string().c_str());
+		tString foundFile((char*)entry.path().u8string().c_str());
 		if (!ext.IsEmpty() && (!ext.IsEqualCI(tGetFileExtension(foundFile))))
 			continue;
 
@@ -2351,7 +2351,7 @@ bool tSystem::tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& d
 		if (!entry.is_directory())
 			continue;
 
-		tString foundDir(entry.path().u8string().c_str());
+		tString foundDir((char*)entry.path().u8string().c_str());
 
 		if (includeHidden || !tIsHidden(foundDir))
 			foundDirs.Append(new tStringItem(foundDir));

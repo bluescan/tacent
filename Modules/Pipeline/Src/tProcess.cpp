@@ -407,14 +407,14 @@ void tProcess::CreateChildProcess(const tString& cmdLine, const tString& working
 	// effectively none of them if the user requested such. This ensures that the running bahaviour is identical on any
 	// machine no matter what system env variables might be set. A null env block (Environment) means inherit from the
 	// parent process which is what we are trying to avoid in some cases.
-	char* envBlock = Environment;
+	const char* envBlock = Environment;
 
 	// Assign a default env block in this case. We could probably call it with "\0\0", but this seems safer as the
 	// windows docs to not explicitely mention passing in an empty block.
 	if (ClearEnvironment)
 		envBlock = "PIPELINE=true\0";
 
-	int success = CreateProcess(0, (char*)cmdLine.ConstText(), 0, 0, TRUE, DETACHED_PROCESS, envBlock, workingDir.ConstText(), &startup, &procInfo);
+	int success = CreateProcess(0, (char*)cmdLine.ConstText(), 0, 0, TRUE, DETACHED_PROCESS, (char*)envBlock, workingDir.ConstText(), &startup, &procInfo);
 	if (!success)
 	{
 		ulong lastError = GetLastError();

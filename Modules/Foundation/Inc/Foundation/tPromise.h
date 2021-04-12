@@ -33,6 +33,7 @@
 
 #pragma once
 #include <mutex>
+#include <atomic>
 #include <Foundation/tSmartPointers.h>
 
 
@@ -48,9 +49,13 @@ public:
 
 	tPromise()								: PromiseState(State::Pending), PromisePackage() { }
 
-	State WaitUntilSettled();				// Blocks.
-	State GetState();						// Called by promisee. Non-blocking. Promisee may poll.
+	bool WaitUntilSettled() const;			// Blocks. Returns true on fulfilled, false on reneged.
+	State GetState() const;					// Called by promisee. Non-blocking. Promisee may poll.
+	bool IsPending() const;					// Called by promisee. Non-blocking. Promisee may poll.
+	bool IsFulfilled() const;				// Called by promisee. Non-blocking. Promisee may poll.
+	bool IsReneged() const;					// Called by promisee. Non-blocking. Promisee may poll.
 	T GetItem();							// Called by promisee. Will be default obj if state not fulfilled.
+	tSharedPtr<tPromise> GetNextPromise();	// Called by promisee. May return invalid/nullptr. Guaranteed null if not fulfilled.
 
 	// Called by promiser. Non-blocking. Promiser reneges on a promise when it can't fulfill it. For example, getting
 	// windows share names can be painfully slow, and the promiser doesn't know a-priori how many there are. It can
@@ -62,7 +67,10 @@ public:
 	void Fulfill(T, tSharedPtr<tPromise> nextPromise = nullptr);
 
 private:
-	std::mutex Mutex;						// Both PromiseState and PromisePackage are mutex protected.
+	// Signals when the promise has been settled if you want to wait for it. Note that this atomic relies on C++20 so
+	// that is initialized to false.
+	std::atomic_flag SettledFlag;// = ATOMIC_FLAG_INIT;
+	mutable std::mutex Mutex;				// Both PromiseState and PromisePackage are mutex protected.
 	State PromiseState;
 	struct Package
 	{
@@ -76,18 +84,49 @@ private:
 // Implementation below this line.
 
 
-template<typename T> inline typename tPromise<T>::State tPromise<T>::WaitUntilSettled()
+template<typename T> inline bool tPromise<T>::WaitUntilSettled() const
 {
 	// Block until settled.
+	SettledFlag.wait(false);
+
+	// Since the promise is settled, no need to mutex protect the state var here.
+	return (PromiseState == tPromise<T>::State::Fulfilled);
 }
 
 
-template<typename T> inline typename tPromise<T>::State tPromise<T>::GetState()
+template<typename T> inline typename tPromise<T>::State tPromise<T>::GetState() const
 {
 	Mutex.lock();
-	tPromise<T>::State state = PromiseState;
+	State state = PromiseState;
 	Mutex.unlock();
 	return state;
+}
+
+
+template<typename T> inline bool tPromise<T>::IsPending() const
+{
+	Mutex.lock();
+	State state = PromiseState;
+	Mutex.unlock();
+	return (state == State::Pending);
+}
+
+
+template<typename T> inline bool tPromise<T>::IsFulfilled() const
+{
+	Mutex.lock();
+	State state = PromiseState;
+	Mutex.unlock();
+	return (state == State::Fulfilled);
+}
+
+
+template<typename T> inline bool tPromise<T>::IsReneged() const
+{
+	Mutex.lock();
+	State state = PromiseState;
+	Mutex.unlock();
+	return (state == State::Reneged);
 }
 
 
@@ -100,11 +139,23 @@ template<typename T> inline T tPromise<T>::GetItem()
 }
 
 
+template<typename T> inline tSharedPtr<tPromise<T>> tPromise<T>::GetNextPromise()
+{
+	Mutex.lock();
+	tSharedPtr<tPromise<T>> next = PromisePackage.NextPromise;
+	Mutex.unlock();
+	return next;
+}
+
+
 template<typename T> inline void tPromise<T>::Renege()
 {
 	Mutex.lock();
 	PromiseState = State::Reneged;
 	Mutex.unlock();
+
+	SettledFlag.test_and_set();
+	SettledFlag.notify_all();
 }
 
 
@@ -115,4 +166,7 @@ template<typename T> inline void tPromise<T>::Fulfill(T item, tSharedPtr<tPromis
 	PromisePackage.Item = item;
 	PromisePackage.NextPromise = nextPromise;
 	Mutex.unlock();
+
+	SettledFlag.test_and_set();
+	SettledFlag.notify_all();
 }
