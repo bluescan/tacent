@@ -33,8 +33,6 @@ add_library(
 	Inc/Foundation/tHash.h
 	Inc/Foundation/tList.h
 	Inc/Foundation/tMap.h
-	Inc/Foundation/tSmartPointers.h
-	Inc/Foundation/tPromise.h
 	Inc/Foundation/tMemory.h
 	Inc/Foundation/tPlatform.h
 	Inc/Foundation/tPool.h

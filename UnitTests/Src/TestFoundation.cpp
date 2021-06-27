@@ -20,8 +20,6 @@
 #include <Foundation/tBitField.h>
 #include <Foundation/tList.h>
 #include <Foundation/tMap.h>
-#include <Foundation/tSmartPointers.h>
-#include <Foundation/tPromise.h>
 #include <Foundation/tRingBuffer.h>
 #include <Foundation/tSort.h>
 #include <Foundation/tPriorityQueue.h>
