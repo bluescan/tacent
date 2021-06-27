@@ -828,9 +828,8 @@ tTestUnit(Chunk)
 
 tTestUnit(File)
 {
-	#ifdef PLATFORM_WINDOWS
-	// @wip This is disabled until I get promises going to make it asynchronous.
-	// tPrintNetworkShares();
+	#if (defined PLATFORM_WINDOWS) && (defined WINDOWS_NETWORK_SHARE_SUPPORT)
+	tRequestNetworkShares();
 	#endif
 
 	if (!tDirExists("TestData/"))
