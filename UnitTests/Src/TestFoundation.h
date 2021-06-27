@@ -2,7 +2,7 @@
 //
 // Foundation module tests.
 //
-// Copyright (c) 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2017, 2019, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -23,7 +23,6 @@ namespace tUnitTest
 	tTestUnit(List);
 	tTestUnit(ListExtra);
 	tTestUnit(Map);
-	tTestUnit(SmartPointers);
 	tTestUnit(Promise);
 	tTestUnit(Sort);
 	tTestUnit(FixInt);

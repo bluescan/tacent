@@ -107,7 +107,6 @@ int main(int argc, char** argv)
 	tTest(List);
 	tTest(ListExtra);
 	tTest(Map);
-	tTest(SmartPointers);
 	tTest(Promise);
 	tTest(Sort);
 	tTest(FixInt);
@@ -165,7 +164,6 @@ int main(int argc, char** argv)
 	// tTest(Colour);
 	// tTest(Print);
 	// tTest(Map);
-	tTest(SmartPointers);
 	tTest(Promise);
 	// tTest(Script);
 	// tTest(Rule);

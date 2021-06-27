@@ -14,6 +14,7 @@
 
 #include <thread>
 #include <chrono>
+#include <future>
 #include <Foundation/tVersion.cmake.h>
 #include <Foundation/tArray.h>
 #include <Foundation/tFixInt.h>
@@ -456,97 +457,56 @@ tTestUnit(Map)
 }
 
 
-struct TestObject
+// For testing chained promises, we promise a float > 0 and a next promise. If the
+// chain is to end, the float value will be 0.
+struct PromiseObject
 {
-	TestObject()		{ tPrintf("TestObject Constructor\n"); }
-	~TestObject()		{ tPrintf("TestObject Destructor\n"); }
-	int Val = 55;
+	float TheFloat = 0.0f;
+	std::promise<PromiseObject> NextPromise;
+	PromiseObject()								{ tPrintf("PromiseObject Constructor\n"); }
+	~PromiseObject()							{ tPrintf("PromiseObject Destructor\n"); }
 };
 
 
-tTestUnit(SmartPointers)
+std::promise<PromiseObject> GiveMeFloats()
 {
-	tSharedPtr<float> pfloatA = new float(4.0f);
-	tSharedPtr<float> pfloatB = pfloatA;
+	// @wip
+	// Trying tosetup a test case where:
+	// a) You don't know a-priori how many objects will be produced.
+	// b) It takes a long time between production of each one. You only know when there
+	// are nomore to give.
+	// Thought is to promise a PromiseObject and supply a NextPromise every time. If the
+	// PromiseObject has a flag (or for example, a neg float), the consumer will know it's the
+	// last in the sequence and to ignore the NextPromise.
+	static float val = 1.0f;
+	
+	// Do first one.
+	PromiseObject prom;
+	prom.TheFloat = val;	val += 1.0f;
 
-	// A and B point to same object. When they go out of scope, the float will be deleted.
-	tPrintf("FloatA: %f\n", *pfloatA);
-	tPrintf("FloatB: %f\n", *pfloatB);
-	tRequire(pfloatA.IsValid());
-	tRequire(pfloatB.IsValid());
-
-	pfloatA = nullptr;
-	tRequire(!pfloatA.IsValid());
-	tRequire(pfloatB.IsValid());
-
-	pfloatB = nullptr;
-	tRequire(!pfloatA.IsValid());
-	tRequire(!pfloatB.IsValid());
-
-	tPrintf("Begin Scope\n");
-	{
-		tSharedPtr<TestObject> pfloatTA = new TestObject();
-		tSharedPtr<TestObject> pfloatTB = pfloatTA;
-		tRequire((pfloatTA.GetRefCount() == 2) && (pfloatTB.GetRefCount() == 2));
-	}
-	tPrintf("End Scope\n");
-}
-
-
-void GenerateFloats(tPromise<float>* floatPromise)
-{
-	// Lets generate 5 floats.
-	for (int f = 0; f < 5; f++)
-	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-		float floatProduct = 3.0f+float(f);
-
-		tSharedPtr<tPromise<float>> nextPromise = (f == 4) ? nullptr : new tPromise<float>();
-		floatPromise->Fulfill(floatProduct, nextPromise);
-		floatPromise = nextPromise.GetObject();
-	}
+	return std::promise<PromiseObject>();
 }
 
 
 tTestUnit(Promise)
 {
-	// Promiser.
-	tPromise<float> promiseFloatsA;
-	std::thread floatThreadA(GenerateFloats, &promiseFloatsA);
-	floatThreadA.detach();
-
-	// Promisee. Poll for results.
-	while (promiseFloatsA.GetState() == tPromise<float>::State::Pending)
+	#if 0
+	auto promise = std::promise<std::string>();
+	auto producer = std::thread([&]
 	{
-		tPrintf("Promise A Pending...\n");
-		std::this_thread::sleep_for(std::chrono::milliseconds(500));
-	}
-
-	if (promiseFloatsA.IsFulfilled())
-		tPrintf("Promise A resulted in: %f\n", promiseFloatsA.GetItem());
-	else if (promiseFloatsA.IsReneged())
-		tPrintf("Promise A was reneged.\n");
-
-	// Promiser.
-	tSharedPtr<tPromise<float>> promiseFloatsB = new tPromise<float>();
-	std::thread floatThreadB(GenerateFloats, promiseFloatsB.GetObject());
-
-	tSharedPtr<tPromise<float>> currPromise = promiseFloatsB;
-	while (currPromise.IsValid())
+		std::this_thread::sleep_for(std::chrono::seconds(5));
+		promise.set_value("The String");
+	});
+	
+	auto future = promise.get_future();
+	auto consumer = std::thread([&]
 	{
-		// Promisee. Blocking, non-spinning wait.
-		tPrintf("Promise Pending...\n");
-		bool fulfilled = currPromise->WaitUntilSettled();
-		if (fulfilled)
-			tPrintf("Promise B resulted in: %f\n", currPromise->GetItem());
-		else
-			tPrintf("Promise was reneged.\n");
-
-		currPromise = currPromise->GetNextPromise();
-	}
-
-
-	floatThreadB.join();
+		std::cout << future.get().c_str();
+	});
+	
+	producer.join();
+	consumer.join();
+	#endif
 }
 
 
