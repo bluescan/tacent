@@ -462,7 +462,7 @@ tTestUnit(Map)
 struct PromiseObject
 {
 	float TheFloat = 0.0f;
-	std::promise<PromiseObject> NextPromise;
+	// @wip std::promise<PromiseObject> NextPromise;
 	PromiseObject()								{ tPrintf("PromiseObject Constructor\n"); }
 	~PromiseObject()							{ tPrintf("PromiseObject Destructor\n"); }
 };
