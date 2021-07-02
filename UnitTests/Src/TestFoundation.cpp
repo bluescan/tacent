@@ -997,4 +997,110 @@ tTestUnit(MemoryPool)
 }
 
 
+tTestUnit(Hash)
+{
+	const char* testString = "This is the text that is being used for testing hash functions.";
+	tPrintf("%s\n\n", testString);
+
+	tPrintf("Fast 32  bit hash: %08x\n", tHash::tHashStringFast32(testString));
+	tPrintf("Good 32  bit hash: %08x\n", tHash::tHashString32(testString));
+	tPrintf("Good 64  bit hash: %016|64x\n", tHash::tHashString64(testString));
+
+	const char* md5String = "The quick brown fox jumps over the lazy dog";
+	tuint128 md5HashComputed = tHash::tHashStringMD5(md5String);
+	tuint128 md5HashCorrect("0x9e107d9d372bb6826bd81d3542a419d6");
+	tPrintf("MD5 String   : %s\n", md5String);
+	tPrintf("MD5 Correct  : 9e107d9d372bb6826bd81d3542a419d6\n");
+	tPrintf("MD5 Computed : %032|128x\n\n", md5HashComputed);
+	tRequire(md5HashComputed == md5HashCorrect);
+
+	tuint256 hash256 = tHash::tHashString256(testString);
+	tPrintf("Good 256 bit hash: %064|256X\n\n", hash256);
+
+	tPrintf("Fast 32  bit hash: %08x\n", tHash::tHashStringFast32(testString));
+	tPrintf("Good 32  bit hash: %08x\n", tHash::tHashString32(testString));
+	tPrintf("Good 64  bit hash: %016|64x\n\n", tHash::tHashString64(testString));
+
+	uint32 hash32single = tHash::tHashStringFast32("This is a string that will be separated into two hash computations.");
+	tPrintf("Fast 32 bit single hash  : %08x\n", hash32single);
+	uint32 part32 = tHash::tHashStringFast32("This is a string that will be sepa");
+	part32 = tHash::tHashStringFast32("rated into two hash computations.", part32);
+	tPrintf("Fast 32 bit two part hash: %08x\n\n", part32);
+	tRequire(hash32single == part32);
+
+	// From the header: The HashData32/64/128/256 and variants do _not_ guarantee the same hash value if they are chained together.
+	tPrintf("Single 64 bit hash  : %016|64x\n", tHash::tHashString64("This is a string that will be separated into two hash computations."));
+	uint64 part64 = tHash::tHashString64("This is a string that will be sepa");
+	part64 = tHash::tHashString64("rated into two hash computations.", part64);
+	tPrintf("Two part 64 bit hash: %016|64x\n\n", part64);
+
+	// This makes sure nobody changes how the hash functions work, which would be bad. It does this by hardcoding the
+	// result into the test. @todo We should do this for all hash function variants.
+	tuint256 hashString256 = tHash::tHashString256(testString);
+	const char* realHashString256 = "6431af73 c538aa59 318121fd 25696a9f e3c05e59 8cb3c9c2 74bfbde6 3b1be458";
+	tuint256 hashStringCorrect256(realHashString256, 16);
+	tPrintf
+	(
+		"Good 256 bit hash: %0_64|256x\n"
+		"Real 256 bit hash: %s\n\n",
+		hashString256, realHashString256
+	);
+	tRequire(hashString256 == hashStringCorrect256);
+
+	// SHA256 testing. The default IV _must_ be used. The test vectors are from known correct SHA256 results.
+	tPrintf("Testing SHA-256 Implementation:\n");
+	const char*	shaMesg;
+	tuint256	shaComp;
+	tuint256	shaCorr;
+
+	shaMesg = "";
+	shaComp = tHash::tHashStringSHA256(shaMesg);
+	shaCorr.Set("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", 16);
+	tPrintf("Message : [%s]\n" "Computed: %0_64|256X\n" "Correct : %0_64|256X\n", shaMesg, shaComp, shaCorr);
+	tRequire(shaComp == shaCorr);
+
+	shaMesg = "abc";
+	shaComp = tHash::tHashStringSHA256(shaMesg);
+	shaCorr.Set("BA7816BF 8F01CFEA 414140DE 5DAE2223 B00361A3 96177A9C B410FF61 F20015AD", 16);
+	tPrintf("Message : [%s]\n" "Computed: %0_64|256X\n" "Correct : %0_64|256X\n", shaMesg, shaComp, shaCorr);
+	tRequire(shaComp == shaCorr);
+
+	shaMesg = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
+	shaComp = tHash::tHashStringSHA256(shaMesg);
+	shaCorr.Set("a8ae6e6ee929abea3afcfc5258c8ccd6f85273e0d4626d26c7279f3250f77c8e", 16);
+	tPrintf("Message : [%s]\n" "Computed: %0_64|256X\n" "Correct : %0_64|256X\n", shaMesg, shaComp, shaCorr);
+	tRequire(shaComp == shaCorr);
+
+	shaMesg = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcde";
+	shaComp = tHash::tHashStringSHA256(shaMesg);
+	shaCorr.Set("057ee79ece0b9a849552ab8d3c335fe9a5f1c46ef5f1d9b190c295728628299c", 16);
+	tPrintf("Message : [%s]\n" "Computed: %0_64|256X\n" "Correct : %0_64|256X\n", shaMesg, shaComp, shaCorr);
+	tRequire(shaComp == shaCorr);
+
+	shaMesg = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0";
+	shaComp = tHash::tHashStringSHA256(shaMesg);
+	shaCorr.Set("2a6ad82f3620d3ebe9d678c812ae12312699d673240d5be8fac0910a70000d93", 16);
+	tPrintf("Message : [%s]\n" "Computed: %0_64|256X\n" "Correct : %0_64|256X\n", shaMesg, shaComp, shaCorr);
+	tRequire(shaComp == shaCorr);
+
+	shaMesg = "abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq";
+	shaComp = tHash::tHashStringSHA256(shaMesg);
+	shaCorr.Set("248d6a61d20638b8e5c026930c3e6039a33ce45964ff2167f6ecedd419db06c1", 16);
+	tPrintf("Message : [%s]\n" "Computed: %0_64|256X\n" "Correct : %0_64|256X\n", shaMesg, shaComp, shaCorr);
+	tRequire(shaComp == shaCorr);
+
+	shaMesg = "abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmnoijklmnopjklmnopqklmnopqrlmnopqrsmnopqrstnopqrstu";
+	shaComp = tHash::tHashStringSHA256(shaMesg);
+	shaCorr.Set("cf5b16a778af8380036ce59e7b0492370b249b11e8f07a51afac45037afee9d1", 16);
+	tPrintf("Message : [%s]\n" "Computed: %0_64|256X\n" "Correct : %0_64|256X\n", shaMesg, shaComp, shaCorr);
+	tRequire(shaComp == shaCorr);
+
+	uint8 binMsg[] = { 0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF, 0xFE, 0xDC, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x10 };
+	shaComp = tHash::tHashDataSHA256(binMsg, 16);
+	shaCorr.Set("411d3f1d2390ff3f482ac8df4e730780bb081a192f283d2f373138fd101dc8fe", 16);
+	tPrintf("Message : Binary:%s\n" "Computed: %0_64|256X\n" "Correct : %0_64|256X\n", "0x0123456789ABCDEFFEDCBA9876543210", shaComp, shaCorr);
+	tRequire(shaComp == shaCorr); 
+}
+
+
 }

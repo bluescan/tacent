@@ -31,4 +31,5 @@ namespace tUnitTest
 	tTestUnit(RingBuffer);
 	tTestUnit(PriorityQueue);
 	tTestUnit(MemoryPool);
+	tTestUnit(Hash);
 }

@@ -115,11 +115,11 @@ int main(int argc, char** argv)
 	tTest(RingBuffer);
 	tTest(PriorityQueue);
 	tTest(MemoryPool);
+	tTest(Hash);
 
 	// Math tests.
 	tTest(Fundamentals);
 	tTest(Spline);
-	tTest(Hash);
 	tTest(Random);
 	tTest(Matrix);
 	tTest(Quaternion);
@@ -164,11 +164,12 @@ int main(int argc, char** argv)
 	// tTest(Colour);
 	// tTest(Print);
 	// tTest(Map);
-	tTest(Promise);
+	// tTest(Promise);
 	// tTest(Script);
 	// tTest(Rule);
 	// tTest(ImageMultiFrame);
 	// tTest(ImagePicture);
+	tTest(Hash);
 
 	#endif
 

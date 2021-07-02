@@ -536,3 +536,212 @@ tuint256 tHash::tHashData256(const uint8* data, int len, tuint256 iv)
 	E = e; F = f; G = g; H = h;
 	return iv;
 }
+
+
+namespace tHash_SHA256
+{
+	const int HashSizeBytes		= 32;
+	const int ChunkSizeBytes	= 64;
+	const int TotalLenLen		= 8;
+
+	struct State
+	{
+		uint8* Hash;
+		uint8 Chunk[ChunkSizeBytes];
+		uint8* ChunkPos;
+		int SpaceLeft;
+		int TotalLen;
+		uint32 H[8];
+	};
+	uint32 RightRot(uint32 value, int count);
+	void ConsumeChunk(uint32* h, const uint8* p);
+
+	void Init(State*, uint8 hash[HashSizeBytes], tuint256 iv);
+	void Write(State*, const uint8* data, int len);
+	uint8* Close(State*);
+	void Calc(uint8 hash[HashSizeBytes], const uint8* input, int len, tuint256 iv);
+};
+
+
+inline uint32 tHash_SHA256::RightRot(uint32 value, int count)
+{
+	tAssert((count >= 0) && (count <= 32));
+	return (value >> count) | (value << (32 - count));
+}
+
+
+void tHash_SHA256::ConsumeChunk(uint32* h, const uint8* p)
+{
+	uint32 ah[8];
+	for (int i = 0; i < 8; i++)
+		ah[i] = h[i];
+
+	uint32 w[16];
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 16; j++)
+		{
+			if (i == 0)
+			{
+				w[j] = (uint32(p[0]) << 24) | (uint32(p[1]) << 16) | (uint32(p[2]) << 8) | uint32(p[3]);
+				p += 4;
+			}
+			else
+			{
+				const uint32 s0 = RightRot(w[(j + 1 ) & 0xf], 7 ) ^ RightRot(w[(j + 1 ) & 0xf], 18) ^ (w[(j + 1 ) & 0xf] >> 3);
+				const uint32 s1 = RightRot(w[(j + 14) & 0xf], 17) ^ RightRot(w[(j + 14) & 0xf], 19) ^ (w[(j + 14) & 0xf] >> 10);
+				w[j] = w[j] + s0 + w[(j + 9) & 0xf] + s1;
+			}
+			const uint32 s1 = RightRot(ah[4], 6) ^ RightRot(ah[4], 11) ^ RightRot(ah[4], 25);
+			const uint32 ch = (ah[4] & ah[5]) ^ (~ah[4] & ah[6]);
+
+			static const uint32 k[] =
+			{
+			    0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4,
+			    0xab1c5ed5, 0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe,
+			    0x9bdc06a7, 0xc19bf174, 0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f,
+			    0x4a7484aa, 0x5cb0a9dc, 0x76f988da, 0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7,
+			    0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967, 0x27b70a85, 0x2e1b2138, 0x4d2c6dfc,
+			    0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85, 0xa2bfe8a1, 0xa81a664b,
+			    0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070, 0x19a4c116,
+			    0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+			    0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7,
+			    0xc67178f2
+			};
+
+			const uint32 temp1 = ah[7] + s1 + ch + k[i << 4 | j] + w[j];
+			const uint32 s0 = RightRot(ah[0], 2) ^ RightRot(ah[0], 13) ^ RightRot(ah[0], 22);
+			const uint32 maj = (ah[0] & ah[1]) ^ (ah[0] & ah[2]) ^ (ah[1] & ah[2]);
+			const uint32 temp2 = s0 + maj;
+
+			ah[7] = ah[6];
+			ah[6] = ah[5];
+			ah[5] = ah[4];
+			ah[4] = ah[3] + temp1;
+			ah[3] = ah[2];
+			ah[2] = ah[1];
+			ah[1] = ah[0];
+			ah[0] = temp1 + temp2;
+		}
+	}
+
+	for (int i = 0; i < 8; i++)
+		h[i] += ah[i];
+}
+
+
+void tHash_SHA256::Init(State* state, uint8 hash[HashSizeBytes], tuint256 iv)
+{
+	state->Hash			= hash;
+	state->ChunkPos		= state->Chunk;
+	state->SpaceLeft	= ChunkSizeBytes;
+	state->TotalLen		= 0;
+
+	state->H[0] = uint32(iv >> (256-32*1));	// Default IV: 0x6a09e667
+	state->H[1] = uint32(iv >> (256-32*2));	// Default IV: 0xbb67ae85
+	state->H[2] = uint32(iv >> (256-32*3));	// Default IV: 0x3c6ef372
+	state->H[3] = uint32(iv >> (256-32*4));	// Default IV: 0xa54ff53a
+	state->H[4] = uint32(iv >> (256-32*5));	// Default IV: 0x510e527f
+	state->H[5] = uint32(iv >> (256-32*6));	// Default IV: 0x9b05688c
+	state->H[6] = uint32(iv >> (256-32*7));	// Default IV: 0x1f83d9ab
+	state->H[7] = uint32(iv >> (256-32*8));	// Default IV: 0x5be0cd19
+}
+
+
+void tHash_SHA256::Write(State* state, const uint8* data, int len)
+{
+	state->TotalLen += len;
+	const uint8* p = data;
+
+	while (len > 0)
+	{
+		if ((state->SpaceLeft == ChunkSizeBytes) && (len >= ChunkSizeBytes))
+		{
+			ConsumeChunk(state->H, p);
+			len -= ChunkSizeBytes;
+			p   += ChunkSizeBytes;
+			continue;
+		}
+
+		const int consumedLen = len < state->SpaceLeft ? len : state->SpaceLeft;
+		tStd::tMemcpy(state->ChunkPos, p, consumedLen);
+		state->SpaceLeft -= consumedLen;
+		len -= consumedLen;
+		p   += consumedLen;
+		if (state->SpaceLeft == 0)
+		{
+			ConsumeChunk(state->H, state->Chunk);
+			state->ChunkPos = state->Chunk;
+			state->SpaceLeft = ChunkSizeBytes;
+		}
+		else
+		{
+			state->ChunkPos += consumedLen;
+		}
+	}
+}
+
+
+uint8* tHash_SHA256::Close(State* state)
+{
+	uint8* pos = state->ChunkPos;
+	int spaceLeft = state->SpaceLeft;
+	uint32* h = state->H;
+
+	*pos++ = 0x80;
+	--spaceLeft;
+
+	if (spaceLeft < TotalLenLen)
+	{
+		tStd::tMemset(pos, 0x00, spaceLeft);
+		ConsumeChunk(h, state->Chunk);
+		pos = state->Chunk;
+		spaceLeft = ChunkSizeBytes;
+	}
+	const int left = spaceLeft - TotalLenLen;
+	tStd::tMemset(pos, 0x00, left);
+	pos += left;
+	int len = state->TotalLen;
+	pos[7] = uint8(len << 3);
+	len >>= 5;
+
+	for (int i = 6; i >= 0; --i)
+	{
+		pos[i] = uint8(len);
+		len >>= 8;
+	}
+	ConsumeChunk(h, state->Chunk);
+
+	int j = 0;
+	uint8* hash = state->Hash;
+	for (int i = 0; i < 8; i++)
+	{
+		hash[j++] = uint8(h[i] >> 24);
+		hash[j++] = uint8(h[i] >> 16);
+		hash[j++] = uint8(h[i] >> 8);
+		hash[j++] = uint8(h[i]);
+	}
+	return state->Hash;
+}
+
+
+void tHash_SHA256::Calc(uint8 hash[HashSizeBytes], const uint8* input, int len, tuint256 iv)
+{
+	State state;
+	Init(&state, hash, iv);
+	Write(&state, input, len);
+	Close(&state);
+}
+
+
+tuint256 tHash::tHashDataSHA256(const uint8* data, int length, tuint256 iv)
+{
+	uint8 hash[tHash_SHA256::HashSizeBytes];
+	tStd::tMemset(hash, 0, tHash_SHA256::HashSizeBytes);
+
+	tHash_SHA256::Calc(hash, data, length, iv);
+	tuint256 result;
+	result.SetFromBytes(hash);
+
+	return result;
+}

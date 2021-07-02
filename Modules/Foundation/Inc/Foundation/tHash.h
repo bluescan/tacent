@@ -56,7 +56,7 @@ enum class tHashAlgorithm
 
 
 // These initialization vectors should not be modified unless you want to break a lot of code. The zero 32bit one is
-// responsible for things like stringhash returning zero on empty strings.
+// responsible for things like stringhash returning zero on empty strings. The SHA256 function uses its own default IV.
 const uint32 HashIV32 = 0;
 const uint64 HashIV64 = 0;
 const tuint128 HashIV128 = 0;
@@ -101,8 +101,8 @@ tuint128 tHashString128(const char*, tuint128 iv = HashIV128);
 tuint128 tHashString128(const tString&, tuint128 iv = HashIV128);
 
 tuint256 tHashData256(const uint8* data, int length, tuint256 iv = HashIV256);
-tuint256 tHashString256(const char*, const tuint256& iv = HashIV256);
-tuint256 tHashString256(const tString&, const tuint256& iv = HashIV256);
+tuint256 tHashString256(const char*, tuint256 iv = HashIV256);
+tuint256 tHashString256(const tString&, tuint256 iv = HashIV256);
 
 // The MD5 functions are used by the HashData128 functions. MD5 is _not_ to be used for cryptographic purposes.
 // For reference and testing:
@@ -112,9 +112,13 @@ tuint128 tHashDataMD5(const uint8* data, int length, tuint128 iv = HashIV128);
 tuint128 tHashStringMD5(const char*, tuint128 iv = HashIV128);
 tuint128 tHashStringMD5(const tString&, tuint128 iv = HashIV128);
 
-tuint256 tHashDataSHA256(const uint8* data, int length, tuint256 iv = HashIV256);
-tuint256 tHashStringSHA256(const char*, tuint256 iv = HashIV256);
-tuint256 tHashStringSHA256(const tString&, tuint256 iv = HashIV256);
+// Note for the SHA256 functions there is a very specific initialization vector supplied. This is defined in
+// https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf
+// We allow it to be specified so you can still chain using the previous hash.
+const tuint256 HashIVSHA256("6a09e667" "bb67ae85" "3c6ef372" "a54ff53a" "510e527f" "9b05688c" "1f83d9ab" "5be0cd19", 16);
+tuint256 tHashDataSHA256(const uint8* data, int length, tuint256 iv = HashIVSHA256);
+tuint256 tHashStringSHA256(const char*, tuint256 iv = HashIVSHA256);
+tuint256 tHashStringSHA256(const tString&, tuint256 iv = HashIVSHA256);
 
 
 // Implementation below this line.
@@ -142,8 +146,10 @@ inline tuint128 tHashStringMD5(const tString& s, tuint128 iv)															{ re
 inline tuint128 tHashData128(const uint8* data, int length, tuint128 iv)												{ return tHashDataMD5(data, length, iv); }
 inline tuint128 tHashString128(const char* string, tuint128 iv)															{ return tHashDataMD5((uint8*)string, tStd::tStrlen(string), iv); }
 inline tuint128 tHashString128(const tString& s, tuint128 iv)															{ return tHashStringMD5(s.ConstText(), iv); }
-inline tuint256 tHashString256(const char* string, const tuint256& iv)													{ return tHashData256((uint8*)string, tStd::tStrlen(string), iv); }
-inline tuint256 tHashString256(const tString& s, const tuint256& iv)													{ return tHashString256(s.ConstText(), iv); }
+inline tuint256 tHashString256(const char* string, tuint256 iv)															{ return tHashData256((uint8*)string, tStd::tStrlen(string), iv); }
+inline tuint256 tHashString256(const tString& s, tuint256 iv)															{ return tHashString256(s.ConstText(), iv); }
+inline tuint256 tHashStringSHA256(const char* string, tuint256 iv)														{ return tHashDataSHA256((uint8*)string, tStd::tStrlen(string), iv); }
+inline tuint256 tHashStringSHA256(const tString& s, tuint256 iv)														{ return tHashStringSHA256(s.ConstText(), iv); }
 
 
 }

@@ -8,7 +8,7 @@
 // some commonly used sizes. Specifically it allows one to use the types tint128, tint256, tint512, tuint128, tuint256,
 // and tuint512 simply by including this header.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -185,8 +185,10 @@ public:
 
 	// Returns how many uint32s are used to store the integer.
 	int GetRawCount() const																								{ return NumBaseInts; }
-	void GetRawData(uint32* dest) const						/* Least significant at the beginning. */					{ tAssert(dest); tMemcpy(dest, IntData, NumBaseInts*4); }
-	void SetRawData(const uint32* src)																					{ tAssert(src); tMemcpy(IntData, src, NumBaseInts*4); int r = NumBits%32; uint32& e = IntData[NumBaseInts-1]; e &= r ? ~((0xFFFFFFFF >> r) << r) : 0xFFFFFFFF; }	// Least significant at the beginning. Clears any unused bits for you.
+	void GetRawData(uint32* dest) const		/* Least significant at the beginning. */									{ tAssert(dest); tStd::tMemcpy(dest, IntData, NumBaseInts*4); }
+	void SetRawData(const uint32* src)		/* Least significant at the beginning. Clears any unused bits for you. */	{ tAssert(src); tStd::tMemcpy(IntData, src, NumBaseInts*4); int r = NumBits%32; uint32& e = IntData[NumBaseInts-1]; e &= r ? ~((0xFFFFFFFF >> r) << r) : 0xFFFFFFFF; }
+	void SetFromBytes(const uint8* bytes);																				// Assumes bytes are given from most-significant to least. You need to supply NumBits / 8 of them.
+
 	uint32& RawElement(int i)																							{ return IntData[i]; }
 	uint32 GetRawElement(int i) const																					{ return IntData[i]; }
 
@@ -381,6 +383,22 @@ typedef tFixIntU<512> tuint512;
 
 
 // Implementation below this line.
+
+
+template<int N> inline void tFixIntU<N>::SetFromBytes(const uint8* bytes)
+{
+	MakeZero();
+	#ifdef ENDIAN_BIG
+	for (int i = MSIndex; i <= LSIndex; i++)
+	#else
+	for (int i = MSIndex; i >= LSIndex; i--)
+	#endif
+	{
+		uint32& idat = IntData[i];
+		idat = (bytes[0] << 24) | (bytes[1] << 16) | (bytes[2] << 8) | (bytes[3]);
+		bytes += 4;
+	}
+}
 
 
 template<int N> inline void tFixIntU<N>::Set(float v)
