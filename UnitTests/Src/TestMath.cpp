@@ -2,7 +2,7 @@
 //
 // Math module tests.
 //
-// Copyright (c) 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2017, 2019, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -197,6 +197,11 @@ tTestUnit(Hash)
 		hashString256, realHashString256
 	);
 	tRequire(hashString256 == hashStringCorrect256);
+
+	// SHA256 testing. @wip.
+	uint64 u64 = 0x170F1234B8F0B8F0LL;
+	tPrintf("Binary  0001 0111 0000 1111 0001 0010 0011 0100 1011 1000 1111 0000 1011 1000 1111 0000 (64 bit):\n");
+	tPrintf("        %0_64|64b\n", u64);
 }
 
 

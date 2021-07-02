@@ -6,7 +6,7 @@
 // data sources like strings, binary data, or files, you do NOT need to consolidate all the source data into one buffer
 // first. Just set the initialization vector to the hash computed from the previous step.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -15,6 +15,26 @@
 // INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
+//
+// The SHA-256 implementation is taken from https://github.com/amosnier/sha-2. All functions and constants in the
+// tHash_SHA256 namespace should be considered unencumbered as per Alain Mosnier's licence file:
+//
+// This is free and unencumbered software released into the public domain.
+//
+// Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form
+// or as a compiled binary, for any purpose, commercial or non-commercial, and by any means.
+//
+// In jurisdictions that recognize copyright laws, the author or authors of this software dedicate any and all copyright
+// interest in the software to the public domain. We make this dedication for the benefit of the public at large and to
+// the detriment of our heirs and successors. We intend this dedication to be an overt act of relinquishment in
+// perpetuity of all present and future rights to this software under copyright law.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+// WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+// For more information, please refer to <http://unlicense.org>
 
 #pragma once
 #include <Foundation/tStandard.h>
@@ -29,8 +49,9 @@ enum class tHashAlgorithm
 	Fast32,
 	Jenkins32,
 	Jenkins64,
-	MD5,													// MD5 is 128 bit.
-	Jenkins256
+	MD5,													// MD5 is 128 bit. For cryptographic purposes, no MD5.
+	Jenkins256,
+	SHA256
 };
 
 
@@ -59,7 +80,14 @@ constexpr uint32 tHashCT(const char*, uint32 iv = HashIV32);
 // to the hash of the same data computed as a single block. This is because the entire state is not stored in the hash
 // itself since these are much better hash functions than the Fast32 versions. Chaining is still useful as uniqueness is
 // still guaranteed and if any data changes in any of the sources the end result will vary. Chaining is performed in the
-// same manner as HashDataFast32.
+// same manner as HashDataFast32. Algorithms in use for below functions:
+//
+// tHash*32:  Robert J. Jenkins Jr., 1997. See http://burtleburtle.net/bob/hash/evahash.html
+// tHash*64:  Robert J. Jenkins Jr., 1997. See http://burtleburtle.net/bob/hash/evahash.html
+// tHash*128: MD5. Not cryptographically secure any more.
+// tHash*256: Robert J. Jenkins Jr., 1997. See http://burtleburtle.net/bob/hash/evahash.html
+//
+// If you want SHA-256 call it directly.
 uint32 tHashData32(const uint8* data, int length, uint32 iv = HashIV32);
 uint32 tHashString32(const char*, uint32 iv = HashIV32);
 uint32 tHashString32(const tString&, uint32 iv = HashIV32);
@@ -68,13 +96,6 @@ uint64 tHashData64(const uint8* data, int length, uint64 iv = HashIV64);
 uint64 tHashString64(const char*, uint64 iv = HashIV64);
 uint64 tHashString64(const tString&, uint64 iv = HashIV64);
 
-// The MD5 functions are used by the HashData128 functions. For reference and testing:
-// MD5("The quick brown fox jumps over the lazy dog") = 9e107d9d372bb6826bd81d3542a419d6
-// MD5("The quick brown fox jumps over the lazy dog.") = e4d909c290d0fb1ca068ffaddf22cbd0
-tuint128 tHashDataMD5(const uint8* data, int length, tuint128 iv = HashIV128);
-tuint128 tHashStringMD5(const char*, tuint128 iv = HashIV128);
-tuint128 tHashStringMD5(const tString&, tuint128 iv = HashIV128);
-
 tuint128 tHashData128(const uint8* data, int length, tuint128 iv = HashIV128);
 tuint128 tHashString128(const char*, tuint128 iv = HashIV128);
 tuint128 tHashString128(const tString&, tuint128 iv = HashIV128);
@@ -82,6 +103,18 @@ tuint128 tHashString128(const tString&, tuint128 iv = HashIV128);
 tuint256 tHashData256(const uint8* data, int length, tuint256 iv = HashIV256);
 tuint256 tHashString256(const char*, const tuint256& iv = HashIV256);
 tuint256 tHashString256(const tString&, const tuint256& iv = HashIV256);
+
+// The MD5 functions are used by the HashData128 functions. MD5 is _not_ to be used for cryptographic purposes.
+// For reference and testing:
+// MD5("The quick brown fox jumps over the lazy dog") = 9e107d9d372bb6826bd81d3542a419d6
+// MD5("The quick brown fox jumps over the lazy dog.") = e4d909c290d0fb1ca068ffaddf22cbd0
+tuint128 tHashDataMD5(const uint8* data, int length, tuint128 iv = HashIV128);
+tuint128 tHashStringMD5(const char*, tuint128 iv = HashIV128);
+tuint128 tHashStringMD5(const tString&, tuint128 iv = HashIV128);
+
+tuint256 tHashDataSHA256(const uint8* data, int length, tuint256 iv = HashIV256);
+tuint256 tHashStringSHA256(const char*, tuint256 iv = HashIV256);
+tuint256 tHashStringSHA256(const tString&, tuint256 iv = HashIV256);
 
 
 // Implementation below this line.
