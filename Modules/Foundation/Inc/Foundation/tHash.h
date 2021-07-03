@@ -88,6 +88,7 @@ constexpr uint32 tHashCT(const char*, uint32 iv = HashIV32);
 // tHash*256: Robert J. Jenkins Jr., 1997. See http://burtleburtle.net/bob/hash/evahash.html
 //
 // If you want SHA-256 call it directly.
+// If you want MD5 call it directly with the default default MD5 initialization vector.
 uint32 tHashData32(const uint8* data, int length, uint32 iv = HashIV32);
 uint32 tHashString32(const char*, uint32 iv = HashIV32);
 uint32 tHashString32(const tString&, uint32 iv = HashIV32);
@@ -104,15 +105,15 @@ tuint256 tHashData256(const uint8* data, int length, tuint256 iv = HashIV256);
 tuint256 tHashString256(const char*, tuint256 iv = HashIV256);
 tuint256 tHashString256(const tString&, tuint256 iv = HashIV256);
 
-// The MD5 functions are used by the HashData128 functions. MD5 is _not_ to be used for cryptographic purposes.
-// For reference and testing:
-// MD5("The quick brown fox jumps over the lazy dog") = 9e107d9d372bb6826bd81d3542a419d6
-// MD5("The quick brown fox jumps over the lazy dog.") = e4d909c290d0fb1ca068ffaddf22cbd0
-tuint128 tHashDataMD5(const uint8* data, int length, tuint128 iv = HashIV128);
-tuint128 tHashStringMD5(const char*, tuint128 iv = HashIV128);
-tuint128 tHashStringMD5(const tString&, tuint128 iv = HashIV128);
+// MD5 is _not_ to be used for cryptographic purposes. The MD5 functions are used by the HashData128 functions but with
+// a non-standard default iv. The direct MD5 hash functions below use a very specific default initialization vector. 
+// We allow it to be specified so you can still esily chain using the previous hash as the next iv.
+const tuint128 HashIVMD5("67452301" "efcdab89" "98badcfe" "10325476", 16);
+tuint128 tHashDataMD5(const uint8* data, int length, tuint128 iv = HashIVMD5);
+tuint128 tHashStringMD5(const char*, tuint128 iv = HashIVMD5);
+tuint128 tHashStringMD5(const tString&, tuint128 iv = HashIVMD5);
 
-// Note for the SHA256 functions there is a very specific initialization vector supplied. This is defined in
+// For the SHA256 functions there is a very specific initialization vector supplied. This is defined in
 // https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf
 // We allow it to be specified so you can still chain using the previous hash.
 const tuint256 HashIVSHA256("6a09e667" "bb67ae85" "3c6ef372" "a54ff53a" "510e527f" "9b05688c" "1f83d9ab" "5be0cd19", 16);

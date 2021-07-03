@@ -196,15 +196,9 @@ public:
 	static const int NumBaseInts = NumBits / 32;
 
 	// LS stands for Least Significant. MS stands for Most Significant.
-	#ifdef ENDIAN_BIG
-	static const int LSIndex = NumBaseInts-1;
-	static const int MSIndex = 0;
-	static int BaseIndex(int x)																							{ return LSIndex - x; }
-	#else
 	static const int LSIndex = 0;
 	static const int MSIndex = NumBaseInts-1;
 	static int BaseIndex(int x)																							{ return x; }
-	#endif
 
 	uint32 IntData[NumBaseInts];																						// IntData[0] is the LEAST significant uint32.
 
@@ -388,11 +382,7 @@ typedef tFixIntU<512> tuint512;
 template<int N> inline void tFixIntU<N>::SetFromBytes(const uint8* bytes)
 {
 	MakeZero();
-	#ifdef ENDIAN_BIG
-	for (int i = MSIndex; i <= LSIndex; i++)
-	#else
 	for (int i = MSIndex; i >= LSIndex; i--)
-	#endif
 	{
 		uint32& idat = IntData[i];
 		idat = (bytes[0] << 24) | (bytes[1] << 16) | (bytes[2] << 8) | (bytes[3]);
@@ -473,11 +463,7 @@ template<int N> inline tFixIntU<N>::operator float() const
 	static const float multiplier = (float(0xFFFFFFFF) + 1.0f);
 	float result = 0;
 
-	#ifdef ENDIAN_BIG
-	for (int i = 0; i < NumBaseInts; i++)
-	#else
 	for (int i = NumBaseInts-1; i >= 0; i--)
-	#endif
 		result = result * multiplier + IntData[i];
 
 	return result;
@@ -489,11 +475,7 @@ template<int N> inline tFixIntU<N>::operator double() const
 	static const double multiplier = (double(0xFFFFFFFF) + 1.0);
 	double result = 0;
 
-	#ifdef ENDIAN_BIG
-	for (int i = 0; i < NumBaseInts; i++)
-	#else
 	for (int i = NumBaseInts-1; i >= 0; i--)
-	#endif
 		result = result * multiplier + IntData[i];
 
 	return result;
@@ -511,41 +493,25 @@ template<int N> inline tString tFixIntU<N>::GetAsString(int base) const
 
 template<int N> inline void tFixIntU<N>::ClearBit(int b)
 {
-	#ifdef ENDIAN_BIG
-	IntData[LSIndex - b/32] &= ~(uint32(1)<<(b%32));
-	#else
 	IntData[b/32] &= ~(uint32(1)<<(b%32));
-	#endif
 }
 
 
 template<int N> inline void tFixIntU<N>::SetBit(int b)
 {
-	#ifdef ENDIAN_BIG
-	IntData[LSIndex - b/32] |= uint32(1)<<(b%32);
-	#else
 	IntData[b/32] |= uint32(1)<<(b%32);
-	#endif
 }
 
 
 template<int N> inline void tFixIntU<N>::ToggleBit(int b)
 {
-	#ifdef ENDIAN_BIG
-	IntData[LSIndex - b/32] ^= uint32(1)<<(b%32);
-	#else
 	IntData[b/32] ^= uint32(1)<<(b%32);
-	#endif
 }
 
 
 template<int N> inline bool tFixIntU<N>::GetBit(int b) const
 {
-	#ifdef ENDIAN_BIG
-	return (IntData[LSIndex - b/32] & (uint32(1)<<(b%32))) != 0;
-	#else
 	return (IntData[b/32] & (uint32(1)<<(b%32))) != 0;
-	#endif	
 }
 
 
@@ -553,21 +519,12 @@ template<int N> template<typename T> inline void tFixIntU<N>::Init(T v, uint8 fi
 {
 	if (sizeof(v) <= sizeof(IntData))
 	{
-		#ifdef ENDIAN_BIG
-		tStd::tMemset(IntData, 0, sizeof(IntData) - sizeof(v));
-		tStd::tMemcpy(reinterpret_cast<char*>(IntData) + sizeof(IntData) - sizeof(v), &v, sizeof(v));
-		#else
 		tStd::tMemcpy(IntData, &v, sizeof(v));
 		tStd::tMemset(reinterpret_cast<char*>(IntData) + sizeof(v), fill, sizeof(IntData) - sizeof(v));
-		#endif
 	}
 	else
 	{
-		#ifdef ENDIAN_BIG
-		tStd::tMemcpy(reinterpret_cast<char*>(IntData) - sizeof(IntData) + sizeof(v), reinterpret_cast<char*>(&v) - sizeof(IntData) + sizeof(v), sizeof(IntData));
-		#else
 		tStd::tMemcpy(IntData, &v, sizeof(IntData));
-		#endif
 	}
 }
 
@@ -576,21 +533,12 @@ template<int N> template<typename T> inline void tFixIntU<N>::Extract(T& v, uint
 {
 	if (sizeof(v) <= sizeof(IntData))
 	{
-		#ifdef ENDIAN_BIG
-		tStd::tMemcpy(&v, reinterpret_cast<char*>(IntData) + sizeof(IntData) - sizeof(v), sizeof(v));
-		#else
 		tStd::tMemcpy(&v, IntData, sizeof(v));
-		#endif
 	}
 	else
 	{
-		#ifdef ENDIAN_BIG
-		tStd::tMemcpy(reinterpret_cast<char*>(&v) - sizeof(IntData) + sizeof(v), IntData, sizeof(IntData));
-		tStd::tMemset(&v, 0, int(sizeof(IntData) - sizeof(v)));
-		#else
 		tStd::tMemcpy(&v, IntData, sizeof(IntData));
 		tStd::tMemset(reinterpret_cast<char*>(&v) + sizeof(v), fill, int(sizeof(v) - sizeof(IntData)));
-		#endif
 	}
 }
 
@@ -599,13 +547,6 @@ template<int N> template<int B, bool LhsGreater> template<typename T> inline voi
 {
 	const uint32* const rhsData = (uint32*)&rhs;
 	int i = 0;
-	#ifdef ENDIAN_BIG
-	tAssert(!"Fix this to take into account smaller sized type.");
-	for (; i < NumBaseInts - N / 32; i++)
-		lhs.IntData[BaseIndex(i)] = 0u;
-	for (; i < NumBaseInts; i++)
-		lhs.IntData[BaseIndex(i)] = rhsData[BaseIndex(i)];
-	#else
 	// If rhs is smaller, copy what we can over and fill in the rest with 0.
 	// If lhs is smaller, we may lose info (like casting an int to a short).
 	int lhsNum = lhs.NumBaseInts;
@@ -614,16 +555,12 @@ template<int N> template<int B, bool LhsGreater> template<typename T> inline voi
 		lhs.IntData[BaseIndex(i)] = rhsData[BaseIndex(i)];
 	for (; i < NumBaseInts; i++)
 		lhs.IntData[BaseIndex(i)] = 0u;
-	#endif
 }
 
 
 template<int N> template<int B> template<typename T> inline void tFixIntU<N>::AssignHelper<B, false>::operator()(tFixIntU& lhs, const T& rhs) const
 {
 	const uint32* rhsData = (uint32*)&rhs;
-	#ifdef ENDIAN_BIG
-	rhsData += (N-B) / 32;
-	#endif
 	for (int i = 0; i < NumBaseInts; i++)
 		lhs.IntData[BaseIndex(i)] = rhsData[BaseIndex(i)];
 }
@@ -676,11 +613,7 @@ template<int N> inline tFixIntU<N> tDivide(tFixIntU<N> a, int b, int* remainder)
 	bool seenNonZero = false;
 	tFixInt<N> result = 0;
 
-	#ifdef ENDIAN_BIG
-	for (int i = 0; i < a.GetRawCount(); i++)
-	#else
 	for (int i = a.GetRawCount()-1; i >= 0; i--)
-	#endif
 	{
 		if (seenNonZero || a.RawElement(i) != 0)
 		{
@@ -751,11 +684,7 @@ template<int N> inline tFixIntU<N>& tFixIntU<N>::operator*=(const uint32 m)
 
 template<int N> inline bool operator<(const tFixIntU<N>& a, const tFixIntU<N>& b)
 {
-	#ifdef ENDIAN_BIG
-	for (int i = 0; i < tFixIntU<N>::NumBaseInts; i++)
-	#else
 	for (int i = a.GetRawCount()-1; i >= 0; i--)
-	#endif
 	{
 		if (a.GetRawElement(i) < b.GetRawElement(i))
 			return true;
@@ -773,11 +702,7 @@ template<int N> inline tFixIntU<N>& tFixIntU<N>::operator>>=(int shift)
 	int remaindershift = shift & (32-1);
 	int othershift = 32 - remaindershift;
 
-	#ifdef ENDIAN_BIG
-	for (int i = NumBaseInts-1; i >= 0; i--)
-	#else
 	for (int i = 0; i < NumBaseInts; i++)
-	#endif
 	{
 		if (source < NumBaseInts)
 		{
@@ -800,11 +725,7 @@ template<int N> inline tFixIntU<N>& tFixIntU<N>::operator<<=(int shift)
 	int remaindershift = shift & (32-1);
 	int othershift = 32 - remaindershift;
 
-	#ifdef ENDIAN_BIG
-	for (int i = 0; i < NumBaseInts; i++)
-	#else
 	for (int i = NumBaseInts-1; i >= 0; i--)
-	#endif
 	{
 		if (source >= 0)
 		{
@@ -824,11 +745,7 @@ template<int N> inline tFixIntU<N>& tFixIntU<N>::operator<<=(int shift)
 template<int N> inline tFixIntU<N>& tFixIntU<N>::operator+=(const tFixIntU& v)
 {
 	uint32 carry = 0u;
-	#ifdef ENDIAN_BIG
-	for (int i = NumBaseInts-1; i >= 0; i--)
-	#else
 	for (int i = 0; i < NumBaseInts; i++)
-	#endif
 	{
 		IntData[i] += v.IntData[i] + carry;
 		if (!carry)
@@ -844,11 +761,7 @@ template<int N> inline tFixIntU<N>& tFixIntU<N>::operator-=(const tFixIntU& v)
 {
 	uint32 borrow = 0u, prevdigit;
 
-	#ifdef ENDIAN_BIG
-	for (int i = NumBaseInts-1; i >= 0; i--)
-	#else
 	for (int i = 0; i < NumBaseInts; i++)
-	#endif
 	{
 		prevdigit = IntData[i];
 		IntData[i] -= v.IntData[i] + borrow;
@@ -864,15 +777,6 @@ template<int N> inline tFixIntU<N>& tFixIntU<N>::operator-=(const tFixIntU& v)
 template<int N> inline tFixIntU<N>& tFixIntU<N>::operator++()
 {
 	++IntData[LSIndex];
-	#ifdef ENDIAN_BIG
-	for (int i = NumBaseInts-1; i > 0; i--)
-	{
-		if (!IntData[i])
-			++IntData[i-1];
-		else
-			break;
-	}
-	#else
 	for (int i = 0; i < NumBaseInts-1; i++)
 	{
 		if (!IntData[i])
@@ -880,7 +784,6 @@ template<int N> inline tFixIntU<N>& tFixIntU<N>::operator++()
 		else
 			break;
 	}
-	#endif
 	return *this;
 }
 
@@ -888,15 +791,6 @@ template<int N> inline tFixIntU<N>& tFixIntU<N>::operator++()
 template<int N> inline tFixIntU<N>& tFixIntU<N>::operator--()
 {
 	--IntData[LSIndex];
-	#ifdef ENDIAN_BIG
-	for (int i = NumBaseInts-1; i > 0; i--)
-	{
-		if (IntData[i] == 0xFFFFFFFF)
-			--IntData[i-1];
-		else
-			break;
-	}
-	#else
 	for (int i = 0; i < NumBaseInts-1; i++)
 	{
 		if (IntData[i] == 0xFFFFFFFF)
@@ -904,7 +798,6 @@ template<int N> inline tFixIntU<N>& tFixIntU<N>::operator--()
 		else
 			break;
 	}
-	#endif
 	return *this;
 }
 
@@ -977,11 +870,7 @@ template<int N> inline void tFixIntU<N>::RotateRight(int shift)
 	{
 		int othershift = 32 - remaindershift;
 
-		#ifdef ENDIAN_BIG
-		for (int i = NumBaseInts-1; i >= 0; i--)
-		#else
 		for (int i = 0; i < NumBaseInts; i++)
-		#endif
 		{
 			int source1 = source;
 			if (++source == NumBaseInts)
@@ -991,11 +880,7 @@ template<int N> inline void tFixIntU<N>::RotateRight(int shift)
 	}
 	else
 	{
-		#ifdef ENDIAN_BIG
-		for (int i = NumBaseInts-1; i >= 0; i--)
-		#else
 		for (int i = 0; i < NumBaseInts; i++)
-		#endif
 		{
 			result.IntData[i] = IntData[BaseIndex(source)];
 			if (++source == NumBaseInts)
@@ -1009,11 +894,7 @@ template<int N> inline void tFixIntU<N>::RotateRight(int shift)
 template<int N> inline int tFixIntU<N>::FindHighestBitSet() const
 {
 	int result = N-1;
-	#ifdef ENDIAN_BIG
-	for (int i = 0; i < tFixIntU<N>::NumBaseInts; i++)
-	#else
 	for (int i = tFixIntU<N>::NumBaseInts-1; i >= 0; i--)
-	#endif
 	{
 		if (IntData[i] != 0)
 		{
@@ -1040,11 +921,7 @@ template<int N> inline int tFixIntU<N>::FindHighestBitSet() const
 template<int N> inline int tFixIntU<N>::FindLowestBitSet() const
 {
 	int result = 0;
-	#ifdef ENDIAN_BIG
-	for (int i = NumBaseInts-1; i >= 0; i--)
-	#else
 	for (int i = 0; i < NumBaseInts; i++)
-	#endif
 	{
 		if (IntData[i] != 0)
 		{
@@ -1237,23 +1114,6 @@ template<int B> template<int N, bool LhsGreater> template<typename T2> inline vo
 	const uint32* const accessorHack = (uint32*)&rhs;
 	int i = 0;
 	
-	#ifdef ENDIAN_BIG
-	tAssert(!"Fix this to take into account smaller sized type.");
-	if (rhs < tFixInt<N>(0u))		// Sign extend.
-	{
-		for (; i < tFixIntU<B>::NumBaseInts - N / 32; i++)
-			lhs.IntData[tFixIntU<B>::BaseIndex(i)] = 0xFFFFFFFF;
-	}
-	else
-	{
-		for (; i < tFixIntU<B>::NumBaseInts - N / 32; i++)
-			lhs.IntData[tFixIntU<B>::BaseIndex(i)] = 0u;
-	}
-
-	for (; i < tFixIntU<B>::NumBaseInts; i++)
-		lhs.IntData[tFixIntU<B>::BaseIndex(i)] = accessorHack[tFixIntU<B>::BaseIndex(i)];
-
-	#else
 	int lhsNum = lhs.NumBaseInts;
 	int rhsNum = rhs.NumBaseInts;
 	for (; i < tMath::tMin(lhsNum, rhsNum); i++)
@@ -1269,16 +1129,12 @@ template<int B> template<int N, bool LhsGreater> template<typename T2> inline vo
 		for (; i < tFixIntU<B>::NumBaseInts; i++)
 			lhs.IntData[tFixIntU<B>::BaseIndex(i)] = 0u;
 	}
-	#endif
 }
 
 
 template<int B> template<int N> template<typename T2> inline void tFixInt<B>::AssignHelper<N, false>::operator()(tFixInt& lhs, const T2& rhs) const
 {
 	const uint32 *accessorHack = (uint32*)&rhs;
-	#ifdef ENDIAN_BIG
-	accessorHack += (N-B) / 32;
-	#endif
 	for (int i = 0; i < tFixIntU<B>::NumBaseInts; i++)
 		lhs.IntData[tFixIntU<B>::BaseIndex(i)] = accessorHack[tFixIntU<B>::BaseIndex(i)];
 }
@@ -1292,11 +1148,7 @@ template<int N> inline tFixInt<N>& tFixInt<N>::operator>>=(int shift)
 		int remaindershift = shift & (32-1);
 		int othershift = 32 - remaindershift;
 
-		#ifdef ENDIAN_BIG
-		for (int i = tFixIntU<N>::NumBaseInts-1; i >= 0; i--)
-		#else
 		for (int i = 0; i < tFixIntU<N>::NumBaseInts; i++)
-		#endif
 		{
 			if (source < tFixIntU<N>::NumBaseInts)
 			{
@@ -1358,11 +1210,7 @@ template<int N> inline bool operator<(const tFixInt<N>& a, const tFixInt<N>& b)
 	if (lhsHighChunk > rhsHighChunk)
 		return false;
 
-	#ifdef ENDIAN_BIG
-	for (int i = 1; i < tFixIntU<N>::NumBaseInts-1; i++)
-	#else
 	for (int i = tFixIntU<N>::NumBaseInts-2; i >= 0; i--)
-	#endif
 	{
 		if (a.IntData[i] < b.IntData[i])
 			return true;

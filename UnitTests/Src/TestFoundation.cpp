@@ -1006,11 +1006,14 @@ tTestUnit(Hash)
 	tPrintf("Good 32  bit hash: %08x\n", tHash::tHashString32(testString));
 	tPrintf("Good 64  bit hash: %016|64x\n", tHash::tHashString64(testString));
 
+	// For reference and testing:
+	// MD5("The quick brown fox jumps over the lazy dog") = 9e107d9d372bb6826bd81d3542a419d6
+	// MD5("The quick brown fox jumps over the lazy dog.") = e4d909c290d0fb1ca068ffaddf22cbd0
 	const char* md5String = "The quick brown fox jumps over the lazy dog";
 	tuint128 md5HashComputed = tHash::tHashStringMD5(md5String);
 	tuint128 md5HashCorrect("0x9e107d9d372bb6826bd81d3542a419d6");
 	tPrintf("MD5 String   : %s\n", md5String);
-	tPrintf("MD5 Correct  : 9e107d9d372bb6826bd81d3542a419d6\n");
+	tPrintf("MD5 Correct  : %032|128x\n", md5HashCorrect);
 	tPrintf("MD5 Computed : %032|128x\n\n", md5HashComputed);
 	tRequire(md5HashComputed == md5HashCorrect);
 
@@ -1099,7 +1102,15 @@ tTestUnit(Hash)
 	shaComp = tHash::tHashDataSHA256(binMsg, 16);
 	shaCorr.Set("411d3f1d2390ff3f482ac8df4e730780bb081a192f283d2f373138fd101dc8fe", 16);
 	tPrintf("Message : Binary:%s\n" "Computed: %0_64|256X\n" "Correct : %0_64|256X\n", "0x0123456789ABCDEFFEDCBA9876543210", shaComp, shaCorr);
-	tRequire(shaComp == shaCorr); 
+	tRequire(shaComp == shaCorr);
+
+	// Test a million-character-long message.
+	uint8* millionA = new uint8[1000000];
+	tStd::tMemset(millionA, 'a', 1000000);
+	shaComp = tHash::tHashDataSHA256(millionA, 1000000);
+	shaCorr.Set("CDC76E5C 9914FB92 81A1C7E2 84D73E67 F1809A48 A497200E 046D39CC C7112CD0", 16);
+	tPrintf("Message : One million 'a's\n" "Computed: %0_64|256X\n" "Correct : %0_64|256X\n", shaComp, shaCorr);
+	tRequire(shaComp == shaCorr);
 }
 
 

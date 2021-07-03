@@ -396,10 +396,12 @@ tuint128 tHash::tHashDataMD5(const uint8* data, int len, tuint128 iv)
 	// Phase 1. Initialize state variables.
 	count[0] = 0;
 	count[1] = 0;
-	state[0] = 0x67452301;									// Load magic initialization constants.
-	state[1] = 0xefcdab89;
-	state[2] = 0x98badcfe;
-	state[3] = 0x10325476;
+
+	// The default initialization constants given by the iv are specified by the MD5 spec.
+	state[0] = uint32(iv >> (128-32*1));	// Default IV: 0x67452301;
+	state[1] = uint32(iv >> (128-32*2));	// Default IV: 0xefcdab89;
+	state[2] = uint32(iv >> (128-32*3));	// Default IV: 0x98badcfe;
+	state[3] = uint32(iv);					// Default IV: 0x10325476;
 
 	// Phase 2. Block update. Could be put in a loop to process multiple chunks of data. Continues an MD5
 	// message-digest operation, processing another message block.

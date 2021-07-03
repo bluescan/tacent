@@ -6,7 +6,7 @@
 // If you need mathematical operators like subtraction, addition, multiplication, division etc, use the heavier
 // tFixInt instead. If you need a dynamic number of bits, use a tBitArray instead. If you don't, this will be faster.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -22,7 +22,7 @@
 
 
 // The tBitField class. NumBits represents the number of bits that can be stored by the instance. There are no
-// conditions on the value of NumBits used and long as it is a whole number. If NumBits is a multiple of 4, the
+// conditions on the value of NumBits used and long as it is a whole number. If NumBits is a multiple of 32, the
 // tBitField will be supported by tPrintf so just call something like: tsPrintf(s, "%032|128X", bitvar128) to convert it
 // to a string. The memory image size taken up will always be a multiple of 4 bytes. ex: sizeof(tBitField<16>) = 4 and
 // sizeof(tBitField<33>) = 8. You can still use tPrintf on a 33-bit bit-field, just be aware of the size. Any padding
@@ -96,7 +96,8 @@ public:
 	int GetNumBits() const									/* Returns the number of bits stored by the bit-field. */	{ return NumBits; }
 	int Count(bool val) const;								/* Returns the number of bits that match val. */
 
-	// These deal with the raw uint32 elements that represent the bit array.
+	// These deal with the raw uint32 elements that represent the bit array. The elements are always least-significant
+	// at the beginning,regardless of machine endianness.
 	int GetNumElements() const								/* Returns how many uint32s are used for the bit array. */	{ return NumElements; }
 	void GetElements(uint32* dest) const					/* Least significant at the beginning. */					{ tAssert(dest); tMemcpy(dest, Elements, NumElements*4); }
 	uint32* GetElements() const																							{ return (uint32*)Elements; }
