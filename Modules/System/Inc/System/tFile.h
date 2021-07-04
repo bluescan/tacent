@@ -399,9 +399,10 @@ bool tCreateFile(const tString& filename, uint8* data, int dataLength);
 uint32 tHashFileFast32(const tString& filename, uint32 iv = tHash::HashIV32);
 uint32 tHashFile32(const tString& filename, uint32 iv = tHash::HashIV32);
 uint64 tHashFile64(const tString& filename, uint64 iv = tHash::HashIV64);
-tuint128 tHashFileMD5(const tString& filename, tuint128 iv = tHash::HashIV128);
 tuint128 tHashFile128(const tString& filename, tuint128 iv = tHash::HashIV128);
 tuint256 tHashFile256(const tString& filename, const tuint256 iv = tHash::HashIV256);
+tuint128 tHashFileMD5(const tString& filename, tuint128 iv = tHash::HashIVMD5);
+tuint256 tHashFileSHA256(const tString& filename, const tuint256 iv = tHash::HashIVSHA256);
 
 
 };
@@ -517,9 +518,3 @@ inline void tSystem::tDriveInfo::Clear()
 	DriveType = tDriveType::Unknown;
 }
 #endif
-
-
-inline tuint128 tSystem::tHashFile128(const tString& filename, tuint128 iv)
-{
-	return tHashFileMD5(filename, iv);
-}

@@ -1279,19 +1279,6 @@ uint64 tSystem::tHashFile64(const tString& filename, uint64 iv)
 }
 
 
-tuint128 tSystem::tHashFileMD5(const tString& filename, tuint128 iv)
-{
-	int dataSize = 0;
-	uint8* data = tLoadFile(filename, nullptr, &dataSize);
-	if (!data)
-		return iv;
-
-	tuint128 hash = tHash::tHashData128(data, dataSize, iv);
-	delete[] data;
-	return hash;
-}
-
-
 tuint256 tSystem::tHashFile256(const tString& filename, tuint256 iv)
 {
 	int dataSize = 0;
@@ -1300,6 +1287,32 @@ tuint256 tSystem::tHashFile256(const tString& filename, tuint256 iv)
 		return iv;
 
 	tuint256 hash = tHash::tHashData256(data, dataSize, iv);
+	delete[] data;
+	return hash;
+}
+
+
+tuint128 tSystem::tHashFileMD5(const tString& filename, tuint128 iv)
+{
+	int dataSize = 0;
+	uint8* data = tLoadFile(filename, nullptr, &dataSize);
+	if (!data)
+		return iv;
+
+	tuint128 hash = tHash::tHashDataMD5(data, dataSize, iv);
+	delete[] data;
+	return hash;
+}
+
+
+tuint256 tSystem::tHashFileSHA256(const tString& filename, tuint256 iv)
+{
+	int dataSize = 0;
+	uint8* data = tLoadFile(filename, nullptr, &dataSize);
+	if (!data)
+		return iv;
+
+	tuint256 hash = tHash::tHashDataSHA256(data, dataSize, iv);
 	delete[] data;
 	return hash;
 }
