@@ -105,6 +105,10 @@ public:
 	void ToggleBit(int index);
 	bool GetBit(int index) const;
 
+	// Gets the n'th byte as a uint8. Zero-based index where zero is the least significant byte.
+	// If NumBits is, say, 33 the range of the index will be n E [0,4]. That is, 5 bytes.
+	uint8 GetByte(int n) const;
+
 	tFixIntU& operator&=(const tFixIntU& v)																				{ for (int i = 0; i < NumBaseInts; i++) IntData[i] &= v.IntData[i]; return *this; }
 	tFixIntU& operator|=(const tFixIntU& v)																				{ for (int i = 0; i < NumBaseInts; i++) IntData[i] |= v.IntData[i]; return *this; }
 	tFixIntU& operator^=(const tFixIntU& v)																				{ for (int i = 0; i < NumBaseInts; i++) IntData[i] ^= v.IntData[i]; return *this; }
@@ -188,7 +192,6 @@ public:
 	void GetRawData(uint32* dest) const		/* Least significant at the beginning. */									{ tAssert(dest); tStd::tMemcpy(dest, IntData, NumBaseInts*4); }
 	void SetRawData(const uint32* src)		/* Least significant at the beginning. Clears any unused bits for you. */	{ tAssert(src); tStd::tMemcpy(IntData, src, NumBaseInts*4); int r = NumBits%32; uint32& e = IntData[NumBaseInts-1]; e &= r ? ~((0xFFFFFFFF >> r) << r) : 0xFFFFFFFF; }
 	void SetFromBytes(const uint8* bytes);																				// Assumes bytes are given from most-significant to least. You need to supply NumBits / 8 of them.
-
 	uint32& RawElement(int i)																							{ return IntData[i]; }
 	uint32 GetRawElement(int i) const																					{ return IntData[i]; }
 
@@ -512,6 +515,17 @@ template<int N> inline void tFixIntU<N>::ToggleBit(int b)
 template<int N> inline bool tFixIntU<N>::GetBit(int b) const
 {
 	return (IntData[b/32] & (uint32(1)<<(b%32))) != 0;
+}
+
+
+template<int N> inline uint8 tFixIntU<N>::GetByte(int n) const
+{
+	int numBytes = (N / 8) + ((N % 8) ? 1 : 0);
+	tAssert(n < numBytes);
+	int idx = n / 4;
+	int shift = (n % 4) << 3;
+	uint32 elem = IntData[idx];
+	return (elem & (0xFF << shift)) >> shift;
 }
 
 
