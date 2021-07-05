@@ -104,6 +104,9 @@ public:
 	void SetElements(const uint32* src)						/* Least sig at the beginning. Clears unused bits. */		{ tAssert(src); tMemcpy(Elements, src, NumElements*4); ClearUnusedBits(); }
 	uint32& GetElement(int i)																							{ return Elements[i]; }
 
+	// Gets the n'th byte as a uint8. Zero-based index where zero is the least significant byte.
+	// If NumBits is, say, 33 the range of the index will be n E [0,4]. That is, 5 bytes.
+	uint8 GetByte(int n) const;
 	tBitField& operator=(const tBitField& s)																			{ if (this == &s) return *this; tStd::tMemcpy(Elements, s.Elements, sizeof(Elements)); return *this; }
 
 	// We ensure and assume any pad bits are clear. Since 0 &|^ 0 = 0, we don't need to bother clearing any pad bits.
@@ -383,6 +386,17 @@ template<int N> inline int tBitField<N>::Count(bool v) const
 		return numSet;
 
 	return N - numSet;
+}
+
+
+template<int N> inline uint8 tBitField<N>::GetByte(int n) const
+{
+	int numBytes = (N / 8) + ((N % 8) ? 1 : 0);
+	tAssert(n < numBytes);
+	int idx = n / 4;
+	int shift = (n % 4) << 3;
+	uint32 elem = Elements[idx];
+	return (elem & (0xFF << shift)) >> shift;
 }
 
 

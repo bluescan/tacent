@@ -701,6 +701,36 @@ tTestUnit(Bitfield)
 	bitset17.InvertAll();
 	tPrintf("bitset17: after invert: %s\n", bitset17.GetAsString().Pod());
 	tRequire(bitset17.GetAsString() == "1FFFD");
+
+	// Test extracting bytes from a bitfield. Start by creating a random bitfield.
+	tbit256 bitField;
+	bitField.Set
+	(
+		"00000010_00100100_10011111_11010100_00100100_10000101_01100011_01001000_"
+		"00101001_01111011_00111010_01011111_00100110_11010000_11111111_11001100_"
+		"00011100_11100010_00111000_11010000_00110011_11011011_01001100_00101110_"
+		"10010011_00111000_01000100_10000111_10001011_00010000_10101011_00100101",
+		2
+	);
+	tPrintf("%0_256|256b\n", bitField);
+	int cr = 0;
+	for (int b = 31; b >= 0; b--)
+	{
+		if ((cr++ % 8) == 0)
+			tPrintf("\n");
+
+		uint8 byte = bitField.GetByte(b);
+		tPrintf("%08b ", byte);
+	}
+
+	tBitField<33> bits33;
+	bits33.Set("1ABCDEF23", 16);
+	tPrintf("\nbits33 was set to:\n%s\n", bits33.GetAsString(16).Pod());
+	for (int b = 4; b >= 0; b--)
+	{
+		uint8 byte = bits33.GetByte(b);
+		tPrintf("%02x", byte);
+	}
 }
 
 

@@ -169,7 +169,8 @@ int main(int argc, char** argv)
 	// tTest(Rule);
 	// tTest(ImageMultiFrame);
 	// tTest(ImagePicture);
-	tTest(Hash);
+	// tTest(Hash);
+	tTest(Bitfield);
 
 	#endif
 
