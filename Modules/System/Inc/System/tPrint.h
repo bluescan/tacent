@@ -297,7 +297,7 @@ inline int tPrintf(const char* f, ...)
 }
 
 
-inline int tPrintf(uint32 c, const char* f, ...)
+inline int tPrintf(tSystem::tChannel c, const char* f, ...)
 {
 	va_list l;			va_start(l, f);
 	int n = tvPrintf	(c, f, l);
