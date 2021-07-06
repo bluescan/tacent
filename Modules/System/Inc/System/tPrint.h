@@ -49,6 +49,10 @@ namespace tSystem
 	const tChannel tChannel_User7							= 0x0000000000008000ull;
 
 	const tChannel tChannel_TestResult						= 0x0000000000010000ull;
+	const tChannel tChannel_Verbosity0						= 0x0000000000020000ull;
+	const tChannel tChannel_Verbosity1						= 0x0000000000040000ull;
+	const tChannel tChannel_Verbosity2						= 0x0000000000080000ull;
+
 	const tChannel tChannel_All								= 0xFFFFFFFFFFFFFFFFull;
 	const tChannel tChannel_Systems							= tChannel_Default	| tChannel_Core			|
 															  tChannel_Gameplay	| tChannel_Physics		|
