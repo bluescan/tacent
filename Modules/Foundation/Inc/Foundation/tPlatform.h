@@ -31,11 +31,15 @@
 
 
 // Attempt to auto-detect archetecture.
-#if (!defined(ARCHITECTURE_X64) && !defined(ARCHITECTURE_X86) && !defined(ARCHITECTURE_ARM))
+#if (!defined(ARCHITECTURE_X64) && !defined(ARCHITECTURE_X86) && !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64))
 	#if (defined(_M_AMD64) || defined(_WIN64) || defined(__x86_64__))
 		#define ARCHITECTURE_X64								// For x86_64
 	#elif defined(__i386)
 		#define ARCHITECTURE_X86
+	#elif defined(__arm__)
+		#define ARCHITECTURE_ARM32
+	#elif defined(__aarch64__)
+		#define ARCHITECTURE_ARM64
 	#endif
 #endif
 
