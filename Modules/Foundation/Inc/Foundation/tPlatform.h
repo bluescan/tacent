@@ -4,7 +4,7 @@
 // requirements. One of PLATFORM_NNN, ARCHITECTURE_NNN, and CONFIG_NNN need to be defined. If you haven't bothered
 // to define these in the project file with a /D switch, an attempt is made to define them automatically for you.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -65,7 +65,7 @@
 #if (!defined(PLATFORM_WINDOWS) && !defined(PLATFORM_LINUX) && !defined(PLATFORM_MACOS) && !defined(PLATFORM_ANDROID) && !defined(PLATFORM_IOS))
 	#error You must define a supported platform.
 #endif
-#if (!defined(ARCHITECTURE_X64) && !defined(ARCHITECTURE_ARM))
+#if (!defined(ARCHITECTURE_X86) && !defined(ARCHITECTURE_X64) && !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64))
 	#error You must define a supported architecture.
 #endif
 #if (!defined(CONFIG_DEBUG) && !defined(CONFIG_DEVELOP) && !defined(CONFIG_PROFILE) && !defined(CONFIG_RELEASE) && !defined(CONFIG_SHIP))
@@ -150,7 +150,9 @@ const char* tGetPlatformNameLong(tPlatform);
 enum class tArchitecture
 {
 	Invalid																												= -1,
+	x86,													// Intel 32bit.
 	x64,													// Desktop (not Itanium) 64bit architecture. i.e. AMD64.
+	A32,													// Arm 32 bit. Like the Raspberry before Pi 4.
 	A64,													// Arm 64 bit. Also known as AArch64.
 	NumArchitectures
 };

@@ -19,7 +19,7 @@ function(tacent_target_compile_definitions PROJNAME)
 	target_compile_definitions(
 		${PROJNAME}
 		PUBLIC
-			ARCHITECTURE_X64
+			# ARCHITECTURE_X64
 			$<$<CONFIG:Debug>:CONFIG_DEBUG>
 			$<$<CONFIG:Release>:CONFIG_RELEASE>
 			$<$<CXX_COMPILER_ID:MSVC>:_CRT_SECURE_NO_DEPRECATE _LIB>

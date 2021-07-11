@@ -4,7 +4,7 @@
 // requirements. One of PLATFORM_NNN, ARCHITECTURE_NNN, and CONFIG_NNN need to be defined. If you haven't bothered
 // to define these in the project file with a /D switch, an attempt is made to define them automatically for you.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -90,10 +90,18 @@ const char* tGetPlatformNameLong(tPlatform plat)
 
 tArchitecture tGetArchitecture()
 {
-	#if defined(ARCHITECTURE_X64)
+	#if defined(ARCHITECTURE_X86)
+	return tArchitecture::x86;
+
+	#elif defined(ARCHITECTURE_X64)
 	return tArchitecture::x64;
+
+	#elif defined(ARCHITECTURE_A32)
+	return tArchitecture::A32;
+
 	#elif defined(ARCHITECTURE_A64)
 	return tArchitecture::A64;
+
 	#else
 	return tArchitecture::Invalid;
 	#endif
@@ -104,7 +112,9 @@ const char* tGetArchitectureName(tArchitecture arch)
 {
 	const static char* archNames[] =
 	{
+		"x86",
 		"x64",
+		"A32",
 		"A64",
 		"Invalid"
 	};
@@ -121,8 +131,10 @@ const char* tGetArchitectureNameLong(tArchitecture arch)
 {
 	const static char* archNames[] =
 	{
+		"x86|INTEL32|x86|32bit",
 		"x64|AMD64|x86-64|64bit",
-		"A64|AArch64|64bit",
+		"A32|ARM32|ARM|32bit",
+		"A64|ARM64|AArch64|64bit",
 		"Invalid"
 	};
 	tStaticAssert( ((sizeof(archNames)/sizeof(*archNames)) - 1) == int(tArchitecture::NumArchitectures) );
