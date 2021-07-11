@@ -28,4 +28,9 @@ add_subdirectory(Modules)
 add_subdirectory(UnitTests)
 
 # The WoboqGen executable.
-add_subdirectory(Woboq)
+tacent_is_arch_arm(IsArm)
+if (IsArm)
+	message(STATUS "Tacent -- Arm Architecture. Excluding Woboq.")
+else()
+	add_subdirectory(Woboq)
+endif()

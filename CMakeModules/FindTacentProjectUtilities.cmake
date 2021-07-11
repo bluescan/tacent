@@ -14,6 +14,20 @@ function(tacent_target_include_directories PROJNAME)
 	)
 endfunction(tacent_target_include_directories)
 
+
+function(tacent_is_arch_arm retval)
+	message(STATUS "Tacent -- ArchitectureHost   ${CMAKE_HOST_SYSTEM_PROCESSOR}")
+	message(STATUS "Tacent -- ArchitectureTarget ${CMAKE_SYSTEM_PROCESSOR}")
+	string(FIND "${CMAKE_SYSTEM_PROCESSOR}" "arm" SUBSTRINDEXVAR)
+	#string(FIND "${CMAKE_SYSTEM_PROCESSOR}" "AMD" SUBSTRINDEXVAR)
+	if (SUBSTRINDEXVAR EQUAL -1)
+		SET(${retval} False PARENT_SCOPE)
+	else()
+		SET(${retval} True PARENT_SCOPE)
+	endif()
+endfunction()
+
+
 function(tacent_target_compile_definitions PROJNAME)
 	# Set -D defines based on configuration and platform.
 	target_compile_definitions(
@@ -28,6 +42,7 @@ function(tacent_target_compile_definitions PROJNAME)
 			$<$<PLATFORM_ID:Linux>:PLATFORM_LINUX>
 	)
 endfunction(tacent_target_compile_definitions)
+
 
 function(tacent_target_compile_options PROJNAME)
 	# Set compiler option flags based on specific compiler and configuration.

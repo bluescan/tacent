@@ -15,12 +15,14 @@
 #include <Foundation/tVersion.cmake.h>
 #include <System/tCommand.h>
 #include "UnitTests.h"
-#include "TestPipeline.h"
 #include "TestFoundation.h"
-#include "TestImage.h"
 #include "TestMath.h"
-#include "TestScene.h"
 #include "TestSystem.h"
+#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
+#include "TestPipeline.h"
+#include "TestImage.h"
+#include "TestScene.h"
+#endif
 
 
 using namespace tStd;
@@ -139,10 +141,13 @@ int main(int argc, char** argv)
 
 	#ifndef PLATFORM_LINUX
 	// Build tests.
-	tTest(Process);
+		#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
+		tTest(Process);
+		#endif
 	#endif
 
 	// Image tests.
+	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
 	tTest(ImageLoad);
 	tTest(ImageSave);
 	tTest(ImageTexture);
@@ -152,6 +157,7 @@ int main(int argc, char** argv)
 	tTest(ImageDetection);
 	tTest(ImageFilter);
 	tTest(ImageMultiFrame);
+	#endif
 
 	#else
 

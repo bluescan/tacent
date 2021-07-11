@@ -1,23 +1,39 @@
 find_package("TacentProjectUtilities" REQUIRED)
 project(UnitTests VERSION ${TACENT_VERSION} LANGUAGES CXX)
+tacent_is_arch_arm(IsArm)
 
-add_executable(
-	${PROJECT_NAME}
-	Src/TestPipeline.cpp
-	Src/TestFoundation.cpp
-	Src/TestImage.cpp
-	Src/TestMath.cpp
-	Src/TestScene.cpp
-	Src/TestSystem.cpp
-	Src/UnitTests.cpp
-	Src/TestPipeline.h
-	Src/TestFoundation.h
-	Src/TestImage.h
-	Src/TestMath.h
-	Src/TestScene.h
-	Src/TestSystem.h
-	Src/UnitTests.h
-)
+if (NOT IsArm)
+	add_executable(
+		${PROJECT_NAME}
+		Src/TestFoundation.h
+		Src/TestFoundation.cpp
+		Src/TestMath.h
+		Src/TestMath.cpp
+		Src/TestSystem.h
+		Src/TestSystem.cpp
+		Src/UnitTests.h
+		Src/UnitTests.cpp
+
+		Src/TestImage.h
+		Src/TestImage.cpp
+		Src/TestScene.h
+		Src/TestScene.cpp
+		Src/TestPipeline.h
+		Src/TestPipeline.cpp
+	)
+else()
+	add_executable(
+		${PROJECT_NAME}
+		Src/TestFoundation.h
+		Src/TestFoundation.cpp
+		Src/TestMath.h
+		Src/TestMath.cpp
+		Src/TestSystem.h
+		Src/TestSystem.cpp
+		Src/UnitTests.h
+		Src/UnitTests.cpp
+	)
+endif()
 
 tacent_target_include_directories(${PROJECT_NAME})
 tacent_target_compile_definitions(${PROJECT_NAME})
@@ -30,19 +46,35 @@ set_target_properties(
 	MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"	# Use multithreaded or multithreaded-debug runtime on windows.
 )
 
-target_link_libraries(
-	${PROJECT_NAME}
-	PUBLIC
-		Foundation Math System Image Pipeline Scene
+if (NOT IsArm)
+	target_link_libraries(
+		${PROJECT_NAME}
+		PUBLIC
+			Foundation Math System Image Pipeline Scene
 
-		# I'm a little surprised cmake doesn't do these for me on Linux. The odd thing is they are
-		# unnecessary if using VSCode/Cmake Tools, even in Ubuntu. They are, however, needed when
-		# building from bash.
-		$<$<PLATFORM_ID:Linux>:m>
-		$<$<PLATFORM_ID:Linux>:stdc++>
+			# I'm a little surprised cmake doesn't do these for me on Linux. The odd thing is they are
+			# unnecessary if using VSCode/Cmake Tools, even in Ubuntu. They are, however, needed when
+			# building from bash.
+			$<$<PLATFORM_ID:Linux>:m>
+			$<$<PLATFORM_ID:Linux>:stdc++>
 
-		$<$<PLATFORM_ID:Windows>:shlwapi.lib>
-)
+			$<$<PLATFORM_ID:Windows>:shlwapi.lib>
+	)
+else()
+	target_link_libraries(
+		${PROJECT_NAME}
+		PUBLIC
+			Foundation Math System
+
+			# I'm a little surprised cmake doesn't do these for me on Linux. The odd thing is they are
+			# unnecessary if using VSCode/Cmake Tools, even in Ubuntu. They are, however, needed when
+			# building from bash.
+			$<$<PLATFORM_ID:Linux>:m>
+			$<$<PLATFORM_ID:Linux>:stdc++>
+
+			$<$<PLATFORM_ID:Windows>:shlwapi.lib>
+	)
+endif()
 
 # Why do we still need this?
 if (MSVC)
@@ -57,10 +89,19 @@ target_include_directories(
 		$<TARGET_PROPERTY:Foundation,INTERFACE_INCLUDE_DIRECTORIES>
 		$<TARGET_PROPERTY:Math,INTERFACE_INCLUDE_DIRECTORIES>
 		$<TARGET_PROPERTY:System,INTERFACE_INCLUDE_DIRECTORIES>
-		$<TARGET_PROPERTY:Image,INTERFACE_INCLUDE_DIRECTORIES>
-		$<TARGET_PROPERTY:Pipeline,INTERFACE_INCLUDE_DIRECTORIES>
-		$<TARGET_PROPERTY:Scene,INTERFACE_INCLUDE_DIRECTORIES>
 )
+
+if (NOT IsArm)
+	message(STATUS "Tacent -- Arm Architecture. Excluding Some Modules.")
+	target_include_directories(
+		"${PROJECT_NAME}"
+		PRIVATE
+			$<TARGET_PROPERTY:Image,INTERFACE_INCLUDE_DIRECTORIES>
+			$<TARGET_PROPERTY:Pipeline,INTERFACE_INCLUDE_DIRECTORIES>
+			$<TARGET_PROPERTY:Scene,INTERFACE_INCLUDE_DIRECTORIES>
+	)
+endif()
+
 
 # Installation.
 install(
