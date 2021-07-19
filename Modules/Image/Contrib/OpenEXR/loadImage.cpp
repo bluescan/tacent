@@ -70,6 +70,12 @@ using namespace std;
 
 namespace {
 
+// @tacent
+#define TACENT_EXR_CHANGES
+#ifdef TACENT_EXR_CHANGES
+void loadImageChannel(const char fileName[], const char channelName[], int partnum, Header &header, Array<Rgba> &pixels);
+#endif
+
 void
 loadImage (const char fileName[],
            const char layer[],
@@ -84,6 +90,10 @@ loadImage (const char fileName[],
     ChannelList ch = header.channels();
     if(ch.findChannel("Y"))
     {
+		#ifdef TACENT_EXR_CHANGES
+		loadImageChannel(fileName, "Y", partnum, header, pixels);
+
+		#else
         //
         // Not handling YCA image right now
         //
@@ -92,6 +102,7 @@ loadImage (const char fileName[],
         //no data for YCA image
         pixels.resizeErase (1);
         header.dataWindow() = Box2i (V2i (0, 0), V2i (0, 0));
+        #endif
     }
     else
     {
@@ -392,6 +403,10 @@ loadImageChannel (const char fileName[],
         {
             pixels[i].r = pixels[i].g;
             pixels[i].b = pixels[i].g;
+
+            #ifdef TACENT_EXR_CHANGES
+            pixels[i].a = half(1.0f);
+            #endif
         }
     }
     else
@@ -981,7 +996,7 @@ EXR::loadImage (const char fileName[],
     {
         if (channel)
         {
-
+			//const char chan[] = { 'Y' };
             loadImageChannel (fileName,
                               channel,
                               partnum,
