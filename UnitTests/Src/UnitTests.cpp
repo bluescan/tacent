@@ -139,11 +139,9 @@ int main(int argc, char** argv)
 	tTest(Time);
 	tTest(Machine);
 
-	#ifndef PLATFORM_LINUX
 	// Build tests.
-		#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
-		tTest(Process);
-		#endif
+	#ifdef PLATFORM_WINDOWS
+	tTest(Process);
 	#endif
 
 	// Image tests.
