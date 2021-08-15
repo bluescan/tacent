@@ -168,9 +168,9 @@ bool tSystem::tOpenSystemFileExplorer(const tString& dir, const tString& file)
 
 	tString sysStr;
 	if (browser == nautilus)
-		tsPrintf(sysStr, "%s %s%s", browser.Chars(), dir.Chars(), file.Chars());
+		tsPrintf(sysStr, "%s %s%s &", browser.Chars(), dir.Chars(), file.Chars());
 	else if (browser == dolphin)
-		tsPrintf(sysStr, "%s --new-window --select %s%s", browser.Chars(), dir.Chars(), file.Chars());
+		tsPrintf(sysStr, "%s --new-window --select %s%s &", browser.Chars(), dir.Chars(), file.Chars());
 
 	system(sysStr.ConstText());
 	return true;
