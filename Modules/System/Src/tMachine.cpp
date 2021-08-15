@@ -3,7 +3,7 @@
 // Hardware ans OS access functions like querying supported instruction sets, number or cores, and computer name/ip
 // accessors.
 //
-// Copyright (c) 2004-2006, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2019, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -155,11 +155,23 @@ bool tSystem::tOpenSystemFileExplorer(const tString& dir, const tString& file)
 	return true;
 
 	#elif defined(PLATFORM_LINUX)
-	if (!tFileExists("/usr/bin/nautilus"))
+	tString nautilus = "/usr/bin/nautilus";
+	tString dolphin = "/usr/bin/dolphin";
+	tString browser;
+
+	if (tFileExists(nautilus))
+		browser = nautilus;
+	else if (tFileExists(dolphin))
+		browser = dolphin;
+	if (browser.IsEmpty())
 		return false;
 
 	tString sysStr;
-	tsPrintf(sysStr, "/usr/bin/nautilus %s%s", dir.Chars(), file.Chars());
+	if (browser == nautilus)
+		tsPrintf(sysStr, "%s %s%s", browser.Chars(), dir.Chars(), file.Chars());
+	else if (browser == dolphin)
+		tsPrintf(sysStr, "%s --new-window --select %s%s", browser.Chars(), dir.Chars(), file.Chars());
+
 	system(sysStr.ConstText());
 	return true;
 
