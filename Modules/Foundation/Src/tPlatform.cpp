@@ -146,6 +146,49 @@ const char* tGetArchitectureNameLong(tArchitecture arch)
 }
 
 
+tConfiguration tGetConfiguration()
+{
+	#if defined(CONFIG_DEBUG)
+	return tConfiguration::Debug;
+
+	#elif defined(CONFIG_DEVELOP)
+	return tConfiguration::Develop;
+
+	#elif defined(CONFIG_PROFILE)
+	return tConfiguration::Profile;
+
+	#elif defined(CONFIG_RELEASE)
+	return tConfiguration::Release;
+
+	#elif defined(CONFIG_SHIP)
+	return tConfiguration::Ship;
+
+	#else
+	return tConfiguration::Invalid;
+	#endif
+}
+
+
+const char* tGetConfigurationName(tConfiguration config)
+{
+	const static char* configNames[] =
+	{
+		"Debug",
+		"Develop",
+		"Profile",
+		"Release",
+		"Ship",
+		"Invalid"
+	};
+	tStaticAssert( ((sizeof(configNames)/sizeof(*configNames)) - 1) == int(tConfiguration::NumConfigurations) );
+
+	if (config == tConfiguration::Invalid)
+		return configNames[int(tConfiguration::NumConfigurations)];
+
+	return configNames[int(config)];
+}
+
+
 tEndianness tGetEndianness(tPlatform plat)
 {
 	switch (plat)

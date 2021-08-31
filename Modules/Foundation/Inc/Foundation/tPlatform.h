@@ -149,7 +149,7 @@ const char* tGetPlatformNameLong(tPlatform);
 
 enum class tArchitecture
 {
-	Invalid																												= -1,
+	Invalid													= -1,
 	x86,													// Intel 32bit.
 	x64,													// Desktop (not Itanium) 64bit architecture. i.e. AMD64.
 	A32,													// Arm 32 bit. Like the Raspberry before Pi 4.
@@ -160,9 +160,22 @@ tArchitecture tGetArchitecture();							// Based on defines.
 const char* tGetArchitectureName(tArchitecture);
 const char* tGetArchitectureNameLong(tArchitecture);
 
+enum class tConfiguration
+{
+	Invalid													= -1,
+	Debug,
+	Develop,
+	Profile,
+	Release,
+	Ship,
+	NumConfigurations
+};
+tConfiguration tGetConfiguration();							// Based on defines.
+const char* tGetConfigurationName(tConfiguration);
+
 enum class tEndianness
 {
-	Invalid																												= -1,
+	Invalid													= -1,
 	Big,
 	Little
 };
