@@ -348,6 +348,14 @@ bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tStrin
 // is empty, all filetypes are included. Returns success.
 bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden = true);
 
+// The above two functions are based on the generic C++17 std::filesystem interface. While a clean cross-plat API,
+// it really is quite slow... up to 10x slower on Linux. The following two functions do the same thing, but by using
+// the native C file access functions (FindFirstFile etc for windows, readdir etc for Linux). They are, as the name
+// indicates, much faster.
+bool tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
+bool tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden = true);
+
+
 // foundFiles is appened to. Clear first if desired. Extension can be something like "txt" (no dot).
 bool tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
 bool tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden = true);

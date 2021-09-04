@@ -32,6 +32,7 @@
 #include <sys/types.h>
 #include <pwd.h>
 #include <fstream>
+#include <dirent.h>			// For fast (C) directory entry queries.
 #endif
 #include <filesystem>
 #include "System/tTime.h"
@@ -2162,17 +2163,69 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 
 bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden)
 {
-	#ifdef PLATFORM_WINDOWS
+	tString dirPath(dir);
 
+	// Use current directory if no dirPath supplied.
+	if (dirPath.IsEmpty())
+		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
+
+	if (dirPath.IsEmpty())
+		return false;
+
+	// Even root should look like "/".
+	if (dirPath[dirPath.Length() - 1] == '\\')
+		dirPath[dirPath.Length() - 1] = '/';
+
+	std::error_code errorCode;
+	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text(), errorCode))
+	{
+		if (errorCode || (entry == std::filesystem::directory_entry()))
+		{
+			errorCode.clear();
+			continue;
+		}
+
+		if (!entry.is_regular_file())
+			continue;
+
+		tString foundFile((char*)entry.path().u8string().c_str());
+		tString foundExt = tGetFileExtension(foundFile);
+
+		// If extension list present and no match continue.
+		if (!extensions.IsEmpty() && !extensions.Contains(foundExt))
+			continue;
+
+		if (includeHidden || !tIsHidden(foundFile))
+			foundFiles.Append(new tStringItem(foundFile));
+	}
+
+	return true;
+}
+
+
+bool tSystem::tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden)
+{
+	tExtensions extensions;
+	if (!ext.IsEmpty())
+		extensions.Add(ext);
+	return tFindFilesFast(foundFiles, dir, extensions, includeHidden);
+}
+
+
+bool tSystem::tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden)
+{
 	// FindFirstFile etc seem to like backslashes better.
 	tString dirStr(dir);
-	dirStr.Replace('/', '\\');
+	if (dirStr.IsEmpty())
+		dirStr = tGetCurrentDir();
 
+	#ifdef PLATFORM_WINDOWS
+	dirStr.Replace('/', '\\');
 	if (dirStr[dirStr.Length() - 1] != '\\')
 		dirStr += "\\";
 
 	// There's some complexity here with windows, but it's still very fast. We need to loop through all the
-	// extensions doing the FidFirstFile business, while modifying the path appropriately for each one.
+	// extensions doing the FindFirstFile business, while modifying the path appropriately for each one.
 	tExtensions exts(extensions);
 
 	// Insert a special empty extension if extensions is empty. This will cause all file types to be included.
@@ -2230,33 +2283,22 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 	}
 	return allOk;
 
-	#else
-	tString dirPath(dir);
+	#elif defined(PLATFORM_LINUX)
+	dirStr.Replace('\\', '/');
+	if (dirStr[dirStr.Length() - 1] != '/')
+		dirStr += "/";
 
-	// Use current directory if no dirPath supplied.
-	if (dirPath.IsEmpty())
-		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
-
-	// Even root should look like "/".
-	if (dirPath.IsEmpty())
+	DIR* dirEnt = opendir(dirStr.Chars());
+	if (dirStr.IsEmpty() || !dirEnt)
 		return false;
 
-	if (dirPath[dirPath.Length() - 1] == '\\')
-		dirPath[dirPath.Length() - 1] = '/';
-
-	std::error_code errorCode;
-	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text(), errorCode))
+	for (struct dirent* entry = readdir(dirEnt); entry; entry = readdir(dirEnt))
 	{
-		if (errorCode || (entry == std::filesystem::directory_entry()))
-		{
-			errorCode.clear();
-			continue;
-		}
-
-		if (!entry.is_regular_file())
+		if (entry->d_type != DT_REG)
 			continue;
 
-		tString foundFile((char*)entry.path().u8string().c_str());
+		tString foundFile((char*)entry->d_name);
+		foundFile = dirStr + foundFile;
 		tString foundExt = tGetFileExtension(foundFile);
 
 		// If extension list present and no match continue.
@@ -2266,8 +2308,12 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 		if (includeHidden || !tIsHidden(foundFile))
 			foundFiles.Append(new tStringItem(foundFile));
 	}
-
+	closedir(dirEnt);
 	return true;
+
+	#else
+	return tFindFiles(foundFiles, dir, extensions, includeHidden);
+
 	#endif
 }
 

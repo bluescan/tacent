@@ -826,6 +826,22 @@ tTestUnit(Chunk)
 }
 
 
+bool StringListsMatch(const tList<tStringItem>& a, const tList<tStringItem>& b)
+{
+	if (a.GetNumItems() != b.GetNumItems())
+		return false;
+
+	tStringItem* ib = b.First();
+	for (tStringItem* ia = a.First(); ia; ia = ia->Next(), ib = ib->Next())
+	{
+		if (*ia != *ib)
+			return false;
+	}
+
+	return true;
+}
+
+
 tTestUnit(File)
 {
 	#if (defined PLATFORM_WINDOWS) && (defined WINDOWS_NETWORK_SHARE_SUPPORT)
@@ -838,9 +854,18 @@ tTestUnit(File)
 	tRequire(!tFileExists("TestData/ProbablyDoesntExist.txt"));
 
 	tList<tStringItem> files;
-	tFindFiles(files, "TestData/");
+	tFindFiles(files, "TestData/", tString(), false);
+	// tFindFiles(files, "/home/tristan/GitHub/tacent/UnitTests/TestData/", tString(), false);
 	for (tStringItem* file = files.Head(); file; file = file->Next())
-		tPrintf("Found file: %s\n", file->Text());
+		tPrintf("Found file norm: %s\n", file->Text());
+
+	tList<tStringItem> filesFast;
+	tFindFilesFast(filesFast, "TestData/", tString(), false);
+	// tFindFilesFast(filesFast, "/home/tristan/GitHub/tacent/UnitTests/TestData/", tString(), false);
+	for (tStringItem* file = filesFast.Head(); file; file = file->Next())
+		tPrintf("Found file fast: %s\n", file->Text());
+
+	tRequire(StringListsMatch(files, filesFast));
 
 	tExtensions extensions;
 	tGetExtensions(extensions, tFileType::TIFF);
@@ -849,13 +874,21 @@ tTestUnit(File)
 		tPrintf("TIFF or HDR extension: %s\n", ext->Text());
 	tRequire(extensions.Count() == 4);
 
-	tList<tStringItem> filesMult;
 	extensions.Clear();
 	extensions.Add("bmp").Add("txT");
 	extensions.Add("ZZZ");
+
+	tList<tStringItem> filesMult;
 	tFindFiles(filesMult, "TestData/", extensions);
 	for (tStringItem* file = filesMult.Head(); file; file = file->Next())
-		tPrintf("Found file (bmp, txt, zzz): %s\n", file->Text());
+		tPrintf("Found file norm (bmp, txt, zzz): %s\n", file->Text());
+
+	tList<tStringItem> filesMultFast;
+	tFindFilesFast(filesMultFast, "TestData/", extensions);
+	for (tStringItem* file = filesMultFast.Head(); file; file = file->Next())
+		tPrintf("Found file fast (bmp, txt, zzz): %s\n", file->Text());
+
+	tRequire(StringListsMatch(filesMult, filesMultFast));
 
 	tString testWinPath = "c:/ADir/file.txt";
 	tRequire(tGetDir(testWinPath) == "c:/ADir/");
