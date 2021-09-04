@@ -826,15 +826,14 @@ tTestUnit(Chunk)
 }
 
 
-bool StringListsMatch(const tList<tStringItem>& a, const tList<tStringItem>& b)
+bool ListsContainSameItems(const tList<tStringItem>& a, const tList<tStringItem>& b)
 {
 	if (a.GetNumItems() != b.GetNumItems())
 		return false;
 
-	tStringItem* ib = b.First();
-	for (tStringItem* ia = a.First(); ia; ia = ia->Next(), ib = ib->Next())
+	for (tStringItem* ia = a.First(); ia; ia = ia->Next())
 	{
-		if (*ia != *ib)
+		if (!b.Contains(*ia))
 			return false;
 	}
 
@@ -874,8 +873,7 @@ tTestUnit(File)
 	for (tStringItem* file = filesFast.Head(); file; file = file->Next())
 		tPrintf("Found file fast: %s\n", file->Text());
 
-	tRequire(StringListsMatch(files, filesFast));
-	return;////////////////
+	tRequire(ListsContainSameItems(files, filesFast));
 
 	tExtensions extensions;
 	tGetExtensions(extensions, tFileType::TIFF);
@@ -898,7 +896,7 @@ tTestUnit(File)
 	for (tStringItem* file = filesMultFast.Head(); file; file = file->Next())
 		tPrintf("Found file fast (bmp, txt, zzz): %s\n", file->Text());
 
-	tRequire(StringListsMatch(filesMult, filesMultFast));
+	tRequire(ListsContainSameItems(filesMult, filesMultFast));
 
 	tString testWinPath = "c:/ADir/file.txt";
 	tRequire(tGetDir(testWinPath) == "c:/ADir/");

@@ -345,18 +345,19 @@ void tRequestNetworkShares();
 // The foundfiles list is always appended to. You must clear it first if that's what you intend. If empty second
 // argument, the contents of the current directory are returned. Extension can be something like "txt" (no dot).
 // On all platforms the extension is not case sensitive. eg. giF will match Gif. If ext is empty, all filetypes
-// are included. Returns success.
+// are included. The order of items in foundFiles is not defined. Returns success.
 bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
 
 // This is similar to the above function but lets you specify more than one extension at a time. This has huge
 // performance implications (esp on Linux) if you need to find more than one extension in a directory. If extensions
-// is empty, all filetypes are included. Returns success.
+// is empty, all filetypes are included. The order of items in foundFiles is not defined. Returns success.
 bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden = true);
 
 // The above two functions are based on the generic C++17 std::filesystem interface. While a clean cross-plat API,
 // it really is quite slow... up to 10x slower on Linux. The following two functions do the same thing, but by using
 // the native C file access functions (FindFirstFile etc for windows, readdir etc for Linux). They are, as the name
-// indicates, much faster.
+// indicates, much faster. The order of items in foundFiles is not defined. In particular, it may not match the non-
+// fast versions of tFindFiles. Returns success.
 bool tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
 bool tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden = true);
 
