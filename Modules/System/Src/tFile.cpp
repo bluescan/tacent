@@ -2296,7 +2296,13 @@ bool tSystem::tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir,
 
 	for (struct dirent* entry = readdir(dirEnt); entry; entry = readdir(dirEnt))
 	{
-		if (entry->d_type != DT_REG)
+		// Definitely skip directories.
+		if (entry->d_type == DT_DIR)
+			continue;
+
+		// Sometimes it seems that d_type for a file is set to unknown.
+		// Noticed this under Linux when some files are in mounted directories.
+		if ((entry->d_type != DT_REG) && (entry->d_type != DT_UNKNOWN))
 			continue;
 
 		tString foundFile((char*)entry->d_name);
