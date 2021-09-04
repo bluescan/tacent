@@ -1407,13 +1407,15 @@ bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 
 bool tSystem::tIsHidden(const tString& path)
 {
-	// Even in windows treat files starting with a dot as hidden.
+	#if defined(PLATFORM_LINUX)
+	// In Linux it's all based on whether the filename starts with a dot. We ignore files called "." or ".."
 	tString fileName = tGetFileName(path);
 	if ((fileName != ".") && (fileName != "..") && (fileName[0] == '.'))
 		return true;
+	return false;
 
-	// In windows also check the attribute.
-	#if defined(PLATFORM_WINDOWS)
+	#elif defined(PLATFORM_WINDOWS)
+	// In windows it's all based on the file attribute.
 	tString file(path);
 	file.Replace('/', '\\');
 	int length = file.Length();

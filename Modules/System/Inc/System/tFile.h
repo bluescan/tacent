@@ -289,12 +289,17 @@ bool tSetVolumeName(const tString& drive, const tString& newVolumeName);
 #endif
 
 
-// The following paragraph of attribute setting and getting functions work equally well on both files and directories.
-// The "Set" calls return true on success. The "Is" calls return true if the attribute is set, and false if it isn't or
-// an error occurred (like the object didn't exist).
+// The following set and get functions work equally well on both files and directories. The "Set" calls return true on
+// success. The "Is" calls return true if the attribute is set, and false if it isn't or an error occurred (like the
+// object didn't exist).
 bool tIsReadOnly(const tString& fileName);							// For Lixux returns true is user w flag not set and r flag is set.
 bool tSetReadOnly(const tString& fileName, bool readOnly = true);	// For Linux, sets the user w flag as appropriate and the r flag to true.
-bool tIsHidden(const tString& fileName);							// For Linux, checks if first character of filename is a dot (and not ".."). For Windows it checks the fileattribute as well as the first character.
+
+// For Linux, checks if first character of filename is a dot (and not ".."). For Windows it checks the hidden
+// fileattribute regardless of whether it starts with a dot or not. If you want hidden files in a way that is
+// platform agnostic, make your hidden file start with a dot (Linux) , and set the hidden attribute (Windows).
+bool tIsHidden(const tString& fileName);
+
 #if defined(PLATFORM_WINDOWS)
 bool tSetHidden(const tString& fileName, bool hidden = true);
 bool tIsSystem(const tString& fileName);

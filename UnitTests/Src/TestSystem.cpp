@@ -853,6 +853,13 @@ tTestUnit(File)
 
 	tRequire(!tFileExists("TestData/ProbablyDoesntExist.txt"));
 
+	#ifdef PLATFORM_WINDOWS
+	tSetHidden("TestData/.HiddenFile.txt");
+	#endif
+
+	// This file is now hidden in both Linux and Windows.
+	tRequire(tIsHidden("TestData/.HiddenFile.txt"));
+
 	tList<tStringItem> files;
 	tFindFiles(files, "TestData/", tString(), false);
 	// tFindFiles(files, "/home/tristan/GitHub/tacent/UnitTests/TestData/", tString(), false);
@@ -866,6 +873,7 @@ tTestUnit(File)
 		tPrintf("Found file fast: %s\n", file->Text());
 
 	tRequire(StringListsMatch(files, filesFast));
+	return;////////////////
 
 	tExtensions extensions;
 	tGetExtensions(extensions, tFileType::TIFF);
