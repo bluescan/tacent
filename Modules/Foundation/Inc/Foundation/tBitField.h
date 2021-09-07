@@ -103,6 +103,7 @@ public:
 	uint32* GetElements() const																							{ return (uint32*)Elements; }
 	void SetElements(const uint32* src)						/* Least sig at the beginning. Clears unused bits. */		{ tAssert(src); tMemcpy(Elements, src, NumElements*4); ClearUnusedBits(); }
 	uint32& GetElement(int i)																							{ return Elements[i]; }
+	uint32 GetElementValue(int i) const																					{ return Elements[i]; }
 
 	// Gets the n'th byte as a uint8. Zero-based index where zero is the least significant byte.
 	// If NumBits is, say, 33 the range of the index will be n E [0,4]. That is, 5 bytes.
