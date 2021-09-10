@@ -133,7 +133,7 @@ bool tStrtob(const char*);
 // string, if letter characters are called for (bases > 10) will be capital, not lower case. Base must be E [2, 36].
 // Conversion problems boil down to passing null str, strSize being too small, and specifying an out-of-bounds base.
 // Returns false in these cases, and true on success. The int-to-string functions are mainly available to handle
-// arbitrary base E (1, 36] since tsPrintf only handles octal, decimal, and hex. Floating point conversions to
+// arbitrary base E (2, 36] since tsPrintf only handles octal, decimal, and hex. Floating point conversions to
 // strings should be handled by the tPrintf-style functions due to their superior formatting specifiers.
 template <typename IntegralType> bool tItostrT(IntegralType value, char* str, int strSize, int base = 10);
 inline bool tItostr(int32 value, char* str, int strSize, int base = 10)													{ return tItostrT<int32>(value, str, strSize, base); }

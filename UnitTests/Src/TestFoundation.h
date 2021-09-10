@@ -25,8 +25,9 @@ namespace tUnitTest
 	tTestUnit(Map);
 	tTestUnit(Promise);
 	tTestUnit(Sort);
+	tTestUnit(BitArray);
+	tTestUnit(BitField);
 	tTestUnit(FixInt);
-	tTestUnit(Bitfield);
 	tTestUnit(String);
 	tTestUnit(RingBuffer);
 	tTestUnit(PriorityQueue);

@@ -1,12 +1,20 @@
 // tFixInt.h
 //
-// A tFixInt is a fixed sized integer type that may be larger than the native types. It is _not_ a 'big' integer class
+// A tFixInt is a fixed sized integer type that may be larger than the native types. It is not a 'big' integer class
 // in that the size of the int is fixed at compile time. This loss of dynamic precision is well worth the efficiency
 // gains and simple memory layout that a fixed size affords. tFixInt is ideal for storing integer values where a uint32
-// or uint64 is not big enough. In general, use tBitField if you don't need arithmetic as it will be even faster.
-// The tFixIntU is the unsigned version of a tFixInt. tFixIntU is a superclass of a tFixInt. This header also typedefs
-// some commonly used sizes. Specifically it allows one to use the types tint128, tint256, tint512, tuint128, tuint256,
-// and tuint512 simply by including this header.
+// or uint64 is not big enough. The tFixIntU is the unsigned version of a tFixInt. tFixIntU is a superclass of a
+// tFixInt. This header also typedefs some commonly used sizes. Specifically it allows one to use the types tint128,
+// tint256, tint512, tuint128, tuint256, and tuint512 simply by including this header.
+//
+// Comparisons
+// tBitArray - Use when you want to store a large number of bits and you don't know how many at compile-time.
+//             This type os primatily for storage and access to a large number of bits. Not many bitwise or
+//             mathematical operators.
+// tBitField - Use when know how many bits at compile-time and you want bitwise logic opertors like and, or, xor,
+//             shift, not, etc. Good for storing a fixed number of flags or channels etc.
+// tFixInt   - Use when you want full mathematical operations like any built-in integral type. Size must be known at
+//             compile time and must be a multiple of 32 bits. You get + - / * etc as well as all bitwise logic ops.
 //
 // Copyright (c) 2004-2006, 2015, 2017, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -126,7 +134,7 @@ public:
 	tFixIntU& operator*=(const tFixIntU& v);
 
 	// Interestingly, friend functions declared (and even defined) inside class declarations are not considered in the
-	// scope of the enclosing class; they are in the outer scope. Makes perfect sense, just didn't know before.
+	// scope of the enclosing class -- they are in the outer scope. Makes perfect sense, just didn't know before.
 	friend bool operator==(const tFixIntU& a, const tFixIntU& b)														{ for (int i = 0; i < NumBaseInts; i++) if (a.IntData[i] != b.IntData[i]) return false; return true; }
 	friend bool operator!=(const tFixIntU& a, const tFixIntU& b)														{ return !(a == b); }
 	friend bool operator>(const tFixIntU& a, const tFixIntU& b)															{ return (b < a); }

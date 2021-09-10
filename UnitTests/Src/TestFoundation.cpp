@@ -17,8 +17,9 @@
 #include <future>
 #include <Foundation/tVersion.cmake.h>
 #include <Foundation/tArray.h>
-#include <Foundation/tFixInt.h>
+#include <Foundation/tBitArray.h>
 #include <Foundation/tBitField.h>
+#include <Foundation/tFixInt.h>
 #include <Foundation/tList.h>
 #include <Foundation/tMap.h>
 #include <Foundation/tRingBuffer.h>
@@ -537,6 +538,107 @@ tTestUnit(Sort)
 }
 
 
+tTestUnit(BitArray)
+{
+
+}
+
+
+tTestUnit(BitField)
+{
+	tString result;
+
+	tbit128 a("0XAAAAAAAA BBBBBBBB CCCCCCCC DDDDDDDD");
+	tPrintf("A: %032|128X\n", a);
+	tsPrintf(result, "A: %032|128X", a);
+	tRequire(result == "A: AAAAAAAABBBBBBBBCCCCCCCCDDDDDDDD");
+
+	a.Set("FF");
+	tPrintf("A: %032|128X\n", a);
+	tsPrintf(result, "A: %032|128X", a);
+	tRequire(result == "A: 000000000000000000000000000000FF");
+
+	tBitField<30> b;
+	b.Set("0xCCCC12FF");
+	tsPrintf(result, "%08|32X", b);
+	tRequire(result == "0CCC12FF");
+
+	b.Set("0xFCCC12FF");
+	tsPrintf(result, "%08|32X", b);
+	tRequire(result == "3CCC12FF");
+
+	tBitField<33> bitset33;
+	tStaticAssert(sizeof(bitset33) == 8);
+	bitset33.Set("0x10000000A");
+	tPrintf("bitset 33 was set to: 0x%s\n", bitset33.GetAsHexString().Pod());
+	tRequire(bitset33.GetAsHexString() == "10000000A");
+
+	tBitField<10> bitset10;
+	bitset10.SetAll(true);
+	tPrintf("bitset10 SetAll yields: 0x%s\n", bitset10.GetAsHexString().Pod());
+	tRequire(bitset10.GetAsHexString() == "3FF");
+
+	tBitField<12> bitset12;
+	bitset12.Set("abc");
+	tPrintf("bitset12: %s\n", bitset12.GetAsHexString().Pod());
+	tRequire(bitset12.GetAsHexString() == "ABC");
+
+	bitset12 >>= 4;
+	tPrintf("bitset12: %s\n", bitset12.GetAsHexString().Pod());
+	tRequire(bitset12.GetAsHexString() == "AB");
+
+	bitset12 <<= 4;
+	tPrintf("bitset12: %s\n", bitset12.GetAsHexString().Pod());
+	tRequire(bitset12.GetAsHexString() == "AB0");
+
+	tBitField<12> bitsetAB0("AB0");
+	tPrintf("bitsetAB0 == bitset12: %s\n", (bitsetAB0 == bitset12) ? "true" : "false");
+	tRequire(bitsetAB0 == bitset12);
+	tRequire(!(bitsetAB0 != bitset12));
+
+	tBitField<17> bitset17;
+	bitset17.SetBit(1, true);
+	if (bitset17)
+		tPrintf("bitset17: %s true\n", bitset17.GetAsHexString().Pod());
+	else
+		tPrintf("bitset17: %s false\n", bitset17.GetAsHexString().Pod());
+	tRequire(bitset17);
+
+	bitset17.InvertAll();
+	tPrintf("bitset17: after invert: %s\n", bitset17.GetAsHexString().Pod());
+	tRequire(bitset17.GetAsHexString() == "1FFFD");
+
+	// Test extracting bytes from a bitfield. Start by creating a random bitfield.
+	tbit256 bitField;
+	bitField.SetBinary
+	(
+		"00000010_00100100_10011111_11010100_00100100_10000101_01100011_01001000_"
+		"00101001_01111011_00111010_01011111_00100110_11010000_11111111_11001100_"
+		"00011100_11100010_00111000_11010000_00110011_11011011_01001100_00101110_"
+		"10010011_00111000_01000100_10000111_10001011_00010000_10101011_00100101"
+	);
+	tPrintf("VAL\n%0256|256b\n", bitField);
+	tPrintf("STR\n______%s\n", bitField.GetAsBinaryString().Chars());
+
+	tPrintf("BYT\n");
+	int cr = 0;
+	for (int b = 31; b >= 0; b--)
+	{
+		uint8 byte = bitField.GetByte(b);
+		tPrintf("%08b", byte);
+	}
+
+	tBitField<33> bits33;
+	bits33.Set("1ABCDEF23");
+	tPrintf("\nbits33 was set to:\n%s\n", bits33.GetAsHexString().Pod());
+	for (int b = 4; b >= 0; b--)
+	{
+		uint8 byte = bits33.GetByte(b);
+		tPrintf("%02x", byte);
+	}
+}
+
+
 tTestUnit(FixInt)
 {
 	// @todo Add a bunch of tRequire calls.
@@ -629,108 +731,6 @@ tTestUnit(FixInt)
 	tint256 b = 11;
 	tDivide(a, b);
 	tDivide(a, 15);
-}
-
-
-tTestUnit(Bitfield)
-{
-	tString result;
-
-	tbit128 a("0XAAAAAAAA BBBBBBBB CCCCCCCC DDDDDDDD");
-	tPrintf("A: %032|128X\n", a);
-	tsPrintf(result, "A: %032|128X", a);
-	tRequire(result == "A: AAAAAAAABBBBBBBBCCCCCCCCDDDDDDDD");
-
-	a.Set("FF", 16);
-	tPrintf("A: %032|128X\n", a);
-	tsPrintf(result, "A: %032|128X", a);
-	tRequire(result == "A: 000000000000000000000000000000FF");
-
-	tBitField<30> b;
-	b.Set("0xCCCC12FF");
-	tsPrintf(result, "%08|32X", b);
-	tRequire(result == "0CCC12FF");
-
-	b.Set("0xFCCC12FF");
-	tsPrintf(result, "%08|32X", b);
-	tRequire(result == "3CCC12FF");
-
-	tBitField<33> bitset33;
-	tStaticAssert(sizeof(bitset33) == 8);
-	tPrintf("Setting 33 bitset to: decimal %s\n", "323456789");
-
-	// Since there is no base prefix in the string, the Set call assumes base 10. Note that the
-	// GetAsString calls default to base 16!
-	bitset33.Set("323456789", 10);
-	tPrintf("bitset 33 was set to: 0x%s\n", bitset33.GetAsString().Pod());
-	tPrintf("bitset 33 was set to: d%s\n", bitset33.GetAsString(10).Pod());
-	tRequire(bitset33.GetAsString() == "13478F15");
-	tRequire(bitset33.GetAsString(10) == "323456789");
-
-	tBitField<10> bitset10;
-	bitset10.SetAll(true);
-	tPrintf("bitset10 SetAll yields: d%s\n", bitset10.GetAsString(10).Pod());
-	tRequire(bitset10.GetAsString(10) == "1023");
-
-	tBitField<12> bitset12;
-	bitset12.Set("abc");
-	tPrintf("bitset12: %s\n", bitset12.GetAsString().Pod());
-	tRequire(bitset12.GetAsString() == "ABC");
-
-	bitset12 >>= 4;
-	tPrintf("bitset12: %s\n", bitset12.GetAsString().Pod());
-	tRequire(bitset12.GetAsString() == "AB");
-
-	bitset12 <<= 4;
-	tPrintf("bitset12: %s\n", bitset12.GetAsString().Pod());
-	tRequire(bitset12.GetAsString() == "AB0");
-
-	tBitField<12> bitsetAB0("AB0");
-	tPrintf("bitsetAB0 == bitset12: %s\n", (bitsetAB0 == bitset12) ? "true" : "false");
-	tRequire(bitsetAB0 == bitset12);
-	tRequire(!(bitsetAB0 != bitset12));
-
-	tBitField<17> bitset17;
-	bitset17.SetBit(1, true);
-	if (bitset17)
-		tPrintf("bitset17: %s true\n", bitset17.GetAsString().Pod());
-	else
-		tPrintf("bitset17: %s false\n", bitset17.GetAsString().Pod());
-	tRequire(bitset17);
-
-	bitset17.InvertAll();
-	tPrintf("bitset17: after invert: %s\n", bitset17.GetAsString().Pod());
-	tRequire(bitset17.GetAsString() == "1FFFD");
-
-	// Test extracting bytes from a bitfield. Start by creating a random bitfield.
-	tbit256 bitField;
-	bitField.Set
-	(
-		"00000010_00100100_10011111_11010100_00100100_10000101_01100011_01001000_"
-		"00101001_01111011_00111010_01011111_00100110_11010000_11111111_11001100_"
-		"00011100_11100010_00111000_11010000_00110011_11011011_01001100_00101110_"
-		"10010011_00111000_01000100_10000111_10001011_00010000_10101011_00100101",
-		2
-	);
-	tPrintf("%0_256|256b\n", bitField);
-	int cr = 0;
-	for (int b = 31; b >= 0; b--)
-	{
-		if ((cr++ % 8) == 0)
-			tPrintf("\n");
-
-		uint8 byte = bitField.GetByte(b);
-		tPrintf("%08b ", byte);
-	}
-
-	tBitField<33> bits33;
-	bits33.Set("1ABCDEF23", 16);
-	tPrintf("\nbits33 was set to:\n%s\n", bits33.GetAsString(16).Pod());
-	for (int b = 4; b >= 0; b--)
-	{
-		uint8 byte = bits33.GetByte(b);
-		tPrintf("%02x", byte);
-	}
 }
 
 

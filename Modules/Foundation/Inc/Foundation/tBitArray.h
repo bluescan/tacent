@@ -2,10 +2,18 @@
 //
 // A tBitArray is a holder for an arbitrary number of bits and allows individual access to each bit, the ability to
 // clear or set all bits, and some simple binary bitwise operators such as 'and', 'xor', and 'or'. It currently does
-// not support dynamic growing or shrinking. If the number of bits you need is known at compile time, consider using a
-// tBitField instead as it is more feature-complete.
+// not support dynamic growing or shrinking.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019 Tristan Grimmer.
+// Comparisons
+// tBitArray - Use when you want to store a large number of bits and you don't know how many at compile-time.
+//             This type os primatily for storage and access to a large number of bits. Not many bitwise or
+//             mathematical operators.
+// tBitField - Use when know how many bits at compile-time and you want bitwise logic opertors like and, or, xor,
+//             shift, not, etc. Good for storing a fixed number of flags or channels etc.
+// tFixInt   - Use when you want full mathematical operations like any built-in integral type. Size must be known at
+//             compile time and must be a multiple of 32 bits. You get + - / * etc as well as all bitwise logic ops.
+//
+// Copyright (c) 2004-2006, 2015, 2017, 2019, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -23,17 +31,17 @@
 class tBitArray
 {
 public:
-	tBitArray()												/* Creates an invalid bit array. Call Set before using. */	: NumBits(0), BitFields(nullptr) { }
-	tBitArray(int numBits)									/* All bit values guaranteed to be 0 after this. */			: NumBits(0), BitFields(nullptr) { Set(numBits); }
-	tBitArray(const uint32* data, int numBits)				/* Copies numBits from data. */								: NumBits(0), BitFields(nullptr) { Set(data, numBits); }
-	tBitArray(const tBitArray& src)																						: NumBits(0), BitFields(nullptr) { Set(src); }
-	~tBitArray()																										{ delete[] BitFields; }
+	tBitArray()												/* Creates an invalid bit array. Call Set before using. */	: NumBits(0), ElemData(nullptr) { }
+	tBitArray(int numBits)									/* All bit values guaranteed to be 0 after this. */			: NumBits(0), ElemData(nullptr) { Set(numBits); }
+	tBitArray(const uint32* data, int numBits)				/* Copies numBits from data. */								: NumBits(0), ElemData(nullptr) { Set(data, numBits); }
+	tBitArray(const tBitArray& src)																						: NumBits(0), ElemData(nullptr) { Set(src); }
+	~tBitArray()																										{ delete[] ElemData; }
 
 	void Set(int numBits);									// All bit values guaranteed to be 0 after this.
 	void Set(const uint32* data, int numBits);				// Copies numBits from data.
 	void Set(const tBitArray& src);
-	void Clear()											/* Invalidates. Use ClearAll if you want all bits clear. */	{ delete[] BitFields; BitFields = nullptr; NumBits = 0; }
-	bool IsValid() const																								{ return BitFields ? true : false; }
+	void Clear()											/* Invalidates. Use ClearAll if you want all bits clear. */	{ delete[] ElemData; ElemData = nullptr; NumBits = 0; }
+	bool IsValid() const																								{ return ElemData ? true : false; }
 
 	bool GetBit(int n) const;								// n is the bit index with 0 being the least significant.
 	void SetBit(int n, bool v);
@@ -44,9 +52,19 @@ public:
 	int GetNumBits() const																								{ return NumBits; }
 	int CountBits(bool = true) const;						// Counts how many bits are set to supplied value.
 
-	// Returns how many uint32 fields are used to store the bit array.
-	int GetNumFields() const																							{ return (NumBits>>5) + ((NumBits & 0x1F) ? 1 : 0); }
-	uint32* GetFields() const																							{ return BitFields; }
+	// These deal with the internal uint32 elements that store the bit array. The elements are always least-significant
+	// at the beginning, regardless of machine endianness.
+	int GetNumElements() const																							{ return (NumBits>>5) + ((NumBits & 0x1F) ? 1 : 0); }
+
+	// Ensure array is valid and i is in range before calling these. That part is up to you.
+	uint32 GetElement(int i) const																						{ tAssert(IsValid()); return ElemData[i]; }
+	void SetElement(int i, uint32 val)																					{ tAssert(IsValid()); ElemData[i] = val; }
+
+	void GetElements(uint32* dest) const					/* Least significant at the beginning. */					{ tAssert(dest); tStd::tMemcpy(dest, ElemData, GetNumElements()*4); }
+	void SetElements(const uint32* src)						/* Least sig at the beginning. Clears unused bits. */		{ tAssert(src); tStd::tMemcpy(ElemData, src, GetNumElements()*4); ClearPadBits(); }
+
+	uint32& Element(int i)																								{ return ElemData[i]; }
+	uint32* Elements() const																							{ return ElemData; }
 
 	// Returns index of a bit that is clear. Which one is arbitrary. Returns -1 if none are available.
 	int GetClearedBitPos() const;
@@ -67,7 +85,7 @@ private:
 	void ClearPadBits();
 
 	int NumBits;											// Number of bits. Not number of fields.
-	uint32* BitFields;										// If there are padding bits, they must be set to 0.
+	uint32* ElemData;										// If there are padding bits, they must be set to 0.
 };
 
 
@@ -81,7 +99,7 @@ inline bool tBitArray::GetBit(int index) const
 	int offset = index & 0x1F;
 	uint32 mask = 1 << offset;
 
-	return (BitFields[fieldIndex] & mask) ? true : false;
+	return (ElemData[fieldIndex] & mask) ? true : false;
 }
 
 
@@ -92,16 +110,16 @@ inline void tBitArray::SetBit(int index, bool v)
 	int offset = index & 0x1F;
 	uint32 mask = 1 << offset;
 	if (v)
-		BitFields[fieldIndex] |= mask;
+		ElemData[fieldIndex] |= mask;
 	else
-		BitFields[fieldIndex] &= ~mask;
+		ElemData[fieldIndex] &= ~mask;
 }
 
 
 inline void tBitArray::SetAll(bool v)
 {
-	int n = GetNumFields();
-	tStd::tMemset(BitFields, v ? 0xFF : 0, n*sizeof(uint32));
+	int n = GetNumElements();
+	tStd::tMemset(ElemData, v ? 0xFF : 0, n*sizeof(uint32));
 	if (v)
 		ClearPadBits();
 }
@@ -109,18 +127,18 @@ inline void tBitArray::SetAll(bool v)
 
 inline void tBitArray::ClearAll()
 {
-	tAssert(BitFields);
-	int n = GetNumFields();
-	tStd::tMemset(BitFields, 0, n*sizeof(uint32));
+	tAssert(ElemData);
+	int n = GetNumElements();
+	tStd::tMemset(ElemData, 0, n*sizeof(uint32));
 }
 
 
 inline bool tBitArray::operator==(const tBitArray& s) const
 {
 	tAssert(GetNumBits() == s.GetNumBits());
-	int n = GetNumFields();
+	int n = GetNumElements();
 	for (int i = 0; i < n; i++)
-		if (BitFields[i] != s.BitFields[i])
+		if (ElemData[i] != s.ElemData[i])
 			return false;
 
 	return true;
@@ -129,9 +147,9 @@ inline bool tBitArray::operator==(const tBitArray& s) const
 
 inline void tBitArray::ClearPadBits()
 {
-	tAssert(BitFields);
-	int numFields = GetNumFields();
+	tAssert(ElemData);
+	int n = GetNumElements();
 	int last = NumBits & 0x1F;
 	uint32 maxFull = (last ? (1 << last) : 0) - 1;
-	BitFields[numFields-1] &= maxFull;
+	ElemData[n-1] &= maxFull;
 }

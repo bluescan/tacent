@@ -2,10 +2,18 @@
 //
 // A tBitArray is a holder for an arbitrary number of bits and allows individual access to each bit, the ability to
 // clear or set all bits, and some simple binary bitwise operators such as 'and', 'xor', and 'or'. It currently does
-// not support dynamic growing or shrinking. If the number of bits you need is known at compile time, consider using a
-// tBitField instead as it is more feature-complete.
+// not support dynamic growing or shrinking.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019 Tristan Grimmer.
+// Comparisons
+// tBitArray - Use when you want to store a large number of bits and you don't know how many at compile-time.
+//             This type os primatily for storage and access to a large number of bits. Not many bitwise or
+//             mathematical operators.
+// tBitField - Use when know how many bits at compile-time and you want bitwise logic opertors like and, or, xor,
+//             shift, not, etc. Good for storing a fixed number of flags or channels etc.
+// tFixInt   - Use when you want full mathematical operations like any built-in integral type. Size must be known at
+//             compile time and must be a multiple of 32 bits. You get + - / * etc as well as all bitwise logic ops.
+//
+// Copyright (c) 2004-2006, 2015, 2017, 2019, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -25,9 +33,9 @@ void tBitArray::Set(int numBits)
 	tAssert(numBits > 0);
 
 	NumBits = numBits;
-	int numFields = GetNumFields();
-	BitFields = new uint32[numFields];
-	tStd::tMemset(BitFields, 0, numFields*sizeof(uint32));
+	int n = GetNumElements();
+	ElemData = new uint32[n];
+	tStd::tMemset(ElemData, 0, n*sizeof(uint32));
 }
 
 
@@ -37,9 +45,9 @@ void tBitArray::Set(const uint32* data, int numBits)
 	tAssert(data && numBits);
 
 	NumBits = numBits;
-	int n = GetNumFields();
-	BitFields = new uint32[n];
-	tStd::tMemcpy(BitFields, data, n*sizeof(uint32));
+	int n = GetNumElements();
+	ElemData = new uint32[n];
+	tStd::tMemcpy(ElemData, data, n*sizeof(uint32));
 	ClearPadBits();
 }
 
@@ -54,17 +62,17 @@ void tBitArray::Set(const tBitArray& src)
 		return;
 
 	NumBits = src.NumBits;
-	int n = src.GetNumFields();
-	BitFields = new uint32[n];
-	tStd::tMemcpy(BitFields, src.BitFields, n*sizeof(uint32));
+	int n = src.GetNumElements();
+	ElemData = new uint32[n];
+	tStd::tMemcpy(ElemData, src.ElemData, n*sizeof(uint32));
 }
 
 
 void tBitArray::InvertAll()
 {
-	int n = GetNumFields();
+	int n = GetNumElements();
 	for (int i = 0; i < n; i++)
-		BitFields[i] = ~BitFields[i];
+		ElemData[i] = ~ElemData[i];
 
 	ClearPadBits();
 }
@@ -72,12 +80,12 @@ void tBitArray::InvertAll()
 
 bool tBitArray::AreAll(bool v) const
 {
-	tAssert(BitFields);
-	int n = GetNumFields();
+	tAssert(ElemData);
+	int n = GetNumElements();
 	uint32 fullField = v ? 0xFFFFFFFF : 0x00000000;
 	for (int i = 0; i < n-1; i++)
 	{
-		if (BitFields[i] != fullField)
+		if (ElemData[i] != fullField)
 			return false;
 	}
 
@@ -85,7 +93,7 @@ bool tBitArray::AreAll(bool v) const
 	int last = NumBits & 0x1F;
 	uint32 maxFull = (last ? (1 << last) : 0) - 1;
 	fullField = v ? maxFull : 0x00000000;
-	return (BitFields[n-1] & maxFull) == fullField;
+	return (ElemData[n-1] & maxFull) == fullField;
 }
 
 
@@ -93,13 +101,13 @@ int tBitArray::CountBits(bool val) const
 {
 	// Uses technique described here "http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetKernighan".
 	// This is one reason the pad bits must always be cleared.
-	tAssert(BitFields);
-	int numFields = GetNumFields();
+	tAssert(ElemData);
+	int numFields = GetNumElements();
 
 	int count = 0;
 	for (int n = 0; n < numFields; n++)
 	{
-		uint32 v = BitFields[n];		// Count the number of bits set in v.
+		uint32 v = ElemData[n];			// Count the number of bits set in v.
 		uint32 c;						// c accumulates the total bits set in v.
 		for (c = 0; v; c++)
 			v &= v - 1;					// Clear the least significant bit set.
@@ -112,10 +120,10 @@ int tBitArray::CountBits(bool val) const
 
 int tBitArray::GetClearedBit(int index) const
 {
-	tAssert(BitFields);
+	tAssert(ElemData);
 
 	// Find the first zero bit. The operation we do is log2((a xor (a+1)) +1)
-	uint32 field = BitFields[index];
+	uint32 field = ElemData[index];
 
 	// This is guaranteed to be a power of two.
 	uint32 freeBit = (field ^ (field+1)) + 1;
@@ -140,18 +148,18 @@ int tBitArray::GetClearedBit(int index) const
 
 int tBitArray::GetClearedBitPos() const
 {
-	int n = GetNumFields();
+	int n = GetNumElements();
 
 	for (int i = 0; i < n-1; i++)
 	{
-		if (BitFields[i] < 0xFFFFFFFF)
+		if (ElemData[i] < 0xFFFFFFFF)
 			return 32*i + GetClearedBit(i);
 	}
 
 	int last = NumBits & 0x1F;
 	uint32 maxFull = (last ? (1 << last) : 0) - 1;
 
-	if (BitFields[n-1] < maxFull)
+	if (ElemData[n-1] < maxFull)
 		return 32*(n-1) + GetClearedBit(n-1);
 
 	// There are no free bits available.
@@ -162,9 +170,9 @@ int tBitArray::GetClearedBitPos() const
 tBitArray& tBitArray::operator&=(const tBitArray& s)
 {
 	tAssert(NumBits == s.NumBits);
-	int n = GetNumFields();
+	int n = GetNumElements();
 	for (int i = 0; i < n; i++)
-		BitFields[i] &= s.BitFields[i];
+		ElemData[i] &= s.ElemData[i];
 
 	return *this;	// No need to ensure pad bits are cleared because 0 & 0 = 0.
 }
@@ -173,9 +181,9 @@ tBitArray& tBitArray::operator&=(const tBitArray& s)
 tBitArray& tBitArray::operator|=(const tBitArray& s)
 {
 	tAssert(NumBits == s.NumBits);
-	int n = GetNumFields();
+	int n = GetNumElements();
 	for (int i = 0; i < n; i++)
-		BitFields[i] |= s.BitFields[i];
+		ElemData[i] |= s.ElemData[i];
 
 	return *this;	// No need to ensure pad bits are cleared because 0 | 0 = 0.
 }
@@ -184,9 +192,9 @@ tBitArray& tBitArray::operator|=(const tBitArray& s)
 tBitArray& tBitArray::operator^=(const tBitArray& s)
 {
 	tAssert(NumBits == s.NumBits);
-	int n = GetNumFields();
+	int n = GetNumElements();
 	for (int i = 0; i < n; i++)
-		BitFields[i] ^= s.BitFields[i];
+		ElemData[i] ^= s.ElemData[i];
 
 	return *this;	// No need to ensure pad bits are cleared because 0 ^ 0 = 0.
 }
