@@ -42,6 +42,15 @@ namespace tUnitTest
 tTestUnit(CmdLine)
 {
 	tPrintf("Testing tCommand command line parsing.\n");
+
+	#ifdef TEST_COMMAND_PARAM_ARRAY
+	tCommand::tParam params[12];
+	tCommand::tParse("UnitTests.exe ParamA ParamB", true);
+	for (int w = 0; w < 12; w++)
+		tPrintf("Param %d is: %s\n", w+1, params[w].Param.Chars());
+	return;
+	#endif
+
 	tCommand::tParam fromFile(1, "fromFile");
 	tCommand::tParam toFile(2, "toFile");
 	tCommand::tOption log("Specify log file.", "log", 'l', 1);

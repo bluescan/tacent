@@ -32,12 +32,26 @@ namespace tCommand
 	tList<tOption> Options(tListMode::StaticZero);
 	tString Program;
 	tString Empty;
+
+	int GenParamNumber = 1;
+	int NumPresentParameters = 0;
 }
 
 
 tString tCommand::tGetProgram()
 {
 	return Program;
+}
+
+
+tCommand::tParam::tParam() :
+	ParamNumber(GenParamNumber++),
+	Param(),
+	Name(),
+	Description()
+{
+	tsPrintf(Name, "Param%d", ParamNumber);
+	Params.Append(this);
 }
 
 
@@ -335,9 +349,18 @@ void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 		for (tParam* param = Params.First(); param; param = param->Next())
 		{
 			if (param->ParamNumber == paramNumber)
+			{
 				param->Param = *arg;
+				NumPresentParameters++;
+			}
 		}
 	}
+}
+
+
+int tCommand::tGetNumPresentParameters()
+{
+	return NumPresentParameters;
 }
 
 

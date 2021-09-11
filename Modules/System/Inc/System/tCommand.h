@@ -92,6 +92,9 @@ namespace tCommand
 {
 	struct tParam : public tLink<tParam>
 	{
+		// This constructor allows you to make an array of parameters if you have a lot of them.
+		// Param number starts at 1.
+		tParam();
 		tParam(int paramNumber, const char* name = nullptr, const char* description = nullptr);
 		tParam(const char* description, const char* paramName, int paramNumber);
 		tString Get() const																								{ return Param; }
@@ -150,8 +153,8 @@ namespace tCommand
 	void tPrintUsage(const char* versionAuthor = nullptr, const char* desc = nullptr);
 	void tPrintSyntax();
 
-	// Returns the program name assuming you have already called tParse.
-	tString tGetProgram();
+	tString tGetProgram();			// Returns the program name assuming you have already called tParse.
+	int tGetNumPresentParameters();	// Returns the number of present parameters assuming you have already called tParse.
 }
 
 
