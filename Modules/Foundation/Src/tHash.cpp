@@ -468,8 +468,8 @@ tuint256 tHash::tHashData256(const uint8* data, int len, tuint256 iv)
 {
 	// Use the length and level. Add in the golden ratio. Remember, 'a' is most significant.
 	uint32 length = len;
-	uint32& A = iv.RawElement(7); uint32& B = iv.RawElement(6); uint32& C = iv.RawElement(5); uint32& D = iv.RawElement(4);
-	uint32& E = iv.RawElement(3); uint32& F = iv.RawElement(2); uint32& G = iv.RawElement(1); uint32& H = iv.RawElement(0);
+	uint32& A = iv.Element(7); uint32& B = iv.Element(6); uint32& C = iv.Element(5); uint32& D = iv.Element(4);
+	uint32& E = iv.Element(3); uint32& F = iv.Element(2); uint32& G = iv.Element(1); uint32& H = iv.Element(0);
 	uint32 a, b, c, d, e, f, g, h;
 	a = A; b = B; c = C; d = D;
 	e = E; f = F; g = G; h = H;

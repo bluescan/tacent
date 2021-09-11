@@ -656,7 +656,7 @@ tTestUnit(FixInt)
 	uvalE = uvalA;
 
 	uvalD.MakeZero();
-	uvalD.MakeMaxInt();
+	uvalD.MakeMax();
 	uvalA += 2;
 	tPrintf("%064|256X\n", uvalA);
 	tPrintf("%064|256X\n", uvalB);
@@ -731,6 +731,9 @@ tTestUnit(FixInt)
 	tint256 b = 11;
 	tDivide(a, b);
 	tDivide(a, 15);
+
+	// Should be a staic assert if uncommented.
+	// tFixInt<33> Test33FixInt;
 }
 
 
