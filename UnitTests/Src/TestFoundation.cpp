@@ -636,6 +636,31 @@ tTestUnit(BitField)
 		uint8 byte = bits33.GetByte(b);
 		tPrintf("%02x", byte);
 	}
+
+	// Test conversion into built-in types and promotion for use in if statements.
+	tbit512 b111 = 0x00000003; //fullBitsLocal & tbit512(0x000007FF);
+	tbit512 anded = b111 & tbit512(0x000007FF);
+	tPrintf("\n\nANDED\n%0512|512b\n", anded);
+	tRequire(anded == b111);
+	tRequire(anded);
+	anded.ClearAll();
+	tRequire(!anded);
+
+	// Test conversion to tFixInt of same size.
+	tuint512 val512 = tbit512(0xAA0007FF);
+	tPrintf("\nASINT\n%0512|512X\n", val512);
+	tRequire(val512);
+
+	val512.MakeZero();
+	tRequire(!val512);
+
+	// Should not compile.
+	// tuint256 val256 = tbit512(0x000007FF);
+	// tPrintf("\nASINT\n%0256|256b\n", val256);
+
+	// Test to make sure operator= being called on non-constructor assignment.
+	tuint512 val2;
+	val2 = tbit512(0xAA0007FF);
 }
 
 

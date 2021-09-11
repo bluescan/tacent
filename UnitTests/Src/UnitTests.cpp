@@ -175,9 +175,9 @@ int main(int argc, char** argv)
 	// tTest(ImageMultiFrame);
 	// tTest(ImagePicture);
 	// tTest(Hash);
-	tTest(BitArray);
+	// tTest(BitArray);
 	tTest(BitField);
-	tTest(FixInt);
+	// tTest(FixInt);
 
 	#endif
 

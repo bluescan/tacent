@@ -82,8 +82,18 @@ public:
 	void Set(const uint16* src, int len);
 	void Set(const uint32* src, int len);
 	void Set(const uint64* src, int len);
-	void Clear()																										{ for (int i = 0; i < NumElements; i++) ElemData[i] = 0x00000000; }
 
+	operator int8() const																								{ int8 r; Extract(r); return r; }
+	operator int16() const																								{ int16 r; Extract(r); return r; }
+	operator int32() const																								{ int32 r; Extract(r); return r; }
+	operator int64() const																								{ int64 r; Extract(r); return r; }
+	operator uint8() const																								{ uint8 r; Extract(r); return r; }
+	operator uint16() const																								{ uint16 r; Extract(r); return r; }
+	operator uint32() const																								{ uint32 r; Extract(r); return r; }
+	operator uint64() const																								{ uint64 r; Extract(r); return r; }
+	operator bool() const;
+
+	void Clear()																										{ for (int i = 0; i < NumElements; i++) ElemData[i] = 0x00000000; }
 	bool GetBit(int n) const;								// Gets the n'th bit as a bool. Zero-based index where zero is the least significant binary digit.
 	void SetBit(int n, bool val = true);					// Sets the n'th bit to val. Zero-based index where zero is least significant binary digit.
 	void SetAll(bool val = true);
@@ -137,9 +147,10 @@ public:
 	bool operator[](int n) const																						{ return GetBit(n); }
 	bool operator==(const tBitField&) const;
 	bool operator!=(const tBitField&) const;
-	operator bool() const;
 
 private:
+	template<typename T> void Extract(T&, uint8 fill = 0) const;
+
 	// The tBitField guarantees clear bits in the internal representation if the number of bits is not a multiple of 32
 	// (which is our internal storage type size). This function clears them (and only them).
 	void ClearPadBits();
@@ -687,4 +698,18 @@ template<int N> inline void tBitField<N>::ClearPadBits()
 	int r = N%32;
 	uint32& e = ElemData[NumElements-1];
 	e &= r ? ~((0xFFFFFFFF >> r) << r) : 0xFFFFFFFF;
+}
+
+
+template<int N> template<typename T> inline void tBitField<N>::Extract(T& v, uint8 fill) const
+{
+	if (sizeof(v) <= sizeof(ElemData))
+	{
+		tStd::tMemcpy(&v, ElemData, sizeof(v));
+	}
+	else
+	{
+		tStd::tMemcpy(&v, ElemData, sizeof(ElemData));
+		tStd::tMemset(reinterpret_cast<char*>(&v) + sizeof(v), fill, int(sizeof(v) - sizeof(ElemData)));
+	}
 }

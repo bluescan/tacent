@@ -15,6 +15,7 @@
 //             shift, not, etc. Good for storing a fixed number of flags or channels etc.
 // tFixInt   - Use when you want full mathematical operations like any built-in integral type. Size must be known at
 //             compile time and must be a multiple of 32 bits. You get + - / * etc as well as all bitwise logic ops.
+//             You can construct a tFixInt from a tBitField of the same size.
 //
 // Copyright (c) 2004-2006, 2015, 2017, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -41,6 +42,7 @@
 #pragma once
 #include "Foundation/tString.h"
 #include "Foundation/tFundamentals.h"
+#include "Foundation/tBitField.h"
 template<int> class tFixInt;
 
 
@@ -69,6 +71,7 @@ public:
 	tFixIntU(uint64 v)																									{ Set(v); }
 	tFixIntU(float v)																									{ Set(v); }
 	tFixIntU(double v)																									{ Set(v); }
+	tFixIntU(const tBitField<NumBits>& v)																				{ Set(v); }
 
 	void Set(const tFixIntU& src)																						{ *this = src; }
 	void Set(const tFixInt<NumBits>& src)																				{ *this = src.AsUnsigned(); }
@@ -83,20 +86,23 @@ public:
 	void Set(uint64 v)																									{ Init(v); }
 	void Set(float);
 	void Set(double);
+	void Set(const tBitField<NumBits>& v)																				{ for (int e = 0; e < NumElements; e++) ElemData[e] = v.GetElement(e); }
 
 	operator int8() const																								{ int8 r; Extract(r); return r; }
 	operator int16() const																								{ int16 r; Extract(r); return r; }
-	operator int() const																								{ int r; Extract(r); return r; }
+	operator int32() const																								{ int32 r; Extract(r); return r; }
 	operator int64() const																								{ int64 r; Extract(r); return r; }
 	operator uint8() const																								{ uint8 r; Extract(r); return r; }
 	operator uint16() const																								{ uint16 r; Extract(r); return r; }
-	operator uint() const																								{ uint r; Extract(r); return r; }
+	operator uint32() const																								{ uint32 r; Extract(r); return r; }
 	operator uint64() const																								{ uint64 r; Extract(r); return r; }
 	operator float() const;
 	operator double() const;
 
 	static inline void Swap(tFixIntU& a, tFixIntU& b)																	{ for (int i = 0; i < NumElements; i++) tStd::tSwap(a.ElemData[i], b.ElemData[i]); }
 	tFixIntU& operator=(const tFixInt<NumBits>& v)																		{ return *this = v.AsUnsigned(); }
+	tFixIntU& operator=(const tBitField<NumBits>& v)																	{ Set(v); return *this; }
+
 	template<int N, bool LhsGreater> struct AssignHelper																{ template <typename T> void operator()(tFixIntU& lhs, const T& rhs) const; };
 	template<int N> struct AssignHelper<N, false>																		{ template <typename T> void operator()(tFixIntU& lhs, const T& rhs) const; };
 	template<int N> tFixIntU& operator=(const tFixIntU<N>& rhs)															{ AssignHelper<N, (NumBits>N)>()(*this, rhs); return *this; }
