@@ -164,13 +164,6 @@ struct tString
 	uint32 GetAsUInt32(int base = -1) const																				{ return tStd::tStrtoui32(TextData, base); }
 	uint64 GetAsUInt64(int base = -1) const																				{ return tStd::tStrtoui64(TextData, base); }
 
-	 bool GetAsIntStrict(int& IntValue, int base = -1) const															{ return GetAsInt32Strict(IntValue, base); }
-	 bool GetAsInt32Strict(int32& Int32Value, int base = -1) const														{ return tStd::tStrtoi32Strict(TextData, Int32Value, base); }
-	 bool GetAsInt64Strict(int64& Int64Value, int base = -1) const														{ return tStd::tStrtoi64Strict(TextData, Int64Value, base); }
-	 bool GetAsUIntStrict(uint& UIntValue, int base = -1) const															{ return GetAsUInt32Strict(UIntValue, base); }
-	 bool GetAsUInt32Strict(uint32& UInt32Value, int base = -1) const													{ return tStd::tStrtoui32Strict(TextData, UInt32Value, base); }
-	 bool GetAsUInt64Strict(uint64& UInt64Value, int base = -1) const													{ return tStd::tStrtoui64Strict(TextData, UInt64Value, base); }
-
 	// Case insensitive. Interprets "true", "t", "yes", "y", "on", "enable", "enabled", "1", "+", and strings that
 	// represent non-zero integers as boolean true. Otherwise false.
 	bool GetAsBool() const																								{ return tStd::tStrtob(TextData); }
@@ -187,6 +180,16 @@ struct tString
 	uint64 AsUInt64(int base = -1) const																				{ return GetAsUInt64(base); }
 	bool AsBool() const																									{ return GetAsBool(); }
 	float AsFloat() const																								{ return GetAsFloat(); }
+	double AsDouble() const																								{ return GetAsDouble(); }
+
+	// Same as above but return false on any parse error instead of just returning 0.
+	// @todo Float and double versions.
+	bool ToInt(int& v, int base = -1) const																				{ return ToInt32(v, base); }
+	bool ToInt32(int32& v, int base = -1) const																			{ return tStd::tStrtoi32(v, TextData, base); }
+	bool ToInt64(int64& v, int base = -1) const																			{ return tStd::tStrtoi64(v, TextData, base); }
+	bool ToUInt(uint& v, int base = -1) const																			{ return ToUInt32(v, base); }
+	bool ToUInt32(uint32& v, int base = -1) const																		{ return tStd::tStrtoui32(v, TextData, base); }
+	bool ToUInt64(uint64& v, int base = -1) const																		{ return tStd::tStrtoui64(v, TextData, base); }
 
 protected:
 	char* TextData;

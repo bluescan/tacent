@@ -5,7 +5,7 @@
 // different type sizes and can print integral types in a variety of bases. Redirection via a callback as well as
 // visibility channels are also supported.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -2031,4 +2031,64 @@ void tSystem::Handler_s(Receiver& receiver, const FormatSpec& spec, void* data)
 	HandlerHelper_JustificationProlog(receiver, numToAppend, spec);
 	receiver.Receive(str, numToAppend);
 	HandlerHelper_JustificationEpilog(receiver, numToAppend, spec);
+}
+
+
+bool tSystem::tFtostr(tString& dest, float f, bool incBitRep)
+{
+	bool success = true;
+	if (tStd::tIsNAN(f))
+	{
+		f = 0.0f;
+		success = false;
+	}
+
+	// How much room do we need?
+	int c = tcPrintf("%8.8f", f);
+	c++;								// Possible 0 added.
+	if (incBitRep)
+		c += 9;							// Possible hash(#) plus 8 hex digits.
+
+	dest.Reserve(c);					// We rely on the mem clear here.
+	char* cval = dest.Text();
+	cval += tsPrintf(cval, "%8.8f", f);
+
+	// Add a trailing 0 because it looks better.
+	if (*(cval-1) == '.')
+		*cval++ = '0';
+
+	if (incBitRep)
+		cval += tsPrintf(cval, "#%08X", *((uint32*)&f));
+
+	return success;
+}
+
+
+bool tSystem::tDtostr(tString& dest, double d, bool incBitRep)
+{
+	bool success = true;
+	if (tStd::tIsSpecial(d))
+	{
+		d = 0.0;
+		success = false;
+	}
+
+	// How much room do we need?
+	int c = tcPrintf("%16.16f", d);
+	c++;								// Possible 0 added.
+	if (incBitRep)
+		c += 17;						// Possible hash(#) plus 16 hex digits.
+
+	dest.Reserve(c);					// We rely on the mem clear here.
+	char* cval = dest.Text();
+	cval += tsPrintf(cval, "%16.16f", d);
+
+	// Add a trailing 0 because it looks better.
+	if (*(cval-1) == '.')
+		*cval++ = '0';
+
+	if (incBitRep)
+		cval += tsPrintf(cval, "#%016|64X", *((uint64*)&d));
+
+	return success;
 }

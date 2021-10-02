@@ -5,7 +5,7 @@
 // different type sizes and can print integral types in a variety of bases. Redirection via a callback as well as
 // visibility channels are also supported.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -107,6 +107,17 @@ namespace tSystem
 	// with this.
 	void tSetDefaultPrecision(int precision);
 	int tGetDefaultPrecision();
+
+	// These are the counterparts to the tStd functions tStrtof and tStrtod. They take a float/double and convert to a
+	// base-10 string. If incBitRep is true, these functions include the hash(#) and the binary representation in hex
+	// after it. Due to the large variability in the size needed for the destination string, these functions have been
+	// implemented using tStrings as the result will always be of the correct size.
+	bool tFtostr(tString& dest, float value, bool incBitRep = true);
+	bool tDtostr(tString& dest, double value, bool incBitRep = true);
+
+	// These are synonyms of the above two functions.
+	inline bool tFtoa(tString& dest, float value, bool incBitRep = true)												{ return tFtostr(dest, value, incBitRep); }
+	inline bool tDtoa(tString& dest, double value, bool incBitRep = true)												{ return tDtostr(dest, value, incBitRep); }
 };
 
 

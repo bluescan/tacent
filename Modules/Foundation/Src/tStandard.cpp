@@ -52,6 +52,24 @@ void* tStd::tMemmem(void* haystack, int haystackNumBytes, void* needle, int need
 }
 
 
+bool tStd::tStrtob(const char* str)
+{
+	tString lower(str);
+	lower.ToLower();
+
+	if
+	(
+		(lower == "true") || (lower == "t") ||
+		(lower == "yes") || (lower == "y") ||
+		(lower == "on") || (lower == "1") || (lower == "+") ||
+		(lower == "enable") || (lower == "enabled") || (tStrtoi(str) != 0)
+	)
+		return true;
+	else
+		return false;
+}
+
+
 float tStd::tStrtof(const char* s)
 {
 	char* hash = tStrchr(s, '#');
@@ -94,24 +112,6 @@ double tStd::tStrtod(const char* s)
 
 	// Will be 0.0 if there was a problem.
 	return strtod(s, nullptr);
-}
-
-
-bool tStd::tStrtob(const char* str)
-{
-	tString lower(str);
-	lower.ToLower();
-
-	if
-	(
-		(lower == "true") || (lower == "t") ||
-		(lower == "yes") || (lower == "y") ||
-		(lower == "on") || (lower == "1") || (lower == "+") ||
-		(lower == "enable") || (lower == "enabled") || (tStrtoi(str) != 0)
-	)
-		return true;
-	else
-		return false;
 }
 
 

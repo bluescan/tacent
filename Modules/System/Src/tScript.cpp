@@ -687,7 +687,7 @@ void tScriptWriter::WriteAtom(const bool atom)
 void tScriptWriter::WriteAtom(const uint32 atom)
 {
 	char val[36];
-	tStd::tItoa(atom, val, 36, 10);
+	tStd::tItoa(val, 36, atom, 10);
 	WriteAtom(val);
 }
 
@@ -695,7 +695,7 @@ void tScriptWriter::WriteAtom(const uint32 atom)
 void tScriptWriter::WriteAtom(const uint64 atom)
 {
 	char val[48];
-	tStd::tItoa(atom, val, 48, 10);
+	tStd::tItoa(val, 48, atom, 10);
 	WriteAtom(val);
 }
 
@@ -703,56 +703,24 @@ void tScriptWriter::WriteAtom(const uint64 atom)
 void tScriptWriter::WriteAtom(const int atom)
 {
 	char val[36];
-	tStd::tItoa(atom, val, 36, 10);
+	tStd::tItoa(val, 36, atom, 10);
 	WriteAtom(val);
 }
 
 
 void tScriptWriter::WriteAtom(const float atom, bool incBitRep)
 {
-	float f = atom;
-	if (tStd::tIsSpecial(f))
-		f = 0.0f;
-
-	char val[64];
-	char* cval = val;
-	cval += tsPrintf(cval, "%8.8f", f);
-
-	// Add a trailing 0 because it looks better.
-	if (*(cval-1) == '.')
-	{
-		*cval++ = '0';
-		*cval = '\0';
-	}
-
-	if (incBitRep)
-		cval += tsPrintf(cval, "#%08X", *((uint32*)&f));
-
-	WriteAtom(val);
+	tString str;
+	tSystem::tFtostr(str, atom, incBitRep);
+	WriteAtom(str);
 }
 
 
 void tScriptWriter::WriteAtom(const double atom, bool incBitRep)
 {
-	double d = atom;
-	if (tStd::tIsSpecial(d))
-		d = 0.0;
-
-	char val[128];
-	char* cval = val;
-	cval += tsPrintf(cval, "%16.16f", d);
-
-	// Add a trailing 0 because it looks better.
-	if (*(cval-1) == '.')
-	{
-		*cval++ = '0';
-		*cval = '\0';
-	}
-
-	if (incBitRep)
-		cval += tsPrintf(cval, "#%016|64X", *((uint64*)&d));
-
-	WriteAtom(val);
+	tString str;
+	tSystem::tDtostr(str, atom, incBitRep);
+	WriteAtom(str);
 }
 
 
@@ -948,7 +916,7 @@ void tScriptWriter::WriteAtom(const tColouri& c)
 	for (int e = 0; e < 4; e++)
 	{
 		char val[36];
-		tStd::tItoa(c.E[e], val, 36, 10);
+		tStd::tItoa(val, 36, c.E[e], 10);
 
 		str += val;
 		if (e != 3)

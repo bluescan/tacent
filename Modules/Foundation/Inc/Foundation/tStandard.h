@@ -3,7 +3,7 @@
 // Tacent functions and types that are standard across all platforms. Includes global functions like itoa which are not
 // available on some platforms, but are common enough that they should be.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -104,46 +104,54 @@ inline int tStrtoui(const char* s, int base = -1)																		{ return tStr
 inline int tStrtoi(const char* s, int base = -1)																		{ return tStrtoi32(s, base); }
 inline int tAtoi(const char* s)								/* Base 10 only. Use tStrtoi for arbitrary base. */			{ return tStrtoi32(s, 10); }
 
-template <typename IntegralType> bool tStrtoiTStrict(const char* str, IntegralType& val, int base = -1);
-inline bool tStrtoi32Strict(const char* s, int32& Int32Value, int base = -1)											{ return tStrtoiTStrict<int32>(s, Int32Value, base); }
-inline bool tStrtoui32Strict(const char* s, uint32& UInt32Value, int base = -1)											{ return tStrtoiTStrict<uint32>(s, UInt32Value, base); }
-inline bool tStrtoi64Strict(const char* s, int64& Int64Value, int base = -1)											{ return tStrtoiTStrict<int64>(s, Int64Value, base); }
-inline bool tStrtoui64Strict(const char* s, uint64& UInt64Value, int base = -1)											{ return tStrtoiTStrict<uint64>(s, UInt64Value, base); }
-inline bool tStrtouiStrict(const char* s, uint32& IntValue, int base = -1)												{ return tStrtoui32Strict(s, IntValue, base); }
-inline bool tStrtoiStrict(const char* s, int& IntValue, int base = -1)													{ return tStrtoi32Strict(s, IntValue, base); }
-inline bool tAtoiStrict(const char* s, int& IntValue)																	{ return tStrtoi32Strict(s, IntValue, 10); }
-
-// These are both base 10 only. They return 0.0 (or 0.0f) if there is no conversion. They also handle converting a
-// possible binary representation in he string. If the string contains a hash(#) and the next 8 or 16 digits are valid
-// hex digits, thay are interpreted as the binary IEEE floating point rep directly. This stops 'wobble' when serializing
-// and deserializing from disk multiple times as would be present in the approximate base 10 representations.
-float tStrtof(const char*);
-double tStrtod(const char*);
-
-// These are both base 10 only. They return 0.0 if there is no conversion.
-inline float tAtof(const char* s)																						{ return tStrtof(s); }
-inline double tAtod(const char* s)																						{ return tStrtod(s); }
+// These are just variants of above that are strict. If the conversion encounters any parsing errors (all characters are
+// invalid, the passed in string is null, or the passed in string is empty) instead of returning the default value
+// IntegralType(0), false is returned.
+template <typename IntegralType> bool tStrtoiT(IntegralType&, const char*, int base = -1);
+inline bool tStrtoi32(int32& v, const char* s, int base = -1)															{ return tStrtoiT<int32>(v, s, base); }
+inline bool tStrtoui32(uint32& v, const char* s, int base = -1)															{ return tStrtoiT<uint32>(v, s, base); }
+inline bool tStrtoi64(int64& v, const char* s, int base = -1)															{ return tStrtoiT<int64>(v, s, base); }
+inline bool tStrtoui64(uint64& v, const char* s, int base = -1)															{ return tStrtoiT<uint64>(v, s, base); }
+inline bool tStrtoui(uint32& v, const char* s, int base = -1)															{ return tStrtoui32(v, s, base); }
+inline bool tStrtoi(int& v, const char* s, int base = -1)																{ return tStrtoi32(v, s, base); }
+inline bool tAtoi(int& v, const char* s)																				{ return tStrtoi32(v, s, 10); }
 
 // String to bool. Case insensitive. Interprets "true", "t", "yes", "y", "on", "enable", "enabled", "1", "+", and
 // strings that represent non-zero integers as boolean true. Otherwise false.
 bool tStrtob(const char*);
+
+// These are both base 10 only. They return 0.0f (or 0.0) if there is no conversion. They also handle converting an
+// optional binary representation in the string -- if it contains a hash(#) and the next 8 (or 16) digits are valid
+// hex digits, they are interpreted as the binary IEEE 754 floating point rep directly. This stops 'wobble' when
+// serializing/deserializing from disk multiple times as would be present in the approximate base 10 representations.
+// Valid tStrtof example input stings include: "45.838#FADD23BB", and "45.838".
+float tStrtof(const char*);
+double tStrtod(const char*);
+
+// These are synonyms of the above two functions.
+inline float tAtof(const char* s)																					{ return tStrtof(s); }
+inline double tAtod(const char* s)																					{ return tStrtod(s); }
 
 // Here are the functions for going from integral types to strings. strSize (as opposed to length) must include
 // enough room for the terminating null. strSize should be the full size of the passed-in str buffer. The resulting
 // string, if letter characters are called for (bases > 10) will be capital, not lower case. Base must be E [2, 36].
 // Conversion problems boil down to passing null str, strSize being too small, and specifying an out-of-bounds base.
 // Returns false in these cases, and true on success. The int-to-string functions are mainly available to handle
-// arbitrary base E (2, 36] since tsPrintf only handles octal, decimal, and hex. Floating point conversions to
-// strings should be handled by the tPrintf-style functions due to their superior formatting specifiers.
-template <typename IntegralType> bool tItostrT(IntegralType value, char* str, int strSize, int base = 10);
-inline bool tItostr(int32 value, char* str, int strSize, int base = 10)													{ return tItostrT<int32>(value, str, strSize, base); }
-inline bool tItostr(int64 value, char* str, int strSize, int base = 10)													{ return tItostrT<int64>(value, str, strSize, base); }
-inline bool tItostr(uint32 value, char* str, int strSize, int base = 10)												{ return tItostrT<uint32>(value, str, strSize, base); }
-inline bool tItostr(uint64 value, char* str, int strSize, int base = 10)												{ return tItostrT<uint64>(value, str, strSize, base); }
-inline bool tItoa(int32 value, char* str, int strSize, int base = 10)													{ return tItostr(value, str, strSize, base); }
-inline bool tItoa(int64 value, char* str, int strSize, int base = 10)													{ return tItostr(value, str, strSize, base); }
-inline bool tItoa(uint32 value, char* str, int strSize, int base = 10)													{ return tItostr(value, str, strSize, base); }
-inline bool tItoa(uint64 value, char* str, int strSize, int base = 10)													{ return tItostr(value, str, strSize, base); }
+// arbitrary base E (2, 36] since tsPrintf only handles octal, decimal, and hex.
+//
+// Floating point conversions to strings should be handled by the tPrintf-style functions due to their superior
+// formatting specifiers. There are helper functions that convert float/double to strings. Due to the complexity of
+// converting to a string, these functions are found in the System module rather than foundation. Examples of these
+// functions are: tFtoa, tDtoa, tFtostr, and tDtostr.
+template <typename IntegralType> bool tItostrT(char* str, int strSize, IntegralType value, int base = 10);
+inline bool tItostr(char* str, int strSize, int32 value, int base = 10)													{ return tItostrT<int32>(str, strSize, value, base); }
+inline bool tItostr(char* str, int strSize, int64 value, int base = 10)													{ return tItostrT<int64>(str, strSize, value, base); }
+inline bool tItostr(char* str, int strSize, uint32 value, int base = 10)												{ return tItostrT<uint32>(str, strSize, value, base); }
+inline bool tItostr(char* str, int strSize, uint64 value, int base = 10)												{ return tItostrT<uint64>(str, strSize, value, base); }
+inline bool tItoa(char* str, int strSize, int32 value, int base = 10)													{ return tItostr(str, strSize, value, base); }
+inline bool tItoa(char* str, int strSize, int64 value, int base = 10)													{ return tItostr(str, strSize, value, base); }
+inline bool tItoa(char* str, int strSize, uint32 value, int base = 10)													{ return tItostr(str, strSize, value, base); }
+inline bool tItoa(char* str, int strSize, uint64 value, int base = 10)													{ return tItostr(str, strSize, value, base); }
 
 inline bool tIsspace(char c)																							{ return isspace(int(c)) ? true : false; }
 inline bool tIsdigit(char c)																							{ return isdigit(int(c)) ? true : false; }
@@ -303,7 +311,7 @@ template<typename IntegralType> inline IntegralType tStd::tStrtoiT(const char* s
 }
 
 
-template<typename IntegralType> inline bool tStd::tStrtoiTStrict(const char* str, IntegralType& val, int base)
+template<typename IntegralType> inline bool tStd::tStrtoiT(IntegralType& val, const char* str, int base)
 {
 	val = 0;
 	if (!str || (*str == '\0'))
@@ -388,7 +396,7 @@ template<typename IntegralType> inline bool tStd::tStrtoiTStrict(const char* str
 }
 
 
-template<typename IntegralType> inline bool tStd::tItostrT(IntegralType value, char* str, int strSize, int base)
+template<typename IntegralType> inline bool tStd::tItostrT(char* str, int strSize, IntegralType value, int base)
 {
 	if (!str || strSize <= 0)
 		return false;
