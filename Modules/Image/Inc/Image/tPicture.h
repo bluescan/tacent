@@ -171,7 +171,8 @@ public:
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
-	int GetNumPixels() const																							{ return Width*Height; }
+	int GetArea() const																									{ return Width*Height; }
+	int GetNumPixels() const																							{ return GetArea(); }
 
 	void Rotate90(bool antiClockWise);
 
