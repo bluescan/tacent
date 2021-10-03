@@ -769,7 +769,16 @@ void tChunkReader::Load(const tString& filename, uint8* buffer)
 {
 	UnLoad();
 	tFileHandle fh = tOpenFile(filename.ConstText(), "rb");
+	if (!fh)
+		return;
+
 	ReadBufferSize = tGetFileSize(fh);
+	if (ReadBufferSize == 0)
+	{
+		tCloseFile(fh);
+		return;
+	}
+
 	const int maxAlign = 1 << (int(tChunkWriter::Alignment::Largest) + 2);
 
 	if (!buffer)
