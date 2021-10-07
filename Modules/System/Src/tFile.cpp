@@ -661,7 +661,6 @@ bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 	if (fileInfo.AccessTime < fileInfo.CreationTime)
 		fileInfo.AccessTime = fileInfo.CreationTime;
 
-	tGetFileSize(file);
 	fileInfo.FileSize = fd.nFileSizeHigh;
 	fileInfo.FileSize <<= 32;
 	fileInfo.FileSize |= fd.nFileSizeLow;
