@@ -150,7 +150,7 @@ tString tGetFileBaseName(const tString& filename);
 
 bool tIsFileNewer(const tString& fileA, const tString& fileB);
 
-struct tFileInfo
+struct tFileInfo : public tLink<tFileInfo>
 {
 	tFileInfo();
 	void Clear();
@@ -361,6 +361,10 @@ bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tExten
 bool tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
 bool tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden = true);
 
+// If you need the full file info for all the files you are enumerating, call this instead of the tFindFilesFast above.
+// It is much faster than getting the filenames and calling tGetFileInfo on each one -- a lot faster, esp on windows.
+bool tFindFilesFast(tList<tFileInfo>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
+bool tFindFilesFast(tList<tFileInfo>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden = true);
 
 // foundFiles is appened to. Clear first if desired. Extension can be something like "txt" (no dot).
 bool tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
