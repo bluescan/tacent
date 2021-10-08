@@ -267,6 +267,8 @@ namespace tSystem
 	void tGetFileInfo(tFileInfo& fileInfo, Win32FindData&);
 	#endif
 
+	bool tFindFilesFastInternal(const tString& dir, const tExtensions& extensions, bool includeHidden, tList<tStringItem>* foundFiles, tList<tFileInfo>* foundInfos);
+
 	struct ExtTypePair
 	{
 		const char* Ext;
@@ -2212,16 +2214,7 @@ bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, con
 }
 
 
-bool tSystem::tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden)
-{
-	tExtensions extensions;
-	if (!ext.IsEmpty())
-		extensions.Add(ext);
-	return tFindFilesFast(foundFiles, dir, extensions, includeHidden);
-}
-
-
-bool tSystem::tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden)
+bool tSystem::tFindFilesFastInternal(const tString& dir, const tExtensions& extensions, bool includeHidden, tList<tStringItem>* foundFiles, tList<tFileInfo>* foundInfos)
 {
 	// FindFirstFile etc seem to like backslashes better.
 	tString dirStr(dir);
@@ -2266,8 +2259,16 @@ bool tSystem::tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir,
 				// It's not a directory... so it's actually a real file.
 				if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
 				{
-					tStringItem* newItem = new tStringItem(dirStr + fd.cFileName);
-					newItem->Replace('\\', '/');
+					tString foundName = dirStr + fd.cFileName;
+					foundName.Replace('\\', '/');
+
+					tStringItem* newName = foundFiles ? new tStringItem(foundName) : nullptr;
+					tFileInfo*   newInfo = foundInfos ? new tFileInfo() : nullptr;
+					if (newInfo)
+					{
+						newInfo->FileName = foundName;
+						tGetFileInfo(*newInfo, fd);
+					}
 
 					// Holy obscure and annoying FindFirstFile bug! FindFirstFile("*.abc", ...) will also find
 					// files like file.abcd. This isn't correct I guess we have to check the extension here.
@@ -2276,11 +2277,19 @@ bool tSystem::tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir,
 					{
 						tString foundExtension = tGetFileExtension(fd.cFileName);
 						if (ext.IsEqualCI(foundExtension))
-							foundFiles.Append(newItem);
+						{
+							if (foundFiles)
+								foundFiles->Append(newName);
+							if (foundInfos)
+								foundInfos->Append(newInfo);
+						}
 					}
 					else
 					{
-						foundFiles.Append(newItem);
+						if (foundFiles)
+							foundFiles->Append(newName);
+						if (foundInfos)
+							foundInfos->Append(newInfo);
 					}
 				}
 			}
@@ -2321,15 +2330,37 @@ bool tSystem::tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir,
 			continue;
 
 		if (includeHidden || !tIsHidden(foundFile))
-			foundFiles.Append(new tStringItem(foundFile));
+		{
+			if (foundFiles)
+				foundFiles->Append(new tStringItem(foundFile));
+
+			if (foundInfos)
+			{
+				tFileInfo* newFileInfo = new tFileInfo();
+				tGetFileInfo(*newFileInfo, foundFile);
+				foundInfos->Append(newFileInfo);
+			}
+		}
 	}
 	closedir(dirEnt);
 	return true;
 
-	#else
-	return tFindFiles(foundFiles, dir, extensions, includeHidden);
-
 	#endif
+}
+
+
+bool tSystem::tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden)
+{
+	tExtensions extensions;
+	if (!ext.IsEmpty())
+		extensions.Add(ext);
+	return tFindFilesFast(foundFiles, dir, extensions, includeHidden);
+}
+
+
+bool tSystem::tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden)
+{
+	return tFindFilesFastInternal(dir, extensions, includeHidden, &foundFiles, nullptr);
 }
 
 
@@ -2342,118 +2373,9 @@ bool tSystem::tFindFilesFast(tList<tFileInfo>& foundFiles, const tString& dir, c
 }
 
 
-bool tSystem::tFindFilesFast(tList<tFileInfo>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden)
+bool tSystem::tFindFilesFast(tList<tFileInfo>& foundInfos, const tString& dir, const tExtensions& extensions, bool includeHidden)
 {
-	// FindFirstFile etc seem to like backslashes better.
-	tString dirStr(dir);
-	if (dirStr.IsEmpty())
-		dirStr = tGetCurrentDir();
-
-	#ifdef PLATFORM_WINDOWS
-	dirStr.Replace('/', '\\');
-	if (dirStr[dirStr.Length() - 1] != '\\')
-		dirStr += "\\";
-
-	// There's some complexity here with windows, but it's still very fast. We need to loop through all the
-	// extensions doing the FindFirstFile business, while modifying the path appropriately for each one.
-	tExtensions exts(extensions);
-
-	// Insert a special empty extension if extensions is empty. This will cause all file types to be included.
-	if (extensions.IsEmpty())
-		exts.Extensions.Append(new tStringItem());
-
-	bool allOk = true;
-	for (tStringItem* extItem = exts.First(); extItem; extItem = extItem->Next())
-	{
-		tString ext(*extItem);
-		tString path = dirStr + "*.";
-		if (ext.IsEmpty())
-			path += "*";
-		else
-			path += ext;
-
-		Win32FindData fd;
-		WinHandle h = FindFirstFile(path, &fd);
-		if (h == INVALID_HANDLE_VALUE)
-		{
-			allOk = false;
-			continue;
-		}
-
-		do
-		{
-			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
-			{
-				// It's not a directory... so it's actually a real file.
-				if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
-				{
-					tFileInfo* newItem = new tFileInfo();
-					newItem->FileName = dirStr + fd.cFileName;
-					newItem->FileName.Replace('\\', '/');
-					tGetFileInfo(*newItem, fd);
-
-					// Holy obscure and annoying FindFirstFile bug! FindFirstFile("*.abc", ...) will also find
-					// files like file.abcd. This isn't correct I guess we have to check the extension here.
-					// FileMask is required to specify an extension, even if it is ".*"
-					if (path[path.Length() - 1] != '*')
-					{
-						tString foundExtension = tGetFileExtension(fd.cFileName);
-						if (ext.IsEqualCI(foundExtension))
-							foundFiles.Append(newItem);
-					}
-					else
-					{
-						foundFiles.Append(newItem);
-					}
-				}
-			}
-		} while (FindNextFile(h, &fd));
-
-		FindClose(h);
-		if (GetLastError() != ERROR_NO_MORE_FILES)
-			return false;		
-	}
-	return allOk;
-
-	#elif defined(PLATFORM_LINUX)
-	dirStr.Replace('\\', '/');
-	if (dirStr[dirStr.Length() - 1] != '/')
-		dirStr += "/";
-
-	DIR* dirEnt = opendir(dirStr.Chars());
-	if (dirStr.IsEmpty() || !dirEnt)
-		return false;
-
-	for (struct dirent* entry = readdir(dirEnt); entry; entry = readdir(dirEnt))
-	{
-		// Definitely skip directories.
-		if (entry->d_type == DT_DIR)
-			continue;
-
-		// Sometimes it seems that d_type for a file is set to unknown.
-		// Noticed this under Linux when some files are in mounted directories.
-		if ((entry->d_type != DT_REG) && (entry->d_type != DT_UNKNOWN))
-			continue;
-
-		tString foundFile((char*)entry->d_name);
-		foundFile = dirStr + foundFile;
-		tString foundExt = tGetFileExtension(foundFile);
-
-		// If extension list present and no match continue.
-		if (!extensions.IsEmpty() && !extensions.Contains(foundExt))
-			continue;
-
-		if (includeHidden || !tIsHidden(foundFile))
-		{
-			tFileInfo* newFileInfo = new tFileInfo();
-			tGetFileInfo(*newFileInfo, foundFile);
-			foundFiles.Append(newFileInfo);
-		}
-	}
-	closedir(dirEnt);
-	return true;
-
-	#endif
+	return tFindFilesFastInternal(dir, extensions, includeHidden, nullptr, &foundInfos);
 }
 
 
