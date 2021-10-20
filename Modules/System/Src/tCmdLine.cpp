@@ -1,4 +1,4 @@
-// tCommand.cpp
+// tCmdLine.cpp
 //
 // Parses a command line. A description of how to use the parser is in the header. Internally the first step is the
 // expansion of combined single hyphen options. Next the parameters and options are parsed out. For each registered
@@ -17,11 +17,11 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <Foundation/tFundamentals.h>
-#include "System/tCommand.h"
+#include "System/tCmdLine.h"
 #include "System/tFile.h"
 
 
-namespace tCommand
+namespace tCmdLine
 {
 	// Any single-hyphen combined arguments are expanded here. Ex. -abc becomes -a -b -c.
 	void ExpandArgs(tList<tStringItem>& args);
@@ -38,13 +38,13 @@ namespace tCommand
 }
 
 
-tString tCommand::tGetProgram()
+tString tCmdLine::tGetProgram()
 {
 	return Program;
 }
 
 
-tCommand::tParam::tParam() :
+tCmdLine::tParam::tParam() :
 	ParamNumber(GenParamNumber++),
 	Param(),
 	Name(),
@@ -55,7 +55,7 @@ tCommand::tParam::tParam() :
 }
 
 
-tCommand::tParam::tParam(int paramNumber, const char* name, const char* description) :
+tCmdLine::tParam::tParam(int paramNumber, const char* name, const char* description) :
 	ParamNumber(paramNumber),
 	Param(),
 	Name(),
@@ -73,7 +73,7 @@ tCommand::tParam::tParam(int paramNumber, const char* name, const char* descript
 }
 
 
-tCommand::tOption::tOption(const char* description, char shortName, const char* longName, int numArgs) :
+tCmdLine::tOption::tOption(const char* description, char shortName, const char* longName, int numArgs) :
 	ShortName(shortName),
 	LongName(longName),
 	Description(description),
@@ -85,7 +85,7 @@ tCommand::tOption::tOption(const char* description, char shortName, const char* 
 }
 
 
-tCommand::tOption::tOption(const char* description, const char* longName, char shortName, int numArgs) :
+tCmdLine::tOption::tOption(const char* description, const char* longName, char shortName, int numArgs) :
 	ShortName(shortName),
 	LongName(longName),
 	Description(description),
@@ -97,7 +97,7 @@ tCommand::tOption::tOption(const char* description, const char* longName, char s
 }
 
 
-tCommand::tOption::tOption(const char* description, char shortName, int numArgs) :
+tCmdLine::tOption::tOption(const char* description, char shortName, int numArgs) :
 	ShortName(shortName),
 	LongName(),
 	Description(description),
@@ -109,7 +109,7 @@ tCommand::tOption::tOption(const char* description, char shortName, int numArgs)
 }
 
 
-tCommand::tOption::tOption(const char* description, const char* longName, int numArgs) :
+tCmdLine::tOption::tOption(const char* description, const char* longName, int numArgs) :
 	ShortName(),
 	LongName(longName),
 	Description(description),
@@ -121,7 +121,7 @@ tCommand::tOption::tOption(const char* description, const char* longName, int nu
 }
 
 
-int tCommand::IndentSpaces(int numSpaces)
+int tCmdLine::IndentSpaces(int numSpaces)
 {
 	for (int s = 0; s < numSpaces; s++)
 		tPrintf(" ");
@@ -130,7 +130,7 @@ int tCommand::IndentSpaces(int numSpaces)
 }
 
 
-const tString& tCommand::tOption::ArgN(int n) const
+const tString& tCmdLine::tOption::ArgN(int n) const
 {
 	for (tStringItem* arg = Args.First(); arg; arg = arg->Next(), n--)
 		if (n <= 1)
@@ -140,7 +140,7 @@ const tString& tCommand::tOption::ArgN(int n) const
 }
 
 
-void tCommand::tParse(int argc, char** argv)
+void tCmdLine::tParse(int argc, char** argv)
 {
 	if (argc <= 0)
 		return;
@@ -168,7 +168,7 @@ void tCommand::tParse(int argc, char** argv)
 }
 
 
-void tCommand::ExpandArgs(tList<tStringItem>& args)
+void tCmdLine::ExpandArgs(tList<tStringItem>& args)
 {
 	tList<tStringItem> expArgs(tListMode::ListOwns);
 	while (tStringItem* arg = args.Remove())
@@ -214,25 +214,25 @@ void tCommand::ExpandArgs(tList<tStringItem>& args)
 }
 
 
-static bool ParamSortFn(const tCommand::tParam& a, const tCommand::tParam& b)
+static bool ParamSortFn(const tCmdLine::tParam& a, const tCmdLine::tParam& b)
 {
 	return (a.ParamNumber < b.ParamNumber);
 }
 
 
-static bool OptionSortFnShort(const tCommand::tOption& a, const tCommand::tOption& b)
+static bool OptionSortFnShort(const tCmdLine::tOption& a, const tCmdLine::tOption& b)
 {
 	return tStd::tStrcmp(a.ShortName.Pod(), b.ShortName.Pod()) < 0;
 }
 
 
-static bool OptionSortFnLong(const tCommand::tOption& a, const tCommand::tOption& b)
+static bool OptionSortFnLong(const tCmdLine::tOption& a, const tCmdLine::tOption& b)
 {
 	return tStd::tStrcmp(a.LongName.Pod(), b.LongName.Pod()) < 0;
 }
 
 
-void tCommand::tParse(const char* commandLine, bool fullCommandLine)
+void tCmdLine::tParse(const char* commandLine, bool fullCommandLine)
 {
 	// At this point the constructors for all tOptions and tParams will have been called and both Params and Options
 	// lists are populated. Options can be specified in any order, but we're going to order them alphabetically by short
@@ -358,13 +358,13 @@ void tCommand::tParse(const char* commandLine, bool fullCommandLine)
 }
 
 
-int tCommand::tGetNumPresentParameters()
+int tCmdLine::tGetNumPresentParameters()
 {
 	return NumPresentParameters;
 }
 
 
-void tCommand::tPrintSyntax()
+void tCmdLine::tPrintSyntax()
 {
 	tString syntax =
 R"U5AG3(Syntax Help:
@@ -419,19 +419,19 @@ once. Eg. tool.exe -I /patha/include/ -I /pathb/include
 }
 
 
-void tCommand::tPrintUsage(int versionMajor, int versionMinor, int revision)
+void tCmdLine::tPrintUsage(int versionMajor, int versionMinor, int revision)
 {
 	tPrintUsage(nullptr, versionMajor, versionMinor, revision);
 }
 
 
-void tCommand::tPrintUsage(const char* author, int versionMajor, int versionMinor, int revision)
+void tCmdLine::tPrintUsage(const char* author, int versionMajor, int versionMinor, int revision)
 {
 	tPrintUsage(author, nullptr, versionMajor, versionMinor, revision);
 }
 
 
-void tCommand::tPrintUsage(const char* author, const char* desc, int versionMajor, int versionMinor, int revision)
+void tCmdLine::tPrintUsage(const char* author, const char* desc, int versionMajor, int versionMinor, int revision)
 {
 	tAssert(versionMajor >= 0);
 	tAssert((versionMinor >= 0) || (revision < 0));		// Not allowed a valid revision number if minor is not also valid.
@@ -453,11 +453,11 @@ void tCommand::tPrintUsage(const char* author, const char* desc, int versionMajo
 }
 
 
-void tCommand::tPrintUsage(const char* versionAuthorString, const char* desc)
+void tCmdLine::tPrintUsage(const char* versionAuthorString, const char* desc)
 {
 	tString exeName = "Program.exe";
-	if (!tCommand::Program.IsEmpty())
-		exeName = tSystem::tGetFileName(tCommand::Program);
+	if (!tCmdLine::Program.IsEmpty())
+		exeName = tSystem::tGetFileName(tCmdLine::Program);
 
 	if (versionAuthorString)
 		tPrintf("%s %s\n\n", tPod(tSystem::tGetFileBaseName(exeName)), versionAuthorString);

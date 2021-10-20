@@ -1,4 +1,4 @@
-#include <System/tCommand.h>
+#include <System/tCmdLine.h>
 #include <System/tScript.h>
 #include <System/tFile.h>
 using namespace tStd;
@@ -9,11 +9,11 @@ int main(int argc, char** argv)
 {
 	tPrintf("Woboq CompilerCommands Tool\n");
 
-	tCommand::tOption config("config", "Specify the config file.", 'c', 1);
-	tCommand::tParse(argc, argv);
+	tCmdLine::tOption config("config", "Specify the config file.", 'c', 1);
+	tCmdLine::tParse(argc, argv);
 	if (!config.IsPresent())
 	{
-		tCommand::tPrintUsage();
+		tCmdLine::tPrintUsage();
 		return 0;
 	}
 

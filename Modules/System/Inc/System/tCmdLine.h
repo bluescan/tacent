@@ -1,4 +1,4 @@
-// tCommand.h
+// tCmdLine.h
 //
 // Parses a command line. A command line takes the form:
 // program.exe [arg1 arg2 arg3 ...]
@@ -48,7 +48,7 @@
 //
 // A powerful feature of the design of this parsing system is separation of concerns. In a typical system the knowledge
 // of all the different command line parameters and options is needed in a single place, often in main() where argc and
-// argv are passed in. These values need to somehow be passed all over the place in a large system. With tCommand you
+// argv are passed in. These values need to somehow be passed all over the place in a large system. With tCmdLine you
 // specify which options and parameters you care about only in the cpp file you are working in.
 //
 // To use the command line class, you start by registering your options and parameters. This is done using the tOption
@@ -88,7 +88,7 @@
 #include <Foundation/tString.h>
 
 
-namespace tCommand
+namespace tCmdLine
 {
 	struct tParam : public tLink<tParam>
 	{
@@ -161,13 +161,13 @@ namespace tCommand
 // Implementation below this line.
 
 
-inline tCommand::tParam::tParam(const char* description, const char* paramName, int paramNumber) :
+inline tCmdLine::tParam::tParam(const char* description, const char* paramName, int paramNumber) :
 	tParam(paramNumber, paramName, description)
 {
 }
 
 
-inline bool tCommand::tOption::GetArgs(tList<tStringItem>& args) const
+inline bool tCmdLine::tOption::GetArgs(tList<tStringItem>& args) const
 {
 	if (!IsPresent())
 		return false;

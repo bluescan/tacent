@@ -21,7 +21,7 @@
 #include <Math/tVector4.h>
 #include <Math/tQuaternion.h>
 #include <Math/tMatrix4.h>
-#include <System/tCommand.h>
+#include <System/tCmdLine.h>
 #include <System/tTask.h>
 #include <System/tMachine.h>
 #include <System/tRegex.h>
@@ -32,7 +32,7 @@
 #pragma warning (disable: 4723)
 using namespace tSystem;
 using namespace tMath;
-extern tCommand::tOption OptionShared;
+extern tCmdLine::tOption OptionShared;
 
 
 namespace tUnitTest
@@ -41,40 +41,40 @@ namespace tUnitTest
 
 tTestUnit(CmdLine)
 {
-	tPrintf("Testing tCommand command line parsing.\n");
+	tPrintf("Testing tCmdLine command line parsing.\n");
 
 	#ifdef TEST_COMMAND_PARAM_ARRAY
-	tCommand::tParam params[12];
-	tCommand::tParse("UnitTests.exe ParamA ParamB", true);
+	tCmdLine::tParam params[12];
+	tCmdLine::tParse("UnitTests.exe ParamA ParamB", true);
 	for (int w = 0; w < 12; w++)
 		tPrintf("Param %d is: %s\n", w+1, params[w].Param.Chars());
 	return;
 	#endif
 
-	tCommand::tParam fromFile(1, "fromFile");
-	tCommand::tParam toFile(2, "toFile");
-	tCommand::tOption log("Specify log file.", "log", 'l', 1);
-	tCommand::tOption overwrite("Overwrite dest.", "overwrite", 0);
-	tCommand::tOption recurse("Recursive.", 'R', 0);
-	tCommand::tOption program("Program mode.", 'p', 0);
-	tCommand::tOption time("Print timestamp.", "time", 't', 0);
-	tCommand::tOption stop("Stop early.", "stop", 's', 0);
+	tCmdLine::tParam fromFile(1, "fromFile");
+	tCmdLine::tParam toFile(2, "toFile");
+	tCmdLine::tOption log("Specify log file.", "log", 'l', 1);
+	tCmdLine::tOption overwrite("Overwrite dest.", "overwrite", 0);
+	tCmdLine::tOption recurse("Recursive.", 'R', 0);
+	tCmdLine::tOption program("Program mode.", 'p', 0);
+	tCmdLine::tOption time("Print timestamp.", "time", 't', 0);
+	tCmdLine::tOption stop("Stop early.", "stop", 's', 0);
 
 	// Normally you would call tParse from main with argc and argv. The call below allows one to test command lines
 	// by entering the command line arguments directly as a string.
-	// tCommand::tParse("-R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere --enj");
+	// tCmdLine::tParse("-R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere --enj");
 
 	// This is another way of entering a test command line. The true means the first entry is the program name.
-	tCommand::tParse("UnitTests.exe -R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere --enj", true);
+	tCmdLine::tParse("UnitTests.exe -R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere --enj", true);
 
 	// There are a few differnt ways of calling PrintUsage:
-	// tCommand::tPrintUsage();
-	// tCommand::tPrintUsage(tVersion::Major, tVersion::Minor);
-	// tCommand::tPrintUsage(tVersion::Major);
-	tCommand::tPrintUsage(tVersion::Major, tVersion::Minor, tVersion::Revision);
-	// tCommand::tPrintUsage("Tony Tekhead", tVersion::Major, tVersion::Minor);
-	// tCommand::tPrintUsage("Tony Tekhead", tVersion::Major, tVersion::Minor, tVersion::Revision);
-	// tCommand::tPrintUsage("Version 42.67 By Patty Programmer");
+	// tCmdLine::tPrintUsage();
+	// tCmdLine::tPrintUsage(tVersion::Major, tVersion::Minor);
+	// tCmdLine::tPrintUsage(tVersion::Major);
+	tCmdLine::tPrintUsage(tVersion::Major, tVersion::Minor, tVersion::Revision);
+	// tCmdLine::tPrintUsage("Tony Tekhead", tVersion::Major, tVersion::Minor);
+	// tCmdLine::tPrintUsage("Tony Tekhead", tVersion::Major, tVersion::Minor, tVersion::Revision);
+	// tCmdLine::tPrintUsage("Version 42.67 By Patty Programmer");
 
 	tPrintf("OptionShared: %s\n", OptionShared.IsPresent() ? "true" : "false");
 	tRequire(log.IsPresent());

@@ -13,7 +13,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <Foundation/tVersion.cmake.h>
-#include <System/tCommand.h>
+#include <System/tCmdLine.h>
 #include "UnitTests.h"
 #include "TestFoundation.h"
 #include "TestMath.h"
@@ -26,14 +26,14 @@
 
 
 using namespace tStd;
-tCommand::tOption OptionPrintAllOutput("Print all output.", 'a', "all");
-tCommand::tOption OptionShared("Share and enjoy.", 'e', "enj");
-tCommand::tOption OptionHelp("Display help.", "help", 'h', 0);
-tCommand::tOption OptionNumber("Number option.", "num", 'n', 2);
-tCommand::tOption OptionLongOnly("Long Only.", "longonly");
-tCommand::tOption OptionShortOnly("Short Only.", 's');
-tCommand::tParam Param2("Parameter Two", "Param2", 2);
-tCommand::tParam Param1("Parameter One", "Param1", 1);
+tCmdLine::tOption OptionPrintAllOutput("Print all output.", 'a', "all");
+tCmdLine::tOption OptionShared("Share and enjoy.", 'e', "enj");
+tCmdLine::tOption OptionHelp("Display help.", "help", 'h', 0);
+tCmdLine::tOption OptionNumber("Number option.", "num", 'n', 2);
+tCmdLine::tOption OptionLongOnly("Long Only.", "longonly");
+tCmdLine::tOption OptionShortOnly("Short Only.", 's');
+tCmdLine::tParam Param2("Parameter Two", "Param2", 2);
+tCmdLine::tParam Param1("Parameter One", "Param1", 1);
 
 
 namespace tUnitTest
@@ -54,18 +54,18 @@ int main(int argc, char** argv)
 	// UnitTests.exe -n -35 3.0 -10 hello20
 	// UnitTests.exe --help
 	// UnitTests.exe -h
-	tCommand::tParse(argc, argv);
+	tCmdLine::tParse(argc, argv);
 
 	if (OptionHelp)
 	{
-		tCommand::tPrintUsage
+		tCmdLine::tPrintUsage
 		(
 			"Tristan Grimmer",
 			"This program takes wingnuts and twists them into dingwags. This description\n"
 			"should not end in a newline.",
 			3, 12
 		);
-		tCommand::tPrintSyntax();
+		tCmdLine::tPrintSyntax();
 		return 0;
 	}
 

@@ -63,7 +63,7 @@ cubemap.Save(writer);
 
 __Example: Command Line Parsing__
 
-With tCommand you specify which options and parameters you care about only in the cpp file you are working in. Tacent can parse the parameters, options, and flags.
+With tCmdLine you specify which options and parameters you care about only in the cpp file you are working in. Tacent can parse the parameters, options, and flags.
 
 ```
 mycopy.exe -R --overwrite fileA.txt -pat fileB.txt --log log.txt
