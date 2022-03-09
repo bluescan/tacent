@@ -62,6 +62,7 @@ function(tacent_target_compile_options PROJNAME)
 
 			# GNU compiler. -std=c++20
 			$<$<CXX_COMPILER_ID:GNU>:-Wno-unused-result>
+			$<$<CXX_COMPILER_ID:GNU>:-Wno-stringop-overflow>
 
 			# Clang and GNU.
 			$<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wno-multichar>
