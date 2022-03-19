@@ -3,7 +3,7 @@
 // This knows how to load gifs. It knows the details of the gif file format and loads the data into multiple tPixel
 // arrays, one for each frame (gifs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2020, 2021, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -45,6 +45,10 @@ void tImageGIF::FrameCallback(struct GIF_WHDR* whdr)
 		Height = whdr->ydim;
 		FrmPict = new tPixel[Width * Height];
 		FrmPrev = new tPixel[Width * Height];
+
+		// tPixel constructor does not initialize its members for efficiency. Must explicitely clear.
+		tStd::tMemset(FrmPict, 0, Width * Height * sizeof(tPixel));
+		tStd::tMemset(FrmPrev, 0, Width * Height * sizeof(tPixel));
 	}
 
 	int numPixels = Width * Height;
