@@ -3,7 +3,7 @@
 // Tacent functions and types that are standard across all platforms. Includes global functions like itoa which are not
 // available on some platforms, but are common enough that they should be.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -167,8 +167,10 @@ inline bool tIslower(char c)																							{ return islower(int(c)) ? tr
 inline bool tIsupper(char c)																							{ return isupper(int(c)) ? true : false; }
 inline bool tIsHexDigit(char d)																							{ return ((d >= 'a' && d <= 'f')||(d >= 'A' && d <= 'F')||(d >= '0' && d <= '9')); }
 
-inline char tChrlwr(char c)																								{ return tIslower(c) ? c : c + ('a' - 'A'); }
-inline char tChrupr(char c)																								{ return tIsupper(c) ? c : c - ('a' - 'A'); }
+// These functions return an unchanged character if the input is not an alphabetic character.
+inline char tChrlwr(char c)																								{ return tIsupper(c) ? c + ('a' - 'A') : c; }
+inline char tChrupr(char c)																								{ return tIslower(c) ? c - ('a' - 'A') : c; }
+
 void tStrrev(char* begin, char* end);
 
 
