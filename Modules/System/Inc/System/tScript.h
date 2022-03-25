@@ -293,6 +293,12 @@ public:
 	template<typename T> void Comp(const tString& s, const T& a, const T& b, const T& c)								{ Begin(); Atom(s); Atom(a); Atom(b); Atom(c); End(); CR(); }
 	template<typename T> void Comp(const tString& s, const T& a, const T& b, const T& c, const T& d)					{ Begin(); Atom(s); Atom(a); Atom(b); Atom(c); Atom(d); End(); CR(); }
 
+	// These are same as above but without a NewLine at the end. Component single line.
+	template<typename T> void Coms(const tString& s, const T& a)														{ Begin(); Atom(s); Atom(a); End(); }
+	template<typename T> void Coms(const tString& s, const T& a, const T& b)											{ Begin(); Atom(s); Atom(a); Atom(b); End(); }
+	template<typename T> void Coms(const tString& s, const T& a, const T& b, const T& c)								{ Begin(); Atom(s); Atom(a); Atom(b); Atom(c); End(); }
+	template<typename T> void Coms(const tString& s, const T& a, const T& b, const T& c, const T& d)					{ Begin(); Atom(s); Atom(a); Atom(b); Atom(c); Atom(d); End(); }
+
 private:
 	int WriteIndents()
 	{
