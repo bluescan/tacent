@@ -584,7 +584,9 @@ void tScriptReader::Load(const tString& name, bool isFile)
 
 
 tScriptWriter::tScriptWriter(const tString& filename) :
-	CurrIndent(0)
+	CurrIndent(0),
+	UseSpacesForTabs(false),
+	SpaceTabWidth(4)
 {
 	ScriptFile = tSystem::tOpenFile(filename, "wt");
 
@@ -985,13 +987,13 @@ void tScriptWriter::WriteCommentEnd()
 void tScriptWriter::NewLine()
 {
 	char nl = '\n';
-	char sp = ' ';
+	char tb = '\t';
 
 	int numWritten = tSystem::tWriteFile(ScriptFile, &nl, 1);
-	for (int s = 0; s < CurrIndent; s++)
-		numWritten += tSystem::tWriteFile(ScriptFile, &sp, 1);
+	numWritten += WriteIndents();
+	int expectedWritten = 1 + (UseSpacesForTabs ? CurrIndent*SpaceTabWidth : CurrIndent);
 
-	if (numWritten != CurrIndent + 1)
+	if (numWritten != expectedWritten)
 		throw tScriptError("Cannot write to script file.");
 }
 

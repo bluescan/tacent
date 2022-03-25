@@ -217,6 +217,9 @@ public:
 	tScriptWriter(const tString& filename);
 	~tScriptWriter()																									{ tSystem::tCloseFile(ScriptFile); }
 
+	// After this is called, the writer starts using spaces instead of tabe. Default is tabs.
+	void UseSpaces(int tabWidth = 4)																					{ UseSpacesForTabs = true; SpaceTabWidth = tabWidth; }
+
 	void BeginExpression();
 	void EndExpression();
 
@@ -246,8 +249,10 @@ public:
 	void WriteCommentLine(const char* = 0);
 	void WriteCommentEnd();
 
-	void Indent()																										{ CurrIndent += IndentDelta; }
-	void Dedent()																										{ CurrIndent -= IndentDelta; if (CurrIndent < 0) CurrIndent = 0; }
+	// Indent and Dedent have no immediate effect. They affect the next Newline call, which does a newline and then
+	// adds the correct number of tabs.
+	void Indent()																										{ CurrIndent++; }
+	void Dedent()																										{ CurrIndent--; if (CurrIndent < 0) CurrIndent = 0; }
 	void NewLine();
 
 	// Here are shortened versions of the commands so you don't have to type as much.
@@ -281,18 +286,25 @@ public:
 
 	// The Comp (Compose) functions write a list of 2 to 5 atoms (a command followed by 1 to 4 arguments). They are
 	// convenience functions to write expressions of the form [s a b] followed by a carraige return. The first atom is
-	// always a string and remaining atoms are always of the same type. Before the expression is written, the correct
-	// number of indents is inserted. Ex. To write 4 integers:
+	// always a string and remaining atoms are always of the same type. Ex. To write 4 integers:
 	// Comp("LeftRightTopBottom", 4, 2, -2, 1);
-	template<typename T> void Comp(const tString& s, const T& a)														{ WriteIndents(); Begin(); Atom(s); Atom(a); End(); CR(); }
-	template<typename T> void Comp(const tString& s, const T& a, const T& b)											{ WriteIndents(); Begin(); Atom(s); Atom(a); Atom(b); End(); CR(); }
-	template<typename T> void Comp(const tString& s, const T& a, const T& b, const T& c)								{ WriteIndents(); Begin(); Atom(s); Atom(a); Atom(b); Atom(c); End(); CR(); }
-	template<typename T> void Comp(const tString& s, const T& a, const T& b, const T& c, const T& d)					{ WriteIndents(); Begin(); Atom(s); Atom(a); Atom(b); Atom(c); Atom(d); End(); CR(); }
+	template<typename T> void Comp(const tString& s, const T& a)														{ Begin(); Atom(s); Atom(a); End(); CR(); }
+	template<typename T> void Comp(const tString& s, const T& a, const T& b)											{ Begin(); Atom(s); Atom(a); Atom(b); End(); CR(); }
+	template<typename T> void Comp(const tString& s, const T& a, const T& b, const T& c)								{ Begin(); Atom(s); Atom(a); Atom(b); Atom(c); End(); CR(); }
+	template<typename T> void Comp(const tString& s, const T& a, const T& b, const T& c, const T& d)					{ Begin(); Atom(s); Atom(a); Atom(b); Atom(c); Atom(d); End(); CR(); }
 
 private:
-	void WriteIndents()																									{ int tabs = CurrIndent / IndentDelta; for (int t = 0; t < tabs; t++) tfPrintf(ScriptFile, "\t"); }
-	int CurrIndent;
-	static const int IndentDelta = 4;
+	int WriteIndents()
+	{
+		int numChars = UseSpacesForTabs ? CurrIndent*SpaceTabWidth : CurrIndent;
+		char writeChar = UseSpacesForTabs ? ' ' : '\t';
+		for (int c = 0; c < numChars; c++) tSystem::tWriteFile(ScriptFile, &writeChar, 1);
+		return numChars;
+	}
+
+	int CurrIndent;			// Number of tabs. If using spaces it's the number of groups of SpaceTabWidth spaces.
+	bool UseSpacesForTabs;
+	int SpaceTabWidth;
 
 protected:
 	tFileHandle ScriptFile;
