@@ -3,7 +3,7 @@
 // Colour and pixel classes. Both a 32 bit integral representation as well as a 4 component floating point one can be
 // found in this file.
 //
-// Copyright (c) 2006, 2011, 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2006, 2011, 2017, 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -20,50 +20,50 @@ using namespace tMath;
 
 
 // Uses C++11 aggregate initialization syntax.
-const tColouri tColouri::black			= { 0x00, 0x00, 0x00 };
-const tColouri tColouri::white			= { 0xFF, 0xFF, 0xFF };
-const tColouri tColouri::pink			= { 0xFF, 0x80, 0x80 };
-const tColouri tColouri::red			= { 0xFF, 0x00, 0x00 };
-const tColouri tColouri::green			= { 0x00, 0xFF, 0x00 };
-const tColouri tColouri::blue			= { 0x00, 0x00, 0xFF };
-const tColouri tColouri::grey			= { 0x80, 0x80, 0x80 };
-const tColouri tColouri::lightgrey		= { 0xC0, 0xC0, 0xC0 };
-const tColouri tColouri::darkgrey		= { 0x40, 0x40, 0x40 };
-const tColouri tColouri::cyan			= { 0x00, 0xFF, 0xFF };
-const tColouri tColouri::magenta		= { 0xFF, 0x00, 0xFF };
-const tColouri tColouri::yellow			= { 0xFF, 0xFF, 0x00 };
+const tColouri tColouri::black			= { 0x00, 0x00, 0x00, 0xFF };
+const tColouri tColouri::white			= { 0xFF, 0xFF, 0xFF, 0xFF };
+const tColouri tColouri::pink			= { 0xFF, 0x80, 0x80, 0xFF };
+const tColouri tColouri::red			= { 0xFF, 0x00, 0x00, 0xFF };
+const tColouri tColouri::green			= { 0x00, 0xFF, 0x00, 0xFF };
+const tColouri tColouri::blue			= { 0x00, 0x00, 0xFF, 0xFF };
+const tColouri tColouri::grey			= { 0x80, 0x80, 0x80, 0xFF };
+const tColouri tColouri::lightgrey		= { 0xC0, 0xC0, 0xC0, 0xFF };
+const tColouri tColouri::darkgrey		= { 0x40, 0x40, 0x40, 0xFF };
+const tColouri tColouri::cyan			= { 0x00, 0xFF, 0xFF, 0xFF };
+const tColouri tColouri::magenta		= { 0xFF, 0x00, 0xFF, 0xFF };
+const tColouri tColouri::yellow			= { 0xFF, 0xFF, 0x00, 0xFF };
 const tColouri tColouri::transparent	= { 0x00, 0x00, 0x00, 0x00 };
 
 
 const tColourf tColourf::invalid		= { -1.0f, -1.0f, -1.0f, -1.0f };
-const tColourf tColourf::black			= { 0.0f, 0.0f, 0.0f };
-const tColourf tColourf::white			= { 1.0f, 1.0f, 1.0f };
-const tColourf tColourf::hotpink		= { 1.0f, 0.5f, 0.5f };
-const tColourf tColourf::red			= { 1.0f, 0.0f, 0.0f };
-const tColourf tColourf::green			= { 0.0f, 1.0f, 0.0f };
-const tColourf tColourf::blue			= { 0.0f, 0.0f, 1.0f };
-const tColourf tColourf::grey			= { 0.5f, 0.5f, 0.5f };
-const tColourf tColourf::lightgrey		= { 0.75f, 0.75f, 0.75f };
-const tColourf tColourf::darkgrey		= { 0.25f, 0.25f, 0.25f };
-const tColourf tColourf::cyan			= { 0.0f, 1.0f, 1.0f };
-const tColourf tColourf::magenta		= { 1.0f, 0.0f, 1.0f };
-const tColourf tColourf::yellow			= { 1.0f, 1.0f, 0.0f };
-const tColourf tColourf::transparent	= { 0.0f, 0.0f, 0.0f, 0.0f };
+const tColourf tColourf::black			= { 0.00f, 0.00f, 0.00f, 1.00f };
+const tColourf tColourf::white			= { 1.00f, 1.00f, 1.00f, 1.00f };
+const tColourf tColourf::hotpink		= { 1.00f, 0.50f, 0.50f, 1.00f };
+const tColourf tColourf::red			= { 1.00f, 0.00f, 0.00f, 1.00f };
+const tColourf tColourf::green			= { 0.00f, 1.00f, 0.00f, 1.00f };
+const tColourf tColourf::blue			= { 0.00f, 0.00f, 1.00f, 1.00f };
+const tColourf tColourf::grey			= { 0.50f, 0.50f, 0.50f, 1.00f };
+const tColourf tColourf::lightgrey		= { 0.75f, 0.75f, 0.75f, 1.00f };
+const tColourf tColourf::darkgrey		= { 0.25f, 0.25f, 0.25f, 1.00f };
+const tColourf tColourf::cyan			= { 0.00f, 1.00f, 1.00f, 1.00f };
+const tColourf tColourf::magenta		= { 1.00f, 0.00f, 1.00f, 1.00f };
+const tColourf tColourf::yellow			= { 1.00f, 1.00f, 0.00f, 1.00f };
+const tColourf tColourf::transparent	= { 0.00f, 0.00f, 0.00f, 0.00f };
 
 
 const tColour3f tColour3f::invalid		= { -1.0f, -1.0f, -1.0f };
-const tColour3f tColour3f::black		= { 0.0f, 0.0f, 0.0f };
-const tColour3f tColour3f::white		= { 1.0f, 1.0f, 1.0f };
-const tColour3f tColour3f::hotpink		= { 1.0f, 0.5f, 0.5f };
-const tColour3f tColour3f::red			= { 1.0f, 0.0f, 0.0f };
-const tColour3f tColour3f::green		= { 0.0f, 1.0f, 0.0f };
-const tColour3f tColour3f::blue			= { 0.0f, 0.0f, 1.0f };
-const tColour3f tColour3f::grey			= { 0.5f, 0.5f, 0.5f };
+const tColour3f tColour3f::black		= { 0.00f, 0.00f, 0.00f };
+const tColour3f tColour3f::white		= { 1.00f, 1.00f, 1.00f };
+const tColour3f tColour3f::hotpink		= { 1.00f, 0.50f, 0.50f };
+const tColour3f tColour3f::red			= { 1.00f, 0.00f, 0.00f };
+const tColour3f tColour3f::green		= { 0.00f, 1.00f, 0.00f };
+const tColour3f tColour3f::blue			= { 0.00f, 0.00f, 1.00f };
+const tColour3f tColour3f::grey			= { 0.50f, 0.50f, 0.50f };
 const tColour3f tColour3f::lightgrey	= { 0.75f, 0.75f, 0.75f };
 const tColour3f tColour3f::darkgrey		= { 0.25f, 0.25f, 0.25f };
-const tColour3f tColour3f::cyan			= { 0.0f, 1.0f, 1.0f };
-const tColour3f tColour3f::magenta		= { 1.0f, 0.0f, 1.0f };
-const tColour3f tColour3f::yellow		= { 1.0f, 1.0f, 0.0f };
+const tColour3f tColour3f::cyan			= { 0.00f, 1.00f, 1.00f };
+const tColour3f tColour3f::magenta		= { 1.00f, 0.00f, 1.00f };
+const tColour3f tColour3f::yellow		= { 1.00f, 1.00f, 0.00f };
 
 
 void tMath::tRGBToHSV(int& h, int& s, int& v, int r, int g, int b, tAngleMode angleMode)
