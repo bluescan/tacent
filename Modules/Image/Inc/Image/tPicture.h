@@ -167,7 +167,13 @@ public:
 
 	void SetPixel(int x, int y, const tColouri& c)																		{ Pixels[ GetIndex(x, y) ] = c; }
 	void SetPixel(int x, int y, uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)												{ Pixels[ GetIndex(x, y) ] = tColouri(r, g, b, a); }
-	void SetAll(const tColouri& = tColouri(0, 0, 0));
+	void SetAll(const tColouri& = tColouri(0, 0, 0), uint32 channels = tMath::ColourChannel_RGBA);
+
+	// Blends in supplied colour according to the current alpha. If pixel alpha is 255, then none of the blend colour is
+	// used for that pixel. If alpha is 0, all of it is used. If alpha is 64, then 1/4 of the current pixel colour and
+	// 3/4 of the supplied, If resetAlpha is true, the operation essentially creates a premultiplied opaque image by
+	// setting the alphas to 255 after the blend. Note that the alpha of the supplied colour is ignored.
+	void AlphaBlendColour(const tColouri& colour, bool resetAlpha = true);
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
@@ -308,14 +314,51 @@ inline bool tPicture::IsOpaque() const
 }
 
 
-inline void tPicture::SetAll(const tColouri& clearColour)
+inline void tPicture::SetAll(const tColouri& clearColour, uint32 channels)
+{
+	if (!Pixels)
+		return;
+
+	int numPixels = Width*Height;
+	if (channels == tMath::ColourChannel_RGBA)
+	{
+		for (int p = 0; p < numPixels; p++)
+			Pixels[p] = clearColour;
+	}
+	else
+	{
+		for (int p = 0; p < numPixels; p++)
+		{
+			if (channels & tMath::ColourChannel_R) Pixels[p].R = clearColour.R;
+			if (channels & tMath::ColourChannel_G) Pixels[p].G = clearColour.G;
+			if (channels & tMath::ColourChannel_B) Pixels[p].B = clearColour.B;
+			if (channels & tMath::ColourChannel_A) Pixels[p].A = clearColour.A;
+		}
+	}
+}
+
+
+inline void tPicture::AlphaBlendColour(const tColouri& blend, bool resetAlpha)
 {
 	if (!Pixels)
 		return;
 
 	int numPixels = Width*Height;
 	for (int p = 0; p < numPixels; p++)
-		Pixels[p] = clearColour;
+	{
+		tColourf pixelCol(Pixels[p]);
+		tColourf blendCol(blend);
+		tColourf pixel;
+		float alpha = pixelCol.A;
+		float oneMinusAlpha = 1.0f - alpha; 
+		pixel.R = pixelCol.R*alpha + blend.R*oneMinusAlpha;
+		pixel.G = pixelCol.G*alpha + blend.G*oneMinusAlpha;
+		pixel.B = pixelCol.B*alpha + blend.B*oneMinusAlpha;
+		if (resetAlpha)
+			pixel.A = 1.0f;
+
+		Pixels[p].Set(pixel);
+	}
 }
 
 
