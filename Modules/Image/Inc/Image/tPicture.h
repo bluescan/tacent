@@ -351,9 +351,9 @@ inline void tPicture::AlphaBlendColour(const tColouri& blend, bool resetAlpha)
 		tColourf pixel;
 		float alpha = pixelCol.A;
 		float oneMinusAlpha = 1.0f - alpha; 
-		pixel.R = pixelCol.R*alpha + blend.R*oneMinusAlpha;
-		pixel.G = pixelCol.G*alpha + blend.G*oneMinusAlpha;
-		pixel.B = pixelCol.B*alpha + blend.B*oneMinusAlpha;
+		pixel.R = pixelCol.R*alpha + blendCol.R*oneMinusAlpha;
+		pixel.G = pixelCol.G*alpha + blendCol.G*oneMinusAlpha;
+		pixel.B = pixelCol.B*alpha + blendCol.B*oneMinusAlpha;
 		if (resetAlpha)
 			pixel.A = 1.0f;
 
