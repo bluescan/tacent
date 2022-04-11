@@ -217,7 +217,7 @@ public:
 	tScriptWriter(const tString& filename);
 	~tScriptWriter()																									{ tSystem::tCloseFile(ScriptFile); }
 
-	// After this is called, the writer starts using spaces instead of tabe. Default is tabs.
+	// After this is called, the writer starts using spaces instead of tabs. Default is tabs.
 	void UseSpaces(int tabWidth = 4)																					{ UseSpacesForTabs = true; SpaceTabWidth = tabWidth; }
 
 	void BeginExpression();
@@ -244,10 +244,15 @@ public:
 	// Writes a single line comment to the script file.
 	void WriteComment(const char* = 0);
 
-	// Use these for multiline comments. They use the < > characters. They are not indented.
+	// Use these for multiline comments. They use the { } characters. They are not indented.
 	void WriteCommentBegin();
 	void WriteCommentLine(const char* = 0);
 	void WriteCommentEnd();
+
+	// Use these for inline { } comments that don't go to end of line. ex. [ NotComment { This is a comment } AlsoNotComment ]
+	void WriteCommentInlineBegin();
+	void WriteCommentInline(const char* = 0);
+	void WriteCommentInlineEnd();
 
 	// Indent and Dedent have no immediate effect. They affect the next Newline call, which does a newline and then
 	// adds the correct number of tabs.
@@ -278,6 +283,10 @@ public:
 	void RemBegin()																										{ WriteCommentBegin(); }
 	void RemLine(const char* l = 0)																						{ WriteCommentLine(l); }
 	void RemEnd()																										{ WriteCommentEnd(); }
+
+	void RemInBegin()																									{ WriteCommentInlineBegin(); }
+	void RemIn(const char* l = 0)																						{ WriteCommentInline(l); }
+	void RemInEnd()																										{ WriteCommentInlineEnd(); }
 
 	void Ind()																											{ Indent(); }
 	void DInd()																											{ Dedent(); }

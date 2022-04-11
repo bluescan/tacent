@@ -947,16 +947,6 @@ void tScriptWriter::WriteComment(const char* comment)
 }
 
 
-void tScriptWriter::WriteCommentBegin()
-{
-	char sc[] = "<\n";
-	sc[0] = BCB;
-	int numWritten = tSystem::tWriteFile(ScriptFile, sc, 2);
-	if (numWritten != 2)
-		throw tScriptError("Cannot write to script file.");
-}
-
-
 void tScriptWriter::WriteCommentLine(const char* comment)
 {
 	int numWritten = 0;
@@ -978,6 +968,41 @@ void tScriptWriter::WriteCommentEnd()
 {
 	char sc[] = ">\n";
 	sc[0] = BCE;
+	int numWritten = tSystem::tWriteFile(ScriptFile, sc, 2);
+	if (numWritten != 2)
+		throw tScriptError("Cannot write to script file.");
+}
+
+
+void tScriptWriter::WriteCommentInlineBegin()
+{
+	char sc[] = "< ";
+	sc[0] = BCB;
+	int numWritten = tSystem::tWriteFile(ScriptFile, sc, 2);
+	if (numWritten != 2)
+		throw tScriptError("Cannot write to script file.");
+}
+
+
+void tScriptWriter::WriteCommentInline(const char* comment)
+{
+	int numWritten = 0;
+	int commentLen = 0;
+	if (comment)
+	{
+		commentLen = tStd::tStrlen(comment);
+		numWritten += tSystem::tWriteFile(ScriptFile, comment, commentLen);
+	}
+
+	if (numWritten != commentLen)
+		throw tScriptError("Cannot write to script file.");
+}
+
+
+void tScriptWriter::WriteCommentInlineEnd()
+{
+	char sc[] = " >";
+	sc[1] = BCE;
 	int numWritten = tSystem::tWriteFile(ScriptFile, sc, 2);
 	if (numWritten != 2)
 		throw tScriptError("Cannot write to script file.");
