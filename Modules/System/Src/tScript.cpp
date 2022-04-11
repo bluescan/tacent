@@ -1001,10 +1001,10 @@ void tScriptWriter::WriteCommentInline(const char* comment)
 
 void tScriptWriter::WriteCommentInlineEnd()
 {
-	char sc[] = " >";
+	char sc[] = " > ";
 	sc[1] = BCE;
-	int numWritten = tSystem::tWriteFile(ScriptFile, sc, 2);
-	if (numWritten != 2)
+	int numWritten = tSystem::tWriteFile(ScriptFile, sc, 3);
+	if (numWritten != 3)
 		throw tScriptError("Cannot write to script file.");
 }
 
