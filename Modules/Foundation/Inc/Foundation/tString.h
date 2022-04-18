@@ -104,6 +104,9 @@ struct tString
 	// One more synonym for ConstText. For use with tPrintf and %s.
 	const char* Chars() const																							{ return TextData; }
 
+	// Similar to Chars() except returns nullptr if the string is empty -- instead of a pointer to an empty string.
+	const char* Charz() const																							{ return IsEmpty() ? nullptr : TextData; }
+
 	// Returns index of first/last occurrence of char in the string. -1 if not found. Finds last if backwards flag is
 	// set. The starting point may be specified. If backwards is false, the search proceeds forwards from the starting
 	// point. If backwards is true, it proceeds backwards. If startIndex is -1, 0 is the starting point for a forward
