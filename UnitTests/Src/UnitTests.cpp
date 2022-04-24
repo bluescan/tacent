@@ -162,9 +162,10 @@ int main(int argc, char** argv)
 
 	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
 	// tTest(File);
+	tTest(Network)
 	// tTest(CmdLine);
 	// tTest(String);
-	tTest(List);
+	// tTest(List);
 	// tTest(ListExtra);
 	// tTest(Colour);
 	// tTest(Print);

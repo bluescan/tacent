@@ -8,7 +8,7 @@
 // use backslashes, but consistency in using forward slashes is advised. Directory path specifications always end with
 // a trailing slash. Without the trailing separator the path will be interpreted as a file.
 //
-// Copyright (c) 2004-2006, 2017, 2019, 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2019, 2020, 2021, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -32,230 +32,11 @@
 #include <sys/types.h>
 #include <pwd.h>
 #include <fstream>
-#include <dirent.h>			// For fast (C) directory entry queries.
+#include <dirent.h>			// For fast (C-style) directory entry queries.
 #endif
 #include <filesystem>
 #include "System/tTime.h"
 #include "System/tFile.h"
-
-
-#if (defined PLATFORM_WINDOWS) && (defined WINDOWS_NETWORK_SHARE_SUPPORT)
-
-
-namespace tWindowsShares
-{
-	LPMALLOC Malloc;
-	int NumLevels = 2;
-
-	tString tWideToString(wchar_t*);
-	tString tGetDisplayName(LPITEMIDLIST Pidl, IShellFolder* folderInterface, DWORD type);
-	void tEnumerateRec(IShellFolder* folderInterface, bool enumNonFolders, int levels);
-	void tEnumerateSharesViaShell();
-}
-
-
-tString tWindowsShares::tWideToString(wchar_t* orig)
-{
-	// Convert the wchar_t string to a char* string. Record the length of the original string and add 1 to it to account
-	// for the terminating null character.
-	size_t origsize = wcslen(orig) + 1;
-	size_t convertedChars = 0;
-
-	// Allocate two bytes in the multibyte output string for every wide character in the input string (including a wide
-	// character null). Because a multibyte character can be one or two bytes, you should allot two bytes for each
-	// character. Having extra space for the new string is not an error, but having insufficient space is a potential
-	// security problem.
-	int newsize = origsize*2;
-
-	// The new string will contain a converted copy of the original string plus the type of string appended to it.
-	tString nstring(newsize);
-
-	// Put a copy of the converted string into nstring.
-	wcstombs_s(&convertedChars, nstring.Text(), newsize, orig, _TRUNCATE);	
-	return nstring;
-}
-
-
-tString tWindowsShares::tGetDisplayName(LPITEMIDLIST Pidl, IShellFolder* folderInterface, DWORD type)
-{
-	STRRET StrRet;
-
-	// Request the string as a char* although Windows will likely ignore the request.
-	StrRet.uType = STRRET_CSTR;
-
-	// Call GetDisplayNameOf() to fill in the STRRET structure.
-	HRESULT hr = folderInterface->GetDisplayNameOf(Pidl, type, &StrRet);
-	if (!SUCCEEDED(hr))
-		return tString();
-    
-	// Extract the string based on the value of the uType member of STRRET.
-	switch (StrRet.uType)
-	{
-		case STRRET_CSTR:
-			return tString(StrRet.cStr);
-		
-		case STRRET_WSTR:
-			return tWideToString(StrRet.pOleStr);
-		
-		case STRRET_OFFSET :
-			return tString(((char*)Pidl) + StrRet.uOffset);
-	}
-	return tString();
-}
-
-
-void tWindowsShares::tEnumerateRec(IShellFolder* folderInterface, bool EnumNonFolders, int Levels)
-{
-	LPITEMIDLIST Pidl;
-	LPENUMIDLIST Enum;
-	DWORD EnumFlags = SHCONTF_FOLDERS;
-	if (EnumNonFolders) EnumFlags |= SHCONTF_NONFOLDERS;
-	DWORD Result = folderInterface->EnumObjects(0, EnumFlags, &Enum);
-	if (Result != NOERROR)
-    	return;
-	tString DisplayName;
-	Result = Enum->Next(1, &Pidl, 0);			// Get the pidl for the first item in the folder.
-	while (Result != S_FALSE)
-	{
-		int CurrentLevel = Levels;
-		if (Result != NOERROR)
-			break;
-		//	Get the "normal" display name.
-		//	DisplayName = GetDisplayName(Pidl, folderInterface, SHGDN_NORMAL);
-		//	DisplayName = GetDisplayName(Pidl, folderInterface, SHGDN_FORPARSING);
-		DisplayName = tGetDisplayName(Pidl, folderInterface, SHGDN_INFOLDER);
-		if (!DisplayName.IsEmpty())
-		{
-			tString PadStr;
-			for (int i = 0; i < (NumLevels - CurrentLevel) * 4; i++)
-				PadStr += " ";
-			DisplayName = PadStr + DisplayName;
-			tPrintf("NAME: %s\n", DisplayName.Chars());
-		}
-
-    	CurrentLevel--;
-
-		// See if this shell item is a folder.
-    	DWORD Attr = SFGAO_FOLDER;
-		folderInterface->GetAttributesOf(1, (LPCITEMIDLIST*)&Pidl, &Attr);
-		if ((CurrentLevel > 0) && (Attr & SFGAO_FOLDER) == SFGAO_FOLDER)
-		{
-			LPSHELLFOLDER Folder;
-
-			// Get the IShellFolder for the pidl.
-			int res = folderInterface->BindToObject(Pidl, 0, IID_IShellFolder, (void**)&Folder);
-			if (res == NOERROR)
-			{
-				tEnumerateRec(Folder, EnumNonFolders, CurrentLevel);	// Recurse.
-				Folder->Release();
-			}
-		}
-		Malloc->Free(Pidl);
-		Result = Enum->Next(1, &Pidl, 0);		// Next pidl.
-	}
-
-	Enum->Release();
-}
-
-
-void tWindowsNetwork::tGetShares()
-{
-	SHGetMalloc(&Malloc);
-
-	// LPSHELLFOLDER DesktopFolder;
-	// SHGetDesktopFolder(&DesktopFolder);
-	LPITEMIDLIST pidlSystem = nullptr;
-	HRESULT hr = SHGetSpecialFolderLocation(0, CSIDL_NETWORK, &pidlSystem);
-    if (!SUCCEEDED(hr))
-    {
-        tPrintf("HRESULT bad.\n");
-        return ;
-    }
-
-	IShellFolder *psf = nullptr;
-    LPCITEMIDLIST pidlRelative = nullptr;
-	
-	hr = SHBindToObject(0, pidlSystem, 0, IID_IShellFolder, (void **) &psf);
-    if (!SUCCEEDED(hr))
-	{
-		CoTaskMemFree(pidlSystem);
-		return;
-	}
-
-	NumLevels = 2;
-	// EnumerateRec(DesktopFolder, 0, NumLevels);
-	tEnumerateRec(psf, 0, NumLevels);
-
-	// Free the IShellFolder for the desktop folder.
-	// DesktopFolder->Release();
-	psf->Release();
-	CoTaskMemFree(pidlSystem);
-
-	Malloc->Release();
-
-	#ifdef WINDOWS_SHARE_REF_CODE
-	LPMALLOC Malloc;
-	STRRET strDispName;
-	TCHAR szDisplayName[MAX_PATH];
-	HRESULT hr;
-
-	//	hr = SHGetFolderLocation(NULL, CSIDL_DESKTOP, NULL, NULL, &pidlSystem);
-	LPITEMIDLIST pidlSystem = NULL;
-	//	hr = SHGetFolderLocation(NULL, CSIDL_NETWORK, NULL, NULL, &pidlSystem);
-	hr = SHGetSpecialFolderLocation(0, CSIDL_NETWORK, &pidlSystem);
-	if (!SUCCEEDED(hr))
-	{
-		tPrintf("HRESULT bad.\n");
-		return ;
-	}
-
-	IShellFolder *psfParent = nullptr;
-	LPCITEMIDLIST pidlRelative = nullptr;
-	hr = SHBindToParent(pidlSystem, IID_IShellFolder, (void **) &psfParent, &pidlRelative);
-	if(SUCCEEDED(hr))
-	{
-		hr = psfParent->GetDisplayNameOf(pidlRelative, SHGDN_NORMAL, &strDispName);
-		hr = StrRetToBuf(&strDispName, pidlSystem, szDisplayName, sizeof(szDisplayName));
-		tPrintf("DISPNAME: %s\n", szDisplayName);
-
-		// Enumerate children folders.
-		LPENUMIDLIST Enum;
-		psfParent->EnumObjects(0, SHCONTF_FOLDERS, &Enum);
-
-		LPITEMIDLIST Pidl;
-		DWORD Result = Enum->Next(1, &Pidl, 0);
-		while (Result != S_FALSE)
-		{
-			if (Result != NOERROR)
-				break;
-
-			// We have the pidl.
-			IShellFolder* shellFolderServer = nullptr;
-		    LPCITEMIDLIST pidlServRelative = nullptr;
-			hr = SHBindToParent(Pidl, IID_IShellFolder, (void **) &shellFolderServer, &pidlServRelative);
-			if (SUCCEEDED(hr))
-			{
-				hr = shellFolderServer->GetDisplayNameOf(pidlServRelative, SHGDN_NORMAL, &strDispName);
-				hr = StrRetToBuf(&strDispName, Pidl, szDisplayName, sizeof(szDisplayName));
-				tPrintf("SERVERNAME: %s\n", szDisplayName);
-			}
-			shellFolderServer->Release();
-			//	CoTaskMemFree(pidlSystem);
-
-			SHGetMalloc(&Malloc);
-			Malloc->Free(Pidl);
-			Malloc->Release();
-			Result = Enum->Next(1, &Pidl, 0);
-		}
-		Enum->Release();
-		psfParent->Release();
-    }
-	CoTaskMemFree(pidlSystem);
-	#endif // WINDOWS_SHARE_REF_CODE
-}
-
-
-#endif // WINDOWS_NETWORK_SHARE_SUPPORT
 
 
 namespace tSystem
@@ -1644,6 +1425,173 @@ bool tSystem::tSetVolumeName(const tString& drive, const tString& newVolumeName)
 }
 
 
+namespace tWindowsShares
+{
+	tString tWideToString(wchar_t*);
+	tString tGetDisplayName(LPITEMIDLIST pidl, IShellFolder*, DWORD type);
+	void tEnumerateRec(tSystem::tNetworkShareResult&, IShellFolder*, int levels);
+
+	LPMALLOC Malloc;
+}
+
+
+tString tWindowsShares::tWideToString(wchar_t* wideStr)
+{
+	if (!wideStr)
+		return tString();
+
+	// Convert the wchar_t string to a char* string. Record the length of the original string and add 1 to it to account
+	// for the terminating null character.
+	size_t wideSize = wcslen(wideStr) + 1;
+	size_t convertedChars = 0;
+
+	// Allocate two bytes in the multibyte output string for every wide character in the input string (including a wide
+	// character null). Because a multibyte character can be one or two bytes, you should allot two bytes for each
+	// character. Having extra space for the new string is not an error, but having insufficient space is a potential
+	// security problem.
+	int newSize = wideSize*2;
+
+	// The new string will contain a converted copy of the original string plus the type of string appended to it.
+	tString result(newSize);
+
+	// Put a copy of the converted string into nstring.
+	wcstombs_s(&convertedChars, result.Text(), newSize, wideStr, _TRUNCATE);	
+	return result;
+}
+
+
+tString tWindowsShares::tGetDisplayName(LPITEMIDLIST pidl, IShellFolder* folderInterface, DWORD type)
+{
+	STRRET strRet;
+
+	// Request the string as a char* although Windows will likely ignore the request.
+	strRet.uType = STRRET_CSTR;
+
+	// Call GetDisplayNameOf() to fill in the STRRET structure.
+	HRESULT hr = folderInterface->GetDisplayNameOf(pidl, type, &strRet);
+	if (!SUCCEEDED(hr))
+		return tString();
+
+	// Extract the string based on the value of the uType member of STRRET.
+	switch (strRet.uType)
+	{
+		case STRRET_CSTR:
+			return tString(strRet.cStr);
+
+		case STRRET_WSTR:
+			return tWideToString(strRet.pOleStr);
+		
+		case STRRET_OFFSET :
+			return tString(((char*)pidl) + strRet.uOffset);
+	}
+	return tString();
+}
+
+
+void tWindowsShares::tEnumerateRec(tSystem::tNetworkShareResult& shareResults, IShellFolder* folderInterface, int depth)
+{
+	LPITEMIDLIST pidl;
+	LPENUMIDLIST enumList;
+	DWORD enumFlags = SHCONTF_FOLDERS;				// Could add | SHCONTF_NONFOLDERS to enumerate non-folders.
+	DWORD result = folderInterface->EnumObjects(0, enumFlags, &enumList);
+	if (result != NOERROR)
+    	return;
+
+	tString displayName;
+	result = enumList->Next(1, &pidl, 0);			// Get the pidl for the first item in the folder.
+	while (result != S_FALSE)
+	{
+		int currentDepth = depth;
+		if (result != NOERROR)
+			break;
+
+		// There are a few possible ways to display the result. We use ForParsing. Examlpes:
+		// SHGDN_NORMAL			-> ShareName (\\MACHINENAME)
+		// SHGDN_INFOLDER		-> ShareName
+		// SHGDN_FORPARSING		-> \\MACHINENAME\ShareName
+		displayName = tGetDisplayName(pidl, folderInterface, SHGDN_FORPARSING);
+		if (!displayName.IsEmpty())
+		{
+			tString padStr;
+			displayName = padStr + displayName;
+
+			// If we're at a leaf we need to add our result.
+			if (currentDepth == 1)
+				shareResults.ShareNames.Append(new tStringItem(displayName));
+		}
+
+		currentDepth--;
+
+		// See if this shell item is a folder.
+		DWORD attr = SFGAO_FOLDER;
+		folderInterface->GetAttributesOf(1, (LPCITEMIDLIST*)&pidl, &attr);
+
+		// Terminate recursion when depth reaches 0.
+		if ((currentDepth > 0) && (attr & SFGAO_FOLDER) == SFGAO_FOLDER)
+		{
+			LPSHELLFOLDER shellFolder;
+
+			// Get the IShellFolder for the pidl.
+			int res = folderInterface->BindToObject(pidl, 0, IID_IShellFolder, (void**)&shellFolder);
+			if (res == NOERROR)
+			{
+				tEnumerateRec(shareResults, shellFolder, currentDepth);	// Recurse.
+				shellFolder->Release();
+			}
+		}
+		Malloc->Free(pidl);
+		result = enumList->Next(1, &pidl, 0);				// Next pidl.
+	}
+
+	enumList->Release();
+}
+
+
+int tSystem::tGetNetworkShares(tNetworkShareResult& shareResults)
+{
+	shareResults.Clear();
+	SHGetMalloc(&tWindowsShares::Malloc);
+
+	// To enumerate everything you could use the desktop folder. In our case we only want the shares.
+	// To do this we use SHGetSpecialFolderLocation with the special class ID specifier CSIDL_NETWORK.
+	// LPSHELLFOLDER desktopFolder; SHGetDesktopFolder(&desktopFolder);
+	LPITEMIDLIST pidlSystem = nullptr;
+	HRESULT hr = SHGetSpecialFolderLocation(0, CSIDL_NETWORK, &pidlSystem);
+    if (!SUCCEEDED(hr))
+	{
+		shareResults.RequestComplete = true;
+		return 0;
+	}
+
+	IShellFolder* shellFolder = nullptr;
+    LPCITEMIDLIST pidlRelative = nullptr;
+	
+	hr = SHBindToObject(0, pidlSystem, 0, IID_IShellFolder, (void**)&shellFolder);
+    if (!SUCCEEDED(hr))
+	{
+		CoTaskMemFree(pidlSystem);
+		shareResults.RequestComplete = true;
+		return 0;
+	}
+	tAssert(shellFolder && pidlSystem);
+
+	// To get network shares we need to go to a depth of 2. The first level contains the machine names.
+	// The second level contains the share names.
+	const int depth = 2;
+	tWindowsShares::tEnumerateRec(shareResults, shellFolder, depth);
+
+	// Free all used memory.
+	// Free the IShellFolder for the special folder location (CSIDL_NETWORK).
+	// For desktop it would be desktopFolder->Release();
+	shellFolder->Release();
+	CoTaskMemFree(pidlSystem);
+	tWindowsShares::Malloc->Release();
+
+	shareResults.RequestComplete = true;
+	return shareResults.ShareNames.GetNumItems();
+}
+
+
 tString tSystem::tGetWindowsDir()
 {
 	tString windir(MAX_PATH);
@@ -2087,14 +2035,6 @@ bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tStr
 
 	#endif
 }
-
-
-#if (defined PLATFORM_WINDOWS) && (defined WINDOWS_NETWORK_SHARE_SUPPORT)
-void tSystem::tRequestNetworkShares()
-{
-	tWindowsShares::tEnumerateSharesViaShell();
-}
-#endif
 
 
 bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden)

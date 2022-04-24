@@ -93,7 +93,7 @@ public:
 
 	void Clear()											/* Clears the list. Deletes items if list owns them. */		{ if (Owns()) Empty(); else Reset(); }
 	void Reset()											/* Resets the list. Never deletes the objects. */			{ HeadItem = nullptr; TailItem = nullptr; ItemCount = 0; }
-	void Empty()											/* Empties the list. Always deletes the objects. */			{ tAssert(Owns() || (Mode == tListMode::StaticZero)); while (!IsEmpty()) delete Remove(); }
+	void Empty()											/* Empties the list. Always deletes the objects. */			{ while (!IsEmpty()) delete Remove(); }
 
 	T* Head() const																										{ return HeadItem; }
 	T* Tail() const																										{ return TailItem; }

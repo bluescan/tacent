@@ -8,7 +8,7 @@
 // use backslashes, but consistency in using forward slashes is advised. Directory path specifications always end with
 // a trailing slash. Without the trailing separator the path will be interpreted as a file.
 //
-// Copyright (c) 2004-2006, 2017, 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2020, 2021, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -169,10 +169,6 @@ struct tFileInfo : public tLink<tFileInfo>
 // In this case the struct is left unmodified. This function can also be used to get directory information.
 bool tGetFileInfo(tFileInfo&, const tString& fileName);
 
-// Use this if you already have a FindData structure filled out. It simply parses the info out of it and into a
-// FileInfo struct.
-//void tParseFileInfo(tFileInfo&, void* Win32FindData);
-
 #ifdef PLATFORM_WINDOWS
 struct tFileDetails
 {
@@ -248,6 +244,7 @@ tString tGetDir(const tString& path);
 tString tGetUpDir(const tString& path, int levels = 1);
 
 #if defined(PLATFORM_WINDOWS)
+
 // Gets a list of the drive letters available on a system. The strings returned are in the form "C:". For more
 // information on a particular drive, use the DriveInfo functions below.
 void tGetDrives(tList<tStringItem>& drives);
@@ -286,8 +283,22 @@ bool tGetDriveInfo(tDriveInfo&, const tString& drive, bool getDisplayName = fals
 // some cases the name cannot be set. Read-only volumes or strange volume names will cause this function to return
 // false (failure).
 bool tSetVolumeName(const tString& drive, const tString& newVolumeName);
-#endif
 
+// Windows network shares.
+struct tNetworkShareResult
+{
+	void Clear() { RequestComplete = false; ShareNames.Empty(); }
+	bool RequestComplete = false;
+	tsList<tStringItem> ShareNames;
+};
+
+// This function blocks and takes quite a bit of time to run. However, the result struct places the shares in a
+// thread-safe list (tsList) so you can spin up a thread to make this call, For now it does not signal so you would
+// need to poll RequestComplete, but signalling intermediate results and complete could be added in the future.
+// The ShareNames take the format "\\MACHINENAME\ShareName"
+int tGetNetworkShares(tNetworkShareResult&);
+
+#endif // PLATFORM_WINDOWS
 
 // The following set and get functions work equally well on both files and directories. The "Set" calls return true on
 // success. The "Is" calls return true if the attribute is set, and false if it isn't or an error occurred (like the
@@ -334,13 +345,6 @@ bool tCopyFile(const tString& destFile, const tString& srcFile, bool overWriteRe
 // moving. Returns true on success. The dir variable should contain the path to where the file or dir you want to
 // rename is located.
 bool tRenameFile(const tString& dir, const tString& oldName, const tString& newName);
-
-// #define WINDOWS_NETWORK_SHARE_SUPPORT
-#if (defined PLATFORM_WINDOWS) && (defined WINDOWS_NETWORK_SHARE_SUPPORT)
-// Find network shares on windows. Since this is so slow, we will use either a thread-safe message queue or promises.
-// @wip This function is not fully implemented. It currently prints the shares.
-void tRequestNetworkShares();
-#endif
 
 // The foundfiles list is always appended to. You must clear it first if that's what you intend. If empty second
 // argument, the contents of the current directory are returned. Extension can be something like "txt" (no dot).

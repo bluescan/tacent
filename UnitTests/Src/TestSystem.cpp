@@ -2,7 +2,7 @@
 //
 // System module tests.
 //
-// Copyright (c) 2017, 2019, 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2017, 2019, 2020, 2021, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -852,10 +852,6 @@ bool ListsContainSameItems(const tList<tStringItem>& a, const tList<tStringItem>
 
 tTestUnit(File)
 {
-	#if (defined PLATFORM_WINDOWS) && (defined WINDOWS_NETWORK_SHARE_SUPPORT)
-	tRequestNetworkShares();
-	#endif
-
 	if (!tDirExists("TestData/"))
 		tSkipUnit(File)
 
@@ -964,6 +960,43 @@ tTestUnit(File)
 	normalPath = "z:/Dir/../..";
 	simpPath = tGetSimplifiedPath(normalPath);
 	tRequire(simpPath == "Z:/");
+}
+
+
+tNetworkShareResult NetworkShareResult;
+void GetNetworkSharesThreadEntry()
+{
+	int numSharesFromThread = tGetNetworkShares(NetworkShareResult);
+	tPrintf("Thread returned %d shares\n", numSharesFromThread);
+}
+
+
+tTestUnit(Network)
+{
+	#if defined(PLATFORM_WINDOWS)
+	// Getting network shares is a slow blocking call. We will offload the work
+	// to a thread and print results as we get them.
+	tPrintf("Offloading network share retrieval to new thread.\n");
+	std::thread threadGetShares(GetNetworkSharesThreadEntry);
+
+	// Mimic an update loop like there would be in an ImGui app or game.
+	while (!NetworkShareResult.RequestComplete)
+	{
+		tPrintf("Shares Poll: \n");
+		for (tStringItem* share = NetworkShareResult.ShareNames.First(); share; share = share->Next())
+			tPrintf("%s ", share->Text());
+		tPrintf("\n");
+		std::this_thread::sleep_for(std::chrono::milliseconds(4000));
+	}
+
+	threadGetShares.join();
+
+	tPrintf("Final results. Found %d shares:\n", NetworkShareResult.ShareNames.GetNumItems());
+	for (tStringItem* share = NetworkShareResult.ShareNames.First(); share; share = share->Next())
+		tPrintf("Share: %s\n", share->Text());
+
+	NetworkShareResult.Clear();
+	#endif
 }
 
 
