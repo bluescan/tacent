@@ -990,6 +990,7 @@ tTestUnit(Network)
 	}
 
 	threadGetShares.join();
+	tRequire(NetworkShareResult.RequestComplete);
 
 	tPrintf("Final results. Found %d shares:\n", NetworkShareResult.ShareNames.GetNumItems());
 	for (tStringItem* share = NetworkShareResult.ShareNames.First(); share; share = share->Next())
