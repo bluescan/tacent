@@ -963,12 +963,14 @@ tTestUnit(File)
 }
 
 
+#if defined(PLATFORM_WINDOWS)
 tNetworkShareResult NetworkShareResult;
 void GetNetworkSharesThreadEntry()
 {
 	int numSharesFromThread = tGetNetworkShares(NetworkShareResult);
 	tPrintf("Thread returned %d shares\n", numSharesFromThread);
 }
+#endif
 
 
 tTestUnit(Network)

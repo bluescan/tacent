@@ -158,37 +158,37 @@ template<typename T> class tsList : public tList<T>
 {
 public:
 	// The default constructor uses list-mode External.
-	tsList()																											: tList(tListMode::External) { }
+	tsList()																											: tList<T>(tListMode::External) { }
 
 	// Mode must be External or Static for thread-safe tsLists.
-	tsList(tListMode mode)																								: tList(mode) { }
+	tsList(tListMode mode)																								: tList<T>(mode) { }
 	virtual ~tsList()																									{ }
 
-	T* Insert(T* item)																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Insert(item); }
-	T* Insert(T* item, T* here)																							{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Insert(item, here); }
-	T* Append(T* item)																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Append(item); }
-	T* Append(T* item, T* here)																							{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Append(item, here); }
-	T* Remove(T* item)																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Remove(item); }
-	T* Remove()																											{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Remove(); }
-	T* Drop()																											{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Drop(); }
-	void Clear()																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Clear(); }
-	void Reset()																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Reset(); }
-	void Empty()																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Empty(); }
-	T* Head() const																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Head(); }
-	T* Tail() const																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Tail(); }
-	T* First() const																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList::First(); }
-	T* Last() const																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Last(); }
-	T* NextCirc(const T* here) const																					{ const std::lock_guard<std::mutex> lock(Mutex); return tList::NextCirc(here); }
-	T* PrevCirc(const T* here) const																					{ const std::lock_guard<std::mutex> lock(Mutex); return tList::PrevCirc(here); }
-	int GetNumItems() const																								{ const std::lock_guard<std::mutex> lock(Mutex); return tList::GetNumItems(); }
-	int NumItems() const																								{ const std::lock_guard<std::mutex> lock(Mutex); return tList::NumItems(); }
-	int Count() const																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Count(); }
-	bool Owns() const																									{ return tList::Owns(); }
-	bool IsEmpty() const																								{ const std::lock_guard<std::mutex> lock(Mutex); return tList::IsEmpty(); }
-	bool Contains(const T& item) const																					{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Contains(); }
-	template<typename CompareFunc> int Sort(CompareFunc comp, tListSortAlgorithm alg = tListSortAlgorithm::Merge)		{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Sort(comp, alg); }
-	template<typename CompareFunc> T* Insert(T* item, CompareFunc comp)													{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Insert(item, comp); }
-	template<typename CompareFunc> int Bubble(CompareFunc comp, bool backwards = false, int maxCompares = -1)			{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Bubble(comp, backwards, maxCompares); }
+	T* Insert(T* item)																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Insert(item); }
+	T* Insert(T* item, T* here)																							{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Insert(item, here); }
+	T* Append(T* item)																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Append(item); }
+	T* Append(T* item, T* here)																							{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Append(item, here); }
+	T* Remove(T* item)																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Remove(item); }
+	T* Remove()																											{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Remove(); }
+	T* Drop()																											{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Drop(); }
+	void Clear()																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Clear(); }
+	void Reset()																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Reset(); }
+	void Empty()																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Empty(); }
+	T* Head() const																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Head(); }
+	T* Tail() const																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Tail(); }
+	T* First() const																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::First(); }
+	T* Last() const																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Last(); }
+	T* NextCirc(const T* here) const																					{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::NextCirc(here); }
+	T* PrevCirc(const T* here) const																					{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::PrevCirc(here); }
+	int GetNumItems() const																								{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::GetNumItems(); }
+	int NumItems() const																								{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::NumItems(); }
+	int Count() const																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Count(); }
+	bool Owns() const																									{ return tList<T>::Owns(); }
+	bool IsEmpty() const																								{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::IsEmpty(); }
+	bool Contains(const T& item) const																					{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Contains(); }
+	template<typename CompareFunc> int Sort(CompareFunc comp, tListSortAlgorithm alg = tListSortAlgorithm::Merge)		{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Sort(comp, alg); }
+	template<typename CompareFunc> T* Insert(T* item, CompareFunc comp)													{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Insert(item, comp); }
+	template<typename CompareFunc> int Bubble(CompareFunc comp, bool backwards = false, int maxCompares = -1)			{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Bubble(comp, backwards, maxCompares); }
 
 private:
 	mutable std::mutex Mutex;
