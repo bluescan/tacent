@@ -2,7 +2,7 @@
 //
 // Foundation module tests.
 //
-// Copyright (c) 2017, 2019, 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2017, 2019, 2020, 2021, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -122,8 +122,44 @@ struct MySub : public MySuper
 };
 
 
+tsList<Item> ThreadSafeList(tListMode::Static);
+
+
+void ListAddThreadEvens()
+{
+	for (int even = 0; even < 10; even += 2)
+	{
+		ThreadSafeList.Append(new Item(even));
+		std::this_thread::sleep_for(std::chrono::milliseconds(5));
+	}
+}
+
+
+void ListAddThreadOdds()
+{
+	for (int odd = 1; odd < 10; odd += 2)
+	{
+		ThreadSafeList.Append(new Item(odd));
+		std::this_thread::sleep_for(std::chrono::milliseconds(7));
+	}
+}
+
+
 tTestUnit(List)
 {
+	tPrintf("Thread-safe tsList\n");
+	std::thread thread1Add(ListAddThreadEvens);
+	std::thread thread2Add(ListAddThreadOdds);
+	thread1Add.join();
+	thread2Add.join();
+
+	ThreadSafeList.Sort( LessThan );
+
+	int itemNum = 0;
+	for (Item* item = ThreadSafeList.First(); item; item = item->Next())
+		tPrintf("Thread-Safe List Item %d Value %d\n", itemNum++, item->Value);
+	ThreadSafeList.Empty();
+
 	tList<MySub> subs;
 	subs.Append(new MySub(1));
 	subs.Append(new MySub(2));

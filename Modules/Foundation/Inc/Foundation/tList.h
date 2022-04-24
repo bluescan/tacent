@@ -10,7 +10,7 @@
 // iterator syntax similar to the STL containers. Supports the new C++11 range-based for loop syntax.
 // tItList disadvantages: More memory allocs. Not quite as fast.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -21,6 +21,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <mutex>
 #include "Foundation/tAssert.h"
 #include "Foundation/tPlatform.h"
 
@@ -50,29 +51,31 @@ private:
 
 enum class tListMode
 {
-	StaticZero,			Static = StaticZero,		// Default. Must be 0.
+	Static,				StaticZero = Static,		// Static must be the first enum item and have value 0. Does not own items.
 	External,			UserOwns = External,
 	Internal,			ListOwns = Internal
 };
 
 
-// A tList is an intrusive list implementation. Less mem fragmentation but objects can only be on one list at a time.
-// A tList may be used in the cdata (global) memory section where zero-initialization is guaranteed. In this mode it
-// does NOT delete its items on destruction to avoid both the init and de-init fiasco. tLists may also be used on the
-// stack or heap, in which case it is optional construct with the ListOwns flag. It is vital that for zero-init you
-// call the constructor with mode as StaticZero IF you intend to have it populated by other statically initialized
-// objects before main() is entered. This is because we don't know what items will have already been put on the list
-// before the constructor is called (the C++ init fiasco). The constructor in StaticZero mode does NOT clear the state
-// variables so it doesn't matter when.
+// A tList is an intrusive list implementation. Intrusive results in less memory fragmentation but objects can only be
+// on one list at a time. A tList may be used in the cdata (global) memory section where zero-initialization is
+// guaranteed. In this mode it does NOT delete its items on destruction to avoid both the init and de-init fiasco.
+// tLists may also be used on the stack or heap, in which case it is optional to construct with the ListOwns flag. It
+// is vital that for zero-init you call the constructor with mode as StaticZero IF you intend to have it populated by
+// other statically initialized objects before main() is entered. This is because we don't know what items will have
+// already been put on the list before the constructor is called (again, the C++ init fiasco). The constructor in
+// StaticZero mode does NOT clear the state variables so it doesn't matter when.
 //
-// Note: In static mode, the list does not consider itself to own the things on the list. It is safe to add 'this'
+// In static mode, the list does not consider itself to own the things on the list. It is safe to add 'this'
 // pointers to globally constructed objects for instance. If however you do want the list to delete the items, tList
 // will allow you to call Empty on a static-zero list. You can also call Reset (no deletes). Clear will be the same
-// as Reset for static-zero lists.
+// as Reset for static-zero lists. For the implementation, the main difference between Static and External is that
+// the constructor does not clear the head tail and count members because the constructor may be called after items
+// are added.
 template<typename T> class tList
 {
 public:
-	// The default constructor has the list owning the items.
+	// The default constructor has the list owning the items. List mode is Internal.
 	tList()																												: Mode(tListMode::ListOwns), HeadItem(nullptr), TailItem(nullptr), ItemCount(0) { }
 
 	// If mode is external the objects will not be deleted when the list is destroyed. You manage item lifetime.
@@ -144,6 +147,51 @@ private:
 	T* HeadItem;
 	T* TailItem;
 	int ItemCount;
+};
+
+
+// Same as a tList but thread-safe. tListMode can be Static, External, or Intrernal. The 'thread-safeness' of a tsList
+// extends only to keeping the list consisten (adding, removing, sorting, etc) -- it does _not_ extend to managing and
+// synchronizing the lifetime of the items you put on the list. That is your job. For this reason, be careful with
+// Internal list-mode, as the list destructor deletes the items just like a regular tList.
+template<typename T> class tsList : public tList<T>
+{
+public:
+	// The default constructor uses list-mode External.
+	tsList()																											: tList(tListMode::External) { }
+
+	// Mode must be External or Static for thread-safe tsLists.
+	tsList(tListMode mode)																								: tList(mode) { }
+	virtual ~tsList()																									{ }
+
+	T* Insert(T* item)																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Insert(item); }
+	T* Insert(T* item, T* here)																							{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Insert(item, here); }
+	T* Append(T* item)																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Append(item); }
+	T* Append(T* item, T* here)																							{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Append(item, here); }
+	T* Remove(T* item)																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Remove(item); }
+	T* Remove()																											{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Remove(); }
+	T* Drop()																											{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Drop(); }
+	void Clear()																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Clear(); }
+	void Reset()																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Reset(); }
+	void Empty()																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Empty(); }
+	T* Head() const																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Head(); }
+	T* Tail() const																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Tail(); }
+	T* First() const																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList::First(); }
+	T* Last() const																										{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Last(); }
+	T* NextCirc(const T* here) const																					{ const std::lock_guard<std::mutex> lock(Mutex); return tList::NextCirc(here); }
+	T* PrevCirc(const T* here) const																					{ const std::lock_guard<std::mutex> lock(Mutex); return tList::PrevCirc(here); }
+	int GetNumItems() const																								{ const std::lock_guard<std::mutex> lock(Mutex); return tList::GetNumItems(); }
+	int NumItems() const																								{ const std::lock_guard<std::mutex> lock(Mutex); return tList::NumItems(); }
+	int Count() const																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Count(); }
+	bool Owns() const																									{ return tList::Owns(); }
+	bool IsEmpty() const																								{ const std::lock_guard<std::mutex> lock(Mutex); return tList::IsEmpty(); }
+	bool Contains(const T& item) const																					{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Contains(); }
+	template<typename CompareFunc> int Sort(CompareFunc comp, tListSortAlgorithm alg = tListSortAlgorithm::Merge)		{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Sort(comp, alg); }
+	template<typename CompareFunc> T* Insert(T* item, CompareFunc comp)													{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Insert(item, comp); }
+	template<typename CompareFunc> int Bubble(CompareFunc comp, bool backwards = false, int maxCompares = -1)			{ const std::lock_guard<std::mutex> lock(Mutex); return tList::Bubble(comp, backwards, maxCompares); }
+
+private:
+	mutable std::mutex Mutex;
 };
 
 

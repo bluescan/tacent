@@ -158,7 +158,7 @@ void tWindowsShares::tEnumerateRec(IShellFolder* folderInterface, bool EnumNonFo
 }
 
 
-void tWindowsShares::tEnumerateSharesViaShell()
+void tWindowsNetwork::tGetShares()
 {
 	SHGetMalloc(&Malloc);
 

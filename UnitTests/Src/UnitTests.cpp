@@ -2,7 +2,7 @@
 //
 // Tacent unit tests.
 //
-// Copyright (c) 2017, 2019, 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2017, 2019, 2020, 2021, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -164,7 +164,7 @@ int main(int argc, char** argv)
 	// tTest(File);
 	// tTest(CmdLine);
 	// tTest(String);
-	// tTest(List);
+	tTest(List);
 	// tTest(ListExtra);
 	// tTest(Colour);
 	// tTest(Print);
@@ -176,7 +176,7 @@ int main(int argc, char** argv)
 	// tTest(ImagePicture);
 	// tTest(Hash);
 	// tTest(BitArray);
-	tTest(BitField);
+	// tTest(BitField);
 	// tTest(FixInt);
 
 	#endif
