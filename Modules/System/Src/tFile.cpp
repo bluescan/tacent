@@ -1517,7 +1517,10 @@ void tWindowsShares::tEnumerateRec(tSystem::tNetworkShareResult& shareResults, I
 
 			// If we're at a leaf we need to add our result.
 			if (currentDepth == 1)
+			{
 				shareResults.ShareNames.Append(new tStringItem(displayName));
+				shareResults.NumSharesFound++;
+			}
 		}
 
 		currentDepth--;
@@ -1588,7 +1591,16 @@ int tSystem::tGetNetworkShares(tNetworkShareResult& shareResults)
 	tWindowsShares::Malloc->Release();
 
 	shareResults.RequestComplete = true;
-	return shareResults.ShareNames.GetNumItems();
+	return shareResults.NumSharesFound;
+}
+
+
+void tSystem::tExplodeShareName(tList<tStringItem>& exploded, const tString& shareName)
+{
+	exploded.Empty();
+	tString share(shareName);
+	share.ExtractLeft("\\\\");
+	tStd::tExplode(exploded, share, '\\');
 }
 
 

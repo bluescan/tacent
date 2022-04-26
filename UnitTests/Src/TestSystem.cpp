@@ -976,29 +976,33 @@ void GetNetworkSharesThreadEntry()
 tTestUnit(Network)
 {
 	#if defined(PLATFORM_WINDOWS)
+
 	// Getting network shares is a slow blocking call. We will offload the work
 	// to a thread and print results as we get them.
 	tPrintf("Offloading network share retrieval to new thread.\n");
 	std::thread threadGetShares(GetNetworkSharesThreadEntry);
 
 	// Mimic an update loop like there would be in an ImGui app or game.
-	while (!NetworkShareResult.RequestComplete)
+	while (!NetworkShareResult.RequestComplete || !NetworkShareResult.ShareNames.IsEmpty())
 	{
-		tPrintf("Shares Poll: \n");
-		for (tStringItem* share = NetworkShareResult.ShareNames.First(); share; share = share->Next())
-			tPrintf("%s ", share->Text());
-		tPrintf("\n");
-		std::this_thread::sleep_for(std::chrono::milliseconds(4000));
+		tStringItem* share = NetworkShareResult.ShareNames.Remove();
+		if (share)
+		{
+			tPrintf("Network Share: [%s] Exploded: ", share->Text());
+			tList<tStringItem> exploded;
+			tExplodeShareName(exploded, *share);
+			for (tStringItem* exp = exploded.First(); exp; exp = exp->Next())
+				tPrintf("[%s] ", exp->Text());
+			tPrintf("\n");
+			delete share;
+		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 
 	threadGetShares.join();
 	tRequire(NetworkShareResult.RequestComplete);
-
-	tPrintf("Final results. Found %d shares:\n", NetworkShareResult.ShareNames.GetNumItems());
-	for (tStringItem* share = NetworkShareResult.ShareNames.First(); share; share = share->Next())
-		tPrintf("Share: %s\n", share->Text());
-
 	NetworkShareResult.Clear();
+
 	#endif
 }
 
