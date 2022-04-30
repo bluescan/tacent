@@ -1413,11 +1413,11 @@ bool tSystem::tSetVolumeName(const tString& drive, const tString& newVolumeName)
 	tString driveRoot = drive;
 	driveRoot.ToUpper();
 
-	if (driveRoot.Length() == 1)				// Assume string was of form "C"
+	if (driveRoot.Length() == 1)			// Assume string was of form "C"
 		driveRoot += ":\\";
 	else if (driveRoot.Length() == 2)		// Assume string was of form "C:"
 		driveRoot += "\\";
-	else												// Assume string was of form "C:/" or "C:\"
+	else									// Assume string was of form "C:/" or "C:\"
 		driveRoot.Replace('/', '\\');
 
 	int success = SetVolumeLabel(driveRoot.ConstText(), newVolumeName.ConstText());
@@ -1429,7 +1429,7 @@ namespace tWindowsShares
 {
 	tString tWideToString(wchar_t*);
 	tString tGetDisplayName(LPITEMIDLIST pidl, IShellFolder*, DWORD type);
-	void tEnumerateRec(tSystem::tNetworkShareResult&, IShellFolder*, int levels);
+	void tEnumerateRec(tSystem::tNetworkShareResult&, IShellFolder*, int levels, bool retrieveMachinesWithNoShares);
 
 	LPMALLOC Malloc;
 }
@@ -1488,7 +1488,7 @@ tString tWindowsShares::tGetDisplayName(LPITEMIDLIST pidl, IShellFolder* folderI
 }
 
 
-void tWindowsShares::tEnumerateRec(tSystem::tNetworkShareResult& shareResults, IShellFolder* folderInterface, int depth)
+void tWindowsShares::tEnumerateRec(tSystem::tNetworkShareResult& shareResults, IShellFolder* folderInterface, int depth, bool retrieveMachinesWithNoShares)
 {
 	LPITEMIDLIST pidl;
 	LPENUMIDLIST enumList;
@@ -1516,7 +1516,7 @@ void tWindowsShares::tEnumerateRec(tSystem::tNetworkShareResult& shareResults, I
 			displayName = padStr + displayName;
 
 			// If we're at a leaf we need to add our result.
-			if (currentDepth == 1)
+			if ((currentDepth == 1) || retrieveMachinesWithNoShares)
 			{
 				shareResults.ShareNames.Append(new tStringItem(displayName));
 				shareResults.NumSharesFound++;
@@ -1538,7 +1538,7 @@ void tWindowsShares::tEnumerateRec(tSystem::tNetworkShareResult& shareResults, I
 			int res = folderInterface->BindToObject(pidl, 0, IID_IShellFolder, (void**)&shellFolder);
 			if (res == NOERROR)
 			{
-				tEnumerateRec(shareResults, shellFolder, currentDepth);	// Recurse.
+				tEnumerateRec(shareResults, shellFolder, currentDepth, retrieveMachinesWithNoShares);	// Recurse.
 				shellFolder->Release();
 			}
 		}
@@ -1550,7 +1550,7 @@ void tWindowsShares::tEnumerateRec(tSystem::tNetworkShareResult& shareResults, I
 }
 
 
-int tSystem::tGetNetworkShares(tNetworkShareResult& shareResults)
+int tSystem::tGetNetworkShares(tNetworkShareResult& shareResults, bool retrieveMachinesWithNoShares)
 {
 	shareResults.Clear();
 	SHGetMalloc(&tWindowsShares::Malloc);
@@ -1581,7 +1581,7 @@ int tSystem::tGetNetworkShares(tNetworkShareResult& shareResults)
 	// To get network shares we need to go to a depth of 2. The first level contains the machine names.
 	// The second level contains the share names.
 	const int depth = 2;
-	tWindowsShares::tEnumerateRec(shareResults, shellFolder, depth);
+	tWindowsShares::tEnumerateRec(shareResults, shellFolder, depth, retrieveMachinesWithNoShares);
 
 	// Free all used memory.
 	// Free the IShellFolder for the special folder location (CSIDL_NETWORK).

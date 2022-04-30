@@ -297,11 +297,15 @@ struct tNetworkShareResult
 // thread-safe list (tsList) so you can spin up a thread to make this call, For now it does not signal so you would
 // need to poll RequestComplete, but signalling intermediate results and complete could be added in the future.
 // You can also treat the ShareNames ln the results as a message queue, taking the names off as they come in.
-// The ShareNames take the format "\\MACHINENAME\ShareName"
-int tGetNetworkShares(tNetworkShareResult&);
+// The ShareNames take the format "\\MACHINENAME\ShareName". If retrieveMachinesWithNoShares this function will return
+// all the machines it can find even if they don't have any shared folder. If false, only entries with valid shares
+// will be returned. That is, with true you may get results like "\\MACHINENAME" as well.
+int tGetNetworkShares(tNetworkShareResult&, bool retrieveMachinesWithNoShares = true);
 
-// This is a convenience function to parse a single dhare name like "\\MACHINENAME\ShareName" into a list of strings
+// This is a convenience function to parse a single share name like "\\MACHINENAME\ShareName" into a list of strings.
 // For example, "\\MACHINENAME\ShareName" turns into a list of 2 strings: "MACHINENAME" and "ShareName".
+// If retrieveMachinesWithNoShares with true you will also get results like "\\MACHINENAME" which explode
+// to a single string "MOUNTAINVIEW".
 void tExplodeShareName(tList<tStringItem>& exploded, const tString& shareName);
 
 #endif // PLATFORM_WINDOWS
