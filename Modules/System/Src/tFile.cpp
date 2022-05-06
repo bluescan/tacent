@@ -8,7 +8,7 @@
 // use backslashes, but consistency in using forward slashes is advised. Directory path specifications always end with
 // a trailing slash. Without the trailing separator the path will be interpreted as a file.
 //
-// Copyright (c) 2004-2006, 2017, 2019, 2020, 2021, 2022 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2019-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -48,14 +48,19 @@ namespace tSystem
 	void tGetFileInfo(tFileInfo& fileInfo, Win32FindData&);
 	#endif
 
-	bool tFindFilesFastInternal(const tString& dir, const tExtensions& extensions, bool includeHidden, tList<tStringItem>* foundFiles, tList<tFileInfo>* foundInfos);
+	bool tFindFilesFastInternal
+	(
+		const tString& dir, const tExtensions& extensions, bool includeHidden,
+		tList<tStringItem>* foundFiles, tList<tFileInfo>* foundInfos
+	);
 
-	struct ExtTypePair
+	const int MaxExtensionsPerFileType = 4;
+	struct FileTypeExts
 	{
-		const char* Ext;
-		tFileType Type;
+		const char* Ext[MaxExtensionsPerFileType] = { nullptr, nullptr, nullptr, nullptr };
+		bool HasExt(const tString& ext)																					{ for (int e = 0; e < MaxExtensionsPerFileType; e++) if (ext.IsEqualCI(Ext[e])) return true; return false; }
 	};
-	extern ExtTypePair ExtTypePairs[];
+	extern FileTypeExts FileTypeExtTable[tFileType::NumFileTypes];
 }
 
 
@@ -175,49 +180,47 @@ tSystem::tFileType tSystem::tGetFileType(const tString& file)
 }
 
 
-tSystem::ExtTypePair tSystem::ExtTypePairs[] =
+// When more than one extension maps to the same filetype (like jpg and jpeg), always put the more common extension
+// first in the extensions array.
+tSystem::FileTypeExts tSystem::FileTypeExtTable[tSystem::tFileType::NumFileTypes] = //] =
 {
-	{ "tga",		tSystem::tFileType::TGA		},
-	{ "bmp",		tSystem::tFileType::BMP		},
-	{ "png",		tSystem::tFileType::PNG		},
-	{ "apng",		tSystem::tFileType::APNG	},
-	{ "gif",		tSystem::tFileType::GIF		},
-	{ "webp",		tSystem::tFileType::WEBP	},
-	{ "xpm",		tSystem::tFileType::XPM		},
-	{ "jpg",		tSystem::tFileType::JPG		},
-	{ "jpeg",		tSystem::tFileType::JPG		},
-	{ "tif",		tSystem::tFileType::TIFF	},
-	{ "tiff",		tSystem::tFileType::TIFF	},
-	{ "dds",		tSystem::tFileType::DDS		},
-	{ "hdr",		tSystem::tFileType::HDR		},
-	{ "rgbe",		tSystem::tFileType::HDR		},
-	{ "exr",		tSystem::tFileType::EXR		},
-	{ "pcx",		tSystem::tFileType::PCX		},
-	{ "wbmp",		tSystem::tFileType::WBMP	},
-	{ "wmf",		tSystem::tFileType::WMF		},
-	{ "jp2",		tSystem::tFileType::JP2		},
-	{ "jpc",		tSystem::tFileType::JPC		},
-	{ "ico",		tSystem::tFileType::ICO		},
-	{ "tex",		tSystem::tFileType::TEX		},
-	{ "img",		tSystem::tFileType::IMG		},
-	{ "cub",		tSystem::tFileType::CUB		},
-	{ "tac",		tSystem::tFileType::TAC		},
-	{ "tim",		tSystem::tFileType::TAC		},
-	{ "cfg",		tSystem::tFileType::CFG		},
+//	Extensions							Filetype
+	{ "tga" },							// TGA
+	{ "bmp" },							// BMP
+	{ "png" },							// PNG
+	{ "apng" },							// APNG
+	{ "gif" },							// GIF
+	{ "webp" },							// WEBP
+	{ "xpm" },							// XPM
+	{ "jpg", "jpeg" },					// JPG
+	{ "tif", "tiff" },					// TIFF
+	{ "dds" },							// DDS
+	{ "hdr", "rgbe" },					// HDR
+	{ "exr" },							// EXR
+	{ "pcx" },							// PCX
+	{ "wbmp" },							// WBMP
+	{ "wmf" },							// WMF
+	{ "jp2" },							// JP2
+	{ "jpc" },							// JPC
+	{ "ico" },							// ICO
+	{ "tex" },							// TEX
+	{ "img" },							// IMG
+	{ "cub" },							// CUB
+	{ "tac", "tim" },					// TAC
+	{ "cfg" },							// CFG
+	{ "ini" },							// INI
+	// { "too many" }
 };
 
 
-tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString& e)
+tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString& ext)
 {
-	tString ext(e);
 	if (ext.IsEmpty())
 		return tFileType::Unknown;
 
-	ext.ToLower();	
-	int numExtensions = sizeof(ExtTypePairs)/sizeof(*ExtTypePairs);
-	for (int e = 0; e < numExtensions; e++)
-		if (ext == ExtTypePairs[e].Ext)
-			return ExtTypePairs[e].Type;
+	for (int t = 0; t < int(tFileType::NumFileTypes); t++)
+		if (FileTypeExtTable[t].HasExt(ext))
+			return tFileType(t);
 
 	return tFileType::Unknown;
 }
@@ -228,12 +231,21 @@ void tSystem::tGetExtensions(tExtensions& extensions, tFileType fileType)
 	if (fileType == tFileType::Unknown)
 		return;
 
-	int numExtensions = sizeof(ExtTypePairs)/sizeof(*ExtTypePairs);
-	for (int e = 0; e < numExtensions; e++)
-	{
-		if (ExtTypePairs[e].Type == fileType)
-			extensions.Add(ExtTypePairs[e].Ext);
-	}
+	FileTypeExts& exts = FileTypeExtTable[ int(fileType) ];
+	for (int e = 0; e < MaxExtensionsPerFileType; e++)
+		extensions.Add(exts.Ext[e]);
+}
+
+
+tString tSystem::tGetExtension(tFileType fileType)
+{
+	if (fileType == tFileType::Unknown)
+		return tString();
+
+	FileTypeExts& exts = FileTypeExtTable[ int(fileType) ];
+
+	// The tString constructor can handle nullptr.
+	return tString(exts.Ext[0]);
 }
 
 
@@ -563,48 +575,48 @@ bool tSystem::tGetFileDetails(tFileDetails& details, const tString& fullFileName
 	int columnIndexArray[] =
 	{
 		// 0,				Name (Not Needed)
-		1,				// Size / Type (Logical Drives)
-		2,				// Type / Total Size (Logical Drives)
-		3,				// Date Modified / Free Space (Logical Drives)
-		4,				// Date Created / File System (Logical Drives)
-		5,				// Date Accessed / Comments (Logical Drives)
-		6,				// Attributes
+		1,					// Size / Type (Logical Drives)
+		2,					// Type / Total Size (Logical Drives)
+		3,					// Date Modified / Free Space (Logical Drives)
+		4,					// Date Created / File System (Logical Drives)
+		5,					// Date Accessed / Comments (Logical Drives)
+		6,					// Attributes
 		// 7,				Status (Not Needed)
 		// 8,				Owner (Not Needed)
-		9,				// Author
-		10,			// Title
-		11,			// Subject
-		12,			// Category
-		13,			// Pages
-		14,			// Comments
-		15,			// Copyright
-		16,			// Artist
-		17,			// Album Title
-		18,			// Year
-		19,			// Track Number
-		20,			// Genre
-		21,			// Duration
-		22,			// Bit Rate
-		23,			// Protected
-		24,			// Camera Model
-		25,			// Date Picture Taken
-		26,			// Dimensions
-		// 27,			Blank
-		// 28,			Blank
-		29,			// Episode Name
-		30,			// Program Description
-		// 31,			Blank
-		32,			// Audio Sample Size
-		33,			// Audio Sample Rate
-		34,			// Channels
-		// 35,			File State (Too Slow)
-		// 36,			Rev (Useful but Too Slow)
-		// 37,			Action (Too Slow)
-		38,			// Company
-		39,			// Description
-		40,			// File VErsion
-		41,			// Product Name
-		42				// Product Version
+		9,					// Author
+		10,					// Title
+		11,					// Subject
+		12,					// Category
+		13,					// Pages
+		14,					// Comments
+		15,					// Copyright
+		16,					// Artist
+		17,					// Album Title
+		18,					// Year
+		19,					// Track Number
+		20,					// Genre
+		21,					// Duration
+		22,					// Bit Rate
+		23,					// Protected
+		24,					// Camera Model
+		25,					// Date Picture Taken
+		26,					// Dimensions
+		// 27,				Blank
+		// 28,				Blank
+		29,					// Episode Name
+		30,					// Program Description
+		// 31,				Blank
+		32,					// Audio Sample Size
+		33,					// Audio Sample Rate
+		34,					// Channels
+		// 35,				File State (Too Slow)
+		// 36,				Rev (Useful but Too Slow)
+		// 37,				Action (Too Slow)
+		38,					// Company
+		39,					// Description
+		40,					// File VErsion
+		41,					// Product Name
+		42					// Product Version
 	};
 
 	const int maxDetailColumnsToTry = sizeof(columnIndexArray)/sizeof(*columnIndexArray);

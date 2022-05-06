@@ -69,72 +69,91 @@ bool tDirExists(const tString& dirName);
 bool tDriveExists(const tString& driveName);
 #endif
 
-// File types are based on file extensions only. If this enum is modified there is a table
+// File types are based on file extensions only. If this enum is modified there is an extension mapping table
 // in tFile.cpp that needs to be updated as well.
 enum class tFileType
 {
-	// Type							// Category				// Desc
-	Unknown,
-	Invalid							= Unknown,
-
-	Targa,							// Image.
-	TGA								= Targa,
-	Ping,							// Image.
-	PNG								= Ping,
-	APNG,							// Animated PNG.
-	DDS,							// TextureMap/CubeMap.
-	HDR,							// Radiance High Dynamic Range image.
-	EXR,							// OpenEXR High Dynamic Range image.
-	JPG,							// Image.
-	GIF,							// Image.
-	WEBP,							// Image.
-	XPM,							// Image.
-	TIFF,							// Image.
-	Bitmap,							// Image.
-	BMP								= Bitmap,
-	Icon,							// Image.
-	ICO								= Icon,
-
-	PCX,							// Image.
-	WBMP,							// Image.
-	WMF,							// Image.
-	JP2,							// Image.
-	JPC,							// Image.
-
-	TEX,							// TextureMap.
-	IMG,							// TextureMap.
-	CUB,							// CubeMap.
-
-	TAC,							// Image.				// A Tacent layered 2D image.
-	CFG,							// Config.
-	NumTypes
+//	Type			Synonyms				Description
+	Unknown = -1,	Invalid = Unknown,
+	TGA,			Targa = TGA,			// Image. Targa.
+	BMP,			Bitmap = BMP,			// Image. Windows bitmap.
+	PNG,			Ping = PNG,				// Image. Portable Network Graphics.
+	APNG,									// Image. Animated PNG.
+	GIF,									// Image. Graphics Interchange Format. Pronounced like the peanut butter.
+	WEBP,									// Image. Google Web Image.
+	XPM,									// Image. X-Windows Pix Map.
+	JPG,			JPeg = JPG,				// Image. Joing Picture Motion Group (or something like that).
+	TIFF,									// Image. Tag Interchange File Format.
+	DDS,									// Image. Direct Draw Surface. TextureMap/CubeMap.
+	HDR,									// Image. Radiance High Dynamic Range.
+	EXR,									// Image. OpenEXR High Dynamic Range.
+	PCX,									// Image.
+	WBMP,									// Image.
+	WMF,									// Image.
+	JP2,									// Image.
+	JPC,									// Image.
+	ICO,			Icon = ICO,				// Image. Windows Icon.
+	TEX,									// Image. Tacent TextureMap.
+	IMG,									// Image. TextureMap.
+	CUB,									// Image. Tacent CubeMap.
+	TAC,									// Image. Tacent Layered 2D Image.
+	CFG,									// Config. Text Config File.
+	INI,									// Config. Ini Config File.
+	NumFileTypes
 };
 
 // The file does not need to exist for this function to work. This function only uses the extension to determine the
 // file type.
 tFileType tGetFileType(const tString& file);
+
+// The supplied extension should not contain a period. Case insensitive.
 tFileType tGetFileTypeFromExtension(const tString& ext);
 
-// A little helper type that holds file extension strings. Extensions are case-insensitive and do not include the dot.
+// A little helper type that holds file extension strings. Extensions are lower-case and do not include the dot.
 struct tExtensions
 {
 	tExtensions()																										: Extensions() { }
 	tExtensions(const tExtensions& src);
 
+	// The Add functions will remove any period and ensure lower-case before adding. They do not check for uniqueness.
+	tExtensions& Add(const char* ext);
 	tExtensions& Add(const tString& ext);
+
 	void Clear()																										{ Extensions.Clear(); }
 	int Count() const																									{ return Extensions.GetNumItems(); }
 	bool IsEmpty() const																								{ return Extensions.IsEmpty(); }
+
+	// Supplied extension must not include period.
 	bool Contains(const tString& ext) const;
 	tStringItem* First() const																							{ return Extensions.First(); }
 
-	// This list stored the extensions lower-case without the dot.
+	// This list stores the extensions lower-case without the dot.
 	tList<tStringItem> Extensions;
 };
 
-// Get extensions used by a particular filetype. If tExtensions already has extensions in it, it is
+// Get all extensions used by a particular filetype. If tExtensions already has extensions in it, it is
 // appended to so you can collect them for different filetypes.
 void tGetExtensions(tExtensions&, tFileType);
+
+// Gets the most common or default extension for a given filetype.
+tString tGetExtension(tFileType);
+
+// Another helper that stores a collection of file-types. Useful if you need, say, a list of file-types you want to
+// support in your app. This is preferred over set of supported extensions as it is not always a 1:1 mapping.
+struct tFileTypes
+{
+	tFileTypes()																										: FileTypes() { }
+	tFileTypes(const tFileTypes& src);
+
+	// WIP Add functins here.
+	struct tFileTypeItem : public tLink<tFileTypeItem>
+	{
+		tFileTypeItem()																									: FileType(tSystem::tFileType::Invalid) { }
+		tFileTypeItem(const tFileTypeItem& src)																			: FileType(src.FileType) { }
+		tFileType FileType;
+	};
+	tList<tFileTypeItem> FileTypes;
+};
 
 // c:/Stuff/Mess.max to max
 tString tGetFileExtension(const tString& filename);
@@ -459,9 +478,9 @@ inline tSystem::tExtensions::tExtensions(const tExtensions& src)
 }
 
 
-inline tSystem::tExtensions& tSystem::tExtensions::Add(const tString& ext)
+inline tSystem::tExtensions& tSystem::tExtensions::Add(const char* ext)
 {
-	if (ext.IsEmpty())
+	if (!ext)
 		return *this;
 
 	tStringItem* item = new tStringItem(ext);
@@ -470,6 +489,15 @@ inline tSystem::tExtensions& tSystem::tExtensions::Add(const tString& ext)
 	Extensions.Append(item);
 
 	return *this;
+}
+
+
+inline tSystem::tExtensions& tSystem::tExtensions::Add(const tString& ext)
+{
+	if (ext.IsEmpty())
+		return *this;
+
+	return Add(ext.ConstText());
 }
 
 
@@ -482,6 +510,13 @@ inline bool tSystem::tExtensions::Contains(const tString& searchExt) const
 	}
 
 	return false;
+}
+
+
+inline tSystem::tFileTypes::tFileTypes(const tFileTypes& src)
+{
+	for (tFileTypeItem* t = src.FileTypes.First(); t; t = t->Next())
+		FileTypes.Append(new tFileTypeItem(*t));
 }
 
 

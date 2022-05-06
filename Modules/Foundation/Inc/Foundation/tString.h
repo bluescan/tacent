@@ -35,10 +35,10 @@ struct tString
 
 	tString& operator=(const tString&);
 
-	bool IsEqual(const tString& s) const																				{ return( !tStd::tStrcmp(TextData, s.TextData) ); }
-	bool IsEqual(const char* s) const																					{ return( !tStd::tStrcmp(TextData, s) ); }
-	bool IsEqualCI(const tString& s) const																				{ return( !tStd::tStricmp(TextData, s.TextData) ); }
-	bool IsEqualCI(const char* s) const																					{ return( !tStd::tStricmp(TextData, s) ); }
+	bool IsEqual(const tString& s) const																				{ return !tStd::tStrcmp(TextData, s.TextData); }
+	bool IsEqual(const char* s) const																					{ if (!s) return false; return !tStd::tStrcmp(TextData, s); }
+	bool IsEqualCI(const tString& s) const																				{ return !tStd::tStricmp(TextData, s.TextData); }
+	bool IsEqualCI(const char* s) const																					{ if (!s) return false; return !tStd::tStricmp(TextData, s); }
 
 	// These allow for implicit conversion to a character pointer.
 	operator const char*()																								{ return TextData; }

@@ -3,7 +3,7 @@
 // Hardware ans OS access functions like querying supported instruction sets, number or cores, and computer name/ip
 // accessors.
 //
-// Copyright (c) 2004-2006, 2017, 2019, 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2019-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
