@@ -170,16 +170,6 @@ int tSystem::tGetFileSize(const tString& filename)
 }
 
 
-tSystem::tFileType tSystem::tGetFileType(const tString& file)
-{
-	if (file.IsEmpty())
-		return tFileType::Unknown;
-
-	tString ext = tGetFileExtension(file);
-	return tGetFileTypeFromExtension(ext);
-}
-
-
 // When more than one extension maps to the same filetype (like jpg and jpeg), always put the more common extension
 // first in the extensions array.
 tSystem::FileTypeExts tSystem::FileTypeExtTable[tSystem::tFileType::NumFileTypes] = //] =
@@ -213,6 +203,16 @@ tSystem::FileTypeExts tSystem::FileTypeExtTable[tSystem::tFileType::NumFileTypes
 };
 
 
+tString tSystem::tGetFileExtension(const tString& filename)																
+{
+	tString ext = filename.Right('.'); 
+	if(ext == filename)
+		ext.Clear();
+
+	return ext;
+}
+
+
 tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString& ext)
 {
 	if (ext.IsEmpty())
@@ -226,14 +226,43 @@ tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString& ext)
 }
 
 
-void tSystem::tGetExtensions(tExtensions& extensions, tFileType fileType)
+tSystem::tFileType tSystem::tGetFileTypeFromExtension(const char* ext)
+{
+	// tString constructor can handle nullptr.
+	return tGetFileTypeFromExtension(tString(ext));
+}
+
+
+tSystem::tFileType tSystem::tGetFileType(const tString& file)
+{
+	if (file.IsEmpty())
+		return tFileType::Unknown;
+
+	tString ext = tGetFileExtension(file);
+	return tGetFileTypeFromExtension(ext);
+}
+
+
+void tSystem::tGetExtensions(tList<tStringItem>& extensions, tFileType fileType)
+{
+	if (fileType == tFileType::Invalid)
+		return;
+
+	FileTypeExts& exts = FileTypeExtTable[ int(fileType) ];
+	for (int e = 0; e < MaxExtensionsPerFileType; e++)
+		if (exts.Ext[e])
+			extensions.Append(new tStringItem(exts.Ext[e]));
+}
+
+
+void tSystem::tGetExtension(tList<tStringItem>& extensions, tFileType fileType)
 {
 	if (fileType == tFileType::Unknown)
 		return;
 
 	FileTypeExts& exts = FileTypeExtTable[ int(fileType) ];
-	for (int e = 0; e < MaxExtensionsPerFileType; e++)
-		extensions.Add(exts.Ext[e]);
+	if (exts.Ext[0])
+		extensions.Append(new tStringItem(exts.Ext[0]));
 }
 
 
@@ -1009,16 +1038,6 @@ tString tSystem::tGetLinuxPath(const tString& pth, const tString& mountPoint)
 		path = mnt + tString(drive) + path;
 	}
 	return path;
-}
-
-
-tString tSystem::tGetFileExtension(const tString& filename)																
-{
-	tString ext = filename.Right('.'); 
-	if(ext == filename)
-		ext.Clear();
-
-	return ext;
 }
 
 

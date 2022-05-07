@@ -8,7 +8,7 @@
 // use backslashes, but consistency in using forward slashes is advised. Directory path specifications always end with
 // a trailing slash. Without the trailing separator the path will be interpreted as a file.
 //
-// Copyright (c) 2004-2006, 2017, 2020, 2021, 2022 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2020-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -102,22 +102,49 @@ enum class tFileType
 	NumFileTypes
 };
 
+// c:/Stuff/Mess.max to max
+tString tGetFileExtension(const tString& filename);
+
+// The supplied extension should not contain a period. Case insensitive.
+tFileType tGetFileTypeFromExtension(const tString& ext);
+tFileType tGetFileTypeFromExtension(const char* ext);
+
 // The file does not need to exist for this function to work. This function only uses the extension to determine the
 // file type.
 tFileType tGetFileType(const tString& file);
 
-// The supplied extension should not contain a period. Case insensitive.
-tFileType tGetFileTypeFromExtension(const tString& ext);
+// Get all extensions used by a particular filetype. Any existing items in extensions are appended to.
+void tGetExtensions(tList<tStringItem>& extensions, tFileType);
+
+// Gets the single most common or default extension for a given filetype. Existing items in extensions are appended to.
+void tGetExtension(tList<tStringItem>& extensions, tFileType);
+tString tGetExtension(tFileType);
+
+struct tFileTypes;
 
 // A little helper type that holds file extension strings. Extensions are lower-case and do not include the dot.
 struct tExtensions
 {
 	tExtensions()																										: Extensions() { }
-	tExtensions(const tExtensions& src);
+	tExtensions(const tExtensions& src)																					: Extensions() { Add(src); }
+	tExtensions(const char* ext)																						: Extensions() { Add(ext); }
+	tExtensions(const tString& ext)																						: Extensions() { Add(ext); }
+	tExtensions(tFileType fileType, bool preferredExtensionOnly = false)												: Extensions() { Add(fileType, preferredExtensionOnly); }
+	tExtensions(const tFileTypes& fileTypes, bool preferredExtensionsOnly = false)										: Extensions() { Add(fileTypes, preferredExtensionsOnly); }
 
-	// The Add functions will remove any period and ensure lower-case before adding. They do not check for uniqueness.
+	tExtensions& Add(const tExtensions& src);
+
+	// These Add functions will remove any period and ensure lower-case before adding. They do not check for uniqueness.
 	tExtensions& Add(const char* ext);
 	tExtensions& Add(const tString& ext);
+
+	// Populates the extension list based on the supplied filetype(s). If preferredExtensionsOnly is false the extensions
+	// list will contain _all_ extensions for the supplied filetypes. If preferredExtensionsOnly is true, the list will
+	// contain only the preferred extensions. For example, for JPG filetype with preferred true, only the "jpg"
+	// extension would be added. With preferred = false, you'd get both "jpg" and "jpeg". Returns ref to self so you can
+	// chain the calls.
+	tExtensions& Add(tFileType, bool preferredExtensionOnly = false);
+	tExtensions& Add(const tFileTypes&, bool preferredExtensionsOnly = false);
 
 	void Clear()																										{ Extensions.Clear(); }
 	int Count() const																									{ return Extensions.GetNumItems(); }
@@ -128,35 +155,46 @@ struct tExtensions
 	tStringItem* First() const																							{ return Extensions.First(); }
 
 	// This list stores the extensions lower-case without the dot.
+	// @todo Could use a BST, maybe a balanced AVL BST tree. Would make 'Contains' much faster.
 	tList<tStringItem> Extensions;
 };
 
-// Get all extensions used by a particular filetype. If tExtensions already has extensions in it, it is
-// appended to so you can collect them for different filetypes.
-void tGetExtensions(tExtensions&, tFileType);
-
-// Gets the most common or default extension for a given filetype.
-tString tGetExtension(tFileType);
 
 // Another helper that stores a collection of file-types. Useful if you need, say, a list of file-types you want to
 // support in your app. This is preferred over set of supported extensions as it is not always a 1:1 mapping.
 struct tFileTypes
 {
 	tFileTypes()																										: FileTypes() { }
-	tFileTypes(const tFileTypes& src);
+	tFileTypes(const tFileTypes& src)																					: FileTypes() { Add(src); }
+	tFileTypes(const char* ext)																							: FileTypes() { Add(ext); }
+	tFileTypes(const tString& ext)																						: FileTypes() { Add(ext); }
+	tFileTypes(tFileType fileType)																						: FileTypes() { Add(fileType); }
+	tFileTypes(const tExtensions& extensions)																			: FileTypes() { Add(extensions); }
 
-	// WIP Add functins here.
+	// All the add functions check for uniqueness when adding.
+	tFileTypes& Add(const tFileTypes& src);
+	tFileTypes& Add(const char* ext);
+	tFileTypes& Add(const tString& ext);
+	tFileTypes& Add(tFileType);
+	tFileTypes& Add(const tExtensions&);
+
+	void Clear()																										{ FileTypes.Clear(); }
+	int Count() const																									{ return FileTypes.GetNumItems(); }
+	bool IsEmpty() const																								{ return FileTypes.IsEmpty(); }
+	bool Contains(tFileType) const;
+
 	struct tFileTypeItem : public tLink<tFileTypeItem>
 	{
 		tFileTypeItem()																									: FileType(tSystem::tFileType::Invalid) { }
+		tFileTypeItem(tFileType fileType)																				: FileType(fileType) { }
 		tFileTypeItem(const tFileTypeItem& src)																			: FileType(src.FileType) { }
 		tFileType FileType;
 	};
+	tFileTypeItem* First() const																						{ return FileTypes.First(); }
+
+	// @todo Could use a BST, maybe a balanced AVL BST tree. Would make 'Contains' much faster, plus it would deal
 	tList<tFileTypeItem> FileTypes;
 };
-
-// c:/Stuff/Mess.max to max
-tString tGetFileExtension(const tString& filename);
 
 // Uses working dir. Mess.max to c:/Stuff/Mess.max. This function always assumes filename is relative.
 tString tGetFileFullName(const tString& filename);
@@ -471,10 +509,12 @@ struct tFileError : public tError
 // Implementation below this line.
 
 
-inline tSystem::tExtensions::tExtensions(const tExtensions& src)
+inline tSystem::tExtensions& tSystem::tExtensions::Add(const tExtensions& src)
 {
 	for (tStringItem* ext = src.Extensions.First(); ext; ext = ext->Next())
 		Extensions.Append(new tStringItem(*ext));
+
+	return *this;
 }
 
 
@@ -501,6 +541,26 @@ inline tSystem::tExtensions& tSystem::tExtensions::Add(const tString& ext)
 }
 
 
+inline tSystem::tExtensions& tSystem::tExtensions::Add(tFileType fileType, bool preferredExtensionOnly)
+{
+	if (preferredExtensionOnly)
+		tGetExtension(Extensions, fileType);
+	else
+		tGetExtensions(Extensions, fileType);
+
+	return *this;
+}
+
+
+inline tSystem::tExtensions& tSystem::tExtensions::Add(const tFileTypes& types, bool preferredExtensionsOnly)
+{
+	for (tFileTypes::tFileTypeItem* typeItem = types.FileTypes.First(); typeItem; typeItem = typeItem->Next())
+		Add(typeItem->FileType, preferredExtensionsOnly);
+
+	return *this;
+}
+
+
 inline bool tSystem::tExtensions::Contains(const tString& searchExt) const
 {
 	for (tStringItem* ext = Extensions.First(); ext; ext = ext->Next())
@@ -513,10 +573,56 @@ inline bool tSystem::tExtensions::Contains(const tString& searchExt) const
 }
 
 
-inline tSystem::tFileTypes::tFileTypes(const tFileTypes& src)
+inline tSystem::tFileTypes& tSystem::tFileTypes::Add(const tFileTypes& src)
 {
-	for (tFileTypeItem* t = src.FileTypes.First(); t; t = t->Next())
-		FileTypes.Append(new tFileTypeItem(*t));
+	for (tFileTypeItem* fti = src.FileTypes.First(); fti; fti = fti->Next())
+		Add(fti->FileType);
+
+	return *this;
+}
+
+
+inline tSystem::tFileTypes& tSystem::tFileTypes::Add(const char* ext)
+{
+	return Add(tGetFileTypeFromExtension(ext));
+}
+
+
+inline tSystem::tFileTypes& tSystem::tFileTypes::Add(const tString& ext)
+{
+	return Add(tGetFileTypeFromExtension(ext));
+}
+
+
+inline tSystem::tFileTypes& tSystem::tFileTypes::Add(tFileType fileType)
+{
+	if (fileType == tFileType::Invalid)
+		return *this;
+
+	if (Contains(fileType))
+		return *this;
+
+	FileTypes.Append(new tFileTypeItem(fileType));
+	return *this;
+}
+
+
+inline tSystem::tFileTypes& tSystem::tFileTypes::Add(const tExtensions& extensions)
+{
+	for (tStringItem* ext = extensions.First(); ext; ext = ext->Next())
+		Add(tGetFileTypeFromExtension(*ext));
+
+	return *this;
+}
+
+
+inline bool tSystem::tFileTypes::Contains(tFileType fileType) const
+{
+	for (tFileTypeItem* fti = FileTypes.First(); fti; fti = fti->Next())
+		if (fileType == fti->FileType)
+			return true;
+
+	return false;
 }
 
 

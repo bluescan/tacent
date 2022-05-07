@@ -2,7 +2,7 @@
 //
 // Tacent unit tests.
 //
-// Copyright (c) 2017, 2019, 2020, 2021, 2022 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -136,6 +136,7 @@ int main(int argc, char** argv)
 	tTest(Regex);
 	tTest(Script);
 	tTest(Chunk);
+	tTest(FileTypes);
 	tTest(File);
 	tTest(Network);
 	tTest(Time);
@@ -162,7 +163,8 @@ int main(int argc, char** argv)
 	#else
 
 	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
-	tTest(File);
+	tTest(FileTypes);
+	// tTest(File);
 	// tTest(Network);
 	// tTest(CmdLine);
 	// tTest(String);

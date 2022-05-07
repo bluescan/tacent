@@ -835,6 +835,35 @@ tTestUnit(Chunk)
 }
 
 
+tTestUnit(FileTypes)
+{
+	tFileTypes fileTypes;
+	fileTypes.
+		Add(tFileType::JPG).
+		Add(tFileType::PNG).
+		Add(tFileType::EXR).
+		Add(tFileType::TIFF).
+		Add(tFileType::PNG);
+
+	// Check for uniqueness.
+	tRequire(fileTypes.Count() == 4);
+
+	tExtensions extensions(fileTypes, false);
+
+	// There should be 6 extensions. 2 for JPG, 2 for TIFF, 1 for PNG (it's unique) and 1 for EXR.
+	tRequire(extensions.Count() == 6);
+
+	tPrintf("Found extensions:\n");
+	for (tStringItem* ext = extensions.First(); ext; ext = ext->Next())
+		tPrintf("Extension: %s\n", ext->Chars());
+	tPrintf("Found extensions done.\n");
+
+	// Test copy cons.
+	tFileTypes fileTypesCopy(fileTypes);
+	tExtensions extensionsCopy(extensions);
+}
+
+
 bool ListsContainSameItems(const tList<tStringItem>& a, const tList<tStringItem>& b)
 {
 	if (a.GetNumItems() != b.GetNumItems())
@@ -881,8 +910,7 @@ tTestUnit(File)
 	tRequire(ListsContainSameItems(files, filesFast));
 
 	tExtensions extensions;
-	tGetExtensions(extensions, tFileType::TIFF);
-	tGetExtensions(extensions, tFileType::HDR);
+	extensions.Add(tFileType::TIFF).Add(tFileType::HDR);
 	for (tStringItem* ext = extensions.First(); ext; ext = ext->Next())
 		tPrintf("TIFF or HDR extension: %s\n", ext->Text());
 	tRequire(extensions.Count() == 4);

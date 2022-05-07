@@ -24,6 +24,7 @@ namespace tUnitTest
 	tTestUnit(Regex);
 	tTestUnit(Script);
 	tTestUnit(Chunk);
+	tTestUnit(FileTypes);
 	tTestUnit(File);
 	tTestUnit(Network);
 	tTestUnit(Time);
