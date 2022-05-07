@@ -835,6 +835,18 @@ tTestUnit(Chunk)
 }
 
 
+// Test global init of tFileTypes.
+tSystem::tFileTypes FileTypesGlobal
+(
+	tFileType::APNG,
+	tFileType::BMP,
+	tFileType::JPG,
+	tFileType::TIFF,
+	tFileType::EndOfList
+);
+
+
+
 tTestUnit(FileTypes)
 {
 	tFileTypes fileTypes;
@@ -865,6 +877,17 @@ tTestUnit(FileTypes)
 	// Test implicit type conversion of string literal.
 	tList<tStringItem> foundFiles;
 	tSystem::tFindFilesFast(foundFiles, "TestData/", "bin");
+
+	tExtensions extsAll(FileTypesGlobal, false);
+	tPrintf("All extensions:\n");
+	for (tStringItem* ext = extsAll.First(); ext; ext = ext->Next())
+		tPrintf("Ext: %s\n", ext->Chars());
+
+	tExtensions extsCom(FileTypesGlobal, true);
+	tPrintf("\nCommon extensions:\n");
+	for (tStringItem* ext = extsCom.First(); ext; ext = ext->Next())
+		tPrintf("Ext: %s\n", ext->Chars());
+	tPrintf("\n");
 }
 
 

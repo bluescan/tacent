@@ -73,32 +73,32 @@ bool tDriveExists(const tString& driveName);
 // in tFile.cpp that needs to be updated as well.
 enum class tFileType
 {
-//	Type			Synonyms				Description
-	Unknown = -1,	Invalid = Unknown,
-	TGA,			Targa = TGA,			// Image. Targa.
-	BMP,			Bitmap = BMP,			// Image. Windows bitmap.
-	PNG,			Ping = PNG,				// Image. Portable Network Graphics.
-	APNG,									// Image. Animated PNG.
-	GIF,									// Image. Graphics Interchange Format. Pronounced like the peanut butter.
-	WEBP,									// Image. Google Web Image.
-	XPM,									// Image. X-Windows Pix Map.
-	JPG,			JPeg = JPG,				// Image. Joing Picture Motion Group (or something like that).
-	TIFF,									// Image. Tag Interchange File Format.
-	DDS,									// Image. Direct Draw Surface. TextureMap/CubeMap.
-	HDR,									// Image. Radiance High Dynamic Range.
-	EXR,									// Image. OpenEXR High Dynamic Range.
-	PCX,									// Image.
-	WBMP,									// Image.
-	WMF,									// Image.
-	JP2,									// Image.
-	JPC,									// Image.
-	ICO,			Icon = ICO,				// Image. Windows Icon.
-	TEX,									// Image. Tacent TextureMap.
-	IMG,									// Image. TextureMap.
-	CUB,									// Image. Tacent CubeMap.
-	TAC,									// Image. Tacent Layered 2D Image.
-	CFG,									// Config. Text Config File.
-	INI,									// Config. Ini Config File.
+//	Type			Synonyms								Description
+	Unknown = -1,	Invalid = Unknown, EndOfList = Unknown,
+	TGA,			Targa = TGA,							// Image. Targa.
+	BMP,			Bitmap = BMP,							// Image. Windows bitmap.
+	PNG,			Ping = PNG,								// Image. Portable Network Graphics.
+	APNG,													// Image. Animated PNG.
+	GIF,													// Image. Graphics Interchange Format. Pronounced like the peanut butter.
+	WEBP,													// Image. Google Web Image.
+	XPM,													// Image. X-Windows Pix Map.
+	JPG,			JPeg = JPG,								// Image. Joing Picture Motion Group (or something like that).
+	TIFF,													// Image. Tag Interchange File Format.
+	DDS,													// Image. Direct Draw Surface. TextureMap/CubeMap.
+	HDR,													// Image. Radiance High Dynamic Range.
+	EXR,													// Image. OpenEXR High Dynamic Range.
+	PCX,													// Image.
+	WBMP,													// Image.
+	WMF,													// Image.
+	JP2,													// Image.
+	JPC,													// Image.
+	ICO,			Icon = ICO,								// Image. Windows Icon.
+	TEX,													// Image. Tacent TextureMap.
+	IMG,													// Image. TextureMap.
+	CUB,													// Image. Tacent CubeMap.
+	TAC,													// Image. Tacent Layered 2D Image.
+	CFG,													// Config. Text Config File.
+	INI,													// Config. Ini Config File.
 	NumFileTypes
 };
 
@@ -171,12 +171,19 @@ struct tFileTypes
 	tFileTypes(tFileType fileType)																						: FileTypes() { Add(fileType); }
 	tFileTypes(const tExtensions& extensions)																			: FileTypes() { Add(extensions); }
 
+	// This constructor may be used to create a static/global object by simply entering the tFileTypes you want as
+	// arguments. The last tFileType _must_ be tFileType::EndOfList. Example:
+	// tFileTypes gTypes(tFileType::JPG, tFileType::PNG, tFileType::EndOfList);
+	tFileTypes(tFileType, ...);
+
 	// All the add functions check for uniqueness when adding.
 	tFileTypes& Add(const tFileTypes& src);
 	tFileTypes& Add(const char* ext);
 	tFileTypes& Add(const tString& ext);
 	tFileTypes& Add(tFileType);
 	tFileTypes& Add(const tExtensions&);
+	tFileTypes& AddVA(tFileType, ...);
+	tFileTypes& AddVA(tFileType, va_list);
 
 	void Clear()																										{ FileTypes.Clear(); }
 	int Count() const																									{ return FileTypes.GetNumItems(); }
@@ -573,6 +580,16 @@ inline bool tSystem::tExtensions::Contains(const tString& searchExt) const
 }
 
 
+inline tSystem::tFileTypes::tFileTypes(tFileType fileType, ...)
+{
+	Add(fileType);
+	va_list valist;
+	va_start(valist, fileType);
+	AddVA(fileType, valist);
+	va_end(valist);
+}
+
+
 inline tSystem::tFileTypes& tSystem::tFileTypes::Add(const tFileTypes& src)
 {
 	for (tFileTypeItem* fti = src.FileTypes.First(); fti; fti = fti->Next())
@@ -611,6 +628,33 @@ inline tSystem::tFileTypes& tSystem::tFileTypes::Add(const tExtensions& extensio
 {
 	for (tStringItem* ext = extensions.First(); ext; ext = ext->Next())
 		Add(tGetFileTypeFromExtension(*ext));
+
+	return *this;
+}
+
+
+inline tSystem::tFileTypes& tSystem::tFileTypes::AddVA(tFileType fileType, ...)
+{
+	Add(fileType);
+	va_list valist;
+	va_start(valist, fileType);
+	AddVA(fileType, valist);
+	va_end(valist);
+	return *this;
+}
+
+
+inline tSystem::tFileTypes& tSystem::tFileTypes::AddVA(tFileType fileType, va_list valist)
+{
+	if (fileType == tFileType::EndOfList)
+		return *this;
+
+	tFileType ftype = va_arg(valist, tFileType);
+	while (ftype != tFileType::EndOfList)
+	{
+		Add(ftype);
+		ftype = va_arg(valist, tFileType);
+	}
 
 	return *this;
 }
