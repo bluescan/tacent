@@ -861,6 +861,10 @@ tTestUnit(FileTypes)
 	// Test copy cons.
 	tFileTypes fileTypesCopy(fileTypes);
 	tExtensions extensionsCopy(extensions);
+
+	// Test implicit type conversion of string literal.
+	tList<tStringItem> foundFiles;
+	tSystem::tFindFilesFast(foundFiles, "TestData/", "bin");
 }
 
 

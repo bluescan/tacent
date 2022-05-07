@@ -127,7 +127,7 @@ struct tExtensions
 {
 	tExtensions()																										: Extensions() { }
 	tExtensions(const tExtensions& src)																					: Extensions() { Add(src); }
-	tExtensions(const char* ext)																						: Extensions() { Add(ext); }
+	explicit tExtensions(const char* ext)																				: Extensions() { Add(ext); }
 	tExtensions(const tString& ext)																						: Extensions() { Add(ext); }
 	tExtensions(tFileType fileType, bool preferredExtensionOnly = false)												: Extensions() { Add(fileType, preferredExtensionOnly); }
 	tExtensions(const tFileTypes& fileTypes, bool preferredExtensionsOnly = false)										: Extensions() { Add(fileTypes, preferredExtensionsOnly); }
