@@ -60,7 +60,7 @@ namespace tSystem
 		const char* Ext[MaxExtensionsPerFileType] = { nullptr, nullptr, nullptr, nullptr };
 		bool HasExt(const tString& ext)																					{ for (int e = 0; e < MaxExtensionsPerFileType; e++) if (ext.IsEqualCI(Ext[e])) return true; return false; }
 	};
-	extern FileTypeExts FileTypeExtTable[tFileType::NumFileTypes];
+	extern FileTypeExts FileTypeExtTable[int(tFileType::NumFileTypes)];
 }
 
 
@@ -172,7 +172,7 @@ int tSystem::tGetFileSize(const tString& filename)
 
 // When more than one extension maps to the same filetype (like jpg and jpeg), always put the more common extension
 // first in the extensions array.
-tSystem::FileTypeExts tSystem::FileTypeExtTable[tSystem::tFileType::NumFileTypes] = //] =
+tSystem::FileTypeExts tSystem::FileTypeExtTable[int(tSystem::tFileType::NumFileTypes)] = //] =
 {
 //	Extensions							Filetype
 	{ "tga" },							// TGA
