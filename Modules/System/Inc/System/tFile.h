@@ -162,7 +162,7 @@ struct tExtensions
 	tList<tStringItem> Extensions;
 
 	// A user specified name for this collection of extensions. Use is optional.
-	tString Name;
+	tString UserName;
 };
 
 
@@ -198,10 +198,14 @@ struct tFileTypes
 
 	struct tFileTypeItem : public tLink<tFileTypeItem>
 	{
-		tFileTypeItem()																									: FileType(tSystem::tFileType::Invalid) { }
-		tFileTypeItem(tFileType fileType)																				: FileType(fileType) { }
-		tFileTypeItem(const tFileTypeItem& src)																			: FileType(src.FileType) { }
+		tFileTypeItem()																									: FileType(tSystem::tFileType::Invalid), Selected(false) { }
+		tFileTypeItem(tFileType fileType)																				: FileType(fileType), Selected(false) { }
+		tFileTypeItem(const tFileTypeItem& src)																			: FileType(src.FileType), Selected(src.Selected) { }
+
 		tFileType FileType;
+
+		// A user-facing bool that is handy to keep track of selected state.
+		bool Selected;
 	};
 	tFileTypeItem* First() const																						{ return FileTypes.First(); }
 
@@ -209,7 +213,7 @@ struct tFileTypes
 	tList<tFileTypeItem> FileTypes;
 
 	// A user specified name for this collection of file types. Use is optional. Could be something like "Image Files".
-	tString Name;
+	tString UserName;
 };
 
 // Uses working dir. Mess.max to c:/Stuff/Mess.max. This function always assumes filename is relative.
