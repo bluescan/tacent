@@ -69,6 +69,9 @@ bool tDirExists(const tString& dirName);
 bool tDriveExists(const tString& driveName);
 #endif
 
+// c:/Stuff/Mess.max to max
+tString tGetFileExtension(const tString& filename);
+
 // File types are based on file extensions only. If this enum is modified there is an extension mapping table
 // in tFile.cpp that needs to be updated as well.
 enum class tFileType
@@ -102,9 +105,6 @@ enum class tFileType
 	NumFileTypes
 };
 
-// c:/Stuff/Mess.max to max
-tString tGetFileExtension(const tString& filename);
-
 // The supplied extension should not contain a period. Case insensitive.
 tFileType tGetFileTypeFromExtension(const tString& ext);
 tFileType tGetFileTypeFromExtension(const char* ext);
@@ -119,6 +119,9 @@ void tGetExtensions(tList<tStringItem>& extensions, tFileType);
 // Gets the single most common or default extension for a given filetype. Existing items in extensions are appended to.
 void tGetExtension(tList<tStringItem>& extensions, tFileType);
 tString tGetExtension(tFileType);
+
+// Currently this returns the same string as the most common (default) extension string.
+const char* tGetFileTypeName(tFileType);
 
 struct tFileTypes;
 
@@ -157,6 +160,9 @@ struct tExtensions
 	// This list stores the extensions lower-case without the dot.
 	// @todo Could use a BST, maybe a balanced AVL BST tree. Would make 'Contains' much faster.
 	tList<tStringItem> Extensions;
+
+	// A user specified name for this collection of extensions. Use is optional.
+	tString Name;
 };
 
 
@@ -201,6 +207,9 @@ struct tFileTypes
 
 	// @todo Could use a BST, maybe a balanced AVL BST tree. Would make 'Contains' much faster, plus it would deal
 	tList<tFileTypeItem> FileTypes;
+
+	// A user specified name for this collection of file types. Use is optional. Could be something like "Image Files".
+	tString Name;
 };
 
 // Uses working dir. Mess.max to c:/Stuff/Mess.max. This function always assumes filename is relative.

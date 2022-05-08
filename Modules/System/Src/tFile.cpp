@@ -170,6 +170,16 @@ int tSystem::tGetFileSize(const tString& filename)
 }
 
 
+tString tSystem::tGetFileExtension(const tString& filename)																
+{
+	tString ext = filename.Right('.'); 
+	if(ext == filename)
+		ext.Clear();
+
+	return ext;
+}
+
+
 // When more than one extension maps to the same filetype (like jpg and jpeg), always put the more common extension
 // first in the extensions array.
 tSystem::FileTypeExts tSystem::FileTypeExtTable[int(tSystem::tFileType::NumFileTypes)] = //] =
@@ -201,16 +211,6 @@ tSystem::FileTypeExts tSystem::FileTypeExtTable[int(tSystem::tFileType::NumFileT
 	{ "ini" },							// INI
 	// { "too many" }
 };
-
-
-tString tSystem::tGetFileExtension(const tString& filename)																
-{
-	tString ext = filename.Right('.'); 
-	if(ext == filename)
-		ext.Clear();
-
-	return ext;
-}
 
 
 tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString& ext)
@@ -275,6 +275,16 @@ tString tSystem::tGetExtension(tFileType fileType)
 
 	// The tString constructor can handle nullptr.
 	return tString(exts.Ext[0]);
+}
+
+
+const char* tSystem::tGetFileTypeName(tFileType fileType)
+{
+	if (fileType == tFileType::Unknown)
+		return nullptr;
+
+	FileTypeExts& exts = FileTypeExtTable[ int(fileType) ];
+	return exts.Ext[0];
 }
 
 
