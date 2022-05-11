@@ -1837,7 +1837,7 @@ bool tSystem::tSetCurrentDir(const tString& directory)
 	return success ? true : false;
 
 	#else
-	tStdPath(dir);
+	tPathStd(dir);
 	int errCode = chdir(dir.Chars());
 	return (errCode == 0);
 
