@@ -402,14 +402,13 @@ bool tIsHidden(const tString& fileName);
 bool tSetHidden(const tString& fileName, bool hidden = true);
 bool tIsSystem(const tString& fileName);
 bool tSetSystem(const tString& fileName, bool system = true);
-#endif
-
-#ifdef PLATFORM_WINDOWS
 tString tGetWindowsDir();
 tString tGetSystemDir();
-#elif defined(PLATFORM_LINUX)
-tString tGetHomeDir();
+tString tGetDesktopDir();
 #endif
+
+// Gets the home directory. On Linux usually something like "/home/username/". On windows usually something like "C:/Users/UserName/".
+tString tGetHomeDir();
 
 // Gets the directory that the current process is being run from.
 tString tGetProgramDir();

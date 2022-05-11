@@ -25,6 +25,7 @@ namespace tUnitTest
 	tTestUnit(Script);
 	tTestUnit(Chunk);
 	tTestUnit(FileTypes);
+	tTestUnit(Directories);
 	tTestUnit(File);
 	tTestUnit(Network);
 	tTestUnit(Time);

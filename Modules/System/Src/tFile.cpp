@@ -43,9 +43,20 @@ namespace tSystem
 {
 	std::time_t tFileTimeToStdTime(std::filesystem::file_time_type tp);
 
+	// Conversions to tacent-standard paths. Forward slashes.
+	void tPathStd	(tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There".
+	void tPathStdAdd(tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There/".
+	void tPathStdRem(tString& path);	// "C:\Hello\There\" -> "C:/Hello/There".  "C:\Hello\There" -> "C:/Hello/There".
+
+	// Conversions to windows-standard paths. Forward slashes. Not seen externally.
+	void tPathWin	(tString& path);	// "C:/Hello/There/" -> "C:\Hello\There\". "C:/Hello/There" -> "C:\Hello\There".
+	void tPathWinAdd(tString& path);	// "C:/Hello/There/" -> "C:\Hello\There\". "C:/Hello/There" -> "C:\Hello\There\".
+	void tPathWinRem(tString& path);	// "C:/Hello/There/" -> "C:\Hello\There".  "C:/Hello/There" -> "C:\Hello\There".
+
 	#ifdef PLATFORM_WINDOWS
 	std::time_t tFileTimeToPosixEpoch(FILETIME);
 	void tGetFileInfo(tFileInfo& fileInfo, Win32FindData&);
+	tString tWideToString(wchar_t*);
 	#endif
 
 	bool tFindFilesFastInternal
@@ -61,6 +72,52 @@ namespace tSystem
 		bool HasExt(const tString& ext)																					{ for (int e = 0; e < MaxExtensionsPerFileType; e++) if (ext.IsEqualCI(Ext[e])) return true; return false; }
 	};
 	extern FileTypeExts FileTypeExtTable[int(tFileType::NumFileTypes)];
+}
+
+
+inline void tSystem::tPathStd(tString& path)
+{
+	path.Replace('\\', '/');
+}
+
+
+inline void tSystem::tPathStdAdd(tString& path)
+{
+	path.Replace('\\', '/');
+	if (path[path.Length() - 1] != '/')
+		path += "/";
+}
+
+
+inline void tSystem::tPathStdRem(tString& path)
+{
+	path.Replace('\\', '/');
+	int len = path.Length();
+	if (path[len-1] == '/')
+		path[len-1] = '\0';
+}
+
+
+inline void tSystem::tPathWin(tString& path)
+{
+	path.Replace('/', '\\');
+}
+
+
+inline void tSystem::tPathWinAdd(tString& path)
+{
+	path.Replace('/', '\\');
+	if (path[path.Length() - 1] != '\\')
+		path += "\\";
+}
+
+
+inline void tSystem::tPathWinRem(tString& path)
+{
+	path.Replace('/', '\\');
+	int len = path.Length();
+	if (path[len-1] == '\\')
+		path[len-1] = '\0';
 }
 
 
@@ -143,7 +200,7 @@ int tSystem::tGetFileSize(const tString& filename)
 		return 0;
 
 	tString file(filename);
-	file.Replace('/', '\\');
+	tPathWin(file);
 	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
 	Win32FindData fd;
@@ -292,7 +349,7 @@ bool tSystem::tFileExists(const tString& filename)
 {
 	#if defined(PLATFORM_WINDOWS)
 	tString file(filename);
-	file.Replace('/', '\\');
+	tPathWin(file);
 
 	int length = file.Length();
 	if (file[ length - 1 ] == ':')
@@ -314,7 +371,7 @@ bool tSystem::tFileExists(const tString& filename)
 
 	#else
 	tString file(filename);
-	file.Replace('\\', '/');
+	tPathStd(file);
 
 	struct stat statbuf;
 	return stat(file.Chars(), &statbuf) == 0;
@@ -331,14 +388,10 @@ bool tSystem::tDirExists(const tString& dirname)
 	tString dir = dirname;
 	
 	#if defined(PLATFORM_WINDOWS)
-	dir.Replace('/', '\\');
-	int length = dir.Length();
-	if (dir[ length - 1 ] == '\\')
-		dir[ length - 1 ] = '\0';
-
-	length = dir.Length();
+	tPathWinRem(dir);
 
 	// Can't quite remember what the * does. Needs testing.
+	int length = dir.Length();
 	if (dir[ length - 1 ] == ':')
 		dir += "\\*";
 
@@ -357,11 +410,7 @@ bool tSystem::tDirExists(const tString& dirname)
 	return false;
 
 	#else
-	dir.Replace('\\', '/');
-	
-	if (dir[dir.Length()-1] == '/')
-		dir[dir.Length()-1] = '\0';
-
+	tPathStdRem(dir);
 	std::filesystem::file_status fstat = std::filesystem::status(dir.Chars());
 	
 	return std::filesystem::is_directory(fstat);
@@ -392,10 +441,10 @@ bool tSystem::tIsFileNewer(const tString& filenameA, const tString& filenameB)
 {
 	#if defined(PLATFORM_WINDOWS)
 	tString fileA(filenameA);
-	fileA.Replace('/', '\\');
+	tPathWin(fileA);
 
 	tString fileB(filenameB);
-	fileB.Replace('/', '\\');
+	tPathWin(fileB);
 
 	Win32FindData fd;
 	WinHandle h = FindFirstFile(fileA, &fd);
@@ -490,16 +539,13 @@ bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 
 	tString file(fileName);
 	#ifdef PLATFORM_WINDOWS
-	file.Replace('/', '\\');
 
 	// Seems like FindFirstFile cannot deal with a trailing backslash when
 	// trying to access directory information.  We remove it here.
-	int l = file.Length();
-	if (file[l-1] == '\\')
-		file[l-1] = '\0';
+	tPathWinRem(file);
 
 	#else
-	file.Replace('\\', '/');
+	tPathStd(file);
 
 	#endif
 
@@ -540,13 +586,11 @@ bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 bool tSystem::tGetFileDetails(tFileDetails& details, const tString& fullFileName)
 {
 	tString ffn = fullFileName;
-	ffn.Replace('/', '\\');
-	if (ffn[ ffn.Length() - 1 ] == '\\')
-		ffn[ ffn.Length() - 1 ] = '\0';
+	tPathWinRem(ffn);
 
 	tString fileName = tSystem::tGetFileName(ffn);
 	tString fileDir = tSystem::tGetDir(ffn);
-	fileDir.Replace('/', '\\');
+	tPathWin(fileDir);
 
 	if ((fileName.Length() == 2) && (fileName[1] == ':'))
 	{
@@ -717,7 +761,7 @@ void tSystem::tSetFileOpenAssoc(const tString& program, const tString& extension
 		else
 			options = tString(" ") + options + " ";
 		tString valString = tString("\"") + tSystem::tGetSimplifiedPath(program) + "\"" + options + "\"%1\"";
-		valString.Replace('/', '\\');
+		tPathWin(valString);
 		RegSetValueEx(key, "", 0, REG_SZ, (uint8*)valString.ConstText(), valString.Length()+1);
 		RegCloseKey(key);
 	}
@@ -783,7 +827,7 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 tString tSystem::tGetSimplifiedPath(const tString& srcPath, bool forceTreatAsDir)
 {
 	tString path = srcPath;
-	path.Replace('\\', '/');
+	tPathStd(path);
 
 	// We do support filenames at the end. However, if the name ends with a "." (or "..") we
 	// know it is a folder and so add a trailing "/".
@@ -850,7 +894,7 @@ bool tSystem::tIsAbsolutePath(const tString& path)
 tString tSystem::tGetFileName(const tString& filename)
 {
 	tString retStr(filename);
-	retStr.Replace('\\', '/');
+	tPathStd(retStr);
 	return retStr.Right('/');
 }
 
@@ -865,7 +909,7 @@ tString tSystem::tGetFileBaseName(const tString& filename)
 tString tSystem::tGetDir(const tString& path)
 {
 	tString ret(path);
-	ret.Replace('\\', '/');
+	tPathStd(ret);
 
 	// If string is empty or there is no filename on the end of the path just return what we have.
 	if (ret.IsEmpty() || (ret[ret.Length()-1] == '/'))
@@ -893,7 +937,7 @@ tString tSystem::tGetUpDir(const tString& path, int levels)
 	tString ret(path);
 
 	bool isNetLoc = false;
-	ret.Replace('\\', '/');
+	tPathStd(ret);
 
 	// Can't go up from here.
 	if (ret == "/")
@@ -953,10 +997,10 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 	bool isDir = (path[ path.Length() - 1 ] == '/') ? true : false;
 
 	tString basePathMod = basePath;
-	basePathMod.Replace('/', '\\');
+	tPathWin(basePathMod);
 
 	tString pathMod = path;
-	pathMod.Replace('/', '\\');
+	tPathWin(pathMod);
 
 	int success = PathRelativePathTo
 	(
@@ -967,8 +1011,7 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 	if (!success)
 		return tString();
 
-	relLoc.Replace('\\', '/');
-
+	tPathStd(relLoc);
 	if (relLoc[0] == '/')
 		return relLoc.ConstText() + 1;
 	else
@@ -1019,7 +1062,7 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 tString tSystem::tGetAbsolutePath(const tString& pth, const tString& basePath)
 {
 	tString path(pth);
-	path.Replace('\\', '/');
+	tPathStd(path);
 	if (tIsRelativePath(path))
 	{
 		if (basePath.IsEmpty())
@@ -1035,13 +1078,11 @@ tString tSystem::tGetAbsolutePath(const tString& pth, const tString& basePath)
 tString tSystem::tGetLinuxPath(const tString& pth, const tString& mountPoint)
 {
 	tString path(pth);
-	path.Replace('\\', '/');
+	tPathStd(path);
 	if (tIsAbsolutePath(path) && (path.Length() > 1) && (path[1] == ':') && !mountPoint.IsEmpty())
 	{
 		tString mnt = mountPoint;
-		mnt.Replace('\\', '/');
-		if (mnt[ mnt.Length() - 1 ] != '/')
-			mnt += "/";
+		tPathStdAdd(mnt);
 
 		char drive = tStd::tChrlwr(path[0]);
 		path.ExtractLeft(2);
@@ -1056,14 +1097,13 @@ tString tSystem::tGetFileFullName(const tString& filename)
 	tString file(filename);
 	
 	#if defined(PLATFORM_WINDOWS)
-	file.Replace('/', '\\');
+	tPathWin(file);
 	tString ret(_MAX_PATH + 1);
 	_fullpath(ret.Text(), file, _MAX_PATH);
-	ret.Replace('\\', '/');
+	tPathStd(ret);
 	
 	#else
-
-	file.Replace('\\', '/');
+	tPathStd(file);
 	tString ret(PATH_MAX + 1);
 	realpath(file, ret.Text());	
 	#endif
@@ -1155,10 +1195,7 @@ bool tSystem::tIsReadOnly(const tString& fileName)
 	tString file(fileName);
 
 	#if defined(PLATFORM_WINDOWS)
-	file.Replace('/', '\\');
-	int length = file.Length();
-	if ((file[length - 1] == '/') || (file[length - 1] == '\\'))
-		file[length - 1] = '\0';
+	tPathWinRem(file);
 
 	// The docs for this should be clearer!  GetFileAttributes returns INVALID_FILE_ATTRIBUTES if it
 	// fails.  Rather dangerously, and undocumented, INVALID_FILE_ATTRIBUTES has a value of 0xFFFFFFFF.
@@ -1172,7 +1209,7 @@ bool tSystem::tIsReadOnly(const tString& fileName)
 	return (attribs & FILE_ATTRIBUTE_READONLY) ? true : false;
 
 	#else
-	file.Replace('\\', '/');
+	tPathStd(file);
 
 	struct stat st;
 	int errCode = stat(file, &st);
@@ -1192,10 +1229,7 @@ bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 	tString file(fileName);
 	
 	#if defined(PLATFORM_WINDOWS)	
-	file.Replace('/', '\\');
-	int length = file.Length();
-	if ((file[length - 1] == '/') || (file[length - 1] == '\\'))
-		file[length - 1] = '\0';
+	tPathWinRem(file);
 
 	ulong attribs = GetFileAttributes(file);
 	if (attribs == INVALID_FILE_ATTRIBUTES)
@@ -1216,7 +1250,7 @@ bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 	return false;
 
 	#else
-	file.Replace('\\', '/');
+	tPathStd(file);
 	
 	struct stat st;
 	int errCode = stat(file, &st);
@@ -1248,10 +1282,7 @@ bool tSystem::tIsHidden(const tString& path)
 	#elif defined(PLATFORM_WINDOWS)
 	// In windows it's all based on the file attribute.
 	tString file(path);
-	file.Replace('/', '\\');
-	int length = file.Length();
-	if ((file[length - 1] == '/') || (file[length - 1] == '\\'))
-		file[length - 1] = '\0';
+	tPathWinRem(file);
 
 	ulong attribs = GetFileAttributes(file);
 	if (attribs == INVALID_FILE_ATTRIBUTES)
@@ -1270,10 +1301,7 @@ bool tSystem::tIsHidden(const tString& path)
 bool tSystem::tSetHidden(const tString& fileName, bool hidden)
 {
 	tString file(fileName);
-	file.Replace('/', '\\');
-	int length = file.Length();
-	if ((file[length - 1] == '/') || (file[length - 1] == '\\'))
-		file[length - 1] = '\0';
+	tPathWinRem(file);
 
 	ulong attribs = GetFileAttributes(file);
 	if (attribs == INVALID_FILE_ATTRIBUTES)
@@ -1298,10 +1326,7 @@ bool tSystem::tSetHidden(const tString& fileName, bool hidden)
 bool tSystem::tIsSystem(const tString& fileName)
 {
 	tString file(fileName);
-	file.Replace('/', '\\');
-	int length = file.Length();
-	if ((file[length - 1] == '/') || (file[length - 1] == '\\'))
-		file[length - 1] = '\0';
+	tPathWinRem(file);
 
 	ulong attribs = GetFileAttributes(file);
 	if (attribs == INVALID_FILE_ATTRIBUTES)
@@ -1314,10 +1339,7 @@ bool tSystem::tIsSystem(const tString& fileName)
 bool tSystem::tSetSystem(const tString& fileName, bool system)
 {
 	tString file(fileName);
-	file.Replace('/', '\\');
-	int length = file.Length();
-	if ((file[length - 1] == '/') || (file[length - 1] == '\\'))
-		file[length - 1] = '\0';
+	tPathWinRem(file);
 
 	ulong attribs = GetFileAttributes(file);
 	if (attribs == INVALID_FILE_ATTRIBUTES)
@@ -1369,7 +1391,7 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 	else if (driveRoot.Length() == 2)						// Assume string was of form "C:"
 		driveRoot += "\\";
 	else													// Assume string was of form "C:/" or "C:\"
-		driveRoot.Replace('/', '\\');
+		tPathWin(driveRoot);
 
 	uint driveType = GetDriveType(driveRoot);
 	switch (driveType)
@@ -1459,24 +1481,14 @@ bool tSystem::tSetVolumeName(const tString& drive, const tString& newVolumeName)
 	else if (driveRoot.Length() == 2)		// Assume string was of form "C:"
 		driveRoot += "\\";
 	else									// Assume string was of form "C:/" or "C:\"
-		driveRoot.Replace('/', '\\');
+		tPathWin(driveRoot);
 
 	int success = SetVolumeLabel(driveRoot.ConstText(), newVolumeName.ConstText());
 	return success ? true : false;
 }
 
 
-namespace tWindowsShares
-{
-	tString tWideToString(wchar_t*);
-	tString tGetDisplayName(LPITEMIDLIST pidl, IShellFolder*, DWORD type);
-	void tEnumerateRec(tSystem::tNetworkShareResult&, IShellFolder*, int levels, bool retrieveMachinesWithNoShares);
-
-	LPMALLOC Malloc;
-}
-
-
-tString tWindowsShares::tWideToString(wchar_t* wideStr)
+tString tSystem::tWideToString(wchar_t* wideStr)
 {
 	if (!wideStr)
 		return tString();
@@ -1501,6 +1513,14 @@ tString tWindowsShares::tWideToString(wchar_t* wideStr)
 }
 
 
+namespace tWindowsShares
+{
+	tString tGetDisplayName(LPITEMIDLIST pidl, IShellFolder*, DWORD type);
+	void tEnumerateRec(tSystem::tNetworkShareResult&, IShellFolder*, int levels, bool retrieveMachinesWithNoShares);
+	LPMALLOC Malloc;
+}
+
+
 tString tWindowsShares::tGetDisplayName(LPITEMIDLIST pidl, IShellFolder* folderInterface, DWORD type)
 {
 	STRRET strRet;
@@ -1520,7 +1540,7 @@ tString tWindowsShares::tGetDisplayName(LPITEMIDLIST pidl, IShellFolder* folderI
 			return tString(strRet.cStr);
 
 		case STRRET_WSTR:
-			return tWideToString(strRet.pOleStr);
+			return tSystem::tWideToString(strRet.pOleStr);
 		
 		case STRRET_OFFSET :
 			return tString(((char*)pidl) + strRet.uOffset);
@@ -1649,9 +1669,7 @@ tString tSystem::tGetWindowsDir()
 {
 	tString windir(MAX_PATH);
 	GetWindowsDirectory(windir.Text(), MAX_PATH);
-	windir.Replace('\\', '/');
-	if (windir[windir.Length()-1] != '/')
-		windir += "/";
+	tPathStdAdd(windir);
 
 	return windir;
 }
@@ -1661,16 +1679,13 @@ tString tSystem::tGetSystemDir()
 {
 	tString sysdir(MAX_PATH);
 	GetSystemDirectory(sysdir.Text(), MAX_PATH);
-	sysdir.Replace('\\', '/');
-	if (sysdir[sysdir.Length()-1] != '/')
-		sysdir += "/";
-
+	tPathStdAdd(sysdir);
 	return sysdir;
 }
 #endif
 
 
-#ifdef PLATFORM_LINUX
+#if defined(PLATFORM_LINUX)
 tString tSystem::tGetHomeDir()
 {
 	const char* homeDir = getenv("HOME");
@@ -1685,6 +1700,39 @@ tString tSystem::tGetHomeDir()
 		res += '/';
 	return res;
 }
+
+
+#elif defined(PLATFORM_WINDOWS)
+tString tSystem::tGetHomeDir()
+{
+	tString home;
+	wchar_t* pathBuffer = nullptr;
+	hResult result = SHGetKnownFolderPath(FOLDERID_Profile, 0, 0, &pathBuffer);
+	if ((result != S_OK) || !pathBuffer)
+		return home;
+
+	home = tWideToString(pathBuffer);
+	CoTaskMemFree(pathBuffer);
+
+	tPathStdAdd(home);
+	return home;
+}
+
+
+tString tSystem::tGetDesktopDir()
+{
+	tString desktop;
+	wchar_t* pathBuffer = nullptr;
+	hResult result = SHGetKnownFolderPath(FOLDERID_Desktop, 0, 0, &pathBuffer);
+	if ((result != S_OK) || !pathBuffer)
+		return desktop;
+
+	desktop = tWideToString(pathBuffer);
+	CoTaskMemFree(pathBuffer);
+
+	tPathStdAdd(desktop);
+	return desktop;
+}
 #endif
 
 
@@ -1693,8 +1741,8 @@ tString tSystem::tGetProgramDir()
 	#if defined(PLATFORM_WINDOWS)
 	tString result(MAX_PATH + 1);
 	ulong l = GetModuleFileName(0, result.Text(), MAX_PATH);
-	result.Replace('\\', '/');
 
+	tPathStd(result);
 	int bi = result.FindChar('/', true);
 	tAssert(bi != -1);
 
@@ -1722,7 +1770,7 @@ tString tSystem::tGetProgramPath()
 	#if defined(PLATFORM_WINDOWS)
 	tString result(MAX_PATH + 1);
 	ulong l = GetModuleFileName(0, result.Text(), MAX_PATH);
-	result.Replace('\\', '/');
+	tPathStd(result);
 	return result;
 
 	#elif defined(PLATFORM_LINUX)
@@ -1748,10 +1796,7 @@ tString tSystem::tGetCurrentDir()
 	getcwd(r.Text(), PATH_MAX);
 
 	#endif
-	r.Replace('\\', '/');
-	int l = r.Length();
-	if (r[l - 1] != '/')
-		r += "/";
+	tPathStdAdd(r);
 
 	return r;
 }
@@ -1765,7 +1810,7 @@ bool tSystem::tSetCurrentDir(const tString& directory)
 	tString dir = directory;
 
 	#ifdef PLATFORM_WINDOWS
-	dir.Replace('/', '\\');
+	tPathWin(dir);
 	tString cd;
 
 	// "." and ".." get left alone.
@@ -1792,7 +1837,7 @@ bool tSystem::tSetCurrentDir(const tString& directory)
 	return success ? true : false;
 
 	#else
-	dir.Replace('\\', '/');
+	tStdPath(dir);
 	int errCode = chdir(dir.Chars());
 	return (errCode == 0);
 
@@ -1891,7 +1936,7 @@ bool tSystem::tCreateDir(const tString& dir)
 	tString dirPath = dir;
 	
 	#if defined(PLATFORM_WINDOWS)
-	dirPath.Replace('/', '\\');
+	tPathWin(dirPath);
 
 	bool success = ::CreateDirectory(dirPath.ConstText(), 0) ? true : false;
 	if (!success)
@@ -1900,9 +1945,7 @@ bool tSystem::tCreateDir(const tString& dir)
 	return success;
 
 	#else
-	dirPath.Replace('\\', '/');
-	if (dirPath[dirPath.Length()-1] == '/')
-		dirPath[dirPath.Length()-1] = '\0';
+	tPathStdRem(dirPath);
 	bool ok = std::filesystem::create_directory(dirPath.Chars());
 	if (!ok)
 		return tDirExists(dirPath.Chars());
@@ -2065,21 +2108,21 @@ bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tStr
 {
 	#if defined(PLATFORM_WINDOWS)
 	tString fullOldName = dir + oldName;
-	fullOldName.Replace('/', '\\');
+	tPathWin(fullOldName);
 
 	tString fullNewName = dir + newName;
-	fullNewName.Replace('/', '\\');
+	tPathWin(fullNewName);
 
 	int success = ::MoveFile(fullOldName, fullNewName);
 	return success ? true : false;
 
 	#else
 	tString fullOldName = dir + oldName;
-	fullOldName.Replace('\\', '/');
+	tPathStd(fullOldName);
 	std::filesystem::path oldp(fullOldName.Chars());
 
 	tString fullNewName = dir + newName;
-	fullNewName.Replace('\\', '/');
+	tPathStd(fullNewName);
 	std::filesystem::path newp(fullNewName.Chars());
 
 	std::error_code ec;
@@ -2215,9 +2258,7 @@ bool tSystem::tFindFilesFastInternal(const tString& dir, const tExtensions& exte
 		dirStr = tGetCurrentDir();
 
 	#ifdef PLATFORM_WINDOWS
-	dirStr.Replace('/', '\\');
-	if (dirStr[dirStr.Length() - 1] != '\\')
-		dirStr += "\\";
+	tPathWinAdd(dirStr);
 
 	// There's some complexity here with windows, but it's still very fast. We need to loop through all the
 	// extensions doing the FindFirstFile business, while modifying the path appropriately for each one.
@@ -2253,7 +2294,7 @@ bool tSystem::tFindFilesFastInternal(const tString& dir, const tExtensions& exte
 				if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
 				{
 					tString foundName = dirStr + fd.cFileName;
-					foundName.Replace('\\', '/');
+					tPathStd(foundName);
 
 					tStringItem* newName = foundFiles ? new tStringItem(foundName) : nullptr;
 					tFileInfo*   newInfo = foundInfos ? new tFileInfo() : nullptr;
@@ -2295,10 +2336,7 @@ bool tSystem::tFindFilesFastInternal(const tString& dir, const tExtensions& exte
 	return allOk;
 
 	#elif defined(PLATFORM_LINUX)
-	dirStr.Replace('\\', '/');
-	if (dirStr[dirStr.Length() - 1] != '/')
-		dirStr += "/";
-
+	tPathStdAdd(dirStr);
 	DIR* dirEnt = opendir(dirStr.Chars());
 	if (dirStr.IsEmpty() || !dirEnt)
 		return false;
@@ -2375,13 +2413,10 @@ bool tSystem::tFindFilesFast(tList<tFileInfo>& foundInfos, const tString& dir, c
 bool tSystem::tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden)
 {
 	#ifdef PLATFORM_WINDOWS
+
 	// The windows functions seem to like backslashes better.
 	tString pathStr(dir);
-	pathStr.Replace('/', '\\');
-
-	if (pathStr[pathStr.Length() - 1] != '\\')
-		pathStr += "\\";
-
+	tPathWinAdd(pathStr);
 	tFindFiles(foundFiles, dir, ext, includeHidden);
 	Win32FindData fd;
 
@@ -2434,10 +2469,8 @@ bool tSystem::tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& d
 {
 	#ifdef PLATFORM_WINDOWS
 	tString pathStr(dir);
-	pathStr.Replace('/', '\\');
-	if (pathStr[pathStr.Length() - 1] != '\\')
-		pathStr += "\\";
 
+	tPathWinAdd(pathStr);
 	tFindDirs(foundDirs, pathStr, includeHidden);
 	Win32FindData fd;
 	WinHandle h = FindFirstFile(pathStr + "*.*", &fd);
@@ -2486,7 +2519,7 @@ bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool use
 {
 	#ifdef PLATFORM_WINDOWS
 	tString file(filename);
-	file.Replace('/', '\\');
+	tPathWin(file);
 	if (deleteReadOnly)
 		SetFileAttributes(file, FILE_ATTRIBUTE_NORMAL);
 
@@ -2557,7 +2590,7 @@ bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
 
 	fileList.Empty();							// Clean up the file list.
 	tString directory(dir);
-	directory.Replace('/', '\\');
+	tPathWin(directory);
 
 	Win32FindData fd;
 	WinHandle h = FindFirstFile(directory + "*.*", &fd);

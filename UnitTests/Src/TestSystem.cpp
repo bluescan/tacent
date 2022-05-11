@@ -846,7 +846,6 @@ tSystem::tFileTypes FileTypesGlobal
 );
 
 
-
 tTestUnit(FileTypes)
 {
 	tFileTypes fileTypes;
@@ -903,6 +902,40 @@ bool ListsContainSameItems(const tList<tStringItem>& a, const tList<tStringItem>
 	}
 
 	return true;
+}
+
+
+tTestUnit(Directories)
+{
+	tString homeDir = tGetHomeDir();
+	tPrintf("Home Dir is: %s\n", homeDir.Chars());
+	tRequire(!homeDir.IsEmpty());
+
+	tString progDir = tGetProgramDir();
+	tPrintf("Program Dir is: %s\n", progDir.Chars());
+	tRequire(!progDir.IsEmpty());
+
+	tString progPath = tGetProgramPath();
+	tPrintf("Program Path is: %s\n", progPath.Chars());
+	tRequire(!progPath.IsEmpty());
+
+	tString currDir = tGetCurrentDir();
+	tPrintf("Curr Dir is: %s\n", currDir.Chars());
+	tRequire(!currDir.IsEmpty());
+
+	#ifdef PLATFORM_WINDOWS
+	tString winDir = tGetWindowsDir();
+	tPrintf("Windows Dir is: %s\n", winDir.Chars());
+	tRequire(!winDir.IsEmpty());
+
+	tString sysDir = tGetSystemDir();
+	tPrintf("System Dir is: %s\n", sysDir.Chars());
+	tRequire(!sysDir.IsEmpty());
+
+	tString deskDir = tGetDesktopDir();
+	tPrintf("Desktop Dir is: %s\n", deskDir.Chars());
+	tRequire(!deskDir.IsEmpty());
+	#endif
 }
 
 

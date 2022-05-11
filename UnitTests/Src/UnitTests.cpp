@@ -137,6 +137,7 @@ int main(int argc, char** argv)
 	tTest(Script);
 	tTest(Chunk);
 	tTest(FileTypes);
+	tTest(Directories);
 	tTest(File);
 	tTest(Network);
 	tTest(Time);
@@ -163,7 +164,8 @@ int main(int argc, char** argv)
 	#else
 
 	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
-	tTest(FileTypes);
+	// tTest(FileTypes);
+	tTest(Directories);
 	// tTest(File);
 	// tTest(Network);
 	// tTest(CmdLine);
