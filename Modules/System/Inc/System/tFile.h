@@ -234,6 +234,8 @@ struct tFileInfo : public tLink<tFileInfo>
 
 	tString FileName;
 	uint64 FileSize;
+
+	// These are in POSIX Epoch time -- number of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT),
 	std::time_t CreationTime;
 	std::time_t ModificationTime;
 	std::time_t AccessTime;

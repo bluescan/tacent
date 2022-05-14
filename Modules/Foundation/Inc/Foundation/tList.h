@@ -112,7 +112,29 @@ public:
 
 	// Sorts the list using the algorithm specified. The supplied compare function should never return true on equal.
 	// To sort ascending return the truth of a < b. Return a > b to sort in descending order. Returns the number of
-	// compares performed. The compare function usually implements bool CompareFunc(const T& a, const T& b)
+	// compares performed.
+	//
+	// A simple compare function would implement "bool CompareFunc(const T& a, const T& b);"
+	// If you want to send user information into your compare function, there is no need to create a static or global
+	// object that is error-prone (and definitely not thread-safe). There is also no need for the Sort function to be
+	// polluted with an extra user-data argument. Instead use C++ FunctionObjects. A function object is an object that
+	// implements operator(). As an example:
+	//
+	//	struct CompareFunctionObject
+	//	{
+	//		bool ascending = true; // Plus whatever other sort-specification data you want.
+	//		bool operator() (const YourType& a, const YourType& b) const
+	//		{
+	//			return ascending ? a < b : a > b;	// You implement the compare.
+	//		}
+	//	}
+	//
+	// To use this simply do somthing like:
+	//
+	//	CompareFunctionObject comp;
+	//	comp.ascending = false;
+	//	MyList.Sort(comp);
+	//
 	template<typename CompareFunc> int Sort(CompareFunc, tListSortAlgorithm alg = tListSortAlgorithm::Merge);
 
 	// Inserts item in a sorted list. It will remain sorted.
@@ -501,7 +523,7 @@ template<typename T> template<typename CompareFunc> inline int tList<T>::SortMer
 		TailItem = nullptr;
 
 		// Num merges in this loop.
-		int numMerges = 0;			
+		int numMerges = 0;
 
 		while (p)
 		{
