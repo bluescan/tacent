@@ -190,6 +190,7 @@ struct tFileTypes
 	tFileTypes& Add(const tExtensions&);
 	tFileTypes& AddVA(tFileType, ...);
 	tFileTypes& AddVA(tFileType, va_list);
+	tFileTypes& AddSelected(const tFileTypes& src, bool addAllIfNoneSelected = false);
 
 	void Clear()																										{ FileTypes.Clear(); }
 	int Count() const																									{ return FileTypes.GetNumItems(); }
@@ -208,6 +209,12 @@ struct tFileTypes
 		bool Selected;
 	};
 	tFileTypeItem* First() const																						{ return FileTypes.First(); }
+
+	// Utility functions dealing with selected state.
+	void ClearSelected();
+	bool AnySelected() const;
+	enum class Separator { Comma, Space, CommaSpace };
+	tString GetSelectedString(Separator sepType = Separator::CommaSpace, int maxBeforeEllipsis = -1) const;
 
 	// @todo Could use a BST, maybe a balanced AVL BST tree. Would make 'Contains' much faster, plus it would deal
 	tList<tFileTypeItem> FileTypes;
@@ -674,6 +681,22 @@ inline tSystem::tFileTypes& tSystem::tFileTypes::AddVA(tFileType fileType, va_li
 }
 
 
+inline tSystem::tFileTypes& tSystem::tFileTypes::AddSelected(const tFileTypes& src, bool addAllIfNoneSelected)
+{
+	if (addAllIfNoneSelected && !src.AnySelected())
+	{
+		for (tFileTypeItem* typeItem = src.First(); typeItem; typeItem = typeItem->Next())
+			Add(typeItem->FileType);
+		return *this;
+	}
+	for (tFileTypeItem* typeItem = src.First(); typeItem; typeItem = typeItem->Next())
+		if (typeItem->Selected)
+			Add(typeItem->FileType);
+
+	return *this;
+}
+
+
 inline bool tSystem::tFileTypes::Contains(tFileType fileType) const
 {
 	for (tFileTypeItem* fti = FileTypes.First(); fti; fti = fti->Next())
@@ -681,6 +704,55 @@ inline bool tSystem::tFileTypes::Contains(tFileType fileType) const
 			return true;
 
 	return false;
+}
+
+
+inline void tSystem::tFileTypes::ClearSelected()
+{
+	for (tFileTypeItem* typeItem = First(); typeItem; typeItem = typeItem->Next())
+		typeItem->Selected = false;
+}
+
+
+inline bool tSystem::tFileTypes::AnySelected() const
+{
+	for (tFileTypeItem* typeItem = First(); typeItem; typeItem = typeItem->Next())
+		if (typeItem->Selected)
+			return true;
+	return false;
+}
+
+
+inline tString tSystem::tFileTypes::GetSelectedString(Separator sepType, int maxBeforeEllipsis) const
+{
+	tString str;
+	bool isFirst = true;
+	int numAdded = 0;
+	const char* sep = ",";
+	if (sepType == Separator::Space)
+		sep = " ";
+	if (sepType == Separator::CommaSpace)
+		sep = ", ";
+	
+	for (tFileTypeItem* typeItem = First(); typeItem; typeItem = typeItem->Next())
+	{
+		if (typeItem->Selected)
+		{
+			if ((maxBeforeEllipsis > -1) && (numAdded >= maxBeforeEllipsis))
+			{
+				str += " ...";
+				return str;
+			}
+			if (!isFirst)
+				str += sep;
+			else
+				isFirst = false;
+			str += tString(tSystem::tGetFileTypeName(typeItem->FileType));
+			numAdded++;
+		}
+	}
+
+	return str;
 }
 
 

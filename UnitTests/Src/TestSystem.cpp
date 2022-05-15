@@ -887,6 +887,30 @@ tTestUnit(FileTypes)
 	for (tStringItem* ext = extsCom.First(); ext; ext = ext->Next())
 		tPrintf("Ext: %s\n", ext->Chars());
 	tPrintf("\n");
+
+	// Test selection utilities.
+	for (tFileTypes::tFileTypeItem* item = fileTypes.First(); item; item = item->Next())
+		item->Selected = true;
+	fileTypes.Add(tFileType::HDR);
+	fileTypes.Add(tFileType::ICO);
+	tRequire(fileTypes.AnySelected());
+
+	tFileTypes selected;
+	selected.AddSelected(fileTypes);
+	tPrintf("Selected Types:\n");
+	for (tFileTypes::tFileTypeItem* item = selected.First(); item; item = item->Next())
+		tPrintf("SelectedType: %s\n", tGetFileTypeName(item->FileType));
+
+	tPrintf("Selected String (comsp, nomax):[%s]\n", fileTypes.GetSelectedString().Chars());
+	tPrintf("Selected String (comsp, max 3):[%s]\n", fileTypes.GetSelectedString(tFileTypes::Separator::CommaSpace, 3).Chars());
+	tPrintf("Selected String (space, max 5):[%s]\n", fileTypes.GetSelectedString(tFileTypes::Separator::Space, 5).Chars());
+	tPrintf("Selected String (comma, max 2):[%s]\n", fileTypes.GetSelectedString(tFileTypes::Separator::Comma, 2).Chars());
+
+	selected.Clear();
+	selected.AddSelected(FileTypesGlobal, true);
+	tPrintf("Selected Types (Global All):\n");
+	for (tFileTypes::tFileTypeItem* item = fileTypes.First(); item; item = item->Next())
+		tPrintf("SelectedType: %s\n", tGetFileTypeName(item->FileType));
 }
 
 
