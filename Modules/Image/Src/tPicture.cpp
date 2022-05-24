@@ -34,6 +34,8 @@
 #include "TurboJpeg/Linux/jconfig.h"
 #endif
 #include "WebP/include/demux.h"
+#include "TinyXML2/tinyxml2.h"
+#include "TinyEXIF/TinyEXIF.h"
 #include "Image/tResample.h"
 
 
@@ -51,6 +53,12 @@ const char* tImage::Version_ApngAsm			= APNGASM_VERSION_STRING;
 const char* tImage::Version_LibTIFF			= TIFFLIB_STANDARD_VERSION_STR;
 int tImage::Version_WEBP_Major				= WEBP_DECODER_ABI_VERSION >> 8;
 int tImage::Version_WEBP_Minor				= WEBP_DECODER_ABI_VERSION & 0xFF;
+int tImage::Version_TinyXML2_Major			= TINYXML2_MAJOR_VERSION;
+int tImage::Version_TinyXML2_Minor			= TINYXML2_MINOR_VERSION;
+int tImage::Version_TinyXML2_Patch			= TINYXML2_PATCH_VERSION;
+int tImage::Version_TinyEXIF_Major			= TINYEXIF_MAJOR_VERSION;
+int tImage::Version_TinyEXIF_Minor			= TINYEXIF_MINOR_VERSION;
+int tImage::Version_TinyEXIF_Patch			= TINYEXIF_PATCH_VERSION;
 
 
 void tPicture::Set(int width, int height, const tPixel& colour)

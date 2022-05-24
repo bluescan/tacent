@@ -54,6 +54,12 @@ extern const char* Version_ApngDis;
 extern const char* Version_ApngAsm;
 extern int Version_WEBP_Major;
 extern int Version_WEBP_Minor;
+extern int Version_TinyXML2_Major;
+extern int Version_TinyXML2_Minor;
+extern int Version_TinyXML2_Patch;
+extern int Version_TinyEXIF_Major;
+extern int Version_TinyEXIF_Minor;
+extern int Version_TinyEXIF_Patch;
 
 
 // A tPicture is a single 2D image. A rectangular collection of RGBA pixels (32bits per pixel). The origin is the lower

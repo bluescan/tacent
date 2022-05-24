@@ -54,6 +54,14 @@ add_library(
 	# ApngAsm
 	Contrib/ApngAsm/apngasm.h
 	Contrib/ApngAsm/apngasm.cpp
+
+	# TinyXML2
+	Contrib/TinyXML2/tinyxml2.h
+	Contrib/TinyXML2/tinyxml2.cpp
+
+	# TinyEXIF
+	Contrib/TinyEXIF/tinyexif.h
+	Contrib/TinyEXIF/tinyexif.cpp
 )
 
 tacent_target_include_directories(${PROJECT_NAME})
@@ -73,6 +81,8 @@ target_include_directories(
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ApngDis
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ApngAsm
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TinyXML2
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TinyEXIF
 )
 
 tacent_target_compile_definitions(${PROJECT_NAME})
