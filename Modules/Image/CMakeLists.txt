@@ -60,8 +60,8 @@ add_library(
 	Contrib/TinyXML2/tinyxml2.cpp
 
 	# TinyEXIF
-	Contrib/TinyEXIF/tinyexif.h
-	Contrib/TinyEXIF/tinyexif.cpp
+	Contrib/TinyEXIF/TinyEXIF.h
+	Contrib/TinyEXIF/TinyEXIF.cpp
 )
 
 tacent_target_include_directories(${PROJECT_NAME})
