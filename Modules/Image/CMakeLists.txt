@@ -18,6 +18,7 @@ add_library(
 	Src/tImageWEBP.cpp
 	Src/tImageXPM.cpp
 	Src/tLayer.cpp
+	Src/tMetaData.cpp
 	Src/tPicture.cpp
 	Src/tPixelFormat.cpp
 	Src/tTexture.cpp
@@ -38,6 +39,7 @@ add_library(
 	Inc/Image/tImageWEBP.h
 	Inc/Image/tImageXPM.h
 	Inc/Image/tLayer.h
+	Inc/Image/tMetaData.h
 	Inc/Image/tPicture.h
 	Inc/Image/tPixelFormat.h
 	Inc/Image/tTexture.h
