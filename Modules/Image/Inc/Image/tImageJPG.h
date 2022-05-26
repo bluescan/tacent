@@ -5,7 +5,7 @@
 // tPicture's constructor if a jpg file is specified. After the array is stolen the tImageJPG is invalid. This is
 // purely for performance.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -19,6 +19,7 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tMetaData.h>
 namespace tImage
 {
 
@@ -70,7 +71,12 @@ public:
 	tPixel* GetPixels() const																							{ return Pixels; }
 	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
 
+	// A place to store EXIF and XMP metadata. JPeg file often contain this metadata.
+	tMetaData MetaData;
+
 private:
+	bool PopulateMetaData(const uint8* jpgFileInMemory, int numBytes);
+
 	int Width = 0;
 	int Height = 0;
 	tPixel* Pixels = nullptr;

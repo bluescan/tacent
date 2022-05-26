@@ -5,7 +5,7 @@
 // tPicture's constructor if a jpg file is specified. After the array is stolen the tImageJPG is invalid. This is
 // purely for performance. The loading and saving uses libjpeg-turbo. See Licence_LibJpegTurbo.txt for more info.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -22,6 +22,7 @@
 #elif defined(PLATFORM_WINDOWS)
 #include "TurboJpeg/Windows/turbojpeg.h"
 #endif
+#include "TinyEXIF/TinyEXIF.h"
 
 
 using namespace tSystem;
@@ -53,6 +54,8 @@ bool tImageJPG::Set(const uint8* jpgFileInMemory, int numBytes, bool strict)
 	Clear();
 	if ((numBytes <= 0) || !jpgFileInMemory)
 		return false;
+
+	PopulateMetaData(jpgFileInMemory, numBytes);
 
 	tjhandle tjInstance = tjInitDecompress();
 	if (!tjInstance)
@@ -131,6 +134,25 @@ bool tImageJPG::Set(tPixel* pixels, int width, int height, bool steal)
 	}
 
 	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	return true;
+}
+
+
+bool tImageJPG::PopulateMetaData(const uint8* jpgFileInMemory, int numBytes)
+{
+	tAssert(jpgFileInMemory && (numBytes > 0));
+	TinyEXIF::EXIFInfo exifInfo;
+	int errorCode = exifInfo.parseFrom(jpgFileInMemory, numBytes);
+	if (errorCode)
+		return false;
+
+	if (exifInfo.GeoLocation.hasLatLon())
+	{
+		double lat = exifInfo.GeoLocation.Latitude;
+		tPrintf("Photo Latitude: %f\n", lat);
+	}
+
+
 	return true;
 }
 

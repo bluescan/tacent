@@ -262,6 +262,15 @@ tTestUnit(ImagePicture)
 }
 
 
+tTestUnit(ImageMetaData)
+{
+	if (!tSystem::tDirExists("TestData/"))
+		tSkipUnit(Image)
+
+	tImageJPG jpgWithMeta("TestData/HasGeo.jpg");
+}
+
+
 tTestUnit(ImageRotation)
 {
 	if (!tSystem::tDirExists("TestData/"))

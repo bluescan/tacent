@@ -154,6 +154,7 @@ int main(int argc, char** argv)
 	tTest(ImageSave);
 	tTest(ImageTexture);
 	tTest(ImagePicture);
+	tTest(ImageMetaData);
 	tTest(ImageRotation);
 	tTest(ImageCrop);
 	tTest(ImageDetection);
@@ -164,7 +165,7 @@ int main(int argc, char** argv)
 	#else
 
 	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
-	tTest(FileTypes);
+	// tTest(FileTypes);
 	// tTest(Directories);
 	// tTest(File);
 	// tTest(Network);
@@ -180,6 +181,7 @@ int main(int argc, char** argv)
 	// tTest(Rule);
 	// tTest(ImageMultiFrame);
 	// tTest(ImagePicture);
+	tTest(ImageMetaData);
 	// tTest(Hash);
 	// tTest(BitArray);
 	// tTest(BitField);
