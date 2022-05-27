@@ -21,6 +21,40 @@ namespace tImage
 {
 
 
+// These are the common metadata tags, often extracted from either EXIF and/or XMP data.
+enum class tMetaTag
+{
+	// Tag Name			Description													Type
+	Invalid = -1,
+	LatitudeDD,			// Decimal degrees.											float
+	LatitudeDMS,		// Degrees, Minutes, Seconds, Direction. Eg. 42°33'56"N		string
+	LongitudeDD,		// Decimal degrees.											float
+	LongitudeDMS,		// Degrees, Minutes, Seconds, Direction. Eg. 160°59'4"W		string
+	Make,				// Camera make. eg. "Canon".								string
+	Model,				// Camera model. eg "Nicon Coolpix 5000".					string
+	ExposureTime,
+	FStop,
+	ExposureProgram,
+	ISO,
+	ShutterSpeed,
+	Aperture,
+	ExposureBias,
+	MeteringMode,
+	Flash,
+	FocalLength,
+	Orientation,
+	XResolution,
+	YResolution,
+	ResolutionUnit,
+	ImageWidth,
+	ImageHeight,
+	ModifyDate,
+	DateTimeOriginal,
+	Copyright
+};
+
+
+
 class tMetaData
 {
 public:

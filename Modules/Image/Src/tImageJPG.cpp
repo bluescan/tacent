@@ -152,7 +152,6 @@ bool tImageJPG::PopulateMetaData(const uint8* jpgFileInMemory, int numBytes)
 		tPrintf("Photo Latitude: %f\n", lat);
 	}
 
-
 	return true;
 }
 
