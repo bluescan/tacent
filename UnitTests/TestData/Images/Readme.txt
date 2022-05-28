@@ -76,3 +76,7 @@ Copyright (c) 2010 Benjamin Lippmeier
  included in all copies or substantial portions of the Software.
 
 -------------------------------------------------------------------------------
+
+For the files in EXIF_XMP there is a Readme.txt in that folder.
+
+-------------------------------------------------------------------------------

@@ -179,6 +179,9 @@ int main(int argc, char** argv)
 	// tTest(Promise);
 	// tTest(Script);
 	// tTest(Rule);
+	// #if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
+	// tTest(ImageLoad);
+	// #endif
 	// tTest(ImageMultiFrame);
 	// tTest(ImagePicture);
 	tTest(ImageMetaData);

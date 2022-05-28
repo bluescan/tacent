@@ -37,24 +37,24 @@ public:
 	// Creates an invalid tImageDDS. You must call Load manually.
 	tImageDDS();
 
-	// If the dds file fails to load it will throw an tDDSError. If nothing is thrown, the object is guaranteed to be
-	// valid. The reverse row order flag allows this class to reverse the order of the rows from how thay are stored in
-	// a dds file. OpenGL uses the lower left of the texture as the origin, while DirectX uses the upper left. Use this
-	// set to true for OpenGL style textures. This flag does _not_ cause a decompress/recompress pass even for BC
-	// compressed dds files. BC blocks can be massaged without decompression to fix the row order -- and that is what
-	// this class does.
-	tImageDDS(const tString& ddsFile, bool correctRowOrder = true);
+	// If the dds file fails to load it will throw a tDDSError iff throwOnError is true. If throwOnError is false and
+	// an error is encountered, the resultant object will return false for IsValid. The reverse row order flag allows
+	// this class to reverse the order of the rows from how thay are stored in a dds file. OpenGL uses the lower left
+	// of the texture as the origin, while DirectX uses the upper left. Use this set to true for OpenGL style textures.
+	// This flag does _not_ cause a decompress/recompress pass even for BC compressed dds files. BC blocks can be
+	// massaged without decompression to fix the row order -- and that is what this class does.
+	tImageDDS(const tString& ddsFile, bool correctRowOrder = true, bool throwOnError = false);
 
 	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is copied
 	// from and the owner may delete it immediately after if desired.
-	tImageDDS(const uint8* ddsFileInMemory, int numBytes, bool correctRowOrder = true);
+	tImageDDS(const uint8* ddsFileInMemory, int numBytes, bool correctRowOrder = true, bool throwOnError = false);
 	virtual ~tImageDDS()																									{ Clear(); }
 
 	// Clears the current tImageDDS before loading. If the dds file failed to load for any reason it will throw a
 	// tDDSError that indicates the problem. A dds may fail to load for a number of reasons: Volume textures are not
 	// supported, some pixel-formats may not yet be supported, or inconsistent flags.
-	void Load(const tString& ddsFile, bool reverseRowOrder = true);
-	void Load(const uint8* ddsFileInMemory, int numBytes, bool reverseRowOrder = true);
+	void Load(const tString& ddsFile, bool reverseRowOrder = true, bool throwOnError = false);
+	void Load(const uint8* ddsFileInMemory, int numBytes, bool reverseRowOrder = true, bool throwOnError = false);
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear();
@@ -123,7 +123,7 @@ public:
 
 private:
 	// This does not delete[] the ddsData. Neither does it clear the object. The caller is expected to have done that.
-	void LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reverseRowOrder);
+	void LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reverseRowOrder, bool throwOnError);
 	bool DoDXT1BlocksHaveBinaryAlpha(tDXT1Block* blocks, int numBlocks);
 
 	// The surface is only valid if this is not PixelFormat_Invalid.

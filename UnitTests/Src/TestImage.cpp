@@ -2,7 +2,7 @@
 //
 // Image module tests.
 //
-// Copyright (c) 2017, 2019, 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -33,110 +33,110 @@ namespace tUnitTest
 
 tTestUnit(ImageLoad)
 {
-	if (!tSystem::tDirExists("TestData/"))
-		tSkipUnit(ImageTGA)
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageLoad)
 
 	// Test direct loading classes.
-	tImageTGA imgTGA("TestData/WhiteBorderRLE.tga");
+	tImageTGA imgTGA("TestData/Images/WhiteBorderRLE.tga");
 	tRequire(imgTGA.IsValid());
 
-	tImageAPNG imgAPNG("TestData/Flame.apng");
+	tImageAPNG imgAPNG("TestData/Images/Flame.apng");
 	tRequire(imgAPNG.IsValid());
 
-	tImageDDS imgDDS("TestData/TestDXT1.dds");
+	tImageDDS imgDDS("TestData/Images/TestDXT1.dds");
 	tRequire(imgDDS.IsValid());
 
-	tImageEXR imgEXR("TestData/Desk.exr");
+	tImageEXR imgEXR("TestData/Images/Desk.exr");
 	tRequire(imgEXR.IsValid());
 
-	tImageGIF imgGIF("TestData/8-cell-simple.gif");
+	tImageGIF imgGIF("TestData/Images/8-cell-simple.gif");
 	tRequire(imgGIF.IsValid());
 
-	tImageHDR imgHDR("TestData/mpi_atrium_3.hdr");
+	tImageHDR imgHDR("TestData/Images/mpi_atrium_3.hdr");
 	tRequire(imgHDR.IsValid());
 
-	tImageICO imgICO("TestData/UpperBounds.ico");
+	tImageICO imgICO("TestData/Images/UpperBounds.ico");
 	tRequire(imgICO.IsValid());
 
-	tImageJPG imgJPG("TestData/WiredDrives.jpg");
+	tImageJPG imgJPG("TestData/Images/WiredDrives.jpg");
 	tRequire(imgJPG.IsValid());
 
-	tImageTIFF imgTIFF("TestData/Tiff_NoComp.tif");
+	tImageTIFF imgTIFF("TestData/Images/Tiff_NoComp.tif");
 	tRequire(imgTIFF.IsValid());
 
-	tImageWEBP imgWEBP("TestData/RockyBeach.webp");
+	tImageWEBP imgWEBP("TestData/Images/RockyBeach.webp");
 	tRequire(imgWEBP.IsValid());
 }
 
 
 tTestUnit(ImageSave)
 {
-	if (!tSystem::tDirExists("TestData/"))
-		tSkipUnit(Image)
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageSave)
 
-	tPicture newPngA("TestData/Xeyes.png");
-	newPngA.Save("TestData/WrittenNewA.png");
-	tRequire( tSystem::tFileExists("TestData/WrittenNewA.png"));
+	tPicture newPngA("TestData/Images/Xeyes.png");
+	newPngA.Save("TestData/Images/WrittenNewA.png");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenNewA.png"));
 
-	tPicture newPngB("TestData/TextCursor.png");
-	newPngB.Save("TestData/WrittenNewB.png");
-	tRequire( tSystem::tFileExists("TestData/WrittenNewB.png"));
+	tPicture newPngB("TestData/Images/TextCursor.png");
+	newPngB.Save("TestData/Images/WrittenNewB.png");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenNewB.png"));
 
-	tPicture apngPicForSave("TestData/Flame.apng");
-	apngPicForSave.SaveWEBP("TestData/WrittenFlameOneFrame.webp");
-	tRequire(tSystem::tFileExists("TestData/WrittenFlameOneFrame.webp"));
+	tPicture apngPicForSave("TestData/Images/Flame.apng");
+	apngPicForSave.SaveWEBP("TestData/Images/WrittenFlameOneFrame.webp");
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenFlameOneFrame.webp"));
 
 	// Test writing webp images.
-	tPicture exrPicForSave("TestData/Desk.exr");
-	exrPicForSave.SaveWEBP("TestData/WrittenDesk.webp");
-	tRequire(tSystem::tFileExists("TestData/WrittenDesk.webp"));
+	tPicture exrPicForSave("TestData/Images/Desk.exr");
+	exrPicForSave.SaveWEBP("TestData/Images/WrittenDesk.webp");
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenDesk.webp"));
 }
 
 
 tTestUnit(ImageTexture)
 {
-	if (!tSystem::tDirExists("TestData/"))
-		tSkipUnit(Image)
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageTexture)
 
 	// Test dxt1 texture.
-	tTexture dxt1Tex("TestData/TestDXT1.dds");
+	tTexture dxt1Tex("TestData/Images/TestDXT1.dds");
 	tRequire(dxt1Tex.IsValid());
 
-	tChunkWriter writer("TestData/WrittenTestDXT1.tac");
+	tChunkWriter writer("TestData/Images/WrittenTestDXT1.tac");
 	dxt1Tex.Save(writer);
-	tRequire( tSystem::tFileExists("TestData/WrittenTestDXT1.tac") );
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenTestDXT1.tac") );
 
-	tChunkReader reader("TestData/WrittenTestDXT1.tac");
+	tChunkReader reader("TestData/Images/WrittenTestDXT1.tac");
 	dxt1Tex.Load( reader.Chunk() );
 	tRequire(dxt1Tex.IsValid());
 
 	// Test cubemap.
-	tTexture cubemap("TestData/CubemapLayoutGuide.dds");
+	tTexture cubemap("TestData/Images/CubemapLayoutGuide.dds");
 	tRequire(cubemap.IsValid());
 
 	// Test jpg to texture. This will do conversion to BC1.
-	tTexture bc1Tex("TestData/WiredDrives.jpg", true);
+	tTexture bc1Tex("TestData/Images/WiredDrives.jpg", true);
 	tRequire(bc1Tex.IsValid());
-	tChunkWriter chunkWriterBC1("TestData/WrittenBC1.tac");
+	tChunkWriter chunkWriterBC1("TestData/Images/WrittenBC1.tac");
 	bc1Tex.Save(chunkWriterBC1);
-	tRequire( tSystem::tFileExists("TestData/WrittenBC1.tac"));
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenBC1.tac"));
 
 	// Test ico with alpha to texture. This will do conversion to BC3.
-	tTexture bc3Tex("TestData/UpperBounds.ico", true);
+	tTexture bc3Tex("TestData/Images/UpperBounds.ico", true);
 	tRequire(bc3Tex.IsValid());
-	tChunkWriter chunkWriterBC3("TestData/WrittenBC3.tac");
+	tChunkWriter chunkWriterBC3("TestData/Images/WrittenBC3.tac");
 	bc3Tex.Save(chunkWriterBC3);
-	tRequire( tSystem::tFileExists("TestData/WrittenBC3.tac"));
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenBC3.tac"));
 }
 
 
 tTestUnit(ImagePicture)
 {
-	if (!tSystem::tDirExists("TestData/"))
-		tSkipUnit(Image)
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImagePicture)
 
 	// Test generate layers.
-	tPicture srcPic("TestData/UpperB.bmp");
+	tPicture srcPic("TestData/Images/UpperB.bmp");
 	tRequire(srcPic.IsValid());
 	tPrintf("GenLayers Orig W=%d H=%d\n", srcPic.GetWidth(), srcPic.GetHeight());
 	tList<tLayer> layers;
@@ -147,137 +147,137 @@ tTestUnit(ImagePicture)
 	tRequire(layers.GetNumItems() == 10);
 
 	// Test tPicture loading bmp and saving as tga.
-	tPicture bmpPicUB("TestData/UpperB.bmp");
+	tPicture bmpPicUB("TestData/Images/UpperB.bmp");
 	tRequire(bmpPicUB.IsValid());
-	bmpPicUB.Save("TestData/WrittenUpperB.tga");
-	bmpPicUB.Save("TestData/WrittenUpperB.bmp");
-	tRequire( tSystem::tFileExists("TestData/WrittenUpperB.tga"));
+	bmpPicUB.Save("TestData/Images/WrittenUpperB.tga");
+	bmpPicUB.Save("TestData/Images/WrittenUpperB.bmp");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenUpperB.tga"));
 
-	tPicture bmpPicA("TestData/Bmp_Alpha.bmp");
+	tPicture bmpPicA("TestData/Images/Bmp_Alpha.bmp");
 	tRequire(bmpPicA.IsValid());
-	bmpPicA.Save("TestData/WrittenBmp_Alpha.tga");
-	bmpPicA.Save("TestData/WrittenBmp_Alpha.bmp");
-	tRequire( tSystem::tFileExists("TestData/WrittenBmp_Alpha.tga"));
+	bmpPicA.Save("TestData/Images/WrittenBmp_Alpha.tga");
+	bmpPicA.Save("TestData/Images/WrittenBmp_Alpha.bmp");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenBmp_Alpha.tga"));
 
-	tPicture bmpPicL("TestData/Bmp_Lambda.bmp");
+	tPicture bmpPicL("TestData/Images/Bmp_Lambda.bmp");
 	tRequire(bmpPicL.IsValid());
-	bmpPicL.Save("TestData/WrittenBmp_Lambda.tga");
-	bmpPicL.Save("TestData/WrittenBmp_Lambda.bmp");
-	tRequire( tSystem::tFileExists("TestData/WrittenBmp_Lambda.tga"));
+	bmpPicL.Save("TestData/Images/WrittenBmp_Lambda.tga");
+	bmpPicL.Save("TestData/Images/WrittenBmp_Lambda.bmp");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenBmp_Lambda.tga"));
 
-	tPicture bmpPicRL("TestData/Bmp_RefLena.bmp");
+	tPicture bmpPicRL("TestData/Images/Bmp_RefLena.bmp");
 	tRequire(bmpPicRL.IsValid());
-	bmpPicRL.Save("TestData/WrittenBmp_RefLena.tga");
-	bmpPicRL.Save("TestData/WrittenBmp_RefLena.bmp");
-	tRequire( tSystem::tFileExists("TestData/WrittenBmp_RefLena.tga"));
+	bmpPicRL.Save("TestData/Images/WrittenBmp_RefLena.tga");
+	bmpPicRL.Save("TestData/Images/WrittenBmp_RefLena.bmp");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenBmp_RefLena.tga"));
 
-	tPicture bmpPicRL101("TestData/Bmp_RefLena101.bmp");
+	tPicture bmpPicRL101("TestData/Images/Bmp_RefLena101.bmp");
 	tRequire(bmpPicRL101.IsValid());
-	bmpPicRL101.Save("TestData/WrittenBmp_RefLena101.tga");
-	bmpPicRL101.Save("TestData/WrittenBmp_RefLena101.bmp");
-	tRequire( tSystem::tFileExists("TestData/WrittenBmp_RefLena101.tga"));
+	bmpPicRL101.Save("TestData/Images/WrittenBmp_RefLena101.tga");
+	bmpPicRL101.Save("TestData/Images/WrittenBmp_RefLena101.bmp");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenBmp_RefLena101.tga"));
 
-	tPicture bmpPicRLFlip("TestData/Bmp_RefLenaFlip.bmp");
+	tPicture bmpPicRLFlip("TestData/Images/Bmp_RefLenaFlip.bmp");
 	tRequire(bmpPicRLFlip.IsValid());
-	bmpPicRLFlip.Save("TestData/WrittenBmp_RefLenaFlip.tga");
-	bmpPicRLFlip.Save("TestData/WrittenBmp_RefLenaFlip.bmp");
-	tRequire( tSystem::tFileExists("TestData/WrittenBmp_RefLenaFlip.tga"));
+	bmpPicRLFlip.Save("TestData/Images/WrittenBmp_RefLenaFlip.tga");
+	bmpPicRLFlip.Save("TestData/Images/WrittenBmp_RefLenaFlip.bmp");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenBmp_RefLenaFlip.tga"));
 
-	tPicture pngPicIcos("TestData/Icos4D.png");
+	tPicture pngPicIcos("TestData/Images/Icos4D.png");
 	tRequire(pngPicIcos.IsValid());
-	pngPicIcos.Save("TestData/WrittenBmp_Icos4D.bmp");
-	pngPicIcos.Save("TestData/WrittenBmp_Icos4D.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenBmp_Icos4D.tga"));
+	pngPicIcos.Save("TestData/Images/WrittenBmp_Icos4D.bmp");
+	pngPicIcos.Save("TestData/Images/WrittenBmp_Icos4D.tga");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenBmp_Icos4D.tga"));
 
 	// Test tPicture loading jpg and saving as tga.
-	tPicture jpgPic("TestData/WiredDrives.jpg");
+	tPicture jpgPic("TestData/Images/WiredDrives.jpg");
 	tRequire(jpgPic.IsValid());
-	jpgPic.Save("TestData/WrittenWiredDrives.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenWiredDrives.tga"));
+	jpgPic.Save("TestData/Images/WrittenWiredDrives.tga");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenWiredDrives.tga"));
 
-	tPicture exrPic("TestData/Desk.exr");
+	tPicture exrPic("TestData/Images/Desk.exr");
 	tRequire(exrPic.IsValid());
-	exrPic.Save("TestData/WrittenDesk.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenDesk.tga"));
+	exrPic.Save("TestData/Images/WrittenDesk.tga");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenDesk.tga"));
 
-	tPicture apngPic("TestData/Flame.apng", 100);
+	tPicture apngPic("TestData/Images/Flame.apng", 100);
 	tRequire(apngPic.IsValid());
-	apngPic.Save("TestData/WrittenFlame.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenFlame.tga"));
+	apngPic.Save("TestData/Images/WrittenFlame.tga");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenFlame.tga"));
 
 	// Test tPicture loading xpm and saving as tga.
-	tPicture xpmPic("TestData/Crane.xpm");
+	tPicture xpmPic("TestData/Images/Crane.xpm");
 	tRequire(xpmPic.IsValid());
-	xpmPic.Save("TestData/WrittenCrane.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenCrane.tga"));
+	xpmPic.Save("TestData/Images/WrittenCrane.tga");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenCrane.tga"));
 
 	// Test tPicture loading png (with alpha channel) and saving as tga (with alpha channel).
-	tPicture pngPic("TestData/Xeyes.png");
+	tPicture pngPic("TestData/Images/Xeyes.png");
 	tRequire(pngPic.IsValid());
-	pngPic.SaveTGA("TestData/WrittenXeyes.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenXeyes.tga"));
+	pngPic.SaveTGA("TestData/Images/WrittenXeyes.tga");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenXeyes.tga"));
 
 	// Test saving tPicture in other supported formats.
-	pngPic.Save("TestData/WrittenXeyesTGA.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenXeyesTGA.tga"));
+	pngPic.Save("TestData/Images/WrittenXeyesTGA.tga");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenXeyesTGA.tga"));
 
-	pngPic.Save("TestData/WrittenXeyesBMP.bmp");
-	tRequire( tSystem::tFileExists("TestData/WrittenXeyesBMP.bmp"));
+	pngPic.Save("TestData/Images/WrittenXeyesBMP.bmp");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenXeyesBMP.bmp"));
 
-	pngPic.Save("TestData/WrittenXeyesJPG.jpg");
-	tRequire( tSystem::tFileExists("TestData/WrittenXeyesJPG.jpg"));
+	pngPic.Save("TestData/Images/WrittenXeyesJPG.jpg");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenXeyesJPG.jpg"));
 
 	// Test tiff file loading and saving.
-	tPicture tifPic_NoComp("TestData/Tiff_NoComp.tif");
+	tPicture tifPic_NoComp("TestData/Images/Tiff_NoComp.tif");
 	tRequire(tifPic_NoComp.IsValid());
-	tifPic_NoComp.Save("TestData/WrittenTiff_NoComp.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenTiff_NoComp.tga"));
+	tifPic_NoComp.Save("TestData/Images/WrittenTiff_NoComp.tga");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_NoComp.tga"));
 
-	tPicture tifPic_Pack("TestData/Tiff_Pack.tif");
+	tPicture tifPic_Pack("TestData/Images/Tiff_Pack.tif");
 	tRequire(tifPic_Pack.IsValid());
-	tifPic_Pack.Save("TestData/WrittenTiff_Pack.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenTiff_Pack.tga"));
+	tifPic_Pack.Save("TestData/Images/WrittenTiff_Pack.tga");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_Pack.tga"));
 
-	tPicture tifPic_LZW("TestData/Tiff_LZW.tif");
+	tPicture tifPic_LZW("TestData/Images/Tiff_LZW.tif");
 	tRequire(tifPic_LZW.IsValid());
-	tifPic_LZW.Save("TestData/WrittenTiff_LZW.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenTiff_LZW.tga"));
+	tifPic_LZW.Save("TestData/Images/WrittenTiff_LZW.tga");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_LZW.tga"));
 
-	tPicture tifPic_ZIP("TestData/Tiff_ZIP.tif");
+	tPicture tifPic_ZIP("TestData/Images/Tiff_ZIP.tif");
 	tRequire(tifPic_ZIP.IsValid());
-	tifPic_ZIP.Save("TestData/WrittenTiff_ZIP.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenTiff_ZIP.tga"));
+	tifPic_ZIP.Save("TestData/Images/WrittenTiff_ZIP.tga");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_ZIP.tga"));
 
-	tPicture exrPicForSave2("TestData/Desk.exr");
-	exrPicForSave2.SaveGIF("TestData/WrittenDesk.gif");
-	tRequire(tSystem::tFileExists("TestData/WrittenDesk.gif"));
+	tPicture exrPicForSave2("TestData/Images/Desk.exr");
+	exrPicForSave2.SaveGIF("TestData/Images/WrittenDesk.gif");
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenDesk.gif"));
 
-	tPicture exrPicToSaveAsAPNG("TestData/Desk.exr");
-	exrPicToSaveAsAPNG.SaveAPNG("TestData/WrittenDesk.apng");
-	tRequire(tSystem::tFileExists("TestData/WrittenDesk.apng"));
+	tPicture exrPicToSaveAsAPNG("TestData/Images/Desk.exr");
+	exrPicToSaveAsAPNG.SaveAPNG("TestData/Images/WrittenDesk.apng");
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenDesk.apng"));
 
-	tPicture exrPicToSaveAsTIFF("TestData/Desk.exr");
-	exrPicToSaveAsTIFF.SaveTIFF("TestData/WrittenDesk.tiff");
-	tRequire(tSystem::tFileExists("TestData/WrittenDesk.tiff"));
+	tPicture exrPicToSaveAsTIFF("TestData/Images/Desk.exr");
+	exrPicToSaveAsTIFF.SaveTIFF("TestData/Images/WrittenDesk.tiff");
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenDesk.tiff"));
 }
 
 
 tTestUnit(ImageMetaData)
 {
-	if (!tSystem::tDirExists("TestData/"))
-		tSkipUnit(Image)
+	if (!tSystem::tDirExists("TestData/Images/EXIF_XMP"))
+		tSkipUnit(ImageMetaData)
 
-	tImageJPG jpgWithMeta("TestData/HasGeo.jpg");
+	tImageJPG jpgWithMeta("TestData/Images/EXIF_XMP/HasLatLong.jpg");
 }
 
 
 tTestUnit(ImageRotation)
 {
-	if (!tSystem::tDirExists("TestData/"))
-		tSkipUnit(Image)
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageRotation)
 
 	// Test writing rotated images.
-	tPicture aroPic("TestData/RightArrow.png");
+	tPicture aroPic("TestData/Images/RightArrow.png");
 	tRequire(aroPic.IsValid());
 
 	tPrintf("Image dimensions before rotate: W:%d H:%d\n", aroPic.GetWidth(), aroPic.GetHeight());
@@ -291,7 +291,7 @@ tTestUnit(ImageRotation)
 
 		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
 		tString writeFile;
-		tsPrintf(writeFile, "TestData/WrittenRightArrow_NoResampRot%03d.tga", int(tMath::tRadToDeg(angle)));
+		tsPrintf(writeFile, "TestData/Images/WrittenRightArrow_NoResampRot%03d.tga", int(tMath::tRadToDeg(angle)));
 		rotPic.Save(writeFile);
 	}
 
@@ -304,12 +304,12 @@ tTestUnit(ImageRotation)
 
 		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
 		tString writeFile;
-		tsPrintf(writeFile, "TestData/WrittenRightArrow_BilinearResampleRot%03d.tga", int(tMath::tRadToDeg(angle)));
+		tsPrintf(writeFile, "TestData/Images/WrittenRightArrow_BilinearResampleRot%03d.tga", int(tMath::tRadToDeg(angle)));
 		rotPic.Save(writeFile);
 	}
 
 	tPrintf("Test 'plane' rotation.\n");
-	tPicture planePic("TestData/plane.png");
+	tPicture planePic("TestData/Images/plane.png");
 	int w = planePic.GetWidth();
 	int h = planePic.GetHeight();
 	planePic.RotateCenter(-tMath::PiOver4, tColouri::transparent);
@@ -318,149 +318,149 @@ tTestUnit(ImageRotation)
 
 tTestUnit(ImageCrop)
 {
-	if (!tSystem::tDirExists("TestData/"))
-		tSkipUnit(Image)
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageCrop)
 
 	// Crop black pixels ignoring alpha (RGB channels only).
-	tPicture planePic("TestData/plane.png");
+	tPicture planePic("TestData/Images/plane.png");
 	int w = planePic.GetWidth();
 	int h = planePic.GetHeight();
 	planePic.Crop(tColouri::black, tMath::ColourChannel_RGB);
 	planePic.Crop(w, h, tPicture::Anchor::MiddleMiddle, tColouri::transparent);
-	planePic.Save("TestData/WrittenPlane.png");
+	planePic.Save("TestData/Images/WrittenPlane.png");
 }
 
 
 tTestUnit(ImageDetection)
 {
-	if (!tSystem::tDirExists("TestData/"))
-		tSkipUnit(Image)
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageDetection)
 
 	// Test APNG detection.
-	bool isAnimA = tImageAPNG::IsAnimatedPNG("TestData/TextCursor.png");
+	bool isAnimA = tImageAPNG::IsAnimatedPNG("TestData/Images/TextCursor.png");
 	tRequire(!isAnimA);
 
-	bool isAnimB = tImageAPNG::IsAnimatedPNG("TestData/Icos4D.apng");
+	bool isAnimB = tImageAPNG::IsAnimatedPNG("TestData/Images/Icos4D.apng");
 	tRequire(isAnimB);
 
-	bool isAnimC = tImageAPNG::IsAnimatedPNG("TestData/Icos4D.png");
+	bool isAnimC = tImageAPNG::IsAnimatedPNG("TestData/Images/Icos4D.png");
 	tRequire(isAnimC);
 }
 
 
 tTestUnit(ImageFilter)
 {
-	if (!tSystem::tDirExists("TestData/"))
-		tSkipUnit(Image)
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageFilter)
 
 	for (int filt = 0; filt < int(tResampleFilter::NumFilters); filt++)
 		tPrintf("Filter Name %d: %s\n", filt, tResampleFilterNames[filt]);
 
-	tPicture resamplePicNearest("TestData/TextCursor.png");		// 512x256.
+	tPicture resamplePicNearest("TestData/Images/TextCursor.png");		// 512x256.
 	resamplePicNearest.Resample(800, 300, tResampleFilter::Nearest);
-	resamplePicNearest.SaveTGA("TestData/WrittenResampledNearest.tga");
+	resamplePicNearest.SaveTGA("TestData/Images/WrittenResampledNearest.tga");
 
-	tPicture resamplePicBox("TestData/TextCursor.png");		// 512x256.
+	tPicture resamplePicBox("TestData/Images/TextCursor.png");		// 512x256.
 	resamplePicBox.Resample(800, 300, tResampleFilter::Box);
-	resamplePicBox.SaveTGA("TestData/WrittenResampledBox.tga");
+	resamplePicBox.SaveTGA("TestData/Images/WrittenResampledBox.tga");
 
-	tPicture resamplePicBilinear("TestData/TextCursor.png");	// 512x256.
+	tPicture resamplePicBilinear("TestData/Images/TextCursor.png");	// 512x256.
 	resamplePicBilinear.Resample(800, 300, tResampleFilter::Bilinear);
-	resamplePicBilinear.SaveTGA("TestData/WrittenResampledBilinear.tga");
+	resamplePicBilinear.SaveTGA("TestData/Images/WrittenResampledBilinear.tga");
 
-	tPicture resamplePicBicubicStandard("TestData/TextCursor.png");	// 512x256.
+	tPicture resamplePicBicubicStandard("TestData/Images/TextCursor.png");	// 512x256.
 	resamplePicBicubicStandard.Resample(800, 300, tResampleFilter::Bicubic_Standard);
-	resamplePicBicubicStandard.SaveTGA("TestData/WrittenResampledBicubicStandard.tga");
+	resamplePicBicubicStandard.SaveTGA("TestData/Images/WrittenResampledBicubicStandard.tga");
 
-	tPicture resamplePicBicubicCatmullRom("TestData/TextCursor.png");	// 512x256.
+	tPicture resamplePicBicubicCatmullRom("TestData/Images/TextCursor.png");	// 512x256.
 	resamplePicBicubicCatmullRom.Resample(800, 300, tResampleFilter::Bicubic_CatmullRom);
-	resamplePicBicubicCatmullRom.SaveTGA("TestData/WrittenResampledBicubicCatmullRom.tga");
+	resamplePicBicubicCatmullRom.SaveTGA("TestData/Images/WrittenResampledBicubicCatmullRom.tga");
 
-	tPicture resamplePicBicubicMitchell("TestData/TextCursor.png");	// 512x256.
+	tPicture resamplePicBicubicMitchell("TestData/Images/TextCursor.png");	// 512x256.
 	resamplePicBicubicMitchell.Resample(800, 300, tResampleFilter::Bicubic_Mitchell);
-	resamplePicBicubicMitchell.SaveTGA("TestData/WrittenResampledBicubicMitchell.tga");
+	resamplePicBicubicMitchell.SaveTGA("TestData/Images/WrittenResampledBicubicMitchell.tga");
 
-	tPicture resamplePicBicubicCardinal("TestData/TextCursor.png");	// 512x256.
+	tPicture resamplePicBicubicCardinal("TestData/Images/TextCursor.png");	// 512x256.
 	resamplePicBicubicCardinal.Resample(800, 300, tResampleFilter::Bicubic_Cardinal);
-	resamplePicBicubicCardinal.SaveTGA("TestData/WrittenResampledBicubicCardinal.tga");
+	resamplePicBicubicCardinal.SaveTGA("TestData/Images/WrittenResampledBicubicCardinal.tga");
 
-	tPicture resamplePicBicubicBSpline("TestData/TextCursor.png");	// 512x256.
+	tPicture resamplePicBicubicBSpline("TestData/Images/TextCursor.png");	// 512x256.
 	resamplePicBicubicBSpline.Resample(800, 300, tResampleFilter::Bicubic_BSpline);
-	resamplePicBicubicBSpline.SaveTGA("TestData/WrittenResampledBicubicBSpline.tga");
+	resamplePicBicubicBSpline.SaveTGA("TestData/Images/WrittenResampledBicubicBSpline.tga");
 
-	tPicture resamplePicLanczosNarrow("TestData/TextCursor.png");	// 512x256.
+	tPicture resamplePicLanczosNarrow("TestData/Images/TextCursor.png");	// 512x256.
 	resamplePicLanczosNarrow.Resample(800, 300, tResampleFilter::Lanczos_Narrow);
-	resamplePicLanczosNarrow.SaveTGA("TestData/WrittenResampledLanczosNarrow.tga");
+	resamplePicLanczosNarrow.SaveTGA("TestData/Images/WrittenResampledLanczosNarrow.tga");
 
-	tPicture resamplePicLanczosNormal("TestData/TextCursor.png");	// 512x256.
+	tPicture resamplePicLanczosNormal("TestData/Images/TextCursor.png");	// 512x256.
 	resamplePicLanczosNormal.Resample(800, 300, tResampleFilter::Lanczos_Normal);
-	resamplePicLanczosNormal.SaveTGA("TestData/WrittenResampledLanczosNormal.tga");
+	resamplePicLanczosNormal.SaveTGA("TestData/Images/WrittenResampledLanczosNormal.tga");
 
-	tPicture resamplePicLanczosWide("TestData/TextCursor.png");	// 512x256.
+	tPicture resamplePicLanczosWide("TestData/Images/TextCursor.png");	// 512x256.
 	resamplePicLanczosWide.Resample(800, 300, tResampleFilter::Lanczos_Wide);
-	resamplePicLanczosWide.SaveTGA("TestData/WrittenResampledLanczosWide.tga");
+	resamplePicLanczosWide.SaveTGA("TestData/Images/WrittenResampledLanczosWide.tga");
 }
 
 
 tTestUnit(ImageMultiFrame)
 {
-	if (!tSystem::tDirExists("TestData/"))
-		tSkipUnit(Image)
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageMultiFrame)
 
 	// A multipage tiff.
-	tPicture tifPic_Multipage_ZIP_P1("TestData/Tiff_Multipage_ZIP.tif", 0);
+	tPicture tifPic_Multipage_ZIP_P1("TestData/Images/Tiff_Multipage_ZIP.tif", 0);
 	tRequire(tifPic_Multipage_ZIP_P1.IsValid());
-	tifPic_Multipage_ZIP_P1.Save("TestData/WrittenTiff_Multipage_ZIP_P1.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenTiff_Multipage_ZIP_P1.tga"));
+	tifPic_Multipage_ZIP_P1.Save("TestData/Images/WrittenTiff_Multipage_ZIP_P1.tga");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_Multipage_ZIP_P1.tga"));
 
-	tPicture tifPic_Multipage_ZIP_P2("TestData/Tiff_Multipage_ZIP.tif", 1);
+	tPicture tifPic_Multipage_ZIP_P2("TestData/Images/Tiff_Multipage_ZIP.tif", 1);
 	tRequire(tifPic_Multipage_ZIP_P2.IsValid());
-	tifPic_Multipage_ZIP_P2.Save("TestData/WrittenTiff_Multipage_ZIP_P2.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenTiff_Multipage_ZIP_P2.tga"));
+	tifPic_Multipage_ZIP_P2.Save("TestData/Images/WrittenTiff_Multipage_ZIP_P2.tga");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_Multipage_ZIP_P2.tga"));
 
-	tPicture tifPic_Multipage_ZIP_P3("TestData/Tiff_Multipage_ZIP.tif", 2);
+	tPicture tifPic_Multipage_ZIP_P3("TestData/Images/Tiff_Multipage_ZIP.tif", 2);
 	tRequire(tifPic_Multipage_ZIP_P3.IsValid());
-	tifPic_Multipage_ZIP_P3.Save("TestData/WrittenTiff_Multipage_ZIP_P3.tga");
-	tRequire( tSystem::tFileExists("TestData/WrittenTiff_Multipage_ZIP_P3.tga"));
+	tifPic_Multipage_ZIP_P3.Save("TestData/Images/WrittenTiff_Multipage_ZIP_P3.tga");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_Multipage_ZIP_P3.tga"));
 
 	// tImageWEBP also supports saving multi-frame webp files.
-	tImageAPNG apngSrc("TestData/Flame.apng");
+	tImageAPNG apngSrc("TestData/Images/Flame.apng");
 	tImageWEBP webpDst( apngSrc.Frames, true);
-	webpDst.Save("TestData/WrittenFlameManyFrames.webp");
-	tRequire(tSystem::tFileExists("TestData/WrittenFlameManyFrames.webp"));
+	webpDst.Save("TestData/Images/WrittenFlameManyFrames.webp");
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenFlameManyFrames.webp"));
 
-	tImageAPNG apngSrc2("TestData/Icos4D.apng");
+	tImageAPNG apngSrc2("TestData/Images/Icos4D.apng");
 	tImageWEBP webpDst2( apngSrc2.Frames, true);
-	webpDst2.Save("TestData/WrittenIcos4DManyFrames.webp");
-	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames.webp"));
+	webpDst2.Save("TestData/Images/WrittenIcos4DManyFrames.webp");
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenIcos4DManyFrames.webp"));
 
 	// tImageGIF supports saving multi-frame gif files.
-	tImageAPNG apngSrc3("TestData/Icos4D.apng");
+	tImageAPNG apngSrc3("TestData/Images/Icos4D.apng");
 	tImageGIF gifDst(apngSrc3.Frames, true);
-	gifDst.Save("TestData/WrittenIcos4DManyFrames.gif");
-	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames.gif"));
+	gifDst.Save("TestData/Images/WrittenIcos4DManyFrames.gif");
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenIcos4DManyFrames.gif"));
 
 	// tImageAPNG supports saving multi-frame apng files.
-	tImageAPNG apngSrc4("TestData/Icos4D.apng");
+	tImageAPNG apngSrc4("TestData/Images/Icos4D.apng");
 	tImageAPNG apngDst(apngSrc4.Frames, true);
-	apngDst.Save("TestData/WrittenIcos4DManyFrames.apng");
-	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames.apng"));
+	apngDst.Save("TestData/Images/WrittenIcos4DManyFrames.apng");
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenIcos4DManyFrames.apng"));
 
 	// Load a multipage tiff with no page duration info.
 	tPrintf("Test multipage TIFF load.\n");
-	tImageTIFF tiffMultipage("TestData/Tiff_Multipage_ZIP.tif");
+	tImageTIFF tiffMultipage("TestData/Images/Tiff_Multipage_ZIP.tif");
 	tRequire(tiffMultipage.IsValid());
 
 	// Create a multipage tiff with page duration info.
-	tImageAPNG apngSrc5("TestData/Icos4D.apng");
+	tImageAPNG apngSrc5("TestData/Images/Icos4D.apng");
 	tImageTIFF tiffDst(apngSrc5.Frames, true);
-	tiffDst.Save("TestData/WrittenIcos4DManyFrames.tiff");
-	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames.tiff"));
+	tiffDst.Save("TestData/Images/WrittenIcos4DManyFrames.tiff");
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenIcos4DManyFrames.tiff"));
 
 	// Load a multipage tiff with page duration info since it was saved from Tacent.
-	tImageTIFF tiffWithDur("TestData/WrittenIcos4DManyFrames.tiff");
-	tiffWithDur.Save("TestData/WrittenIcos4DManyFrames2.tiff");
-	tRequire(tSystem::tFileExists("TestData/WrittenIcos4DManyFrames2.tiff"));
+	tImageTIFF tiffWithDur("TestData/Images/WrittenIcos4DManyFrames.tiff");
+	tiffWithDur.Save("TestData/Images/WrittenIcos4DManyFrames2.tiff");
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenIcos4DManyFrames2.tiff"));
 }
 
 

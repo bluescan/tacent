@@ -35,7 +35,7 @@ tImageDDS::tImageDDS() :
 }
 
 
-tImageDDS::tImageDDS(const tString& ddsFile, bool reverseRowOrder) :
+tImageDDS::tImageDDS(const tString& ddsFile, bool reverseRowOrder, bool throwOnError) :
 	Filename(ddsFile),
 	PixelFormat(tPixelFormat::Invalid),
 	IsCubeMap(false),
@@ -43,11 +43,11 @@ tImageDDS::tImageDDS(const tString& ddsFile, bool reverseRowOrder) :
 	NumMipmapLayers(0)
 {
 	tStd::tMemset(MipmapLayers, 0, sizeof(MipmapLayers));
-	Load(ddsFile, reverseRowOrder);
+	Load(ddsFile, reverseRowOrder, throwOnError);
 }
 
 
-tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, bool reverseRowOrder) :
+tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, bool reverseRowOrder, bool throwOnError) :
 	Filename(),
 	PixelFormat(tPixelFormat::Invalid),
 	IsCubeMap(false),
@@ -55,7 +55,7 @@ tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, bool reverseRow
 	NumMipmapLayers(0)
 {
 	tStd::tMemset(MipmapLayers, 0, sizeof(MipmapLayers));
-	Load(ddsFileInMemory, numBytes, reverseRowOrder);
+	Load(ddsFileInMemory, numBytes, reverseRowOrder, throwOnError);
 }
 
 
@@ -427,31 +427,41 @@ struct tDXT5Block
 #pragma pack(pop)
 
 
-void tImageDDS::Load(const tString& ddsFile, bool reverseRowOrder)
+void tImageDDS::Load(const tString& ddsFile, bool reverseRowOrder, bool throwOnError)
 {
 	Clear();
 	if (tSystem::tGetFileType(ddsFile) != tSystem::tFileType::DDS)
-		throw tDDSError(tDDSError::tCode::IncorrectExtension, tSystem::tGetFileName(ddsFile));
+	{
+		if (throwOnError)
+			throw tDDSError(tDDSError::tCode::IncorrectExtension, tSystem::tGetFileName(ddsFile));
+		else
+			return;
+	}
 
 	if (!tSystem::tFileExists(ddsFile))
-		throw tDDSError(tDDSError::tCode::FileNonexistent, tSystem::tGetFileName(ddsFile));
+	{
+		if (throwOnError)
+			throw tDDSError(tDDSError::tCode::FileNonexistent, tSystem::tGetFileName(ddsFile));
+		else
+			return;
+	}
 
 	int ddsSizeBytes;
 	uint8* ddsData = (uint8*)tSystem::tLoadFile(ddsFile, 0, &ddsSizeBytes);
-	LoadFromMemory(ddsData, ddsSizeBytes, reverseRowOrder);
+	LoadFromMemory(ddsData, ddsSizeBytes, reverseRowOrder, throwOnError);
 
 	delete[] ddsData;
 }
 
 
-void tImageDDS::Load(const uint8* ddsFileInMemory, int ddsSizeBytes, bool reverseRowOrder)
+void tImageDDS::Load(const uint8* ddsFileInMemory, int ddsSizeBytes, bool reverseRowOrder, bool throwOnError)
 {
 	Clear();
-	LoadFromMemory(ddsFileInMemory, ddsSizeBytes, reverseRowOrder);
+	LoadFromMemory(ddsFileInMemory, ddsSizeBytes, reverseRowOrder, throwOnError);
 }
 
 
-void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reverseRowOrder)
+void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reverseRowOrder, bool throwOnError)
 {
 	tString baseName = tSystem::tGetFileName(Filename);
 
@@ -459,7 +469,10 @@ void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reve
 	if (ddsSizeBytes < int(sizeof(tDDSHeader)+4))
 	{
 		delete[] ddsData;
-		throw tDDSError(tDDSError::tCode::IncorrectFileSize, baseName);
+		if (throwOnError)
+			throw tDDSError(tDDSError::tCode::IncorrectFileSize, baseName);
+		else
+			return;
 	}
 
 	const uint8* ddsCurr = ddsData;
@@ -468,7 +481,10 @@ void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reve
 	if (magic != ' SDD')
 	{
 		delete[] ddsData;
-		throw tDDSError(tDDSError::tCode::Magic);
+		if (throwOnError)
+			throw tDDSError(tDDSError::tCode::Magic);
+		else
+			return;
 	}
 
 	tDDSHeader& header = *((tDDSHeader*)ddsCurr);  ddsCurr += sizeof(header);
@@ -478,7 +494,10 @@ void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reve
 	if (header.Size != 124)
 	{
 		delete[] ddsData;
-		throw tDDSError(tDDSError::tCode::IncorrectHeaderSize, baseName);
+		if (throwOnError)
+			throw tDDSError(tDDSError::tCode::IncorrectHeaderSize, baseName);
+		else
+			return;
 	}
 
 	uint32 flags = header.Flags;
@@ -488,7 +507,10 @@ void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reve
 	if (!tMath::tIsPower2(mainWidth) || !tMath::tIsPower2(mainHeight))
 	{
 		delete[] ddsData;
-		throw tDDSError(tDDSError::tCode::LoaderSupportsPowerOfTwoDimsOnly, baseName);
+		if (throwOnError)
+			throw tDDSError(tDDSError::tCode::LoaderSupportsPowerOfTwoDimsOnly, baseName);
+		else
+			return;
 	}
 
 	// It seems ATI tools like GenCubeMap don't set the correct bits.
@@ -506,7 +528,10 @@ void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reve
 	if ((!linearSize && !pitch) || (linearSize && pitch))
 	{
 		delete[] ddsData;
-		throw tDDSError(tDDSError::tCode::PitchOrLinearSize, baseName);
+		if (throwOnError)
+			throw tDDSError(tDDSError::tCode::PitchOrLinearSize, baseName);
+		else
+			return;
 	}
 	#endif
 
@@ -514,7 +539,10 @@ void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reve
 	if (flags & tDDSFlag_Depth)
 	{
 		delete[] ddsData;
-		throw tDDSError(tDDSError::tCode::VolumeTexturesNotSupported, baseName);
+		if (throwOnError)
+			throw tDDSError(tDDSError::tCode::VolumeTexturesNotSupported, baseName);
+		else
+			return;
 	}
 
 	// Determine the expected number of layers by looking at the mipmap count if it is supplied. We assume a single layer
@@ -527,7 +555,10 @@ void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reve
 	if (NumMipmapLayers > MaxMipmapLayers)
 	{
 		delete[] ddsData;
-		throw tDDSError(tDDSError::tCode::MaxNumMipmapLevelsExceeded);
+		if (throwOnError)
+			throw tDDSError(tDDSError::tCode::MaxNumMipmapLevelsExceeded);
+		else
+			return;
 	}
 
 	// Determine if this is a cubemap dds with 6 images. No need to check which images are present since they are
@@ -551,7 +582,10 @@ void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reve
 	if (format.Size != 32)
 	{
 		delete[] ddsData;
-		throw tDDSError(tDDSError::tCode::IncorrectPixelFormatSize, baseName);
+		if (throwOnError)
+			throw tDDSError(tDDSError::tCode::IncorrectPixelFormatSize, baseName);
+		else
+			return;
 	}
 
 	// Has alpha should be true if the pixel format is uncompressed (RGB) and there is an alpha channel.
@@ -562,7 +596,10 @@ void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reve
 	if ((!rgbFormat && !fourCCFormat) || (rgbFormat && fourCCFormat))
 	{
 		delete[] ddsData;
-		throw tDDSError(tDDSError::tCode::InconsistentPixelFormat, baseName);
+		if (throwOnError)
+			throw tDDSError(tDDSError::tCode::InconsistentPixelFormat, baseName);
+		else
+			return;
 	}
 
 	if (fourCCFormat)
@@ -598,7 +635,10 @@ void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reve
 			case FourCC('D','X','1','0'):
 			default:
 				delete[] ddsData;
-				throw tDDSError(tDDSError::tCode::UnsupportedFourCCPixelFormat, baseName);
+				if (throwOnError)
+					throw tDDSError(tDDSError::tCode::UnsupportedFourCCPixelFormat, baseName);
+				else
+					return;
 		}
 	}
 
@@ -649,7 +689,10 @@ void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reve
 				else
 				{
 					delete[] ddsData;
-					throw tDDSError(tDDSError::tCode::UnsupportedRGBPixelFormat, baseName);
+					if (throwOnError)
+						throw tDDSError(tDDSError::tCode::UnsupportedRGBPixelFormat, baseName);
+					else
+						return;
 				}
 
 				break;
@@ -670,7 +713,10 @@ void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reve
 				else
 				{
 					delete[] ddsData;
-					throw tDDSError(tDDSError::tCode::UnsupportedRGBPixelFormat, baseName);
+					if (throwOnError)
+						throw tDDSError(tDDSError::tCode::UnsupportedRGBPixelFormat, baseName);
+					else
+						return;
 				}
 
 				break;
@@ -692,13 +738,19 @@ void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reve
 				else
 				{
 					delete[] ddsData;
-					throw tDDSError(tDDSError::tCode::UnsupportedRGBPixelFormat, baseName);
+					if (throwOnError)
+						throw tDDSError(tDDSError::tCode::UnsupportedRGBPixelFormat, baseName);
+					else
+						return;
 				}
 				break;
 
 			default:
 				delete[] ddsData;
-				throw tDDSError(tDDSError::tCode::UnsupportedRGBPixelFormat, baseName);
+				if (throwOnError)
+					throw tDDSError(tDDSError::tCode::UnsupportedRGBPixelFormat, baseName);
+				else
+					return;
 		}
 	}
 
@@ -706,14 +758,20 @@ void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reve
 	if ((PixelFormat == tPixelFormat::R32F) || (PixelFormat == tPixelFormat::G32R32F) || (PixelFormat == tPixelFormat::A32B32G32R32F))
 	{
 		delete[] ddsData;
-		throw tDDSError(tDDSError::tCode::UnsupportedFourCCPixelFormat, baseName);
+		if (throwOnError)
+			throw tDDSError(tDDSError::tCode::UnsupportedFourCCPixelFormat, baseName);
+		else
+			return;
 	}
 
 	tAssert(PixelFormat != tPixelFormat::Invalid);
 	if (!rgbFormat && ((mainWidth%4) || (mainHeight%4)))
 	{
 		delete[] ddsData;
-		throw tDDSError(tDDSError::tCode::UnsupportedDXTDimensions, baseName);
+		if (throwOnError)
+			throw tDDSError(tDDSError::tCode::UnsupportedDXTDimensions, baseName);
+		else
+			return;
 	}
 
 	for (int image = 0; image < NumImages; image++)
@@ -859,13 +917,19 @@ void tImageDDS::LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reve
 						case tPixelFormat::A32B32G32R32F:
 						{
 							delete[] ddsData;
-							throw tDDSError(tDDSError::tCode::UnsuportedFloatingPointPixelFormat, baseName);
+							if (throwOnError)
+								throw tDDSError(tDDSError::tCode::UnsuportedFloatingPointPixelFormat, baseName);
+							else
+								return;
 						}
 
 						default:
 						{
 							delete[] ddsData;
-							throw tDDSError(tDDSError::tCode::UnsupportedFourCCPixelFormat, baseName);
+							if (throwOnError)
+								throw tDDSError(tDDSError::tCode::UnsupportedFourCCPixelFormat, baseName);
+							else
+								return;
 						}
 					}
 
