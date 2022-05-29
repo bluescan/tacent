@@ -15,7 +15,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include <Foundation/tMap.h>
 #include <Foundation/tString.h>
 namespace tImage
 {
@@ -32,6 +31,7 @@ enum class tMetaTag
 	LongitudeDMS,	//	string	Degrees, Minutes, Seconds, Direction. Eg. 160°59'4"W
 	Make,			//	string	Camera make. eg. "Canon".
 	Model,			//	string	Camera model. eg "Nikon Coolpix 5000".
+	SerialNumber,	//	string	Serial number of the camera.
 	ExposureTime,	//	float	Exposure time in seconds.
 	FStop,			//	float	F/Stop. Unitless. Ratio of the lens focal length to the diameter of the entrance pupil.
 	ExposureProgram,//	uint32	Exposure Program.
@@ -48,6 +48,7 @@ enum class tMetaTag
 	ShutterSpeed,	//	float	Units s^-1. Reciprocal of exposure time.
 	Aperture,		//	float	APEX units.
 	ExposureBias,	//	float	Exposure bias. APEX units.
+	Brughtness,		//	float	Average scene luminance of whole image. APEX units.
 	MeteringMode,	//	uint32	Metering Mode.
 					//			0: Unknown.
 					//			1: Average.
@@ -89,34 +90,100 @@ enum class tMetaTag
 					//			6: Rot-ACW90.			The image is rotated 90 degrees anti-clockwise.
 					//			7: Rot-ACW90 Flip-Y.	The image is rotated 90 degrees clockwise and then flipped about verical axis.
 					//			8: Rot-CW90.			The image is rotated 90 degrees anti-clockwise.
-	XResolution,
-	YResolution,
-	ResolutionUnit,
-	ImageWidth,
-	ImageHeight,
-	ModifyDate,
-	DateTimeOriginal,
-	Copyright
+	XPixelsPerUnit,	//	float	Horizontal pixels per DistanceUnit. AKA: XResolution.
+	YPixelsPerUnit,	//	float	Veritical pixels per Distanceunit.  AKA: YResolution.
+	LengthUnit,		//	uint32	The length unit used for XPixelsPerUnit and YPixelsPerUnit. AKA: ResolutionUnit.
+					//			1: Not Specified.
+					//			2: Inch.
+					//			3: cm.
+	BitsPerSample,	//	uint32	Bits per colour component. Not bits per pixel.
+	ImageWidth,		//	uint32	Width in pixels.
+	ImageHeight,	//	uint32	Height in pixels.
+	ImageWidthOrig,	//	uint32	Original image width in pixels.
+	ImageHeightOrig,//	uint32	Original image height in pixels.
+	Software,		//	string	Software used to edit image.
+	DateChange,		//	string	Date and time the image was changed.
+	DateTimeOrig,	//	string	Date and time of original image.
+	DateTimeDigit,	//	string	Date and time the image was digitized.
+	Description,	//	string	Image description.
+	Copyright,		//	string	Copyright notice.
+	NumTags
 };
 
+
+// A single piece of image metadata. Could be more memory efficient, but hardly seems worth it.
+struct tMetaDatum
+{
+	enum class DatumType { Invalid = -1, Uint32, Float, String };
+	tMetaDatum()																										: Type(DatumType::Invalid) { }
+	tMetaDatum(const tMetaDatum& src)																					{ Set(src); }
+
+	void Clear()																										{ Type = DatumType::Invalid; String.Clear(); }
+	void Set(const tMetaDatum& src);
+	void Set(uint32 v)																									{ Type = DatumType::Uint32; Uint32 = v; }
+	void Set(float v)																									{ Type = DatumType::Float; Float = v; }
+	void Set(const tString& v)																							{ Type = DatumType::String; String = v; }
+	bool IsValid() const																								{ return (Type != DatumType::Invalid); }
+	tMetaDatum& operator=(const tMetaDatum& src)																		{ Set(src); return *this; }
+
+	DatumType Type;
+	union { uint32 Uint32; float Float; };
+	tString String;
+};
 
 
 class tMetaData
 {
 public:
-	tMetaData() { }
+	tMetaData()																											: NumTagsValid(0), Data() { }
+	tMetaData(const tMetaData& src)																						{ Set(src); }
+	tMetaData(const uint8* rawJpgImageData, int numBytes)																{ Set(rawJpgImageData, numBytes); }
+	virtual ~tMetaData()																								{ }
 
-	tMetaData(const tMetaData&);
-	virtual ~tMetaData() { }
+	void Clear();
+	bool Set(const tMetaData& src);
+	bool Set(const uint8* rawJpgImageData, int numBytes);
+	bool IsValid() const																								{ return NumTagsValid > 0; }
 
-	bool IsValid() const { return (KeyValueMap.GetNumItems() > 0); }
+	tMetaData& operator=(const tMetaData& src)																			{ Set(src); return *this; }
 
 private:
-	tMap<tString, tString> KeyValueMap;
+	int NumTagsValid;
+	tMetaDatum Data[int(tMetaTag::NumTags)];
 };
+
+
+}
 
 
 // Implementation below this line.
 
 
+inline void tImage::tMetaDatum::Set(const tMetaDatum& src)
+{
+	Type = src.Type;
+	switch (Type)
+	{
+		case DatumType::Uint32:		Uint32 = src.Uint32;	return;
+		case DatumType::Float:		Float = src.Float;		return;
+		case DatumType::String:		String = src.String;	return;
+	}
+}
+
+
+inline void tImage::tMetaData::Clear()
+{
+	NumTagsValid = 0;
+	for (int d = 0; d < int(tMetaTag::NumTags); d++)
+		Data[d].Clear();
+}
+
+
+inline bool tImage::tMetaData::Set(const tMetaData& src)
+{
+	NumTagsValid = src.NumTagsValid;
+	for (int d = 0; d < int(tMetaTag::NumTags); d++)
+		Data[d] = src.Data[d];
+
+	return IsValid();
 }

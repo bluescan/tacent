@@ -15,7 +15,30 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include "Image/tMetaData.h"
+#include "System/tPrint.h"
+#include "TinyEXIF/TinyEXIF.h"
 using namespace tImage;
 
 
-//////
+bool tMetaData::Set(const uint8* rawJpgImageData, int numBytes)
+{
+	Clear();
+	TinyEXIF::EXIFInfo exifInfo;
+	int errorCode = exifInfo.parseFrom(rawJpgImageData, numBytes);
+	if (errorCode)
+		return false;
+
+	if (exifInfo.GeoLocation.hasLatLon())
+	{
+		double lat = exifInfo.GeoLocation.Latitude;
+		Data[ int(tMetaTag::LatitudeDD) ].Set(float(lat));
+		NumTagsValid++;
+
+		// @todo
+		tPrintf("Photo Latitude: %f\n", lat);
+	}
+
+	// @todo This function will get quite large.
+
+	return IsValid();
+}

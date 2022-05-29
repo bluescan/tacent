@@ -22,7 +22,6 @@
 #elif defined(PLATFORM_WINDOWS)
 #include "TurboJpeg/Windows/turbojpeg.h"
 #endif
-#include "TinyEXIF/TinyEXIF.h"
 
 
 using namespace tSystem;
@@ -141,18 +140,8 @@ bool tImageJPG::Set(tPixel* pixels, int width, int height, bool steal)
 bool tImageJPG::PopulateMetaData(const uint8* jpgFileInMemory, int numBytes)
 {
 	tAssert(jpgFileInMemory && (numBytes > 0));
-	TinyEXIF::EXIFInfo exifInfo;
-	int errorCode = exifInfo.parseFrom(jpgFileInMemory, numBytes);
-	if (errorCode)
-		return false;
-
-	if (exifInfo.GeoLocation.hasLatLon())
-	{
-		double lat = exifInfo.GeoLocation.Latitude;
-		tPrintf("Photo Latitude: %f\n", lat);
-	}
-
-	return true;
+	MetaData.Set(jpgFileInMemory, numBytes);
+	return MetaData,IsValid();
 }
 
 
