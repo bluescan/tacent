@@ -28,46 +28,11 @@ bool tMetaData::Set(const uint8* rawJpgImageData, int numBytes)
 	if (errorCode)
 		return false;
 
-	SetTags_GeoLocation(exifInfo);
 	SetTags_CamHardware(exifInfo);
+	SetTags_GeoLocation(exifInfo);
 
 	// @todo This function will get quite large.
 	return IsValid();
-}
-
-
-void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
-{
-	// If we have LatLong we should have it in DD and DMS formats.
-	if (exifInfo.GeoLocation.hasLatLon())
-	{
-		// LatitudeDD
-		double lat = exifInfo.GeoLocation.Latitude;
-		Data[ int(tMetaTag::LatitudeDD) 	].Set(float(lat));		NumTagsValid++;
-
-		// LatitudeDMS
-		// The exifInfo should not have fraction values for the degreed and minutes if they did everythng right.
-		int degLat = int ( tMath::tRound(exifInfo.GeoLocation.LatComponents.degrees) );
-		int minLat = int ( tMath::tRound(exifInfo.GeoLocation.LatComponents.minutes) );
-		int secLat = int ( tMath::tRound(exifInfo.GeoLocation.LatComponents.seconds) );
-		char dirLat = exifInfo.GeoLocation.LatComponents.direction;
-		tString dmsLat;
-		tsPrintf(dmsLat, u8"%d°%d'%d\"%c", degLat, minLat, secLat, dirLat);
-		Data[ int(tMetaTag::LatitudeDMS) 	].Set(dmsLat);			NumTagsValid++;
-
-		// LongitudeDD
-		double lon = exifInfo.GeoLocation.Longitude;
-		Data[ int(tMetaTag::LongitudeDD) 	].Set(float(lon));		NumTagsValid++;
-
-		// LongitudeDMS
-		int degLon = int ( tMath::tRound(exifInfo.GeoLocation.LonComponents.degrees) );
-		int minLon = int ( tMath::tRound(exifInfo.GeoLocation.LonComponents.minutes) );
-		int secLon = int ( tMath::tRound(exifInfo.GeoLocation.LonComponents.seconds) );
-		char dirLon = exifInfo.GeoLocation.LonComponents.direction;
-		tString dmsLon;
-		tsPrintf(dmsLon, u8"%d°%d'%d\"%c", degLon, minLon, secLon, dirLon);
-		Data[ int(tMetaTag::LongitudeDMS) 	].Set(dmsLon);			NumTagsValid++;
-	}
 }
 
 
@@ -97,3 +62,68 @@ void tMetaData::SetTags_CamHardware(const TinyEXIF::EXIFInfo& exifInfo)
 		NumTagsValid++;
 	}
 }
+
+
+void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
+{
+	// If we have LatLong we should have it in DD and DMS formats.
+	if (exifInfo.GeoLocation.hasLatLon())
+	{
+		// LatitudeDD
+		double lat = exifInfo.GeoLocation.Latitude;
+		Data[ int(tMetaTag::LatitudeDD) 	].Set(float(lat));
+		NumTagsValid++;
+
+		// LatitudeDMS
+		// The exifInfo should not have fraction values for the degreed and minutes if they did everythng right.
+		int degLat = int ( tMath::tRound(exifInfo.GeoLocation.LatComponents.degrees) );
+		int minLat = int ( tMath::tRound(exifInfo.GeoLocation.LatComponents.minutes) );
+		int secLat = int ( tMath::tRound(exifInfo.GeoLocation.LatComponents.seconds) );
+		char dirLat = exifInfo.GeoLocation.LatComponents.direction;
+		tString dmsLat;
+		tsPrintf(dmsLat, u8"%d°%d'%d\"%c", degLat, minLat, secLat, dirLat);
+		Data[ int(tMetaTag::LatitudeDMS) 	].Set(dmsLat);
+		NumTagsValid++;
+
+		// LongitudeDD
+		double lon = exifInfo.GeoLocation.Longitude;
+		Data[ int(tMetaTag::LongitudeDD) 	].Set(float(lon));
+		NumTagsValid++;
+
+		// LongitudeDMS
+		int degLon = int ( tMath::tRound(exifInfo.GeoLocation.LonComponents.degrees) );
+		int minLon = int ( tMath::tRound(exifInfo.GeoLocation.LonComponents.minutes) );
+		int secLon = int ( tMath::tRound(exifInfo.GeoLocation.LonComponents.seconds) );
+		char dirLon = exifInfo.GeoLocation.LonComponents.direction;
+		tString dmsLon;
+		tsPrintf(dmsLon, u8"%d°%d'%d\"%c", degLon, minLon, secLon, dirLon);
+		Data[ int(tMetaTag::LongitudeDMS) 	].Set(dmsLon);
+		NumTagsValid++;
+	}
+
+	if (exifInfo.GeoLocation.hasAltitude())
+	{
+		double alt = exifInfo.GeoLocation.Altitude;
+		Data[ int(tMetaTag::Altitude) 	].Set(float(alt));
+		NumTagsValid++;
+	}
+
+	if (exifInfo.GeoLocation.hasRelativeAltitude())
+	{
+		int8 ref = exifInfo.GeoLocation.AltitudeRef;
+		tString refStr("No Reference");
+		switch (ref)
+		{
+			case 0:		refStr = "Above Sea Level";		break;
+			case -1:	refStr = "Below Sea Level";		break;
+		}
+		Data[ int(tMetaTag::AltitudeRelGnd) ].Set(refStr);
+		NumTagsValid++;
+
+		double altRel = exifInfo.GeoLocation.RelativeAltitude;
+		Data[ int(tMetaTag::AltitudeRel) ].Set(float(altRel));
+		NumTagsValid++;
+	}
+}
+
+

@@ -273,6 +273,15 @@ tTestUnit(ImageMetaData)
 	tMetaData& metaData = jpgWithMeta.MetaData;
 	tMetaDatum datum;
 
+	datum = metaData[tMetaTag::Make];
+	if (datum.IsValid())	tPrintf("Make: %s\n", datum.String.Chars());
+
+	datum = metaData[tMetaTag::Model];
+	if (datum.IsValid())	tPrintf("Model: %s\n", datum.String.Chars());
+
+	datum = metaData[tMetaTag::SerialNumber];
+	if (datum.IsValid())	tPrintf("SerialNumber: %s\n", datum.String.Chars());
+
 	datum = metaData[tMetaTag::LatitudeDD];
 	if (datum.IsValid())	tPrintf("LatitudeDD : %f\n", datum.Float);
 
@@ -285,14 +294,14 @@ tTestUnit(ImageMetaData)
 	datum = metaData[tMetaTag::LongitudeDMS];
 	if (datum.IsValid())	tPrintf("LongitudeDMS: %s\n", datum.String.Chars());
 
-	datum = metaData[tMetaTag::Make];
-	if (datum.IsValid())	tPrintf("Make: %s\n", datum.String.Chars());
+	datum = metaData[tMetaTag::Altitude];
+	if (datum.IsValid())	tPrintf("Altitude: %fm Above Sea Level\n", datum.Float);
 
-	datum = metaData[tMetaTag::Model];
-	if (datum.IsValid())	tPrintf("Model: %s\n", datum.String.Chars());
+	datum = metaData[tMetaTag::AltitudeRel];
+	if (datum.IsValid())	tPrintf("AltitudeRel: %fm\n", datum.Float);
 
-	datum = metaData[tMetaTag::SerialNumber];
-	if (datum.IsValid())	tPrintf("SerialNumber: %s\n", datum.String.Chars());
+	datum = metaData[tMetaTag::AltitudeRelGnd];
+	if (datum.IsValid())	tPrintf("AltitudeRelGnd: Ground is %s\n", datum.String.Chars());
 }
 
 

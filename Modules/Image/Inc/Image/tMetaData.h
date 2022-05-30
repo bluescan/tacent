@@ -28,13 +28,30 @@ enum class tMetaTag
 {
 //	Tag Name		Type		Description
 	Invalid = -1,
+	Make,			//	string	Camera make. eg. "Canon".
+	Model,			//	string	Camera model. eg "Nikon Coolpix 5000".
+	SerialNumber,	//	string	Serial number of the camera.
+
 	LatitudeDD,		//	float	Decimal degrees.
 	LatitudeDMS,	//	string	Degrees, Minutes, Seconds, Direction. Eg. 42°33'56"N
 	LongitudeDD,	//	float	Decimal degrees.
 	LongitudeDMS,	//	string	Degrees, Minutes, Seconds, Direction. Eg. 160°59'4"W
-	Make,			//	string	Camera make. eg. "Canon".
-	Model,			//	string	Camera model. eg "Nikon Coolpix 5000".
-	SerialNumber,	//	string	Serial number of the camera.
+	Altitude,		//	float	Altitude in meters relative to sea-level.
+	AltitudeRelGnd,	//	string	Relative altitude ground reference. Applies to AltitudeRel value.
+					//			"No Reference"		: Reference data unavailable.
+					//			"Above Sea Level"	: Ground is above sea level.
+					//			"Below Sea Level"	: Ground is below sea level.
+	AltitudeRel,	//	float	Relative altitude in meters. Likely how high above ground.
+	Roll,			//	float	Flight roll in degrees.
+	Pitch,			//	float	Flight pitch in degrees.
+	Yaw,			//	float	Flight yaw in degrees.
+	SpeedX,			//	float	Flight speed in X direction in m/s. @todo Is X in horizontal forward facing direction of drone?
+	SpeedY,			//	float	Flight speed in Y direction in m/s. @todo Is Y in left or right direction of drone? RH or LH coord system.
+	SpeedZ,			//	float	Flight speed in Z direction in m/s. @todo Is +Z up.
+	GPSSurvey,		//	string	Geodetic survey data.
+	GPSTimeStamp,	//	string	UTC Time.
+	GPSDateStamp,	//	string	Date and time information relative to UTC YYYY:MM:DD. @todo What does this mean?
+
 	ExposureTime,	//	float	Exposure time in seconds.
 	FStop,			//	float	F/Stop. Unitless. Ratio of the lens focal length to the diameter of the entrance pupil.
 	ExposureProgram,//	uint32	Exposure Program.
@@ -155,8 +172,8 @@ private:
 	int NumTagsValid;
 	tMetaDatum Data[int(tMetaTag::NumTags)];
 
-	void SetTags_GeoLocation(const TinyEXIF::EXIFInfo&);
 	void SetTags_CamHardware(const TinyEXIF::EXIFInfo&);
+	void SetTags_GeoLocation(const TinyEXIF::EXIFInfo&);
 };
 
 
