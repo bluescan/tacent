@@ -129,6 +129,10 @@ On Windows choose the 'Visual Studio 2019 Release -amd64' compiler kit (on the b
 The instructions for Ubuntu are nearly identical. The kit can be Clang 10 or GCC 9.3.
 
 
+#### Windows Console Output In UTF-8
+It can be tricky to get utf-8 output on the console output in windows. You can try 'chcp 65001' in your shell and make sure you are using an appropriate font. My current solution to this is to type intl.cpl, select the 'Administrative' tab, select 'Change System Locale' and select the checkbox 'Beta: Use Unicode UTF-8 for worldwide language support'.
+
+
 ### Credits and Thanks
 
 Credits are found directly in the code where appropriate. Here is a list of some of the helpful contributors:

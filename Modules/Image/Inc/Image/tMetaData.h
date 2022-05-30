@@ -16,6 +16,9 @@
 
 #pragma once
 #include <Foundation/tString.h>
+namespace TinyEXIF { class EXIFInfo; }
+
+
 namespace tImage
 {
 
@@ -146,10 +149,14 @@ public:
 	bool IsValid() const																								{ return NumTagsValid > 0; }
 
 	tMetaData& operator=(const tMetaData& src)																			{ Set(src); return *this; }
+	tMetaDatum& operator[](tMetaTag tag)																				{ return Data[int(tag)]; }
 
 private:
 	int NumTagsValid;
 	tMetaDatum Data[int(tMetaTag::NumTags)];
+
+	void SetTags_GeoLocation(const TinyEXIF::EXIFInfo&);
+	void SetTags_CamHardware(const TinyEXIF::EXIFInfo&);
 };
 
 

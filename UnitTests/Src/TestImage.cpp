@@ -268,6 +268,31 @@ tTestUnit(ImageMetaData)
 		tSkipUnit(ImageMetaData)
 
 	tImageJPG jpgWithMeta("TestData/Images/EXIF_XMP/HasLatLong.jpg");
+	tRequire(jpgWithMeta.MetaData.IsValid());
+
+	tMetaData& metaData = jpgWithMeta.MetaData;
+	tMetaDatum datum;
+
+	datum = metaData[tMetaTag::LatitudeDD];
+	if (datum.IsValid())	tPrintf("LatitudeDD : %f\n", datum.Float);
+
+	datum = metaData[tMetaTag::LatitudeDMS];
+	if (datum.IsValid())	tPrintf("LatitudeDMS: %s\n", datum.String.Chars());
+
+	datum = metaData[tMetaTag::LongitudeDD];
+	if (datum.IsValid())	tPrintf("LongitudeDD : %f\n", datum.Float);
+
+	datum = metaData[tMetaTag::LongitudeDMS];
+	if (datum.IsValid())	tPrintf("LongitudeDMS: %s\n", datum.String.Chars());
+
+	datum = metaData[tMetaTag::Make];
+	if (datum.IsValid())	tPrintf("Make: %s\n", datum.String.Chars());
+
+	datum = metaData[tMetaTag::Model];
+	if (datum.IsValid())	tPrintf("Model: %s\n", datum.String.Chars());
+
+	datum = metaData[tMetaTag::SerialNumber];
+	if (datum.IsValid())	tPrintf("SerialNumber: %s\n", datum.String.Chars());
 }
 
 
