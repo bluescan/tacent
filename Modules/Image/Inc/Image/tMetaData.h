@@ -45,15 +45,15 @@ enum class tMetaTag
 	Roll,			//	float	Flight roll in degrees.
 	Pitch,			//	float	Flight pitch in degrees.
 	Yaw,			//	float	Flight yaw in degrees.
-					//			The speeds below are from a DJI MakerNotes. I want a DJI mini 3. Looks amazing.
+					//			The velocity/speed below are from a DJI MakerNotes. I want a DJI mini 3. Looks amazing.
 	VelX,			//	float	X-Component of velocity in m/s. May be negative. X appears to be forwards direction.
 	VelY,			//	float	Y-Component of velocity in m/s. May be negative. @todo Is Y left or right? RH or LH coord system?
 	VelZ,			//	float	Z-Component of velocity in m/s. May be negative. @todo pos Z = up?
 	Speed,			//	float	Length of velocity vector. m/s. Speed is always >= 0.
 	GPSSurvey,		//	string	Geodetic survey data.
-	GPSTimeStamp,	//	string	UTC Time.
-	GPSDateStamp,	//	string	Date and time information relative to UTC YYYY:MM:DD. @todo What does this mean?
-
+	GPSTimeStamp,	//	string	UTC Date and time as string in format "YYYY-MM-DD hh:mm:ss".
+					//			It's possible one of the YYYY-MM-DD or hh:mm:ss parts is missing so you will either get "",
+					//			or "YYYY-MM-DD" or "hh:mm:ss" or both: "YYYY_MM_DD hh:mm:ss".
 	ExposureTime,	//	float	Exposure time in seconds.
 	FStop,			//	float	F/Stop. Unitless. Ratio of the lens focal length to the diameter of the entrance pupil.
 	ExposureProgram,//	uint32	Exposure Program.

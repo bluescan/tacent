@@ -267,7 +267,17 @@ tTestUnit(ImageMetaData)
 	if (!tSystem::tDirExists("TestData/Images/EXIF_XMP"))
 		tSkipUnit(ImageMetaData)
 
+//	tList<tStringItem> images;
+//	tSystem::tFindFiles(images, "TestData/Images/EXIF_XMP/", "jpg");
+//	for (tStringItem* file = images.First(); file; file = file->Next())
+//	{
+//		tImageJPG tmpImg;
+//		tPrintf("OpeningFile:%s\n", file->Chars());
+//		tmpImg.Load(*file);
+//	}
 	tImageJPG jpgWithMeta("TestData/Images/EXIF_XMP/HasLatLong.jpg");
+//	tImageJPG jpgWithMeta("TestData/Images/EXIF_XMP/test1.jpg");
+//	tImageJPG jpgWithMeta("TestData/Images/EXIF_XMP/sony-alpha-6000.jpg");
 	tRequire(jpgWithMeta.MetaData.IsValid());
 
 	tMetaData& metaData = jpgWithMeta.MetaData;
@@ -323,6 +333,8 @@ tTestUnit(ImageMetaData)
 
 	datum = metaData[tMetaTag::Speed];
 	if (datum.IsValid())	tPrintf("Speed %f m/s°\n", datum.Float);
+
+	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasUTCDateTime.jpg");
 }
 
 

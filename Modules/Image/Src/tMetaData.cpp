@@ -158,6 +158,25 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 		Data[ int(tMetaTag::Speed) ].Set( vel.Length() );
 		NumTagsValid++;
 	}
+
+	std::string survey = exifInfo.GeoLocation.GPSMapDatum;
+	if (!survey.empty())
+	{
+		Data[ int(tMetaTag::GPSSurvey) ].Set(survey.c_str());
+		NumTagsValid++;
+	}
+
+	std::string utcDate = exifInfo.GeoLocation.GPSDateStamp;
+	std::string utcTime = exifInfo.GeoLocation.GPSTimeStamp;
+//	if (!utcDate.empty() && !utcTime.empty())
+// WIP
+	{
+		tPrintf("utcDate [%s] utcTime[%s]\n", utcDate.c_str(), utcTime.c_str());
+		//Data[ int(tMetaTag::GPSSurvey) ].Set(survey.c_str());
+		//NumTagsValid++;
+	}
+
+
 }
 
 
