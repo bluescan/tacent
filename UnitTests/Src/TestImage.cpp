@@ -295,10 +295,10 @@ tTestUnit(ImageMetaData)
 	if (datum.IsValid())	tPrintf("LongitudeDMS: %s\n", datum.String.Chars());
 
 	datum = metaData[tMetaTag::Altitude];
-	if (datum.IsValid())	tPrintf("Altitude: %fm Above Sea Level\n", datum.Float);
+	if (datum.IsValid())	tPrintf("Altitude: %f m Above Sea Level\n", datum.Float);
 
 	datum = metaData[tMetaTag::AltitudeRel];
-	if (datum.IsValid())	tPrintf("AltitudeRel: %fm\n", datum.Float);
+	if (datum.IsValid())	tPrintf("AltitudeRel: %f m\n", datum.Float);
 
 	datum = metaData[tMetaTag::AltitudeRelGnd];
 	if (datum.IsValid())	tPrintf("AltitudeRelGnd: Ground is %s\n", datum.String.Chars());
@@ -311,6 +311,18 @@ tTestUnit(ImageMetaData)
 
 	datum = metaData[tMetaTag::Yaw];
 	if (datum.IsValid())	tPrintf(u8"Yaw %f°\n", datum.Float);
+
+	datum = metaData[tMetaTag::VelX];
+	if (datum.IsValid())	tPrintf("VelX %f m/s°\n", datum.Float);
+
+	datum = metaData[tMetaTag::VelY];
+	if (datum.IsValid())	tPrintf("VelY %f m/s°\n", datum.Float);
+
+	datum = metaData[tMetaTag::VelZ];
+	if (datum.IsValid())	tPrintf("VelZ %f m/s°\n", datum.Float);
+
+	datum = metaData[tMetaTag::Speed];
+	if (datum.IsValid())	tPrintf("Speed %f m/s°\n", datum.Float);
 }
 
 

@@ -45,9 +45,11 @@ enum class tMetaTag
 	Roll,			//	float	Flight roll in degrees.
 	Pitch,			//	float	Flight pitch in degrees.
 	Yaw,			//	float	Flight yaw in degrees.
-	SpeedX,			//	float	Flight speed in X direction in m/s. @todo Is X in horizontal forward facing direction of drone?
-	SpeedY,			//	float	Flight speed in Y direction in m/s. @todo Is Y in left or right direction of drone? RH or LH coord system.
-	SpeedZ,			//	float	Flight speed in Z direction in m/s. @todo Is +Z up.
+					//			The speeds below are from a DJI MakerNotes. I want a DJI mini 3. Looks amazing.
+	VelX,			//	float	X-Component of velocity in m/s. May be negative. X appears to be forwards direction.
+	VelY,			//	float	Y-Component of velocity in m/s. May be negative. @todo Is Y left or right? RH or LH coord system?
+	VelZ,			//	float	Z-Component of velocity in m/s. May be negative. @todo pos Z = up?
+	Speed,			//	float	Length of velocity vector. m/s. Speed is always >= 0.
 	GPSSurvey,		//	string	Geodetic survey data.
 	GPSTimeStamp,	//	string	UTC Time.
 	GPSDateStamp,	//	string	Date and time information relative to UTC YYYY:MM:DD. @todo What does this mean?

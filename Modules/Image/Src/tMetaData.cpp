@@ -16,8 +16,10 @@
 
 #include "Image/tMetaData.h"
 #include "System/tPrint.h"
+#include "Math/tVector3.h"
 #include "TinyEXIF/TinyEXIF.h"
 using namespace tImage;
+using namespace tMath;
 
 
 bool tMetaData::Set(const uint8* rawJpgImageData, int numBytes)
@@ -137,6 +139,23 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 
 		double yaw = exifInfo.GeoLocation.YawDegree;
 		Data[ int(tMetaTag::Yaw) ].Set(float(yaw));
+		NumTagsValid++;
+	}
+
+	if (exifInfo.GeoLocation.hasSpeed())
+	{
+		tVector3 vel
+		(
+			float(exifInfo.GeoLocation.SpeedX),
+			float(exifInfo.GeoLocation.SpeedY),
+			float(exifInfo.GeoLocation.SpeedZ)
+		);
+		Data[ int(tMetaTag::VelX) ].Set(vel.x);
+		Data[ int(tMetaTag::VelY) ].Set(vel.y);
+		Data[ int(tMetaTag::VelZ) ].Set(vel.z);
+		NumTagsValid += 3;
+
+		Data[ int(tMetaTag::Speed) ].Set( vel.Length() );
 		NumTagsValid++;
 	}
 }
