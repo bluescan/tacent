@@ -302,6 +302,15 @@ tTestUnit(ImageMetaData)
 
 	datum = metaData[tMetaTag::AltitudeRelGnd];
 	if (datum.IsValid())	tPrintf("AltitudeRelGnd: Ground is %s\n", datum.String.Chars());
+
+	datum = metaData[tMetaTag::Roll];
+	if (datum.IsValid())	tPrintf(u8"Roll %f°\n", datum.Float);
+
+	datum = metaData[tMetaTag::Pitch];
+	if (datum.IsValid())	tPrintf(u8"Pitch %f°\n", datum.Float);
+
+	datum = metaData[tMetaTag::Yaw];
+	if (datum.IsValid())	tPrintf(u8"Yaw %f°\n", datum.Float);
 }
 
 

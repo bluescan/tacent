@@ -124,6 +124,21 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 		Data[ int(tMetaTag::AltitudeRel) ].Set(float(altRel));
 		NumTagsValid++;
 	}
+
+	if (exifInfo.GeoLocation.hasOrientation())
+	{
+		double roll = exifInfo.GeoLocation.RollDegree;
+		Data[ int(tMetaTag::Roll) ].Set(float(roll));
+		NumTagsValid++;
+
+		double pitch = exifInfo.GeoLocation.PitchDegree;
+		Data[ int(tMetaTag::Pitch) ].Set(float(pitch));
+		NumTagsValid++;
+
+		double yaw = exifInfo.GeoLocation.YawDegree;
+		Data[ int(tMetaTag::Yaw) ].Set(float(yaw));
+		NumTagsValid++;
+	}
 }
 
 
