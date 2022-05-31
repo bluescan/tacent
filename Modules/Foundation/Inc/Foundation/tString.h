@@ -5,7 +5,7 @@
 // You cannot stream (from cin etc) more than 512 chars into a string. This restriction is only for wacky << streaming.
 // For conversions of arbitrary types to tStrings, see tsPrint in the higher level System module.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019, 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019-2022 Tristan Grimmer.
 // Copyright (c) 2020 Stefan Wessels.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
@@ -54,6 +54,7 @@ struct tString
 	void Set(const char*);
 	int Length() const																									{ return int(tStd::tStrlen(TextData)); }
 	bool IsEmpty() const																								{ return (TextData == &EmptyChar) || !tStd::tStrlen(TextData); }
+	bool IsValid() const	/* returns true is string is not empty. */													{ return !IsEmpty(); }
 	void Clear()																										{ if (TextData != &EmptyChar) delete[] TextData; TextData = &EmptyChar; }
 
 	bool IsAlphabetic(bool includeUnderscore = true) const;

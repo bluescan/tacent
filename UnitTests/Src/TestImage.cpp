@@ -323,18 +323,20 @@ tTestUnit(ImageMetaData)
 	if (datum.IsValid())	tPrintf(u8"Yaw %f°\n", datum.Float);
 
 	datum = metaData[tMetaTag::VelX];
-	if (datum.IsValid())	tPrintf("VelX %f m/s°\n", datum.Float);
+	if (datum.IsValid())	tPrintf("VelX %f m/s\n", datum.Float);
 
 	datum = metaData[tMetaTag::VelY];
-	if (datum.IsValid())	tPrintf("VelY %f m/s°\n", datum.Float);
+	if (datum.IsValid())	tPrintf("VelY %f m/s\n", datum.Float);
 
 	datum = metaData[tMetaTag::VelZ];
-	if (datum.IsValid())	tPrintf("VelZ %f m/s°\n", datum.Float);
+	if (datum.IsValid())	tPrintf("VelZ %f m/s\n", datum.Float);
 
 	datum = metaData[tMetaTag::Speed];
-	if (datum.IsValid())	tPrintf("Speed %f m/s°\n", datum.Float);
+	if (datum.IsValid())	tPrintf("Speed %f m/s\n", datum.Float);
 
 	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasUTCDateTime.jpg");
+	datum = metaData[tMetaTag::GPSTimeStamp];
+	if (datum.IsValid())	tPrintf("GPSTimeStamp %s\n", datum.String.Chars());
 }
 
 

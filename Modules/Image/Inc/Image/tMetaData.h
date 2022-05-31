@@ -52,8 +52,8 @@ enum class tMetaTag
 	Speed,			//	float	Length of velocity vector. m/s. Speed is always >= 0.
 	GPSSurvey,		//	string	Geodetic survey data.
 	GPSTimeStamp,	//	string	UTC Date and time as string in format "YYYY-MM-DD hh:mm:ss".
-					//			It's possible one of the YYYY-MM-DD or hh:mm:ss parts is missing so you will either get "",
-					//			or "YYYY-MM-DD" or "hh:mm:ss" or both: "YYYY_MM_DD hh:mm:ss".
+					//			It's possible one of the YYYY-MM-DD or hh:mm:ss parts is missing. You will get nothing/invalid
+					//			or "YYYY-MM-DD" or "hh:mm:ss" or both: "YYYY-MM-DD hh:mm:ss" depending on what is available.
 	ExposureTime,	//	float	Exposure time in seconds.
 	FStop,			//	float	F/Stop. Unitless. Ratio of the lens focal length to the diameter of the entrance pupil.
 	ExposureProgram,//	uint32	Exposure Program.
