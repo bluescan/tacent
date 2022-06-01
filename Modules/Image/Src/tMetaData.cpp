@@ -64,6 +64,14 @@ void tMetaData::SetTags_CamHardware(const TinyEXIF::EXIFInfo& exifInfo)
 		Data[ int(tMetaTag::SerialNumber) ].Set(serial.c_str());
 		NumTagsValid++;
 	}
+
+	// Software
+	std::string software = exifInfo.Software;
+	if (!software.empty())
+	{
+		Data[ int(tMetaTag::Software) ].Set(software.c_str());
+		NumTagsValid++;
+	}
 }
 
 
@@ -194,9 +202,27 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 
 void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 {
+	// These are annoying because they are not independent.
+	double shutterSpeed = exifInfo.ShutterSpeedValue;
 	double exposureTime = exifInfo.ExposureTime;
-	Data[ int(tMetaTag::ExposureTime) ].Set(float(exposureTime));
-	NumTagsValid++;
+
+	// Compute one from the other if necessary.
+	if ((shutterSpeed <= 0.0) && (exposureTime > 0.0))
+		shutterSpeed = 1.0 / exposureTime;
+	else if ((exposureTime <= 0.0) && (shutterSpeed > 0.0))
+		exposureTime = 1.0 / shutterSpeed;
+
+	if (shutterSpeed > 0.0)
+	{
+		Data[ int(tMetaTag::ShutterSpeed) ].Set(float(shutterSpeed));
+		NumTagsValid++;
+	}
+
+	if (exposureTime > 0.0)
+	{
+		Data[ int(tMetaTag::ExposureTime) ].Set(float(exposureTime));
+		NumTagsValid++;
+	}
 
 	double exposureBias = exifInfo.ExposureBiasValue;
 	Data[ int(tMetaTag::ExposureBias) ].Set(float(exposureBias));
@@ -214,10 +240,6 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 	Data[ int(tMetaTag::ISO) ].Set(iso);
 	NumTagsValid++;
 
-	double shutterSpeed = exifInfo.ShutterSpeedValue;
-	Data[ int(tMetaTag::ShutterSpeed) ].Set(float(shutterSpeed));
-	NumTagsValid++;
-
 	double aperture = exifInfo.ApertureValue;
 	Data[ int(tMetaTag::Aperture) ].Set(float(aperture));
 	NumTagsValid++;
@@ -233,4 +255,81 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 	uint32 flash = exifInfo.Flash;
 	Data[ int(tMetaTag::Flash) ].Set(flash);
 	NumTagsValid++;
+
+	double focalLength = exifInfo.FocalLength;
+	Data[ int(tMetaTag::FocalLength) ].Set(float(focalLength));
+	NumTagsValid++;
+
+	uint32 orientation = exifInfo.Orientation;
+	Data[ int(tMetaTag::Orientation) ].Set(orientation);
+	NumTagsValid++;
+
+	double pixelsPerUnitX = exifInfo.XResolution;
+	if (pixelsPerUnitX > 0.0)
+	{
+		Data[ int(tMetaTag::XPixelsPerUnit) ].Set(float(pixelsPerUnitX));
+		NumTagsValid++;
+	}
+
+	double pixelsPerUnitY = exifInfo.YResolution;
+	if (pixelsPerUnitY > 0.0)
+	{
+		Data[ int(tMetaTag::YPixelsPerUnit) ].Set(float(pixelsPerUnitY));
+		NumTagsValid++;
+	}
+
+	uint32 lengthUnit = exifInfo.ResolutionUnit;
+	if (lengthUnit)
+	{
+		Data[ int(tMetaTag::LengthUnit) ].Set(lengthUnit);
+		NumTagsValid++;
+	}
+
+	uint32 bitsPerComponent = exifInfo.BitsPerSample;
+	if (bitsPerComponent)
+	{
+		Data[ int(tMetaTag::BitsPerSample) ].Set(bitsPerComponent);
+		NumTagsValid++;
+	}
+
+	uint32 imageWidth = exifInfo.ImageWidth;
+	if (imageWidth > 0)
+	{
+		Data[ int(tMetaTag::ImageWidth) ].Set(imageWidth);
+		NumTagsValid++;
+	}
+
+	uint32 imageHeight = exifInfo.ImageHeight;
+	if (imageHeight > 0)
+	{
+		Data[ int(tMetaTag::ImageHeight) ].Set(imageHeight);
+		NumTagsValid++;
+	}
+
+	uint32 imageWidthOrig = exifInfo.RelatedImageWidth;
+	if (imageWidthOrig > 0)
+	{
+		Data[ int(tMetaTag::ImageWidthOrig) ].Set(imageWidthOrig);
+		NumTagsValid++;
+	}
+
+	uint32 imageHeightOrig = exifInfo.RelatedImageHeight;
+	if (imageHeightOrig > 0)
+	{
+		Data[ int(tMetaTag::ImageHeightOrig) ].Set(imageHeightOrig);
+		NumTagsValid++;
+	}
+
+	tString dateChange(exifInfo.DateTime.c_str());
+	if (dateChange.IsValid())
+	{
+		tString yyyymmdd = dateChange.ExtractLeft(' ');
+		yyyymmdd.Replace(':', '-');
+		dateChange = yyyymmdd + " " + dateChange;
+
+		Data[ int(tMetaTag::DateChange) ].Set(dateChange);
+		NumTagsValid++;
+	}
+
+	// @todo DateTimeOrig, DateTimeDigit, Descciption, Copyright
 }

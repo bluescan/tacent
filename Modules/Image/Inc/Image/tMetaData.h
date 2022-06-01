@@ -54,7 +54,8 @@ enum class tMetaTag
 	GPSTimeStamp,	//	string	UTC Date and time as string in format "YYYY-MM-DD hh:mm:ss".
 					//			It's possible one of the YYYY-MM-DD or hh:mm:ss parts is missing. You will get nothing/invalid
 					//			or "YYYY-MM-DD" or "hh:mm:ss" or both: "YYYY-MM-DD hh:mm:ss" depending on what is available.
-	ExposureTime,	//	float	Exposure time in seconds.
+	ShutterSpeed,	//	float	Units s^-1. Reciprocal of exposure time. If not set, computed.
+	ExposureTime,	//	float	Exposure time in seconds. Reciprocal of ShutterSpeed. If not set, computed.
 	ExposureBias,	//	float	Exposure bias. APEX units.
 	FStop,			//	float	F/Stop. Unitless. Ratio of the lens focal length to the diameter of the entrance pupil.
 	ExposureProgram,//	uint32	Exposure Program.
@@ -68,7 +69,6 @@ enum class tMetaTag
 					//			7: Portrait Mode.
 					//			8: Landscape Mode.
 	ISO,			//	uint32	Equivalent ISO film speed rating.
-	ShutterSpeed,	//	float	Units s^-1. Reciprocal of exposure time.
 	Aperture,		//	float	APEX units.
 	Brightness,		//	float	Average scene luminance of whole image. APEX units.
 	MeteringMode,	//	uint32	Metering Mode.
@@ -124,7 +124,7 @@ enum class tMetaTag
 	ImageWidthOrig,	//	uint32	Original image width in pixels.
 	ImageHeightOrig,//	uint32	Original image height in pixels.
 	Software,		//	string	Software used to edit image.
-	DateChange,		//	string	Date and time the image was changed.
+	DateChange,		//	string	Date and time the image was changed. "YYYY-MM-DD hh:mm:ss".
 	DateTimeOrig,	//	string	Date and time of original image.
 	DateTimeDigit,	//	string	Date and time the image was digitized.
 	Description,	//	string	Image description.
