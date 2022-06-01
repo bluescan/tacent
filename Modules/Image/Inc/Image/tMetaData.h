@@ -55,6 +55,7 @@ enum class tMetaTag
 					//			It's possible one of the YYYY-MM-DD or hh:mm:ss parts is missing. You will get nothing/invalid
 					//			or "YYYY-MM-DD" or "hh:mm:ss" or both: "YYYY-MM-DD hh:mm:ss" depending on what is available.
 	ExposureTime,	//	float	Exposure time in seconds.
+	ExposureBias,	//	float	Exposure bias. APEX units.
 	FStop,			//	float	F/Stop. Unitless. Ratio of the lens focal length to the diameter of the entrance pupil.
 	ExposureProgram,//	uint32	Exposure Program.
 					//			0: Not Defined.
@@ -69,8 +70,7 @@ enum class tMetaTag
 	ISO,			//	uint32	Equivalent ISO film speed rating.
 	ShutterSpeed,	//	float	Units s^-1. Reciprocal of exposure time.
 	Aperture,		//	float	APEX units.
-	ExposureBias,	//	float	Exposure bias. APEX units.
-	Brughtness,		//	float	Average scene luminance of whole image. APEX units.
+	Brightness,		//	float	Average scene luminance of whole image. APEX units.
 	MeteringMode,	//	uint32	Metering Mode.
 					//			0: Unknown.
 					//			1: Average.
@@ -176,6 +176,7 @@ private:
 
 	void SetTags_CamHardware(const TinyEXIF::EXIFInfo&);
 	void SetTags_GeoLocation(const TinyEXIF::EXIFInfo&);
+	void SetTags_CamSettings(const TinyEXIF::EXIFInfo&);
 };
 
 

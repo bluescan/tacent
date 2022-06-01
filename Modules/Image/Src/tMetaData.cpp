@@ -32,6 +32,7 @@ bool tMetaData::Set(const uint8* rawJpgImageData, int numBytes)
 
 	SetTags_CamHardware(exifInfo);
 	SetTags_GeoLocation(exifInfo);
+	SetTags_CamSettings(exifInfo);
 
 	// @todo This function will get quite large.
 	return IsValid();
@@ -188,4 +189,48 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 		Data[ int(tMetaTag::GPSTimeStamp) ].Set(dateTime);
 		NumTagsValid++;
 	}
+}
+
+
+void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
+{
+	double exposureTime = exifInfo.ExposureTime;
+	Data[ int(tMetaTag::ExposureTime) ].Set(float(exposureTime));
+	NumTagsValid++;
+
+	double exposureBias = exifInfo.ExposureBiasValue;
+	Data[ int(tMetaTag::ExposureBias) ].Set(float(exposureBias));
+	NumTagsValid++;
+
+	double fstop = exifInfo.FNumber;
+	Data[ int(tMetaTag::FStop) ].Set(float(fstop));
+	NumTagsValid++;
+
+	uint32 prog = exifInfo.ExposureProgram;
+	Data[ int(tMetaTag::ExposureProgram) ].Set(prog);
+	NumTagsValid++;
+
+	uint32 iso = exifInfo.ISOSpeedRatings;
+	Data[ int(tMetaTag::ISO) ].Set(iso);
+	NumTagsValid++;
+
+	double shutterSpeed = exifInfo.ShutterSpeedValue;
+	Data[ int(tMetaTag::ShutterSpeed) ].Set(float(shutterSpeed));
+	NumTagsValid++;
+
+	double aperture = exifInfo.ApertureValue;
+	Data[ int(tMetaTag::Aperture) ].Set(float(aperture));
+	NumTagsValid++;
+
+	double brightness = exifInfo.BrightnessValue;
+	Data[ int(tMetaTag::Brightness) ].Set(float(brightness));
+	NumTagsValid++;
+
+	uint32 meterMode = exifInfo.MeteringMode;
+	Data[ int(tMetaTag::MeteringMode) ].Set(meterMode);
+	NumTagsValid++;
+
+	uint32 flash = exifInfo.Flash;
+	Data[ int(tMetaTag::Flash) ].Set(flash);
+	NumTagsValid++;
 }
