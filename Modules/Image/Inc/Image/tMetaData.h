@@ -28,10 +28,13 @@ enum class tMetaTag
 {
 //	Tag Name		Type		Description
 	Invalid = -1,
+
+	// Camera Hardware Tags
 	Make,			//	string	Camera make. eg. "Canon".
 	Model,			//	string	Camera model. eg "Nikon Coolpix 5000".
 	SerialNumber,	//	string	Serial number of the camera.
 
+	// Geo Location Tags
 	LatitudeDD,		//	float	Decimal degrees.
 	LatitudeDMS,	//	string	Degrees, Minutes, Seconds, Direction. Eg. 42°33'56"N
 	LongitudeDD,	//	float	Decimal degrees.
@@ -54,6 +57,8 @@ enum class tMetaTag
 	GPSTimeStamp,	//	string	UTC Date and time as string in format "YYYY-MM-DD hh:mm:ss".
 					//			It's possible one of the YYYY-MM-DD or hh:mm:ss parts is missing. You will get nothing/invalid
 					//			or "YYYY-MM-DD" or "hh:mm:ss" or both: "YYYY-MM-DD hh:mm:ss" depending on what is available.
+
+	// Camera Settings Tags
 	ShutterSpeed,	//	float	Units s^-1. Reciprocal of exposure time. If not set, computed.
 	ExposureTime,	//	float	Exposure time in seconds. Reciprocal of ShutterSpeed. If not set, computed.
 	ExposureBias,	//	float	Exposure bias. APEX units.
@@ -123,10 +128,12 @@ enum class tMetaTag
 	ImageHeight,	//	uint32	Height in pixels.
 	ImageWidthOrig,	//	uint32	Original image width in pixels.
 	ImageHeightOrig,//	uint32	Original image height in pixels.
-	Software,		//	string	Software used to edit image.
-	DateChange,		//	string	Date and time the image was changed. "YYYY-MM-DD hh:mm:ss".
+	DateTimeChange,	//	string	Date and time the image was changed. "YYYY-MM-DD hh:mm:ss".
 	DateTimeOrig,	//	string	Date and time of original image.
 	DateTimeDigit,	//	string	Date and time the image was digitized.
+
+	// Authoring Note Tags
+	Software,		//	string	Software used to edit image.
 	Description,	//	string	Image description.
 	Copyright,		//	string	Copyright notice.
 	NumTags
@@ -177,6 +184,7 @@ private:
 	void SetTags_CamHardware(const TinyEXIF::EXIFInfo&);
 	void SetTags_GeoLocation(const TinyEXIF::EXIFInfo&);
 	void SetTags_CamSettings(const TinyEXIF::EXIFInfo&);
+	void SetTags_AuthorNotes(const TinyEXIF::EXIFInfo&);
 };
 
 

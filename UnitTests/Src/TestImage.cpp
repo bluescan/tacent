@@ -267,17 +267,19 @@ tTestUnit(ImageMetaData)
 	if (!tSystem::tDirExists("TestData/Images/EXIF_XMP"))
 		tSkipUnit(ImageMetaData)
 
-	//	tList<tStringItem> images;
-	//	tSystem::tFindFiles(images, "TestData/Images/EXIF_XMP/", "jpg");
-	//	for (tStringItem* file = images.First(); file; file = file->Next())
-	//	{
-	//		tImageJPG tmpImg;
-	//		tPrintf("OpeningFile:%s\n", file->Chars());
-	//		tmpImg.Load(*file);
-	//	}
+	#if 0
+	tList<tStringItem> images;
+	tSystem::tFindFiles(images, "TestData/Images/EXIF_XMP/", "jpg");
+	for (tStringItem* file = images.First(); file; file = file->Next())
+	{
+		tImageJPG tmpImg;
+		tPrintf("OpeningFile:%s\n", file->Chars());
+		tmpImg.Load(*file);
+	}
+	return;
+	#endif
+
 	tImageJPG jpgWithMeta("TestData/Images/EXIF_XMP/HasLatLong.jpg");
-	//	tImageJPG jpgWithMeta("TestData/Images/EXIF_XMP/test1.jpg");
-	//	tImageJPG jpgWithMeta("TestData/Images/EXIF_XMP/sony-alpha-6000.jpg");
 	tRequire(jpgWithMeta.MetaData.IsValid());
 
 	tMetaData& metaData = jpgWithMeta.MetaData;
@@ -291,9 +293,6 @@ tTestUnit(ImageMetaData)
 
 	datum = metaData[tMetaTag::SerialNumber];
 	if (datum.IsValid())	tPrintf("SerialNumber: %s\n", datum.String.Chars());
-
-	datum = metaData[tMetaTag::Software];
-	if (datum.IsValid())	tPrintf("Software: %s\n", datum.String.Chars());
 
 	datum = metaData[tMetaTag::LatitudeDD];
 	if (datum.IsValid())	tPrintf("LatitudeDD : %f\n", datum.Float);
@@ -338,6 +337,7 @@ tTestUnit(ImageMetaData)
 	if (datum.IsValid())	tPrintf("Speed: %f m/s\n", datum.Float);
 
 	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasUTCDateTime.jpg");
+
 	datum = metaData[tMetaTag::GPSTimeStamp];
 	if (datum.IsValid())	tPrintf("GPSTimeStamp: %s\n", datum.String.Chars());
 
@@ -403,8 +403,25 @@ tTestUnit(ImageMetaData)
 	datum = metaData[tMetaTag::ImageHeightOrig];
 	if (datum.IsValid())	tPrintf("ImageHeightOrig: %u\n", datum.Uint32);
 
-	datum = metaData[tMetaTag::DateChange];
-	if (datum.IsValid())	tPrintf("DateChange: %s\n", datum.String.Chars());
+	datum = metaData[tMetaTag::DateTimeChange];
+	if (datum.IsValid())	tPrintf("DateTimeChange: %s\n", datum.String.Chars());
+
+	datum = metaData[tMetaTag::DateTimeOrig];
+	if (datum.IsValid())	tPrintf("DateTimeOrig: %s\n", datum.String.Chars());
+
+	datum = metaData[tMetaTag::DateTimeDigit];
+	if (datum.IsValid())	tPrintf("DateTimeDigit: %s\n", datum.String.Chars());
+
+	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasAuthorNotes.jpg");
+
+	datum = metaData[tMetaTag::Software];
+	if (datum.IsValid())	tPrintf("Software: %s\n", datum.String.Chars());
+
+	datum = metaData[tMetaTag::Description];
+	if (datum.IsValid())	tPrintf("Description: %s\n", datum.String.Chars());
+
+	datum = metaData[tMetaTag::Copyright];
+	if (datum.IsValid())	tPrintf("Copyright: %s\n", datum.String.Chars());
 }
 
 

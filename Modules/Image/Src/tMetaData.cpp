@@ -33,6 +33,7 @@ bool tMetaData::Set(const uint8* rawJpgImageData, int numBytes)
 	SetTags_CamHardware(exifInfo);
 	SetTags_GeoLocation(exifInfo);
 	SetTags_CamSettings(exifInfo);
+	SetTags_AuthorNotes(exifInfo);
 
 	// @todo This function will get quite large.
 	return IsValid();
@@ -62,14 +63,6 @@ void tMetaData::SetTags_CamHardware(const TinyEXIF::EXIFInfo& exifInfo)
 	if (!serial.empty())
 	{
 		Data[ int(tMetaTag::SerialNumber) ].Set(serial.c_str());
-		NumTagsValid++;
-	}
-
-	// Software
-	std::string software = exifInfo.Software;
-	if (!software.empty())
-	{
-		Data[ int(tMetaTag::Software) ].Set(software.c_str());
 		NumTagsValid++;
 	}
 }
@@ -320,16 +313,64 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 		NumTagsValid++;
 	}
 
-	tString dateChange(exifInfo.DateTime.c_str());
-	if (dateChange.IsValid())
+	tString dateTimeChange(exifInfo.DateTime.c_str());
+	if (dateTimeChange.IsValid())
 	{
-		tString yyyymmdd = dateChange.ExtractLeft(' ');
+		tString yyyymmdd = dateTimeChange.ExtractLeft(' ');
 		yyyymmdd.Replace(':', '-');
-		dateChange = yyyymmdd + " " + dateChange;
+		dateTimeChange = yyyymmdd + " " + dateTimeChange;
 
-		Data[ int(tMetaTag::DateChange) ].Set(dateChange);
+		Data[ int(tMetaTag::DateTimeChange) ].Set(dateTimeChange);
 		NumTagsValid++;
 	}
 
-	// @todo DateTimeOrig, DateTimeDigit, Descciption, Copyright
+	tString dateTimeOrig(exifInfo.DateTimeOriginal.c_str());
+	if (dateTimeOrig.IsValid())
+	{
+		tString yyyymmdd = dateTimeOrig.ExtractLeft(' ');
+		yyyymmdd.Replace(':', '-');
+		dateTimeOrig = yyyymmdd + " " + dateTimeOrig;
+
+		Data[ int(tMetaTag::DateTimeOrig) ].Set(dateTimeOrig);
+		NumTagsValid++;
+	}
+
+	tString dateTimeDig(exifInfo.DateTimeDigitized.c_str());
+	if (dateTimeDig.IsValid())
+	{
+		tString yyyymmdd = dateTimeDig.ExtractLeft(' ');
+		yyyymmdd.Replace(':', '-');
+		dateTimeDig = yyyymmdd + " " + dateTimeDig;
+
+		Data[ int(tMetaTag::DateTimeDigit) ].Set(dateTimeDig);
+		NumTagsValid++;
+	}
+}
+
+
+void tMetaData::SetTags_AuthorNotes(const TinyEXIF::EXIFInfo& exifInfo)
+{
+	// Software
+	tString software = exifInfo.Software.c_str();
+	if (software.IsValid())
+	{
+		Data[ int(tMetaTag::Software) ].Set(software);
+		NumTagsValid++;
+	}
+
+	// Description
+	tString description = exifInfo.ImageDescription.c_str();
+	if (description.IsValid())
+	{
+		Data[ int(tMetaTag::Description) ].Set(description);
+		NumTagsValid++;
+	}
+
+	// Copyright
+	tString copyright = exifInfo.Copyright.c_str();
+	if (copyright.IsValid())
+	{
+		Data[ int(tMetaTag::Copyright) ].Set(copyright);
+		NumTagsValid++;
+	}
 }
