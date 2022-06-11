@@ -24,12 +24,12 @@ using namespace tMath;
 
 const char* tMetaTagNames[] =
 {
-	// Camera Hardware Tag Names.
+	// Camera Hardware Tag Names
 	"Make",
 	"Model",
 	"Serial Number",
 
-	// Geo Location Tag Names.
+	// Geo Location Tag Names
 	"Latitude DD",
 	"Longitude DD",
 	"Latitude",
@@ -47,7 +47,7 @@ const char* tMetaTagNames[] =
 	"GPS Survey",
 	"GPS Time Stamp",
 
-	// Camera Settings Tag Names.
+	// Camera Settings Tag Names
 	"Shutter Speed",
 	"Exposure Time",
 	"Exposure Bias",
@@ -72,12 +72,104 @@ const char* tMetaTagNames[] =
 	"Date/Time Orig",
 	"Date/Time Digitized",
 
-	// Authoring Note Tag Names.
+	// Authoring Note Tag Names
 	"Software",
 	"Description",
 	"Copyright"
 };
 tStaticAssert(tNumElements(tMetaTagNames) == int(tMetaTag::NumTags));
+
+
+const char* tMetaTagDescs[] =
+{
+	// Camera Hardware Tag Descriptions
+	"Camera make/manufacturer.",
+	"Camera model.",
+	"Camera serial number.",
+
+	// Geo Location Tag Descriptions
+	"Latitude in decimal degrees.",
+	"Latitude in degrees, minutes, seconds followed by N (north) or S (south).",
+	"Longitude in decimal degrees.",
+	"Longitude in degrees, minutes, seconds followed by W (west) or E (east).",
+	"Altitude in meters relative to sea-level.",
+	"Relative altitude ground reference. Applies to Altitude Rel value. Values:\n"
+		"\"Above Ground\"    : Reference data unavailable. Assume above ground.\n"
+		"\"Above Sea Level\" : Ground is above sea level.\n"
+		"\"Below Sea Level\" : Ground is below sea level.",
+	"Relative altitude in meters. Often how high above ground.",
+	"Flight roll in degrees.",
+	"Flight pitch in degrees.",
+	"Flight yaw in degrees.",
+	"X-Component (forwards/backwards) of velocity in m/s. May be negative. DJI maker-note.",
+	"Y-Component (left/right) of velocity in m/s. May be negative. DJI maker-note.",
+	"Z-Component (up/down) of velocity in m/s. May be negative. DJI maker-note.",
+	"Length of velocity vector in m/s. Speed is always >= 0. DJI maker-note.",
+	"Geodetic survey data.",
+	"UTC Date and time of GPS data in format YYYY-MM-DD hh:mm:ss\n"
+		"It's possible one of YYYY-MM-DD or hh:mm:ss is not available.",
+
+	// Camera Settings Tag Descriptions
+	"Shutter speed in units 1/s. Reciprocal of exposure time. If not set, computed.",
+	"Exposure time in seconds. Reciprocal of Shutter Speed. If not set, computed.",
+	"Exposure bias in APEX units.",
+	"Ratio of the lens focal length to the diameter of the entrance pupil. Unitless.",
+	"Exposure program. Values:\n"
+		"0: Not Defined.\n"
+		"1: Manual.\n"
+		"2: Normal Program.\n"
+		"3: Aperture Priority.\n"
+		"4: Shutter Priority.\n"
+		"5: Creative Program.\n"
+		"6: Action Program.\n"
+		"7: Portrait Mode.\n"
+		"8: Landscape Mode.",
+	"Equivalent ISO film speed rating.",
+	"Aperture in APEX units.",
+	"Average scene luminance of whole image in APEX units.",
+	"Metering mode,	Values:\n"
+		"0: Unknown.\n"
+		"1: Average.\n"
+		"2: Center Weighted Average.\n"
+		"3: Spot.\n"
+		"4: Multi-spot.\n"
+		"5: Pattern.\n"
+		"6: Partial.",
+	"Flash use information. Includes information on red-eye-reduction\n"
+		"use, whether strobe return was detected, and compulory flash firing.",
+	"Focal length in pixels.",
+	"Information on camera orientation when photo taken. The following\n"
+		"transformations may be present in the image data:\n"
+		"0: Unspecified.\n"
+		"1: No Transforms.    Image is not mirrored or rotated.\n"
+		"2: Flip-Y.           Image is mirrored about vertical axis (right <-> left).\n"
+		"3: Flip-XY.          Image flipped about both axes. Same as 180 degrees rotation.\n"
+		"4: Flip-X.           Image is mirrored about horizontal axis (top <-> bottom).\n"
+		"5: Rot-CW90  Flip-Y. Image is rotated 90 degrees clockwise and then flipped about verical axis.\n"
+		"6: Rot-ACW90.        Image is rotated 90 degrees anti-clockwise.\n"
+		"7: Rot-ACW90 Flip-Y. Image is rotated 90 degrees clockwise and then flipped about verical axis.\n"
+		"8: Rot-CW90.         Image is rotated 90 degrees anti-clockwise.",
+	"Horizontal pixels per length unit.",
+	"Veritical pixels per length unit.",
+	"The length unit used for the Pixels-per-unit values:\n"
+		"1: Not Specified.\n"
+		"2: Inch.\n"
+		"3: cm.",
+	"Bits per colour component. Not bits per pixel.",
+	"Image width in pixels.",
+	"Image height in pixels.",
+	"Original image width (before edits) in pixels.",
+	"Original image height(before edits) in pixels.",
+	"Date and time the image was changed in format YYYY-MM-DD hh:mm:ss",
+	"Date and time of original image in format YYYY-MM-DD hh:mm:ss.",
+	"Date and time the image was digitized in format YYYY-MM-DD hh:mm:ss.",
+
+	// Authoring Note Tag Descriptions
+	"Software used to edit image.",
+	"Image description.",
+	"Copyright notice."
+};
+tStaticAssert(tNumElements(tMetaTagDescs) == int(tMetaTag::NumTags));
 
 
 const char* tImage::tGetMetaTagName(tMetaTag tag)
@@ -88,7 +180,7 @@ const char* tImage::tGetMetaTagName(tMetaTag tag)
 
 const char* tImage::tGetMetaTagDesc(tMetaTag tag)
 {
-	return tMetaTagNames[int(tag)];
+	return tMetaTagDescs[int(tag)];
 }
 
 
@@ -185,13 +277,13 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 	if (exifInfo.GeoLocation.hasRelativeAltitude())
 	{
 		int8 ref = exifInfo.GeoLocation.AltitudeRef;
-		tString refStr("No Reference");
+		tString refStr("Above Ground");
 		switch (ref)
 		{
 			case 0:		refStr = "Above Sea Level";		break;
 			case -1:	refStr = "Below Sea Level";		break;
 		}
-		Data[ int(tMetaTag::AltitudeRelGnd) ].Set(refStr);
+		Data[ int(tMetaTag::AltitudeRelRef) ].Set(refStr);
 		NumTagsValid++;
 
 		double altRel = exifInfo.GeoLocation.RelativeAltitude;
@@ -327,6 +419,13 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 	Data[ int(tMetaTag::Orientation) ].Set(orientation);
 	NumTagsValid++;
 
+	uint32 lengthUnit = exifInfo.ResolutionUnit;
+	if (lengthUnit)
+	{
+		Data[ int(tMetaTag::LengthUnit) ].Set(lengthUnit);
+		NumTagsValid++;
+	}
+
 	double pixelsPerUnitX = exifInfo.XResolution;
 	if (pixelsPerUnitX > 0.0)
 	{
@@ -338,13 +437,6 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 	if (pixelsPerUnitY > 0.0)
 	{
 		Data[ int(tMetaTag::YPixelsPerUnit) ].Set(float(pixelsPerUnitY));
-		NumTagsValid++;
-	}
-
-	uint32 lengthUnit = exifInfo.ResolutionUnit;
-	if (lengthUnit)
-	{
-		Data[ int(tMetaTag::LengthUnit) ].Set(lengthUnit);
 		NumTagsValid++;
 	}
 
@@ -443,4 +535,220 @@ void tMetaData::SetTags_AuthorNotes(const TinyEXIF::EXIFInfo& exifInfo)
 		Data[ int(tMetaTag::Copyright) ].Set(copyright);
 		NumTagsValid++;
 	}
+}
+
+
+tString tMetaData::GetPrettyValue(tMetaTag tag)
+{
+	tString value;
+	if (!IsValid())
+		return value;
+
+	tMetaDatum& datum = Data[int(tag)];
+	if (!datum.IsSet())
+		return value;
+
+	switch (tag)
+	{
+		case tMetaTag::Make:
+		case tMetaTag::Model:
+		case tMetaTag::SerialNumber:
+			value = datum.String;
+			break;
+
+		case tMetaTag::LatitudeDD:
+			tsPrintf(value, "%.4f°", datum.Float);
+			break;
+
+		case tMetaTag::LatitudeDMS:
+			value = datum.String;
+			break;
+		
+		case tMetaTag::LongitudeDD:
+			tsPrintf(value, "%.4f°", datum.Float);
+			break;
+
+		case tMetaTag::LongitudeDMS:
+			value = datum.String;
+			break;
+
+		case tMetaTag::Altitude:
+			tsPrintf(value, "%.1f m", datum.Float);
+			break;
+
+		case tMetaTag::AltitudeRelRef:
+			value = datum.String;
+			break;
+
+		case tMetaTag::AltitudeRel:
+		{
+			tsPrintf(value, "%.1f m", datum.Float);
+			tMetaDatum& refDatum = Data[int(tMetaTag::AltitudeRelRef)];
+			if (refDatum.IsSet())
+				value = value + " " + refDatum.String.LowCase();
+			break;
+		}
+
+		case tMetaTag::Roll:
+		case tMetaTag::Pitch:
+		case tMetaTag::Yaw:
+			tsPrintf(value, "%.2f°", datum.Float);
+			break;
+
+		case tMetaTag::VelX:
+		case tMetaTag::VelY:
+		case tMetaTag::VelZ:
+		case tMetaTag::Speed:
+			tsPrintf(value, "%.2f m/s", datum.Float);
+			break;
+
+		case tMetaTag::GPSSurvey:
+		case tMetaTag::GPSTimeStamp:
+			value = datum.String;
+			break;
+
+		case tMetaTag::ShutterSpeed:
+			tsPrintf(value, "%.1f 1/s", datum.Float);
+			break;
+
+		case tMetaTag::ExposureTime:
+			tsPrintf(value, "%.5f s", datum.Float);
+			break;
+
+		case tMetaTag::ExposureBias:
+			tsPrintf(value, "%.3f APEX", datum.Float);
+			break;
+
+		case tMetaTag::FStop:
+			tsPrintf(value, "%.1f", datum.Float);
+			break;
+
+		case tMetaTag::ExposureProgram:
+		{
+			value = "Not Defined";
+			switch (datum.Uint32)
+			{
+				case 1: value = "Manual";				break;
+				case 2: value = "Normal Program";		break;
+				case 3: value = "Aperture Priority";	break;
+				case 4: value = "Shutter Priority";		break;
+				case 5: value = "Creative Program";		break;
+				case 6: value = "Action Program";		break;
+				case 7: value = "Portrait Mode";		break;
+				case 8: value = "Landscape Mode";		break;
+			}
+			break;
+		}
+
+		case tMetaTag::ISO:
+			tsPrintf(value, "%u", datum.Uint32);
+			break;
+
+		case tMetaTag::Aperture:
+		case tMetaTag::Brightness:
+			tsPrintf(value, "%.3f APEX", datum.Float);
+			break;
+
+		case tMetaTag::MeteringMode:
+		{
+			value = "Unknown";
+			switch (datum.Uint32)
+			{
+				case 1: value = "Average";					break;
+				case 2: value = "Center Weighted Average";	break;
+				case 3: value = "Spot";						break;
+				case 4: value = "Multi-spot";				break;
+				case 5: value = "Pattern";					break;
+				case 6: value = "Partial";					break;
+			}
+			break;
+		}
+
+/*
+		Flash,			//	uint32	Flash Info.
+						//			(Flash & 1)			:	Used.
+						//									0: No flash.
+						//									1: Flash Used.
+						//			((Flash & 6) >> 1)	:	Light Status.
+						//									0: No Strobe Return Detection Function.
+						//									1: Reserved.
+						//									2: Strobe Return Light Not Detected.
+						//									3: Strobe Return Light Detected.
+						//			((Flash & 24) >> 3)	:	Mode.
+						//									0: Unknown.
+						//									1: Compulsory Flash Firing.
+						//									2: Compulsory Flash Suppression.
+						//									3: Auto Mode.
+						//			((Flash & 32) >> 5)	:	Function.
+						//									0: Flash Present,
+						//									1: No Flash Present.
+						//			((Flash & 64) >> 6)	:	Red-Eye Reduction.
+						//									0: No Red-Eye Reduction Mode Or Unknown.
+						//									1: Red-Eye Reduction Supported.
+*/
+
+		case tMetaTag::FocalLength:
+			tsPrintf(value, "%d pixels", int(datum.Float));
+			break;
+
+		case tMetaTag::Orientation:
+		{
+			value = "Unspecified";
+			switch (datum.Uint32)
+			{
+				case 1: value = "Normal";			break;
+				case 2: value = "Flip-Y";			break;
+				case 3: value = "Flip-XY";			break;
+				case 4: value = "Flip-X";			break;
+				case 5: value = "Rot-CW90 Flip-Y";	break;
+				case 6: value = "Rot-ACW90";		break;
+				case 7: value = "Rot-ACW90 Flip-Y";	break;
+				case 8: value = "Rot-CW90";			break;
+			}
+			break;
+		}
+
+		case tMetaTag::LengthUnit:
+		{
+			value = "units";
+			switch (datum.Uint32)
+			{
+				case 2: value = "inch";	break;
+				case 3: value = "cm";	break;
+			}
+			break;
+		}
+
+		case tMetaTag::XPixelsPerUnit:
+		case tMetaTag::YPixelsPerUnit:
+		{
+			tString unit = GetPrettyValue(tMetaTag::LengthUnit);
+			if (unit.IsValid())
+				tsPrintf(value, "%d pixels/%s", int(datum.Float), unit.Chars());
+			else
+				tsPrintf(value, "%d pixels", int(datum.Float));
+			break;
+		}
+
+		case tMetaTag::BitsPerSample:
+			tsPrintf(value, "%d bits/component", datum.Uint32);
+			break;
+
+		case tMetaTag::ImageWidth:
+		case tMetaTag::ImageHeight:
+		case tMetaTag::ImageWidthOrig:
+		case tMetaTag::ImageHeightOrig:
+			tsPrintf(value, "%d pixels", datum.Uint32);
+			break;
+
+		case tMetaTag::DateTimeChange:
+		case tMetaTag::DateTimeOrig:
+		case tMetaTag::DateTimeDigit:
+		case tMetaTag::Software:
+		case tMetaTag::Description:
+		case tMetaTag::Copyright:
+			value = datum.String;
+			break;
+	}
+	return value;
 }

@@ -40,11 +40,11 @@ enum class tMetaTag
 	LongitudeDD,	//	float	Decimal degrees.
 	LongitudeDMS,	//	string	Degrees, Minutes, Seconds, Direction. Eg. 160°59'4"W
 	Altitude,		//	float	Altitude in meters relative to sea-level.
-	AltitudeRelGnd,	//	string	Relative altitude ground reference. Applies to AltitudeRel value.
-					//			"No Reference"		: Reference data unavailable.
+	AltitudeRelRef,	//	string	Relative altitude ground reference. Applies to AltitudeRel value.
+					//			"Above Ground"		: Reference data unavailable. Assume above ground.
 					//			"Above Sea Level"	: Ground is above sea level.
 					//			"Below Sea Level"	: Ground is below sea level.
-	AltitudeRel,	//	float	Relative altitude in meters. Likely how high above ground.
+	AltitudeRel,	//	float	Relative altitude in meters. Relative to AltitudeRelRef.
 	Roll,			//	float	Flight roll in degrees.
 	Pitch,			//	float	Flight pitch in degrees.
 	Yaw,			//	float	Flight yaw in degrees.
@@ -117,12 +117,12 @@ enum class tMetaTag
 					//			6: Rot-ACW90.			The image is rotated 90 degrees anti-clockwise.
 					//			7: Rot-ACW90 Flip-Y.	The image is rotated 90 degrees clockwise and then flipped about verical axis.
 					//			8: Rot-CW90.			The image is rotated 90 degrees anti-clockwise.
-	XPixelsPerUnit,	//	float	Horizontal pixels per DistanceUnit. AKA: XResolution.
-	YPixelsPerUnit,	//	float	Veritical pixels per Distanceunit.  AKA: YResolution.
 	LengthUnit,		//	uint32	The length unit used for XPixelsPerUnit and YPixelsPerUnit. AKA: ResolutionUnit.
 					//			1: Not Specified.
 					//			2: Inch.
 					//			3: cm.
+	XPixelsPerUnit,	//	float	Horizontal pixels per DistanceUnit. AKA: XResolution.
+	YPixelsPerUnit,	//	float	Veritical pixels per Distanceunit.  AKA: YResolution.
 	BitsPerSample,	//	uint32	Bits per colour component. Not bits per pixel.
 	ImageWidth,		//	uint32	Width in pixels.
 	ImageHeight,	//	uint32	Height in pixels.
@@ -183,6 +183,13 @@ public:
 
 	tMetaData& operator=(const tMetaData& src)																			{ Set(src); return *this; }
 	tMetaDatum& operator[](tMetaTag tag)																				{ return Data[int(tag)]; }
+
+	// Returns a printable string of the value of a specific tag. Includes units if appropriate. eg. Passing
+	// tMetaTag::Altitude for the tag would yield "55.33 meters". This function can sometime be a little smart and may
+	// lookup a supplementary tag in the data to generate a better string. eg. Passing in XPixelsPerUnit for the tag
+	// can result in a string line "300 pixels/inch" -- The units, inches, was looked up automatically from the
+	// LengthUnit tag.
+	tString GetPrettyValue(tMetaTag);
 
 private:
 	int NumTagsValid;

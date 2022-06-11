@@ -312,8 +312,8 @@ tTestUnit(ImageMetaData)
 	datum = metaData[tMetaTag::AltitudeRel];
 	if (datum.IsValid())	tPrintf("AltitudeRel: %f m\n", datum.Float);
 
-	datum = metaData[tMetaTag::AltitudeRelGnd];
-	if (datum.IsValid())	tPrintf("AltitudeRelGnd: Ground is %s\n", datum.String.Chars());
+	datum = metaData[tMetaTag::AltitudeRelRef];
+	if (datum.IsValid())	tPrintf("AltitudeRelRef: %s\n", datum.String.Chars());
 
 	datum = metaData[tMetaTag::Roll];
 	if (datum.IsValid())	tPrintf(u8"Roll: %f°\n", datum.Float);
@@ -379,14 +379,14 @@ tTestUnit(ImageMetaData)
 	datum = metaData[tMetaTag::Orientation];
 	if (datum.IsValid())	tPrintf("Orientation [0,8]: %u\n", datum.Uint32);
 
+	datum = metaData[tMetaTag::LengthUnit];
+	if (datum.IsValid())	tPrintf("LengthUnit [1,3]: %u\n", datum.Uint32);
+
 	datum = metaData[tMetaTag::XPixelsPerUnit];
 	if (datum.IsValid())	tPrintf("XPixelsPerUnit: %f pixels\n", datum.Float);
 
 	datum = metaData[tMetaTag::YPixelsPerUnit];
 	if (datum.IsValid())	tPrintf("YPixelsPerUnit: %f pixels\n", datum.Float);
-
-	datum = metaData[tMetaTag::LengthUnit];
-	if (datum.IsValid())	tPrintf("LengthUnit [1,3]: %u\n", datum.Uint32);
 
 	datum = metaData[tMetaTag::BitsPerSample];
 	if (datum.IsValid())	tPrintf("BitsPerSample: %u\n", datum.Uint32);
