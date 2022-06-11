@@ -136,8 +136,13 @@ enum class tMetaTag
 	Software,		//	string	Software used to edit image.
 	Description,	//	string	Image description.
 	Copyright,		//	string	Copyright notice.
+
 	NumTags
 };
+
+
+const char* tGetMetaTagName(tMetaTag);
+const char* tGetMetaTagDesc(tMetaTag);
 
 
 // A single piece of image metadata. Could be more memory efficient, but hardly seems worth it.
@@ -153,6 +158,8 @@ struct tMetaDatum
 	void Set(float v)																									{ Type = DatumType::Float; Float = v; }
 	void Set(const tString& v)																							{ Type = DatumType::String; String = v; }
 	bool IsValid() const																								{ return (Type != DatumType::Invalid); }
+	bool IsSet() const																									{ return (Type != DatumType::Invalid); }
+
 	tMetaDatum& operator=(const tMetaDatum& src)																		{ Set(src); return *this; }
 
 	DatumType Type;

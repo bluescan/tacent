@@ -22,6 +22,76 @@ using namespace tImage;
 using namespace tMath;
 
 
+const char* tMetaTagNames[] =
+{
+	// Camera Hardware Tag Names.
+	"Make",
+	"Model",
+	"Serial Number",
+
+	// Geo Location Tag Names.
+	"Latitude DD",
+	"Longitude DD",
+	"Latitude",
+	"Longitude",
+	"Altitude",
+	"Altitude Ref",
+	"Altitude Rel",
+	"Roll",
+	"Pitch",
+	"Yaw",
+	"VelX",
+	"VelY",
+	"VelZ",
+	"Speed",
+	"GPS Survey",
+	"GPS Time Stamp",
+
+	// Camera Settings Tag Names.
+	"Shutter Speed",
+	"Exposure Time",
+	"Exposure Bias",
+	"F-Stop",
+	"Exposure Program",
+	"ISO",
+	"Aperture",
+	"Brightness",
+	"Metering Mode",
+	"Flash",
+	"Focal Length",
+	"Orientation",
+	"X-Pixels Per Unit",
+	"Y-Pixels Per Unit",
+	"Length Unit",
+	"Bits Per Sample",
+	"Image Width",
+	"Image Height",
+	"Image Width Orig",
+	"Image Height Orig",
+	"Date/Time Change",
+	"Date/Time Orig",
+	"Date/Time Digitized",
+
+	// Authoring Note Tag Names.
+	"Software",
+	"Description",
+	"Copyright"
+};
+tStaticAssert(tNumElements(tMetaTagNames) == int(tMetaTag::NumTags));
+
+
+const char* tImage::tGetMetaTagName(tMetaTag tag)
+{
+	return tMetaTagNames[int(tag)];
+}
+
+
+const char* tImage::tGetMetaTagDesc(tMetaTag tag)
+{
+	return tMetaTagNames[int(tag)];
+}
+
+
 bool tMetaData::Set(const uint8* rawJpgImageData, int numBytes)
 {
 	Clear();
