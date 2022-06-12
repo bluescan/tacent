@@ -792,7 +792,7 @@ tString tMetaData::GetPrettyValue(tMetaTag tag) const
 			switch (datum.Uint32)
 			{
 				case 1: value = "Compulsory Firing";		break;
-				case 2: value = "Compulsory Suppession";	break;
+				case 2: value = "Compulsory Suppression";	break;
 				case 3: value = "Auto";						break;
 			}
 			break;
