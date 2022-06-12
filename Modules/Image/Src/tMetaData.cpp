@@ -58,10 +58,10 @@ const char* tMetaTagNames[] =
 	"Aperture",
 	"Brightness",
 	"Metering Mode",
+	"Flash Present",
 	"Flash Used",
 	"Flash Strobe",
 	"Flash Mode",
-	"Flash Present",
 	"Flash Red-Eye",
 	"Focal Length",
 	"Orientation",
@@ -142,6 +142,9 @@ const char* tMetaTagDescs[] =
 		"4: Multi-spot.\n"
 		"5: Pattern.\n"
 		"6: Partial.",
+	"Flash hardware present. Values:\n"
+		"0: No Flash Present.\n"
+		"1: Flash Present.",
 	"Flash used. Values:\n"
 		"0: No.\n"
 		"1: Yes.",
@@ -155,9 +158,6 @@ const char* tMetaTagDescs[] =
 		"1: Compulsory Flash Firing.\n"
 		"2: Compulsory Flash Suppression.\n"
 		"3: Auto.",
-	"Flash hardware present. Values:\n"
-		"0: Flash Present.\n"
-		"1: No Flash Present.",
 	"Flash red-eye reduction.\n"
 		"0: No Red-Eye Reduction or Unknown.\n"
 		"1: Red-Eye Reduction.",
@@ -419,12 +419,18 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 	}
 
 	double exposureBias = exifInfo.ExposureBiasValue;
-	Data[ int(tMetaTag::ExposureBias) ].Set(float(exposureBias));
-	NumTagsValid++;
+	if (exposureBias > 0.0)
+	{
+		Data[ int(tMetaTag::ExposureBias) ].Set(float(exposureBias));
+		NumTagsValid++;
+	}
 
 	double fstop = exifInfo.FNumber;
-	Data[ int(tMetaTag::FStop) ].Set(float(fstop));
-	NumTagsValid++;
+	if (fstop > 0.0)
+	{
+		Data[ int(tMetaTag::FStop) ].Set(float(fstop));
+		NumTagsValid++;
+	}
 
 	// Only set exposure program if it's defined.
 	uint32 prog = exifInfo.ExposureProgram;
@@ -435,16 +441,25 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 	}
 
 	uint32 iso = exifInfo.ISOSpeedRatings;
-	Data[ int(tMetaTag::ISO) ].Set(iso);
-	NumTagsValid++;
+	if (iso > 0)
+	{
+		Data[ int(tMetaTag::ISO) ].Set(iso);
+		NumTagsValid++;
+	}
 
 	double aperture = exifInfo.ApertureValue;
-	Data[ int(tMetaTag::Aperture) ].Set(float(aperture));
-	NumTagsValid++;
+	if (aperture > 0.0)
+	{
+		Data[ int(tMetaTag::Aperture) ].Set(float(aperture));
+		NumTagsValid++;
+	}
 
 	double brightness = exifInfo.BrightnessValue;
-	Data[ int(tMetaTag::Brightness) ].Set(float(brightness));
-	NumTagsValid++;
+	if (brightness)
+	{
+		Data[ int(tMetaTag::Brightness) ].Set(float(brightness));
+		NumTagsValid++;
+	}
 
 	// Only set metering mode if it's known.
 	uint32 meterMode = exifInfo.MeteringMode;
@@ -456,40 +471,52 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 
 	uint32 flash = exifInfo.Flash;
 
-	// Flash bit 0.
-	uint32 flashUsed = (flash & 0x00000001);
-	Data[ int(tMetaTag::FlashUsed) ].Set(flashUsed);
+	// Flash bit 5. This bit is true if flash NOT present.
+	uint32 flashHardware = ((flash & 0x00000020) >> 5) ? 0 : 1;
+	Data[ int(tMetaTag::FlashHardware) ].Set(flashHardware);
 	NumTagsValid++;
 
-	// Flash bits 1 and 2. Only set if dectector present.
-	uint32 flashStrobe = (flash & 0x00000006) >> 1;
-	if (flashStrobe)
+	if (flashHardware)
 	{
-		Data[ int(tMetaTag::FlashStrobe) ].Set(flashStrobe);
-		NumTagsValid++;
+		// Flash bit 0.
+		uint32 flashUsed = (flash & 0x00000001);
+		if (flashUsed)
+		{
+			Data[ int(tMetaTag::FlashUsed) ].Set(flashUsed);
+			NumTagsValid++;
+		}
+
+		// Flash bits 1 and 2. Only set if dectector present.
+		uint32 flashStrobe = (flash & 0x00000006) >> 1;
+		if (flashStrobe)
+		{
+			Data[ int(tMetaTag::FlashStrobe) ].Set(flashStrobe);
+			NumTagsValid++;
+		}
+
+		// Flash bits 3 and 4. Only set if mode not unknown.
+		uint32 flashMode = (flash & 0x00000018) >> 3;
+		if (flashMode)
+		{
+			Data[ int(tMetaTag::FlashMode) ].Set(flashMode);
+			NumTagsValid++;
+		}
+
+		// Flash bit 6.
+		uint32 flashRedEye = (flash & 0x00000040) >> 6;
+		if (flashRedEye)
+		{
+			Data[ int(tMetaTag::FlashRedEye) ].Set(flashRedEye);
+			NumTagsValid++;
+		}
 	}
-
-	// Flash bits 3 and 4. Only set if mode not unknown.
-	uint32 flashMode = (flash & 0x00000018) >> 3;
-	if (flashMode)
-	{
-		Data[ int(tMetaTag::FlashMode) ].Set(flashMode);
-		NumTagsValid++;
-	}
-
-	// Flash bit 5.
-	uint32 flashPresent = (flash & 0x00000020) >> 5;
-	Data[ int(tMetaTag::FlashPresent) ].Set(flashPresent);
-	NumTagsValid++;
-
-	// Flash bit 6.
-	uint32 flashRedEye = (flash & 0x00000040) >> 6;
-	Data[ int(tMetaTag::FlashRedEye) ].Set(flashRedEye);
-	NumTagsValid++;
 
 	double focalLength = exifInfo.FocalLength;
-	Data[ int(tMetaTag::FocalLength) ].Set(float(focalLength));
-	NumTagsValid++;
+	if (focalLength > 0.0)
+	{
+		Data[ int(tMetaTag::FocalLength) ].Set(float(focalLength));
+		NumTagsValid++;
+	}
 
 	// Only set orientation if it's specified.
 	uint32 orientation = exifInfo.Orientation;
@@ -742,6 +769,10 @@ tString tMetaData::GetPrettyValue(tMetaTag tag) const
 			}
 			break;
 
+		case tMetaTag::FlashHardware:
+			value = datum.Uint32 ? "Hardware Present" : "Hardware Not Present";
+			break;
+
 		case tMetaTag::FlashUsed:
 			value = datum.Uint32 ? "Yes" : "No";
 			break;
@@ -764,10 +795,6 @@ tString tMetaData::GetPrettyValue(tMetaTag tag) const
 				case 2: value = "Compulsory Suppession";	break;
 				case 3: value = "Auto";						break;
 			}
-			break;
-
-		case tMetaTag::FlashPresent:
-			value = datum.Uint32 ? "Not Present" : "Present";
 			break;
 
 		case tMetaTag::FlashRedEye:

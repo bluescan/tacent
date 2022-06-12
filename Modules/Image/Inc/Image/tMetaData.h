@@ -85,6 +85,9 @@ enum class tMetaTag
 					//			4: Multi-spot.
 					//			5: Pattern.
 					//			6: Partial.
+	FlashHardware,	//	uint32	Flash hardware present.
+					//			0: Flash Present.
+					//			1: No Flash Present.
 	FlashUsed,		//	uint32	Flash used.
 					//			0: No.
 					//			1: Yes.
@@ -98,9 +101,6 @@ enum class tMetaTag
 					//			1: Compulsory Flash Firing.
 					//			2: Compulsory Flash Suppression.
 					//			3: Auto.
-	FlashPresent,	//	uint32	Flash hardware present.
-					//			0: Flash Present.
-					//			1: No Flash Present.
 	FlashRedEye,	//	uint32	Red eye reduction.
 					//			0: No Red-Eye Reduction or Unknown.
 					//			1: Red-Eye Reduction.

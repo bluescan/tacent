@@ -356,11 +356,15 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(metaData, tMetaTag::Aperture);
 	PrintMetaDataTag(metaData, tMetaTag::Brightness);
 	PrintMetaDataTag(metaData, tMetaTag::MeteringMode);
+
+	jpgWithMeta.Load("TestData/Images/EXIF_XMP/NoFlashComp.jpg");
+	PrintMetaDataTag(metaData, tMetaTag::FlashHardware);
 	PrintMetaDataTag(metaData, tMetaTag::FlashUsed);
 	PrintMetaDataTag(metaData, tMetaTag::FlashStrobe);
 	PrintMetaDataTag(metaData, tMetaTag::FlashMode);
-	PrintMetaDataTag(metaData, tMetaTag::FlashPresent);
 	PrintMetaDataTag(metaData, tMetaTag::FlashRedEye);
+	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasLatLong.jpg");
+
 	PrintMetaDataTag(metaData, tMetaTag::FocalLength);
 	PrintMetaDataTag(metaData, tMetaTag::Orientation);
 	PrintMetaDataTag(metaData, tMetaTag::LengthUnit);
