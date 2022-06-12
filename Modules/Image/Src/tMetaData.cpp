@@ -28,6 +28,7 @@ const char* tMetaTagNames[] =
 	"Make",
 	"Model",
 	"Serial Number",
+	"Make Model Serial",
 
 	// Geo Location Tag Names
 	"Latitude DD",
@@ -90,6 +91,8 @@ const char* tMetaTagDescs[] =
 	"Camera make/manufacturer.",
 	"Camera model.",
 	"Camera serial number.",
+	"Camera unique identifier containing make, model, and serial number.\n"
+		"Takes form \"Make | Model | Serial\" when all 3 present.",
 
 	// Geo Location Tag Descriptions
 	"Latitude in decimal degrees.",
@@ -225,27 +228,42 @@ bool tMetaData::Set(const uint8* rawJpgImageData, int numBytes)
 
 void tMetaData::SetTags_CamHardware(const TinyEXIF::EXIFInfo& exifInfo)
 {
-	// Make
-	std::string make = exifInfo.Make;
-	if (!make.empty())
+	// Make. tString can handle nullptr.
+	tString make = exifInfo.Make.c_str();
+	if (make.IsValid())
 	{
-		Data[ int(tMetaTag::Make) ].Set(make.c_str());
+		Data[ int(tMetaTag::Make) ].Set(make);
 		NumTagsValid++;
 	}
 
 	// Model
-	std::string model = exifInfo.Model;
-	if (!model.empty())
+	tString model = exifInfo.Model.c_str();
+	if (model.IsValid())
 	{
-		Data[ int(tMetaTag::Model) ].Set(model.c_str());
+		Data[ int(tMetaTag::Model) ].Set(model);
 		NumTagsValid++;
 	}
 	
 	// SerialNumber
-	std::string serial = exifInfo.SerialNumber;
-	if (!serial.empty())
+	tString serial = exifInfo.SerialNumber.c_str();
+	if (serial.IsValid())
 	{
-		Data[ int(tMetaTag::SerialNumber) ].Set(serial.c_str());
+		Data[ int(tMetaTag::SerialNumber) ].Set(serial);
+		NumTagsValid++;
+	}
+
+	// MakeModelSerial
+	// Handles any combination of valid and invalid make, model, and serial strings.
+	tString makeModelSerial = make + " | ";
+	if (model.IsValid())
+		makeModelSerial += model + " | ";
+	if (serial.IsValid())
+		makeModelSerial += serial + " | ";
+	makeModelSerial.ExtractRight(" | ");
+
+	if (makeModelSerial.IsValid())
+	{
+		Data[ int(tMetaTag::MakeModelSerial) ].Set(makeModelSerial);
 		NumTagsValid++;
 	}
 }
@@ -616,6 +634,7 @@ tString tMetaData::GetPrettyValue(tMetaTag tag) const
 		case tMetaTag::Make:
 		case tMetaTag::Model:
 		case tMetaTag::SerialNumber:
+		case tMetaTag::MakeModelSerial:
 			value = datum.String;
 			break;
 

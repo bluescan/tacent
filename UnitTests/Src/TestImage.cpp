@@ -323,6 +323,7 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(metaData, tMetaTag::Make);
 	PrintMetaDataTag(metaData, tMetaTag::Model);
 	PrintMetaDataTag(metaData, tMetaTag::SerialNumber);
+	PrintMetaDataTag(metaData, tMetaTag::MakeModelSerial);
 	PrintMetaDataTag(metaData, tMetaTag::LatitudeDD);
 	PrintMetaDataTag(metaData, tMetaTag::LatitudeDMS);
 	PrintMetaDataTag(metaData, tMetaTag::LongitudeDD);

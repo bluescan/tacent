@@ -33,6 +33,7 @@ enum class tMetaTag
 	Make,			//	string	Camera make. eg. "Canon".
 	Model,			//	string	Camera model. eg "Nikon Coolpix 5000".
 	SerialNumber,	//	string	Serial number of the camera.
+	MakeModelSerial,//	string	All 3 combined. Useful to uniquely identify camera used: "Make | Model | Serial"
 
 	// Geo Location Tags
 	LatitudeDD,		//	float	Decimal degrees.
