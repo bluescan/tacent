@@ -1603,7 +1603,7 @@ int tWorld::GenerateLodGroupsFromModelNamingConvention()
 		tString lodThreshold = baseName.ExtractRight('_');
 		tString lodTag = baseName.ExtractRight('_');
 
-		lodTag.LowCase();
+		lodTag.ToLower();
 		if (lodTag != "lod")
 			continue;
 

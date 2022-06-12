@@ -50,13 +50,13 @@ bool tRule::MaybeAddToDependenciesCaseInsensitive(const tString& dep)
 
 	tString lowCase = dep;
 	lowCase.Replace('\\', '/');
-	lowCase.LowCase();
+	lowCase.ToLower();
 
 	for (tStringItem* s = Dependencies.First(); s; s = s->Next())
 	{
 		tString lowCasePresent = *s;
 		lowCasePresent.Replace('\\', '/');
-		lowCasePresent.LowCase();
+		lowCasePresent.ToLower();
 
 		if (lowCase == lowCasePresent)
 			return false;

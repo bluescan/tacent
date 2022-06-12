@@ -146,13 +146,15 @@ struct tString
 	int RemoveTrailing(const char* theseChars);
 
 	int CountChar(char c) const;							// Counts the number of occurrences of c.
-	void ToUpper()																										{ tStd::tStrupr(TextData); }
-	void ToLower()																										{ tStd::tStrlwr(TextData); }
 
-	// UpCase and LowCase both modify the object as well as return a reference to it. Returning a reference makes it
-	// easy to string together expressions such as: if (name.LowCase() == "ah")
-	tString& UpCase()																									{ ToUpper(); return *this; }
-	tString& LowCase()																									{ ToLower(); return *this; }
+	// ToUpper and ToLower both modify the object as well as return a reference to it. Returning a reference makes it
+	// easy to string together expressions such as: if (name.ToLower() == "ah")
+	tString& ToUpper()																									{ tStd::tStrupr(TextData); return *this; }
+	tString& ToLower()																									{ tStd::tStrlwr(TextData); return *this; }
+
+	// These do not modify the string. They return a new one.
+	tString Upper() const																								{ tString s(*this); s.ToUpper(); return s; }
+	tString Lower() const																								{ tString s(*this); s.ToLower(); return s; }
 
 	// See comment for tStrtoiT in tStandard.h for format requirements. The summary is that if base is -1, the function
 	// looks one of the following prefixes in the string, defaulting to base 10 if none found.

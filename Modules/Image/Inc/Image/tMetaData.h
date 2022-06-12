@@ -84,26 +84,25 @@ enum class tMetaTag
 					//			4: Multi-spot.
 					//			5: Pattern.
 					//			6: Partial.
-	Flash,			//	uint32	Flash Info.
-					//			(Flash & 1)			:	Used.
-					//									0: No flash.
-					//									1: Flash Used.
-					//			((Flash & 6) >> 1)	:	Light Status.
-					//									0: No Strobe Return Detection Function.
-					//									1: Reserved.
-					//									2: Strobe Return Light Not Detected.
-					//									3: Strobe Return Light Detected.
-					//			((Flash & 24) >> 3)	:	Mode.
-					//									0: Unknown.
-					//									1: Compulsory Flash Firing.
-					//									2: Compulsory Flash Suppression.
-					//									3: Auto Mode.
-					//			((Flash & 32) >> 5)	:	Function.
-					//									0: Flash Present,
-					//									1: No Flash Present.
-					//			((Flash & 64) >> 6)	:	Red-Eye Reduction.
-					//									0: No Red-Eye Reduction Mode Or Unknown.
-					//									1: Red-Eye Reduction Supported.
+	FlashUsed,		//	uint32	Flash used.
+					//			0: No.
+					//			1: Yes.
+	FlashStrobe,	//	uint32	Flash strobe detection.
+					//			0: No Detector.
+					//			1: Reserved.
+					//			2: Strobe Return Light Not Detected.
+					//			3: Strobe Return Light Detected.
+	FlashMode,		//	uint32	Flash camera mode.
+					//			0: Unknown.
+					//			1: Compulsory Flash Firing.
+					//			2: Compulsory Flash Suppression.
+					//			3: Auto.
+	FlashPresent,	//	uint32	Flash hardware present.
+					//			0: Flash Present.
+					//			1: No Flash Present.
+	FlashRedEye,	//	uint32	Red eye reduction.
+					//			0: No Red-Eye Reduction or Unknown.
+					//			1: Red-Eye Reduction.
 	FocalLength,	//	float	Focal length in pixels.
 	Orientation,	//	uint32	Orientation.
 					//			Note the descriptions below describe the transformations that are present in the data in the current file.
@@ -159,7 +158,6 @@ struct tMetaDatum
 	void Set(const tString& v)																							{ Type = DatumType::String; String = v; }
 	bool IsValid() const																								{ return (Type != DatumType::Invalid); }
 	bool IsSet() const																									{ return (Type != DatumType::Invalid); }
-
 	tMetaDatum& operator=(const tMetaDatum& src)																		{ Set(src); return *this; }
 
 	DatumType Type;
@@ -183,13 +181,14 @@ public:
 
 	tMetaData& operator=(const tMetaData& src)																			{ Set(src); return *this; }
 	tMetaDatum& operator[](tMetaTag tag)																				{ return Data[int(tag)]; }
+	const tMetaDatum& operator[](tMetaTag tag) const																	{ return Data[int(tag)]; }
 
 	// Returns a printable string of the value of a specific tag. Includes units if appropriate. eg. Passing
 	// tMetaTag::Altitude for the tag would yield "55.33 meters". This function can sometime be a little smart and may
 	// lookup a supplementary tag in the data to generate a better string. eg. Passing in XPixelsPerUnit for the tag
 	// can result in a string line "300 pixels/inch" -- The units, inches, was looked up automatically from the
 	// LengthUnit tag.
-	tString GetPrettyValue(tMetaTag);
+	tString GetPrettyValue(tMetaTag) const;
 
 private:
 	int NumTagsValid;

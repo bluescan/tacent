@@ -194,7 +194,7 @@ template<int N> inline void tBitField<N>::Set(const char* hexStr)
 	tBitField< NumElements*32 > val;
 	tAssert(NumElements == val.GetNumElements());
 	tString hex(hexStr);
-	hex.UpCase();
+	hex.ToUpper();
 	hex.ExtractLeft("0X");
 	int len = hex.Length();
 	int nybIdx = 0;
@@ -241,7 +241,7 @@ template<int N> inline void tBitField<N>::SetBinary(const char* binaryStr)
 	tBitField< NumElements*32 > val;
 	tAssert(NumElements == val.GetNumElements());
 	tString bin(binaryStr);
-	bin.UpCase();
+	bin.ToUpper();
 	bin.ExtractLeft("0B");
 	int len = bin.Length();
 	int binIdx = 0;

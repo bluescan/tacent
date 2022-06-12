@@ -31,8 +31,8 @@ const char* tMetaTagNames[] =
 
 	// Geo Location Tag Names
 	"Latitude DD",
-	"Longitude DD",
 	"Latitude",
+	"Longitude DD",
 	"Longitude",
 	"Altitude",
 	"Altitude Ref",
@@ -57,12 +57,16 @@ const char* tMetaTagNames[] =
 	"Aperture",
 	"Brightness",
 	"Metering Mode",
-	"Flash",
+	"Flash Used",
+	"Flash Strobe",
+	"Flash Mode",
+	"Flash Present",
+	"Flash Red-Eye",
 	"Focal Length",
 	"Orientation",
+	"Length Unit",
 	"X-Pixels Per Unit",
 	"Y-Pixels Per Unit",
-	"Length Unit",
 	"Bits Per Sample",
 	"Image Width",
 	"Image Height",
@@ -135,8 +139,25 @@ const char* tMetaTagDescs[] =
 		"4: Multi-spot.\n"
 		"5: Pattern.\n"
 		"6: Partial.",
-	"Flash use information. Includes information on red-eye-reduction\n"
-		"use, whether strobe return was detected, and compulory flash firing.",
+	"Flash used. Values:\n"
+		"0: No.\n"
+		"1: Yes.",
+	"Flash strobe detection. Values:\n"
+		"0: No Detection.\n"
+		"1: Reserved.\n"
+		"2: Strobe Return Light Not Detected.\n"
+		"3: Strobe Return Light Detected.",
+	"Flash camera mode. Values:\n"
+		"0: Unknown.\n"
+		"1: Compulsory Flash Firing.\n"
+		"2: Compulsory Flash Suppression.\n"
+		"3: Auto.",
+	"Flash hardware present. Values:\n"
+		"0: Flash Present.\n"
+		"1: No Flash Present.",
+	"Flash red-eye reduction.\n"
+		"0: No Red-Eye Reduction or Unknown.\n"
+		"1: Red-Eye Reduction.",
 	"Focal length in pixels.",
 	"Information on camera orientation when photo taken. The following\n"
 		"transformations may be present in the image data:\n"
@@ -149,12 +170,12 @@ const char* tMetaTagDescs[] =
 		"6: Rot-ACW90.        Image is rotated 90 degrees anti-clockwise.\n"
 		"7: Rot-ACW90 Flip-Y. Image is rotated 90 degrees clockwise and then flipped about verical axis.\n"
 		"8: Rot-CW90.         Image is rotated 90 degrees anti-clockwise.",
-	"Horizontal pixels per length unit.",
-	"Veritical pixels per length unit.",
 	"The length unit used for the Pixels-per-unit values:\n"
 		"1: Not Specified.\n"
 		"2: Inch.\n"
 		"3: cm.",
+	"Horizontal pixels per length unit.",
+	"Veritical pixels per length unit.",
 	"Bits per colour component. Not bits per pixel.",
 	"Image width in pixels.",
 	"Image height in pixels.",
@@ -387,9 +408,13 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 	Data[ int(tMetaTag::FStop) ].Set(float(fstop));
 	NumTagsValid++;
 
+	// Only set exposure program if it's defined.
 	uint32 prog = exifInfo.ExposureProgram;
-	Data[ int(tMetaTag::ExposureProgram) ].Set(prog);
-	NumTagsValid++;
+	if (prog)
+	{
+		Data[ int(tMetaTag::ExposureProgram) ].Set(prog);
+		NumTagsValid++;
+	}
 
 	uint32 iso = exifInfo.ISOSpeedRatings;
 	Data[ int(tMetaTag::ISO) ].Set(iso);
@@ -403,22 +428,60 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 	Data[ int(tMetaTag::Brightness) ].Set(float(brightness));
 	NumTagsValid++;
 
+	// Only set metering mode if it's known.
 	uint32 meterMode = exifInfo.MeteringMode;
-	Data[ int(tMetaTag::MeteringMode) ].Set(meterMode);
-	NumTagsValid++;
+	if (meterMode)
+	{
+		Data[ int(tMetaTag::MeteringMode) ].Set(meterMode);
+		NumTagsValid++;
+	}
 
 	uint32 flash = exifInfo.Flash;
-	Data[ int(tMetaTag::Flash) ].Set(flash);
+
+	// Flash bit 0.
+	uint32 flashUsed = (flash & 0x00000001);
+	Data[ int(tMetaTag::FlashUsed) ].Set(flashUsed);
+	NumTagsValid++;
+
+	// Flash bits 1 and 2. Only set if dectector present.
+	uint32 flashStrobe = (flash & 0x00000006) >> 1;
+	if (flashStrobe)
+	{
+		Data[ int(tMetaTag::FlashStrobe) ].Set(flashStrobe);
+		NumTagsValid++;
+	}
+
+	// Flash bits 3 and 4. Only set if mode not unknown.
+	uint32 flashMode = (flash & 0x00000018) >> 3;
+	if (flashMode)
+	{
+		Data[ int(tMetaTag::FlashMode) ].Set(flashMode);
+		NumTagsValid++;
+	}
+
+	// Flash bit 5.
+	uint32 flashPresent = (flash & 0x00000020) >> 5;
+	Data[ int(tMetaTag::FlashPresent) ].Set(flashPresent);
+	NumTagsValid++;
+
+	// Flash bit 6.
+	uint32 flashRedEye = (flash & 0x00000040) >> 6;
+	Data[ int(tMetaTag::FlashRedEye) ].Set(flashRedEye);
 	NumTagsValid++;
 
 	double focalLength = exifInfo.FocalLength;
 	Data[ int(tMetaTag::FocalLength) ].Set(float(focalLength));
 	NumTagsValid++;
 
+	// Only set orientation if it's specified.
 	uint32 orientation = exifInfo.Orientation;
-	Data[ int(tMetaTag::Orientation) ].Set(orientation);
-	NumTagsValid++;
+	if (orientation)
+	{
+		Data[ int(tMetaTag::Orientation) ].Set(orientation);
+		NumTagsValid++;
+	}
 
+	// Only set length unit if it's specified.
 	uint32 lengthUnit = exifInfo.ResolutionUnit;
 	if (lengthUnit)
 	{
@@ -538,13 +601,13 @@ void tMetaData::SetTags_AuthorNotes(const TinyEXIF::EXIFInfo& exifInfo)
 }
 
 
-tString tMetaData::GetPrettyValue(tMetaTag tag)
+tString tMetaData::GetPrettyValue(tMetaTag tag) const
 {
 	tString value;
 	if (!IsValid())
 		return value;
 
-	tMetaDatum& datum = Data[int(tag)];
+	const tMetaDatum& datum = Data[int(tag)];
 	if (!datum.IsSet())
 		return value;
 
@@ -557,7 +620,7 @@ tString tMetaData::GetPrettyValue(tMetaTag tag)
 			break;
 
 		case tMetaTag::LatitudeDD:
-			tsPrintf(value, "%.4f°", datum.Float);
+			tsPrintf(value, "%f°", datum.Float);
 			break;
 
 		case tMetaTag::LatitudeDMS:
@@ -565,7 +628,7 @@ tString tMetaData::GetPrettyValue(tMetaTag tag)
 			break;
 		
 		case tMetaTag::LongitudeDD:
-			tsPrintf(value, "%.4f°", datum.Float);
+			tsPrintf(value, "%f°", datum.Float);
 			break;
 
 		case tMetaTag::LongitudeDMS:
@@ -573,7 +636,7 @@ tString tMetaData::GetPrettyValue(tMetaTag tag)
 			break;
 
 		case tMetaTag::Altitude:
-			tsPrintf(value, "%.1f m", datum.Float);
+			tsPrintf(value, "%f m", datum.Float);
 			break;
 
 		case tMetaTag::AltitudeRelRef:
@@ -582,24 +645,24 @@ tString tMetaData::GetPrettyValue(tMetaTag tag)
 
 		case tMetaTag::AltitudeRel:
 		{
-			tsPrintf(value, "%.1f m", datum.Float);
-			tMetaDatum& refDatum = Data[int(tMetaTag::AltitudeRelRef)];
+			tsPrintf(value, "%f m", datum.Float);
+			const tMetaDatum& refDatum = Data[int(tMetaTag::AltitudeRelRef)];
 			if (refDatum.IsSet())
-				value = value + " " + refDatum.String.LowCase();
+				value = value + " " + refDatum.String.Lower();
 			break;
 		}
 
 		case tMetaTag::Roll:
 		case tMetaTag::Pitch:
 		case tMetaTag::Yaw:
-			tsPrintf(value, "%.2f°", datum.Float);
+			tsPrintf(value, "%f°", datum.Float);
 			break;
 
 		case tMetaTag::VelX:
 		case tMetaTag::VelY:
 		case tMetaTag::VelZ:
 		case tMetaTag::Speed:
-			tsPrintf(value, "%.2f m/s", datum.Float);
+			tsPrintf(value, "%f m/s", datum.Float);
 			break;
 
 		case tMetaTag::GPSSurvey:
@@ -608,15 +671,15 @@ tString tMetaData::GetPrettyValue(tMetaTag tag)
 			break;
 
 		case tMetaTag::ShutterSpeed:
-			tsPrintf(value, "%.1f 1/s", datum.Float);
+			tsPrintf(value, "%f 1/s", datum.Float);
 			break;
 
 		case tMetaTag::ExposureTime:
-			tsPrintf(value, "%.5f s", datum.Float);
+			tsPrintf(value, "%f s", datum.Float);
 			break;
 
 		case tMetaTag::ExposureBias:
-			tsPrintf(value, "%.3f APEX", datum.Float);
+			tsPrintf(value, "%f APEX", datum.Float);
 			break;
 
 		case tMetaTag::FStop:
@@ -624,7 +687,6 @@ tString tMetaData::GetPrettyValue(tMetaTag tag)
 			break;
 
 		case tMetaTag::ExposureProgram:
-		{
 			value = "Not Defined";
 			switch (datum.Uint32)
 			{
@@ -638,7 +700,6 @@ tString tMetaData::GetPrettyValue(tMetaTag tag)
 				case 8: value = "Landscape Mode";		break;
 			}
 			break;
-		}
 
 		case tMetaTag::ISO:
 			tsPrintf(value, "%u", datum.Uint32);
@@ -646,11 +707,10 @@ tString tMetaData::GetPrettyValue(tMetaTag tag)
 
 		case tMetaTag::Aperture:
 		case tMetaTag::Brightness:
-			tsPrintf(value, "%.3f APEX", datum.Float);
+			tsPrintf(value, "%f APEX", datum.Float);
 			break;
 
 		case tMetaTag::MeteringMode:
-		{
 			value = "Unknown";
 			switch (datum.Uint32)
 			{
@@ -662,30 +722,38 @@ tString tMetaData::GetPrettyValue(tMetaTag tag)
 				case 6: value = "Partial";					break;
 			}
 			break;
-		}
 
-/*
-		Flash,			//	uint32	Flash Info.
-						//			(Flash & 1)			:	Used.
-						//									0: No flash.
-						//									1: Flash Used.
-						//			((Flash & 6) >> 1)	:	Light Status.
-						//									0: No Strobe Return Detection Function.
-						//									1: Reserved.
-						//									2: Strobe Return Light Not Detected.
-						//									3: Strobe Return Light Detected.
-						//			((Flash & 24) >> 3)	:	Mode.
-						//									0: Unknown.
-						//									1: Compulsory Flash Firing.
-						//									2: Compulsory Flash Suppression.
-						//									3: Auto Mode.
-						//			((Flash & 32) >> 5)	:	Function.
-						//									0: Flash Present,
-						//									1: No Flash Present.
-						//			((Flash & 64) >> 6)	:	Red-Eye Reduction.
-						//									0: No Red-Eye Reduction Mode Or Unknown.
-						//									1: Red-Eye Reduction Supported.
-*/
+		case tMetaTag::FlashUsed:
+			value = datum.Uint32 ? "Yes" : "No";
+			break;
+
+		case tMetaTag::FlashStrobe:
+			value = "No Detector";
+			switch (datum.Uint32)
+			{
+				case 1: value = "Reserved";					break;
+				case 2: value = "Not Detected";				break;
+				case 3: value = "Detected";					break;
+			}
+			break;
+
+		case tMetaTag::FlashMode:
+			value = "Unknown";
+			switch (datum.Uint32)
+			{
+				case 1: value = "Compulsory Firing";		break;
+				case 2: value = "Compulsory Suppession";	break;
+				case 3: value = "Auto";						break;
+			}
+			break;
+
+		case tMetaTag::FlashPresent:
+			value = datum.Uint32 ? "Not Present" : "Present";
+			break;
+
+		case tMetaTag::FlashRedEye:
+			value = datum.Uint32 ? "Reduction" : "No Reduction";
+			break;
 
 		case tMetaTag::FocalLength:
 			tsPrintf(value, "%d pixels", int(datum.Float));

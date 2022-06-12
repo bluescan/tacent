@@ -486,7 +486,10 @@ void EXIFInfo::parseIFDExif(EntryParser& parser) {
 	case 0x9201:
 		// Shutter speed value
 		parser.Fetch(ShutterSpeedValue);
-		ShutterSpeedValue = 1.0/exp(ShutterSpeedValue*log(2));
+
+		// @tacent This is wrong.
+		// ShutterSpeedValue = 1.0/exp(ShutterSpeedValue*log(2));
+		ShutterSpeedValue = exp(ShutterSpeedValue*log(2));
 		break;
 
 	case 0x9202:

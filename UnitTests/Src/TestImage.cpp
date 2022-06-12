@@ -262,6 +262,43 @@ tTestUnit(ImagePicture)
 }
 
 
+static void PrintMetaDataTag(const tMetaData& metaData, tMetaTag tag)
+{
+	tString tagName = tGetMetaTagName(tag);
+	tString tagDesc = tGetMetaTagDesc(tag);
+	tPrintf("TagName [%s]\n", tagName.Chars());
+
+	// Just want to print all on one line for now.
+	tagDesc.Replace('\n', '_');
+	tPrintf("TagDesc [%s]\n", tagDesc.Chars());
+
+	const tMetaDatum& datum = metaData[tag];
+	switch (datum.Type)
+	{
+		case tMetaDatum::DatumType::Invalid:
+			tPrintf("TagNotSet\n");
+			break;
+
+		case tMetaDatum::DatumType::Uint32:
+			tPrintf("RawValue(Uint32) [%08x]\n", datum.Uint32);
+			break;
+
+		case tMetaDatum::DatumType::Float:
+			tPrintf("RawValue(Float)  [%f]\n", datum.Float);
+			break;
+
+		case tMetaDatum::DatumType::String:
+			tPrintf("RawValue(String) [%s]\n", datum.String.Chars());
+			break;
+	}
+	tString value = metaData.GetPrettyValue(tag);
+	if (value.IsValid())
+		tPrintf("PrettyValue      [%s]\n", value.Chars());
+
+	tPrintf("\n");
+}
+
+
 tTestUnit(ImageMetaData)
 {
 	if (!tSystem::tDirExists("TestData/Images/EXIF_XMP"))
@@ -281,147 +318,67 @@ tTestUnit(ImageMetaData)
 
 	tImageJPG jpgWithMeta("TestData/Images/EXIF_XMP/HasLatLong.jpg");
 	tRequire(jpgWithMeta.MetaData.IsValid());
-
 	tMetaData& metaData = jpgWithMeta.MetaData;
-	tMetaDatum datum;
 
-	datum = metaData[tMetaTag::Make];
-	if (datum.IsValid())	tPrintf("Make: %s\n", datum.String.Chars());
-
-	datum = metaData[tMetaTag::Model];
-	if (datum.IsValid())	tPrintf("Model: %s\n", datum.String.Chars());
-
-	datum = metaData[tMetaTag::SerialNumber];
-	if (datum.IsValid())	tPrintf("SerialNumber: %s\n", datum.String.Chars());
-
-	datum = metaData[tMetaTag::LatitudeDD];
-	if (datum.IsValid())	tPrintf("LatitudeDD : %f\n", datum.Float);
-
-	datum = metaData[tMetaTag::LatitudeDMS];
-	if (datum.IsValid())	tPrintf("LatitudeDMS: %s\n", datum.String.Chars());
-
-	datum = metaData[tMetaTag::LongitudeDD];
-	if (datum.IsValid())	tPrintf("LongitudeDD : %f\n", datum.Float);
-
-	datum = metaData[tMetaTag::LongitudeDMS];
-	if (datum.IsValid())	tPrintf("LongitudeDMS: %s\n", datum.String.Chars());
-
-	datum = metaData[tMetaTag::Altitude];
-	if (datum.IsValid())	tPrintf("Altitude: %f m Above Sea Level\n", datum.Float);
-
-	datum = metaData[tMetaTag::AltitudeRel];
-	if (datum.IsValid())	tPrintf("AltitudeRel: %f m\n", datum.Float);
-
-	datum = metaData[tMetaTag::AltitudeRelRef];
-	if (datum.IsValid())	tPrintf("AltitudeRelRef: %s\n", datum.String.Chars());
-
-	datum = metaData[tMetaTag::Roll];
-	if (datum.IsValid())	tPrintf(u8"Roll: %f°\n", datum.Float);
-
-	datum = metaData[tMetaTag::Pitch];
-	if (datum.IsValid())	tPrintf(u8"Pitch: %f°\n", datum.Float);
-
-	datum = metaData[tMetaTag::Yaw];
-	if (datum.IsValid())	tPrintf(u8"Yaw: %f°\n", datum.Float);
-
-	datum = metaData[tMetaTag::VelX];
-	if (datum.IsValid())	tPrintf("VelX: %f m/s\n", datum.Float);
-
-	datum = metaData[tMetaTag::VelY];
-	if (datum.IsValid())	tPrintf("VelY: %f m/s\n", datum.Float);
-
-	datum = metaData[tMetaTag::VelZ];
-	if (datum.IsValid())	tPrintf("VelZ: %f m/s\n", datum.Float);
-
-	datum = metaData[tMetaTag::Speed];
-	if (datum.IsValid())	tPrintf("Speed: %f m/s\n", datum.Float);
+	PrintMetaDataTag(metaData, tMetaTag::Make);
+	PrintMetaDataTag(metaData, tMetaTag::Model);
+	PrintMetaDataTag(metaData, tMetaTag::SerialNumber);
+	PrintMetaDataTag(metaData, tMetaTag::LatitudeDD);
+	PrintMetaDataTag(metaData, tMetaTag::LatitudeDMS);
+	PrintMetaDataTag(metaData, tMetaTag::LongitudeDD);
+	PrintMetaDataTag(metaData, tMetaTag::LongitudeDMS);
+	PrintMetaDataTag(metaData, tMetaTag::Altitude);
+	PrintMetaDataTag(metaData, tMetaTag::AltitudeRelRef);
+	PrintMetaDataTag(metaData, tMetaTag::AltitudeRel);
+	PrintMetaDataTag(metaData, tMetaTag::Roll);
+	PrintMetaDataTag(metaData, tMetaTag::Pitch);
+	PrintMetaDataTag(metaData, tMetaTag::Yaw);
+	PrintMetaDataTag(metaData, tMetaTag::VelX);
+	PrintMetaDataTag(metaData, tMetaTag::VelY);
+	PrintMetaDataTag(metaData, tMetaTag::VelZ);
+	PrintMetaDataTag(metaData, tMetaTag::Speed);
 
 	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasUTCDateTime.jpg");
 
-	datum = metaData[tMetaTag::GPSTimeStamp];
-	if (datum.IsValid())	tPrintf("GPSTimeStamp: %s\n", datum.String.Chars());
+	PrintMetaDataTag(metaData, tMetaTag::GPSSurvey);
+	PrintMetaDataTag(metaData, tMetaTag::GPSTimeStamp);
 
+	// Go back to original file.
 	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasLatLong.jpg");
 
-	datum = metaData[tMetaTag::ShutterSpeed];
-	if (datum.IsValid())	tPrintf("ShutterSpeed: %f s^-1\n", datum.Float);
-
-	datum = metaData[tMetaTag::ExposureTime];
-	if (datum.IsValid())	tPrintf("ExposureTime: %f s\n", datum.Float);
-
-	datum = metaData[tMetaTag::ExposureBias];
-	if (datum.IsValid())	tPrintf("ExposureBias: %f APEX\n", datum.Float);
-
-	datum = metaData[tMetaTag::FStop];
-	if (datum.IsValid())	tPrintf("FStop: %f\n", datum.Float);
-
-	datum = metaData[tMetaTag::ExposureProgram];
-	if (datum.IsValid())	tPrintf("ExposureProgram [0,8]: %u\n", datum.Uint32);
-
-	datum = metaData[tMetaTag::ISO];
-	if (datum.IsValid())	tPrintf("ISO: %u\n", datum.Uint32);
-
-	datum = metaData[tMetaTag::Aperture];
-	if (datum.IsValid())	tPrintf("Aperture: %f\n", datum.Float);
-
-	datum = metaData[tMetaTag::Brightness];
-	if (datum.IsValid())	tPrintf("Brightness: %f\n", datum.Float);
-
-	datum = metaData[tMetaTag::MeteringMode];
-	if (datum.IsValid())	tPrintf("MeteringMode [0,6]: %u\n", datum.Uint32);
-
-	datum = metaData[tMetaTag::Flash];
-	if (datum.IsValid())	tPrintf("Flash: 0x%08X\n", datum.Uint32);
-
-	datum = metaData[tMetaTag::FocalLength];
-	if (datum.IsValid())	tPrintf("FocalLength: %f pixels\n", datum.Float);
-
-	datum = metaData[tMetaTag::Orientation];
-	if (datum.IsValid())	tPrintf("Orientation [0,8]: %u\n", datum.Uint32);
-
-	datum = metaData[tMetaTag::LengthUnit];
-	if (datum.IsValid())	tPrintf("LengthUnit [1,3]: %u\n", datum.Uint32);
-
-	datum = metaData[tMetaTag::XPixelsPerUnit];
-	if (datum.IsValid())	tPrintf("XPixelsPerUnit: %f pixels\n", datum.Float);
-
-	datum = metaData[tMetaTag::YPixelsPerUnit];
-	if (datum.IsValid())	tPrintf("YPixelsPerUnit: %f pixels\n", datum.Float);
-
-	datum = metaData[tMetaTag::BitsPerSample];
-	if (datum.IsValid())	tPrintf("BitsPerSample: %u\n", datum.Uint32);
-
-	datum = metaData[tMetaTag::ImageWidth];
-	if (datum.IsValid())	tPrintf("ImageWidth: %u\n", datum.Uint32);
-
-	datum = metaData[tMetaTag::ImageHeight];
-	if (datum.IsValid())	tPrintf("ImageHeight: %u\n", datum.Uint32);
-
-	datum = metaData[tMetaTag::ImageWidthOrig];
-	if (datum.IsValid())	tPrintf("ImageWidthOrig: %u\n", datum.Uint32);
-
-	datum = metaData[tMetaTag::ImageHeightOrig];
-	if (datum.IsValid())	tPrintf("ImageHeightOrig: %u\n", datum.Uint32);
-
-	datum = metaData[tMetaTag::DateTimeChange];
-	if (datum.IsValid())	tPrintf("DateTimeChange: %s\n", datum.String.Chars());
-
-	datum = metaData[tMetaTag::DateTimeOrig];
-	if (datum.IsValid())	tPrintf("DateTimeOrig: %s\n", datum.String.Chars());
-
-	datum = metaData[tMetaTag::DateTimeDigit];
-	if (datum.IsValid())	tPrintf("DateTimeDigit: %s\n", datum.String.Chars());
+	PrintMetaDataTag(metaData, tMetaTag::ShutterSpeed);
+	PrintMetaDataTag(metaData, tMetaTag::ExposureTime);
+	PrintMetaDataTag(metaData, tMetaTag::ExposureBias);
+	PrintMetaDataTag(metaData, tMetaTag::FStop);
+	PrintMetaDataTag(metaData, tMetaTag::ExposureProgram);
+	PrintMetaDataTag(metaData, tMetaTag::ISO);
+	PrintMetaDataTag(metaData, tMetaTag::Aperture);
+	PrintMetaDataTag(metaData, tMetaTag::Brightness);
+	PrintMetaDataTag(metaData, tMetaTag::MeteringMode);
+	PrintMetaDataTag(metaData, tMetaTag::FlashUsed);
+	PrintMetaDataTag(metaData, tMetaTag::FlashStrobe);
+	PrintMetaDataTag(metaData, tMetaTag::FlashMode);
+	PrintMetaDataTag(metaData, tMetaTag::FlashPresent);
+	PrintMetaDataTag(metaData, tMetaTag::FlashRedEye);
+	PrintMetaDataTag(metaData, tMetaTag::FocalLength);
+	PrintMetaDataTag(metaData, tMetaTag::Orientation);
+	PrintMetaDataTag(metaData, tMetaTag::LengthUnit);
+	PrintMetaDataTag(metaData, tMetaTag::XPixelsPerUnit);
+	PrintMetaDataTag(metaData, tMetaTag::YPixelsPerUnit);
+	PrintMetaDataTag(metaData, tMetaTag::BitsPerSample);
+	PrintMetaDataTag(metaData, tMetaTag::ImageWidth);
+	PrintMetaDataTag(metaData, tMetaTag::ImageHeight);
+	PrintMetaDataTag(metaData, tMetaTag::ImageWidthOrig);
+	PrintMetaDataTag(metaData, tMetaTag::ImageHeightOrig);
+	PrintMetaDataTag(metaData, tMetaTag::DateTimeChange);
+	PrintMetaDataTag(metaData, tMetaTag::DateTimeOrig);
+	PrintMetaDataTag(metaData, tMetaTag::DateTimeDigit);
 
 	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasAuthorNotes.jpg");
 
-	datum = metaData[tMetaTag::Software];
-	if (datum.IsValid())	tPrintf("Software: %s\n", datum.String.Chars());
-
-	datum = metaData[tMetaTag::Description];
-	if (datum.IsValid())	tPrintf("Description: %s\n", datum.String.Chars());
-
-	datum = metaData[tMetaTag::Copyright];
-	if (datum.IsValid())	tPrintf("Copyright: %s\n", datum.String.Chars());
+	PrintMetaDataTag(metaData, tMetaTag::Software);
+	PrintMetaDataTag(metaData, tMetaTag::Description);
+	PrintMetaDataTag(metaData, tMetaTag::Copyright);
 }
 
 
