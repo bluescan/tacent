@@ -100,10 +100,10 @@ const char* tMetaTagDescs[] =
 	"Longitude in decimal degrees.",
 	"Longitude in degrees, minutes, seconds followed by W (west) or E (east).",
 	"Altitude in meters relative to sea-level.",
-	"Relative altitude ground reference. Applies to Altitude Rel value. Values:\n"
-		"\"Above Ground\"    : Reference data unavailable. Assume above ground.\n"
-		"\"Above Sea Level\" : Ground is above sea level.\n"
-		"\"Below Sea Level\" : Ground is below sea level.",
+	"Relative altitude ground reference. Applies to Altitude Rel value.\n"
+		"\"Above Ground\": Reference data unavailable. Assume above ground.\n"
+		"\"Above Sea Level\": Ground is above sea level.\n"
+		"\"Below Sea Level\": Ground is below sea level.",
 	"Relative altitude in meters. Often how high above ground.",
 	"Flight roll in degrees.",
 	"Flight pitch in degrees.",
@@ -121,62 +121,58 @@ const char* tMetaTagDescs[] =
 	"Exposure time in seconds. Reciprocal of Shutter Speed. If not set, computed.",
 	"Exposure bias in APEX units.",
 	"Ratio of the lens focal length to the diameter of the entrance pupil. Unitless.",
-	"Exposure program. Values:\n"
-		"0: Not Defined.\n"
-		"1: Manual.\n"
-		"2: Normal Program.\n"
-		"3: Aperture Priority.\n"
-		"4: Shutter Priority.\n"
-		"5: Creative Program.\n"
-		"6: Action Program.\n"
-		"7: Portrait Mode.\n"
-		"8: Landscape Mode.",
+	"Exposure program. Will be one of following values:\n"
+		"\"Not Defined\"\n"
+		"\"Manual\"\n"
+		"\"Normal Program\"\n"
+		"\"Aperture Priority\"\n"
+		"\"Shutter Priority\"\n"
+		"\"Creative Program\"\n"
+		"\"Action Program\"\n"
+		"\"Portrait Mode\"\n"
+		"\"Landscape Mode\"",
 	"Equivalent ISO film speed rating.",
 	"Aperture in APEX units.",
 	"Average scene luminance of whole image in APEX units.",
-	"Metering mode,	Values:\n"
-		"0: Unknown.\n"
-		"1: Average.\n"
-		"2: Center Weighted Average.\n"
-		"3: Spot.\n"
-		"4: Multi-spot.\n"
-		"5: Pattern.\n"
-		"6: Partial.",
-	"Flash hardware present. Values:\n"
-		"0: No Flash Present.\n"
-		"1: Flash Present.",
-	"Flash used. Values:\n"
-		"0: No.\n"
-		"1: Yes.",
-	"Flash strobe detection. Values:\n"
-		"0: No Detection.\n"
-		"1: Reserved.\n"
-		"2: Strobe Return Light Not Detected.\n"
-		"3: Strobe Return Light Detected.",
-	"Flash camera mode. Values:\n"
-		"0: Unknown.\n"
-		"1: Compulsory Flash Firing.\n"
-		"2: Compulsory Flash Suppression.\n"
-		"3: Auto.",
-	"Flash red-eye reduction.\n"
-		"0: No Red-Eye Reduction or Unknown.\n"
-		"1: Red-Eye Reduction.",
+	"Metering mode. Will be one of following values:\n"
+		"\"Unknown\"\n"
+		"\"Average\"\n"
+		"\"Center Weighted Average\"\n"
+		"\"Spot\"\n"
+		"\"Multi-spot\"\n"
+		"\"Pattern\"\n"
+		"\"Partial\"",
+	"Flash hardware present. Possible values \"Yes\" or \"No\"\n",
+	"Flash used. Possible values \"Yes\" or \"No\"\n",
+	"Flash strobe detection. Possible values:\n"
+		"\"No Detection\"\n"
+		"\"Reserved\"\n"
+		"\"Strobe Return Light Not Detected\"\n"
+		"\"Strobe Return Light Detected\"",
+	"Flash camera mode. Possible values:\n"
+		"\"Unknown\"\n"
+		"\"Compulsory Flash Firing\"\n"
+		"\"Compulsory Flash Suppression\"\n"
+		"\"Auto\"",
+	"Flash red-eye reduction. Possible values:\n"
+		"\"No Red-Eye Reduction or Unknown\"\n"
+		"\"Red-Eye Reduction\"",
 	"Focal length in pixels.",
 	"Information on camera orientation when photo taken. The following\n"
 		"transformations may be present in the image data:\n"
-		"0: Unspecified.\n"
-		"1: No Transforms.    Image is not mirrored or rotated.\n"
-		"2: Flip-Y.           Image is mirrored about vertical axis (right <-> left).\n"
-		"3: Flip-XY.          Image flipped about both axes. Same as 180 degrees rotation.\n"
-		"4: Flip-X.           Image is mirrored about horizontal axis (top <-> bottom).\n"
-		"5: Rot-CW90  Flip-Y. Image is rotated 90 degrees clockwise and then flipped about verical axis.\n"
-		"6: Rot-ACW90.        Image is rotated 90 degrees anti-clockwise.\n"
-		"7: Rot-ACW90 Flip-Y. Image is rotated 90 degrees clockwise and then flipped about verical axis.\n"
-		"8: Rot-CW90.         Image is rotated 90 degrees anti-clockwise.",
+		"\"Unspecified\"\n"
+		"\"No Transforms\": Image is not mirrored or rotated.\n"
+		"\"Flip-Y\": Image is mirrored about vertical axis (right <-> left).\n"
+		"\"Flip-XY\": Image flipped about both axes. Same as 180 degrees rotation.\n"
+		"\"Flip-X\": Image is mirrored about horizontal axis (top <-> bottom).\n"
+		"\"Rot-CW90  Flip-Y\": Image is rotated 90 degrees clockwise and then flipped about verical axis.\n"
+		"\"Rot-ACW90\": Image is rotated 90 degrees anti-clockwise.\n"
+		"\"Rot-ACW90 Flip-Y\": Image is rotated 90 degrees clockwise and then flipped about verical axis.\n"
+		"\"Rot-CW90\": Image is rotated 90 degrees anti-clockwise.",
 	"The length unit used for the Pixels-per-unit values:\n"
-		"1: Not Specified.\n"
-		"2: Inch.\n"
-		"3: cm.",
+		"\"Not Specified\"\n"
+		"\"Inch\"\n"
+		"\"cm\"",
 	"Horizontal pixels per length unit.",
 	"Veritical pixels per length unit.",
 	"Bits per colour component. Not bits per pixel.",
