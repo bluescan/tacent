@@ -384,6 +384,23 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(metaData, tMetaTag::Software);
 	PrintMetaDataTag(metaData, tMetaTag::Description);
 	PrintMetaDataTag(metaData, tMetaTag::Copyright);
+
+	// Test loading/saving with compensation for exif orientation tags.
+	for (int i = 0; i < 9; i++)
+	{
+		tString file;
+		tsPrintf(file, "Landscape_%d.jpg", i);
+		tImageJPG jpg(tString("TestData/Images/ExifOrientation/") + file, tImageJPG::LoadFlag_ExifOrient);
+		jpg.Save(tString("TestData/Images/ExifOrientation/Written") + file);
+	}
+
+	for (int i = 0; i < 9; i++)
+	{
+		tString file;
+		tsPrintf(file, "Portrait_%d.jpg", i);
+		tImageJPG jpg(tString("TestData/Images/ExifOrientation/") + file, tImageJPG::LoadFlag_ExifOrient);
+		jpg.Save(tString("TestData/Images/ExifOrientation/Written") + file);
+	}
 }
 
 
