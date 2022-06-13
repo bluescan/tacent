@@ -160,15 +160,15 @@ const char* tMetaTagDescs[] =
 	"Focal length in pixels.",
 	"Information on camera orientation when photo taken. The following\n"
 		"transformations may be present in the image data:\n"
-		"\"Unspecified\"\n"
+		"\"Unspecified\": Not orientation info provided.\n"
 		"\"No Transforms\": Image is not mirrored or rotated.\n"
 		"\"Flip-Y\": Image is mirrored about vertical axis (right <-> left).\n"
-		"\"Flip-XY\": Image flipped about both axes. Same as 180 degrees rotation.\n"
+		"\"Flip-XY\": Image flipped about both axes. Same as 180° rotation.\n"
 		"\"Flip-X\": Image is mirrored about horizontal axis (top <-> bottom).\n"
-		"\"Rot-CW90  Flip-Y\": Image is rotated 90 degrees clockwise and then flipped about verical axis.\n"
-		"\"Rot-ACW90\": Image is rotated 90 degrees anti-clockwise.\n"
-		"\"Rot-ACW90 Flip-Y\": Image is rotated 90 degrees clockwise and then flipped about verical axis.\n"
-		"\"Rot-CW90\": Image is rotated 90 degrees anti-clockwise.",
+		"\"Rot-CW90 Flip-Y\": Image is rotated 90° clockwise and then flipped horizontally.\n"
+		"\"Rot-ACW90\": Image is rotated 90° anti-clockwise.\n"
+		"\"Rot-ACW90 Flip-Y\": Image is rotated 90° clockwise and then flipped horizontally.\n"
+		"\"Rot-CW90\": Image is rotated 90° anti-clockwise.",
 	"The length unit used for the Pixels-per-unit values:\n"
 		"\"Not Specified\"\n"
 		"\"Inch\"\n"
@@ -276,7 +276,7 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 		NumTagsValid++;
 
 		// LatitudeDMS
-		// The exifInfo should not have fraction values for the degreed and minutes if they did everythng right.
+		// The exifInfo should not have fraction values for the degree and minutes if they did everythng right.
 		int degLat = int ( tMath::tRound(exifInfo.GeoLocation.LatComponents.degrees) );
 		int minLat = int ( tMath::tRound(exifInfo.GeoLocation.LatComponents.minutes) );
 		int secLat = int ( tMath::tRound(exifInfo.GeoLocation.LatComponents.seconds) );
