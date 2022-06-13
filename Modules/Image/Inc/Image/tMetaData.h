@@ -113,7 +113,7 @@ enum class tMetaTag
 					//			2: Flip-Y.				Image is mirrored about vertical axis (right <-> left).
 					//			3: Flip-XY.				Same as 180 Degrees Rotation.
 					//			4: Flip-X.				The image is mirrored about horizontal axis (top <-> bottom).
-					//			5: Rot-CW90  Flip-Y.	The image is rotated 90 degrees clockwise and then flipped about verical axis.
+					//			5: Rot-CW90 Flip-Y.		The image is rotated 90 degrees clockwise and then flipped about verical axis.
 					//			6: Rot-ACW90.			The image is rotated 90 degrees anti-clockwise.
 					//			7: Rot-ACW90 Flip-Y.	The image is rotated 90 degrees clockwise and then flipped about verical axis.
 					//			8: Rot-CW90.			The image is rotated 90 degrees anti-clockwise.

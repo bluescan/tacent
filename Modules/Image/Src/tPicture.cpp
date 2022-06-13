@@ -453,7 +453,7 @@ bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 			// JPGs can only have one frame.
 			if (frameNum != 0)
 				return false;
-			tImageJPG jpeg(imageFile);
+			tImageJPG jpeg(imageFile, tImageJPG::LoadFlag_ExifOrient);
 			if (!jpeg.IsValid())
 				return false;
 			Width = jpeg.GetWidth();

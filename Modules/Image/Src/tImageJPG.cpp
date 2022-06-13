@@ -29,7 +29,7 @@ namespace tImage
 {
 
 
-bool tImageJPG::Load(const tString& jpgFile, bool strict)
+bool tImageJPG::Load(const tString& jpgFile, uint32 loadFlags)
 {
 	Clear();
 
@@ -41,14 +41,14 @@ bool tImageJPG::Load(const tString& jpgFile, bool strict)
 
 	int numBytes = 0;
 	uint8* jpgFileInMemory = tLoadFile(jpgFile, nullptr, &numBytes);
-	bool success = Set(jpgFileInMemory, numBytes, strict);
+	bool success = Set(jpgFileInMemory, numBytes, loadFlags);
 	delete[] jpgFileInMemory;
 
 	return success;
 }
 
 
-bool tImageJPG::Set(const uint8* jpgFileInMemory, int numBytes, bool strict)
+bool tImageJPG::Set(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags)
 {
 	Clear();
 	if ((numBytes <= 0) || !jpgFileInMemory)
@@ -86,17 +86,14 @@ bool tImageJPG::Set(const uint8* jpgFileInMemory, int numBytes, bool strict)
 	if (decomResult < 0)
 	{
 		int errorSeverity = tjGetErrorCode(tjInstance);
-		char* errorMsg = tjGetErrorStr2(tjInstance);
 		switch (errorSeverity)
 		{
 			case TJERR_WARNING:
-				tPrintf("Warning: JPG ill-formed: %s\n", errorMsg);
-				if (strict)
+				if (loadFlags & tImageJPG::LoadFlag_Strict)
 					abortLoad = true;
 				break;
 
 			case TJERR_FATAL:
-				tPrintf("Error: JPG fatally ill-formed: %s\n", errorMsg);
 				abortLoad = true;
 				break;
 		}
@@ -110,6 +107,52 @@ bool tImageJPG::Set(const uint8* jpgFileInMemory, int numBytes, bool strict)
 	}
 
 	SrcPixelFormat = tPixelFormat::R8G8B8;
+
+	if ((loadFlags & LoadFlag_ExifOrient))
+	{
+		const tMetaDatum& datum = MetaData[tMetaTag::Orientation];
+		if (datum.IsSet())
+		{
+			switch (datum.Uint32)
+			{
+				case 0:		// Unspecified
+				case 1:		// NoTransform
+					break;
+
+				case 2:		// Flip-Y.
+					Flip(true);
+					break;
+
+				case 3:		// Flip-XY
+					Flip(false);
+					Flip(true);
+					break;
+
+				case 4:		// Flip-X
+					Flip(false);
+					break;
+
+				case 5:		// Rot-CW90 Flip-Y
+					Flip(true);
+					Rotate90(true);
+					break;
+				
+				case 6:		// Rot-ACW90
+					Rotate90(false);
+					break;
+
+				case 7:		// Rot-ACW90 Flip-Y
+					Flip(true);
+					Rotate90(false);
+					break;
+
+				case 8:		// Rot-CW90
+					Rotate90(true);
+					break;
+			}
+		}
+	}
+
 	return true;
 }
 
@@ -134,6 +177,42 @@ bool tImageJPG::Set(tPixel* pixels, int width, int height, bool steal)
 
 	SrcPixelFormat = tPixelFormat::R8G8B8A8;
 	return true;
+}
+
+
+void tImageJPG::Rotate90(bool antiClockwise)
+{
+	tAssert((Width > 0) && (Height > 0) && Pixels);
+	int newW = Height;
+	int newH = Width;
+	tPixel* newPixels = new tPixel[newW * newH];
+
+	for (int y = 0; y < Height; y++)
+		for (int x = 0; x < Width; x++)
+			newPixels[ GetIndex(y, x, newW, newH) ] = Pixels[ GetIndex(antiClockwise ? x : Width-1-x, antiClockwise ? Height-1-y : y) ];
+
+	Clear();
+	Width = newW;
+	Height = newH;
+	Pixels = newPixels;
+}
+
+
+void tImageJPG::Flip(bool horizontal)
+{
+	tAssert((Width > 0) && (Height > 0) && Pixels);
+	int newW = Width;
+	int newH = Height;
+	tPixel* newPixels = new tPixel[newW * newH];
+
+	for (int y = 0; y < Height; y++)
+		for (int x = 0; x < Width; x++)
+			newPixels[ GetIndex(x, y) ] = Pixels[ GetIndex(horizontal ? Width-1-x : x, horizontal ? y : Height-1-y) ];
+
+	Clear();
+	Width = newW;
+	Height = newH;
+	Pixels = newPixels;
 }
 
 
