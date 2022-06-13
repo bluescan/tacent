@@ -179,6 +179,7 @@ public:
 	bool Set(const tMetaData& src);
 	bool Set(const uint8* rawJpgImageData, int numBytes);
 	bool IsValid() const																								{ return NumTagsValid > 0; }
+	int GetNumValidTags() const																							{ return NumTagsValid; }
 
 	tMetaData& operator=(const tMetaData& src)																			{ Set(src); return *this; }
 	tMetaDatum& operator[](tMetaTag tag)																				{ return Data[int(tag)]; }
