@@ -58,7 +58,7 @@ tTestUnit(ImageLoad)
 	tImageICO imgICO("TestData/Images/UpperBounds.ico");
 	tRequire(imgICO.IsValid());
 
-	tImageJPG imgJPG("TestData/Images/WiredDrives.jpg", tImageJPG::LoadFlag_ExifOrient);
+	tImageJPG imgJPG("TestData/Images/WiredDrives.jpg");
 	tRequire(imgJPG.IsValid());
 
 	tImageTIFF imgTIFF("TestData/Images/Tiff_NoComp.tif");
@@ -316,7 +316,7 @@ tTestUnit(ImageMetaData)
 	return;
 	#endif
 
-	tImageJPG jpgWithMeta("TestData/Images/EXIF_XMP/HasLatLong.jpg", tImageJPG::LoadFlag_ExifOrient);
+	tImageJPG jpgWithMeta("TestData/Images/EXIF_XMP/HasLatLong.jpg");
 	tRequire(jpgWithMeta.MetaData.IsValid());
 	tMetaData& metaData = jpgWithMeta.MetaData;
 
@@ -339,13 +339,13 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(metaData, tMetaTag::VelZ);
 	PrintMetaDataTag(metaData, tMetaTag::Speed);
 
-	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasUTCDateTime.jpg", tImageJPG::LoadFlag_ExifOrient);
+	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasUTCDateTime.jpg");
 
 	PrintMetaDataTag(metaData, tMetaTag::GPSSurvey);
 	PrintMetaDataTag(metaData, tMetaTag::GPSTimeStamp);
 
 	// Go back to original file.
-	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasLatLong.jpg", tImageJPG::LoadFlag_ExifOrient);
+	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasLatLong.jpg");
 
 	PrintMetaDataTag(metaData, tMetaTag::ShutterSpeed);
 	PrintMetaDataTag(metaData, tMetaTag::ExposureTime);
@@ -357,13 +357,13 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(metaData, tMetaTag::Brightness);
 	PrintMetaDataTag(metaData, tMetaTag::MeteringMode);
 
-	jpgWithMeta.Load("TestData/Images/EXIF_XMP/NoFlashComp.jpg", tImageJPG::LoadFlag_ExifOrient);
+	jpgWithMeta.Load("TestData/Images/EXIF_XMP/NoFlashComp.jpg");
 	PrintMetaDataTag(metaData, tMetaTag::FlashHardware);
 	PrintMetaDataTag(metaData, tMetaTag::FlashUsed);
 	PrintMetaDataTag(metaData, tMetaTag::FlashStrobe);
 	PrintMetaDataTag(metaData, tMetaTag::FlashMode);
 	PrintMetaDataTag(metaData, tMetaTag::FlashRedEye);
-	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasLatLong.jpg", tImageJPG::LoadFlag_ExifOrient);
+	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasLatLong.jpg");
 
 	PrintMetaDataTag(metaData, tMetaTag::FocalLength);
 	PrintMetaDataTag(metaData, tMetaTag::Orientation);
@@ -379,7 +379,7 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(metaData, tMetaTag::DateTimeOrig);
 	PrintMetaDataTag(metaData, tMetaTag::DateTimeDigit);
 
-	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasAuthorNotes.jpg", tImageJPG::LoadFlag_ExifOrient);
+	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasAuthorNotes.jpg");
 
 	PrintMetaDataTag(metaData, tMetaTag::Software);
 	PrintMetaDataTag(metaData, tMetaTag::Description);
@@ -390,7 +390,7 @@ tTestUnit(ImageMetaData)
 	{
 		tString file;
 		tsPrintf(file, "Landscape_%d.jpg", i);
-		tImageJPG jpg(tString("TestData/Images/ExifOrientation/") + file, tImageJPG::LoadFlag_ExifOrient);
+		tImageJPG jpg(tString("TestData/Images/ExifOrientation/") + file);
 		jpg.Save(tString("TestData/Images/ExifOrientation/Written") + file);
 	}
 
@@ -398,7 +398,7 @@ tTestUnit(ImageMetaData)
 	{
 		tString file;
 		tsPrintf(file, "Portrait_%d.jpg", i);
-		tImageJPG jpg(tString("TestData/Images/ExifOrientation/") + file, tImageJPG::LoadFlag_ExifOrient);
+		tImageJPG jpg(tString("TestData/Images/ExifOrientation/") + file);
 		jpg.Save(tString("TestData/Images/ExifOrientation/Written") + file);
 	}
 }

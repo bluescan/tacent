@@ -31,16 +31,17 @@ public:
 	{
 		LoadFlag_None		= 0,
 		LoadFlag_Strict		= 1 << 0,	// If the file is ill-formed even in a non-fatal way, the image will be invalid.
-		LoadFlag_ExifOrient	= 1 << 1	// Undo orientation transformations in jpg image as indicated by Exif meta-data.
+		LoadFlag_ExifOrient	= 1 << 1,	// Undo orientation transformations in jpg image as indicated by Exif meta-data.
+		LoadFlags_Default	= LoadFlag_ExifOrient
 	};
 
 	// Creates an invalid tImageJPG. You must call Load or Set manually.
 	tImageJPG()																											{ }
 	
-	tImageJPG(const tString& jpgFile, uint32 loadFlags)																	{ Load(jpgFile, loadFlags); }
+	tImageJPG(const tString& jpgFile, uint32 loadFlags = LoadFlags_Default)												{ Load(jpgFile, loadFlags); }
 
 	// The data is copied out of jpgFileInMemory. Go ahead and delete after if you want.
-	tImageJPG(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags)												{ Set(jpgFileInMemory, numBytes, loadFlags); }
+	tImageJPG(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default)							{ Set(jpgFileInMemory, numBytes, loadFlags); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -49,8 +50,8 @@ public:
 	virtual ~tImageJPG()																								{ Clear(); }
 
 	// Clears the current tImageJPG before loading. Returns success. If false returned, object is invalid.
-	bool Load(const tString& jpgFile, uint32 loadFlags);
-	bool Set(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags);
+	bool Load(const tString& jpgFile, uint32 loadFlags = LoadFlags_Default);
+	bool Set(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default);
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
