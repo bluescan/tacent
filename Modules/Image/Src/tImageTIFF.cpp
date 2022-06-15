@@ -36,7 +36,7 @@ int tImageTIFF::ReadSoftwarePageDuration(TIFF* tiff) const
 		return durationMilliSec;
 
 	tString softwareStr((char*)data);
-	tScriptReader script(softwareStr, false);
+	tExprReader script(softwareStr, false);
 	tExpression tacentView = script.First();
 	if (tacentView.GetAtomString() == "TacentLibrary")
 	{

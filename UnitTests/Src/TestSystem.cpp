@@ -553,7 +553,7 @@ tTestUnit(Script)
 		tSkipUnit(Script)
 
 	{
-		tScriptWriter ws("TestData/WrittenConfig.cfg");
+		tExprWriter ws("TestData/WrittenConfig.cfg");
 		ws.Rem("This is a test config file.");
 		ws.CR();
 		ws.Comp("PosX", 10);
@@ -572,7 +572,7 @@ tTestUnit(Script)
 	}
 
 	{
-		tScriptReader rs("TestData/WrittenConfig.cfg");
+		tExprReader rs("TestData/WrittenConfig.cfg");
 		for (tExpression e = rs.First(); e.Valid(); e = e.Next())
 		{
 			tPrintf("ExpressionString: ___%s___\n", e.GetExpressionString().Pod());
@@ -638,7 +638,7 @@ tTestUnit(Script)
 	}
 
 	{
-		tScriptWriter ws("TestData/WrittenScript.txt");
+		tExprWriter ws("TestData/WrittenScript.txt");
 
 		ws.WriteComment();
 		ws.WriteComment("A comment!!");
@@ -674,7 +674,7 @@ tTestUnit(Script)
 	int numExceptions = 0;
 	try
 	{
-		tScriptReader rs("TestData/TestScript.txt");
+		tExprReader rs("TestData/TestScript.txt");
 
 		tExpression arg = rs.Arg0();			// [A [6.8 42 True]]
 

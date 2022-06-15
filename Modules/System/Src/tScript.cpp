@@ -38,7 +38,7 @@ tExpression tExpression::Car() const
 {
 	tAssert( IsValid() );
 
-	const char* c = ValueData + 1;
+	const char* c = ExprData + 1;
 
 	if (*c == '\0')
 		return tExpression();
@@ -74,7 +74,7 @@ tExpression tExpression::Next() const
 {
 	tAssert( IsValid() );
 
-	const char* c = ValueData;
+	const char* c = ExprData;
 	int count = 0;
 	int lineNum = LineNumber;
 
@@ -170,7 +170,7 @@ tExpression tExpression::Next() const
 
 bool tExpression::IsAtom() const
 {
-	if (ValueData && (*ValueData != '['))
+	if (ExprData && (*ExprData != '['))
 		return true;
 	else
 		return false;
@@ -180,14 +180,14 @@ bool tExpression::IsAtom() const
 tString tExpression::GetExpressionString() const
 {
 	tAssert( IsValid() );
-	if (!ValueData)
+	if (!ExprData)
 		return tString();
 
 	if (IsAtom())
 		return GetAtomString();
 
-	tAssert(*ValueData == '[');
-	const char* start = ValueData;
+	tAssert(*ExprData == '[');
+	const char* start = ExprData;
 	const char* end = start;
 	int bracketCount = 1;
 	while(*++end)
@@ -217,9 +217,9 @@ tString tExpression::GetAtomString() const
 
 	const char* start;
 	const char* end;
-	if (*ValueData == '"')
+	if (*ExprData == '"')
 	{
-		start = ValueData + 1;
+		start = ExprData + 1;
 		end = tStd::tStrchr(start, '"');
 
 		// Keep going until next quote.
@@ -228,9 +228,9 @@ tString tExpression::GetAtomString() const
 	}
 
 	// It may be a tuple atom in form (a, b, c)
-	else if (*ValueData == '(')
+	else if (*ExprData == '(')
 	{
-		start = ValueData;
+		start = ExprData;
 		end = tStd::tStrchr(start, ')');
 
 		// Keep going until next paren.
@@ -241,8 +241,8 @@ tString tExpression::GetAtomString() const
 	}
 	else
 	{
-		start = ValueData;
-		end = ValueData;
+		start = ExprData;
+		end = ExprData;
 		while
 		(
 			(*end != ' ') && (*end != '\t') && (*end != '[') && (*end != ']') && (*end != '\0') &&
@@ -263,10 +263,10 @@ tString tExpression::GetAtomTupleString() const
 	if (!IsAtom())
 		throw tScriptError(LineNumber, "Atom expected near: %s", GetContext().Pod());
 
-	if (*ValueData != '(')
+	if (*ExprData != '(')
 		throw tScriptError(LineNumber, "Tuple atom expected near: %s", GetContext().Pod());
 
-	const char* start = ValueData + 1;
+	const char* start = ExprData + 1;
 	const char* end = tStd::tStrchr(start, ')');
 
 	// If no end paren was found we're in trouble.
@@ -465,7 +465,7 @@ tString tExpression::GetContext() const
 	tString context(ContextSize);
 
 	// We're allowed to do this because as soon as strncpy sees a 0 in the src string it stops reading from it.
-	tStd::tStrncpy(context.Text(), ValueData, ContextSize);
+	tStd::tStrncpy(context.Text(), ExprData, ContextSize);
 
 	int newLine = context.FindChar('\r');
 
@@ -477,9 +477,9 @@ tString tExpression::GetContext() const
 }
 
 
-tScriptReader::tScriptReader(int argc, char** argv) :
+tExprReader::tExprReader(int argc, char** argv) :
 	tExpression(),
-	ReadBuffer(0)
+	ExprBuffer(nullptr)
 {
 	// Here we're just concatenating all the argv strings into one.
 	tString scriptString = "[";
@@ -520,15 +520,15 @@ tScriptReader::tScriptReader(int argc, char** argv) :
 
 	scriptString += "]";
 
-	ReadBuffer = new char[scriptString.Length() + 1];
-	tStd::tStrcpy(ReadBuffer, scriptString);
+	ExprBuffer = new char[scriptString.Length() + 1];
+	tStd::tStrcpy(ExprBuffer, scriptString);
 
-	ValueData = ReadBuffer;
+	ExprData = ExprBuffer;
 	LineNumber = 1;
 }
 
 
-void tScriptReader::Load(const tString& name, bool isFile)
+void tExprReader::Load(const tString& name, bool isFile)
 {
 	Clear();
 	if (name.IsEmpty())
@@ -546,74 +546,73 @@ void tScriptReader::Load(const tString& name, bool isFile)
 		// Create a buffer big enough for the file, the uber []'s, two line-endings (one for each square bracket), and a terminating 0.
 		int bufferSize = fileSize + 7;
 
-		ReadBuffer = new char[bufferSize];
-		ReadBuffer[0] = '[';
-		ReadBuffer[1] = '\r';
-		ReadBuffer[2] = '\n';
+		ExprBuffer = new char[bufferSize];
+		ExprBuffer[0] = '[';
+		ExprBuffer[1] = '\r';
+		ExprBuffer[2] = '\n';
 
 		// Load the entire thing into memory.
-		int numRead = tSystem::tReadFile(file, (uint8*)(ReadBuffer+3), fileSize);
+		int numRead = tSystem::tReadFile(file, (uint8*)(ExprBuffer+3), fileSize);
 		if (numRead != fileSize)
 			throw tScriptError("Cannot read file [%s].", name.Pod());
 		tSystem::tCloseFile(file);
 
-		ReadBuffer[bufferSize-4] = '\r';
-		ReadBuffer[bufferSize-3] = '\n';
-		ReadBuffer[bufferSize-2] = ']';
-		ReadBuffer[bufferSize-1] = '\0';
+		ExprBuffer[bufferSize-4] = '\r';
+		ExprBuffer[bufferSize-3] = '\n';
+		ExprBuffer[bufferSize-2] = ']';
+		ExprBuffer[bufferSize-1] = '\0';
 	}
 	else
 	{
 		int stringSize = name.Length();
 		int bufferSize = stringSize + 7;
-		ReadBuffer = new char[bufferSize];
+		ExprBuffer = new char[bufferSize];
 
-		ReadBuffer[0] = '[';
-		ReadBuffer[1] = '\r';
-		ReadBuffer[2] = '\n';
-		tStd::tStrcpy(ReadBuffer+3, name);
-		ReadBuffer[bufferSize-4] = '\r';
-		ReadBuffer[bufferSize-3] = '\n';
-		ReadBuffer[bufferSize-2] = ']';
-		ReadBuffer[bufferSize-1] = '\0';
+		ExprBuffer[0] = '[';
+		ExprBuffer[1] = '\r';
+		ExprBuffer[2] = '\n';
+		tStd::tStrcpy(ExprBuffer+3, name);
+		ExprBuffer[bufferSize-4] = '\r';
+		ExprBuffer[bufferSize-3] = '\n';
+		ExprBuffer[bufferSize-2] = ']';
+		ExprBuffer[bufferSize-1] = '\0';
 	}
 
 	LineNumber = 1;
-	ValueData = EatWhiteAndComments(ReadBuffer, LineNumber);
+	ExprData = EatWhiteAndComments(ExprBuffer, LineNumber);
 }
 
 
-tScriptWriter::tScriptWriter(const tString& filename) :
+tExprWriter::tExprWriter(const tString& filename) :
 	CurrIndent(0),
-	UseSpacesForTabs(false),
-	SpaceTabWidth(4)
+	TabWidth(0)
 {
-	ScriptFile = tSystem::tOpenFile(filename, "wt");
+	ExprFile = tSystem::tOpenFile(filename, "wt");
 
-	if (!ScriptFile)
+	if (!ExprFile)
 		throw tScriptError("Cannot open file [%s].", tPod(filename));
 }
 
 
-void tScriptWriter::BeginExpression()
+void tExprWriter::BeginExpression()
 {
 	char beg[] = "[ ";
-	int numWritten = tSystem::tWriteFile(ScriptFile, beg, 2);
+	int numWritten = tSystem::tWriteFile(ExprFile, beg, 2);
 	if (numWritten != 2)
 		throw tScriptError("Cannot write to script file.");
 }
 
 
-void tScriptWriter::EndExpression()
+void tExprWriter::EndExpression()
 {
 	char end[] = "] ";
-	int numWritten = tSystem::tWriteFile(ScriptFile, end, 2);
+	int numWritten = tSystem::tWriteFile(ExprFile, end, 2);
 	if (numWritten != 2)
 		throw tScriptError("Cannot write to script file.");
 }
 
 
-void tScriptWriter::WriteAtom(const tString& atom)
+void tExprWriter::WriteAtom(const tString& atom)
 {
 	char qu = '"';
 
@@ -630,22 +629,22 @@ void tScriptWriter::WriteAtom(const tString& atom)
 	bool useQuotes = (hasSpace && !isTuple) || atom.IsEmpty();
 	int numWritten = 0;
 	if (useQuotes)
-		numWritten += tSystem::tWriteFile(ScriptFile, &qu, 1);
+		numWritten += tSystem::tWriteFile(ExprFile, &qu, 1);
 
 	int atomLen = atom.Length();
-	numWritten += tSystem::tWriteFile(ScriptFile, atom, atomLen);
+	numWritten += tSystem::tWriteFile(ExprFile, atom, atomLen);
 	if (useQuotes)
-		numWritten += tSystem::tWriteFile(ScriptFile, &qu, 1);
+		numWritten += tSystem::tWriteFile(ExprFile, &qu, 1);
 
 	char sp = ' ';
-	numWritten += tSystem::tWriteFile(ScriptFile, &sp, 1);
+	numWritten += tSystem::tWriteFile(ExprFile, &sp, 1);
 
 	if (numWritten != (1 + (useQuotes ? 2 : 0) + atomLen))
 		throw tScriptError("Cannot write atom [%s] to script file.", tPod(atom));
 }
 
 
-void tScriptWriter::WriteAtom(const char* atom)
+void tExprWriter::WriteAtom(const char* atom)
 {
 	char qu = '"';
 
@@ -662,22 +661,22 @@ void tScriptWriter::WriteAtom(const char* atom)
 	bool useQuotes = hasSpace && !isTuple;
 	int numWritten = 0;
 	if (useQuotes)
-		numWritten += tSystem::tWriteFile(ScriptFile, &qu, 1);
+		numWritten += tSystem::tWriteFile(ExprFile, &qu, 1);
 
 	int atomLen = tStd::tStrlen(atom);
-	numWritten += tSystem::tWriteFile(ScriptFile, atom, atomLen);
+	numWritten += tSystem::tWriteFile(ExprFile, atom, atomLen);
 	if (useQuotes)
-		numWritten += tSystem::tWriteFile(ScriptFile, &qu, 1);
+		numWritten += tSystem::tWriteFile(ExprFile, &qu, 1);
 
 	char sp = ' ';
-	numWritten += tSystem::tWriteFile(ScriptFile, &sp, 1);
+	numWritten += tSystem::tWriteFile(ExprFile, &sp, 1);
 
 	if (numWritten != (1 + (useQuotes ? 2 : 0) + atomLen))
 		throw tScriptError("Cannot write atom '%s' to script file.", atom);
 }
 
 
-void tScriptWriter::WriteAtom(const bool atom)
+void tExprWriter::WriteAtom(const bool atom)
 {
 	if (atom)
 		WriteAtom("True");
@@ -686,7 +685,7 @@ void tScriptWriter::WriteAtom(const bool atom)
 }
 
 
-void tScriptWriter::WriteAtom(const uint32 atom)
+void tExprWriter::WriteAtom(const uint32 atom)
 {
 	char val[36];
 	tStd::tItoa(val, 36, atom, 10);
@@ -694,7 +693,7 @@ void tScriptWriter::WriteAtom(const uint32 atom)
 }
 
 
-void tScriptWriter::WriteAtom(const uint64 atom)
+void tExprWriter::WriteAtom(const uint64 atom)
 {
 	char val[48];
 	tStd::tItoa(val, 48, atom, 10);
@@ -702,7 +701,7 @@ void tScriptWriter::WriteAtom(const uint64 atom)
 }
 
 
-void tScriptWriter::WriteAtom(const int atom)
+void tExprWriter::WriteAtom(const int atom)
 {
 	char val[36];
 	tStd::tItoa(val, 36, atom, 10);
@@ -710,7 +709,7 @@ void tScriptWriter::WriteAtom(const int atom)
 }
 
 
-void tScriptWriter::WriteAtom(const float atom, bool incBitRep)
+void tExprWriter::WriteAtom(const float atom, bool incBitRep)
 {
 	tString str;
 	tSystem::tFtostr(str, atom, incBitRep);
@@ -718,7 +717,7 @@ void tScriptWriter::WriteAtom(const float atom, bool incBitRep)
 }
 
 
-void tScriptWriter::WriteAtom(const double atom, bool incBitRep)
+void tExprWriter::WriteAtom(const double atom, bool incBitRep)
 {
 	tString str;
 	tSystem::tDtostr(str, atom, incBitRep);
@@ -726,7 +725,7 @@ void tScriptWriter::WriteAtom(const double atom, bool incBitRep)
 }
 
 
-void tScriptWriter::WriteAtom(const tVector2& v, bool incBitRep)
+void tExprWriter::WriteAtom(const tVector2& v, bool incBitRep)
 {
 	tString str("(");
 	for (int e = 0; e < 2; e++)
@@ -757,7 +756,7 @@ void tScriptWriter::WriteAtom(const tVector2& v, bool incBitRep)
 }
 
 
-void tScriptWriter::WriteAtom(const tVector3& v, bool incBitRep)
+void tExprWriter::WriteAtom(const tVector3& v, bool incBitRep)
 {
 	tString str("(");
 	for (int e = 0; e < 3; e++)
@@ -788,7 +787,7 @@ void tScriptWriter::WriteAtom(const tVector3& v, bool incBitRep)
 }
 
 
-void tScriptWriter::WriteAtom(const tVector4& v, bool incBitRep)
+void tExprWriter::WriteAtom(const tVector4& v, bool incBitRep)
 {
 	tString str("(");
 	for (int e = 0; e < 4; e++)
@@ -819,7 +818,7 @@ void tScriptWriter::WriteAtom(const tVector4& v, bool incBitRep)
 }
 
 
-void tScriptWriter::WriteAtom(const tQuaternion& q, bool incBitRep)
+void tExprWriter::WriteAtom(const tQuaternion& q, bool incBitRep)
 {
 	tString str("(");
 	for (int e = 0; e < 4; e++)
@@ -850,7 +849,7 @@ void tScriptWriter::WriteAtom(const tQuaternion& q, bool incBitRep)
 }
 
 
-void tScriptWriter::WriteAtom(const tMatrix2& m, bool incBitRep)
+void tExprWriter::WriteAtom(const tMatrix2& m, bool incBitRep)
 {
 	tString str("(");
 	for (int e = 0; e < 4; e++)
@@ -881,7 +880,7 @@ void tScriptWriter::WriteAtom(const tMatrix2& m, bool incBitRep)
 }
 
 
-void tScriptWriter::WriteAtom(const tMatrix4& m, bool incBitRep)
+void tExprWriter::WriteAtom(const tMatrix4& m, bool incBitRep)
 {
 	tString str("(");
 	for (int e = 0; e < 16; e++)
@@ -912,7 +911,7 @@ void tScriptWriter::WriteAtom(const tMatrix4& m, bool incBitRep)
 }
 
 
-void tScriptWriter::WriteAtom(const tColouri& c)
+void tExprWriter::WriteAtom(const tColouri& c)
 {
 	tString str("(");
 	for (int e = 0; e < 4; e++)
@@ -929,15 +928,15 @@ void tScriptWriter::WriteAtom(const tColouri& c)
 }
 
 
-void tScriptWriter::WriteComment(const char* comment)
+void tExprWriter::WriteComment(const char* comment)
 {
 	char sc[] = "; ";
-	int numWritten = tSystem::tWriteFile(ScriptFile, sc, 2);
+	int numWritten = tSystem::tWriteFile(ExprFile, sc, 2);
 	int commentLen = 0;
 	if (comment)
 	{
 		commentLen = tStd::tStrlen(comment);
-		numWritten += tSystem::tWriteFile(ScriptFile, comment, commentLen);
+		numWritten += tSystem::tWriteFile(ExprFile, comment, commentLen);
 	}
 
 	if (numWritten != (2 + commentLen))
@@ -947,14 +946,14 @@ void tScriptWriter::WriteComment(const char* comment)
 }
 
 
-void tScriptWriter::WriteCommentLine(const char* comment)
+void tExprWriter::WriteCommentLine(const char* comment)
 {
 	int numWritten = 0;
 	int commentLen = 0;
 	if (comment)
 	{
 		commentLen = tStd::tStrlen(comment);
-		numWritten += tSystem::tWriteFile(ScriptFile, comment, commentLen);
+		numWritten += tSystem::tWriteFile(ExprFile, comment, commentLen);
 	}
 
 	if (numWritten != commentLen)
@@ -964,34 +963,34 @@ void tScriptWriter::WriteCommentLine(const char* comment)
 }
 
 
-void tScriptWriter::WriteCommentEnd()
+void tExprWriter::WriteCommentEnd()
 {
 	char sc[] = ">\n";
 	sc[0] = BCE;
-	int numWritten = tSystem::tWriteFile(ScriptFile, sc, 2);
+	int numWritten = tSystem::tWriteFile(ExprFile, sc, 2);
 	if (numWritten != 2)
 		throw tScriptError("Cannot write to script file.");
 }
 
 
-void tScriptWriter::WriteCommentInlineBegin()
+void tExprWriter::WriteCommentInlineBegin()
 {
 	char sc[] = "< ";
 	sc[0] = BCB;
-	int numWritten = tSystem::tWriteFile(ScriptFile, sc, 2);
+	int numWritten = tSystem::tWriteFile(ExprFile, sc, 2);
 	if (numWritten != 2)
 		throw tScriptError("Cannot write to script file.");
 }
 
 
-void tScriptWriter::WriteCommentInline(const char* comment)
+void tExprWriter::WriteCommentInline(const char* comment)
 {
 	int numWritten = 0;
 	int commentLen = 0;
 	if (comment)
 	{
 		commentLen = tStd::tStrlen(comment);
-		numWritten += tSystem::tWriteFile(ScriptFile, comment, commentLen);
+		numWritten += tSystem::tWriteFile(ExprFile, comment, commentLen);
 	}
 
 	if (numWritten != commentLen)
@@ -999,24 +998,24 @@ void tScriptWriter::WriteCommentInline(const char* comment)
 }
 
 
-void tScriptWriter::WriteCommentInlineEnd()
+void tExprWriter::WriteCommentInlineEnd()
 {
 	char sc[] = " > ";
 	sc[1] = BCE;
-	int numWritten = tSystem::tWriteFile(ScriptFile, sc, 3);
+	int numWritten = tSystem::tWriteFile(ExprFile, sc, 3);
 	if (numWritten != 3)
 		throw tScriptError("Cannot write to script file.");
 }
 
 
-void tScriptWriter::NewLine()
+void tExprWriter::NewLine()
 {
 	char nl = '\n';
 	char tb = '\t';
 
-	int numWritten = tSystem::tWriteFile(ScriptFile, &nl, 1);
+	int numWritten = tSystem::tWriteFile(ExprFile, &nl, 1);
 	numWritten += WriteIndents();
-	int expectedWritten = 1 + (UseSpacesForTabs ? CurrIndent*SpaceTabWidth : CurrIndent);
+	int expectedWritten = 1 + (TabWidth ? CurrIndent*TabWidth : CurrIndent);
 
 	if (numWritten != expectedWritten)
 		throw tScriptError("Cannot write to script file.");

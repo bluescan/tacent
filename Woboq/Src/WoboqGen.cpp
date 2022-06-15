@@ -23,8 +23,7 @@ int main(int argc, char** argv)
 	tList<tStringItem> sourceFiles;
 	tString compileCommand;
 
-	//tPrintf("Config arg: %s\n", config.Arg1().Pod());
-	tScriptReader script(configFile);
+	tExprReader script(configFile);
 	for (tExpr exp = script.First(); exp.IsValid(); exp = exp.Next())
 	{
 		tString com = exp.Command().GetAtomString();

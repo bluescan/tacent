@@ -9,7 +9,7 @@
 //
 // The second format is a functional format. ex. a(b,c) See tFunExtression.
 //
-// Copyright (c) 2006, 2017, 2019 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -36,19 +36,34 @@
 #include "System/tFile.h"
 
 
-// An s-expression has the following syntax: [command argument1 argument2 argument3] where both the commands and
-// arguments are also expressions. At the leaf level an expression is an Atom. This is the essence of symbolic
-// expressions. ex. (a.(b.(c.()))) == [a b c] is supported but (a.b) is not. Cdr is not much use in proper lists, but
-// Car, Cadr, Caddr, etc are. i.e. Car([a b c]) = a. Cadr([a b c]) = b. etc. 
+// An s-expression has the following syntax: [expr expr ...] OR atom. That is, an s-expression is either a list of
+// s-expressions enclosed in square brackets or it is an 'atom' (base value type, not divisible, as in an atom).
+// By convention s-expressions often take the more restricted form [command argument1 argument2 argument3] where the
+// the command is a string atom and arguments are arbitrary expressions. At the leaf level an expression is an atom.
+//
+// In comparison to Lisp expressions made of pairs, we support the list-syntax, not the pair syntax. eg. Lisp's
+// (a.(b.(c.()))) where () is null is represented as [a b c]. Cdr is not much use in proper lists, but Car, Cadr,
+// Caddr, etc are. i.e. Car([a b c]) = a. Cadr([a b c]) = b. etc. 
 class tExpression
 {
 public:
-	tExpression()																										: ValueData(nullptr), LineNumber(0) { }
-	tExpression(const char* v)																							: ValueData(v), LineNumber(0) { }
+	// Creates an invalid expression. Useful for default arg vals in functions to possibly do something different if
+	// a valid expression isn't passed in.
+	tExpression()																										: ExprData(nullptr), LineNumber(0) { }
+
+	// The copy constructor is fast. There's not much point passing tExpressions around by reference as they're only
+	// 8 to 12 bytes long (a pointer and an int). In fact, the default C++ behaviour of doing a memcopy works just fine,
+	// so there's not much point to this copy-cons other than to make it clearly understood that passing these things
+	// around by value is perfectly acceptable.
+	tExpression(const tExpression& src)																					: ExprData(src.ExprData), LineNumber(src.LineNumber) { }
+
+	// Creates an expression from a string. If the first non-white character is [, it's a list expression, otherwise
+	// it's an atom.
+	tExpression(const char* v)																							: ExprData(v), LineNumber(0) { }
 
 	// If you want the expression to keep track of what line number it's on then you should supply the current line
 	// number. Thrown error messages will include the line number if it's set.
-	tExpression(const char* v, int lineNumber)																			: ValueData(v), LineNumber(lineNumber) { }
+	tExpression(const char* v, int lineNumber)																			: ExprData(v), LineNumber(lineNumber) { }
 	virtual ~tExpression()																								{ }
 
 	// Like in scheme. Contents of the Address Register from the old IBM days.
@@ -65,11 +80,19 @@ public:
 	// an invalid expression.
 	virtual tExpression Next() const;
 
-	bool IsValid() const																								{ return ValueData ? true : false; }
+	bool IsValid() const																								{ return ExprData ? true : false; }
 	bool IsAtom() const;
 
 	tString GetExpressionString() const;
 	tString GetAtomString() const;
+
+	// These get the values of atom expressions. They are the base types. eg: the atom 'True' would return true if you
+	// called GetAtomBool on it. '67' would return 67 if you called GetAtomInt, etc. It is worth mentioning GetAtomFloat
+	// and GetAtomDouble. They can take atoms of the form '67.3677' or '67.3677#FB0933CE'. The value after the # is a
+	// base-16 number that is the binary representation of a float (IEEE 754). It would be twice as long for a double.
+	// If there is a # and hex value, it is used instead of the base 10 text. This essentially removes 'wobble' like
+	// you see in many engines from saving and reloading floats, and keeps it human-readable/editable. Note, I have
+	// very little confidence FB0933CE actually represents 67.3677 -- I just chose a random 32 bit hex number.
 	bool GetAtomBool() const																							{ return GetAtomString().GetAsBool(); }
 	uint GetAtomUint() const																							{ return GetAtomString().GetAsUInt(); }
 	uint64 GetAtomUint64() const																						{ return GetAtomString().GetAsUInt64(); }
@@ -145,7 +168,7 @@ protected:
 	static const char* EatWhiteAndComments(const char*, int& lineCount);
 
 	// The memory for this is owned by the tScriptRead class.
-	const char* ValueData;
+	const char* ExprData;
 
 	// The first valid line number starts at 1.
 	int LineNumber;
@@ -181,44 +204,46 @@ inline uint32 GetAtomHash(tExpression& e)    																			{ return tHash::
 // [a b c]				; Arg0
 // d					; Arg1
 // [e f]				; Arg2
-class tScriptReader : public tExpression
+//
+// You can pass one of these to any function that expects a tExpression as it is a sub-class.
+class tExprReader : public tExpression
 {
 public:
-	// Constructs an initially invalid tScriptReader.
-	tScriptReader()																										: tExpression(), ReadBuffer(nullptr) { }
+	// Constructs an initially invalid tExprReader.
+	tExprReader()																										: tExpression(), ExprBuffer(nullptr) { }
 
 	// If isFile is true then the file 'name' is loaded, otherwise treats 'name' as the actual script string.
-	tScriptReader(const tString& name, bool isFile = true)																: tExpression(), ReadBuffer(nullptr) { Load(name, isFile); }
+	tExprReader(const tString& name, bool isFile = true)																: tExpression(), ExprBuffer(nullptr) { Load(name, isFile); }
 
 	// Useful for command line utilities. Makes a script from standard command line argc and argv parameters. Honestly,
 	// I'm not sure how useful this is now that we have tOption for parsing command lines in a nice way that is a bit
 	// more standard.
-	tScriptReader(int argc, char** argv);
-	~tScriptReader()																									{ delete[] ReadBuffer; }
+	tExprReader(int argc, char** argv);
+	~tExprReader()																										{ delete[] ExprBuffer; }
 
 	// If isFile is true then the file 'name' is loaded, otherwise treats 'name' as the actual script string. The
 	// object is cleared before the new information is loaded. Any previous information is lost.
 	void Load(const tString& name, bool isFile = true);
 
 	// The object will be invalid after this call.
-	void Clear()																										{ delete[] ReadBuffer; ReadBuffer = 0; }
-	bool IsValid() const																								{ return ReadBuffer ? true : false; }
+	void Clear()																										{ delete[] ExprBuffer; ExprBuffer = 0; }
+	bool IsValid() const																								{ return ExprBuffer ? true : false; }
 
 private:
-	char* ReadBuffer;
+	char* ExprBuffer;
 };
 
 
 // Use this to create a script file.
-class tScriptWriter
+class tExprWriter
 {
 public:
 	// Creates the file if it doesn't exist, overwrites it if it does.
-	tScriptWriter(const tString& filename);
-	~tScriptWriter()																									{ tSystem::tCloseFile(ScriptFile); }
+	tExprWriter(const tString& filename);
+	~tExprWriter()																										{ tSystem::tCloseFile(ExprFile); }
 
-	// After this is called, the writer starts using spaces instead of tabs. Default is tabs.
-	void UseSpaces(int tabWidth = 4)																					{ UseSpacesForTabs = true; SpaceTabWidth = tabWidth; }
+	// If you call this with a value > 0 the writer starts using spaces instead of tabs. Zero means use tabs (default).
+	void SetTabWidth(int tabWidth = 0)																					{ TabWidth = tabWidth; }
 
 	void BeginExpression();
 	void EndExpression();
@@ -311,18 +336,17 @@ public:
 private:
 	int WriteIndents()
 	{
-		int numChars = UseSpacesForTabs ? CurrIndent*SpaceTabWidth : CurrIndent;
-		char writeChar = UseSpacesForTabs ? ' ' : '\t';
-		for (int c = 0; c < numChars; c++) tSystem::tWriteFile(ScriptFile, &writeChar, 1);
+		int numChars = TabWidth ? CurrIndent*TabWidth : CurrIndent;
+		char writeChar = TabWidth ? ' ' : '\t';
+		for (int c = 0; c < numChars; c++) tSystem::tWriteFile(ExprFile, &writeChar, 1);
 		return numChars;
 	}
 
-	int CurrIndent;			// Number of tabs. If using spaces it's the number of groups of SpaceTabWidth spaces.
-	bool UseSpacesForTabs;
-	int SpaceTabWidth;
+	int CurrIndent;			// Number of tabs. If using spaces it's the number of groups of TabWidth spaces.
+	int TabWidth;
 
 protected:
-	tFileHandle ScriptFile;
+	tFileHandle ExprFile;
 };
 
 
