@@ -220,7 +220,7 @@ bool tImageJPG::PopulateMetaData(const uint8* jpgFileInMemory, int numBytes)
 {
 	tAssert(jpgFileInMemory && (numBytes > 0));
 	MetaData.Set(jpgFileInMemory, numBytes);
-	return MetaData,IsValid();
+	return MetaData.IsValid();
 }
 
 
