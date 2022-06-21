@@ -69,12 +69,15 @@ const tuint256 HashIV256 = 0;
 // are the only ones that guarantee the same hash value whether computed in parts or as a single data-set.
 uint32 tHashDataFast32(const uint8* data, int length, uint32 iv = HashIV32);
 uint32 tHashStringFast32(const char*, uint32 iv = HashIV32);
+uint32 tHashStringFast32(const char8_t*, uint32 iv = HashIV32);
 uint32 tHashStringFast32(const tString&, uint32 iv = HashIV32);
 uint32 tHashString(const char*);
+uint32 tHashString(const char8_t*);
 
 // The CT (Compile Time) variant uses the fast-hash algorithm. It is super handy for use in the 'case' part of switch
 // statements or any time you know the string literal explicitly. In these cases the compiler can do all the work.
 constexpr uint32 tHashCT(const char*, uint32 iv = HashIV32);
+constexpr uint32 tHashCT(const char8_t*, uint32 iv = HashIV32);
 
 // The HashData32/64/128/256 and variants do _not_ guarantee the same hash value if they are chained together compared
 // to the hash of the same data computed as a single block. This is because the entire state is not stored in the hash
@@ -133,24 +136,40 @@ inline uint32 tHashStringFast32(const char* string, uint32 iv)
 }
 
 
+inline uint32 tHashStringFast32(const char8_t* string, uint32 iv)
+{
+	return tHashStringFast32((const char*)string, iv);
+}
+
+
 // This (compile-time) constant expression relies on the odometer-style looping of unsigned ints to compute the hash.
 // Since it's inline, you may need to pragma warning(disable:4307), which warns of const integral overflow.
+// For the below functions, char* is for ASCII strings, char8_t is for UTF-8. The UTF-8 versions fallback to the regular
+// versions as these work fine for UTF-8 strings.
 inline constexpr uint32 tHashCT(const char* s, uint32 hash)																{ return *s ? tHashCT(s + 1, hash + (hash << 5) + uint8(*s)) : hash; }
-inline uint32 tHashStringFast32(const tString& s, uint32 iv)															{ return tHashStringFast32(s.ConstText(), iv); }
+inline constexpr uint32 tHashCT(const char8_t* s, uint32 hash)															{ return *s ? tHashCT(s + 1, hash + (hash << 5) + uint8(*s)) : hash; }
+inline uint32 tHashStringFast32(const tString& s, uint32 iv)															{ return tHashStringFast32(s.Chars(), iv); }
 inline uint32 tHashString(const char* s)																				{ return tHashStringFast32(s); }
+inline uint32 tHashString(const char8_t* s)																				{ return tHashStringFast32(s); }
 inline uint32 tHashString32(const char* string, uint32 iv)																{ return tHashData32((uint8*)string, tStd::tStrlen(string), iv); }
-inline uint32 tHashString32(const tString& s, uint32 iv)																{ return tHashString32(s.ConstText(), iv); }
+inline uint32 tHashString32(const char8_t* string, uint32 iv)															{ return tHashData32((uint8*)string, tStd::tStrlen(string), iv); }
+inline uint32 tHashString32(const tString& s, uint32 iv)																{ return tHashString32(s.Chars(), iv); }
 inline uint64 tHashString64(const char* string, uint64 iv)																{ return tHashData64((uint8*)string, tStd::tStrlen(string), iv); }
-inline uint64 tHashString64(const tString& s, uint64 iv)																{ return tHashString64(s.ConstText(), iv); }
+inline uint64 tHashString64(const char8_t* string, uint64 iv)															{ return tHashData64((uint8*)string, tStd::tStrlen(string), iv); }
+inline uint64 tHashString64(const tString& s, uint64 iv)																{ return tHashString64(s.Chars(), iv); }
 inline tuint128 tHashStringMD5(const char* string, tuint128 iv)															{ return tHashDataMD5((uint8*)string, tStd::tStrlen(string), iv); }
-inline tuint128 tHashStringMD5(const tString& s, tuint128 iv)															{ return tHashStringMD5(s.ConstText(), iv); }
+inline tuint128 tHashStringMD5(const char8_t* string, tuint128 iv)														{ return tHashDataMD5((uint8*)string, tStd::tStrlen(string), iv); }
+inline tuint128 tHashStringMD5(const tString& s, tuint128 iv)															{ return tHashStringMD5(s.Chars(), iv); }
 inline tuint128 tHashData128(const uint8* data, int length, tuint128 iv)												{ return tHashDataMD5(data, length, iv); }
 inline tuint128 tHashString128(const char* string, tuint128 iv)															{ return tHashDataMD5((uint8*)string, tStd::tStrlen(string), iv); }
-inline tuint128 tHashString128(const tString& s, tuint128 iv)															{ return tHashStringMD5(s.ConstText(), iv); }
+inline tuint128 tHashString128(const char8_t* string, tuint128 iv)														{ return tHashDataMD5((uint8*)string, tStd::tStrlen(string), iv); }
+inline tuint128 tHashString128(const tString& s, tuint128 iv)															{ return tHashStringMD5(s.Chars(), iv); }
 inline tuint256 tHashString256(const char* string, tuint256 iv)															{ return tHashData256((uint8*)string, tStd::tStrlen(string), iv); }
-inline tuint256 tHashString256(const tString& s, tuint256 iv)															{ return tHashString256(s.ConstText(), iv); }
+inline tuint256 tHashString256(const char8_t* string, tuint256 iv)														{ return tHashData256((uint8*)string, tStd::tStrlen(string), iv); }
+inline tuint256 tHashString256(const tString& s, tuint256 iv)															{ return tHashString256(s.Chars(), iv); }
 inline tuint256 tHashStringSHA256(const char* string, tuint256 iv)														{ return tHashDataSHA256((uint8*)string, tStd::tStrlen(string), iv); }
-inline tuint256 tHashStringSHA256(const tString& s, tuint256 iv)														{ return tHashStringSHA256(s.ConstText(), iv); }
+inline tuint256 tHashStringSHA256(const char8_t* string, tuint256 iv)													{ return tHashDataSHA256((uint8*)string, tStd::tStrlen(string), iv); }
+inline tuint256 tHashStringSHA256(const tString& s, tuint256 iv)														{ return tHashStringSHA256(s.Chars(), iv); }
 
 
 }

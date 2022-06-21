@@ -107,7 +107,7 @@ void tRule::AddDependencies(tList<tStringItem>& deps)
 	}
 
 	if (!success)
-		throw tRuleError("Cannot add dependency [%s]", badDependency.Chars());
+		throw tRuleError("Cannot add dependency [%s]", badDependency.Chs());
 }
 
 
@@ -144,7 +144,7 @@ bool tRule::OutOfDate(bool checkClean)
 	while (dep)
 	{
 		if (!tSystem::tFileExists(*dep))
-			throw tRuleError("Cannot find dependency [%s] while targetting [%s].", dep->ConstText(), Target.ConstText());
+			throw tRuleError("Cannot find dependency [%s] while targetting [%s].", dep->Chs(), Target.Chs());
 
 		dep = dep->Next();
 	}

@@ -232,7 +232,7 @@ static bool OptionSortFnLong(const tCmdLine::tOption& a, const tCmdLine::tOption
 }
 
 
-void tCmdLine::tParse(const char* commandLine, bool fullCommandLine)
+void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 {
 	// At this point the constructors for all tOptions and tParams will have been called and both Params and Options
 	// lists are populated. Options can be specified in any order, but we're going to order them alphabetically by short
@@ -246,12 +246,12 @@ void tCmdLine::tParse(const char* commandLine, bool fullCommandLine)
 
 	// Mark both kinds of escaped quotes that may be present. These may be found when the caller
 	// wants a quote inside a string on the command line.
-	line.Replace("\\'", tStd::SeparatorAStr);
-	line.Replace("\\\"", tStd::SeparatorBStr);
+	line.Replace(u8"\\'", tStd::u8SeparatorAStr);
+	line.Replace(u8"\\\"", tStd::u8SeparatorBStr);
 
 	// Mark the spaces and hyphens inside normal (non escaped) quotes.
 	bool inside = false;
-	for (char* ch = line.Text(); *ch; ch++)
+	for (char8_t* ch = line.Text(); *ch; ch++)
 	{
 		if ((*ch == '\'') || (*ch == '\"'))
 			inside = !inside;
@@ -284,7 +284,7 @@ void tCmdLine::tParse(const char* commandLine, bool fullCommandLine)
 	if (fullCommandLine)
 	{
 		tStringItem* prog = args.Remove();
-		Program.Set(prog->ConstText());
+		Program.Set(prog->Chars());
 		delete prog;
 	}
 	else
@@ -425,35 +425,35 @@ void tCmdLine::tPrintUsage(int versionMajor, int versionMinor, int revision)
 }
 
 
-void tCmdLine::tPrintUsage(const char* author, int versionMajor, int versionMinor, int revision)
+void tCmdLine::tPrintUsage(const char8_t* author, int versionMajor, int versionMinor, int revision)
 {
 	tPrintUsage(author, nullptr, versionMajor, versionMinor, revision);
 }
 
 
-void tCmdLine::tPrintUsage(const char* author, const char* desc, int versionMajor, int versionMinor, int revision)
+void tCmdLine::tPrintUsage(const char8_t* author, const char8_t* desc, int versionMajor, int versionMinor, int revision)
 {
 	tAssert(versionMajor >= 0);
 	tAssert((versionMinor >= 0) || (revision < 0));		// Not allowed a valid revision number if minor is not also valid.
 
-	char verAuth[128];
-	char* va = verAuth;
-	va += tsPrintf(va, "Version %d", versionMajor);
+	char8_t verAuth[128];
+	char8_t* va = verAuth;
+	va += tsPrintf((char*)va, "Version %d", versionMajor);
 	if (versionMinor >= 0)
 	{
-		va += tsPrintf(va, ".%d", versionMinor);
+		va += tsPrintf((char*)va, ".%d", versionMinor);
 		if (revision >= 0)
-			va += tsPrintf(va, ".%d", revision);
+			va += tsPrintf((char*)va, ".%d", revision);
 	}
 
 	if (author)
-		va += tsPrintf(va, " by %s", author);
+		va += tsPrintf((char*)va, " by %s", author);
 
 	tPrintUsage(verAuth, desc);
 }
 
 
-void tCmdLine::tPrintUsage(const char* versionAuthorString, const char* desc)
+void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* desc)
 {
 	tString exeName = "Program.exe";
 	if (!tCmdLine::Program.IsEmpty())

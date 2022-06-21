@@ -169,7 +169,7 @@ bool tImage::tImageEXR::Load
 	IMF::Array<float*> zbuffer;
 	IMF::Array<uint> sampleCount;
 
-	MultiPartInputFile mpfile(exrFile.Chars());
+	MultiPartInputFile mpfile(exrFile.Chs());
 	int numParts = mpfile.parts();
 	if (numParts <= 0)
 		return false;
@@ -184,7 +184,7 @@ bool tImage::tImageEXR::Load
 
 			EXR::loadImage
 			(
-				exrFile.Chars(),
+				exrFile.Chs(),
 				nullptr,					// Channels. Null means all.
 				nullptr,					// Layers. O means first one.
 				preview, lx, ly,

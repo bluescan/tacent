@@ -1,8 +1,9 @@
 // tString.cpp
 //
 // tString is a simple and readable string class that implements sensible operators, including implicit casts. There is
-// no UCS2 or UTF16 support since UTF8 is, in my opinion, superior and the way forward. tStrings will work with UTF8.
-// You cannot stream (from cin etc) more than 512 chars into a string. This restriction is only for wacky << streaming.
+// no UCS2 or UTF-16 support. The text in a tString is considerd to be UTF-8 and terminated with a nul. You cannot
+// stream (from cin etc) more than 512 chars into a string. This restriction is only for wacky << streaming. For
+// conversions of arbitrary types to tStrings, see tsPrint in the higher level System module.
 //
 // Copyright (c) 2004-2006, 2015, 2017, 2020, 2021 Tristan Grimmer.
 // Copyright (c) 2020 Stefan Wessels.
@@ -20,7 +21,7 @@
 #include "Foundation/tHash.h"
 
 
-char tString::EmptyChar = '\0';
+char8_t tString::EmptyChar = '\0';
 
 
 tString::operator uint32()
@@ -132,7 +133,7 @@ tString tString::ExtractLeft(const char divider)
 	tStd::tStrncpy(buf.TextData, TextData, pos);
 
 	int length = Length();
-	char* newText = new char[length-pos];
+	char8_t* newText = new char8_t[length-pos];
 
 	// This will append the null.
 	tStd::tStrncpy(newText, TextData+pos+1, length-pos);
@@ -161,7 +162,7 @@ tString tString::ExtractRight(const char divider)
 	tString buf(wordLength);
 	tStd::tStrncpy(buf.TextData, TextData+pos+1, wordLength);
 
-	char* newText = new char[pos+1];
+	char8_t* newText = new char8_t[pos+1];
 	tStd::tStrncpy(newText, TextData, pos);
 	newText[pos] = '\0';
 
@@ -179,7 +180,7 @@ tString tString::ExtractLeft(int count)
 	if (count > length)
 		count = length;
 
-	if(count <= 0)
+	if (count <= 0)
 		return tString();
 
 	tString left(count);
@@ -194,8 +195,8 @@ tString tString::ExtractLeft(int count)
 		return left;
 	}
 
-	char* newText = new char[newLength+1];
-	strcpy(newText, TextData+count);
+	char8_t* newText = new char8_t[newLength+1];
+	tStd::tStrcpy(newText, TextData+count);
 
 	delete[] TextData;
 	TextData = newText;
@@ -229,7 +230,7 @@ tString tString::ExtractRight(int count)
 		return right;
 	}
 
-	char* newText = new char[newLength+1];
+	char8_t* newText = new char8_t[newLength+1];
 	TextData[length - count] = '\0';
 
 	tStd::tStrcpy(newText, TextData);
@@ -250,10 +251,10 @@ tString tString::ExtractLeft(const char* prefix)
 	if ((len <= 0) || (Length() < len))
 		return tString();
 
-	if (tStd::tStrncmp(TextData, prefix, len) == 0)
+	if (tStd::tStrncmp(TextData, (const char8_t*)prefix, len) == 0)
 	{
 		int oldlen = Length();
-		char* newtext = new char[oldlen-len+1];
+		char8_t* newtext = new char8_t[oldlen-len+1];
 		tStd::tStrcpy(newtext, &TextData[len]);
 		delete[] TextData;
 		TextData = newtext;
@@ -273,7 +274,7 @@ tString tString::ExtractRight(const char* suffix)
 	if ((len <= 0) || (Length() < len))
 		return tString();
 
-	if (tStd::tStrncmp(&TextData[Length()-len], suffix, len) == 0)
+	if (tStd::tStrncmp(&TextData[Length()-len], (const char8_t*)suffix, len) == 0)
 	{
 		TextData[Length()-len] = '\0';
 		return tString(suffix);
@@ -303,7 +304,7 @@ tString tString::ExtractMid(int start, int count)
 		return mid;
 	}
 
-	char* newText = new char[newLength+1];
+	char8_t* newText = new char8_t[newLength+1];
 	newText[newLength] = '\0';
 
 	tStd::tStrncpy(newText, TextData, start);
@@ -316,7 +317,7 @@ tString tString::ExtractMid(int start, int count)
 }
 
 
-int tString::Replace(const char* s, const char* r)
+int tString::Replace(const char8_t* s, const char8_t* r)
 {
 	if (!s || (s[0] == '\0'))
 		return 0;
@@ -330,11 +331,11 @@ int tString::Replace(const char* s, const char* r)
 	{
 		// Since the replacement string is a different size, we'll need to reallocate
 		// out memory. We start by finding out how many replacements we will need to do.
-		char* searchStart = TextData;
+		char8_t* searchStart = TextData;
 
 		while (searchStart < (TextData + origTextLength))
 		{
-			char* foundString = tStd::tStrstr(searchStart, s);
+			char8_t* foundString = tStd::tStrstr(searchStart, s);
 			if (!foundString)
 				break;
 
@@ -344,7 +345,7 @@ int tString::Replace(const char* s, const char* r)
 
 		// The new length may be bigger or smaller than the original. If the newlength is precisely
 		// 0, it means that the entire string is being replaced with nothing, so we can exit early.
-		// Ex. Replace "abcd" in "abcdabcd" with ""
+		// eg. Replace "abcd" in "abcdabcd" with ""
 		int newTextLength = origTextLength + replaceCount*(replaceStringLength - searchStringLength);
 		if (!newTextLength)
 		{
@@ -354,7 +355,7 @@ int tString::Replace(const char* s, const char* r)
 			return replaceCount;
 		}
 
-		char* newText = new char[newTextLength + 16];
+		char8_t* newText = new char8_t[newTextLength + 16];
 		newText[newTextLength] = '\0';
 
 		tStd::tMemset( newText, 0, newTextLength + 16 );
@@ -364,7 +365,7 @@ int tString::Replace(const char* s, const char* r)
 		searchStart = TextData;
 		while (searchStart < (TextData + origTextLength))
 		{
-			char* foundString = tStd::tStrstr(searchStart, s);
+			char8_t* foundString = tStd::tStrstr(searchStart, s);
 
 			if (foundString)
 			{
@@ -391,11 +392,11 @@ int tString::Replace(const char* s, const char* r)
 	{
 		// In this case the replacement string is exactly the same length at the search string.
 		// Much easier to deal with and no need for memory allocation.
-		char* searchStart = TextData;
+		char8_t* searchStart = TextData;
 
 		while (searchStart < (TextData + origTextLength))
 		{
-			char* foundString = tStd::tStrstr(searchStart, s);
+			char8_t* foundString = tStd::tStrstr(searchStart, s);
 			if (foundString)
 			{
 				tStd::tMemcpy(foundString, r, replaceStringLength);
@@ -463,7 +464,7 @@ int tString::RemoveLeading(const char* removeThese)
 	if (cnt > 0)
 	{
 		int oldlen = Length();
-		char* newtext = new char[oldlen-cnt+1];
+		char8_t* newtext = new char8_t[oldlen-cnt+1];
 		tStd::tStrcpy(newtext, &TextData[cnt]);
 		delete[] TextData;
 		TextData = newtext;
@@ -526,7 +527,7 @@ int tStd::tExplode(tList<tStringItem>& components, const tString& src, const tSt
 	// Well, this is a bit of a cheezy way of doing this.  We just assume that ASCII character 31,
 	// the "unit separator", is meant for this kind of thing and not otherwise present in the src string.
 	tString source = src;
-	char sep[2];
+	char8_t sep[2];
 	sep[0] = 31;
 	sep[1] = 0;
 	source.Replace(divider, sep);

@@ -145,12 +145,13 @@ namespace tCmdLine
 		bool Present;
 	};
 
+	// All strings are utf-8.
 	void tParse(int argc, char** argv);
-	void tParse(const char* commandLine, bool fullCommandLine = false);
+	void tParse(const char8_t* commandLine, bool fullCommandLine = false);
 	void tPrintUsage(int versionMajor, int versionMinor = -1, int revision = -1);
-	void tPrintUsage(const char* author, int versionMajor, int versionMinor = -1, int revision = -1);
-	void tPrintUsage(const char* author, const char* desc, int versionMajor, int versionMinor = -1, int revision = -1);
-	void tPrintUsage(const char* versionAuthor = nullptr, const char* desc = nullptr);
+	void tPrintUsage(const char8_t* author, int versionMajor, int versionMinor = -1, int revision = -1);
+	void tPrintUsage(const char8_t* author, const char8_t* desc, int versionMajor, int versionMinor = -1, int revision = -1);
+	void tPrintUsage(const char8_t* versionAuthor = nullptr, const char8_t* desc = nullptr);
 	void tPrintSyntax();
 
 	tString tGetProgram();			// Returns the program name assuming you have already called tParse.

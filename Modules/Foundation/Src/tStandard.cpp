@@ -33,6 +33,16 @@ const char* tStd::SeparatorBStr								= tStd::SeparatorRecordStr;
 const char* tStd::SeparatorCStr								= tStd::SeparatorGroupStr;
 const char* tStd::SeparatorDStr								= tStd::SeparatorFileStr;
 const char* tStd::SeparatorEStr								= tStd::SeparatorSubStr;
+const char8_t* tStd::u8SeparatorSubStr						= (const char8_t*)tStd::SeparatorSubStr;
+const char8_t* tStd::u8SeparatorFileStr						= (const char8_t*)tStd::SeparatorFileStr;
+const char8_t* tStd::u8SeparatorGroupStr					= (const char8_t*)tStd::SeparatorGroupStr;
+const char8_t* tStd::u8SeparatorRecordStr					= (const char8_t*)tStd::SeparatorRecordStr;
+const char8_t* tStd::u8SeparatorUnitStr						= (const char8_t*)tStd::SeparatorUnitStr;
+const char8_t* tStd::u8SeparatorAStr						= (const char8_t*)tStd::SeparatorAStr;
+const char8_t* tStd::u8SeparatorBStr						= (const char8_t*)tStd::SeparatorBStr;
+const char8_t* tStd::u8SeparatorCStr						= (const char8_t*)tStd::SeparatorCStr;
+const char8_t* tStd::u8SeparatorDStr						= (const char8_t*)tStd::SeparatorDStr;
+const char8_t* tStd::u8SeparatorEStr						= (const char8_t*)tStd::SeparatorEStr;
 
 
 void* tStd::tMemmem(void* haystack, int haystackNumBytes, void* needle, int needleNumBytes)

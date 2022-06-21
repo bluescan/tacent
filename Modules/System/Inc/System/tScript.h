@@ -59,11 +59,13 @@ public:
 
 	// Creates an expression from a string. If the first non-white character is [, it's a list expression, otherwise
 	// it's an atom.
-	tExpression(const char* v)																							: ExprData(v), LineNumber(0) { }
+	tExpression(const char8_t* v)																						: ExprData(v), LineNumber(0) { }
+	tExpression(const char* v)																							: ExprData((const char8_t*)v), LineNumber(0) { }
 
 	// If you want the expression to keep track of what line number it's on then you should supply the current line
 	// number. Thrown error messages will include the line number if it's set.
-	tExpression(const char* v, int lineNumber)																			: ExprData(v), LineNumber(lineNumber) { }
+	tExpression(const char8_t* v, int lineNumber)																		: ExprData(v), LineNumber(lineNumber) { }
+	tExpression(const char* v, int lineNumber)																			: ExprData((const char8_t*)v), LineNumber(lineNumber) { }
 	virtual ~tExpression()																								{ }
 
 	// Like in scheme. Contents of the Address Register from the old IBM days.
@@ -165,10 +167,10 @@ public:
 protected:
 	// Chugs along the in-memory data ignoring stuff that is allowed to be ignored. Returns the number of new lines
 	// encountered along the way.
-	static const char* EatWhiteAndComments(const char*, int& lineCount);
+	static const char8_t* EatWhiteAndComments(const char8_t*, int& lineCount);
 
-	// The memory for this is owned by the tScriptRead class.
-	const char* ExprData;
+	// The memory for this is owned by the tScriptRead class. The ExprData is UTF-8.
+	const char8_t* ExprData;
 
 	// The first valid line number starts at 1.
 	int LineNumber;
@@ -230,7 +232,8 @@ public:
 	bool IsValid() const																								{ return ExprBuffer ? true : false; }
 
 private:
-	char* ExprBuffer;
+	// ExprBuffer is officially a UTF-8 string. i.e. We support unicode codepoints in script files.
+	char8_t* ExprBuffer;
 };
 
 
@@ -252,6 +255,7 @@ public:
 	// Infinity, NAN, etc) will result in a value of 0.0 being written.
 	void WriteAtom(const tString&);
 	void WriteAtom(const char*);
+	void WriteAtom(const char8_t*);
 	void WriteAtom(const bool);
 	void WriteAtom(const uint32);
 	void WriteAtom(const uint64);
@@ -267,16 +271,19 @@ public:
 	void WriteAtom(const tColouri&);
 
 	// Writes a single line comment to the script file.
-	void WriteComment(const char* = 0);
+	void WriteComment(const char* = nullptr);
+	void WriteComment(const char8_t*);
 
 	// Use these for multiline comments. They use the { } characters. They are not indented.
 	void WriteCommentBegin();
-	void WriteCommentLine(const char* = 0);
+	void WriteCommentLine(const char* = nullptr);
+	void WriteCommentLine(const char8_t*);
 	void WriteCommentEnd();
 
 	// Use these for inline { } comments that don't go to end of line. ex. [ NotComment { This is a comment } AlsoNotComment ]
 	void WriteCommentInlineBegin();
-	void WriteCommentInline(const char* = 0);
+	void WriteCommentInline(const char* = nullptr);
+	void WriteCommentInline(const char8_t*);
 	void WriteCommentInlineEnd();
 
 	// Indent and Dedent have no immediate effect. They affect the next Newline call, which does a newline and then
@@ -350,15 +357,16 @@ protected:
 };
 
 
-// A tFunExtression takes the form FunctionName(Arg1, Arg2, Arg3...)
-class tFunExtression : public tLink<tFunExtression>
+// A tFunExpression takes the form FunctionName(Arg1, Arg2, Arg3...)
+class tFunExpression : public tLink<tFunExpression>
 {
 public:
-	tFunExtression()																									: Function(), Arguments() { }
+	tFunExpression()																									: Function(), Arguments() { }
 
 	// Argument must point to the first character of the function name.
-	tFunExtression(const char*);
-	virtual ~tFunExtression()																							{ while (tStringItem* arg = Arguments.Remove()) delete arg; }
+	tFunExpression(const char8_t*);
+	tFunExpression(const char* e)																						: tFunExpression((const char8_t*)e) { }
+	virtual ~tFunExpression()																							{ while (tStringItem* arg = Arguments.Remove()) delete arg; }
 
 	tString Function;
 	tList<tStringItem> Arguments;
@@ -372,18 +380,18 @@ public:
 	tFunScript(const tString& fileName)																					: Expressions() { Load(fileName); }
 	~tFunScript()																										{ Clear(); }
 
-	void Clear()																										{ while (tFunExtression* exp = Expressions.Remove()) delete exp; }
+	void Clear()																										{ while (tFunExpression* exp = Expressions.Remove()) delete exp; }
 	void Load(const tString& fileName);
 	void Save(const tString& fileName);
 
-	tFunExtression* First() const																						{ return Expressions.First(); }
-	tFunExtression* Last() const																						{ return Expressions.Last(); }
+	tFunExpression* First() const																						{ return Expressions.First(); }
+	tFunExpression* Last() const																						{ return Expressions.Last(); }
 
 	// A tFunScript is just a list of expressions. A tree may be more powerful?
-	tList<tFunExtression> Expressions;	
+	tList<tFunExpression> Expressions;	
 
 private:
-	char* EatWhiteAndComments(char* c);
+	char8_t* EatWhiteAndComments(char8_t* c);
 };
 
 
@@ -415,3 +423,31 @@ struct tScriptError : public tError
 	}
 	tScriptError()																										: tError("tScript Module.") { }
 };
+
+
+// Implementation only below this line.
+
+
+inline void tExprWriter::WriteAtom(const char8_t* atom)
+{
+	// The non-UFT-8 version will write UTF-8 strings just fine.
+	WriteAtom((const char*)atom);
+}
+
+
+inline void tExprWriter::WriteComment(const char8_t* comment)
+{
+	WriteComment((const char*)comment);
+}
+
+
+inline void tExprWriter::WriteCommentLine(const char8_t* comment)
+{
+	WriteCommentLine((const char*)comment);
+}
+
+
+inline void tExprWriter::WriteCommentInline(const char8_t* comment)
+{
+	WriteCommentInline((const char*)comment);
+}

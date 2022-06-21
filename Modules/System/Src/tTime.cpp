@@ -101,17 +101,17 @@ tString tSystem::tConvertTimeToString(std::tm timePoint, tTimeFormat format)
 	{
 		case tTimeFormat::Standard:
 			// Eg. 2020-01-14 01:47:12
-			strftime(tstr.Text(), 256, "%F %T", &timePoint);
+			strftime((char*)tstr.Text(), 256, "%F %T", &timePoint);
 			break;
 
 		case tTimeFormat::Extended:
 			// Eg. Tuesday January 14 2020 - 01:36:34
-			strftime(tstr.Text(), 256, "%A %B %d %G - %T", &timePoint);
+			strftime((char*)tstr.Text(), 256, "%A %B %d %G - %T", &timePoint);
 			break;
 
 		case tTimeFormat::Short:
 			// Eg. Tue Jan 14 14:38:58 2020
-			strftime(tstr.Text(), 256, "%c", &timePoint);
+			strftime((char*)tstr.Text(), 256, "%c", &timePoint);
 			break;
 	}
 

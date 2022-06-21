@@ -59,7 +59,9 @@ bool tImageAPNG::Load(const tString& apngFile)
 		return false;
 
 	std::vector<APngDis::Image> frames;
-	int result = APngDis::load_apng(apngFile.Chars(), frames);
+
+	// We assume here that load_apng can hande UTF-8 filenames.
+	int result = APngDis::load_apng(apngFile.Chs(), frames);
 	if (result < 0)
 		return false;
 
@@ -197,7 +199,7 @@ bool tImageAPNG::Save(const tString& apngFile, int overrideFrameDuration)
 		img.delay_den = delayDenom;
 	}
 
-	int errCode = APngAsm::save_apng((char*)apngFile.Chars(), images, 0, 0, 0, 0);
+	int errCode = APngAsm::save_apng((char*)apngFile.Chs(), images, 0, 0, 0, 0);
 	return errCode ? false : true;
 }
 

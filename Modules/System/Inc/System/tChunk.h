@@ -141,7 +141,7 @@ public:
 	int Write(uint8 c)																									{ return Write( (void*)&c, sizeof(uint8) ); }
 	int Write(const tColouri& c)																						{ return Write( (void*)&c, sizeof(tColouri) ); }
 	int Write(const char* s)																							{ return Write( (void*)s, int(tStd::tStrlen(s)) + 1 ); }
-	int Write(const tString& s)								/* Writes the null character as well. */					{ return Write( (const char*)s, s.Length() + 1 ); }
+	int Write(const tString& s)								/* Writes the null character as well. */					{ return Write( (const char8_t*)s, s.Length() + 1 ); }
 	int Write(const tMath::tVector2&);
 	int Write(const tMath::tVector3&);
 	int Write(const tMath::tVector4&);

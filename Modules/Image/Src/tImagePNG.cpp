@@ -143,7 +143,7 @@ bool tImagePNG::Save(const tString& pngFile) const
 		}
 	}
 
-	FILE* fp = fopen(pngFile, "wb");
+	FILE* fp = fopen(pngFile.Chs(), "wb");
 	if (!fp)
 		return false;
 

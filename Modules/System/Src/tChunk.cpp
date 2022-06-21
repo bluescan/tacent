@@ -693,14 +693,14 @@ int tChunkWriter::Write(const void* data, const tString& layoutStr)
 	layout.Remove(' ');
 	layout.Remove('_');
 	layout.Remove('-');
-	layout.Replace("m4", "v4v4v4v4");
-	layout.Replace("m2", "v2v2");
-	layout.Replace("v4", "4444");
-	layout.Replace("v3", "444");
-	layout.Replace("v2", "44");
-	layout.Replace("q", "4444");
-	layout.Replace("f", "4");
-	layout.Replace("d", "8");
+	layout.Replace(u8"m4", u8"v4v4v4v4");
+	layout.Replace(u8"m2", u8"v2v2");
+	layout.Replace(u8"v4", u8"4444");
+	layout.Replace(u8"v3", u8"444");
+	layout.Replace(u8"v2", u8"44");
+	layout.Replace(u8"q", u8"4444");
+	layout.Replace(u8"f", u8"4");
+	layout.Replace(u8"d", u8"8");
 
 	// Is the string wellformed?
 	int strLen = 0;
@@ -768,7 +768,7 @@ int tChunkWriter::Write(const void* data, const tString& layoutStr)
 void tChunkReader::Load(const tString& filename, uint8* buffer)
 {
 	UnLoad();
-	tFileHandle fh = tOpenFile(filename.ConstText(), "rb");
+	tFileHandle fh = tOpenFile(filename.Chs(), "rb");
 	if (!fh)
 		return;
 
@@ -815,7 +815,7 @@ void tChunkReader::Load(uint8* buffer, int bufferSizeBytes)
 bool tChunkReader::LoadSafe(const tString& filename)
 {
 	UnLoad();
-	tFileHandle fh = tOpenFile(filename.ConstText(), "rb");
+	tFileHandle fh = tOpenFile(filename.Chs(), "rb");
 	ReadBufferSize = tGetFileSize(fh);
 	if (ReadBufferSize == 0)
 	{

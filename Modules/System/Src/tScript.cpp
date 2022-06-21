@@ -38,7 +38,7 @@ tExpression tExpression::Car() const
 {
 	tAssert( IsValid() );
 
-	const char* c = ExprData + 1;
+	const char8_t* c = ExprData + 1;
 
 	if (*c == '\0')
 		return tExpression();
@@ -74,7 +74,7 @@ tExpression tExpression::Next() const
 {
 	tAssert( IsValid() );
 
-	const char* c = ExprData;
+	const char8_t* c = ExprData;
 	int count = 0;
 	int lineNum = LineNumber;
 
@@ -187,14 +187,14 @@ tString tExpression::GetExpressionString() const
 		return GetAtomString();
 
 	tAssert(*ExprData == '[');
-	const char* start = ExprData;
-	const char* end = start;
+	const char8_t* start = ExprData;
+	const char8_t* end = start;
 	int bracketCount = 1;
-	while(*++end)
+	while (*++end)
 	{
-		if(*end == '[')
+		if (*end == '[')
 			bracketCount++;
-		else if(*end == ']' && !--bracketCount)
+		else if (*end == ']' && !--bracketCount)
 			break;
 	}
 
@@ -215,8 +215,8 @@ tString tExpression::GetAtomString() const
 	if (!IsAtom())
 		throw tScriptError(LineNumber, "Atom expected near: %s", GetContext().Pod());
 
-	const char* start;
-	const char* end;
+	const char8_t* start;
+	const char8_t* end;
 	if (*ExprData == '"')
 	{
 		start = ExprData + 1;
@@ -266,8 +266,8 @@ tString tExpression::GetAtomTupleString() const
 	if (*ExprData != '(')
 		throw tScriptError(LineNumber, "Tuple atom expected near: %s", GetContext().Pod());
 
-	const char* start = ExprData + 1;
-	const char* end = tStd::tStrchr(start, ')');
+	const char8_t* start = ExprData + 1;
+	const char8_t* end = tStd::tStrchr(start, ')');
 
 	// If no end paren was found we're in trouble.
 	if (!end)
@@ -418,7 +418,7 @@ tColouri tExpression::GetAtomColour() const
 }
 
 
-const char* tExpression::EatWhiteAndComments(const char* c, int& lineCount)
+const char8_t* tExpression::EatWhiteAndComments(const char8_t* c, int& lineCount)
 {
 	// There are two types of comment. Single-line comments using a semi-colon go to the end of the current line.
 	// Block (multi-line) comments are delimited with { and }. Note that { } are still allowed inside a string
@@ -520,7 +520,7 @@ tExprReader::tExprReader(int argc, char** argv) :
 
 	scriptString += "]";
 
-	ExprBuffer = new char[scriptString.Length() + 1];
+	ExprBuffer = new char8_t[scriptString.Length() + 1];
 	tStd::tStrcpy(ExprBuffer, scriptString);
 
 	ExprData = ExprBuffer;
@@ -546,7 +546,7 @@ void tExprReader::Load(const tString& name, bool isFile)
 		// Create a buffer big enough for the file, the uber []'s, two line-endings (one for each square bracket), and a terminating 0.
 		int bufferSize = fileSize + 7;
 
-		ExprBuffer = new char[bufferSize];
+		ExprBuffer = new char8_t[bufferSize];
 		ExprBuffer[0] = '[';
 		ExprBuffer[1] = '\r';
 		ExprBuffer[2] = '\n';
@@ -566,7 +566,7 @@ void tExprReader::Load(const tString& name, bool isFile)
 	{
 		int stringSize = name.Length();
 		int bufferSize = stringSize + 7;
-		ExprBuffer = new char[bufferSize];
+		ExprBuffer = new char8_t[bufferSize];
 
 		ExprBuffer[0] = '[';
 		ExprBuffer[1] = '\r';
@@ -1023,7 +1023,7 @@ void tExprWriter::NewLine()
 
 
 // Next follow the types for the functional scripts of the form f(a, b).
-tFunExtression::tFunExtression(const char* function)
+tFunExpression::tFunExpression(const char8_t* function)
 {
 	const int maxExpressionSize = 512;
 
@@ -1106,12 +1106,12 @@ tFunExtression::tFunExtression(const char* function)
 void tFunScript::Load(const tString& fileName)
 {
 	Clear();
-	tFileHandle file = tSystem::tOpenFile(fileName.ConstText() , "rb");
+	tFileHandle file = tSystem::tOpenFile(fileName.Chars() , "rb");
 	tAssert(file);
 
 	// Create a buffer big enough for the file.
 	int fileSize = tSystem::tGetFileSize(file);
-	char* buffer = new char[fileSize + 1];
+	char8_t* buffer = new char8_t[fileSize + 1];
 
 	// Load the entire thing into memory.
 	int numRead = tSystem::tReadFile(file, (uint8*)buffer, fileSize);
@@ -1121,10 +1121,10 @@ void tFunScript::Load(const tString& fileName)
 	buffer[fileSize] = '\0';
 	tSystem::tCloseFile(file);
 
-	char* currChar = EatWhiteAndComments(buffer);
+	char8_t* currChar = EatWhiteAndComments(buffer);
 	while (*currChar != '\0')
 	{
-		Expressions.Append(new tFunExtression(currChar));
+		Expressions.Append(new tFunExpression(currChar));
 
 		// Get to the next expression.
 		currChar = tStd::tStrchr(currChar, '(');
@@ -1154,10 +1154,10 @@ void tFunScript::Save(const tString& fileName)
 	tFileHandle file = tSystem::tOpenFile(fileName, "wt");
 
 	if (!file)
-		throw tScriptError("Cannot open file '%s'.", fileName.ConstText());
+		throw tScriptError("Cannot open file '%s'.", fileName.Chs());
 
 	// All we need to do is traverse the expression list and write out each one.
-	for (tFunExtression* exp = Expressions.First(); exp; exp = exp->Next())
+	for (tFunExpression* exp = Expressions.First(); exp; exp = exp->Next())
 	{
 		tfPrintf(file, "%s(", exp->Function.Text());
 		for (tStringItem* arg = exp->Arguments.First(); arg; arg = arg->Next())
@@ -1175,7 +1175,7 @@ void tFunScript::Save(const tString& fileName)
 }
 
 
-char* tFunScript::EatWhiteAndComments(char* c)
+char8_t* tFunScript::EatWhiteAndComments(char8_t* c)
 {
 	bool inComment = false;
 	while ((*c == ' ') || (*c == '\t') || (*c == '\n') || (*c == '\r') || (*c == 9) || (*c == '/') || inComment)

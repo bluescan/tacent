@@ -43,38 +43,63 @@ inline int tMemcmp(const void* a, const void* b, int numBytes)															{ r
 void* tMemmem(void* haystack, int haystackNumBytes, void* needle, int needleNumBytes);
 inline const void* tMemmem(const void* haystack, int haystackNumBytes, const void* needle, int needleNumBytes)			{ return tMemmem(haystack, haystackNumBytes, needle, needleNumBytes); }
 
-// For character strings we support regular 8 bit characters (ASCII) and full unicode via UTF8. We do not support either
-// USC2 or UTF16. The CT (Compile-Time) strlen variant below can compute the string length at compile-time for constant
-// string literals.
+// For character strings we support ASCII and full unicode via UTF-8. We do not support either USC2 or UTF-16 except
+// for providing conversion functions. The CT (Compile-Time) strlen variant below can compute the string length at
+// compile-time for constant string literals.
+// @todo Apparently in C++23 we will be getting char8_t variants for a lot of the string functions. Until then the
+// ASCII versions work quite well in most cases for UTF-8 strings.
+// For all these functions, char* represents an ASCII string while char8_t* a UTF-8 string. 
 const int tCharInvalid																									= 0xFF;
 inline int tStrcmp(const char* a, const char* b)																		{ tAssert(a && b); return strcmp(a, b); }
 inline int tStrncmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); return strncmp(a, b, n); }
+inline int tStrcmp(const char8_t* a, const char8_t* b)																	{ tAssert(a && b); return strcmp((const char*)a, (const char*)b); }
+inline int tStrncmp(const char8_t* a, const char8_t* b, int n)															{ tAssert(a && b && n >= 0); return strncmp((const char*)a, (const char*)b, n); }
 #if defined(PLATFORM_WINDOWS)
 inline int tStricmp(const char* a, const char* b)																		{ tAssert(a && b); return stricmp(a, b); }
 inline int tStrnicmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); return strnicmp(a, b, n); }
+inline int tStricmp(const char8_t* a, const char8_t* b)																	{ tAssert(a && b); return stricmp((const char*)a, (const char*)b); }
+inline int tStrnicmp(const char8_t* a, const char8_t* b, int n)															{ tAssert(a && b && n >= 0); return strnicmp((const char*)a, (const char*)b, n); }
 #else
+// @todo Why on non-windows did I need to use strcasecmp? strcasecmp is not part of the C standard.
 inline int tStricmp(const char* a, const char* b)																		{ tAssert(a && b); return strcasecmp(a, b); }
 inline int tStrnicmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); return strncasecmp(a, b, n); }
+inline int tStricmp(const char8_t* a, const char8_t* b)																	{ tAssert(a && b); return strcasecmp((const char*)a, (const char*)b); }
+inline int tStrnicmp(const char8_t* a, const char8_t* b, int n)															{ tAssert(a && b && n >= 0); return strncasecmp((const char*)a, (const char*)b, n); }
 #endif
 inline int tStrlen(const char* s)																						{ tAssert(s); return int(strlen(s)); }
 inline constexpr int tStrlenCT(const char* s)																			{ return *s ? 1 + tStrlenCT(s + 1) : 0; }
 inline char* tStrcpy(char* dst, const char* src)																		{ tAssert(dst && src); return strcpy(dst, src); }
 inline char* tStrncpy(char* dst, const char* src, int n)																{ tAssert(dst && src && n >= 0); return strncpy(dst, src, n); }
 inline char* tStrchr(const char* s, int c)																				{ tAssert(s && c >= 0 && c < 0x100); return (char*)strchr(s, c); }
-inline char* tStrstr(const char* s, const char* r)																		{ tAssert(s && r); return (char*)strstr(s, r); }
-inline char* tStrcat(char* s, const char* r)																			{ tAssert(s && r); return (char*)strcat(s, r); }
+inline char* tStrstr(const char* s, const char* r)				/* Search s for r. */									{ tAssert(s && r); return (char*)strstr(s, r); }
+inline char* tStrcat(char* s, const char* r)																			{ tAssert(s && r); return strcat(s, r); }
+
+inline int tStrlen(const char8_t* s)																					{ tAssert(s); return int(strlen((const char*)s)); }
+inline constexpr int tStrlenCT(const char8_t* s)																		{ return *s ? 1 + tStrlenCT(s + 1) : 0; }
+inline char8_t* tStrcpy(char8_t* dst, const char8_t* src)																{ tAssert(dst && src); return (char8_t*)strcpy((char*)dst, (const char*)src); }
+inline char8_t* tStrncpy(char8_t* dst, const char8_t* src, int n)														{ tAssert(dst && src && n >= 0); return (char8_t*)strncpy((char*)dst, (const char*)src, n); }
+inline char8_t* tStrchr(const char8_t* s, int c)																		{ tAssert(s && c >= 0 && c < 0x100); return (char8_t*)strchr((const char*)s, c); }
+inline char8_t* tStrstr(const char8_t* s, const char8_t* r)		/* Search s for r. */									{ tAssert(s && r); return (char8_t*)strstr((const char*)s, (const char*)r); }
+inline char8_t* tStrcat(char8_t* s, const char8_t* r)																	{ tAssert(s && r); return (char8_t*)strcat((char*)s, (const char*)r); }
 
 #if defined(PLATFORM_WINDOWS)
 inline char* tStrupr(char* s)																							{ tAssert(s); return _strupr(s); }
 inline char* tStrlwr(char* s)																							{ tAssert(s); return _strlwr(s); }
+inline char8_t* tStrupr(char8_t* s)																						{ tAssert(s); return (char8_t*)_strupr((char*)s); }
+inline char8_t* tStrlwr(char8_t* s)																						{ tAssert(s); return (char8_t*)_strlwr((char*)s); }
 #else
 inline char* tStrupr(char* s)																							{ tAssert(s); char* c = s; while (*c) { *c = toupper(*c); c++; } return s; }
 inline char* tStrlwr(char* s)																							{ tAssert(s); char* c = s; while (*c) { *c = tolower(*c); c++; } return s; }
+inline char8_t* tStrupr(char8_t* s)																						{ tAssert(s); char8_t* c = s; while (*c) { *c = toupper(*c); c++; } return s; }
+inline char8_t* tStrlwr(char8_t* s)																						{ tAssert(s); char8_t* c = s; while (*c) { *c = tolower(*c); c++; } return s; }
 #endif
 
 // For these conversion calls, unknown digit characters for the supplied base are ignored. If base is not E [2, 36], the
 // base in which to interpret the string is determined by passing a prefix in the string. Base 10 is used if no specific
-// prefix is found. Base prefixes in use:
+// prefix is found. Although these functions take in UTF-8 strings (chat8_t*), a well-formed source string will only
+// include ASCII characters like digits, negative signs, prefix letters etc. Again, unknown characters are ignored, or,
+// in the case of the 'strict' variants, cause the return value to be false.
+// Base prefixes in use:
 //
 // Base 16 prefixes: x X 0x 0X #
 // Base 10 prefixes: d D 0d 0D
@@ -102,7 +127,16 @@ inline int64 tStrtoi64(const char* s, int base = -1)																	{ return tS
 inline uint64 tStrtoui64(const char* s, int base = -1)																	{ return tStrtoiT<uint64>(s, base); }
 inline int tStrtoui(const char* s, int base = -1)																		{ return tStrtoui32(s, base); }
 inline int tStrtoi(const char* s, int base = -1)																		{ return tStrtoi32(s, base); }
-inline int tAtoi(const char* s)								/* Base 10 only. Use tStrtoi for arbitrary base. */			{ return tStrtoi32(s, 10); }
+inline int tAtoi(const char* s)									/* Base 10 only. Use tStrtoi for arbitrary base. */		{ return tStrtoi32(s, 10); }
+
+template <typename IntegralType> IntegralType tStrtoiT(const char8_t*, int base = -1);
+inline int32 tStrtoi32(const char8_t* s, int base = -1)																	{ return tStrtoiT<int32>(s, base); }
+inline uint32 tStrtoui32(const char8_t* s, int base = -1)																{ return tStrtoiT<uint32>(s, base); }
+inline int64 tStrtoi64(const char8_t* s, int base = -1)																	{ return tStrtoiT<int64>(s, base); }
+inline uint64 tStrtoui64(const char8_t* s, int base = -1)																{ return tStrtoiT<uint64>(s, base); }
+inline int tStrtoui(const char8_t* s, int base = -1)																	{ return tStrtoui32(s, base); }
+inline int tStrtoi(const char8_t* s, int base = -1)																		{ return tStrtoi32(s, base); }
+inline int tAtoi(const char8_t* s)								/* Base 10 only. Use tStrtoi for arbitrary base. */		{ return tStrtoi32(s, 10); }
 
 // These are just variants of above that are strict. If the conversion encounters any parsing errors (all characters are
 // invalid, the passed in string is null, or the passed in string is empty) instead of returning the default value
@@ -116,9 +150,19 @@ inline bool tStrtoui(uint32& v, const char* s, int base = -1)															{ re
 inline bool tStrtoi(int& v, const char* s, int base = -1)																{ return tStrtoi32(v, s, base); }
 inline bool tAtoi(int& v, const char* s)																				{ return tStrtoi32(v, s, 10); }
 
+template <typename IntegralType> bool tStrtoiT(IntegralType&, const char8_t*, int base = -1);
+inline bool tStrtoi32(int32& v, const char8_t* s, int base = -1)														{ return tStrtoiT<int32>(v, s, base); }
+inline bool tStrtoui32(uint32& v, const char8_t* s, int base = -1)														{ return tStrtoiT<uint32>(v, s, base); }
+inline bool tStrtoi64(int64& v, const char8_t* s, int base = -1)														{ return tStrtoiT<int64>(v, s, base); }
+inline bool tStrtoui64(uint64& v, const char8_t* s, int base = -1)														{ return tStrtoiT<uint64>(v, s, base); }
+inline bool tStrtoui(uint32& v, const char8_t* s, int base = -1)														{ return tStrtoui32(v, s, base); }
+inline bool tStrtoi(int& v, const char8_t* s, int base = -1)															{ return tStrtoi32(v, s, base); }
+inline bool tAtoi(int& v, const char8_t* s)																				{ return tStrtoi32(v, s, 10); }
+
 // String to bool. Case insensitive. Interprets "true", "t", "yes", "y", "on", "enable", "enabled", "1", "+", and
 // strings that represent non-zero integers as boolean true. Otherwise false.
 bool tStrtob(const char*);
+inline bool tStrtob(const char8_t* s)																					{ return tStrtob((const char*)s); }
 
 // These are both base 10 only. They return 0.0f (or 0.0) if there is no conversion. They also handle converting an
 // optional binary representation in the string -- if it contains a hash(#) and the next 8 (or 16) digits are valid
@@ -126,11 +170,15 @@ bool tStrtob(const char*);
 // serializing/deserializing from disk multiple times as would be present in the approximate base 10 representations.
 // Valid tStrtof example input stings include: "45.838#FADD23BB", and "45.838".
 float tStrtof(const char*);
+inline float tStrtof(const char8_t* s)																					{ return tStrtof((const char*)s); }
 double tStrtod(const char*);
+inline double tStrtod(const char8_t* s)																					{ return tStrtod((const char*)s); }
 
 // These are synonyms of the above two functions.
-inline float tAtof(const char* s)																					{ return tStrtof(s); }
-inline double tAtod(const char* s)																					{ return tStrtod(s); }
+inline float tAtof(const char* s)																						{ return tStrtof(s); }
+inline double tAtod(const char* s)																						{ return tStrtod(s); }
+inline float tAtof(const char8_t* s)																					{ return tStrtof(s); }
+inline double tAtod(const char8_t* s)																					{ return tStrtod(s); }
 
 // Here are the functions for going from integral types to strings. strSize (as opposed to length) must include
 // enough room for the terminating null. strSize should be the full size of the passed-in str buffer. The resulting
@@ -153,6 +201,28 @@ inline bool tItoa(char* str, int strSize, int64 value, int base = 10)											
 inline bool tItoa(char* str, int strSize, uint32 value, int base = 10)													{ return tItostr(str, strSize, value, base); }
 inline bool tItoa(char* str, int strSize, uint64 value, int base = 10)													{ return tItostr(str, strSize, value, base); }
 
+template <typename IntegralType> bool tItostrT(char8_t* str, int strSize, IntegralType value, int base = 10);
+inline bool tItostr(char8_t* str, int strSize, int32 value, int base = 10)												{ return tItostrT<int32>(str, strSize, value, base); }
+inline bool tItostr(char8_t* str, int strSize, int64 value, int base = 10)												{ return tItostrT<int64>(str, strSize, value, base); }
+inline bool tItostr(char8_t* str, int strSize, uint32 value, int base = 10)												{ return tItostrT<uint32>(str, strSize, value, base); }
+inline bool tItostr(char8_t* str, int strSize, uint64 value, int base = 10)												{ return tItostrT<uint64>(str, strSize, value, base); }
+inline bool tItoa(char8_t* str, int strSize, int32 value, int base = 10)												{ return tItostr(str, strSize, value, base); }
+inline bool tItoa(char8_t* str, int strSize, int64 value, int base = 10)												{ return tItostr(str, strSize, value, base); }
+inline bool tItoa(char8_t* str, int strSize, uint32 value, int base = 10)												{ return tItostr(str, strSize, value, base); }
+inline bool tItoa(char8_t* str, int strSize, uint64 value, int base = 10)												{ return tItostr(str, strSize, value, base); }
+
+// Unicode encoding. These functions convert to/from the 3 main unicode encodings. Note that all text in Tacent is
+// assumed to be UTF-8. These are provided so external or OS-specific calls can be made when they expect non-UTF-8
+// input, and when results are supplied, converted back to UTF-8.
+int tUTF8_To_UTF16();
+int tUTF8_To_UTF32();
+int tUTF16_To_UTF8();
+int tUTF16_To_UTF32();
+int tUTF32_To_UTF8();
+int tUTF32_To_UTF16();
+
+// These are non UTF-8 functions that work on individual ASCII characters or ASCII strings. tStrrev, for example,
+// simply reverses the chars, it is not aware of UFT-8 surrogates and would mess them up.
 inline bool tIsspace(char c)																							{ return isspace(int(c)) ? true : false; }
 inline bool tIsdigit(char c)																							{ return isdigit(int(c)) ? true : false; }
 inline bool tIsbdigit(char c)																							{ return ((c == '0') || (c == '1')) ? true : false; }
@@ -166,13 +236,11 @@ inline bool tIspunct(char c)																							{ return ispunct(int(c)) ? tr
 inline bool tIslower(char c)																							{ return islower(int(c)) ? true : false; }
 inline bool tIsupper(char c)																							{ return isupper(int(c)) ? true : false; }
 inline bool tIsHexDigit(char d)																							{ return ((d >= 'a' && d <= 'f')||(d >= 'A' && d <= 'F')||(d >= '0' && d <= '9')); }
+void tStrrev(char* begin, char* end);
 
 // These functions return an unchanged character if the input is not an alphabetic character.
 inline char tChrlwr(char c)																								{ return tIsupper(c) ? c + ('a' - 'A') : c; }
 inline char tChrupr(char c)																								{ return tIslower(c) ? c - ('a' - 'A') : c; }
-
-void tStrrev(char* begin, char* end);
-
 
 // NAN means not a number. P for positive. N for negative. I for indefinite. S for signaling. Q for quiet.
 enum class tFloatType
@@ -230,17 +298,29 @@ const char SeparatorC																									= SeparatorGroup;
 const char SeparatorD																									= SeparatorFile;
 const char SeparatorE																									= SeparatorSub;
 
+// The null-terminated string versions of the separators come as ASCII strings and UTF-8. Since all ASCII strings are
+// valid UTF-8 strings, the values are the same, it's just the type (char8_t*) that's different.
 extern const char* SeparatorSubStr;
 extern const char* SeparatorFileStr;
 extern const char* SeparatorGroupStr;
 extern const char* SeparatorRecordStr;
 extern const char* SeparatorUnitStr;
-
 extern const char* SeparatorAStr;
 extern const char* SeparatorBStr;
 extern const char* SeparatorCStr;
 extern const char* SeparatorDStr;
 extern const char* SeparatorEStr;
+
+extern const char8_t* u8SeparatorSubStr;
+extern const char8_t* u8SeparatorFileStr;
+extern const char8_t* u8SeparatorGroupStr;
+extern const char8_t* u8SeparatorRecordStr;
+extern const char8_t* u8SeparatorUnitStr;
+extern const char8_t* u8SeparatorAStr;
+extern const char8_t* u8SeparatorBStr;
+extern const char8_t* u8SeparatorCStr;
+extern const char8_t* u8SeparatorDStr;
+extern const char8_t* u8SeparatorEStr;
 
 
 }
@@ -251,12 +331,18 @@ extern const char* SeparatorEStr;
 
 template<typename IntegralType> inline IntegralType tStd::tStrtoiT(const char* str, int base)
 {
+	return tStd::tStrtoiT<IntegralType>((const char8_t*)str, base);
+}
+
+
+template<typename IntegralType> inline IntegralType tStd::tStrtoiT(const char8_t* str, int base)
+{
 	if (!str || (*str == '\0'))
 		return IntegralType(0);
 
 	int len = tStrlen(str);
-	const char* start = str;
-	const char* end = str + len - 1;
+	const char8_t* start = str;
+	const char8_t* end = str + len - 1;
 
 	if ((base < 2) || (base > 36))
 		base = -1;
@@ -286,7 +372,7 @@ template<typename IntegralType> inline IntegralType tStd::tStrtoiT(const char* s
 
 	IntegralType val = 0;
 	IntegralType colVal = 1;
-	for (const char* curr = end; curr >= start; curr--)
+	for (const char8_t* curr = end; curr >= start; curr--)
 	{
 		if ((*curr == '-') && (base == 10))
 		{
@@ -313,15 +399,15 @@ template<typename IntegralType> inline IntegralType tStd::tStrtoiT(const char* s
 }
 
 
-template<typename IntegralType> inline bool tStd::tStrtoiT(IntegralType& val, const char* str, int base)
+template<typename IntegralType> inline bool tStd::tStrtoiT(IntegralType& val, const char8_t* str, int base)
 {
 	val = 0;
 	if (!str || (*str == '\0'))
 		return false;
 
 	int len = tStrlen(str);
-	const char* start = str;
-	const char* end = str + len - 1;
+	const char8_t* start = str;
+	const char8_t* end = str + len - 1;
 	bool negate = false;
 
 	// If the number starts with a '-', before the base modifier, it should be applied
@@ -358,7 +444,7 @@ template<typename IntegralType> inline bool tStd::tStrtoiT(IntegralType& val, co
 	}
 
 	IntegralType colVal = 1;
-	for (const char* curr = end; curr >= start; curr--)
+	for (const char8_t* curr = end; curr >= start; curr--)
 	{
 		if ((curr == start) && (*curr == '-'))
 		{
@@ -400,6 +486,12 @@ template<typename IntegralType> inline bool tStd::tStrtoiT(IntegralType& val, co
 
 template<typename IntegralType> inline bool tStd::tItostrT(char* str, int strSize, IntegralType value, int base)
 {
+	return tStd::tItostrT<IntegralType>((char8_t*)str, strSize, value, base);
+}
+
+
+template<typename IntegralType> inline bool tStd::tItostrT(char8_t* str, int strSize, IntegralType value, int base)
+{
 	if (!str || strSize <= 0)
 		return false;
 
@@ -415,7 +507,7 @@ template<typename IntegralType> inline bool tStd::tItostrT(char* str, int strSiz
 		value = -value;
 
 	// Conversion. Number is reversed.
-	char* s = str;
+	char8_t* s = str;
 	int numWritten = 0;
 	int remainder;
 	IntegralType quotient;
@@ -444,7 +536,8 @@ template<typename IntegralType> inline bool tStd::tItostrT(char* str, int strSiz
 	else
 		return false;
 
-	tStrrev(str, s-1);
+	// The input 
+	tStrrev((char*)str, (char*)(s-1));
 	return true;
 }
 

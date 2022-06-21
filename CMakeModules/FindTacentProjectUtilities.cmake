@@ -43,6 +43,8 @@ function(tacent_target_compile_definitions PROJNAME)
 			$<$<CXX_COMPILER_ID:MSVC>:_CRT_SECURE_NO_DEPRECATE _LIB>
 			# $<$<PLATFORM_ID:Windows>:_ITERATOR_DEBUG_LEVEL=0>
 			$<$<PLATFORM_ID:Windows>:PLATFORM_WINDOWS>
+			# $<$<PLATFORM_ID:Windows>:UNICODE>		# C++	UFF-16
+			# $<$<PLATFORM_ID:Windows>:_UNICODE>	# C 	UTF-16
 			$<$<PLATFORM_ID:Linux>:PLATFORM_LINUX>
 	)
 endfunction(tacent_target_compile_definitions)
@@ -77,8 +79,9 @@ function(tacent_target_compile_features PROJNAME)
 	target_compile_features(
 		${PROJNAME}
 		PRIVATE
-			cxx_std_17
-	)
+			# cxx_std_17
+			cxx_std_20
+			)
 endfunction(tacent_target_compile_features)
 
 function(tacent_set_target_properties PROJNAME)

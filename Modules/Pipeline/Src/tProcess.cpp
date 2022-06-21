@@ -414,7 +414,7 @@ void tProcess::CreateChildProcess(const tString& cmdLine, const tString& working
 	if (ClearEnvironment)
 		envBlock = "PIPELINE=true\0";
 
-	int success = CreateProcess(0, (char*)cmdLine.ConstText(), 0, 0, TRUE, DETACHED_PROCESS, (char*)envBlock, workingDir.ConstText(), &startup, &procInfo);
+	int success = CreateProcess(0, (char*)cmdLine.Chs(), 0, 0, TRUE, DETACHED_PROCESS, (char*)envBlock, workingDir.Chs(), &startup, &procInfo);
 	if (!success)
 	{
 		ulong lastError = GetLastError();
@@ -612,7 +612,7 @@ void tProcess::MonitorStdOut()
 					*OutputString += buf;
 
 				if (PrintCallback)
-					PrintCallback(PrintCallbackUserPointer, buf.ConstText());
+					PrintCallback(PrintCallbackUserPointer, buf.Chs());
 
 				// We only go to stdout if all other methods failed.
 				if (!Parent && !OutputString && !PrintCallback)
@@ -663,7 +663,7 @@ void tProcess::MonitorStdErr()
 				//	*OutputString += buf;
 
 				if (PrintCallback)
-					PrintCallback(PrintCallbackUserPointer, buf.ConstText());
+					PrintCallback(PrintCallbackUserPointer, buf.Chs());
 
 				// We only go to stdout if all other methods failed.
 				if (!Parent && !OutputString && !PrintCallback)
@@ -751,9 +751,9 @@ char* tProcess::BuildNewEnvironmentData_Ascii(bool appendToExisting, int numPair
 		int namelen = name->Length();
 		int valuelen = value->Length();
 
-		tStd::tMemcpy(&newenvdata[newDstIdx], name->ConstText(), namelen);
+		tStd::tMemcpy(&newenvdata[newDstIdx], name->Chs(), namelen);
 		newenvdata[newDstIdx+namelen] = '=';
-		tStd::tMemcpy(&newenvdata[newDstIdx+namelen+1], value->ConstText(), valuelen);
+		tStd::tMemcpy(&newenvdata[newDstIdx+namelen+1], value->Chs(), valuelen);
 		newenvdata[newDstIdx+namelen+1+valuelen] = pairSeparatingCharacter;
 		newDstIdx += namelen+1+valuelen+1;
 	}	

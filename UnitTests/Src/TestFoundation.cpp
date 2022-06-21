@@ -349,14 +349,14 @@ tTestUnit(ListExtra)
 		nodes.Append(new NamedNode(i));
 
 	for (NamedNode* nn = nodes.First(); nn; nn = nn->Next())
-		tPrintf("ListExtra: ID:%d  Name:%s\n", nn->ID, nn->Name.Chars());
+		tPrintf("ListExtra: ID:%d  Name:%s\n", nn->ID, nn->Name.Chs());
 
 	NamedNode* movedNode = nodes.Remove(nodes.Head());
 	nodes.Insert(movedNode, nodes.Head()->Next());
 
 	tPrintf("\nListExtra: Reordered\n");
 	for (NamedNode* nn = nodes.First(); nn; nn = nn->Next())
-		tPrintf("ListExtra: ID:%d  Name:%s\n", nn->ID, nn->Name.Chars());
+		tPrintf("ListExtra: ID:%d  Name:%s\n", nn->ID, nn->Name.Chs());
 
 	NamedNode* foundNode = nodes.FindNodeByName("Name4");
 	tRequire(foundNode);
@@ -396,7 +396,7 @@ tTestUnit(ListExtra)
 	tString result;
 	for (BigNode* mn = bigList.Head(); mn; mn = mn->Next())
 	{
-		tPrintf("%s ", mn->Name.Chars());
+		tPrintf("%s ", mn->Name.Chs());
 		result += mn->Name;
 	}
 	tPrintf("\n");
@@ -419,7 +419,6 @@ static void PrintMapStats(const tMap<tString, tString>& mp)
 tTestUnit(Map)
 {
 	tString testString("The real string");
-	tPrintf("const char* Opertor() on string:%s\n", (const char*)testString);
 	tPrintf("uint32 Opertor() on string:%08X\n", (uint32)testString);
 
 	tMap<tString, tString> nameDescMap(8);
@@ -654,7 +653,7 @@ tTestUnit(BitField)
 		"10010011_00111000_01000100_10000111_10001011_00010000_10101011_00100101"
 	);
 	tPrintf("VAL\n%0256|256b\n", bitField);
-	tPrintf("STR\n______%s\n", bitField.GetAsBinaryString().Chars());
+	tPrintf("STR\n______%s\n", bitField.GetAsBinaryString().Chs());
 
 	tPrintf("BYT\n");
 	int cr = 0;
@@ -802,45 +801,45 @@ tTestUnit(String)
 {
 	// Testing the string substitution code.
 	tString src("abc1234abcd12345abcdef123456");
-	tPrintf("Before: '%s'\n", src.ConstText());
+	tPrintf("Before: '%s'\n", src.Chs());
 	src.Replace("abc", "cartoon");
 	tPrintf("Replacing abc with cartoon\n");
-	tPrintf("After : '%s'\n\n", src.ConstText());
+	tPrintf("After : '%s'\n\n", src.Chs());
 	tRequire(src == "cartoon1234cartoond12345cartoondef123456");
 
 	src = "abc1234abcd12345abcdef123456";
-	tPrintf("Before: '%s'\n", src.ConstText());
+	tPrintf("Before: '%s'\n", src.Chs());
 	src.Replace("abc", "Z");
 	tPrintf("Replacing abc with Z\n");
-	tPrintf("After : '%s'\n\n", src.ConstText());
+	tPrintf("After : '%s'\n\n", src.Chs());
 	tRequire(src == "Z1234Zd12345Zdef123456");
 
 	src = "abcabcabc";
-	tPrintf("Before: '%s'\n", src.ConstText());
+	tPrintf("Before: '%s'\n", src.Chs());
 	src.Replace("abc", "");
 	tPrintf("Replacing abc with \"\"\n");
-	tPrintf("After : '%s'\n\n", src.ConstText());
+	tPrintf("After : '%s'\n\n", src.Chs());
 	tRequire(src == "");
 
 	src = "abcabcabc";
-	tPrintf("Before: '%s'\n", src.ConstText());
+	tPrintf("Before: '%s'\n", src.Chs());
 	src.Replace("abc", 0);
 	tPrintf("Replacing abc with null\n");
-	tPrintf("After : '%s'\n\n", src.ConstText());
+	tPrintf("After : '%s'\n\n", src.Chs());
 	tRequire(src == "");
 
 	src.Clear();
-	tPrintf("Before: '%s'\n", src.ConstText());
+	tPrintf("Before: '%s'\n", src.Chs());
 	src.Replace("abc", "CART");
 	tPrintf("Replacing abc with CART\n");
-	tPrintf("After : '%s'\n\n", src.ConstText());
+	tPrintf("After : '%s'\n\n", src.Chs());
 	tRequire(src == "");
 
 	tPrintf("Testing Explode:\n");
 	tString src1 = "abc_def_ghi";
 	tString src2 = "abcXXdefXXghi";
-	tPrintf("src1: %s\n", src1.ConstText());
-	tPrintf("src2: %s\n", src2.ConstText());
+	tPrintf("src1: %s\n", src1.Chs());
+	tPrintf("src2: %s\n", src2.Chs());
 
 	tList<tStringItem> exp1(tListMode::ListOwns);
 	tList<tStringItem> exp2(tListMode::ListOwns);
@@ -849,37 +848,37 @@ tTestUnit(String)
 
 	tPrintf("Count1: %d\n", count1);
 	for (tStringItem* comp = exp1.First(); comp; comp = comp->Next())
-		tPrintf("   Comp: '%s'\n", comp->ConstText());
+		tPrintf("   Comp: '%s'\n", comp->Chs());
 
 	tPrintf("Count2: %d\n", count2);
 	for (tStringItem* comp = exp2.First(); comp; comp = comp->Next())
-		tPrintf("   Comp: '%s'\n", comp->ConstText());
+		tPrintf("   Comp: '%s'\n", comp->Chs());
 
 	tList<tStringItem> expl(tListMode::ListOwns);
 	tString exdup = "abc__def_ghi";
 	tExplode(expl, exdup, '_');
-	tPrintf("Exploded: ###%s### to:\n", exdup.ConstText());
+	tPrintf("Exploded: ###%s### to:\n", exdup.Chs());
 	for (tStringItem* comp = expl.First(); comp; comp = comp->Next())
-		tPrintf("   Comp:###%s###\n", comp->ConstText());
+		tPrintf("   Comp:###%s###\n", comp->Chs());
 
 	tList<tStringItem> expl2(tListMode::ListOwns);
 	tString exdup2 = "__a__b_";
 	tExplode(expl2, exdup2, '_');
-	tPrintf("Exploded: ###%s### to:\n", exdup2.ConstText());
+	tPrintf("Exploded: ###%s### to:\n", exdup2.Chs());
 	for (tStringItem* comp = expl2.First(); comp; comp = comp->Next())
-		tPrintf("   Comp:###%s###\n", comp->ConstText());
+		tPrintf("   Comp:###%s###\n", comp->Chs());
 
 	src = "abc1234abcd12345abcdef123456";
-	tPrintf("Before: '%s'\n", src.ConstText());
+	tPrintf("Before: '%s'\n", src.Chs());
 	tString tgt = src.ExtractMid(3, 4);
 	tPrintf("Extracting 1234 with ExtractMid(3, 4)\n");
-	tPrintf("After (Extracted): '%s'\n\n", tgt.ConstText());
-	tPrintf("After (Remain)   : '%s'\n\n", src.ConstText());
+	tPrintf("After (Extracted): '%s'\n\n", tgt.Chs());
+	tPrintf("After (Remain)   : '%s'\n\n", src.Chs());
 	tRequire(tgt == "1234" && src == "abcabcd12345abcdef123456");
 
 	tString aa("aa");
 	tString exaa = aa.ExtractLeft('a');
-	tPrintf("\n\naa extract left word to a: Extracted:###%s###  Left:###%s###\n", exaa.ConstText(), aa.ConstText());
+	tPrintf("\n\naa extract left word to a: Extracted:###%s###  Left:###%s###\n", exaa.Chs(), aa.Chs());
 
 	tString sa1 = "A";
 	tString sa2 = "A";
@@ -898,31 +897,31 @@ tTestUnit(String)
 
 	// Test remove leading and trailing.
 	tString leadtrail("cbbabaccMIDDLEbbccaab");
-	tPrintf("LeadTrail [%s]\n", leadtrail.Chars());
+	tPrintf("LeadTrail [%s]\n", leadtrail.Chs());
 
 	leadtrail.RemoveLeading("abc");
-	tPrintf("LeadTrail [%s]\n", leadtrail.Chars());
+	tPrintf("LeadTrail [%s]\n", leadtrail.Chs());
 	tRequire(leadtrail == "MIDDLEbbccaab");
 
 	leadtrail.RemoveTrailing("abc");
-	tPrintf("LeadTrail [%s]\n", leadtrail.Chars());
+	tPrintf("LeadTrail [%s]\n", leadtrail.Chs());
 	tRequire(leadtrail == "MIDDLE");
 
 	// Test remove prefix and suffix.
 	tString presuf("prepreMIDDLEsufsuf");
-	tPrintf("PreSuf [%s]\n", presuf.Chars());
+	tPrintf("PreSuf [%s]\n", presuf.Chs());
 
 	presuf.ExtractLeft("not");
 	presuf.ExtractRight("not");
-	tPrintf("PreSuf [%s]\n", presuf.Chars());
+	tPrintf("PreSuf [%s]\n", presuf.Chs());
 	tRequire(presuf == "prepreMIDDLEsufsuf");
 
 	presuf.ExtractLeft("pre");
-	tPrintf("PreSuf [%s]\n", presuf.Chars());
+	tPrintf("PreSuf [%s]\n", presuf.Chs());
 	tRequire(presuf == "preMIDDLEsufsuf");
 
 	presuf.ExtractRight("suf");
-	tPrintf("PreSuf [%s]\n", presuf.Chars());
+	tPrintf("PreSuf [%s]\n", presuf.Chs());
 	tRequire(presuf == "preMIDDLEsuf");
 
 }

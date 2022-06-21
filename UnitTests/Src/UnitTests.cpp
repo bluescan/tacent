@@ -60,8 +60,8 @@ int main(int argc, char** argv)
 	{
 		tCmdLine::tPrintUsage
 		(
-			"Tristan Grimmer",
-			"This program takes wingnuts and twists them into dingwags. This description\n"
+			u8"Tristan Grimmer",
+			u8"This program takes wingnuts and twists them into dingwags. This description\n"
 			"should not end in a newline.",
 			3, 12
 		);

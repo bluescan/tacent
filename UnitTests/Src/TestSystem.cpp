@@ -47,7 +47,7 @@ tTestUnit(CmdLine)
 	tCmdLine::tParam params[12];
 	tCmdLine::tParse("UnitTests.exe ParamA ParamB", true);
 	for (int w = 0; w < 12; w++)
-		tPrintf("Param %d is: %s\n", w+1, params[w].Param.Chars());
+		tPrintf("Param %d is: %s\n", w+1, params[w].Param.Chs());
 	return;
 	#endif
 
@@ -65,7 +65,7 @@ tTestUnit(CmdLine)
 	// tCmdLine::tParse("-R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere --enj");
 
 	// This is another way of entering a test command line. The true means the first entry is the program name.
-	tCmdLine::tParse("UnitTests.exe -R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere --enj", true);
+	tCmdLine::tParse(u8"UnitTests.exe -R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere --enj", true);
 
 	// There are a few differnt ways of calling PrintUsage:
 	// tCmdLine::tPrintUsage();
@@ -763,7 +763,7 @@ tTestUnit(Script)
 	catch (tScriptError error)
 	{
 		numExceptions++;
-		tPrintf(error.Message);
+		tPrintf(error.Message.Chs());
 		tPrintf("\n");
 	}
 	tRequire(numExceptions == 1);
@@ -866,7 +866,7 @@ tTestUnit(FileTypes)
 
 	tPrintf("Found extensions:\n");
 	for (tStringItem* ext = extensions.First(); ext; ext = ext->Next())
-		tPrintf("Extension: %s\n", ext->Chars());
+		tPrintf("Extension: %s\n", ext->Chs());
 	tPrintf("Found extensions done.\n");
 
 	// Test copy cons.
@@ -880,12 +880,12 @@ tTestUnit(FileTypes)
 	tExtensions extsAll(FileTypesGlobal, false);
 	tPrintf("All extensions:\n");
 	for (tStringItem* ext = extsAll.First(); ext; ext = ext->Next())
-		tPrintf("Ext: %s\n", ext->Chars());
+		tPrintf("Ext: %s\n", ext->Chs());
 
 	tExtensions extsCom(FileTypesGlobal, true);
 	tPrintf("\nCommon extensions:\n");
 	for (tStringItem* ext = extsCom.First(); ext; ext = ext->Next())
-		tPrintf("Ext: %s\n", ext->Chars());
+		tPrintf("Ext: %s\n", ext->Chs());
 	tPrintf("\n");
 
 	// Test selection utilities.
@@ -901,10 +901,10 @@ tTestUnit(FileTypes)
 	for (tFileTypes::tFileTypeItem* item = selected.First(); item; item = item->Next())
 		tPrintf("SelectedType: %s\n", tGetFileTypeName(item->FileType));
 
-	tPrintf("Selected String (comsp, nomax):[%s]\n", fileTypes.GetSelectedString().Chars());
-	tPrintf("Selected String (comsp, max 3):[%s]\n", fileTypes.GetSelectedString(tFileTypes::Separator::CommaSpace, 3).Chars());
-	tPrintf("Selected String (space, max 5):[%s]\n", fileTypes.GetSelectedString(tFileTypes::Separator::Space, 5).Chars());
-	tPrintf("Selected String (comma, max 2):[%s]\n", fileTypes.GetSelectedString(tFileTypes::Separator::Comma, 2).Chars());
+	tPrintf("Selected String (comsp, nomax):[%s]\n", fileTypes.GetSelectedString().Chs());
+	tPrintf("Selected String (comsp, max 3):[%s]\n", fileTypes.GetSelectedString(tFileTypes::Separator::CommaSpace, 3).Chs());
+	tPrintf("Selected String (space, max 5):[%s]\n", fileTypes.GetSelectedString(tFileTypes::Separator::Space, 5).Chs());
+	tPrintf("Selected String (comma, max 2):[%s]\n", fileTypes.GetSelectedString(tFileTypes::Separator::Comma, 2).Chs());
 
 	selected.Clear();
 	selected.AddSelected(FileTypesGlobal, true);
@@ -932,32 +932,32 @@ bool ListsContainSameItems(const tList<tStringItem>& a, const tList<tStringItem>
 tTestUnit(Directories)
 {
 	tString homeDir = tGetHomeDir();
-	tPrintf("Home Dir is: %s\n", homeDir.Chars());
+	tPrintf("Home Dir is: %s\n", homeDir.Chs());
 	tRequire(!homeDir.IsEmpty());
 
 	tString progDir = tGetProgramDir();
-	tPrintf("Program Dir is: %s\n", progDir.Chars());
+	tPrintf("Program Dir is: %s\n", progDir.Chs());
 	tRequire(!progDir.IsEmpty());
 
 	tString progPath = tGetProgramPath();
-	tPrintf("Program Path is: %s\n", progPath.Chars());
+	tPrintf("Program Path is: %s\n", progPath.Chs());
 	tRequire(!progPath.IsEmpty());
 
 	tString currDir = tGetCurrentDir();
-	tPrintf("Curr Dir is: %s\n", currDir.Chars());
+	tPrintf("Curr Dir is: %s\n", currDir.Chs());
 	tRequire(!currDir.IsEmpty());
 
 	#ifdef PLATFORM_WINDOWS
 	tString winDir = tGetWindowsDir();
-	tPrintf("Windows Dir is: %s\n", winDir.Chars());
+	tPrintf("Windows Dir is: %s\n", winDir.Chs());
 	tRequire(!winDir.IsEmpty());
 
 	tString sysDir = tGetSystemDir();
-	tPrintf("System Dir is: %s\n", sysDir.Chars());
+	tPrintf("System Dir is: %s\n", sysDir.Chs());
 	tRequire(!sysDir.IsEmpty());
 
 	tString deskDir = tGetDesktopDir();
-	tPrintf("Desktop Dir is: %s\n", deskDir.Chars());
+	tPrintf("Desktop Dir is: %s\n", deskDir.Chs());
 	tRequire(!deskDir.IsEmpty());
 	#endif
 }
@@ -1177,7 +1177,7 @@ tTestUnit(Time)
 tTestUnit(Machine)
 {
 	tString compName = tSystem::tGetCompName();
-	tPrintf("ComputerName:%s\n", compName.Chars());
+	tPrintf("ComputerName:%s\n", compName.Chs());
 	tRequire(!compName.IsEmpty());
 
 	bool supportsSSE = tSystem::tSupportsSSE();
@@ -1189,7 +1189,7 @@ tTestUnit(Machine)
 	tRequire(numCores >= 1);
 
 	tString pathEnvVar = tSystem::tGetEnvVar("PATH");
-	tPrintf("PATH Env Var:%s\n", pathEnvVar.Chars());
+	tPrintf("PATH Env Var:%s\n", pathEnvVar.Chs());
 }
 
 

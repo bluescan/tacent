@@ -36,6 +36,7 @@ class tFile : public tStream
 
 int tGetFileSize(tFileHandle);
 int tGetFileSize(const tString& fileName);
+tFileHandle tOpenFile(const char8_t* filename, const char* mode);
 tFileHandle tOpenFile(const char* filename, const char* mode);
 void tCloseFile(tFileHandle);
 int tReadFile(tFileHandle, void* buffer, int sizeBytes);
@@ -565,7 +566,7 @@ inline tSystem::tExtensions& tSystem::tExtensions::Add(const tString& ext)
 	if (ext.IsEmpty())
 		return *this;
 
-	return Add(ext.ConstText());
+	return Add(ext.Chs());
 }
 
 

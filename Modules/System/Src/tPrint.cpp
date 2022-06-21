@@ -516,7 +516,7 @@ tString& tvsPrintf(tString& dest, const char* format, va_list argList)
 	int reqChars = tvcPrintf(format, argList);
 	dest.Reserve(reqChars);
 	
-	tvsPrintf(dest.Text(), format, argList2);
+	tvsPrintf(dest.Txt(), format, argList2);
 	return dest;
 }
 
@@ -2050,7 +2050,7 @@ bool tSystem::tFtostr(tString& dest, float f, bool incBitRep)
 		c += 9;							// Possible hash(#) plus 8 hex digits.
 
 	dest.Reserve(c);					// We rely on the mem clear here.
-	char* cval = dest.Text();
+	char* cval = dest.Txt();
 	cval += tsPrintf(cval, "%8.8f", f);
 
 	// Add a trailing 0 because it looks better.
@@ -2080,7 +2080,7 @@ bool tSystem::tDtostr(tString& dest, double d, bool incBitRep)
 		c += 17;						// Possible hash(#) plus 16 hex digits.
 
 	dest.Reserve(c);					// We rely on the mem clear here.
-	char* cval = dest.Text();
+	char* cval = dest.Txt();
 	cval += tsPrintf(cval, "%16.16f", d);
 
 	// Add a trailing 0 because it looks better.

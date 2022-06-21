@@ -282,7 +282,7 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 		int secLat = int ( tMath::tRound(exifInfo.GeoLocation.LatComponents.seconds) );
 		char dirLat = exifInfo.GeoLocation.LatComponents.direction;
 		tString dmsLat;
-		tsPrintf(dmsLat, u8"%d°%d'%d\"%c", degLat, minLat, secLat, dirLat);
+		tsPrintf(dmsLat, "%d°%d'%d\"%c", degLat, minLat, secLat, dirLat);
 		Data[ int(tMetaTag::LatitudeDMS) 	].Set(dmsLat);
 		NumTagsValid++;
 
@@ -297,7 +297,7 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 		int secLon = int ( tMath::tRound(exifInfo.GeoLocation.LonComponents.seconds) );
 		char dirLon = exifInfo.GeoLocation.LonComponents.direction;
 		tString dmsLon;
-		tsPrintf(dmsLon, u8"%d°%d'%d\"%c", degLon, minLon, secLon, dirLon);
+		tsPrintf(dmsLon, "%d°%d'%d\"%c", degLon, minLon, secLon, dirLon);
 		Data[ int(tMetaTag::LongitudeDMS) 	].Set(dmsLon);
 		NumTagsValid++;
 	}
@@ -834,7 +834,7 @@ tString tMetaData::GetPrettyValue(tMetaTag tag) const
 		{
 			tString unit = GetPrettyValue(tMetaTag::LengthUnit);
 			if (unit.IsValid())
-				tsPrintf(value, "%d pixels/%s", int(datum.Float), unit.Chars());
+				tsPrintf(value, "%d pixels/%s", int(datum.Float), unit.Chs());
 			else
 				tsPrintf(value, "%d pixels", int(datum.Float));
 			break;

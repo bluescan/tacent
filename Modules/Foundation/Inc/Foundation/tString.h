@@ -1,9 +1,9 @@
 // tString.h
 //
 // tString is a simple and readable string class that implements sensible operators, including implicit casts. There is
-// no UCS2 or UTF16 support since UTF8 is, in my opinion, superior and the way forward. tStrings will work with UTF8.
-// You cannot stream (from cin etc) more than 512 chars into a string. This restriction is only for wacky << streaming.
-// For conversions of arbitrary types to tStrings, see tsPrint in the higher level System module.
+// no UCS2 or UTF-16 support. The text in a tString is considerd to be UTF-8 and terminated with a nul. You cannot
+// stream (from cin etc) more than 512 chars into a string. This restriction is only for wacky << streaming. For
+// conversions of arbitrary types to tStrings, see tsPrint in the higher level System module.
 //
 // Copyright (c) 2004-2006, 2015, 2017, 2019-2022 Tristan Grimmer.
 // Copyright (c) 2020 Stefan Wessels.
@@ -29,32 +29,43 @@ struct tString
 	// Construct a string with enough room for length characters. Length+1 characters are reserved to make room for the
 	// null terminator. The reserved space is zeroed.
 	explicit tString(int length);
-	tString(const char*);
+
+	tString(const char8_t*);
+
+	// You can create a UTF-8 tString from an ASCII string no problem. All ASCII strings are valid UTF-8.
+	tString(const char* s)																								: tString((const char8_t*)s) { }
+
+	// Note the difference here. A char8_t can't be guaranteed to store a unicode codepoint if the codepoint requires
+	// surrogates in the UTF-8 encoding. So, here we support char only which we use for ASCII characters (which are
+	// guaranteed not to need surrogtes in UFT-8).
 	tString(char);
 	virtual ~tString();
 
 	tString& operator=(const tString&);
 
 	bool IsEqual(const tString& s) const																				{ return !tStd::tStrcmp(TextData, s.TextData); }
-	bool IsEqual(const char* s) const																					{ if (!s) return false; return !tStd::tStrcmp(TextData, s); }
+	bool IsEqual(const char8_t* s) const																				{ if (!s) return false; return !tStd::tStrcmp(TextData, s); }
+	bool IsEqual(const char* s) const																					{ if (!s) return false; return !tStd::tStrcmp(TextData, (char8_t*)s); }
 	bool IsEqualCI(const tString& s) const																				{ return !tStd::tStricmp(TextData, s.TextData); }
-	bool IsEqualCI(const char* s) const																					{ if (!s) return false; return !tStd::tStricmp(TextData, s); }
+	bool IsEqualCI(const char8_t* s) const																				{ if (!s) return false; return !tStd::tStricmp(TextData, s); }
+	bool IsEqualCI(const char* s) const																					{ if (!s) return false; return !tStd::tStricmp(TextData, (char8_t*)s); }
 
-	// These allow for implicit conversion to a character pointer.
-	operator const char*()																								{ return TextData; }
-	operator const char*() const																						{ return TextData; }
+	// These allow for implicit conversion to a UTF-8 character pointer.
+	operator const char8_t*()																							{ return TextData; }
+	operator const char8_t*() const																						{ return TextData; }
 
 	explicit operator uint32();
 	explicit operator uint32() const;
 
-	char& operator[](int i)																								{ return TextData[i]; }
+	char8_t& operator[](int i)		/* This may be somewhat meaningless if surrogates need for the index. */			{ return TextData[i]; }
 	friend tString operator+(const tString& prefix, const tString& suffix);
 	tString& operator+=(const tString&);
 
-	void Set(const char*);
-	int Length() const																									{ return int(tStd::tStrlen(TextData)); }
+	void Set(const char8_t*);
+	void Set(const char* s){ Set((const char8_t*)s); }
+	int Length() const				/* The length in char8_t's, not the display length (which is not that useful). */	{ return int(tStd::tStrlen(TextData)); }
 	bool IsEmpty() const																								{ return (TextData == &EmptyChar) || !tStd::tStrlen(TextData); }
-	bool IsValid() const	/* returns true is string is not empty. */													{ return !IsEmpty(); }
+	bool IsValid() const			/* returns true is string is not empty. */											{ return !IsEmpty(); }
 	void Clear()																										{ if (TextData != &EmptyChar) delete[] TextData; TextData = &EmptyChar; }
 
 	bool IsAlphabetic(bool includeUnderscore = true) const;
@@ -63,6 +74,10 @@ struct tString
 
 	// Current string data is lost and enough space is reserved for length characters. The reserved memory is zeroed.
 	void Reserve(int length);
+
+	// These only work well for ASCII strings as vars like 'count' are indexes into the text data and are not
+	// 'surrogate-aware'. This comment applies to all below functions with the words 'Left', 'Right', and 'Mid' in them
+	// except for functions that take in a char8_t* or char* prefix or suffix. Those work for UTF-8 as well as ASCII.
 
 	tString Left(const char marker = ' ') const;			// Returns a tString of the characters before the first marker. Returns the entire string if marker was not found.
 	tString Right(const char marker = ' ') const;			// Same as Left but chars after last marker.
@@ -88,30 +103,40 @@ struct tString
 
 	// If this string starts with prefix, removes and returns it. If not, returns empty string and no modification.
 	tString ExtractLeft(const char* prefix);
+	tString ExtractLeft(const char8_t* prefix)																			{ return ExtractLeft((const char*)prefix); }
 
-	// If this string ends with suffix, removes and returns it. If not, returns empty string and no modification.
+	// If this string ends with (UTF-8) suffix, removes and returns it. If not, returns empty string and no modification.
 	tString ExtractRight(const char* suffix);
+	tString ExtractRight(const char8_t* suffix)																			{ return ExtractRight((const char*)suffix); }
 
 	// Returns chars from start to count, but also removes that from the tString.  If start + count > length then what's
 	// available is extracted.
 	tString ExtractMid(int start, int count);
 
-	char* Text()																										{ return TextData; }
-	const char* ConstText() const																						{ return TextData; }
+	// Accesses the raw UTF-8 bytes represented by the 'official' unsigned UTF-8 character datatype char8_t.
+	char8_t* Text()																										{ return TextData; }
+	const char8_t* Chars() const																						{ return TextData; }	
+	const char8_t* Charz() const	/* Like Chars() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : TextData; }
 
-	// Returns POD representation (Plain Old Data). For use with tPrintf and %s.
-	const char* Pod() const																								{ return TextData; }
-
-	// One more synonym for ConstText. For use with tPrintf and %s.
-	const char* Chars() const																							{ return TextData; }
-
-	// Similar to Chars() except returns nullptr if the string is empty -- instead of a pointer to an empty string.
-	const char* Charz() const																							{ return IsEmpty() ? nullptr : TextData; }
+	// Many other functions and libraries that are UTF-8 compliant are not yet (and may never) use the proper char8_t
+	// type and use char* and const char*. These functions allow you to retrieve the tString using the char type.
+	// Use these with tPrintf and %s.
+	char* Txt()																											{ return (char*)TextData; }
+	const char* Chs() const																								{ return (const char*)TextData; }
+	const char* Chz() const			/* Like Chs() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : (const char*)TextData; }
+	const char* Pod() const			/* Plain Old Data */																{ return (const char*)TextData; }
 
 	// Returns index of first/last occurrence of char in the string. -1 if not found. Finds last if backwards flag is
 	// set. The starting point may be specified. If backwards is false, the search proceeds forwards from the starting
 	// point. If backwards is true, it proceeds backwards. If startIndex is -1, 0 is the starting point for a forward
-	// search and length-1 is the starting point for a backwards search.
+	// search and length-1 is the starting point for a backwards search. Here is where UTF-8 is really cool, since
+	// ASCII bytes do not occur when encoding non-ASCII code-points into UTF-8, this function can still just do a linear
+	// search of all the characters. Pretty neat. What you can't do with this function is search for a codepoint that
+	// requires surrogate bytes in UTF-8. i.e. Since the input is a const char, char must be ASCII.
+	//
+	// @todo I like the idea of supporting UTF searches for particular codepoints etc by inputting the UTF-32
+	// representation (using a char32_t) where necessary -- we'd just need to decode each codepoint in UTF-8 to the
+	// proper char32_t and use that. It would all just work (but it's a big-ish task).
 	int FindChar(const char, bool backwards = false, int startIndex = -1) const;
 
 	// Returns the index of the first character in the tString that is also somewhere in the null-terminated string
@@ -119,9 +144,11 @@ struct tString
 	int FindAny(const char* searchChars) const;
 
 	// Returns index of first character of the string s in the string. Returns -1 if not found.
-	int FindString(const char* s, int startIndex = 0) const;
+	// It is valid to perform this for ASCII strings as well so the function is overridden for const char*.
+	int FindString(const char8_t* s, int startIndex = 0) const;
+	int FindString(const char* s, int startIndex = 0) const																{ return FindString((const char8_t*)s, startIndex); }
 
-	// Replace all occurrences of character c with character r. Returns number of characters replaced.
+	// Replace all occurrences of character c with character r. Returns number of characters replaced. ASCII-only.
 	int Replace(const char c, const char r);
 
 	// Replace all occurrences of string search with string replace. Returns the number of replacements. The replacement
@@ -129,20 +156,25 @@ struct tString
 	// the larger or smaller resulting string and keep the memory footprint as small as possible. If they are the same
 	// size, the function is faster and doesn't need to mess with memory. If replace is "" or 0, all occurrences of
 	// search will be removed (replaced by nothing).
-	int Replace(const char* search, const char* replace);
+	// It is valid to perform this for ASCII strings as well so the function is overridden for const char*.
+	int Replace(const char8_t* search, const char8_t* replace);
+	int Replace(const char* search, const char* replace)																{ return Replace((const char8_t*)search, (const char8_t*)replace); }
 
 	// Remove all occurrences of the character rem. Returns the number of characters removed.
 	int Remove(const char rem);
 
 	// Removing a string simply calls Replace with a null second string. Returns how many rem strings were removed.
-	int Remove(const char* rem)																							{ return Replace(rem, nullptr); }
+	int Remove(const char8_t* rem)																						{ return Replace(rem, nullptr); }
+	int Remove(const char* rem)																							{ return Remove((const char8_t*)rem); }
 
 	// Removes all leading characters in this string that match any of the characters in the null-erminated theseChars
 	// eg. Calling RemoveLeading on "cbbabZING" with "abc" yields "ZING". Returns the number of characters removed.
+	// Note that theseChars are ASCII.
 	int RemoveLeading(const char* theseChars);
 
 	// Removes all trailing characters in this string that match any of the characters in the null-erminated theseChars
 	// eg. Calling RemoveTrailing on "ZINGabcaab" with "abc" yields "ZING". Returns the number of characters removed.
+	// Note that theseChars are ASCII.
 	int RemoveTrailing(const char* theseChars);
 
 	int CountChar(char c) const;							// Counts the number of occurrences of c.
@@ -198,19 +230,22 @@ struct tString
 	bool ToUInt64(uint64& v, int base = -1) const																		{ return tStd::tStrtoui64(v, TextData, base); }
 
 protected:
-	char* TextData;
-	static char EmptyChar;										// All empty strings can use this.
+	// By using the char8_t we are indicating the data is stored in UTF-8 encoding. Note that unlike char, a char8_t
+	// is guaranteed to be unsigned, as well as a distinct type.
+	char8_t* TextData;
+	static char8_t EmptyChar;										// All empty strings can use this.
 };
 
 
 // Binary operator overloads should be outside the class so we can do things like if ("a" == b) where b is a tString.
 inline bool operator==(const tString& a, const tString& b)																{ return !tStd::tStrcmp(a.Chars(), b.Chars()); }
 inline bool operator!=(const tString& a, const tString& b)																{ return !!tStd::tStrcmp(a.Chars(), b.Chars()); }
-inline bool operator==(const tString& a, const char* b)																	{ return !tStd::tStrcmp(a.Chars(), b); }
-inline bool operator!=(const tString& a, const char* b)																	{ return !!tStd::tStrcmp(a.Chars(), b); }
-inline bool operator==(const char* a, const tString& b)																	{ return !tStd::tStrcmp(a, b.Chars()); }
-inline bool operator!=(const char* a, const tString& b)																	{ return !!tStd::tStrcmp(a, b.Chars()); }
-
+inline bool operator==(const tString& a, const char8_t* b)																{ return !tStd::tStrcmp(a.Chars(), b); }
+inline bool operator!=(const tString& a, const char8_t* b)																{ return !!tStd::tStrcmp(a.Chars(), b); }
+inline bool operator==(const char8_t* a, const tString& b)																{ return !tStd::tStrcmp(a, b.Chars()); }
+inline bool operator!=(const char8_t* a, const tString& b)																{ return !!tStd::tStrcmp(a, b.Chars()); }
+inline bool operator==(const char* a, const tString& b)																	{ return !tStd::tStrcmp((const char8_t*)a, b.Chars()); }
+inline bool operator!=(const char* a, const tString& b)																	{ return !!tStd::tStrcmp((const char8_t*)a, b.Chars()); }
 
 
 // The tStringItem class is just the tString class except they can be placed on tLists.
@@ -222,7 +257,7 @@ public:
 	// The tStringItem copy cons is missing, because as a list item can only be on one list at a time.
 	tStringItem(const tString& s)																						: tString(s) { }
 	tStringItem(int length)																								: tString(length) { }
-	tStringItem(const char* c)																							: tString(c) { }
+	tStringItem(const char8_t* c)																						: tString(c) { }
 	tStringItem(char c)																									: tString(c) { }
 
 	// This call does NOT change the list that the tStringItem is on. The link remains unmodified.
@@ -246,14 +281,14 @@ namespace tStd
 // Implementation below this line.
 
 
-inline tString::tString(const char* t)
+inline tString::tString(const char8_t* t)
 {
 	if (t)
 	{
 		int len = int(tStd::tStrlen(t));
 		if (len > 0)
 		{
-			TextData = new char[1 + len];
+			TextData = new char8_t[1 + len];
 			tStd::tStrcpy(TextData, t);
 			return;
 		}
@@ -265,14 +300,14 @@ inline tString::tString(const char* t)
 
 inline tString::tString(const tString& s)
 {
-	TextData = new char[1 + tStd::tStrlen(s.TextData)];
+	TextData = new char8_t[1 + tStd::tStrlen(s.TextData)];
 	tStd::tStrcpy(TextData, s.TextData);
 }
 
 
 inline tString::tString(char c)
 {
-	TextData = new char[2];
+	TextData = new char8_t[2];
 	TextData[0] = c;
 	TextData[1] = '\0';
 }
@@ -286,7 +321,7 @@ inline tString::tString(int length)
 	}
 	else
 	{
-		TextData = new char[1+length];
+		TextData = new char8_t[1+length];
 		tStd::tMemset(TextData, 0, 1+length);
 	}
 }
@@ -303,14 +338,14 @@ inline void tString::Reserve(int length)
 		return;
 	}
 
-	TextData = new char[length+1];
+	TextData = new char8_t[length+1];
 	tStd::tMemset(TextData, 0, length+1);
 }
 
 
 inline int tString::CountChar(char c) const
 {
-	char* i = TextData;
+	char8_t* i = TextData;
 	int count = 0;
 	while (*i != '\0')
 		count += (*i++ == c) ? 1 : 0;
@@ -319,7 +354,7 @@ inline int tString::CountChar(char c) const
 }
 
 
-inline void tString::Set(const char* s)
+inline void tString::Set(const char8_t* s)
 {
 	Clear();
 	if (!s)
@@ -329,7 +364,7 @@ inline void tString::Set(const char* s)
 	if (len <= 0)
 		return;
 
-	TextData = new char[1 + len];
+	TextData = new char8_t[1 + len];
 	tStd::tStrcpy(TextData, s);
 }
 
@@ -342,7 +377,7 @@ inline tString& tString::operator=(const tString& src)
 	if (TextData != &EmptyChar)
 		delete[] TextData;
 
-	TextData = new char[1 + src.Length()];
+	TextData = new char8_t[1 + src.Length()];
 	tStd::tStrcpy(TextData, src.TextData);
 	return *this;
 }
@@ -364,7 +399,7 @@ inline tString& tString::operator+=(const tString& sufStr)
 		return *this;
 	else
 	{
-		char* newTextData = new char[ Length() + sufStr.Length() + 1 ];
+		char8_t* newTextData = new char8_t[ Length() + sufStr.Length() + 1 ];
 		tStd::tStrcpy(newTextData, TextData);
 		tStd::tStrcpy(newTextData + Length(), sufStr.TextData);
 
@@ -382,7 +417,7 @@ inline bool tString::IsAlphabetic(bool includeUnderscore) const
 	if (TextData == &EmptyChar)
 		return false;
 
-	const char* c = TextData;
+	const char8_t* c = TextData;
 	while (*c)
 	{
 		if ( !((*c >= 'A' && *c <= 'Z') || (*c >= 'a' && *c <= 'z') || (includeUnderscore && *c == '_')) )
@@ -399,7 +434,7 @@ inline bool tString::IsNumeric(bool includeDecimal) const
 	if (TextData == &EmptyChar)
 		return false;
 
-	const char* c = TextData;
+	const char8_t* c = TextData;
 	while (*c)
 	{
 		if ( !((*c >= '0' && *c <= '9') || (includeDecimal && *c == '.')) )
@@ -440,7 +475,7 @@ inline int tString::FindAny(const char* chars) const
 
 inline int tString::FindChar(const char c, bool reverse, int start) const
 {
-	const char* pc = nullptr;
+	const char8_t* pc = nullptr;
 
 	if (start == -1)
 	{
@@ -470,14 +505,14 @@ inline int tString::FindChar(const char c, bool reverse, int start) const
 }
 
 
-inline int tString::FindString(const char* s, int start) const
+inline int tString::FindString(const char8_t* s, int start) const
 {
 	int len = Length();
 	if (!len)
 		return -1;
 
 	tAssert((start >= 0) && (start < Length()));
-	const char* found = tStd::tStrstr(&TextData[start], s);
+	const char8_t* found = tStd::tStrstr(&TextData[start], s);
 	if (found)
 		return int(found - TextData);
 
@@ -516,7 +551,7 @@ inline tStringItem& tStringItem::operator=(const tStringItem& src)
 	if (TextData != &EmptyChar)
 		delete[] TextData;
 
-	TextData = new char[1 + src.Length()];
+	TextData = new char8_t[1 + src.Length()];
 	tStd::tStrcpy(TextData, src.TextData);
 	return *this;
 }

@@ -95,7 +95,7 @@ tString tSystem::tGetEnvVar(const tString& envVarName)
 {
 	if (envVarName.IsEmpty())
 		return tString();
-	return tString(std::getenv(envVarName.ConstText()));
+	return tString(std::getenv(envVarName.Chs()));
 }
 
 
@@ -145,12 +145,12 @@ bool tSystem::tOpenSystemFileExplorer(const tString& dir, const tString& file)
 	{
 		fullName.Replace('/', '\\');
 		tString options;
-		tsPrintf(options, "/select,\"%s\"", fullName.Chars());
-		ShellExecute(hWnd, "open", "explorer", options.ConstText(), 0, SW_SHOWNORMAL);
+		tsPrintf(options, "/select,\"%s\"", fullName.Chs());
+		ShellExecute(hWnd, "open", "explorer", options.Chs(), 0, SW_SHOWNORMAL);
 	}
 	else
 	{
-		ShellExecute(hWnd, "open", dir.ConstText(), 0, dir.ConstText(), SW_SHOWNORMAL);
+		ShellExecute(hWnd, "open", dir.Chs(), 0, dir.Chs(), SW_SHOWNORMAL);
 	}
 	return true;
 
@@ -168,9 +168,9 @@ bool tSystem::tOpenSystemFileExplorer(const tString& dir, const tString& file)
 
 	tString sysStr;
 	if (browser == nautilus)
-		tsPrintf(sysStr, "%s %s%s &", browser.Chars(), dir.Chars(), file.Chars());
+		tsPrintf(sysStr, "%s %s%s &", browser.Chs(), dir.Chs(), file.Chs());
 	else if (browser == dolphin)
-		tsPrintf(sysStr, "%s --new-window --select %s%s &", browser.Chars(), dir.Chars(), file.Chars());
+		tsPrintf(sysStr, "%s --new-window --select %s%s &", browser.Chs(), dir.Chs(), file.Chs());
 
 	system(sysStr.ConstText());
 	return true;

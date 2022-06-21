@@ -94,7 +94,7 @@ public:
 
 	// Compiles a regular expression (described above). Any previously compiled expression is lost.
 	void Compile(const tString& pattern);
-	bool IsMatch(const tString& text) const																				{ return IsMatch(text.ConstText()); }
+	bool IsMatch(const tString& text) const																				{ return IsMatch(text.Chs()); }
 	void Compile(const char* pattern);
 	bool IsMatch(const char* text) const;					// Returns true is a perfect match is attained.
 	bool IsValid() const																								{ return Pattern ? true : false; }
@@ -110,7 +110,7 @@ public:
 		Match(const Match& src)																							: IndexStart(src.IndexStart), Length(src.Length) { }
 		Match(int startIndex, int length)																				: IndexStart(startIndex), Length(length) { }
 		bool IsValid() const																							{ return (Length > 0) ? true : false; }
-		tString GetString(const tString& text) const																	{ if (!IsValid()) return tString(); tString m(Length); tStd::tStrncpy(m.Text(), text.ConstText()+IndexStart, Length); return m; }
+		tString GetString(const tString& text) const																	{ if (!IsValid()) return tString(); tString m(Length); tStd::tStrncpy(m.Text(), text.Chars()+IndexStart, Length); return m; }
 
 		int IndexStart;
 		int Length;
@@ -120,7 +120,7 @@ public:
 	// The end pointer should be one past the last valid character to check.
 	void Search(const char* begin, const char* end, tList<Match>&) const;
 	void Search(const char* text, tList<Match>& matches) const															{ Search(text, text + tStd::tStrlen(text), matches); }
-	void Search(const tString& text, tList<Match>& matches) const														{ Search(text.ConstText(), matches); }
+	void Search(const tString& text, tList<Match>& matches) const														{ Search(text.Chs(), matches); }
 
 private:
 	struct Node
