@@ -1038,8 +1038,8 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 	// https://stackoverflow.com/questions/36173695/how-to-retrieve-filepath-relatively-to-a-given-directory-in-c	
 	char relPath[1024];
 	relPath[0] = '\0';
-	char* pathr = refPath.Text();
-	char* patha = absPath.Text();
+	char* pathr = refPath.Txt();
+	char* patha = absPath.Txt();
 	int inc = 0;
 
 	for (; (inc < sizea) && (inc < sizer); inc += tStd::tStrlen(patha+inc)+1)
@@ -1111,7 +1111,7 @@ tString tSystem::tGetFileFullName(const tString& filename)
 	#else
 	tPathStd(file);
 	tString ret(PATH_MAX + 1);
-	realpath(file, ret.Text());	
+	realpath(file.Chs(), ret.Txt());	
 	#endif
 
 	return ret;
@@ -1218,7 +1218,7 @@ bool tSystem::tIsReadOnly(const tString& fileName)
 	tPathStd(file);
 
 	struct stat st;
-	int errCode = stat(file, &st);
+	int errCode = stat(file.Chs(), &st);
 	if (errCode != 0)
 		return false;
 
@@ -1259,7 +1259,7 @@ bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 	tPathStd(file);
 	
 	struct stat st;
-	int errCode = stat(file, &st);
+	int errCode = stat(file.Chs(), &st);
 	if (errCode != 0)
 		return false;
 	
@@ -1268,7 +1268,7 @@ bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 	// Set user R and clear user w. Leave rest unchanged.
 	permBits |= S_IRUSR;
 	permBits &= ~S_IWUSR;
-	errCode = chmod(file, permBits);
+	errCode = chmod(file.Chs(), permBits);
 	
 	return (errCode == 0);
 
@@ -1757,7 +1757,7 @@ tString tSystem::tGetProgramDir()
 
 	#elif defined(PLATFORM_LINUX)
 	tString result(PATH_MAX+1);
-	readlink("/proc/self/exe", result.Text(), PATH_MAX);
+	readlink("/proc/self/exe", result.Txt(), PATH_MAX);
 	
 	int bi = result.FindChar('/', true);
 	tAssert(bi != -1);
@@ -1781,7 +1781,7 @@ tString tSystem::tGetProgramPath()
 
 	#elif defined(PLATFORM_LINUX)
 	tString result(PATH_MAX+1);
-	readlink("/proc/self/exe", result.Text(), PATH_MAX);
+	readlink("/proc/self/exe", result.Txt(), PATH_MAX);
 	return result;
 
 	#else
@@ -1799,7 +1799,7 @@ tString tSystem::tGetCurrentDir()
 
 	#else
 	tString r(PATH_MAX + 1);
-	getcwd(r.Text(), PATH_MAX);
+	getcwd(r.Txt(), PATH_MAX);
 
 	#endif
 	tPathStdAdd(r);

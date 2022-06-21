@@ -172,7 +172,7 @@ bool tSystem::tOpenSystemFileExplorer(const tString& dir, const tString& file)
 	else if (browser == dolphin)
 		tsPrintf(sysStr, "%s --new-window --select %s%s &", browser.Chs(), dir.Chs(), file.Chs());
 
-	system(sysStr.ConstText());
+	system(sysStr.Chs());
 	return true;
 
 	#else
