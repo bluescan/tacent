@@ -280,8 +280,8 @@ tTestUnit(List)
 // Stefan's extra list tests.
 template <class T> struct NamedLink : public tLink<T>
 {
-	NamedLink<T>(const char* name)		{ Name.Set(name); }
-	NamedLink<T>(int id)				{ tsPrintf(Name, "Name%d", id); }
+	NamedLink(const char* n)			{ Name.Set(n); }
+	NamedLink(int id)					{ tsPrintf(Name, "Name%d", id); }
 	tString Name;
 };
 

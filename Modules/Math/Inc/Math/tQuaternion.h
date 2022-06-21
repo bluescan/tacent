@@ -45,7 +45,7 @@ struct tQuaternion : public tQuat
 
 	void Zero()																											{ tZero(*this); }
 	void Zero(tComponents c)																							{ tZero(*this, c); }
-	bool IsZero() const																									{ return tIsZero(*this); }
+	bool IsZero() const																									{ return tIsZero((tQuat&)*this); }
 	bool IsZero(tComponents c) const																					{ return tIsZero(*this, c); }
 	bool ApproxEqual(const tQuat& q, float e = Epsilon) const															{ return tApproxEqual(*this, q, e); }
 	bool ApproxEqual(const tQuat& q, tComponents c, float e = Epsilon) const											{ return tApproxEqual(*this, q, c, e); }
@@ -95,8 +95,8 @@ struct tQuaternion : public tQuat
 	tQuaternion& operator/=(float a)																					{ tDiv(*this, a); return *this; }
 	const tQuaternion operator/(float a) const																			{ tQuaternion d; tDiv(d, *this, a); return d; }
 
-	bool operator==(const tQuat& a) const																				{ return tEqual(*this, a); }
-	bool operator!=(const tQuat& a) const																				{ return tNotEqual(*this, a); }
+	inline friend bool operator==(const tQuat& a, const tQuat& b)														{ return tEqual(a, b); }
+	inline friend bool operator!=(const tQuat& a, const tQuat& b)														{ return tNotEqual(a, b); }
 	operator const float*()																								{ return E; }
 	operator const float*() const																						{ return E; }
 	float& operator[](int i)																							{ return E[i]; }

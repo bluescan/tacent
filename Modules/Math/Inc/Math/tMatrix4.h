@@ -57,7 +57,7 @@ struct tMatrix4 : public tMat4
 
 	void Zero()																											{ tZero(*this); }
 	void Zero(tComponents c)																							{ tZero(*this, c); }
-	bool IsZero() const																									{ return tIsZero(*this); }
+	bool IsZero() const																									{ return tIsZero((tMat4&)*this); }
 	bool IsZero(tComponents c) const																					{ return tIsZero(*this, c); }
 	bool ApproxEqual(const tMat4& m, float e = Epsilon) const															{ return tApproxEqual(*this, m, e); }
 	bool ApproxEqual(const tMat4& m, tComponents c, float e = Epsilon) const											{ return tApproxEqual(*this, m, c, e); }
@@ -148,8 +148,8 @@ struct tMatrix4 : public tMat4
 	tMatrix4& operator/=(float a)																						{ tDiv(*this, a); return *this; }
 	const tMatrix4 operator/(float a) const																				{ tMatrix4 d; tDiv(d, *this, a); return d; }
 
-	bool operator==(const tMat4& a) const																				{ return tEqual(*this, a); }
-	bool operator!=(const tMat4& a) const																				{ return tNotEqual(*this, a); }
+	inline friend bool operator==(const tMat4& a, const tMat4& b)														{ return tEqual(a, b); }
+	inline friend bool operator!=(const tMat4& a, const tMat4& b)														{ return tNotEqual(a, b); }
 	operator const float*()																								{ return E; }
 	operator const float*() const																						{ return E; }
 	float& operator[](int i)																							{ return E[i]; }

@@ -43,7 +43,7 @@ struct tVector3 : public tVec3
 
 	void Zero()																											{ tZero(*this); }
 	void Zero(tComponents c)																							{ tZero(*this, c); }
-	bool IsZero() const																									{ return tIsZero(*this); }
+	bool IsZero() const																									{ return tIsZero((tVec3&)*this); }
 	bool IsZero(tComponents c) const																					{ return tIsZero(*this, c); }
 	bool ApproxEqual(const tVec3& v, float e = Epsilon) const															{ return tApproxEqual(*this, v, e); }
 	bool ApproxEqual(const tVec3& v, tComponents c, float e = Epsilon) const											{ return tApproxEqual(*this, v, c, e); }
@@ -92,8 +92,8 @@ struct tVector3 : public tVec3
 	tVector3& operator%=(const tVec3& v)					/* Cross product for 3D vectors. */							{ tCross(*this, *this, v); return *this; }
 	tVector3 operator%(const tVec3& v) const				/* Cross product for 3D vectors. */							{ tVec3 c; tCross(c, *this, v); return c; }
 
-	bool operator==(const tVec3& a) const																				{ return tEqual(*this, a); }
-	bool operator!=(const tVec3& a) const																				{ return tNotEqual(*this, a); }
+	inline friend bool operator==(const tVec3& a, const tVec3& b)														{ return tEqual(a, b); }
+	inline friend bool operator!=(const tVec3& a, const tVec3& b)														{ return tNotEqual(a, b); }
 	operator const float*()																								{ return E; }
 	operator const float*() const																						{ return E; }
 	float& operator[](int i)																							{ return E[i]; }

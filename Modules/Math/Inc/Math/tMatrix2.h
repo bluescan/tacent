@@ -39,7 +39,7 @@ struct tMatrix2 : public tMat2
 
 	void Zero()																											{ tZero(*this); }
 	void Zero(tComponent c)																								{ tZero(*this, c); }
-	bool IsZero() const																									{ return tIsZero(*this); }
+	bool IsZero() const																									{ return tIsZero((tMat2&)*this); }
 	bool IsZero(tComponent c) const																						{ return tIsZero(*this, c); }
 	bool ApproxEqual(const tMat2& m, float e = Epsilon) const															{ return tApproxEqual(*this, m, e); }
 	bool ApproxEqual(const tMat2& m, tComponent c, float e = Epsilon) const												{ return tApproxEqual(*this, m, c, e); }
@@ -69,8 +69,8 @@ struct tMatrix2 : public tMat2
 	tMatrix2& operator/=(float a)																						{ tDiv(*this, a); return *this; }
 	const tMatrix2 operator/(float a) const																				{ tMatrix2 d; tDiv(d, *this, a); return d; }
 
-	bool operator==(const tMat2& a) const																				{ return tEqual(*this, a); }
-	bool operator!=(const tMat2& a) const																				{ return tNotEqual(*this, a); }
+	inline friend bool operator==(const tMat2& a, const tMat2& b)														{ return tEqual(a, b); }
+	inline friend bool operator!=(const tMat2& a, const tMat2& b)														{ return tNotEqual(a, b); }
 	operator const float*()																								{ return E; }
 	operator const float*() const																						{ return E; }
 	float& operator[](int i)																							{ return E[i]; }
@@ -79,6 +79,9 @@ struct tMatrix2 : public tMat2
 	const static tMatrix2 zero;								// Zero matrix.
 	const static tMatrix2 identity;							// Identity matrix.
 };
+
+
+// The overloads operator== and operator!= are handled by the base class.
 
 
 }

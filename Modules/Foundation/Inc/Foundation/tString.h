@@ -50,7 +50,9 @@ struct tString
 	bool IsEqualCI(const char8_t* s) const																				{ if (!s) return false; return !tStd::tStricmp(TextData, s); }
 	bool IsEqualCI(const char* s) const																					{ if (!s) return false; return !tStd::tStricmp(TextData, (char8_t*)s); }
 
-	// These allow for implicit conversion to a UTF-8 character pointer.
+	// These allow for implicit conversion to a UTF-8 character pointer. By not including implicit casts to const char*
+	// we are encouraging further proper use of char8_t. You can either make the function you are calling take the
+	// proper UTF-* type, or explicitly call Chs() or Txt() to get an old char-based pointer.
 	operator const char8_t*()																							{ return TextData; }
 	operator const char8_t*() const																						{ return TextData; }
 
@@ -62,7 +64,7 @@ struct tString
 	tString& operator+=(const tString&);
 
 	void Set(const char8_t*);
-	void Set(const char* s){ Set((const char8_t*)s); }
+	void Set(const char* s)																								{ Set((const char8_t*)s); }
 	int Length() const				/* The length in char8_t's, not the display length (which is not that useful). */	{ return int(tStd::tStrlen(TextData)); }
 	bool IsEmpty() const																								{ return (TextData == &EmptyChar) || !tStd::tStrlen(TextData); }
 	bool IsValid() const			/* returns true is string is not empty. */											{ return !IsEmpty(); }
