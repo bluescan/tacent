@@ -211,15 +211,45 @@ inline bool tItoa(char8_t* str, int strSize, int64 value, int base = 10)								
 inline bool tItoa(char8_t* str, int strSize, uint32 value, int base = 10)												{ return tItostr(str, strSize, value, base); }
 inline bool tItoa(char8_t* str, int strSize, uint64 value, int base = 10)												{ return tItostr(str, strSize, value, base); }
 
-// Unicode encoding. These functions convert to/from the 3 main unicode encodings. Note that all text in Tacent is
+// Unicode encoding. These functions convert to/from the 3 main unicode encodings. Note that most text in Tacent is
 // assumed to be UTF-8. These are provided so external or OS-specific calls can be made when they expect non-UTF-8
 // input, and when results are supplied, converted back to UTF-8.
-int tUTF8_To_UTF16();
-int tUTF8_To_UTF32();
-int tUTF16_To_UTF8();
-int tUTF16_To_UTF32();
-int tUTF32_To_UTF8();
-int tUTF32_To_UTF16();
+//
+// Null termination is not part of UTF encoding. These work on arrays of charN types. Not null terminated.
+// 1) If (only) dst is nullptr, returns the exact number of charNs needed for dst.
+// 2) If src is nullptr, dst is ignored and numSrc is used to return a fast, worst-case number of charNs needed for dst
+//    assuming no overlong encoding. This second methos is fast because the contents of src are not inspected, but it
+//    often gives conservative (larger) results.
+// 3) If all args are valid, converts the UTF src data to the dst UTF encoding. Returns the number of dst charNs written.
+int tUTF8_16 (char8_t*  dst, const char16_t* src, int numSrc);		// UFT-16 to UTF-8.
+int tUTF8_32 (char8_t*  dst, const char32_t* src, int numSrc);		// UFT-32 to UTF-8.
+int tUTF16_8 (char16_t* dst, const char8_t*  src, int numSrc);		// UFT-8  to UTF-16.
+int tUTF16_32(char16_t* dst, const char32_t* src, int numSrc);		// UFT-32 to UTF-16.
+int tUTF32_8 (char32_t* dst, const char8_t*  src, int numSrc);		// UFT-8  to UTF-32.
+int tUTF32_16(char32_t* dst, const char16_t* src, int numSrc);		// UFT-16 to UTF-32.
+
+// While string termination is not part of UTF encoding, these utility functions assume null terminated strings are
+// input as src
+// 1) If dst (only) is nullptr, computes and returns the exact number of dst charNs needed (including null terminator).
+// 2) If both valid, converts the UTF string in src to the dst UTF encoding. Returns length of dst not include the null.
+int tUTFStr(char8_t*  dst, const char16_t* src);					// UTF-16 to UTF-8.
+int tUTFStr(char8_t*  dst, const char32_t* src);					// UFT-32 to UTF-8.
+int tUTFStr(char16_t* dst, const char8_t*  src);					// UTF-8  to UTF-16.
+int tUTFStr(char16_t* dst, const char32_t* src);					// UTF-32 to UTF-16.
+int tUTFStr(char32_t* dst, const char8_t*  src);					// UTF-8  to UTF-32.
+int tUTFStr(char32_t* dst, const char16_t* src);					// UTF-16 to UTF-32.
+
+// Individual codepoint functions. These all return the number of dst charNs written during the conversion. This will
+// be 0 if no src and no dst or if there is an error converting.
+int tUTFCpt(char8_t  dst[4], const char16_t* src);		// Reads from 1 to 2 char16_ts. Returns 1 to 4 written.
+int tUTFCpt(char8_t  dst[4], const char32_t* src);		// Reads from 1 char32_ts. Returns 1 to 4 written.
+int tUTFCpt(char16_t dst[2], const char8_t* src);		// Reads from 1 to 4 char8_ts. Returns 1 or 2 written.
+int tUTFCpt(char16_t dst[2], const char32_t* src);		// Reads from 1 char32_ts. Returns 1 or 2 written.
+int tUTFCpt(char32_t* dst, const char8_t* src);			// Reads from 1 to 4 char8_ts (3 surrogates).
+int tUTFCpt(char32_t* dst, const char16_t* src);		// Reads from 1 to 2 char16_ts (1 surrogates).
+char32_t tUTFCpt(const char8_t* src);					// Reads from 1 to 4 char8_ts (3 surrogates).
+char32_t tUTFCpt(const char16_t* src);					// Reads from 1 to 2 char16_ts (1 surrogates).
+
 
 // These are non UTF-8 functions that work on individual ASCII characters or ASCII strings. tStrrev, for example,
 // simply reverses the chars, it is not aware of UFT-8 surrogates and would mess them up.

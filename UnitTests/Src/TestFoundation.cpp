@@ -927,6 +927,18 @@ tTestUnit(String)
 }
 
 
+tTestUnit(UTF)
+{
+	// Test conversions between various UTF text encodings. Tacent supports:
+	// UTF-8  : The native encoding for tString and most char* functions.
+	// UTF-16 : For marshalling data to and from OS calls, especially on Windows.
+	// UTF-32 : For representing individual characters as a single data-type. This helps reduce complexity for some functions.
+	tPrintf("Testing conversions between UTF encodings.\n");
+
+	
+}
+
+
 tTestUnit(RingBuffer)
 {
 	// We're going to use the middle 10 characters as our buffer and write a pattern into the full buffer
