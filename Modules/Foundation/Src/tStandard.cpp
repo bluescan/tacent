@@ -131,3 +131,155 @@ void tStd::tStrrev(char* begin, char* end)
 	while (end > begin)
 		aux = *end, *end-- = *begin, *begin++ = aux;
 }
+
+
+int tStd::tUTF8_16(char8_t* dst, const char16_t* src, int numSrc)
+{
+	// Compute fast worst-case size needed.
+	// UTF-8 can use up to 3 bytes to encode some codepoints in the BMP (Basic Multilingual Plane). This has
+	// implications for how much room UTF-8 encoded text could take up from src data that's UTF-16. Eg. 2 char16s could be
+	// either 2 codepoints in the BMP (6 bytes in UTF-8) or a single codepoint if the second char16 is a surrogate (4 bytes
+	// in UTF-8). Therefore worst case without inspecting data is 3*numChar16s.
+	if (!src)
+		return numSrc * 3;
+
+	return 0;
+}
+
+
+int tStd::tUTF8_32(char8_t* dst, const char32_t* src, int numSrc)
+{
+	// Compute fast worst-case size needed.
+	// Worst case is every char32 needing 4 char8s.
+	if (!src)
+		return numSrc * 4;
+
+	return 0;
+}
+
+
+int tStd::tUTF16_8(char16_t* dst, const char8_t* src, int numSrc)
+{
+	// Compute fast worst-case size needed.
+	// 1 char8					-> 1 char16.
+	// 2 char8s (1+1surrogate)	-> 1 char16.
+	// 3 char8s (1+2surrogates)	-> also guaranteed 1 char16.
+	// 4 char8s (1+3surrogates)	-> 2 char16s.
+	// So worst-case is every byte needing 1 whole char16.
+	if (!src)
+		return numSrc;
+
+	return 0;
+}
+
+
+int tStd::tUTF16_32(char16_t* dst, const char32_t* src, int numSrc)
+{
+	// Compute fast worst-case size needed.
+	// Worst case is every char32 needing 2 char16s.
+	if (!src)
+		return numSrc * 2;
+
+	return 0;
+}
+
+
+int tStd::tUTF32_8(char32_t* dst, const char8_t* src, int numSrc)
+{
+	// Compute fast worst-case size needed.
+	// Worst-case is every char8 needing 1 whole char32.
+	if (!src)
+		return numSrc;
+
+	return 0;
+}
+
+
+int tStd::tUTF32_16(char32_t* dst, const char16_t* src, int numSrc)
+{
+	// Compute fast worst-case size needed.
+	// Worst-case is every char16 needing 1 whole char32.
+	if (!src)
+		return numSrc;
+
+	return 0;
+}
+
+
+int tStd::tUTFstr(char8_t* dst, const char16_t* src)
+{
+	if (!src)
+		return 0;
+
+	// Compute exact size needed.
+	if (!dst)
+		return tUTF8_16(nullptr, src, tStrlen(src)) + 1;
+
+	return 0;
+}
+
+
+int tStd::tUTFstr(char8_t* dst, const char32_t* src)
+{
+	if (!src)
+		return 0;
+
+	// Compute exact size needed.
+	if (!dst)
+		return tUTF8_32(nullptr, src, tStrlen(src)) + 1;
+
+	return 0;
+}
+
+
+int tStd::tUTFstr(char16_t* dst, const char8_t* src)
+{
+	if (!src)
+		return 0;
+
+	// Compute exact size needed.
+	if (!dst)
+		return tUTF16_8(nullptr, src, tStrlen(src)) + 1;
+
+	return 0;
+}
+
+
+int tStd::tUTFstr(char16_t* dst, const char32_t* src)
+{
+	if (!src)
+		return 0;
+
+	// Compute exact size needed.
+	if (!dst)
+		return tUTF16_32(nullptr, src, tStrlen(src)) + 1;
+
+	return 0;
+}
+
+
+int tStd::tUTFstr(char32_t* dst, const char8_t* src)
+{
+	if (!src)
+		return 0;
+
+	// Compute exact size needed.
+	if (!dst)
+		return tUTF32_8(nullptr, src, tStrlen(src)) + 1;
+
+	return 0;
+}
+
+
+int tStd::tUTFstr(char32_t* dst, const char16_t* src)
+{
+	if (!src)
+		return 0;
+
+	// Compute exact size needed.
+	if (!dst)
+		return tUTF32_16(nullptr, src, tStrlen(src)) + 1;
+
+	return 0;
+}
+
