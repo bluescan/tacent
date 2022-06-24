@@ -12,7 +12,7 @@ Thanks to Woboq, the source may be viewed in a web browser [here](http://upperbo
 Tacent is divided into a number of separate modules. Each module is a collection of related source files. Some modules depend on others.
 
 * __Foundation__
-The base set of classes, functions, and types. Includes container types (lists, arrays, priority queue, map/dictionary, ring buffer), a fast memory pool, big integer types, bitfields, units, a string class. Depends on nothing but platform libs.
+The base set of classes, functions, and types. Includes container types (lists, arrays, priority queue, map/dictionary, ring buffer), a fast memory pool, big integer types, bitfields, units, a string class, UTF conversion functions. Depends on nothing but platform libs.
 
 * __Math__
 Vectors, matrices, quaternions, projections, linear algebra, hash functions, random number generation, splines, analytic functions, geometric primitives, mathematical constants, and colour space conversions. Depends on Foundation.
