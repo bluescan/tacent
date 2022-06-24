@@ -231,10 +231,12 @@ int tUTF16_32(char16_t* dst, const char32_t* src, int length);		// UFT-32 to UTF
 int tUTF32_8 (char32_t* dst, const char8_t*  src, int length);		// UFT-8  to UTF-32.
 int tUTF32_16(char32_t* dst, const char16_t* src, int length);		// UFT-16 to UTF-32.
 
-// While string termination is not part of UTF encoding, these utility functions assume null terminated strings are
-// input as src
-// 1) If dst (only) is nullptr, computes and returns the exact number of dst charNs needed (including null terminator).
-// 2) If both valid, converts the UTF string in src to the dst UTF encoding. Returns length of dst not include the null.
+// String termination is not part of UTF encoding. These functions assume null terminated strings are input as src.
+// 1) If dst (only) is nullptr, computes and returns the exact number of dst charNs needed (not including null
+//    terminator). If you are going new the memory yourself, add one for the null terminator.
+// 2) If both valid, converts the UTF string in src to the dst UTF encoding. Returns length the of dst not including
+//    the null. Note that the null terminator _is_ written to the dst.
+// 3) If src is nullptr, returns 0 and _does not modify_ dest at all even to add a null terminator.
 int tUTFstr(char8_t*  dst, const char16_t* src);					// UTF-16 to UTF-8.
 int tUTFstr(char8_t*  dst, const char32_t* src);					// UFT-32 to UTF-8.
 int tUTFstr(char16_t* dst, const char8_t*  src);					// UTF-8  to UTF-16.

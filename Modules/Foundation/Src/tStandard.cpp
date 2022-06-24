@@ -407,12 +407,11 @@ int tStd::tUTFstr(char8_t* dst, const char16_t* src)
 	if (!src)
 		return 0;
 
-	// Compute exact size needed.
-	if (!dst)
-		return tUTF8_16(nullptr, src, tStrlen(src)) + 1;
+	int length = tUTF8_16(dst, src, tStrlen(src));
+	if (dst)
+		dst[length] = u8'\0';
 
-	////////////////////////WIP
-	return 0;
+	return length;
 }
 
 
@@ -421,11 +420,11 @@ int tStd::tUTFstr(char8_t* dst, const char32_t* src)
 	if (!src)
 		return 0;
 
-	// Compute exact size needed.
-	if (!dst)
-		return tUTF8_32(nullptr, src, tStrlen(src)) + 1;
+	int length = tUTF8_32(dst, src, tStrlen(src));
+	if (dst)
+		dst[length] = u8'\0';
 
-	return 0;
+	return length;
 }
 
 
@@ -434,11 +433,11 @@ int tStd::tUTFstr(char16_t* dst, const char8_t* src)
 	if (!src)
 		return 0;
 
-	// Compute exact size needed.
-	if (!dst)
-		return tUTF16_8(nullptr, src, tStrlen(src)) + 1;
+	int length = tUTF16_8(dst, src, tStrlen(src));
+	if (dst)
+		dst[length] = u'\0';
 
-	return 0;
+	return length;
 }
 
 
@@ -447,11 +446,11 @@ int tStd::tUTFstr(char16_t* dst, const char32_t* src)
 	if (!src)
 		return 0;
 
-	// Compute exact size needed.
-	if (!dst)
-		return tUTF16_32(nullptr, src, tStrlen(src)) + 1;
+	int length = tUTF16_32(dst, src, tStrlen(src));
+	if (dst)
+		dst[length] = u'\0';
 
-	return 0;
+	return length;
 }
 
 
@@ -460,11 +459,11 @@ int tStd::tUTFstr(char32_t* dst, const char8_t* src)
 	if (!src)
 		return 0;
 
-	// Compute exact size needed.
-	if (!dst)
-		return tUTF32_8(nullptr, src, tStrlen(src)) + 1;
+	int length = tUTF32_8(dst, src, tStrlen(src));
+	if (dst)
+		dst[length] = U'\0';
 
-	return 0;
+	return length;
 }
 
 
@@ -473,12 +472,26 @@ int tStd::tUTFstr(char32_t* dst, const char16_t* src)
 	if (!src)
 		return 0;
 
-	// Compute exact size needed.
-	if (!dst)
-		return tUTF32_16(nullptr, src, tStrlen(src)) + 1;
+	int length = tUTF32_16(dst, src, tStrlen(src));
+	if (dst)
+		dst[length] = U'\0';
 
-	return 0;
+	return length;
 }
+
+
+/*
+// @wip These require a bit more thought I think.
+int tStd::tUTFcpt(char8_t dst[4], const char16_t src[2])
+{
+
+}
+*/
+//int tUTFcpt(char8_t  dst[4], const char32_t src[1]);	// Reads from 1 char32.						Returns 0 or [1, 4].
+//int tUTFcpt(char16_t dst[2], const char8_t  src[4]);	// Reads from 1 to 4 char8s.				Returns 0 or [1, 2].
+//int tUTFcpt(char16_t dst[2], const char32_t src[1]);	// Reads from 1 char32.						Returns 0 or [1, 2].
+//int tUTFcpt(char32_t dst[1], const char8_t  src[4]);	// Reads from 1 to 4 char8s (4 surrogates).	Returns 0 or 1.
+//int tUTFcpt(char32_t dst[1], const char16_t src[2]);	// Reads from 1 to 2 char16s (2 surrogate).	Returns 0 or 1.
 
 
 int tUTF::CalculateUtf16Length(char32_t codepoint)
