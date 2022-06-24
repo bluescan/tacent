@@ -133,7 +133,89 @@ void tStd::tStrrev(char* begin, char* end)
 }
 
 
-int tStd::tUTF8_16(char8_t* dst, const char16_t* src, int numSrc)
+// The UTF 8 <-> 16 conversion code below was based on https://github.com/Davipb/utf8-utf16-converter
+// under the MIT licence. See Docs/Licence_Utf8Utf16.txt
+namespace tUTF
+{
+	// BMP = Basic Multilingual Plane.
+	// CP = Unicode codepoint.
+
+	const char32_t cCodepoint_Replacement		= 0x0000FFFD;	// Used for unknown or invalid encodings.
+	const char32_t cCodepoint_LastValidBMP		= 0x0000FFFD;	// Last valid codepoint. Note that U+FFFF and U+FFFE are guaranteed 'non-characters'. They do not appear if codepoint is valid.
+	const char32_t cCodepoint_SpecialNonCharA	= 0x0000FFFE;
+	const char32_t cCodepoint_SpecialNonCharB	= 0x0000FFFF;
+	const char32_t cCodepoint_UnicodeMax		= 0x0010FFFF;	// The highest valid Unicode codepoint.
+	const char32_t cCodepoint_UTF8Max1			= 0x0000007F;	// The highest codepoint that can be encoded with 1 byte  in UTF-8.
+	const char32_t cCodepoint_UTF8Max2			= 0x000007FF;	// The highest codepoint that can be encoded with 2 bytes in UTF-8.
+	const char32_t cCodepoint_UTF8Max3			= 0x0000FFFF;	// The highest codepoint that can be encoded with 3 bytes in UTF-8.
+
+	const char16_t cSurrogate_GenericMask16		= 0xF800;		// The mask to apply before testing it against cSurrogate_GenericVal16
+	const char16_t cSurrogate_GenericVal16		= 0xD800;		// If masked with cSurrogate_GenericMask16, matches this value, it is a surrogate.
+	const char32_t cSurrogate_GenericMask32		= 0x0000F800;	// The mask to apply before testing it against cSurrogate_GenericVal32
+	const char32_t cSurrogate_GenericVal32		= 0x0000D800;	// If masked with cSurrogate_GenericMask32, matches this value, it is a surrogate.
+
+	const char16_t cSurrogate_Mask16			= 0xFC00;		// The mask to apply to a character before testing it against cSurrogate_HighVal16 or cSurrogate_LowVal16.
+	const char16_t cSurrogate_HighVal16			= 0xD800;		// If a character, masked with cSurrogate_Mask16, matches this value, it is a high surrogate.
+	const char16_t cSurrogate_LowVal16			= 0xDC00;		// If a character, masked with cSurrogate_Mask16, matches this value, it is a low surrogate.
+
+	const char16_t cSurrogate_CodepointMask16	= 0x03FF;		// A mask that can be applied to a surrogate to extract the codepoint value contained in it.
+	const char32_t cSurrogate_CodepointMask32	= 0x000003FF;	// A mask that can be applied to a surrogate to extract the codepoint value contained in it.
+	const int      cSurrogate_CodepointBits		= 10;			// The number of LS bits of cSurrogate_CodepointMask that are set.
+	const char32_t cSurrogate_CodepointOffset	= 0x00010000;	// The value that is subtracted from a codepoint before encoding it in a surrogate pair.
+
+	const char8_t  cContinuation_UTF8Mask		= 0xC0;			// The mask to a apply to a character before testing it against cContinuation_UTF8Val
+	const char8_t  cContinuation_UTF8Val		= 0x80;			// If a character, masked with cContinuation_UTF8Mask, matches this value, it is a UTF-8 continuation byte.
+	const int      cContinuation_CodepointBits	= 6;			// The number of bits of a codepoint that are contained in a UTF-8 continuation byte.
+
+	// A UTF-8 bit-pattern that can be set or verified.
+	struct UTF8Pattern
+	{
+		char8_t Mask;		// The mask that should be applied to the character before testing it.
+		char8_t Value;		// The value that the character should be tested against after applying the mask.
+	};
+
+	// Bit-patterns for leading bytes in a UTF-8 codepoint encoding. Each pattern represents the leading byte for a
+	// character encoded with N UTF-8 bytes where N is the index + 1.
+	static const UTF8Pattern UTF8LeadingBytes[] =
+	{
+		{ 0x80, 0x00 },		// 0xxxxxxx
+		{ 0xE0, 0xC0 },		// 110xxxxx
+		{ 0xF0, 0xE0 },		// 1110xxxx
+		{ 0xF8, 0xF0 } 		// 11110xxx
+	};
+	const int UTF8LeadingBytes_NumElements = tNumElements(UTF8LeadingBytes);
+
+	// Calculates the number of UTF-16 16-bit characters it would take to encode a codepoint. The codepoint is not
+	// checked for validity. That should be done beforehand.
+	int CalculateUtf16Length(char32_t codepoint);
+
+	// Gets a single codepoint from a UTF-16 string (string does not need null-termination). Returns how many char16s
+	// were read to generate the codepoint. If 2 char16s (surrogate pairs) were read, returns 2. Otherwise returns 1.
+	// For invalid encodings, the codepoint is set to the special 'replacement' (from the BMP) and 1 is returned.
+	int DecodeUtf16(char32_t& codepoint, const char16_t* src);
+
+	// Encodes a 32-bit codepoint into a UTF-16 string. The codepoint is not checked for validity by this function. You
+	// must ensure the dst buffer is big enough -- 2 is always big enough, but you can call CalculateUtf16Length to get
+	// an exact size. Returns the number of char16s written to dst [0,2]. Returns 0 is dst is nullptr.
+	int EncodeUtf16(char16_t* dst, char32_t codepoint);
+
+	// Calculates the number of UTF-8 8-bit chars it would take to encode a codepoint. The codepoint is not checked
+	// for validity. That should be done beforehand.
+	int CalculateUtf8Length(char32_t codepoint);
+
+	// Gets a single codepoint from a UTF-8 string (string does not need null-termination). Returns how many char8s
+	// were read to generate the codepoint. eg. If 3 char8s (surrogates) were read, returns 3.
+	// For invalid encodings, the codepoint is set to the special 'replacement' num bytes read from src is returned.
+	int DecodeUtf8(char32_t& codepoint, const char8_t* src);
+
+	// Encodes a 32-bit codepoint into a UTF-8 string. The codepoint is not checked for validity by this function. You
+	// must ensure the dst buffer is big enough -- 4 is always big enough, but you can call CalculateUtf8Length to get
+	// an exact size. Returns the number of char8s written to dst [0,4]. Returns 0 is dst is nullptr.
+	int EncodeUtf8(char8_t* dst, char32_t codepoint);
+};
+
+
+int tStd::tUTF8_16(char8_t* dst, const char16_t* src, int length)
 {
 	// Compute fast worst-case size needed.
 	// UTF-8 can use up to 3 bytes to encode some codepoints in the BMP (Basic Multilingual Plane). This has
@@ -141,68 +223,182 @@ int tStd::tUTF8_16(char8_t* dst, const char16_t* src, int numSrc)
 	// either 2 codepoints in the BMP (6 bytes in UTF-8) or a single codepoint if the second char16 is a surrogate (4 bytes
 	// in UTF-8). Therefore worst case without inspecting data is 3*numChar16s.
 	if (!src)
-		return numSrc * 3;
+		return length * 3;
 
-	return 0;
+	int total = 0;
+	while (length > 0)
+	{
+		char32_t codepoint;
+		int read = tUTF::DecodeUtf16(codepoint, src);
+		length -= read;
+		src += read;
+
+		int written = 0;
+		if (dst)
+		{
+			written = tUTF::EncodeUtf8(dst, codepoint);
+			dst += written;
+		}
+		else
+		{
+			// No encoding. Just compute length.
+			written = tUTF::CalculateUtf8Length(codepoint);
+		}
+		total += written;
+	}
+
+	return total;
 }
 
 
-int tStd::tUTF8_32(char8_t* dst, const char32_t* src, int numSrc)
+int tStd::tUTF8_32(char8_t* dst, const char32_t* src, int length)
 {
 	// Compute fast worst-case size needed.
 	// Worst case is every char32 needing 4 char8s.
 	if (!src)
-		return numSrc * 4;
+		return length * 4;
 
-	return 0;
+	int total = 0;
+	for (int i = 0; i < length; i++)
+	{
+		char32_t codepoint = src[i];
+
+		int written = 0;
+		if (dst)
+		{
+			written = tUTF::EncodeUtf8(dst, codepoint);
+			dst += written;
+		}
+		else
+		{
+			// No encoding. Just compute length.
+			written = tUTF::CalculateUtf8Length(codepoint);
+		}
+		total += written;
+	}
+
+	return total;
 }
 
 
-int tStd::tUTF16_8(char16_t* dst, const char8_t* src, int numSrc)
+int tStd::tUTF16_8(char16_t* dst, const char8_t* src, int length)
 {
 	// Compute fast worst-case size needed.
 	// 1 char8					-> 1 char16.
-	// 2 char8s (1+1surrogate)	-> 1 char16.
-	// 3 char8s (1+2surrogates)	-> also guaranteed 1 char16.
-	// 4 char8s (1+3surrogates)	-> 2 char16s.
+	// 2 char8s (surrogates)	-> 1 char16.
+	// 3 char8s (surrogates)	-> also guaranteed 1 char16.
+	// 4 char8s (surrogates)	-> 2 char16s.
 	// So worst-case is every byte needing 1 whole char16.
 	if (!src)
-		return numSrc;
+		return length;
 
-	return 0;
+	int total = 0;
+	while (length > 0)
+	{
+		char32_t codepoint;
+		int read = tUTF::DecodeUtf8(codepoint, src);
+		length -= read;
+		src += read;
+
+		int written = 0;
+		if (dst)
+		{
+			written = tUTF::EncodeUtf16(dst, codepoint);
+			dst += written;
+		}
+		else
+		{
+			// No encoding. Just compute length.
+			written = tUTF::CalculateUtf16Length(codepoint);
+		}
+		total += written;
+	}
+
+	return total;
 }
 
 
-int tStd::tUTF16_32(char16_t* dst, const char32_t* src, int numSrc)
+int tStd::tUTF16_32(char16_t* dst, const char32_t* src, int length)
 {
 	// Compute fast worst-case size needed.
 	// Worst case is every char32 needing 2 char16s.
 	if (!src)
-		return numSrc * 2;
+		return length * 2;
 
-	return 0;
+	int total = 0;
+	for (int i = 0; i < length; i++)
+	{
+		char32_t codepoint = src[i];
+
+		int written = 0;
+		if (dst)
+		{
+			written = tUTF::EncodeUtf16(dst, codepoint);
+			dst += written;
+		}
+		else
+		{
+			// No encoding. Just compute length.
+			written = tUTF::CalculateUtf16Length(codepoint);
+		}
+		total += written;
+	}
+
+	return total;
 }
 
 
-int tStd::tUTF32_8(char32_t* dst, const char8_t* src, int numSrc)
+int tStd::tUTF32_8(char32_t* dst, const char8_t* src, int length)
 {
 	// Compute fast worst-case size needed.
 	// Worst-case is every char8 needing 1 whole char32.
 	if (!src)
-		return numSrc;
+		return length;
 
-	return 0;
+	int total = 0;
+	while (length > 0)
+	{
+		char32_t codepoint;
+		int read = tUTF::DecodeUtf8(codepoint, src);
+		length -= read;
+		src += read;
+
+		if (dst)
+		{
+			dst[0] = codepoint;
+			dst++;
+		}
+		total++;
+	}
+
+	return total;
 }
 
 
-int tStd::tUTF32_16(char32_t* dst, const char16_t* src, int numSrc)
+int tStd::tUTF32_16(char32_t* dst, const char16_t* src, int length)
 {
 	// Compute fast worst-case size needed.
 	// Worst-case is every char16 needing 1 whole char32.
 	if (!src)
-		return numSrc;
+		return length;
 
-	return 0;
+	int total = 0;
+	while (length > 0)
+	{
+		char32_t codepoint;
+		int read = tUTF::DecodeUtf16(codepoint, src);
+		length -= read;
+		src += read;
+
+		if (dst)
+		{
+			dst[0] = codepoint;
+			dst++;
+		}
+		total++;
+	}
+
+	return total;
 }
 
 
@@ -215,6 +411,7 @@ int tStd::tUTFstr(char8_t* dst, const char16_t* src)
 	if (!dst)
 		return tUTF8_16(nullptr, src, tStrlen(src)) + 1;
 
+	////////////////////////WIP
 	return 0;
 }
 
@@ -283,3 +480,187 @@ int tStd::tUTFstr(char32_t* dst, const char16_t* src)
 	return 0;
 }
 
+
+int tUTF::CalculateUtf16Length(char32_t codepoint)
+{
+	if (codepoint <= cCodepoint_LastValidBMP)
+		return 1;
+
+	return 2;
+}
+
+
+int tUTF::DecodeUtf16(char32_t& codepoint, const char16_t* src)
+{
+	char16_t high = src[0];
+
+	// If BMP character, we're done.
+	if ((high & cSurrogate_GenericMask16) != cSurrogate_GenericVal16)
+	{
+		codepoint = high;
+		return 1;
+	}
+
+	// If unmatched low surrogate it's invalid. Return replacement.
+	if ((high & cSurrogate_Mask16) != cSurrogate_HighVal16)
+	{
+		codepoint = cCodepoint_Replacement;
+		return 1;
+	}
+	
+	char16_t low = src[1];
+
+	// If unmatched high surrogate it's invalid. Return replacement.
+	if ((low & cSurrogate_Mask16) != cSurrogate_LowVal16)
+	{
+		codepoint = cCodepoint_Replacement;
+		return 1;
+	}
+
+	// Two correctly matched surrogates if we ade it this far.
+	// The high bits of the codepoint are the value bits of the high surrogate.
+	// The low bits of the codepoint are the value bits of the low surrogate.
+	codepoint = high & cSurrogate_CodepointMask16;
+	codepoint <<= cSurrogate_CodepointBits;
+	codepoint |= low & cSurrogate_CodepointMask16;
+	codepoint += cSurrogate_CodepointOffset;	
+	return 2;
+}
+
+
+int tUTF::EncodeUtf16(char16_t* dst, char32_t codepoint)
+{
+	if (!dst)
+		return 0;
+
+	// If codepoint in the BMP just write the single char16.
+	if (codepoint <= cCodepoint_LastValidBMP)
+	{
+		dst[0] = codepoint;
+		return 1;
+	}
+
+	codepoint -= cSurrogate_CodepointOffset;
+	char16_t low = cSurrogate_LowVal16;
+	low |= codepoint & cSurrogate_CodepointMask32;
+
+	codepoint >>= cSurrogate_CodepointBits;
+	char16_t high = cSurrogate_HighVal16;
+	high |= codepoint & cSurrogate_CodepointMask32;
+
+	dst[0] = high;
+	dst[1] = low;
+	return 2;
+}
+
+
+int tUTF::CalculateUtf8Length(char32_t codepoint)
+{
+	if (codepoint <= cCodepoint_UTF8Max1)
+		return 1;
+
+	if (codepoint <= cCodepoint_UTF8Max2)
+		return 2;
+
+	if (codepoint <= cCodepoint_UTF8Max3)
+		return 3;
+
+	if (codepoint <= cCodepoint_UnicodeMax)
+		return 4;
+
+	// Return max 4 in case the UTF-8 standard ever increases cCodepoint_UnicodeMax. What they won't
+	// break is that UTF-8 can encode all codepoints, so checking UnicodeMax is still valid.
+	return 4;
+}
+
+
+int tUTF::DecodeUtf8(char32_t& codepoint, const char8_t* src)
+{
+	char8_t leading = src[0];
+	int encodingLength = 0;
+	UTF8Pattern leadingPattern;
+
+	bool matches = false;	// True if the leading byte matches the current leading pattern.
+	do
+	{
+		encodingLength++;
+		leadingPattern = UTF8LeadingBytes[encodingLength - 1];
+		matches = (leading & leadingPattern.Mask) == leadingPattern.Value;
+
+	} while (!matches && (encodingLength < UTF8LeadingBytes_NumElements));
+
+	// If leading byte doesn't match any known pattern it is invalid and we return replacement.
+	if (!matches)
+	{
+		codepoint = cCodepoint_Replacement;
+		return encodingLength;
+	}
+
+	codepoint = leading & ~leadingPattern.Mask;
+
+	// This loop only ends up running if surrogates found (not ASCII).
+	for (int i = 1; i < encodingLength; i++)
+	{
+		char8_t continuation = src[i];
+
+		// If number of continuation bytes is not the same as advertised on the leading byte it's an invalid encoding
+		// so we return the replacement.
+		if ((continuation & cContinuation_UTF8Mask) != cContinuation_UTF8Val)
+		{
+			codepoint = cCodepoint_Replacement;
+
+			// I think the best behaviour here is to return how much we processed b4 running into a problem.
+			// If we returned encodingLength we might skip some input when an invalid is encountered. Hard to say.
+			return 1+i;
+		}
+
+		codepoint <<= cContinuation_CodepointBits;
+		codepoint |= continuation & ~cContinuation_UTF8Mask;
+	}
+
+	if
+	(
+		// These are guaranteed to be non-characters by the standard and reuire the replacement.
+		((codepoint == cCodepoint_SpecialNonCharA) || (codepoint == cCodepoint_SpecialNonCharB)) ||
+
+		// Surrogates are invalid Unicode codepoints and should only be used in UTF-16. Invalid encoding so return replacement.
+		((codepoint <= cCodepoint_LastValidBMP) && ((codepoint & cSurrogate_GenericMask32) == cSurrogate_GenericVal32)) ||
+
+		// UTF-8 can encode codepoints larger than the Unicode standard allows. If it does it's an invalid encoding and we return the replacement codepoint.
+		(codepoint > cCodepoint_UnicodeMax) ||
+
+		// Overlong encodings are considered invalid so we return the replacement codepoint and return the actual number read so we skip the overlong completely.
+		// We do this last cuz of short-circuit expression evaluation in C++ (calc only called if necessary).
+		(CalculateUtf8Length(codepoint) != encodingLength)
+	)
+	{
+		codepoint = cCodepoint_Replacement;
+	}
+
+	return encodingLength;
+}
+
+
+int tUTF::EncodeUtf8(char8_t* dst, char32_t codepoint)
+{
+	if (!dst)
+		return 0;
+
+	// Write the continuation bytes in reverse order.
+	int encodeLength = CalculateUtf8Length(codepoint);
+	for (int contIndex = encodeLength - 1; contIndex > 0; contIndex--)
+	{
+		char8_t cont = codepoint & ~cContinuation_UTF8Mask;
+		cont |= cContinuation_UTF8Val;
+		dst[contIndex] = cont;
+		codepoint >>= cContinuation_CodepointBits;
+	}
+
+	// Write the leading byte.
+	UTF8Pattern pattern = UTF8LeadingBytes[encodeLength - 1];
+	char8_t lead = codepoint & ~(pattern.Mask);
+	lead |= pattern.Value;
+	dst[0] = lead;
+
+	return encodeLength;
+}

@@ -219,17 +219,17 @@ inline bool tItoa(char8_t* str, int strSize, uint64 value, int base = 10)							
 //
 // Null termination is not part of UTF encoding. These work on arrays of charN types. Not null terminated.
 // 1) If (only) dst is nullptr, returns the exact number of charNs needed for dst.
-// 2) If src is nullptr, dst is ignored and numSrc is used to return a fast, worst-case number of charNs needed for dst
-//    assuming no overlong encoding. This second methos is fast because the contents of src are not inspected, but it
+// 2) If src is nullptr, dst is ignored and length is used to return a fast, worst-case number of charNs needed for dst
+//    assuming no overlong encoding. This second method is fast because the contents of src are not inspected, but it
 //    often gives conservative (larger) results.
 // 3) If all args are valid, converts the UTF src data to the dst UTF encoding. Returns the number of dst charNs written.
 // Caller is responsibe for making sure dst is big enough!
-int tUTF8_16 (char8_t*  dst, const char16_t* src, int numSrc);		// UFT-16 to UTF-8.
-int tUTF8_32 (char8_t*  dst, const char32_t* src, int numSrc);		// UFT-32 to UTF-8.
-int tUTF16_8 (char16_t* dst, const char8_t*  src, int numSrc);		// UFT-8  to UTF-16.
-int tUTF16_32(char16_t* dst, const char32_t* src, int numSrc);		// UFT-32 to UTF-16.
-int tUTF32_8 (char32_t* dst, const char8_t*  src, int numSrc);		// UFT-8  to UTF-32.
-int tUTF32_16(char32_t* dst, const char16_t* src, int numSrc);		// UFT-16 to UTF-32.
+int tUTF8_16 (char8_t*  dst, const char16_t* src, int length);		// UFT-16 to UTF-8.
+int tUTF8_32 (char8_t*  dst, const char32_t* src, int length);		// UFT-32 to UTF-8.
+int tUTF16_8 (char16_t* dst, const char8_t*  src, int length);		// UFT-8  to UTF-16.
+int tUTF16_32(char16_t* dst, const char32_t* src, int length);		// UFT-32 to UTF-16.
+int tUTF32_8 (char32_t* dst, const char8_t*  src, int length);		// UFT-8  to UTF-32.
+int tUTF32_16(char32_t* dst, const char16_t* src, int length);		// UFT-16 to UTF-32.
 
 // While string termination is not part of UTF encoding, these utility functions assume null terminated strings are
 // input as src
@@ -248,12 +248,12 @@ int tUTFcpt(char8_t  dst[4], const char16_t src[2]);	// Reads from 1 to 2 char16
 int tUTFcpt(char8_t  dst[4], const char32_t src[1]);	// Reads from 1 char32.						Returns 0 or [1, 4].
 int tUTFcpt(char16_t dst[2], const char8_t  src[4]);	// Reads from 1 to 4 char8s.				Returns 0 or [1, 2].
 int tUTFcpt(char16_t dst[2], const char32_t src[1]);	// Reads from 1 char32.						Returns 0 or [1, 2].
-int tUTFcpt(char32_t dst[1], const char8_t  src[4]);	// Reads from 1 to 4 char8s (3 surrogates).	Returns 0 or 1.
-int tUTFcpt(char32_t dst[1], const char16_t src[2]);	// Reads from 1 to 2 char16s (1 surrogate).	Returns 0 or 1.
+int tUTFcpt(char32_t dst[1], const char8_t  src[4]);	// Reads from 1 to 4 char8s (4 surrogates).	Returns 0 or 1.
+int tUTFcpt(char32_t dst[1], const char16_t src[2]);	// Reads from 1 to 2 char16s (2 surrogate).	Returns 0 or 1.
 
 // A few simpler signatures where UTF-32 involved.
-char32_t tUTFcpt(const char8_t  src[4]);				// Reads from 1 to 4 char8_ts (3 surrogates). Returns 0 on error.
-char32_t tUTFcpt(const char16_t src[2]);				// Reads from 1 to 2 char16_ts (1 surrogate). Returns 0 on error.
+char32_t tUTFcpt(const char8_t  src[4]);				// Reads from 1 to 4 char8_ts (4 surrogates). Returns 0 on error.
+char32_t tUTFcpt(const char16_t src[2]);				// Reads from 1 to 2 char16_ts (2 surrogate). Returns 0 on error.
 int tUTFcpt(char8_t  dst[4], const char32_t src);		// Returns 0 or [1, 4].
 int tUTFcpt(char16_t dst[2], const char32_t src);		// Returns 0 or [1, 2].
 
