@@ -16,6 +16,7 @@
 #include <chrono>
 #include <future>
 #include <Foundation/tVersion.cmake.h>
+#include <Foundation/tStandard.h>
 #include <Foundation/tArray.h>
 #include <Foundation/tBitArray.h>
 #include <Foundation/tBitField.h>
@@ -26,8 +27,12 @@
 #include <Foundation/tSort.h>
 #include <Foundation/tPriorityQueue.h>
 #include <Foundation/tPool.h>
+#include <System/tFile.h>
 #include "UnitTests.h"
 using namespace tStd;
+using namespace tSystem;
+
+
 namespace tUnitTest
 {
 
@@ -935,7 +940,22 @@ tTestUnit(UTF)
 	// UTF-32 : For representing individual characters as a single data-type. This helps reduce complexity for some functions.
 	tPrintf("Testing conversions between UTF encodings.\n");
 
+	const char8_t* utf8str =
+		u8"I refuse to prove that I exist for proof denies faith and without faith I am nothing.\n"
+		"Ah, but the Babel fish proves you exist, therefore you don't.\n"
+		"And here are some Unicode codepoints: wΔ𝒞\n"
+		"w is ASCII, Δ is in the Basic Multilingual Plane, and 𝒞 is in an Astral plane.";
 	
+	int length = tStd::tUTF16s(nullptr, utf8str);
+	tPrintf("%d char16 codeunits are needed for the UTF-16 encoding of:\n%s\n", length, utf8str);
+	char16_t* utf16str = new char16_t[length+1];
+	tStd::tUTF16s(utf16str, utf8str);
+
+	const char* filename = "TestData/UTF/WrittenUTF16.txt";
+	tPrintf("Writing UTF-16 string to %s\n", filename);
+	tCreateFile(filename, utf16str, length);
+
+	delete[] utf16str;
 }
 
 

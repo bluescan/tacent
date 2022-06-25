@@ -1,0 +1,2 @@
+This document is encoded in UTF-8.
+Here are some non-ASCII characters: wΔ𝒞

@@ -119,6 +119,7 @@ int main(int argc, char** argv)
 	tTest(PriorityQueue);
 	tTest(MemoryPool);
 	tTest(Hash);
+	tTest(UTF);
 
 	// Math tests.
 	tTest(Fundamentals);
@@ -181,10 +182,11 @@ int main(int argc, char** argv)
 	// tTest(Rule);
 	// #if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
 	// tTest(ImageLoad);
-	// #endif
 	// tTest(ImageMultiFrame);
 	// tTest(ImagePicture);
-	tTest(ImageMetaData);
+	// tTest(ImageMetaData);
+	// #endif
+	tTest(UTF);
 	// tTest(Hash);
 	// tTest(BitArray);
 	// tTest(BitField);

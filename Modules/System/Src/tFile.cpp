@@ -152,9 +152,29 @@ int tSystem::tReadFile(tFileHandle f, void* buffer, int sizeBytes)
 
 int tSystem::tWriteFile(tFileHandle f, const void* buffer, int sizeBytes)
 {
-	// Load the entire thing into memory.
-	int numRead = int(fwrite((char*)buffer, 1, sizeBytes, f));
-	return numRead;
+	int numWritten = int(fwrite((void*)buffer, 1, sizeBytes, f));
+	return numWritten;
+}
+
+
+int tSystem::tWriteFile(tFileHandle f, const char8_t* buffer, int length)
+{
+	int numWritten = int(fwrite((void*)buffer, 1, length, f));
+	return numWritten;
+}
+
+
+int tSystem::tWriteFile(tFileHandle f, const char16_t* buffer, int length)
+{
+	int numWritten = int(fwrite((void*)buffer, 2, length, f));
+	return numWritten;
+}
+
+
+int tSystem::tWriteFile(tFileHandle f, const char32_t* buffer, int length)
+{
+	int numWritten = int(fwrite((void*)buffer, 4, length, f));
+	return numWritten;
 }
 
 
@@ -1934,6 +1954,24 @@ bool tSystem::tCreateFile(const tString& filename, uint8* data, int dataLength)
 	// Make sure it was created and an appropriate amount of bytes were written.
 	bool verify = tFileExists(filename);
 	return verify && (numWritten >= dataLength);
+}
+
+
+bool tSystem::tCreateFile(const tString& filename, char8_t* data, int length)
+{
+	return tCreateFile(filename, (uint8*)data, length);
+}
+
+
+bool tSystem::tCreateFile(const tString& filename, char16_t* data, int length)
+{
+	return tCreateFile(filename, (uint8*)data, length*2);
+}
+
+
+bool tSystem::tCreateFile(const tString& filename, char32_t* data, int length)
+{
+	return tCreateFile(filename, (uint8*)data, length*4);
 }
 
 
