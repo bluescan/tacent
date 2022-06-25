@@ -246,7 +246,7 @@ int tUTF16s(char16_t* dst, const char32_t* src);					// UTF-32 to UTF-16.
 int tUTF32s(char32_t* dst, const char8_t*  src);					// UTF-8  to UTF-32.
 int tUTF32s(char32_t* dst, const char16_t* src);					// UTF-16 to UTF-32.
 
-// Individual codepoint functions. If want to convert to a single codepoint WITHOUT having a null terminator written
+// Individual codepoint functions. If you want to convert to a single codepoint WITHOUT having a null terminator written
 // the tUTFns functions above don't work (they write the terminator) and the tUTFn functions above are inconvenient
 // since you'd also need to provide the length.
 //
@@ -254,26 +254,26 @@ int tUTF32s(char32_t* dst, const char16_t* src);					// UTF-16 to UTF-32.
 // return a single UTF-32 encoded codepoint (and do not need the length as input). They can also take a UTF32 codepoint
 // and convert to UTF-8/16/32 codeunit array without writing the null terminator. You can compose the two styles.
 //
-// The versions that take the codepoint as input may be used with a 'C++ character literal' like U'😂'.
-// Note that C++ character literals are constrained to what is representable by a single code unit. u8'😂' is not
+// The versions that take the codepoint as input may be used with a 'C++ character literal' like U'𝒞'.
+// Note that C++ character literals are constrained to what is representable by a single code unit. u8'𝒞' is not
 // well-formed in C++ (even though it says u8, it does not mean you can put any unicode character in there). Basically
 // u8'' must have an ASCII character, u'' must have a character in the BMP, and U can have pretty much anything. For
 // this reason, there's not much point supporting u8 and u when U does it all. This is different than C++ STRING
-// literals, where u8"wΔ😂", u"wΔ😂", and U"wΔ😂" are all perfectly fine.
+// literals, where u8"wΔ𝒞", u"wΔ𝒞", and U"wΔ𝒞" are all fine. (FYI w is ASCII, Δ is in the BMP. 𝒞 is in an astral plane.)
 //
-// eg. tUTF8c(dst,  U'😂')			will return 4 and write 4 char8s into dst.
-// eg. tUTF32c(u8"😂")				will return the UTF-32 codepoint for 😂.
-// eg. tUTF32c(U"😂")				will also return the UTF-32 codepoint for 😂.
+// eg. tUTF8c(dst,  U'𝒞')			 will return 4 and write 4 char8s into dst.
+// eg. tUTF32c(u8"𝒞")				 will return the UTF-32 codepoint for 𝒞.
+// eg. tUTF32c(U"𝒞")				 will also return the UTF-32 codepoint for 𝒞.
 // eg. tUTF8c(dst, tUTF32c(u"Δ"))	will convert the UTF-16 encoding of Δ to a UTF-8 (non-null-terminated) array
 //									and return how many UTF-8 code units are in the array.
 //
-// These read codeunit arrays and return a single UTF-32 codepoint. Special replacement returned on error. An error is
-// either an invalid encoding OR when src is nullptr. Length is not needed as it's implicit in the encoding.
+// These read codeunit arrays and return a single codepoint in UTF-32. Special replacement returned on error. An error
+// is either an invalid encoding OR when src is nullptr. Length is not needed as it's implicit in the encoding.
 char32_t tUTF32c(const char8_t*  src);				// Reads 1 to 4 char8 codeunits from src.
 char32_t tUTF32c(const char16_t* src);				// Reads 1 or 2(surrogtate) char16 codeunits from src.
 char32_t tUTF32c(const char32_t* src);				// Reads 1 char32 codeunit from src.
 
-// These take a UTF-32 codepoint as src and write to the dst array without adding a null-terminator. If dst is nullptr
+// These take a codepoint in  UTF-32 (src) and write to the dst array without adding a null-terminator. If dst is nullptr
 // returns 0. If src is invalid, dst receives the special replacement. Returns num charNs written. The size hints in the
 // arrays are worst case amounts of room you may need. If you want a null terminated string after conversion (with the
 // single codepoint in it), make dst 1 bigger than suggested and set the Nth charN to 0, where N is the value returned.

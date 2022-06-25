@@ -480,16 +480,66 @@ int tStd::tUTF32s(char32_t* dst, const char16_t* src)
 }
 
 
-/*
-//////WIP
-char32_t tUTF32c(const char8_t*  src);				// Reads 1 to 4 char8 codeunits from src.
-char32_t tUTF32c(const char16_t* src);				// Reads 1 or 2(surrogtate) char16 codeunits from src.
-char32_t tUTF32c(const char32_t* src);				// Reads 1 char32 codeunit from src.
+char32_t tStd::tUTF32c(const char8_t* src)
+{
+	char32_t codepoint = tUTF::cCodepoint_Replacement;
+	if (!src)
+		return codepoint;
+	
+	tUTF::DecodeUtf8(codepoint, src);
+	return codepoint;
+}
 
-int tUTF8c (char8_t  dst[4], char32_t src);			// Reads src codepoint and returns [0,4].
-int tUTF16c(char16_t dst[2], char32_t src);			// Reads src codepoint and returns [0,2].
-int tUTF32c(char32_t dst[1], char32_t src);			// Reads src codepoint and returns [0,1].
-*/
+
+char32_t tStd::tUTF32c(const char16_t* src)
+{
+	char32_t codepoint = tUTF::cCodepoint_Replacement;
+	if (!src)
+		return codepoint;
+	
+	tUTF::DecodeUtf16(codepoint, src);
+	return codepoint;
+}
+
+
+char32_t tStd::tUTF32c(const char32_t* src)
+{
+	char32_t codepoint = tUTF::cCodepoint_Replacement;
+	if (!src)
+		return codepoint;
+
+	if (*src > tUTF::cCodepoint_UnicodeMax)
+		codepoint = tUTF::cCodepoint_Replacement;
+	else
+		codepoint = *src;
+
+	return *src;
+}
+
+
+int tStd::tUTF8c(char8_t dst[4], char32_t src)
+{
+	return tUTF::EncodeUtf8(dst, src);
+}
+
+
+int tStd::tUTF16c(char16_t dst[2], char32_t src)
+{
+	return tUTF::EncodeUtf16(dst, src);
+}
+
+
+int tStd::tUTF32c(char32_t dst[1], char32_t src)
+{
+	if (!dst)
+		return 0;
+
+	if (src > tUTF::cCodepoint_UnicodeMax)
+		dst[0] = tUTF::cCodepoint_Replacement;
+	else
+		dst[0] = src;
+	return 1;
+}
 
 
 int tUTF::CalculateUtf16Length(char32_t codepoint)
@@ -503,6 +553,7 @@ int tUTF::CalculateUtf16Length(char32_t codepoint)
 
 int tUTF::DecodeUtf16(char32_t& codepoint, const char16_t* src)
 {
+	tAssert(src);
 	char16_t high = src[0];
 
 	// If BMP character, we're done.
@@ -587,6 +638,7 @@ int tUTF::CalculateUtf8Length(char32_t codepoint)
 
 int tUTF::DecodeUtf8(char32_t& codepoint, const char8_t* src)
 {
+	tAssert(src);
 	char8_t leading = src[0];
 	int encodingLength = 0;
 	UTF8Pattern leadingPattern;
