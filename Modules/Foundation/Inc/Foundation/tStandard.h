@@ -217,47 +217,69 @@ inline bool tItoa(char8_t* str, int strSize, uint64 value, int base = 10)							
 // assumed to be UTF-8. These are provided so external or OS-specific calls can be made when they expect non-UTF-8
 // input, and when results are supplied, converted back to UTF-8.
 //
-// Null termination is not part of UTF encoding. These work on arrays of charN types. Not null terminated.
-// 1) If (only) dst is nullptr, returns the exact number of charNs needed for dst.
-// 2) If src is nullptr, dst is ignored and length is used to return a fast, worst-case number of charNs needed for dst
-//    assuming no overlong encoding. This second method is fast because the contents of src are not inspected, but it
-//    often gives conservative (larger) results.
-// 3) If all args are valid, converts the UTF src data to the dst UTF encoding. Returns the number of dst charNs written.
-// Caller is responsibe for making sure dst is big enough!
-int tUTF8_16 (char8_t*  dst, const char16_t* src, int length);		// UFT-16 to UTF-8.
-int tUTF8_32 (char8_t*  dst, const char32_t* src, int length);		// UFT-32 to UTF-8.
-int tUTF16_8 (char16_t* dst, const char8_t*  src, int length);		// UFT-8  to UTF-16.
-int tUTF16_32(char16_t* dst, const char32_t* src, int length);		// UFT-32 to UTF-16.
-int tUTF32_8 (char32_t* dst, const char8_t*  src, int length);		// UFT-8  to UTF-32.
-int tUTF32_16(char32_t* dst, const char16_t* src, int length);		// UFT-16 to UTF-32.
+// Null termination is not part of UTF encoding. These work on arrays of codeunits (charN types). Not null terminated.
+// 1) If (only) dst is nullptr, returns the exact number of codeunits (charNs) needed for dst.
+// 2) If src is nullptr, dst is ignored and length is used to return a fast, worst-case number of codeunits (charNs)
+//    needed for dst assuming no overlong encoding. This second method is fast because the contents of src are not
+//    inspected, but it often gives conservative (larger) results.
+// 3) If all args are valid, converts the UTFn src data to the dst UTFn encoding. Returns the number of dst codeunits
+//    (charNs) written.
+// Caller is responsibe for making sure dst is big enough! Length is not the number of codepoints, it is the number of
+// codeunits (charNs) provided by the src pointer.
+int tUTF8 (char8_t*  dst, const char16_t* src, int length);		// UFT-16 to UTF-8.
+int tUTF8 (char8_t*  dst, const char32_t* src, int length);		// UFT-32 to UTF-8.
+int tUTF16(char16_t* dst, const char8_t*  src, int length);		// UFT-8  to UTF-16.
+int tUTF16(char16_t* dst, const char32_t* src, int length);		// UFT-32 to UTF-16.
+int tUTF32(char32_t* dst, const char8_t*  src, int length);		// UFT-8  to UTF-32.
+int tUTF32(char32_t* dst, const char16_t* src, int length);		// UFT-16 to UTF-32.
 
 // String termination is not part of UTF encoding. These functions assume null terminated strings are input as src.
-// 1) If dst (only) is nullptr, computes and returns the exact number of dst charNs needed (not including null
-//    terminator). If you are going new the memory yourself, add one for the null terminator.
-// 2) If both valid, converts the UTF string in src to the dst UTF encoding. Returns length the of dst not including
-//    the null. Note that the null terminator _is_ written to the dst.
+// 1) If dst (only) is nullptr, computes and returns the exact number of dst codeunits (charNs) needed -- not including
+//    the null terminator). If you are going to new the memory yourself, add one for the null terminator.
+// 2) If both src and dst valid, converts the UTFn string in src to the dst UTFn encoding. Returns length the of dst
+//    in codeunits not including the null. Note that the null terminator _is_ written to the dst.
 // 3) If src is nullptr, returns 0 and _does not modify_ dest at all even to add a null terminator.
-int tUTFstr(char8_t*  dst, const char16_t* src);					// UTF-16 to UTF-8.
-int tUTFstr(char8_t*  dst, const char32_t* src);					// UFT-32 to UTF-8.
-int tUTFstr(char16_t* dst, const char8_t*  src);					// UTF-8  to UTF-16.
-int tUTFstr(char16_t* dst, const char32_t* src);					// UTF-32 to UTF-16.
-int tUTFstr(char32_t* dst, const char8_t*  src);					// UTF-8  to UTF-32.
-int tUTFstr(char32_t* dst, const char16_t* src);					// UTF-16 to UTF-32.
+int tUTF8s (char8_t*  dst, const char16_t* src);					// UTF-16 to UTF-8.
+int tUTF8s (char8_t*  dst, const char32_t* src);					// UFT-32 to UTF-8.
+int tUTF16s(char16_t* dst, const char8_t*  src);					// UTF-8  to UTF-16.
+int tUTF16s(char16_t* dst, const char32_t* src);					// UTF-32 to UTF-16.
+int tUTF32s(char32_t* dst, const char8_t*  src);					// UTF-8  to UTF-32.
+int tUTF32s(char32_t* dst, const char16_t* src);					// UTF-16 to UTF-32.
 
-// Individual codepoint functions. These all return the number of dst charNs written during the conversion. This will
-// be 0 if either dst or src is nullptr or if there is an error converting.
-int tUTFcpt(char8_t  dst[4], const char16_t src[2]);	// Reads from 1 to 2 char16s.				Returns 0 or [1, 4].
-int tUTFcpt(char8_t  dst[4], const char32_t src[1]);	// Reads from 1 char32.						Returns 0 or [1, 4].
-int tUTFcpt(char16_t dst[2], const char8_t  src[4]);	// Reads from 1 to 4 char8s.				Returns 0 or [1, 2].
-int tUTFcpt(char16_t dst[2], const char32_t src[1]);	// Reads from 1 char32.						Returns 0 or [1, 2].
-int tUTFcpt(char32_t dst[1], const char8_t  src[4]);	// Reads from 1 to 4 char8s (4 surrogates).	Returns 0 or 1.
-int tUTFcpt(char32_t dst[1], const char16_t src[2]);	// Reads from 1 to 2 char16s (2 surrogate).	Returns 0 or 1.
+// Individual codepoint functions. If want to convert to a single codepoint WITHOUT having a null terminator written
+// the tUTFns functions above don't work (they write the terminator) and the tUTFn functions above are inconvenient
+// since you'd also need to provide the length.
+//
+// These tUTFnc functions fill the gap. They can take either a UTF-8/16/32 codeunit array (null terminated or not) and
+// return a single UTF-32 encoded codepoint (and do not need the length as input). They can also take a UTF32 codepoint
+// and convert to UTF-8/16/32 codeunit array without writing the null terminator. You can compose the two styles.
+//
+// The versions that take the codepoint as input may be used with a 'C++ character literal' like U'😂'.
+// Note that C++ character literals are constrained to what is representable by a single code unit. u8'😂' is not
+// well-formed in C++ (even though it says u8, it does not mean you can put any unicode character in there). Basically
+// u8'' must have an ASCII character, u'' must have a character in the BMP, and U can have pretty much anything. For
+// this reason, there's not much point supporting u8 and u when U does it all. This is different than C++ STRING
+// literals, where u8"wΔ😂", u"wΔ😂", and U"wΔ😂" are all perfectly fine.
+//
+// eg. tUTF8c(dst,  U'😂')			will return 4 and write 4 char8s into dst.
+// eg. tUTF32c(u8"😂")				will return the UTF-32 codepoint for 😂.
+// eg. tUTF32c(U"😂")				will also return the UTF-32 codepoint for 😂.
+// eg. tUTF8c(dst, tUTF32c(u"Δ"))	will convert the UTF-16 encoding of Δ to a UTF-8 (non-null-terminated) array
+//									and return how many UTF-8 code units are in the array.
+//
+// These read codeunit arrays and return a single UTF-32 codepoint. Special replacement returned on error. An error is
+// either an invalid encoding OR when src is nullptr. Length is not needed as it's implicit in the encoding.
+char32_t tUTF32c(const char8_t*  src);				// Reads 1 to 4 char8 codeunits from src.
+char32_t tUTF32c(const char16_t* src);				// Reads 1 or 2(surrogtate) char16 codeunits from src.
+char32_t tUTF32c(const char32_t* src);				// Reads 1 char32 codeunit from src.
 
-// A few simpler signatures where UTF-32 involved.
-char32_t tUTFcpt(const char8_t  src[4]);				// Reads from 1 to 4 char8_ts (4 surrogates). Returns 0 on error.
-char32_t tUTFcpt(const char16_t src[2]);				// Reads from 1 to 2 char16_ts (2 surrogate). Returns 0 on error.
-int tUTFcpt(char8_t  dst[4], const char32_t src);		// Returns 0 or [1, 4].
-int tUTFcpt(char16_t dst[2], const char32_t src);		// Returns 0 or [1, 2].
+// These take a UTF-32 codepoint as src and write to the dst array without adding a null-terminator. If dst is nullptr
+// returns 0. If src is invalid, dst receives the special replacement. Returns num charNs written. The size hints in the
+// arrays are worst case amounts of room you may need. If you want a null terminated string after conversion (with the
+// single codepoint in it), make dst 1 bigger than suggested and set the Nth charN to 0, where N is the value returned.
+int tUTF8c (char8_t  dst[4], char32_t src);			// Reads src codepoint and returns [0,4].
+int tUTF16c(char16_t dst[2], char32_t src);			// Reads src codepoint and returns [0,2].
+int tUTF32c(char32_t dst[1], char32_t src);			// Reads src codepoint and returns [0,1].
 
 
 // These are non UTF-8 functions that work on individual ASCII characters or ASCII strings. tStrrev, for example,
