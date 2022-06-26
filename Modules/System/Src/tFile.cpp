@@ -1957,21 +1957,84 @@ bool tSystem::tCreateFile(const tString& filename, uint8* data, int dataLength)
 }
 
 
-bool tSystem::tCreateFile(const tString& filename, char8_t* data, int length)
+bool tSystem::tCreateFile(const tString& filename, char8_t* data, int length, bool writeBOM)
 {
-	return tCreateFile(filename, (uint8*)data, length);
+	tFileHandle dst = tOpenFile(filename.Chs(), "wb");
+	if (!dst)
+		return false;
+	tFileSeek(dst, 0, tSeekOrigin::Beginning);
+	if (writeBOM)
+	{
+		char8_t bom[4];
+		int bomLen = tStd::tUTF8c(bom, tStd::cCodepoint_BOM);
+		tAssert(bomLen == 3);
+		int bomWritten = tWriteFile(dst, bom, 3);
+		if (bomWritten != bomLen)
+		{
+			tCloseFile(dst);
+			return false;
+		}
+	}
+
+	// Write data and close file.
+	int numWritten = tWriteFile(dst, data, length);
+	tCloseFile(dst);
+
+	// Make sure it was created and an appropriate amount of bytes were written.
+	bool verify = tFileExists(filename);
+	return verify && (numWritten >= length);
 }
 
 
-bool tSystem::tCreateFile(const tString& filename, char16_t* data, int length)
+bool tSystem::tCreateFile(const tString& filename, char16_t* data, int length, bool writeBOM)
 {
-	return tCreateFile(filename, (uint8*)data, length*2);
+	tFileHandle dst = tOpenFile(filename.Chs(), "wb");
+	if (!dst)
+		return false;
+	tFileSeek(dst, 0, tSeekOrigin::Beginning);
+	if (writeBOM)
+	{
+		char16_t bom = char16_t(tStd::cCodepoint_BOM);
+		int bomWritten = tWriteFile(dst, &bom, 1);
+		if (bomWritten != 1)
+		{
+			tCloseFile(dst);
+			return false;
+		}
+	}
+	// Write data and close file.
+	int numWritten = tWriteFile(dst, data, length);
+	tCloseFile(dst);
+
+	// Make sure it was created and an appropriate amount of bytes were written.
+	bool verify = tFileExists(filename);
+	return verify && (numWritten >= length);
 }
 
 
-bool tSystem::tCreateFile(const tString& filename, char32_t* data, int length)
+bool tSystem::tCreateFile(const tString& filename, char32_t* data, int length, bool writeBOM)
 {
-	return tCreateFile(filename, (uint8*)data, length*4);
+	tFileHandle dst = tOpenFile(filename.Chs(), "wb");
+	if (!dst)
+		return false;
+	tFileSeek(dst, 0, tSeekOrigin::Beginning);
+	if (writeBOM)
+	{
+		int bomWritten = tWriteFile(dst, &tStd::cCodepoint_BOM, 1);
+		if (bomWritten != 1)
+		{
+			tCloseFile(dst);
+			return false;
+		}
+	}
+
+	// Write data and close file.
+	int numWritten = tWriteFile(dst, data, length);
+	tCloseFile(dst);
+
+	// Make sure it was created and an appropriate amount of bytes were written.
+	bool verify = tFileExists(filename);
+	return verify && (numWritten >= length);
 }
 
 

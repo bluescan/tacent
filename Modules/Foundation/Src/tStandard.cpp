@@ -139,11 +139,7 @@ namespace tUTF
 {
 	// BMP = Basic Multilingual Plane.
 	// CP = Unicode codepoint.
-
-	const char32_t cCodepoint_Replacement		= 0x0000FFFD;	// Used for unknown or invalid encodings.
 	const char32_t cCodepoint_LastValidBMP		= 0x0000FFFD;	// Last valid codepoint. Note that U+FFFF and U+FFFE are guaranteed 'non-characters'. They do not appear if codepoint is valid.
-	const char32_t cCodepoint_SpecialNonCharA	= 0x0000FFFE;
-	const char32_t cCodepoint_SpecialNonCharB	= 0x0000FFFF;
 	const char32_t cCodepoint_UnicodeMax		= 0x0010FFFF;	// The highest valid Unicode codepoint.
 	const char32_t cCodepoint_UTF8Max1			= 0x0000007F;	// The highest codepoint that can be encoded with 1 byte  in UTF-8.
 	const char32_t cCodepoint_UTF8Max2			= 0x000007FF;	// The highest codepoint that can be encoded with 2 bytes in UTF-8.
@@ -482,7 +478,7 @@ int tStd::tUTF32s(char32_t* dst, const char16_t* src)
 
 char32_t tStd::tUTF32c(const char8_t* src)
 {
-	char32_t codepoint = tUTF::cCodepoint_Replacement;
+	char32_t codepoint = cCodepoint_Replacement;
 	if (!src)
 		return codepoint;
 	
@@ -493,7 +489,7 @@ char32_t tStd::tUTF32c(const char8_t* src)
 
 char32_t tStd::tUTF32c(const char16_t* src)
 {
-	char32_t codepoint = tUTF::cCodepoint_Replacement;
+	char32_t codepoint = cCodepoint_Replacement;
 	if (!src)
 		return codepoint;
 	
@@ -504,12 +500,12 @@ char32_t tStd::tUTF32c(const char16_t* src)
 
 char32_t tStd::tUTF32c(const char32_t* src)
 {
-	char32_t codepoint = tUTF::cCodepoint_Replacement;
+	char32_t codepoint = cCodepoint_Replacement;
 	if (!src)
 		return codepoint;
 
 	if (*src > tUTF::cCodepoint_UnicodeMax)
-		codepoint = tUTF::cCodepoint_Replacement;
+		codepoint = cCodepoint_Replacement;
 	else
 		codepoint = *src;
 
@@ -535,7 +531,7 @@ int tStd::tUTF32c(char32_t dst[1], char32_t src)
 		return 0;
 
 	if (src > tUTF::cCodepoint_UnicodeMax)
-		dst[0] = tUTF::cCodepoint_Replacement;
+		dst[0] = cCodepoint_Replacement;
 	else
 		dst[0] = src;
 	return 1;
@@ -566,7 +562,7 @@ int tUTF::DecodeUtf16(char32_t& codepoint, const char16_t* src)
 	// If unmatched low surrogate it's invalid. Return replacement.
 	if ((high & cSurrogate_Mask16) != cSurrogate_HighVal16)
 	{
-		codepoint = cCodepoint_Replacement;
+		codepoint = tStd::cCodepoint_Replacement;
 		return 1;
 	}
 	
@@ -575,7 +571,7 @@ int tUTF::DecodeUtf16(char32_t& codepoint, const char16_t* src)
 	// If unmatched high surrogate it's invalid. Return replacement.
 	if ((low & cSurrogate_Mask16) != cSurrogate_LowVal16)
 	{
-		codepoint = cCodepoint_Replacement;
+		codepoint = tStd::cCodepoint_Replacement;
 		return 1;
 	}
 
@@ -655,13 +651,13 @@ int tUTF::DecodeUtf8(char32_t& codepoint, const char8_t* src)
 	// If leading byte doesn't match any known pattern it is invalid and we return replacement.
 	if (!matches)
 	{
-		codepoint = cCodepoint_Replacement;
+		codepoint = tStd::cCodepoint_Replacement;
 		return encodingLength;
 	}
 
 	codepoint = leading & ~leadingPattern.Mask;
 
-	// This loop only ends up running if surrogates found (not ASCII).
+	// This loop only ends up running if continuation codeunits found (not ASCII).
 	for (int i = 1; i < encodingLength; i++)
 	{
 		char8_t continuation = src[i];
@@ -670,7 +666,7 @@ int tUTF::DecodeUtf8(char32_t& codepoint, const char8_t* src)
 		// so we return the replacement.
 		if ((continuation & cContinuation_UTF8Mask) != cContinuation_UTF8Val)
 		{
-			codepoint = cCodepoint_Replacement;
+			codepoint = tStd::cCodepoint_Replacement;
 
 			// I think the best behaviour here is to return how much we processed b4 running into a problem.
 			// If we returned encodingLength we might skip some input when an invalid is encountered. Hard to say.
@@ -684,7 +680,7 @@ int tUTF::DecodeUtf8(char32_t& codepoint, const char8_t* src)
 	if
 	(
 		// These are guaranteed to be non-characters by the standard and reuire the replacement.
-		((codepoint == cCodepoint_SpecialNonCharA) || (codepoint == cCodepoint_SpecialNonCharB)) ||
+		((codepoint == tStd::cCodepoint_SpecialNonCharA) || (codepoint == tStd::cCodepoint_SpecialNonCharB)) ||
 
 		// Surrogates are invalid Unicode codepoints and should only be used in UTF-16. Invalid encoding so return replacement.
 		((codepoint <= cCodepoint_LastValidBMP) && ((codepoint & cSurrogate_GenericMask32) == cSurrogate_GenericVal32)) ||
@@ -697,7 +693,7 @@ int tUTF::DecodeUtf8(char32_t& codepoint, const char8_t* src)
 		(CalculateUtf8Length(codepoint) != encodingLength)
 	)
 	{
-		codepoint = cCodepoint_Replacement;
+		codepoint = tStd::cCodepoint_Replacement;
 	}
 
 	return encodingLength;

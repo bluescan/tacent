@@ -515,9 +515,11 @@ uint8* tLoadFileHead(const tString& filename, int bytesToRead, tString& dest);
 bool tCreateFile(const tString& filename);					// Creates an empty file.
 bool tCreateFile(const tString& filename, const tString& contents);
 bool tCreateFile(const tString& filename, uint8* data, int length);
-bool tCreateFile(const tString& filename, char8_t* data, int length);
-bool tCreateFile(const tString& filename, char16_t* data, int length);
-bool tCreateFile(const tString& filename, char32_t* data, int length);
+
+// For easily creating UTF-encoded text files. It is not recommended to write a BOM for UTF-8.
+bool tCreateFile(const tString& filename, char8_t*  data, int length, bool writeBOM = false);
+bool tCreateFile(const tString& filename, char16_t* data, int length, bool writeBom = true);
+bool tCreateFile(const tString& filename, char32_t* data, int length, bool writeBOM = true);
 
 // File hash functions using tHash standard hash algorithms.
 uint32 tHashFileFast32(const tString& filename, uint32 iv = tHash::HashIV32);

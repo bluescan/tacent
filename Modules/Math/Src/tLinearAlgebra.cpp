@@ -591,9 +591,9 @@ void tMath::tMakeRotate(tMat4& d, const tVec3& axis, float angle)
 
 void tMath::tMakeRotate(tMat4& d, const tVec3& a, const tVec3& b)
 {
-	// Based on "Efficiently building a matrix to rotate one vector to another vector", by Thomas Möller and John F.
+	// Based on "Efficiently building a matrix to rotate one vector to another vector", by Thomas Miller and John F.
 	// Hughes, Journal of Graphics Tools, Vol 4, No 4, 1999. The method is also described in "Real-Time Rendering", by
-	// Akenine-Möller and Haines, 2nd Edition, Section 3.3.2.
+	// Akenine-Miller and Haines, 2nd Edition, Section 3.3.2.
 	float e = tDot(a, b);
 	tVec3 v; tCross(v, a, b);
 

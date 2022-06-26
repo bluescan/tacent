@@ -940,22 +940,52 @@ tTestUnit(UTF)
 	// UTF-32 : For representing individual characters as a single data-type. This helps reduce complexity for some functions.
 	tPrintf("Testing conversions between UTF encodings.\n");
 
-	const char8_t* utf8str =
-		u8"I refuse to prove that I exist for proof denies faith and without faith I am nothing.\n"
+	const char8_t* utf8src =
+		u8"wΔ𝒞\n"
+		"I refuse to prove that I exist for proof denies faith and without faith I am nothing.\n"
 		"Ah, but the Babel fish proves you exist, therefore you don't.\n"
-		"And here are some Unicode codepoints: wΔ𝒞\n"
+		"And here are some Unicode characters: wΔ𝒞 (the third should look similar to a C)\n"
 		"w is ASCII, Δ is in the Basic Multilingual Plane, and 𝒞 is in an Astral plane.";
-	
-	int length = tStd::tUTF16s(nullptr, utf8str);
-	tPrintf("%d char16 codeunits are needed for the UTF-16 encoding of:\n%s\n", length, utf8str);
-	char16_t* utf16str = new char16_t[length+1];
-	tStd::tUTF16s(utf16str, utf8str);
 
-	const char* filename = "TestData/UTF/WrittenUTF16.txt";
-	tPrintf("Writing UTF-16 string to %s\n", filename);
-	tCreateFile(filename, utf16str, length);
+	// Convert UTF-8 to UTF-16 and write to file.
+	int length16 = tStd::tUTF16s(nullptr, utf8src);
+	tPrintf("%d char16 codeunits are needed for the UTF-16 encoding of:\n%s\n", length16, utf8src);
+	char16_t* utf16str = new char16_t[length16+1];
+	tStd::tUTF16s(utf16str, utf8src);
 
+	const char* wfilename16 = "TestData/UTF/WrittenUTF16.txt";
+	tPrintf("Writing UTF-16 string to %s\n", wfilename16);
+	tCreateFile(wfilename16, utf16str, length16, true);
+	const char* rfilename16 = "TestData/UTF/UTF16.txt";
+	tRequire(tSystem::tFilesIdentical(wfilename16, rfilename16));
+
+	// Convert UTF-16 back to UTF-8 and write to file.
+	int length8 = tStd::tUTF8s(nullptr, utf16str);
+	tPrintf("%d char8 codeunits are needed for the UTF-8 encoding.\n", length8);
+	char8_t* utf8str = new char8_t[length8+1];
+	tStd::tUTF8s(utf8str, utf16str);
+
+	const char* wfilename8 = "TestData/UTF/WrittenUTF8.txt";
+	tPrintf("Writing UTF-8 string to %s\n", wfilename8);
+	tCreateFile(wfilename8, utf8str, length8, false);
+	const char* rfilename8 = "TestData/UTF/UTF8.txt";
+	tRequire(tSystem::tFilesIdentical(wfilename8, rfilename8));
+
+	// Convert UTF-8 to UTF-32 and write to file.
+	int length32 = tStd::tUTF32s(nullptr, utf8src);
+	tPrintf("%d char32 codeunits are needed for the UTF-32 encoding.\n", length32);
+	char32_t* utf32str = new char32_t[length32+1];
+	tStd::tUTF32s(utf32str, utf8src);
+
+	const char* wfilename32 = "TestData/UTF/WrittenUTF32.txt";
+	tPrintf("Writing UTF-32 string to %s\n", wfilename32);
+	tCreateFile(wfilename32, utf32str, length32, true);
+	const char* rfilename32 = "TestData/UTF/UTF32.txt";
+	tRequire(tSystem::tFilesIdentical(wfilename32, rfilename32));
+
+	delete[] utf8str;
 	delete[] utf16str;
+	delete[] utf32str;
 }
 
 

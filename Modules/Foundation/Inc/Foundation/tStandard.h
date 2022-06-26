@@ -213,7 +213,15 @@ inline bool tItoa(char8_t* str, int strSize, int64 value, int base = 10)								
 inline bool tItoa(char8_t* str, int strSize, uint32 value, int base = 10)												{ return tItostr(str, strSize, value, base); }
 inline bool tItoa(char8_t* str, int strSize, uint64 value, int base = 10)												{ return tItostr(str, strSize, value, base); }
 
-// Unicode encoding. These functions convert to/from the 3 main unicode encodings. Note that most text in Tacent is
+// Unicode encoding/decoding.
+//
+// Some handy exposed UTF codepoints. Remember, const defaults to internal linkage in C++.
+const char32_t cCodepoint_Replacement		= 0x0000FFFD;	// U+FFFD Used for unknown or invalid encodings.
+const char32_t cCodepoint_SpecialNonCharA	= 0x0000FFFE;	// U+FFFE Guaranteed not a valid character.
+const char32_t cCodepoint_SpecialNonCharB	= 0x0000FFFF;	// U+FFFF Guaranteed not a valid character.
+const char32_t cCodepoint_BOM				= 0x0000FEFF;	// U+FEFF Bute order marker. If bytes reversed in file it's little endian and value will be cCodepoint_SpecialNonCharA.
+
+// These functions convert to/from the 3 main unicode encodings. Note that most text in Tacent is
 // assumed to be UTF-8. These are provided so external or OS-specific calls can be made when they expect non-UTF-8
 // input, and when results are supplied, converted back to UTF-8.
 //
