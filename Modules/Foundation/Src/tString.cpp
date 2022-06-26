@@ -504,7 +504,7 @@ int tString::RemoveTrailing(const char* removeThese)
 }
 
 
-int tString::GetUTF(char16_t* dst, bool incNullTerminator)
+int tString::GetUTF16(char16_t* dst, bool incNullTerminator)
 {
 	if (!dst)
 		return tStd::tUTF16s(nullptr, TextData) + (incNullTerminator ? 1 : 0);
@@ -516,7 +516,7 @@ int tString::GetUTF(char16_t* dst, bool incNullTerminator)
 }
 
 
-int tString::GetUTF(char32_t* dst, bool incNullTerminator)
+int tString::GetUTF32(char32_t* dst, bool incNullTerminator)
 {
 	if (!dst)
 		return tStd::tUTF32s(nullptr, TextData) + (incNullTerminator ? 1 : 0);
@@ -528,7 +528,7 @@ int tString::GetUTF(char32_t* dst, bool incNullTerminator)
 }
 
 
-int tString::SetUTF(const char16_t* src, int srcLen)
+int tString::SetUTF16(const char16_t* src, int srcLen)
 {
 	if (!src || (srcLen == 0))
 	{
@@ -549,7 +549,7 @@ int tString::SetUTF(const char16_t* src, int srcLen)
 }
 
 
-int tString::SetUTF(const char32_t* src, int srcLen)
+int tString::SetUTF32(const char32_t* src, int srcLen)
 {
 	if (!src || (srcLen == 0))
 	{

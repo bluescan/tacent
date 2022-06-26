@@ -986,6 +986,32 @@ tTestUnit(UTF)
 	delete[] utf8str;
 	delete[] utf16str;
 	delete[] utf32str;
+
+	// Test the tString UTF conversion functions.
+	tString testUTF16AndBack(u8"wΔ𝒞 went from UTF-8 to UTF-16 and back to UTF-8");
+	tString orig16 = testUTF16AndBack;
+	int len16 = testUTF16AndBack.GetUTF16(nullptr);
+	utf16str = new char16_t[len16];
+	testUTF16AndBack.GetUTF16(utf16str);
+	testUTF16AndBack.SetUTF16(utf16str);
+	tRequire(testUTF16AndBack == orig16);
+	tPrintf("%s\n", testUTF16AndBack.Chs());
+	const char* wfilename8A = "TestData/UTF/WrittenUTF8_UTF16_UTF8.txt";
+	tCreateFile(wfilename8A, testUTF16AndBack);
+
+	tString testUTF32AndBack(u8"wΔ𝒞 went from UTF-8 to UTF-32 and back to UTF-8");
+	tString orig32 = testUTF32AndBack;
+	int len32 = testUTF32AndBack.GetUTF32(nullptr);
+	utf32str = new char32_t[len32];
+	testUTF32AndBack.GetUTF32(utf32str);
+	testUTF16AndBack.SetUTF32(utf32str);
+	tRequire(testUTF32AndBack == orig32);
+	tPrintf("%s\n", testUTF32AndBack.Chs());
+	const char* wfilename8B = "TestData/UTF/WrittenUTF8_UTF32_UTF8.txt";
+	tCreateFile(wfilename8B, testUTF32AndBack);
+
+	delete[] utf16str;
+	delete[] utf32str;
 }
 
 
