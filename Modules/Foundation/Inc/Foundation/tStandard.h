@@ -247,12 +247,12 @@ int tUTF32(char32_t* dst, const char16_t* src, int length);		// UFT-16 to UTF-32
 // 2) If both src and dst valid, converts the UTFn string in src to the dst UTFn encoding. Returns length the of dst
 //    in codeunits not including the null. Note that the null terminator _is_ written to the dst.
 // 3) If src is nullptr, returns 0 and _does not modify_ dest at all even to add a null terminator.
-int tUTF8s (char8_t*  dst, const char16_t* src);					// UTF-16 to UTF-8.
-int tUTF8s (char8_t*  dst, const char32_t* src);					// UFT-32 to UTF-8.
-int tUTF16s(char16_t* dst, const char8_t*  src);					// UTF-8  to UTF-16.
-int tUTF16s(char16_t* dst, const char32_t* src);					// UTF-32 to UTF-16.
-int tUTF32s(char32_t* dst, const char8_t*  src);					// UTF-8  to UTF-32.
-int tUTF32s(char32_t* dst, const char16_t* src);					// UTF-16 to UTF-32.
+int tUTF8s (char8_t*  dst, const char16_t* src);				// UTF-16 to UTF-8.
+int tUTF8s (char8_t*  dst, const char32_t* src);				// UFT-32 to UTF-8.
+int tUTF16s(char16_t* dst, const char8_t*  src);				// UTF-8  to UTF-16.
+int tUTF16s(char16_t* dst, const char32_t* src);				// UTF-32 to UTF-16.
+int tUTF32s(char32_t* dst, const char8_t*  src);				// UTF-8  to UTF-32.
+int tUTF32s(char32_t* dst, const char16_t* src);				// UTF-16 to UTF-32.
 
 // Individual codepoint functions. If you want to convert to a single codepoint WITHOUT having a null terminator written
 // the tUTFns functions above don't work (they write the terminator) and the tUTFn functions above are inconvenient

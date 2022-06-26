@@ -504,6 +504,72 @@ int tString::RemoveTrailing(const char* removeThese)
 }
 
 
+int tString::GetUTF(char16_t* dst, bool incNullTerminator)
+{
+	if (!dst)
+		return tStd::tUTF16s(nullptr, TextData) + (incNullTerminator ? 1 : 0);
+
+	if (incNullTerminator)
+		return tStd::tUTF16s(dst, TextData);
+
+	return tStd::tUTF16(dst, TextData, Length());
+}
+
+
+int tString::GetUTF(char32_t* dst, bool incNullTerminator)
+{
+	if (!dst)
+		return tStd::tUTF32s(nullptr, TextData) + (incNullTerminator ? 1 : 0);
+
+	if (incNullTerminator)
+		return tStd::tUTF32s(dst, TextData);
+
+	return tStd::tUTF32(dst, TextData, Length());
+}
+
+
+int tString::SetUTF(const char16_t* src, int srcLen)
+{
+	if (!src || (srcLen == 0))
+	{
+		Clear();
+		return 0;
+	}
+	if (srcLen < 0)
+	{
+		int lenNeeded = tStd::tUTF8s(nullptr, src);
+		Reserve(lenNeeded, false);
+		return tStd::tUTF8s(TextData, src);
+	}
+	int lenNeeded = tStd::tUTF8(nullptr, src, srcLen);
+	Reserve(lenNeeded, false);
+	tStd::tUTF8(TextData, src, srcLen);
+	TextData[lenNeeded] = '\0';
+	return lenNeeded;
+}
+
+
+int tString::SetUTF(const char32_t* src, int srcLen)
+{
+	if (!src || (srcLen == 0))
+	{
+		Clear();
+		return 0;
+	}
+	if (srcLen < 0)
+	{
+		int lenNeeded = tStd::tUTF8s(nullptr, src);
+		Reserve(lenNeeded, false);
+		return tStd::tUTF8s(TextData, src);
+	}
+	int lenNeeded = tStd::tUTF8(nullptr, src, srcLen);
+	Reserve(lenNeeded, false);
+	tStd::tUTF8(TextData, src, srcLen);
+	TextData[lenNeeded] = '\0';
+	return lenNeeded;
+}
+
+
 int tStd::tExplode(tList<tStringItem>& components, const tString& src, char divider)
 {
 	tString source = src;

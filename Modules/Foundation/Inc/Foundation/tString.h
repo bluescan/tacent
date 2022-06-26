@@ -74,8 +74,8 @@ struct tString
 	bool IsNumeric(bool includeDecimal = false) const;
 	bool IsAlphaNumeric(bool includeUnderscore = true, bool includeDecimal = false) const;
 
-	// Current string data is lost and enough space is reserved for length characters. The reserved memory is zeroed.
-	void Reserve(int length);
+	// Current string data is lost and enough space is reserved for length characters. The reserved memory can be zeroed.
+	void Reserve(int length, bool zeroMemory = true);
 
 	// These only work well for ASCII strings as vars like 'count' are indexes into the text data and are not
 	// 'surrogate-aware'. This comment applies to all below functions with the words 'Left', 'Right', and 'Mid' in them
@@ -231,6 +231,17 @@ struct tString
 	bool ToUInt32(uint32& v, int base = -1) const																		{ return tStd::tStrtoui32(v, TextData, base); }
 	bool ToUInt64(uint64& v, int base = -1) const																		{ return tStd::tStrtoui64(v, TextData, base); }
 
+	// tString UTF encoding/decoding functions. tString is encoded in UTF-8. These functions allow you to convert from
+	// tString to UTF-16/32. If dst is nullptr returns the number of charNs needed. If incNullTerminator is false that
+	// number needed will be one fewer. If dst is valid, writes the codeunits to dst and returns number charNs written.
+	int GetUTF(char16_t* dst, bool incNullTerminator = true);
+	int GetUTF(char32_t* dst, bool incNullTerminator = true);
+
+	// Sets the tString from a UTF codeunit array. If srcLen is -1 assumes supplied array is null-terminated, otherwise
+	// specify how long it is. Returns new length (not including null terminator) of the tString.
+	int SetUTF(const char16_t* src, int srcLen = -1);
+	int SetUTF(const char32_t* src, int srcLen = -1);
+
 protected:
 	// By using the char8_t we are indicating the data is stored in UTF-8 encoding. Note that unlike char, a char8_t
 	// is guaranteed to be unsigned, as well as a distinct type.
@@ -329,7 +340,7 @@ inline tString::tString(int length)
 }
 
 
-inline void tString::Reserve(int length)
+inline void tString::Reserve(int length, bool zeroMemory)
 {
 	if (TextData != &EmptyChar)
 		delete[] TextData;
@@ -341,7 +352,8 @@ inline void tString::Reserve(int length)
 	}
 
 	TextData = new char8_t[length+1];
-	tStd::tMemset(TextData, 0, length+1);
+	if (zeroMemory)
+		tStd::tMemset(TextData, 0, length+1);
 }
 
 
