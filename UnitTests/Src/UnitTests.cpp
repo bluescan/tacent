@@ -50,6 +50,10 @@ namespace tUnitTest
 
 int main(int argc, char** argv)
 {
+	#ifdef PLATFORM_WINDOWS
+	setlocale(LC_ALL, ".UTF8");
+	#endif
+
 	// Try calling with a command line like:
 	// UnitTests.exe -n -35 3.0 -10 hello20
 	// UnitTests.exe --help
