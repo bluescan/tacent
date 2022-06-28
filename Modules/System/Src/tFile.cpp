@@ -44,19 +44,18 @@ namespace tSystem
 	std::time_t tFileTimeToStdTime(std::filesystem::file_time_type tp);
 
 	// Conversions to tacent-standard paths. Forward slashes.
-	void tPathStd	(tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There".
-	void tPathStdAdd(tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There/".
-	void tPathStdRem(tString& path);	// "C:\Hello\There\" -> "C:/Hello/There".  "C:\Hello\There" -> "C:/Hello/There".
+	void tPathStd    (tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There".
+	void tPathStdDir (tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There/".
+	void tPathStdFile(tString& path);	// "C:\Hello\There\" -> "C:/Hello/There".  "C:\Hello\There" -> "C:/Hello/There".
 
-	// Conversions to windows-standard paths. Forward slashes. Not seen externally.
-	void tPathWin	(tString& path);	// "C:/Hello/There/" -> "C:\Hello\There\". "C:/Hello/There" -> "C:\Hello\There".
-	void tPathWinAdd(tString& path);	// "C:/Hello/There/" -> "C:\Hello\There\". "C:/Hello/There" -> "C:\Hello\There\".
-	void tPathWinRem(tString& path);	// "C:/Hello/There/" -> "C:\Hello\There".  "C:/Hello/There" -> "C:\Hello\There".
+	// Conversions to windows-standard paths. Backwards slashes. Not seen externally.
+	void tPathWin    (tString& path);	// "C:/Hello/There/" -> "C:\Hello\There\". "C:/Hello/There" -> "C:\Hello\There".
+	void tPathWinDir (tString& path);	// "C:/Hello/There/" -> "C:\Hello\There\". "C:/Hello/There" -> "C:\Hello\There\".
+	void tPathWinFile(tString& path);	// "C:/Hello/There/" -> "C:\Hello\There".  "C:/Hello/There" -> "C:\Hello\There".
 
 	#ifdef PLATFORM_WINDOWS
 	std::time_t tFileTimeToPosixEpoch(FILETIME);
 	void tGetFileInfo(tFileInfo& fileInfo, Win32FindData&);
-	tString tWideToString(wchar_t*);
 	#endif
 
 	bool tFindFilesFastInternal
@@ -81,7 +80,7 @@ inline void tSystem::tPathStd(tString& path)
 }
 
 
-inline void tSystem::tPathStdAdd(tString& path)
+inline void tSystem::tPathStdDir(tString& path)
 {
 	path.Replace('\\', '/');
 	if (path[path.Length() - 1] != '/')
@@ -89,7 +88,7 @@ inline void tSystem::tPathStdAdd(tString& path)
 }
 
 
-inline void tSystem::tPathStdRem(tString& path)
+inline void tSystem::tPathStdFile(tString& path)
 {
 	path.Replace('\\', '/');
 	int len = path.Length();
@@ -104,7 +103,7 @@ inline void tSystem::tPathWin(tString& path)
 }
 
 
-inline void tSystem::tPathWinAdd(tString& path)
+inline void tSystem::tPathWinDir(tString& path)
 {
 	path.Replace('/', '\\');
 	if (path[path.Length() - 1] != '\\')
@@ -112,7 +111,7 @@ inline void tSystem::tPathWinAdd(tString& path)
 }
 
 
-inline void tSystem::tPathWinRem(tString& path)
+inline void tSystem::tPathWinFile(tString& path)
 {
 	path.Replace('/', '\\');
 	int len = path.Length();
@@ -230,7 +229,8 @@ int tSystem::tGetFileSize(const tString& filename)
 	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
 	Win32FindData fd;
-	WinHandle h = FindFirstFile(file.Chs(), &fd);
+	tStringUTF16 fileUTF16(file);
+	WinHandle h = FindFirstFile(fileUTF16.GetLPWSTR(), &fd);
 
 	// If file doesn't exist, h will be invalid.
 	if (h == INVALID_HANDLE_VALUE)
@@ -384,7 +384,8 @@ bool tSystem::tFileExists(const tString& filename)
 	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
 	Win32FindData fd;
-	WinHandle h = FindFirstFile(file.Chs(), &fd);
+	tStringUTF16 fileUTF16(file);
+	WinHandle h = FindFirstFile(fileUTF16.GetLPWSTR(), &fd);
 	SetErrorMode(prevErrorMode);
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
@@ -414,7 +415,7 @@ bool tSystem::tDirExists(const tString& dirname)
 	tString dir = dirname;
 	
 	#if defined(PLATFORM_WINDOWS)
-	tPathWinRem(dir);
+	tPathWinFile(dir);
 
 	// Can't quite remember what the * does. Needs testing.
 	int length = dir.Length();
@@ -424,7 +425,8 @@ bool tSystem::tDirExists(const tString& dirname)
 	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
 	Win32FindData fd;
-	WinHandle h = FindFirstFile(dir.Chs(), &fd);
+	tStringUTF16 dirUTF16(dir);
+	WinHandle h = FindFirstFile(dirUTF16.GetLPWSTR(), &fd);
 	SetErrorMode(prevErrorMode);
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
@@ -436,7 +438,7 @@ bool tSystem::tDirExists(const tString& dirname)
 	return false;
 
 	#else
-	tPathStdRem(dir);
+	tPathStdFile(dir);
 	std::filesystem::file_status fstat = std::filesystem::status(dir.Chs());
 
 	return std::filesystem::is_directory(fstat);
@@ -473,14 +475,16 @@ bool tSystem::tIsFileNewer(const tString& filenameA, const tString& filenameB)
 	tPathWin(fileB);
 
 	Win32FindData fd;
-	WinHandle h = FindFirstFile(fileA.Chs(), &fd);
+	tStringUTF16 fileA16(fileA);
+	WinHandle h = FindFirstFile(fileA16.GetLPWSTR(), &fd);
 	if (h == INVALID_HANDLE_VALUE)
 		throw tFileError("Invalid file handle for file: " + fileA);
 
 	FileTime timeA = fd.ftLastWriteTime;
 	FindClose(h);
 
-	h = FindFirstFile(fileB.Chs(), &fd);
+	tStringUTF16 fileB16(fileB);
+	h = FindFirstFile(fileB16.GetLPWSTR(), &fd);
 	if (h == INVALID_HANDLE_VALUE)
 		throw tFileError("Invalid file handle for file: " + fileB);
 
@@ -568,7 +572,7 @@ bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 
 	// Seems like FindFirstFile cannot deal with a trailing backslash when
 	// trying to access directory information.  We remove it here.
-	tPathWinRem(file);
+	tPathWinFile(file);
 
 	#else
 	tPathStd(file);
@@ -577,7 +581,8 @@ bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 
 	#ifdef PLATFORM_WINDOWS
 	Win32FindData fd;
-	WinHandle h = FindFirstFile(file.Chs(), &fd);
+	tStringUTF16 file16(file);
+	WinHandle h = FindFirstFile(file16.GetLPWSTR(), &fd);
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
 	tGetFileInfo(fileInfo, fd);
@@ -612,7 +617,7 @@ bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 bool tSystem::tGetFileDetails(tFileDetails& details, const tString& fullFileName)
 {
 	tString ffn = fullFileName;
-	tPathWinRem(ffn);
+	tPathWinFile(ffn);
 
 	tString fileName = tSystem::tGetFileName(ffn);
 	tString fileDir = tSystem::tGetDir(ffn);
@@ -738,18 +743,18 @@ bool tSystem::tGetFileDetails(tFileDetails& details, const tString& fullFileName
 		result = shellFolder2->GetDetailsOf(0, col, &shellDetail);
 		if (result == S_OK)
 		{
-			tString title(33);
-			StrRetToBuf(&shellDetail.str, localPidl, title.Txt(), 32);
+			tStringUTF16 title(33);
+			StrRetToBuf(&shellDetail.str, localPidl, title.GetLPWSTR(), 32);
 
 			// Get detail.
-			tString detail(33);
+			tStringUTF16 detail(33);
 			result = shellFolder2->GetDetailsOf(localPidl, col, &shellDetail);
 			if (result == S_OK)
 			{
-				StrRetToBuf(&shellDetail.str, localPidl, detail.Txt(), 32);
+				StrRetToBuf(&shellDetail.str, localPidl, detail.GetLPWSTR(), 32);
 
 				// We only add the detail to the list if both title and detail are present.
-				if (!title.IsEmpty() && !detail.IsEmpty())
+				if (title.IsValid() && detail.IsValid())
 				{
 					details.DetailTitles.Append(new tStringItem(title));
 					details.Details.Append(new tStringItem(detail));
@@ -778,7 +783,8 @@ void tSystem::tSetFileOpenAssoc(const tString& program, const tString& extension
 	keyString += "\\shell\\open\\command";
 
 	HKEY key;
-	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString.Chs(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
+	tStringUTF16 keyString16(keyString);
+	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString16.GetLPWSTR(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
 	{
 		// Create value string and set it.
 		tString options = programOptions;
@@ -788,7 +794,7 @@ void tSystem::tSetFileOpenAssoc(const tString& program, const tString& extension
 			options = tString(" ") + options + " ";
 		tString valString = tString("\"") + tSystem::tGetSimplifiedPath(program) + "\"" + options + "\"%1\"";
 		tPathWin(valString);
-		RegSetValueEx(key, "", 0, REG_SZ, (uint8*)valString.Chs(), valString.Length()+1);
+		RegSetValueEx(key, LPWSTR(u""), 0, REG_SZ, (uint8*)valString.Chs(), valString.Length()+1);
 		RegCloseKey(key);
 	}
 
@@ -796,11 +802,14 @@ void tSystem::tSetFileOpenAssoc(const tString& program, const tString& extension
 	ext.ToLower();
 	keyString = "Software\\Classes\\.";
 	keyString += ext;
-	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString.Chs(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
+	tStringUTF16 keyString16B(keyString);
+	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString16B.GetLPWSTR(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
 	{
 		tString valString = "Tacent_";
 		valString += baseName;
-		RegSetValueEx(key, "", 0, REG_SZ, (uint8*)valString.Chs(), valString.Length()+1);
+
+		// REG_SZ means that the values in arg 5 is not UTF-16.
+		RegSetValueEx(key, LPWSTR(u""), 0, REG_SZ, (const BYTE*)valString.Chs(), valString.Length()+1);
 		RegCloseKey(key);
 	}
 }
@@ -824,10 +833,11 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	tString keyString = "Software\\Classes\\.";
 	keyString += ext;
 	tString appName(127);
-	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString.Chs(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
+	tStringUTF16 keyString16A(keyString);
+	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString16A.GetLPWSTR(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
 	{
 		ulong numBytesIO = 127;
-		RegGetValue(key, "", 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, appName.Text(), &numBytesIO);
+		RegGetValue(key, LPCWSTR(u""), 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, appName.Text(), &numBytesIO);
 		RegCloseKey(key);
 	}
 
@@ -837,11 +847,12 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	keyString = "Software\\Classes\\";
 	keyString += appName;
 	keyString += "\\shell\\open\\command";
+	tStringUTF16 keyString16B(keyString);
 	tString exeName(255);
-	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString.Chs(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
+	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString16B.GetLPWSTR(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
 	{
 		ulong numBytesIO = 255;
-		RegGetValue(key, "", 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, exeName.Txt(), &numBytesIO);
+		RegGetValue(key, LPCWSTR(u""), 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, exeName.Txt(), &numBytesIO);
 		RegCloseKey(key);
 	}
 
@@ -1027,11 +1038,13 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 
 	tString pathMod = path;
 	tPathWin(pathMod);
-
+	tStringUTF16 relLoc16(relLoc);
+	tStringUTF16 basePathMod16(basePathMod);
+	tStringUTF16 pathMod16(pathMod);
 	int success = PathRelativePathTo
 	(
-		relLoc.Txt(), basePathMod.Chs(), FILE_ATTRIBUTE_DIRECTORY,
-		pathMod.Chs(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
+		relLoc16.GetLPWSTR(), basePathMod16.GetLPWSTR(), FILE_ATTRIBUTE_DIRECTORY,
+		pathMod16.GetLPWSTR(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
 	);
 
 	if (!success)
@@ -1108,7 +1121,7 @@ tString tSystem::tGetLinuxPath(const tString& pth, const tString& mountPoint)
 	if (tIsAbsolutePath(path) && (path.Length() > 1) && (path[1] == ':') && !mountPoint.IsEmpty())
 	{
 		tString mnt = mountPoint;
-		tPathStdAdd(mnt);
+		tPathStdDir(mnt);
 
 		char drive = tStd::tChrlwr(path[0]);
 		path.ExtractLeft(2);
@@ -1221,14 +1234,15 @@ bool tSystem::tIsReadOnly(const tString& fileName)
 	tString file(fileName);
 
 	#if defined(PLATFORM_WINDOWS)
-	tPathWinRem(file);
+	tPathWinFile(file);
 
 	// The docs for this should be clearer!  GetFileAttributes returns INVALID_FILE_ATTRIBUTES if it
 	// fails.  Rather dangerously, and undocumented, INVALID_FILE_ATTRIBUTES has a value of 0xFFFFFFFF.
 	// This means that all attribute are apparently true!  This is very lame.  Thank goodness there aren't
 	// 32 possible attributes, or there could be real problems.  Too bad it didn't just return 0 on error...
 	// especially since they specifically have a FILE_ATTRIBUTES_NORMAL flag that is non-zero!
-	ulong attribs = GetFileAttributes(file.Chs());
+	tStringUTF16 file16(file);
+	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
 
@@ -1255,18 +1269,19 @@ bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 	tString file(fileName);
 	
 	#if defined(PLATFORM_WINDOWS)	
-	tPathWinRem(file);
+	tPathWinFile(file);
 
-	ulong attribs = GetFileAttributes(file.Chs());
+	tStringUTF16 file16(file);
+	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
 
 	if (!(attribs & FILE_ATTRIBUTE_READONLY) && readOnly)
-		SetFileAttributes(file.Chs(), attribs | FILE_ATTRIBUTE_READONLY);
+		SetFileAttributes(file16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_READONLY);
 	else if ((attribs & FILE_ATTRIBUTE_READONLY) && !readOnly)
-		SetFileAttributes(file.Chs(), attribs & ~FILE_ATTRIBUTE_READONLY);
+		SetFileAttributes(file16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_READONLY);
 
-	attribs = GetFileAttributes(file.Chs());
+	attribs = GetFileAttributes(file16.GetLPWSTR());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
 
@@ -1308,9 +1323,10 @@ bool tSystem::tIsHidden(const tString& path)
 	#elif defined(PLATFORM_WINDOWS)
 	// In windows it's all based on the file attribute.
 	tString file(path);
-	tPathWinRem(file);
+	tPathWinFile(file);
 
-	ulong attribs = GetFileAttributes(file.Chs());
+	tStringUTF16 file16(file);
+	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
 
@@ -1327,18 +1343,19 @@ bool tSystem::tIsHidden(const tString& path)
 bool tSystem::tSetHidden(const tString& fileName, bool hidden)
 {
 	tString file(fileName);
-	tPathWinRem(file);
+	tPathWinFile(file);
 
-	ulong attribs = GetFileAttributes(file.Chs());
+	tStringUTF16 file16(file);
+	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
 
 	if (!(attribs & FILE_ATTRIBUTE_HIDDEN) && hidden)
-		SetFileAttributes(file.Chs(), attribs | FILE_ATTRIBUTE_HIDDEN);
+		SetFileAttributes(file16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_HIDDEN);
 	else if ((attribs & FILE_ATTRIBUTE_HIDDEN) && !hidden)
-		SetFileAttributes(file.Chs(), attribs & ~FILE_ATTRIBUTE_HIDDEN);
+		SetFileAttributes(file16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_HIDDEN);
 
-	attribs = GetFileAttributes(file.Chs());
+	attribs = GetFileAttributes(file16.GetLPWSTR());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
 
@@ -1352,9 +1369,10 @@ bool tSystem::tSetHidden(const tString& fileName, bool hidden)
 bool tSystem::tIsSystem(const tString& fileName)
 {
 	tString file(fileName);
-	tPathWinRem(file);
+	tPathWinFile(file);
 
-	ulong attribs = GetFileAttributes(file.Chs());
+	tStringUTF16 file16(file);
+	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
 
@@ -1365,18 +1383,19 @@ bool tSystem::tIsSystem(const tString& fileName)
 bool tSystem::tSetSystem(const tString& fileName, bool system)
 {
 	tString file(fileName);
-	tPathWinRem(file);
+	tPathWinFile(file);
 
-	ulong attribs = GetFileAttributes(file.Chs());
+	tStringUTF16 file16(file);
+	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
 
 	if (!(attribs & FILE_ATTRIBUTE_SYSTEM) && system)
-		SetFileAttributes(file.Chs(), attribs | FILE_ATTRIBUTE_SYSTEM);
+		SetFileAttributes(file16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_SYSTEM);
 	else if ((attribs & FILE_ATTRIBUTE_SYSTEM) && !system)
-		SetFileAttributes(file.Chs(), attribs & ~FILE_ATTRIBUTE_SYSTEM);
+		SetFileAttributes(file16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_SYSTEM);
 
-	attribs = GetFileAttributes(file.Chs());
+	attribs = GetFileAttributes(file16.GetLPWSTR());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
 
@@ -1419,7 +1438,8 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 	else													// Assume string was of form "C:/" or "C:\"
 		tPathWin(driveRoot);
 
-	uint driveType = GetDriveType(driveRoot.Chs());
+	tStringUTF16 driveRoot16(driveRoot);
+	uint driveType = GetDriveType(driveRoot16.GetLPWSTR());
 	switch (driveType)
 	{
 		case DRIVE_NO_ROOT_DIR:
@@ -1462,25 +1482,25 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 		fileInfo.szDisplayName[0] = '\0';
 		SHGetFileInfo
 		(
-			driveRoot.Chs(),
+			driveRoot16.GetLPWSTR(),
 			0,
 			&fileInfo,
 			sizeof(SHFILEINFO),
 			SHGFI_DISPLAYNAME
 		);
-		driveInfo.DisplayName = fileInfo.szDisplayName;
+		driveInfo.DisplayName.SetUTF16((char16_t*)fileInfo.szDisplayName);
 	}
 
 	if (getVolumeAndSerial)
 	{
-		tString volumeInfoName(256);
+		tStringUTF16 volumeInfoName(256);
 		ulong componentLength = 0;
 		ulong flags = 0;
 		ulong serial = 0;
 		int success = GetVolumeInformation
 		(
-			driveRoot.Chs(),
-			volumeInfoName.Txt(),
+			driveRoot16.GetLPWSTR(),
+			volumeInfoName.GetLPWSTR(),
 			256,
 			&serial,
 			&componentLength,
@@ -1489,7 +1509,7 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 			0							// Buffer for system name is 0 long.
 		);
 
-		driveInfo.VolumeName = volumeInfoName;
+		driveInfo.VolumeName.SetUTF16(volumeInfoName.Units());
 		driveInfo.SerialNumber = serial;
 	}
 
@@ -1509,33 +1529,10 @@ bool tSystem::tSetVolumeName(const tString& drive, const tString& newVolumeName)
 	else									// Assume string was of form "C:/" or "C:\"
 		tPathWin(driveRoot);
 
-	int success = SetVolumeLabel(driveRoot.Chs(), newVolumeName.Chs());
+	tStringUTF16 driveRoot16(driveRoot);
+	tStringUTF16 newVolumeName16(newVolumeName);
+	int success = SetVolumeLabel(driveRoot16.GetLPWSTR(), newVolumeName16.GetLPWSTR());
 	return success ? true : false;
-}
-
-
-tString tSystem::tWideToString(wchar_t* wideStr)
-{
-	if (!wideStr)
-		return tString();
-
-	// Convert the wchar_t string to a char* string. Record the length of the original string and add 1 to it to account
-	// for the terminating null character.
-	size_t wideSize = wcslen(wideStr) + 1;
-	size_t convertedChars = 0;
-
-	// Allocate two bytes in the multibyte output string for every wide character in the input string (including a wide
-	// character null). Because a multibyte character can be one or two bytes, you should allot two bytes for each
-	// character. Having extra space for the new string is not an error, but having insufficient space is a potential
-	// security problem.
-	int newSize = wideSize*2;
-
-	// The new string will contain a converted copy of the original string plus the type of string appended to it.
-	tString result(newSize);
-
-	// Put a copy of the converted string into nstring.
-	wcstombs_s(&convertedChars, result.Txt(), newSize, wideStr, _TRUNCATE);	
-	return result;
 }
 
 
@@ -1566,7 +1563,7 @@ tString tWindowsShares::tGetDisplayName(LPITEMIDLIST pidl, IShellFolder* folderI
 			return tString(strRet.cStr);
 
 		case STRRET_WSTR:
-			return tSystem::tWideToString(strRet.pOleStr);
+			return tString((char16_t*)strRet.pOleStr);
 		
 		case STRRET_OFFSET :
 			return tString(((char*)pidl) + strRet.uOffset);
@@ -1693,19 +1690,22 @@ void tSystem::tExplodeShareName(tList<tStringItem>& exploded, const tString& sha
 
 tString tSystem::tGetWindowsDir()
 {
-	tString windir(MAX_PATH);
-	GetWindowsDirectory(windir.Txt(), MAX_PATH);
-	tPathStdAdd(windir);
+	tStringUTF16 windir16(MAX_PATH);
+	GetWindowsDirectory(windir16.GetLPWSTR(), MAX_PATH);
 
+	tString windir(windir16);
+	tPathStdDir(windir);
 	return windir;
 }
 
 
 tString tSystem::tGetSystemDir()
 {
-	tString sysdir(MAX_PATH);
-	GetSystemDirectory(sysdir.Txt(), MAX_PATH);
-	tPathStdAdd(sysdir);
+	tStringUTF16 sysdir16(MAX_PATH);
+	GetSystemDirectory(sysdir16.GetLPWSTR(), MAX_PATH);
+
+	tString sysdir(sysdir16);
+	tPathStdDir(sysdir);
 	return sysdir;
 }
 #endif
@@ -1737,10 +1737,10 @@ tString tSystem::tGetHomeDir()
 	if ((result != S_OK) || !pathBuffer)
 		return home;
 
-	home = tWideToString(pathBuffer);
+	home.Set((char16_t*)pathBuffer);
 	CoTaskMemFree(pathBuffer);
 
-	tPathStdAdd(home);
+	tPathStdDir(home);
 	return home;
 }
 
@@ -1753,10 +1753,10 @@ tString tSystem::tGetDesktopDir()
 	if ((result != S_OK) || !pathBuffer)
 		return desktop;
 
-	desktop = tWideToString(pathBuffer);
+	desktop.Set((char16_t*)pathBuffer);
 	CoTaskMemFree(pathBuffer);
 
-	tPathStdAdd(desktop);
+	tPathStdDir(desktop);
 	return desktop;
 }
 #endif
@@ -1765,9 +1765,12 @@ tString tSystem::tGetDesktopDir()
 tString tSystem::tGetProgramDir()
 {
 	#if defined(PLATFORM_WINDOWS)
-	tString result(MAX_PATH + 1);
-	ulong l = GetModuleFileName(0, result.Txt(), MAX_PATH);
+	tStringUTF16 result16(MAX_PATH);		// No need to add one here. Reserving space does it for us.
 
+	// Except for windows XP (which I don't care about TBH), the result is always null-terminated.
+	ulong l = GetModuleFileName(0, result16.GetLPWSTR(), MAX_PATH);
+
+	tString result(result16);
 	tPathStd(result);
 	int bi = result.FindChar('/', true);
 	tAssert(bi != -1);
@@ -1794,8 +1797,10 @@ tString tSystem::tGetProgramDir()
 tString tSystem::tGetProgramPath()
 {
 	#if defined(PLATFORM_WINDOWS)
-	tString result(MAX_PATH + 1);
-	ulong l = GetModuleFileName(0, result.Txt(), MAX_PATH);
+	tStringUTF16 result16(MAX_PATH);
+	ulong l = GetModuleFileName(0, result16.GetLPWSTR(), MAX_PATH);
+
+	tString result(result16);
 	tPathStd(result);
 	return result;
 
@@ -1814,15 +1819,16 @@ tString tSystem::tGetProgramPath()
 tString tSystem::tGetCurrentDir()
 {
 	#ifdef PLATFORM_WINDOWS
-	tString r(MAX_PATH + 1);
-	GetCurrentDirectory(MAX_PATH, r.Txt());
+	tStringUTF16 r16(MAX_PATH);
+	GetCurrentDirectory(MAX_PATH, r16.GetLPWSTR());
+	tString r(r16);
 
 	#else
 	tString r(PATH_MAX + 1);
 	getcwd(r.Txt(), PATH_MAX);
 
 	#endif
-	tPathStdAdd(r);
+	tPathStdDir(r);
 
 	return r;
 }
@@ -1857,7 +1863,8 @@ bool tSystem::tSetCurrentDir(const tString& directory)
 
 	// So there is no dialog asking user to insert a floppy.
 	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS);
-	int success = SetCurrentDirectory(cd.Chs());
+	tStringUTF16 cd16(cd);
+	int success = SetCurrentDirectory(cd16.GetLPWSTR());
 	SetErrorMode(prevErrorMode);
 
 	return success ? true : false;
@@ -2044,15 +2051,15 @@ bool tSystem::tCreateDir(const tString& dir)
 	
 	#if defined(PLATFORM_WINDOWS)
 	tPathWin(dirPath);
-
-	bool success = ::CreateDirectory(dirPath.Chs(), 0) ? true : false;
+	tStringUTF16 dirPath16(dirPath);
+	bool success = ::CreateDirectory(dirPath16.GetLPWSTR(), 0) ? true : false;
 	if (!success)
 		success = tDirExists(dirPath.Chs());
 
 	return success;
 
 	#else
-	tPathStdRem(dirPath);
+	tPathStdFile(dirPath);
 	bool ok = std::filesystem::create_directory(dirPath.Chs());
 	if (!ok)
 		return tDirExists(dirPath.Chs());
@@ -2186,11 +2193,13 @@ uint8* tSystem::tLoadFileHead(const tString& fileName, int& bytesToRead, uint8* 
 bool tSystem::tCopyFile(const tString& dest, const tString& src, bool overWriteReadOnly)
 {
 	#if defined(PLATFORM_WINDOWS)
-	int success = ::CopyFile(src.Chs(), dest.Chs(), 0);
+	tStringUTF16 src16(src);
+	tStringUTF16 dest16(dest);
+	int success = ::CopyFile(src16.GetLPWSTR(), dest16.GetLPWSTR(), 0);
 	if (!success && overWriteReadOnly)
 	{
 		tSetReadOnly(dest, false);
-		success = ::CopyFile(src.Chs(), dest.Chs(), 0);
+		success = ::CopyFile(src16.GetLPWSTR(), dest16.GetLPWSTR(), 0);
 	}
 
 	return success ? true : false;
@@ -2220,7 +2229,9 @@ bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tStr
 	tString fullNewName = dir + newName;
 	tPathWin(fullNewName);
 
-	int success = ::MoveFile(fullOldName.Chs(), fullNewName.Chs());
+	tStringUTF16 fullOldName16(fullOldName);
+	tStringUTF16 fullNewName16(fullNewName);
+	int success = ::MoveFile(fullOldName16.GetLPWSTR(), fullNewName16.GetLPWSTR());
 	return success ? true : false;
 
 	#else
@@ -2250,7 +2261,8 @@ bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 		massagedName += "*.*";
 
 	Win32FindData fd;
-	WinHandle h = FindFirstFile(massagedName.Chs(), &fd);
+	tStringUTF16 massagedName16(massagedName);
+	WinHandle h = FindFirstFile(massagedName16.GetLPWSTR(), &fd);
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
 
@@ -2264,9 +2276,9 @@ bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 				// If the directory name is not "." or ".." then it's a real directory.
 				// Note that you cannot just check for the first character not being "."  Some directories (and files)
 				// may have a name that starts with a dot, especially if they were copied from a unix machine.
-				tString fn(fd.cFileName);
+				tString fn((char16_t*)fd.cFileName);
 				if ((fn != ".") && (fn != ".."))
-					foundDirs.Append(new tStringItem(path + fd.cFileName + "/"));
+					foundDirs.Append(new tStringItem(path + fn + "/"));
 			}
 		}
 	} while (FindNextFile(h, &fd));
@@ -2365,7 +2377,7 @@ bool tSystem::tFindFilesFastInternal(const tString& dir, const tExtensions& exte
 		dirStr = tGetCurrentDir();
 
 	#ifdef PLATFORM_WINDOWS
-	tPathWinAdd(dirStr);
+	tPathWinDir(dirStr);
 
 	// There's some complexity here with windows, but it's still very fast. We need to loop through all the
 	// extensions doing the FindFirstFile business, while modifying the path appropriately for each one.
@@ -2386,7 +2398,8 @@ bool tSystem::tFindFilesFastInternal(const tString& dir, const tExtensions& exte
 			path += ext;
 
 		Win32FindData fd;
-		WinHandle h = FindFirstFile(path.Chs(), &fd);
+		tStringUTF16 path16(path);
+		WinHandle h = FindFirstFile(path16.GetLPWSTR(), &fd);
 		if (h == INVALID_HANDLE_VALUE)
 		{
 			allOk = false;
@@ -2400,7 +2413,8 @@ bool tSystem::tFindFilesFastInternal(const tString& dir, const tExtensions& exte
 				// It's not a directory... so it's actually a real file.
 				if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
 				{
-					tString foundName = dirStr + fd.cFileName;
+					tString fdFilename((char16_t*)fd.cFileName);
+					tString foundName = dirStr + fdFilename;
 					tPathStd(foundName);
 
 					tStringItem* newName = foundFiles ? new tStringItem(foundName) : nullptr;
@@ -2416,7 +2430,7 @@ bool tSystem::tFindFilesFastInternal(const tString& dir, const tExtensions& exte
 					// FileMask is required to specify an extension, even if it is ".*"
 					if (path[path.Length() - 1] != '*')
 					{
-						tString foundExtension = tGetFileExtension(fd.cFileName);
+						tString foundExtension = tGetFileExtension(fdFilename);
 						if (ext.IsEqualCI(foundExtension))
 						{
 							if (foundFiles)
@@ -2443,7 +2457,7 @@ bool tSystem::tFindFilesFastInternal(const tString& dir, const tExtensions& exte
 	return allOk;
 
 	#elif defined(PLATFORM_LINUX)
-	tPathStdAdd(dirStr);
+	tPathStdDir(dirStr);
 	DIR* dirEnt = opendir(dirStr.Chs());
 	if (dirStr.IsEmpty() || !dirEnt)
 		return false;
@@ -2523,12 +2537,13 @@ bool tSystem::tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString&
 
 	// The windows functions seem to like backslashes better.
 	tString pathStr(dir);
-	tPathWinAdd(pathStr);
+	tPathWinDir(pathStr);
 	tFindFiles(foundFiles, dir, ext, includeHidden);
 	Win32FindData fd;
 
 	// Look for all directories.
-	WinHandle h = FindFirstFile((pathStr + "*.*").Chs(), &fd);
+	tStringUTF16 pathStrMod16(pathStr + "*.*");
+	WinHandle h = FindFirstFile(pathStrMod16.GetLPWSTR(), &fd);
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
 
@@ -2542,9 +2557,9 @@ bool tSystem::tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString&
 				// If the directory name is not "." or ".." then it's a real directory.
 				// Note that you cannot just check for the first character not being "."  Some directories (and files)
 				// may have a name that starts with a dot, especially if they were copied from a unix machine.
-				tString fn(fd.cFileName);
+				tString fn((char16_t*)fd.cFileName);
 				if ((fn != ".") && (fn != ".."))
-					tFindFilesRecursive(foundFiles, pathStr + fd.cFileName + "\\", ext, includeHidden);
+					tFindFilesRecursive(foundFiles, pathStr + fn + "\\", ext, includeHidden);
 			}
 		}
 	} while (FindNextFile(h, &fd));
@@ -2577,10 +2592,11 @@ bool tSystem::tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& d
 	#ifdef PLATFORM_WINDOWS
 	tString pathStr(dir);
 
-	tPathWinAdd(pathStr);
+	tPathWinDir(pathStr);
 	tFindDirs(foundDirs, pathStr, includeHidden);
 	Win32FindData fd;
-	WinHandle h = FindFirstFile((pathStr + "*.*").Chs(), &fd);
+	tStringUTF16 pathStrMod16(pathStr + "*.*");
+	WinHandle h = FindFirstFile(pathStrMod16.GetLPWSTR(), &fd);
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
 
@@ -2594,9 +2610,9 @@ bool tSystem::tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& d
 				// If the directory name is not "." or ".." then it's a real directory.
 				// Note that you cannot just check for the first character not being "."  Some directories (and files)
 				// may have a name that starts with a dot, especially if they were copied from a unix machine.
-				tString fn(fd.cFileName);
+				tString fn((char16_t*)fd.cFileName);
 				if ((fn != ".") && (fn != ".."))
-					tFindDirsRecursive(foundDirs, pathStr + fd.cFileName + "\\", includeHidden);
+					tFindDirsRecursive(foundDirs, pathStr + fn + "\\", includeHidden);
 			}
 		}
 	} while (FindNextFile(h, &fd));
@@ -2627,24 +2643,26 @@ bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool use
 	#ifdef PLATFORM_WINDOWS
 	tString file(filename);
 	tPathWin(file);
+	tStringUTF16 file16(file);
 	if (deleteReadOnly)
-		SetFileAttributes(file.Chs(), FILE_ATTRIBUTE_NORMAL);
+		SetFileAttributes(file16.GetLPWSTR(), FILE_ATTRIBUTE_NORMAL);
 
 	if (!useRecycleBin)
 	{
-		if (DeleteFile(file.Chs()))
+		if (DeleteFile(file16.GetLPWSTR()))
 			return true;
 		else
 			return false;
 	}
 	else
 	{
-		tString filenameDoubleNull = filename + "Z";
-		filenameDoubleNull[filenameDoubleNull.Length()-1] = '\0';
+		tString filenamePlusChar = filename + "Z";
+		tStringUTF16 filenameDoubleNull16(filenamePlusChar);
+		*(filenameDoubleNull16.Units() + filenameDoubleNull16.Length() - 1) = 0;
 		SHFILEOPSTRUCT operation;
 		tStd::tMemset(&operation, 0, sizeof(operation));
 		operation.wFunc = FO_DELETE;
-		operation.pFrom = filenameDoubleNull.Chs();
+		operation.pFrom = filenameDoubleNull16.GetLPWSTR();
 		operation.fFlags = FOF_ALLOWUNDO | FOF_NO_UI | FOF_NORECURSION;
 		int errCode = SHFileOperation(&operation);
 		return errCode ? false : true;
@@ -2700,7 +2718,8 @@ bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
 	tPathWin(directory);
 
 	Win32FindData fd;
-	WinHandle h = FindFirstFile((directory + "*.*").Chs(), &fd);
+	tStringUTF16 directoryMod16(directory + "*.*");
+	WinHandle h = FindFirstFile(directoryMod16.GetLPWSTR(), &fd);
 	if (h == INVALID_HANDLE_VALUE)
 		return true;
 
@@ -2711,22 +2730,24 @@ bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
 			// If the directory name is not "." or ".." then it's a real directory.
 			// Note that you cannot just check for the first character not being "."  Some directories (and files)
 			// may have a name that starts with a dot, especially if they were copied from a unix machine.
-			tString fn(fd.cFileName);
+			tString fn((char16_t*)fd.cFileName);
 			if ((fn != ".") && (fn != ".."))
-				tDeleteDir(dir + fd.cFileName + "/", deleteReadOnly);
+				tDeleteDir(dir + fn + "/", deleteReadOnly);
 		}
 	} while (FindNextFile(h, &fd));
 
 	bool deleteFilesOK = (GetLastError() == ERROR_NO_MORE_FILES) ? true : false;
 	FindClose(h);
 
+	tStringUTF16 directory16(directory);
 	if (deleteReadOnly)
-		SetFileAttributes(directory.Chs(), FILE_ATTRIBUTE_NORMAL);	// Directories can be read-only too.
+		SetFileAttributes(directory16.GetLPWSTR(), FILE_ATTRIBUTE_NORMAL);	// Directories can be read-only too.
 
 	bool success = false;
 	for (int delTry = 0; delTry < 32; delTry++)
 	{
-		if (RemoveDirectory(dir.Chs()))
+		tStringUTF16 dir16(dir);
+		if (RemoveDirectory(dir16.GetLPWSTR()))
 		{
 			success = true;
 			break;

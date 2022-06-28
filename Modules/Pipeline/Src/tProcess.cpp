@@ -414,7 +414,10 @@ void tProcess::CreateChildProcess(const tString& cmdLine, const tString& working
 	if (ClearEnvironment)
 		envBlock = "PIPELINE=true\0";
 
-	int success = CreateProcess(0, (char*)cmdLine.Chs(), 0, 0, TRUE, DETACHED_PROCESS, (char*)envBlock, workingDir.Chs(), &startup, &procInfo);
+	// Note that the environment block (arg 7) is allowed to contain non-UTF16 characters (ANSI according to the MS docs).
+	tStringUTF16 cmdLineUTF16(cmdLine);
+	tStringUTF16 workingDirUTF16(workingDir);
+	int success = CreateProcess(0, cmdLineUTF16.GetLPWSTR(), 0, 0, TRUE, DETACHED_PROCESS, (char*)envBlock, workingDirUTF16.GetLPWSTR(), &startup, &procInfo);
 	if (!success)
 	{
 		ulong lastError = GetLastError();
@@ -708,9 +711,11 @@ uint32 tProcess::GetEnvironmentDataLength_Ascii(void* enviro)
 
 char* tProcess::BuildNewEnvironmentData_Ascii(bool appendToExisting, int numPairs, va_list args)
 {
-	char* oldEnviro = 0;
+	wchar_t* oldEnv = nullptr;
 	if (appendToExisting)
-		oldEnviro = ::GetEnvironmentStrings();
+		oldEnv = ::GetEnvironmentStrings();
+	tString oldEnvStr((char16_t*)oldEnv);
+	::FreeEnvironmentStrings(oldEnv);
 
 	const char pairSeparatingCharacter = '\0';
 
@@ -718,8 +723,8 @@ char* tProcess::BuildNewEnvironmentData_Ascii(bool appendToExisting, int numPair
 	tList<tStringItem> values(tListMode::ListOwns);
 
 	int oldSize = 0;
-	if (oldEnviro)
-		oldSize = tProcess::GetEnvironmentDataLength_Ascii(oldEnviro);
+	if (oldEnvStr.IsValid())
+		oldSize = tProcess::GetEnvironmentDataLength_Ascii(oldEnvStr.Units());
 
 	int newSize = 0;
 	for (int p = 0; p < numPairs; ++p)
@@ -738,9 +743,9 @@ char* tProcess::BuildNewEnvironmentData_Ascii(bool appendToExisting, int numPair
 
 	char* newenvdata = new char[totalSize];
 	int newDstIdx = 0;
-	if (oldEnviro)
+	if (oldEnvStr.IsValid())
 	{
-		tStd::tMemcpy(newenvdata, oldEnviro, oldSize);
+		tStd::tMemcpy(newenvdata, oldEnvStr.Units(), oldSize);
 		newDstIdx = oldSize - 1;
 	}
 	
@@ -759,7 +764,6 @@ char* tProcess::BuildNewEnvironmentData_Ascii(bool appendToExisting, int numPair
 	}	
 	newenvdata[newDstIdx] = '\0';
 
-	::FreeEnvironmentStrings(oldEnviro);
 	return newenvdata;
 }
 

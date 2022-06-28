@@ -26,14 +26,14 @@ char8_t tString::EmptyChar = '\0';
 
 tString::operator uint32()
 {
-	return tHash::tHashStringFast32(TextData);
+	return tHash::tHashStringFast32(CodeUnits);
 
 }
 
 
 tString::operator uint32() const
 {
-	return tHash::tHashStringFast32(TextData);
+	return tHash::tHashStringFast32(CodeUnits);
 }
 
 
@@ -47,7 +47,7 @@ tString tString::Left(const char c) const
 
 	// Remember, this zeros the memory, so tStrncpy not dealing with the terminating null is ok.
 	tString buf(pos);
-	tStd::tStrncpy(buf.TextData, TextData, pos);
+	tStd::tStrncpy(buf.CodeUnits, CodeUnits, pos);
 	return buf;
 }
 
@@ -64,7 +64,7 @@ tString tString::Right(const char c) const
 
 	// Remember, this zeros the memory, so tStrncpy not dealing with the terminating null is ok.
 	tString buf(length - 1 - pos);
-	tStd::tStrncpy(buf.TextData, TextData + pos + 1, length - 1 - pos);
+	tStd::tStrncpy(buf.CodeUnits, CodeUnits + pos + 1, length - 1 - pos);
 	return buf;
 }
 
@@ -79,7 +79,7 @@ tString tString::Left(int count) const
 		count = length;
 
 	tString buf(count);
-	tStd::tStrncpy(buf.TextData, TextData, count);
+	tStd::tStrncpy(buf.CodeUnits, CodeUnits, count);
 	return buf;
 }
 
@@ -98,7 +98,7 @@ tString tString::Right(int count) const
 	}
 
 	tString buf(count);
-	tStd::tStrncpy(buf.TextData, TextData + start, count);
+	tStd::tStrncpy(buf.CodeUnits, CodeUnits + start, count);
 	return buf;
 }
 
@@ -113,7 +113,7 @@ tString tString::Mid(int start, int count) const
 		count = length - start;
 
 	tString buf(count);
-	tStd::tStrncpy(buf.TextData, TextData + start, count);
+	tStd::tStrncpy(buf.CodeUnits, CodeUnits + start, count);
 	return buf;
 }
 
@@ -130,17 +130,17 @@ tString tString::ExtractLeft(const char divider)
 
 	// Remember, this constructor zeros the memory, so strncpy not dealing with the terminating null is ok.
 	tString buf(pos);
-	tStd::tStrncpy(buf.TextData, TextData, pos);
+	tStd::tStrncpy(buf.CodeUnits, CodeUnits, pos);
 
 	int length = Length();
 	char8_t* newText = new char8_t[length-pos];
 
 	// This will append the null.
-	tStd::tStrncpy(newText, TextData+pos+1, length-pos);
+	tStd::tStrncpy(newText, CodeUnits+pos+1, length-pos);
 
-	if (TextData != &EmptyChar)
-		delete[] TextData;
-	TextData = newText;
+	if (CodeUnits != &EmptyChar)
+		delete[] CodeUnits;
+	CodeUnits = newText;
 
 	return buf;
 }
@@ -160,15 +160,15 @@ tString tString::ExtractRight(const char divider)
 
 	// Remember, this constructor zeros the memory, so strncpy not dealing with the terminating null is ok.
 	tString buf(wordLength);
-	tStd::tStrncpy(buf.TextData, TextData+pos+1, wordLength);
+	tStd::tStrncpy(buf.CodeUnits, CodeUnits+pos+1, wordLength);
 
 	char8_t* newText = new char8_t[pos+1];
-	tStd::tStrncpy(newText, TextData, pos);
+	tStd::tStrncpy(newText, CodeUnits, pos);
 	newText[pos] = '\0';
 
-	if (TextData != &EmptyChar)
-		delete[] TextData;
-	TextData = newText;
+	if (CodeUnits != &EmptyChar)
+		delete[] CodeUnits;
+	CodeUnits = newText;
 
 	return buf;
 }
@@ -184,22 +184,22 @@ tString tString::ExtractLeft(int count)
 		return tString();
 
 	tString left(count);
-	tStd::tStrncpy(left.TextData, TextData, count);
+	tStd::tStrncpy(left.CodeUnits, CodeUnits, count);
 	
 	// Source string is known not to be empty now
 	int newLength = length - count;
 	if (newLength == 0)
 	{
-		delete TextData;
-		TextData = &EmptyChar;
+		delete CodeUnits;
+		CodeUnits = &EmptyChar;
 		return left;
 	}
 
 	char8_t* newText = new char8_t[newLength+1];
-	tStd::tStrcpy(newText, TextData+count);
+	tStd::tStrcpy(newText, CodeUnits+count);
 
-	delete[] TextData;
-	TextData = newText;
+	delete[] CodeUnits;
+	CodeUnits = newText;
 
 	return left;
 }
@@ -219,24 +219,24 @@ tString tString::ExtractRight(int count)
 		return tString();
 
 	tString right(count);
-	tStd::tStrncpy(right.TextData, TextData + start, count);
+	tStd::tStrncpy(right.CodeUnits, CodeUnits + start, count);
 
 	// Source string is known not to be empty now
 	int newLength = length - count;
 	if (newLength == 0)
 	{
-		delete TextData;
-		TextData = &EmptyChar;
+		delete CodeUnits;
+		CodeUnits = &EmptyChar;
 		return right;
 	}
 
 	char8_t* newText = new char8_t[newLength+1];
-	TextData[length - count] = '\0';
+	CodeUnits[length - count] = '\0';
 
-	tStd::tStrcpy(newText, TextData);
+	tStd::tStrcpy(newText, CodeUnits);
 
-	delete[] TextData;
-	TextData = newText;
+	delete[] CodeUnits;
+	CodeUnits = newText;
 
 	return right;
 }
@@ -244,20 +244,20 @@ tString tString::ExtractRight(int count)
 
 tString tString::ExtractLeft(const char* prefix)
 {
-	if (!TextData || (TextData == &EmptyChar) || !prefix)
+	if (!CodeUnits || (CodeUnits == &EmptyChar) || !prefix)
 		return tString();
 
 	int len = tStd::tStrlen(prefix);
 	if ((len <= 0) || (Length() < len))
 		return tString();
 
-	if (tStd::tStrncmp(TextData, (const char8_t*)prefix, len) == 0)
+	if (tStd::tStrncmp(CodeUnits, (const char8_t*)prefix, len) == 0)
 	{
 		int oldlen = Length();
 		char8_t* newtext = new char8_t[oldlen-len+1];
-		tStd::tStrcpy(newtext, &TextData[len]);
-		delete[] TextData;
-		TextData = newtext;
+		tStd::tStrcpy(newtext, &CodeUnits[len]);
+		delete[] CodeUnits;
+		CodeUnits = newtext;
 		return tString(prefix);
 	}
 
@@ -267,16 +267,16 @@ tString tString::ExtractLeft(const char* prefix)
 
 tString tString::ExtractRight(const char* suffix)
 {
-	if (!TextData || (TextData == &EmptyChar) || !suffix)
+	if (!CodeUnits || (CodeUnits == &EmptyChar) || !suffix)
 		return tString();
 
 	int len = tStd::tStrlen(suffix);
 	if ((len <= 0) || (Length() < len))
 		return tString();
 
-	if (tStd::tStrncmp(&TextData[Length()-len], (const char8_t*)suffix, len) == 0)
+	if (tStd::tStrncmp(&CodeUnits[Length()-len], (const char8_t*)suffix, len) == 0)
 	{
-		TextData[Length()-len] = '\0';
+		CodeUnits[Length()-len] = '\0';
 		return tString(suffix);
 	}
 
@@ -294,24 +294,24 @@ tString tString::ExtractMid(int start, int count)
 		count = length - start;
 
 	tString mid(count);
-	tStd::tStrncpy(mid.TextData, TextData + start, count);
+	tStd::tStrncpy(mid.CodeUnits, CodeUnits + start, count);
 
 	int newLength = length - count;
 	if(newLength == 0)
 	{
-		delete TextData;
-		TextData = &EmptyChar;
+		delete CodeUnits;
+		CodeUnits = &EmptyChar;
 		return mid;
 	}
 
 	char8_t* newText = new char8_t[newLength+1];
 	newText[newLength] = '\0';
 
-	tStd::tStrncpy(newText, TextData, start);
-	tStd::tStrncpy(newText+start, TextData+start+count, newLength-start);
+	tStd::tStrncpy(newText, CodeUnits, start);
+	tStd::tStrncpy(newText+start, CodeUnits+start+count, newLength-start);
 
-	delete[] TextData;
-	TextData = newText;
+	delete[] CodeUnits;
+	CodeUnits = newText;
 
 	return mid;
 }
@@ -322,7 +322,7 @@ int tString::Replace(const char8_t* s, const char8_t* r)
 	if (!s || (s[0] == '\0'))
 		return 0;
 
-	int origTextLength = tStd::tStrlen(TextData);
+	int origTextLength = tStd::tStrlen(CodeUnits);
 	int searchStringLength = tStd::tStrlen(s);
 	int replaceStringLength = r ? tStd::tStrlen(r) : 0;
 	int replaceCount = 0;
@@ -331,9 +331,9 @@ int tString::Replace(const char8_t* s, const char8_t* r)
 	{
 		// Since the replacement string is a different size, we'll need to reallocate
 		// out memory. We start by finding out how many replacements we will need to do.
-		char8_t* searchStart = TextData;
+		char8_t* searchStart = CodeUnits;
 
-		while (searchStart < (TextData + origTextLength))
+		while (searchStart < (CodeUnits + origTextLength))
 		{
 			char8_t* foundString = tStd::tStrstr(searchStart, s);
 			if (!foundString)
@@ -349,9 +349,9 @@ int tString::Replace(const char8_t* s, const char8_t* r)
 		int newTextLength = origTextLength + replaceCount*(replaceStringLength - searchStringLength);
 		if (!newTextLength)
 		{
-			if (TextData != &EmptyChar)
-				delete[] TextData;
-			TextData = &EmptyChar;
+			if (CodeUnits != &EmptyChar)
+				delete[] CodeUnits;
+			CodeUnits = &EmptyChar;
 			return replaceCount;
 		}
 
@@ -362,8 +362,8 @@ int tString::Replace(const char8_t* s, const char8_t* r)
 
 		int newTextWritePos = 0;
 
-		searchStart = TextData;
-		while (searchStart < (TextData + origTextLength))
+		searchStart = CodeUnits;
+		while (searchStart < (CodeUnits + origTextLength))
 		{
 			char8_t* foundString = tStd::tStrstr(searchStart, s);
 
@@ -384,17 +384,17 @@ int tString::Replace(const char8_t* s, const char8_t* r)
 			searchStart = foundString + searchStringLength;
 		}
 
-		if (TextData != &EmptyChar)
-			delete[] TextData;
-		TextData = newText;
+		if (CodeUnits != &EmptyChar)
+			delete[] CodeUnits;
+		CodeUnits = newText;
 	}
 	else
 	{
 		// In this case the replacement string is exactly the same length at the search string.
 		// Much easier to deal with and no need for memory allocation.
-		char8_t* searchStart = TextData;
+		char8_t* searchStart = CodeUnits;
 
-		while (searchStart < (TextData + origTextLength))
+		while (searchStart < (CodeUnits + origTextLength))
 		{
 			char8_t* foundString = tStd::tStrstr(searchStart, s);
 			if (foundString)
@@ -423,9 +423,9 @@ int tString::Remove(const char c)
 	// This operation can be done in place.
 	for (int i = 0; i < Length(); i++)
 	{
-		if (TextData[i] != c)
+		if (CodeUnits[i] != c)
 		{
-			TextData[destIndex] = TextData[i];
+			CodeUnits[destIndex] = CodeUnits[i];
 			destIndex++;
 		}
 		else
@@ -433,7 +433,7 @@ int tString::Remove(const char c)
 			numRemoved++;
 		}
 	}
-	TextData[destIndex] = '\0';
+	CodeUnits[destIndex] = '\0';
 
 	return numRemoved;
 }
@@ -441,17 +441,17 @@ int tString::Remove(const char c)
 
 int tString::RemoveLeading(const char* removeThese)
 {
-	if (!TextData || (TextData == &EmptyChar) || !removeThese)
+	if (!CodeUnits || (CodeUnits == &EmptyChar) || !removeThese)
 		return 0;
 
 	int cnt = 0;
-	while (TextData[cnt])
+	while (CodeUnits[cnt])
 	{
 		bool matches = false;
 		int j = 0;
 		while (removeThese[j] && !matches)
 		{
-			if (removeThese[j] == TextData[cnt])
+			if (removeThese[j] == CodeUnits[cnt])
 				matches = true;
 			j++;
 		}
@@ -465,9 +465,9 @@ int tString::RemoveLeading(const char* removeThese)
 	{
 		int oldlen = Length();
 		char8_t* newtext = new char8_t[oldlen-cnt+1];
-		tStd::tStrcpy(newtext, &TextData[cnt]);
-		delete[] TextData;
-		TextData = newtext;
+		tStd::tStrcpy(newtext, &CodeUnits[cnt]);
+		delete[] CodeUnits;
+		CodeUnits = newtext;
 	}
 
 	return cnt;
@@ -476,7 +476,7 @@ int tString::RemoveLeading(const char* removeThese)
 
 int tString::RemoveTrailing(const char* removeThese)
 {
-	if (!TextData || (TextData == &EmptyChar) || !removeThese)
+	if (!CodeUnits || (CodeUnits == &EmptyChar) || !removeThese)
 		return 0;
 
 	int oldlen = Length();
@@ -488,7 +488,7 @@ int tString::RemoveTrailing(const char* removeThese)
 		int j = 0;
 		while (removeThese[j] && !matches)
 		{
-			if (removeThese[j] == TextData[i])
+			if (removeThese[j] == CodeUnits[i])
 				matches = true;
 			j++;
 		}
@@ -498,33 +498,33 @@ int tString::RemoveTrailing(const char* removeThese)
 			break;
 	}
 	int numRemoved = oldlen - i;
-	TextData[i+1] = '\0';
+	CodeUnits[i+1] = '\0';
 
 	return numRemoved;
 }
 
 
-int tString::GetUTF16(char16_t* dst, bool incNullTerminator)
+int tString::GetUTF16(char16_t* dst, bool incNullTerminator) const
 {
 	if (!dst)
-		return tStd::tUTF16s(nullptr, TextData) + (incNullTerminator ? 1 : 0);
+		return tStd::tUTF16s(nullptr, CodeUnits) + (incNullTerminator ? 1 : 0);
 
 	if (incNullTerminator)
-		return tStd::tUTF16s(dst, TextData);
+		return tStd::tUTF16s(dst, CodeUnits);
 
-	return tStd::tUTF16(dst, TextData, Length());
+	return tStd::tUTF16(dst, CodeUnits, Length());
 }
 
 
-int tString::GetUTF32(char32_t* dst, bool incNullTerminator)
+int tString::GetUTF32(char32_t* dst, bool incNullTerminator) const
 {
 	if (!dst)
-		return tStd::tUTF32s(nullptr, TextData) + (incNullTerminator ? 1 : 0);
+		return tStd::tUTF32s(nullptr, CodeUnits) + (incNullTerminator ? 1 : 0);
 
 	if (incNullTerminator)
-		return tStd::tUTF32s(dst, TextData);
+		return tStd::tUTF32s(dst, CodeUnits);
 
-	return tStd::tUTF32(dst, TextData, Length());
+	return tStd::tUTF32(dst, CodeUnits, Length());
 }
 
 
@@ -539,12 +539,12 @@ int tString::SetUTF16(const char16_t* src, int srcLen)
 	{
 		int lenNeeded = tStd::tUTF8s(nullptr, src);
 		Reserve(lenNeeded, false);
-		return tStd::tUTF8s(TextData, src);
+		return tStd::tUTF8s(CodeUnits, src);
 	}
 	int lenNeeded = tStd::tUTF8(nullptr, src, srcLen);
 	Reserve(lenNeeded, false);
-	tStd::tUTF8(TextData, src, srcLen);
-	TextData[lenNeeded] = '\0';
+	tStd::tUTF8(CodeUnits, src, srcLen);
+	CodeUnits[lenNeeded] = '\0';
 	return lenNeeded;
 }
 
@@ -560,12 +560,12 @@ int tString::SetUTF32(const char32_t* src, int srcLen)
 	{
 		int lenNeeded = tStd::tUTF8s(nullptr, src);
 		Reserve(lenNeeded, false);
-		return tStd::tUTF8s(TextData, src);
+		return tStd::tUTF8s(CodeUnits, src);
 	}
 	int lenNeeded = tStd::tUTF8(nullptr, src, srcLen);
 	Reserve(lenNeeded, false);
-	tStd::tUTF8(TextData, src, srcLen);
-	TextData[lenNeeded] = '\0';
+	tStd::tUTF8(CodeUnits, src, srcLen);
+	CodeUnits[lenNeeded] = '\0';
 	return lenNeeded;
 }
 

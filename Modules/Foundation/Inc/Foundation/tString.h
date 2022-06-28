@@ -19,12 +19,18 @@
 #pragma once
 #include "Foundation/tStandard.h"
 #include "Foundation/tList.h"
+struct tStringUTF16;
+struct tStringUTF32;
 
 
 struct tString
 {
-	tString()																											{ TextData = &EmptyChar; }
+	tString()																											{ CodeUnits = &EmptyChar; }
 	tString(const tString&);
+	tString(const char16_t* src)																						{ CodeUnits = &EmptyChar; Set(src); }
+	tString(const char32_t* src)																						{ CodeUnits = &EmptyChar; Set(src); }
+	tString(const tStringUTF16& src)																					{ CodeUnits = &EmptyChar; Set(src); }
+	tString(const tStringUTF32& src)																					{ CodeUnits = &EmptyChar; Set(src); }
 
 	// Construct a string with enough room for length characters. Length+1 characters are reserved to make room for the
 	// null terminator. The reserved space is zeroed.
@@ -36,39 +42,45 @@ struct tString
 	tString(const char* s)																								: tString((const char8_t*)s) { }
 
 	// Note the difference here. A char8_t can't be guaranteed to store a unicode codepoint if the codepoint requires
-	// surrogates in the UTF-8 encoding. So, here we support char only which we use for ASCII characters (which are
-	// guaranteed not to need surrogtes in UFT-8).
+	// continuations in the UTF-8 encoding. So, here we support char only which we use for ASCII characters (which are
+	// guaranteed not to need continuation bytes in UFT-8).
 	tString(char);
 	virtual ~tString();
 
 	tString& operator=(const tString&);
 
-	bool IsEqual(const tString& s) const																				{ return !tStd::tStrcmp(TextData, s.TextData); }
-	bool IsEqual(const char8_t* s) const																				{ if (!s) return false; return !tStd::tStrcmp(TextData, s); }
-	bool IsEqual(const char* s) const																					{ if (!s) return false; return !tStd::tStrcmp(TextData, (char8_t*)s); }
-	bool IsEqualCI(const tString& s) const																				{ return !tStd::tStricmp(TextData, s.TextData); }
-	bool IsEqualCI(const char8_t* s) const																				{ if (!s) return false; return !tStd::tStricmp(TextData, s); }
-	bool IsEqualCI(const char* s) const																					{ if (!s) return false; return !tStd::tStricmp(TextData, (char8_t*)s); }
+	bool IsEqual(const tString& s) const																				{ return !tStd::tStrcmp(CodeUnits, s.CodeUnits); }
+	bool IsEqual(const char8_t* s) const																				{ if (!s) return false; return !tStd::tStrcmp(CodeUnits, s); }
+	bool IsEqual(const char* s) const																					{ if (!s) return false; return !tStd::tStrcmp(CodeUnits, (char8_t*)s); }
+	bool IsEqualCI(const tString& s) const																				{ return !tStd::tStricmp(CodeUnits, s.CodeUnits); }
+	bool IsEqualCI(const char8_t* s) const																				{ if (!s) return false; return !tStd::tStricmp(CodeUnits, s); }
+	bool IsEqualCI(const char* s) const																					{ if (!s) return false; return !tStd::tStricmp(CodeUnits, (char8_t*)s); }
 
 	// These allow for implicit conversion to a UTF-8 character pointer. By not including implicit casts to const char*
 	// we are encouraging further proper use of char8_t. You can either make the function you are calling take the
 	// proper UTF-* type, or explicitly call Chs() or Txt() to get an old char-based pointer.
-	operator const char8_t*()																							{ return TextData; }
-	operator const char8_t*() const																						{ return TextData; }
+	operator const char8_t*()																							{ return CodeUnits; }
+	operator const char8_t*() const																						{ return CodeUnits; }
 
 	explicit operator uint32();
 	explicit operator uint32() const;
 
-	char8_t& operator[](int i)		/* This may be somewhat meaningless if surrogates need for the index. */			{ return TextData[i]; }
+	char8_t& operator[](int i)		/* This may be somewhat meaningless if continuations needed at the index. */		{ return CodeUnits[i]; }
 	friend tString operator+(const tString& prefix, const tString& suffix);
 	tString& operator+=(const tString&);
 
 	void Set(const char8_t*);
 	void Set(const char* s)																								{ Set((const char8_t*)s); }
-	int Length() const				/* The length in char8_t's, not the display length (which is not that useful). */	{ return int(tStd::tStrlen(TextData)); }
-	bool IsEmpty() const																								{ return (TextData == &EmptyChar) || !tStd::tStrlen(TextData); }
+
+	void Set(const char16_t* src)																						{ SetUTF16(src); }
+	void Set(const char32_t* src)																						{ SetUTF32(src); }
+	void Set(const tStringUTF16& src);
+	void Set(const tStringUTF32& src);
+
+	int Length() const				/* The length in char8_t's, not the display length (which is not that useful). */	{ return int(tStd::tStrlen(CodeUnits)); }
+	bool IsEmpty() const																								{ return (CodeUnits == &EmptyChar) || !tStd::tStrlen(CodeUnits); }
 	bool IsValid() const			/* returns true is string is not empty. */											{ return !IsEmpty(); }
-	void Clear()																										{ if (TextData != &EmptyChar) delete[] TextData; TextData = &EmptyChar; }
+	void Clear()																										{ if (CodeUnits != &EmptyChar) delete[] CodeUnits; CodeUnits = &EmptyChar; }
 
 	bool IsAlphabetic(bool includeUnderscore = true) const;
 	bool IsNumeric(bool includeDecimal = false) const;
@@ -78,9 +90,8 @@ struct tString
 	void Reserve(int length, bool zeroMemory = true);
 
 	// These only work well for ASCII strings as vars like 'count' are indexes into the text data and are not
-	// 'surrogate-aware'. This comment applies to all below functions with the words 'Left', 'Right', and 'Mid' in them
-	// except for functions that take in a char8_t* or char* prefix or suffix. Those work for UTF-8 as well as ASCII.
-
+	// 'continuation-aware'. This comment applies to all below functions with the words 'Left', 'Right', and 'Mid' in
+	// them except for functions that take in a char8_t* or char* prefix or suffix. Those work for ASCII and UTF-8..
 	tString Left(const char marker = ' ') const;			// Returns a tString of the characters before the first marker. Returns the entire string if marker was not found.
 	tString Right(const char marker = ' ') const;			// Same as Left but chars after last marker.
 	tString Left(int count) const;							// Returns a tString of the first count chars. Return what's available if count > length.
@@ -115,18 +126,19 @@ struct tString
 	// available is extracted.
 	tString ExtractMid(int start, int count);
 
-	// Accesses the raw UTF-8 bytes represented by the 'official' unsigned UTF-8 character datatype char8_t.
-	char8_t* Text()																										{ return TextData; }
-	const char8_t* Chars() const																						{ return TextData; }	
-	const char8_t* Charz() const	/* Like Chars() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : TextData; }
+	// Accesses the raw UTF-8 codeunits represented by the 'official' unsigned UTF-8 character datatype char8_t.
+	char8_t* Text()																										{ return CodeUnits; }
+	char8_t* Units() const			/* Same as Chars but uses unicode naming, Code Units (that make the Code Points. */	{ return CodeUnits; }
+	const char8_t* Chars() const																						{ return CodeUnits; }
+	const char8_t* Charz() const	/* Like Chars() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : CodeUnits; }
 
 	// Many other functions and libraries that are UTF-8 compliant are not yet (and may never) use the proper char8_t
 	// type and use char* and const char*. These functions allow you to retrieve the tString using the char type.
 	// Use these with tPrintf and %s.
-	char* Txt()																											{ return (char*)TextData; }
-	const char* Chs() const																								{ return (const char*)TextData; }
-	const char* Chz() const			/* Like Chs() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : (const char*)TextData; }
-	const char* Pod() const			/* Plain Old Data */																{ return (const char*)TextData; }
+	char* Txt()																											{ return (char*)CodeUnits; }
+	const char* Chs() const																								{ return (const char*)CodeUnits; }
+	const char* Chz() const			/* Like Chs() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : (const char*)CodeUnits; }
+	const char* Pod() const			/* Plain Old Data */																{ return (const char*)CodeUnits; }
 
 	// Returns index of first/last occurrence of char in the string. -1 if not found. Finds last if backwards flag is
 	// set. The starting point may be specified. If backwards is false, the search proceeds forwards from the starting
@@ -134,7 +146,7 @@ struct tString
 	// search and length-1 is the starting point for a backwards search. Here is where UTF-8 is really cool, since
 	// ASCII bytes do not occur when encoding non-ASCII code-points into UTF-8, this function can still just do a linear
 	// search of all the characters. Pretty neat. What you can't do with this function is search for a codepoint that
-	// requires surrogate bytes in UTF-8. i.e. Since the input is a const char, char must be ASCII.
+	// requires continuation bytes in UTF-8. i.e. Since the input is a const char, char must be ASCII.
 	//
 	// @todo I like the idea of supporting UTF searches for particular codepoints etc by inputting the UTF-32
 	// representation (using a char32_t) where necessary -- we'd just need to decode each codepoint in UTF-8 to the
@@ -183,8 +195,8 @@ struct tString
 
 	// ToUpper and ToLower both modify the object as well as return a reference to it. Returning a reference makes it
 	// easy to string together expressions such as: if (name.ToLower() == "ah")
-	tString& ToUpper()																									{ tStd::tStrupr(TextData); return *this; }
-	tString& ToLower()																									{ tStd::tStrlwr(TextData); return *this; }
+	tString& ToUpper()																									{ tStd::tStrupr(CodeUnits); return *this; }
+	tString& ToLower()																									{ tStd::tStrlwr(CodeUnits); return *this; }
 
 	// These do not modify the string. They return a new one.
 	tString Upper() const																								{ tString s(*this); s.ToUpper(); return s; }
@@ -198,18 +210,18 @@ struct tString
 	// Base 8  prefixes: o O 0o 0O @
 	// Base 2  prefixes: b B 0b 0B
 	int GetAsInt(int base = -1) const																					{ return GetAsInt32(base); }
-	int32 GetAsInt32(int base = -1) const																				{ return tStd::tStrtoi32(TextData, base); }
-	int64 GetAsInt64(int base = -1) const																				{ return tStd::tStrtoi64(TextData, base); }
+	int32 GetAsInt32(int base = -1) const																				{ return tStd::tStrtoi32(CodeUnits, base); }
+	int64 GetAsInt64(int base = -1) const																				{ return tStd::tStrtoi64(CodeUnits, base); }
 	uint GetAsUInt(int base = -1) const																					{ return GetAsUInt32(base); }
-	uint32 GetAsUInt32(int base = -1) const																				{ return tStd::tStrtoui32(TextData, base); }
-	uint64 GetAsUInt64(int base = -1) const																				{ return tStd::tStrtoui64(TextData, base); }
+	uint32 GetAsUInt32(int base = -1) const																				{ return tStd::tStrtoui32(CodeUnits, base); }
+	uint64 GetAsUInt64(int base = -1) const																				{ return tStd::tStrtoui64(CodeUnits, base); }
 
 	// Case insensitive. Interprets "true", "t", "yes", "y", "on", "enable", "enabled", "1", "+", and strings that
 	// represent non-zero integers as boolean true. Otherwise false.
-	bool GetAsBool() const																								{ return tStd::tStrtob(TextData); }
+	bool GetAsBool() const																								{ return tStd::tStrtob(CodeUnits); }
 
-	float GetAsFloat() const									/* Base 10 interpretation only. */						{ return tStd::tStrtof(TextData); }
-	double GetAsDouble() const									/* Base 10 interpretation only. */						{ return tStd::tStrtod(TextData); }
+	float GetAsFloat() const									/* Base 10 interpretation only. */						{ return tStd::tStrtof(CodeUnits); }
+	double GetAsDouble() const									/* Base 10 interpretation only. */						{ return tStd::tStrtod(CodeUnits); }
 
 	// Shorter synonyms.
 	int AsInt(int base = -1) const																						{ return GetAsInt(base); }
@@ -225,17 +237,17 @@ struct tString
 	// Same as above but return false on any parse error instead of just returning 0.
 	// @todo Float and double versions.
 	bool ToInt(int& v, int base = -1) const																				{ return ToInt32(v, base); }
-	bool ToInt32(int32& v, int base = -1) const																			{ return tStd::tStrtoi32(v, TextData, base); }
-	bool ToInt64(int64& v, int base = -1) const																			{ return tStd::tStrtoi64(v, TextData, base); }
+	bool ToInt32(int32& v, int base = -1) const																			{ return tStd::tStrtoi32(v, CodeUnits, base); }
+	bool ToInt64(int64& v, int base = -1) const																			{ return tStd::tStrtoi64(v, CodeUnits, base); }
 	bool ToUInt(uint& v, int base = -1) const																			{ return ToUInt32(v, base); }
-	bool ToUInt32(uint32& v, int base = -1) const																		{ return tStd::tStrtoui32(v, TextData, base); }
-	bool ToUInt64(uint64& v, int base = -1) const																		{ return tStd::tStrtoui64(v, TextData, base); }
+	bool ToUInt32(uint32& v, int base = -1) const																		{ return tStd::tStrtoui32(v, CodeUnits, base); }
+	bool ToUInt64(uint64& v, int base = -1) const																		{ return tStd::tStrtoui64(v, CodeUnits, base); }
 
 	// tString UTF encoding/decoding functions. tString is encoded in UTF-8. These functions allow you to convert from
 	// tString to UTF-16/32. If dst is nullptr returns the number of charNs needed. If incNullTerminator is false that
 	// number needed will be one fewer. If dst is valid, writes the codeunits to dst and returns number charNs written.
-	int GetUTF16(char16_t* dst, bool incNullTerminator = true);
-	int GetUTF32(char32_t* dst, bool incNullTerminator = true);
+	int GetUTF16(char16_t* dst, bool incNullTerminator = true) const;
+	int GetUTF32(char32_t* dst, bool incNullTerminator = true) const;
 
 	// Sets the tString from a UTF codeunit array. If srcLen is -1 assumes supplied array is null-terminated, otherwise
 	// specify how long it is. Returns new length (not including null terminator) of the tString.
@@ -244,9 +256,68 @@ struct tString
 
 protected:
 	// By using the char8_t we are indicating the data is stored in UTF-8 encoding. Note that unlike char, a char8_t
-	// is guaranteed to be unsigned, as well as a distinct type.
-	char8_t* TextData;
+	// is guaranteed to be unsigned, as well as a distinct type. In unicode, these are called code-units.
+	char8_t* CodeUnits;
 	static char8_t EmptyChar;										// All empty strings can use this.
+};
+
+
+// tStringUTF16 and tStringUTF32 are not intended to be full-fledged string classes, but they are handy to marshall data
+// to and from OS calls that take or return these encodings. Primarily these abstract away the memory management for the
+// different encodings, since the encoding size depends on the string contents. You make construct a tStringUTFn from a
+// tString, and you may construct a tString from a tStringUTFn string.
+struct tStringUTF16
+{
+	tStringUTF16()																										{ }
+	explicit tStringUTF16(int length);	// Reserves length+1 char32_t code units (+1 for terminator).
+	tStringUTF16(const char16_t* src)																					{ Set(src); }
+	tStringUTF16(const char8_t* src)																					{ Set(src); }
+	tStringUTF16(const tStringUTF16& src)																				{ Set(src); }
+	tStringUTF16(const tString& src)																					{ Set(src); }
+	~tStringUTF16()																										{ delete[] CodeUnits; }
+
+	void Clear()																										{ delete[] CodeUnits; CodeUnits = nullptr; }
+	bool IsValid() const																								{ return (Length() > 0); }
+	int Length() const																									{ return CodeUnits ? tStd::tStrlen(CodeUnits) : 0; }
+	const char16_t* Chars() const																						{ return CodeUnits; }
+	char16_t* Units() const																								{ return CodeUnits; }
+	#if defined(PLATFORM_WINDOWS)
+	wchar_t* GetLPWSTR() const																							{ return (wchar_t*)CodeUnits; }
+	#endif
+
+	void Set(const char16_t* src);
+	void Set(const char8_t* src);
+	void Set(const tStringUTF16& src);
+	void Set(const tString& src);
+
+private:
+	char16_t* CodeUnits = nullptr;
+};
+
+
+struct tStringUTF32
+{
+	tStringUTF32()																										{ }
+	explicit tStringUTF32(int length);	// Reserves length char32_t+1 code units (+1 for terminator).
+	tStringUTF32(const char32_t* src)																					{ Set(src); }
+	tStringUTF32(const char8_t* src)																					{ Set(src); }
+	tStringUTF32(const tStringUTF32& src)																				{ Set(src); }
+	tStringUTF32(const tString& src)																					{ Set(src); }
+	~tStringUTF32()																										{ delete[] CodeUnits; }
+
+	void Clear()																										{ delete[] CodeUnits; CodeUnits = nullptr; }
+	bool IsValid() const																								{ return (Length() > 0); }
+	int Length() const																									{ return CodeUnits ? tStd::tStrlen(CodeUnits) : 0; }
+	const char32_t* Chars() const																						{ return CodeUnits; }
+	char32_t* Units() const																								{ return CodeUnits; }
+
+	void Set(const char32_t* src);
+	void Set(const char8_t* src);
+	void Set(const tStringUTF32& src);
+	void Set(const tString& src);
+
+private:
+	char32_t* CodeUnits = nullptr;
 };
 
 
@@ -301,28 +372,28 @@ inline tString::tString(const char8_t* t)
 		int len = int(tStd::tStrlen(t));
 		if (len > 0)
 		{
-			TextData = new char8_t[1 + len];
-			tStd::tStrcpy(TextData, t);
+			CodeUnits = new char8_t[1 + len];
+			tStd::tStrcpy(CodeUnits, t);
 			return;
 		}
 	}
 
-	TextData = &EmptyChar;
+	CodeUnits = &EmptyChar;
 }
 
 
 inline tString::tString(const tString& s)
 {
-	TextData = new char8_t[1 + tStd::tStrlen(s.TextData)];
-	tStd::tStrcpy(TextData, s.TextData);
+	CodeUnits = new char8_t[1 + tStd::tStrlen(s.CodeUnits)];
+	tStd::tStrcpy(CodeUnits, s.CodeUnits);
 }
 
 
 inline tString::tString(char c)
 {
-	TextData = new char8_t[2];
-	TextData[0] = c;
-	TextData[1] = '\0';
+	CodeUnits = new char8_t[2];
+	CodeUnits[0] = c;
+	CodeUnits[1] = '\0';
 }
 
 
@@ -330,36 +401,36 @@ inline tString::tString(int length)
 {
 	if (!length)
 	{
-		TextData = &EmptyChar;
+		CodeUnits = &EmptyChar;
 	}
 	else
 	{
-		TextData = new char8_t[1+length];
-		tStd::tMemset(TextData, 0, 1+length);
+		CodeUnits = new char8_t[1+length];
+		tStd::tMemset(CodeUnits, 0, 1+length);
 	}
 }
 
 
 inline void tString::Reserve(int length, bool zeroMemory)
 {
-	if (TextData != &EmptyChar)
-		delete[] TextData;
+	if (CodeUnits != &EmptyChar)
+		delete[] CodeUnits;
 
 	if (length <= 0)
 	{
-		TextData = &EmptyChar;
+		CodeUnits = &EmptyChar;
 		return;
 	}
 
-	TextData = new char8_t[length+1];
+	CodeUnits = new char8_t[length+1];
 	if (zeroMemory)
-		tStd::tMemset(TextData, 0, length+1);
+		tStd::tMemset(CodeUnits, 0, length+1);
 }
 
 
 inline int tString::CountChar(char c) const
 {
-	char8_t* i = TextData;
+	char8_t* i = CodeUnits;
 	int count = 0;
 	while (*i != '\0')
 		count += (*i++ == c) ? 1 : 0;
@@ -378,8 +449,20 @@ inline void tString::Set(const char8_t* s)
 	if (len <= 0)
 		return;
 
-	TextData = new char8_t[1 + len];
-	tStd::tStrcpy(TextData, s);
+	CodeUnits = new char8_t[1 + len];
+	tStd::tStrcpy(CodeUnits, s);
+}
+
+
+inline void tString::Set(const tStringUTF16& src)
+{
+	Set(src.Units());
+}
+
+
+inline void tString::Set(const tStringUTF32& src)
+{
+	Set(src.Units());
 }
 
 
@@ -388,11 +471,11 @@ inline tString& tString::operator=(const tString& src)
 	if (this == &src)
 		return *this;
 
-	if (TextData != &EmptyChar)
-		delete[] TextData;
+	if (CodeUnits != &EmptyChar)
+		delete[] CodeUnits;
 
-	TextData = new char8_t[1 + src.Length()];
-	tStd::tStrcpy(TextData, src.TextData);
+	CodeUnits = new char8_t[1 + src.Length()];
+	tStd::tStrcpy(CodeUnits, src.CodeUnits);
 	return *this;
 }
 
@@ -400,8 +483,8 @@ inline tString& tString::operator=(const tString& src)
 inline tString operator+(const tString& preStr, const tString& sufStr)
 {
 	tString buf( preStr.Length() + sufStr.Length() );
-	tStd::tStrcpy(buf.TextData, preStr.TextData);
-	tStd::tStrcpy(buf.TextData + preStr.Length(), sufStr.TextData);
+	tStd::tStrcpy(buf.CodeUnits, preStr.CodeUnits);
+	tStd::tStrcpy(buf.CodeUnits + preStr.Length(), sufStr.CodeUnits);
 
 	return buf;
 }
@@ -413,14 +496,14 @@ inline tString& tString::operator+=(const tString& sufStr)
 		return *this;
 	else
 	{
-		char8_t* newTextData = new char8_t[ Length() + sufStr.Length() + 1 ];
-		tStd::tStrcpy(newTextData, TextData);
-		tStd::tStrcpy(newTextData + Length(), sufStr.TextData);
+		char8_t* newCodeUnits = new char8_t[ Length() + sufStr.Length() + 1 ];
+		tStd::tStrcpy(newCodeUnits, CodeUnits);
+		tStd::tStrcpy(newCodeUnits + Length(), sufStr.CodeUnits);
 
-		if (TextData != &EmptyChar)
-			delete[] TextData;
+		if (CodeUnits != &EmptyChar)
+			delete[] CodeUnits;
 
-		TextData = newTextData;
+		CodeUnits = newCodeUnits;
 		return *this;
 	}
 }
@@ -428,10 +511,10 @@ inline tString& tString::operator+=(const tString& sufStr)
 
 inline bool tString::IsAlphabetic(bool includeUnderscore) const 
 {
-	if (TextData == &EmptyChar)
+	if (CodeUnits == &EmptyChar)
 		return false;
 
-	const char8_t* c = TextData;
+	const char8_t* c = CodeUnits;
 	while (*c)
 	{
 		if ( !((*c >= 'A' && *c <= 'Z') || (*c >= 'a' && *c <= 'z') || (includeUnderscore && *c == '_')) )
@@ -445,10 +528,10 @@ inline bool tString::IsAlphabetic(bool includeUnderscore) const
 
 inline bool tString::IsNumeric(bool includeDecimal) const 
 {
-	if (TextData == &EmptyChar)
+	if (CodeUnits == &EmptyChar)
 		return false;
 
-	const char8_t* c = TextData;
+	const char8_t* c = CodeUnits;
 	while (*c)
 	{
 		if ( !((*c >= '0' && *c <= '9') || (includeDecimal && *c == '.')) )
@@ -468,16 +551,16 @@ inline bool tString::IsAlphaNumeric(bool includeUnderscore, bool includeDecimal)
 
 inline int tString::FindAny(const char* chars) const
 {
-	if (TextData == &EmptyChar)
+	if (CodeUnits == &EmptyChar)
 		return -1;
 	
 	int i = 0;
-	while (TextData[i])
+	while (CodeUnits[i])
 	{
 		int j = 0;
 		while (chars[j])
 		{
-			if (chars[j] == TextData[i])
+			if (chars[j] == CodeUnits[i])
 				return i;
 			j++;
 		}
@@ -502,20 +585,20 @@ inline int tString::FindChar(const char c, bool reverse, int start) const
 	if (reverse)
 	{
 		for (int i = start; i >= 0; i--)
-			if (TextData[i] == c)
+			if (CodeUnits[i] == c)
 			{
-				pc = TextData + i;
+				pc = CodeUnits + i;
 				break;
 			}
 	}
 	else
-		pc = tStd::tStrchr(&TextData[start], c);
+		pc = tStd::tStrchr(&CodeUnits[start], c);
 
 	if (!pc)
 		return -1;
 
 	// Returns the index.
-	return int(pc - TextData);
+	return int(pc - CodeUnits);
 }
 
 
@@ -526,9 +609,9 @@ inline int tString::FindString(const char8_t* s, int start) const
 		return -1;
 
 	tAssert((start >= 0) && (start < Length()));
-	const char8_t* found = tStd::tStrstr(&TextData[start], s);
+	const char8_t* found = tStd::tStrstr(&CodeUnits[start], s);
 	if (found)
-		return int(found - TextData);
+		return int(found - CodeUnits);
 
 	return -1;
 }
@@ -539,10 +622,10 @@ inline int tString::Replace(const char c, const char r)
 	int numReplaced = 0;
 	for (int i = 0; i < Length(); i++)
 	{
-		if (TextData[i] == c)
+		if (CodeUnits[i] == c)
 		{
 			numReplaced++;
-			TextData[i] = r;
+			CodeUnits[i] = r;
 		}
 	}
 
@@ -552,8 +635,122 @@ inline int tString::Replace(const char c, const char r)
 
 inline tString::~tString()
 {
-	if (TextData != &EmptyChar)
-		delete[] TextData;
+	if (CodeUnits != &EmptyChar)
+		delete[] CodeUnits;
+}
+
+
+inline tStringUTF16::tStringUTF16(int length)
+{
+	if (!length)
+	{
+		CodeUnits = nullptr;
+	}
+	else
+	{
+		CodeUnits = new char16_t[1+length];
+		tStd::tMemset(CodeUnits, 0, 2*(1+length));
+	}
+}
+
+
+inline void tStringUTF16::Set(const char16_t* src)
+{
+	Clear();
+	int len = src ? tStd::tStrlen(src) : 0;
+	if (len)
+	{
+		CodeUnits = new char16_t[len+1];
+		for (int cu = 0; cu < len; cu++)
+			CodeUnits[cu] = src[cu];
+		CodeUnits[len] = 0;
+	}
+}
+
+
+inline void tStringUTF16::Set(const char8_t* src)
+{
+	Clear();
+	int len = src ? tStd::tStrlen(src) : 0;
+	if (len)
+	{
+		int len16 = tStd::tUTF16s(nullptr, src);
+		CodeUnits = new char16_t[len16+1];
+		tStd::tUTF16s(CodeUnits, src);
+	}
+}
+
+
+inline void tStringUTF16::Set(const tStringUTF16& src)
+{
+	Clear();
+	if (src.IsValid())
+		Set(src.Chars());
+}
+
+
+inline void tStringUTF16::Set(const tString& src)
+{
+	Clear();
+	if (src.IsValid())
+		Set(src.Chars());
+}
+
+
+inline tStringUTF32::tStringUTF32(int length)
+{
+	if (!length)
+	{
+		CodeUnits = nullptr;
+	}
+	else
+	{
+		CodeUnits = new char32_t[1+length];
+		tStd::tMemset(CodeUnits, 0, 4*(1+length));
+	}
+}
+
+
+inline void tStringUTF32::Set(const char32_t* src)
+{
+	Clear();
+	int len = src ? tStd::tStrlen(src) : 0;
+	if (len)
+	{
+		CodeUnits = new char32_t[len+1];
+		for (int cu = 0; cu < len; cu++)
+			CodeUnits[cu] = src[cu];
+		CodeUnits[len] = 0;
+	}
+}
+
+
+inline void tStringUTF32::Set(const char8_t* src)
+{
+	Clear();
+	int len = src ? tStd::tStrlen(src) : 0;
+	if (len)
+	{
+		int len32 = tStd::tUTF32s(nullptr, src);
+		CodeUnits = new char32_t[len32+1];
+		tStd::tUTF32s(CodeUnits, src);
+	}
+}
+
+
+inline void tStringUTF32::Set(const tStringUTF32& src)
+{
+	Clear();
+	if (src.IsValid())
+		Set(src.Chars());
+}
+
+
+inline void tStringUTF32::Set(const tString& src)
+{
+	Clear();
+	if (src.IsValid())
+		Set(src.Chars());
 }
 
 
@@ -562,10 +759,10 @@ inline tStringItem& tStringItem::operator=(const tStringItem& src)
 	if (this == &src)
 		return *this;
 
-	if (TextData != &EmptyChar)
-		delete[] TextData;
+	if (CodeUnits != &EmptyChar)
+		delete[] CodeUnits;
 
-	TextData = new char8_t[1 + src.Length()];
-	tStd::tStrcpy(TextData, src.TextData);
+	CodeUnits = new char8_t[1 + src.Length()];
+	tStd::tStrcpy(CodeUnits, src.CodeUnits);
 	return *this;
 }

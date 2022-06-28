@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 #include "Foundation/tPlatform.h"
+#include "Foundation/tStandard.h"
 #ifdef PLATFORM_WINDOWS
 #include <signal.h>
 #include <Windows.h>
@@ -53,9 +54,13 @@ void tAssertPrintBreak(const char* expr, const char* fileName, int lineNum, cons
 
 	#ifdef PLATFORM_WINDOWS
 	// In windows we bring up a message box.
+	// @todo Using more stack than is needed for the UTF-16.
+	char16_t utfmsg[assertMessageSize];
+	tStd::tUTF16s(utfmsg, (char8_t*)message);
+
 	int retCode = ::MessageBox
 	(
-		0, message, "Tacent Assert",
+		0, LPWSTR(utfmsg), LPWSTR(u"Tacent Assert"),
 		MB_ABORTRETRYIGNORE | MB_ICONHAND | MB_SETFOREGROUND | MB_TASKMODAL
 	);
 
