@@ -128,9 +128,9 @@ struct tString
 
 	// Accesses the raw UTF-8 codeunits represented by the 'official' unsigned UTF-8 character datatype char8_t.
 	char8_t* Text()																										{ return CodeUnits; }
-	char8_t* Units() const			/* Same as Chars but uses unicode naming, Code Units (that make the Code Points. */	{ return CodeUnits; }
 	const char8_t* Chars() const																						{ return CodeUnits; }
 	const char8_t* Charz() const	/* Like Chars() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : CodeUnits; }
+	char8_t* Units() const			/* Same as Text but uses unicode naming, Code Units (that make the Code Points. */	{ return CodeUnits; }
 
 	// Many other functions and libraries that are UTF-8 compliant are not yet (and may never) use the proper char8_t
 	// type and use char* and const char*. These functions allow you to retrieve the tString using the char type.
@@ -340,6 +340,8 @@ public:
 
 	// The tStringItem copy cons is missing, because as a list item can only be on one list at a time.
 	tStringItem(const tString& s)																						: tString(s) { }
+	tStringItem(const tStringUTF16& s)																					: tString(s) { }
+	tStringItem(const tStringUTF32& s)																					: tString(s) { }
 	tStringItem(int length)																								: tString(length) { }
 	tStringItem(const char8_t* c)																						: tString(c) { }
 	tStringItem(char c)																									: tString(c) { }

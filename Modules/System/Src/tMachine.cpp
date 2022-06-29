@@ -73,9 +73,10 @@ bool tSystem::tSupportsSSE2()
 tString tSystem::tGetCompName()
 {
 	#ifdef PLATFORM_WINDOWS
-	char16_t name[128];
-	ulong nameSize = 128;
 
+	ulong nameSize = 128;
+	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	char16_t name[128];
 	WinBool success = GetComputerName(LPWSTR(name), &nameSize);
 	if (success)
 	{
@@ -83,6 +84,13 @@ tString tSystem::tGetCompName()
 		nameUTF8.SetUTF16(name);
 		return nameUTF8;
 	}
+
+	#else
+	char name[128];
+	WinBool success = GetComputerName(name, &nameSize);
+	if (success)
+		return name;
+	#endif
 
 	#else
 	char hostname[HOST_NAME_MAX];
@@ -141,7 +149,11 @@ bool tSystem::tOpenSystemFileExplorer(const tString& dir, const tString& file)
 	if (!tSystem::tDirExists(dir))
 	{
 		// 20D04FE0-3AEA-1069-A2D8-08002B30309D is the CLSID of "This PC" on Windows.
+		#ifdef TACENT_USE_UTF16_WINDOWS_API
 		ShellExecute(hWnd, LPWSTR(u"open"), LPWSTR(u"explorer"), LPWSTR(u"/n,::{20D04FE0-3AEA-1069-A2D8-08002B30309D}"), 0, SW_SHOWNORMAL);
+		#else
+		ShellExecute(hWnd, "open", "explorer", "/n,::{20D04FE0-3AEA-1069-A2D8-08002B30309D}", 0, SW_SHOWNORMAL);
+		#endif
 		return false;
 	}
 
@@ -150,13 +162,21 @@ bool tSystem::tOpenSystemFileExplorer(const tString& dir, const tString& file)
 		fullName.Replace('/', '\\');
 		tString options;
 		tsPrintf(options, "/select,\"%s\"", fullName.Chs());
+		#ifdef TACENT_USE_UTF16_WINDOWS_API
 		tStringUTF16 optionsUTF16(options);
 		ShellExecute(hWnd, LPWSTR(u"open"), LPWSTR(u"explorer"), optionsUTF16.GetLPWSTR(), 0, SW_SHOWNORMAL);
+		#else
+		ShellExecute(hWnd, "open", "explorer", options.Chs(), 0, SW_SHOWNORMAL);
+		#endif
 	}
 	else
 	{
+		#ifdef TACENT_USE_UTF16_WINDOWS_API
 		tStringUTF16 dirUTF16(dir);
 		ShellExecute(hWnd, LPWSTR(u"open"), dirUTF16.GetLPWSTR(), 0, dirUTF16.GetLPWSTR(), SW_SHOWNORMAL);
+		#else
+		ShellExecute(hWnd, "open", dir.Chs(), 0, dir.Chs(), SW_SHOWNORMAL);
+		#endif
 	}
 	return true;
 
