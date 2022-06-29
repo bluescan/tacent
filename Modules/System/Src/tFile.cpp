@@ -1029,7 +1029,6 @@ tString tSystem::tGetUpDir(const tString& path, int levels)
 tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 {
 	#if defined(PLATFORM_WINDOWS)
-	tString relLoc(MAX_PATH);
 	tAssert(basePath[ basePath.Length() - 1 ] == '/');
 	bool isDir = (path[ path.Length() - 1 ] == '/') ? true : false;
 
@@ -1038,7 +1037,7 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 
 	tString pathMod = path;
 	tPathWin(pathMod);
-	tStringUTF16 relLoc16(relLoc);
+	tStringUTF16 relLoc16(MAX_PATH);
 	tStringUTF16 basePathMod16(basePathMod);
 	tStringUTF16 pathMod16(pathMod);
 	int success = PathRelativePathTo
@@ -1050,6 +1049,7 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 	if (!success)
 		return tString();
 
+	tString relLoc(relLoc16);
 	tPathStd(relLoc);
 	if (relLoc[0] == '/')
 		return relLoc.Chs() + 1;
