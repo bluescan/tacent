@@ -43,9 +43,12 @@ function(tacent_target_compile_definitions PROJNAME)
 			$<$<CXX_COMPILER_ID:MSVC>:_CRT_SECURE_NO_DEPRECATE _LIB>
 			# $<$<PLATFORM_ID:Windows>:_ITERATOR_DEBUG_LEVEL=0>
 			$<$<PLATFORM_ID:Windows>:PLATFORM_WINDOWS>
-			#$<$<PLATFORM_ID:Windows>:UNICODE>		# C++	UFF-16
-			#$<$<PLATFORM_ID:Windows>:_UNICODE>		# C 	UTF-16
-			#$<$<PLATFORM_ID:Windows>:TACENT_USE_UTF16_WINDOWS_API>
+
+			# These should be configured with a cmake option.
+			$<$<PLATFORM_ID:Windows>:UNICODE>		# C++	UFF-16
+			$<$<PLATFORM_ID:Windows>:_UNICODE>		# C 	UTF-16
+			$<$<PLATFORM_ID:Windows>:TACENT_USE_UTF16_WINDOWS_API>
+
 			$<$<PLATFORM_ID:Linux>:PLATFORM_LINUX>
 	)
 endfunction(tacent_target_compile_definitions)
