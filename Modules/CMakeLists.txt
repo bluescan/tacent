@@ -1,5 +1,12 @@
 project(Modules VERSION ${TACENT_VERSION})
 
+# option(BUILD_STATIC_LIBS "Build the static library" ON)
+if (TacentWindowsUTF16API)
+	message(STATUS "Tacent -- Windows UTF16 API.")
+else()
+	message(STATUS "Tacent -- Windows UTF8 API.")
+endif()
+
 add_subdirectory(Foundation)
 add_subdirectory(Math)
 add_subdirectory(System)
