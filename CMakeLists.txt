@@ -12,6 +12,15 @@ include("Modules/Foundation/Inc/Foundation/tVersion.cmake.h")
 project(Tacent VERSION "${TACENT_VERSION}" LANGUAGES C CXX)
 message(STATUS "Tacent -- ProjectName ${PROJECT_NAME} ProjectVersion ${PROJECT_VERSION}")
 
+# These are options that are shared between all modules. Thanks to CMP0077 the setting here is ignored
+# if a user of Tacent sets the option before doing the FetchContent.
+option(TACENT_UTF16_API_CALLS "Build Tacent With UTF16 API Calls" Off)
+if (TACENT_UTF16_API_CALLS)
+	message(STATUS "Tacent -- UTF16 API Calls.")
+else()
+	message(STATUS "Tacent -- UTF8 API Calls.")
+endif()
+
 # We want a better default for install prefix. It is bad form to be modifying
 # system files from a cmake build of anything. Really quite surprised someone
 # thinks the cmake defaults are good.

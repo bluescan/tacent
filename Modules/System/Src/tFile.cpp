@@ -230,7 +230,7 @@ int tSystem::tGetFileSize(const tString& filename)
 
 	Win32FindData fd;
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 fileUTF16(file);
 	WinHandle h = FindFirstFile(fileUTF16.GetLPWSTR(), &fd);
 	#else
@@ -389,7 +389,7 @@ bool tSystem::tFileExists(const tString& filename)
 	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
 	Win32FindData fd;
-	#ifdef TACENT_USE_UTF16_WINDOWS_API	
+	#ifdef TACENT_UTF16_API_CALLS	
 	tStringUTF16 fileUTF16(file);
 	WinHandle h = FindFirstFile(fileUTF16.GetLPWSTR(), &fd);
 	#else
@@ -434,7 +434,7 @@ bool tSystem::tDirExists(const tString& dirname)
 	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
 	Win32FindData fd;
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 dirUTF16(dir);
 	WinHandle h = FindFirstFile(dirUTF16.GetLPWSTR(), &fd);
 	#else
@@ -489,7 +489,7 @@ bool tSystem::tIsFileNewer(const tString& filenameA, const tString& filenameB)
 	tPathWin(fileB);
 
 	Win32FindData fd;
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 fileA16(fileA);
 	WinHandle h = FindFirstFile(fileA16.GetLPWSTR(), &fd);
 	#else
@@ -501,7 +501,7 @@ bool tSystem::tIsFileNewer(const tString& filenameA, const tString& filenameB)
 	FileTime timeA = fd.ftLastWriteTime;
 	FindClose(h);
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 fileB16(fileB);
 	h = FindFirstFile(fileB16.GetLPWSTR(), &fd);
 	#else
@@ -603,7 +603,7 @@ bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 
 	#ifdef PLATFORM_WINDOWS
 	Win32FindData fd;
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 file16(file);
 	WinHandle h = FindFirstFile(file16.GetLPWSTR(), &fd);
 	#else
@@ -769,7 +769,7 @@ bool tSystem::tGetFileDetails(tFileDetails& details, const tString& fullFileName
 		result = shellFolder2->GetDetailsOf(0, col, &shellDetail);
 		if (result == S_OK)
 		{
-			#ifdef TACENT_USE_UTF16_WINDOWS_API
+			#ifdef TACENT_UTF16_API_CALLS
 			tStringUTF16 title(33);
 			StrRetToBuf(&shellDetail.str, localPidl, title.GetLPWSTR(), 32);
 			#else
@@ -778,7 +778,7 @@ bool tSystem::tGetFileDetails(tFileDetails& details, const tString& fullFileName
 			#endif
 
 			// Get detail.
-			#ifdef TACENT_USE_UTF16_WINDOWS_API
+			#ifdef TACENT_UTF16_API_CALLS
 			tStringUTF16 detail(33);
 			#else
 			tString detail(33);
@@ -786,7 +786,7 @@ bool tSystem::tGetFileDetails(tFileDetails& details, const tString& fullFileName
 			result = shellFolder2->GetDetailsOf(localPidl, col, &shellDetail);
 			if (result == S_OK)
 			{
-				#ifdef TACENT_USE_UTF16_WINDOWS_API
+				#ifdef TACENT_UTF16_API_CALLS
 				StrRetToBuf(&shellDetail.str, localPidl, detail.GetLPWSTR(), 32);
 				#else
 				StrRetToBuf(&shellDetail.str, localPidl, detail.Txt(), 32);
@@ -822,7 +822,7 @@ void tSystem::tSetFileOpenAssoc(const tString& program, const tString& extension
 	keyString += "\\shell\\open\\command";
 
 	HKEY key;
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 keyString16(keyString);
 	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString16.GetLPWSTR(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
 	#else
@@ -837,7 +837,7 @@ void tSystem::tSetFileOpenAssoc(const tString& program, const tString& extension
 			options = tString(" ") + options + " ";
 		tString valString = tString("\"") + tSystem::tGetSimplifiedPath(program) + "\"" + options + "\"%1\"";
 		tPathWin(valString);
-		#ifdef TACENT_USE_UTF16_WINDOWS_API
+		#ifdef TACENT_UTF16_API_CALLS
 		RegSetValueEx(key, LPWSTR(u""), 0, REG_SZ, (uint8*)valString.Chs(), valString.Length()+1);
 		#else
 		RegSetValueEx(key, "", 0, REG_SZ, (uint8*)valString.Chs(), valString.Length()+1);
@@ -849,7 +849,7 @@ void tSystem::tSetFileOpenAssoc(const tString& program, const tString& extension
 	ext.ToLower();
 	keyString = "Software\\Classes\\.";
 	keyString += ext;
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 keyString16B(keyString);
 	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString16B.GetLPWSTR(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
 	#else
@@ -860,7 +860,7 @@ void tSystem::tSetFileOpenAssoc(const tString& program, const tString& extension
 		valString += baseName;
 
 		// REG_SZ means that the values in arg 5 is not UTF-16.
-		#ifdef TACENT_USE_UTF16_WINDOWS_API
+		#ifdef TACENT_UTF16_API_CALLS
 		RegSetValueEx(key, LPWSTR(u""), 0, REG_SZ, (const BYTE*)valString.Chs(), valString.Length()+1);
 		#else
 		RegSetValueEx(key, "", 0, REG_SZ, (uint8*)valString.Chs(), valString.Length()+1);
@@ -888,7 +888,7 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	tString keyString = "Software\\Classes\\.";
 	keyString += ext;
 	tString appName(127);
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 keyString16A(keyString);
 	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString16A.GetLPWSTR(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
 	#else
@@ -896,7 +896,7 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	#endif
 	{
 		ulong numBytesIO = 127;
-		#ifdef TACENT_USE_UTF16_WINDOWS_API
+		#ifdef TACENT_UTF16_API_CALLS
 		RegGetValue(key, LPCWSTR(u""), 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, appName.Text(), &numBytesIO);
 		#else
 		RegGetValue(key, "", 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, appName.Text(), &numBytesIO);
@@ -911,7 +911,7 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	keyString += appName;
 	keyString += "\\shell\\open\\command";
 	tString exeName(255);
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 keyString16B(keyString);
 	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString16B.GetLPWSTR(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
 	#else
@@ -919,7 +919,7 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	#endif
 	{
 		ulong numBytesIO = 255;
-		#ifdef TACENT_USE_UTF16_WINDOWS_API
+		#ifdef TACENT_UTF16_API_CALLS
 		RegGetValue(key, LPCWSTR(u""), 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, exeName.Txt(), &numBytesIO);
 		#else
 		RegGetValue(key, "", 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, exeName.Txt(), &numBytesIO);
@@ -1109,7 +1109,7 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 	tString pathMod = path;
 	tPathWin(pathMod);
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API	
+	#ifdef TACENT_UTF16_API_CALLS	
 	tStringUTF16 relLoc16(MAX_PATH);
 	tStringUTF16 basePathMod16(basePathMod);
 	tStringUTF16 pathMod16(pathMod);
@@ -1130,7 +1130,7 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 	if (!success)
 		return tString();
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tString relLoc(relLoc16);
 	#endif
 
@@ -1325,7 +1325,7 @@ bool tSystem::tIsReadOnly(const tString& fileName)
 	// This means that all attribute are apparently true!  This is very lame.  Thank goodness there aren't
 	// 32 possible attributes, or there could be real problems.  Too bad it didn't just return 0 on error...
 	// especially since they specifically have a FILE_ATTRIBUTES_NORMAL flag that is non-zero!
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 file16(file);
 	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
 	#else
@@ -1359,7 +1359,7 @@ bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 	#if defined(PLATFORM_WINDOWS)	
 	tPathWinFile(file);
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 file16(file);
 	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
@@ -1427,7 +1427,7 @@ bool tSystem::tIsHidden(const tString& path)
 	tString file(path);
 	tPathWinFile(file);
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 file16(file);
 	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
 	#else
@@ -1451,7 +1451,7 @@ bool tSystem::tSetHidden(const tString& fileName, bool hidden)
 	tString file(fileName);
 	tPathWinFile(file);
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 file16(file);
 	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
@@ -1488,7 +1488,7 @@ bool tSystem::tIsSystem(const tString& fileName)
 	tString file(fileName);
 	tPathWinFile(file);
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 file16(file);
 	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
 	#else
@@ -1507,7 +1507,7 @@ bool tSystem::tSetSystem(const tString& fileName, bool system)
 	tString file(fileName);
 	tPathWinFile(file);
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 file16(file);
 	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
@@ -1571,7 +1571,7 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 	else													// Assume string was of form "C:/" or "C:\"
 		tPathWin(driveRoot);
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 driveRoot16(driveRoot);
 	uint driveType = GetDriveType(driveRoot16.GetLPWSTR());
 	#else
@@ -1619,7 +1619,7 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 		fileInfo.szDisplayName[0] = '\0';
 		SHGetFileInfo
 		(
-			#ifdef TACENT_USE_UTF16_WINDOWS_API
+			#ifdef TACENT_UTF16_API_CALLS
 			driveRoot16.GetLPWSTR(),
 			#else
 			driveRoot.Chs(),
@@ -1629,7 +1629,7 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 			sizeof(SHFILEINFO),
 			SHGFI_DISPLAYNAME
 		);
-		#ifdef TACENT_USE_UTF16_WINDOWS_API
+		#ifdef TACENT_UTF16_API_CALLS
 		driveInfo.DisplayName.SetUTF16((char16_t*)fileInfo.szDisplayName);
 		#else
 		driveInfo.DisplayName = fileInfo.szDisplayName;
@@ -1638,7 +1638,7 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 
 	if (getVolumeAndSerial)
 	{
-		#ifdef TACENT_USE_UTF16_WINDOWS_API
+		#ifdef TACENT_UTF16_API_CALLS
 		tStringUTF16 volumeInfoName(256);
 		#else
 		tString volumeInfoName(256);
@@ -1648,7 +1648,7 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 		ulong serial = 0;
 		int success = GetVolumeInformation
 		(
-			#ifdef TACENT_USE_UTF16_WINDOWS_API
+			#ifdef TACENT_UTF16_API_CALLS
 			driveRoot16.GetLPWSTR(),
 			volumeInfoName.GetLPWSTR(),
 			#else
@@ -1663,7 +1663,7 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 			0							// Buffer for system name is 0 long.
 		);
 
-		#ifdef TACENT_USE_UTF16_WINDOWS_API
+		#ifdef TACENT_UTF16_API_CALLS
 		driveInfo.VolumeName.SetUTF16(volumeInfoName.Units());
 		#else
 		driveInfo.VolumeName = volumeInfoName;
@@ -1687,7 +1687,7 @@ bool tSystem::tSetVolumeName(const tString& drive, const tString& newVolumeName)
 	else									// Assume string was of form "C:/" or "C:\"
 		tPathWin(driveRoot);
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 driveRoot16(driveRoot);
 	tStringUTF16 newVolumeName16(newVolumeName);
 	int success = SetVolumeLabel(driveRoot16.GetLPWSTR(), newVolumeName16.GetLPWSTR());
@@ -1853,7 +1853,7 @@ void tSystem::tExplodeShareName(tList<tStringItem>& exploded, const tString& sha
 
 tString tSystem::tGetWindowsDir()
 {
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 windir16(MAX_PATH);
 	GetWindowsDirectory(windir16.GetLPWSTR(), MAX_PATH);
 	tString windir(windir16);
@@ -1869,7 +1869,7 @@ tString tSystem::tGetWindowsDir()
 
 tString tSystem::tGetSystemDir()
 {
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 sysdir16(MAX_PATH);
 	GetSystemDirectory(sysdir16.GetLPWSTR(), MAX_PATH);
 	tString sysdir(sysdir16);
@@ -1939,7 +1939,7 @@ tString tSystem::tGetProgramDir()
 {
 	#if defined(PLATFORM_WINDOWS)
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	// No need to add one here. Reserving space does it for us.
 	tStringUTF16 result16(MAX_PATH);
 	// Except for windows XP (which I don't care about TBH), the result is always null-terminated.
@@ -1977,7 +1977,7 @@ tString tSystem::tGetProgramPath()
 {
 	#if defined(PLATFORM_WINDOWS)
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 result16(MAX_PATH);
 	ulong l = GetModuleFileName(0, result16.GetLPWSTR(), MAX_PATH);
 	tString result(result16);
@@ -2006,7 +2006,7 @@ tString tSystem::tGetCurrentDir()
 {
 	#ifdef PLATFORM_WINDOWS
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 r16(MAX_PATH);
 	GetCurrentDirectory(MAX_PATH, r16.GetLPWSTR());
 	tString r(r16);
@@ -2056,7 +2056,7 @@ bool tSystem::tSetCurrentDir(const tString& directory)
 
 	// So there is no dialog asking user to insert a floppy.
 	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS);
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 cd16(cd);
 	int success = SetCurrentDirectory(cd16.GetLPWSTR());
 	#else
@@ -2249,7 +2249,7 @@ bool tSystem::tCreateDir(const tString& dir)
 	#if defined(PLATFORM_WINDOWS)
 	tPathWin(dirPath);
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 dirPath16(dirPath);
 	bool success = ::CreateDirectory(dirPath16.GetLPWSTR(), 0) ? true : false;
 	#else
@@ -2397,7 +2397,7 @@ bool tSystem::tCopyFile(const tString& dest, const tString& src, bool overWriteR
 {
 	#if defined(PLATFORM_WINDOWS)
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 src16(src);
 	tStringUTF16 dest16(dest);
 	int success = ::CopyFile(src16.GetLPWSTR(), dest16.GetLPWSTR(), 0);
@@ -2409,7 +2409,7 @@ bool tSystem::tCopyFile(const tString& dest, const tString& src, bool overWriteR
 	if (!success && overWriteReadOnly)
 	{
 		tSetReadOnly(dest, false);
-		#ifdef TACENT_USE_UTF16_WINDOWS_API
+		#ifdef TACENT_UTF16_API_CALLS
 		success = ::CopyFile(src16.GetLPWSTR(), dest16.GetLPWSTR(), 0);
 		#else
 		success = ::CopyFile(src.Chs(), dest.Chs(), 0);
@@ -2442,7 +2442,7 @@ bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tStr
 	tString fullNewName = dir + newName;
 	tPathWin(fullNewName);
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 fullOldName16(fullOldName);
 	tStringUTF16 fullNewName16(fullNewName);
 	int success = ::MoveFile(fullOldName16.GetLPWSTR(), fullNewName16.GetLPWSTR());
@@ -2479,7 +2479,7 @@ bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 		massagedName += "*.*";
 
 	Win32FindData fd;
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 massagedName16(massagedName);
 	WinHandle h = FindFirstFile(massagedName16.GetLPWSTR(), &fd);
 	#else
@@ -2498,7 +2498,7 @@ bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 				// If the directory name is not "." or ".." then it's a real directory.
 				// Note that you cannot just check for the first character not being "."  Some directories (and files)
 				// may have a name that starts with a dot, especially if they were copied from a unix machine.
-				#ifdef TACENT_USE_UTF16_WINDOWS_API
+				#ifdef TACENT_UTF16_API_CALLS
 				tString fn((char16_t*)fd.cFileName);
 				#else
 				tString fn(fd.cFileName);
@@ -2624,7 +2624,7 @@ bool tSystem::tFindFilesFastInternal(const tString& dir, const tExtensions& exte
 			path += ext;
 
 		Win32FindData fd;
-		#ifdef TACENT_USE_UTF16_WINDOWS_API
+		#ifdef TACENT_UTF16_API_CALLS
 		tStringUTF16 path16(path);
 		WinHandle h = FindFirstFile(path16.GetLPWSTR(), &fd);
 		#else
@@ -2643,7 +2643,7 @@ bool tSystem::tFindFilesFastInternal(const tString& dir, const tExtensions& exte
 				// It's not a directory... so it's actually a real file.
 				if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
 				{
-					#ifdef TACENT_USE_UTF16_WINDOWS_API
+					#ifdef TACENT_UTF16_API_CALLS
 					tString fdFilename((char16_t*)fd.cFileName);
 					#else
 					tString fdFilename(fd.cFileName);
@@ -2776,7 +2776,7 @@ bool tSystem::tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString&
 	Win32FindData fd;
 
 	// Look for all directories.
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 pathStrMod16(pathStr + "*.*");
 	WinHandle h = FindFirstFile(pathStrMod16.GetLPWSTR(), &fd);
 	#else
@@ -2795,7 +2795,7 @@ bool tSystem::tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString&
 				// If the directory name is not "." or ".." then it's a real directory.
 				// Note that you cannot just check for the first character not being "."  Some directories (and files)
 				// may have a name that starts with a dot, especially if they were copied from a unix machine.
-				#ifdef TACENT_USE_UTF16_WINDOWS_API
+				#ifdef TACENT_UTF16_API_CALLS
 				tString fn((char16_t*)fd.cFileName);
 				#else
 				tString fn(fd.cFileName);
@@ -2837,7 +2837,7 @@ bool tSystem::tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& d
 	tPathWinDir(pathStr);
 	tFindDirs(foundDirs, pathStr, includeHidden);
 	Win32FindData fd;
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 pathStrMod16(pathStr + "*.*");
 	WinHandle h = FindFirstFile(pathStrMod16.GetLPWSTR(), &fd);
 	#else
@@ -2856,7 +2856,7 @@ bool tSystem::tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& d
 				// If the directory name is not "." or ".." then it's a real directory.
 				// Note that you cannot just check for the first character not being "."  Some directories (and files)
 				// may have a name that starts with a dot, especially if they were copied from a unix machine.
-				#ifdef TACENT_USE_UTF16_WINDOWS_API
+				#ifdef TACENT_UTF16_API_CALLS
 				tString fn((char16_t*)fd.cFileName);
 				#else
 				tString fn(fd.cFileName);
@@ -2894,7 +2894,7 @@ bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool use
 	tString file(filename);
 	tPathWin(file);
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 file16(file);
 	if (deleteReadOnly)
 		SetFileAttributes(file16.GetLPWSTR(), FILE_ATTRIBUTE_NORMAL);
@@ -2905,7 +2905,7 @@ bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool use
 
 	if (!useRecycleBin)
 	{
-		#ifdef TACENT_USE_UTF16_WINDOWS_API
+		#ifdef TACENT_UTF16_API_CALLS
 		if (DeleteFile(file16.GetLPWSTR()))
 		#else
 		if (DeleteFile(file.Chs()))
@@ -2917,7 +2917,7 @@ bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool use
 	else
 	{
 		tString filenamePlusChar = filename + "Z";
-		#ifdef TACENT_USE_UTF16_WINDOWS_API
+		#ifdef TACENT_UTF16_API_CALLS
 		tStringUTF16 filenameDoubleNull16(filenamePlusChar);
 		*(filenameDoubleNull16.Units() + filenameDoubleNull16.Length() - 1) = 0;
 		#else
@@ -2928,7 +2928,7 @@ bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool use
 		SHFILEOPSTRUCT operation;
 		tStd::tMemset(&operation, 0, sizeof(operation));
 		operation.wFunc = FO_DELETE;
-		#ifdef TACENT_USE_UTF16_WINDOWS_API
+		#ifdef TACENT_UTF16_API_CALLS
 		operation.pFrom = filenameDoubleNull16.GetLPWSTR();
 		#else
 		operation.pFrom = filenameDoubleNull.Chs();
@@ -2988,7 +2988,7 @@ bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
 	tPathWin(directory);
 
 	Win32FindData fd;
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 directoryMod16(directory + "*.*");
 	WinHandle h = FindFirstFile(directoryMod16.GetLPWSTR(), &fd);
 	#else
@@ -3004,7 +3004,7 @@ bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
 			// If the directory name is not "." or ".." then it's a real directory.
 			// Note that you cannot just check for the first character not being "."  Some directories (and files)
 			// may have a name that starts with a dot, especially if they were copied from a unix machine.
-			#ifdef TACENT_USE_UTF16_WINDOWS_API
+			#ifdef TACENT_UTF16_API_CALLS
 			tString fn((char16_t*)fd.cFileName);
 			#else
 			tString fn(fd.cFileName);
@@ -3017,7 +3017,7 @@ bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
 	bool deleteFilesOK = (GetLastError() == ERROR_NO_MORE_FILES) ? true : false;
 	FindClose(h);
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 directory16(directory);
 	if (deleteReadOnly)
 		SetFileAttributes(directory16.GetLPWSTR(), FILE_ATTRIBUTE_NORMAL);	// Directories can be read-only too.
@@ -3029,7 +3029,7 @@ bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
 	bool success = false;
 	for (int delTry = 0; delTry < 32; delTry++)
 	{
-		#ifdef TACENT_USE_UTF16_WINDOWS_API
+		#ifdef TACENT_UTF16_API_CALLS
 		tStringUTF16 dir16(dir);
 		if (RemoveDirectory(dir16.GetLPWSTR()))
 		#else

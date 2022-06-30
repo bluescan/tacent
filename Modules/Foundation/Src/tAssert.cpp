@@ -2,7 +2,7 @@
 //
 // Tacent asserts and warnings.
 //
-// Copyright (c) 2004-2006, 2015, 2017 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -14,7 +14,7 @@
 
 #include <stdio.h>
 #include "Foundation/tPlatform.h"
-#ifdef TACENT_USE_UTF16_WINDOWS_API
+#ifdef TACENT_UTF16_API_CALLS
 #include "Foundation/tStandard.h"
 #endif
 #ifdef PLATFORM_WINDOWS
@@ -57,7 +57,7 @@ void tAssertPrintBreak(const char* expr, const char* fileName, int lineNum, cons
 	#ifdef PLATFORM_WINDOWS
 	// In windows we bring up a message box.
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	// @todo Using more stack than is needed for the UTF-16 string.
 	char16_t utfmsg[assertMessageSize];
 	tStd::tUTF16s(utfmsg, (char8_t*)message);

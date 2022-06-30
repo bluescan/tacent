@@ -3,7 +3,7 @@
 // This module contains a class for spawning other processes and receiving their exit-codes as well as some simple
 // commands for spawning one or many processes at once. Windows platform only.
 //
-// Copyright (c) 2005, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2005, 2017, 2019, 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -415,7 +415,7 @@ void tProcess::CreateChildProcess(const tString& cmdLine, const tString& working
 		envBlock = "PIPELINE=true\0";
 
 	// Note that the environment block (arg 7) is allowed to contain non-UTF16 characters (ANSI according to the MS docs).
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 cmdLineUTF16(cmdLine);
 	tStringUTF16 workingDirUTF16(workingDir);
 	int success = CreateProcess(0, cmdLineUTF16.GetLPWSTR(), 0, 0, TRUE, DETACHED_PROCESS, (char*)envBlock, workingDirUTF16.GetLPWSTR(), &startup, &procInfo);
@@ -715,7 +715,7 @@ uint32 tProcess::GetEnvironmentDataLength_Ascii(void* enviro)
 
 char* tProcess::BuildNewEnvironmentData_Ascii(bool appendToExisting, int numPairs, va_list args)
 {
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	wchar_t* oldEnv = nullptr;
 	#else
 	char* oldEnv = nullptr;
@@ -723,7 +723,7 @@ char* tProcess::BuildNewEnvironmentData_Ascii(bool appendToExisting, int numPair
 	if (appendToExisting)
 		oldEnv = ::GetEnvironmentStrings();
 
-	#ifdef TACENT_USE_UTF16_WINDOWS_API
+	#ifdef TACENT_UTF16_API_CALLS
 	tString oldEnvStr((char16_t*)oldEnv);
 	#else
 	tString oldEnvStr(oldEnv);
