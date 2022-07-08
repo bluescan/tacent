@@ -255,7 +255,7 @@ bool tImageTGA::SaveUncompressed(const tString& tgaFile, tFormat format) const
 	if ((format != tFormat::Bit24) && (format != tFormat::Bit32))
 		return false;
 	
-	tFileHandle file = tOpenFile(tgaFile.Chs(), "wb");
+	tFileHandle file = tOpenFile(tgaFile.Chr(), "wb");
 	if (!file)
 		return false;
 
@@ -310,7 +310,7 @@ bool tImageTGA::SaveCompressed(const tString& tgaFile, tFormat format) const
 		return false;
 
 	// Open the file.
-	tFileHandle file = tOpenFile(tgaFile.Chs(), "wb");
+	tFileHandle file = tOpenFile(tgaFile.Chr(), "wb");
 	if (!file)
 		return false;
 

@@ -824,7 +824,7 @@ void tRegex::Compile(const tString& pattern)
 		return;
 
 	Pattern = (char*)tMalloc((pattern.Length() + 1) * sizeof(char));
-	tStrcpy(Pattern, pattern.Chs());
+	tStrcpy(Pattern, pattern.Chr());
 	CompileInternal();
 }
 

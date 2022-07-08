@@ -834,7 +834,7 @@ tString tMetaData::GetPrettyValue(tMetaTag tag) const
 		{
 			tString unit = GetPrettyValue(tMetaTag::LengthUnit);
 			if (unit.IsValid())
-				tsPrintf(value, "%d pixels/%s", int(datum.Float), unit.Chs());
+				tsPrintf(value, "%d pixels/%s", int(datum.Float), unit.Chr());
 			else
 				tsPrintf(value, "%d pixels", int(datum.Float));
 			break;

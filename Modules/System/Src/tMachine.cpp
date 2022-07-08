@@ -107,7 +107,7 @@ tString tSystem::tGetEnvVar(const tString& envVarName)
 {
 	if (envVarName.IsEmpty())
 		return tString();
-	return tString(std::getenv(envVarName.Chs()));
+	return tString(std::getenv(envVarName.Chr()));
 }
 
 
@@ -161,12 +161,12 @@ bool tSystem::tOpenSystemFileExplorer(const tString& dir, const tString& file)
 	{
 		fullName.Replace('/', '\\');
 		tString options;
-		tsPrintf(options, "/select,\"%s\"", fullName.Chs());
+		tsPrintf(options, "/select,\"%s\"", fullName.Chr());
 		#ifdef TACENT_UTF16_API_CALLS
 		tStringUTF16 optionsUTF16(options);
 		ShellExecute(hWnd, LPWSTR(u"open"), LPWSTR(u"explorer"), optionsUTF16.GetLPWSTR(), 0, SW_SHOWNORMAL);
 		#else
-		ShellExecute(hWnd, "open", "explorer", options.Chs(), 0, SW_SHOWNORMAL);
+		ShellExecute(hWnd, "open", "explorer", options.Chr(), 0, SW_SHOWNORMAL);
 		#endif
 	}
 	else
@@ -175,7 +175,7 @@ bool tSystem::tOpenSystemFileExplorer(const tString& dir, const tString& file)
 		tStringUTF16 dirUTF16(dir);
 		ShellExecute(hWnd, LPWSTR(u"open"), dirUTF16.GetLPWSTR(), 0, dirUTF16.GetLPWSTR(), SW_SHOWNORMAL);
 		#else
-		ShellExecute(hWnd, "open", dir.Chs(), 0, dir.Chs(), SW_SHOWNORMAL);
+		ShellExecute(hWnd, "open", dir.Chr(), 0, dir.Chr(), SW_SHOWNORMAL);
 		#endif
 	}
 	return true;
@@ -194,11 +194,11 @@ bool tSystem::tOpenSystemFileExplorer(const tString& dir, const tString& file)
 
 	tString sysStr;
 	if (browser == nautilus)
-		tsPrintf(sysStr, "%s %s%s &", browser.Chs(), dir.Chs(), file.Chs());
+		tsPrintf(sysStr, "%s %s%s &", browser.Chr(), dir.Chr(), file.Chr());
 	else if (browser == dolphin)
-		tsPrintf(sysStr, "%s --new-window --select %s%s &", browser.Chs(), dir.Chs(), file.Chs());
+		tsPrintf(sysStr, "%s --new-window --select %s%s &", browser.Chr(), dir.Chr(), file.Chr());
 
-	system(sysStr.Chs());
+	system(sysStr.Chr());
 	return true;
 
 	#else

@@ -94,7 +94,7 @@ public:
 
 	// Compiles a regular expression (described above). Any previously compiled expression is lost.
 	void Compile(const tString& pattern);
-	bool IsMatch(const tString& text) const																				{ return IsMatch(text.Chs()); }
+	bool IsMatch(const tString& text) const																				{ return IsMatch(text.Chr()); }
 	void Compile(const char* pattern);
 	bool IsMatch(const char* text) const;					// Returns true is a perfect match is attained.
 	bool IsValid() const																								{ return Pattern ? true : false; }
@@ -120,7 +120,7 @@ public:
 	// The end pointer should be one past the last valid character to check.
 	void Search(const char* begin, const char* end, tList<Match>&) const;
 	void Search(const char* text, tList<Match>& matches) const															{ Search(text, text + tStd::tStrlen(text), matches); }
-	void Search(const tString& text, tList<Match>& matches) const														{ Search(text.Chs(), matches); }
+	void Search(const tString& text, tList<Match>& matches) const														{ Search(text.Chr(), matches); }
 
 private:
 	struct Node

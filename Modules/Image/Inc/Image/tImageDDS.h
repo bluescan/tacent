@@ -173,7 +173,7 @@ struct tDDSError : public tError
 	};
 
 	tDDSError()																											: tError("Unknown DDS"), Code(tCode::Unknown) { }
-	tDDSError(tCode code, const tString& message = tString())															: tError("Direct Draw Surface: %s %s", message.Chs(), CodeStrings[int(code)]) { }
+	tDDSError(tCode code, const tString& message = tString())															: tError("Direct Draw Surface: %s %s", message.Chr(), CodeStrings[int(code)]) { }
 
 	static const char* CodeStrings[int(tCode::NumCodes)];
 	tCode Code;

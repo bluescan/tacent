@@ -768,7 +768,7 @@ int tChunkWriter::Write(const void* data, const tString& layoutStr)
 void tChunkReader::Load(const tString& filename, uint8* buffer)
 {
 	UnLoad();
-	tFileHandle fh = tOpenFile(filename.Chs(), "rb");
+	tFileHandle fh = tOpenFile(filename.Chr(), "rb");
 	if (!fh)
 		return;
 
@@ -815,7 +815,7 @@ void tChunkReader::Load(uint8* buffer, int bufferSizeBytes)
 bool tChunkReader::LoadSafe(const tString& filename)
 {
 	UnLoad();
-	tFileHandle fh = tOpenFile(filename.Chs(), "rb");
+	tFileHandle fh = tOpenFile(filename.Chr(), "rb");
 	ReadBufferSize = tGetFileSize(fh);
 	if (ReadBufferSize == 0)
 	{

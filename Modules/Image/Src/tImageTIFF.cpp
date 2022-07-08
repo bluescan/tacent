@@ -58,7 +58,7 @@ bool tImageTIFF::WriteSoftwarePageDuration(TIFF* tiff, int milliseconds)
 {
 	tString softwareDesc;
 	tsPrintf(softwareDesc, "TacentLibrary V%d.%d.%d [PageDur %d]", tVersion::Major, tVersion::Minor, tVersion::Revision, milliseconds);
-	int success = TIFFSetField(tiff, TIFFTAG_SOFTWARE, softwareDesc.Chs());
+	int success = TIFFSetField(tiff, TIFFTAG_SOFTWARE, softwareDesc.Chr());
 	return success ? true : false;
 }
 
@@ -73,7 +73,7 @@ bool tImageTIFF::Load(const tString& tiffFile)
 	if (!tFileExists(tiffFile))
 		return false;
 
-	TIFF* tiff = TIFFOpen(tiffFile.Chs(), "rb");
+	TIFF* tiff = TIFFOpen(tiffFile.Chr(), "rb");
 	if (!tiff)
 		return false;
 
@@ -158,7 +158,7 @@ bool tImageTIFF::Save(const tString& tiffFilename, bool useZLibComp, int overrid
 	if (!IsValid())
 		return false;
 
-	TIFF* tiffFile = TIFFOpen(tiffFilename.Chs(), "wb");
+	TIFF* tiffFile = TIFFOpen(tiffFilename.Chr(), "wb");
 	if (!tiffFile)
 		return false;
 

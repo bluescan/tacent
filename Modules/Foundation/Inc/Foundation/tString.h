@@ -58,7 +58,7 @@ struct tString
 
 	// These allow for implicit conversion to a UTF-8 character pointer. By not including implicit casts to const char*
 	// we are encouraging further proper use of char8_t. You can either make the function you are calling take the
-	// proper UTF-* type, or explicitly call Chs() or Txt() to get an old char-based pointer.
+	// proper UTF-* type, or explicitly call Chr() or Txt() to get an old char-based pointer.
 	operator const char8_t*()																							{ return CodeUnits; }
 	operator const char8_t*() const																						{ return CodeUnits; }
 
@@ -136,9 +136,9 @@ struct tString
 	// type and use char* and const char*. These functions allow you to retrieve the tString using the char type.
 	// Use these with tPrintf and %s.
 	char* Txt()																											{ return (char*)CodeUnits; }
-	const char* Chs() const																								{ return (const char*)CodeUnits; }
-	const char* Chz() const			/* Like Chs() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : (const char*)CodeUnits; }
-	const char* Pod() const			/* Plain Old Data */																{ return (const char*)CodeUnits; }
+	const char* Chr() const																								{ return (const char*)CodeUnits; }
+	const char* Chz() const			/* Like Chr() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : (const char*)CodeUnits; }
+	char* Pod() const				/* Plain Old Data */																{ return (char*)CodeUnits; }
 
 	// Returns index of first/last occurrence of char in the string. -1 if not found. Finds last if backwards flag is
 	// set. The starting point may be specified. If backwards is false, the search proceeds forwards from the starting

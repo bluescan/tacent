@@ -354,14 +354,14 @@ tTestUnit(ListExtra)
 		nodes.Append(new NamedNode(i));
 
 	for (NamedNode* nn = nodes.First(); nn; nn = nn->Next())
-		tPrintf("ListExtra: ID:%d  Name:%s\n", nn->ID, nn->Name.Chs());
+		tPrintf("ListExtra: ID:%d  Name:%s\n", nn->ID, nn->Name.Chr());
 
 	NamedNode* movedNode = nodes.Remove(nodes.Head());
 	nodes.Insert(movedNode, nodes.Head()->Next());
 
 	tPrintf("\nListExtra: Reordered\n");
 	for (NamedNode* nn = nodes.First(); nn; nn = nn->Next())
-		tPrintf("ListExtra: ID:%d  Name:%s\n", nn->ID, nn->Name.Chs());
+		tPrintf("ListExtra: ID:%d  Name:%s\n", nn->ID, nn->Name.Chr());
 
 	NamedNode* foundNode = nodes.FindNodeByName("Name4");
 	tRequire(foundNode);
@@ -401,7 +401,7 @@ tTestUnit(ListExtra)
 	tString result;
 	for (BigNode* mn = bigList.Head(); mn; mn = mn->Next())
 	{
-		tPrintf("%s ", mn->Name.Chs());
+		tPrintf("%s ", mn->Name.Chr());
 		result += mn->Name;
 	}
 	tPrintf("\n");
@@ -658,7 +658,7 @@ tTestUnit(BitField)
 		"10010011_00111000_01000100_10000111_10001011_00010000_10101011_00100101"
 	);
 	tPrintf("VAL\n%0256|256b\n", bitField);
-	tPrintf("STR\n______%s\n", bitField.GetAsBinaryString().Chs());
+	tPrintf("STR\n______%s\n", bitField.GetAsBinaryString().Chr());
 
 	tPrintf("BYT\n");
 	int cr = 0;
@@ -806,45 +806,45 @@ tTestUnit(String)
 {
 	// Testing the string substitution code.
 	tString src("abc1234abcd12345abcdef123456");
-	tPrintf("Before: '%s'\n", src.Chs());
+	tPrintf("Before: '%s'\n", src.Chr());
 	src.Replace("abc", "cartoon");
 	tPrintf("Replacing abc with cartoon\n");
-	tPrintf("After : '%s'\n\n", src.Chs());
+	tPrintf("After : '%s'\n\n", src.Chr());
 	tRequire(src == "cartoon1234cartoond12345cartoondef123456");
 
 	src = "abc1234abcd12345abcdef123456";
-	tPrintf("Before: '%s'\n", src.Chs());
+	tPrintf("Before: '%s'\n", src.Chr());
 	src.Replace("abc", "Z");
 	tPrintf("Replacing abc with Z\n");
-	tPrintf("After : '%s'\n\n", src.Chs());
+	tPrintf("After : '%s'\n\n", src.Chr());
 	tRequire(src == "Z1234Zd12345Zdef123456");
 
 	src = "abcabcabc";
-	tPrintf("Before: '%s'\n", src.Chs());
+	tPrintf("Before: '%s'\n", src.Chr());
 	src.Replace("abc", "");
 	tPrintf("Replacing abc with \"\"\n");
-	tPrintf("After : '%s'\n\n", src.Chs());
+	tPrintf("After : '%s'\n\n", src.Chr());
 	tRequire(src == "");
 
 	src = "abcabcabc";
-	tPrintf("Before: '%s'\n", src.Chs());
+	tPrintf("Before: '%s'\n", src.Chr());
 	src.Replace("abc", 0);
 	tPrintf("Replacing abc with null\n");
-	tPrintf("After : '%s'\n\n", src.Chs());
+	tPrintf("After : '%s'\n\n", src.Chr());
 	tRequire(src == "");
 
 	src.Clear();
-	tPrintf("Before: '%s'\n", src.Chs());
+	tPrintf("Before: '%s'\n", src.Chr());
 	src.Replace("abc", "CART");
 	tPrintf("Replacing abc with CART\n");
-	tPrintf("After : '%s'\n\n", src.Chs());
+	tPrintf("After : '%s'\n\n", src.Chr());
 	tRequire(src == "");
 
 	tPrintf("Testing Explode:\n");
 	tString src1 = "abc_def_ghi";
 	tString src2 = "abcXXdefXXghi";
-	tPrintf("src1: %s\n", src1.Chs());
-	tPrintf("src2: %s\n", src2.Chs());
+	tPrintf("src1: %s\n", src1.Chr());
+	tPrintf("src2: %s\n", src2.Chr());
 
 	tList<tStringItem> exp1(tListMode::ListOwns);
 	tList<tStringItem> exp2(tListMode::ListOwns);
@@ -853,37 +853,37 @@ tTestUnit(String)
 
 	tPrintf("Count1: %d\n", count1);
 	for (tStringItem* comp = exp1.First(); comp; comp = comp->Next())
-		tPrintf("   Comp: '%s'\n", comp->Chs());
+		tPrintf("   Comp: '%s'\n", comp->Chr());
 
 	tPrintf("Count2: %d\n", count2);
 	for (tStringItem* comp = exp2.First(); comp; comp = comp->Next())
-		tPrintf("   Comp: '%s'\n", comp->Chs());
+		tPrintf("   Comp: '%s'\n", comp->Chr());
 
 	tList<tStringItem> expl(tListMode::ListOwns);
 	tString exdup = "abc__def_ghi";
 	tExplode(expl, exdup, '_');
-	tPrintf("Exploded: ###%s### to:\n", exdup.Chs());
+	tPrintf("Exploded: ###%s### to:\n", exdup.Chr());
 	for (tStringItem* comp = expl.First(); comp; comp = comp->Next())
-		tPrintf("   Comp:###%s###\n", comp->Chs());
+		tPrintf("   Comp:###%s###\n", comp->Chr());
 
 	tList<tStringItem> expl2(tListMode::ListOwns);
 	tString exdup2 = "__a__b_";
 	tExplode(expl2, exdup2, '_');
-	tPrintf("Exploded: ###%s### to:\n", exdup2.Chs());
+	tPrintf("Exploded: ###%s### to:\n", exdup2.Chr());
 	for (tStringItem* comp = expl2.First(); comp; comp = comp->Next())
-		tPrintf("   Comp:###%s###\n", comp->Chs());
+		tPrintf("   Comp:###%s###\n", comp->Chr());
 
 	src = "abc1234abcd12345abcdef123456";
-	tPrintf("Before: '%s'\n", src.Chs());
+	tPrintf("Before: '%s'\n", src.Chr());
 	tString tgt = src.ExtractMid(3, 4);
 	tPrintf("Extracting 1234 with ExtractMid(3, 4)\n");
-	tPrintf("After (Extracted): '%s'\n\n", tgt.Chs());
-	tPrintf("After (Remain)   : '%s'\n\n", src.Chs());
+	tPrintf("After (Extracted): '%s'\n\n", tgt.Chr());
+	tPrintf("After (Remain)   : '%s'\n\n", src.Chr());
 	tRequire(tgt == "1234" && src == "abcabcd12345abcdef123456");
 
 	tString aa("aa");
 	tString exaa = aa.ExtractLeft('a');
-	tPrintf("\n\naa extract left word to a: Extracted:###%s###  Left:###%s###\n", exaa.Chs(), aa.Chs());
+	tPrintf("\n\naa extract left word to a: Extracted:###%s###  Left:###%s###\n", exaa.Chr(), aa.Chr());
 
 	tString sa1 = "A";
 	tString sa2 = "A";
@@ -902,31 +902,31 @@ tTestUnit(String)
 
 	// Test remove leading and trailing.
 	tString leadtrail("cbbabaccMIDDLEbbccaab");
-	tPrintf("LeadTrail [%s]\n", leadtrail.Chs());
+	tPrintf("LeadTrail [%s]\n", leadtrail.Chr());
 
 	leadtrail.RemoveLeading("abc");
-	tPrintf("LeadTrail [%s]\n", leadtrail.Chs());
+	tPrintf("LeadTrail [%s]\n", leadtrail.Chr());
 	tRequire(leadtrail == "MIDDLEbbccaab");
 
 	leadtrail.RemoveTrailing("abc");
-	tPrintf("LeadTrail [%s]\n", leadtrail.Chs());
+	tPrintf("LeadTrail [%s]\n", leadtrail.Chr());
 	tRequire(leadtrail == "MIDDLE");
 
 	// Test remove prefix and suffix.
 	tString presuf("prepreMIDDLEsufsuf");
-	tPrintf("PreSuf [%s]\n", presuf.Chs());
+	tPrintf("PreSuf [%s]\n", presuf.Chr());
 
 	presuf.ExtractLeft("not");
 	presuf.ExtractRight("not");
-	tPrintf("PreSuf [%s]\n", presuf.Chs());
+	tPrintf("PreSuf [%s]\n", presuf.Chr());
 	tRequire(presuf == "prepreMIDDLEsufsuf");
 
 	presuf.ExtractLeft("pre");
-	tPrintf("PreSuf [%s]\n", presuf.Chs());
+	tPrintf("PreSuf [%s]\n", presuf.Chr());
 	tRequire(presuf == "preMIDDLEsufsuf");
 
 	presuf.ExtractRight("suf");
-	tPrintf("PreSuf [%s]\n", presuf.Chs());
+	tPrintf("PreSuf [%s]\n", presuf.Chr());
 	tRequire(presuf == "preMIDDLEsuf");
 
 }
@@ -995,7 +995,7 @@ tTestUnit(UTF)
 	testUTF16AndBack.GetUTF16(utf16str);
 	testUTF16AndBack.SetUTF16(utf16str);
 	tRequire(testUTF16AndBack == orig16);
-	tPrintf("%s\n", testUTF16AndBack.Chs());
+	tPrintf("%s\n", testUTF16AndBack.Chr());
 	const char* wfilename8A = "TestData/UTF/WrittenUTF8_UTF16_UTF8.txt";
 	tCreateFile(wfilename8A, testUTF16AndBack);
 
@@ -1006,7 +1006,7 @@ tTestUnit(UTF)
 	testUTF32AndBack.GetUTF32(utf32str);
 	testUTF16AndBack.SetUTF32(utf32str);
 	tRequire(testUTF32AndBack == orig32);
-	tPrintf("%s\n", testUTF32AndBack.Chs());
+	tPrintf("%s\n", testUTF32AndBack.Chr());
 	const char* wfilename8B = "TestData/UTF/WrittenUTF8_UTF32_UTF8.txt";
 	tCreateFile(wfilename8B, testUTF32AndBack);
 

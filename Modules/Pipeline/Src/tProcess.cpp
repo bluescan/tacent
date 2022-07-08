@@ -420,7 +420,7 @@ void tProcess::CreateChildProcess(const tString& cmdLine, const tString& working
 	tStringUTF16 workingDirUTF16(workingDir);
 	int success = CreateProcess(0, cmdLineUTF16.GetLPWSTR(), 0, 0, TRUE, DETACHED_PROCESS, (char*)envBlock, workingDirUTF16.GetLPWSTR(), &startup, &procInfo);
 	#else
-	int success = CreateProcess(0, (char*)cmdLine.Chs(), 0, 0, TRUE, DETACHED_PROCESS, (char*)envBlock, workingDir.Chs(), &startup, &procInfo);
+	int success = CreateProcess(0, (char*)cmdLine.Chr(), 0, 0, TRUE, DETACHED_PROCESS, (char*)envBlock, workingDir.Chr(), &startup, &procInfo);
 	#endif
 	if (!success)
 	{
@@ -619,7 +619,7 @@ void tProcess::MonitorStdOut()
 					*OutputString += buf;
 
 				if (PrintCallback)
-					PrintCallback(PrintCallbackUserPointer, buf.Chs());
+					PrintCallback(PrintCallbackUserPointer, buf.Chr());
 
 				// We only go to stdout if all other methods failed.
 				if (!Parent && !OutputString && !PrintCallback)
@@ -670,7 +670,7 @@ void tProcess::MonitorStdErr()
 				//	*OutputString += buf;
 
 				if (PrintCallback)
-					PrintCallback(PrintCallbackUserPointer, buf.Chs());
+					PrintCallback(PrintCallbackUserPointer, buf.Chr());
 
 				// We only go to stdout if all other methods failed.
 				if (!Parent && !OutputString && !PrintCallback)
@@ -769,9 +769,9 @@ char* tProcess::BuildNewEnvironmentData_Ascii(bool appendToExisting, int numPair
 		int namelen = name->Length();
 		int valuelen = value->Length();
 
-		tStd::tMemcpy(&newenvdata[newDstIdx], name->Chs(), namelen);
+		tStd::tMemcpy(&newenvdata[newDstIdx], name->Chr(), namelen);
 		newenvdata[newDstIdx+namelen] = '=';
-		tStd::tMemcpy(&newenvdata[newDstIdx+namelen+1], value->Chs(), valuelen);
+		tStd::tMemcpy(&newenvdata[newDstIdx+namelen+1], value->Chr(), valuelen);
 		newenvdata[newDstIdx+namelen+1+valuelen] = pairSeparatingCharacter;
 		newDstIdx += namelen+1+valuelen+1;
 	}	

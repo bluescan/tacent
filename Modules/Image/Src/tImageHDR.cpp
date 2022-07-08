@@ -335,7 +335,7 @@ bool tImageHDR::Set(uint8* hdrFileInMemory, int numBytes, float gammaCorr, int e
 
 	// Display the header lines.
 	//	for (tStringItem* headerLine = lines.First(); headerLine; headerLine = headerLine->Next())
-	//		tPrintf("HDR Info: %s\n", headerLine->Chs());
+	//		tPrintf("HDR Info: %s\n", headerLine->Chr());
 
 	tStringItem* resLine = lines.Last();
 
@@ -416,7 +416,7 @@ bool tImageHDR::Save(const tString& hdrFile) const
 	if (tSystem::tGetFileType(hdrFile) != tSystem::tFileType::HDR)
 		return false;
 
-	tFileHandle file = tOpenFile(hdrFile.Chs(), "wb");
+	tFileHandle file = tOpenFile(hdrFile.Chr(), "wb");
 	if (!file)
 		return false;
 

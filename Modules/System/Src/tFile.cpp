@@ -234,7 +234,7 @@ int tSystem::tGetFileSize(const tString& filename)
 	tStringUTF16 fileUTF16(file);
 	WinHandle h = FindFirstFile(fileUTF16.GetLPWSTR(), &fd);
 	#else
-	WinHandle h = FindFirstFile(file.Chs(), &fd);
+	WinHandle h = FindFirstFile(file.Chr(), &fd);
 	#endif
 
 	// If file doesn't exist, h will be invalid.
@@ -393,7 +393,7 @@ bool tSystem::tFileExists(const tString& filename)
 	tStringUTF16 fileUTF16(file);
 	WinHandle h = FindFirstFile(fileUTF16.GetLPWSTR(), &fd);
 	#else
-	WinHandle h = FindFirstFile(file.Chs(), &fd);
+	WinHandle h = FindFirstFile(file.Chr(), &fd);
 	#endif
 	SetErrorMode(prevErrorMode);
 	if (h == INVALID_HANDLE_VALUE)
@@ -410,7 +410,7 @@ bool tSystem::tFileExists(const tString& filename)
 	tPathStd(file);
 
 	struct stat statbuf;
-	return stat(file.Chs(), &statbuf) == 0;
+	return stat(file.Chr(), &statbuf) == 0;
 
 	#endif
 }
@@ -438,7 +438,7 @@ bool tSystem::tDirExists(const tString& dirname)
 	tStringUTF16 dirUTF16(dir);
 	WinHandle h = FindFirstFile(dirUTF16.GetLPWSTR(), &fd);
 	#else
-	WinHandle h = FindFirstFile(dir.Chs(), &fd);
+	WinHandle h = FindFirstFile(dir.Chr(), &fd);
 	#endif
 
 	SetErrorMode(prevErrorMode);
@@ -453,7 +453,7 @@ bool tSystem::tDirExists(const tString& dirname)
 
 	#else
 	tPathStdFile(dir);
-	std::filesystem::file_status fstat = std::filesystem::status(dir.Chs());
+	std::filesystem::file_status fstat = std::filesystem::status(dir.Chr());
 
 	return std::filesystem::is_directory(fstat);
 	#endif
@@ -493,7 +493,7 @@ bool tSystem::tIsFileNewer(const tString& filenameA, const tString& filenameB)
 	tStringUTF16 fileA16(fileA);
 	WinHandle h = FindFirstFile(fileA16.GetLPWSTR(), &fd);
 	#else
-	WinHandle h = FindFirstFile(fileA.Chs(), &fd);
+	WinHandle h = FindFirstFile(fileA.Chr(), &fd);
 	#endif
 	if (h == INVALID_HANDLE_VALUE)
 		throw tFileError("Invalid file handle for file: " + fileA);
@@ -505,7 +505,7 @@ bool tSystem::tIsFileNewer(const tString& filenameA, const tString& filenameB)
 	tStringUTF16 fileB16(fileB);
 	h = FindFirstFile(fileB16.GetLPWSTR(), &fd);
 	#else
-	h = FindFirstFile(fileB.Chs(), &fd);
+	h = FindFirstFile(fileB.Chr(), &fd);
 	#endif
 	if (h == INVALID_HANDLE_VALUE)
 		throw tFileError("Invalid file handle for file: " + fileB);
@@ -607,7 +607,7 @@ bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 	tStringUTF16 file16(file);
 	WinHandle h = FindFirstFile(file16.GetLPWSTR(), &fd);
 	#else
-	WinHandle h = FindFirstFile(file.Chs(), &fd);
+	WinHandle h = FindFirstFile(file.Chr(), &fd);
 	#endif
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
@@ -621,7 +621,7 @@ bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 	fileInfo.Hidden = tIsHidden(file);
 
 	struct stat statBuf;
-	int errCode = stat(file.Chs(), &statBuf);
+	int errCode = stat(file.Chr(), &statBuf);
 	if (errCode)
 		return false;
 		
@@ -672,7 +672,7 @@ bool tSystem::tGetFileDetails(tFileDetails& details, const tString& fullFileName
 
 	// IShellFolder::ParseDisplayName requires the path name in Unicode wide characters.
 	OleChar olePath[MaxPath];
-	MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, fileDir.Chs(), -1, olePath, MaxPath);
+	MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, fileDir.Chr(), -1, olePath, MaxPath);
 
 	// Parse path for absolute PIDL, and connect to target folder.
 	lpItemIdList pidl = 0;
@@ -702,7 +702,7 @@ bool tSystem::tGetFileDetails(tFileDetails& details, const tString& fullFileName
 	}
 
 	OleChar unicodeName[MaxPath];
-	MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, fileName.Chs(), -1, unicodeName, MaxPath);
+	MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, fileName.Chr(), -1, unicodeName, MaxPath);
 	lpItemIdList localPidl = 0;
 	result = shellFolder2->ParseDisplayName(0, 0, unicodeName, 0, &localPidl, 0);
 	if (result != S_OK)
@@ -826,7 +826,7 @@ void tSystem::tSetFileOpenAssoc(const tString& program, const tString& extension
 	tStringUTF16 keyString16(keyString);
 	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString16.GetLPWSTR(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
 	#else
-	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString.Chs(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
+	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString.Chr(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
 	#endif
 	{
 		// Create value string and set it.
@@ -838,9 +838,9 @@ void tSystem::tSetFileOpenAssoc(const tString& program, const tString& extension
 		tString valString = tString("\"") + tSystem::tGetSimplifiedPath(program) + "\"" + options + "\"%1\"";
 		tPathWin(valString);
 		#ifdef TACENT_UTF16_API_CALLS
-		RegSetValueEx(key, LPWSTR(u""), 0, REG_SZ, (uint8*)valString.Chs(), valString.Length()+1);
+		RegSetValueEx(key, LPWSTR(u""), 0, REG_SZ, (uint8*)valString.Chr(), valString.Length()+1);
 		#else
-		RegSetValueEx(key, "", 0, REG_SZ, (uint8*)valString.Chs(), valString.Length()+1);
+		RegSetValueEx(key, "", 0, REG_SZ, (uint8*)valString.Chr(), valString.Length()+1);
 		#endif
 		RegCloseKey(key);
 	}
@@ -853,7 +853,7 @@ void tSystem::tSetFileOpenAssoc(const tString& program, const tString& extension
 	tStringUTF16 keyString16B(keyString);
 	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString16B.GetLPWSTR(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
 	#else
-	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString.Chs(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
+	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString.Chr(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
 	#endif
 	{
 		tString valString = "Tacent_";
@@ -861,9 +861,9 @@ void tSystem::tSetFileOpenAssoc(const tString& program, const tString& extension
 
 		// REG_SZ means that the values in arg 5 is not UTF-16.
 		#ifdef TACENT_UTF16_API_CALLS
-		RegSetValueEx(key, LPWSTR(u""), 0, REG_SZ, (const BYTE*)valString.Chs(), valString.Length()+1);
+		RegSetValueEx(key, LPWSTR(u""), 0, REG_SZ, (const BYTE*)valString.Chr(), valString.Length()+1);
 		#else
-		RegSetValueEx(key, "", 0, REG_SZ, (uint8*)valString.Chs(), valString.Length()+1);
+		RegSetValueEx(key, "", 0, REG_SZ, (uint8*)valString.Chr(), valString.Length()+1);
 		#endif
 		RegCloseKey(key);
 	}
@@ -892,7 +892,7 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	tStringUTF16 keyString16A(keyString);
 	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString16A.GetLPWSTR(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
 	#else
-	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString.Chs(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
+	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString.Chr(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
 	#endif
 	{
 		ulong numBytesIO = 127;
@@ -915,7 +915,7 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	tStringUTF16 keyString16B(keyString);
 	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString16B.GetLPWSTR(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
 	#else
-	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString.Chs(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
+	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString.Chr(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
 	#endif
 	{
 		ulong numBytesIO = 255;
@@ -1122,8 +1122,8 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 	tString relLoc(MAX_PATH);
 	int success = PathRelativePathTo
 	(
-		relLoc.Txt(), basePathMod.Chs(), FILE_ATTRIBUTE_DIRECTORY,
-		pathMod.Chs(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
+		relLoc.Txt(), basePathMod.Chr(), FILE_ATTRIBUTE_DIRECTORY,
+		pathMod.Chr(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
 	);
 	#endif
 
@@ -1136,7 +1136,7 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 
 	tPathStd(relLoc);
 	if (relLoc[0] == '/')
-		return relLoc.Chs() + 1;
+		return relLoc.Chr() + 1;
 	else
 		return relLoc;
 
@@ -1222,13 +1222,13 @@ tString tSystem::tGetFileFullName(const tString& filename)
 	#if defined(PLATFORM_WINDOWS)
 	tPathWin(file);
 	tString ret(_MAX_PATH + 1);
-	_fullpath(ret.Txt(), file.Chs(), _MAX_PATH);
+	_fullpath(ret.Txt(), file.Chr(), _MAX_PATH);
 	tPathStd(ret);
 	
 	#else
 	tPathStd(file);
 	tString ret(PATH_MAX + 1);
-	realpath(file.Chs(), ret.Txt());	
+	realpath(file.Chr(), ret.Txt());	
 	#endif
 
 	return ret;
@@ -1329,7 +1329,7 @@ bool tSystem::tIsReadOnly(const tString& fileName)
 	tStringUTF16 file16(file);
 	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
 	#else
-	ulong attribs = GetFileAttributes(file.Chs());
+	ulong attribs = GetFileAttributes(file.Chr());
 	#endif
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
@@ -1340,7 +1340,7 @@ bool tSystem::tIsReadOnly(const tString& fileName)
 	tPathStd(file);
 
 	struct stat st;
-	int errCode = stat(file.Chs(), &st);
+	int errCode = stat(file.Chr(), &st);
 	if (errCode != 0)
 		return false;
 
@@ -1372,16 +1372,16 @@ bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 
 	attribs = GetFileAttributes(file16.GetLPWSTR());
 	#else
-	ulong attribs = GetFileAttributes(file.Chs());
+	ulong attribs = GetFileAttributes(file.Chr());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
 
 	if (!(attribs & FILE_ATTRIBUTE_READONLY) && readOnly)
-		SetFileAttributes(file.Chs(), attribs | FILE_ATTRIBUTE_READONLY);
+		SetFileAttributes(file.Chr(), attribs | FILE_ATTRIBUTE_READONLY);
 	else if ((attribs & FILE_ATTRIBUTE_READONLY) && !readOnly)
-		SetFileAttributes(file.Chs(), attribs & ~FILE_ATTRIBUTE_READONLY);
+		SetFileAttributes(file.Chr(), attribs & ~FILE_ATTRIBUTE_READONLY);
 
-	attribs = GetFileAttributes(file.Chs());	
+	attribs = GetFileAttributes(file.Chr());	
 	#endif
 
 	if (attribs == INVALID_FILE_ATTRIBUTES)
@@ -1396,7 +1396,7 @@ bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 	tPathStd(file);
 	
 	struct stat st;
-	int errCode = stat(file.Chs(), &st);
+	int errCode = stat(file.Chr(), &st);
 	if (errCode != 0)
 		return false;
 	
@@ -1405,7 +1405,7 @@ bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 	// Set user R and clear user w. Leave rest unchanged.
 	permBits |= S_IRUSR;
 	permBits &= ~S_IWUSR;
-	errCode = chmod(file.Chs(), permBits);
+	errCode = chmod(file.Chr(), permBits);
 	
 	return (errCode == 0);
 
@@ -1431,7 +1431,7 @@ bool tSystem::tIsHidden(const tString& path)
 	tStringUTF16 file16(file);
 	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
 	#else
-	ulong attribs = GetFileAttributes(file.Chs());
+	ulong attribs = GetFileAttributes(file.Chr());
 	#endif
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
@@ -1463,14 +1463,14 @@ bool tSystem::tSetHidden(const tString& fileName, bool hidden)
 	attribs = GetFileAttributes(file16.GetLPWSTR());
 
 	#else
-	ulong attribs = GetFileAttributes(file.Chs());
+	ulong attribs = GetFileAttributes(file.Chr());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
 	if (!(attribs & FILE_ATTRIBUTE_HIDDEN) && hidden)
-		SetFileAttributes(file.Chs(), attribs | FILE_ATTRIBUTE_HIDDEN);
+		SetFileAttributes(file.Chr(), attribs | FILE_ATTRIBUTE_HIDDEN);
 	else if ((attribs & FILE_ATTRIBUTE_HIDDEN) && !hidden)
-		SetFileAttributes(file.Chs(), attribs & ~FILE_ATTRIBUTE_HIDDEN);
-	attribs = GetFileAttributes(file.Chs());
+		SetFileAttributes(file.Chr(), attribs & ~FILE_ATTRIBUTE_HIDDEN);
+	attribs = GetFileAttributes(file.Chr());
 	#endif
 
 	if (attribs == INVALID_FILE_ATTRIBUTES)
@@ -1492,7 +1492,7 @@ bool tSystem::tIsSystem(const tString& fileName)
 	tStringUTF16 file16(file);
 	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
 	#else
-	ulong attribs = GetFileAttributes(file.Chs());
+	ulong attribs = GetFileAttributes(file.Chr());
 	#endif
 
 	if (attribs == INVALID_FILE_ATTRIBUTES)
@@ -1519,14 +1519,14 @@ bool tSystem::tSetSystem(const tString& fileName, bool system)
 	attribs = GetFileAttributes(file16.GetLPWSTR());
 
 	#else
-	ulong attribs = GetFileAttributes(file.Chs());
+	ulong attribs = GetFileAttributes(file.Chr());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
 	if (!(attribs & FILE_ATTRIBUTE_SYSTEM) && system)
-		SetFileAttributes(file.Chs(), attribs | FILE_ATTRIBUTE_SYSTEM);
+		SetFileAttributes(file.Chr(), attribs | FILE_ATTRIBUTE_SYSTEM);
 	else if ((attribs & FILE_ATTRIBUTE_SYSTEM) && !system)
-		SetFileAttributes(file.Chs(), attribs & ~FILE_ATTRIBUTE_SYSTEM);
-	attribs = GetFileAttributes(file.Chs());
+		SetFileAttributes(file.Chr(), attribs & ~FILE_ATTRIBUTE_SYSTEM);
+	attribs = GetFileAttributes(file.Chr());
 	#endif
 
 	if (attribs == INVALID_FILE_ATTRIBUTES)
@@ -1575,7 +1575,7 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 	tStringUTF16 driveRoot16(driveRoot);
 	uint driveType = GetDriveType(driveRoot16.GetLPWSTR());
 	#else
-	uint driveType = GetDriveType(driveRoot.Chs());
+	uint driveType = GetDriveType(driveRoot.Chr());
 	#endif
 	switch (driveType)
 	{
@@ -1622,7 +1622,7 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 			#ifdef TACENT_UTF16_API_CALLS
 			driveRoot16.GetLPWSTR(),
 			#else
-			driveRoot.Chs(),
+			driveRoot.Chr(),
 			#endif
 			0,
 			&fileInfo,
@@ -1652,7 +1652,7 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 			driveRoot16.GetLPWSTR(),
 			volumeInfoName.GetLPWSTR(),
 			#else
-			driveRoot.Chs(),
+			driveRoot.Chr(),
 			volumeInfoName.Txt(),
 			#endif
 			256,
@@ -1692,7 +1692,7 @@ bool tSystem::tSetVolumeName(const tString& drive, const tString& newVolumeName)
 	tStringUTF16 newVolumeName16(newVolumeName);
 	int success = SetVolumeLabel(driveRoot16.GetLPWSTR(), newVolumeName16.GetLPWSTR());
 	#else
-	int success = SetVolumeLabel(driveRoot.Chs(), newVolumeName.Chs());
+	int success = SetVolumeLabel(driveRoot.Chr(), newVolumeName.Chr());
 	#endif
 
 	return success ? true : false;
@@ -2060,7 +2060,7 @@ bool tSystem::tSetCurrentDir(const tString& directory)
 	tStringUTF16 cd16(cd);
 	int success = SetCurrentDirectory(cd16.GetLPWSTR());
 	#else
-	int success = SetCurrentDirectory(cd.Chs());
+	int success = SetCurrentDirectory(cd.Chr());
 	#endif
 	SetErrorMode(prevErrorMode);
 
@@ -2068,7 +2068,7 @@ bool tSystem::tSetCurrentDir(const tString& directory)
 
 	#else
 	tPathStd(dir);
-	int errCode = chdir(dir.Chs());
+	int errCode = chdir(dir.Chr());
 	return (errCode == 0);
 
 	#endif
@@ -2126,7 +2126,7 @@ bool tSystem::tFilesIdentical(const tString& fileA, const tString& fileB)
 
 bool tSystem::tCreateFile(const tString& file)
 {
-	tFileHandle f = tOpenFile(file.Chs(), "wt");
+	tFileHandle f = tOpenFile(file.Chr(), "wt");
 	if (!f)
 		return false;
 
@@ -2138,13 +2138,13 @@ bool tSystem::tCreateFile(const tString& file)
 bool tSystem::tCreateFile(const tString& filename, const tString& contents)
 {
 	uint32 len = contents.Length();
-	return tCreateFile(filename, (uint8*)contents.Chs(), len);
+	return tCreateFile(filename, (uint8*)contents.Chr(), len);
 }
 
 
 bool tSystem::tCreateFile(const tString& filename, uint8* data, int dataLength)
 {
-	tFileHandle dst = tOpenFile(filename.Chs(), "wb");
+	tFileHandle dst = tOpenFile(filename.Chr(), "wb");
 	if (!dst)
 		return false;
 
@@ -2163,7 +2163,7 @@ bool tSystem::tCreateFile(const tString& filename, uint8* data, int dataLength)
 
 bool tSystem::tCreateFile(const tString& filename, char8_t* data, int length, bool writeBOM)
 {
-	tFileHandle dst = tOpenFile(filename.Chs(), "wb");
+	tFileHandle dst = tOpenFile(filename.Chr(), "wb");
 	if (!dst)
 		return false;
 	tFileSeek(dst, 0, tSeekOrigin::Beginning);
@@ -2192,7 +2192,7 @@ bool tSystem::tCreateFile(const tString& filename, char8_t* data, int length, bo
 
 bool tSystem::tCreateFile(const tString& filename, char16_t* data, int length, bool writeBOM)
 {
-	tFileHandle dst = tOpenFile(filename.Chs(), "wb");
+	tFileHandle dst = tOpenFile(filename.Chr(), "wb");
 	if (!dst)
 		return false;
 	tFileSeek(dst, 0, tSeekOrigin::Beginning);
@@ -2218,7 +2218,7 @@ bool tSystem::tCreateFile(const tString& filename, char16_t* data, int length, b
 
 bool tSystem::tCreateFile(const tString& filename, char32_t* data, int length, bool writeBOM)
 {
-	tFileHandle dst = tOpenFile(filename.Chs(), "wb");
+	tFileHandle dst = tOpenFile(filename.Chr(), "wb");
 	if (!dst)
 		return false;
 	tFileSeek(dst, 0, tSeekOrigin::Beginning);
@@ -2253,19 +2253,19 @@ bool tSystem::tCreateDir(const tString& dir)
 	tStringUTF16 dirPath16(dirPath);
 	bool success = ::CreateDirectory(dirPath16.GetLPWSTR(), 0) ? true : false;
 	#else
-	bool success = ::CreateDirectory(dirPath.Chs(), 0) ? true : false;
+	bool success = ::CreateDirectory(dirPath.Chr(), 0) ? true : false;
 
 	#endif
 	if (!success)
-		success = tDirExists(dirPath.Chs());
+		success = tDirExists(dirPath.Chr());
 
 	return success;
 
 	#else
 	tPathStdFile(dirPath);
-	bool ok = std::filesystem::create_directory(dirPath.Chs());
+	bool ok = std::filesystem::create_directory(dirPath.Chr());
 	if (!ok)
-		return tDirExists(dirPath.Chs());
+		return tDirExists(dirPath.Chr());
 
 	return ok;
 
@@ -2306,7 +2306,7 @@ bool tSystem::tLoadFile(const tString& filename, tString& dst, char convertZeroe
 
 uint8* tSystem::tLoadFile(const tString& filename, uint8* buffer, int* fileSize, bool appendEOF)
 {
-	tFileHandle f = tOpenFile(filename.Chs(), "rb");
+	tFileHandle f = tOpenFile(filename.Chr(), "rb");
 	if (!f)
 	{
 		if (fileSize)
@@ -2403,7 +2403,7 @@ bool tSystem::tCopyFile(const tString& dest, const tString& src, bool overWriteR
 	int success = ::CopyFile(src16.GetLPWSTR(), dest16.GetLPWSTR(), 0);
 
 	#else
-	int success = ::CopyFile(src.Chs(), dest.Chs(), 0);
+	int success = ::CopyFile(src.Chr(), dest.Chr(), 0);
 	#endif
 
 	if (!success && overWriteReadOnly)
@@ -2412,14 +2412,14 @@ bool tSystem::tCopyFile(const tString& dest, const tString& src, bool overWriteR
 		#ifdef TACENT_UTF16_API_CALLS
 		success = ::CopyFile(src16.GetLPWSTR(), dest16.GetLPWSTR(), 0);
 		#else
-		success = ::CopyFile(src.Chs(), dest.Chs(), 0);
+		success = ::CopyFile(src.Chr(), dest.Chr(), 0);
 		#endif
 	}
 	return success ? true : false;
 
 	#else
-	std::filesystem::path pathFrom(src.Chs());
-	std::filesystem::path pathTo(dest.Chs());
+	std::filesystem::path pathFrom(src.Chr());
+	std::filesystem::path pathTo(dest.Chr());
 	bool success = std::filesystem::copy_file(pathFrom, pathTo);
 	if (!success && overWriteReadOnly)
 	{
@@ -2448,18 +2448,18 @@ bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tStr
 	int success = ::MoveFile(fullOldName16.GetLPWSTR(), fullNewName16.GetLPWSTR());
 
 	#else
-	int success = ::MoveFile(fullOldName.Chs(), fullNewName.Chs());
+	int success = ::MoveFile(fullOldName.Chr(), fullNewName.Chr());
 	#endif
 	return success ? true : false;
 
 	#else
 	tString fullOldName = dir + oldName;
 	tPathStd(fullOldName);
-	std::filesystem::path oldp(fullOldName.Chs());
+	std::filesystem::path oldp(fullOldName.Chr());
 
 	tString fullNewName = dir + newName;
 	tPathStd(fullNewName);
-	std::filesystem::path newp(fullNewName.Chs());
+	std::filesystem::path newp(fullNewName.Chr());
 
 	std::error_code ec;
 	std::filesystem::rename(oldp, newp, ec);
@@ -2483,7 +2483,7 @@ bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 	tStringUTF16 massagedName16(massagedName);
 	WinHandle h = FindFirstFile(massagedName16.GetLPWSTR(), &fd);
 	#else
-	WinHandle h = FindFirstFile(massagedName.Chs(), &fd);
+	WinHandle h = FindFirstFile(massagedName.Chr(), &fd);
 	#endif
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
@@ -2628,7 +2628,7 @@ bool tSystem::tFindFilesFastInternal(const tString& dir, const tExtensions& exte
 		tStringUTF16 path16(path);
 		WinHandle h = FindFirstFile(path16.GetLPWSTR(), &fd);
 		#else
-		WinHandle h = FindFirstFile(path.Chs(), &fd);
+		WinHandle h = FindFirstFile(path.Chr(), &fd);
 		#endif
 		if (h == INVALID_HANDLE_VALUE)
 		{
@@ -2692,7 +2692,7 @@ bool tSystem::tFindFilesFastInternal(const tString& dir, const tExtensions& exte
 
 	#elif defined(PLATFORM_LINUX)
 	tPathStdDir(dirStr);
-	DIR* dirEnt = opendir(dirStr.Chs());
+	DIR* dirEnt = opendir(dirStr.Chr());
 	if (dirStr.IsEmpty() || !dirEnt)
 		return false;
 
@@ -2780,7 +2780,7 @@ bool tSystem::tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString&
 	tStringUTF16 pathStrMod16(pathStr + "*.*");
 	WinHandle h = FindFirstFile(pathStrMod16.GetLPWSTR(), &fd);
 	#else
-	WinHandle h = FindFirstFile((pathStr + "*.*").Chs(), &fd);
+	WinHandle h = FindFirstFile((pathStr + "*.*").Chr(), &fd);
 	#endif
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
@@ -2811,7 +2811,7 @@ bool tSystem::tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString&
 		return false;
 
 	#else
-	for (const std::filesystem::directory_entry& entry: std::filesystem::recursive_directory_iterator(dir.Chs()))
+	for (const std::filesystem::directory_entry& entry: std::filesystem::recursive_directory_iterator(dir.Chr()))
 	{
 		if (!entry.is_regular_file())
 			continue;
@@ -2841,7 +2841,7 @@ bool tSystem::tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& d
 	tStringUTF16 pathStrMod16(pathStr + "*.*");
 	WinHandle h = FindFirstFile(pathStrMod16.GetLPWSTR(), &fd);
 	#else
-	WinHandle h = FindFirstFile((pathStr + "*.*").Chs(), &fd);
+	WinHandle h = FindFirstFile((pathStr + "*.*").Chr(), &fd);
 	#endif
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
@@ -2872,7 +2872,7 @@ bool tSystem::tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& d
 		return false;
 
 	#else
-	for (const std::filesystem::directory_entry& entry : std::filesystem::recursive_directory_iterator(dir.Chs()))
+	for (const std::filesystem::directory_entry& entry : std::filesystem::recursive_directory_iterator(dir.Chr()))
 	{
 		if (!entry.is_directory())
 			continue;
@@ -2900,7 +2900,7 @@ bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool use
 		SetFileAttributes(file16.GetLPWSTR(), FILE_ATTRIBUTE_NORMAL);
 	#else
 	if (deleteReadOnly)
-		SetFileAttributes(file.Chs(), FILE_ATTRIBUTE_NORMAL);
+		SetFileAttributes(file.Chr(), FILE_ATTRIBUTE_NORMAL);
 	#endif
 
 	if (!useRecycleBin)
@@ -2908,7 +2908,7 @@ bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool use
 		#ifdef TACENT_UTF16_API_CALLS
 		if (DeleteFile(file16.GetLPWSTR()))
 		#else
-		if (DeleteFile(file.Chs()))
+		if (DeleteFile(file.Chr()))
 		#endif
 			return true;
 		else
@@ -2931,7 +2931,7 @@ bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool use
 		#ifdef TACENT_UTF16_API_CALLS
 		operation.pFrom = filenameDoubleNull16.GetLPWSTR();
 		#else
-		operation.pFrom = filenameDoubleNull.Chs();
+		operation.pFrom = filenameDoubleNull.Chr();
 		#endif
 		operation.fFlags = FOF_ALLOWUNDO | FOF_NO_UI | FOF_NORECURSION;
 		int errCode = SHFileOperation(&operation);
@@ -2944,7 +2944,7 @@ bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool use
 	if (!deleteReadOnly && tIsReadOnly(filename))
 		return true;
 
-	std::filesystem::path p(filename.Chs());
+	std::filesystem::path p(filename.Chr());
 
 	if (useRecycleBin)
 	{
@@ -2953,7 +2953,7 @@ bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool use
 		if (tDirExists(recycleDir))
 		{
 			tString toFile = recycleDir + tGetFileName(filename);
-			std::filesystem::path toPath(toFile.Chs());
+			std::filesystem::path toPath(toFile.Chr());
 			std::error_code ec;
 			std::filesystem::rename(p, toPath, ec);
 			return ec ? false : true;
@@ -2992,7 +2992,7 @@ bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
 	tStringUTF16 directoryMod16(directory + "*.*");
 	WinHandle h = FindFirstFile(directoryMod16.GetLPWSTR(), &fd);
 	#else
-	WinHandle h = FindFirstFile((directory + "*.*").Chs(), &fd);
+	WinHandle h = FindFirstFile((directory + "*.*").Chr(), &fd);
 	#endif
 	if (h == INVALID_HANDLE_VALUE)
 		return true;
@@ -3023,7 +3023,7 @@ bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
 		SetFileAttributes(directory16.GetLPWSTR(), FILE_ATTRIBUTE_NORMAL);	// Directories can be read-only too.
 	#else
 	if (deleteReadOnly)
-		SetFileAttributes(directory.Chs(), FILE_ATTRIBUTE_NORMAL);	// Directories can be read-only too.
+		SetFileAttributes(directory.Chr(), FILE_ATTRIBUTE_NORMAL);	// Directories can be read-only too.
 	#endif
 
 	bool success = false;
@@ -3033,7 +3033,7 @@ bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
 		tStringUTF16 dir16(dir);
 		if (RemoveDirectory(dir16.GetLPWSTR()))
 		#else
-		if (RemoveDirectory(dir.Chs()))
+		if (RemoveDirectory(dir.Chr()))
 		#endif
 		{
 			success = true;
@@ -3063,7 +3063,7 @@ bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
 	if (tIsReadOnly(dir) && !deleteReadOnly)
 		return true;
 
-	std::filesystem::path p(dir.Chs());
+	std::filesystem::path p(dir.Chr());
 	std::error_code ec;
 	uintmax_t numRemoved = std::filesystem::remove_all(p, ec);
 	if (ec)

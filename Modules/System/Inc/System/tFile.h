@@ -574,7 +574,7 @@ inline tSystem::tExtensions& tSystem::tExtensions::Add(const tString& ext)
 	if (ext.IsEmpty())
 		return *this;
 
-	return Add(ext.Chs());
+	return Add(ext.Chr());
 }
 
 

@@ -172,7 +172,7 @@ bool tImageGIF::Save(const tString& gifFile, int overrideFrameDuration)
 	GifWriter writer;
 
 	// We assume here that GifBegin can handle the (const char*) being UTF-8 even though it doesn't use char8_t.
-	GifBegin(&writer, gifFile.Chs(), Width, Height, 100);
+	GifBegin(&writer, gifFile.Chr(), Width, Height, 100);
 
 	for (tFrame* frame = Frames.First(); frame; frame = frame->Next())
 	{

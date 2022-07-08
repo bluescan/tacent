@@ -1154,7 +1154,7 @@ void tFunScript::Save(const tString& fileName)
 	tFileHandle file = tSystem::tOpenFile(fileName, "wt");
 
 	if (!file)
-		throw tScriptError("Cannot open file '%s'.", fileName.Chs());
+		throw tScriptError("Cannot open file '%s'.", fileName.Chr());
 
 	// All we need to do is traverse the expression list and write out each one.
 	for (tFunExpression* exp = Expressions.First(); exp; exp = exp->Next())

@@ -266,11 +266,11 @@ static void PrintMetaDataTag(const tMetaData& metaData, tMetaTag tag)
 {
 	tString tagName = tGetMetaTagName(tag);
 	tString tagDesc = tGetMetaTagDesc(tag);
-	tPrintf("TagName [%s]\n", tagName.Chs());
+	tPrintf("TagName [%s]\n", tagName.Chr());
 
 	// Just want to print all on one line for now.
 	tagDesc.Replace('\n', '_');
-	tPrintf("TagDesc [%s]\n", tagDesc.Chs());
+	tPrintf("TagDesc [%s]\n", tagDesc.Chr());
 
 	const tMetaDatum& datum = metaData[tag];
 	switch (datum.Type)
@@ -288,12 +288,12 @@ static void PrintMetaDataTag(const tMetaData& metaData, tMetaTag tag)
 			break;
 
 		case tMetaDatum::DatumType::String:
-			tPrintf("RawValue(String) [%s]\n", datum.String.Chs());
+			tPrintf("RawValue(String) [%s]\n", datum.String.Chr());
 			break;
 	}
 	tString value = metaData.GetPrettyValue(tag);
 	if (value.IsValid())
-		tPrintf("PrettyValue      [%s]\n", value.Chs());
+		tPrintf("PrettyValue      [%s]\n", value.Chr());
 
 	tPrintf("\n");
 }
@@ -310,7 +310,7 @@ tTestUnit(ImageMetaData)
 	for (tStringItem* file = images.First(); file; file = file->Next())
 	{
 		tImageJPG tmpImg;
-		tPrintf("OpeningFile:%s\n", file->Chs());
+		tPrintf("OpeningFile:%s\n", file->Chr());
 		tmpImg.Load(*file);
 	}
 	return;
