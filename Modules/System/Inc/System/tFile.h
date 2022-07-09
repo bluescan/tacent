@@ -77,35 +77,40 @@ bool tDriveExists(const tString& driveName);
 tString tGetFileExtension(const tString& filename);
 
 // File types are based on file extensions only. If this enum is modified there is an extension mapping table
-// in tFile.cpp that needs to be updated as well.
+// in tFile.cpp that needs to be updated as well. In order to be clear abour the distinction between filetype
+// and extensions, the types here do not have any synonyms. A single filetype may map to multiple extensions.
 enum class tFileType
 {
-//	Type			Synonyms								Description
-	Unknown = -1,	Invalid = Unknown, EndOfList = Unknown,
-	TGA,			Targa = TGA,							// Image. Targa.
-	BMP,			Bitmap = BMP,							// Image. Windows bitmap.
-	PNG,			Ping = PNG,								// Image. Portable Network Graphics.
-	APNG,													// Image. Animated PNG.
-	GIF,													// Image. Graphics Interchange Format. Pronounced like the peanut butter.
-	WEBP,													// Image. Google Web Image.
-	XPM,													// Image. X-Windows Pix Map.
-	JPG,			JPeg = JPG,								// Image. Joing Picture Motion Group (or something like that).
-	TIFF,													// Image. Tag Interchange File Format.
-	DDS,													// Image. Direct Draw Surface. TextureMap/CubeMap.
-	HDR,													// Image. Radiance High Dynamic Range.
-	EXR,													// Image. OpenEXR High Dynamic Range.
-	PCX,													// Image.
-	WBMP,													// Image.
-	WMF,													// Image.
-	JP2,													// Image.
-	JPC,													// Image.
-	ICO,			Icon = ICO,								// Image. Windows Icon.
-	TEX,													// Image. Tacent TextureMap.
-	IMG,													// Image. TextureMap.
-	CUB,													// Image. Tacent CubeMap.
-	TAC,													// Image. Tacent Layered 2D Image.
-	CFG,													// Config. Text Config File.
-	INI,													// Config. Ini Config File.
+//	Type						Description
+	Unknown		= -1,
+	Invalid		= Unknown,
+	EndOfList	= Unknown,
+	EOL			= Unknown,
+
+	TGA,						// Image. Targa.
+	BMP,						// Image. Windows bitmap.
+	PNG,						// Image. Portable Network Graphics.
+	APNG,						// Image. Animated PNG.
+	GIF,						// Image. Graphics Interchange Format. Pronounced like the peanut butter.
+	WEBP,						// Image. Google Web Image.
+	XPM,						// Image. X-Windows Pix Map.
+	JPG,						// Image. Joint Picture Motion Group (or something like that).
+	TIFF,						// Image. Tag Interchange File Format.
+	DDS,						// Image. Direct Draw Surface. TextureMap/CubeMap.
+	HDR,						// Image. Radiance High Dynamic Range.
+	EXR,						// Image. OpenEXR High Dynamic Range.
+	PCX,						// Image.
+	WBMP,						// Image.
+	WMF,						// Image.
+	JP2,						// Image.
+	JPC,						// Image.
+	ICO,						// Image. Windows Icon.
+	TEX,						// Image. Tacent TextureMap.
+	IMG,						// Image. TextureMap.
+	CUB,						// Image. Tacent CubeMap.
+	TAC,						// Image. Tacent Layered 2D Image.
+	CFG,						// Config. Text Config File.
+	INI,						// Config. Ini Config File.
 	NumFileTypes
 };
 
@@ -182,8 +187,8 @@ struct tFileTypes
 	tFileTypes(const tExtensions& extensions)																			: FileTypes() { Add(extensions); }
 
 	// This constructor may be used to create a static/global object by simply entering the tFileTypes you want as
-	// arguments. The last tFileType _must_ be tFileType::EndOfList. Example:
-	// tFileTypes gTypes(tFileType::JPG, tFileType::PNG, tFileType::EndOfList);
+	// arguments. The last tFileType _must_ be tFileType::EndOfList or tFileType::EOL. Example:
+	// tFileTypes gTypes(tFileType::JPG, tFileType::PNG, tFileType::EOL);
 	tFileTypes(tFileType, ...);
 
 	// All the add functions check for uniqueness when adding.

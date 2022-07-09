@@ -842,7 +842,7 @@ tSystem::tFileTypes FileTypesGlobal
 	tFileType::BMP,
 	tFileType::JPG,
 	tFileType::TIFF,
-	tFileType::EndOfList
+	tFileType::EOL
 );
 
 
