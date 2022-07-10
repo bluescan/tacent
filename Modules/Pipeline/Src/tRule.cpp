@@ -126,7 +126,7 @@ void tRule::AddDependencyDirRec(const tString& dir, const tString& ext)
 {
 	tList<tStringItem> deps;
 	bool includeHidden = false;
-	tSystem::tFindFilesRecursive(deps, dir, ext, includeHidden);
+	tSystem::tFindFilesRec(deps, dir, ext, includeHidden);
 
 	AddDependencies(deps);
 	tAssert(deps.IsEmpty());

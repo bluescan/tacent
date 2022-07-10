@@ -403,27 +403,10 @@ int tGetNetworkShares(tNetworkShareResult&, bool retrieveMachinesWithNoShares = 
 // to a single string "MOUNTAINVIEW".
 void tExplodeShareName(tList<tStringItem>& exploded, const tString& shareName);
 
-#endif // PLATFORM_WINDOWS
-
-// The following set and get functions work equally well on both files and directories. The "Set" calls return true on
-// success. The "Is" calls return true if the attribute is set, and false if it isn't or an error occurred (like the
-// object didn't exist).
-bool tIsReadOnly(const tString& fileName);							// For Lixux returns true is user w flag not set and r flag is set.
-bool tSetReadOnly(const tString& fileName, bool readOnly = true);	// For Linux, sets the user w flag as appropriate and the r flag to true.
-
-// For Linux, checks if first character of filename is a dot (and not ".."). For Windows it checks the hidden
-// fileattribute regardless of whether it starts with a dot or not. If you want hidden files in a way that is
-// platform agnostic, make your hidden file start with a dot (Linux) , and set the hidden attribute (Windows).
-bool tIsHidden(const tString& fileName);
-
-#if defined(PLATFORM_WINDOWS)
-bool tSetHidden(const tString& fileName, bool hidden = true);
-bool tIsSystem(const tString& fileName);
-bool tSetSystem(const tString& fileName, bool system = true);
 tString tGetWindowsDir();
 tString tGetSystemDir();
 tString tGetDesktopDir();
-#endif
+#endif // PLATFORM_WINDOWS
 
 // Gets the home directory. On Linux usually something like "/home/username/". On windows usually something like "C:/Users/UserName/".
 tString tGetHomeDir();
@@ -441,6 +424,41 @@ tString tGetCurrentDir();
 // the c drive as will "C:" by itself. SetCurrentDir(".."); will move the current dir up a directory.
 bool tSetCurrentDir(const tString& dir);
 
+// Directory functions. These are simpler because we don't deal with extensions. If the dirPath to search is empty,
+// the current dir is used. Returns success. @todo These functions use the native (fast) API for Windows, but the slow
+// std::filesystem interface for Linux.
+bool tFindDirs(tList<tStringItem>& foundDirs, const tString& dirPath = tString(), bool includeHidden = false);
+bool tFindDirsRec(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden = true);
+
+// Creates a directory. It can also handle creating all the directories in a path. Calling with a string like
+// "C:/DirA/DirB/" will ensure that DirA and DirB exist. Returns true if successful.
+bool tCreateDir(const tString& dir);
+
+// A relentless delete. Doesn't care about read-only unless deleteReadOnly is false. This call does a recursive delete.
+// If a file has an open handle, however, this fn will fail. If the directory didn't exist before the call then this function silently returns. Returns true if dir existed and was deleted.
+bool tDeleteDir(const tString& directory, bool deleteReadOnly = true);
+
+//
+// File Functions.
+//
+
+// The following set and get functions work equally well on both files and directories. The "Set" calls return true on
+// success. The "Is" calls return true if the attribute is set, and false if it isn't or an error occurred (like the
+// object didn't exist).
+bool tIsReadOnly(const tString& fileName);							// For Lixux returns true is user w flag not set and r flag is set.
+bool tSetReadOnly(const tString& fileName, bool readOnly = true);	// For Linux, sets the user w flag as appropriate and the r flag to true.
+
+// For Linux, checks if first character of filename is a dot (and not ".."). For Windows it checks the hidden
+// fileattribute regardless of whether it starts with a dot or not. If you want hidden files in a way that is
+// platform agnostic, make your hidden file start with a dot (Linux) , and set the hidden attribute (Windows).
+bool tIsHidden(const tString& fileName);
+
+#if defined(PLATFORM_WINDOWS)
+bool tSetHidden(const tString& fileName, bool hidden = true);
+bool tIsSystem(const tString& fileName);
+bool tSetSystem(const tString& fileName, bool system = true);
+#endif
+
 // Overwrites dest if it exists. Returns true if success. Will return false and not copy if overWriteReadOnly is false
 // and the file already exists and is read-only.
 bool tCopyFile(const tString& destFile, const tString& srcFile, bool overWriteReadOnly = true);
@@ -450,53 +468,66 @@ bool tCopyFile(const tString& destFile, const tString& srcFile, bool overWriteRe
 // rename is located.
 bool tRenameFile(const tString& dir, const tString& oldName, const tString& newName);
 
-// The foundfiles list is always appended to. You must clear it first if that's what you intend. If empty second
-// argument, the contents of the current directory are returned. Extension can be something like "txt" (no dot).
-// On all platforms the extension is not case sensitive. eg. giF will match Gif. If ext is empty, all filetypes
-// are included. The order of items in foundFiles is not defined. Returns success.
-bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
+// This function finds files in a directory. It uses the std::filesystem calls that, while cross-platform, can be rather
+// slow. Consider using the "Fast" versions of this function. They fallback to this if not implemeneted for a particular
+// platform. The foundfiles list is always appended to. You must clear it first if that's what you intend. If empty dir
+// argument, the contents of the current directory are returned. Extension can be something like "txt" (no dot). On all
+// platforms the extension is not case sensitive. eg. giF will match Gif. Returns false if ext empty or no files found.
+// If false returned foundFiles is unmodified. The order of items in foundFiles is not defined.
+bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden = true);
 
 // This is similar to the above function but lets you specify more than one extension at a time. This has huge
-// performance implications (esp on Linux) if you need to find more than one extension in a directory. If extensions
+// performance implications (esp on Linux) if you need to find more than one extension in a directory. If tExtensions
 // is empty, all filetypes are included. The order of items in foundFiles is not defined. Returns success.
-bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden = true);
+bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions&, bool includeHidden = true);
 
-// The above two functions are based on the generic C++17 std::filesystem interface. While a clean cross-plat API,
+// Use this variant if you want all filetypes returned. In previous Tacent releases all filetypes were returned if ext
+// or extensions was empty, but that was awkward as the semantics changed. It is now a separate function.
+bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden = true);
+
+// The above three functions are based on the generic C++17 std::filesystem interface. While a clean cross-plat API,
 // it really is quite slow... up to 10x slower on Linux. The following two functions do the same thing, but by using
 // the native C file access functions (FindFirstFile etc for windows, readdir etc for Linux). They are, as the name
 // indicates, much faster. The order of items in foundFiles is not defined. In particular, it may not match the non-
-// fast versions of tFindFiles. Returns success.
-bool tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
-bool tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden = true);
+// fast versions of tFindFiles. If a platform is not supported, falls back to slow variants. All other comments apply.
+bool tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden = true);
+bool tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions&, bool includeHidden = true);
+bool tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden = true);
 
 // If you need the full file info for all the files you are enumerating, call this instead of the tFindFilesFast above.
 // It is much faster than getting the filenames and calling tGetFileInfo on each one -- a lot faster, esp on windows.
-bool tFindFilesFast(tList<tFileInfo>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
-bool tFindFilesFast(tList<tFileInfo>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden = true);
+// There is currently no std::filesystem-only version of these files.
+bool tFindFilesFast(tList<tFileInfo>& foundFiles, const tString& dir, const tString& ext, bool includeHidden = true);
+bool tFindFilesFast(tList<tFileInfo>& foundFiles, const tString& dir, const tExtensions&, bool includeHidden = true);
+bool tFindFilesFast(tList<tFileInfo>& foundFiles, const tString& dir, bool includeHidden = true);
 
-// foundFiles is appened to. Clear first if desired. Extension can be something like "txt" (no dot).
-bool tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
-bool tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden = true);
+// Recursive variants of the functions above -- be careful. foundFiles is appened to. Clear first if desired. See
+// comments above for behaviour. Because recursive queries can be dangerous if you are too close to the filesystem
+// root, these are separate functions rather than a switch.
+//
+// @todo Except for the first variant, these are not implemented... and the function that is implemented will return
+// all filetypes in the extension passed in is empty.
+bool tFindFilesRec(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
+#ifdef THIS_IS_NOT_IMPLEMENTED_YET
+bool tFindFilesRec(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden = true);
+bool tFindFilesRec(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions&, bool includeHidden = true);
+bool tFindFilesRec(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden = true);
+bool tFindFilesRecFast(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden = true);
+bool tFindFilesRecFast(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions&, bool includeHidden = true);
+bool tFindFilesRecFast(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden = true);
+bool tFindFilesRecFast(tList<tFileInfo>& foundFiles, const tString& dir, const tString& ext, bool includeHidden = true);
+bool tFindFilesRecFast(tList<tFileInfo>& foundFiles, const tString& dir, const tExtensions&, bool includeHidden = true);
+bool tFindFilesRecFast(tList<tFileInfo>& foundFiles, const tString& dir, bool includeHidden = true);
+#endif
 
-// If the dirPath to search is empty, the current dir is used. Returns success.
-bool tFindDirs(tList<tStringItem>& foundDirs, const tString& dirPath = tString(), bool includeHidden = false);
+bool tCreateFile(const tString& filename);					// Creates an empty file.
+bool tCreateFile(const tString& filename, const tString& contents);
+bool tCreateFile(const tString& filename, uint8* data, int length);
 
-// A relentless delete. Doesn't care about read-only unless deleteReadOnly is false. This call does a recursive delete.
-// If a file has an open handle, however, this fn will fail. If the directory didn't exist before the call then this function silently returns. Returns true if dir existed and was deleted.
-bool tDeleteDir(const tString& directory, bool deleteReadOnly = true);
-
-// Creates a directory. It can also handle creating all the directories in a path. Calling with a string like
-// "C:/DirA/DirB/" will ensure that DirA and DirB exist. Returns true if successful.
-bool tCreateDir(const tString& dir);
-
-// Returns true if file existed and was deleted. If tryUseRecycleBin is true and the function can't find the recycle
-// bin, it will return false. It is up to you to call it again with tryUseRecycleBin false if you really want the
-// file gone.
-bool tDeleteFile(const tString& filename, bool deleteReadOnly = true, bool tryUseRecycleBin = false);
-
-// If either (or both) file doesn't exist you get false. Entire files will temporarily be read into memory so it's not
-// too efficient (only for tool use).
-bool tFilesIdentical(const tString& fileA, const tString& fileB);
+// For easily creating UTF-encoded text files. It is not recommended to write a BOM for UTF-8.
+bool tCreateFile(const tString& filename, char8_t*  data, int length, bool writeBOM = false);
+bool tCreateFile(const tString& filename, char16_t* data, int length, bool writeBom = true);
+bool tCreateFile(const tString& filename, char32_t* data, int length, bool writeBOM = true);
 
 // Loads entire file into memory. If buffer is nullptr you must free the memory returned at some point by using
 // delete[]. If buffer is non-nullptr it must be at least GetFileSize big (+1 if appending EOF). Any problems (file not exist or is
@@ -517,14 +548,15 @@ bool tLoadFile(const tString& filename, tString& dst, char convertZeroesTo = 31)
 // supplied and there is a read problem, nullptr will be returned.
 uint8* tLoadFileHead(const tString& filename, int& bytesToRead, uint8* buffer = nullptr);
 uint8* tLoadFileHead(const tString& filename, int bytesToRead, tString& dest);
-bool tCreateFile(const tString& filename);					// Creates an empty file.
-bool tCreateFile(const tString& filename, const tString& contents);
-bool tCreateFile(const tString& filename, uint8* data, int length);
 
-// For easily creating UTF-encoded text files. It is not recommended to write a BOM for UTF-8.
-bool tCreateFile(const tString& filename, char8_t*  data, int length, bool writeBOM = false);
-bool tCreateFile(const tString& filename, char16_t* data, int length, bool writeBom = true);
-bool tCreateFile(const tString& filename, char32_t* data, int length, bool writeBOM = true);
+// Returns true if file existed and was deleted. If tryUseRecycleBin is true and the function can't find the recycle
+// bin, it will return false. It is up to you to call it again with tryUseRecycleBin false if you really want the
+// file gone.
+bool tDeleteFile(const tString& filename, bool deleteReadOnly = true, bool tryUseRecycleBin = false);
+
+// If either (or both) file doesn't exist you get false. Entire files will temporarily be read into memory so it's not
+// too efficient (only for tool use).
+bool tFilesIdentical(const tString& fileA, const tString& fileB);
 
 // File hash functions using tHash standard hash algorithms.
 uint32 tHashFileFast32(const tString& filename, uint32 iv = tHash::HashIV32);

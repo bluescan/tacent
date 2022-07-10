@@ -58,10 +58,11 @@ namespace tSystem
 	void tGetFileInfo(tFileInfo& fileInfo, Win32FindData&);
 	#endif
 
+	bool tFindFilesInternal(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions*, bool includeHidden);
 	bool tFindFilesFastInternal
 	(
-		const tString& dir, const tExtensions& extensions, bool includeHidden,
-		tList<tStringItem>* foundFiles, tList<tFileInfo>* foundInfos
+		tList<tStringItem>* foundFiles, tList<tFileInfo>* foundInfos,
+		const tString& dir, const tExtensions*, bool hidden
 	);
 
 	const int MaxExtensionsPerFileType = 4;
@@ -1235,310 +1236,7 @@ tString tSystem::tGetFileFullName(const tString& filename)
 }
 
 
-uint32 tSystem::tHashFileFast32(const tString& filename, uint32 iv)
-{
-	int dataSize = 0;
-	uint8* data = tLoadFile(filename, nullptr, &dataSize);
-	if (!data)
-		return iv;
-
-	uint32 hash = tHash::tHashDataFast32(data, dataSize, iv);
-	delete[] data;
-	return hash;
-}
-
-
-uint32 tSystem::tHashFile32(const tString& filename, uint32 iv)
-{
-	int dataSize = 0;
-	uint8* data = tLoadFile(filename, nullptr, &dataSize);
-	if (!data)
-		return iv;
-
-	uint32 hash = tHash::tHashData32(data, dataSize, iv);
-	delete[] data;
-	return hash;
-}
-
-
-uint64 tSystem::tHashFile64(const tString& filename, uint64 iv)
-{
-	int dataSize = 0;
-	uint8* data = tLoadFile(filename, nullptr, &dataSize);
-	if (!data)
-		return iv;
-
-	uint64 hash = tHash::tHashData64(data, dataSize, iv);
-	delete[] data;
-	return hash;
-}
-
-
-tuint256 tSystem::tHashFile256(const tString& filename, tuint256 iv)
-{
-	int dataSize = 0;
-	uint8* data = tLoadFile(filename, nullptr, &dataSize);
-	if (!data)
-		return iv;
-
-	tuint256 hash = tHash::tHashData256(data, dataSize, iv);
-	delete[] data;
-	return hash;
-}
-
-
-tuint128 tSystem::tHashFileMD5(const tString& filename, tuint128 iv)
-{
-	int dataSize = 0;
-	uint8* data = tLoadFile(filename, nullptr, &dataSize);
-	if (!data)
-		return iv;
-
-	tuint128 hash = tHash::tHashDataMD5(data, dataSize, iv);
-	delete[] data;
-	return hash;
-}
-
-
-tuint256 tSystem::tHashFileSHA256(const tString& filename, tuint256 iv)
-{
-	int dataSize = 0;
-	uint8* data = tLoadFile(filename, nullptr, &dataSize);
-	if (!data)
-		return iv;
-
-	tuint256 hash = tHash::tHashDataSHA256(data, dataSize, iv);
-	delete[] data;
-	return hash;
-}
-
-
-bool tSystem::tIsReadOnly(const tString& fileName)
-{
-	tString file(fileName);
-
-	#if defined(PLATFORM_WINDOWS)
-	tPathWinFile(file);
-
-	// The docs for this should be clearer!  GetFileAttributes returns INVALID_FILE_ATTRIBUTES if it
-	// fails.  Rather dangerously, and undocumented, INVALID_FILE_ATTRIBUTES has a value of 0xFFFFFFFF.
-	// This means that all attribute are apparently true!  This is very lame.  Thank goodness there aren't
-	// 32 possible attributes, or there could be real problems.  Too bad it didn't just return 0 on error...
-	// especially since they specifically have a FILE_ATTRIBUTES_NORMAL flag that is non-zero!
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 file16(file);
-	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
-	#else
-	ulong attribs = GetFileAttributes(file.Chr());
-	#endif
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	return (attribs & FILE_ATTRIBUTE_READONLY) ? true : false;
-
-	#else
-	tPathStd(file);
-
-	struct stat st;
-	int errCode = stat(file.Chr(), &st);
-	if (errCode != 0)
-		return false;
-
-	bool w = (st.st_mode & S_IWUSR) ? true : false;
-	bool r = (st.st_mode & S_IRUSR) ? true : false;
-	return r && !w;
-
-	#endif
-}
-
-
-bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
-{
-	tString file(fileName);
-	
-	#if defined(PLATFORM_WINDOWS)	
-	tPathWinFile(file);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 file16(file);
-	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	if (!(attribs & FILE_ATTRIBUTE_READONLY) && readOnly)
-		SetFileAttributes(file16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_READONLY);
-	else if ((attribs & FILE_ATTRIBUTE_READONLY) && !readOnly)
-		SetFileAttributes(file16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_READONLY);
-
-	attribs = GetFileAttributes(file16.GetLPWSTR());
-	#else
-	ulong attribs = GetFileAttributes(file.Chr());
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	if (!(attribs & FILE_ATTRIBUTE_READONLY) && readOnly)
-		SetFileAttributes(file.Chr(), attribs | FILE_ATTRIBUTE_READONLY);
-	else if ((attribs & FILE_ATTRIBUTE_READONLY) && !readOnly)
-		SetFileAttributes(file.Chr(), attribs & ~FILE_ATTRIBUTE_READONLY);
-
-	attribs = GetFileAttributes(file.Chr());	
-	#endif
-
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	if (!!(attribs & FILE_ATTRIBUTE_READONLY) == readOnly)
-		return true;
-
-	return false;
-
-	#else
-	tPathStd(file);
-	
-	struct stat st;
-	int errCode = stat(file.Chr(), &st);
-	if (errCode != 0)
-		return false;
-	
-	uint32 permBits = st.st_mode;
-
-	// Set user R and clear user w. Leave rest unchanged.
-	permBits |= S_IRUSR;
-	permBits &= ~S_IWUSR;
-	errCode = chmod(file.Chr(), permBits);
-	
-	return (errCode == 0);
-
-	#endif
-}
-
-
-bool tSystem::tIsHidden(const tString& path)
-{
-	#if defined(PLATFORM_LINUX)
-	// In Linux it's all based on whether the filename starts with a dot. We ignore files called "." or ".."
-	tString fileName = tGetFileName(path);
-	if ((fileName != ".") && (fileName != "..") && (fileName[0] == '.'))
-		return true;
-	return false;
-
-	#elif defined(PLATFORM_WINDOWS)
-	// In windows it's all based on the file attribute.
-	tString file(path);
-	tPathWinFile(file);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 file16(file);
-	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
-	#else
-	ulong attribs = GetFileAttributes(file.Chr());
-	#endif
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	return (attribs & FILE_ATTRIBUTE_HIDDEN) ? true : false;
-
-	#else
-	return false;
-
-	#endif
-}
-
-
 #if defined(PLATFORM_WINDOWS)
-bool tSystem::tSetHidden(const tString& fileName, bool hidden)
-{
-	tString file(fileName);
-	tPathWinFile(file);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 file16(file);
-	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-	if (!(attribs & FILE_ATTRIBUTE_HIDDEN) && hidden)
-		SetFileAttributes(file16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_HIDDEN);
-	else if ((attribs & FILE_ATTRIBUTE_HIDDEN) && !hidden)
-		SetFileAttributes(file16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_HIDDEN);
-	attribs = GetFileAttributes(file16.GetLPWSTR());
-
-	#else
-	ulong attribs = GetFileAttributes(file.Chr());
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-	if (!(attribs & FILE_ATTRIBUTE_HIDDEN) && hidden)
-		SetFileAttributes(file.Chr(), attribs | FILE_ATTRIBUTE_HIDDEN);
-	else if ((attribs & FILE_ATTRIBUTE_HIDDEN) && !hidden)
-		SetFileAttributes(file.Chr(), attribs & ~FILE_ATTRIBUTE_HIDDEN);
-	attribs = GetFileAttributes(file.Chr());
-	#endif
-
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	if (!!(attribs & FILE_ATTRIBUTE_HIDDEN) == hidden)
-		return true;
-
-	return false;
-}
-
-
-bool tSystem::tIsSystem(const tString& fileName)
-{
-	tString file(fileName);
-	tPathWinFile(file);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 file16(file);
-	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
-	#else
-	ulong attribs = GetFileAttributes(file.Chr());
-	#endif
-
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	return (attribs & FILE_ATTRIBUTE_SYSTEM) ? true : false;
-}
-
-
-bool tSystem::tSetSystem(const tString& fileName, bool system)
-{
-	tString file(fileName);
-	tPathWinFile(file);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 file16(file);
-	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-	if (!(attribs & FILE_ATTRIBUTE_SYSTEM) && system)
-		SetFileAttributes(file16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_SYSTEM);
-	else if ((attribs & FILE_ATTRIBUTE_SYSTEM) && !system)
-		SetFileAttributes(file16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_SYSTEM);
-	attribs = GetFileAttributes(file16.GetLPWSTR());
-
-	#else
-	ulong attribs = GetFileAttributes(file.Chr());
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-	if (!(attribs & FILE_ATTRIBUTE_SYSTEM) && system)
-		SetFileAttributes(file.Chr(), attribs | FILE_ATTRIBUTE_SYSTEM);
-	else if ((attribs & FILE_ATTRIBUTE_SYSTEM) && !system)
-		SetFileAttributes(file.Chr(), attribs & ~FILE_ATTRIBUTE_SYSTEM);
-	attribs = GetFileAttributes(file.Chr());
-	#endif
-
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	if (!!(attribs & FILE_ATTRIBUTE_SYSTEM) == system)
-		return true;
-
-	return false;
-}
-
-
 void tSystem::tGetDrives(tList<tStringItem>& drives)
 {
 	ulong ad = GetLogicalDrives();
@@ -1881,41 +1579,6 @@ tString tSystem::tGetSystemDir()
 	tPathStdDir(sysdir);
 	return sysdir;
 }
-#endif
-
-
-#if defined(PLATFORM_LINUX)
-tString tSystem::tGetHomeDir()
-{
-	const char* homeDir = getenv("HOME");
-	if (!homeDir)
-		homeDir = getpwuid(getuid())->pw_dir;
-		
-	if (!homeDir)
-		return tString();
-		
-	tString res(homeDir);
-	if (res[res.Length()-1] != '/')
-		res += '/';
-	return res;
-}
-
-
-#elif defined(PLATFORM_WINDOWS)
-tString tSystem::tGetHomeDir()
-{
-	tString home;
-	wchar_t* pathBuffer = nullptr;
-	hResult result = SHGetKnownFolderPath(FOLDERID_Profile, 0, 0, &pathBuffer);
-	if ((result != S_OK) || !pathBuffer)
-		return home;
-
-	home.Set((char16_t*)pathBuffer);
-	CoTaskMemFree(pathBuffer);
-
-	tPathStdDir(home);
-	return home;
-}
 
 
 tString tSystem::tGetDesktopDir()
@@ -1932,7 +1595,34 @@ tString tSystem::tGetDesktopDir()
 	tPathStdDir(desktop);
 	return desktop;
 }
-#endif
+#endif // PLATFORM_WINDOWS
+
+
+tString tSystem::tGetHomeDir()
+{
+	tString home;
+	#if defined(PLATFORM_LINUX)
+	const char* homeDir = getenv("HOME");
+	if (!homeDir)
+		homeDir = getpwuid(getuid())->pw_dir;		
+	if (!homeDir)
+		return home;
+	home.Set(homeDir);
+	if (home[home.Length()-1] != '/')
+		home += '/';
+
+	#elif defined(PLATFORM_WINDOWS)
+	wchar_t* pathBuffer = nullptr;
+	hResult result = SHGetKnownFolderPath(FOLDERID_Profile, 0, 0, &pathBuffer);
+	if ((result != S_OK) || !pathBuffer)
+		return home;
+	home.Set((char16_t*)pathBuffer);
+	CoTaskMemFree(pathBuffer);
+	tPathStdDir(home);
+	#endif
+
+	return home;
+}
 
 
 tString tSystem::tGetProgramDir()
@@ -2072,6 +1762,900 @@ bool tSystem::tSetCurrentDir(const tString& directory)
 	return (errCode == 0);
 
 	#endif
+}
+
+
+bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden)
+{
+	#ifdef PLATFORM_WINDOWS
+
+	// First lets massage fileName a little.
+	tString massagedName = dir;
+	if ((massagedName[massagedName.Length() - 1] == '/') || (massagedName[massagedName.Length() - 1] == '\\'))
+		massagedName += "*.*";
+
+	Win32FindData fd;
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 massagedName16(massagedName);
+	WinHandle h = FindFirstFile(massagedName16.GetLPWSTR(), &fd);
+	#else
+	WinHandle h = FindFirstFile(massagedName.Chr(), &fd);
+	#endif
+	if (h == INVALID_HANDLE_VALUE)
+		return false;
+
+	tString path = tGetDir(massagedName);
+	do
+	{
+		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+		{
+			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
+			{
+				// If the directory name is not "." or ".." then it's a real directory.
+				// Note that you cannot just check for the first character not being "."  Some directories (and files)
+				// may have a name that starts with a dot, especially if they were copied from a unix machine.
+				#ifdef TACENT_UTF16_API_CALLS
+				tString fn((char16_t*)fd.cFileName);
+				#else
+				tString fn(fd.cFileName);
+				#endif
+				if ((fn != ".") && (fn != ".."))
+					foundDirs.Append(new tStringItem(path + fn + "/"));
+			}
+		}
+	} while (FindNextFile(h, &fd));
+
+	FindClose(h);
+	if (GetLastError() != ERROR_NO_MORE_FILES)
+		return false;
+
+	#else
+	tString dirPath(dir);
+	if (dirPath.IsEmpty())
+		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
+
+	std::error_code errorCode;
+	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text(), errorCode))
+	{
+		if (errorCode || (entry == std::filesystem::directory_entry()))
+		{
+			errorCode.clear();
+			continue;
+		}
+
+		if (!entry.is_directory())
+			continue;
+
+		tString foundDir((char*)entry.path().u8string().c_str());
+		
+		// All directories end in a slash in tacent.
+		if (foundDir[foundDir.Length()-1] != '/')
+			foundDir += "/";
+		if (includeHidden || !tIsHidden(foundDir))
+			foundDirs.Append(new tStringItem(foundDir));
+	}
+
+	#endif
+	return true;
+}
+
+
+bool tSystem::tFindDirsRec(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden)
+{
+	#ifdef PLATFORM_WINDOWS
+	tString pathStr(dir);
+
+	tPathWinDir(pathStr);
+	tFindDirs(foundDirs, pathStr, includeHidden);
+	Win32FindData fd;
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 pathStrMod16(pathStr + "*.*");
+	WinHandle h = FindFirstFile(pathStrMod16.GetLPWSTR(), &fd);
+	#else
+	WinHandle h = FindFirstFile((pathStr + "*.*").Chr(), &fd);
+	#endif
+	if (h == INVALID_HANDLE_VALUE)
+		return false;
+
+	do
+	{
+		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+		{
+			// Don't recurse into hidden subdirectories if includeHidden is false.
+			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
+			{
+				// If the directory name is not "." or ".." then it's a real directory.
+				// Note that you cannot just check for the first character not being "."  Some directories (and files)
+				// may have a name that starts with a dot, especially if they were copied from a unix machine.
+				#ifdef TACENT_UTF16_API_CALLS
+				tString fn((char16_t*)fd.cFileName);
+				#else
+				tString fn(fd.cFileName);
+				#endif
+				if ((fn != ".") && (fn != ".."))
+					tFindDirsRec(foundDirs, pathStr + fn + "\\", includeHidden);
+			}
+		}
+	} while (FindNextFile(h, &fd));
+
+	FindClose(h);
+	if (GetLastError() != ERROR_NO_MORE_FILES)
+		return false;
+
+	#else
+	for (const std::filesystem::directory_entry& entry : std::filesystem::recursive_directory_iterator(dir.Chr()))
+	{
+		if (!entry.is_directory())
+			continue;
+
+		tString foundDir((char*)entry.path().u8string().c_str());
+
+		if (includeHidden || !tIsHidden(foundDir))
+			foundDirs.Append(new tStringItem(foundDir));
+	}
+
+	#endif
+	return true;
+}
+
+
+bool tSystem::tCreateDir(const tString& dir)
+{
+	tString dirPath = dir;
+	
+	#if defined(PLATFORM_WINDOWS)
+	tPathWin(dirPath);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 dirPath16(dirPath);
+	bool success = ::CreateDirectory(dirPath16.GetLPWSTR(), 0) ? true : false;
+	#else
+	bool success = ::CreateDirectory(dirPath.Chr(), 0) ? true : false;
+
+	#endif
+	if (!success)
+		success = tDirExists(dirPath.Chr());
+
+	return success;
+
+	#else
+	tPathStdFile(dirPath);
+	bool ok = std::filesystem::create_directory(dirPath.Chr());
+	if (!ok)
+		return tDirExists(dirPath.Chr());
+
+	return ok;
+
+	#endif
+}
+
+
+bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
+{
+	#ifdef PLATFORM_WINDOWS
+	// Are we done before we even begin?
+	if (!tDirExists(dir))
+		return false;
+
+	tList<tStringItem> fileList;
+	tFindFiles(fileList, dir);
+	tStringItem* file = fileList.First();
+	while (file)
+	{
+		tDeleteFile(*file, deleteReadOnly);		// We don't really care whether it succeeded or not.
+		file = file->Next();
+	}
+
+	fileList.Empty();							// Clean up the file list.
+	tString directory(dir);
+	tPathWin(directory);
+
+	Win32FindData fd;
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 directoryMod16(directory + "*.*");
+	WinHandle h = FindFirstFile(directoryMod16.GetLPWSTR(), &fd);
+	#else
+	WinHandle h = FindFirstFile((directory + "*.*").Chr(), &fd);
+	#endif
+	if (h == INVALID_HANDLE_VALUE)
+		return true;
+
+	do
+	{
+		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+		{
+			// If the directory name is not "." or ".." then it's a real directory.
+			// Note that you cannot just check for the first character not being "."  Some directories (and files)
+			// may have a name that starts with a dot, especially if they were copied from a unix machine.
+			#ifdef TACENT_UTF16_API_CALLS
+			tString fn((char16_t*)fd.cFileName);
+			#else
+			tString fn(fd.cFileName);
+			#endif
+			if ((fn != ".") && (fn != ".."))
+				tDeleteDir(dir + fn + "/", deleteReadOnly);
+		}
+	} while (FindNextFile(h, &fd));
+
+	bool deleteFilesOK = (GetLastError() == ERROR_NO_MORE_FILES) ? true : false;
+	FindClose(h);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 directory16(directory);
+	if (deleteReadOnly)
+		SetFileAttributes(directory16.GetLPWSTR(), FILE_ATTRIBUTE_NORMAL);	// Directories can be read-only too.
+	#else
+	if (deleteReadOnly)
+		SetFileAttributes(directory.Chr(), FILE_ATTRIBUTE_NORMAL);	// Directories can be read-only too.
+	#endif
+
+	bool success = false;
+	for (int delTry = 0; delTry < 32; delTry++)
+	{
+		#ifdef TACENT_UTF16_API_CALLS
+		tStringUTF16 dir16(dir);
+		if (RemoveDirectory(dir16.GetLPWSTR()))
+		#else
+		if (RemoveDirectory(dir.Chr()))
+		#endif
+		{
+			success = true;
+			break;
+		}
+
+		// In some cases we might need to wait just a little and try again.  This can even take up to 10 seconds or so.
+		// This seems to happen a lot when the target manager is streaming music, say, from the folder.
+		else if (GetLastError() == ERROR_DIR_NOT_EMPTY)
+		{
+			tSystem::tSleep(500);
+		}
+		else
+		{
+			tSystem::tSleep(10);
+		}
+	}
+
+	if (!success || !deleteFilesOK)
+		return false;
+
+	#else
+	// Are we done before we even begin?
+	if (!tDirExists(dir))
+		return false;
+
+	if (tIsReadOnly(dir) && !deleteReadOnly)
+		return true;
+
+	std::filesystem::path p(dir.Chr());
+	std::error_code ec;
+	uintmax_t numRemoved = std::filesystem::remove_all(p, ec);
+	if (ec)
+		return false;
+
+	#endif
+
+	return true;
+}
+
+
+bool tSystem::tIsReadOnly(const tString& fileName)
+{
+	tString file(fileName);
+
+	#if defined(PLATFORM_WINDOWS)
+	tPathWinFile(file);
+
+	// The docs for this should be clearer!  GetFileAttributes returns INVALID_FILE_ATTRIBUTES if it
+	// fails.  Rather dangerously, and undocumented, INVALID_FILE_ATTRIBUTES has a value of 0xFFFFFFFF.
+	// This means that all attribute are apparently true!  This is very lame.  Thank goodness there aren't
+	// 32 possible attributes, or there could be real problems.  Too bad it didn't just return 0 on error...
+	// especially since they specifically have a FILE_ATTRIBUTES_NORMAL flag that is non-zero!
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 file16(file);
+	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
+	#else
+	ulong attribs = GetFileAttributes(file.Chr());
+	#endif
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	return (attribs & FILE_ATTRIBUTE_READONLY) ? true : false;
+
+	#else
+	tPathStd(file);
+
+	struct stat st;
+	int errCode = stat(file.Chr(), &st);
+	if (errCode != 0)
+		return false;
+
+	bool w = (st.st_mode & S_IWUSR) ? true : false;
+	bool r = (st.st_mode & S_IRUSR) ? true : false;
+	return r && !w;
+
+	#endif
+}
+
+
+bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
+{
+	tString file(fileName);
+	
+	#if defined(PLATFORM_WINDOWS)	
+	tPathWinFile(file);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 file16(file);
+	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	if (!(attribs & FILE_ATTRIBUTE_READONLY) && readOnly)
+		SetFileAttributes(file16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_READONLY);
+	else if ((attribs & FILE_ATTRIBUTE_READONLY) && !readOnly)
+		SetFileAttributes(file16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_READONLY);
+
+	attribs = GetFileAttributes(file16.GetLPWSTR());
+	#else
+	ulong attribs = GetFileAttributes(file.Chr());
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	if (!(attribs & FILE_ATTRIBUTE_READONLY) && readOnly)
+		SetFileAttributes(file.Chr(), attribs | FILE_ATTRIBUTE_READONLY);
+	else if ((attribs & FILE_ATTRIBUTE_READONLY) && !readOnly)
+		SetFileAttributes(file.Chr(), attribs & ~FILE_ATTRIBUTE_READONLY);
+
+	attribs = GetFileAttributes(file.Chr());	
+	#endif
+
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	if (!!(attribs & FILE_ATTRIBUTE_READONLY) == readOnly)
+		return true;
+
+	return false;
+
+	#else
+	tPathStd(file);
+	
+	struct stat st;
+	int errCode = stat(file.Chr(), &st);
+	if (errCode != 0)
+		return false;
+	
+	uint32 permBits = st.st_mode;
+
+	// Set user R and clear user w. Leave rest unchanged.
+	permBits |= S_IRUSR;
+	permBits &= ~S_IWUSR;
+	errCode = chmod(file.Chr(), permBits);
+	
+	return (errCode == 0);
+
+	#endif
+}
+
+
+bool tSystem::tIsHidden(const tString& path)
+{
+	#if defined(PLATFORM_LINUX)
+	// In Linux it's all based on whether the filename starts with a dot. We ignore files called "." or ".."
+	tString fileName = tGetFileName(path);
+	if ((fileName != ".") && (fileName != "..") && (fileName[0] == '.'))
+		return true;
+	return false;
+
+	#elif defined(PLATFORM_WINDOWS)
+	// In windows it's all based on the file attribute.
+	tString file(path);
+	tPathWinFile(file);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 file16(file);
+	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
+	#else
+	ulong attribs = GetFileAttributes(file.Chr());
+	#endif
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	return (attribs & FILE_ATTRIBUTE_HIDDEN) ? true : false;
+
+	#else
+	return false;
+
+	#endif
+}
+
+
+#if defined(PLATFORM_WINDOWS)
+bool tSystem::tSetHidden(const tString& fileName, bool hidden)
+{
+	tString file(fileName);
+	tPathWinFile(file);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 file16(file);
+	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+	if (!(attribs & FILE_ATTRIBUTE_HIDDEN) && hidden)
+		SetFileAttributes(file16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_HIDDEN);
+	else if ((attribs & FILE_ATTRIBUTE_HIDDEN) && !hidden)
+		SetFileAttributes(file16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_HIDDEN);
+	attribs = GetFileAttributes(file16.GetLPWSTR());
+
+	#else
+	ulong attribs = GetFileAttributes(file.Chr());
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+	if (!(attribs & FILE_ATTRIBUTE_HIDDEN) && hidden)
+		SetFileAttributes(file.Chr(), attribs | FILE_ATTRIBUTE_HIDDEN);
+	else if ((attribs & FILE_ATTRIBUTE_HIDDEN) && !hidden)
+		SetFileAttributes(file.Chr(), attribs & ~FILE_ATTRIBUTE_HIDDEN);
+	attribs = GetFileAttributes(file.Chr());
+	#endif
+
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	if (!!(attribs & FILE_ATTRIBUTE_HIDDEN) == hidden)
+		return true;
+
+	return false;
+}
+
+
+bool tSystem::tIsSystem(const tString& fileName)
+{
+	tString file(fileName);
+	tPathWinFile(file);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 file16(file);
+	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
+	#else
+	ulong attribs = GetFileAttributes(file.Chr());
+	#endif
+
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	return (attribs & FILE_ATTRIBUTE_SYSTEM) ? true : false;
+}
+
+
+bool tSystem::tSetSystem(const tString& fileName, bool system)
+{
+	tString file(fileName);
+	tPathWinFile(file);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 file16(file);
+	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+	if (!(attribs & FILE_ATTRIBUTE_SYSTEM) && system)
+		SetFileAttributes(file16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_SYSTEM);
+	else if ((attribs & FILE_ATTRIBUTE_SYSTEM) && !system)
+		SetFileAttributes(file16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_SYSTEM);
+	attribs = GetFileAttributes(file16.GetLPWSTR());
+
+	#else
+	ulong attribs = GetFileAttributes(file.Chr());
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+	if (!(attribs & FILE_ATTRIBUTE_SYSTEM) && system)
+		SetFileAttributes(file.Chr(), attribs | FILE_ATTRIBUTE_SYSTEM);
+	else if ((attribs & FILE_ATTRIBUTE_SYSTEM) && !system)
+		SetFileAttributes(file.Chr(), attribs & ~FILE_ATTRIBUTE_SYSTEM);
+	attribs = GetFileAttributes(file.Chr());
+	#endif
+
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	if (!!(attribs & FILE_ATTRIBUTE_SYSTEM) == system)
+		return true;
+
+	return false;
+}
+#endif // PLATFORM_WINDOWS
+
+
+bool tSystem::tCopyFile(const tString& dest, const tString& src, bool overWriteReadOnly)
+{
+	#if defined(PLATFORM_WINDOWS)
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 src16(src);
+	tStringUTF16 dest16(dest);
+	int success = ::CopyFile(src16.GetLPWSTR(), dest16.GetLPWSTR(), 0);
+
+	#else
+	int success = ::CopyFile(src.Chr(), dest.Chr(), 0);
+	#endif
+
+	if (!success && overWriteReadOnly)
+	{
+		tSetReadOnly(dest, false);
+		#ifdef TACENT_UTF16_API_CALLS
+		success = ::CopyFile(src16.GetLPWSTR(), dest16.GetLPWSTR(), 0);
+		#else
+		success = ::CopyFile(src.Chr(), dest.Chr(), 0);
+		#endif
+	}
+	return success ? true : false;
+
+	#else
+	std::filesystem::path pathFrom(src.Chr());
+	std::filesystem::path pathTo(dest.Chr());
+	bool success = std::filesystem::copy_file(pathFrom, pathTo);
+	if (!success && overWriteReadOnly)
+	{
+		tSetReadOnly(dest, false);
+		success = std::filesystem::copy_file(pathFrom, pathTo);
+	}
+		
+	return success;
+
+	#endif
+}
+
+
+bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tString& newName)
+{
+	#if defined(PLATFORM_WINDOWS)
+	tString fullOldName = dir + oldName;
+	tPathWin(fullOldName);
+
+	tString fullNewName = dir + newName;
+	tPathWin(fullNewName);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 fullOldName16(fullOldName);
+	tStringUTF16 fullNewName16(fullNewName);
+	int success = ::MoveFile(fullOldName16.GetLPWSTR(), fullNewName16.GetLPWSTR());
+
+	#else
+	int success = ::MoveFile(fullOldName.Chr(), fullNewName.Chr());
+	#endif
+	return success ? true : false;
+
+	#else
+	tString fullOldName = dir + oldName;
+	tPathStd(fullOldName);
+	std::filesystem::path oldp(fullOldName.Chr());
+
+	tString fullNewName = dir + newName;
+	tPathStd(fullNewName);
+	std::filesystem::path newp(fullNewName.Chr());
+
+	std::error_code ec;
+	std::filesystem::rename(oldp, newp, ec);
+	return !bool(ec);
+
+	#endif
+}
+
+
+bool tSystem::tFindFilesInternal(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions* extensions, bool includeHidden)
+{
+	if (extensions && extensions->IsEmpty())
+		return false;
+
+	// Use current directory if no dirPath supplied.
+	tString dirPath(dir);
+	if (dirPath.IsEmpty())
+		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
+
+	if (dirPath.IsEmpty())
+		return false;
+
+	// Even root should look like "/".
+	if (dirPath[dirPath.Length() - 1] == '\\')
+		dirPath[dirPath.Length() - 1] = '/';
+
+	std::error_code errorCode;
+	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text(), errorCode))
+	{
+		if (errorCode || (entry == std::filesystem::directory_entry()))
+		{
+			errorCode.clear();
+			continue;
+		}
+
+		if (!entry.is_regular_file())
+			continue;
+
+		tString foundFile((char*)entry.path().u8string().c_str());
+		tString foundExt = tGetFileExtension(foundFile);
+
+		// If no extension match continue.
+		if (extensions && !extensions->Contains(foundExt))
+			continue;
+
+		if (includeHidden || !tIsHidden(foundFile))
+			foundFiles.Append(new tStringItem(foundFile));
+	}
+
+	return true;
+}
+
+
+bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden)
+{
+	tExtensions extensions;
+	if (!ext.IsEmpty())
+		extensions.Add(ext);
+	return tFindFiles(foundFiles, dir, extensions, includeHidden);
+}
+
+
+bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden)
+{
+	return tFindFilesInternal(foundFiles, dir, &extensions, includeHidden);
+}
+
+
+bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden)
+{
+	return tFindFilesInternal(foundFiles, dir, nullptr, includeHidden);
+}
+
+
+bool tSystem::tFindFilesFastInternal(tList<tStringItem>* foundFiles, tList<tFileInfo>* foundInfos, const tString& dir, const tExtensions* extensions, bool includeHidden)
+{
+	if (extensions && extensions->IsEmpty())
+		return false;
+
+	// FindFirstFile etc seem to like backslashes better.
+	tString dirStr(dir);
+	if (dirStr.IsEmpty())
+		dirStr = tGetCurrentDir();
+
+	#ifdef PLATFORM_WINDOWS
+	tPathWinDir(dirStr);
+
+	// There's some complexity here with windows, but it's still very fast. We need to loop through all the
+	// extensions doing the FindFirstFile business, while modifying the path appropriately for each one.
+	// Insert a special empty extension if extensions is null. This will cause all file types to be included.
+	tExtensions exts;
+	if (extensions)
+		exts.Add(*extensions);
+	else
+		exts.Extensions.Append(new tStringItem());
+
+	bool allOk = true;
+	for (tStringItem* extItem = exts.First(); extItem; extItem = extItem->Next())
+	{
+		tString ext(*extItem);
+		tString path = dirStr + "*.";
+		if (ext.IsEmpty())
+			path += "*";
+		else
+			path += ext;
+
+		Win32FindData fd;
+		#ifdef TACENT_UTF16_API_CALLS
+		tStringUTF16 path16(path);
+		WinHandle h = FindFirstFile(path16.GetLPWSTR(), &fd);
+		#else
+		WinHandle h = FindFirstFile(path.Chr(), &fd);
+		#endif
+		if (h == INVALID_HANDLE_VALUE)
+		{
+			allOk = false;
+			continue;
+		}
+
+		do
+		{
+			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+			{
+				// It's not a directory... so it's actually a real file.
+				if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
+				{
+					#ifdef TACENT_UTF16_API_CALLS
+					tString fdFilename((char16_t*)fd.cFileName);
+					#else
+					tString fdFilename(fd.cFileName);
+					#endif
+					tString foundName = dirStr + fdFilename;
+					tPathStd(foundName);
+
+					tStringItem* newName = foundFiles ? new tStringItem(foundName) : nullptr;
+					tFileInfo*   newInfo = foundInfos ? new tFileInfo() : nullptr;
+					if (newInfo)
+					{
+						newInfo->FileName = foundName;
+						tGetFileInfo(*newInfo, fd);
+					}
+
+					// Holy obscure and annoying FindFirstFile bug! FindFirstFile("*.abc", ...) will also find
+					// files like file.abcd. This isn't correct I guess we have to check the extension here.
+					// FileMask is required to specify an extension, even if it is ".*"
+					if (path[path.Length() - 1] != '*')
+					{
+						tString foundExtension = tGetFileExtension(fdFilename);
+						if (ext.IsEqualCI(foundExtension))
+						{
+							if (foundFiles)
+								foundFiles->Append(newName);
+							if (foundInfos)
+								foundInfos->Append(newInfo);
+						}
+					}
+					else
+					{
+						if (foundFiles)
+							foundFiles->Append(newName);
+						if (foundInfos)
+							foundInfos->Append(newInfo);
+					}
+				}
+			}
+		} while (FindNextFile(h, &fd));
+
+		FindClose(h);
+		if (GetLastError() != ERROR_NO_MORE_FILES)
+			return false;		
+	}
+	return allOk;
+
+	#elif defined(PLATFORM_LINUX)
+	tPathStdDir(dirStr);
+	DIR* dirEnt = opendir(dirStr.Chr());
+	if (dirStr.IsEmpty() || !dirEnt)
+		return false;
+
+	for (struct dirent* entry = readdir(dirEnt); entry; entry = readdir(dirEnt))
+	{
+		// Definitely skip directories.
+		if (entry->d_type == DT_DIR)
+			continue;
+
+		// Sometimes it seems that d_type for a file is set to unknown.
+		// Noticed this under Linux when some files are in mounted directories.
+		if ((entry->d_type != DT_REG) && (entry->d_type != DT_UNKNOWN))
+			continue;
+
+		tString foundFile((char*)entry->d_name);
+		foundFile = dirStr + foundFile;
+		tString foundExt = tGetFileExtension(foundFile);
+
+		// If extension list present and no match continue.
+		if (extensions && !extensions->Contains(foundExt))
+			continue;
+
+		if (includeHidden || !tIsHidden(foundFile))
+		{
+			if (foundFiles)
+				foundFiles->Append(new tStringItem(foundFile));
+
+			if (foundInfos)
+			{
+				tFileInfo* newFileInfo = new tFileInfo();
+				tGetFileInfo(*newFileInfo, foundFile);
+				foundInfos->Append(newFileInfo);
+			}
+		}
+	}
+	closedir(dirEnt);
+	return true;
+
+	#endif
+}
+
+
+bool tSystem::tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden)
+{
+	tExtensions extensions;
+	if (!ext.IsEmpty())
+		extensions.Add(ext);
+	return tFindFilesFast(foundFiles, dir, extensions, includeHidden);
+}
+
+
+bool tSystem::tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden)
+{
+	return tFindFilesFastInternal(&foundFiles, nullptr, dir, &extensions, includeHidden);
+}
+
+
+bool tSystem::tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden)
+{
+	return tFindFilesFastInternal(&foundFiles, nullptr, dir, nullptr, includeHidden);
+}
+
+
+bool tSystem::tFindFilesFast(tList<tFileInfo>& foundInfos, const tString& dir, const tString& ext, bool includeHidden)
+{
+	tExtensions extensions;
+	if (!ext.IsEmpty())
+		extensions.Add(ext);
+	return tFindFilesFast(foundInfos, dir, extensions, includeHidden);
+}
+
+
+bool tSystem::tFindFilesFast(tList<tFileInfo>& foundInfos, const tString& dir, const tExtensions& extensions, bool includeHidden)
+{
+	return tFindFilesFastInternal(nullptr, &foundInfos, dir, &extensions, includeHidden);
+}
+
+
+bool tSystem::tFindFilesFast(tList<tFileInfo>& foundInfos, const tString& dir, bool includeHidden)
+{
+	return tFindFilesFastInternal(nullptr, &foundInfos, dir, nullptr, includeHidden);
+}
+
+
+bool tSystem::tFindFilesRec(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden)
+{
+	#ifdef PLATFORM_WINDOWS
+
+	// The windows functions seem to like backslashes better.
+	tString pathStr(dir);
+	tPathWinDir(pathStr);
+	if (ext.IsEmpty())
+		tFindFiles(foundFiles, dir, includeHidden);
+	else
+		tFindFiles(foundFiles, dir, ext, includeHidden);
+	Win32FindData fd;
+
+	// Look for all directories.
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 pathStrMod16(pathStr + "*.*");
+	WinHandle h = FindFirstFile(pathStrMod16.GetLPWSTR(), &fd);
+	#else
+	WinHandle h = FindFirstFile((pathStr + "*.*").Chr(), &fd);
+	#endif
+	if (h == INVALID_HANDLE_VALUE)
+		return false;
+
+	do
+	{
+		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+		{
+			// Don't recurse into hidden subdirectories if includeHidden is false.
+			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
+			{
+				// If the directory name is not "." or ".." then it's a real directory.
+				// Note that you cannot just check for the first character not being "."  Some directories (and files)
+				// may have a name that starts with a dot, especially if they were copied from a unix machine.
+				#ifdef TACENT_UTF16_API_CALLS
+				tString fn((char16_t*)fd.cFileName);
+				#else
+				tString fn(fd.cFileName);
+				#endif
+				if ((fn != ".") && (fn != ".."))
+					tFindFilesRec(foundFiles, pathStr + fn + "\\", ext, includeHidden);
+			}
+		}
+	} while (FindNextFile(h, &fd));
+
+	FindClose(h);
+	if (GetLastError() != ERROR_NO_MORE_FILES)
+		return false;
+
+	#else
+	for (const std::filesystem::directory_entry& entry: std::filesystem::recursive_directory_iterator(dir.Chr()))
+	{
+		if (!entry.is_regular_file())
+			continue;
+
+		tString foundFile((char*)entry.path().u8string().c_str());
+		if (!ext.IsEmpty() && (!ext.IsEqualCI(tGetFileExtension(foundFile))))
+			continue;
+
+		if (includeHidden || !tIsHidden(foundFile))
+			foundFiles.Append(new tStringItem(foundFile));
+	}
+	#endif
+
+	return true;
 }
 
 
@@ -2242,37 +2826,6 @@ bool tSystem::tCreateFile(const tString& filename, char32_t* data, int length, b
 }
 
 
-bool tSystem::tCreateDir(const tString& dir)
-{
-	tString dirPath = dir;
-	
-	#if defined(PLATFORM_WINDOWS)
-	tPathWin(dirPath);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 dirPath16(dirPath);
-	bool success = ::CreateDirectory(dirPath16.GetLPWSTR(), 0) ? true : false;
-	#else
-	bool success = ::CreateDirectory(dirPath.Chr(), 0) ? true : false;
-
-	#endif
-	if (!success)
-		success = tDirExists(dirPath.Chr());
-
-	return success;
-
-	#else
-	tPathStdFile(dirPath);
-	bool ok = std::filesystem::create_directory(dirPath.Chr());
-	if (!ok)
-		return tDirExists(dirPath.Chr());
-
-	return ok;
-
-	#endif
-}
-
-
 bool tSystem::tLoadFile(const tString& filename, tString& dst, char convertZeroesTo)
 {
 	if (!tFileExists(filename))
@@ -2393,501 +2946,6 @@ uint8* tSystem::tLoadFileHead(const tString& fileName, int& bytesToRead, uint8* 
 }
 
 
-bool tSystem::tCopyFile(const tString& dest, const tString& src, bool overWriteReadOnly)
-{
-	#if defined(PLATFORM_WINDOWS)
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 src16(src);
-	tStringUTF16 dest16(dest);
-	int success = ::CopyFile(src16.GetLPWSTR(), dest16.GetLPWSTR(), 0);
-
-	#else
-	int success = ::CopyFile(src.Chr(), dest.Chr(), 0);
-	#endif
-
-	if (!success && overWriteReadOnly)
-	{
-		tSetReadOnly(dest, false);
-		#ifdef TACENT_UTF16_API_CALLS
-		success = ::CopyFile(src16.GetLPWSTR(), dest16.GetLPWSTR(), 0);
-		#else
-		success = ::CopyFile(src.Chr(), dest.Chr(), 0);
-		#endif
-	}
-	return success ? true : false;
-
-	#else
-	std::filesystem::path pathFrom(src.Chr());
-	std::filesystem::path pathTo(dest.Chr());
-	bool success = std::filesystem::copy_file(pathFrom, pathTo);
-	if (!success && overWriteReadOnly)
-	{
-		tSetReadOnly(dest, false);
-		success = std::filesystem::copy_file(pathFrom, pathTo);
-	}
-		
-	return success;
-
-	#endif
-}
-
-
-bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tString& newName)
-{
-	#if defined(PLATFORM_WINDOWS)
-	tString fullOldName = dir + oldName;
-	tPathWin(fullOldName);
-
-	tString fullNewName = dir + newName;
-	tPathWin(fullNewName);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 fullOldName16(fullOldName);
-	tStringUTF16 fullNewName16(fullNewName);
-	int success = ::MoveFile(fullOldName16.GetLPWSTR(), fullNewName16.GetLPWSTR());
-
-	#else
-	int success = ::MoveFile(fullOldName.Chr(), fullNewName.Chr());
-	#endif
-	return success ? true : false;
-
-	#else
-	tString fullOldName = dir + oldName;
-	tPathStd(fullOldName);
-	std::filesystem::path oldp(fullOldName.Chr());
-
-	tString fullNewName = dir + newName;
-	tPathStd(fullNewName);
-	std::filesystem::path newp(fullNewName.Chr());
-
-	std::error_code ec;
-	std::filesystem::rename(oldp, newp, ec);
-	return !bool(ec);
-
-	#endif
-}
-
-
-bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden)
-{
-	#ifdef PLATFORM_WINDOWS
-
-	// First lets massage fileName a little.
-	tString massagedName = dir;
-	if ((massagedName[massagedName.Length() - 1] == '/') || (massagedName[massagedName.Length() - 1] == '\\'))
-		massagedName += "*.*";
-
-	Win32FindData fd;
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 massagedName16(massagedName);
-	WinHandle h = FindFirstFile(massagedName16.GetLPWSTR(), &fd);
-	#else
-	WinHandle h = FindFirstFile(massagedName.Chr(), &fd);
-	#endif
-	if (h == INVALID_HANDLE_VALUE)
-		return false;
-
-	tString path = tGetDir(massagedName);
-	do
-	{
-		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-		{
-			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
-			{
-				// If the directory name is not "." or ".." then it's a real directory.
-				// Note that you cannot just check for the first character not being "."  Some directories (and files)
-				// may have a name that starts with a dot, especially if they were copied from a unix machine.
-				#ifdef TACENT_UTF16_API_CALLS
-				tString fn((char16_t*)fd.cFileName);
-				#else
-				tString fn(fd.cFileName);
-				#endif
-				if ((fn != ".") && (fn != ".."))
-					foundDirs.Append(new tStringItem(path + fn + "/"));
-			}
-		}
-	} while (FindNextFile(h, &fd));
-
-	FindClose(h);
-	if (GetLastError() != ERROR_NO_MORE_FILES)
-		return false;
-
-	#else
-	tString dirPath(dir);
-	if (dirPath.IsEmpty())
-		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
-
-	std::error_code errorCode;
-	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text(), errorCode))
-	{
-		if (errorCode || (entry == std::filesystem::directory_entry()))
-		{
-			errorCode.clear();
-			continue;
-		}
-
-		if (!entry.is_directory())
-			continue;
-
-		tString foundDir((char*)entry.path().u8string().c_str());
-		
-		// All directories end in a slash in tacent.
-		if (foundDir[foundDir.Length()-1] != '/')
-			foundDir += "/";
-		if (includeHidden || !tIsHidden(foundDir))
-			foundDirs.Append(new tStringItem(foundDir));
-	}
-
-	#endif
-	return true;
-}
-
-
-bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden)
-{
-	tExtensions extensions;
-	if (!ext.IsEmpty())
-		extensions.Add(ext);
-	return tFindFiles(foundFiles, dir, extensions, includeHidden);
-}
-
-
-bool tSystem::tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden)
-{
-	tString dirPath(dir);
-
-	// Use current directory if no dirPath supplied.
-	if (dirPath.IsEmpty())
-		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
-
-	if (dirPath.IsEmpty())
-		return false;
-
-	// Even root should look like "/".
-	if (dirPath[dirPath.Length() - 1] == '\\')
-		dirPath[dirPath.Length() - 1] = '/';
-
-	std::error_code errorCode;
-	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text(), errorCode))
-	{
-		if (errorCode || (entry == std::filesystem::directory_entry()))
-		{
-			errorCode.clear();
-			continue;
-		}
-
-		if (!entry.is_regular_file())
-			continue;
-
-		tString foundFile((char*)entry.path().u8string().c_str());
-		tString foundExt = tGetFileExtension(foundFile);
-
-		// If extension list present and no match continue.
-		if (!extensions.IsEmpty() && !extensions.Contains(foundExt))
-			continue;
-
-		if (includeHidden || !tIsHidden(foundFile))
-			foundFiles.Append(new tStringItem(foundFile));
-	}
-
-	return true;
-}
-
-
-bool tSystem::tFindFilesFastInternal(const tString& dir, const tExtensions& extensions, bool includeHidden, tList<tStringItem>* foundFiles, tList<tFileInfo>* foundInfos)
-{
-	// FindFirstFile etc seem to like backslashes better.
-	tString dirStr(dir);
-	if (dirStr.IsEmpty())
-		dirStr = tGetCurrentDir();
-
-	#ifdef PLATFORM_WINDOWS
-	tPathWinDir(dirStr);
-
-	// There's some complexity here with windows, but it's still very fast. We need to loop through all the
-	// extensions doing the FindFirstFile business, while modifying the path appropriately for each one.
-	tExtensions exts(extensions);
-
-	// Insert a special empty extension if extensions is empty. This will cause all file types to be included.
-	if (extensions.IsEmpty())
-		exts.Extensions.Append(new tStringItem());
-
-	bool allOk = true;
-	for (tStringItem* extItem = exts.First(); extItem; extItem = extItem->Next())
-	{
-		tString ext(*extItem);
-		tString path = dirStr + "*.";
-		if (ext.IsEmpty())
-			path += "*";
-		else
-			path += ext;
-
-		Win32FindData fd;
-		#ifdef TACENT_UTF16_API_CALLS
-		tStringUTF16 path16(path);
-		WinHandle h = FindFirstFile(path16.GetLPWSTR(), &fd);
-		#else
-		WinHandle h = FindFirstFile(path.Chr(), &fd);
-		#endif
-		if (h == INVALID_HANDLE_VALUE)
-		{
-			allOk = false;
-			continue;
-		}
-
-		do
-		{
-			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
-			{
-				// It's not a directory... so it's actually a real file.
-				if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
-				{
-					#ifdef TACENT_UTF16_API_CALLS
-					tString fdFilename((char16_t*)fd.cFileName);
-					#else
-					tString fdFilename(fd.cFileName);
-					#endif
-					tString foundName = dirStr + fdFilename;
-					tPathStd(foundName);
-
-					tStringItem* newName = foundFiles ? new tStringItem(foundName) : nullptr;
-					tFileInfo*   newInfo = foundInfos ? new tFileInfo() : nullptr;
-					if (newInfo)
-					{
-						newInfo->FileName = foundName;
-						tGetFileInfo(*newInfo, fd);
-					}
-
-					// Holy obscure and annoying FindFirstFile bug! FindFirstFile("*.abc", ...) will also find
-					// files like file.abcd. This isn't correct I guess we have to check the extension here.
-					// FileMask is required to specify an extension, even if it is ".*"
-					if (path[path.Length() - 1] != '*')
-					{
-						tString foundExtension = tGetFileExtension(fdFilename);
-						if (ext.IsEqualCI(foundExtension))
-						{
-							if (foundFiles)
-								foundFiles->Append(newName);
-							if (foundInfos)
-								foundInfos->Append(newInfo);
-						}
-					}
-					else
-					{
-						if (foundFiles)
-							foundFiles->Append(newName);
-						if (foundInfos)
-							foundInfos->Append(newInfo);
-					}
-				}
-			}
-		} while (FindNextFile(h, &fd));
-
-		FindClose(h);
-		if (GetLastError() != ERROR_NO_MORE_FILES)
-			return false;		
-	}
-	return allOk;
-
-	#elif defined(PLATFORM_LINUX)
-	tPathStdDir(dirStr);
-	DIR* dirEnt = opendir(dirStr.Chr());
-	if (dirStr.IsEmpty() || !dirEnt)
-		return false;
-
-	for (struct dirent* entry = readdir(dirEnt); entry; entry = readdir(dirEnt))
-	{
-		// Definitely skip directories.
-		if (entry->d_type == DT_DIR)
-			continue;
-
-		// Sometimes it seems that d_type for a file is set to unknown.
-		// Noticed this under Linux when some files are in mounted directories.
-		if ((entry->d_type != DT_REG) && (entry->d_type != DT_UNKNOWN))
-			continue;
-
-		tString foundFile((char*)entry->d_name);
-		foundFile = dirStr + foundFile;
-		tString foundExt = tGetFileExtension(foundFile);
-
-		// If extension list present and no match continue.
-		if (!extensions.IsEmpty() && !extensions.Contains(foundExt))
-			continue;
-
-		if (includeHidden || !tIsHidden(foundFile))
-		{
-			if (foundFiles)
-				foundFiles->Append(new tStringItem(foundFile));
-
-			if (foundInfos)
-			{
-				tFileInfo* newFileInfo = new tFileInfo();
-				tGetFileInfo(*newFileInfo, foundFile);
-				foundInfos->Append(newFileInfo);
-			}
-		}
-	}
-	closedir(dirEnt);
-	return true;
-
-	#endif
-}
-
-
-bool tSystem::tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden)
-{
-	tExtensions extensions;
-	if (!ext.IsEmpty())
-		extensions.Add(ext);
-	return tFindFilesFast(foundFiles, dir, extensions, includeHidden);
-}
-
-
-bool tSystem::tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions& extensions, bool includeHidden)
-{
-	return tFindFilesFastInternal(dir, extensions, includeHidden, &foundFiles, nullptr);
-}
-
-
-bool tSystem::tFindFilesFast(tList<tFileInfo>& foundFiles, const tString& dir, const tString& ext, bool includeHidden)
-{
-	tExtensions extensions;
-	if (!ext.IsEmpty())
-		extensions.Add(ext);
-	return tFindFilesFast(foundFiles, dir, extensions, includeHidden);
-}
-
-
-bool tSystem::tFindFilesFast(tList<tFileInfo>& foundInfos, const tString& dir, const tExtensions& extensions, bool includeHidden)
-{
-	return tFindFilesFastInternal(dir, extensions, includeHidden, nullptr, &foundInfos);
-}
-
-
-bool tSystem::tFindFilesRecursive(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden)
-{
-	#ifdef PLATFORM_WINDOWS
-
-	// The windows functions seem to like backslashes better.
-	tString pathStr(dir);
-	tPathWinDir(pathStr);
-	tFindFiles(foundFiles, dir, ext, includeHidden);
-	Win32FindData fd;
-
-	// Look for all directories.
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 pathStrMod16(pathStr + "*.*");
-	WinHandle h = FindFirstFile(pathStrMod16.GetLPWSTR(), &fd);
-	#else
-	WinHandle h = FindFirstFile((pathStr + "*.*").Chr(), &fd);
-	#endif
-	if (h == INVALID_HANDLE_VALUE)
-		return false;
-
-	do
-	{
-		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-		{
-			// Don't recurse into hidden subdirectories if includeHidden is false.
-			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
-			{
-				// If the directory name is not "." or ".." then it's a real directory.
-				// Note that you cannot just check for the first character not being "."  Some directories (and files)
-				// may have a name that starts with a dot, especially if they were copied from a unix machine.
-				#ifdef TACENT_UTF16_API_CALLS
-				tString fn((char16_t*)fd.cFileName);
-				#else
-				tString fn(fd.cFileName);
-				#endif
-				if ((fn != ".") && (fn != ".."))
-					tFindFilesRecursive(foundFiles, pathStr + fn + "\\", ext, includeHidden);
-			}
-		}
-	} while (FindNextFile(h, &fd));
-
-	FindClose(h);
-	if (GetLastError() != ERROR_NO_MORE_FILES)
-		return false;
-
-	#else
-	for (const std::filesystem::directory_entry& entry: std::filesystem::recursive_directory_iterator(dir.Chr()))
-	{
-		if (!entry.is_regular_file())
-			continue;
-
-		tString foundFile((char*)entry.path().u8string().c_str());
-		if (!ext.IsEmpty() && (!ext.IsEqualCI(tGetFileExtension(foundFile))))
-			continue;
-
-		if (includeHidden || !tIsHidden(foundFile))
-			foundFiles.Append(new tStringItem(foundFile));
-	}
-	#endif
-
-	return true;
-}
-
-
-bool tSystem::tFindDirsRecursive(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden)
-{
-	#ifdef PLATFORM_WINDOWS
-	tString pathStr(dir);
-
-	tPathWinDir(pathStr);
-	tFindDirs(foundDirs, pathStr, includeHidden);
-	Win32FindData fd;
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 pathStrMod16(pathStr + "*.*");
-	WinHandle h = FindFirstFile(pathStrMod16.GetLPWSTR(), &fd);
-	#else
-	WinHandle h = FindFirstFile((pathStr + "*.*").Chr(), &fd);
-	#endif
-	if (h == INVALID_HANDLE_VALUE)
-		return false;
-
-	do
-	{
-		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-		{
-			// Don't recurse into hidden subdirectories if includeHidden is false.
-			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
-			{
-				// If the directory name is not "." or ".." then it's a real directory.
-				// Note that you cannot just check for the first character not being "."  Some directories (and files)
-				// may have a name that starts with a dot, especially if they were copied from a unix machine.
-				#ifdef TACENT_UTF16_API_CALLS
-				tString fn((char16_t*)fd.cFileName);
-				#else
-				tString fn(fd.cFileName);
-				#endif
-				if ((fn != ".") && (fn != ".."))
-					tFindDirsRecursive(foundDirs, pathStr + fn + "\\", includeHidden);
-			}
-		}
-	} while (FindNextFile(h, &fd));
-
-	FindClose(h);
-	if (GetLastError() != ERROR_NO_MORE_FILES)
-		return false;
-
-	#else
-	for (const std::filesystem::directory_entry& entry : std::filesystem::recursive_directory_iterator(dir.Chr()))
-	{
-		if (!entry.is_directory())
-			continue;
-
-		tString foundDir((char*)entry.path().u8string().c_str());
-
-		if (includeHidden || !tIsHidden(foundDir))
-			foundDirs.Append(new tStringItem(foundDir));
-	}
-
-	#endif
-	return true;
-}
-
-
 bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool useRecycleBin)
 {
 	#ifdef PLATFORM_WINDOWS
@@ -2967,109 +3025,79 @@ bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool use
 }
 
 
-bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
+uint32 tSystem::tHashFileFast32(const tString& filename, uint32 iv)
 {
-	#ifdef PLATFORM_WINDOWS
-	// Are we done before we even begin?
-	if (!tDirExists(dir))
-		return false;
+	int dataSize = 0;
+	uint8* data = tLoadFile(filename, nullptr, &dataSize);
+	if (!data)
+		return iv;
 
-	tList<tStringItem> fileList;
-	tFindFiles(fileList, dir);
-	tStringItem* file = fileList.First();
-	while (file)
-	{
-		tDeleteFile(*file, deleteReadOnly);		// We don't really care whether it succeeded or not.
-		file = file->Next();
-	}
+	uint32 hash = tHash::tHashDataFast32(data, dataSize, iv);
+	delete[] data;
+	return hash;
+}
 
-	fileList.Empty();							// Clean up the file list.
-	tString directory(dir);
-	tPathWin(directory);
 
-	Win32FindData fd;
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 directoryMod16(directory + "*.*");
-	WinHandle h = FindFirstFile(directoryMod16.GetLPWSTR(), &fd);
-	#else
-	WinHandle h = FindFirstFile((directory + "*.*").Chr(), &fd);
-	#endif
-	if (h == INVALID_HANDLE_VALUE)
-		return true;
+uint32 tSystem::tHashFile32(const tString& filename, uint32 iv)
+{
+	int dataSize = 0;
+	uint8* data = tLoadFile(filename, nullptr, &dataSize);
+	if (!data)
+		return iv;
 
-	do
-	{
-		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-		{
-			// If the directory name is not "." or ".." then it's a real directory.
-			// Note that you cannot just check for the first character not being "."  Some directories (and files)
-			// may have a name that starts with a dot, especially if they were copied from a unix machine.
-			#ifdef TACENT_UTF16_API_CALLS
-			tString fn((char16_t*)fd.cFileName);
-			#else
-			tString fn(fd.cFileName);
-			#endif
-			if ((fn != ".") && (fn != ".."))
-				tDeleteDir(dir + fn + "/", deleteReadOnly);
-		}
-	} while (FindNextFile(h, &fd));
+	uint32 hash = tHash::tHashData32(data, dataSize, iv);
+	delete[] data;
+	return hash;
+}
 
-	bool deleteFilesOK = (GetLastError() == ERROR_NO_MORE_FILES) ? true : false;
-	FindClose(h);
 
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 directory16(directory);
-	if (deleteReadOnly)
-		SetFileAttributes(directory16.GetLPWSTR(), FILE_ATTRIBUTE_NORMAL);	// Directories can be read-only too.
-	#else
-	if (deleteReadOnly)
-		SetFileAttributes(directory.Chr(), FILE_ATTRIBUTE_NORMAL);	// Directories can be read-only too.
-	#endif
+uint64 tSystem::tHashFile64(const tString& filename, uint64 iv)
+{
+	int dataSize = 0;
+	uint8* data = tLoadFile(filename, nullptr, &dataSize);
+	if (!data)
+		return iv;
 
-	bool success = false;
-	for (int delTry = 0; delTry < 32; delTry++)
-	{
-		#ifdef TACENT_UTF16_API_CALLS
-		tStringUTF16 dir16(dir);
-		if (RemoveDirectory(dir16.GetLPWSTR()))
-		#else
-		if (RemoveDirectory(dir.Chr()))
-		#endif
-		{
-			success = true;
-			break;
-		}
+	uint64 hash = tHash::tHashData64(data, dataSize, iv);
+	delete[] data;
+	return hash;
+}
 
-		// In some cases we might need to wait just a little and try again.  This can even take up to 10 seconds or so.
-		// This seems to happen a lot when the target manager is streaming music, say, from the folder.
-		else if (GetLastError() == ERROR_DIR_NOT_EMPTY)
-		{
-			tSystem::tSleep(500);
-		}
-		else
-		{
-			tSystem::tSleep(10);
-		}
-	}
 
-	if (!success || !deleteFilesOK)
-		return false;
+tuint256 tSystem::tHashFile256(const tString& filename, tuint256 iv)
+{
+	int dataSize = 0;
+	uint8* data = tLoadFile(filename, nullptr, &dataSize);
+	if (!data)
+		return iv;
 
-	#else
-	// Are we done before we even begin?
-	if (!tDirExists(dir))
-		return false;
+	tuint256 hash = tHash::tHashData256(data, dataSize, iv);
+	delete[] data;
+	return hash;
+}
 
-	if (tIsReadOnly(dir) && !deleteReadOnly)
-		return true;
 
-	std::filesystem::path p(dir.Chr());
-	std::error_code ec;
-	uintmax_t numRemoved = std::filesystem::remove_all(p, ec);
-	if (ec)
-		return false;
+tuint128 tSystem::tHashFileMD5(const tString& filename, tuint128 iv)
+{
+	int dataSize = 0;
+	uint8* data = tLoadFile(filename, nullptr, &dataSize);
+	if (!data)
+		return iv;
 
-	#endif
+	tuint128 hash = tHash::tHashDataMD5(data, dataSize, iv);
+	delete[] data;
+	return hash;
+}
 
-	return true;
+
+tuint256 tSystem::tHashFileSHA256(const tString& filename, tuint256 iv)
+{
+	int dataSize = 0;
+	uint8* data = tLoadFile(filename, nullptr, &dataSize);
+	if (!data)
+		return iv;
+
+	tuint256 hash = tHash::tHashDataSHA256(data, dataSize, iv);
+	delete[] data;
+	return hash;
 }

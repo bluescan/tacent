@@ -1027,7 +1027,7 @@ tTestUnit(File)
 		tPrintf("SubDir: %s\n", subd->Text());
 
 	files.Empty();
-	tFindFilesRecursive(files, "TestData/", true);
+	tFindFilesRec(files, "TestData/", true);
 	for (tStringItem* file = files.Head(); file; file = file->Next())
 		tPrintf("Recursive Found File: %s\n", file->Text());
 
