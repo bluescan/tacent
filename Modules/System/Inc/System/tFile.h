@@ -222,13 +222,15 @@ struct tFileTypes
 	// Utility functions dealing with selected state.
 	void ClearSelected();
 	bool AnySelected() const;
+	tFileType GetFirstSelectedType() const;
 	enum class Separator { Comma, Space, CommaSpace };
 	tString GetSelectedString(Separator sepType = Separator::CommaSpace, int maxBeforeEllipsis = -1) const;
 
 	// @todo Could use a BST, maybe a balanced AVL BST tree. Would make 'Contains' much faster, plus it would deal
 	tList<tFileTypeItem> FileTypes;
 
-	// A user specified name for this collection of file types. Use is optional. Could be something like "Image Files".
+	// A user specified name for this collection of file types. Use is optional. Could be something like "Image" if this
+	// collection of types is exclusively comprised of image types.
 	tString UserName;
 };
 
@@ -766,6 +768,15 @@ inline bool tSystem::tFileTypes::AnySelected() const
 		if (typeItem->Selected)
 			return true;
 	return false;
+}
+
+
+inline tSystem::tFileType tSystem::tFileTypes::GetFirstSelectedType() const
+{
+	for (tFileTypeItem* typeItem = First(); typeItem; typeItem = typeItem->Next())
+	if (typeItem->Selected)
+		return typeItem->FileType;
+	return tFileType::Invalid;
 }
 
 
