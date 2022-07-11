@@ -83,6 +83,7 @@ public:
 
 private:
 	bool PopulateMetaData(const uint8* jpgFileInMemory, int numBytes);
+	void ClearPixelData();
 
 	int GetIndex(int x, int y) const																					{ tAssert((x >= 0) && (y >= 0) && (x < Width) && (y < Height)); return y * Width + x; }
 	static int GetIndex(int x, int y, int w, int h)																		{ tAssert((x >= 0) && (y >= 0) && (x < w) && (y < h)); return y * w + x; }
@@ -105,6 +106,15 @@ inline void tImageJPG::Clear()
 	delete[] Pixels;
 	Pixels = nullptr;
 	SrcPixelFormat = tPixelFormat::Invalid;
+}
+
+
+inline void tImageJPG::ClearPixelData()
+{
+	Width = 0;
+	Height = 0;
+	delete[] Pixels;
+	Pixels = nullptr;
 }
 
 
