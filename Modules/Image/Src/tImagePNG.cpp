@@ -113,7 +113,7 @@ bool tImagePNG::Set(tPixel* pixels, int width, int height, bool steal)
 }
 
 
-bool tImagePNG::Save(const tString& pngFile) const
+bool tImagePNG::Save(const tString& pngFile, tFormat format) const
 {
 	if (!IsValid())
 		return false;
@@ -121,17 +121,24 @@ bool tImagePNG::Save(const tString& pngFile) const
 	if (tSystem::tGetFileType(pngFile) != tSystem::tFileType::PNG)
 		return false;
 
-	bool isOpaque = IsOpaque();
-	int srcBytesPerPixel = isOpaque ? 3 : 4;
+	int srcBytesPerPixel = 0;
+	switch (format)
+	{
+		case tFormat::Auto:		srcBytesPerPixel = IsOpaque() ? 3 : 4;	break;
+		case tFormat::BPP24:	srcBytesPerPixel = 3;					break;
+		case tFormat::BPP32:	srcBytesPerPixel = 4;					break;
+	}
+	if (!srcBytesPerPixel)
+		return false;
 
 	// Guard against integer overflow.
 	if (Height > PNG_SIZE_MAX / (Width * srcBytesPerPixel))
 		return false;
 
-	// If it's opaque we use the alternate no-alpha buffer. This should not be necessary
+	// If it's 3 bytes per pixel we use the alternate no-alpha buffer. This should not be necessary
 	// but I can't figure out how to get libpng reading 32bit and writing 24.
 	uint8* srcPixels = (uint8*)Pixels;
-	if (isOpaque)
+	if (srcBytesPerPixel == 3)
 	{
 		srcPixels = new uint8[Width*Height*srcBytesPerPixel];
 		int dindex = 0;
@@ -145,13 +152,17 @@ bool tImagePNG::Save(const tString& pngFile) const
 
 	FILE* fp = fopen(pngFile.Chr(), "wb");
 	if (!fp)
+	{
+		if (srcBytesPerPixel == 3) delete srcPixels;
 		return false;
+	}
 
 	// Create and initialize the png_struct with the desired error handler functions.
 	png_structp pngPtr = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
 	if (!pngPtr)
 	{
 		fclose(fp);
+		if (srcBytesPerPixel == 3) delete srcPixels;
 		return false;
 	}
 
@@ -160,6 +171,7 @@ bool tImagePNG::Save(const tString& pngFile) const
 	{
 		fclose(fp);
 		png_destroy_write_struct(&pngPtr, 0);
+		if (srcBytesPerPixel == 3) delete srcPixels;
 		return false;
 	}
 
@@ -168,6 +180,7 @@ bool tImagePNG::Save(const tString& pngFile) const
 	{
 		fclose(fp);
 		png_destroy_write_struct(&pngPtr, &infoPtr);
+		if (srcBytesPerPixel == 3) delete srcPixels;
 		return false;
 	}
 
@@ -175,7 +188,7 @@ bool tImagePNG::Save(const tString& pngFile) const
 	int bitDepth = 8;		// Supported depths are 1, 2, 4, 8, 16.
 
 	// We write either 24 or 32 bit images depending on whether we have an alpha channel.
-	uint32 pngColourType = isOpaque ? PNG_COLOR_TYPE_RGB : PNG_COLOR_TYPE_RGB_ALPHA;
+	uint32 pngColourType = (srcBytesPerPixel == 3) ? PNG_COLOR_TYPE_RGB : PNG_COLOR_TYPE_RGB_ALPHA;
 	png_set_IHDR
 	(
 		pngPtr, infoPtr, Width, Height, bitDepth, pngColourType,
@@ -187,7 +200,7 @@ bool tImagePNG::Save(const tString& pngFile) const
 	sigBit.red = 8;
 	sigBit.green = 8;
 	sigBit.blue = 8;
-	sigBit.alpha = isOpaque ? 0 : 8;
+	sigBit.alpha = (srcBytesPerPixel == 3) ? 0 : 8;
 	png_set_sBIT(pngPtr, infoPtr, &sigBit);
 
 	// Optional gamma chunk is strongly suggested if you have any guess as to the correct gamma of the image.
@@ -227,8 +240,7 @@ bool tImagePNG::Save(const tString& pngFile) const
 	png_write_end(pngPtr, infoPtr);
 
 	// Clear the srcPixels if we created the buffer.
-	if (isOpaque)
-		delete srcPixels;
+	if (srcBytesPerPixel == 3) delete srcPixels;
 	srcPixels = nullptr;
 
 	// Clean up.

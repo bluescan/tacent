@@ -45,8 +45,15 @@ public:
 	// it just copies the data out.
 	bool Set(tPixel*, int width, int height, bool steal = false);
 
-	// Saves the tImagePNG to the PNG file specified. The extension of filename must be ".png". Returns true on success.
-	bool Save(const tString& pngFile) const;
+	enum class tFormat
+	{
+		Auto,		// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.
+		BPP24,		// RGB.  24 bit colour.
+		BPP32		// RGBA. 24 bit colour and 8 bits opacity in the alpha channel.
+	};
+
+	// Saves the tImagePNG to the PNG file specified. The type of filename must be "png". Returns true on success.
+	bool Save(const tString& pngFile, tFormat = tFormat::Auto) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear();
