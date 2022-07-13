@@ -331,6 +331,8 @@ tString tGetLinuxPath(const tString& path, const tString& mountPoint = "/mnt/");
 // eg. "c:/Stuff/Mess.max" will return "c:/Stuff/"
 // eg. "Hello.txt" will return "./"
 // eg. "/Only/Path/No/File/" will return "/Only/Path/No/File/"
+// Windows network shares retain only required backslashes.
+// eg. "\\machine\share/dir/subdir/file.txt" will return "\\machine\share/dir/subdir/"
 tString tGetDir(const tString& path);
 
 // Given a valid path ending with a slash, this function returns the path n levels higher in the hierarchy. It returns

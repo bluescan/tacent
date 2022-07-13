@@ -1056,6 +1056,10 @@ tTestUnit(File)
 	simpPath = tGetSimplifiedPath(normalPath);
 	tRequire(simpPath == "E:/Projects/Crypto.txt");
 
+	normalPath = R"(\\MachineName\ShareName\Projects\Calamity\..\Crypto.txt)";
+	simpPath = tGetSimplifiedPath(normalPath);
+	tRequire(simpPath == "\\\\MachineName\\ShareName/Projects/Crypto.txt");
+
 	normalPath = "/";
 	simpPath = tGetSimplifiedPath(normalPath);
 	tRequire(simpPath == "/");
@@ -1063,6 +1067,10 @@ tTestUnit(File)
 	normalPath = "/";
 	simpPath = tGetUpDir(normalPath);
 	tRequire(simpPath == "/");
+
+	normalPath = R"(\\machine\share/dir/subdir/file.txt)";
+	simpPath = tGetDir(normalPath);
+	tRequire(simpPath == "\\\\machine\\share/dir/subdir/");
 
 	// Test some invalid ones.
 	normalPath = "/Dir/../..";

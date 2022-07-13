@@ -43,7 +43,10 @@ namespace tSystem
 {
 	std::time_t tFileTimeToStdTime(std::filesystem::file_time_type tp);
 
-	// Conversions to tacent-standard paths. Forward slashes.
+	// Conversions to tacent-standard paths. Forward slashes where possible.
+	// Windows does not allow forward slashes when dealing with network shares, a path like
+	// \\machinename\sharename/dir/subdir/
+	// _must_ have two backslashes before the machine name and 1 backslash before the sharename.
 	void tPathStd    (tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There".
 	void tPathStdDir (tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There/".
 	void tPathStdFile(tString& path);	// "C:\Hello\There\" -> "C:/Hello/There".  "C:\Hello\There" -> "C:/Hello/There".
@@ -78,12 +81,20 @@ namespace tSystem
 inline void tSystem::tPathStd(tString& path)
 {
 	path.Replace('\\', '/');
+	bool network = (path.Left(2) == "//");
+	if (network)
+	{
+		path[0] = '\\'; path[1] = '\\';
+		int sharesep = path.FindChar('/');
+		if (sharesep != -1)
+			path[sharesep] = '\\';
+	}
 }
 
 
 inline void tSystem::tPathStdDir(tString& path)
 {
-	path.Replace('\\', '/');
+	tPathStd(path);
 	if (path[path.Length() - 1] != '/')
 		path += "/";
 }
@@ -91,7 +102,7 @@ inline void tSystem::tPathStdDir(tString& path)
 
 inline void tSystem::tPathStdFile(tString& path)
 {
-	path.Replace('\\', '/');
+	tPathStd(path);
 	int len = path.Length();
 	if (path[len-1] == '/')
 		path[len-1] = '\0';
@@ -106,7 +117,7 @@ inline void tSystem::tPathWin(tString& path)
 
 inline void tSystem::tPathWinDir(tString& path)
 {
-	path.Replace('/', '\\');
+	tPathWin(path);
 	if (path[path.Length() - 1] != '\\')
 		path += "\\";
 }
@@ -114,7 +125,7 @@ inline void tSystem::tPathWinDir(tString& path)
 
 inline void tSystem::tPathWinFile(tString& path)
 {
-	path.Replace('/', '\\');
+	tPathWin(path);
 	int len = path.Length();
 	if (path[len-1] == '\\')
 		path[len-1] = '\0';
