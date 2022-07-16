@@ -309,6 +309,12 @@ tString tGetSimplifiedPath(const tString& path, bool forceTreatAsDir = false);
 bool tIsRelativePath(const tString& path);
 bool tIsAbsolutePath(const tString& path);
 
+// Directories are paths that end in a /.
+bool tIsDir(const tString& path);
+
+// Files are paths that don't end in a /.
+bool tIsFile(const tString& path);
+
 // Drive paths are DOS/Windows style absolute paths that begin with a drive letter followed by a colon.
 // For example, "C:/Hello" would return true, "/mnt/c/Hello" would return false.
 bool tIsDrivePath(const tString& path);
@@ -433,6 +439,12 @@ bool tSetCurrentDir(const tString& dir);
 // std::filesystem interface for Linux.
 bool tFindDirs(tList<tStringItem>& foundDirs, const tString& dirPath = tString(), bool includeHidden = false);
 bool tFindDirsRec(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden = true);
+
+// These versions of tFindDirs can be used if you need additional information along with each directory. The returned
+// list includes hidden directories because you can always exclude them by checking the Hidden member if tFileInfo.
+// It is faster to use these than the tStringItem calls above in cinjunction with tGetFileInfo calls. 
+bool tFindDirs(tList<tFileInfo>& foundDirs, const tString& dirPath = tString());
+bool tFindDirsRec(tList<tFileInfo>& foundDirs, const tString& dir);
 
 // Creates a directory. It can also handle creating all the directories in a path. Calling with a string like
 // "C:/DirA/DirB/" will ensure that DirA and DirB exist. Returns true if successful.
@@ -812,6 +824,24 @@ inline tString tSystem::tFileTypes::GetSelectedString(Separator sepType, int max
 	}
 
 	return str;
+}
+
+
+inline bool tSystem::tIsDir(const tString& path)
+{
+	if (path.IsEmpty())
+		return false;
+
+	return (path[path.Length()] == '/');
+}
+
+
+inline bool tSystem::tIsFile(const tString& path)
+{
+	if (path.IsEmpty())
+		return false;
+
+	return (path[path.Length()] != '/');
 }
 
 

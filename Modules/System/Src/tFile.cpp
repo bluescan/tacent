@@ -600,26 +600,18 @@ bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 {
 	fileInfo.Clear();
 	fileInfo.FileName = fileName;
-
 	tString file(fileName);
-	#ifdef PLATFORM_WINDOWS
 
+	#ifdef PLATFORM_WINDOWS
 	// Seems like FindFirstFile cannot deal with a trailing backslash when
 	// trying to access directory information.  We remove it here.
 	tPathWinFile(file);
-
-	#else
-	tPathStd(file);
-
-	#endif
-
-	#ifdef PLATFORM_WINDOWS
 	Win32FindData fd;
 	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 file16(file);
-	WinHandle h = FindFirstFile(file16.GetLPWSTR(), &fd);
-	#else
-	WinHandle h = FindFirstFile(file.Chr(), &fd);
+		tStringUTF16 file16(file);
+		WinHandle h = FindFirstFile(file16.GetLPWSTR(), &fd);
+		#else
+		WinHandle h = FindFirstFile(file.Chr(), &fd);
 	#endif
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
@@ -628,15 +620,19 @@ bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 	return true;
 
 	#else
-	
-	fileInfo.ReadOnly = tIsReadOnly(file);
-	fileInfo.Hidden = tIsHidden(file);
+	tPathStd(file);
+	fileInfo.Hidden = tIsHidden(file);		// On Linux just looks for a leading . in filename.
 
 	struct stat statBuf;
 	int errCode = stat(file.Chr(), &statBuf);
 	if (errCode)
 		return false;
-		
+
+	// Figure out read-onlyness.
+	bool w = (statBuf.st_mode & S_IWUSR) ? true : false;
+	bool r = (statBuf.st_mode & S_IRUSR) ? true : false;
+	fileInfo.ReadOnly = (r && !w);
+
 	fileInfo.FileSize = statBuf.st_size;
 	fileInfo.Directory = ((statBuf.st_mode & S_IFMT) == S_IFDIR) ? true : false;
 
@@ -1910,6 +1906,168 @@ bool tSystem::tFindDirsRec(tList<tStringItem>& foundDirs, const tString& dir, bo
 }
 
 
+bool tSystem::tFindDirs(tList<tFileInfo>& foundDirs, const tString& dir)
+{
+	#ifdef PLATFORM_WINDOWS
+	// First lets massage fileName a little.
+	tString massagedName = dir;
+	if ((massagedName[massagedName.Length() - 1] == '/') || (massagedName[massagedName.Length() - 1] == '\\'))
+		massagedName += "*.*";
+
+	Win32FindData fd;
+	#ifdef TACENT_UTF16_API_CALLS
+		tStringUTF16 massagedName16(massagedName);
+		WinHandle h = FindFirstFile(massagedName16.GetLPWSTR(), &fd);
+		#else
+		WinHandle h = FindFirstFile(massagedName.Chr(), &fd);
+	#endif
+	if (h == INVALID_HANDLE_VALUE)
+		return false;
+
+	tString path = tGetDir(massagedName);
+	do
+	{
+		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+		{
+			// If the directory name is not "." or ".." then it's a real directory.
+			// Note that you cannot just check for the first character not being "."  Some directories (and files)
+			// may have a name that starts with a dot, especially if they were copied from a unix machine.
+			#ifdef TACENT_UTF16_API_CALLS
+			tString fn((char16_t*)fd.cFileName);
+			#else
+			tString fn(fd.cFileName);
+			#endif
+			if ((fn != ".") && (fn != ".."))
+			{
+				tFileInfo* fileInfo = new tFileInfo();
+				fileInfo->FileName = tString(path + fn + "/");
+
+				// This is the fast windows-specific tGetFileInfo.
+				tGetFileInfo(*fileInfo, fd);
+				foundDirs.Append(fileInfo);
+			}
+		}
+	} while (FindNextFile(h, &fd));
+
+	FindClose(h);
+	if (GetLastError() != ERROR_NO_MORE_FILES)
+		return false;
+
+	#else
+	tString dirPath(dir);
+	if (dirPath.IsEmpty())
+		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
+
+	std::error_code errorCode;
+	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text(), errorCode))
+	{
+		if (errorCode || (entry == std::filesystem::directory_entry()))
+		{
+			errorCode.clear();
+			continue;
+		}
+
+		if (!entry.is_directory())
+			continue;
+
+		tString foundDir((char*)entry.path().u8string().c_str());
+		
+		// All directories end in a slash in tacent.
+		if (foundDir[foundDir.Length()-1] != '/')
+			foundDir += "/";
+
+		tFileInfo* fileInfo = new tFileInfo();
+		fileInfo->FileName = foundDir;
+
+		#ifdef USE_STD_FILESYSTEM_FOR_FILEINFO
+		std::error_code ec;
+		std::filesystem::file_status status = entry.status(ec);
+		entry.last_write_time().
+		fileInfo->ReadOnly = false;
+		if (!ec)
+		{
+			std::filesystem::perms perms = status.permissions();
+			bool w = (perms & std::filesystem::perms::owner_write) ? true : false;;
+			bool r = (perms & std::filesystem::perms::owner_read);
+			fileInfo->ReadOnly = (r && !w);
+		}
+		#endif
+
+		// @todo Since we already have a std::filesystem entry, we could extract everything from that
+		// instead of using stat. Chrono time conversion code would need to be written.
+		tGetFileInfo(*fileInfo, foundDir);
+		foundDirs.Append(fileInfo);
+	}
+
+	#endif
+	return true;
+}
+
+
+bool tSystem::tFindDirsRec(tList<tFileInfo>& foundDirs, const tString& dir)
+{
+	#ifdef PLATFORM_WINDOWS
+	tString pathStr(dir);
+
+	tPathWinDir(pathStr);
+	tFindDirs(foundDirs, pathStr);
+	Win32FindData fd;
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 pathStrMod16(pathStr + "*.*");
+	WinHandle h = FindFirstFile(pathStrMod16.GetLPWSTR(), &fd);
+	#else
+	WinHandle h = FindFirstFile((pathStr + "*.*").Chr(), &fd);
+	#endif
+	if (h == INVALID_HANDLE_VALUE)
+		return false;
+
+	do
+	{
+		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+		{
+			// If the directory name is not "." or ".." then it's a real directory.
+			// Note that you cannot just check for the first character not being "."  Some directories (and files)
+			// may have a name that starts with a dot, especially if they were copied from a unix machine.
+			#ifdef TACENT_UTF16_API_CALLS
+			tString fn((char16_t*)fd.cFileName);
+			#else
+			tString fn(fd.cFileName);
+			#endif
+			if ((fn != ".") && (fn != ".."))
+				tFindDirsRec(foundDirs, pathStr + fn + "\\");
+		}
+	} while (FindNextFile(h, &fd));
+
+	FindClose(h);
+	if (GetLastError() != ERROR_NO_MORE_FILES)
+		return false;
+
+	#else
+	for (const std::filesystem::directory_entry& entry : std::filesystem::recursive_directory_iterator(dir.Chr()))
+	{
+		if (!entry.is_directory())
+			continue;
+
+		tString foundDir((char*)entry.path().u8string().c_str());
+
+		// All directories end in a slash in tacent.
+		if (foundDir[foundDir.Length()-1] != '/')
+			foundDir += "/";
+
+		tFileInfo* fileInfo = new tFileInfo();
+		fileInfo->FileName = foundDir;
+
+		// @todo Since we already have a std::filesystem entry, we could extract everything from that
+		// instead of using stat. Chrono time conversion code would need to be written.
+		tGetFileInfo(*fileInfo, foundDir);
+		foundDirs.Append(fileInfo);
+	}
+
+	#endif
+	return true;
+}
+
+
 bool tSystem::tCreateDir(const tString& dir)
 {
 	tString dirPath = dir;
@@ -2151,11 +2309,25 @@ bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
 
 bool tSystem::tIsHidden(const tString& path)
 {
+	if (path.IsEmpty())
+		return false;
+
 	#if defined(PLATFORM_LINUX)
 	// In Linux it's all based on whether the filename starts with a dot. We ignore files called "." or ".."
-	tString fileName = tGetFileName(path);
-	if ((fileName != ".") && (fileName != "..") && (fileName[0] == '.'))
-		return true;
+	if (tIsFile(path))
+	{
+		tString fileName = tGetFileName(path);
+		if ((fileName != ".") && (fileName != "..") && (fileName[0] == '.'))
+			return true;
+	}
+	else
+	{
+		tString fileName = path;
+		fileName[fileName.Length()] = '\0';
+		fileName = tGetFileName(fileName);
+		if ((fileName != ".") && (fileName != "..") && (fileName[0] == '.'))
+			return true;
+	}
 	return false;
 
 	#elif defined(PLATFORM_WINDOWS)
