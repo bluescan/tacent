@@ -172,7 +172,7 @@ int main(int argc, char** argv)
 	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
 	// tTest(FileTypes);
 	// tTest(Directories);
-	// tTest(File);
+	tTest(File);
 	// tTest(Network);
 	// tTest(CmdLine);
 	// tTest(String);
@@ -190,7 +190,7 @@ int main(int argc, char** argv)
 	// tTest(ImagePicture);
 	// tTest(ImageMetaData);
 	// #endif
-	tTest(UTF);
+	// tTest(UTF);
 	// tTest(Hash);
 	// tTest(BitArray);
 	// tTest(BitField);

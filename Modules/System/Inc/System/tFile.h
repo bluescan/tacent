@@ -832,7 +832,7 @@ inline bool tSystem::tIsDir(const tString& path)
 	if (path.IsEmpty())
 		return false;
 
-	return (path[path.Length()] == '/');
+	return (path[path.Length()-1] == '/');
 }
 
 
@@ -841,7 +841,7 @@ inline bool tSystem::tIsFile(const tString& path)
 	if (path.IsEmpty())
 		return false;
 
-	return (path[path.Length()] != '/');
+	return (path[path.Length()-1] != '/');
 }
 
 

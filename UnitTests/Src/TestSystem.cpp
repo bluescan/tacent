@@ -977,17 +977,18 @@ tTestUnit(File)
 	// This file is now hidden in both Linux and Windows.
 	tRequire(tIsHidden("TestData/.HiddenFile.txt"));
 
+	tList<tFileInfo> dirs;
+	tFindDirs(dirs, "TestData/");
+	for (tFileInfo* i = dirs.First(); i; i = i->Next())
+		tPrintf("Dir: %s Hidden: %s\n", i->FileName.Chr(), i->Hidden ? "true" : "false");
+
 	tList<tStringItem> files;
 	tFindFiles(files, "TestData/", tString(), false);
-	//tFindFiles(files, "/home/tristan/GitHub/tacent/UnitTests/TestData/", tString(), false);
-	//tFindFiles(files, "D:/GitHub/tacent/UnitTests/TestData/", tString(), false);
 	for (tStringItem* file = files.Head(); file; file = file->Next())
 		tPrintf("Found file norm: %s\n", file->Text());
 
 	tList<tStringItem> filesFast;
 	tFindFilesFast(filesFast, "TestData/", tString(), false);
-	//tFindFilesFast(filesFast, "/home/tristan/GitHub/tacent/UnitTests/TestData/", tString(), false);
-	//tFindFilesFast(filesFast, "D:/GitHub/tacent/UnitTests/TestData/", tString(), false);
 	for (tStringItem* file = filesFast.Head(); file; file = file->Next())
 		tPrintf("Found file fast: %s\n", file->Text());
 

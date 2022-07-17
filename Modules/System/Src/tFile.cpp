@@ -1834,7 +1834,7 @@ bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 			continue;
 
 		tString foundDir((char*)entry.path().u8string().c_str());
-		
+
 		// All directories end in a slash in tacent.
 		if (foundDir[foundDir.Length()-1] != '/')
 			foundDir += "/";
@@ -2323,7 +2323,7 @@ bool tSystem::tIsHidden(const tString& path)
 	else
 	{
 		tString fileName = path;
-		fileName[fileName.Length()] = '\0';
+		fileName[fileName.Length()-1] = '\0';
 		fileName = tGetFileName(fileName);
 		if ((fileName != ".") && (fileName != "..") && (fileName[0] == '.'))
 			return true;
