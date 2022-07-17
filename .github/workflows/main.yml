@@ -11,8 +11,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # The buildtestwindows job builds and runs unit tests on windows.
-  buildtestwindows:
+  # The Windows_CM_VS_VC job builds and runs unit tests on windows. CM = CMAKE. VS = VisualStudioGenerator. VC = MSVC Compiler.
+  Windows_CM_VS_VC:
     # The type of runner that the job will run on
     runs-on: windows-latest
 
@@ -20,24 +20,24 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-      
-    # Use CMake and NMake
-    #- uses: actions/checkout@master
-    - uses: ilammy/msvc-dev-cmd@v1.4.1
-    - name: Build using CMake NMake
+
+    # msvc-dev-cmd needed so old gnu compiler not used. Want latest msvc on windows.
+    - uses: ilammy/msvc-dev-cmd@v1.10.0
+    - name: Build using CMake VS MSVC
       run: |
         echo '*** Configuring CMake ***'
-        mkdir buildnmake
-        cd buildnmake
-        cmake .. -DCMAKE_BUILD_TYPE=Release -G "NMake Makefiles"
-        echo '*** NMake Build ***'
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 17 2022" -Ax64
+        # cmake .. -DCMAKE_BUILD_TYPE=Release -G "NMake Makefiles"
+        echo '*** CMake Build ***'
         nmake install
         echo '*** Done Building ***'
     
     - name: Unit Tests
       run: |
         echo 'Running Unit Tests'
-        cd buildnmake
+        cd build
         cd TacentInstall
         powershell ".\UnitTests.exe | tee Windows_TestResults.txt"
         echo 'Done Running Unit Tests'
@@ -46,10 +46,10 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: unit-test-results
-        path: buildnmake/TacentInstall/Windows_TestResults.txt
+        path: build/TacentInstall/Windows_TestResults.txt
 
-  # The buildtestubuntu job builds tacent on ubuntu.
-  buildtestubuntu:
+  # The Ubuntu_CM_NI_CL job buildsand tests tacent on ubuntu. CMake Ninja Clang
+  Ubuntu_CM_NI_CL:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -57,17 +57,17 @@ jobs:
     - name: Build Using CMake Ninja
       run: |
         echo '*** Configuring CMake ***'
-        mkdir buildninja
-        cd buildninja
+        mkdir build
+        cd build
         cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON
-        echo '*** Ninja Build ***'
+        echo '*** CMake Build ***'
         ninja -v install
         echo '*** Done Building ***'
 
     - name: Unit Tests
       run: |
         echo 'Running Unit Tests'
-        cd buildninja
+        cd build
         cd TacentInstall
         ./UnitTests | tee Ubuntu_TestResults.txt
         echo 'Done Running Unit Tests'
@@ -76,4 +76,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: unit-test-results
-        path: buildninja/TacentInstall/Ubuntu_TestResults.txt
+        path: build/TacentInstall/Ubuntu_TestResults.txt
