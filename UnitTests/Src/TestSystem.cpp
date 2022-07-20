@@ -978,9 +978,30 @@ tTestUnit(File)
 	tRequire(tIsHidden("TestData/.HiddenFile.txt"));
 
 	tList<tFileInfo> dirs;
-	tFindDirs(dirs, "TestData/");
+	tPrintf("tFindDirs Backend::Stndrd\n");
+	tFindDirs(dirs, "TestData/", tSystem::Backend::Stndrd);
 	for (tFileInfo* i = dirs.First(); i; i = i->Next())
+	{
+		std::tm localTime = tConvertTimeToLocal(i->ModificationTime);
+		tString timestr = tSystem::tConvertTimeToString(localTime);
+
+		tPrintf("Dir: %s LastModTime: %s\n", i->FileName.Chr(), timestr.Chr());
 		tPrintf("Dir: %s Hidden: %s\n", i->FileName.Chr(), i->Hidden ? "true" : "false");
+	}
+
+	dirs.Empty();
+	tPrintf("tFindDirs Backend::Native\n");
+	tFindDirs(dirs, "TestData/", tSystem::Backend::Stndrd);
+	for (tFileInfo* i = dirs.First(); i; i = i->Next())
+	{
+		std::tm localTime = tConvertTimeToLocal(i->ModificationTime);
+		tString timestr = tSystem::tConvertTimeToString(localTime);
+
+		tPrintf("Dir: %s LastModTime: %s\n", i->FileName.Chr(), timestr.Chr());
+		tPrintf("Dir: %s Hidden: %s\n", i->FileName.Chr(), i->Hidden ? "true" : "false");
+	}
+
+	return;
 
 	tList<tStringItem> files;
 	tFindFiles(files, "TestData/", tString(), false);

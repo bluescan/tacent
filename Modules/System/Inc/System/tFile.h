@@ -28,6 +28,16 @@ namespace tSystem
 {
 
 
+// Some file-system calls have the option to use the C++ standard std::filesystem backend. This enum lets you choose
+// to use the standard or native APIs. Native is always faster, so that is the usual default, but doing it this way
+// (i.e. not forcing native) is a good way to get unit tests going so we can check the correctness of both paths.
+enum class Backend
+{
+	Native,		// eg. 'stat' on Linux. FindFirstFile etc on Windows.
+	Stndrd
+};
+
+
 // @todo Implement the tFile class.
 class tFile : public tStream
 {
@@ -245,6 +255,7 @@ tString tGetFileBaseName(const tString& filename);
 
 bool tIsFileNewer(const tString& fileA, const tString& fileB);
 
+// This contains info about a file OR a directory. I guess it's really a tFileOrDirInfo.
 struct tFileInfo : public tLink<tFileInfo>
 {
 	tFileInfo();
@@ -254,6 +265,7 @@ struct tFileInfo : public tLink<tFileInfo>
 	uint64 FileSize;
 
 	// These are in POSIX Epoch time -- number of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT),
+	// For all std::time_t values we interpret -1 as invalid.
 	std::time_t CreationTime;
 	std::time_t ModificationTime;
 	std::time_t AccessTime;
@@ -434,17 +446,17 @@ tString tGetCurrentDir();
 // the c drive as will "C:" by itself. SetCurrentDir(".."); will move the current dir up a directory.
 bool tSetCurrentDir(const tString& dir);
 
-// Directory functions. These are simpler because we don't deal with extensions. If the dirPath to search is empty,
-// the current dir is used. Returns success. @todo These functions use the native (fast) API for Windows, but the slow
-// std::filesystem interface for Linux.
-bool tFindDirs(tList<tStringItem>& foundDirs, const tString& dirPath = tString(), bool includeHidden = false);
-bool tFindDirsRec(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden = true);
+// Directory functions. These are simpler because we don't deal with extensions. If the dir to search is empty, the
+// current directory is used. If hidden is true, includes hidden directories. In all the tFind functions, the
+// destination list (dirs) is appended to and not cleared so you can collect results if necessary. Returns success.
+bool tFindDirs   (tList<tStringItem>& dirs, const tString& dir = tString(), bool hidden = false, Backend = Backend::Native);
+bool tFindDirsRec(tList<tStringItem>& dirs, const tString& dir = tString(), bool hidden = false, Backend = Backend::Native);
 
-// These versions of tFindDirs can be used if you need additional information along with each directory. The returned
-// list includes hidden directories because you can always exclude them by checking the Hidden member if tFileInfo.
-// It is faster to use these than the tStringItem calls above in cinjunction with tGetFileInfo calls. 
-bool tFindDirs(tList<tFileInfo>& foundDirs, const tString& dirPath = tString());
-bool tFindDirsRec(tList<tFileInfo>& foundDirs, const tString& dir);
+// These versions of tFindDirs can be used if you need additional information along with each directory. The dirs
+// list includes hidden directories because you can always exclude them by checking the Hidden member of tFileInfo.
+// It is faster to use these than the tStringItem calls above in conjunction with tGetFileInfo calls.
+bool tFindDirs   (tList<tFileInfo>& dirs, const tString& dir = tString(), Backend = Backend::Native);
+bool tFindDirsRec(tList<tFileInfo>& dirs, const tString& dir = tString(), Backend = Backend::Native);
 
 // Creates a directory. It can also handle creating all the directories in a path. Calling with a string like
 // "C:/DirA/DirB/" will ensure that DirA and DirB exist. Returns true if successful.
@@ -863,8 +875,9 @@ inline int tSystem::tGetc(tFileHandle file)
 inline tSystem::tFileInfo::tFileInfo() :
 	FileName(),
 	FileSize(0),
-	CreationTime(0),
-	ModificationTime(0),
+	CreationTime(-1),
+	ModificationTime(-1),
+	AccessTime(-1),
 	ReadOnly(false),
 	Hidden(false),
 	Directory(false)
@@ -876,8 +889,9 @@ inline void tSystem::tFileInfo::Clear()
 {
 	FileName.Clear();
 	FileSize = 0;
-	CreationTime = 0;
-	ModificationTime = 0;
+	CreationTime = -1;
+	ModificationTime = -1;
+	AccessTime = -1;
 	ReadOnly = false;
 	Hidden = false;
 	Directory = false;

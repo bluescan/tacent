@@ -58,8 +58,9 @@ namespace tSystem
 
 	#ifdef PLATFORM_WINDOWS
 	std::time_t tFileTimeToPosixEpoch(FILETIME);
-	void tGetFileInfo(tFileInfo& fileInfo, Win32FindData&);
+	void tPopulateFileInfo_Windows(tFileInfo& fileInfo, Win32FindData&, const tString& filename);
 	#endif
+	void tPopulateFileInfo_Stndrd(tFileInfo& fileInfo, const std::filesystem::directory_entry&, const tString& filename);
 
 	bool tFindFilesInternal(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions*, bool includeHidden);
 	bool tFindFilesFastInternal
@@ -75,6 +76,19 @@ namespace tSystem
 		bool HasExt(const tString& ext)																					{ for (int e = 0; e < MaxExtensionsPerFileType; e++) if (ext.IsEqualCI(Ext[e])) return true; return false; }
 	};
 	extern FileTypeExts FileTypeExtTable[int(tFileType::NumFileTypes)];
+
+	// Native and Standard implementations of some functins.
+	bool tFindDirs_Native(tList<tStringItem>& dirs, const tString& dir, bool hidden);
+	bool tFindDirs_Stndrd(tList<tStringItem>& dirs, const tString& dir, bool hidden);
+
+	bool tFindDirsRec_Native(tList<tStringItem>& dirs, const tString& dir, bool hidden);
+	bool tFindDirsRec_Stndrd(tList<tStringItem>& dirs, const tString& dir, bool hidden);
+
+	bool tFindDirs_Native(tList<tFileInfo>& dirs, const tString& dir);
+	bool tFindDirs_Stndrd(tList<tFileInfo>& dirs, const tString& dir);
+
+	bool tFindDirsRec_Native(tList<tFileInfo>& dirs, const tString& dir);
+	bool tFindDirsRec_Stndrd(tList<tFileInfo>& dirs, const tString& dir);
 }
 
 
@@ -565,8 +579,9 @@ std::time_t tSystem::tFileTimeToPosixEpoch(FILETIME filetime)
 
 
 #ifdef PLATFORM_WINDOWS
-void tSystem::tGetFileInfo(tFileInfo& fileInfo, Win32FindData& fd)
+void tSystem::tPopulateFileInfo_Windows(tFileInfo& fileInfo, Win32FindData& fd, const tString& filename)
 {
+	fileInfo.FileName = filename;
 	fileInfo.CreationTime = tFileTimeToPosixEpoch(fd.ftCreationTime);
 	fileInfo.ModificationTime = tFileTimeToPosixEpoch(fd.ftLastWriteTime);
 	fileInfo.AccessTime = tFileTimeToPosixEpoch(fd.ftLastAccessTime);
@@ -596,10 +611,56 @@ void tSystem::tGetFileInfo(tFileInfo& fileInfo, Win32FindData& fd)
 #endif
 
 
+void tSystem::tPopulateFileInfo_Stndrd(tFileInfo& fileInfo, const std::filesystem::directory_entry& entry, const tString& filename)
+{
+	fileInfo.FileName = filename;
+	fileInfo.FileSize = entry.file_size();
+	std::error_code errCode;
+
+	// CreationTime not vailable from std::filesystem. Needs to remain -1 (unset).
+	fileInfo.CreationTime = -1;
+
+	// ModificationTime.
+	std::filesystem::file_time_type ftime = entry.last_write_time(errCode);
+	if (!errCode)
+	{
+		// This works in C++20 or later only.
+		// Using clock_cast seems a bit more portable than something like to_time which is not implemented for all clocks
+		// on some systems (MSVC, for example, chose only to do it for the utc clock. In any case clock_cast is probably
+		// the way to go. Example non-portable code:
+		// std::chrono::system_clock::to_time_t(std::chrono::file_clock::to_sys(ftime));
+		auto systemTimePoint = std::chrono::clock_cast<std::chrono::system_clock>(ftime);
+		auto unixTime = std::chrono::system_clock::to_time_t(systemTimePoint);
+		fileInfo.ModificationTime = unixTime;
+	}
+
+	// AccessTime not vailable from std::filesystem. Needs to remain -1 (unset).
+	fileInfo.AccessTime = -1;
+
+	// ReadOnly flag.
+	std::filesystem::file_status status = entry.status(errCode);
+	if (!errCode)
+	{
+		std::filesystem::perms pms = status.permissions();
+		bool w = ((pms & std::filesystem::perms::owner_write) != std::filesystem::perms::none);
+		bool r = ((pms & std::filesystem::perms::owner_read) != std::filesystem::perms::none);
+		fileInfo.ReadOnly = (r && !w);
+	}
+
+	// Hidden.
+	// For Linux it just checks for leading '.' do is fast.
+	// For Windows there's no way I can see to use std::filesystem to get this... so it uses WinAPI calls.
+	// It's actually not that important. We have a native implementation of FindDirs for Windows
+	// anyway. We don't (yet) have a native one for Linux, but at least this part is fast.
+	fileInfo.Hidden = tIsHidden(filename);
+
+	// Directoryness.
+	fileInfo.Directory = entry.is_directory();
+}
+
+
 bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 {
-	fileInfo.Clear();
-	fileInfo.FileName = fileName;
 	tString file(fileName);
 
 	#ifdef PLATFORM_WINDOWS
@@ -615,7 +676,7 @@ bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 	#endif
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
-	tGetFileInfo(fileInfo, fd);
+	tPopulateFileInfo_Windows(fileInfo, fd, fileName);
 	FindClose(h);
 	return true;
 
@@ -1772,10 +1833,9 @@ bool tSystem::tSetCurrentDir(const tString& directory)
 }
 
 
-bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden)
+bool tSystem::tFindDirs_Native(tList<tStringItem>& dirs, const tString& dir, bool hidden)
 {
-	#ifdef PLATFORM_WINDOWS
-
+	#if defined(PLATFORM_WINDOWS)
 	// First lets massage fileName a little.
 	tString massagedName = dir;
 	if ((massagedName[massagedName.Length() - 1] == '/') || (massagedName[massagedName.Length() - 1] == '\\'))
@@ -1796,7 +1856,7 @@ bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 	{
 		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
-			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
+			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || hidden)
 			{
 				// If the directory name is not "." or ".." then it's a real directory.
 				// Note that you cannot just check for the first character not being "."  Some directories (and files)
@@ -1807,7 +1867,7 @@ bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 				tString fn(fd.cFileName);
 				#endif
 				if ((fn != ".") && (fn != ".."))
-					foundDirs.Append(new tStringItem(path + fn + "/"));
+					dirs.Append(new tStringItem(path + fn + "/"));
 			}
 		}
 	} while (FindNextFile(h, &fd));
@@ -1815,8 +1875,22 @@ bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 	FindClose(h);
 	if (GetLastError() != ERROR_NO_MORE_FILES)
 		return false;
+	return true;
+
+	#elif defined(PLATFORM_LINUX)
+	// @todo No Linux Native implementation. Use Standard.
+	return tFindDirs_Stndrd(dirs, dir, hidden);
 
 	#else
+	tAssert(!"tFindDirs_Native not implemented for platform.");
+	return false;
+
+	#endif
+}
+
+
+bool tSystem::tFindDirs_Stndrd(tList<tStringItem>& dirs, const tString& dir, bool hidden)
+{
 	tString dirPath(dir);
 	if (dirPath.IsEmpty())
 		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
@@ -1838,22 +1912,32 @@ bool tSystem::tFindDirs(tList<tStringItem>& foundDirs, const tString& dir, bool 
 		// All directories end in a slash in tacent.
 		if (foundDir[foundDir.Length()-1] != '/')
 			foundDir += "/";
-		if (includeHidden || !tIsHidden(foundDir))
-			foundDirs.Append(new tStringItem(foundDir));
+		if (hidden || !tIsHidden(foundDir))
+			dirs.Append(new tStringItem(foundDir));
 	}
 
-	#endif
 	return true;
 }
 
 
-bool tSystem::tFindDirsRec(tList<tStringItem>& foundDirs, const tString& dir, bool includeHidden)
+bool tSystem::tFindDirs(tList<tStringItem>& dirs, const tString& dir, bool hidden, Backend backend)
+{
+	switch (backend)
+	{
+		case Backend::Native: return tFindDirs_Native(dirs, dir, hidden);
+		case Backend::Stndrd: return tFindDirs_Stndrd(dirs, dir, hidden);
+	}
+	return false;
+}
+
+
+bool tSystem::tFindDirsRec_Native(tList<tStringItem>& dirs, const tString& dir, bool hidden)
 {
 	#ifdef PLATFORM_WINDOWS
 	tString pathStr(dir);
 
 	tPathWinDir(pathStr);
-	tFindDirs(foundDirs, pathStr, includeHidden);
+	tFindDirs(dirs, pathStr, hidden);
 	Win32FindData fd;
 	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 pathStrMod16(pathStr + "*.*");
@@ -1869,7 +1953,7 @@ bool tSystem::tFindDirsRec(tList<tStringItem>& foundDirs, const tString& dir, bo
 		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
 			// Don't recurse into hidden subdirectories if includeHidden is false.
-			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
+			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || hidden)
 			{
 				// If the directory name is not "." or ".." then it's a real directory.
 				// Note that you cannot just check for the first character not being "."  Some directories (and files)
@@ -1880,7 +1964,7 @@ bool tSystem::tFindDirsRec(tList<tStringItem>& foundDirs, const tString& dir, bo
 				tString fn(fd.cFileName);
 				#endif
 				if ((fn != ".") && (fn != ".."))
-					tFindDirsRec(foundDirs, pathStr + fn + "\\", includeHidden);
+					tFindDirsRec_Native(dirs, pathStr + fn + "\\", hidden);
 			}
 		}
 	} while (FindNextFile(h, &fd));
@@ -1888,25 +1972,53 @@ bool tSystem::tFindDirsRec(tList<tStringItem>& foundDirs, const tString& dir, bo
 	FindClose(h);
 	if (GetLastError() != ERROR_NO_MORE_FILES)
 		return false;
+	return true;
+
+	#elif defined(PLATFORM_LINUX)
+	// @todo No Linux Native implementation. Use Standard.
+	return tFindDirsRec_Stndrd(dirs, dir, hidden);
 
 	#else
-	for (const std::filesystem::directory_entry& entry : std::filesystem::recursive_directory_iterator(dir.Chr()))
+	tAssert(!"tFindDirsRec_Native not implemented for platform.");
+	return false;
+
+	#endif
+}
+
+
+bool tSystem::tFindDirsRec_Stndrd(tList<tStringItem>& dirs, const tString& dir, bool hidden)
+{
+	tString dirPath(dir);
+	if (dirPath.IsEmpty())
+		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
+
+	for (const std::filesystem::directory_entry& entry : std::filesystem::recursive_directory_iterator(dirPath.Chr()))
 	{
 		if (!entry.is_directory())
 			continue;
 
 		tString foundDir((char*)entry.path().u8string().c_str());
 
-		if (includeHidden || !tIsHidden(foundDir))
-			foundDirs.Append(new tStringItem(foundDir));
+		if (hidden || !tIsHidden(foundDir))
+			dirs.Append(new tStringItem(foundDir));
 	}
 
-	#endif
 	return true;
 }
 
 
-bool tSystem::tFindDirs(tList<tFileInfo>& foundDirs, const tString& dir)
+bool tSystem::tFindDirsRec(tList<tStringItem>& dirs, const tString& dir, bool hidden, Backend backend)
+{
+	switch (backend)
+	{
+		case Backend::Native: return tFindDirsRec_Native(dirs, dir, hidden);
+		case Backend::Stndrd: return tFindDirsRec_Stndrd(dirs, dir, hidden);
+	}
+	return false;
+}
+
+
+bool tSystem::tFindDirs_Native(tList<tFileInfo>& dirs, const tString& dir)
 {
 	#ifdef PLATFORM_WINDOWS
 	// First lets massage fileName a little.
@@ -1933,18 +2045,17 @@ bool tSystem::tFindDirs(tList<tFileInfo>& foundDirs, const tString& dir)
 			// Note that you cannot just check for the first character not being "."  Some directories (and files)
 			// may have a name that starts with a dot, especially if they were copied from a unix machine.
 			#ifdef TACENT_UTF16_API_CALLS
-			tString fn((char16_t*)fd.cFileName);
+			tString fn((char16_t*)fd.cFileName);	// Does the UTF conversion for us.
 			#else
 			tString fn(fd.cFileName);
 			#endif
 			if ((fn != ".") && (fn != ".."))
 			{
 				tFileInfo* fileInfo = new tFileInfo();
-				fileInfo->FileName = tString(path + fn + "/");
 
 				// This is the fast windows-specific tGetFileInfo.
-				tGetFileInfo(*fileInfo, fd);
-				foundDirs.Append(fileInfo);
+				tPopulateFileInfo_Windows(*fileInfo, fd, tString(path + fn + "/"));
+				dirs.Append(fileInfo);
 			}
 		}
 	} while (FindNextFile(h, &fd));
@@ -1952,8 +2063,22 @@ bool tSystem::tFindDirs(tList<tFileInfo>& foundDirs, const tString& dir)
 	FindClose(h);
 	if (GetLastError() != ERROR_NO_MORE_FILES)
 		return false;
+	return true;
+
+	#elif defined(PLATFORM_LINUX)
+	// @todo No native Linux implementation yet. Fallback to standard.
+	return tFindDirs_Stndrd(dirs, dir);
 
 	#else
+	tAssert(!"tFindDirs_Native not implemented for platform.");
+	return false;
+
+	#endif
+}
+
+
+bool tSystem::tFindDirs_Stndrd(tList<tFileInfo>& dirs, const tString& dir)
+{
 	tString dirPath(dir);
 	if (dirPath.IsEmpty())
 		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
@@ -1961,6 +2086,7 @@ bool tSystem::tFindDirs(tList<tFileInfo>& foundDirs, const tString& dir)
 	std::error_code errorCode;
 	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text(), errorCode))
 	{
+		// If error or entry is default entry, continue. Probably don't need to clear errorCode but just in case.
 		if (errorCode || (entry == std::filesystem::directory_entry()))
 		{
 			errorCode.clear();
@@ -1971,46 +2097,38 @@ bool tSystem::tFindDirs(tList<tFileInfo>& foundDirs, const tString& dir)
 			continue;
 
 		tString foundDir((char*)entry.path().u8string().c_str());
-		
+
 		// All directories end in a slash in tacent.
 		if (foundDir[foundDir.Length()-1] != '/')
 			foundDir += "/";
 
 		tFileInfo* fileInfo = new tFileInfo();
-		fileInfo->FileName = foundDir;
-
-		#ifdef USE_STD_FILESYSTEM_FOR_FILEINFO
-		std::error_code ec;
-		std::filesystem::file_status status = entry.status(ec);
-		entry.last_write_time().
-		fileInfo->ReadOnly = false;
-		if (!ec)
-		{
-			std::filesystem::perms perms = status.permissions();
-			bool w = (perms & std::filesystem::perms::owner_write) ? true : false;;
-			bool r = (perms & std::filesystem::perms::owner_read);
-			fileInfo->ReadOnly = (r && !w);
-		}
-		#endif
-
-		// @todo Since we already have a std::filesystem entry, we could extract everything from that
-		// instead of using stat. Chrono time conversion code would need to be written.
-		tGetFileInfo(*fileInfo, foundDir);
-		foundDirs.Append(fileInfo);
+		tPopulateFileInfo_Stndrd(*fileInfo, entry, foundDir);
+		dirs.Append(fileInfo);
 	}
 
-	#endif
 	return true;
 }
 
 
-bool tSystem::tFindDirsRec(tList<tFileInfo>& foundDirs, const tString& dir)
+bool tSystem::tFindDirs(tList<tFileInfo>& dirs, const tString& dir, Backend backend)
+{
+	switch (backend)
+	{
+		case Backend::Native: return tFindDirs_Native(dirs, dir);
+		case Backend::Stndrd: return tFindDirs_Stndrd(dirs, dir);
+	}
+	return false;
+}
+
+
+bool tSystem::tFindDirsRec_Native(tList<tFileInfo>& dirs, const tString& dir)
 {
 	#ifdef PLATFORM_WINDOWS
 	tString pathStr(dir);
 
 	tPathWinDir(pathStr);
-	tFindDirs(foundDirs, pathStr);
+	tFindDirs_Native(dirs, pathStr);
 	Win32FindData fd;
 	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 pathStrMod16(pathStr + "*.*");
@@ -2034,17 +2152,43 @@ bool tSystem::tFindDirsRec(tList<tFileInfo>& foundDirs, const tString& dir)
 			tString fn(fd.cFileName);
 			#endif
 			if ((fn != ".") && (fn != ".."))
-				tFindDirsRec(foundDirs, pathStr + fn + "\\");
+				tFindDirsRec_Native(dirs, pathStr + fn + "\\");
 		}
 	} while (FindNextFile(h, &fd));
 
 	FindClose(h);
 	if (GetLastError() != ERROR_NO_MORE_FILES)
 		return false;
+	return true;
+
+	#elif defined(PLATFORM_LINUX)
+	// @todo No current native implementation for this function. Falling back to standard.
+	return tFindDirsRec_Stndrd(dirs, dir);
 
 	#else
-	for (const std::filesystem::directory_entry& entry : std::filesystem::recursive_directory_iterator(dir.Chr()))
+	tAssert(!"tFindDirsRec_Native not implemented for platform.");
+	return false;
+
+	#endif
+}
+
+
+bool tSystem::tFindDirsRec_Stndrd(tList<tFileInfo>& dirs, const tString& dir)
+{
+	tString dirPath(dir);
+	if (dirPath.IsEmpty())
+		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
+
+	std::error_code errorCode;
+	for (const std::filesystem::directory_entry& entry : std::filesystem::recursive_directory_iterator(dirPath.Chr(), errorCode))
 	{
+		// If error or entry is default entry, continue. Probably don't need to clear errorCode but just in case.
+		if (errorCode || (entry == std::filesystem::directory_entry()))
+		{
+			errorCode.clear();
+			continue;
+		}
+
 		if (!entry.is_directory())
 			continue;
 
@@ -2055,16 +2199,22 @@ bool tSystem::tFindDirsRec(tList<tFileInfo>& foundDirs, const tString& dir)
 			foundDir += "/";
 
 		tFileInfo* fileInfo = new tFileInfo();
-		fileInfo->FileName = foundDir;
-
-		// @todo Since we already have a std::filesystem entry, we could extract everything from that
-		// instead of using stat. Chrono time conversion code would need to be written.
-		tGetFileInfo(*fileInfo, foundDir);
-		foundDirs.Append(fileInfo);
+		tPopulateFileInfo_Stndrd(*fileInfo, entry, foundDir);
+		dirs.Append(fileInfo);
 	}
 
-	#endif
 	return true;
+}
+
+
+bool tSystem::tFindDirsRec(tList<tFileInfo>& dirs, const tString& dir, Backend backend)
+{
+	switch (backend)
+	{
+		case Backend::Native: return tFindDirsRec_Native(dirs, dir);
+		case Backend::Stndrd: return tFindDirsRec_Stndrd(dirs, dir);
+	}
+	return false;
 }
 
 
@@ -2652,10 +2802,7 @@ bool tSystem::tFindFilesFastInternal(tList<tStringItem>* foundFiles, tList<tFile
 					tStringItem* newName = foundFiles ? new tStringItem(foundName) : nullptr;
 					tFileInfo*   newInfo = foundInfos ? new tFileInfo() : nullptr;
 					if (newInfo)
-					{
-						newInfo->FileName = foundName;
-						tGetFileInfo(*newInfo, fd);
-					}
+						tPopulateFileInfo_Windows(*newInfo, fd, foundName);
 
 					// Holy obscure and annoying FindFirstFile bug! FindFirstFile("*.abc", ...) will also find
 					// files like file.abcd. This isn't correct I guess we have to check the extension here.
