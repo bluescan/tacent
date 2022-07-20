@@ -669,6 +669,8 @@ void tSystem::tPopulateFileInfo_Stndrd(tFileInfo& fileInfo, const std::filesyste
 
 bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 {
+	// We want the info cleared in case an error or early-exit occurs.
+	fileInfo.Clear();
 	tString file(fileName);
 
 	#ifdef PLATFORM_WINDOWS
@@ -684,12 +686,15 @@ bool tSystem::tGetFileInfo(tFileInfo& fileInfo, const tString& fileName)
 	#endif
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
+
+	// This fully fills in fileInfo, including the filename.
 	tPopulateFileInfo_Windows(fileInfo, fd, fileName);
 	FindClose(h);
 	return true;
 
 	#else
 	tPathStd(file);
+	fileInfo.FileName = file;
 	fileInfo.Hidden = tIsHidden(file);		// On Linux just looks for a leading . in filename.
 
 	struct stat statBuf;

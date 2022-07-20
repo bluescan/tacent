@@ -1002,12 +1002,12 @@ tTestUnit(File)
 	}
 
 	tList<tStringItem> files;
-	tFindFiles(files, "TestData/", tString(), false);
+	tFindFiles(files, "TestData/", false);
 	for (tStringItem* file = files.Head(); file; file = file->Next())
 		tPrintf("Found file norm: %s\n", file->Text());
 
 	tList<tStringItem> filesFast;
-	tFindFilesFast(filesFast, "TestData/", tString(), false);
+	tFindFilesFast(filesFast, "TestData/", false);
 	for (tStringItem* file = filesFast.Head(); file; file = file->Next())
 		tPrintf("Found file fast: %s\n", file->Text());
 
