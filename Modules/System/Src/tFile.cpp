@@ -614,8 +614,13 @@ void tSystem::tPopulateFileInfo_Windows(tFileInfo& fileInfo, Win32FindData& fd, 
 void tSystem::tPopulateFileInfo_Stndrd(tFileInfo& fileInfo, const std::filesystem::directory_entry& entry, const tString& filename)
 {
 	fileInfo.FileName = filename;
-	fileInfo.FileSize = entry.file_size();
 	std::error_code errCode;
+	fileInfo.FileSize = entry.file_size(errCode);
+	if (errCode)
+	{
+		fileInfo.FileSize = 0;
+		errCode.clear();
+	}
 
 	// CreationTime not vailable from std::filesystem. Needs to remain -1 (unset).
 	fileInfo.CreationTime = -1;
@@ -625,12 +630,15 @@ void tSystem::tPopulateFileInfo_Stndrd(tFileInfo& fileInfo, const std::filesyste
 	if (!errCode)
 	{
 		// This works in C++20 or later only.
-		// Using clock_cast seems a bit more portable than something like to_time which is not implemented for all clocks
+		// Using clock_cast seems a bit more portable than something like to_sys which is not implemented for all clocks
 		// on some systems (MSVC, for example, chose only to do it for the utc clock. In any case clock_cast is probably
-		// the way to go. Example non-portable code:
-		// std::chrono::system_clock::to_time_t(std::chrono::file_clock::to_sys(ftime));
+		// the way to go. Example non-portable code: Update: apparently not portable. Need the ifdefs.
+		#ifdef PLATFORM_WINDOWS
 		auto systemTimePoint = std::chrono::clock_cast<std::chrono::system_clock>(ftime);
 		auto unixTime = std::chrono::system_clock::to_time_t(systemTimePoint);
+		#else
+		auto unixTime = std::chrono::system_clock::to_time_t(std::chrono::file_clock::to_sys(ftime));
+		#endif
 		fileInfo.ModificationTime = unixTime;
 	}
 

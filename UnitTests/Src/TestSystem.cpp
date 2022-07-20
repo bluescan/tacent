@@ -1001,8 +1001,6 @@ tTestUnit(File)
 		tPrintf("Dir: %s Hidden: %s\n", i->FileName.Chr(), i->Hidden ? "true" : "false");
 	}
 
-	return;
-
 	tList<tStringItem> files;
 	tFindFiles(files, "TestData/", tString(), false);
 	for (tStringItem* file = files.Head(); file; file = file->Next())
