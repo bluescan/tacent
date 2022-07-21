@@ -146,32 +146,67 @@ inline void tSystem::tPathWinFile(tString& path)
 }
 
 
-tFileHandle tSystem::tOpenFile(const char8_t* filename, const char* mode)
+int tSystem::tGetFileSize(tFileHandle handle)
 {
-	return fopen((const char*)filename, mode);
+	if (!handle)
+		return 0;
+
+	tFileSeek(handle, 0, tSeekOrigin::End);
+	int fileSize = tFileTell(handle);
+
+	tFileSeek(handle, 0, tSeekOrigin::Beginning);			// Go back to beginning.
+	return fileSize;
 }
 
 
-tFileHandle tSystem::tOpenFile(const char* filename, const char* mode)
-{
-	return fopen(filename, mode);
-}
-
-
-void tSystem::tCloseFile(tFileHandle f)
-{
-	if (!f)
-		return;
-
-	fclose(f);
-}
-
-
-int tSystem::tReadFile(tFileHandle f, void* buffer, int sizeBytes)
+int tSystem::tReadFile(tFileHandle handle, void* buffer, int sizeBytes)
 {
 	// Load the entire thing into memory.
-	int numRead = int(fread((char*)buffer, 1, sizeBytes, f));
+	int numRead = int(fread((char*)buffer, 1, sizeBytes, handle));
 	return numRead;
+}
+
+
+// HERE
+
+
+int tSystem::tGetFileSize(const tString& filename)
+{
+	#ifdef PLATFORM_WINDOWS
+	if (filename.IsEmpty())
+		return 0;
+
+	tString file(filename);
+	tPathWin(file);
+	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
+
+	Win32FindData fd;
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 fileUTF16(file);
+	WinHandle h = FindFirstFile(fileUTF16.GetLPWSTR(), &fd);
+	#else
+	WinHandle h = FindFirstFile(file.Chr(), &fd);
+	#endif
+
+	// If file doesn't exist, h will be invalid.
+	if (h == INVALID_HANDLE_VALUE)
+	{
+		SetErrorMode(prevErrorMode);
+		return 0;
+	}
+
+	FindClose(h);
+	SetErrorMode(prevErrorMode);
+	return fd.nFileSizeLow;
+	#else
+
+	tFileHandle fd = tOpenFile(filename, "rb");
+	int size = tGetFileSize(fd);
+	tCloseFile(fd);
+
+	return size;
+	#endif
 }
 
 
@@ -228,59 +263,6 @@ int tSystem::tFileSeek(tFileHandle handle, int offsetBytes, tSeekOrigin seekOrig
 	}
 	
 	return fseek(handle, long(offsetBytes), origin);
-}
-
-
-int tSystem::tGetFileSize(tFileHandle file)
-{
-	if (!file)
-		return 0;
-
-	tFileSeek(file, 0, tSeekOrigin::End);
-	int fileSize = tFileTell(file);
-
-	tFileSeek(file, 0, tSeekOrigin::Beginning);			// Go back to beginning.
-	return fileSize;
-}
-
-
-int tSystem::tGetFileSize(const tString& filename)
-{
-	#ifdef PLATFORM_WINDOWS
-	if (filename.IsEmpty())
-		return 0;
-
-	tString file(filename);
-	tPathWin(file);
-	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
-
-	Win32FindData fd;
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 fileUTF16(file);
-	WinHandle h = FindFirstFile(fileUTF16.GetLPWSTR(), &fd);
-	#else
-	WinHandle h = FindFirstFile(file.Chr(), &fd);
-	#endif
-
-	// If file doesn't exist, h will be invalid.
-	if (h == INVALID_HANDLE_VALUE)
-	{
-		SetErrorMode(prevErrorMode);
-		return 0;
-	}
-
-	FindClose(h);
-	SetErrorMode(prevErrorMode);
-	return fd.nFileSizeLow;
-	#else
-
-	tFileHandle fd = tOpenFile(filename, "rb");
-	int size = tGetFileSize(fd);
-	tCloseFile(fd);
-
-	return size;
-	#endif
 }
 
 

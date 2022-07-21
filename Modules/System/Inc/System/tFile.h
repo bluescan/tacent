@@ -4,9 +4,19 @@
 // any user code can be oblivious to the type of stream. It may be a file on disk, it may be a file in a custom
 // filesystem, it may be a pipe, or even a network resource.
 //
-// A path can refer to either a file or a directory. All paths use forward slashes as the separator. Input paths can
-// use backslashes, but consistency in using forward slashes is advised. Directory path specifications always end with
-// a trailing slash. Without the trailing separator the path will be interpreted as a file.
+// Paths
+// * A filesystem path may be represented by a tString or a tPath (not implemented yet but will essentially be a list of
+//   strings).
+// * Paths when represented by strings use forward slashes as the separator unless it is the beginnging part of a
+//   Windows network shar in which case the first two seperators are \\ and \.
+//   eg. Posix/Linux path  : "/home/username/work/important.txt
+//   eg. Windows file path : "C:/Work/Important.txt"
+//   eg. Windows net share : "\\machinename\sharename/Work/Important.txt"
+// * A path can refer to either a file or a directory. If used for a directory it _always_ ends in a forward-slash /.
+// * Input paths to functions here may use backslashes, but consistency in using forward slashes is advised.
+//
+// A note on variable naming of paths in this API. If it can be a file or directory, the word 'path' is used. If the
+// path must be a directory, the word 'dir' is used. If the path must be a file, the word 'file' is used.
 //
 // Copyright (c) 2004-2006, 2017, 2020-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -38,18 +48,16 @@ enum class Backend
 };
 
 
-// @todo Implement the tFile class.
-class tFile : public tStream
-{
-	tFile(const tString& fileName, tStream::tModes modes)																: tStream(modes) { }
-};
+//
+// Functions that are file handle based.
+//
 
-int tGetFileSize(tFileHandle);
-int tGetFileSize(const tString& fileName);
-tFileHandle tOpenFile(const char8_t* filename, const char* mode);
-tFileHandle tOpenFile(const char* filename, const char* mode);
+tFileHandle tOpenFile(const char8_t* file, const char* mode);
+tFileHandle tOpenFile(const char* file, const char* mode);
 void tCloseFile(tFileHandle);
+int tGetFileSize(tFileHandle);
 int tReadFile(tFileHandle, void* buffer, int sizeBytes);
+// HERE
 int tWriteFile(tFileHandle, const void* buffer, int sizeBytes);
 int tWriteFile(tFileHandle, const char8_t* buffer, int length);
 int tWriteFile(tFileHandle, const char16_t* buffer, int length);
@@ -57,7 +65,6 @@ int tWriteFile(tFileHandle, const char32_t* buffer, int length);
 bool tPutc(char, tFileHandle);
 int tGetc(tFileHandle);
 int tFileTell(tFileHandle);
-
 enum class tSeekOrigin
 {
 	Beginning,		// AKA seek_set.
@@ -67,21 +74,62 @@ enum class tSeekOrigin
 };
 int tFileSeek(tFileHandle, int offsetBytes, tSeekOrigin = tSeekOrigin::Beginning);
 
-// Test if a file exists. Supplied filename should not have a trailing slash. Will return false if you use on
+
+//
+// Functions that are path-based.
+//
+
+// Returns 0 if the file doesn't exist. Also returns 0 if the file exists and its size is actually 0.
+int tGetFileSize(const tString& file);
+
+// Works for both files and directories. Returns false if read-only not set or an error occurred like the path not
+// existing. For Lixux returns true is user w permission flag not set and r permission flag is set.
+bool tIsReadOnly(const tString& path);
+
+// Works for both files and directories. Returns true on success. For Linux, sets the user w permission flag as
+// appropriate and the user r permission flag to true. For Windows sets the attribute.
+bool tSetReadOnly(const tString& path, bool readOnly = true);
+
+// Works on files and directories. For Linux, checks if first character of file is a dot (and not ".."). For Windows it
+// checks the hidden file attribute regardless of whether it starts with a dot or not. If you want a hidden file or
+// directory that is hidden on both types of filesystem (fat/ntfs and extN) make your hidden file/dir start with a dot
+// (Linux) and set the hidden attribute (Windows).
+bool tIsHidden(const tString& path);
+
+#if defined(PLATFORM_WINDOWS)
+// These are Windows-only as they set platform-specific attributes. The Set call returns success. @todo Make equavalents
+// to set Linux permissions for user, group, other.
+bool tSetHidden(const tString& path, bool hidden = true);
+bool tIsSystem(const tString& file);
+bool tSetSystem(const tString& file, bool system = true);
+
+// Drive letter can be of form "C" or "C:" or "C:/" in either lower or upper case for this function.
+bool tDriveExists(const tString& driveName);
+#endif
+
+// Overwrites dest if it exists. Returns true if success. Will return false and not copy if overWriteReadOnly is false
+// and the file already exists and is read-only.
+bool tCopyFile(const tString& destFile, const tString& srcFile, bool overWriteReadOnly = true);
+
+// Renames the file or directory specified by oldName to the newName. This function can only be used for renaming, not
+// moving. Returns true on success. The dir variable should contain the path to where the file or dir you want to rename
+// is located.
+bool tRenameFile(const tString& dir, const tString& oldPathName, const tString& newPathName);
+
+// Test if a file exists. Supplied file name should not have a trailing slash. Will return false if you use on
 // directories or drives. Use tDirExists for that purpose. Windows Note: tFileExists will not bring up an error box for
 // a removable drive without media in it.
-bool tFileExists(const tString& fileName);
+bool tFileExists(const tString& file);
 
 // Check if a directory or logical drive exists. Valid directory names include "E:/", "C:/Program Files/" etc. Drives
 // without media in them are considered non-existent. For example, if "E:/" refers to a CD ROM drive without media in
 // it, you'll get a false because you can't actually enter that directory. If the drive doesn't exist on the system at
 // all you'll get a false as well. If you want to check if a drive letter exists on windows, use tDriveExists.
-bool tDirExists(const tString& dirName);
+bool tDirExists(const tString& dir);
 
-#if defined(PLATFORM_WINDOWS)
-// Drive letter can be of form "C" or "C:" or "C:/" or with lower case for this function.
-bool tDriveExists(const tString& driveName);
-#endif
+//
+// File types and extensions.
+//
 
 // c:/Stuff/Mess.max to max
 tString tGetFileExtension(const tString& filename);
@@ -470,32 +518,6 @@ bool tDeleteDir(const tString& directory, bool deleteReadOnly = true);
 // File Functions.
 //
 
-// The following set and get functions work equally well on both files and directories. The "Set" calls return true on
-// success. The "Is" calls return true if the attribute is set, and false if it isn't or an error occurred (like the
-// object didn't exist).
-bool tIsReadOnly(const tString& fileName);							// For Lixux returns true is user w flag not set and r flag is set.
-bool tSetReadOnly(const tString& fileName, bool readOnly = true);	// For Linux, sets the user w flag as appropriate and the r flag to true.
-
-// For Linux, checks if first character of filename is a dot (and not ".."). For Windows it checks the hidden
-// fileattribute regardless of whether it starts with a dot or not. If you want hidden files in a way that is
-// platform agnostic, make your hidden file start with a dot (Linux) , and set the hidden attribute (Windows).
-bool tIsHidden(const tString& fileName);
-
-#if defined(PLATFORM_WINDOWS)
-bool tSetHidden(const tString& fileName, bool hidden = true);
-bool tIsSystem(const tString& fileName);
-bool tSetSystem(const tString& fileName, bool system = true);
-#endif
-
-// Overwrites dest if it exists. Returns true if success. Will return false and not copy if overWriteReadOnly is false
-// and the file already exists and is read-only.
-bool tCopyFile(const tString& destFile, const tString& srcFile, bool overWriteReadOnly = true);
-
-// Renames the file or directory specified by oldName to the newName. This function can only be used for renaming, not
-// moving. Returns true on success. The dir variable should contain the path to where the file or dir you want to
-// rename is located.
-bool tRenameFile(const tString& dir, const tString& oldName, const tString& newName);
-
 // This function finds files in a directory. It uses the std::filesystem calls that, while cross-platform, can be rather
 // slow. Consider using the "Fast" versions of this function. They fallback to this if not implemeneted for a particular
 // platform. The foundfiles list is always appended to. You must clear it first if that's what you intend. If empty dir
@@ -586,6 +608,9 @@ bool tDeleteFile(const tString& filename, bool deleteReadOnly = true, bool tryUs
 // too efficient (only for tool use).
 bool tFilesIdentical(const tString& fileA, const tString& fileB);
 
+// @todo Implement the tFile class. Right now we're basically just reserving the class name.
+class tFile : public tStream { tFile(const tString& file, tStream::tModes modes)																: tStream(modes) { } };
+
 // File hash functions using tHash standard hash algorithms.
 uint32 tHashFileFast32(const tString& filename, uint32 iv = tHash::HashIV32);
 uint32 tHashFile32(const tString& filename, uint32 iv = tHash::HashIV32);
@@ -609,6 +634,27 @@ struct tFileError : public tError
 
 
 // Implementation below this line.
+
+
+inline tFileHandle tSystem::tOpenFile(const char8_t* file, const char* mode)
+{
+	return fopen((const char*)file, mode);
+}
+
+
+inline tFileHandle tSystem::tOpenFile(const char* file, const char* mode)
+{
+	return fopen(file, mode);
+}
+
+
+inline void tSystem::tCloseFile(tFileHandle f)
+{
+	if (!f)
+		return;
+
+	fclose(f);
+}
 
 
 inline tSystem::tExtensions& tSystem::tExtensions::Add(const tExtensions& src)
