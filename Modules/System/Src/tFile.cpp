@@ -159,91 +159,6 @@ int tSystem::tGetFileSize(tFileHandle handle)
 }
 
 
-int tSystem::tReadFile(tFileHandle handle, void* buffer, int sizeBytes)
-{
-	// Load the entire thing into memory.
-	int numRead = int(fread((char*)buffer, 1, sizeBytes, handle));
-	return numRead;
-}
-
-
-// HERE
-
-
-int tSystem::tGetFileSize(const tString& filename)
-{
-	#ifdef PLATFORM_WINDOWS
-	if (filename.IsEmpty())
-		return 0;
-
-	tString file(filename);
-	tPathWin(file);
-	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
-
-	Win32FindData fd;
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 fileUTF16(file);
-	WinHandle h = FindFirstFile(fileUTF16.GetLPWSTR(), &fd);
-	#else
-	WinHandle h = FindFirstFile(file.Chr(), &fd);
-	#endif
-
-	// If file doesn't exist, h will be invalid.
-	if (h == INVALID_HANDLE_VALUE)
-	{
-		SetErrorMode(prevErrorMode);
-		return 0;
-	}
-
-	FindClose(h);
-	SetErrorMode(prevErrorMode);
-	return fd.nFileSizeLow;
-	#else
-
-	tFileHandle fd = tOpenFile(filename, "rb");
-	int size = tGetFileSize(fd);
-	tCloseFile(fd);
-
-	return size;
-	#endif
-}
-
-
-int tSystem::tWriteFile(tFileHandle f, const void* buffer, int sizeBytes)
-{
-	int numWritten = int(fwrite((void*)buffer, 1, sizeBytes, f));
-	return numWritten;
-}
-
-
-int tSystem::tWriteFile(tFileHandle f, const char8_t* buffer, int length)
-{
-	int numWritten = int(fwrite((void*)buffer, 1, length, f));
-	return numWritten;
-}
-
-
-int tSystem::tWriteFile(tFileHandle f, const char16_t* buffer, int length)
-{
-	int numWritten = int(fwrite((void*)buffer, 2, length, f));
-	return numWritten;
-}
-
-
-int tSystem::tWriteFile(tFileHandle f, const char32_t* buffer, int length)
-{
-	int numWritten = int(fwrite((void*)buffer, 4, length, f));
-	return numWritten;
-}
-
-
-int tSystem::tFileTell(tFileHandle handle)
-{
-	return int(ftell(handle));
-}
-
-
 int tSystem::tFileSeek(tFileHandle handle, int offsetBytes, tSeekOrigin seekOrigin)
 {
 	int origin = SEEK_SET;
@@ -265,6 +180,146 @@ int tSystem::tFileSeek(tFileHandle handle, int offsetBytes, tSeekOrigin seekOrig
 	return fseek(handle, long(offsetBytes), origin);
 }
 
+
+int tSystem::tGetFileSize(const tString& file)
+{
+	if (file.IsEmpty())
+		return 0;
+
+	#ifdef PLATFORM_WINDOWS
+	tString filename(file);
+	tPathWin(filename);
+	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
+
+	Win32FindData fd;
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 fileUTF16(file);
+	WinHandle h = FindFirstFile(fileUTF16.GetLPWSTR(), &fd);
+	#else
+	WinHandle h = FindFirstFile(filename.Chr(), &fd);
+	#endif
+
+	// If file doesn't exist, h will be invalid.
+	if (h == INVALID_HANDLE_VALUE)
+	{
+		SetErrorMode(prevErrorMode);
+		return 0;
+	}
+
+	FindClose(h);
+	SetErrorMode(prevErrorMode);
+	return fd.nFileSizeLow;
+	#else
+
+	tFileHandle handle = tOpenFile(file, "rb");
+	int size = tGetFileSize(handle);
+	tCloseFile(handle);
+
+	return size;
+	#endif
+}
+
+
+bool tSystem::tIsReadOnly(const tString& path)
+{
+	tString pathname(path);
+
+	#if defined(PLATFORM_WINDOWS)
+	tPathWinFile(pathname);
+
+	// The docs for this should be clearer!  GetFileAttributes returns INVALID_FILE_ATTRIBUTES if it
+	// fails.  Rather dangerously, and undocumented, INVALID_FILE_ATTRIBUTES has a value of 0xFFFFFFFF.
+	// This means that all attribute are apparently true!  This is very lame.  Thank goodness there aren't
+	// 32 possible attributes, or there could be real problems.  Too bad it didn't just return 0 on error...
+	// especially since they specifically have a FILE_ATTRIBUTES_NORMAL flag that is non-zero!
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 path16(pathname);
+	ulong attribs = GetFileAttributes(path16.GetLPWSTR());
+	#else
+	ulong attribs = GetFileAttributes(pathname.Chr());
+	#endif
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	return (attribs & FILE_ATTRIBUTE_READONLY) ? true : false;
+
+	#else
+	tPathStd(pathname);
+
+	struct stat st;
+	int errCode = stat(pathname.Chr(), &st);
+	if (errCode != 0)
+		return false;
+
+	bool w = (st.st_mode & S_IWUSR) ? true : false;
+	bool r = (st.st_mode & S_IRUSR) ? true : false;
+	return r && !w;
+
+	#endif
+}
+
+
+bool tSystem::tSetReadOnly(const tString& path, bool readOnly)
+{
+	tString pathname(path);
+	
+	#if defined(PLATFORM_WINDOWS)	
+	tPathWinFile(pathname);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 path16(pathname);
+	ulong attribs = GetFileAttributes(path16.GetLPWSTR());
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	if (!(attribs & FILE_ATTRIBUTE_READONLY) && readOnly)
+		SetFileAttributes(path16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_READONLY);
+	else if ((attribs & FILE_ATTRIBUTE_READONLY) && !readOnly)
+		SetFileAttributes(path16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_READONLY);
+
+	attribs = GetFileAttributes(path16.GetLPWSTR());
+	#else
+	ulong attribs = GetFileAttributes(pathname.Chr());
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	if (!(attribs & FILE_ATTRIBUTE_READONLY) && readOnly)
+		SetFileAttributes(pathname.Chr(), attribs | FILE_ATTRIBUTE_READONLY);
+	else if ((attribs & FILE_ATTRIBUTE_READONLY) && !readOnly)
+		SetFileAttributes(pathname.Chr(), attribs & ~FILE_ATTRIBUTE_READONLY);
+
+	attribs = GetFileAttributes(pathname.Chr());
+	#endif
+
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	if (!!(attribs & FILE_ATTRIBUTE_READONLY) == readOnly)
+		return true;
+
+	return false;
+
+	#else
+	tPathStd(pathname);
+	
+	struct stat st;
+	int errCode = stat(pathname.Chr(), &st);
+	if (errCode != 0)
+		return false;
+	
+	uint32 permBits = st.st_mode;
+
+	// Set user R and clear user w. Leave rest unchanged.
+	permBits |= S_IRUSR;
+	permBits &= ~S_IWUSR;
+	errCode = chmod(pathname.Chr(), permBits);
+	
+	return (errCode == 0);
+
+	#endif
+}
+
+// HERE
 
 tString tSystem::tGetFileExtension(const tString& filename)																
 {
@@ -2349,106 +2404,6 @@ bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
 	#endif
 
 	return true;
-}
-
-
-bool tSystem::tIsReadOnly(const tString& fileName)
-{
-	tString file(fileName);
-
-	#if defined(PLATFORM_WINDOWS)
-	tPathWinFile(file);
-
-	// The docs for this should be clearer!  GetFileAttributes returns INVALID_FILE_ATTRIBUTES if it
-	// fails.  Rather dangerously, and undocumented, INVALID_FILE_ATTRIBUTES has a value of 0xFFFFFFFF.
-	// This means that all attribute are apparently true!  This is very lame.  Thank goodness there aren't
-	// 32 possible attributes, or there could be real problems.  Too bad it didn't just return 0 on error...
-	// especially since they specifically have a FILE_ATTRIBUTES_NORMAL flag that is non-zero!
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 file16(file);
-	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
-	#else
-	ulong attribs = GetFileAttributes(file.Chr());
-	#endif
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	return (attribs & FILE_ATTRIBUTE_READONLY) ? true : false;
-
-	#else
-	tPathStd(file);
-
-	struct stat st;
-	int errCode = stat(file.Chr(), &st);
-	if (errCode != 0)
-		return false;
-
-	bool w = (st.st_mode & S_IWUSR) ? true : false;
-	bool r = (st.st_mode & S_IRUSR) ? true : false;
-	return r && !w;
-
-	#endif
-}
-
-
-bool tSystem::tSetReadOnly(const tString& fileName, bool readOnly)
-{
-	tString file(fileName);
-	
-	#if defined(PLATFORM_WINDOWS)	
-	tPathWinFile(file);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 file16(file);
-	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	if (!(attribs & FILE_ATTRIBUTE_READONLY) && readOnly)
-		SetFileAttributes(file16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_READONLY);
-	else if ((attribs & FILE_ATTRIBUTE_READONLY) && !readOnly)
-		SetFileAttributes(file16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_READONLY);
-
-	attribs = GetFileAttributes(file16.GetLPWSTR());
-	#else
-	ulong attribs = GetFileAttributes(file.Chr());
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	if (!(attribs & FILE_ATTRIBUTE_READONLY) && readOnly)
-		SetFileAttributes(file.Chr(), attribs | FILE_ATTRIBUTE_READONLY);
-	else if ((attribs & FILE_ATTRIBUTE_READONLY) && !readOnly)
-		SetFileAttributes(file.Chr(), attribs & ~FILE_ATTRIBUTE_READONLY);
-
-	attribs = GetFileAttributes(file.Chr());	
-	#endif
-
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	if (!!(attribs & FILE_ATTRIBUTE_READONLY) == readOnly)
-		return true;
-
-	return false;
-
-	#else
-	tPathStd(file);
-	
-	struct stat st;
-	int errCode = stat(file.Chr(), &st);
-	if (errCode != 0)
-		return false;
-	
-	uint32 permBits = st.st_mode;
-
-	// Set user R and clear user w. Leave rest unchanged.
-	permBits |= S_IRUSR;
-	permBits &= ~S_IWUSR;
-	errCode = chmod(file.Chr(), permBits);
-	
-	return (errCode == 0);
-
-	#endif
 }
 
 

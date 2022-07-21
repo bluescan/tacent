@@ -57,7 +57,6 @@ tFileHandle tOpenFile(const char* file, const char* mode);
 void tCloseFile(tFileHandle);
 int tGetFileSize(tFileHandle);
 int tReadFile(tFileHandle, void* buffer, int sizeBytes);
-// HERE
 int tWriteFile(tFileHandle, const void* buffer, int sizeBytes);
 int tWriteFile(tFileHandle, const char8_t* buffer, int length);
 int tWriteFile(tFileHandle, const char16_t* buffer, int length);
@@ -89,6 +88,8 @@ bool tIsReadOnly(const tString& path);
 // Works for both files and directories. Returns true on success. For Linux, sets the user w permission flag as
 // appropriate and the user r permission flag to true. For Windows sets the attribute.
 bool tSetReadOnly(const tString& path, bool readOnly = true);
+
+// HERE
 
 // Works on files and directories. For Linux, checks if first character of file is a dot (and not ".."). For Windows it
 // checks the hidden file attribute regardless of whether it starts with a dot or not. If you want a hidden file or
@@ -657,6 +658,64 @@ inline void tSystem::tCloseFile(tFileHandle f)
 }
 
 
+inline int tSystem::tReadFile(tFileHandle handle, void* buffer, int sizeBytes)
+{
+	// Load the entire thing into memory.
+	int numRead = int(fread((char*)buffer, 1, sizeBytes, handle));
+	return numRead;
+}
+
+
+inline int tSystem::tWriteFile(tFileHandle handle, const void* buffer, int sizeBytes)
+{
+	int numWritten = int(fwrite((void*)buffer, 1, sizeBytes, handle));
+	return numWritten;
+}
+
+
+inline int tSystem::tWriteFile(tFileHandle handle, const char8_t* buffer, int length)
+{
+	int numWritten = int(fwrite((void*)buffer, 1, length, handle));
+	return numWritten;
+}
+
+
+inline int tSystem::tWriteFile(tFileHandle handle, const char16_t* buffer, int length)
+{
+	int numWritten = int(fwrite((void*)buffer, 2, length, handle));
+	return numWritten;
+}
+
+
+inline int tSystem::tWriteFile(tFileHandle handle, const char32_t* buffer, int length)
+{
+	int numWritten = int(fwrite((void*)buffer, 4, length, handle));
+	return numWritten;
+}
+
+
+inline bool tSystem::tPutc(char ch, tFileHandle file)
+{
+	int ret = putc(int(ch), file);
+	if (ret == EOF)
+		return false;
+	return true;
+}
+
+
+inline int tSystem::tGetc(tFileHandle file)
+{
+	return fgetc(file);
+}
+
+
+inline int tSystem::tFileTell(tFileHandle handle)
+{
+	return int(ftell(handle));
+}
+
+// HERE
+
 inline tSystem::tExtensions& tSystem::tExtensions::Add(const tExtensions& src)
 {
 	for (tStringItem* ext = src.Extensions.First(); ext; ext = ext->Next())
@@ -900,21 +959,6 @@ inline bool tSystem::tIsFile(const tString& path)
 		return false;
 
 	return (path[path.Length()-1] != '/');
-}
-
-
-inline bool tSystem::tPutc(char ch, tFileHandle file)
-{
-	int ret = putc(int(ch), file);
-	if (ret == EOF)
-		return false;
-	return true;
-}
-
-
-inline int tSystem::tGetc(tFileHandle file)
-{
-	return fgetc(file);
 }
 
 
