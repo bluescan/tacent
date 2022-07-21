@@ -12,6 +12,9 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
+#ifdef PLATFORM_WINDOWS
+#include <locale.h>
+#endif
 #include <Foundation/tVersion.cmake.h>
 #include <System/tCmdLine.h>
 #include "UnitTests.h"
