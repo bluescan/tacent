@@ -699,7 +699,7 @@ bool tSystem::tIsHidden(const tString& path)
 	else
 	{
 		tString dirName = path;
-		dirName[fileName.Length()-1] = '\0';
+		dirName[dirName.Length()-1] = '\0';
 		dirName = tGetFileName(dirName);
 		if ((dirName != ".") && (dirName != "..") && (dirName[0] == '.'))
 			return true;
@@ -916,7 +916,7 @@ bool tSystem::tCopyFile(const tString& destFile, const tString& srcFile, bool ov
 	bool success = std::filesystem::copy_file(pathFrom, pathTo);
 	if (!success && overWriteReadOnly)
 	{
-		tSetReadOnly(dest, false);
+		tSetReadOnly(destFile, false);
 		success = std::filesystem::copy_file(pathFrom, pathTo);
 	}
 		
