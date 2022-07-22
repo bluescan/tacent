@@ -181,6 +181,372 @@ int tSystem::tFileSeek(tFileHandle handle, int offsetBytes, tSeekOrigin seekOrig
 }
 
 
+tString tSystem::tGetFileFullName(const tString& file)
+{
+	tString filename(file);
+	
+	#if defined(PLATFORM_WINDOWS)
+	tPathWin(filename);
+	tString ret(_MAX_PATH + 1);
+	_fullpath(ret.Txt(), file.Chr(), _MAX_PATH);
+	tPathStd(ret);
+	
+	#else
+	tPathStd(filename);
+	tString ret(PATH_MAX + 1);
+	realpath(filename.Chr(), ret.Txt());	
+	#endif
+
+	return ret;
+}
+
+
+tString tSystem::tGetFileName(const tString& file)
+{
+	tString retStr(file);
+	tPathStd(retStr);
+	return retStr.Right('/');
+}
+
+
+tString tSystem::tGetFileBaseName(const tString& file)
+{
+	tString r = tGetFileName(file);
+	return r.Left('.');
+}
+
+
+tString tSystem::tGetSimplifiedPath(const tString& path, bool forceTreatAsDir)
+{
+	tString pth = path;
+	tPathStd(pth);
+
+	// We do support filenames at the end. However, if the name ends with a "." (or "..") we
+	// know it is a folder and so add a trailing "/".
+	if (pth[pth.Length()-1] == '.')
+		pth += "/";
+
+	if (forceTreatAsDir && (pth[pth.Length()-1] != '/'))
+		pth += "/";
+
+	if (tIsDrivePath(pth))
+	{
+		if ((pth[0] >= 'a') && (pth[0] <= 'z'))
+			pth[0] = 'A' + (pth[0] - 'a');
+	}
+
+	// First we'll replace any "../" strings with "|".  Note that pipe indicators are not allowed
+	// in filenames so we can safely use them.
+	int numUps = pth.Replace("../", "|");
+
+	// Now we can remove any "./" strings since all that's left will be up-directory markers.
+	pth.Remove("./");
+	if (!numUps)
+		return pth;
+
+	// We need to preserve leading '..'s so that paths like ../../Hello/There/ will work.
+	int numLeading = pth.RemoveLeading("|");
+	numUps -= numLeading;
+	for (int nl = 0; nl < numLeading; nl++)
+		pth = "../" + pth;
+
+	tString simp;
+	for (int i = 0; i < numUps; i++)
+	{
+		simp += pth.ExtractLeft('|');
+		simp = tGetUpDir(simp);
+	}
+
+	tString res = simp + pth;
+	return res;
+}
+
+
+tString tSystem::tGetAbsolutePath(const tString& path, const tString& basePath)
+{
+	tString pth(path);
+	tPathStd(pth);
+	if (tIsRelativePath(pth))
+	{
+		if (basePath.IsEmpty())
+			pth = tGetCurrentDir() + pth;
+		else
+			pth = basePath + pth;
+	}
+
+	return tGetSimplifiedPath(pth);
+}
+
+
+tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
+{
+	#if defined(PLATFORM_WINDOWS)
+	tAssert(basePath[ basePath.Length() - 1 ] == '/');
+	bool isDir = (path[ path.Length() - 1 ] == '/') ? true : false;
+
+	tString basePathMod = basePath;
+	tPathWin(basePathMod);
+
+	tString pathMod = path;
+	tPathWin(pathMod);
+
+	#ifdef TACENT_UTF16_API_CALLS	
+	tStringUTF16 relLoc16(MAX_PATH);
+	tStringUTF16 basePathMod16(basePathMod);
+	tStringUTF16 pathMod16(pathMod);
+	int success = PathRelativePathTo
+	(
+		relLoc16.GetLPWSTR(), basePathMod16.GetLPWSTR(), FILE_ATTRIBUTE_DIRECTORY,
+		pathMod16.GetLPWSTR(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
+	);
+	#else
+	tString relLoc(MAX_PATH);
+	int success = PathRelativePathTo
+	(
+		relLoc.Txt(), basePathMod.Chr(), FILE_ATTRIBUTE_DIRECTORY,
+		pathMod.Chr(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
+	);
+	#endif
+
+	if (!success)
+		return tString();
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tString relLoc(relLoc16);
+	#endif
+
+	tPathStd(relLoc);
+	if (relLoc[0] == '/')
+		return relLoc.Chr() + 1;
+	else
+		return relLoc;
+
+	#else
+	tString refPath(basePath);
+	tString absPath(path);
+	
+	int sizer = refPath.Length()+1;
+	int sizea = absPath.Length()+1;
+	if (sizea <= 1)
+		return tString();
+	if (sizer<= 1)
+		return absPath;
+
+	// From stackoverflow cuz I don't feel like thinking.
+	// https://stackoverflow.com/questions/36173695/how-to-retrieve-filepath-relatively-to-a-given-directory-in-c	
+	char relPath[1024];
+	relPath[0] = '\0';
+	char* pathr = refPath.Txt();
+	char* patha = absPath.Txt();
+	int inc = 0;
+
+	for (; (inc < sizea) && (inc < sizer); inc += tStd::tStrlen(patha+inc)+1)
+	{
+		char* tokena = tStd::tStrchr(patha+inc, '/');
+		char* tokenr = tStd::tStrchr(pathr+inc, '/');
+		
+		if (tokena) *tokena = '\0';
+		if (tokenr) *tokenr = '\0';
+		if (tStd::tStrcmp(patha+inc, pathr+inc) != 0)
+			break;
+	}
+
+	if (inc < sizea)
+		tStd::tStrcat(relPath, absPath.Txt()+inc);
+
+	tString ret(relPath);
+	if (ret[ret.Length()-1] != '/')
+		ret += '/';
+		
+	return ret;
+	#endif
+}
+
+
+tString tSystem::tGetLinuxPath(const tString& path, const tString& mountPoint)
+{
+	tString pth(path);
+	tPathStd(pth);
+	if (tIsAbsolutePath(pth) && (pth.Length() > 1) && (pth[1] == ':') && !mountPoint.IsEmpty())
+	{
+		tString mnt = mountPoint;
+		tPathStdDir(mnt);
+
+		char drive = tStd::tChrlwr(pth[0]);
+		pth.ExtractLeft(2);
+		pth = mnt + tString(drive) + pth;
+	}
+	return pth;
+}
+
+
+tString tSystem::tGetDir(const tString& path)
+{
+	tString ret(path);
+	tPathStd(ret);
+
+	// If string is empty or there is no filename on the end of the path just return what we have.
+	if (ret.IsEmpty() || (ret[ret.Length()-1] == '/'))
+		return ret;
+
+	int lastSlash = ret.FindChar('/', true);
+
+	// If there is no path, treat it as if it were a stand-alone file and return the current directory.
+	if (lastSlash == -1)
+		return tString("./");
+
+	// At this point, we know there was a slash and that it isn't the last character, so
+	// we know we aren't going out of bounds when we insert our string terminator after the slash.
+	ret[ lastSlash + 1 ] = '\0';
+
+	return ret;
+}
+
+
+tString tSystem::tGetUpDir(const tString& path, int levels)
+{
+	if (path.IsEmpty())
+		return tString();
+
+	tString ret(path);
+
+	bool isNetLoc = false;
+	tPathStd(ret);
+
+	// Can't go up from here.
+	if (ret == "/")
+		return ret;
+	if (tIsDrivePath(ret))
+	{
+		if (ret.Length() == 2)
+			return ret + "/";
+		if ((ret.Length() == 3) && (ret[2] == '/'))
+			return ret;
+	}
+
+	#ifdef PLATFORM_WINDOWS
+	// Are we a network location starting with two slashes?
+	if ((ret.Length() >= 2) && (ret[0] == '/') && (ret[1] == '/'))
+		isNetLoc = true;
+	#endif
+
+	if (isNetLoc)
+	{
+		ret[0] = '\\';
+		ret[1] = '\\';
+	}
+
+	tString upPath = ret;
+	upPath[ upPath.Length() - 1 ] = '\0';
+
+	for (int i = 0; i < levels; i++)
+	{
+		int lastSlash = upPath.FindChar('/', true);
+
+		if (isNetLoc && (upPath.CountChar('/') == 1))
+			lastSlash = -1;
+
+		if (lastSlash == -1)
+			return tString();
+
+		upPath[lastSlash] = '\0';
+	}
+
+	upPath += "/";
+
+	if (isNetLoc)
+	{
+		ret[0] = '/';
+		ret[1] = '/';
+	}
+	return upPath;
+}
+
+
+bool tSystem::tFileExists(const tString& file)
+{
+	#if defined(PLATFORM_WINDOWS)
+	tString filename(file);
+	tPathWin(filename);
+
+	int length = filename.Length();
+	if (filename[ length - 1 ] == ':')
+		filename += "\\*";
+
+	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
+
+	Win32FindData fd;
+	#ifdef TACENT_UTF16_API_CALLS	
+	tStringUTF16 fileUTF16(filename);
+	WinHandle h = FindFirstFile(fileUTF16.GetLPWSTR(), &fd);
+	#else
+	WinHandle h = FindFirstFile(filename.Chr(), &fd);
+	#endif
+	SetErrorMode(prevErrorMode);
+	if (h == INVALID_HANDLE_VALUE)
+		return false;
+
+	FindClose(h);
+	if (fd.dwFileAttributes & _A_SUBDIR)
+		return false;
+	
+	return true;
+
+	#else
+	tString filename(file);
+	tPathStd(filename);
+
+	struct stat statbuf;
+	return stat(filename.Chr(), &statbuf) == 0;
+
+	#endif
+}
+
+
+bool tSystem::tDirExists(const tString& dir)
+{
+	if (dir.IsEmpty())
+		return false;
+		
+	tString dirname = dir;
+	
+	#if defined(PLATFORM_WINDOWS)
+	tPathWinFile(dirname);
+
+	// Can't quite remember what the * does. Needs testing.
+	int length = dirname.Length();
+	if (dirname[ length - 1 ] == ':')
+		dirname += "\\*";
+
+	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
+
+	Win32FindData fd;
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 dirUTF16(dirname);
+	WinHandle h = FindFirstFile(dirUTF16.GetLPWSTR(), &fd);
+	#else
+	WinHandle h = FindFirstFile(dirname.Chr(), &fd);
+	#endif
+
+	SetErrorMode(prevErrorMode);
+	if (h == INVALID_HANDLE_VALUE)
+		return false;
+
+	FindClose(h);
+	if (fd.dwFileAttributes & _A_SUBDIR)
+		return true;
+
+	return false;
+
+	#else
+	tPathStdFile(dirname);
+	std::filesystem::file_status fstat = std::filesystem::status(dirname.Chr());
+
+	return std::filesystem::is_directory(fstat);
+	#endif
+}
+
+
 int tSystem::tGetFileSize(const tString& file)
 {
 	if (file.IsEmpty())
@@ -262,8 +628,8 @@ bool tSystem::tIsReadOnly(const tString& path)
 bool tSystem::tSetReadOnly(const tString& path, bool readOnly)
 {
 	tString pathname(path);
-	
-	#if defined(PLATFORM_WINDOWS)	
+
+	#if defined(PLATFORM_WINDOWS)
 	tPathWinFile(pathname);
 
 	#ifdef TACENT_UTF16_API_CALLS
@@ -271,23 +637,20 @@ bool tSystem::tSetReadOnly(const tString& path, bool readOnly)
 	ulong attribs = GetFileAttributes(path16.GetLPWSTR());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
-
 	if (!(attribs & FILE_ATTRIBUTE_READONLY) && readOnly)
 		SetFileAttributes(path16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_READONLY);
 	else if ((attribs & FILE_ATTRIBUTE_READONLY) && !readOnly)
 		SetFileAttributes(path16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_READONLY);
-
 	attribs = GetFileAttributes(path16.GetLPWSTR());
+
 	#else
 	ulong attribs = GetFileAttributes(pathname.Chr());
 	if (attribs == INVALID_FILE_ATTRIBUTES)
 		return false;
-
 	if (!(attribs & FILE_ATTRIBUTE_READONLY) && readOnly)
 		SetFileAttributes(pathname.Chr(), attribs | FILE_ATTRIBUTE_READONLY);
 	else if ((attribs & FILE_ATTRIBUTE_READONLY) && !readOnly)
 		SetFileAttributes(pathname.Chr(), attribs & ~FILE_ATTRIBUTE_READONLY);
-
 	attribs = GetFileAttributes(pathname.Chr());
 	#endif
 
@@ -319,7 +682,288 @@ bool tSystem::tSetReadOnly(const tString& path, bool readOnly)
 	#endif
 }
 
+
+bool tSystem::tIsHidden(const tString& path)
+{
+	if (path.IsEmpty())
+		return false;
+
+	#if defined(PLATFORM_LINUX)
+	// In Linux it's all based on whether the filename starts with a dot. We ignore files called "." or ".."
+	if (tIsFile(path))
+	{
+		tString fileName = tGetFileName(path);
+		if ((fileName != ".") && (fileName != "..") && (fileName[0] == '.'))
+			return true;
+	}
+	else
+	{
+		tString dirName = path;
+		dirName[fileName.Length()-1] = '\0';
+		dirName = tGetFileName(dirName);
+		if ((dirName != ".") && (dirName != "..") && (dirName[0] == '.'))
+			return true;
+	}
+	return false;
+
+	#elif defined(PLATFORM_WINDOWS)
+	// In windows it's all based on the attribute.
+	tString pathName(path);
+	tPathWinFile(pathName);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 pathName16(pathName);
+	ulong attribs = GetFileAttributes(pathName16.GetLPWSTR());
+	#else
+	ulong attribs = GetFileAttributes(pathName.Chr());
+	#endif
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	return (attribs & FILE_ATTRIBUTE_HIDDEN) ? true : false;
+
+	#else
+	return false;
+
+	#endif
+}
+
+
+#if defined(PLATFORM_WINDOWS)
+bool tSystem::tSetHidden(const tString& path, bool hidden)
+{
+	tString pth(path);
+	tPathWinFile(pth);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 pth16(pth);
+	ulong attribs = GetFileAttributes(pth16.GetLPWSTR());
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+	if (!(attribs & FILE_ATTRIBUTE_HIDDEN) && hidden)
+		SetFileAttributes(pth16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_HIDDEN);
+	else if ((attribs & FILE_ATTRIBUTE_HIDDEN) && !hidden)
+		SetFileAttributes(pth16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_HIDDEN);
+	attribs = GetFileAttributes(pth16.GetLPWSTR());
+
+	#else
+	ulong attribs = GetFileAttributes(pth.Chr());
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+	if (!(attribs & FILE_ATTRIBUTE_HIDDEN) && hidden)
+		SetFileAttributes(pth.Chr(), attribs | FILE_ATTRIBUTE_HIDDEN);
+	else if ((attribs & FILE_ATTRIBUTE_HIDDEN) && !hidden)
+		SetFileAttributes(pth.Chr(), attribs & ~FILE_ATTRIBUTE_HIDDEN);
+	attribs = GetFileAttributes(pth.Chr());
+	#endif
+
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	if (!!(attribs & FILE_ATTRIBUTE_HIDDEN) == hidden)
+		return true;
+
+	return false;
+}
+
+
+bool tSystem::tIsSystem(const tString& file)
+{
+	tString filename(file);
+	tPathWinFile(filename);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 filename16(filename);
+	ulong attribs = GetFileAttributes(filename16.GetLPWSTR());
+	#else
+	ulong attribs = GetFileAttributes(filename.Chr());
+	#endif
+
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	return (attribs & FILE_ATTRIBUTE_SYSTEM) ? true : false;
+}
+
+
+bool tSystem::tSetSystem(const tString& file, bool system)
+{
+	tString filename(file);
+	tPathWinFile(filename);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 file16(filename);
+	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+	if (!(attribs & FILE_ATTRIBUTE_SYSTEM) && system)
+		SetFileAttributes(file16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_SYSTEM);
+	else if ((attribs & FILE_ATTRIBUTE_SYSTEM) && !system)
+		SetFileAttributes(file16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_SYSTEM);
+	attribs = GetFileAttributes(file16.GetLPWSTR());
+
+	#else
+	ulong attribs = GetFileAttributes(filename.Chr());
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+	if (!(attribs & FILE_ATTRIBUTE_SYSTEM) && system)
+		SetFileAttributes(filename.Chr(), attribs | FILE_ATTRIBUTE_SYSTEM);
+	else if ((attribs & FILE_ATTRIBUTE_SYSTEM) && !system)
+		SetFileAttributes(filename.Chr(), attribs & ~FILE_ATTRIBUTE_SYSTEM);
+	attribs = GetFileAttributes(filename.Chr());
+	#endif
+
+	if (attribs == INVALID_FILE_ATTRIBUTES)
+		return false;
+
+	if (!!(attribs & FILE_ATTRIBUTE_SYSTEM) == system)
+		return true;
+
+	return false;
+}
+
+
+bool tSystem::tDriveExists(const tString& driveName)
+{
+	tString drive = driveName;
+	drive.ToUpper();
+
+	char driveLet = drive[0];
+	if ((driveLet > 'Z') || (driveLet < 'A'))
+		return false;
+
+	ulong driveBits = GetLogicalDrives();
+	if (driveBits & (0x00000001 << (driveLet-'A')))
+		return true;
+
+	return false;
+}
+#endif // PLATFORM_WINDOWS
+
+
+bool tSystem::tIsFileNewer(const tString& filea, const tString& fileb)
+{
+	#if defined(PLATFORM_WINDOWS)
+	tString fileA(filea);
+	tPathWin(fileA);
+
+	tString fileB(fileb);
+	tPathWin(fileB);
+
+	Win32FindData fd;
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 fileA16(fileA);
+	WinHandle h = FindFirstFile(fileA16.GetLPWSTR(), &fd);
+	#else
+	WinHandle h = FindFirstFile(fileA.Chr(), &fd);
+	#endif
+	if (h == INVALID_HANDLE_VALUE)
+		throw tFileError("Invalid file handle for file: " + fileA);
+
+	FileTime timeA = fd.ftLastWriteTime;
+	FindClose(h);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 fileB16(fileB);
+	h = FindFirstFile(fileB16.GetLPWSTR(), &fd);
+	#else
+	h = FindFirstFile(fileB.Chr(), &fd);
+	#endif
+	if (h == INVALID_HANDLE_VALUE)
+		throw tFileError("Invalid file handle for file: " + fileB);
+
+	FileTime timeB = fd.ftLastWriteTime;
+	FindClose(h);
+
+	if (CompareFileTime(&timeA, &timeB) > 0)
+		return true;
+
+	#elif defined(PLAYFORM_LINUX)
+	tToDo("Implement tISFileNewer.");
+
+	#endif
+	return false;
+}
+
+
+bool tSystem::tCopyFile(const tString& destFile, const tString& srcFile, bool overWriteReadOnly)
+{
+	#if defined(PLATFORM_WINDOWS)
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 src16(srcFile);
+	tStringUTF16 dest16(destFile);
+	int success = ::CopyFile(src16.GetLPWSTR(), dest16.GetLPWSTR(), 0);
+
+	#else
+	int success = ::CopyFile(srcFile.Chr(), destFile.Chr(), 0);
+	#endif
+
+	if (!success && overWriteReadOnly)
+	{
+		tSetReadOnly(destFile, false);
+		#ifdef TACENT_UTF16_API_CALLS
+		success = ::CopyFile(src16.GetLPWSTR(), dest16.GetLPWSTR(), 0);
+		#else
+		success = ::CopyFile(srcFile.Chr(), destFile.Chr(), 0);
+		#endif
+	}
+	return success ? true : false;
+
+	#else
+	std::filesystem::path pathFrom(srcFile.Chr());
+	std::filesystem::path pathTo(destFile.Chr());
+	bool success = std::filesystem::copy_file(pathFrom, pathTo);
+	if (!success && overWriteReadOnly)
+	{
+		tSetReadOnly(dest, false);
+		success = std::filesystem::copy_file(pathFrom, pathTo);
+	}
+		
+	return success;
+
+	#endif
+}
+
+
+bool tSystem::tRenameFile(const tString& dir, const tString& oldPathName, const tString& newPathName)
+{
+	#if defined(PLATFORM_WINDOWS)
+	tString fullOldName = dir + oldPathName;
+	tPathWin(fullOldName);
+
+	tString fullNewName = dir + newPathName;
+	tPathWin(fullNewName);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 fullOldName16(fullOldName);
+	tStringUTF16 fullNewName16(fullNewName);
+	int success = ::MoveFile(fullOldName16.GetLPWSTR(), fullNewName16.GetLPWSTR());
+
+	#else
+	int success = ::MoveFile(fullOldName.Chr(), fullNewName.Chr());
+	#endif
+	return success ? true : false;
+
+	#else
+	tString fullOldName = dir + oldPathName;
+	tPathStd(fullOldName);
+	std::filesystem::path oldp(fullOldName.Chr());
+
+	tString fullNewName = dir + newPathName;
+	tPathStd(fullNewName);
+	std::filesystem::path newp(fullNewName.Chr());
+
+	std::error_code ec;
+	std::filesystem::rename(oldp, newp, ec);
+	return !bool(ec);
+
+	#endif
+}
+
+
 // HERE
+
 
 tString tSystem::tGetFileExtension(const tString& filename)																
 {
@@ -436,154 +1080,6 @@ const char* tSystem::tGetFileTypeName(tFileType fileType)
 
 	FileTypeExts& exts = FileTypeExtTable[ int(fileType) ];
 	return exts.Ext[0];
-}
-
-
-bool tSystem::tFileExists(const tString& filename)
-{
-	#if defined(PLATFORM_WINDOWS)
-	tString file(filename);
-	tPathWin(file);
-
-	int length = file.Length();
-	if (file[ length - 1 ] == ':')
-		file += "\\*";
-
-	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
-
-	Win32FindData fd;
-	#ifdef TACENT_UTF16_API_CALLS	
-	tStringUTF16 fileUTF16(file);
-	WinHandle h = FindFirstFile(fileUTF16.GetLPWSTR(), &fd);
-	#else
-	WinHandle h = FindFirstFile(file.Chr(), &fd);
-	#endif
-	SetErrorMode(prevErrorMode);
-	if (h == INVALID_HANDLE_VALUE)
-		return false;
-
-	FindClose(h);
-	if (fd.dwFileAttributes & _A_SUBDIR)
-		return false;
-	
-	return true;
-
-	#else
-	tString file(filename);
-	tPathStd(file);
-
-	struct stat statbuf;
-	return stat(file.Chr(), &statbuf) == 0;
-
-	#endif
-}
-
-
-bool tSystem::tDirExists(const tString& dirname)
-{
-	if (dirname.IsEmpty())
-		return false;
-		
-	tString dir = dirname;
-	
-	#if defined(PLATFORM_WINDOWS)
-	tPathWinFile(dir);
-
-	// Can't quite remember what the * does. Needs testing.
-	int length = dir.Length();
-	if (dir[ length - 1 ] == ':')
-		dir += "\\*";
-
-	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
-
-	Win32FindData fd;
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 dirUTF16(dir);
-	WinHandle h = FindFirstFile(dirUTF16.GetLPWSTR(), &fd);
-	#else
-	WinHandle h = FindFirstFile(dir.Chr(), &fd);
-	#endif
-
-	SetErrorMode(prevErrorMode);
-	if (h == INVALID_HANDLE_VALUE)
-		return false;
-
-	FindClose(h);
-	if (fd.dwFileAttributes & _A_SUBDIR)
-		return true;
-
-	return false;
-
-	#else
-	tPathStdFile(dir);
-	std::filesystem::file_status fstat = std::filesystem::status(dir.Chr());
-
-	return std::filesystem::is_directory(fstat);
-	#endif
-}
-
-
-#if defined(PLATFORM_WINDOWS)
-bool tSystem::tDriveExists(const tString& driveLetter)
-{
-	tString drive = driveLetter;
-	drive.ToUpper();
-
-	char driveLet = drive[0];
-	if ((driveLet > 'Z') || (driveLet < 'A'))
-		return false;
-
-	ulong driveBits = GetLogicalDrives();
-	if (driveBits & (0x00000001 << (driveLet-'A')))
-		return true;
-
-	return false;
-}
-#endif
-
-
-bool tSystem::tIsFileNewer(const tString& filenameA, const tString& filenameB)
-{
-	#if defined(PLATFORM_WINDOWS)
-	tString fileA(filenameA);
-	tPathWin(fileA);
-
-	tString fileB(filenameB);
-	tPathWin(fileB);
-
-	Win32FindData fd;
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 fileA16(fileA);
-	WinHandle h = FindFirstFile(fileA16.GetLPWSTR(), &fd);
-	#else
-	WinHandle h = FindFirstFile(fileA.Chr(), &fd);
-	#endif
-	if (h == INVALID_HANDLE_VALUE)
-		throw tFileError("Invalid file handle for file: " + fileA);
-
-	FileTime timeA = fd.ftLastWriteTime;
-	FindClose(h);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 fileB16(fileB);
-	h = FindFirstFile(fileB16.GetLPWSTR(), &fd);
-	#else
-	h = FindFirstFile(fileB.Chr(), &fd);
-	#endif
-	if (h == INVALID_HANDLE_VALUE)
-		throw tFileError("Invalid file handle for file: " + fileB);
-
-	FileTime timeB = fd.ftLastWriteTime;
-	FindClose(h);
-
-	if (CompareFileTime(&timeA, &timeB) > 0)
-		return true;
-
-	#elif defined(PLAYFORM_LINUX)
-	tToDo("Implement tISFileNewer.");
-
-	#endif
-	return false;
 }
 
 
@@ -1049,309 +1545,6 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	return exeName;
 }
 #endif // PLATFORM_WINDOWS
-
-
-tString tSystem::tGetSimplifiedPath(const tString& srcPath, bool forceTreatAsDir)
-{
-	tString path = srcPath;
-	tPathStd(path);
-
-	// We do support filenames at the end. However, if the name ends with a "." (or "..") we
-	// know it is a folder and so add a trailing "/".
-	if (path[path.Length()-1] == '.')
-		path += "/";
-
-	if (forceTreatAsDir && (path[path.Length()-1] != '/'))
-		path += "/";
-
-	if (tIsDrivePath(path))
-	{
-		if ((path[0] >= 'a') && (path[0] <= 'z'))
-			path[0] = 'A' + (path[0] - 'a');
-	}
-
-	// First we'll replace any "../" strings with "|".  Note that pipe indicators are not allowed
-	// in filenames so we can safely use them.
-	int numUps = path.Replace("../", "|");
-
-	// Now we can remove any "./" strings since all that's left will be up-directory markers.
-	path.Remove("./");
-	if (!numUps)
-		return path;
-
-	// We need to preserve leading '..'s so that paths like ../../Hello/There/ will work.
-	int numLeading = path.RemoveLeading("|");
-	numUps -= numLeading;
-	for (int nl = 0; nl < numLeading; nl++)
-		path = "../" + path;
-
-	tString simp;
-	for (int i = 0; i < numUps; i++)
-	{
-		simp += path.ExtractLeft('|');
-		simp = tGetUpDir(simp);
-	}
-
-	tString res = simp + path;
-	return res;
-}
-
-
-bool tSystem::tIsDrivePath(const tString& path)
-{
-	if ((path.Length() > 1) && (path[1] == ':'))
-		return true;
-
-	return false;
-}
-
-
-bool tSystem::tIsAbsolutePath(const tString& path)
-{
-	if (tIsDrivePath(path))
-		return true;
-
-	if ((path.Length() > 0) && ((path[0] == '/') || (path[0] == '\\')))
-		return true;
-
-	return false;
-}
-
-
-tString tSystem::tGetFileName(const tString& filename)
-{
-	tString retStr(filename);
-	tPathStd(retStr);
-	return retStr.Right('/');
-}
-
-
-tString tSystem::tGetFileBaseName(const tString& filename)
-{
-	tString r = tGetFileName(filename);
-	return r.Left('.');
-}
-
-
-tString tSystem::tGetDir(const tString& path)
-{
-	tString ret(path);
-	tPathStd(ret);
-
-	// If string is empty or there is no filename on the end of the path just return what we have.
-	if (ret.IsEmpty() || (ret[ret.Length()-1] == '/'))
-		return ret;
-
-	int lastSlash = ret.FindChar('/', true);
-
-	// If there is no path, treat it as if it were a stand-alone file and return the current directory.
-	if (lastSlash == -1)
-		return tString("./");
-
-	// At this point, we know there was a slash and that it isn't the last character, so
-	// we know we aren't going out of bounds when we insert our string terminator after the slash.
-	ret[ lastSlash + 1 ] = '\0';
-
-	return ret;
-}
-
-
-tString tSystem::tGetUpDir(const tString& path, int levels)
-{
-	if (path.IsEmpty())
-		return tString();
-
-	tString ret(path);
-
-	bool isNetLoc = false;
-	tPathStd(ret);
-
-	// Can't go up from here.
-	if (ret == "/")
-		return ret;
-	if (tIsDrivePath(ret))
-	{
-		if (ret.Length() == 2)
-			return ret + "/";
-		if ((ret.Length() == 3) && (ret[2] == '/'))
-			return ret;
-	}
-
-	#ifdef PLATFORM_WINDOWS
-	// Are we a network location starting with two slashes?
-	if ((ret.Length() >= 2) && (ret[0] == '/') && (ret[1] == '/'))
-		isNetLoc = true;
-	#endif
-
-	if (isNetLoc)
-	{
-		ret[0] = '\\';
-		ret[1] = '\\';
-	}
-
-	tString upPath = ret;
-	upPath[ upPath.Length() - 1 ] = '\0';
-
-	for (int i = 0; i < levels; i++)
-	{
-		int lastSlash = upPath.FindChar('/', true);
-
-		if (isNetLoc && (upPath.CountChar('/') == 1))
-			lastSlash = -1;
-
-		if (lastSlash == -1)
-			return tString();
-
-		upPath[lastSlash] = '\0';
-	}
-
-	upPath += "/";
-
-	if (isNetLoc)
-	{
-		ret[0] = '/';
-		ret[1] = '/';
-	}
-	return upPath;
-}
-
-
-tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
-{
-	#if defined(PLATFORM_WINDOWS)
-	tAssert(basePath[ basePath.Length() - 1 ] == '/');
-	bool isDir = (path[ path.Length() - 1 ] == '/') ? true : false;
-
-	tString basePathMod = basePath;
-	tPathWin(basePathMod);
-
-	tString pathMod = path;
-	tPathWin(pathMod);
-
-	#ifdef TACENT_UTF16_API_CALLS	
-	tStringUTF16 relLoc16(MAX_PATH);
-	tStringUTF16 basePathMod16(basePathMod);
-	tStringUTF16 pathMod16(pathMod);
-	int success = PathRelativePathTo
-	(
-		relLoc16.GetLPWSTR(), basePathMod16.GetLPWSTR(), FILE_ATTRIBUTE_DIRECTORY,
-		pathMod16.GetLPWSTR(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
-	);
-	#else
-	tString relLoc(MAX_PATH);
-	int success = PathRelativePathTo
-	(
-		relLoc.Txt(), basePathMod.Chr(), FILE_ATTRIBUTE_DIRECTORY,
-		pathMod.Chr(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
-	);
-	#endif
-
-	if (!success)
-		return tString();
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tString relLoc(relLoc16);
-	#endif
-
-	tPathStd(relLoc);
-	if (relLoc[0] == '/')
-		return relLoc.Chr() + 1;
-	else
-		return relLoc;
-
-	#else
-	tString refPath(basePath);
-	tString absPath(path);
-	
-	int sizer = refPath.Length()+1;
-	int sizea = absPath.Length()+1;
-	if (sizea <= 1)
-		return tString();
-	if (sizer<= 1)
-		return absPath;
-
-	// From stackoverflow cuz I don't feel like thinking.
-	// https://stackoverflow.com/questions/36173695/how-to-retrieve-filepath-relatively-to-a-given-directory-in-c	
-	char relPath[1024];
-	relPath[0] = '\0';
-	char* pathr = refPath.Txt();
-	char* patha = absPath.Txt();
-	int inc = 0;
-
-	for (; (inc < sizea) && (inc < sizer); inc += tStd::tStrlen(patha+inc)+1)
-	{
-		char* tokena = tStd::tStrchr(patha+inc, '/');
-		char* tokenr = tStd::tStrchr(pathr+inc, '/');
-		
-		if (tokena) *tokena = '\0';
-		if (tokenr) *tokenr = '\0';
-		if (tStd::tStrcmp(patha+inc, pathr+inc) != 0)
-			break;
-	}
-
-	if (inc < sizea)
-		tStd::tStrcat(relPath, absPath.Txt()+inc);
-
-	tString ret(relPath);
-	if (ret[ret.Length()-1] != '/')
-		ret += '/';
-		
-	return ret;
-	#endif
-}
-
-
-tString tSystem::tGetAbsolutePath(const tString& pth, const tString& basePath)
-{
-	tString path(pth);
-	tPathStd(path);
-	if (tIsRelativePath(path))
-	{
-		if (basePath.IsEmpty())
-			path = tGetCurrentDir() + path;
-		else
-			path = basePath + path;
-	}
-
-	return tGetSimplifiedPath(path);
-}
-
-
-tString tSystem::tGetLinuxPath(const tString& pth, const tString& mountPoint)
-{
-	tString path(pth);
-	tPathStd(path);
-	if (tIsAbsolutePath(path) && (path.Length() > 1) && (path[1] == ':') && !mountPoint.IsEmpty())
-	{
-		tString mnt = mountPoint;
-		tPathStdDir(mnt);
-
-		char drive = tStd::tChrlwr(path[0]);
-		path.ExtractLeft(2);
-		path = mnt + tString(drive) + path;
-	}
-	return path;
-}
-
-
-tString tSystem::tGetFileFullName(const tString& filename)
-{
-	tString file(filename);
-	
-	#if defined(PLATFORM_WINDOWS)
-	tPathWin(file);
-	tString ret(_MAX_PATH + 1);
-	_fullpath(ret.Txt(), file.Chr(), _MAX_PATH);
-	tPathStd(ret);
-	
-	#else
-	tPathStd(file);
-	tString ret(PATH_MAX + 1);
-	realpath(file.Chr(), ret.Txt());	
-	#endif
-
-	return ret;
-}
 
 
 #if defined(PLATFORM_WINDOWS)
@@ -2404,223 +2597,6 @@ bool tSystem::tDeleteDir(const tString& dir, bool deleteReadOnly)
 	#endif
 
 	return true;
-}
-
-
-bool tSystem::tIsHidden(const tString& path)
-{
-	if (path.IsEmpty())
-		return false;
-
-	#if defined(PLATFORM_LINUX)
-	// In Linux it's all based on whether the filename starts with a dot. We ignore files called "." or ".."
-	if (tIsFile(path))
-	{
-		tString fileName = tGetFileName(path);
-		if ((fileName != ".") && (fileName != "..") && (fileName[0] == '.'))
-			return true;
-	}
-	else
-	{
-		tString fileName = path;
-		fileName[fileName.Length()-1] = '\0';
-		fileName = tGetFileName(fileName);
-		if ((fileName != ".") && (fileName != "..") && (fileName[0] == '.'))
-			return true;
-	}
-	return false;
-
-	#elif defined(PLATFORM_WINDOWS)
-	// In windows it's all based on the file attribute.
-	tString file(path);
-	tPathWinFile(file);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 file16(file);
-	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
-	#else
-	ulong attribs = GetFileAttributes(file.Chr());
-	#endif
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	return (attribs & FILE_ATTRIBUTE_HIDDEN) ? true : false;
-
-	#else
-	return false;
-
-	#endif
-}
-
-
-#if defined(PLATFORM_WINDOWS)
-bool tSystem::tSetHidden(const tString& fileName, bool hidden)
-{
-	tString file(fileName);
-	tPathWinFile(file);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 file16(file);
-	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-	if (!(attribs & FILE_ATTRIBUTE_HIDDEN) && hidden)
-		SetFileAttributes(file16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_HIDDEN);
-	else if ((attribs & FILE_ATTRIBUTE_HIDDEN) && !hidden)
-		SetFileAttributes(file16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_HIDDEN);
-	attribs = GetFileAttributes(file16.GetLPWSTR());
-
-	#else
-	ulong attribs = GetFileAttributes(file.Chr());
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-	if (!(attribs & FILE_ATTRIBUTE_HIDDEN) && hidden)
-		SetFileAttributes(file.Chr(), attribs | FILE_ATTRIBUTE_HIDDEN);
-	else if ((attribs & FILE_ATTRIBUTE_HIDDEN) && !hidden)
-		SetFileAttributes(file.Chr(), attribs & ~FILE_ATTRIBUTE_HIDDEN);
-	attribs = GetFileAttributes(file.Chr());
-	#endif
-
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	if (!!(attribs & FILE_ATTRIBUTE_HIDDEN) == hidden)
-		return true;
-
-	return false;
-}
-
-
-bool tSystem::tIsSystem(const tString& fileName)
-{
-	tString file(fileName);
-	tPathWinFile(file);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 file16(file);
-	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
-	#else
-	ulong attribs = GetFileAttributes(file.Chr());
-	#endif
-
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	return (attribs & FILE_ATTRIBUTE_SYSTEM) ? true : false;
-}
-
-
-bool tSystem::tSetSystem(const tString& fileName, bool system)
-{
-	tString file(fileName);
-	tPathWinFile(file);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 file16(file);
-	ulong attribs = GetFileAttributes(file16.GetLPWSTR());
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-	if (!(attribs & FILE_ATTRIBUTE_SYSTEM) && system)
-		SetFileAttributes(file16.GetLPWSTR(), attribs | FILE_ATTRIBUTE_SYSTEM);
-	else if ((attribs & FILE_ATTRIBUTE_SYSTEM) && !system)
-		SetFileAttributes(file16.GetLPWSTR(), attribs & ~FILE_ATTRIBUTE_SYSTEM);
-	attribs = GetFileAttributes(file16.GetLPWSTR());
-
-	#else
-	ulong attribs = GetFileAttributes(file.Chr());
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-	if (!(attribs & FILE_ATTRIBUTE_SYSTEM) && system)
-		SetFileAttributes(file.Chr(), attribs | FILE_ATTRIBUTE_SYSTEM);
-	else if ((attribs & FILE_ATTRIBUTE_SYSTEM) && !system)
-		SetFileAttributes(file.Chr(), attribs & ~FILE_ATTRIBUTE_SYSTEM);
-	attribs = GetFileAttributes(file.Chr());
-	#endif
-
-	if (attribs == INVALID_FILE_ATTRIBUTES)
-		return false;
-
-	if (!!(attribs & FILE_ATTRIBUTE_SYSTEM) == system)
-		return true;
-
-	return false;
-}
-#endif // PLATFORM_WINDOWS
-
-
-bool tSystem::tCopyFile(const tString& dest, const tString& src, bool overWriteReadOnly)
-{
-	#if defined(PLATFORM_WINDOWS)
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 src16(src);
-	tStringUTF16 dest16(dest);
-	int success = ::CopyFile(src16.GetLPWSTR(), dest16.GetLPWSTR(), 0);
-
-	#else
-	int success = ::CopyFile(src.Chr(), dest.Chr(), 0);
-	#endif
-
-	if (!success && overWriteReadOnly)
-	{
-		tSetReadOnly(dest, false);
-		#ifdef TACENT_UTF16_API_CALLS
-		success = ::CopyFile(src16.GetLPWSTR(), dest16.GetLPWSTR(), 0);
-		#else
-		success = ::CopyFile(src.Chr(), dest.Chr(), 0);
-		#endif
-	}
-	return success ? true : false;
-
-	#else
-	std::filesystem::path pathFrom(src.Chr());
-	std::filesystem::path pathTo(dest.Chr());
-	bool success = std::filesystem::copy_file(pathFrom, pathTo);
-	if (!success && overWriteReadOnly)
-	{
-		tSetReadOnly(dest, false);
-		success = std::filesystem::copy_file(pathFrom, pathTo);
-	}
-		
-	return success;
-
-	#endif
-}
-
-
-bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tString& newName)
-{
-	#if defined(PLATFORM_WINDOWS)
-	tString fullOldName = dir + oldName;
-	tPathWin(fullOldName);
-
-	tString fullNewName = dir + newName;
-	tPathWin(fullNewName);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 fullOldName16(fullOldName);
-	tStringUTF16 fullNewName16(fullNewName);
-	int success = ::MoveFile(fullOldName16.GetLPWSTR(), fullNewName16.GetLPWSTR());
-
-	#else
-	int success = ::MoveFile(fullOldName.Chr(), fullNewName.Chr());
-	#endif
-	return success ? true : false;
-
-	#else
-	tString fullOldName = dir + oldName;
-	tPathStd(fullOldName);
-	std::filesystem::path oldp(fullOldName.Chr());
-
-	tString fullNewName = dir + newName;
-	tPathStd(fullNewName);
-	std::filesystem::path newp(fullNewName.Chr());
-
-	std::error_code ec;
-	std::filesystem::rename(oldp, newp, ec);
-	return !bool(ec);
-
-	#endif
 }
 
 

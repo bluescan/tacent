@@ -47,6 +47,11 @@ function(tacent_target_compile_definitions PROJNAME)
 			$<$<AND:$<PLATFORM_ID:Windows>,$<BOOL:${TACENT_UTF16_API_CALLS}>>:_UNICODE>	# C 	UTF-16
 			$<$<AND:$<PLATFORM_ID:Windows>,$<BOOL:${TACENT_UTF16_API_CALLS}>>:TACENT_UTF16_API_CALLS>
 
+			# Uncomment to force UTF-16 API calls.
+			#$<$<PLATFORM_ID:Windows>:UNICODE>	# C++	UFF-16
+			#$<$<PLATFORM_ID:Windows>:_UNICODE>	# C 	UTF-16
+			#$<$<PLATFORM_ID:Windows>:TACENT_UTF16_API_CALLS>
+
 			$<$<PLATFORM_ID:Linux>:PLATFORM_LINUX>
 	)
 endfunction(tacent_target_compile_definitions)

@@ -75,8 +75,87 @@ int tFileSeek(tFileHandle, int offsetBytes, tSeekOrigin = tSeekOrigin::Beginning
 
 
 //
-// Functions that are path-based.
+// Path-based functions work on the syntax of a path but generally do not need to access the filesystem.
 //
+
+// Directories are paths that end in a /.
+bool tIsDir(const tString& path);
+
+// Files are paths that don't end in a /.
+bool tIsFile(const tString& path);
+
+// Uses working dir. Mess.max to c:/Stuff/Mess.max. This function always assumes filename is relative.
+tString tGetFileFullName(const tString& file);
+
+// c:/Stuff/Mess.max to Mess.max
+tString tGetFileName(const tString& file);
+
+// c:/Stuff/Mess.max to Mess
+tString tGetFileBaseName(const tString& file);
+
+// Returns a path or fully qualified filename that is as simple as possible. Mainly this involves removing (and
+// resolving) any "." or ".." strings. This is a string manipulation call only -- it does not query the filesystem.
+// For example, if the input is:
+//
+// "E:/Projects/Calamity/Crypto/../../Reign/./Squiggle/"
+// the returned string will be
+// "E:/Projects/Reign/Squiggle/".
+//
+// This function also works if a filename is specified at the end. If forceTreatAsDir is false, paths ending with a /
+// are treated as directories and paths without a / are treated as files. If force is true, both are treated as dirs
+// and the returned path will end with a /.
+tString tGetSimplifiedPath(const tString& path, bool forceTreatAsDir = false);
+bool tIsAbsolutePath(const tString& path);
+bool tIsRelativePath(const tString& path);
+
+// Converts the path into a simplified absolute path. It will work whether the path was originally absolute or
+// relative. If you do not supply a basePath dir, the current working dir will be used. The basePath is only used if
+// the supplied path was relative.
+tString tGetAbsolutePath(const tString& path, const tString& basePath = tString());
+
+// Returns the relative location of path from basePath. Both these input strings must have a common prefix for this to
+// succeed. Returns an empty string if it fails.
+tString tGetRelativePath(const tString& basePath, const tString& path);
+
+// Drive paths are DOS/Windows style absolute paths that begin with a drive letter followed by a colon.
+// For example, "C:/Hello" would return true, "/mnt/c/Hello" would return false.
+bool tIsDrivePath(const tString& path);
+
+// Converts to a Linux-style path. That is, all backslashes become forward slashes, and drive letters get converted to
+// mount points. eg. "D:\Stuff\Mess.max" will return "/mnt/d/Stuff/Mess.max"
+tString tGetLinuxPath(const tString& path, const tString& mountPoint = "/mnt/");
+
+// Given a path, this function returns the directory portion. If the input was only a filename, it returns the current
+// directory string "./". If input is a path specifying a directory, it will return that same path.
+// eg. "c:/Stuff/Mess.max" will return "c:/Stuff/"
+// eg. "Hello.txt" will return "./"
+// eg. "/Only/Path/No/File/" will return "/Only/Path/No/File/"
+// Windows network shares retain only required backslashes.
+// eg. "\\machine\share/dir/subdir/file.txt" will return "\\machine\share/dir/subdir/"
+tString tGetDir(const tString& path);
+
+// Given a valid path ending with a slash, this function returns the path n levels higher in the hierarchy. It returns
+// the empty string if you go too high or if path was empty.
+// eg, "c:/HighDir/MedDir/LowDir/" will return "c:/HighDir/MedDir/" if levels = 1.
+// eg. "c:/HighDir/MedDir/LowDir/" will return "c:/HighDir/" if levels = 2.
+// eg. "c:/HighDir/MedDir/LowDir/" will return "" if levels = 4.
+tString tGetUpDir(const tString& path, int levels = 1);
+
+
+//
+// Path-based functions that access the filesystem.
+//
+
+// Test if a file exists. Supplied file name should not have a trailing slash. Will return false if you use on
+// directories or drives. Use tDirExists for that purpose. Windows Note: tFileExists will not bring up an error box for
+// a removable drive without media in it.
+bool tFileExists(const tString& file);
+
+// Check if a directory or logical drive exists. Valid directory names include "E:/", "C:/Program Files/" etc. Drives
+// without media in them are considered non-existent. For example, if "E:/" refers to a CD ROM drive without media in
+// it, you'll get a false because you can't actually enter that directory. If the drive doesn't exist on the system at
+// all you'll get a false as well. If you want to check if a drive letter exists on windows, use tDriveExists.
+bool tDirExists(const tString& dir);
 
 // Returns 0 if the file doesn't exist. Also returns 0 if the file exists and its size is actually 0.
 int tGetFileSize(const tString& file);
@@ -89,8 +168,6 @@ bool tIsReadOnly(const tString& path);
 // appropriate and the user r permission flag to true. For Windows sets the attribute.
 bool tSetReadOnly(const tString& path, bool readOnly = true);
 
-// HERE
-
 // Works on files and directories. For Linux, checks if first character of file is a dot (and not ".."). For Windows it
 // checks the hidden file attribute regardless of whether it starts with a dot or not. If you want a hidden file or
 // directory that is hidden on both types of filesystem (fat/ntfs and extN) make your hidden file/dir start with a dot
@@ -98,8 +175,8 @@ bool tSetReadOnly(const tString& path, bool readOnly = true);
 bool tIsHidden(const tString& path);
 
 #if defined(PLATFORM_WINDOWS)
-// These are Windows-only as they set platform-specific attributes. The Set call returns success. @todo Make equavalents
-// to set Linux permissions for user, group, other.
+// These are Windows-only as they access platform-specific attributes or drives. The Set call returns success.
+// @todo Make equavalents to set Linux permissions for user, group, other.
 bool tSetHidden(const tString& path, bool hidden = true);
 bool tIsSystem(const tString& file);
 bool tSetSystem(const tString& file, bool system = true);
@@ -107,6 +184,8 @@ bool tSetSystem(const tString& file, bool system = true);
 // Drive letter can be of form "C" or "C:" or "C:/" in either lower or upper case for this function.
 bool tDriveExists(const tString& driveName);
 #endif
+
+bool tIsFileNewer(const tString& fileA, const tString& fileB);
 
 // Overwrites dest if it exists. Returns true if success. Will return false and not copy if overWriteReadOnly is false
 // and the file already exists and is read-only.
@@ -117,16 +196,7 @@ bool tCopyFile(const tString& destFile, const tString& srcFile, bool overWriteRe
 // is located.
 bool tRenameFile(const tString& dir, const tString& oldPathName, const tString& newPathName);
 
-// Test if a file exists. Supplied file name should not have a trailing slash. Will return false if you use on
-// directories or drives. Use tDirExists for that purpose. Windows Note: tFileExists will not bring up an error box for
-// a removable drive without media in it.
-bool tFileExists(const tString& file);
-
-// Check if a directory or logical drive exists. Valid directory names include "E:/", "C:/Program Files/" etc. Drives
-// without media in them are considered non-existent. For example, if "E:/" refers to a CD ROM drive without media in
-// it, you'll get a false because you can't actually enter that directory. If the drive doesn't exist on the system at
-// all you'll get a false as well. If you want to check if a drive letter exists on windows, use tDriveExists.
-bool tDirExists(const tString& dir);
+// HERE
 
 //
 // File types and extensions.
@@ -293,17 +363,6 @@ struct tFileTypes
 	tString UserName;
 };
 
-// Uses working dir. Mess.max to c:/Stuff/Mess.max. This function always assumes filename is relative.
-tString tGetFileFullName(const tString& filename);
-
-// c:/Stuff/Mess.max to Mess.max
-tString tGetFileName(const tString& filename);
-
-// c:/Stuff/Mess.max to Mess
-tString tGetFileBaseName(const tString& filename);
-
-bool tIsFileNewer(const tString& fileA, const tString& fileB);
-
 // This contains info about a file OR a directory. I guess it's really a tFileOrDirInfo.
 struct tFileInfo : public tLink<tFileInfo>
 {
@@ -354,60 +413,6 @@ void tSetFileOpenAssoc(const tString& program, const tList<tStringItem>& extensi
 // Gets the program and options associated with a particular extension.
 tString tGetFileOpenAssoc(const tString& extension);
 #endif
-
-// Returns a path or fully qualified filename that is as simple as possible. Mainly this involves removing (and
-// resolving) any "." or ".." strings. This is a string manipulation call only -- it does not query the filesystem.
-// For example, if the input is:
-//
-// "E:/Projects/Calamity/Crypto/../../Reign/./Squiggle/"
-// the returned string will be
-// "E:/Projects/Reign/Squiggle/".
-//
-// This function also works if a filename is specified at the end. If forceTreatAsDir is false, paths ending with a /
-// are treated as directories and paths without a / are treated as files. If force is true, both are treated as dirs
-// and the returned path will end with a /.
-tString tGetSimplifiedPath(const tString& path, bool forceTreatAsDir = false);
-bool tIsRelativePath(const tString& path);
-bool tIsAbsolutePath(const tString& path);
-
-// Directories are paths that end in a /.
-bool tIsDir(const tString& path);
-
-// Files are paths that don't end in a /.
-bool tIsFile(const tString& path);
-
-// Drive paths are DOS/Windows style absolute paths that begin with a drive letter followed by a colon.
-// For example, "C:/Hello" would return true, "/mnt/c/Hello" would return false.
-bool tIsDrivePath(const tString& path);
-
-// Returns the relative location of path from basePath. Both these input strings must have a common prefix for this to
-// succeed. Returns an empty string if it fails.
-tString tGetRelativePath(const tString& basePath, const tString& path);
-
-// Converts the path into a simplified absolute path. It will work whether the path was originally absolute or
-// relative. If you do not supply a basePath dir, the current working dir will be used. The basePath is only used if
-// the supplied path was relative.
-tString tGetAbsolutePath(const tString& path, const tString& basePath = tString());
-
-// Converts to a Linux-style path. That is, all backslashes become forward slashes, and drive letters get converted to
-// mount points. eg. "D:\Stuff\Mess.max" will return "/mnt/d/Stuff/Mess.max"
-tString tGetLinuxPath(const tString& path, const tString& mountPoint = "/mnt/");
-
-// Given a path, this function returns the directory portion. If the input was only a filename, it returns the current
-// directory string "./". If input is a path specifying a directory, it will return that same path.
-// eg. "c:/Stuff/Mess.max" will return "c:/Stuff/"
-// eg. "Hello.txt" will return "./"
-// eg. "/Only/Path/No/File/" will return "/Only/Path/No/File/"
-// Windows network shares retain only required backslashes.
-// eg. "\\machine\share/dir/subdir/file.txt" will return "\\machine\share/dir/subdir/"
-tString tGetDir(const tString& path);
-
-// Given a valid path ending with a slash, this function returns the path n levels higher in the hierarchy. It returns
-// the empty string if you go too high or if path was empty.
-// eg, "c:/HighDir/MedDir/LowDir/" will return "c:/HighDir/MedDir/" if levels = 1.
-// eg. "c:/HighDir/MedDir/LowDir/" will return "c:/HighDir/" if levels = 2.
-// eg. "c:/HighDir/MedDir/LowDir/" will return "" if levels = 4.
-tString tGetUpDir(const tString& path, int levels = 1);
 
 #if defined(PLATFORM_WINDOWS)
 
@@ -714,6 +719,51 @@ inline int tSystem::tFileTell(tFileHandle handle)
 	return int(ftell(handle));
 }
 
+
+inline bool tSystem::tIsDir(const tString& path)
+{
+	if (path.IsEmpty())
+		return false;
+
+	return (path[path.Length()-1] == '/');
+}
+
+
+inline bool tSystem::tIsFile(const tString& path)
+{
+	if (path.IsEmpty())
+		return false;
+
+	return (path[path.Length()-1] != '/');
+}
+
+
+inline bool tSystem::tIsAbsolutePath(const tString& path)
+{
+	if (tIsDrivePath(path))
+		return true;
+
+	if ((path.Length() > 0) && ((path[0] == '/') || (path[0] == '\\')))
+		return true;
+
+	return false;
+}
+
+
+inline bool tSystem::tIsRelativePath(const tString& path)
+{
+	return !tIsAbsolutePath(path);
+}
+
+
+inline bool tSystem::tIsDrivePath(const tString& path)
+{
+	if ((path.Length() > 1) && (path[1] == ':'))
+		return true;
+
+	return false;
+}
+
 // HERE
 
 inline tSystem::tExtensions& tSystem::tExtensions::Add(const tExtensions& src)
@@ -944,24 +994,6 @@ inline tString tSystem::tFileTypes::GetSelectedString(Separator sepType, int max
 }
 
 
-inline bool tSystem::tIsDir(const tString& path)
-{
-	if (path.IsEmpty())
-		return false;
-
-	return (path[path.Length()-1] == '/');
-}
-
-
-inline bool tSystem::tIsFile(const tString& path)
-{
-	if (path.IsEmpty())
-		return false;
-
-	return (path[path.Length()-1] != '/');
-}
-
-
 inline tSystem::tFileInfo::tFileInfo() :
 	FileName(),
 	FileSize(0),
@@ -985,12 +1017,6 @@ inline void tSystem::tFileInfo::Clear()
 	ReadOnly = false;
 	Hidden = false;
 	Directory = false;
-}
-
-
-inline bool tSystem::tIsRelativePath(const tString& path)
-{
-	return !tIsAbsolutePath(path);
 }
 
 
