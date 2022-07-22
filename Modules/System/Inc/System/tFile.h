@@ -215,8 +215,6 @@ bool tCreateFile(const tString& file, char32_t* data, int length, bool writeBOM 
 // file gone.
 bool tDeleteFile(const tString& file, bool deleteReadOnly = true, bool tryUseRecycleBin = false);
 
-// HERE
-
 // Loads entire file into memory. If buffer is nullptr you must free the memory returned at some point by using
 // delete[]. If buffer is non-nullptr it must be at least GetFileSize big (+1 if appending EOF). Any problems (file not exist or is
 // unreadable etc) and nullptr is returned. Fills in the file size pointer if you supply one (not including optional appened EOF). It is perfectly valid to
@@ -235,7 +233,100 @@ bool tLoadFile(const tString& file, tString& dst, char convertZeroesTo = 31);
 // bytesToRead will contain 0 and if a buffer was supplied it will be returned (perhaps modified). If one wasn't
 // supplied and there is a read problem, nullptr will be returned.
 uint8* tLoadFileHead(const tString& file, int& bytesToRead, uint8* buffer = nullptr);
+
+// @todo This variant is not implemented yet.
 uint8* tLoadFileHead(const tString& file, int bytesToRead, tString& dest);
+
+
+//
+// System path and drive information.
+//
+// Gets the home directory. On Linux usually something like "/home/username/". On windows usually something like "C:/Users/UserName/".
+tString tGetHomeDir();
+
+// Gets the directory that the current process is being run from.
+tString tGetProgramDir();
+
+// Gets the full directory and executable name that the current process is being run from.
+tString tGetProgramPath();
+
+// Includes the trailing slash. Gets the current directory.
+tString tGetCurrentDir();
+
+// Set the current directory. Returns true if successful. For example, SetCurrentDir("C:/"); Will set it to the root of
+// the c drive as will "C:" by itself. SetCurrentDir(".."); will move the current dir up a directory.
+bool tSetCurrentDir(const tString& dir);
+
+// HERE
+
+#if defined(PLATFORM_WINDOWS)
+tString tGetWindowsDir();
+tString tGetSystemDir();
+tString tGetDesktopDir();
+
+// Gets a list of the drive letters available on a system. The strings returned are in the form "C:". For more
+// information on a particular drive, use the DriveInfo functions below.
+void tGetDrives(tList<tStringItem>& drives);
+
+enum class tDriveType
+{
+	Unknown,
+	Floppy,
+	Removable,
+	HardDisk,
+	Network,
+	Optical,
+	RamDisk
+};
+
+struct tDriveInfo
+{
+	tDriveInfo();
+	void Clear();
+
+	tString Letter;						// A two character drive letter string like "C:"
+	tString DisplayName;				// The drive name like in the shell (windows explorer).
+	tString VolumeName;
+	uint32 SerialNumber;				// Seems to more or less uniquely identify a disc. Handy.
+	tDriveType DriveType;
+};
+
+// Gets info about a logical drive. Asking for the display name causes a shell call and takes a bit longer, so only
+// ask for the info you need. DriveInfo is always filled out if the function succeeds. Returns true if the DriveInfo
+// struct was filled out. Returns false if there was a problem like the drive didn't exist. Drive should be in the form
+// "C", or "C:", or "C:/", or C:\". It is possible that the name strings end up empty and the function succeeds, so
+// check for that. This will happen if the drive exists, but the name is empty or could not be determined.
+bool tGetDriveInfo(tDriveInfo&, const tString& drive, bool getDisplayName = false, bool getVolumeAndSerial = false);
+
+// Sets the volume name of the specified drive. The drive string may take the format "C", "C:", "C:/", or "C:\". In
+// some cases the name cannot be set. Read-only volumes or strange volume names will cause this function to return
+// false (failure).
+bool tSetVolumeName(const tString& drive, const tString& newVolumeName);
+
+// Windows network shares.
+struct tNetworkShareResult
+{
+	void Clear()					{ RequestComplete = false; NumSharesFound = 0; ShareNames.Empty(); }
+	bool RequestComplete			= false;
+	int NumSharesFound				= 0;
+	tsList<tStringItem> ShareNames;
+};
+
+// This function blocks and takes quite a bit of time to run. However, the result struct places the shares in a
+// thread-safe list (tsList) so you can spin up a thread to make this call, For now it does not signal so you would
+// need to poll RequestComplete, but signalling intermediate results and complete could be added in the future.
+// You can also treat the ShareNames ln the results as a message queue, taking the names off as they come in.
+// The ShareNames take the format "\\MACHINENAME\ShareName". If retrieveMachinesWithNoShares this function will return
+// all the machines it can find even if they don't have any shared folder. If false, only entries with valid shares
+// will be returned. That is, with true you may get results like "\\MACHINENAME" as well.
+int tGetNetworkShares(tNetworkShareResult&, bool retrieveMachinesWithNoShares = true);
+
+// This is a convenience function to parse a single share name like "\\MACHINENAME\ShareName" into a list of strings.
+// For example, "\\MACHINENAME\ShareName" turns into a list of 2 strings: "MACHINENAME" and "ShareName".
+// If retrieveMachinesWithNoShares with true you will also get results like "\\MACHINENAME" which explode
+// to a single string "MOUNTAINVIEW".
+void tExplodeShareName(tList<tStringItem>& exploded, const tString& shareName);
+#endif // PLATFORM_WINDOWS
 
 
 //
@@ -453,92 +544,6 @@ void tSetFileOpenAssoc(const tString& program, const tList<tStringItem>& extensi
 // Gets the program and options associated with a particular extension.
 tString tGetFileOpenAssoc(const tString& extension);
 #endif
-
-#if defined(PLATFORM_WINDOWS)
-
-// Gets a list of the drive letters available on a system. The strings returned are in the form "C:". For more
-// information on a particular drive, use the DriveInfo functions below.
-void tGetDrives(tList<tStringItem>& drives);
-
-enum class tDriveType
-{
-	Unknown,
-	Floppy,
-	Removable,
-	HardDisk,
-	Network,
-	Optical,
-	RamDisk
-};
-
-struct tDriveInfo
-{
-	tDriveInfo();
-	void Clear();
-
-	tString Letter;						// A two character drive letter string like "C:"
-	tString DisplayName;				// The drive name like in the shell (windows explorer).
-	tString VolumeName;
-	uint32 SerialNumber;				// Seems to more or less uniquely identify a disc. Handy.
-	tDriveType DriveType;
-};
-
-// Gets info about a logical drive. Asking for the display name causes a shell call and takes a bit longer, so only
-// ask for the info you need. DriveInfo is always filled out if the function succeeds. Returns true if the DriveInfo
-// struct was filled out. Returns false if there was a problem like the drive didn't exist. Drive should be in the form
-// "C", or "C:", or "C:/", or C:\". It is possible that the name strings end up empty and the function succeeds, so
-// check for that. This will happen if the drive exists, but the name is empty or could not be determined.
-bool tGetDriveInfo(tDriveInfo&, const tString& drive, bool getDisplayName = false, bool getVolumeAndSerial = false);
-
-// Sets the volume name of the specified drive. The drive string may take the format "C", "C:", "C:/", or "C:\". In
-// some cases the name cannot be set. Read-only volumes or strange volume names will cause this function to return
-// false (failure).
-bool tSetVolumeName(const tString& drive, const tString& newVolumeName);
-
-// Windows network shares.
-struct tNetworkShareResult
-{
-	void Clear()					{ RequestComplete = false; NumSharesFound = 0; ShareNames.Empty(); }
-	bool RequestComplete			= false;
-	int NumSharesFound				= 0;
-	tsList<tStringItem> ShareNames;
-};
-
-// This function blocks and takes quite a bit of time to run. However, the result struct places the shares in a
-// thread-safe list (tsList) so you can spin up a thread to make this call, For now it does not signal so you would
-// need to poll RequestComplete, but signalling intermediate results and complete could be added in the future.
-// You can also treat the ShareNames ln the results as a message queue, taking the names off as they come in.
-// The ShareNames take the format "\\MACHINENAME\ShareName". If retrieveMachinesWithNoShares this function will return
-// all the machines it can find even if they don't have any shared folder. If false, only entries with valid shares
-// will be returned. That is, with true you may get results like "\\MACHINENAME" as well.
-int tGetNetworkShares(tNetworkShareResult&, bool retrieveMachinesWithNoShares = true);
-
-// This is a convenience function to parse a single share name like "\\MACHINENAME\ShareName" into a list of strings.
-// For example, "\\MACHINENAME\ShareName" turns into a list of 2 strings: "MACHINENAME" and "ShareName".
-// If retrieveMachinesWithNoShares with true you will also get results like "\\MACHINENAME" which explode
-// to a single string "MOUNTAINVIEW".
-void tExplodeShareName(tList<tStringItem>& exploded, const tString& shareName);
-
-tString tGetWindowsDir();
-tString tGetSystemDir();
-tString tGetDesktopDir();
-#endif // PLATFORM_WINDOWS
-
-// Gets the home directory. On Linux usually something like "/home/username/". On windows usually something like "C:/Users/UserName/".
-tString tGetHomeDir();
-
-// Gets the directory that the current process is being run from.
-tString tGetProgramDir();
-
-// Gets the full directory and executable name that the current process is being run from.
-tString tGetProgramPath();
-
-// Includes the trailing slash. Gets the current directory.
-tString tGetCurrentDir();
-
-// Set the current directory. Returns true if successful. For example, SetCurrentDir("C:/"); Will set it to the root of
-// the c drive as will "C:" by itself. SetCurrentDir(".."); will move the current dir up a directory.
-bool tSetCurrentDir(const tString& dir);
 
 // Directory functions. These are simpler because we don't deal with extensions. If the dir to search is empty, the
 // current directory is used. If hidden is true, includes hidden directories. In all the tFind functions, the

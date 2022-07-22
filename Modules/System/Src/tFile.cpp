@@ -1208,6 +1208,292 @@ bool tSystem::tDeleteFile(const tString& file, bool deleteReadOnly, bool useRecy
 }
 
 
+uint8* tSystem::tLoadFile(const tString& file, uint8* buffer, int* fileSize, bool appendEOF)
+{
+	tFileHandle f = tOpenFile(file.Chr(), "rb");
+	if (!f)
+	{
+		if (fileSize)
+			*fileSize = 0;
+		return nullptr;
+	}
+
+	int size = tGetFileSize(f);
+	if (fileSize)
+		*fileSize = size;
+
+	if (size == 0)
+	{
+		// It is perfectly valid to load a file with no data (0 bytes big).
+		// In this case we always return 0 even if a non-zero buffer was passed in.
+		// The fileSize member will already be set if necessary.
+		tCloseFile(f);
+		return nullptr;
+	}
+
+	bool bufferAllocatedHere = false;
+	if (!buffer)
+	{
+		int bufSize = appendEOF ? size+1 : size;
+		buffer = new uint8[bufSize];
+		bufferAllocatedHere = true;
+	}
+
+	int numRead = tReadFile(f, buffer, size);			// Load the entire thing into memory.
+	tAssert(numRead == size);
+
+	if (appendEOF)
+		buffer[numRead] = EOF;
+
+	tCloseFile(f);
+	return buffer;
+}
+
+
+bool tSystem::tLoadFile(const tString& file, tString& dst, char convertZeroesTo)
+{
+	if (!tFileExists(file))
+	{
+		dst.Clear();
+		return false;
+	}
+
+	int filesize = tGetFileSize(file);
+	if (filesize == 0)
+	{
+		dst.Clear();
+		return true;
+	}
+
+	dst.Reserve(filesize);
+	uint8* check = tLoadFile(file, (uint8*)dst.Text());
+	if ((check != (uint8*)dst.Text()) || !check)
+		return false;
+
+	if (convertZeroesTo != '\0')
+	{
+		for (int i = 0; i < filesize; i++)
+			if (dst[i] == '\0')
+			dst[i] = convertZeroesTo;
+	}
+
+	return true;
+}
+
+
+uint8* tSystem::tLoadFileHead(const tString& file, int& bytesToRead, uint8* buffer)
+{
+	tFileHandle f = tOpenFile(file, "rb");
+	if (!f)
+	{
+		bytesToRead = 0;
+		return buffer;
+	}
+
+	int size = tGetFileSize(f);
+	if (!size)
+	{
+		tCloseFile(f);
+		bytesToRead = 0;
+		return buffer;
+	}
+
+	bytesToRead = (size < bytesToRead) ? size : bytesToRead;
+
+	bool bufferAllocatedHere = false;
+	if (!buffer)
+	{
+		buffer = new uint8[bytesToRead];
+		bufferAllocatedHere = true;
+	}
+
+	// Load the first bytesToRead into memory.  We assume complete failure if the
+	// number we asked for was not returned.
+	int numRead = tReadFile(f, buffer, bytesToRead);
+	if (numRead != bytesToRead)
+	{
+		if (bufferAllocatedHere)
+		{
+			delete[] buffer;
+			buffer = 0;
+		}
+
+		tCloseFile(f);
+		bytesToRead = 0;
+		return buffer;
+	}
+
+	tCloseFile(f);
+	return buffer;
+}
+
+
+tString tSystem::tGetHomeDir()
+{
+	tString home;
+	#if defined(PLATFORM_LINUX)
+	const char* homeDir = getenv("HOME");
+	if (!homeDir)
+		homeDir = getpwuid(getuid())->pw_dir;		
+	if (!homeDir)
+		return home;
+	home.Set(homeDir);
+	if (home[home.Length()-1] != '/')
+		home += '/';
+
+	#elif defined(PLATFORM_WINDOWS)
+	wchar_t* pathBuffer = nullptr;
+	hResult result = SHGetKnownFolderPath(FOLDERID_Profile, 0, 0, &pathBuffer);
+	if ((result != S_OK) || !pathBuffer)
+		return home;
+	home.Set((char16_t*)pathBuffer);
+	CoTaskMemFree(pathBuffer);
+	tPathStdDir(home);
+	#endif
+
+	return home;
+}
+
+
+tString tSystem::tGetProgramDir()
+{
+	#if defined(PLATFORM_WINDOWS)
+
+	#ifdef TACENT_UTF16_API_CALLS
+	// No need to add one here. Reserving space does it for us.
+	tStringUTF16 result16(MAX_PATH);
+	// Except for windows XP (which I don't care about TBH), the result is always null-terminated.
+	ulong l = GetModuleFileName(0, result16.GetLPWSTR(), MAX_PATH);
+	tString result(result16);
+	#else
+	tString result(MAX_PATH);
+	ulong l = GetModuleFileName(0, result.Txt(), MAX_PATH);
+	#endif
+
+	tPathStd(result);
+	int bi = result.FindChar('/', true);
+	tAssert(bi != -1);
+
+	result[bi + 1] = '\0';
+	return result;
+
+	#elif defined(PLATFORM_LINUX)
+	tString result(PATH_MAX+1);
+	readlink("/proc/self/exe", result.Txt(), PATH_MAX);
+	
+	int bi = result.FindChar('/', true);
+	tAssert(bi != -1);
+	result[bi + 1] = '\0';
+	return result;
+
+	#else
+	return tString();
+
+	#endif
+}
+
+
+tString tSystem::tGetProgramPath()
+{
+	#if defined(PLATFORM_WINDOWS)
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 result16(MAX_PATH);
+	ulong l = GetModuleFileName(0, result16.GetLPWSTR(), MAX_PATH);
+	tString result(result16);
+
+	#else
+	tString result(MAX_PATH);
+	ulong l = GetModuleFileName(0, result.Txt(), MAX_PATH);
+	#endif
+
+	tPathStd(result);
+	return result;
+
+	#elif defined(PLATFORM_LINUX)
+	tString result(PATH_MAX+1);
+	readlink("/proc/self/exe", result.Txt(), PATH_MAX);
+	return result;
+
+	#else
+	return tString();
+
+	#endif
+}
+
+
+tString tSystem::tGetCurrentDir()
+{
+	#ifdef PLATFORM_WINDOWS
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 r16(MAX_PATH);
+	GetCurrentDirectory(MAX_PATH, r16.GetLPWSTR());
+	tString r(r16);
+
+	#else
+	tString r(MAX_PATH);
+	GetCurrentDirectory(MAX_PATH, r.Txt());
+	#endif
+
+	#else
+	tString r(PATH_MAX + 1);
+	getcwd(r.Txt(), PATH_MAX);
+	#endif
+
+	tPathStdDir(r);
+	return r;
+}
+
+
+bool tSystem::tSetCurrentDir(const tString& directory)
+{
+	if (directory.IsEmpty())
+		return false;
+
+	tString dir = directory;
+
+	#ifdef PLATFORM_WINDOWS
+	tPathWin(dir);
+	tString cd;
+
+	// "." and ".." get left alone.
+	if ((dir == ".") || (dir == ".."))
+	{
+		cd = dir;
+	}
+	else
+	{
+		if (dir.FindChar(':') != -1)
+			cd = dir;
+		else
+			cd = ".\\" + dir;
+
+		if (cd[cd.Length() - 1] != '\\')
+			cd += "\\";
+	}
+
+	// So there is no dialog asking user to insert a floppy.
+	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS);
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 cd16(cd);
+	int success = SetCurrentDirectory(cd16.GetLPWSTR());
+	#else
+	int success = SetCurrentDirectory(cd.Chr());
+	#endif
+	SetErrorMode(prevErrorMode);
+
+	return success ? true : false;
+
+	#else
+	tPathStd(dir);
+	int errCode = chdir(dir.Chr());
+	return (errCode == 0);
+
+	#endif
+}
+
+
 // HERE
 
 
@@ -2155,173 +2441,6 @@ tString tSystem::tGetDesktopDir()
 #endif // PLATFORM_WINDOWS
 
 
-tString tSystem::tGetHomeDir()
-{
-	tString home;
-	#if defined(PLATFORM_LINUX)
-	const char* homeDir = getenv("HOME");
-	if (!homeDir)
-		homeDir = getpwuid(getuid())->pw_dir;		
-	if (!homeDir)
-		return home;
-	home.Set(homeDir);
-	if (home[home.Length()-1] != '/')
-		home += '/';
-
-	#elif defined(PLATFORM_WINDOWS)
-	wchar_t* pathBuffer = nullptr;
-	hResult result = SHGetKnownFolderPath(FOLDERID_Profile, 0, 0, &pathBuffer);
-	if ((result != S_OK) || !pathBuffer)
-		return home;
-	home.Set((char16_t*)pathBuffer);
-	CoTaskMemFree(pathBuffer);
-	tPathStdDir(home);
-	#endif
-
-	return home;
-}
-
-
-tString tSystem::tGetProgramDir()
-{
-	#if defined(PLATFORM_WINDOWS)
-
-	#ifdef TACENT_UTF16_API_CALLS
-	// No need to add one here. Reserving space does it for us.
-	tStringUTF16 result16(MAX_PATH);
-	// Except for windows XP (which I don't care about TBH), the result is always null-terminated.
-	ulong l = GetModuleFileName(0, result16.GetLPWSTR(), MAX_PATH);
-	tString result(result16);
-	#else
-	tString result(MAX_PATH);
-	ulong l = GetModuleFileName(0, result.Txt(), MAX_PATH);
-	#endif
-
-	tPathStd(result);
-	int bi = result.FindChar('/', true);
-	tAssert(bi != -1);
-
-	result[bi + 1] = '\0';
-	return result;
-
-	#elif defined(PLATFORM_LINUX)
-	tString result(PATH_MAX+1);
-	readlink("/proc/self/exe", result.Txt(), PATH_MAX);
-	
-	int bi = result.FindChar('/', true);
-	tAssert(bi != -1);
-	result[bi + 1] = '\0';
-	return result;
-
-	#else
-	return tString();
-
-	#endif
-}
-
-
-tString tSystem::tGetProgramPath()
-{
-	#if defined(PLATFORM_WINDOWS)
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 result16(MAX_PATH);
-	ulong l = GetModuleFileName(0, result16.GetLPWSTR(), MAX_PATH);
-	tString result(result16);
-
-	#else
-	tString result(MAX_PATH);
-	ulong l = GetModuleFileName(0, result.Txt(), MAX_PATH);
-	#endif
-
-	tPathStd(result);
-	return result;
-
-	#elif defined(PLATFORM_LINUX)
-	tString result(PATH_MAX+1);
-	readlink("/proc/self/exe", result.Txt(), PATH_MAX);
-	return result;
-
-	#else
-	return tString();
-
-	#endif
-}
-
-
-tString tSystem::tGetCurrentDir()
-{
-	#ifdef PLATFORM_WINDOWS
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 r16(MAX_PATH);
-	GetCurrentDirectory(MAX_PATH, r16.GetLPWSTR());
-	tString r(r16);
-
-	#else
-	tString r(MAX_PATH);
-	GetCurrentDirectory(MAX_PATH, r.Txt());
-	#endif
-
-	#else
-	tString r(PATH_MAX + 1);
-	getcwd(r.Txt(), PATH_MAX);
-
-	#endif
-
-	tPathStdDir(r);
-	return r;
-}
-
-
-bool tSystem::tSetCurrentDir(const tString& directory)
-{
-	if (directory.IsEmpty())
-		return false;
-
-	tString dir = directory;
-
-	#ifdef PLATFORM_WINDOWS
-	tPathWin(dir);
-	tString cd;
-
-	// "." and ".." get left alone.
-	if ((dir == ".") || (dir == ".."))
-	{
-		cd = dir;
-	}
-	else
-	{
-		if (dir.FindChar(':') != -1)
-			cd = dir;
-		else
-			cd = ".\\" + dir;
-
-		if (cd[cd.Length() - 1] != '\\')
-			cd += "\\";
-	}
-
-	// So there is no dialog asking user to insert a floppy.
-	uint prevErrorMode = SetErrorMode(SEM_FAILCRITICALERRORS);
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 cd16(cd);
-	int success = SetCurrentDirectory(cd16.GetLPWSTR());
-	#else
-	int success = SetCurrentDirectory(cd.Chr());
-	#endif
-	SetErrorMode(prevErrorMode);
-
-	return success ? true : false;
-
-	#else
-	tPathStd(dir);
-	int errCode = chdir(dir.Chr());
-	return (errCode == 0);
-
-	#endif
-}
-
-
 bool tSystem::tFindDirs_Native(tList<tStringItem>& dirs, const tString& dir, bool hidden)
 {
 	#if defined(PLATFORM_WINDOWS)
@@ -3158,126 +3277,6 @@ bool tSystem::tFindFilesRec(tList<tStringItem>& foundFiles, const tString& dir, 
 	#endif
 
 	return true;
-}
-
-
-bool tSystem::tLoadFile(const tString& filename, tString& dst, char convertZeroesTo)
-{
-	if (!tFileExists(filename))
-	{
-		dst.Clear();
-		return false;
-	}
-
-	int filesize = tGetFileSize(filename);
-	if (filesize == 0)
-	{
-		dst.Clear();
-		return true;
-	}
-
-	dst.Reserve(filesize);
-	uint8* check = tLoadFile(filename, (uint8*)dst.Text());
-	if ((check != (uint8*)dst.Text()) || !check)
-		return false;
-
-	if (convertZeroesTo != '\0')
-	{
-		for (int i = 0; i < filesize; i++)
-			if (dst[i] == '\0')
-			dst[i] = convertZeroesTo;
-	}
-
-	return true;
-}
-
-
-uint8* tSystem::tLoadFile(const tString& filename, uint8* buffer, int* fileSize, bool appendEOF)
-{
-	tFileHandle f = tOpenFile(filename.Chr(), "rb");
-	if (!f)
-	{
-		if (fileSize)
-			*fileSize = 0;
-		return nullptr;
-	}
-
-	int size = tGetFileSize(f);
-	if (fileSize)
-		*fileSize = size;
-
-	if (size == 0)
-	{
-		// It is perfectly valid to load a file with no data (0 bytes big).
-		// In this case we always return 0 even if a non-zero buffer was passed in.
-		// The fileSize member will already be set if necessary.
-		tCloseFile(f);
-		return nullptr;
-	}
-
-	bool bufferAllocatedHere = false;
-	if (!buffer)
-	{
-		int bufSize = appendEOF ? size+1 : size;
-		buffer = new uint8[bufSize];
-		bufferAllocatedHere = true;
-	}
-
-	int numRead = tReadFile(f, buffer, size);			// Load the entire thing into memory.
-	tAssert(numRead == size);
-
-	if (appendEOF)
-		buffer[numRead] = EOF;
-
-	tCloseFile(f);
-	return buffer;
-}
-
-
-uint8* tSystem::tLoadFileHead(const tString& fileName, int& bytesToRead, uint8* buffer)
-{
-	tFileHandle f = tOpenFile(fileName, "rb");
-	if (!f)
-	{
-		bytesToRead = 0;
-		return buffer;
-	}
-
-	int size = tGetFileSize(f);
-	if (!size)
-	{
-		tCloseFile(f);
-		bytesToRead = 0;
-		return buffer;
-	}
-
-	bytesToRead = (size < bytesToRead) ? size : bytesToRead;
-
-	bool bufferAllocatedHere = false;
-	if (!buffer)
-	{
-		buffer = new uint8[bytesToRead];
-		bufferAllocatedHere = true;
-	}
-
-	// Load the first bytesToRead into memory.  We assume complete failure if the
-	// number we asked for was not returned.
-	int numRead = tReadFile(f, buffer, bytesToRead);
-	if (numRead != bytesToRead)
-	{
-		if (bufferAllocatedHere)
-		{
-			delete[] buffer;
-			buffer = 0;
-		}
-
-		tCloseFile(f);
-		bytesToRead = 0;
-		return buffer;
-	}
-
-	tCloseFile(f);
-	return buffer;
 }
 
 
