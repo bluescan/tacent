@@ -257,8 +257,6 @@ tString tGetCurrentDir();
 // the c drive as will "C:" by itself. SetCurrentDir(".."); will move the current dir up a directory.
 bool tSetCurrentDir(const tString& dir);
 
-// HERE
-
 #if defined(PLATFORM_WINDOWS)
 tString tGetWindowsDir();
 tString tGetSystemDir();
@@ -327,6 +325,9 @@ int tGetNetworkShares(tNetworkShareResult&, bool retrieveMachinesWithNoShares = 
 // to a single string "MOUNTAINVIEW".
 void tExplodeShareName(tList<tStringItem>& exploded, const tString& shareName);
 #endif // PLATFORM_WINDOWS
+
+
+// HERE
 
 
 //

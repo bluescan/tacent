@@ -1494,6 +1494,368 @@ bool tSystem::tSetCurrentDir(const tString& directory)
 }
 
 
+#if defined(PLATFORM_WINDOWS)
+tString tSystem::tGetWindowsDir()
+{
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 windir16(MAX_PATH);
+	GetWindowsDirectory(windir16.GetLPWSTR(), MAX_PATH);
+	tString windir(windir16);
+	#else
+	tString windir(MAX_PATH);
+	GetWindowsDirectory(windir.Txt(), MAX_PATH);
+	#endif
+
+	tPathStdDir(windir);
+	return windir;
+}
+
+
+tString tSystem::tGetSystemDir()
+{
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 sysdir16(MAX_PATH);
+	GetSystemDirectory(sysdir16.GetLPWSTR(), MAX_PATH);
+	tString sysdir(sysdir16);
+	#else
+	tString sysdir(MAX_PATH);
+	GetSystemDirectory(sysdir.Txt(), MAX_PATH);
+	#endif
+
+	tPathStdDir(sysdir);
+	return sysdir;
+}
+
+
+tString tSystem::tGetDesktopDir()
+{
+	tString desktop;
+	wchar_t* pathBuffer = nullptr;
+	hResult result = SHGetKnownFolderPath(FOLDERID_Desktop, 0, 0, &pathBuffer);
+	if ((result != S_OK) || !pathBuffer)
+		return desktop;
+
+	desktop.Set((char16_t*)pathBuffer);
+	CoTaskMemFree(pathBuffer);
+
+	tPathStdDir(desktop);
+	return desktop;
+}
+
+
+void tSystem::tGetDrives(tList<tStringItem>& drives)
+{
+	ulong ad = GetLogicalDrives();
+
+	char driveLet = 'A';
+	for (int i = 0; i < 26; i++)
+	{
+		if (ad & 0x00000001)
+		{
+			tStringItem* drive = new tStringItem(driveLet);
+			*drive += ":";
+			drives.Append(drive);
+		}
+
+		driveLet++;
+		ad = ad >> 1;
+	}
+}
+
+
+bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool getDisplayName, bool getVolumeAndSerial)
+{
+	tString driveRoot = drive;
+	driveRoot.ToUpper();
+
+	if (driveRoot.Length() == 1)							// Assume string was of form "C"
+		driveRoot += ":\\";
+	else if (driveRoot.Length() == 2)						// Assume string was of form "C:"
+		driveRoot += "\\";
+	else													// Assume string was of form "C:/" or "C:\"
+		tPathWin(driveRoot);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 driveRoot16(driveRoot);
+	uint driveType = GetDriveType(driveRoot16.GetLPWSTR());
+	#else
+	uint driveType = GetDriveType(driveRoot.Chr());
+	#endif
+	switch (driveType)
+	{
+		case DRIVE_NO_ROOT_DIR:
+			return false;
+
+		case DRIVE_REMOVABLE:
+			if ((driveRoot == "A:\\") || (driveRoot == "B:\\"))
+				driveInfo.DriveType = tDriveType::Floppy;
+			else
+				driveInfo.DriveType = tDriveType::Removable;
+			break;
+
+		case DRIVE_FIXED:
+			driveInfo.DriveType = tDriveType::HardDisk;
+			break;
+
+		case DRIVE_REMOTE:
+			driveInfo.DriveType = tDriveType::Network;
+			break;
+
+		case DRIVE_CDROM:
+			driveInfo.DriveType = tDriveType::Optical;
+			break;
+
+		case DRIVE_RAMDISK:
+			driveInfo.DriveType = tDriveType::RamDisk;
+			break;
+
+		case DRIVE_UNKNOWN:
+		default:
+			driveInfo.DriveType = tDriveType::Unknown;
+			break;
+	}
+
+	if (getDisplayName)
+	{
+		// Here we try getting the name by using the shell api.  It should give the
+		// same name as seen by windows explorer.
+		SHFILEINFO fileInfo;
+		fileInfo.szDisplayName[0] = '\0';
+		SHGetFileInfo
+		(
+			#ifdef TACENT_UTF16_API_CALLS
+			driveRoot16.GetLPWSTR(),
+			#else
+			driveRoot.Chr(),
+			#endif
+			0,
+			&fileInfo,
+			sizeof(SHFILEINFO),
+			SHGFI_DISPLAYNAME
+		);
+		#ifdef TACENT_UTF16_API_CALLS
+		driveInfo.DisplayName.SetUTF16((char16_t*)fileInfo.szDisplayName);
+		#else
+		driveInfo.DisplayName = fileInfo.szDisplayName;
+		#endif
+	}
+
+	if (getVolumeAndSerial)
+	{
+		#ifdef TACENT_UTF16_API_CALLS
+		tStringUTF16 volumeInfoName(256);
+		#else
+		tString volumeInfoName(256);
+		#endif
+		ulong componentLength = 0;
+		ulong flags = 0;
+		ulong serial = 0;
+		int success = GetVolumeInformation
+		(
+			#ifdef TACENT_UTF16_API_CALLS
+			driveRoot16.GetLPWSTR(),
+			volumeInfoName.GetLPWSTR(),
+			#else
+			driveRoot.Chr(),
+			volumeInfoName.Txt(),
+			#endif
+			256,
+			&serial,
+			&componentLength,
+			&flags,
+			0,							// File system name not needed.
+			0							// Buffer for system name is 0 long.
+		);
+
+		#ifdef TACENT_UTF16_API_CALLS
+		driveInfo.VolumeName.SetUTF16(volumeInfoName.Units());
+		#else
+		driveInfo.VolumeName = volumeInfoName;
+		#endif
+		driveInfo.SerialNumber = serial;
+	}
+
+	return true;
+}
+
+
+bool tSystem::tSetVolumeName(const tString& drive, const tString& newVolumeName)
+{
+	tString driveRoot = drive;
+	driveRoot.ToUpper();
+
+	if (driveRoot.Length() == 1)			// Assume string was of form "C"
+		driveRoot += ":\\";
+	else if (driveRoot.Length() == 2)		// Assume string was of form "C:"
+		driveRoot += "\\";
+	else									// Assume string was of form "C:/" or "C:\"
+		tPathWin(driveRoot);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 driveRoot16(driveRoot);
+	tStringUTF16 newVolumeName16(newVolumeName);
+	int success = SetVolumeLabel(driveRoot16.GetLPWSTR(), newVolumeName16.GetLPWSTR());
+	#else
+	int success = SetVolumeLabel(driveRoot.Chr(), newVolumeName.Chr());
+	#endif
+
+	return success ? true : false;
+}
+
+
+namespace tWindowsShares
+{
+	tString tGetDisplayName(LPITEMIDLIST pidl, IShellFolder*, DWORD type);
+	void tEnumerateRec(tSystem::tNetworkShareResult&, IShellFolder*, int levels, bool retrieveMachinesWithNoShares);
+	LPMALLOC Malloc;
+}
+
+
+tString tWindowsShares::tGetDisplayName(LPITEMIDLIST pidl, IShellFolder* folderInterface, DWORD type)
+{
+	STRRET strRet;
+
+	// Request the string as a char* although Windows will likely ignore the request.
+	strRet.uType = STRRET_CSTR;
+
+	// Call GetDisplayNameOf() to fill in the STRRET structure.
+	HRESULT hr = folderInterface->GetDisplayNameOf(pidl, type, &strRet);
+	if (!SUCCEEDED(hr))
+		return tString();
+
+	// Extract the string based on the value of the uType member of STRRET.
+	switch (strRet.uType)
+	{
+		case STRRET_CSTR:
+			return tString(strRet.cStr);
+
+		case STRRET_WSTR:
+			return tString((char16_t*)strRet.pOleStr);
+		
+		case STRRET_OFFSET :
+			return tString(((char*)pidl) + strRet.uOffset);
+	}
+	return tString();
+}
+
+
+void tWindowsShares::tEnumerateRec(tSystem::tNetworkShareResult& shareResults, IShellFolder* folderInterface, int depth, bool retrieveMachinesWithNoShares)
+{
+	LPITEMIDLIST pidl;
+	LPENUMIDLIST enumList;
+	DWORD enumFlags = SHCONTF_FOLDERS;				// Could add | SHCONTF_NONFOLDERS to enumerate non-folders.
+	DWORD result = folderInterface->EnumObjects(0, enumFlags, &enumList);
+	if (result != NOERROR)
+    	return;
+
+	tString displayName;
+	result = enumList->Next(1, &pidl, 0);			// Get the pidl for the first item in the folder.
+	while (result != S_FALSE)
+	{
+		int currentDepth = depth;
+		if (result != NOERROR)
+			break;
+
+		// There are a few possible ways to display the result. We use ForParsing. Examlpes:
+		// SHGDN_NORMAL			-> ShareName (\\MACHINENAME)
+		// SHGDN_INFOLDER		-> ShareName
+		// SHGDN_FORPARSING		-> \\MACHINENAME\ShareName
+		displayName = tGetDisplayName(pidl, folderInterface, SHGDN_FORPARSING);
+		if (!displayName.IsEmpty())
+		{
+			tString padStr;
+			displayName = padStr + displayName;
+
+			// If we're at a leaf we need to add our result.
+			if ((currentDepth == 1) || retrieveMachinesWithNoShares)
+			{
+				shareResults.ShareNames.Append(new tStringItem(displayName));
+				shareResults.NumSharesFound++;
+			}
+		}
+
+		currentDepth--;
+
+		// See if this shell item is a folder.
+		DWORD attr = SFGAO_FOLDER;
+		folderInterface->GetAttributesOf(1, (LPCITEMIDLIST*)&pidl, &attr);
+
+		// Terminate recursion when depth reaches 0.
+		if ((currentDepth > 0) && (attr & SFGAO_FOLDER) == SFGAO_FOLDER)
+		{
+			LPSHELLFOLDER shellFolder;
+
+			// Get the IShellFolder for the pidl.
+			int res = folderInterface->BindToObject(pidl, 0, IID_IShellFolder, (void**)&shellFolder);
+			if (res == NOERROR)
+			{
+				tEnumerateRec(shareResults, shellFolder, currentDepth, retrieveMachinesWithNoShares);	// Recurse.
+				shellFolder->Release();
+			}
+		}
+		Malloc->Free(pidl);
+		result = enumList->Next(1, &pidl, 0);				// Next pidl.
+	}
+
+	enumList->Release();
+}
+
+
+int tSystem::tGetNetworkShares(tNetworkShareResult& shareResults, bool retrieveMachinesWithNoShares)
+{
+	shareResults.Clear();
+	SHGetMalloc(&tWindowsShares::Malloc);
+
+	// To enumerate everything you could use the desktop folder. In our case we only want the shares.
+	// To do this we use SHGetSpecialFolderLocation with the special class ID specifier CSIDL_NETWORK.
+	// LPSHELLFOLDER desktopFolder; SHGetDesktopFolder(&desktopFolder);
+	LPITEMIDLIST pidlSystem = nullptr;
+	HRESULT hr = SHGetSpecialFolderLocation(0, CSIDL_NETWORK, &pidlSystem);
+    if (!SUCCEEDED(hr))
+	{
+		shareResults.RequestComplete = true;
+		return 0;
+	}
+
+	IShellFolder* shellFolder = nullptr;
+    LPCITEMIDLIST pidlRelative = nullptr;
+	
+	hr = SHBindToObject(0, pidlSystem, 0, IID_IShellFolder, (void**)&shellFolder);
+    if (!SUCCEEDED(hr))
+	{
+		CoTaskMemFree(pidlSystem);
+		shareResults.RequestComplete = true;
+		return 0;
+	}
+	tAssert(shellFolder && pidlSystem);
+
+	// To get network shares we need to go to a depth of 2. The first level contains the machine names.
+	// The second level contains the share names.
+	const int depth = 2;
+	tWindowsShares::tEnumerateRec(shareResults, shellFolder, depth, retrieveMachinesWithNoShares);
+
+	// Free all used memory.
+	// Free the IShellFolder for the special folder location (CSIDL_NETWORK).
+	// For desktop it would be desktopFolder->Release();
+	shellFolder->Release();
+	CoTaskMemFree(pidlSystem);
+	tWindowsShares::Malloc->Release();
+
+	shareResults.RequestComplete = true;
+	return shareResults.NumSharesFound;
+}
+
+
+void tSystem::tExplodeShareName(tList<tStringItem>& exploded, const tString& shareName)
+{
+	exploded.Empty();
+	tString share(shareName);
+	share.ExtractLeft("\\\\");
+	tStd::tExplode(exploded, share, '\\');
+}
+#endif // PLATFORM_WINDOWS
+
+
 // HERE
 
 
@@ -2075,368 +2437,6 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	}
 
 	return exeName;
-}
-#endif // PLATFORM_WINDOWS
-
-
-#if defined(PLATFORM_WINDOWS)
-void tSystem::tGetDrives(tList<tStringItem>& drives)
-{
-	ulong ad = GetLogicalDrives();
-
-	char driveLet = 'A';
-	for (int i = 0; i < 26; i++)
-	{
-		if (ad & 0x00000001)
-		{
-			tStringItem* drive = new tStringItem(driveLet);
-			*drive += ":";
-			drives.Append(drive);
-		}
-
-		driveLet++;
-		ad = ad >> 1;
-	}
-}
-
-
-bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool getDisplayName, bool getVolumeAndSerial)
-{
-	tString driveRoot = drive;
-	driveRoot.ToUpper();
-
-	if (driveRoot.Length() == 1)							// Assume string was of form "C"
-		driveRoot += ":\\";
-	else if (driveRoot.Length() == 2)						// Assume string was of form "C:"
-		driveRoot += "\\";
-	else													// Assume string was of form "C:/" or "C:\"
-		tPathWin(driveRoot);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 driveRoot16(driveRoot);
-	uint driveType = GetDriveType(driveRoot16.GetLPWSTR());
-	#else
-	uint driveType = GetDriveType(driveRoot.Chr());
-	#endif
-	switch (driveType)
-	{
-		case DRIVE_NO_ROOT_DIR:
-			return false;
-
-		case DRIVE_REMOVABLE:
-			if ((driveRoot == "A:\\") || (driveRoot == "B:\\"))
-				driveInfo.DriveType = tDriveType::Floppy;
-			else
-				driveInfo.DriveType = tDriveType::Removable;
-			break;
-
-		case DRIVE_FIXED:
-			driveInfo.DriveType = tDriveType::HardDisk;
-			break;
-
-		case DRIVE_REMOTE:
-			driveInfo.DriveType = tDriveType::Network;
-			break;
-
-		case DRIVE_CDROM:
-			driveInfo.DriveType = tDriveType::Optical;
-			break;
-
-		case DRIVE_RAMDISK:
-			driveInfo.DriveType = tDriveType::RamDisk;
-			break;
-
-		case DRIVE_UNKNOWN:
-		default:
-			driveInfo.DriveType = tDriveType::Unknown;
-			break;
-	}
-
-	if (getDisplayName)
-	{
-		// Here we try getting the name by using the shell api.  It should give the
-		// same name as seen by windows explorer.
-		SHFILEINFO fileInfo;
-		fileInfo.szDisplayName[0] = '\0';
-		SHGetFileInfo
-		(
-			#ifdef TACENT_UTF16_API_CALLS
-			driveRoot16.GetLPWSTR(),
-			#else
-			driveRoot.Chr(),
-			#endif
-			0,
-			&fileInfo,
-			sizeof(SHFILEINFO),
-			SHGFI_DISPLAYNAME
-		);
-		#ifdef TACENT_UTF16_API_CALLS
-		driveInfo.DisplayName.SetUTF16((char16_t*)fileInfo.szDisplayName);
-		#else
-		driveInfo.DisplayName = fileInfo.szDisplayName;
-		#endif
-	}
-
-	if (getVolumeAndSerial)
-	{
-		#ifdef TACENT_UTF16_API_CALLS
-		tStringUTF16 volumeInfoName(256);
-		#else
-		tString volumeInfoName(256);
-		#endif
-		ulong componentLength = 0;
-		ulong flags = 0;
-		ulong serial = 0;
-		int success = GetVolumeInformation
-		(
-			#ifdef TACENT_UTF16_API_CALLS
-			driveRoot16.GetLPWSTR(),
-			volumeInfoName.GetLPWSTR(),
-			#else
-			driveRoot.Chr(),
-			volumeInfoName.Txt(),
-			#endif
-			256,
-			&serial,
-			&componentLength,
-			&flags,
-			0,							// File system name not needed.
-			0							// Buffer for system name is 0 long.
-		);
-
-		#ifdef TACENT_UTF16_API_CALLS
-		driveInfo.VolumeName.SetUTF16(volumeInfoName.Units());
-		#else
-		driveInfo.VolumeName = volumeInfoName;
-		#endif
-		driveInfo.SerialNumber = serial;
-	}
-
-	return true;
-}
-
-
-bool tSystem::tSetVolumeName(const tString& drive, const tString& newVolumeName)
-{
-	tString driveRoot = drive;
-	driveRoot.ToUpper();
-
-	if (driveRoot.Length() == 1)			// Assume string was of form "C"
-		driveRoot += ":\\";
-	else if (driveRoot.Length() == 2)		// Assume string was of form "C:"
-		driveRoot += "\\";
-	else									// Assume string was of form "C:/" or "C:\"
-		tPathWin(driveRoot);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 driveRoot16(driveRoot);
-	tStringUTF16 newVolumeName16(newVolumeName);
-	int success = SetVolumeLabel(driveRoot16.GetLPWSTR(), newVolumeName16.GetLPWSTR());
-	#else
-	int success = SetVolumeLabel(driveRoot.Chr(), newVolumeName.Chr());
-	#endif
-
-	return success ? true : false;
-}
-
-
-namespace tWindowsShares
-{
-	tString tGetDisplayName(LPITEMIDLIST pidl, IShellFolder*, DWORD type);
-	void tEnumerateRec(tSystem::tNetworkShareResult&, IShellFolder*, int levels, bool retrieveMachinesWithNoShares);
-	LPMALLOC Malloc;
-}
-
-
-tString tWindowsShares::tGetDisplayName(LPITEMIDLIST pidl, IShellFolder* folderInterface, DWORD type)
-{
-	STRRET strRet;
-
-	// Request the string as a char* although Windows will likely ignore the request.
-	strRet.uType = STRRET_CSTR;
-
-	// Call GetDisplayNameOf() to fill in the STRRET structure.
-	HRESULT hr = folderInterface->GetDisplayNameOf(pidl, type, &strRet);
-	if (!SUCCEEDED(hr))
-		return tString();
-
-	// Extract the string based on the value of the uType member of STRRET.
-	switch (strRet.uType)
-	{
-		case STRRET_CSTR:
-			return tString(strRet.cStr);
-
-		case STRRET_WSTR:
-			return tString((char16_t*)strRet.pOleStr);
-		
-		case STRRET_OFFSET :
-			return tString(((char*)pidl) + strRet.uOffset);
-	}
-	return tString();
-}
-
-
-void tWindowsShares::tEnumerateRec(tSystem::tNetworkShareResult& shareResults, IShellFolder* folderInterface, int depth, bool retrieveMachinesWithNoShares)
-{
-	LPITEMIDLIST pidl;
-	LPENUMIDLIST enumList;
-	DWORD enumFlags = SHCONTF_FOLDERS;				// Could add | SHCONTF_NONFOLDERS to enumerate non-folders.
-	DWORD result = folderInterface->EnumObjects(0, enumFlags, &enumList);
-	if (result != NOERROR)
-    	return;
-
-	tString displayName;
-	result = enumList->Next(1, &pidl, 0);			// Get the pidl for the first item in the folder.
-	while (result != S_FALSE)
-	{
-		int currentDepth = depth;
-		if (result != NOERROR)
-			break;
-
-		// There are a few possible ways to display the result. We use ForParsing. Examlpes:
-		// SHGDN_NORMAL			-> ShareName (\\MACHINENAME)
-		// SHGDN_INFOLDER		-> ShareName
-		// SHGDN_FORPARSING		-> \\MACHINENAME\ShareName
-		displayName = tGetDisplayName(pidl, folderInterface, SHGDN_FORPARSING);
-		if (!displayName.IsEmpty())
-		{
-			tString padStr;
-			displayName = padStr + displayName;
-
-			// If we're at a leaf we need to add our result.
-			if ((currentDepth == 1) || retrieveMachinesWithNoShares)
-			{
-				shareResults.ShareNames.Append(new tStringItem(displayName));
-				shareResults.NumSharesFound++;
-			}
-		}
-
-		currentDepth--;
-
-		// See if this shell item is a folder.
-		DWORD attr = SFGAO_FOLDER;
-		folderInterface->GetAttributesOf(1, (LPCITEMIDLIST*)&pidl, &attr);
-
-		// Terminate recursion when depth reaches 0.
-		if ((currentDepth > 0) && (attr & SFGAO_FOLDER) == SFGAO_FOLDER)
-		{
-			LPSHELLFOLDER shellFolder;
-
-			// Get the IShellFolder for the pidl.
-			int res = folderInterface->BindToObject(pidl, 0, IID_IShellFolder, (void**)&shellFolder);
-			if (res == NOERROR)
-			{
-				tEnumerateRec(shareResults, shellFolder, currentDepth, retrieveMachinesWithNoShares);	// Recurse.
-				shellFolder->Release();
-			}
-		}
-		Malloc->Free(pidl);
-		result = enumList->Next(1, &pidl, 0);				// Next pidl.
-	}
-
-	enumList->Release();
-}
-
-
-int tSystem::tGetNetworkShares(tNetworkShareResult& shareResults, bool retrieveMachinesWithNoShares)
-{
-	shareResults.Clear();
-	SHGetMalloc(&tWindowsShares::Malloc);
-
-	// To enumerate everything you could use the desktop folder. In our case we only want the shares.
-	// To do this we use SHGetSpecialFolderLocation with the special class ID specifier CSIDL_NETWORK.
-	// LPSHELLFOLDER desktopFolder; SHGetDesktopFolder(&desktopFolder);
-	LPITEMIDLIST pidlSystem = nullptr;
-	HRESULT hr = SHGetSpecialFolderLocation(0, CSIDL_NETWORK, &pidlSystem);
-    if (!SUCCEEDED(hr))
-	{
-		shareResults.RequestComplete = true;
-		return 0;
-	}
-
-	IShellFolder* shellFolder = nullptr;
-    LPCITEMIDLIST pidlRelative = nullptr;
-	
-	hr = SHBindToObject(0, pidlSystem, 0, IID_IShellFolder, (void**)&shellFolder);
-    if (!SUCCEEDED(hr))
-	{
-		CoTaskMemFree(pidlSystem);
-		shareResults.RequestComplete = true;
-		return 0;
-	}
-	tAssert(shellFolder && pidlSystem);
-
-	// To get network shares we need to go to a depth of 2. The first level contains the machine names.
-	// The second level contains the share names.
-	const int depth = 2;
-	tWindowsShares::tEnumerateRec(shareResults, shellFolder, depth, retrieveMachinesWithNoShares);
-
-	// Free all used memory.
-	// Free the IShellFolder for the special folder location (CSIDL_NETWORK).
-	// For desktop it would be desktopFolder->Release();
-	shellFolder->Release();
-	CoTaskMemFree(pidlSystem);
-	tWindowsShares::Malloc->Release();
-
-	shareResults.RequestComplete = true;
-	return shareResults.NumSharesFound;
-}
-
-
-void tSystem::tExplodeShareName(tList<tStringItem>& exploded, const tString& shareName)
-{
-	exploded.Empty();
-	tString share(shareName);
-	share.ExtractLeft("\\\\");
-	tStd::tExplode(exploded, share, '\\');
-}
-
-
-tString tSystem::tGetWindowsDir()
-{
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 windir16(MAX_PATH);
-	GetWindowsDirectory(windir16.GetLPWSTR(), MAX_PATH);
-	tString windir(windir16);
-	#else
-	tString windir(MAX_PATH);
-	GetWindowsDirectory(windir.Txt(), MAX_PATH);
-	#endif
-
-	tPathStdDir(windir);
-	return windir;
-}
-
-
-tString tSystem::tGetSystemDir()
-{
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 sysdir16(MAX_PATH);
-	GetSystemDirectory(sysdir16.GetLPWSTR(), MAX_PATH);
-	tString sysdir(sysdir16);
-	#else
-	tString sysdir(MAX_PATH);
-	GetSystemDirectory(sysdir.Txt(), MAX_PATH);
-	#endif
-
-	tPathStdDir(sysdir);
-	return sysdir;
-}
-
-
-tString tSystem::tGetDesktopDir()
-{
-	tString desktop;
-	wchar_t* pathBuffer = nullptr;
-	hResult result = SHGetKnownFolderPath(FOLDERID_Desktop, 0, 0, &pathBuffer);
-	if ((result != S_OK) || !pathBuffer)
-		return desktop;
-
-	desktop.Set((char16_t*)pathBuffer);
-	CoTaskMemFree(pathBuffer);
-
-	tPathStdDir(desktop);
-	return desktop;
 }
 #endif // PLATFORM_WINDOWS
 
