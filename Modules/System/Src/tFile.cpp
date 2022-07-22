@@ -886,6 +886,55 @@ bool tSystem::tIsFileNewer(const tString& filea, const tString& fileb)
 }
 
 
+bool tSystem::tFilesIdentical(const tString& fileA, const tString& fileB)
+{
+	auto localCloseFiles = [](tFileHandle a, tFileHandle b)
+	{
+		tCloseFile(a);
+		tCloseFile(b);
+	};
+
+	tFileHandle fa = tOpenFile(fileA, "rb");
+	tFileHandle fb = tOpenFile(fileB, "rb");
+	if (!fa || !fb)
+	{
+		localCloseFiles(fa, fb);
+		return false;
+	}
+
+	int faSize = tGetFileSize(fa);
+	int fbSize = tGetFileSize(fb);
+	if (faSize != fbSize)
+	{
+		localCloseFiles(fa, fb);
+		return false;
+	}
+
+	uint8* bufA = new uint8[faSize];
+	uint8* bufB = new uint8[fbSize];
+
+	int numReadA = tReadFile(fa, bufA, faSize);
+	int numReadB = tReadFile(fb, bufB, fbSize);
+	tAssert((faSize + fbSize) == (numReadA + numReadB));
+
+	for (int i = 0; i < faSize; i++)
+	{
+		if (bufA[i] != bufB[i])
+		{
+			localCloseFiles(fa, fb);
+			delete[] bufA;
+			delete[] bufB;
+			return false;
+		}
+	}
+
+	localCloseFiles(fa, fb);
+	delete[] bufA;
+	delete[] bufB;
+	return true;
+}
+
+
 bool tSystem::tCopyFile(const tString& destFile, const tString& srcFile, bool overWriteReadOnly)
 {
 	#if defined(PLATFORM_WINDOWS)
@@ -958,6 +1007,203 @@ bool tSystem::tRenameFile(const tString& dir, const tString& oldPathName, const 
 	std::filesystem::rename(oldp, newp, ec);
 	return !bool(ec);
 
+	#endif
+}
+
+
+bool tSystem::tCreateFile(const tString& file)
+{
+	tFileHandle f = tOpenFile(file.Chr(), "wt");
+	if (!f)
+		return false;
+
+	tCloseFile(f);
+	return true;
+}
+
+
+bool tSystem::tCreateFile(const tString& file, const tString& contents)
+{
+	uint32 len = contents.Length();
+	return tCreateFile(file, (uint8*)contents.Chr(), len);
+}
+
+
+bool tSystem::tCreateFile(const tString& file, uint8* data, int length)
+{
+	tFileHandle dst = tOpenFile(file.Chr(), "wb");
+	if (!dst)
+		return false;
+
+	// Sometimes this needs to be done, for some mysterious reason.
+	tFileSeek(dst, 0, tSeekOrigin::Beginning);
+
+	// Write data and close file.
+	int numWritten = tWriteFile(dst, data, length);
+	tCloseFile(dst);
+
+	// Make sure it was created and an appropriate amount of bytes were written.
+	bool verify = tFileExists(file);
+	return verify && (numWritten >= length);
+}
+
+
+bool tSystem::tCreateFile(const tString& file, char8_t* data, int length, bool writeBOM)
+{
+	tFileHandle dst = tOpenFile(file.Chr(), "wb");
+	if (!dst)
+		return false;
+	tFileSeek(dst, 0, tSeekOrigin::Beginning);
+	if (writeBOM)
+	{
+		char8_t bom[4];
+		int bomLen = tStd::tUTF8c(bom, tStd::cCodepoint_BOM);
+		tAssert(bomLen == 3);
+		int bomWritten = tWriteFile(dst, bom, 3);
+		if (bomWritten != bomLen)
+		{
+			tCloseFile(dst);
+			return false;
+		}
+	}
+
+	// Write data and close file.
+	int numWritten = tWriteFile(dst, data, length);
+	tCloseFile(dst);
+
+	// Make sure it was created and an appropriate amount of bytes were written.
+	bool verify = tFileExists(file);
+	return verify && (numWritten >= length);
+}
+
+
+bool tSystem::tCreateFile(const tString& file, char16_t* data, int length, bool writeBOM)
+{
+	tFileHandle dst = tOpenFile(file.Chr(), "wb");
+	if (!dst)
+		return false;
+	tFileSeek(dst, 0, tSeekOrigin::Beginning);
+	if (writeBOM)
+	{
+		char16_t bom = char16_t(tStd::cCodepoint_BOM);
+		int bomWritten = tWriteFile(dst, &bom, 1);
+		if (bomWritten != 1)
+		{
+			tCloseFile(dst);
+			return false;
+		}
+	}
+	// Write data and close file.
+	int numWritten = tWriteFile(dst, data, length);
+	tCloseFile(dst);
+
+	// Make sure it was created and an appropriate amount of bytes were written.
+	bool verify = tFileExists(file);
+	return verify && (numWritten >= length);
+}
+
+
+bool tSystem::tCreateFile(const tString& file, char32_t* data, int length, bool writeBOM)
+{
+	tFileHandle dst = tOpenFile(file.Chr(), "wb");
+	if (!dst)
+		return false;
+	tFileSeek(dst, 0, tSeekOrigin::Beginning);
+	if (writeBOM)
+	{
+		int bomWritten = tWriteFile(dst, &tStd::cCodepoint_BOM, 1);
+		if (bomWritten != 1)
+		{
+			tCloseFile(dst);
+			return false;
+		}
+	}
+
+	// Write data and close file.
+	int numWritten = tWriteFile(dst, data, length);
+	tCloseFile(dst);
+
+	// Make sure it was created and an appropriate amount of bytes were written.
+	bool verify = tFileExists(file);
+	return verify && (numWritten >= length);
+}
+
+
+bool tSystem::tDeleteFile(const tString& file, bool deleteReadOnly, bool useRecycleBin)
+{
+	#ifdef PLATFORM_WINDOWS
+	tString filename(file);
+	tPathWin(filename);
+
+	#ifdef TACENT_UTF16_API_CALLS
+	tStringUTF16 filename16(filename);
+	if (deleteReadOnly)
+		SetFileAttributes(filename16.GetLPWSTR(), FILE_ATTRIBUTE_NORMAL);
+	#else
+	if (deleteReadOnly)
+		SetFileAttributes(filename.Chr(), FILE_ATTRIBUTE_NORMAL);
+	#endif
+
+	if (!useRecycleBin)
+	{
+		#ifdef TACENT_UTF16_API_CALLS
+		if (DeleteFile(filename16.GetLPWSTR()))
+		#else
+		if (DeleteFile(filename.Chr()))
+		#endif
+			return true;
+		else
+			return false;
+	}
+	else
+	{
+		tString filenamePlusChar = filenamee + "Z";
+		#ifdef TACENT_UTF16_API_CALLS
+		tStringUTF16 filenameDoubleNull16(filenamePlusChar);
+		*(filenameDoubleNull16.Units() + filenameDoubleNull16.Length() - 1) = 0;
+		#else
+		tString filenameDoubleNull(filenamePlusChar);
+		filenameDoubleNull[filenameDoubleNull.Length()-1] = '\0';
+		#endif
+
+		SHFILEOPSTRUCT operation;
+		tStd::tMemset(&operation, 0, sizeof(operation));
+		operation.wFunc = FO_DELETE;
+		#ifdef TACENT_UTF16_API_CALLS
+		operation.pFrom = filenameDoubleNull16.GetLPWSTR();
+		#else
+		operation.pFrom = filenameDoubleNull.Chr();
+		#endif
+		operation.fFlags = FOF_ALLOWUNDO | FOF_NO_UI | FOF_NORECURSION;
+		int errCode = SHFileOperation(&operation);
+		return errCode ? false : true;
+	}
+
+	return true;
+
+	#else
+	if (!deleteReadOnly && tIsReadOnly(file))
+		return true;
+
+	std::filesystem::path p(file.Chr());
+
+	if (useRecycleBin)
+	{
+		tString homeDir = tGetHomeDir();
+		tString recycleDir = homeDir + ".local/share/Trash/files/";
+		if (tDirExists(recycleDir))
+		{
+			tString toFile = recycleDir + tGetFileName(file);
+			std::filesystem::path toPath(toFile.Chr());
+			std::error_code ec;
+			std::filesystem::rename(p, toPath, ec);
+			return ec ? false : true;
+		}
+
+		return false;
+	}
+
+	return std::filesystem::remove(p);
 	#endif
 }
 
@@ -2915,173 +3161,6 @@ bool tSystem::tFindFilesRec(tList<tStringItem>& foundFiles, const tString& dir, 
 }
 
 
-bool tSystem::tFilesIdentical(const tString& fileA, const tString& fileB)
-{
-	auto localCloseFiles = [](tFileHandle a, tFileHandle b)
-	{
-		tCloseFile(a);
-		tCloseFile(b);
-	};
-
-	tFileHandle fa = tOpenFile(fileA, "rb");
-	tFileHandle fb = tOpenFile(fileB, "rb");
-	if (!fa || !fb)
-	{
-		localCloseFiles(fa, fb);
-		return false;
-	}
-
-	int faSize = tGetFileSize(fa);
-	int fbSize = tGetFileSize(fb);
-	if (faSize != fbSize)
-	{
-		localCloseFiles(fa, fb);
-		return false;
-	}
-
-	uint8* bufA = new uint8[faSize];
-	uint8* bufB = new uint8[fbSize];
-
-	int numReadA = tReadFile(fa, bufA, faSize);
-	int numReadB = tReadFile(fb, bufB, fbSize);
-	tAssert((faSize + fbSize) == (numReadA + numReadB));
-
-	for (int i = 0; i < faSize; i++)
-	{
-		if (bufA[i] != bufB[i])
-		{
-			localCloseFiles(fa, fb);
-			delete[] bufA;
-			delete[] bufB;
-			return false;
-		}
-	}
-
-	localCloseFiles(fa, fb);
-	delete[] bufA;
-	delete[] bufB;
-	return true;
-}
-
-
-bool tSystem::tCreateFile(const tString& file)
-{
-	tFileHandle f = tOpenFile(file.Chr(), "wt");
-	if (!f)
-		return false;
-
-	tCloseFile(f);
-	return true;
-}
-
-
-bool tSystem::tCreateFile(const tString& filename, const tString& contents)
-{
-	uint32 len = contents.Length();
-	return tCreateFile(filename, (uint8*)contents.Chr(), len);
-}
-
-
-bool tSystem::tCreateFile(const tString& filename, uint8* data, int dataLength)
-{
-	tFileHandle dst = tOpenFile(filename.Chr(), "wb");
-	if (!dst)
-		return false;
-
-	// Sometimes this needs to be done, for some mysterious reason.
-	tFileSeek(dst, 0, tSeekOrigin::Beginning);
-
-	// Write data and close file.
-	int numWritten = tWriteFile(dst, data, dataLength);
-	tCloseFile(dst);
-
-	// Make sure it was created and an appropriate amount of bytes were written.
-	bool verify = tFileExists(filename);
-	return verify && (numWritten >= dataLength);
-}
-
-
-bool tSystem::tCreateFile(const tString& filename, char8_t* data, int length, bool writeBOM)
-{
-	tFileHandle dst = tOpenFile(filename.Chr(), "wb");
-	if (!dst)
-		return false;
-	tFileSeek(dst, 0, tSeekOrigin::Beginning);
-	if (writeBOM)
-	{
-		char8_t bom[4];
-		int bomLen = tStd::tUTF8c(bom, tStd::cCodepoint_BOM);
-		tAssert(bomLen == 3);
-		int bomWritten = tWriteFile(dst, bom, 3);
-		if (bomWritten != bomLen)
-		{
-			tCloseFile(dst);
-			return false;
-		}
-	}
-
-	// Write data and close file.
-	int numWritten = tWriteFile(dst, data, length);
-	tCloseFile(dst);
-
-	// Make sure it was created and an appropriate amount of bytes were written.
-	bool verify = tFileExists(filename);
-	return verify && (numWritten >= length);
-}
-
-
-bool tSystem::tCreateFile(const tString& filename, char16_t* data, int length, bool writeBOM)
-{
-	tFileHandle dst = tOpenFile(filename.Chr(), "wb");
-	if (!dst)
-		return false;
-	tFileSeek(dst, 0, tSeekOrigin::Beginning);
-	if (writeBOM)
-	{
-		char16_t bom = char16_t(tStd::cCodepoint_BOM);
-		int bomWritten = tWriteFile(dst, &bom, 1);
-		if (bomWritten != 1)
-		{
-			tCloseFile(dst);
-			return false;
-		}
-	}
-	// Write data and close file.
-	int numWritten = tWriteFile(dst, data, length);
-	tCloseFile(dst);
-
-	// Make sure it was created and an appropriate amount of bytes were written.
-	bool verify = tFileExists(filename);
-	return verify && (numWritten >= length);
-}
-
-
-bool tSystem::tCreateFile(const tString& filename, char32_t* data, int length, bool writeBOM)
-{
-	tFileHandle dst = tOpenFile(filename.Chr(), "wb");
-	if (!dst)
-		return false;
-	tFileSeek(dst, 0, tSeekOrigin::Beginning);
-	if (writeBOM)
-	{
-		int bomWritten = tWriteFile(dst, &tStd::cCodepoint_BOM, 1);
-		if (bomWritten != 1)
-		{
-			tCloseFile(dst);
-			return false;
-		}
-	}
-
-	// Write data and close file.
-	int numWritten = tWriteFile(dst, data, length);
-	tCloseFile(dst);
-
-	// Make sure it was created and an appropriate amount of bytes were written.
-	bool verify = tFileExists(filename);
-	return verify && (numWritten >= length);
-}
-
-
 bool tSystem::tLoadFile(const tString& filename, tString& dst, char convertZeroesTo)
 {
 	if (!tFileExists(filename))
@@ -3199,85 +3278,6 @@ uint8* tSystem::tLoadFileHead(const tString& fileName, int& bytesToRead, uint8* 
 
 	tCloseFile(f);
 	return buffer;
-}
-
-
-bool tSystem::tDeleteFile(const tString& filename, bool deleteReadOnly, bool useRecycleBin)
-{
-	#ifdef PLATFORM_WINDOWS
-	tString file(filename);
-	tPathWin(file);
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 file16(file);
-	if (deleteReadOnly)
-		SetFileAttributes(file16.GetLPWSTR(), FILE_ATTRIBUTE_NORMAL);
-	#else
-	if (deleteReadOnly)
-		SetFileAttributes(file.Chr(), FILE_ATTRIBUTE_NORMAL);
-	#endif
-
-	if (!useRecycleBin)
-	{
-		#ifdef TACENT_UTF16_API_CALLS
-		if (DeleteFile(file16.GetLPWSTR()))
-		#else
-		if (DeleteFile(file.Chr()))
-		#endif
-			return true;
-		else
-			return false;
-	}
-	else
-	{
-		tString filenamePlusChar = filename + "Z";
-		#ifdef TACENT_UTF16_API_CALLS
-		tStringUTF16 filenameDoubleNull16(filenamePlusChar);
-		*(filenameDoubleNull16.Units() + filenameDoubleNull16.Length() - 1) = 0;
-		#else
-		tString filenameDoubleNull(filenamePlusChar);
-		filenameDoubleNull[filenameDoubleNull.Length()-1] = '\0';
-		#endif
-
-		SHFILEOPSTRUCT operation;
-		tStd::tMemset(&operation, 0, sizeof(operation));
-		operation.wFunc = FO_DELETE;
-		#ifdef TACENT_UTF16_API_CALLS
-		operation.pFrom = filenameDoubleNull16.GetLPWSTR();
-		#else
-		operation.pFrom = filenameDoubleNull.Chr();
-		#endif
-		operation.fFlags = FOF_ALLOWUNDO | FOF_NO_UI | FOF_NORECURSION;
-		int errCode = SHFileOperation(&operation);
-		return errCode ? false : true;
-	}
-
-	return true;
-
-	#else
-	if (!deleteReadOnly && tIsReadOnly(filename))
-		return true;
-
-	std::filesystem::path p(filename.Chr());
-
-	if (useRecycleBin)
-	{
-		tString homeDir = tGetHomeDir();
-		tString recycleDir = homeDir + ".local/share/Trash/files/";
-		if (tDirExists(recycleDir))
-		{
-			tString toFile = recycleDir + tGetFileName(filename);
-			std::filesystem::path toPath(toFile.Chr());
-			std::error_code ec;
-			std::filesystem::rename(p, toPath, ec);
-			return ec ? false : true;
-		}
-
-		return false;
-	}
-
-	return std::filesystem::remove(p);
-	#endif
 }
 
 

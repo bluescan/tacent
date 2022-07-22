@@ -187,6 +187,10 @@ bool tDriveExists(const tString& driveName);
 
 bool tIsFileNewer(const tString& fileA, const tString& fileB);
 
+// If either (or both) file doesn't exist you get false. Entire files will temporarily be read into memory so it's not
+// too efficient (only for tool use).
+bool tFilesIdentical(const tString& fileA, const tString& fileB);
+
 // Overwrites dest if it exists. Returns true if success. Will return false and not copy if overWriteReadOnly is false
 // and the file already exists and is read-only.
 bool tCopyFile(const tString& destFile, const tString& srcFile, bool overWriteReadOnly = true);
@@ -196,7 +200,43 @@ bool tCopyFile(const tString& destFile, const tString& srcFile, bool overWriteRe
 // is located.
 bool tRenameFile(const tString& dir, const tString& oldPathName, const tString& newPathName);
 
+// Creates an empty file.
+bool tCreateFile(const tString& file);
+bool tCreateFile(const tString& file, const tString& contents);
+bool tCreateFile(const tString& file, uint8* data, int length);
+
+// For easily creating UTF-encoded text files. It is not recommended to write a BOM for UTF-8.
+bool tCreateFile(const tString& file, char8_t*  data, int length, bool writeBOM = false);
+bool tCreateFile(const tString& file, char16_t* data, int length, bool writeBom = true);
+bool tCreateFile(const tString& file, char32_t* data, int length, bool writeBOM = true);
+
+// Returns true if file existed and was deleted. If tryUseRecycleBin is true and the function can't find the recycle
+// bin, it will return false. It is up to you to call it again with tryUseRecycleBin false if you really want the
+// file gone.
+bool tDeleteFile(const tString& file, bool deleteReadOnly = true, bool tryUseRecycleBin = false);
+
 // HERE
+
+// Loads entire file into memory. If buffer is nullptr you must free the memory returned at some point by using
+// delete[]. If buffer is non-nullptr it must be at least GetFileSize big (+1 if appending EOF). Any problems (file not exist or is
+// unreadable etc) and nullptr is returned. Fills in the file size pointer if you supply one (not including optional appened EOF). It is perfectly valid to
+// load a file with no data (0 bytes big). In this case LoadFile always returns nullptr even if a non-zero buffer was
+// passed in and the fileSize member will be set to 0 (if supplied).
+uint8* tLoadFile(const tString& file, uint8* buffer = nullptr, int* fileSize = nullptr, bool appendEOF = false);
+
+// Similar to above, but is best used with a text file. If a binary file is supplied and convertZeroesTo is left at
+// default, any null characters '\0' are turned into separators (31). This ensures that the string length will be
+// correct. Use convertZeroesTo = '\0' to leave it unmodified, but expect length to be incorrect if a binary file is
+// supplied.
+bool tLoadFile(const tString& file, tString& dst, char convertZeroesTo = 31);
+
+// Same as LoadFile except only the first bytesToRead bytes are read. Also the actual number read is returned in
+// bytesToRead. This will be smaller than the number requested if the file is too small. If there are any problems,
+// bytesToRead will contain 0 and if a buffer was supplied it will be returned (perhaps modified). If one wasn't
+// supplied and there is a read problem, nullptr will be returned.
+uint8* tLoadFileHead(const tString& file, int& bytesToRead, uint8* buffer = nullptr);
+uint8* tLoadFileHead(const tString& file, int bytesToRead, tString& dest);
+
 
 //
 // File types and extensions.
@@ -575,44 +615,6 @@ bool tFindFilesRecFast(tList<tFileInfo>& foundFiles, const tString& dir, const t
 bool tFindFilesRecFast(tList<tFileInfo>& foundFiles, const tString& dir, const tExtensions&, bool includeHidden = true);
 bool tFindFilesRecFast(tList<tFileInfo>& foundFiles, const tString& dir, bool includeHidden = true);
 #endif
-
-bool tCreateFile(const tString& filename);					// Creates an empty file.
-bool tCreateFile(const tString& filename, const tString& contents);
-bool tCreateFile(const tString& filename, uint8* data, int length);
-
-// For easily creating UTF-encoded text files. It is not recommended to write a BOM for UTF-8.
-bool tCreateFile(const tString& filename, char8_t*  data, int length, bool writeBOM = false);
-bool tCreateFile(const tString& filename, char16_t* data, int length, bool writeBom = true);
-bool tCreateFile(const tString& filename, char32_t* data, int length, bool writeBOM = true);
-
-// Loads entire file into memory. If buffer is nullptr you must free the memory returned at some point by using
-// delete[]. If buffer is non-nullptr it must be at least GetFileSize big (+1 if appending EOF). Any problems (file not exist or is
-// unreadable etc) and nullptr is returned. Fills in the file size pointer if you supply one (not including optional appened EOF). It is perfectly valid to
-// load a file with no data (0 bytes big). In this case LoadFile always returns nullptr even if a non-zero buffer was
-// passed in and the fileSize member will be set to 0 (if supplied).
-uint8* tLoadFile(const tString& filename, uint8* buffer = nullptr, int* fileSize = nullptr, bool appendEOF = false);
-
-// Similar to above, but is best used with a text file. If a binary file is supplied and convertZeroesTo is left at
-// default, any null characters '\0' are turned into separators (31). This ensures that the string length will be
-// correct. Use convertZeroesTo = '\0' to leave it unmodified, but expect length to be incorrect if a binary file is
-// supplied.
-bool tLoadFile(const tString& filename, tString& dst, char convertZeroesTo = 31);
-
-// Same as LoadFile except only the first bytesToRead bytes are read. Also the actual number read is returned in
-// bytesToRead. This will be smaller than the number requested if the file is too small. If there are any problems,
-// bytesToRead will contain 0 and if a buffer was supplied it will be returned (perhaps modified). If one wasn't
-// supplied and there is a read problem, nullptr will be returned.
-uint8* tLoadFileHead(const tString& filename, int& bytesToRead, uint8* buffer = nullptr);
-uint8* tLoadFileHead(const tString& filename, int bytesToRead, tString& dest);
-
-// Returns true if file existed and was deleted. If tryUseRecycleBin is true and the function can't find the recycle
-// bin, it will return false. It is up to you to call it again with tryUseRecycleBin false if you really want the
-// file gone.
-bool tDeleteFile(const tString& filename, bool deleteReadOnly = true, bool tryUseRecycleBin = false);
-
-// If either (or both) file doesn't exist you get false. Entire files will temporarily be read into memory so it's not
-// too efficient (only for tool use).
-bool tFilesIdentical(const tString& fileA, const tString& fileB);
 
 // @todo Implement the tFile class. Right now we're basically just reserving the class name.
 class tFile : public tStream { tFile(const tString& file, tStream::tModes modes)																: tStream(modes) { } };
