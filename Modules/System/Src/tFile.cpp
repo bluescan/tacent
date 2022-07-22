@@ -1157,7 +1157,7 @@ bool tSystem::tDeleteFile(const tString& file, bool deleteReadOnly, bool useRecy
 	}
 	else
 	{
-		tString filenamePlusChar = filenamee + "Z";
+		tString filenamePlusChar = file + "Z";
 		#ifdef TACENT_UTF16_API_CALLS
 		tStringUTF16 filenameDoubleNull16(filenamePlusChar);
 		*(filenameDoubleNull16.Units() + filenameDoubleNull16.Length() - 1) = 0;
