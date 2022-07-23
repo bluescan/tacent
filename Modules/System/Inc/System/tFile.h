@@ -588,7 +588,7 @@ bool tFindFiles(tList<tFileInfo>& files, const tString& dir, const tExtensions&,
 //
 // @todo Except for the first variant, these are not implemented... and the function that is implemented will return
 // all filetypes in the extension passed in is empty.
-bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tString& ext = tString(), bool hidden = true);
+bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tString& ext = tString(), bool hidden = true, Backend = Backend::Native);
 #ifdef THIS_IS_NOT_IMPLEMENTED_YET
 bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tString& ext, bool hidden = true);
 bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tExtensions&, bool hidden = true);
