@@ -541,61 +541,64 @@ void tSetFileOpenAssoc(const tString& program, const tList<tStringItem>& extensi
 tString tGetFileOpenAssoc(const tString& extension);
 #endif
 
-// HERE
 
 //
 // File enumeration Functions.
 //
-// This function finds files in a directory. It uses the std::filesystem calls that, while cross-platform, can be rather
-// slow. Consider using the "Fast" versions of this function. They fallback to this if not implemeneted for a particular
-// platform. The foundfiles list is always appended to. You must clear it first if that's what you intend. If empty dir
-// argument, the contents of the current directory are returned. Extension can be something like "txt" (no dot). On all
-// platforms the extension is not case sensitive. eg. giF will match Gif. Returns false if ext empty or no files found.
-// If false returned foundFiles is unmodified. The order of items in foundFiles is not defined.
-bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden = true);
+// For all following functions when the backend is Stndrd it uses the C++17 std::filesystem calls. While it is clean
+// cross-plat API, it can be quite slow... up to 10x slower on Linux. When the backend is Native (the default) then
+// platform-specific native file access functions are used (FindFirstFile etc for windows, readdir etc for Linux). They
+// are much faster. The order of items returned in files is not defined. In particular, Native and Stndrd may not
+// populated the results in the same order. If a platform is not supported and Native is specified, it falls back to
+// the Stndrd backend.
+//
+// This function finds files in a directory.  The files list is always appended to. You must clear it first if that's what you intend. If empty dir
+// argument, the contents of the current directory are returned. If false returned files is unmodified. The order of
+// items in files is not defined.
+bool tFindFiles(tList<tStringItem>& files, const tString& dir, bool hidden = true, Backend = Backend::Native);
+
+// A variant of the above except you can specify only files with a specific extension. Extension can be something like
+// "txt" (no dot). On all platforms the extension is not case sensitive. eg. giF will match Gif. Returns false if ext
+// empty or no files found. Tacent does not consider files that have no extension special. If you want files that have
+// no extension call the previous variant of FindFiles that has no extension argument.
+//
+// In previous Tacent releases all filetypes were returned if ext was empty, but that was awkward as the semantics
+// changed. It is now a separate function.
+bool tFindFiles(tList<tStringItem>& files, const tString& dir, const tString& ext, bool hidden = true, Backend = Backend::Native);
 
 // This is similar to the above function but lets you specify more than one extension at a time. This has huge
 // performance implications (esp on Linux) if you need to find more than one extension in a directory. If tExtensions
-// is empty, all filetypes are included. The order of items in foundFiles is not defined. Returns success.
-bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions&, bool includeHidden = true);
+// is empty false will be returned. The order of items in files is not defined. Returns success.
+//
+// In previous Tacent releases all filetypes were returned if extensions was empty, but that was awkward as the
+// semantics changed. It is now a separate function.
+bool tFindFiles(tList<tStringItem>& files, const tString& dir, const tExtensions&, bool hidden = true, Backend = Backend::Native);
 
-// Use this variant if you want all filetypes returned. In previous Tacent releases all filetypes were returned if ext
-// or extensions was empty, but that was awkward as the semantics changed. It is now a separate function.
-bool tFindFiles(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden = true);
+// If you need the full file info for all the files you are enumerating, call this instead of the tFindFiles above. It
+// is much faster than getting the filenames and calling tGetFileInfo on each one -- a lot faster, esp on windows.
+bool tFindFiles(tList<tFileInfo>& files, const tString& dir, bool hidden = true, Backend = Backend::Native);
+bool tFindFiles(tList<tFileInfo>& files, const tString& dir, const tString& ext, bool hidden = true, Backend = Backend::Native);
+bool tFindFiles(tList<tFileInfo>& files, const tString& dir, const tExtensions&, bool hidden = true, Backend = Backend::Native);
 
-// The above three functions are based on the generic C++17 std::filesystem interface. While a clean cross-plat API,
-// it really is quite slow... up to 10x slower on Linux. The following two functions do the same thing, but by using
-// the native C file access functions (FindFirstFile etc for windows, readdir etc for Linux). They are, as the name
-// indicates, much faster. The order of items in foundFiles is not defined. In particular, it may not match the non-
-// fast versions of tFindFiles. If a platform is not supported, falls back to slow variants. All other comments apply.
-bool tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden = true);
-bool tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions&, bool includeHidden = true);
-bool tFindFilesFast(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden = true);
+// HERE
 
-// If you need the full file info for all the files you are enumerating, call this instead of the tFindFilesFast above.
-// It is much faster than getting the filenames and calling tGetFileInfo on each one -- a lot faster, esp on windows.
-// There is currently no std::filesystem-only version of these files.
-bool tFindFilesFast(tList<tFileInfo>& foundFiles, const tString& dir, const tString& ext, bool includeHidden = true);
-bool tFindFilesFast(tList<tFileInfo>& foundFiles, const tString& dir, const tExtensions&, bool includeHidden = true);
-bool tFindFilesFast(tList<tFileInfo>& foundFiles, const tString& dir, bool includeHidden = true);
-
-// Recursive variants of the functions above -- be careful. foundFiles is appened to. Clear first if desired. See
+// Recursive variants of the functions above -- be careful. files is appened to. Clear first if desired. See
 // comments above for behaviour. Because recursive queries can be dangerous if you are too close to the filesystem
 // root, these are separate functions rather than a switch.
 //
 // @todo Except for the first variant, these are not implemented... and the function that is implemented will return
 // all filetypes in the extension passed in is empty.
-bool tFindFilesRec(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext = tString(), bool includeHidden = true);
+bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tString& ext = tString(), bool hidden = true);
 #ifdef THIS_IS_NOT_IMPLEMENTED_YET
-bool tFindFilesRec(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden = true);
-bool tFindFilesRec(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions&, bool includeHidden = true);
-bool tFindFilesRec(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden = true);
-bool tFindFilesRecFast(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden = true);
-bool tFindFilesRecFast(tList<tStringItem>& foundFiles, const tString& dir, const tExtensions&, bool includeHidden = true);
-bool tFindFilesRecFast(tList<tStringItem>& foundFiles, const tString& dir, bool includeHidden = true);
-bool tFindFilesRecFast(tList<tFileInfo>& foundFiles, const tString& dir, const tString& ext, bool includeHidden = true);
-bool tFindFilesRecFast(tList<tFileInfo>& foundFiles, const tString& dir, const tExtensions&, bool includeHidden = true);
-bool tFindFilesRecFast(tList<tFileInfo>& foundFiles, const tString& dir, bool includeHidden = true);
+bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tString& ext, bool hidden = true);
+bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tExtensions&, bool hidden = true);
+bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, bool hidden = true);
+bool tFindFilesRecFast(tList<tStringItem>& files, const tString& dir, const tString& ext, bool hidden = true);
+bool tFindFilesRecFast(tList<tStringItem>& files, const tString& dir, const tExtensions&, bool hidden = true);
+bool tFindFilesRecFast(tList<tStringItem>& files, const tString& dir, bool hidden = true);
+bool tFindFilesRecFast(tList<tFileInfo>& files, const tString& dir, const tString& ext, bool hidden = true);
+bool tFindFilesRecFast(tList<tFileInfo>& files, const tString& dir, const tExtensions&, bool hidden = true);
+bool tFindFilesRecFast(tList<tFileInfo>& files, const tString& dir, bool hidden = true);
 #endif
 
 //

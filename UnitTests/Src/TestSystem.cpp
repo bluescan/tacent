@@ -875,7 +875,7 @@ tTestUnit(FileTypes)
 
 	// Test implicit type conversion of string literal.
 	tList<tStringItem> foundFiles;
-	tSystem::tFindFilesFast(foundFiles, "TestData/", "bin");
+	tSystem::tFindFiles(foundFiles, "TestData/", "bin");
 
 	tExtensions extsAll(FileTypesGlobal, false);
 	tPrintf("All extensions:\n");
@@ -1007,7 +1007,7 @@ tTestUnit(File)
 		tPrintf("Found file norm: %s\n", file->Text());
 
 	tList<tStringItem> filesFast;
-	tFindFilesFast(filesFast, "TestData/", false);
+	tFindFiles(filesFast, "TestData/", false);
 	for (tStringItem* file = filesFast.Head(); file; file = file->Next())
 		tPrintf("Found file fast: %s\n", file->Text());
 
@@ -1029,7 +1029,7 @@ tTestUnit(File)
 		tPrintf("Found file norm (bmp, txt, zzz): %s\n", file->Text());
 
 	tList<tStringItem> filesMultFast;
-	tFindFilesFast(filesMultFast, "TestData/", extensions);
+	tFindFiles(filesMultFast, "TestData/", extensions);
 	for (tStringItem* file = filesMultFast.Head(); file; file = file->Next())
 		tPrintf("Found file fast (bmp, txt, zzz): %s\n", file->Text());
 
