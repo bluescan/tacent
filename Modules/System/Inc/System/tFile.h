@@ -490,8 +490,6 @@ struct tFileTypes
 	tString UserName;
 };
 
-// HERE
-
 // This contains info about a file OR a directory. I guess it's really a tFileOrDirInfo.
 struct tFileInfo : public tLink<tFileInfo>
 {
@@ -512,8 +510,8 @@ struct tFileInfo : public tLink<tFileInfo>
 };
 
 // Returns true if the FileInfo struct was filled out. Returns false if there was a problem like the file didn't exist.
-// In this case the struct is left unmodified. This function can also be used to get directory information.
-bool tGetFileInfo(tFileInfo&, const tString& fileName);
+// In this case the struct is left unmodified. This function can be used to get for or directory information.
+bool tGetFileInfo(tFileInfo&, const tString& path);
 
 #ifdef PLATFORM_WINDOWS
 struct tFileDetails
@@ -532,7 +530,7 @@ struct tFileDetails
 // call uses the Shell on Windows. It's a little unclear how fast this call is, but it may be a bit of a resource hog.
 // This function can also be used for drives and directories. Things like amount of free space, filesystem name, etc
 // will be among the details. Returns false if there was a problem.
-bool tGetFileDetails(tFileDetails&, const tString& fileName);
+bool tGetFileDetails(tFileDetails&, const tString& path);
 
 // Sets the desktop 'open' verb file association. Idempotent. The extensions should NOT include the dot. The specified
 // program should be fully qualified (absolute). You may set more than one extension for the same program.
@@ -543,30 +541,11 @@ void tSetFileOpenAssoc(const tString& program, const tList<tStringItem>& extensi
 tString tGetFileOpenAssoc(const tString& extension);
 #endif
 
-// Directory functions. These are simpler because we don't deal with extensions. If the dir to search is empty, the
-// current directory is used. If hidden is true, includes hidden directories. In all the tFind functions, the
-// destination list (dirs) is appended to and not cleared so you can collect results if necessary. Returns success.
-bool tFindDirs   (tList<tStringItem>& dirs, const tString& dir = tString(), bool hidden = false, Backend = Backend::Native);
-bool tFindDirsRec(tList<tStringItem>& dirs, const tString& dir = tString(), bool hidden = false, Backend = Backend::Native);
-
-// These versions of tFindDirs can be used if you need additional information along with each directory. The dirs
-// list includes hidden directories because you can always exclude them by checking the Hidden member of tFileInfo.
-// It is faster to use these than the tStringItem calls above in conjunction with tGetFileInfo calls.
-bool tFindDirs   (tList<tFileInfo>& dirs, const tString& dir = tString(), Backend = Backend::Native);
-bool tFindDirsRec(tList<tFileInfo>& dirs, const tString& dir = tString(), Backend = Backend::Native);
-
-// Creates a directory. It can also handle creating all the directories in a path. Calling with a string like
-// "C:/DirA/DirB/" will ensure that DirA and DirB exist. Returns true if successful.
-bool tCreateDir(const tString& dir);
-
-// A relentless delete. Doesn't care about read-only unless deleteReadOnly is false. This call does a recursive delete.
-// If a file has an open handle, however, this fn will fail. If the directory didn't exist before the call then this function silently returns. Returns true if dir existed and was deleted.
-bool tDeleteDir(const tString& directory, bool deleteReadOnly = true);
+// HERE
 
 //
-// File Functions.
+// File enumeration Functions.
 //
-
 // This function finds files in a directory. It uses the std::filesystem calls that, while cross-platform, can be rather
 // slow. Consider using the "Fast" versions of this function. They fallback to this if not implemeneted for a particular
 // platform. The foundfiles list is always appended to. You must clear it first if that's what you intend. If empty dir
@@ -618,6 +597,29 @@ bool tFindFilesRecFast(tList<tFileInfo>& foundFiles, const tString& dir, const t
 bool tFindFilesRecFast(tList<tFileInfo>& foundFiles, const tString& dir, const tExtensions&, bool includeHidden = true);
 bool tFindFilesRecFast(tList<tFileInfo>& foundFiles, const tString& dir, bool includeHidden = true);
 #endif
+
+//
+// Directory enumeration functions.
+//
+// These are simpler because we don't deal with extensions. If the dir to search is empty, the
+// current directory is used. If hidden is true, includes hidden directories. In all the tFind functions, the
+// destination list (dirs) is appended to and not cleared so you can collect results if necessary. Returns success.
+bool tFindDirs   (tList<tStringItem>& dirs, const tString& dir = tString(), bool hidden = false, Backend = Backend::Native);
+bool tFindDirsRec(tList<tStringItem>& dirs, const tString& dir = tString(), bool hidden = false, Backend = Backend::Native);
+
+// These versions of tFindDirs can be used if you need additional information along with each directory. The dirs
+// list includes hidden directories because you can always exclude them by checking the Hidden member of tFileInfo.
+// It is faster to use these than the tStringItem calls above in conjunction with tGetFileInfo calls.
+bool tFindDirs   (tList<tFileInfo>& dirs, const tString& dir = tString(), Backend = Backend::Native);
+bool tFindDirsRec(tList<tFileInfo>& dirs, const tString& dir = tString(), Backend = Backend::Native);
+
+// Creates a directory. It can also handle creating all the directories in a path. Calling with a string like
+// "C:/DirA/DirB/" will ensure that DirA and DirB exist. Returns true if successful.
+bool tCreateDir(const tString& dir);
+
+// A relentless delete. Doesn't care about read-only unless deleteReadOnly is false. This call does a recursive delete.
+// If a file has an open handle, however, this fn will fail. If the directory didn't exist before the call then this function silently returns. Returns true if dir existed and was deleted.
+bool tDeleteDir(const tString& directory, bool deleteReadOnly = true);
 
 // @todo Implement the tFile class. Right now we're basically just reserving the class name.
 class tFile : public tStream { tFile(const tString& file, tStream::tModes modes)																: tStream(modes) { } };
@@ -768,6 +770,28 @@ inline bool tSystem::tIsDrivePath(const tString& path)
 
 	return false;
 }
+
+
+#if defined(PLATFORM_WINDOWS)
+inline tSystem::tDriveInfo::tDriveInfo() :
+	Letter(),
+	DisplayName(),
+	VolumeName(),
+	SerialNumber(0),
+	DriveType(tDriveType::Unknown)
+{
+}
+
+
+inline void tSystem::tDriveInfo::Clear()
+{
+	Letter.Clear();
+	DisplayName.Clear();
+	VolumeName.Clear();
+	SerialNumber = 0;
+	DriveType = tDriveType::Unknown;
+}
+#endif
 
 
 inline tSystem::tExtensions& tSystem::tExtensions::Add(const tExtensions& src)
@@ -998,9 +1022,6 @@ inline tString tSystem::tFileTypes::GetSelectedString(Separator sepType, int max
 }
 
 
-// HERE
-
-
 inline tSystem::tFileInfo::tFileInfo() :
 	FileName(),
 	FileSize(0),
@@ -1025,25 +1046,3 @@ inline void tSystem::tFileInfo::Clear()
 	Hidden = false;
 	Directory = false;
 }
-
-
-#if defined(PLATFORM_WINDOWS)
-inline tSystem::tDriveInfo::tDriveInfo() :
-	Letter(),
-	DisplayName(),
-	VolumeName(),
-	SerialNumber(0),
-	DriveType(tDriveType::Unknown)
-{
-}
-
-
-inline void tSystem::tDriveInfo::Clear()
-{
-	Letter.Clear();
-	DisplayName.Clear();
-	VolumeName.Clear();
-	SerialNumber = 0;
-	DriveType = tDriveType::Unknown;
-}
-#endif
