@@ -41,8 +41,6 @@
 
 namespace tSystem
 {
-	std::time_t tFileTimeToStdTime(std::filesystem::file_time_type tp);
-
 	// Conversions to tacent-standard paths. Forward slashes where possible.
 	// Windows does not allow forward slashes when dealing with network shares, a path like
 	// \\machinename\sharename/dir/subdir/
@@ -56,8 +54,9 @@ namespace tSystem
 	void tPathWinDir (tString& path);	// "C:/Hello/There/" -> "C:\Hello\There\". "C:/Hello/There" -> "C:\Hello\There\".
 	void tPathWinFile(tString& path);	// "C:/Hello/There/" -> "C:\Hello\There".  "C:/Hello/There" -> "C:\Hello\There".
 
+	std::time_t tStdFileTimeToPosixTime(std::filesystem::file_time_type tp);
 	#ifdef PLATFORM_WINDOWS
-	std::time_t tFileTimeToPosixEpoch(FILETIME);
+	std::time_t tWinFileTimeToPosixTime(FILETIME);
 	void tPopulateFileInfo_Windows(tFileInfo& fileInfo, Win32FindData&, const tString& filename);
 	#endif
 	void tPopulateFileInfo_Stndrd(tFileInfo& fileInfo, const std::filesystem::directory_entry&, const tString& filename);
@@ -75,7 +74,9 @@ namespace tSystem
 		const char* Ext[MaxExtensionsPerFileType] = { nullptr, nullptr, nullptr, nullptr };
 		bool HasExt(const tString& ext)																					{ for (int e = 0; e < MaxExtensionsPerFileType; e++) if (ext.IsEqualCI(Ext[e])) return true; return false; }
 	};
-	extern FileTypeExts FileTypeExtTable[int(tFileType::NumFileTypes)];
+
+	// It is important not to specify the array size here so we can static-assert.
+	extern FileTypeExts FileTypeExtTable[];
 
 	// Native and Standard implementations of some functins.
 	bool tFindDirs_Native(tList<tStringItem>& dirs, const tString& dir, bool hidden);
@@ -1856,22 +1857,10 @@ void tSystem::tExplodeShareName(tList<tStringItem>& exploded, const tString& sha
 #endif // PLATFORM_WINDOWS
 
 
-// HERE
-
-
-tString tSystem::tGetFileExtension(const tString& filename)																
-{
-	tString ext = filename.Right('.'); 
-	if(ext == filename)
-		ext.Clear();
-
-	return ext;
-}
-
-
 // When more than one extension maps to the same filetype (like jpg and jpeg), always put the more common extension
-// first in the extensions array.
-tSystem::FileTypeExts tSystem::FileTypeExtTable[int(tSystem::tFileType::NumFileTypes)] = //] =
+// first in the extensions array. It is important not to specify the array size here so we can static-assert that we
+// have entered the correct number of entries.
+tSystem::FileTypeExts tSystem::FileTypeExtTable[] =
 {
 //	Extensions							Filetype
 	{ "tga" },							// TGA
@@ -1898,8 +1887,18 @@ tSystem::FileTypeExts tSystem::FileTypeExtTable[int(tSystem::tFileType::NumFileT
 	{ "tac", "tim" },					// TAC
 	{ "cfg" },							// CFG
 	{ "ini" },							// INI
-	// { "too many" }
 };
+tStaticAssert(tNumElements(tSystem::FileTypeExtTable) == int(tSystem::tFileType::NumFileTypes));
+
+
+tString tSystem::tGetFileExtension(const tString& file)
+{
+	tString ext = file.Right('.'); 
+	if(ext == file)
+		ext.Clear();
+
+	return ext;
+}
 
 
 tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString& ext)
@@ -1977,16 +1976,35 @@ const char* tSystem::tGetFileTypeName(tFileType fileType)
 }
 
 
-std::time_t tSystem::tFileTimeToStdTime(std::filesystem::file_time_type tp)
+// HERE
+
+
+std::time_t tSystem::tStdFileTimeToPosixTime(std::filesystem::file_time_type ftime)
 {
 	using namespace std::chrono;
-	auto sctp = time_point_cast<system_clock::duration>(tp - std::filesystem::file_time_type::clock::now() + system_clock::now());
+
+	#if 0
+	// This is the old way.
+	auto sctp = time_point_cast<system_clock::duration>(ftime - std::filesystem::file_time_type::clock::now() + system_clock::now());
 	return system_clock::to_time_t(sctp);
+	#endif
+
+	// This is the new C++20 way, although different compilers have not implemented the same code paths.
+	// Using clock_cast seems a bit more portable than something like to_sys which is not implemented for all clocks
+	// on some systems (MSVC, for example, chose only to do it for the utc clock. In any case clock_cast is probably
+	// the way to go. Example non-portable code: Update: apparently not portable. Need the ifdefs.
+	#ifdef PLATFORM_WINDOWS
+	auto systemTimePoint = clock_cast<std::chrono::system_clock>(ftime);
+	return system_clock::to_time_t(systemTimePoint);
+
+	#else
+	return system_clock::to_time_t(file_clock::to_sys(ftime));
+	#endif
 }
 
 
 #ifdef PLATFORM_WINDOWS
-std::time_t tSystem::tFileTimeToPosixEpoch(FILETIME filetime)
+std::time_t tSystem::tWinFileTimeToPosixTime(FILETIME filetime)
 {
 	LARGE_INTEGER date;
 	date.HighPart = filetime.dwHighDateTime;
@@ -2009,9 +2027,9 @@ std::time_t tSystem::tFileTimeToPosixEpoch(FILETIME filetime)
 void tSystem::tPopulateFileInfo_Windows(tFileInfo& fileInfo, Win32FindData& fd, const tString& filename)
 {
 	fileInfo.FileName = filename;
-	fileInfo.CreationTime = tFileTimeToPosixEpoch(fd.ftCreationTime);
-	fileInfo.ModificationTime = tFileTimeToPosixEpoch(fd.ftLastWriteTime);
-	fileInfo.AccessTime = tFileTimeToPosixEpoch(fd.ftLastAccessTime);
+	fileInfo.CreationTime = tWinFileTimeToPosixTime(fd.ftCreationTime);
+	fileInfo.ModificationTime = tWinFileTimeToPosixTime(fd.ftLastWriteTime);
+	fileInfo.AccessTime = tWinFileTimeToPosixTime(fd.ftLastAccessTime);
 
 	// Occasionally, a file does not have a valid modification or access time.  The fileInfo struct
 	// may, erronously, contain a modification or access time that is smaller than the creation time!
@@ -2055,19 +2073,7 @@ void tSystem::tPopulateFileInfo_Stndrd(tFileInfo& fileInfo, const std::filesyste
 	// ModificationTime.
 	std::filesystem::file_time_type ftime = entry.last_write_time(errCode);
 	if (!errCode)
-	{
-		// This works in C++20 or later only.
-		// Using clock_cast seems a bit more portable than something like to_sys which is not implemented for all clocks
-		// on some systems (MSVC, for example, chose only to do it for the utc clock. In any case clock_cast is probably
-		// the way to go. Example non-portable code: Update: apparently not portable. Need the ifdefs.
-		#ifdef PLATFORM_WINDOWS
-		auto systemTimePoint = std::chrono::clock_cast<std::chrono::system_clock>(ftime);
-		auto unixTime = std::chrono::system_clock::to_time_t(systemTimePoint);
-		#else
-		auto unixTime = std::chrono::system_clock::to_time_t(std::chrono::file_clock::to_sys(ftime));
-		#endif
-		fileInfo.ModificationTime = unixTime;
-	}
+		fileInfo.ModificationTime = tStdFileTimeToPosixTime(ftime);
 
 	// AccessTime not vailable from std::filesystem. Needs to remain -1 (unset).
 	fileInfo.AccessTime = -1;

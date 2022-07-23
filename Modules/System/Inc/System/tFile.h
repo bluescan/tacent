@@ -239,7 +239,7 @@ uint8* tLoadFileHead(const tString& file, int bytesToRead, tString& dest);
 
 
 //
-// System path and drive information.
+// System path, drive, and network share information.
 //
 // Gets the home directory. On Linux usually something like "/home/username/". On windows usually something like "C:/Users/UserName/".
 tString tGetHomeDir();
@@ -327,19 +327,13 @@ void tExplodeShareName(tList<tStringItem>& exploded, const tString& shareName);
 #endif // PLATFORM_WINDOWS
 
 
-// HERE
-
-
 //
-// File types and extensions.
+// File types, extensions, and file details.
 //
-
-// c:/Stuff/Mess.max to max
-tString tGetFileExtension(const tString& filename);
-
-// File types are based on file extensions only. If this enum is modified there is an extension mapping table
-// in tFile.cpp that needs to be updated as well. In order to be clear abour the distinction between filetype
-// and extensions, the types here do not have any synonyms. A single filetype may map to multiple extensions.
+// File types are based on file extensions only. If this enum is modified there is an extension mapping table in
+// tFile.cpp that needs to be updated as well. The compiler will static-assert if the number of entries does not match.
+// In order to be clear about the distinction between filetype and extensions, the types here do not have any synonyms.
+// A single filetype may map to multiple extensions.
 enum class tFileType
 {
 //	Type						Description
@@ -374,6 +368,10 @@ enum class tFileType
 	INI,						// Config. Ini Config File.
 	NumFileTypes
 };
+struct tFileTypes;
+
+// c:/Stuff/Mess.max to max
+tString tGetFileExtension(const tString& file);
 
 // The supplied extension should not contain a period. Case insensitive.
 tFileType tGetFileTypeFromExtension(const tString& ext);
@@ -392,8 +390,6 @@ tString tGetExtension(tFileType);
 
 // Currently this returns the same string as the most common (default) extension string.
 const char* tGetFileTypeName(tFileType);
-
-struct tFileTypes;
 
 // A little helper type that holds file extension strings. Extensions are lower-case and do not include the dot.
 struct tExtensions
@@ -434,7 +430,6 @@ struct tExtensions
 	// A user specified name for this collection of extensions. Use is optional.
 	tString UserName;
 };
-
 
 // Another helper that stores a collection of file-types. Useful if you need, say, a list of file-types you want to
 // support in your app. This is preferred over set of supported extensions as it is not always a 1:1 mapping.
@@ -494,6 +489,8 @@ struct tFileTypes
 	// collection of types is exclusively comprised of image types.
 	tString UserName;
 };
+
+// HERE
 
 // This contains info about a file OR a directory. I guess it's really a tFileOrDirInfo.
 struct tFileInfo : public tLink<tFileInfo>
@@ -772,7 +769,6 @@ inline bool tSystem::tIsDrivePath(const tString& path)
 	return false;
 }
 
-// HERE
 
 inline tSystem::tExtensions& tSystem::tExtensions::Add(const tExtensions& src)
 {
@@ -1000,6 +996,9 @@ inline tString tSystem::tFileTypes::GetSelectedString(Separator sepType, int max
 
 	return str;
 }
+
+
+// HERE
 
 
 inline tSystem::tFileInfo::tFileInfo() :
