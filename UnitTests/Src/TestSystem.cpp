@@ -979,7 +979,7 @@ tTestUnit(File)
 
 	tList<tFileInfo> dirs;
 	tPrintf("tFindDirs Backend::Stndrd\n");
-	tFindDirs(dirs, "TestData/", tSystem::Backend::Stndrd);
+	tFindDirs(dirs, "TestData/", true, tSystem::Backend::Stndrd);
 	for (tFileInfo* i = dirs.First(); i; i = i->Next())
 	{
 		std::tm localTime = tConvertTimeToLocal(i->ModificationTime);
@@ -991,7 +991,7 @@ tTestUnit(File)
 
 	dirs.Empty();
 	tPrintf("tFindDirs Backend::Native\n");
-	tFindDirs(dirs, "TestData/", tSystem::Backend::Stndrd);
+	tFindDirs(dirs, "TestData/", true, tSystem::Backend::Native);
 	for (tFileInfo* i = dirs.First(); i; i = i->Next())
 	{
 		std::tm localTime = tConvertTimeToLocal(i->ModificationTime);

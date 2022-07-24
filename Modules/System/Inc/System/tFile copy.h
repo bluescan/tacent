@@ -511,7 +511,8 @@ struct tFileInfo : public tLink<tFileInfo>
 
 // Returns true if the FileInfo struct was filled out. Returns false if there was a problem like the file didn't exist.
 // In this case the struct is left unmodified. This function can be used to get for or directory information.
-bool tGetFileInfo(tFileInfo&, const tString& path);
+bool tGetFileInfo(tFileInfo&, const tString& path, Backend = Backend::Native);
+// HERE
 
 #ifdef PLATFORM_WINDOWS
 struct tFileDetails
@@ -541,7 +542,6 @@ void tSetFileOpenAssoc(const tString& program, const tList<tStringItem>& extensi
 tString tGetFileOpenAssoc(const tString& extension);
 #endif
 
-
 //
 // File and directory enumeration Functions.
 //
@@ -557,11 +557,13 @@ tString tGetFileOpenAssoc(const tString& extension);
 // collect results if necessary. Returns success.
 bool tFindDirs   (tList<tStringItem>& dirs, const tString& dir = tString(), bool hidden = true, Backend = Backend::Native);
 
+// HERE
+
 // This versions of tFindDirs can be used if you need additional information along with each directory.
 // It is faster to use this than the tStringItem version above in conjunction with tGetFileInfo calls.
 bool tFindDirs   (tList<tFileInfo>&   dirs, const tString& dir = tString(), bool hidden = true, Backend = Backend::Native);
 
-// This function finds files in a directory. The files list is always appended to. You must clear it first if that's what you intend. If empty dir
+// This function finds files in a directory.  The files list is always appended to. You must clear it first if that's what you intend. If empty dir
 // argument, the contents of the current directory are returned. If false returned files is unmodified. The order of
 // items in files is not defined.
 bool tFindFiles(tList<tStringItem>& files, const tString& dir, bool hidden = true, Backend = Backend::Native);
@@ -589,37 +591,21 @@ bool tFindFiles(tList<tFileInfo>& files, const tString& dir, bool hidden = true,
 bool tFindFiles(tList<tFileInfo>& files, const tString& dir, const tString& ext, bool hidden = true, Backend = Backend::Native);
 bool tFindFiles(tList<tFileInfo>& files, const tString& dir, const tExtensions&, bool hidden = true, Backend = Backend::Native);
 
-// Recursive variants of the functions above -- be careful. files is appened to. Clear first if desired. See
-// comments above for behaviour. Because recursive queries can be dangerous if you are too close to the filesystem
-// root, these are separate functions rather than a switch.
-//
-// @todo Except for the first variant, these are not implemented... and the function that is implemented will return
-// all filetypes in the extension passed in is empty.
-bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tString& ext = tString(), bool hidden = true, Backend = Backend::Native);
-#ifdef THIS_IS_NOT_IMPLEMENTED_YET
-bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tString& ext, bool hidden = true);
-bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tExtensions&, bool hidden = true);
-bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, bool hidden = true);
-bool tFindFilesRecFast(tList<tStringItem>& files, const tString& dir, const tString& ext, bool hidden = true);
-bool tFindFilesRecFast(tList<tStringItem>& files, const tString& dir, const tExtensions&, bool hidden = true);
-bool tFindFilesRecFast(tList<tStringItem>& files, const tString& dir, bool hidden = true);
-bool tFindFilesRecFast(tList<tFileInfo>& files, const tString& dir, const tString& ext, bool hidden = true);
-bool tFindFilesRecFast(tList<tFileInfo>& files, const tString& dir, const tExtensions&, bool hidden = true);
-bool tFindFilesRecFast(tList<tFileInfo>& files, const tString& dir, bool hidden = true);
-#endif
 
-//
-// Directory enumeration functions.
-//
-// These are simpler because we don't deal with extensions. If the dir to search is empty, the
-// current directory is used. If hidden is true, includes hidden directories. In all the tFind functions, the
-// destination list (dirs) is appended to and not cleared so you can collect results if necessary. Returns success.
+
+// Recursive variants of the functions above. 'files' is appened to. Clear first if desired. See comments above for
+// behaviour. Because recursive queries can be dangerous if you are too close to the filesystem root, these are
+// separate functions rather than an argument switch.
+/*
 bool tFindDirsRec(tList<tStringItem>& dirs, const tString& dir = tString(), bool hidden = false, Backend = Backend::Native);
-
-// These versions of tFindDirs can be used if you need additional information along with each directory. The dirs
-// list includes hidden directories because you can always exclude them by checking the Hidden member of tFileInfo.
-// It is faster to use these than the tStringItem calls above in conjunction with tGetFileInfo calls.
 bool tFindDirsRec(tList<tFileInfo>& dirs, const tString& dir = tString(), Backend = Backend::Native);
+bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, bool hidden = true, Backend = Backend::Native);
+bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tString& ext, bool hidden = true, Backend = Backend::Native);
+bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tExtensions&, bool hidden = true, Backend = Backend::Native);
+bool tFindFilesRec(tList<tFileInfo>& files, const tString& dir, bool hidden = true, Backend = Backend::Native);
+bool tFindFilesRec(tList<tFileInfo>& files, const tString& dir, const tString& ext, bool hidden = true, Backend = Backend::Native);
+bool tFindFilesRec(tList<tFileInfo>& files, const tString& dir, const tExtensions&, bool hidden = true, Backend = Backend::Native);
+*/
 
 // Creates a directory. It can also handle creating all the directories in a path. Calling with a string like
 // "C:/DirA/DirB/" will ensure that DirA and DirB exist. Returns true if successful.
