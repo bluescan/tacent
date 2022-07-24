@@ -2,7 +2,7 @@
 //
 // System module tests.
 //
-// Copyright (c) 2017, 2019, 2020, 2021, 2022 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -1001,17 +1001,17 @@ tTestUnit(File)
 		tPrintf("Dir: %s Hidden: %s\n", i->FileName.Chr(), i->Hidden ? "true" : "false");
 	}
 
-	tList<tStringItem> files;
-	tFindFiles(files, "TestData/", false);
-	for (tStringItem* file = files.Head(); file; file = file->Next())
-		tPrintf("Found file norm: %s\n", file->Text());
+	tList<tStringItem> filesStd;
+	tFindFiles(filesStd, "TestData/", false, Backend::Stndrd);
+	for (tStringItem* file = filesStd.Head(); file; file = file->Next())
+		tPrintf("Found file standard: %s\n", file->Text());
 
-	tList<tStringItem> filesFast;
-	tFindFiles(filesFast, "TestData/", false);
-	for (tStringItem* file = filesFast.Head(); file; file = file->Next())
-		tPrintf("Found file fast: %s\n", file->Text());
+	tList<tStringItem> filesNat;
+	tFindFiles(filesNat, "TestData/", false, Backend::Native);
+	for (tStringItem* file = filesNat.Head(); file; file = file->Next())
+		tPrintf("Found file native: %s\n", file->Text());
 
-	tRequire(ListsContainSameItems(files, filesFast));
+	tRequire(ListsContainSameItems(filesStd, filesNat));
 
 	tExtensions extensions;
 	extensions.Add(tFileType::TIFF).Add(tFileType::HDR);
@@ -1023,17 +1023,17 @@ tTestUnit(File)
 	extensions.Add("bmp").Add("txT");
 	extensions.Add("ZZZ");
 
-	tList<tStringItem> filesMult;
-	tFindFiles(filesMult, "TestData/", extensions);
-	for (tStringItem* file = filesMult.Head(); file; file = file->Next())
-		tPrintf("Found file norm (bmp, txt, zzz): %s\n", file->Text());
+	tList<tStringItem> filesMultStd;
+	tFindFiles(filesMultStd, "TestData/", extensions, false, Backend::Stndrd);
+	for (tStringItem* file = filesMultStd.Head(); file; file = file->Next())
+		tPrintf("Found file standard (bmp, txt, zzz): %s\n", file->Text());
 
-	tList<tStringItem> filesMultFast;
-	tFindFiles(filesMultFast, "TestData/", extensions);
-	for (tStringItem* file = filesMultFast.Head(); file; file = file->Next())
-		tPrintf("Found file fast (bmp, txt, zzz): %s\n", file->Text());
+	tList<tStringItem> filesMultNat;
+	tFindFiles(filesMultNat, "TestData/", extensions, false, Backend::Native);
+	for (tStringItem* file = filesMultNat.Head(); file; file = file->Next())
+		tPrintf("Found file native (bmp, txt, zzz): %s\n", file->Text());
 
-	tRequire(ListsContainSameItems(filesMult, filesMultFast));
+	tRequire(ListsContainSameItems(filesMultStd, filesMultNat));
 
 	tString testWinPath = "c:/ADir/file.txt";
 	tRequire(tGetDir(testWinPath) == "c:/ADir/");
@@ -1046,6 +1046,7 @@ tTestUnit(File)
 	for (tStringItem* subd = subDirs.Head(); subd; subd = subd->Next())
 		tPrintf("SubDir: %s\n", subd->Text());
 
+	tList<tStringItem> files;
 	files.Empty();
 	tFindFilesRec(files, "TestData/", true);
 	for (tStringItem* file = files.Head(); file; file = file->Next())

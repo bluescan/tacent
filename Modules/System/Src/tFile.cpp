@@ -2543,7 +2543,7 @@ bool tSystem::tFindDirs_Native(tList<tStringItem>* dirs, tList<tFileInfo>* infos
 
 	#elif defined(PLATFORM_LINUX)
 	// @todo No Linux Native implementation. Use Standard.
-	return tFindDirs_Stndrd(dirs, dir, hidden);
+	return tFindDirs_Stndrd(dirs, infos, dir, hidden);
 
 	#else
 	tAssert(!"tFindDirs_Native not implemented for platform.");
