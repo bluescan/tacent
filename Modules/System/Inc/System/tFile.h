@@ -557,7 +557,7 @@ tString tGetFileOpenAssoc(const tString& extension);
 // collect results if necessary. Returns success.
 bool tFindDirs   (tList<tStringItem>& dirs, const tString& dir = tString(), bool hidden = true, Backend = Backend::Native);
 
-// This versions of tFindDirs can be used if you need additional information along with each directory.
+// This version of tFindDirs can be used if you need additional information along with each directory.
 // It is faster to use this than the tStringItem version above in conjunction with tGetFileInfo calls.
 bool tFindDirs   (tList<tFileInfo>&   dirs, const tString& dir = tString(), bool hidden = true, Backend = Backend::Native);
 
@@ -589,37 +589,17 @@ bool tFindFiles(tList<tFileInfo>& files, const tString& dir, bool hidden = true,
 bool tFindFiles(tList<tFileInfo>& files, const tString& dir, const tString& ext, bool hidden = true, Backend = Backend::Native);
 bool tFindFiles(tList<tFileInfo>& files, const tString& dir, const tExtensions&, bool hidden = true, Backend = Backend::Native);
 
-// Recursive variants of the functions above -- be careful. files is appened to. Clear first if desired. See
-// comments above for behaviour. Because recursive queries can be dangerous if you are too close to the filesystem
-// root, these are separate functions rather than a switch.
-//
-// @todo Except for the first variant, these are not implemented... and the function that is implemented will return
-// all filetypes in the extension passed in is empty.
-bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tString& ext = tString(), bool hidden = true, Backend = Backend::Native);
-#ifdef THIS_IS_NOT_IMPLEMENTED_YET
-bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tString& ext, bool hidden = true);
-bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tExtensions&, bool hidden = true);
-bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, bool hidden = true);
-bool tFindFilesRecFast(tList<tStringItem>& files, const tString& dir, const tString& ext, bool hidden = true);
-bool tFindFilesRecFast(tList<tStringItem>& files, const tString& dir, const tExtensions&, bool hidden = true);
-bool tFindFilesRecFast(tList<tStringItem>& files, const tString& dir, bool hidden = true);
-bool tFindFilesRecFast(tList<tFileInfo>& files, const tString& dir, const tString& ext, bool hidden = true);
-bool tFindFilesRecFast(tList<tFileInfo>& files, const tString& dir, const tExtensions&, bool hidden = true);
-bool tFindFilesRecFast(tList<tFileInfo>& files, const tString& dir, bool hidden = true);
-#endif
-
-//
-// Directory enumeration functions.
-//
-// These are simpler because we don't deal with extensions. If the dir to search is empty, the
-// current directory is used. If hidden is true, includes hidden directories. In all the tFind functions, the
-// destination list (dirs) is appended to and not cleared so you can collect results if necessary. Returns success.
-bool tFindDirsRec(tList<tStringItem>& dirs, const tString& dir = tString(), bool hidden = false, Backend = Backend::Native);
-
-// These versions of tFindDirs can be used if you need additional information along with each directory. The dirs
-// list includes hidden directories because you can always exclude them by checking the Hidden member of tFileInfo.
-// It is faster to use these than the tStringItem calls above in conjunction with tGetFileInfo calls.
-bool tFindDirsRec(tList<tFileInfo>& dirs, const tString& dir = tString(), Backend = Backend::Native);
+// Recursive variants of the functions above. 'files' is appened to. Clear first if desired. See comments above for
+// behaviour. Because recursive queries can be dangerous if you are too close to the filesystem root, these are
+// separate functions rather than an argument switch.
+bool tFindDirsRec(tList<tStringItem>&  dirs,  const tString& dir = tString(), bool hidden = true, Backend = Backend::Native);
+bool tFindDirsRec(tList<tFileInfo>&    dirs,  const tString& dir = tString(), bool hidden = true, Backend = Backend::Native);
+bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, bool hidden = true, Backend = Backend::Native);
+bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tString& ext, bool hidden = true, Backend = Backend::Native);
+bool tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tExtensions&, bool hidden = true, Backend = Backend::Native);
+bool tFindFilesRec(tList<tFileInfo>&   files, const tString& dir, bool hidden = true, Backend = Backend::Native);
+bool tFindFilesRec(tList<tFileInfo>&   files, const tString& dir, const tString& ext, bool hidden = true, Backend = Backend::Native);
+bool tFindFilesRec(tList<tFileInfo>&   files, const tString& dir, const tExtensions&, bool hidden = true, Backend = Backend::Native);
 
 // Creates a directory. It can also handle creating all the directories in a path. Calling with a string like
 // "C:/DirA/DirB/" will ensure that DirA and DirB exist. Returns true if successful.
@@ -633,12 +613,12 @@ bool tDeleteDir(const tString& directory, bool deleteReadOnly = true);
 class tFile : public tStream { tFile(const tString& file, tStream::tModes modes)																: tStream(modes) { } };
 
 // File hash functions using tHash standard hash algorithms.
-uint32 tHashFileFast32(const tString& filename, uint32 iv = tHash::HashIV32);
-uint32 tHashFile32(const tString& filename, uint32 iv = tHash::HashIV32);
-uint64 tHashFile64(const tString& filename, uint64 iv = tHash::HashIV64);
-tuint128 tHashFile128(const tString& filename, tuint128 iv = tHash::HashIV128);
-tuint256 tHashFile256(const tString& filename, const tuint256 iv = tHash::HashIV256);
-tuint128 tHashFileMD5(const tString& filename, tuint128 iv = tHash::HashIVMD5);
+uint32 tHashFileFast32(  const tString& filename, uint32         iv = tHash::HashIV32);
+uint32 tHashFile32(      const tString& filename, uint32         iv = tHash::HashIV32);
+uint64 tHashFile64(      const tString& filename, uint64         iv = tHash::HashIV64);
+tuint128 tHashFile128(   const tString& filename, tuint128       iv = tHash::HashIV128);
+tuint256 tHashFile256(   const tString& filename, const tuint256 iv = tHash::HashIV256);
+tuint128 tHashFileMD5(   const tString& filename, tuint128       iv = tHash::HashIVMD5);
 tuint256 tHashFileSHA256(const tString& filename, const tuint256 iv = tHash::HashIVSHA256);
 
 

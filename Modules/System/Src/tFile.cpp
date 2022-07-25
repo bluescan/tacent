@@ -78,19 +78,14 @@ namespace tSystem
 	bool tFindDirs_Stndrd(tList<tStringItem>* dirs, tList<tFileInfo>* infos, const tString& dir, bool hidden);
 	bool tFindDirs_Native(tList<tStringItem>* dirs, tList<tFileInfo>* infos, const tString& dir, bool hidden);
 
-	// HERE
-
 	bool tFindFiles_Stndrd(tList<tStringItem>* files, tList<tFileInfo>* infos, const tString& dir, const tExtensions*, bool hidden);
 	bool tFindFiles_Native(tList<tStringItem>* files, tList<tFileInfo>* infos, const tString& dir, const tExtensions*, bool hidden);
 
-	bool tFindFilesRec_Stndrd(tList<tStringItem>& files, const tString& dir, const tString& ext, bool hidden);
-	bool tFindFilesRec_Native(tList<tStringItem>& files, const tString& dir, const tString& ext, bool hidden);
+	bool tFindDirsRec_Stndrd(tList<tStringItem>* dirs, tList<tFileInfo>* infos, const tString& dir, bool hidden);
+	bool tFindDirsRec_Native(tList<tStringItem>* dirs, tList<tFileInfo>* infos, const tString& dir, bool hidden);
 
-	bool tFindDirsRec_Stndrd(tList<tStringItem>& dirs, const tString& dir, bool hidden);
-	bool tFindDirsRec_Native(tList<tStringItem>& dirs, const tString& dir, bool hidden);
-
-	bool tFindDirsRec_Stndrd(tList<tFileInfo>& dirs, const tString& dir);
-	bool tFindDirsRec_Native(tList<tFileInfo>& dirs, const tString& dir);
+	bool tFindFilesRec_Stndrd(tList<tStringItem>* files, tList<tFileInfo>* infos, const tString& dir, const tExtensions*, bool hidden);
+	bool tFindFilesRec_Native(tList<tStringItem>* files, tList<tFileInfo>* infos, const tString& dir, const tExtensions*, bool hidden);
 }
 
 
@@ -544,7 +539,8 @@ bool tSystem::tDirExists(const tString& dir)
 	tPathStdFile(dirname);
 	std::filesystem::file_status fstat = std::filesystem::status(dirname.Chr());
 
-	return std::filesystem::is_directory(fstat);
+	std::error_code direc;
+	return std::filesystem::is_directory(fstat, direc);
 	#endif
 }
 
@@ -2061,7 +2057,8 @@ void tSystem::tPopulateFileInfo(tFileInfo& fileInfo, const std::filesystem::dire
 	fileInfo.Hidden = tIsHidden(filename);
 
 	// Directoryness.
-	fileInfo.Directory = entry.is_directory();
+	std::error_code dec;
+	fileInfo.Directory = entry.is_directory(dec);
 }
 
 
@@ -2606,7 +2603,10 @@ bool tSystem::tFindFiles_Stndrd(tList<tStringItem>* files, tList<tFileInfo>* inf
 			continue;
 		}
 
-		if (!entry.is_regular_file())
+		std::error_code rec;
+		if (!entry.is_regular_file(rec))
+			continue;
+		if (rec)
 			continue;
 
 		tString foundFile((char*)entry.path().u8string().c_str());
@@ -2857,286 +2857,13 @@ bool tSystem::tFindFiles(tList<tFileInfo>& files, const tString& dir, const tExt
 }
 
 
-bool tSystem::tFindFilesRec_Stndrd(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden)
-{
-	#ifdef PLATFORM_WINDOWS
-
-	// The windows functions seem to like backslashes better.
-	tString pathStr(dir);
-	tPathWinDir(pathStr);
-	if (ext.IsEmpty())
-		tFindFiles(foundFiles, dir, includeHidden);
-	else
-		tFindFiles(foundFiles, dir, ext, includeHidden);
-	Win32FindData fd;
-
-	// Look for all directories.
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 pathStrMod16(pathStr + "*.*");
-	WinHandle h = FindFirstFile(pathStrMod16.GetLPWSTR(), &fd);
-	#else
-	WinHandle h = FindFirstFile((pathStr + "*.*").Chr(), &fd);
-	#endif
-	if (h == INVALID_HANDLE_VALUE)
-		return false;
-
-	do
-	{
-		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-		{
-			// Don't recurse into hidden subdirectories if includeHidden is false.
-			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
-			{
-				// If the directory name is not "." or ".." then it's a real directory.
-				// Note that you cannot just check for the first character not being "."  Some directories (and files)
-				// may have a name that starts with a dot, especially if they were copied from a unix machine.
-				#ifdef TACENT_UTF16_API_CALLS
-				tString fn((char16_t*)fd.cFileName);
-				#else
-				tString fn(fd.cFileName);
-				#endif
-				if ((fn != ".") && (fn != ".."))
-					tFindFilesRec(foundFiles, pathStr + fn + "\\", ext, includeHidden);
-			}
-		}
-	} while (FindNextFile(h, &fd));
-
-	FindClose(h);
-	if (GetLastError() != ERROR_NO_MORE_FILES)
-		return false;
-
-	#else
-	for (const std::filesystem::directory_entry& entry: std::filesystem::recursive_directory_iterator(dir.Chr()))
-	{
-		if (!entry.is_regular_file())
-			continue;
-
-		tString foundFile((char*)entry.path().u8string().c_str());
-		if (!ext.IsEmpty() && (!ext.IsEqualCI(tGetFileExtension(foundFile))))
-			continue;
-
-		if (includeHidden || !tIsHidden(foundFile))
-			foundFiles.Append(new tStringItem(foundFile));
-	}
-	#endif
-
-	return true;
-}
-
-
-bool tSystem::tFindFilesRec_Native(tList<tStringItem>& foundFiles, const tString& dir, const tString& ext, bool includeHidden)
-{
-	#ifdef PLATFORM_WINDOWS
-
-	// The windows functions seem to like backslashes better.
-	tString pathStr(dir);
-	tPathWinDir(pathStr);
-	if (ext.IsEmpty())
-		tFindFiles(foundFiles, dir, includeHidden);
-	else
-		tFindFiles(foundFiles, dir, ext, includeHidden);
-	Win32FindData fd;
-
-	// Look for all directories.
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 pathStrMod16(pathStr + "*.*");
-	WinHandle h = FindFirstFile(pathStrMod16.GetLPWSTR(), &fd);
-	#else
-	WinHandle h = FindFirstFile((pathStr + "*.*").Chr(), &fd);
-	#endif
-	if (h == INVALID_HANDLE_VALUE)
-		return false;
-
-	do
-	{
-		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-		{
-			// Don't recurse into hidden subdirectories if includeHidden is false.
-			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || includeHidden)
-			{
-				// If the directory name is not "." or ".." then it's a real directory.
-				// Note that you cannot just check for the first character not being "."  Some directories (and files)
-				// may have a name that starts with a dot, especially if they were copied from a unix machine.
-				#ifdef TACENT_UTF16_API_CALLS
-				tString fn((char16_t*)fd.cFileName);
-				#else
-				tString fn(fd.cFileName);
-				#endif
-				if ((fn != ".") && (fn != ".."))
-					tFindFilesRec(foundFiles, pathStr + fn + "\\", ext, includeHidden);
-			}
-		}
-	} while (FindNextFile(h, &fd));
-
-	FindClose(h);
-	if (GetLastError() != ERROR_NO_MORE_FILES)
-		return false;
-
-	#else
-	// @todo Implement a native Linux backend.
-	return tFindFilesRec_Stndrd(foundFiles, dir, ext, includeHidden);
-	#endif
-
-	return true;
-}
-
-
-bool tSystem::tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tString& ext, bool hidden, Backend backend)
-{
-	switch (backend)
-	{
-		////// A valid but empty tExtensions will return false which is what we want.
-		case Backend::Stndrd: return tFindFilesRec_Stndrd(files, dir, ext, hidden);
-		case Backend::Native: return tFindFilesRec_Native(files, dir, ext, hidden);
-	}
-	return false;
-}
-
-
-bool tSystem::tFindDirsRec_Native(tList<tStringItem>& dirs, const tString& dir, bool hidden)
-{
-	#ifdef PLATFORM_WINDOWS
-	tString pathStr(dir);
-
-	tPathWinDir(pathStr);
-	tFindDirs(dirs, pathStr, hidden);
-	Win32FindData fd;
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 pathStrMod16(pathStr + "*.*");
-	WinHandle h = FindFirstFile(pathStrMod16.GetLPWSTR(), &fd);
-	#else
-	WinHandle h = FindFirstFile((pathStr + "*.*").Chr(), &fd);
-	#endif
-	if (h == INVALID_HANDLE_VALUE)
-		return false;
-
-	do
-	{
-		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-		{
-			// Don't recurse into hidden subdirectories if includeHidden is false.
-			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || hidden)
-			{
-				// If the directory name is not "." or ".." then it's a real directory.
-				// Note that you cannot just check for the first character not being "."  Some directories (and files)
-				// may have a name that starts with a dot, especially if they were copied from a unix machine.
-				#ifdef TACENT_UTF16_API_CALLS
-				tString fn((char16_t*)fd.cFileName);
-				#else
-				tString fn(fd.cFileName);
-				#endif
-				if ((fn != ".") && (fn != ".."))
-					tFindDirsRec_Native(dirs, pathStr + fn + "\\", hidden);
-			}
-		}
-	} while (FindNextFile(h, &fd));
-
-	FindClose(h);
-	if (GetLastError() != ERROR_NO_MORE_FILES)
-		return false;
-	return true;
-
-	#elif defined(PLATFORM_LINUX)
-	// @todo No Linux Native implementation. Use Standard.
-	return tFindDirsRec_Stndrd(dirs, dir, hidden);
-
-	#else
-	tAssert(!"tFindDirsRec_Native not implemented for platform.");
-	return false;
-
-	#endif
-}
-
-
-bool tSystem::tFindDirsRec_Stndrd(tList<tStringItem>& dirs, const tString& dir, bool hidden)
+bool tSystem::tFindDirsRec_Stndrd(tList<tStringItem>* dirs, tList<tFileInfo>* infos, const tString& dir, bool hidden)
 {
 	tString dirPath(dir);
 	if (dirPath.IsEmpty())
 		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
 
-	for (const std::filesystem::directory_entry& entry : std::filesystem::recursive_directory_iterator(dirPath.Chr()))
-	{
-		if (!entry.is_directory())
-			continue;
-
-		tString foundDir((char*)entry.path().u8string().c_str());
-
-		if (hidden || !tIsHidden(foundDir))
-			dirs.Append(new tStringItem(foundDir));
-	}
-
-	return true;
-}
-
-
-bool tSystem::tFindDirsRec(tList<tStringItem>& dirs, const tString& dir, bool hidden, Backend backend)
-{
-	switch (backend)
-	{
-		case Backend::Native: return tFindDirsRec_Native(dirs, dir, hidden);
-		case Backend::Stndrd: return tFindDirsRec_Stndrd(dirs, dir, hidden);
-	}
-	return false;
-}
-
-
-bool tSystem::tFindDirsRec_Native(tList<tFileInfo>& dirs, const tString& dir)
-{
-	#ifdef PLATFORM_WINDOWS
-	tString pathStr(dir);
-
-	tPathWinDir(pathStr);
-	tFindDirs_Native(nullptr, &dirs, pathStr, true);
-	Win32FindData fd;
-	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 pathStrMod16(pathStr + "*.*");
-	WinHandle h = FindFirstFile(pathStrMod16.GetLPWSTR(), &fd);
-	#else
-	WinHandle h = FindFirstFile((pathStr + "*.*").Chr(), &fd);
-	#endif
-	if (h == INVALID_HANDLE_VALUE)
-		return false;
-
-	do
-	{
-		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-		{
-			// If the directory name is not "." or ".." then it's a real directory.
-			// Note that you cannot just check for the first character not being "."  Some directories (and files)
-			// may have a name that starts with a dot, especially if they were copied from a unix machine.
-			#ifdef TACENT_UTF16_API_CALLS
-			tString fn((char16_t*)fd.cFileName);
-			#else
-			tString fn(fd.cFileName);
-			#endif
-			if ((fn != ".") && (fn != ".."))
-				tFindDirsRec_Native(dirs, pathStr + fn + "\\");
-		}
-	} while (FindNextFile(h, &fd));
-
-	FindClose(h);
-	if (GetLastError() != ERROR_NO_MORE_FILES)
-		return false;
-	return true;
-
-	#elif defined(PLATFORM_LINUX)
-	// @todo No current native implementation for this function. Falling back to standard.
-	return tFindDirsRec_Stndrd(dirs, dir);
-
-	#else
-	tAssert(!"tFindDirsRec_Native not implemented for platform.");
-	return false;
-
-	#endif
-}
-
-
-bool tSystem::tFindDirsRec_Stndrd(tList<tFileInfo>& dirs, const tString& dir)
-{
-	tString dirPath(dir);
-	if (dirPath.IsEmpty())
-		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
-
+	// The std::filesystem API has a recursive iterator so we use it.
 	std::error_code errorCode;
 	for (const std::filesystem::directory_entry& entry : std::filesystem::recursive_directory_iterator(dirPath.Chr(), errorCode))
 	{
@@ -3147,7 +2874,10 @@ bool tSystem::tFindDirsRec_Stndrd(tList<tFileInfo>& dirs, const tString& dir)
 			continue;
 		}
 
-		if (!entry.is_directory())
+		std::error_code direc;
+		if (!entry.is_directory(direc))
+			continue;
+		if (direc)
 			continue;
 
 		tString foundDir((char*)entry.path().u8string().c_str());
@@ -3156,21 +2886,220 @@ bool tSystem::tFindDirsRec_Stndrd(tList<tFileInfo>& dirs, const tString& dir)
 		if (foundDir[foundDir.Length()-1] != '/')
 			foundDir += "/";
 
-		tFileInfo* fileInfo = new tFileInfo();
-		tPopulateFileInfo(*fileInfo, entry, foundDir);
-		dirs.Append(fileInfo);
+		if (!hidden && tIsHidden(foundDir))
+			continue;
+
+		if (dirs)
+			dirs->Append(new tStringItem(foundDir));
+
+		if (infos)
+		{
+			tFileInfo* fileInfo = new tFileInfo();
+			tPopulateFileInfo(*fileInfo, entry, foundDir);
+			infos->Append(fileInfo);
+		}
 	}
 
 	return true;
 }
 
 
-bool tSystem::tFindDirsRec(tList<tFileInfo>& dirs, const tString& dir, Backend backend)
+bool tSystem::tFindDirsRec_Native(tList<tStringItem>* dirs, tList<tFileInfo>* infos, const tString& dir, bool hidden)
+{
+	// Populate current dir dirs/infos.
+	tList<tStringItem> currdirs;
+	tList<tFileInfo> currinfos;
+	tFindDirs_Native(&currdirs, &currinfos, dir, hidden);
+
+	if (dirs)
+	{
+		for (tStringItem* ds = currdirs.First(); ds; ds = ds->Next())
+			dirs->Append(new tStringItem(*ds));
+	}
+
+	if (infos)
+	{
+		while (tFileInfo* di = currinfos.Remove())
+			infos->Append(di);
+	}
+
+	// Recurse.
+	for (tStringItem* d = currdirs.First(); d; d = d->Next())
+		tFindDirsRec_Native(dirs, infos, *d, hidden);
+
+	return true;
+}
+
+
+bool tSystem::tFindDirsRec(tList<tStringItem>& dirs, const tString& dir, bool hidden, Backend backend)
 {
 	switch (backend)
 	{
-		case Backend::Native: return tFindDirsRec_Native(dirs, dir);
-		case Backend::Stndrd: return tFindDirsRec_Stndrd(dirs, dir);
+		case Backend::Stndrd: return tFindDirsRec_Stndrd(&dirs, nullptr, dir, hidden);
+		case Backend::Native: return tFindDirsRec_Native(&dirs, nullptr, dir, hidden);
+	}
+	return false;
+}
+
+
+bool tSystem::tFindDirsRec(tList<tFileInfo>& dirs, const tString& dir, bool hidden, Backend backend)
+{
+	switch (backend)
+	{
+		case Backend::Stndrd: return tFindDirsRec_Stndrd(nullptr, &dirs, dir, hidden);
+		case Backend::Native: return tFindDirsRec_Native(nullptr, &dirs, dir, hidden);
+	}
+	return false;
+}
+
+
+bool tSystem::tFindFilesRec_Stndrd(tList<tStringItem>* files, tList<tFileInfo>* infos, const tString& dir, const tExtensions* extensions, bool hidden)
+{
+	if (extensions && extensions->IsEmpty())
+		return false;
+
+	// Use current directory if no dirPath supplied.
+	tString dirPath(dir);
+	if (dirPath.IsEmpty())
+		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
+
+	if (dirPath.IsEmpty())
+		return false;
+
+	// Even root should look like "/".
+	if (dirPath[dirPath.Length() - 1] == '\\')
+		dirPath[dirPath.Length() - 1] = '/';
+
+	std::error_code errorCode;
+	for (const std::filesystem::directory_entry& entry : std::filesystem::recursive_directory_iterator(dirPath.Text(), errorCode))
+	{
+		if (errorCode || (entry == std::filesystem::directory_entry()))
+		{
+			errorCode.clear();
+			continue;
+		}
+
+		std::error_code rec;
+		if (!entry.is_regular_file(rec))
+			continue;
+		if (rec)
+			continue;
+
+		tString foundFile((char*)entry.path().u8string().c_str());
+		tString foundExt = tGetFileExtension(foundFile);
+
+		// If no extension match continue.
+		if (extensions && !extensions->Contains(foundExt))
+			continue;
+
+		if (!hidden && tIsHidden(foundFile))
+			continue;
+
+		if (files)
+			files->Append(new tStringItem(foundFile));
+
+		if (infos)
+		{
+			tFileInfo* newFileInfo = new tFileInfo();
+			tGetFileInfo(*newFileInfo, foundFile);
+			infos->Append(newFileInfo);
+		}
+	}
+
+	return true;
+}
+
+
+bool tSystem::tFindFilesRec_Native(tList<tStringItem>* files, tList<tFileInfo>* infos, const tString& dir, const tExtensions* extensions, bool hidden)
+{
+	// Populate current dir files/infos.
+	tFindFiles_Native(files, infos, dir, extensions, hidden);
+
+	// Recurse.
+	tList<tStringItem> currdirs;
+	tFindDirs_Native(&currdirs, nullptr, dir, hidden);
+	for (tStringItem* d = currdirs.First(); d; d = d->Next())
+		tFindFilesRec_Native(files, infos, *d, extensions, hidden);
+
+	return true;
+}
+
+
+bool tSystem::tFindFilesRec(tList<tStringItem>& files, const tString& dir, bool hidden, Backend backend)
+{
+	switch (backend)
+	{
+		// A nullptr for extensions will return all types.
+		case Backend::Stndrd: return tFindFilesRec_Stndrd(&files, nullptr, dir, nullptr, hidden);
+		case Backend::Native: return tFindFilesRec_Native(&files, nullptr, dir, nullptr, hidden);
+	}
+	return false;
+}
+
+
+bool tSystem::tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tString& ext, bool hidden, Backend backend)
+{
+	tExtensions extensions;
+	if (!ext.IsEmpty())
+		extensions.Add(ext);
+
+	switch (backend)
+	{
+		// A valid but empty tExtensions will return false which is what we want.
+		case Backend::Stndrd: return tFindFilesRec_Stndrd(&files, nullptr, dir, &extensions, hidden);
+		case Backend::Native: return tFindFilesRec_Native(&files, nullptr, dir, &extensions, hidden);
+	}
+	return false;
+}
+
+
+bool tSystem::tFindFilesRec(tList<tStringItem>& files, const tString& dir, const tExtensions& extensions, bool hidden, Backend backend)
+{
+	switch (backend)
+	{
+		// A valid but empty tExtensions will return false which is what we want.
+		case Backend::Stndrd: return tFindFilesRec_Stndrd(&files, nullptr, dir, &extensions, hidden);
+		case Backend::Native: return tFindFilesRec_Native(&files, nullptr, dir, &extensions, hidden);
+	}
+	return false;
+}
+
+
+bool tSystem::tFindFilesRec(tList<tFileInfo>& files, const tString& dir, bool hidden, Backend backend)
+{
+	switch (backend)
+	{
+		// A nullptr for extensions will return all types.
+		case Backend::Stndrd: return tFindFilesRec_Stndrd(nullptr, &files, dir, nullptr, hidden);
+		case Backend::Native: return tFindFilesRec_Native(nullptr, &files, dir, nullptr, hidden);
+	}
+	return false;
+}
+
+
+bool tSystem::tFindFilesRec(tList<tFileInfo>& files, const tString& dir, const tString& ext, bool hidden, Backend backend)
+{
+	tExtensions extensions;
+	if (!ext.IsEmpty())
+		extensions.Add(ext);
+
+	switch (backend)
+	{
+		// A valid but empty tExtensions will return false which is what we want.
+		case Backend::Stndrd: return tFindFilesRec_Stndrd(nullptr, &files, dir, &extensions, hidden);
+		case Backend::Native: return tFindFilesRec_Native(nullptr, &files, dir, &extensions, hidden);
+	}
+	return false;
+}
+
+
+bool tSystem::tFindFilesRec(tList<tFileInfo>& files, const tString& dir, const tExtensions& extensions, bool hidden, Backend backend)
+{
+	switch (backend)
+	{
+		// A valid but empty tExtensions will return false which is what we want.
+		case Backend::Stndrd: return tFindFilesRec_Stndrd(nullptr, &files, dir, &extensions, hidden);
+		case Backend::Native: return tFindFilesRec_Native(nullptr, &files, dir, &extensions, hidden);
 	}
 	return false;
 }
