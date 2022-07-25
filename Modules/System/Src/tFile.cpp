@@ -539,8 +539,7 @@ bool tSystem::tDirExists(const tString& dir)
 	tPathStdFile(dirname);
 	std::filesystem::file_status fstat = std::filesystem::status(dirname.Chr());
 
-	std::error_code direc;
-	return std::filesystem::is_directory(fstat, direc);
+	return std::filesystem::is_directory(fstat);
 	#endif
 }
 
