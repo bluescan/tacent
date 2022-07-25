@@ -1101,6 +1101,13 @@ tTestUnit(File)
 	normalPath = "z:/Dir/../..";
 	simpPath = tGetSimplifiedPath(normalPath);
 	tRequire(simpPath == "Z:/");
+
+	/*
+	tList<tFileInfo> rootdirs;
+	tFindDirs(rootdirs, "/root/", true);
+	for (tFileInfo* dir = rootdirs.Head(); dir; dir = dir->Next())
+		tPrintf("Found Root Dir: %s\n", dir->FileName.Chr());
+	*/
 }
 
 

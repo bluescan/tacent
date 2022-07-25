@@ -2460,7 +2460,12 @@ bool tSystem::tFindDirs_Stndrd(tList<tStringItem>* dirs, tList<tFileInfo>* infos
 			continue;
 		}
 
-		if (!entry.is_directory())
+		// For now we're skipping symlinks (they return false for is_directory).
+		std::error_code direc;
+		if (!entry.is_directory(direc))
+			continue;
+
+		if (direc)
 			continue;
 
 		tString foundDir((char*)entry.path().u8string().c_str());
