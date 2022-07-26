@@ -2466,10 +2466,6 @@ bool tSystem::tFindDirs_Stndrd(tList<tStringItem>* dirs, tList<tFileInfo>* infos
 
 		tString foundDir((char*)entry.path().u8string().c_str());
 		tPathStdDir(foundDir);
-		//DELETE
-		// All directories end in a slash in tacent.
-		//if (foundDir[foundDir.Length()-1] != '/')
-		//	foundDir += "/";
 
 		if (!hidden && tIsHidden(foundDir))
 			continue;
@@ -2589,11 +2585,6 @@ bool tSystem::tFindFiles_Stndrd(tList<tStringItem>* files, tList<tFileInfo>* inf
 
 	if (dirPath.IsEmpty())
 		return false;
-
-		//DELETE
-	// Even root should look like "/".
-//	if (dirPath[dirPath.Length() - 1] == '\\')
-//		dirPath[dirPath.Length() - 1] = '/';
 
 	std::error_code errorCode;
 	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text(), errorCode))
@@ -2968,11 +2959,6 @@ bool tSystem::tFindFilesRec_Stndrd(tList<tStringItem>* files, tList<tFileInfo>* 
 
 	if (dirPath.IsEmpty())
 		return false;
-
-		//DELETE
-	// Even root should look like "/".
-//	if (dirPath[dirPath.Length() - 1] == '\\')
-//		dirPath[dirPath.Length() - 1] = '/';
 
 	std::error_code errorCode;
 	for (const std::filesystem::directory_entry& entry : std::filesystem::recursive_directory_iterator(dirPath.Text(), errorCode))
