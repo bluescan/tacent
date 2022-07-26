@@ -27,6 +27,7 @@ namespace tUnitTest
 	tTestUnit(FileTypes);
 	tTestUnit(Directories);
 	tTestUnit(File);
+	tTestUnit(FindRec);
 	tTestUnit(Network);
 	tTestUnit(Time);
 	tTestUnit(Machine);

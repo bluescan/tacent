@@ -175,7 +175,8 @@ int main(int argc, char** argv)
 	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
 	// tTest(FileTypes);
 	// tTest(Directories);
-	tTest(File);
+	// tTest(File);
+	tTest(FindRec);
 	// tTest(Network);
 	// tTest(CmdLine);
 	// tTest(String);

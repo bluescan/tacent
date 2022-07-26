@@ -1046,12 +1046,6 @@ tTestUnit(File)
 	for (tStringItem* subd = subDirs.Head(); subd; subd = subd->Next())
 		tPrintf("SubDir: %s\n", subd->Text());
 
-	tList<tStringItem> files;
-	files.Empty();
-	tFindFilesRec(files, "TestData/", true);
-	for (tStringItem* file = files.Head(); file; file = file->Next())
-		tPrintf("Recursive Found File: %s\n", file->Text());
-
 	// Create a directory. Create a file in it. Then delete them all.
 	tCreateDir("TestData/CreatedDirectory/");
 	tRequire(tDirExists("TestData/CreatedDirectory/"));
@@ -1101,13 +1095,91 @@ tTestUnit(File)
 	normalPath = "z:/Dir/../..";
 	simpPath = tGetSimplifiedPath(normalPath);
 	tRequire(simpPath == "Z:/");
+}
 
-	/*
-	tList<tFileInfo> rootdirs;
-	tFindDirs(rootdirs, "/root/", true);
-	for (tFileInfo* dir = rootdirs.Head(); dir; dir = dir->Next())
-		tPrintf("Found Root Dir: %s\n", dir->FileName.Chr());
-	*/
+
+tTestUnit(FindRec)
+{
+	if (!tDirExists("TestData/"))
+		tSkipUnit(File)
+
+	#ifdef PLATFORM_WINDOWS
+	tSetHidden("TestData/.HiddenFile.txt");
+	#endif
+
+	// This file is now hidden in both Linux and Windows.
+	tRequire(tIsHidden("TestData/.HiddenFile.txt"));
+
+	tList<tStringItem> filesStd;
+	tList<tStringItem> filesNat;
+	tList<tStringItem> dirsStd;
+	tList<tStringItem> dirsNat;
+	tList<tFileInfo> infosStd;
+	tList<tFileInfo> infosNat;
+
+	// Note the ordering of the results varies between native and standard backends. This is fine,
+	// as order is not guaranteed. The below tests find files recursively.
+	filesStd.Empty();
+	tPrintf("\nRecursive Find Files. Incl Hidden. All Extensions. Standard Backend.\n");
+	tFindFilesRec(filesStd, "TestData/", true, Backend::Stndrd);
+	for (tStringItem* file = filesStd.Head(); file; file = file->Next())
+		tPrintf("Found File: %s\n", file->Text());
+	filesNat.Empty();
+	tPrintf("\nRecursive Find Files. Incl Hidden. All Extensions. Native Backend.\n");
+	tFindFilesRec(filesNat, "TestData/", true, Backend::Native);
+	for (tStringItem* file = filesNat.Head(); file; file = file->Next())
+		tPrintf("Found File: %s\n", file->Text());
+	tRequire(filesStd.NumItems() == filesNat.NumItems());
+
+	filesStd.Empty();
+	tPrintf("\nRecursive Find Files. Incl Hidden. TGA Extensions. Standard Backend.\n");
+	tFindFilesRec(filesStd, "TestData/", "tga", true, Backend::Stndrd);
+	for (tStringItem* file = filesStd.Head(); file; file = file->Next())
+		tPrintf("Found File: %s\n", file->Text());
+	filesNat.Empty();
+	tPrintf("\nRecursive Find Files. Incl Hidden. TGA Extensions. Native Backend.\n");
+	tFindFilesRec(filesNat, "TestData/", "tga", true, Backend::Native);
+	for (tStringItem* file = filesNat.Head(); file; file = file->Next())
+		tPrintf("Found File: %s\n", file->Text());
+	tRequire(filesStd.NumItems() == filesNat.NumItems());
+
+	infosStd.Empty();
+	tPrintf("\nRecursive Find Files (FileInfo). Excl Hidden. TGA and JPG Extensions. Standard Backend.\n");
+	tExtensions exts( tFileTypes(tFileType::TGA, tFileType::JPG, tFileType::EOL) );
+	tFindFilesRec(infosStd, "TestData/", exts, false, Backend::Stndrd);
+	for (tFileInfo* info = infosStd.Head(); info; info = info->Next())
+		tPrintf("Found File info: %s\n", info->FileName.Chr());
+	infosNat.Empty();
+	tPrintf("\nRecursive Find Files (FileInfo). Excl Hidden. TGA and JPG Extensions. Native Backend.\n");
+	tFindFilesRec(infosNat, "TestData/", exts, false, Backend::Native);
+	for (tFileInfo* info = infosNat.Head(); info; info = info->Next())
+		tPrintf("Found File info: %s\n", info->FileName.Chr());
+	tRequire(infosStd.NumItems() == infosNat.NumItems());
+
+	// Below are tests for finding dirs.
+	dirsStd.Empty();
+	tPrintf("\nRecursive Find Dirs. Incl Hidden. Standard Backend.\n");
+	tFindDirsRec(dirsStd, "TestData/", true, Backend::Stndrd);
+	for (tStringItem* dir = dirsStd.Head(); dir; dir = dir->Next())
+		tPrintf("Found Dir: %s\n", dir->Text());
+	dirsNat.Empty();
+	tPrintf("\nRecursive Find Dirs. Incl Hidden. Native Backend.\n");
+	tFindDirsRec(dirsNat, "TestData/", true, Backend::Native);
+	for (tStringItem* dir = dirsNat.Head(); dir; dir = dir->Next())
+		tPrintf("Found Dir: %s\n", dir->Text());
+	tRequire(dirsStd.NumItems() == dirsNat.NumItems());
+
+	infosStd.Empty();
+	tPrintf("\nRecursive Find Dirs (FileInfo). Excl Hidden. Standard Backend.\n");
+	tFindDirsRec(infosStd, "TestData/", false, Backend::Stndrd);
+	for (tFileInfo* info = infosStd.Head(); info; info = info->Next())
+		tPrintf("Found Dir: %s\n", info->FileName.Chr());
+	infosNat.Empty();
+	tPrintf("\nRecursive Find Dirs (FileInfo). Excl Hidden. Native Backend.\n");
+	tFindDirsRec(infosNat, "TestData/", false, Backend::Native);
+	for (tFileInfo* info = infosNat.Head(); info; info = info->Next())
+		tPrintf("Found Dir: %s\n", info->FileName.Chr());
+	tRequire(infosStd.NumItems() == infosNat.NumItems());
 }
 
 
