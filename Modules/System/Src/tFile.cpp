@@ -1976,12 +1976,6 @@ std::time_t tSystem::tConvertToPosixTime(std::filesystem::file_time_type ftime)
 {
 	using namespace std::chrono;
 
-	#if 0
-	// This is the old way.
-	auto sctp = time_point_cast<system_clock::duration>(ftime - std::filesystem::file_time_type::clock::now() + system_clock::now());
-	return system_clock::to_time_t(sctp);
-	#endif
-
 	// This is the new C++20 way, although different compilers have not implemented the same code paths.
 	// Using clock_cast seems a bit more portable than something like to_sys which is not implemented for all clocks
 	// on some systems (MSVC, for example, chose only to do it for the utc clock. In any case clock_cast is probably
@@ -1991,7 +1985,14 @@ std::time_t tSystem::tConvertToPosixTime(std::filesystem::file_time_type ftime)
 	return system_clock::to_time_t(systemTimePoint);
 
 	#else
-	return system_clock::to_time_t(file_clock::to_sys(ftime));
+
+	// This is what we should be using, but couldn't get snap to work with it. Well, actually
+	// I could get it compiling by using core22 (it has recent enough compiler) but then there were glx issues. 
+	// return system_clock::to_time_t(file_clock::to_sys(ftime));
+
+	// This is the _old_ way.
+	auto sctp = time_point_cast<system_clock::duration>(ftime - std::filesystem::file_time_type::clock::now() + system_clock::now());
+	return system_clock::to_time_t(sctp);
 	#endif
 }
 
