@@ -2,7 +2,7 @@
 //
 // Foundation module tests.
 //
-// Copyright (c) 2017, 2019, 2020, 2021, 2022 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -17,6 +17,7 @@
 #include <future>
 #include <Foundation/tVersion.cmake.h>
 #include <Foundation/tStandard.h>
+#include <Foundation/bString.h>
 #include <Foundation/tArray.h>
 #include <Foundation/tBitArray.h>
 #include <Foundation/tBitField.h>
@@ -928,7 +929,25 @@ tTestUnit(String)
 	presuf.ExtractRight("suf");
 	tPrintf("PreSuf [%s]\n", presuf.Chr());
 	tRequire(presuf == "preMIDDLEsuf");
+}
 
+
+tTestUnit(StringNew)
+{
+	// Test construction.
+	//bString str;
+
+	// Testing the string substitution code.
+	bString strAsc("abc1234abcd12345abcdef123456");
+	tPrintf("strAsc:[%s] Len:%d Cap:%d\n", strAsc.Chr(), strAsc.Length(), strAsc.Capacity());
+
+	bString strUtf(u8"abc1234abcd12345abcdef123456");
+	tPrintf("strUtf:[%s] Len:%d Cap:%d\n", strUtf.Chr(), strUtf.Length(), strUtf.Capacity());
+
+//	src.Replace("abc", "cartoon");
+//	tPrintf("Replacing abc with cartoon\n");
+//	tPrintf("After : '%s'\n\n", src.Chr());
+//	tRequire(src == "cartoon1234cartoond12345cartoondef123456");
 }
 
 

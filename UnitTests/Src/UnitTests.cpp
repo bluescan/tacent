@@ -176,10 +176,11 @@ int main(int argc, char** argv)
 	// tTest(FileTypes);
 	// tTest(Directories);
 	// tTest(File);
-	tTest(FindRec);
+	// tTest(FindRec);
 	// tTest(Network);
 	// tTest(CmdLine);
 	// tTest(String);
+	tTest(StringNew);
 	// tTest(List);
 	// tTest(ListExtra);
 	// tTest(Colour);
