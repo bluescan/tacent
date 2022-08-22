@@ -50,8 +50,8 @@
 #pragma once
 #include "Foundation/tStandard.h"
 #include "Foundation/tList.h"
-//struct tStringUTF16;
-//struct tStringUTF32;
+struct tStringUTF16;
+struct tStringUTF32;
 
 
 // THIS CLASS IS WIP.
@@ -69,6 +69,35 @@ struct bString
 	bString(const char8_t* src, int n);
 	bString(const char* src, int n);
 
+	bString(const bString& src);
+	bString(const char16_t* src);
+	bString(const char32_t* src);
+	bString(const tStringUTF16& src);
+	bString(const tStringUTF32& src);
+
+	// Construct a string of length null characters.
+	explicit bString(int length);
+
+	// Note the char here. A char8_t can't be guaranteed to store a unicode codepoint if the codepoint requires
+	// continuations in the UTF-8 encoding. So, here we support char only which we use for ASCII characters. These chars
+	// are guaranteed to _not_ need continuation units in UFT-8.
+	bString(char);
+
+	virtual ~bString();
+
+	// WIP
+	void Set(const char8_t* src);
+	void Set(const char* src);//																								{ Set((const char8_t*)s); }
+	void Set(const char8_t* src, int n);
+	void Set(const char* src, int n);
+	void Set(const bString& src);
+	void Set(const char16_t* src);//																						{ SetUTF16(src); }
+	void Set(const char32_t* src);//																						{ SetUTF32(src); }
+	void Set(const tStringUTF16& src);
+	void Set(const tStringUTF32& src);
+	void Set(int length);
+	void Set(char);
+
 	// The length in char8_t's (code-units), not the display length (which is not that useful).
 	// This length has nothing to do with how many null characters are in the string or where the are.
 	int Length() const;
@@ -76,23 +105,6 @@ struct bString
 	int Capacity() const;
 
 	#if 0
-	tString(const tString&);
-	tString(const char16_t* src)																						{ CodeUnits = &EmptyChar; Set(src); }
-	tString(const char32_t* src)																						{ CodeUnits = &EmptyChar; Set(src); }
-	tString(const tStringUTF16& src)																					{ CodeUnits = &EmptyChar; Set(src); }
-	tString(const tStringUTF32& src)																					{ CodeUnits = &EmptyChar; Set(src); }
-
-	// Construct a string with enough room for length characters. Length+1 characters are reserved to make room for the
-	// null terminator. The reserved space is zeroed.
-	explicit tString(int length);
-
-
-
-	// Note the difference here. A char8_t can't be guaranteed to store a unicode codepoint if the codepoint requires
-	// continuations in the UTF-8 encoding. So, here we support char only which we use for ASCII characters (which are
-	// guaranteed not to need continuation bytes in UFT-8).
-	tString(char);
-	virtual ~tString();
 
 	tString& operator=(const tString&);
 
@@ -116,13 +128,6 @@ struct bString
 	friend tString operator+(const tString& prefix, const tString& suffix);
 	tString& operator+=(const tString&);
 
-	void Set(const char8_t*);
-	void Set(const char* s)																								{ Set((const char8_t*)s); }
-
-	void Set(const char16_t* src)																						{ SetUTF16(src); }
-	void Set(const char32_t* src)																						{ SetUTF32(src); }
-	void Set(const tStringUTF16& src);
-	void Set(const tStringUTF32& src);
 
 	int Length() const				/* The length in char8_t's, not the display length (which is not that useful). */	{ return int(tStd::tStrlen(CodeUnits)); }
 	bool IsEmpty() const																								{ return (CodeUnits == &EmptyChar) || !tStd::tStrlen(CodeUnits); }
@@ -385,6 +390,64 @@ inline bString::bString(const char* src, int n) :
 }
 
 
+inline bString::bString(const bString& src)
+{
+	StringLength = src.Length();
+	UpdateCapacity(StringLength);
+
+	tStd::tMemcpy(CodeUnits, src.CodeUnits, StringLength);
+	CodeUnits[StringLength] = '\0';
+}
+
+
+inline bString::bString(const char16_t* src)
+{
+/////	Set(src);
+}
+
+
+inline bString::bString(const char32_t* src)
+{
+///////	Set(src);
+}
+
+
+inline bString::bString(const tStringUTF16& src)
+{
+///////	Set(src);
+}
+
+
+inline bString::bString(const tStringUTF32& src)
+{
+////////	Set(src);
+}
+
+
+inline bString::bString(int length)
+{
+	tAssert(length >= 0);
+	StringLength = length;
+	UpdateCapacity(StringLength);
+	tStd::tMemset(CodeUnits, 0, StringLength+1);
+}
+
+
+inline bString::bString(char c)
+{
+	UpdateCapacity(1);
+	StringLength = 1;
+	CodeUnits[0] = c;
+	CodeUnits[1] = '\0';
+}
+
+
+inline bString::~bString()
+{
+	delete[] CodeUnits;
+}
+
+
 inline int bString::Length() const
 {
 	return StringLength;
@@ -430,54 +493,7 @@ inline void bString::UpdateCapacity(int capacityRequired)
 	CurrCapacity = capacityRequired;
 }
 
-
-
 #if 0
-inline tString::tString(const char8_t* t)
-{
-	if (t)
-	{
-		int len = int(tStd::tStrlen(t));
-		if (len > 0)
-		{
-			CodeUnits = new char8_t[1 + len];
-			tStd::tStrcpy(CodeUnits, t);
-			return;
-		}
-	}
-
-	CodeUnits = &EmptyChar;
-}
-
-
-inline tString::tString(const tString& s)
-{
-	CodeUnits = new char8_t[1 + tStd::tStrlen(s.CodeUnits)];
-	tStd::tStrcpy(CodeUnits, s.CodeUnits);
-}
-
-
-inline tString::tString(char c)
-{
-	CodeUnits = new char8_t[2];
-	CodeUnits[0] = c;
-	CodeUnits[1] = '\0';
-}
-
-
-inline tString::tString(int length)
-{
-	if (!length)
-	{
-		CodeUnits = &EmptyChar;
-	}
-	else
-	{
-		CodeUnits = new char8_t[1+length];
-		tStd::tMemset(CodeUnits, 0, 1+length);
-	}
-}
-
 
 inline void tString::Reserve(int length, bool zeroMemory)
 {
@@ -698,13 +714,6 @@ inline int tString::Replace(const char c, const char r)
 	}
 
 	return numReplaced;
-}
-
-
-inline tString::~tString()
-{
-	if (CodeUnits != &EmptyChar)
-		delete[] CodeUnits;
 }
 
 
