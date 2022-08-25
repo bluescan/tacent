@@ -264,16 +264,29 @@ protected:
 
 // tStringUTF16 and tStringUTF32 are not intended to be full-fledged string classes, but they are handy to marshall data
 // to and from OS calls that take or return these encodings. Primarily these abstract away the memory management for the
-// different encodings, since the encoding size depends on the string contents. You make construct a tStringUTFn from a
+// different encodings, since the encoding size depends on the string contents. You may construct a tStringUTFn from a
 // tString, and you may construct a tString from a tStringUTFn string.
+//
+// These helper classes do not support Capacity like tString, so they are not the most efficient. They do support not
+// requiring null-termination -- they are arrays of codeunits and length is stored explicitly. This allows multiple
+// nulls to be placed in the string if desired.
+// WIP Implement the last paragraph.
 struct tStringUTF16
 {
 	tStringUTF16()																										{ }
-	explicit tStringUTF16(int length);	// Reserves length+1 char32_t code units (+1 for terminator).
-	tStringUTF16(const char16_t* src)																					{ Set(src); }
-	tStringUTF16(const char8_t* src)																					{ Set(src); }
+	explicit tStringUTF16(int length);	// Reserves length+1 char16_t code units (+1 for terminator).
 	tStringUTF16(const tStringUTF16& src)																				{ Set(src); }
 	tStringUTF16(const tString& src)																					{ Set(src); }
+
+	// These constructors expect null-termination of the input arrays.
+	tStringUTF16(const char16_t* src)																					{ Set(src); }
+	tStringUTF16(const char8_t* src)																					{ Set(src); }
+
+	// These constructors do not require null-termination of the input arrays.
+	// WIP
+	tStringUTF16(const char16_t* src, int length);
+	tStringUTF16(const char8_t* src, int length);
+
 	~tStringUTF16()																										{ delete[] CodeUnits; }
 
 	void Clear()																										{ delete[] CodeUnits; CodeUnits = nullptr; }
@@ -291,6 +304,7 @@ struct tStringUTF16
 	void Set(const tString& src);
 
 private:
+	// WIP int StringLength;
 	char16_t* CodeUnits = nullptr;
 };
 

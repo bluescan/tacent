@@ -85,14 +85,15 @@ struct bString
 
 	virtual ~bString();
 
-	// WIP
 	void Set(const char8_t* src);
 	void Set(const char* src);//																								{ Set((const char8_t*)s); }
 	void Set(const char8_t* src, int n);
 	void Set(const char* src, int n);
 	void Set(const bString& src);
-	void Set(const char16_t* src);//																						{ SetUTF16(src); }
-	void Set(const char32_t* src);//																						{ SetUTF32(src); }
+	void Set(const char16_t* src)																						{ SetUTF16(src); }
+	void Set(const char32_t* src)																						{ SetUTF32(src); }
+
+	// WIP
 	void Set(const tStringUTF16& src);
 	void Set(const tStringUTF32& src);
 	void Set(int length);
@@ -101,6 +102,9 @@ struct bString
 	// The length in char8_t's (code-units), not the display length (which is not that useful).
 	// This length has nothing to do with how many null characters are in the string or where the are.
 	int Length() const;
+
+	// Does not release memory. Simply clears the string. Fast.
+	void Clear()	{ StringLength = 0; CodeUnits[0] = '\0'; }
 
 	int Capacity() const;
 
@@ -132,7 +136,6 @@ struct bString
 	int Length() const				/* The length in char8_t's, not the display length (which is not that useful). */	{ return int(tStd::tStrlen(CodeUnits)); }
 	bool IsEmpty() const																								{ return (CodeUnits == &EmptyChar) || !tStd::tStrlen(CodeUnits); }
 	bool IsValid() const			/* returns true is string is not empty. */											{ return !IsEmpty(); }
-	void Clear()																										{ if (CodeUnits != &EmptyChar) delete[] CodeUnits; CodeUnits = &EmptyChar; }
 
 	bool IsAlphabetic(bool includeUnderscore = true) const;
 	bool IsNumeric(bool includeDecimal = false) const;
@@ -303,11 +306,11 @@ struct bString
 	int GetUTF16(char16_t* dst, bool incNullTerminator = true) const;
 	int GetUTF32(char32_t* dst, bool incNullTerminator = true) const;
 
-	// Sets the tString from a UTF codeunit array. If srcLen is -1 assumes supplied array is null-terminated, otherwise
-	// specify how long it is. Returns new length (not including null terminator) of the tString.
+#endif
+	// Sets the bString from a UTF codeunit array. If srcLen is -1 assumes supplied array is null-terminated, otherwise
+	// specify how long it is. Returns new length (not including null terminator) of the bString.
 	int SetUTF16(const char16_t* src, int srcLen = -1);
 	int SetUTF32(const char32_t* src, int srcLen = -1);
-#endif
 
 protected:
 	// This could be made to be dynamic. Just didn't want to waste 4 bytes for every bString instance.
@@ -332,12 +335,29 @@ protected:
 
 private:
 
-	// Given the capacityRequired, this function makes sure CurrCapacity is big enough. If it is, it does nothing. If
-	// it is not, it updates CurrCapacity (and the CodeUnits of course) to have enough room plus whatever extra is
-	// dictated by the GrowParam. It is illegal to call this with a value less than the StringLength. The CurrCapacity
-	// will always be >= MinCapacity after this call. Currently we never 'shrink' the capacity after this call, although
-	// we could add that in the future. If called with 0, you will be left with CurrCapacity >= MinCapacity.
-	void UpdateCapacity(int capacityRequired);
+	// The basic idea behind this function is you ask it for a specific amount of room that you know you will need -- to
+	// do say an append operaion. It guarantees that the capacity afterwards will be at least as big as what you requested.
+	//
+	// It makes sure CurrCapacity is at least as big as capNeeded. If it already is, it does nothing. If it
+	// is not, it updates CurrCapacity (and the CodeUnits) to have enough room plus whatever extra is dictated by the
+	// GrowParam.
+	//
+	// In some cases you care if the original string is preserved (eg. For an append) and in some cases you do not
+	// (eg. For a Set call, the old contents are cleared). If you don't need the string preserved, call this with
+	// preserve = false. It will save a memcpy (and the string length will be 0 afterwards).
+	// If the string is empty, it doesn't really matter what preserve is set to.
+	//
+	// If called with preserve true the function is nondestructive and expects StringLength to be set correctly and be
+	// the current length, not the potential future length (do not modify StringLength first). It is illegal to call
+	// with preserve true and a capNeeded that is less than the StringLength.
+	//
+	// This function respects MinCapactity. If capNeeded + (possible grow amount) is under MinCapacity,
+	// MinCapacity will be used instead. Calling with capNeeded = 0 is special, it will not add any extra grow amount.
+	// This results in MinCapacity being used. When calling with 0 you still need to meet the StringLenghth requirement if
+	// preserve is true (i.e. StringLength would need to be 0).
+	//
+	// This function never shrinks the capacity.
+	void UpdateCapacity(int capNeeded, bool preserve);
 };
 
 
@@ -346,80 +366,62 @@ private:
 
 inline bString::bString()
 {
-	UpdateCapacity(0);
+	UpdateCapacity(0, false);
 }
 
 
-inline bString::bString(const char8_t* s)
+inline bString::bString(const char8_t* src)
 {
-	int len = s ? tStd::tStrlen(s) : 0;
-	UpdateCapacity(len);
-	if (len > 0)
-	{
-		tStd::tMemcpy(CodeUnits, s, len);
-		CodeUnits[len] = '\0';
-	}
-	StringLength = len;
+	Set(src);
 }
 
 
-inline bString::bString(const char* s) :
-	bString((const char8_t*)s)
+inline bString::bString(const char* src)
 {
+	Set(src);
 }
 
 
 inline bString::bString(const char8_t* src, int n)
 {
-	if (!src || (n <= 0))
-	{
-		UpdateCapacity(0);
-		return;		
-	}
-
-	UpdateCapacity(n);
-	tStd::tMemcpy(CodeUnits, src, n);
-	CodeUnits[n] = '\0';
-	StringLength = n;
+	Set(src, n);
 }
 
 
-inline bString::bString(const char* src, int n) :
-	bString((const char8_t*)src, n)
+inline bString::bString(const char* src, int n)
 {
+	Set(src, n);
 }
 
 
 inline bString::bString(const bString& src)
 {
-	StringLength = src.Length();
-	UpdateCapacity(StringLength);
-
-	tStd::tMemcpy(CodeUnits, src.CodeUnits, StringLength);
-	CodeUnits[StringLength] = '\0';
+	Set(src);
 }
 
 
 inline bString::bString(const char16_t* src)
 {
-/////	Set(src);
+	Set(src);
 }
 
 
 inline bString::bString(const char32_t* src)
 {
-///////	Set(src);
+	Set(src);
 }
 
 
 inline bString::bString(const tStringUTF16& src)
 {
+	// WIP Requires changes to tStringUTF16 to support multiple nulls.
 ///////	Set(src);
 }
 
 
 inline bString::bString(const tStringUTF32& src)
 {
+	// WIP Requires changes to tStringUTF32 to support multiple nulls.
 ////////	Set(src);
 }
 
@@ -428,14 +430,14 @@ inline bString::bString(int length)
 {
 	tAssert(length >= 0);
 	StringLength = length;
-	UpdateCapacity(StringLength);
+	UpdateCapacity(StringLength, false);
 	tStd::tMemset(CodeUnits, 0, StringLength+1);
 }
 
 
 inline bString::bString(char c)
 {
-	UpdateCapacity(1);
+	UpdateCapacity(1, false);
 	StringLength = 1;
 	CodeUnits[0] = c;
 	CodeUnits[1] = '\0';
@@ -445,6 +447,54 @@ inline bString::bString(char c)
 inline bString::~bString()
 {
 	delete[] CodeUnits;
+}
+
+
+inline void bString::Set(const char8_t* src)
+{
+	int n = src ? tStd::tStrlen(src) : 0;
+	UpdateCapacity(n, false);
+	if (n > 0)
+	{
+		tStd::tMemcpy(CodeUnits, src, n);
+		CodeUnits[n] = '\0';
+		StringLength = n;
+	}
+}
+
+
+inline void bString::Set(const char* src)
+{
+	Set((const char8_t*)src);
+}
+
+
+inline void bString::Set(const char8_t* src, int n)
+{
+	if (!src || (n < 0))
+		n = 0;
+	UpdateCapacity(n, false);
+	if (n > 0)
+		tStd::tMemcpy(CodeUnits, src, n);
+	CodeUnits[n] = '\0';
+	StringLength = n;
+}
+
+
+inline void bString::Set(const char* src, int n)
+{
+	Set((const char8_t*)src, n);
+}
+
+
+inline void bString::Set(const bString& src)
+{
+	int len = src.Length();
+	UpdateCapacity(len, false);
+
+	StringLength = len;
+	tStd::tMemcpy(CodeUnits, src.CodeUnits, StringLength);
+	CodeUnits[StringLength] = '\0';
 }
 
 
@@ -460,37 +510,40 @@ inline int bString::Capacity() const
 }
 
 
-inline void bString::UpdateCapacity(int capacityRequired)
+inline void bString::UpdateCapacity(int capNeeded, bool preserve)
 {
-	tAssert(capacityRequired >= StringLength);
-	if (capacityRequired == 0)
+	int grow = 0;
+	if (capNeeded > 0)
+		grow = (GrowParam >= 0) ? GrowParam : capNeeded*(-GrowParam);
+
+	capNeeded += grow;
+	if (capNeeded < MinCapacity)
+		capNeeded = MinCapacity;
+
+	if (CurrCapacity >= capNeeded)
 	{
-		tAssert(!CodeUnits && !CurrCapacity);
-		CodeUnits = new char8_t[MinCapacity+1];
+		StringLength = 0;
 		CodeUnits[0] = '\0';
-		CurrCapacity = MinCapacity;
 		return;
 	}
-	if (capacityRequired < MinCapacity)
-		capacityRequired = MinCapacity;
-	
-	if (CurrCapacity >= capacityRequired)
-		return;
 
-	int grow = (GrowParam >= 0) ? GrowParam : capacityRequired*(-GrowParam);
-	capacityRequired += grow;
-
-	// Even if grow was 0 it should be bigger cuz we early exited.
-	tAssert(capacityRequired > CurrCapacity);
-
-	char8_t* newUnits = new char8_t[capacityRequired+1];
-	if (StringLength > 0)
-		tStd::tMemcpy(newUnits, CodeUnits, StringLength);
+	char8_t* newUnits = new char8_t[capNeeded+1];
+	if (preserve)
+	{
+		tAssert(capNeeded >= StringLength);
+		if (StringLength > 0)
+			tStd::tMemcpy(newUnits, CodeUnits, StringLength);
+	}
+	else
+	{
+		StringLength = 0;
+	}
 	newUnits[StringLength] = '\0';
 
+	// CodeUnits mey be nullptr the first time.
 	delete[] CodeUnits;
 	CodeUnits = newUnits;
-	CurrCapacity = capacityRequired;
+	CurrCapacity = capNeeded;
 }
 
 #if 0
@@ -520,21 +573,6 @@ inline int tString::CountChar(char c) const
 		count += (*i++ == c) ? 1 : 0;
 
 	return count;
-}
-
-
-inline void tString::Set(const char8_t* s)
-{
-	Clear();
-	if (!s)
-		return;
-
-	int len = tStd::tStrlen(s);
-	if (len <= 0)
-		return;
-
-	CodeUnits = new char8_t[1 + len];
-	tStd::tStrcpy(CodeUnits, s);
 }
 
 

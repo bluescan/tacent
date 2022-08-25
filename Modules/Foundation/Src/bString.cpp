@@ -523,47 +523,63 @@ int tString::GetUTF32(char32_t* dst, bool incNullTerminator) const
 	return tStd::tUTF32(dst, CodeUnits, Length());
 }
 
-
-int tString::SetUTF16(const char16_t* src, int srcLen)
+#endif
+int bString::SetUTF16(const char16_t* src, int srcLen)
 {
 	if (!src || (srcLen == 0))
 	{
 		Clear();
 		return 0;
 	}
+
+	// If srcLen < 0 it means ignore srcLen and assume src is null-terminated.
 	if (srcLen < 0)
 	{
-		int lenNeeded = tStd::tUTF8s(nullptr, src);
-		Reserve(lenNeeded, false);
-		return tStd::tUTF8s(CodeUnits, src);
+		int len = tStd::tUTF8s(nullptr, src);
+		UpdateCapacity(len, false);
+		StringLength = tStd::tUTF8s(CodeUnits, src);
 	}
-	int lenNeeded = tStd::tUTF8(nullptr, src, srcLen);
-	Reserve(lenNeeded, false);
-	tStd::tUTF8(CodeUnits, src, srcLen);
-	CodeUnits[lenNeeded] = '\0';
-	return lenNeeded;
+	else
+	{
+		int len = tStd::tUTF8(nullptr, src, srcLen);
+		UpdateCapacity(len, false);
+		tStd::tUTF8(CodeUnits, src, srcLen);
+		CodeUnits[len] = '\0';
+		StringLength = len;
+	}
+
+	return StringLength;
 }
 
 
-int tString::SetUTF32(const char32_t* src, int srcLen)
+int bString::SetUTF32(const char32_t* src, int srcLen)
 {
 	if (!src || (srcLen == 0))
 	{
 		Clear();
 		return 0;
 	}
+
+	// If srcLen < 0 it means ignore srcLen and assume src is null-terminated.
 	if (srcLen < 0)
 	{
-		int lenNeeded = tStd::tUTF8s(nullptr, src);
-		Reserve(lenNeeded, false);
-		return tStd::tUTF8s(CodeUnits, src);
+		int len = tStd::tUTF8s(nullptr, src);
+		UpdateCapacity(len, false);
+		StringLength = tStd::tUTF8s(CodeUnits, src);
 	}
-	int lenNeeded = tStd::tUTF8(nullptr, src, srcLen);
-	Reserve(lenNeeded, false);
-	tStd::tUTF8(CodeUnits, src, srcLen);
-	CodeUnits[lenNeeded] = '\0';
-	return lenNeeded;
+	else
+	{
+		int len = tStd::tUTF8(nullptr, src, srcLen);
+		UpdateCapacity(len, false);
+		tStd::tUTF8(CodeUnits, src, srcLen);
+		CodeUnits[len] = '\0';
+		StringLength = len;
+	}
+
+	return StringLength;
 }
+
+#if 0
 
 
 int tStd::tExplode(tList<tStringItem>& components, const tString& src, char divider)
