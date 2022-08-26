@@ -50,6 +50,7 @@
 #pragma once
 #include "Foundation/tStandard.h"
 #include "Foundation/tList.h"
+#include "Foundation/tString.h"
 struct tStringUTF16;
 struct tStringUTF32;
 
@@ -65,13 +66,17 @@ struct bString
 	// You can create a UTF-8 bString from a null-terminated ASCII string no problem. All ASCII strings are valid UTF-8.
 	bString(const char* src);
 
-	// Constructs from a code-unit (or ASCII char) array of size n. Src may have multiple nulls in it.
-	bString(const char8_t* src, int n);
-	bString(const char* src, int n);
+	// Constructs from a code-unit (or ASCII char) array of size srcLen. Src may have multiple nulls in it.
+	bString(const char8_t* src, int srcLen);
+	bString(const char* src, int srcLen);
 
 	bString(const bString& src);
+
+	// These assume src is null-terminated.
 	bString(const char16_t* src);
 	bString(const char32_t* src);
+
+	// The tStringUTF constructors allow the src strings to have multiple nulls in them.
 	bString(const tStringUTF16& src);
 	bString(const tStringUTF32& src);
 
@@ -87,13 +92,11 @@ struct bString
 
 	void Set(const char8_t* src);
 	void Set(const char* src);//																								{ Set((const char8_t*)s); }
-	void Set(const char8_t* src, int n);
-	void Set(const char* src, int n);
+	void Set(const char8_t* src, int srcLen);
+	void Set(const char* src, int srcLen);
 	void Set(const bString& src);
 	void Set(const char16_t* src)																						{ SetUTF16(src); }
 	void Set(const char32_t* src)																						{ SetUTF32(src); }
-
-	// WIP
 	void Set(const tStringUTF16& src);
 	void Set(const tStringUTF32& src);
 	void Set(int length);
@@ -382,15 +385,15 @@ inline bString::bString(const char* src)
 }
 
 
-inline bString::bString(const char8_t* src, int n)
+inline bString::bString(const char8_t* src, int srcLen)
 {
-	Set(src, n);
+	Set(src, srcLen);
 }
 
 
-inline bString::bString(const char* src, int n)
+inline bString::bString(const char* src, int srcLen)
 {
-	Set(src, n);
+	Set(src, srcLen);
 }
 
 
@@ -414,33 +417,25 @@ inline bString::bString(const char32_t* src)
 
 inline bString::bString(const tStringUTF16& src)
 {
-	// WIP Requires changes to tStringUTF16 to support multiple nulls.
-///////	Set(src);
+	Set(src);
 }
 
 
 inline bString::bString(const tStringUTF32& src)
 {
-	// WIP Requires changes to tStringUTF32 to support multiple nulls.
-////////	Set(src);
+	Set(src);
 }
 
 
 inline bString::bString(int length)
 {
-	tAssert(length >= 0);
-	StringLength = length;
-	UpdateCapacity(StringLength, false);
-	tStd::tMemset(CodeUnits, 0, StringLength+1);
+	Set(length);
 }
 
 
 inline bString::bString(char c)
 {
-	UpdateCapacity(1, false);
-	StringLength = 1;
-	CodeUnits[0] = c;
-	CodeUnits[1] = '\0';
+	Set(c);
 }
 
 
@@ -452,13 +447,13 @@ inline bString::~bString()
 
 inline void bString::Set(const char8_t* src)
 {
-	int n = src ? tStd::tStrlen(src) : 0;
-	UpdateCapacity(n, false);
-	if (n > 0)
+	int srcLen = src ? tStd::tStrlen(src) : 0;
+	UpdateCapacity(srcLen, false);
+	if (srcLen > 0)
 	{
-		tStd::tMemcpy(CodeUnits, src, n);
-		CodeUnits[n] = '\0';
-		StringLength = n;
+		tStd::tMemcpy(CodeUnits, src, srcLen);
+		CodeUnits[srcLen] = '\0';
+		StringLength = srcLen;
 	}
 }
 
@@ -469,32 +464,66 @@ inline void bString::Set(const char* src)
 }
 
 
-inline void bString::Set(const char8_t* src, int n)
+inline void bString::Set(const char8_t* src, int srcLen)
 {
-	if (!src || (n < 0))
-		n = 0;
-	UpdateCapacity(n, false);
-	if (n > 0)
-		tStd::tMemcpy(CodeUnits, src, n);
-	CodeUnits[n] = '\0';
-	StringLength = n;
+	if (!src || (srcLen < 0))
+		srcLen = 0;
+	UpdateCapacity(srcLen, false);
+	if (srcLen > 0)
+		tStd::tMemcpy(CodeUnits, src, srcLen);
+	CodeUnits[srcLen] = '\0';
+	StringLength = srcLen;
 }
 
 
-inline void bString::Set(const char* src, int n)
+inline void bString::Set(const char* src, int srcLen)
 {
-	Set((const char8_t*)src, n);
+	Set((const char8_t*)src, srcLen);
 }
 
 
 inline void bString::Set(const bString& src)
 {
-	int len = src.Length();
-	UpdateCapacity(len, false);
+	int srcLen = src.Length();
+	UpdateCapacity(srcLen, false);
 
-	StringLength = len;
+	StringLength = srcLen;
 	tStd::tMemcpy(CodeUnits, src.CodeUnits, StringLength);
 	CodeUnits[StringLength] = '\0';
+}
+
+
+inline void bString::Set(const tStringUTF16& src)
+{
+	SetUTF16(src.Units(), src.Length());
+}
+
+
+inline void bString::Set(const tStringUTF32& src)
+{
+	SetUTF32(src.Units(), src.Length());
+}
+
+
+inline void bString::Set(int length)
+{
+	if (length <= 0)
+	{
+		Clear();
+		return;
+	}
+	UpdateCapacity(length, false);
+	tStd::tMemset(CodeUnits, 0, StringLength+1);
+	StringLength = length;
+}
+
+
+inline void bString::Set(char c)
+{
+	UpdateCapacity(1, false);
+	CodeUnits[0] = c;
+	CodeUnits[1] = '\0';
+	StringLength = 1;
 }
 
 
@@ -509,6 +538,7 @@ inline int bString::Capacity() const
 	return CurrCapacity;
 }
 
+// WIP op=
 
 inline void bString::UpdateCapacity(int capNeeded, bool preserve)
 {
