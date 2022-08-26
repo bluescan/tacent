@@ -267,10 +267,9 @@ protected:
 // different encodings, since the encoding size depends on the string contents. You may construct a tStringUTFn from a
 // tString, and you may construct a tString from a tStringUTFn string.
 //
-// These helper classes do not support Capacity like tString, so they are not the most efficient. They do support not
+// These helper classes do not support Capacity like tString, so they are not the most efficient. They _do_ support not
 // requiring null-termination -- they are arrays of codeunits and length is stored explicitly. This allows multiple
-// nulls to be placed in the string if desired.
-// WIP Implement the last paragraph.
+// nulls to be placed in the string if desired. Internally we always store a terminating null.
 struct tStringUTF16
 {
 	tStringUTF16()																										{ }
@@ -280,32 +279,33 @@ struct tStringUTF16
 
 	// These constructors expect null-termination of the input arrays.
 	tStringUTF16(const char16_t* src)																					{ Set(src); }
-	tStringUTF16(const char8_t* src)																					{ Set(src); }
+	tStringUTF16(const char8_t*  src)																					{ Set(src); }
 
 	// These constructors do not require null-termination of the input arrays.
-	// WIP
-	tStringUTF16(const char16_t* src, int length);
-	tStringUTF16(const char8_t* src, int length);
+	tStringUTF16(const char16_t* src, int length)																		{ Set(src, length); }
+	tStringUTF16(const char8_t*  src, int length)																		{ Set(src, length); }
 
 	~tStringUTF16()																										{ delete[] CodeUnits; }
 
-	void Clear()																										{ delete[] CodeUnits; CodeUnits = nullptr; }
+	void Clear()																										{ delete[] CodeUnits; CodeUnits = nullptr; StringLength = 0; }
 	bool IsValid() const																								{ return (Length() > 0); }
-	int Length() const																									{ return CodeUnits ? tStd::tStrlen(CodeUnits) : 0; }
+	int Length() const																									{ return StringLength; }
 	const char16_t* Chars() const																						{ return CodeUnits; }
 	char16_t* Units() const																								{ return CodeUnits; }
 	#if defined(PLATFORM_WINDOWS)
 	wchar_t* GetLPWSTR() const																							{ return (wchar_t*)CodeUnits; }
 	#endif
 
-	void Set(const char16_t* src);
-	void Set(const char8_t* src);
 	void Set(const tStringUTF16& src);
 	void Set(const tString& src);
+	void Set(const char16_t* src);				// Assumes src is null-terminated.
+	void Set(const char8_t*  src);				// Assumes src is null-terminated.
+	void Set(const char16_t* src, int length);	// As many nulls as you like.
+	void Set(const char8_t*  src, int length);	// As meny nulls as you like.
 
 private:
-	// WIP int StringLength;
-	char16_t* CodeUnits = nullptr;
+	int StringLength	= 0;					// In char16_t codeunits, not including terminating null.
+	char16_t* CodeUnits	= nullptr;
 };
 
 
@@ -313,25 +313,35 @@ struct tStringUTF32
 {
 	tStringUTF32()																										{ }
 	explicit tStringUTF32(int length);	// Reserves length char32_t+1 code units (+1 for terminator).
-	tStringUTF32(const char32_t* src)																					{ Set(src); }
-	tStringUTF32(const char8_t* src)																					{ Set(src); }
 	tStringUTF32(const tStringUTF32& src)																				{ Set(src); }
 	tStringUTF32(const tString& src)																					{ Set(src); }
+
+	// These constructors expect null-termination of the input arrays.
+	tStringUTF32(const char32_t* src)																					{ Set(src); }
+	tStringUTF32(const char8_t*  src)																					{ Set(src); }
+
+	// These constructors do not require null-termination of the input arrays.
+	tStringUTF32(const char32_t* src, int length)																		{ Set(src, length); }
+	tStringUTF32(const char8_t*  src, int length)																		{ Set(src, length); }
+
 	~tStringUTF32()																										{ delete[] CodeUnits; }
 
-	void Clear()																										{ delete[] CodeUnits; CodeUnits = nullptr; }
+	void Clear()																										{ delete[] CodeUnits; CodeUnits = nullptr; StringLength = 0; }
 	bool IsValid() const																								{ return (Length() > 0); }
-	int Length() const																									{ return CodeUnits ? tStd::tStrlen(CodeUnits) : 0; }
+	int Length() const																									{ return StringLength; }
 	const char32_t* Chars() const																						{ return CodeUnits; }
 	char32_t* Units() const																								{ return CodeUnits; }
 
-	void Set(const char32_t* src);
-	void Set(const char8_t* src);
 	void Set(const tStringUTF32& src);
 	void Set(const tString& src);
+	void Set(const char32_t* src);				// Assumes src is null-terminated.
+	void Set(const char8_t* src);				// Assumes src is null-terminated.
+	void Set(const char32_t* src, int length);	// As many nulls as you like.
+	void Set(const char8_t*  src, int length);	// As meny nulls as you like.
 
 private:
-	char32_t* CodeUnits = nullptr;
+	int StringLength	= 0;					// In char32_t codeunits, not including terminating null.
+	char32_t* CodeUnits	= nullptr;
 };
 
 
@@ -658,42 +668,12 @@ inline tString::~tString()
 
 inline tStringUTF16::tStringUTF16(int length)
 {
-	if (!length)
-	{
-		CodeUnits = nullptr;
-	}
-	else
-	{
-		CodeUnits = new char16_t[1+length];
-		tStd::tMemset(CodeUnits, 0, 2*(1+length));
-	}
-}
+	if (length <= 0)
+		return;
 
-
-inline void tStringUTF16::Set(const char16_t* src)
-{
-	Clear();
-	int len = src ? tStd::tStrlen(src) : 0;
-	if (len)
-	{
-		CodeUnits = new char16_t[len+1];
-		for (int cu = 0; cu < len; cu++)
-			CodeUnits[cu] = src[cu];
-		CodeUnits[len] = 0;
-	}
-}
-
-
-inline void tStringUTF16::Set(const char8_t* src)
-{
-	Clear();
-	int len = src ? tStd::tStrlen(src) : 0;
-	if (len)
-	{
-		int len16 = tStd::tUTF16s(nullptr, src);
-		CodeUnits = new char16_t[len16+1];
-		tStd::tUTF16s(CodeUnits, src);
-	}
+	CodeUnits = new char16_t[1+length];
+	tStd::tMemset(CodeUnits, 0, 2*(1+length));
+	StringLength = length;
 }
 
 
@@ -701,7 +681,7 @@ inline void tStringUTF16::Set(const tStringUTF16& src)
 {
 	Clear();
 	if (src.IsValid())
-		Set(src.Chars());
+		Set(src.CodeUnits, src.StringLength);
 }
 
 
@@ -709,48 +689,60 @@ inline void tStringUTF16::Set(const tString& src)
 {
 	Clear();
 	if (src.IsValid())
-		Set(src.Chars());
+		Set(src.Chars(), src.Length());
+}
+
+
+inline void tStringUTF16::Set(const char16_t* src)
+{
+	int lenSrc = src ? tStd::tStrlen(src) : 0;
+	Set(src, lenSrc);
+}
+
+
+inline void tStringUTF16::Set(const char8_t* src)
+{
+	int lenSrc = src ? tStd::tStrlen(src) : 0;
+	Set(src, lenSrc);
+}
+
+
+inline void tStringUTF16::Set(const char16_t* src, int lenSrc)
+{
+	Clear();
+	if (!src ||(lenSrc <= 0))
+		return;
+
+	CodeUnits = new char16_t[lenSrc+1];
+	for (int cu = 0; cu < lenSrc; cu++)
+		CodeUnits[cu] = src[cu];
+	CodeUnits[lenSrc] = 0;
+	StringLength = lenSrc;
+}
+
+
+inline void tStringUTF16::Set(const char8_t* src, int lenSrc)
+{
+	Clear();
+	if (!src ||(lenSrc <= 0))
+		return;
+
+	int len16 = tStd::tUTF16(nullptr, src, lenSrc);
+	CodeUnits = new char16_t[len16+1];
+	tStd::tUTF16(CodeUnits, src, lenSrc);
+	CodeUnits[lenSrc] = 0;
+	StringLength = len16;
 }
 
 
 inline tStringUTF32::tStringUTF32(int length)
 {
-	if (!length)
-	{
-		CodeUnits = nullptr;
-	}
-	else
-	{
-		CodeUnits = new char32_t[1+length];
-		tStd::tMemset(CodeUnits, 0, 4*(1+length));
-	}
-}
+	if (length <= 0)
+		return;
 
-
-inline void tStringUTF32::Set(const char32_t* src)
-{
-	Clear();
-	int len = src ? tStd::tStrlen(src) : 0;
-	if (len)
-	{
-		CodeUnits = new char32_t[len+1];
-		for (int cu = 0; cu < len; cu++)
-			CodeUnits[cu] = src[cu];
-		CodeUnits[len] = 0;
-	}
-}
-
-
-inline void tStringUTF32::Set(const char8_t* src)
-{
-	Clear();
-	int len = src ? tStd::tStrlen(src) : 0;
-	if (len)
-	{
-		int len32 = tStd::tUTF32s(nullptr, src);
-		CodeUnits = new char32_t[len32+1];
-		tStd::tUTF32s(CodeUnits, src);
-	}
+	CodeUnits = new char32_t[1+length];
+	tStd::tMemset(CodeUnits, 0, 4*(1+length));
+	StringLength = length;
 }
 
 
@@ -758,7 +750,7 @@ inline void tStringUTF32::Set(const tStringUTF32& src)
 {
 	Clear();
 	if (src.IsValid())
-		Set(src.Chars());
+		Set(src.Chars(), src.Length());
 }
 
 
@@ -766,7 +758,49 @@ inline void tStringUTF32::Set(const tString& src)
 {
 	Clear();
 	if (src.IsValid())
-		Set(src.Chars());
+		Set(src.Chars(), src.Length());
+}
+
+
+inline void tStringUTF32::Set(const char32_t* src)
+{
+	int lenSrc = src ? tStd::tStrlen(src) : 0;
+	Set(src, lenSrc);
+}
+
+
+inline void tStringUTF32::Set(const char8_t* src)
+{
+	int lenSrc = src ? tStd::tStrlen(src) : 0;
+	Set(src, lenSrc);
+}
+
+
+inline void tStringUTF32::Set(const char32_t* src, int lenSrc)
+{
+	Clear();
+	if (!src ||(lenSrc <= 0))
+		return;
+
+	CodeUnits = new char32_t[lenSrc+1];
+	for (int cu = 0; cu < lenSrc; cu++)
+		CodeUnits[cu] = src[cu];
+	CodeUnits[lenSrc] = 0;
+	StringLength = lenSrc;
+}
+
+
+inline void tStringUTF32::Set(const char8_t* src, int lenSrc)
+{
+	Clear();
+	if (!src ||(lenSrc <= 0))
+		return;
+
+	int len32 = tStd::tUTF32(nullptr, src, lenSrc);
+	CodeUnits = new char32_t[len32+1];
+	tStd::tUTF32(CodeUnits, src, lenSrc);
+	CodeUnits[lenSrc] = 0;
+	StringLength = len32;
 }
 
 
