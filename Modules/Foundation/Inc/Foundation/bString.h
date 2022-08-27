@@ -58,58 +58,56 @@ struct tStringUTF32;
 // THIS CLASS IS WIP.
 struct bString
 {
-	bString();
-
-	// Expects src to be null-terminated.
-	bString(const char8_t* src);
-
-	// You can create a UTF-8 bString from a null-terminated ASCII string no problem. All ASCII strings are valid UTF-8.
-	bString(const char* src);
-
-	// Constructs from a code-unit (or ASCII char) array of size srcLen. Src may have multiple nulls in it.
-	bString(const char8_t* src, int srcLen);
-	bString(const char* src, int srcLen);
-
-	bString(const bString& src);
-
-	// These assume src is null-terminated.
-	bString(const char16_t* src);
-	bString(const char32_t* src);
-
-	// The tStringUTF constructors allow the src strings to have multiple nulls in them.
-	bString(const tStringUTF16& src);
-	bString(const tStringUTF32& src);
+	bString()																											{ UpdateCapacity(0, false); }
+	bString(const bString& src)																							{ Set(src); }
 
 	// Construct a string of length null characters.
-	explicit bString(int length);
+	explicit bString(int length)																						{ Set(length); }
 
-	// Note the char here. A char8_t can't be guaranteed to store a unicode codepoint if the codepoint requires
-	// continuations in the UTF-8 encoding. So, here we support char only which we use for ASCII characters. These chars
-	// are guaranteed to _not_ need continuation units in UFT-8.
-	bString(char);
+	// Creates a bString with a single character, Note the char type here. A char8_t can't be guaranteed to store a
+	// unicode codepoint if the codepoint requires continuations in the UTF-8 encoding. So, here we support char only
+	// which we use for ASCII characters since ASCII chars are guaranteed to _not_ need continuation units in UFT-8.
+	bString(char c)																										{ Set(c); }
 
-	virtual ~bString();
+	// The constructors that don't take in a length expect the string pointers to be null-terminated.
+	// The constructors that do take a length may contain multiple nulls in the src string.
+	// You can create a UTF-8 bString from an ASCII string (char*) since all ASCII strings are valid UTF-8.
+	// Constructors taking char8_t, char16_t, or chat32_t pointers assume the src is UTF encoded.
+	bString(const char*		src)																						{ Set(src); }
+	bString(const char8_t*	src)																						{ Set(src); }
+	bString(const char16_t*	src)																						{ Set(src); }
+	bString(const char32_t*	src)																						{ Set(src); }
+	bString(const char*		src, int srcLen)																			{ Set(src, srcLen); }
+	bString(const char8_t*	src, int srcLen)																			{ Set(src, srcLen); }
+	bString(const char16_t*	src, int srcLen);
+	bString(const char32_t*	src, int srcLen);
 
-	void Set(const char8_t* src);
-	void Set(const char* src);//																								{ Set((const char8_t*)s); }
-	void Set(const char8_t* src, int srcLen);
-	void Set(const char* src, int srcLen);
+	// The tStringUTF constructors allow the src strings to have multiple nulls in them.
+	bString(const tStringUTF16& src)																					{ Set(src); }
+	bString(const tStringUTF32& src)																					{ Set(src); }
+	virtual ~bString()																									{ delete[] CodeUnits; }
+
 	void Set(const bString& src);
-	void Set(const char16_t* src)																						{ SetUTF16(src); }
-	void Set(const char32_t* src)																						{ SetUTF32(src); }
-	void Set(const tStringUTF16& src);
-	void Set(const tStringUTF32& src);
 	void Set(int length);
 	void Set(char);
+	void Set(const char*		src);
+	void Set(const char8_t*		src);
+	void Set(const char16_t*	src);
+	void Set(const char32_t*	src);
+	void Set(const char*		src, int srcLen);
+	void Set(const char8_t*		src, int srcLen);
+	void Set(const char16_t*	src, int srcLen);
+	void Set(const char32_t*	src, int srcLen);
+	void Set(const tStringUTF16& src);
+	void Set(const tStringUTF32& src);
 
 	// The length in char8_t's (code-units), not the display length (which is not that useful).
 	// This length has nothing to do with how many null characters are in the string or where the are.
-	int Length() const;
+	int Length() const																									{ return StringLength; }
 
 	// Does not release memory. Simply clears the string. Fast.
-	void Clear()	{ StringLength = 0; CodeUnits[0] = '\0'; }
-
-	int Capacity() const;
+	void Clear()																										{ StringLength = 0; CodeUnits[0] = '\0'; }
+	int Capacity() const																								{ return CurrCapacity; }
 
 	#if 0
 
@@ -367,121 +365,6 @@ private:
 // Implementation below this line.
 
 
-inline bString::bString()
-{
-	UpdateCapacity(0, false);
-}
-
-
-inline bString::bString(const char8_t* src)
-{
-	Set(src);
-}
-
-
-inline bString::bString(const char* src)
-{
-	Set(src);
-}
-
-
-inline bString::bString(const char8_t* src, int srcLen)
-{
-	Set(src, srcLen);
-}
-
-
-inline bString::bString(const char* src, int srcLen)
-{
-	Set(src, srcLen);
-}
-
-
-inline bString::bString(const bString& src)
-{
-	Set(src);
-}
-
-
-inline bString::bString(const char16_t* src)
-{
-	Set(src);
-}
-
-
-inline bString::bString(const char32_t* src)
-{
-	Set(src);
-}
-
-
-inline bString::bString(const tStringUTF16& src)
-{
-	Set(src);
-}
-
-
-inline bString::bString(const tStringUTF32& src)
-{
-	Set(src);
-}
-
-
-inline bString::bString(int length)
-{
-	Set(length);
-}
-
-
-inline bString::bString(char c)
-{
-	Set(c);
-}
-
-
-inline bString::~bString()
-{
-	delete[] CodeUnits;
-}
-
-
-inline void bString::Set(const char8_t* src)
-{
-	int srcLen = src ? tStd::tStrlen(src) : 0;
-	UpdateCapacity(srcLen, false);
-	if (srcLen > 0)
-	{
-		tStd::tMemcpy(CodeUnits, src, srcLen);
-		CodeUnits[srcLen] = '\0';
-		StringLength = srcLen;
-	}
-}
-
-
-inline void bString::Set(const char* src)
-{
-	Set((const char8_t*)src);
-}
-
-
-inline void bString::Set(const char8_t* src, int srcLen)
-{
-	if (!src || (srcLen < 0))
-		srcLen = 0;
-	UpdateCapacity(srcLen, false);
-	if (srcLen > 0)
-		tStd::tMemcpy(CodeUnits, src, srcLen);
-	CodeUnits[srcLen] = '\0';
-	StringLength = srcLen;
-}
-
-
-inline void bString::Set(const char* src, int srcLen)
-{
-	Set((const char8_t*)src, srcLen);
-}
-
-
 inline void bString::Set(const bString& src)
 {
 	int srcLen = src.Length();
@@ -490,18 +373,6 @@ inline void bString::Set(const bString& src)
 	StringLength = srcLen;
 	tStd::tMemcpy(CodeUnits, src.CodeUnits, StringLength);
 	CodeUnits[StringLength] = '\0';
-}
-
-
-inline void bString::Set(const tStringUTF16& src)
-{
-	SetUTF16(src.Units(), src.Length());
-}
-
-
-inline void bString::Set(const tStringUTF32& src)
-{
-	SetUTF32(src.Units(), src.Length());
 }
 
 
@@ -527,15 +398,76 @@ inline void bString::Set(char c)
 }
 
 
-inline int bString::Length() const
+inline void bString::Set(const char* src)
 {
-	return StringLength;
+	Set((const char8_t*)src);
 }
 
 
-inline int bString::Capacity() const
+inline void bString::Set(const char8_t* src)
 {
-	return CurrCapacity;
+	int srcLen = src ? tStd::tStrlen(src) : 0;
+	UpdateCapacity(srcLen, false);
+	if (srcLen > 0)
+	{
+		tStd::tMemcpy(CodeUnits, src, srcLen);
+		CodeUnits[srcLen] = '\0';
+		StringLength = srcLen;
+	}
+}
+
+
+inline void bString::Set(const char16_t* src)
+{
+	SetUTF16(src);
+}
+
+
+inline void bString::Set(const char32_t* src)
+{
+	SetUTF32(src);
+}
+
+
+inline void bString::Set(const char* src, int srcLen)
+{
+	Set((const char8_t*)src, srcLen);
+}
+
+
+inline void bString::Set(const char8_t* src, int srcLen)
+{
+	if (!src || (srcLen < 0))
+		srcLen = 0;
+	UpdateCapacity(srcLen, false);
+	if (srcLen > 0)
+		tStd::tMemcpy(CodeUnits, src, srcLen);
+	CodeUnits[srcLen] = '\0';
+	StringLength = srcLen;
+}
+
+
+inline void bString::Set(const char16_t* src, int srcLen)
+{
+	///////////////// WIP
+}
+
+
+inline void bString::Set(const char32_t* src, int srcLen)
+{
+	///////////////// WIP
+}
+
+
+inline void bString::Set(const tStringUTF16& src)
+{
+	SetUTF16(src.Units(), src.Length());
+}
+
+
+inline void bString::Set(const tStringUTF32& src)
+{
+	SetUTF32(src.Units(), src.Length());
 }
 
 // WIP op=
