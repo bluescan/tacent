@@ -606,50 +606,7 @@ inline bool bString::IsEqualCI(const char8_t* str, int strLen) const
 }
 
 
-// WIP op=
-
-
-inline void bString::UpdateCapacity(int capNeeded, bool preserve)
-{
-	int grow = 0;
-	if (capNeeded > 0)
-		grow = (GrowParam >= 0) ? GrowParam : capNeeded*(-GrowParam);
-
-	capNeeded += grow;
-	if (capNeeded < MinCapacity)
-		capNeeded = MinCapacity;
-
-	if (CurrCapacity >= capNeeded)
-	{
-		if (!preserve)
-		{
-			StringLength = 0;
-			CodeUnits[0] = '\0';
-		}
-		return;
-	}
-
-	char8_t* newUnits = new char8_t[capNeeded+1];
-	if (preserve)
-	{
-		tAssert(capNeeded >= StringLength);
-		if (StringLength > 0)
-			tStd::tMemcpy(newUnits, CodeUnits, StringLength);
-	}
-	else
-	{
-		StringLength = 0;
-	}
-	newUnits[StringLength] = '\0';
-
-	// CodeUnits mey be nullptr the first time.
-	delete[] CodeUnits;
-	CodeUnits = newUnits;
-	CurrCapacity = capNeeded;
-}
-
 #if 0
-
 inline int tString::CountChar(char c) const
 {
 	char8_t* i = CodeUnits;
@@ -659,9 +616,9 @@ inline int tString::CountChar(char c) const
 
 	return count;
 }
-
-
 #endif
+
+
 inline bString operator+(const bString& preStr, const bString& sufStr)
 {
 	bString buf( preStr.Length() + sufStr.Length() );
@@ -726,7 +683,9 @@ inline bool bString::IsAlphaNumeric(bool includeUnderscore, bool includeDecimal)
 
 	return true;
 }
-//////////////////////////
+
+
+////////////////////////// WIP
 #if 0
 
 inline int tString::FindAny(const char* chars) const

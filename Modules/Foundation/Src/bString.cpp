@@ -612,3 +612,43 @@ int tStd::tExplode(tList<tStringItem>& components, const tString& src, const tSt
 	return tExplode(components, source, 31);
 }
 #endif
+
+
+void bString::UpdateCapacity(int capNeeded, bool preserve)
+{
+	int grow = 0;
+	if (capNeeded > 0)
+		grow = (GrowParam >= 0) ? GrowParam : capNeeded*(-GrowParam);
+
+	capNeeded += grow;
+	if (capNeeded < MinCapacity)
+		capNeeded = MinCapacity;
+
+	if (CurrCapacity >= capNeeded)
+	{
+		if (!preserve)
+		{
+			StringLength = 0;
+			CodeUnits[0] = '\0';
+		}
+		return;
+	}
+
+	char8_t* newUnits = new char8_t[capNeeded+1];
+	if (preserve)
+	{
+		tAssert(capNeeded >= StringLength);
+		if (StringLength > 0)
+			tStd::tMemcpy(newUnits, CodeUnits, StringLength);
+	}
+	else
+	{
+		StringLength = 0;
+	}
+	newUnits[StringLength] = '\0';
+
+	// CodeUnits mey be nullptr the first time.
+	delete[] CodeUnits;
+	CodeUnits = newUnits;
+	CurrCapacity = capNeeded;
+}
