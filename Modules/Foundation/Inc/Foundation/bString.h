@@ -101,15 +101,25 @@ struct bString
 	void Set(const tStringUTF16&	src);
 	void Set(const tStringUTF32&	src);
 
+	// Does not release memory. Simply sets the string to empty. Fast.
+	void Clear()																										{ StringLength = 0; CodeUnits[0] = '\0'; }
+
 	// The length in char8_t's (code-units), not the display length (which is not that useful).
 	// This length has nothing to do with how many null characters are in the string or where the are.
 	int Length() const																									{ return StringLength; }
-
-	// Does not release memory. Simply sets the string to empty. Fast.
-	void Clear()																										{ StringLength = 0; CodeUnits[0] = '\0'; }
 	int Capacity() const																								{ return CurrCapacity; }
+
+	// This function is for efficiency only. It does not modify the string contents. It simply makes sure the capacity
+	// of the string is big enough to hold numUnits units. It returns the new capacity after any required adjustments
+	// are made. The returned value will be >= numUnits.
+	int Reserve(int numUnits);
+
+	// Shrink releases extra memory (the difference between capacity and length) if possible. It returns the new
+	// capacity after shrinking. Note that the new capacity will be at least MinCapacity big.
+	int Shrink();
+
 	bool IsEmpty() const																								{ return (StringLength > 0); }
-	bool IsValid() const			/* returns true is string is not empty. */											{ return !IsEmpty(); }
+	bool IsValid() const			/* Returns true is string is not empty. */											{ return !IsEmpty(); }
 
 	bString& operator=(const bString&);
 
@@ -141,15 +151,12 @@ struct bString
 	friend bString operator+(const bString& prefix, const bString& suffix);
 	bString& operator+=(const bString&);
 
-	#if 0
-
-
+	// All non-null characters must meet the criteria for these functions to return true.
 	bool IsAlphabetic(bool includeUnderscore = true) const;
 	bool IsNumeric(bool includeDecimal = false) const;
 	bool IsAlphaNumeric(bool includeUnderscore = true, bool includeDecimal = false) const;
 
-	// Current string data is lost and enough space is reserved for length characters. The reserved memory can be zeroed.
-	void Reserve(int length, bool zeroMemory = true);
+	#if 0
 
 	// These only work well for ASCII strings as vars like 'count' are indexes into the text data and are not
 	// 'continuation-aware'. This comment applies to all below functions with the words 'Left', 'Right', and 'Mid' in
@@ -187,8 +194,10 @@ struct bString
 	// Returns chars from start to count, but also removes that from the tString.  If start + count > length then what's
 	// available is extracted.
 	tString ExtractMid(int start, int count);
+	#endif
 
 	// Accesses the raw UTF-8 codeunits represented by the 'official' unsigned UTF-8 character datatype char8_t.
+	// Except for Charz nullptr is not returned although they may return a pointer to an empty string.
 	char8_t* Text()																										{ return CodeUnits; }
 	const char8_t* Chars() const																						{ return CodeUnits; }
 	const char8_t* Charz() const	/* Like Chars() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : CodeUnits; }
@@ -196,14 +205,13 @@ struct bString
 
 	// Many other functions and libraries that are UTF-8 compliant do not yet (and may never) use the proper char8_t
 	// type and use char* and const char*. These functions allow you to retrieve the tString using the char type.
-	// Use these with tPrintf and %s.
-	#endif
+	// You can also use these with tPrintf and %s.
 	char* Txt()																											{ return (char*)CodeUnits; }
 	const char* Chr() const																								{ return (const char*)CodeUnits; }
-	#if 0
 	const char* Chz() const			/* Like Chr() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : (const char*)CodeUnits; }
 	char* Pod() const				/* Plain Old Data */																{ return (char*)CodeUnits; }
 
+	#if 0
 	// Returns index of first/last occurrence of char in the string. -1 if not found. Finds last if backwards flag is
 	// set. The starting point may be specified. If backwards is false, the search proceeds forwards from the starting
 	// point. If backwards is true, it proceeds backwards. If startIndex is -1, 0 is the starting point for a forward
@@ -487,6 +495,31 @@ inline void bString::Set(const tStringUTF32& src)
 }
 
 
+inline int bString::Reserve(int numUnits)
+{
+	UpdateCapacity(numUnits, true);
+	return CurrCapacity;
+}
+
+
+inline int bString::Shrink()
+{
+	if ((StringLength == CurrCapacity) || (CurrCapacity == MinCapacity))
+		return CurrCapacity;
+
+	tAssert(StringLength < CurrCapacity);
+	char8_t* newUnits = new char8_t[StringLength+1];
+
+	// The plus one is so we can do the null-terminator in the memcpy. It also allows it to work if
+	// the string length is 0.
+	tStd::tMemcpy(newUnits, CodeUnits, StringLength+1);
+	delete[] CodeUnits;
+	CodeUnits = newUnits;
+	CurrCapacity = StringLength;
+	return CurrCapacity;
+}
+
+
 inline bString& bString::operator=(const bString& src)
 {
 	if (this == &src)
@@ -617,23 +650,6 @@ inline void bString::UpdateCapacity(int capNeeded, bool preserve)
 
 #if 0
 
-inline void tString::Reserve(int length, bool zeroMemory)
-{
-	if (CodeUnits != &EmptyChar)
-		delete[] CodeUnits;
-
-	if (length <= 0)
-	{
-		CodeUnits = &EmptyChar;
-		return;
-	}
-
-	CodeUnits = new char8_t[length+1];
-	if (zeroMemory)
-		tStd::tMemset(CodeUnits, 0, length+1);
-}
-
-
 inline int tString::CountChar(char c) const
 {
 	char8_t* i = CodeUnits;
@@ -670,48 +686,48 @@ inline bString& bString::operator+=(const bString& sufStr)
 	StringLength = newLen;
 	return *this;
 }
+
+
+inline bool bString::IsAlphabetic(bool includeUnderscore) const 
+{
+	for (int n = 0; n < StringLength; n++)
+	{
+		char c = char(CodeUnits[n]);
+		if ( !(tStd::tIsalpha(c) || (includeUnderscore && (c == '_'))) )
+			return false;
+	}
+
+	return true;
+}
+
+
+inline bool bString::IsNumeric(bool includeDecimal) const 
+{
+	for (int n = 0; n < StringLength; n++)
+	{
+		char c = char(CodeUnits[n]);
+		if ( !(tStd::tIsdigit(c) || (includeDecimal && (c == '.'))) )
+			return false;
+	}
+
+	return true;
+}
+
+
+inline bool bString::IsAlphaNumeric(bool includeUnderscore, bool includeDecimal) const
+{
+	// Doing them both in one loop.
+	for (int n = 0; n < StringLength; n++)
+	{
+		char c = char(CodeUnits[n]);
+		if ( !(tStd::tIsalnum(c) || (includeUnderscore && (c == '_')) || (includeDecimal && (c == '.'))) )
+			return false;
+	}
+
+	return true;
+}
+//////////////////////////
 #if 0
-
-
-inline bool tString::IsAlphabetic(bool includeUnderscore) const 
-{
-	if (CodeUnits == &EmptyChar)
-		return false;
-
-	const char8_t* c = CodeUnits;
-	while (*c)
-	{
-		if ( !((*c >= 'A' && *c <= 'Z') || (*c >= 'a' && *c <= 'z') || (includeUnderscore && *c == '_')) )
-			return false;
-		c++;
-	}
-
-	return true;
-}
-
-
-inline bool tString::IsNumeric(bool includeDecimal) const 
-{
-	if (CodeUnits == &EmptyChar)
-		return false;
-
-	const char8_t* c = CodeUnits;
-	while (*c)
-	{
-		if ( !((*c >= '0' && *c <= '9') || (includeDecimal && *c == '.')) )
-			return false;
-		c++;
-	}
-
-	return true;
-}
-
-
-inline bool tString::IsAlphaNumeric(bool includeUnderscore, bool includeDecimal) const
-{
-	return (IsAlphabetic(includeUnderscore) || IsNumeric(includeDecimal));
-}
-
 
 inline int tString::FindAny(const char* chars) const
 {

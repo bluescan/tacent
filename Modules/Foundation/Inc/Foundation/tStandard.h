@@ -284,7 +284,7 @@ char32_t tUTF32c(const char8_t*  src);				// Reads 1 to 4 char8 codeunits from s
 char32_t tUTF32c(const char16_t* src);				// Reads 1 or 2(surrogtate) char16 codeunits from src.
 char32_t tUTF32c(const char32_t* src);				// Reads 1 char32 codeunit from src.
 
-// These take a codepoint in  UTF-32 (src) and write to the dst array without adding a null-terminator. If dst is nullptr
+// These take a codepoint in UTF-32 (src) and write to the dst array without adding a null-terminator. If dst is nullptr
 // returns 0. If src is invalid, dst receives the special replacement. Returns num charNs written. The size hints in the
 // arrays are worst case amounts of room you may need. If you want a null terminated string after conversion (with the
 // single codepoint in it), make dst 1 bigger than suggested and set the Nth charN to 0, where N is the value returned.
