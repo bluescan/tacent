@@ -274,8 +274,11 @@ struct bString
 	tString Upper() const																								{ tString s(*this); s.ToUpper(); return s; }
 	tString Lower() const																								{ tString s(*this); s.ToLower(); return s; }
 
-	// See comment for tStrtoiT in tStandard.h for format requirements. The summary is that if base is -1, the function
-	// looks one of the following prefixes in the string, defaulting to base 10 if none found.
+	#endif
+
+	// The GetAs functions consider the contents of the current bSstring up to the first null encountered. See comment
+	// for tStrtoiT in tStandard.h for format requirements. The summary is that if base is -1, the function looks one of
+	// the following prefixes in the string, defaulting to base 10 if none found.
 	//
 	// Base 16 prefixes: x X 0x 0X #
 	// Base 10 prefixes: d D 0d 0D
@@ -292,8 +295,9 @@ struct bString
 	// represent non-zero integers as boolean true. Otherwise false.
 	bool GetAsBool() const																								{ return tStd::tStrtob(CodeUnits); }
 
-	float GetAsFloat() const									/* Base 10 interpretation only. */						{ return tStd::tStrtof(CodeUnits); }
-	double GetAsDouble() const									/* Base 10 interpretation only. */						{ return tStd::tStrtod(CodeUnits); }
+	// Base 10 interpretation only.
+	float GetAsFloat() const																							{ return tStd::tStrtof(CodeUnits); }
+	double GetAsDouble() const																							{ return tStd::tStrtod(CodeUnits); }
 
 	// Shorter synonyms.
 	int AsInt(int base = -1) const																						{ return GetAsInt(base); }
@@ -315,7 +319,6 @@ struct bString
 	bool ToUInt32(uint32& v, int base = -1) const																		{ return tStd::tStrtoui32(v, CodeUnits, base); }
 	bool ToUInt64(uint64& v, int base = -1) const																		{ return tStd::tStrtoui64(v, CodeUnits, base); }
 
-#endif
 	// tString UTF encoding/decoding functions. tString is encoded in UTF-8. These functions allow you to convert from
 	// tString to UTF-16/32 arrays. If dst is nullptr returns the number of charN codeunits needed. If incNullTerminator
 	// is false the number needed will be one fower. If dst is valid, writes the codeunits to dst and returns number
