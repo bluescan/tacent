@@ -95,6 +95,8 @@ inline char* tStrlwr(char* s)																							{ tAssert(s); char* c = s; w
 inline char8_t* tStrupr(char8_t* s)																						{ tAssert(s); char8_t* c = s; while (*c) { *c = toupper(*c); c++; } return s; }
 inline char8_t* tStrlwr(char8_t* s)																						{ tAssert(s); char8_t* c = s; while (*c) { *c = tolower(*c); c++; } return s; }
 #endif
+inline char tToUpper(char c)																							{ return toupper(c); }
+inline char tToLower(char c)																							{ return tolower(c); }
 
 // For these conversion calls, unknown digit characters for the supplied base are ignored. If base is not E [2, 36], the
 // base in which to interpret the string is determined by passing a prefix in the string. Base 10 is used if no specific
@@ -120,8 +122,9 @@ inline char8_t* tStrlwr(char8_t* s)																						{ tAssert(s); char8_t* 
 // ambiguous. For example, "0x" is a valid base 36 number but "0x" is also a prefix. If you supply a prefix it must
 // match the base or you will get undefined results. eg "0xff" or "xff" with base=36 interprets the 'x', correctly, as
 // 33. "0xff" with base=16 works too because 'x' is an invalid hex digit and gets ignored. The '0' is leading so also
-// does not interfere. The same behaviour holds for all prefixes and bases. Finally, don't pass a base-34 number in with
-// the base set to -1, although that shouldn't happen anyways.
+// does not interfere. The same behaviour holds for all prefixes and bases. Finally, do not use base=-1 on strings
+// that are not either base 16, 10, 8, 4, or 2. eg. "0XF" is a valid base-34 number, and we wouldn't want it
+// interpreted as base 16 is that's not what you intended.
 template <typename IntegralType> IntegralType tStrtoiT(const char*, int base = -1);
 inline int32 tStrtoi32(const char* s, int base = -1)																	{ return tStrtoiT<int32>(s, base); }
 inline uint32 tStrtoui32(const char* s, int base = -1)																	{ return tStrtoiT<uint32>(s, base); }

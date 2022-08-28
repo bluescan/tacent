@@ -17,20 +17,20 @@
 #include "Foundation/tHash.h"
 
 
-//char8_t tString::EmptyChar = '\0';
+bString::operator uint32()
+{
+	return tHash::tHashStringFast32(CodeUnits);
+
+}
+
+
+bString::operator uint32() const
+{
+	return tHash::tHashStringFast32(CodeUnits);
+}
+
 
 #if 0
-tString::operator uint32()
-{
-	return tHash::tHashStringFast32(CodeUnits);
-
-}
-
-
-tString::operator uint32() const
-{
-	return tHash::tHashStringFast32(CodeUnits);
-}
 
 
 tString tString::Left(const char c) const

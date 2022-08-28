@@ -73,70 +73,76 @@ struct bString
 	// The constructors that do take a length may contain multiple nulls in the src string.
 	// You can create a UTF-8 bString from an ASCII string (char*) since all ASCII strings are valid UTF-8.
 	// Constructors taking char8_t, char16_t, or chat32_t pointers assume the src is UTF encoded.
-	bString(const char*		src)																						{ Set(src); }
-	bString(const char8_t*	src)																						{ Set(src); }
-	bString(const char16_t*	src)																						{ Set(src); }
-	bString(const char32_t*	src)																						{ Set(src); }
-	bString(const char*		src, int srcLen)																			{ Set(src, srcLen); }
-	bString(const char8_t*	src, int srcLen)																			{ Set(src, srcLen); }
-	bString(const char16_t*	src, int srcLen);
-	bString(const char32_t*	src, int srcLen);
+	bString(const char*				src)																				{ Set(src); }
+	bString(const char8_t*			src)																				{ Set(src); }
+	bString(const char16_t*			src)																				{ Set(src); }
+	bString(const char32_t*			src)																				{ Set(src); }
+	bString(const char*				src, int srcLen)																	{ Set(src, srcLen); }
+	bString(const char8_t*			src, int srcLen)																	{ Set(src, srcLen); }
+	bString(const char16_t*			src, int srcLen);
+	bString(const char32_t*			src, int srcLen);
 
 	// The tStringUTF constructors allow the src strings to have multiple nulls in them.
-	bString(const tStringUTF16& src)																					{ Set(src); }
-	bString(const tStringUTF32& src)																					{ Set(src); }
+	bString(const tStringUTF16&		src)																				{ Set(src); }
+	bString(const tStringUTF32&		src)																				{ Set(src); }
 	virtual ~bString()																									{ delete[] CodeUnits; }
 
-	void Set(const bString& src);
+	void Set(const bString&			src);
 	void Set(int length);
 	void Set(char);
-	void Set(const char*		src);
-	void Set(const char8_t*		src);
-	void Set(const char16_t*	src);
-	void Set(const char32_t*	src);
-	void Set(const char*		src, int srcLen);
-	void Set(const char8_t*		src, int srcLen);
-	void Set(const char16_t*	src, int srcLen);
-	void Set(const char32_t*	src, int srcLen);
-	void Set(const tStringUTF16& src);
-	void Set(const tStringUTF32& src);
+	void Set(const char*			src);
+	void Set(const char8_t*			src);
+	void Set(const char16_t*		src);
+	void Set(const char32_t*		src);
+	void Set(const char*			src, int srcLen);
+	void Set(const char8_t*			src, int srcLen);
+	void Set(const char16_t*		src, int srcLen);
+	void Set(const char32_t*		src, int srcLen);
+	void Set(const tStringUTF16&	src);
+	void Set(const tStringUTF32&	src);
 
 	// The length in char8_t's (code-units), not the display length (which is not that useful).
 	// This length has nothing to do with how many null characters are in the string or where the are.
 	int Length() const																									{ return StringLength; }
 
-	// Does not release memory. Simply clears the string. Fast.
+	// Does not release memory. Simply sets the string to empty. Fast.
 	void Clear()																										{ StringLength = 0; CodeUnits[0] = '\0'; }
 	int Capacity() const																								{ return CurrCapacity; }
+	bool IsEmpty() const																								{ return (StringLength > 0); }
+	bool IsValid() const			/* returns true is string is not empty. */											{ return !IsEmpty(); }
 
-	#if 0
+	bString& operator=(const bString&);
 
-	tString& operator=(const tString&);
+	// The IsEqual variants taking (only) pointers assume null-terminated inputs. Two empty strings are considered
+	// equal. If the input is nullptr (for functions taking pointers) it is not considered equal to an empty string.
+	// For variants taking pointers and a length, all characters are checked (multiple null chars supported).
+	bool IsEqual(const bString&		str) const;
+	bool IsEqual(const char*		str) const;
+	bool IsEqual(const char8_t*		str) const;
+	bool IsEqual(const char*		str, int strLen) const;
+	bool IsEqual(const char8_t*		str, int strLen) const;
 
-	bool IsEqual(const tString& s) const																				{ return !tStd::tStrcmp(CodeUnits, s.CodeUnits); }
-	bool IsEqual(const char8_t* s) const																				{ if (!s) return false; return !tStd::tStrcmp(CodeUnits, s); }
-	bool IsEqual(const char* s) const																					{ if (!s) return false; return !tStd::tStrcmp(CodeUnits, (char8_t*)s); }
-	bool IsEqualCI(const tString& s) const																				{ return !tStd::tStricmp(CodeUnits, s.CodeUnits); }
-	bool IsEqualCI(const char8_t* s) const																				{ if (!s) return false; return !tStd::tStricmp(CodeUnits, s); }
-	bool IsEqualCI(const char* s) const																					{ if (!s) return false; return !tStd::tStricmp(CodeUnits, (char8_t*)s); }
+	bool IsEqualCI(const bString&	str) const;
+	bool IsEqualCI(const char*		str) const;
+	bool IsEqualCI(const char8_t*	str) const;
+	bool IsEqualCI(const char*		str, int strLen) const;
+	bool IsEqualCI(const char8_t*	str, int strLen) const;
 
 	// These allow for implicit conversion to a UTF-8 code-unit pointer. By not including implicit casts to const char*
 	// we are encouraging further proper use of char8_t. You can either make the function you are calling take the
 	// proper UTF-* type, or explicitly call Chr() or Txt() to get an old char-based pointer.
 	operator const char8_t*()																							{ return CodeUnits; }
 	operator const char8_t*() const																						{ return CodeUnits; }
+	char8_t& operator[](int i)		/* This may be somewhat meaningless if continuations needed at the index. */		{ return CodeUnits[i]; }
 
 	explicit operator uint32();
 	explicit operator uint32() const;
 
-	char8_t& operator[](int i)		/* This may be somewhat meaningless if continuations needed at the index. */		{ return CodeUnits[i]; }
-	friend tString operator+(const tString& prefix, const tString& suffix);
-	tString& operator+=(const tString&);
+	friend bString operator+(const bString& prefix, const bString& suffix);
+	bString& operator+=(const bString&);
 
+	#if 0
 
-	int Length() const				/* The length in char8_t's, not the display length (which is not that useful). */	{ return int(tStd::tStrlen(CodeUnits)); }
-	bool IsEmpty() const																								{ return (CodeUnits == &EmptyChar) || !tStd::tStrlen(CodeUnits); }
-	bool IsValid() const			/* returns true is string is not empty. */											{ return !IsEmpty(); }
 
 	bool IsAlphabetic(bool includeUnderscore = true) const;
 	bool IsNumeric(bool includeDecimal = false) const;
@@ -449,13 +455,23 @@ inline void bString::Set(const char8_t* src, int srcLen)
 
 inline void bString::Set(const char16_t* src, int srcLen)
 {
-	///////////////// WIP
+	if (srcLen <= 0)
+	{
+		Clear();
+		return;
+	}
+	SetUTF16(src, srcLen);
 }
 
 
 inline void bString::Set(const char32_t* src, int srcLen)
 {
-	///////////////// WIP
+	if (srcLen <= 0)
+	{
+		Clear();
+		return;
+	}
+	SetUTF32(src, srcLen);
 }
 
 
@@ -470,7 +486,95 @@ inline void bString::Set(const tStringUTF32& src)
 	SetUTF32(src.Units(), src.Length());
 }
 
+
+inline bString& bString::operator=(const bString& src)
+{
+	if (this == &src)
+		return *this;
+
+	int srcLen = src.Length();
+	UpdateCapacity(srcLen, false);
+	if (srcLen > 0)
+		tStd::tMemcpy(CodeUnits, src.CodeUnits, srcLen);
+	CodeUnits[srcLen] = '\0';
+	StringLength = srcLen;
+	return *this;
+}
+
+
+inline bool bString::IsEqual(const bString& str) const
+{
+	return IsEqual(str.CodeUnits, str.Length());
+}
+
+
+inline bool bString::IsEqual(const char* str) const
+{
+	return IsEqual(str, str ? tStd::tStrlen(str) : 0);
+}
+
+
+inline bool bString::IsEqual(const char8_t* str) const
+{
+	return IsEqual(str, str ? tStd::tStrlen(str) : 0);
+}
+
+
+inline bool bString::IsEqual(const char* str, int strLen) const
+{
+	return IsEqual((const char8_t*)str, strLen);
+}
+
+
+inline bool bString::IsEqual(const char8_t* str, int strLen) const
+{
+	if (!str || (Length() != strLen))
+		return false;
+
+	// We also compare the null so that we can compare strings of length 0.
+	return !tStd::tMemcmp(CodeUnits, str, strLen+1);
+}
+
+
+inline bool bString::IsEqualCI(const bString& str) const
+{
+	return IsEqualCI(str.CodeUnits, str.Length());
+}
+
+
+inline bool bString::IsEqualCI(const char* str) const
+{
+	return IsEqualCI(str, str ? tStd::tStrlen(str) : 0);
+}
+
+
+inline bool bString::IsEqualCI(const char8_t* str) const
+{
+	return IsEqualCI(str, str ? tStd::tStrlen(str) : 0);
+}
+
+
+inline bool bString::IsEqualCI(const char* str, int strLen) const
+{
+	return IsEqualCI((const char8_t*)str, strLen);
+}
+
+
+inline bool bString::IsEqualCI(const char8_t* str, int strLen) const
+{
+	if (!str || (Length() != strLen))
+		return false;
+
+	for (int n = 0; n < strLen; n++)
+		if (tStd::tToLower(CodeUnits[n]) != tStd::tToLower(str[n]))
+			return false;
+
+	return true;
+}
+
+
 // WIP op=
+
 
 inline void bString::UpdateCapacity(int capNeeded, bool preserve)
 {
@@ -484,8 +588,11 @@ inline void bString::UpdateCapacity(int capNeeded, bool preserve)
 
 	if (CurrCapacity >= capNeeded)
 	{
-		StringLength = 0;
-		CodeUnits[0] = '\0';
+		if (!preserve)
+		{
+			StringLength = 0;
+			CodeUnits[0] = '\0';
+		}
 		return;
 	}
 
@@ -538,59 +645,32 @@ inline int tString::CountChar(char c) const
 }
 
 
-inline void tString::Set(const tStringUTF16& src)
+#endif
+inline bString operator+(const bString& preStr, const bString& sufStr)
 {
-	Set(src.Units());
-}
+	bString buf( preStr.Length() + sufStr.Length() );
 
-
-inline void tString::Set(const tStringUTF32& src)
-{
-	Set(src.Units());
-}
-
-
-inline tString& tString::operator=(const tString& src)
-{
-	if (this == &src)
-		return *this;
-
-	if (CodeUnits != &EmptyChar)
-		delete[] CodeUnits;
-
-	CodeUnits = new char8_t[1 + src.Length()];
-	tStd::tStrcpy(CodeUnits, src.CodeUnits);
-	return *this;
-}
-
-
-inline tString operator+(const tString& preStr, const tString& sufStr)
-{
-	tString buf( preStr.Length() + sufStr.Length() );
-	tStd::tStrcpy(buf.CodeUnits, preStr.CodeUnits);
-	tStd::tStrcpy(buf.CodeUnits + preStr.Length(), sufStr.CodeUnits);
-
+	tStd::tMemcpy(buf.CodeUnits, preStr.CodeUnits, preStr.Length());
+	tStd::tMemcpy(buf.CodeUnits + preStr.Length(), sufStr.CodeUnits, sufStr.Length());
 	return buf;
 }
 
 
-inline tString& tString::operator+=(const tString& sufStr)
+inline bString& bString::operator+=(const bString& sufStr)
 {
 	if (sufStr.IsEmpty())
 		return *this;
-	else
-	{
-		char8_t* newCodeUnits = new char8_t[ Length() + sufStr.Length() + 1 ];
-		tStd::tStrcpy(newCodeUnits, CodeUnits);
-		tStd::tStrcpy(newCodeUnits + Length(), sufStr.CodeUnits);
 
-		if (CodeUnits != &EmptyChar)
-			delete[] CodeUnits;
+	int oldLen = Length();
+	int newLen = oldLen + sufStr.Length();
+	UpdateCapacity(newLen, true);
 
-		CodeUnits = newCodeUnits;
-		return *this;
-	}
+	// The plus one is so we get the terminating null with the memcpy.
+	tStd::tMemcpy(CodeUnits + oldLen, sufStr.CodeUnits, sufStr.Length()+1);
+	StringLength = newLen;
+	return *this;
 }
+#if 0
 
 
 inline bool tString::IsAlphabetic(bool includeUnderscore) const 
