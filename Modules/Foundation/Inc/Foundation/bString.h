@@ -315,13 +315,14 @@ struct bString
 	bool ToUInt32(uint32& v, int base = -1) const																		{ return tStd::tStrtoui32(v, CodeUnits, base); }
 	bool ToUInt64(uint64& v, int base = -1) const																		{ return tStd::tStrtoui64(v, CodeUnits, base); }
 
+#endif
 	// tString UTF encoding/decoding functions. tString is encoded in UTF-8. These functions allow you to convert from
-	// tString to UTF-16/32. If dst is nullptr returns the number of charNs needed. If incNullTerminator is false that
-	// number needed will be one fewer. If dst is valid, writes the codeunits to dst and returns number charNs written.
+	// tString to UTF-16/32 arrays. If dst is nullptr returns the number of charN codeunits needed. If incNullTerminator
+	// is false the number needed will be one fower. If dst is valid, writes the codeunits to dst and returns number
+	// of charN codeunits written.
 	int GetUTF16(char16_t* dst, bool incNullTerminator = true) const;
 	int GetUTF32(char32_t* dst, bool incNullTerminator = true) const;
 
-#endif
 	// Sets the bString from a UTF codeunit array. If srcLen is -1 assumes supplied array is null-terminated, otherwise
 	// specify how long it is. Returns new length (not including null terminator) of the bString.
 	int SetUTF16(const char16_t* src, int srcLen = -1);
@@ -772,130 +773,4 @@ inline int tString::Replace(const char c, const char r)
 }
 
 
-inline tStringUTF16::tStringUTF16(int length)
-{
-	if (!length)
-	{
-		CodeUnits = nullptr;
-	}
-	else
-	{
-		CodeUnits = new char16_t[1+length];
-		tStd::tMemset(CodeUnits, 0, 2*(1+length));
-	}
-}
-
-
-inline void tStringUTF16::Set(const char16_t* src)
-{
-	Clear();
-	int len = src ? tStd::tStrlen(src) : 0;
-	if (len)
-	{
-		CodeUnits = new char16_t[len+1];
-		for (int cu = 0; cu < len; cu++)
-			CodeUnits[cu] = src[cu];
-		CodeUnits[len] = 0;
-	}
-}
-
-
-inline void tStringUTF16::Set(const char8_t* src)
-{
-	Clear();
-	int len = src ? tStd::tStrlen(src) : 0;
-	if (len)
-	{
-		int len16 = tStd::tUTF16s(nullptr, src);
-		CodeUnits = new char16_t[len16+1];
-		tStd::tUTF16s(CodeUnits, src);
-	}
-}
-
-
-inline void tStringUTF16::Set(const tStringUTF16& src)
-{
-	Clear();
-	if (src.IsValid())
-		Set(src.Chars());
-}
-
-
-inline void tStringUTF16::Set(const tString& src)
-{
-	Clear();
-	if (src.IsValid())
-		Set(src.Chars());
-}
-
-
-inline tStringUTF32::tStringUTF32(int length)
-{
-	if (!length)
-	{
-		CodeUnits = nullptr;
-	}
-	else
-	{
-		CodeUnits = new char32_t[1+length];
-		tStd::tMemset(CodeUnits, 0, 4*(1+length));
-	}
-}
-
-
-inline void tStringUTF32::Set(const char32_t* src)
-{
-	Clear();
-	int len = src ? tStd::tStrlen(src) : 0;
-	if (len)
-	{
-		CodeUnits = new char32_t[len+1];
-		for (int cu = 0; cu < len; cu++)
-			CodeUnits[cu] = src[cu];
-		CodeUnits[len] = 0;
-	}
-}
-
-
-inline void tStringUTF32::Set(const char8_t* src)
-{
-	Clear();
-	int len = src ? tStd::tStrlen(src) : 0;
-	if (len)
-	{
-		int len32 = tStd::tUTF32s(nullptr, src);
-		CodeUnits = new char32_t[len32+1];
-		tStd::tUTF32s(CodeUnits, src);
-	}
-}
-
-
-inline void tStringUTF32::Set(const tStringUTF32& src)
-{
-	Clear();
-	if (src.IsValid())
-		Set(src.Chars());
-}
-
-
-inline void tStringUTF32::Set(const tString& src)
-{
-	Clear();
-	if (src.IsValid())
-		Set(src.Chars());
-}
-
-
-inline tStringItem& tStringItem::operator=(const tStringItem& src)
-{
-	if (this == &src)
-		return *this;
-
-	if (CodeUnits != &EmptyChar)
-		delete[] CodeUnits;
-
-	CodeUnits = new char8_t[1 + src.Length()];
-	tStd::tStrcpy(CodeUnits, src.CodeUnits);
-	return *this;
-}
 #endif

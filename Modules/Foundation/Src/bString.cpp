@@ -498,32 +498,46 @@ int tString::RemoveTrailing(const char* removeThese)
 
 	return numRemoved;
 }
-
-
-int tString::GetUTF16(char16_t* dst, bool incNullTerminator) const
-{
-	if (!dst)
-		return tStd::tUTF16s(nullptr, CodeUnits) + (incNullTerminator ? 1 : 0);
-
-	if (incNullTerminator)
-		return tStd::tUTF16s(dst, CodeUnits);
-
-	return tStd::tUTF16(dst, CodeUnits, Length());
-}
-
-
-int tString::GetUTF32(char32_t* dst, bool incNullTerminator) const
-{
-	if (!dst)
-		return tStd::tUTF32s(nullptr, CodeUnits) + (incNullTerminator ? 1 : 0);
-
-	if (incNullTerminator)
-		return tStd::tUTF32s(dst, CodeUnits);
-
-	return tStd::tUTF32(dst, CodeUnits, Length());
-}
-
 #endif
+
+int bString::GetUTF16(char16_t* dst, bool incNullTerminator) const
+{
+	if (IsEmpty())
+		return 0;
+
+	if (!dst)
+		return tStd::tUTF16(nullptr, CodeUnits, StringLength) + (incNullTerminator ? 1 : 0);
+
+	int numUnitsWritten = tStd::tUTF16(dst, CodeUnits, StringLength);
+	if (incNullTerminator)
+	{
+		dst[numUnitsWritten] = 0;
+		numUnitsWritten++;
+	}
+
+	return numUnitsWritten;
+}
+
+
+int bString::GetUTF32(char32_t* dst, bool incNullTerminator) const
+{
+	if (IsEmpty())
+		return 0;
+
+	if (!dst)
+		return tStd::tUTF32(nullptr, CodeUnits, StringLength) + (incNullTerminator ? 1 : 0);
+
+	int numUnitsWritten = tStd::tUTF32(dst, CodeUnits, StringLength);
+	if (incNullTerminator)
+	{
+		dst[numUnitsWritten] = 0;
+		numUnitsWritten++;
+	}
+
+	return numUnitsWritten;
+}
+
+
 int bString::SetUTF16(const char16_t* src, int srcLen)
 {
 	if (!src || (srcLen == 0))
