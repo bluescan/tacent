@@ -948,6 +948,18 @@ tTestUnit(StringNew)
 //	tPrintf("Replacing abc with cartoon\n");
 //	tPrintf("After : '%s'\n\n", src.Chr());
 //	tRequire(src == "cartoon1234cartoond12345cartoondef123456");
+
+	// Test Left, Mid, Right.
+	tString lmr("leftMIDright");
+	tPrintf("LMR [%s]\n", lmr.Chr());
+
+	tString left = lmr.Left('M');
+	tPrintf("LEFT [%s]\n", left.Chr());
+	tRequire(left == "left");
+
+	tString right = lmr.Right('D');
+	tPrintf("RIGHT [%s]\n", right.Chr());
+	tRequire(right == "right");
 }
 
 

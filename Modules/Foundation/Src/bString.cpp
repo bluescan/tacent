@@ -30,41 +30,39 @@ bString::operator uint32() const
 }
 
 
-#if 0
-
-
-tString tString::Left(const char c) const
+bString bString::Left(const char marker) const
 {
-	int pos = FindChar(c);
+	int pos = FindChar(marker);
 	if (pos == -1)
 		return *this;
 	if (pos == 0)
-		return tString();
+		return bString();
 
-	// Remember, this zeros the memory, so tStrncpy not dealing with the terminating null is ok.
-	tString buf(pos);
-	tStd::tStrncpy(buf.CodeUnits, CodeUnits, pos);
+	// Remember, this zeros the memory, so tMemcpy not dealing with the terminating null is ok.
+	bString buf(pos);
+	tStd::tMemcpy(buf.CodeUnits, CodeUnits, pos);
 	return buf;
 }
 
 
-tString tString::Right(const char c) const
+bString bString::Right(const char marker) const
 {
-	int pos = FindChar(c, true);
+	int pos = FindChar(marker, true);
 	if (pos == -1)
 		return *this;
 
 	int length = Length();
 	if (pos == (length-1))
-		return tString();
+		return bString();
 
-	// Remember, this zeros the memory, so tStrncpy not dealing with the terminating null is ok.
-	tString buf(length - 1 - pos);
-	tStd::tStrncpy(buf.CodeUnits, CodeUnits + pos + 1, length - 1 - pos);
+	// Remember, this zeros the memory, so tMemcpy not dealing with the terminating null is ok.
+	bString buf(length - 1 - pos);
+	tStd::tMemcpy(buf.CodeUnits, CodeUnits + pos + 1, length - 1 - pos);
 	return buf;
 }
 
 
+#if 0
 tString tString::Left(int count) const
 {
 	if(count <= 0)

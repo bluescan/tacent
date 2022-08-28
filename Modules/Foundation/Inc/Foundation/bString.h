@@ -156,13 +156,16 @@ struct bString
 	bool IsNumeric(bool includeDecimal = false) const;
 	bool IsAlphaNumeric(bool includeUnderscore = true, bool includeDecimal = false) const;
 
-	#if 0
-
 	// These only work well for ASCII strings as vars like 'count' are indexes into the text data and are not
 	// 'continuation-aware'. This comment applies to all below functions with the words 'Left', 'Right', and 'Mid' in
-	// them except for functions that take in a char8_t* or char* prefix or suffix. Those work for ASCII and UTF-8..
-	tString Left(const char marker = ' ') const;			// Returns a tString of the characters before the first marker. Returns the entire string if marker was not found.
-	tString Right(const char marker = ' ') const;			// Same as Left but chars after last marker.
+	// them except for functions that take in a char8_t* or char* prefix or suffix. Those work for ASCII and UTF-8.
+	//
+	// Returns a bString of the characters before the first marker. Returns the entire string if marker was not found.
+	// Think of left as excluding the marker and characters to the right, then returning the whole string makes sense.
+	bString Left(const char marker = ' ') const;
+	bString Right(const char marker = ' ') const;			// Same as Left but chars after last marker.
+
+	#if 0
 	tString Left(int count) const;							// Returns a tString of the first count chars. Return what's available if count > length.
 	tString Right(int count) const;							// Same as Left but returns last count chars.
 	tString Mid(int start, int count) const;				// Returns count chars from start (inclusive), or what's available if start+count > length.
@@ -211,7 +214,6 @@ struct bString
 	const char* Chz() const			/* Like Chr() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : (const char*)CodeUnits; }
 	char* Pod() const				/* Plain Old Data */																{ return (char*)CodeUnits; }
 
-	#if 0
 	// Returns index of first/last occurrence of char in the string. -1 if not found. Finds last if backwards flag is
 	// set. The starting point may be specified. If backwards is false, the search proceeds forwards from the starting
 	// point. If backwards is true, it proceeds backwards. If startIndex is -1, 0 is the starting point for a forward
@@ -221,10 +223,11 @@ struct bString
 	// requires continuation bytes in UTF-8. i.e. Since the input is a const char, char must be ASCII.
 	//
 	// @todo I like the idea of supporting UTF searches for particular codepoints etc by inputting the UTF-32
-	// representation (using a char32_t) where necessary -- we'd just need to decode each codepoint in UTF-8 to the
-	// proper char32_t and use that. It would all just work (but it's a big-ish task).
+	// representation (using a char32_t) where necessary -- we'd just need to decode each codepoint (plus possible
+	// continuations) in UTF-8 to the proper char32_t and use that. It would all just work (but it's a big-ish task).
 	int FindChar(const char, bool backwards = false, int startIndex = -1) const;
 
+	#if 0
 	// Returns the index of the first character in the tString that is also somewhere in the null-terminated string
 	// searchChars. Returns -1 if none of them match.
 	int FindAny(const char* searchChars) const;
@@ -689,31 +692,9 @@ inline bool bString::IsAlphaNumeric(bool includeUnderscore, bool includeDecimal)
 }
 
 
-////////////////////////// WIP
-#if 0
+////////////////////////
 
-inline int tString::FindAny(const char* chars) const
-{
-	if (CodeUnits == &EmptyChar)
-		return -1;
-	
-	int i = 0;
-	while (CodeUnits[i])
-	{
-		int j = 0;
-		while (chars[j])
-		{
-			if (chars[j] == CodeUnits[i])
-				return i;
-			j++;
-		}
-		i++;
-	}
-	return -1;
-}
-
-
-inline int tString::FindChar(const char c, bool reverse, int start) const
+inline int bString::FindChar(const char c, bool reverse, int start) const
 {
 	const char8_t* pc = nullptr;
 
@@ -735,13 +716,41 @@ inline int tString::FindChar(const char c, bool reverse, int start) const
 			}
 	}
 	else
-		pc = tStd::tStrchr(&CodeUnits[start], c);
+	{
+		for (int i = start; i < StringLength; i++)
+			if (CodeUnits[i] == c)
+			{
+				pc = CodeUnits + i;
+				break;
+			}
+	}
 
 	if (!pc)
 		return -1;
 
 	// Returns the index.
 	return int(pc - CodeUnits);
+}
+
+#if 0
+inline int tString::FindAny(const char* chars) const
+{
+	if (CodeUnits == &EmptyChar)
+		return -1;
+	
+	int i = 0;
+	while (CodeUnits[i])
+	{
+		int j = 0;
+		while (chars[j])
+		{
+			if (chars[j] == CodeUnits[i])
+				return i;
+			j++;
+		}
+		i++;
+	}
+	return -1;
 }
 
 
