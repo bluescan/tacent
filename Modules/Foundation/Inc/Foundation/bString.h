@@ -164,12 +164,12 @@ struct bString
 	// Think of left as excluding the marker and characters to the right, then returning the whole string makes sense.
 	bString Left(const char marker = ' ') const;
 	bString Right(const char marker = ' ') const;			// Same as Left but chars after last marker.
+	
+	bString Left(int count) const;							// Returns a bString of the first count chars. Return what's available if count > length.
+	bString Right(int count) const;							// Same as Left but returns last count chars.
+	bString Mid(int start, int count) const;				// Returns count chars from start (inclusive), or what's available if start+count > length.
 
 	#if 0
-	tString Left(int count) const;							// Returns a tString of the first count chars. Return what's available if count > length.
-	tString Right(int count) const;							// Same as Left but returns last count chars.
-	tString Mid(int start, int count) const;				// Returns count chars from start (inclusive), or what's available if start+count > length.
-
 	// Extracts first word up to and not including first divider encountered. The tString is left with the remainder,
 	// not including the divider. If divider isn't found, the entire string is returned and the tString is left empty.
 	tString ExtractLeft(const char divider = ' ');

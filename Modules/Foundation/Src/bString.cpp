@@ -38,7 +38,6 @@ bString bString::Left(const char marker) const
 	if (pos == 0)
 		return bString();
 
-	// Remember, this zeros the memory, so tMemcpy not dealing with the terminating null is ok.
 	bString buf(pos);
 	tStd::tMemcpy(buf.CodeUnits, CodeUnits, pos);
 	return buf;
@@ -51,39 +50,37 @@ bString bString::Right(const char marker) const
 	if (pos == -1)
 		return *this;
 
-	int length = Length();
+	int length = StringLength;
 	if (pos == (length-1))
 		return bString();
 
-	// Remember, this zeros the memory, so tMemcpy not dealing with the terminating null is ok.
 	bString buf(length - 1 - pos);
 	tStd::tMemcpy(buf.CodeUnits, CodeUnits + pos + 1, length - 1 - pos);
 	return buf;
 }
 
 
-#if 0
-tString tString::Left(int count) const
+bString bString::Left(int count) const
 {
-	if(count <= 0)
-		return tString();
+	if (count <= 0)
+		return bString();
 
-	int length = Length();
+	int length = StringLength;
 	if (count > length)
 		count = length;
 
-	tString buf(count);
-	tStd::tStrncpy(buf.CodeUnits, CodeUnits, count);
+	bString buf(count);
+	tStd::tMemcpy(buf.CodeUnits, CodeUnits, count);
 	return buf;
 }
 
 
-tString tString::Right(int count) const
+bString bString::Right(int count) const
 {
 	if (count <= 0)
-		return tString();
-		
-	int length = Length();
+		return bString();
+
+	int length = StringLength;
 	int start = length - count;
 	if (start < 0)
 	{
@@ -91,27 +88,28 @@ tString tString::Right(int count) const
 		count = length;
 	}
 
-	tString buf(count);
-	tStd::tStrncpy(buf.CodeUnits, CodeUnits + start, count);
+	bString buf(count);
+	tStd::tMemcpy(buf.CodeUnits, CodeUnits + start, count);
 	return buf;
 }
 
 
-tString tString::Mid(int start, int count) const
+bString bString::Mid(int start, int count) const
 {
-	int length = Length();
-	if(start < 0 || start >= length || count <= 0)
-		return tString();
+	int length = StringLength;
+	if ((start < 0) || (start >= length) || (count <= 0))
+		return bString();
 
-	if(start + count > length)
+	if ((start + count) > length)
 		count = length - start;
 
-	tString buf(count);
-	tStd::tStrncpy(buf.CodeUnits, CodeUnits + start, count);
+	bString buf(count);
+	tStd::tMemcpy(buf.CodeUnits, CodeUnits + start, count);
 	return buf;
 }
 
 
+#if 0
 tString tString::ExtractLeft(const char divider)
 {
 	int pos = FindChar(divider);

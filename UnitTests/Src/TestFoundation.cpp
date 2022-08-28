@@ -954,12 +954,29 @@ tTestUnit(StringNew)
 	tPrintf("LMR [%s]\n", lmr.Chr());
 
 	tString left = lmr.Left('M');
-	tPrintf("LEFT [%s]\n", left.Chr());
+	tPrintf("LEFT(mrk) [%s]\n", left.Chr());
 	tRequire(left == "left");
+	tRequire(left.Length() == 4);
 
 	tString right = lmr.Right('D');
-	tPrintf("RIGHT [%s]\n", right.Chr());
+	tPrintf("RIGHT(mrk) [%s]\n", right.Chr());
 	tRequire(right == "right");
+	tRequire(right.Length() == 5);
+
+	left = lmr.Left(4);
+	tPrintf("LEFT(idx) [%s]\n", left.Chr());
+	tRequire(left == "left");
+	tRequire(left.Length() == 4);
+
+	tString mid = lmr.Mid(4, 3);
+	tPrintf("MID(idx) [%s]\n", mid.Chr());
+	tRequire(mid == "MID");
+	tRequire(mid.Length() == 3);
+
+	right = lmr.Right(5);
+	tPrintf("RIGHT(mrk) [%s]\n", right.Chr());
+	tRequire(right == "right");
+	tRequire(right.Length() == 5);
 }
 
 
