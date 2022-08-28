@@ -397,11 +397,7 @@ inline void bString::Set(const bString& src)
 
 inline void bString::Set(int length)
 {
-	if (length <= 0)
-	{
-		Clear();
-		return;
-	}
+	tAssert(length >= 0);
 	UpdateCapacity(length, false);
 	tStd::tMemset(CodeUnits, 0, StringLength+1);
 	StringLength = length;
