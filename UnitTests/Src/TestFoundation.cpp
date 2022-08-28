@@ -950,15 +950,15 @@ tTestUnit(StringNew)
 //	tRequire(src == "cartoon1234cartoond12345cartoondef123456");
 
 	// Test Left, Mid, Right.
-	tString lmr("leftMIDright");
+	bString lmr("leftMIDright");
 	tPrintf("LMR [%s]\n", lmr.Chr());
 
-	tString left = lmr.Left('M');
+	bString left = lmr.Left('M');
 	tPrintf("LEFT(mrk) [%s]\n", left.Chr());
 	tRequire(left == "left");
 	tRequire(left.Length() == 4);
 
-	tString right = lmr.Right('D');
+	bString right = lmr.Right('D');
 	tPrintf("RIGHT(mrk) [%s]\n", right.Chr());
 	tRequire(right == "right");
 	tRequire(right.Length() == 5);
@@ -968,7 +968,7 @@ tTestUnit(StringNew)
 	tRequire(left == "left");
 	tRequire(left.Length() == 4);
 
-	tString mid = lmr.Mid(4, 3);
+	bString mid = lmr.Mid(4, 3);
 	tPrintf("MID(idx) [%s]\n", mid.Chr());
 	tRequire(mid == "MID");
 	tRequire(mid.Length() == 3);
@@ -977,6 +977,25 @@ tTestUnit(StringNew)
 	tPrintf("RIGHT(mrk) [%s]\n", right.Chr());
 	tRequire(right == "right");
 	tRequire(right.Length() == 5);
+
+	// Testing ExtractLeft and ExtractRight.
+	lmr = "abc_def_ghi";
+	tPrintf("LMR  (before): %s\n", lmr.Chr());
+	left = lmr.ExtractLeft('_');
+	tPrintf("LMR  (after): %s\n", lmr.Chr());
+	tPrintf("LEFT (after): %s\n", left.Chr());
+	tRequire(lmr.Length() == 7);
+	tRequire(left == "abc");
+	tRequire(left.Length() == 3);
+
+	lmr = "abc_def_ghi";
+	tPrintf("LMR  (before): %s\n", lmr.Chr());
+	right = lmr.ExtractRight('_');
+	tPrintf("LMR  (after): %s\n", lmr.Chr());
+	tPrintf("RIGHT(after): %s\n", right.Chr());
+	tRequire(lmr.Length() == 7);
+	tRequire(right == "ghi");
+	tRequire(right.Length() == 3);
 }
 
 

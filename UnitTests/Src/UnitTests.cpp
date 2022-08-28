@@ -122,6 +122,7 @@ int main(int argc, char** argv)
 	tTest(BitField);
 	tTest(FixInt);
 	tTest(String);
+	tTest(StringNew);
 	tTest(RingBuffer);
 	tTest(PriorityQueue);
 	tTest(MemoryPool);

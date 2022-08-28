@@ -109,63 +109,55 @@ bString bString::Mid(int start, int count) const
 }
 
 
-#if 0
-tString tString::ExtractLeft(const char divider)
+///// WIP These should just call the versions taking the count.
+bString bString::ExtractLeft(const char divider)
 {
 	int pos = FindChar(divider);
 	if (pos == -1)
 	{
-		tString buf(Text());
+		bString left(*this);
 		Clear();
-		return buf;
+		return left;
 	}
 
-	// Remember, this constructor zeros the memory, so strncpy not dealing with the terminating null is ok.
-	tString buf(pos);
-	tStd::tStrncpy(buf.CodeUnits, CodeUnits, pos);
+	int count = pos;
+	bString left(count);
+	tStd::tMemcpy(left.CodeUnits, CodeUnits, count);
 
-	int length = Length();
-	char8_t* newText = new char8_t[length-pos];
+	// We don't need to reallocate memory for this string. We can just do a memcpy
+	// and adjust the StringLength. Capacity can stay the same.
+	StringLength -= count+1;
+	if (StringLength > 0)
+		tStd::tMemcpy(CodeUnits, CodeUnits+pos+1, StringLength);
+	CodeUnits[StringLength] = '\0';
 
-	// This will append the null.
-	tStd::tStrncpy(newText, CodeUnits+pos+1, length-pos);
-
-	if (CodeUnits != &EmptyChar)
-		delete[] CodeUnits;
-	CodeUnits = newText;
-
-	return buf;
+	return left;
 }
 
 
-tString tString::ExtractRight(const char divider)
+bString bString::ExtractRight(const char divider)
 {
 	int pos = FindChar(divider, true);
 	if (pos == -1)
 	{
-		tString buf(Text());
+		bString right(*this);
 		Clear();
-		return buf;
+		return right;
 	}
 
-	int wordLength = Length() - pos - 1;
+	int count = StringLength - pos - 1;
+	bString right(count);
+	tStd::tMemcpy(right.CodeUnits, CodeUnits+pos+1, count);
 
-	// Remember, this constructor zeros the memory, so strncpy not dealing with the terminating null is ok.
-	tString buf(wordLength);
-	tStd::tStrncpy(buf.CodeUnits, CodeUnits+pos+1, wordLength);
+	// We don't need to reallocate memory for this string. We can just adjust the StringLength. Capacity can stay the same.
+	StringLength -= count+1;
+	CodeUnits[StringLength] = '\0';
 
-	char8_t* newText = new char8_t[pos+1];
-	tStd::tStrncpy(newText, CodeUnits, pos);
-	newText[pos] = '\0';
-
-	if (CodeUnits != &EmptyChar)
-		delete[] CodeUnits;
-	CodeUnits = newText;
-
-	return buf;
+	return right;
 }
 
 
+#if 0
 tString tString::ExtractLeft(int count)
 {
 	int length = Length();

@@ -32,8 +32,6 @@
 //					used to shrink (release memory) if possible. See the comments before the function itself.
 // SetGrowMethod:	Controls how much extra space (Capacity - Length) to reserve when performing a memory operation.
 //
-//
-
 // For conversions of arbitrary types to bStrings, see tsPrint in the higher level System module.
 //
 // Copyright (c) 2004-2006, 2015, 2017, 2019-2022 Tristan Grimmer.
@@ -164,20 +162,20 @@ struct bString
 	// Think of left as excluding the marker and characters to the right, then returning the whole string makes sense.
 	bString Left(const char marker = ' ') const;
 	bString Right(const char marker = ' ') const;			// Same as Left but chars after last marker.
-	
+
 	bString Left(int count) const;							// Returns a bString of the first count chars. Return what's available if count > length.
 	bString Right(int count) const;							// Same as Left but returns last count chars.
 	bString Mid(int start, int count) const;				// Returns count chars from start (inclusive), or what's available if start+count > length.
 
+	// Extracts first word up to and not including first divider encountered. The bString is left with the remainder,
+	// not including the divider. If divider isn't found, the entire string is returned and the bString is left empty.
+	bString ExtractLeft(const char divider = ' ');
+
+	// Extracts word after last divider. The bString is left with the remainder, not including the divider. If the
+	// divider isn't found, the entire string is returned and the bString is left empty.
+	bString ExtractRight(const char divider = ' ');
+
 	#if 0
-	// Extracts first word up to and not including first divider encountered. The tString is left with the remainder,
-	// not including the divider. If divider isn't found, the entire string is returned and the tString is left empty.
-	tString ExtractLeft(const char divider = ' ');
-
-	// Extracts word after last divider. The tString is left with the remainder, not including the divider. If the
-	// divider isn't found, the entire string is returned and the tString is left empty.
-	tString ExtractRight(const char divider = ' ');
-
 	// Returns a tString of the first count chars. Removes these from the current string. If count > length then what's
 	// available is extracted.
 	tString ExtractLeft(int count);
