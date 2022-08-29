@@ -205,49 +205,51 @@ bString bString::ExtractRight(int count)
 }
 
 
-#if 0
-tString tString::ExtractLeft(const char* prefix)
+bString bString::ExtractLeft(const char8_t* prefix)
 {
-	if (!CodeUnits || (CodeUnits == &EmptyChar) || !prefix)
-		return tString();
+	if (IsEmpty() || !prefix)
+		return bString();
 
 	int len = tStd::tStrlen(prefix);
-	if ((len <= 0) || (Length() < len))
-		return tString();
+	if ((len <= 0) || (len > StringLength))
+		return bString();
 
-	if (tStd::tStrncmp(CodeUnits, (const char8_t*)prefix, len) == 0)
+	if (tStd::tStrncmp(CodeUnits, prefix, len) == 0)
 	{
-		int oldlen = Length();
-		char8_t* newtext = new char8_t[oldlen-len+1];
-		tStd::tStrcpy(newtext, &CodeUnits[len]);
-		delete[] CodeUnits;
-		CodeUnits = newtext;
-		return tString(prefix);
+		// No need for mem allocations here. Just memcpy and reduce the StringLength.
+		if (StringLength > len)
+			tStd::tMemcpy(CodeUnits, CodeUnits+len, StringLength-len);
+		StringLength -= len;
+		CodeUnits[StringLength] = '\0';
+		return bString(prefix);
 	}
 
-	return tString();
+	return bString();
 }
 
 
-tString tString::ExtractRight(const char* suffix)
+bString bString::ExtractRight(const char8_t* suffix)
 {
-	if (!CodeUnits || (CodeUnits == &EmptyChar) || !suffix)
-		return tString();
+	if (IsEmpty() || !suffix)
+		return bString();
 
 	int len = tStd::tStrlen(suffix);
-	if ((len <= 0) || (Length() < len))
-		return tString();
+	if ((len <= 0) || (len > StringLength))
+		return bString();
 
-	if (tStd::tStrncmp(&CodeUnits[Length()-len], (const char8_t*)suffix, len) == 0)
+	if (tStd::tStrncmp(&CodeUnits[StringLength-len], suffix, len) == 0)
 	{
-		CodeUnits[Length()-len] = '\0';
-		return tString(suffix);
+		// No need for mem allocations here. Just reduce the StringLength.
+		StringLength -= len;
+		CodeUnits[StringLength] = '\0';
+		return bString(suffix);
 	}
 
-	return tString();
+	return bString();
 }
 
 
+#if 0
 tString tString::ExtractMid(int start, int count)
 {
 	int length = Length();

@@ -116,7 +116,7 @@ struct bString
 	// capacity after shrinking. Note that the new capacity will be at least MinCapacity big.
 	int Shrink();
 
-	bool IsEmpty() const																								{ return (StringLength > 0); }
+	bool IsEmpty() const																								{ return (StringLength <= 0); }
 	bool IsValid() const			/* Returns true is string is not empty. */											{ return !IsEmpty(); }
 
 	bString& operator=(const bString&);
@@ -183,15 +183,17 @@ struct bString
 	// available is extracted.
 	bString ExtractRight(int count);
 
-	#if 0
 	// If this string starts with prefix, removes and returns it. If not, returns empty string and no modification.
-	tString ExtractLeft(const char* prefix);
-	tString ExtractLeft(const char8_t* prefix)																			{ return ExtractLeft((const char*)prefix); }
+	// Prefix is assumed to be null-terminated.
+	bString ExtractLeft(const char* prefix)																				{ return ExtractLeft((const char8_t*)prefix); }
+	bString ExtractLeft(const char8_t* prefix);
 
-	// If this string ends with (UTF-8) suffix, removes and returns it. If not, returns empty string and no modification.
-	tString ExtractRight(const char* suffix);
-	tString ExtractRight(const char8_t* suffix)																			{ return ExtractRight((const char*)suffix); }
+	// If this string ends with suffix, removes and returns it. If not, returns empty string and no modification.
+	// Suffix is assumed to be null-terminated.
+	bString ExtractRight(const char* suffix)																			{ return ExtractRight((const char8_t*)suffix); }
+	bString ExtractRight(const char8_t* suffix);
 
+	#if 0
 	// Returns chars from start to count, but also removes that from the tString.  If start + count > length then what's
 	// available is extracted.
 	tString ExtractMid(int start, int count);

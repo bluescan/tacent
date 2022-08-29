@@ -1066,6 +1066,43 @@ tTestUnit(StringNew)
 	tRequire(lmr.Length() == 11);
 	tRequire(right == "");
 	tRequire(right.Length() == 0);
+
+	tPrintf("\nPrefix/Suffix extract left/right\n");
+	lmr = "abc_def_ghi";
+	tPrintf("LMR  (before): %s\n", lmr.Chr());
+	left = lmr.ExtractLeft("abc");
+	tPrintf("LMR  (after): %s\n", lmr.Chr());
+	tPrintf("LEFT (after): %s\n", left.Chr());
+	tRequire(lmr.Length() == 8);
+	tRequire(left == "abc");
+	tRequire(left.Length() == 3);
+
+	lmr = "abc_def_ghi";
+	tPrintf("LMR  (before): %s\n", lmr.Chr());
+	left = lmr.ExtractLeft("");
+	tPrintf("LMR  (after): %s\n", lmr.Chr());
+	tPrintf("LEFT (after): %s\n", left.Chr());
+	tRequire(lmr.Length() == 11);
+	tRequire(left == "");
+	tRequire(left.Length() == 0);
+
+	lmr = "abc_def_ghi";
+	tPrintf("LMR  (before): %s\n", lmr.Chr());
+	right = lmr.ExtractRight("ghi");
+	tPrintf("LMR  (after): %s\n", lmr.Chr());
+	tPrintf("RIGHT(after): %s\n", right.Chr());
+	tRequire(lmr.Length() == 8);
+	tRequire(right == "ghi");
+	tRequire(right.Length() == 3);
+
+	lmr = "abc_def_ghi";
+	tPrintf("LMR  (before): %s\n", lmr.Chr());
+	right = lmr.ExtractRight("");
+	tPrintf("LMR  (after): %s\n", lmr.Chr());
+	tPrintf("RIGHT(after): %s\n", right.Chr());
+	tRequire(lmr.Length() == 11);
+	tRequire(right == "");
+	tRequire(right.Length() == 0);
 }
 
 
