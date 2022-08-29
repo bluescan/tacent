@@ -109,7 +109,6 @@ bString bString::Mid(int start, int count) const
 }
 
 
-///// WIP These should just call the versions taking the count.
 bString bString::ExtractLeft(const char divider)
 {
 	int pos = FindChar(divider);
@@ -157,75 +156,56 @@ bString bString::ExtractRight(const char divider)
 }
 
 
-#if 0
-tString tString::ExtractLeft(int count)
+bString bString::ExtractLeft(int count)
 {
-	int length = Length();
-	if (count > length)
-		count = length;
-
-	if (count <= 0)
-		return tString();
-
-	tString left(count);
-	tStd::tStrncpy(left.CodeUnits, CodeUnits, count);
-	
-	// Source string is known not to be empty now
-	int newLength = length - count;
-	if (newLength == 0)
+	if (count >= StringLength)
 	{
-		delete CodeUnits;
-		CodeUnits = &EmptyChar;
+		bString left(*this);
+		Clear();
 		return left;
 	}
 
-	char8_t* newText = new char8_t[newLength+1];
-	tStd::tStrcpy(newText, CodeUnits+count);
+	if (count <= 0)
+		return bString();
 
-	delete[] CodeUnits;
-	CodeUnits = newText;
+	bString left(count);
+	tStd::tMemcpy(left.CodeUnits, CodeUnits, count);
+
+	// We don't need to reallocate memory for this string. We can just do a memcpy
+	// and adjust the StringLength. Capacity can stay the same.
+	StringLength -= count;
+	if (StringLength > 0)
+		tStd::tMemcpy(CodeUnits, CodeUnits+count, StringLength);
+	CodeUnits[StringLength] = '\0';
 
 	return left;
 }
 
 
-tString tString::ExtractRight(int count)
+bString bString::ExtractRight(int count)
 {
-	int length = Length();
-	int start = length - count;
-	if(start < 0)
+	if (count >= StringLength)
 	{
-		start = 0;
-		count = length;
-	}
-
-	if(count <= 0)
-		return tString();
-
-	tString right(count);
-	tStd::tStrncpy(right.CodeUnits, CodeUnits + start, count);
-
-	// Source string is known not to be empty now
-	int newLength = length - count;
-	if (newLength == 0)
-	{
-		delete CodeUnits;
-		CodeUnits = &EmptyChar;
+		bString right(*this);
+		Clear();
 		return right;
 	}
 
-	char8_t* newText = new char8_t[newLength+1];
-	CodeUnits[length - count] = '\0';
+	if (count <= 0)
+		return bString();
 
-	tStd::tStrcpy(newText, CodeUnits);
+	bString right(count);
+	tStd::tMemcpy(right.CodeUnits, CodeUnits+StringLength-count, count);
 
-	delete[] CodeUnits;
-	CodeUnits = newText;
+	// We don't need to reallocate memory for this string. We can just adjust the StringLength. Capacity can stay the same.
+	StringLength -= count;
+	CodeUnits[StringLength] = '\0';
 
 	return right;
 }
 
 
+#if 0
 tString tString::ExtractLeft(const char* prefix)
 {
 	if (!CodeUnits || (CodeUnits == &EmptyChar) || !prefix)

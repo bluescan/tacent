@@ -977,27 +977,32 @@ tTestUnit(StringNew)
 
 	tPrintf("\nCount left/mid/right.\n");
 	left = lmr.Left(4);
-	tPrintf("LEFT(idx) [%s]\n", left.Chr());
+	tPrintf("LEFT(cnt) [%s]\n", left.Chr());
 	tRequire(left == "left");
 	tRequire(left.Length() == 4);
 
 	left = lmr.Left(0);
-	tPrintf("LEFT(idx) [%s]\n", left.Chr());
+	tPrintf("LEFT(cnt) [%s]\n", left.Chr());
 	tRequire(left == "");
 	tRequire(left.Length() == 0);
 
 	mid = lmr.Mid(4, 3);
-	tPrintf("MID(idx) [%s]\n", mid.Chr());
+	tPrintf("MID(cnt) [%s]\n", mid.Chr());
 	tRequire(mid == "MID");
 	tRequire(mid.Length() == 3);
 
 	right = lmr.Right(5);
-	tPrintf("RIGHT(mrk) [%s]\n", right.Chr());
+	tPrintf("RIGHT(cnt) [%s]\n", right.Chr());
 	tRequire(right == "right");
 	tRequire(right.Length() == 5);
 
+	right = lmr.Right(0);
+	tPrintf("RIGHT(cnt) [%s]\n", right.Chr());
+	tRequire(right == "");
+	tRequire(right.Length() == 0);
+
 	// Testing ExtractLeft and ExtractRight.
-	tPrintf("\nMarker left/right\n");
+	tPrintf("\nMarker extract left/right\n");
 	lmr = "abc_def_ghi";
 	tPrintf("LMR  (before): %s\n", lmr.Chr());
 	left = lmr.ExtractLeft('_');
@@ -1024,6 +1029,43 @@ tTestUnit(StringNew)
 	tRequire(lmr.Length() == 7);
 	tRequire(right == "ghi");
 	tRequire(right.Length() == 3);
+
+	tPrintf("\nCount extract left/right\n");
+	lmr = "abc_def_ghi";
+	tPrintf("LMR  (before): %s\n", lmr.Chr());
+	left = lmr.ExtractLeft(3);
+	tPrintf("LMR  (after): %s\n", lmr.Chr());
+	tPrintf("LEFT (after): %s\n", left.Chr());
+	tRequire(lmr.Length() == 8);
+	tRequire(left == "abc");
+	tRequire(left.Length() == 3);
+
+	lmr = "abc_def_ghi";
+	tPrintf("LMR  (before): %s\n", lmr.Chr());
+	left = lmr.ExtractLeft(0);
+	tPrintf("LMR  (after): %s\n", lmr.Chr());
+	tPrintf("LEFT (after): %s\n", left.Chr());
+	tRequire(lmr.Length() == 11);
+	tRequire(left == "");
+	tRequire(left.Length() == 0);
+
+	lmr = "abc_def_ghi";
+	tPrintf("LMR  (before): %s\n", lmr.Chr());
+	right = lmr.ExtractRight(3);
+	tPrintf("LMR  (after): %s\n", lmr.Chr());
+	tPrintf("RIGHT(after): %s\n", right.Chr());
+	tRequire(lmr.Length() == 8);
+	tRequire(right == "ghi");
+	tRequire(right.Length() == 3);
+
+	lmr = "abc_def_ghi";
+	tPrintf("LMR  (before): %s\n", lmr.Chr());
+	right = lmr.ExtractRight(0);
+	tPrintf("LMR  (after): %s\n", lmr.Chr());
+	tPrintf("RIGHT(after): %s\n", right.Chr());
+	tRequire(lmr.Length() == 11);
+	tRequire(right == "");
+	tRequire(right.Length() == 0);
 }
 
 

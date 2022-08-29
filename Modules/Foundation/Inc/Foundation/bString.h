@@ -175,15 +175,15 @@ struct bString
 	// divider isn't found, the entire string is returned and the bString is left empty.
 	bString ExtractRight(const char divider = ' ');
 
+	// Returns a bString of the first count chars. Removes these from the current string. If count > length then what's
+	// available is extracted.
+	bString ExtractLeft(int count);
+
+	// Returns a bString of the last count chars. Removes these from the current string. If count > length then what's
+	// available is extracted.
+	bString ExtractRight(int count);
+
 	#if 0
-	// Returns a tString of the first count chars. Removes these from the current string. If count > length then what's
-	// available is extracted.
-	tString ExtractLeft(int count);
-
-	// Returns a tString of the last count chars. Removes these from the current string. If count > length then what's
-	// available is extracted.
-	tString ExtractRight(int count);
-
 	// If this string starts with prefix, removes and returns it. If not, returns empty string and no modification.
 	tString ExtractLeft(const char* prefix);
 	tString ExtractLeft(const char8_t* prefix)																			{ return ExtractLeft((const char*)prefix); }
@@ -229,12 +229,15 @@ struct bString
 	// Returns the index of the first character in the tString that is also somewhere in the null-terminated string
 	// searchChars. Returns -1 if none of them match.
 	int FindAny(const char* searchChars) const;
+	#endif
 
-	// Returns index of first character of the string s in the string. Returns -1 if not found.
+	// Returns index of first character of the string str in the string. Returns -1 if not found.
 	// It is valid to perform this for ASCII strings as well so the function is overridden for const char*.
-	int FindString(const char8_t* s, int startIndex = 0) const;
-	int FindString(const char* s, int startIndex = 0) const																{ return FindString((const char8_t*)s, startIndex); }
+	// For both versions of FindString the src input is assumed to be null-terminated.
+	int FindString(const char8_t* str, int startIndex = 0) const;
+	int FindString(const char* str, int startIndex = 0) const															{ return FindString((const char8_t*)str, startIndex); }
 
+	#if 0
 	// Replace all occurrences of character c with character r. Returns number of characters replaced. ASCII-only.
 	int Replace(const char c, const char r);
 
@@ -746,16 +749,16 @@ inline int tString::FindAny(const char* chars) const
 	}
 	return -1;
 }
+#endif
 
 
-inline int tString::FindString(const char8_t* s, int start) const
+inline int bString::FindString(const char8_t* str, int start) const
 {
-	int len = Length();
-	if (!len)
+	if (IsEmpty())
 		return -1;
 
-	tAssert((start >= 0) && (start < Length()));
-	const char8_t* found = tStd::tStrstr(&CodeUnits[start], s);
+	tAssert((start >= 0) && (start < StringLength));
+	const char8_t* found = tStd::tStrstr(&CodeUnits[start], str);
 	if (found)
 		return int(found - CodeUnits);
 
@@ -763,6 +766,7 @@ inline int tString::FindString(const char8_t* s, int start) const
 }
 
 
+#if 0
 inline int tString::Replace(const char c, const char r)
 {
 	int numReplaced = 0;
