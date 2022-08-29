@@ -164,8 +164,8 @@ struct bString
 	bString Right(const char marker = ' ') const;			// Same as Left but chars after last marker.
 
 	bString Left(int count) const;							// Returns a bString of the first count chars. Return what's available if count > length.
-	bString Right(int count) const;							// Same as Left but returns last count chars.
 	bString Mid(int start, int count) const;				// Returns count chars from start (inclusive), or what's available if start+count > length.
+	bString Right(int count) const;							// Same as Left but returns last count chars.
 
 	// Extracts first word up to and not including first divider encountered. The bString is left with the remainder,
 	// not including the divider. If divider isn't found, the entire string is returned and the bString is left empty.
@@ -178,6 +178,10 @@ struct bString
 	// Returns a bString of the first count chars. Removes these from the current string. If count > length then what's
 	// available is extracted.
 	bString ExtractLeft(int count);
+
+	// Returns chars from start to count, but also removes that from the bString.  If start + count > length then what's
+	// available is extracted.
+	bString ExtractMid(int start, int count);
 
 	// Returns a bString of the last count chars. Removes these from the current string. If count > length then what's
 	// available is extracted.
@@ -192,12 +196,6 @@ struct bString
 	// Suffix is assumed to be null-terminated.
 	bString ExtractRight(const char* suffix)																			{ return ExtractRight((const char8_t*)suffix); }
 	bString ExtractRight(const char8_t* suffix);
-
-	#if 0
-	// Returns chars from start to count, but also removes that from the tString.  If start + count > length then what's
-	// available is extracted.
-	tString ExtractMid(int start, int count);
-	#endif
 
 	// Accesses the raw UTF-8 codeunits represented by the 'official' unsigned UTF-8 character datatype char8_t.
 	// Except for Charz nullptr is not returned although they may return a pointer to an empty string.
@@ -359,7 +357,6 @@ protected:
 	char8_t* CodeUnits				= nullptr;
 
 private:
-
 	// The basic idea behind this function is you ask it for a specific amount of room that you know you will need -- to
 	// do say an append operaion. It guarantees that the capacity afterwards will be at least as big as what you requested.
 	//

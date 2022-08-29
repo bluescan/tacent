@@ -1051,6 +1051,33 @@ tTestUnit(StringNew)
 
 	lmr = "abc_def_ghi";
 	tPrintf("LMR  (before): %s\n", lmr.Chr());
+	mid = lmr.ExtractMid(4, 3);
+	tPrintf("LMR  (after): %s\n", lmr.Chr());
+	tPrintf("MID  (after): %s\n", mid.Chr());
+	tRequire(lmr.Length() == 8);
+	tRequire(mid == "def");
+	tRequire(mid.Length() == 3);
+
+	lmr = "abc_def_ghi";
+	tPrintf("LMR  (before): %s\n", lmr.Chr());
+	mid = lmr.ExtractMid(9, 3);
+	tPrintf("LMR  (after): %s\n", lmr.Chr());
+	tPrintf("MID  (after): %s\n", mid.Chr());
+	tRequire(lmr.Length() == 9);
+	tRequire(mid == "hi");
+	tRequire(mid.Length() == 2);
+
+	lmr = "abc_def_ghi";
+	tPrintf("LMR  (before): %s\n", lmr.Chr());
+	mid = lmr.ExtractMid(0, 4);
+	tPrintf("LMR  (after): %s\n", lmr.Chr());
+	tPrintf("MID  (after): %s\n", mid.Chr());
+	tRequire(lmr.Length() == 7);
+	tRequire(mid == "abc_");
+	tRequire(mid.Length() == 4);
+
+	lmr = "abc_def_ghi";
+	tPrintf("LMR  (before): %s\n", lmr.Chr());
 	right = lmr.ExtractRight(3);
 	tPrintf("LMR  (after): %s\n", lmr.Chr());
 	tPrintf("RIGHT(after): %s\n", right.Chr());

@@ -75,6 +75,21 @@ bString bString::Left(int count) const
 }
 
 
+bString bString::Mid(int start, int count) const
+{
+	int length = StringLength;
+	if ((start < 0) || (start >= length) || (count <= 0))
+		return bString();
+
+	if ((start + count) > length)
+		count = length - start;
+
+	bString buf(count);
+	tStd::tMemcpy(buf.CodeUnits, CodeUnits + start, count);
+	return buf;
+}
+
+
 bString bString::Right(int count) const
 {
 	if (count <= 0)
@@ -87,21 +102,6 @@ bString bString::Right(int count) const
 		start = 0;
 		count = length;
 	}
-
-	bString buf(count);
-	tStd::tMemcpy(buf.CodeUnits, CodeUnits + start, count);
-	return buf;
-}
-
-
-bString bString::Mid(int start, int count) const
-{
-	int length = StringLength;
-	if ((start < 0) || (start >= length) || (count <= 0))
-		return bString();
-
-	if ((start + count) > length)
-		count = length - start;
 
 	bString buf(count);
 	tStd::tMemcpy(buf.CodeUnits, CodeUnits + start, count);
@@ -123,11 +123,11 @@ bString bString::ExtractLeft(const char divider)
 	bString left(count);
 	tStd::tMemcpy(left.CodeUnits, CodeUnits, count);
 
-	// We don't need to reallocate memory for this string. We can just do a memcpy
-	// and adjust the StringLength. Capacity can stay the same.
+	// We don't need to reallocate memory for this string. We can just do a memmove and adjust the StringLength.
+	// Memmove is needed since src and dest overlap. Capacity can stay the same.
 	StringLength -= count+1;
 	if (StringLength > 0)
-		tStd::tMemcpy(CodeUnits, CodeUnits+pos+1, StringLength);
+		tStd::tMemmov(CodeUnits, CodeUnits+pos+1, StringLength);
 	CodeUnits[StringLength] = '\0';
 
 	return left;
@@ -148,7 +148,8 @@ bString bString::ExtractRight(const char divider)
 	bString right(count);
 	tStd::tMemcpy(right.CodeUnits, CodeUnits+pos+1, count);
 
-	// We don't need to reallocate memory for this string. We can just adjust the StringLength. Capacity can stay the same.
+	// We don't need to reallocate or move memory for this string. We can just adjust the StringLength.
+	// Capacity can stay the same.
 	StringLength -= count+1;
 	CodeUnits[StringLength] = '\0';
 
@@ -171,14 +172,38 @@ bString bString::ExtractLeft(int count)
 	bString left(count);
 	tStd::tMemcpy(left.CodeUnits, CodeUnits, count);
 
-	// We don't need to reallocate memory for this string. We can just do a memcpy
-	// and adjust the StringLength. Capacity can stay the same.
+	// We don't need to reallocate memory for this string. We can just do a memmove and adjust the StringLength.
+	// Memmove is needed since src and dest overlap. Capacity can stay the same.
 	StringLength -= count;
 	if (StringLength > 0)
-		tStd::tMemcpy(CodeUnits, CodeUnits+count, StringLength);
+		tStd::tMemmov(CodeUnits, CodeUnits+count, StringLength);
 	CodeUnits[StringLength] = '\0';
 
 	return left;
+}
+
+
+bString bString::ExtractMid(int start, int count)
+{
+	int length = StringLength;
+	if ((start < 0) || (start >= length) || (count <= 0))
+		return bString();
+
+	if ((start + count) > length)
+		count = length - start;
+
+	bString mid(count);
+	tStd::tMemcpy(mid.CodeUnits, CodeUnits + start, count);
+
+	// We don't need to reallocate memory for this string. We can just do a memmove and adjust the StringLength.
+	// Memmove is needed since src and dest overlap. Capacity can stay the same.
+	int numMove = length - (start + count);
+	if (numMove > 0)
+		tStd::tMemcpy(CodeUnits + start, CodeUnits + start + count, numMove);
+	StringLength -= count;
+	CodeUnits[StringLength] = '\0';
+
+	return mid;
 }
 
 
@@ -197,7 +222,8 @@ bString bString::ExtractRight(int count)
 	bString right(count);
 	tStd::tMemcpy(right.CodeUnits, CodeUnits+StringLength-count, count);
 
-	// We don't need to reallocate memory for this string. We can just adjust the StringLength. Capacity can stay the same.
+	// We don't need to reallocate or move memory for this string. We can just adjust the StringLength.
+	// Capacity can stay the same.
 	StringLength -= count;
 	CodeUnits[StringLength] = '\0';
 
@@ -216,9 +242,10 @@ bString bString::ExtractLeft(const char8_t* prefix)
 
 	if (tStd::tStrncmp(CodeUnits, prefix, len) == 0)
 	{
-		// No need for mem allocations here. Just memcpy and reduce the StringLength.
+		// We don't need to reallocate memory for this string. We can just do a memmove and adjust the StringLength.
+		// Memmove is needed since src and dest overlap. Capacity can stay the same.
 		if (StringLength > len)
-			tStd::tMemcpy(CodeUnits, CodeUnits+len, StringLength-len);
+			tStd::tMemmov(CodeUnits, CodeUnits+len, StringLength-len);
 		StringLength -= len;
 		CodeUnits[StringLength] = '\0';
 		return bString(prefix);
@@ -239,7 +266,8 @@ bString bString::ExtractRight(const char8_t* suffix)
 
 	if (tStd::tStrncmp(&CodeUnits[StringLength-len], suffix, len) == 0)
 	{
-		// No need for mem allocations here. Just reduce the StringLength.
+		// We don't need to reallocate or move memory for this string. We can just adjust the StringLength.
+		// Capacity can stay the same.
 		StringLength -= len;
 		CodeUnits[StringLength] = '\0';
 		return bString(suffix);
@@ -250,39 +278,6 @@ bString bString::ExtractRight(const char8_t* suffix)
 
 
 #if 0
-tString tString::ExtractMid(int start, int count)
-{
-	int length = Length();
-	if(start < 0 || start >= length || count <= 0)
-		return tString();
-
-	if(start + count > length)
-		count = length - start;
-
-	tString mid(count);
-	tStd::tStrncpy(mid.CodeUnits, CodeUnits + start, count);
-
-	int newLength = length - count;
-	if(newLength == 0)
-	{
-		delete CodeUnits;
-		CodeUnits = &EmptyChar;
-		return mid;
-	}
-
-	char8_t* newText = new char8_t[newLength+1];
-	newText[newLength] = '\0';
-
-	tStd::tStrncpy(newText, CodeUnits, start);
-	tStd::tStrncpy(newText+start, CodeUnits+start+count, newLength-start);
-
-	delete[] CodeUnits;
-	CodeUnits = newText;
-
-	return mid;
-}
-
-
 int tString::Replace(const char8_t* s, const char8_t* r)
 {
 	if (!s || (s[0] == '\0'))

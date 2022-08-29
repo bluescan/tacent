@@ -33,6 +33,7 @@ namespace tStd
 // The 3 XOR trick is slower in most cases so we'll use a standard swap.
 template<typename T> inline void tSwap(T& a, T& b)																		{ T t = a; a = b; b = t; }
 inline void* tMemcpy(void* dest, const void* src, int numBytes)															{ return memcpy(dest, src, numBytes); }
+inline void* tMemmov(void* dest, const void* src, int numBytes)															{ return memmove(dest, src, numBytes); }
 inline void* tMemset(void* dest, uint8 val, int numBytes)																{ return memset(dest, val, numBytes); }
 inline void* tMemchr(void* data, uint8 val, int numBytes)																{ return memchr(data, val, numBytes); }
 inline const void* tMemchr(const void* data, uint8 val, int numBytes)													{ return memchr(data, val, numBytes); }
