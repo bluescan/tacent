@@ -16,7 +16,7 @@
 // management calls. For example, a bString with capacity 10 could be storing "abcde". If you were to add "fghij" to the
 // string, it would be done without any delete[] or new calls. Note that internally a bString of capacity 10 actually
 // has malloced an array of 11 code-units, the 11th one being for the terminating null. Functions that affect capacity
-// do not change the behaviour of a bString and are always safe, they simply affect the efficiency.
+// (like Reserve) do not change the behaviour of a bString and are always safe, they simply affect the efficiency.
 //
 // When the bString does need to grow its capacity (perhaps another string is being added/appended to it) there is the
 // question of how much extra space to reserve. The SetGrowMethod may be used to set how much extra space is reserved
@@ -30,6 +30,7 @@
 //					requested capacity is non-destructive. Calling Reserve(5) on a string of Length 10 will not result
 //					in a new capacity of 5 because it would require culling half of the code-units. Reserve can also be
 //					used to shrink (release memory) if possible. See the comments before the function itself.
+// Shrink		:	Shrinks the bString to the least amount of memory used possible. Like calling Reserver(Length());
 // SetGrowMethod:	Controls how much extra space (Capacity - Length) to reserve when performing a memory operation.
 //
 // For conversions of arbitrary types to bStrings, see tsPrint in the higher level System module.
@@ -88,16 +89,16 @@ struct bString
 	void Set(const bString&			src);
 	void Set(int length);
 	void Set(char);
-	void Set(const char*			src);
+	void Set(const char*			src)																				{ Set((const char8_t*)src); }
 	void Set(const char8_t*			src);
-	void Set(const char16_t*		src);
-	void Set(const char32_t*		src);
-	void Set(const char*			src, int srcLen);
+	void Set(const char16_t*		src)																				{ SetUTF16(src); }
+	void Set(const char32_t*		src)																				{ SetUTF32(src); }
+	void Set(const char*			src, int srcLen)																	{ Set((const char8_t*)src, srcLen); }
 	void Set(const char8_t*			src, int srcLen);
 	void Set(const char16_t*		src, int srcLen);
 	void Set(const char32_t*		src, int srcLen);
-	void Set(const tStringUTF16&	src);
-	void Set(const tStringUTF32&	src);
+	void Set(const tStringUTF16&	src)																				{ SetUTF16(src.Units(), src.Length()); }
+	void Set(const tStringUTF32&	src)																				{ SetUTF32(src.Units(), src.Length()); }
 
 	// Does not release memory. Simply sets the string to empty. Fast.
 	void Clear()																										{ StringLength = 0; CodeUnits[0] = '\0'; }
@@ -108,13 +109,20 @@ struct bString
 	int Capacity() const																								{ return CurrCapacity; }
 
 	// This function is for efficiency only. It does not modify the string contents. It simply makes sure the capacity
-	// of the string is big enough to hold numUnits units. It returns the new capacity after any required adjustments
-	// are made. The returned value will be >= numUnits.
+	// of the string is big enough to hold numUnits units (total). It returns the new capacity after any required
+	// adjustments are made. The returned value will be >= Length(). You can also use this function to shrink the mem
+	// used -- just call it with a value less than the current capacity. It won't be able to reduce it lower than the
+	// current StringLength (or the MinCapacity) however.
 	int Reserve(int numUnits);
 
-	// Shrink releases extra memory (the difference between capacity and length) if possible. It returns the new
-	// capacity after shrinking. Note that the new capacity will be at least MinCapacity big.
+	// Shrink releases as much memory as possible. It returns the new capacity after shrinking. Note that the new
+	// capacity will be at least MinCapacity big. This basically calls Reserve(Length());
 	int Shrink();
+
+	// This is like Reserve except it takes in the number of _extra_ code-units you want. It will attempt to add or
+	// subtract from the current capacity. Putting in a negative to shrink is supported. Again, it cannot shrink below
+	// the current string length or lower than the minimum capacity. Returns the new capacity.
+	int Grow(int numUnits)																								{ return Reserve(CurrCapacity + numUnits); }
 
 	bool IsEmpty() const																								{ return (StringLength <= 0); }
 	bool IsValid() const			/* Returns true is string is not empty. */											{ return !IsEmpty(); }
@@ -124,16 +132,15 @@ struct bString
 	// The IsEqual variants taking (only) pointers assume null-terminated inputs. Two empty strings are considered
 	// equal. If the input is nullptr (for functions taking pointers) it is not considered equal to an empty string.
 	// For variants taking pointers and a length, all characters are checked (multiple null chars supported).
-	bool IsEqual(const bString&		str) const;
-	bool IsEqual(const char*		str) const;
-	bool IsEqual(const char8_t*		str) const;
-	bool IsEqual(const char*		str, int strLen) const;
+	bool IsEqual(const bString&		str) const																			{ return IsEqual(str.CodeUnits, str.Length()); }
+	bool IsEqual(const char*		str) const																			{ return IsEqual(str, str ? tStd::tStrlen(str) : 0); }
+	bool IsEqual(const char8_t*		str) const																			{ return IsEqual(str, str ? tStd::tStrlen(str) : 0); }
+	bool IsEqual(const char*		str, int strLen) const																{ return IsEqual((const char8_t*)str, strLen); }
 	bool IsEqual(const char8_t*		str, int strLen) const;
-
-	bool IsEqualCI(const bString&	str) const;
-	bool IsEqualCI(const char*		str) const;
-	bool IsEqualCI(const char8_t*	str) const;
-	bool IsEqualCI(const char*		str, int strLen) const;
+	bool IsEqualCI(const bString&	str) const																			{ return IsEqualCI(str.CodeUnits, str.Length()); }
+	bool IsEqualCI(const char*		str) const																			{ return IsEqualCI(str, str ? tStd::tStrlen(str) : 0); }
+	bool IsEqualCI(const char8_t*	str) const																			{ return IsEqualCI(str, str ? tStd::tStrlen(str) : 0); }
+	bool IsEqualCI(const char*		str, int strLen) const																{ return IsEqualCI((const char8_t*)str, strLen); }
 	bool IsEqualCI(const char8_t*	str, int strLen) const;
 
 	// These allow for implicit conversion to a UTF-8 code-unit pointer. By not including implicit casts to const char*
@@ -212,6 +219,9 @@ struct bString
 	const char* Chz() const			/* Like Chr() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : (const char*)CodeUnits; }
 	char* Pod() const				/* Plain Old Data */																{ return (char*)CodeUnits; }
 
+	// Counts the number of occurrences of c. Does not stop at first null. Iterates over the full StringLength.
+	int CountChar(char c) const;
+
 	// Returns index of first/last occurrence of char in the string. -1 if not found. Finds last if backwards flag is
 	// set. The starting point may be specified. If backwards is false, the search proceeds forwards from the starting
 	// point. If backwards is true, it proceeds backwards. If startIndex is -1, 0 is the starting point for a forward
@@ -225,11 +235,9 @@ struct bString
 	// continuations) in UTF-8 to the proper char32_t and use that. It would all just work (but it's a big-ish task).
 	int FindChar(const char, bool backwards = false, int startIndex = -1) const;
 
-	#if 0
-	// Returns the index of the first character in the tString that is also somewhere in the null-terminated string
+	// Returns the index of the first character in the bString that is also somewhere in the null-terminated string
 	// searchChars. Returns -1 if none of them match.
 	int FindAny(const char* searchChars) const;
-	#endif
 
 	// Returns index of first character of the string str in the string. Returns -1 if not found.
 	// It is valid to perform this for ASCII strings as well so the function is overridden for const char*.
@@ -237,6 +245,7 @@ struct bString
 	int FindString(const char8_t* str, int startIndex = 0) const;
 	int FindString(const char* str, int startIndex = 0) const															{ return FindString((const char8_t*)str, startIndex); }
 
+	////////////// WIP
 	#if 0
 	// Replace all occurrences of character c with character r. Returns number of characters replaced. ASCII-only.
 	int Replace(const char c, const char r);
@@ -266,8 +275,6 @@ struct bString
 	// eg. Calling RemoveTrailing on "ZINGabcaab" with "abc" yields "ZING". Returns the number of characters removed.
 	// Note that theseChars are ASCII.
 	int RemoveTrailing(const char* theseChars);
-
-	int CountChar(char c) const;							// Counts the number of occurrences of c.
 
 	// ToUpper and ToLower both modify the object as well as return a reference to it. Returning a reference makes it
 	// easy to string together expressions such as: if (name.ToLower() == "ah")
@@ -378,7 +385,7 @@ private:
 	// This results in MinCapacity being used. When calling with 0 you still need to meet the StringLenghth requirement if
 	// preserve is true (i.e. StringLength would need to be 0).
 	//
-	// This function never shrinks the capacity.
+	// This function never shrinks the capacity. Use Reserve, Shrink, or Grow (with negative input) for that.
 	void UpdateCapacity(int capNeeded, bool preserve);
 };
 
@@ -415,12 +422,6 @@ inline void bString::Set(char c)
 }
 
 
-inline void bString::Set(const char* src)
-{
-	Set((const char8_t*)src);
-}
-
-
 inline void bString::Set(const char8_t* src)
 {
 	int srcLen = src ? tStd::tStrlen(src) : 0;
@@ -431,24 +432,6 @@ inline void bString::Set(const char8_t* src)
 		CodeUnits[srcLen] = '\0';
 		StringLength = srcLen;
 	}
-}
-
-
-inline void bString::Set(const char16_t* src)
-{
-	SetUTF16(src);
-}
-
-
-inline void bString::Set(const char32_t* src)
-{
-	SetUTF32(src);
-}
-
-
-inline void bString::Set(const char* src, int srcLen)
-{
-	Set((const char8_t*)src, srcLen);
 }
 
 
@@ -486,21 +469,22 @@ inline void bString::Set(const char32_t* src, int srcLen)
 }
 
 
-inline void bString::Set(const tStringUTF16& src)
-{
-	SetUTF16(src.Units(), src.Length());
-}
-
-
-inline void bString::Set(const tStringUTF32& src)
-{
-	SetUTF32(src.Units(), src.Length());
-}
-
-
 inline int bString::Reserve(int numUnits)
 {
-	UpdateCapacity(numUnits, true);
+	if (numUnits < StringLength)
+		numUnits = StringLength;
+	if (numUnits < MinCapacity)
+		numUnits = MinCapacity;
+	if (numUnits == CurrCapacity)
+		return CurrCapacity;
+
+	// The plus one is so we can do the null-terminator in the memcpy. It also allows it to work if the string length is 0.
+	char8_t* newUnits = new char8_t[numUnits+1];
+	tStd::tMemcpy(newUnits, CodeUnits, StringLength+1);
+	delete[] CodeUnits;
+	CodeUnits = newUnits;
+	CurrCapacity = numUnits;
+
 	return CurrCapacity;
 }
 
@@ -511,15 +495,7 @@ inline int bString::Shrink()
 		return CurrCapacity;
 
 	tAssert(StringLength < CurrCapacity);
-	char8_t* newUnits = new char8_t[StringLength+1];
-
-	// The plus one is so we can do the null-terminator in the memcpy. It also allows it to work if
-	// the string length is 0.
-	tStd::tMemcpy(newUnits, CodeUnits, StringLength+1);
-	delete[] CodeUnits;
-	CodeUnits = newUnits;
-	CurrCapacity = StringLength;
-	return CurrCapacity;
+	return Reserve(StringLength);
 }
 
 
@@ -538,30 +514,6 @@ inline bString& bString::operator=(const bString& src)
 }
 
 
-inline bool bString::IsEqual(const bString& str) const
-{
-	return IsEqual(str.CodeUnits, str.Length());
-}
-
-
-inline bool bString::IsEqual(const char* str) const
-{
-	return IsEqual(str, str ? tStd::tStrlen(str) : 0);
-}
-
-
-inline bool bString::IsEqual(const char8_t* str) const
-{
-	return IsEqual(str, str ? tStd::tStrlen(str) : 0);
-}
-
-
-inline bool bString::IsEqual(const char* str, int strLen) const
-{
-	return IsEqual((const char8_t*)str, strLen);
-}
-
-
 inline bool bString::IsEqual(const char8_t* str, int strLen) const
 {
 	if (!str || (Length() != strLen))
@@ -569,30 +521,6 @@ inline bool bString::IsEqual(const char8_t* str, int strLen) const
 
 	// We also compare the null so that we can compare strings of length 0.
 	return !tStd::tMemcmp(CodeUnits, str, strLen+1);
-}
-
-
-inline bool bString::IsEqualCI(const bString& str) const
-{
-	return IsEqualCI(str.CodeUnits, str.Length());
-}
-
-
-inline bool bString::IsEqualCI(const char* str) const
-{
-	return IsEqualCI(str, str ? tStd::tStrlen(str) : 0);
-}
-
-
-inline bool bString::IsEqualCI(const char8_t* str) const
-{
-	return IsEqualCI(str, str ? tStd::tStrlen(str) : 0);
-}
-
-
-inline bool bString::IsEqualCI(const char* str, int strLen) const
-{
-	return IsEqualCI((const char8_t*)str, strLen);
 }
 
 
@@ -607,19 +535,6 @@ inline bool bString::IsEqualCI(const char8_t* str, int strLen) const
 
 	return true;
 }
-
-
-#if 0
-inline int tString::CountChar(char c) const
-{
-	char8_t* i = CodeUnits;
-	int count = 0;
-	while (*i != '\0')
-		count += (*i++ == c) ? 1 : 0;
-
-	return count;
-}
-#endif
 
 
 inline bString operator+(const bString& preStr, const bString& sufStr)
@@ -688,7 +603,15 @@ inline bool bString::IsAlphaNumeric(bool includeUnderscore, bool includeDecimal)
 }
 
 
-////////////////////////
+inline int bString::CountChar(char c) const
+{
+	int count = 0;
+	for (int i = 0; i < StringLength; i++)
+		if (char(CodeUnits[i]) == c)
+			count++;
+	return count;
+}
+
 
 inline int bString::FindChar(const char c, bool reverse, int start) const
 {
@@ -728,27 +651,25 @@ inline int bString::FindChar(const char c, bool reverse, int start) const
 	return int(pc - CodeUnits);
 }
 
-#if 0
-inline int tString::FindAny(const char* chars) const
+
+inline int bString::FindAny(const char* chars) const
 {
-	if (CodeUnits == &EmptyChar)
+	if (StringLength == 0)
 		return -1;
 	
-	int i = 0;
-	while (CodeUnits[i])
+	for (int i = 0; i < StringLength; i++)
 	{
+		char t = char(CodeUnits[i]);
 		int j = 0;
 		while (chars[j])
 		{
-			if (chars[j] == CodeUnits[i])
+			if (chars[j] == t)
 				return i;
 			j++;
 		}
-		i++;
 	}
 	return -1;
 }
-#endif
 
 
 inline int bString::FindString(const char8_t* str, int start) const
@@ -765,6 +686,7 @@ inline int bString::FindString(const char8_t* str, int start) const
 }
 
 
+///////////// WIP
 #if 0
 inline int tString::Replace(const char c, const char r)
 {
