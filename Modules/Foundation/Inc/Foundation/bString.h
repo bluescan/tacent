@@ -245,27 +245,28 @@ struct bString
 	int FindString(const char8_t* str, int startIndex = 0) const;
 	int FindString(const char* str, int startIndex = 0) const															{ return FindString((const char8_t*)str, startIndex); }
 
-	////////////// WIP
-	#if 0
-	// Replace all occurrences of character c with character r. Returns number of characters replaced. ASCII-only.
-	int Replace(const char c, const char r);
+	// Replace all occurrences of character 'search' with character 'replace'. Returns number of characters replaced.
+	// ASCII-only. @todo Could make a variant that works with char8_t[4] and deals with UTF-8 continuations.
+	int Replace(const char search, const char replace);
 
 	// Replace all occurrences of string search with string replace. Returns the number of replacements. The replacement
-	// is done in a forward direction. If replace is a different size than search, memory will be managed to accomadate
-	// the larger or smaller resulting string and keep the memory footprint as small as possible. If they are the same
-	// size, the function is faster and doesn't need to mess with memory. If replace is "" or 0, all occurrences of
-	// search will be removed (replaced by nothing).
-	// It is valid to perform this for ASCII strings as well so the function is overridden for const char*.
+	// is done in a forward direction. If replace is a larger size than search, memory may need to be managed to
+	// accomadate the larger size if the capacity isn't big enough. If they are the same size, the function is faster
+	// and doesn't need to mess with memory. If replace is "" or nullptr, all occurrences of search will be removed
+	// (replaced by nothing). It is valid to perform this for ASCII strings as well as UTF-8 so the function is
+	// overridden for const char*. The input strings are assumed to be null-terminated. Returns nomber of replacements.
 	int Replace(const char8_t* search, const char8_t* replace);
 	int Replace(const char* search, const char* replace)																{ return Replace((const char8_t*)search, (const char8_t*)replace); }
 
 	// Remove all occurrences of the character rem. Returns the number of characters removed.
-	int Remove(const char rem);
+	int Remove(char rem);
 
 	// Removing a string simply calls Replace with a null second string. Returns how many rem strings were removed.
 	int Remove(const char8_t* rem)																						{ return Replace(rem, nullptr); }
 	int Remove(const char* rem)																							{ return Remove((const char8_t*)rem); }
 
+	////////////// WIP
+	#if 0
 	// Removes all leading characters in this string that match any of the characters in the null-erminated theseChars
 	// eg. Calling RemoveLeading on "cbbabZING" with "abc" yields "ZING". Returns the number of characters removed.
 	// Note that theseChars are ASCII.
@@ -275,17 +276,16 @@ struct bString
 	// eg. Calling RemoveTrailing on "ZINGabcaab" with "abc" yields "ZING". Returns the number of characters removed.
 	// Note that theseChars are ASCII.
 	int RemoveTrailing(const char* theseChars);
+	#endif
 
 	// ToUpper and ToLower both modify the object as well as return a reference to it. Returning a reference makes it
 	// easy to string together expressions such as: if (name.ToLower() == "ah")
-	tString& ToUpper()																									{ tStd::tStrupr(CodeUnits); return *this; }
-	tString& ToLower()																									{ tStd::tStrlwr(CodeUnits); return *this; }
+	bString& ToUpper()																									{ for (int n = 0; n < StringLength; n++) CodeUnits[n] = tStd::tToUpper(CodeUnits[n]); return *this; }
+	bString& ToLower()																									{ for (int n = 0; n < StringLength; n++) CodeUnits[n] = tStd::tToLower(CodeUnits[n]); return *this; }
 
 	// These do not modify the string. They return a new one.
-	tString Upper() const																								{ tString s(*this); s.ToUpper(); return s; }
-	tString Lower() const																								{ tString s(*this); s.ToLower(); return s; }
-
-	#endif
+	bString Upper() const																								{ bString s(*this); s.ToUpper(); return s; }
+	bString Lower() const																								{ bString s(*this); s.ToLower(); return s; }
 
 	// The GetAs functions consider the contents of the current bSstring up to the first null encountered. See comment
 	// for tStrtoiT in tStandard.h for format requirements. The summary is that if base is -1, the function looks one of
@@ -686,22 +686,17 @@ inline int bString::FindString(const char8_t* str, int start) const
 }
 
 
-///////////// WIP
-#if 0
-inline int tString::Replace(const char c, const char r)
+inline int bString::Replace(const char search, const char replace)
 {
 	int numReplaced = 0;
-	for (int i = 0; i < Length(); i++)
+	for (int i = 0; i < StringLength; i++)
 	{
-		if (CodeUnits[i] == c)
+		if (CodeUnits[i] == search)
 		{
 			numReplaced++;
-			CodeUnits[i] = r;
+			CodeUnits[i] = replace;
 		}
 	}
 
 	return numReplaced;
 }
-
-
-#endif

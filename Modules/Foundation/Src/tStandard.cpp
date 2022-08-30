@@ -45,7 +45,7 @@ const char8_t* tStd::u8SeparatorDStr						= (const char8_t*)tStd::SeparatorDStr;
 const char8_t* tStd::u8SeparatorEStr						= (const char8_t*)tStd::SeparatorEStr;
 
 
-void* tStd::tMemmem(void* haystack, int haystackNumBytes, void* needle, int needleNumBytes)
+void* tStd::tMemsrch(void* haystack, int haystackNumBytes, void* needle, int needleNumBytes)
 {
 	if ((haystackNumBytes <= 0) || (needleNumBytes <= 0) || (haystackNumBytes < needleNumBytes))
 		return nullptr;

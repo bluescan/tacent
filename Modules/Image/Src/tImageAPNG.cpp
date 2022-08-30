@@ -33,12 +33,12 @@ bool tImageAPNG::IsAnimatedPNG(const tString& pngFile)
 
 	uint8 acTL[] = { 'a', 'c', 'T', 'L' };
 	uint8 IDAT[] = { 'I', 'D', 'A', 'T' };
-	uint8* actlLoc = (uint8*)tStd::tMemmem(headData, numBytes, acTL, sizeof(acTL));
+	uint8* actlLoc = (uint8*)tStd::tMemsrch(headData, numBytes, acTL, sizeof(acTL));
 	if (!actlLoc)
 		return false;
 
 	// Now for safety we also make sure there is an IDAT after the acTL.
-	uint8* idatLoc = (uint8*)tStd::tMemmem(actlLoc+sizeof(acTL), numBytes - (actlLoc-headData) - sizeof(acTL), IDAT, sizeof(IDAT));
+	uint8* idatLoc = (uint8*)tStd::tMemsrch(actlLoc+sizeof(acTL), numBytes - (actlLoc-headData) - sizeof(acTL), IDAT, sizeof(IDAT));
 
 	bool found = idatLoc ? true : false;
 	delete[] headData;

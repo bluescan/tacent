@@ -277,129 +277,131 @@ bString bString::ExtractRight(const char8_t* suffix)
 }
 
 
-#if 0
-int tString::Replace(const char8_t* s, const char8_t* r)
+int bString::Replace(const char8_t* search, const char8_t* replace)
 {
-	if (!s || (s[0] == '\0'))
+//	return 0;
+
+	// Zeroth scenario (trivial) -- Search is empty. Definitely won't be able to find it.
+	if (!search || (search[0] == '\0'))
 		return 0;
 
-	int origTextLength = tStd::tStrlen(CodeUnits);
-	int searchStringLength = tStd::tStrlen(s);
-	int replaceStringLength = r ? tStd::tStrlen(r) : 0;
+//	int origTextLength = StringLength;
+	// First scenario (trivial) -- The search length is bigger than the string length. It simply can't be there.
+	int searchLength = tStd::tStrlen(search);
+	if (searchLength > StringLength)
+		return 0;
+
+	int replaceLength = replace ? tStd::tStrlen(replace) : 0;
 	int replaceCount = 0;
 
-	if (searchStringLength != replaceStringLength)
+	// Second scenario (easy) -- The search and replace string lengths are equal. We know in this case there will be no
+	// need to mess with memory and we don't care how many replacements there will be. We can just go ahead and replace
+	// them in one loop.
+	if (replaceLength == searchLength)
 	{
-		// Since the replacement string is a different size, we'll need to reallocate
-		// out memory. We start by finding out how many replacements we will need to do.
 		char8_t* searchStart = CodeUnits;
-
-		while (searchStart < (CodeUnits + origTextLength))
+		while (searchStart < (CodeUnits + StringLength))
 		{
-			char8_t* foundString = tStd::tStrstr(searchStart, s);
-			if (!foundString)
-				break;
-
-			replaceCount++;
-			searchStart = foundString + searchStringLength;
-		}
-
-		// The new length may be bigger or smaller than the original. If the newlength is precisely
-		// 0, it means that the entire string is being replaced with nothing, so we can exit early.
-		// eg. Replace "abcd" in "abcdabcd" with ""
-		int newTextLength = origTextLength + replaceCount*(replaceStringLength - searchStringLength);
-		if (!newTextLength)
-		{
-			if (CodeUnits != &EmptyChar)
-				delete[] CodeUnits;
-			CodeUnits = &EmptyChar;
-			return replaceCount;
-		}
-
-		char8_t* newText = new char8_t[newTextLength + 16];
-		newText[newTextLength] = '\0';
-
-		tStd::tMemset( newText, 0, newTextLength + 16 );
-
-		int newTextWritePos = 0;
-
-		searchStart = CodeUnits;
-		while (searchStart < (CodeUnits + origTextLength))
-		{
-			char8_t* foundString = tStd::tStrstr(searchStart, s);
-
+			char8_t* foundString = (char8_t*)tStd::tMemsrch(searchStart, StringLength-(searchStart-CodeUnits), search, searchLength);
 			if (foundString)
 			{
-				tStd::tMemcpy(newText+newTextWritePos, searchStart, int(foundString-searchStart));
-				newTextWritePos += int(foundString-searchStart);
-
-				tStd::tMemcpy(newText+newTextWritePos, r, replaceStringLength);
-				newTextWritePos += replaceStringLength;
-			}
-			else
-			{
-				tStd::tStrcpy(newText+newTextWritePos, searchStart);
-				break;
-			}
-
-			searchStart = foundString + searchStringLength;
-		}
-
-		if (CodeUnits != &EmptyChar)
-			delete[] CodeUnits;
-		CodeUnits = newText;
-	}
-	else
-	{
-		// In this case the replacement string is exactly the same length at the search string.
-		// Much easier to deal with and no need for memory allocation.
-		char8_t* searchStart = CodeUnits;
-
-		while (searchStart < (CodeUnits + origTextLength))
-		{
-			char8_t* foundString = tStd::tStrstr(searchStart, s);
-			if (foundString)
-			{
-				tStd::tMemcpy(foundString, r, replaceStringLength);
+				tStd::tMemcpy(foundString, replace, replaceLength);
 				replaceCount++;
 			}
 			else
 			{
 				break;
 			}
-
-			searchStart = foundString + searchStringLength;
+			searchStart = foundString + searchLength;
 		}
+		return replaceCount;
 	}
+
+	// Third scenario (hard) -- Different search and replace sizes. Supports empty replace string as well.
+	// The first step is to count how many replacements there are going to be so we can set the capacity properly.
+	char8_t* searchStart = CodeUnits;
+	while (searchStart < (CodeUnits + StringLength))
+	{
+		char8_t* foundString = (char8_t*)tStd::tMemsrch(searchStart, StringLength-(searchStart-CodeUnits), search, searchLength);
+		if (!foundString)
+			break;
+
+		replaceCount++;
+		searchStart = foundString + searchLength;
+	}
+
+	// The new length may be bigger or smaller than the original. If the capNeeded is precisely
+	// 0, it means that the entire string is being replaced with nothing, so we can exit early.
+	// eg. Replace "abcd" in "abcdabcd" with ""
+	int newLength = StringLength - (replaceCount*searchLength) + (replaceCount*replaceLength);
+	if (newLength == 0)
+	{
+		Clear();
+		return replaceCount;
+	}
+
+	// The easiest way of doing this is to have a scratchpad we can write the new string into.
+	char8_t* newText = new char8_t[newLength];
+	int newWritePos = 0;
+
+	searchStart = CodeUnits;
+	while (searchStart < (CodeUnits + StringLength))
+	{
+		char8_t* foundString = (char8_t*)tStd::tMemsrch(searchStart, StringLength-(searchStart-CodeUnits), search, searchLength);
+		if (foundString)
+		{
+			// Copy the stuff before the found string.
+			tStd::tMemcpy(newText+newWritePos, searchStart, int(foundString-searchStart));
+			newWritePos += int(foundString-searchStart);
+
+			// Copy the replacement in.
+			tStd::tMemcpy(newText+newWritePos, replace, replaceLength);
+			newWritePos += replaceLength;
+		}
+		else
+		{
+			// Copy the remainder when nothing found.
+			tStd::tMemcpy(newText+newWritePos, searchStart, StringLength-newWritePos);
+			break;
+		}
+		searchStart = foundString + searchLength;
+	}
+
+	// Make sure there's enough capacity.
+	UpdateCapacity(newLength, false);
+
+	// Copy the scratchpad data over.
+	tStd::tMemcpy(CodeUnits, newText, newLength);
+	CodeUnits[newLength] = '\0';
+	StringLength = newLength;
+	delete[] newText;
 
 	return replaceCount;
 }
 
 
-int tString::Remove(const char c)
+int bString::Remove(char rem)
 {
 	int destIndex = 0;
 	int numRemoved = 0;
 
 	// This operation can be done in place.
-	for (int i = 0; i < Length(); i++)
+	for (int i = 0; i < StringLength; i++)
 	{
-		if (CodeUnits[i] != c)
-		{
-			CodeUnits[destIndex] = CodeUnits[i];
-			destIndex++;
-		}
+		if (CodeUnits[i] != rem)
+			CodeUnits[destIndex++] = CodeUnits[i];
 		else
-		{
 			numRemoved++;
-		}
 	}
-	CodeUnits[destIndex] = '\0';
+	StringLength -= numRemoved;
+	CodeUnits[StringLength] = '\0';
 
 	return numRemoved;
 }
 
 
+///////////////// WIP
+#if 0
 int tString::RemoveLeading(const char* removeThese)
 {
 	if (!CodeUnits || (CodeUnits == &EmptyChar) || !removeThese)

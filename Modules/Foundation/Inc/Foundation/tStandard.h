@@ -39,10 +39,10 @@ inline void* tMemchr(void* data, uint8 val, int numBytes)																{ retur
 inline const void* tMemchr(const void* data, uint8 val, int numBytes)													{ return memchr(data, val, numBytes); }
 inline int tMemcmp(const void* a, const void* b, int numBytes)															{ return memcmp(a, b, numBytes); }
 
-// This one is new but handy, Searches for memory sequence needle of length needleNumBytes in haystack of length
-// haystackNumBytes. Returns nullptr if whole needle not found or a pointer to the first found needle otherwise.
-void* tMemmem(void* haystack, int haystackNumBytes, void* needle, int needleNumBytes);
-inline const void* tMemmem(const void* haystack, int haystackNumBytes, const void* needle, int needleNumBytes)			{ return tMemmem(haystack, haystackNumBytes, needle, needleNumBytes); }
+// Memory-search. Searches for memory sequence needle of length needleNumBytes in haystack of length haystackNumBytes.
+// Returns nullptr if whole needle not found or a pointer to the first found needle otherwise.
+void* tMemsrch(void* haystack, int haystackNumBytes, void* needle, int needleNumBytes);
+inline const void* tMemsrch(const void* haystack, int haystackNumBytes, const void* needle, int needleNumBytes)			{ return tMemsrch((void*)haystack, haystackNumBytes, (void*)needle, needleNumBytes); }
 
 // For character strings we support ASCII and full unicode via UTF-8. We do not support either USC2 or UTF-16 except
 // for providing conversion functions. The CT (Compile-Time) strlen variant below can compute the string length at

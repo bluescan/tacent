@@ -1130,6 +1130,93 @@ tTestUnit(StringNew)
 	tRequire(lmr.Length() == 11);
 	tRequire(right == "");
 	tRequire(right.Length() == 0);
+
+	// Testing Replace.
+	tPrintf("\nTesting Replace\n");
+	bString haystack;
+	const char8_t* search = nullptr;
+	const char8_t* replace = nullptr;
+	int numReplaced = 0;
+
+	tPrintf("Replace Scenario 0. No search string.\n");
+	haystack = "abc_def_ghi"; search = nullptr; replace = u8"REP";
+	tPrintf("Haystack ORIG: %s\n", haystack.Chr());
+	numReplaced = haystack.Replace(search, replace);
+	tPrintf("Haystack REPL: %s\n", haystack.Chr());
+	tRequire(numReplaced == 0);
+	tRequire(haystack.Length() == 11);
+
+	tPrintf("\nReplace Scenario 1. Search string too big.\n");
+	haystack = "abc_def_ghi"; search = u8"abc_def_ghi_jkl"; replace = u8"REP";
+	tPrintf("Haystack ORIG: %s\n", haystack.Chr());
+	numReplaced = haystack.Replace(search, replace);
+	tPrintf("Haystack REPL: %s\n", haystack.Chr());
+	tRequire(numReplaced == 0);
+	tRequire(haystack.Length() == 11);
+
+	tPrintf("\nReplace Scenario 2. Search string size same as replace size.\n");
+	haystack = "abc_def_ghi"; search = u8"def"; replace = u8"REP";
+	tPrintf("Haystack ORIG: %s\n", haystack.Chr());
+	numReplaced = haystack.Replace(search, replace);
+	tPrintf("Haystack REPL: %s\n", haystack.Chr());
+	tRequire(numReplaced == 1);
+	tRequire(haystack.Length() == 11);
+
+	tPrintf("\nReplace Scenario 3. Search string size different from replace size.\n");
+	haystack = "abc_def_ghi_def"; search = u8"def"; replace = u8"REPREP";
+	tPrintf("Haystack ORIG: %s\n", haystack.Chr());
+	numReplaced = haystack.Replace(search, replace);
+	tPrintf("Haystack REPL: %s\n", haystack.Chr());
+	tRequire(numReplaced == 2);
+	tRequire(haystack.Length() == 21);
+	tPrintf("\n");
+
+	haystack = "abc_def_ghi_def"; search = u8"def"; replace = u8"RR";
+	tPrintf("Haystack ORIG: %s\n", haystack.Chr());
+	numReplaced = haystack.Replace(search, replace);
+	tPrintf("Haystack REPL: %s\n", haystack.Chr());
+	tRequire(numReplaced == 2);
+	tRequire(haystack.Length() == 13);
+	tPrintf("\n");
+
+	haystack = "abc_def_ghi_def"; search = u8"def"; replace = u8"";
+	tPrintf("Haystack ORIG: %s\n", haystack.Chr());
+	numReplaced = haystack.Replace(search, replace);
+	tPrintf("Haystack REPL: %s\n", haystack.Chr());
+	tRequire(numReplaced == 2);
+	tRequire(haystack.Length() == 9);
+
+	// Testing Remove.
+	tPrintf("\nTesting Remove\n");
+	int numRemoved = 0;
+
+	haystack = "abc_def_ghi_def";
+	tPrintf("Haystack ORIG: %s\n", haystack.Chr());
+	numRemoved = haystack.Remove('_');
+	tPrintf("Haystack REMV: %s\n", haystack.Chr());
+	tRequire(numRemoved == 3);
+	tRequire(haystack.Length() == 12);
+
+	haystack = "abc_def_ghi_abc";
+	tPrintf("\nHaystack ORIG: %s\n", haystack.Chr());
+	numRemoved = haystack.Remove(u8"abc");
+	tPrintf("Haystack REMV: %s\n", haystack.Chr());
+	tRequire(numRemoved == 2);
+	tRequire(haystack.Length() == 9);
+
+	// Testing case change.
+	tPrintf("\nTesting Case Change\n");
+	haystack = "abc_DEF_ghi";
+	tPrintf("Haystack ORIG: %s\n", haystack.Chr());
+	haystack.ToUpper();
+	tPrintf("Haystack UPPR: %s\n", haystack.Chr());
+	tRequire(haystack.Length() == 11);
+
+	haystack = "abc_DEF_ghi";
+	tPrintf("\nHaystack ORIG: %s\n", haystack.Chr());
+	haystack.ToLower();
+	tPrintf("Haystack LOWR: %s\n", haystack.Chr());
+	tRequire(haystack.Length() == 11);
 }
 
 
