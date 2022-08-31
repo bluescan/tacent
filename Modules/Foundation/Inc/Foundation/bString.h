@@ -265,18 +265,20 @@ struct bString
 	int Remove(const char8_t* rem)																						{ return Replace(rem, nullptr); }
 	int Remove(const char* rem)																							{ return Remove((const char8_t*)rem); }
 
-	////////////// WIP
-	#if 0
-	// Removes all leading characters in this string that match any of the characters in the null-erminated theseChars
-	// eg. Calling RemoveLeading on "cbbabZING" with "abc" yields "ZING". Returns the number of characters removed.
+	// Removes all leading characters in this string that match any of the characters in the null-terminated theseChars
+	// eg. Calling RemoveLeading on "cbbabZINGabc" with "abc" yields "ZINGabc". Returns the number of characters removed.
 	// Note that theseChars are ASCII.
 	int RemoveLeading(const char* theseChars);
 
-	// Removes all trailing characters in this string that match any of the characters in the null-erminated theseChars
-	// eg. Calling RemoveTrailing on "ZINGabcaab" with "abc" yields "ZING". Returns the number of characters removed.
+	// Removes all trailing characters in this string that match any of the characters in the null-terminated theseChars
+	// eg. Calling RemoveTrailing on "abcZINGabcaab" with "abc" yields "abcZING". Returns the number of characters removed.
 	// Note that theseChars are ASCII.
 	int RemoveTrailing(const char* theseChars);
-	#endif
+
+	// Same as the above two but removes _any_ occurrences of characters specified in the null-terminated theseChars.
+	// eg. Calling RemoveAny on "abcZaIbNcGabcaab" with "abc" yields "ZING". Returns the number of characters removed.
+	// Note that theseChars are ASCII.
+	int RemoveAny(const char* theseChars);
 
 	// ToUpper and ToLower both modify the object as well as return a reference to it. Returning a reference makes it
 	// easy to string together expressions such as: if (name.ToLower() == "ah")

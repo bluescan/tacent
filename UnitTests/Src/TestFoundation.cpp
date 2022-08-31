@@ -1217,6 +1217,46 @@ tTestUnit(StringNew)
 	haystack.ToLower();
 	tPrintf("Haystack LOWR: %s\n", haystack.Chr());
 	tRequire(haystack.Length() == 11);
+
+	// Testing remove functions.
+	tPrintf("\nTesting Remove\n");
+	bString remove;
+
+	remove = "cbbabZINGabc";
+	tPrintf("\nRemove Leading Before: %s\n", remove.Chr());
+	numRemoved = remove.RemoveLeading("XY");
+	tPrintf("Remove Leading After: %s\n", remove.Chr());
+	tRequire((numRemoved == 0) && (remove.Length() == 12));
+
+	remove = "cbbabZINGabc";
+	tPrintf("\nRemove Leading Before: %s\n", remove.Chr());
+	numRemoved = remove.RemoveLeading("abc");
+	tPrintf("Remove Leading After: %s\n", remove.Chr());
+	tRequire((numRemoved == 5) && (remove.Length() == 7));
+
+	remove = "abcZINGabcaab";
+	tPrintf("\nRemove Trailing Before: %s\n", remove.Chr());
+	numRemoved = remove.RemoveTrailing("XY");
+	tPrintf("Remove Trailing After: %s\n", remove.Chr());
+	tRequire((numRemoved == 0) && (remove.Length() == 13));
+
+	remove = "abcZINGabcaab";
+	tPrintf("\nRemove Trailing Before: %s\n", remove.Chr());
+	numRemoved = remove.RemoveTrailing("abc");
+	tPrintf("Remove Trailing After: %s\n", remove.Chr());
+	tRequire((numRemoved == 6) && (remove.Length() == 7));
+
+	remove = "abcZaIbNcGabcaab";
+	tPrintf("\nRemove Any Before: %s\n", remove.Chr());
+	numRemoved = remove.RemoveAny("XY");
+	tPrintf("Remove Any After: %s\n", remove.Chr());
+	tRequire((numRemoved == 0) && (remove.Length() == 16));
+
+	remove = "abcZaIbNcGabcaab";
+	tPrintf("\nRemove Any Before: %s\n", remove.Chr());
+	numRemoved = remove.RemoveAny("abc");
+	tPrintf("Remove Any After: %s\n", remove.Chr());
+	tRequire((numRemoved == 12) && (remove.Length() == 4));
 }
 
 

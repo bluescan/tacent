@@ -400,72 +400,117 @@ int bString::Remove(char rem)
 }
 
 
-///////////////// WIP
-#if 0
-int tString::RemoveLeading(const char* removeThese)
+int bString::RemoveLeading(const char* removeThese)
 {
-	if (!CodeUnits || (CodeUnits == &EmptyChar) || !removeThese)
+	if (IsEmpty() || !removeThese || !removeThese[0])
 		return 0;
 
-	int cnt = 0;
-	while (CodeUnits[cnt])
+	// Since the StringLength can't get bigger, no need to do any memory management. We can do it in one pass.
+	int writeIndex = 0;
+	bool checkPresence = true;
+	int numRemoved = 0;
+	for (int readIndex = 0; readIndex < StringLength; readIndex++)
 	{
-		bool matches = false;
-		int j = 0;
-		while (removeThese[j] && !matches)
+		char8_t readChar = CodeUnits[readIndex];
+
+		// Is readChar present in theseChars?
+		bool present = false; int j = 0;
+		if (checkPresence)
+			while (removeThese[j] && !present)
+				if (removeThese[j++] == readChar)
+					present = true;
+
+		if (present && checkPresence)
 		{
-			if (removeThese[j] == CodeUnits[cnt])
-				matches = true;
-			j++;
+			numRemoved++;
+			continue;
 		}
-		if (matches) 		
-			cnt++;
-		else
-			break;
+
+		// Stop checking after hit first char not found.
+		checkPresence = false;
+		CodeUnits[writeIndex++] = readChar;
 	}
 
-	if (cnt > 0)
-	{
-		int oldlen = Length();
-		char8_t* newtext = new char8_t[oldlen-cnt+1];
-		tStd::tStrcpy(newtext, &CodeUnits[cnt]);
-		delete[] CodeUnits;
-		CodeUnits = newtext;
-	}
-
-	return cnt;
-}
-
-
-int tString::RemoveTrailing(const char* removeThese)
-{
-	if (!CodeUnits || (CodeUnits == &EmptyChar) || !removeThese)
-		return 0;
-
-	int oldlen = Length();
-			
-	int i = oldlen - 1;
-	while (i > -1)
-	{
-		bool matches = false;
-		int j = 0;
-		while (removeThese[j] && !matches)
-		{
-			if (removeThese[j] == CodeUnits[i])
-				matches = true;
-			j++;
-		}
-		if (matches) 		
-			i--;
-		else
-			break;
-	}
-	int numRemoved = oldlen - i;
-	CodeUnits[i+1] = '\0';
-
+	StringLength -= numRemoved;
+	CodeUnits[StringLength] = '\0';
 	return numRemoved;
 }
-#endif
+
+
+int bString::RemoveAny(const char* removeThese)
+{
+	if (IsEmpty() || !removeThese || !removeThese[0])
+		return 0;
+
+	// Since the StringLength can't get bigger, no need to do any memory management. We can do it in one pass.
+	int writeIndex = 0;
+	int numRemoved = 0;
+	for (int readIndex = 0; readIndex < StringLength; readIndex++)
+	{
+		char8_t readChar = CodeUnits[readIndex];
+
+		// Is readChar present in theseChars?
+		bool present = false; int j = 0;
+		while (removeThese[j] && !present)
+			if (removeThese[j++] == readChar)
+				present = true;
+
+		if (present)
+		{
+			numRemoved++;
+			continue;
+		}
+
+		CodeUnits[writeIndex++] = readChar;
+	}
+
+	StringLength -= numRemoved;
+	CodeUnits[StringLength] = '\0';
+	return numRemoved;
+}
+
+
+int bString::RemoveTrailing(const char* removeThese)
+{
+	if (IsEmpty() || !removeThese || !removeThese[0])
+		return 0;
+
+	// Since the StringLength can't get bigger, no need to do any memory management. We can do it in one pass.
+	int writeIndex = StringLength-1;
+	bool checkPresence = true;
+	int numRemoved = 0;
+	for (int readIndex = StringLength-1; readIndex >= 0; readIndex--)
+	{
+		char8_t readChar = CodeUnits[readIndex];
+
+		// Is readChar present in theseChars?
+		bool present = false; int j = 0;
+		if (checkPresence)
+			while (removeThese[j] && !present)
+				if (removeThese[j++] == readChar)
+					present = true;
+
+		if (present && checkPresence)
+		{
+			numRemoved++;
+			continue;
+		}
+
+		// Stop checking after hit first char (going backwards) not found.
+		checkPresence = false;
+		CodeUnits[writeIndex--] = readChar;
+	}
+
+	StringLength -= numRemoved;
+
+	// Cuz we went backwards we now need to shift everything left to where Codeunits begins.
+	// Important to use memory-move and not memory-copy because they overlap.
+	if (numRemoved > 0)
+		tStd::tMemmov(CodeUnits, CodeUnits+writeIndex+1, StringLength);
+	CodeUnits[StringLength] = '\0';
+	return numRemoved;
+}
+
 
 int bString::GetUTF16(char16_t* dst, bool incNullTerminator) const
 {
