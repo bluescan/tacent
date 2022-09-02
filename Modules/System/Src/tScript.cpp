@@ -9,7 +9,7 @@
 //
 // The second format is a functional format. ex. a(b,c) See tFunExtression.
 //
-// Copyright (c) 2006, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -203,9 +203,10 @@ tString tExpression::GetExpressionString() const
 	else
 		throw tScriptError(LineNumber, "Begin bracket found but no end bracket.");
 
-	// Creates a tString full of '\0's.
-	tString estr(int(end - start));
-	tStd::tStrncpy(estr.Text(), start, int(end - start));
+	// Creates a tString full of '\0's. Note that 'end' is one passed the ending ']' so numChars is correct.
+	int numChars = int(end - start);
+	tString estr(numChars);
+	tStd::tMemcpy(estr.Text(), start, numChars);
 	return estr;
 }
 
@@ -250,9 +251,10 @@ tString tExpression::GetAtomString() const
 		) end++;
 	}
 
-	// Creates a tString full of '\0's.
-	tString atom(int(end - start));
-	tStd::tStrncpy(atom.Text(), start, int(end - start));
+	// Creates a tString full of '\0's. End is one bigger so we get the right numChars.
+	int numChars = int(end - start);
+	tString atom(numChars);
+	tStd::tStrncpy(atom.Text(), start, numChars);
 
 	return atom;
 }
@@ -274,14 +276,12 @@ tString tExpression::GetAtomTupleString() const
 		throw tScriptError(LineNumber, "Opening paren but no corresponding closing paren.");
 
 	// Creates a tString full of '\0's.
-	tString tuple(int(end - start));
-	tStd::tStrncpy(tuple.Text(), start, int(end - start));
+	int numChars = int(end - start);
+	tString tuple(numChars);
+	tStd::tStrncpy(tuple.Text(), start, numChars);
 
 	// Now remove the '(', the ')', and any spaces.
-	tuple.Remove('(');
-	tuple.Remove(')');
-	tuple.Remove(' ');
-
+	tuple.RemoveAny("() ");
 	return tuple;
 }
 
@@ -466,12 +466,13 @@ tString tExpression::GetContext() const
 
 	// We're allowed to do this because as soon as strncpy sees a 0 in the src string it stops reading from it.
 	tStd::tStrncpy(context.Text(), ExprData, ContextSize);
+	context.SetLength( tStd::tStrlen(context.Text()) );
 
 	int newLine = context.FindChar('\r');
 
-	// Only go to the end of the current line.
+	// Only go to the end of the current line. The set-length will end up removing the '\r' cuz it's one less.
 	if (newLine != -1)
-		context[newLine] = '\0';
+		context.SetLength(newLine);
 
 	return context;
 }
@@ -1025,24 +1026,23 @@ void tExprWriter::NewLine()
 // Next follow the types for the functional scripts of the form f(a, b).
 tFunExpression::tFunExpression(const char8_t* function)
 {
+	// @todo There are better ways to do this.
 	const int maxExpressionSize = 512;
-
-	tString buffer(maxExpressionSize);
-	tStd::tStrncpy(buffer.Text(), function, maxExpressionSize);
+	char buffer[maxExpressionSize];
+	tStd::tStrncpy(buffer, (char*)function, maxExpressionSize);
 	buffer[maxExpressionSize-1] = '\0';
 
 	// We need to find the trailing ')' that is at the end of our expression. We do this by incrementing and decrementing
 	// based on '(' or ')'
-	int beginningParen = buffer.FindChar('(');
-	int endParen = beginningParen;
+	char* beginningParen = (char*)tStd::tStrchr(buffer, '(');
+	char* endParen = beginningParen;
 	int openCount = 0;
 
 	for (int c = 0; c < maxExpressionSize-1; c++)
 	{
-		if (buffer[endParen] == '(')
+		if (*endParen == '(')
 			openCount++;
-
-		if (buffer[endParen] == ')')
+		else if (*endParen == ')')
 			openCount--;
 
 		if (!openCount)
@@ -1052,11 +1052,11 @@ tFunExpression::tFunExpression(const char8_t* function)
 	}
 
 	if (openCount)
-		throw tScriptError("Expression too long. Missing bracket? Max size is %d chars. Look for [%s]", maxExpressionSize, buffer.Pod());
+		throw tScriptError("Expression too long. Missing bracket? Max size is %d chars. Look for [%s]", maxExpressionSize, buffer);
 
-	buffer[endParen] = '\0';
-	int origLength = buffer.Length();
-	buffer[beginningParen] = '\0';
+	*endParen = '\0';
+	int origLength = tStd::tStrlen(buffer);
+	*beginningParen = '\0';
 
 	// Now replace all occurences of space, tab, and comma with nulls. Double quote string arguments are handled correctly.
 	bool inString = false;
@@ -1088,12 +1088,13 @@ tFunExpression::tFunExpression(const char8_t* function)
 	int pos = Function.Length();
 
 	// Now lets get arguments until there are no more.
+	int endIdx = int(endParen-beginningParen);
 	while (1)
 	{
-		while ((buffer[pos] == '\0') && (pos < endParen))
+		while ((buffer[pos] == '\0') && (pos < endIdx))
 			pos++;
 
-		if (pos == endParen)
+		if (pos == endIdx)
 			break;
 
 		tStringItem* arg = new tStringItem( &buffer[pos] );

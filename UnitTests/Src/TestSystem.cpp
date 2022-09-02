@@ -105,14 +105,16 @@ struct MyTask : public tTask
 	MyTask() { }
 	double Execute(double timeDelta) override;
 	int ExecuteCount = 0;
+	float LargestTimeDelta = 0.0f;
 };
 
 
 double MyTask::Execute(double timeDelta)
 {
-	tPrintf("ExecuteCount: %d  TimeDelta: %f\n", ExecuteCount, timeDelta);
-	tGoal(timeDelta < 0.2f);
 	ExecuteCount++;
+	tPrintf("ExecuteCount: %d  TimeDelta: %f\n", ExecuteCount, timeDelta);
+	if (timeDelta > LargestTimeDelta)
+		LargestTimeDelta = timeDelta;
 
 	double runAgainTime = 0.1; // Seconds.
 	return runAgainTime;
@@ -123,30 +125,42 @@ tTestUnit(Task)
 {
 	int64 freq = tGetHardwareTimerFrequency();
 	tTaskSet tasks(freq, 0.1);
-	tTask* t1 = new MyTask();
-	tTask* t2 = new MyTask();
+	MyTask* t1 = new MyTask();
+	MyTask* t2 = new MyTask();
 
 	tasks.Insert(t1);
 	tasks.Insert(t2);
 
-	tPrintf("\n\nStarting Execute Loop\n");
-	for (int y=0; y<100; y++)
+	tPrintf("\n\nStarting Execute Loop for 1.6 seconds.\n");
+	for (int y = 0; y < 100; y++)
 	{
 		tSleep(16);
 		int64 count = tGetHardwareTimerCount();
 		tasks.Update(count);
 	}
+
+	tGoal(t1->LargestTimeDelta < 0.2f);
+	tGoal(t2->LargestTimeDelta < 0.2f);
+	tGoal(t1->ExecuteCount > 10);
+	tGoal(t2->ExecuteCount > 10);
+
+	int t1count = t1->ExecuteCount;
+	int t2count = t2->ExecuteCount;
 
 	tPrintf("\nRemoving task...\n");
 	tasks.Remove(t1);
 
-	tPrintf("\n\nStarting Execute Loop\n");
-	for (int y=0; y<50; y++)
+	tPrintf("\n\nStarting Execute Loop for 0.8 seconds.\n");
+	for (int y = 0; y < 50; y++)
 	{
 		tSleep(16);
 		int64 count = tGetHardwareTimerCount();
 		tasks.Update(count);
 	}
+
+	tRequire(t1->ExecuteCount == t1count);
+	tGoal(t2->LargestTimeDelta < 0.2f);
+	tGoal(t2->ExecuteCount > t2count);
 
 	tPrintf("\nExiting loop\n");
 }
@@ -679,7 +693,8 @@ tTestUnit(Script)
 		tExpression arg = rs.Arg0();			// [A [6.8 42 True]]
 
 		tExpression cmd = arg.Command();		// A
-		tPrintf("The first command is %s\n", cmd.GetAtomString().Pod());
+		tString cmdstr = cmd.GetAtomString();
+		tPrintf("The first command is %s\n", cmdstr.Pod());
 		tExpression a = arg.Arg1();
 		tExpression c = a.Command();
 		tExpression d = a.Arg1();
@@ -1233,7 +1248,7 @@ tTestUnit(Time)
 	uint64 yearsSince1970 = epochTime / (	3600ULL *	24ULL *	365ULL);
 	tPrintf("Years since 1970 UTC: %016|64d\n", yearsSince1970);
 
-	// I wrote the following assert in 2020.
+	// I wrote the following assert in 2020. Unless time moves backwards we should be good.
 	tRequire(yearsSince1970 >= 50);
 
 	float startTimeSeconds = tGetTime();

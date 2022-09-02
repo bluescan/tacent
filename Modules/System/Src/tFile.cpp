@@ -96,9 +96,9 @@ inline void tSystem::tPathStd(tString& path)
 	if (network)
 	{
 		path[0] = '\\'; path[1] = '\\';
-		int sharesep = path.FindChar('/');
-		if (sharesep != -1)
-			path[sharesep] = '\\';
+		int shareSep = path.FindChar('/');
+		if (shareSep != -1)
+			path[shareSep] = '\\';
 	}
 }
 
@@ -114,9 +114,8 @@ inline void tSystem::tPathStdDir(tString& path)
 inline void tSystem::tPathStdFile(tString& path)
 {
 	tPathStd(path);
-	int len = path.Length();
-	if (path[len-1] == '/')
-		path[len-1] = '\0';
+	if (path[path.Length()-1] == '/')
+		path.RemoveLast();
 }
 
 
@@ -137,9 +136,8 @@ inline void tSystem::tPathWinDir(tString& path)
 inline void tSystem::tPathWinFile(tString& path)
 {
 	tPathWin(path);
-	int len = path.Length();
-	if (path[len-1] == '\\')
-		path[len-1] = '\0';
+	if (path[path.Length()-1] == '\\')
+		path.RemoveLast();
 }
 
 
@@ -184,17 +182,19 @@ tString tSystem::tGetFileFullName(const tString& file)
 	
 	#if defined(PLATFORM_WINDOWS)
 	tPathWin(filename);
-	tString ret(_MAX_PATH + 1);
-	_fullpath(ret.Txt(), file.Chr(), _MAX_PATH);
-	tPathStd(ret);
+	char ret[_MAX_PATH + 1];
+	_fullpath(ret, file.Chr(), _MAX_PATH);
+	tString retStr(ret);
+	tPathStd(retStr);
 	
 	#else
 	tPathStd(filename);
-	tString ret(PATH_MAX + 1);
-	realpath(filename.Chr(), ret.Txt());	
+	char ret[PATH_MAX + 1];
+	realpath(filename.Chr(), ret);
+	tString retStr(ret);
 	#endif
 
-	return ret;
+	return retStr;
 }
 
 
@@ -279,7 +279,7 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 {
 	#if defined(PLATFORM_WINDOWS)
 	tAssert(basePath[ basePath.Length() - 1 ] == '/');
-	bool isDir = (path[ path.Length() - 1 ] == '/') ? true : false;
+	bool isDir = (path[path.Length() - 1] == '/') ? true : false;
 
 	tString basePathMod = basePath;
 	tPathWin(basePathMod);
@@ -297,12 +297,13 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 		pathMod16.GetLPWSTR(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
 	);
 	#else
-	tString relLoc(MAX_PATH);
+	char relLocBuf[MAX_PATH+1];
 	int success = PathRelativePathTo
 	(
-		relLoc.Txt(), basePathMod.Chr(), FILE_ATTRIBUTE_DIRECTORY,
+		relLocBuf, basePathMod.Chr(), FILE_ATTRIBUTE_DIRECTORY,
 		pathMod.Chr(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
 	);
+	tString relLoc(relLocBuf);
 	#endif
 
 	if (!success)
@@ -314,9 +315,9 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 
 	tPathStd(relLoc);
 	if (relLoc[0] == '/')
-		return relLoc.Chr() + 1;
-	else
-		return relLoc;
+		relLoc.RemoveFirst();
+
+	return relLoc;
 
 	#else
 	tString refPath(basePath);
@@ -394,8 +395,7 @@ tString tSystem::tGetDir(const tString& path)
 
 	// At this point, we know there was a slash and that it isn't the last character, so
 	// we know we aren't going out of bounds when we insert our string terminator after the slash.
-	ret[ lastSlash + 1 ] = '\0';
-
+	ret.SetLength(lastSlash+1);
 	return ret;
 }
 
@@ -434,7 +434,7 @@ tString tSystem::tGetUpDir(const tString& path, int levels)
 	}
 
 	tString upPath = ret;
-	upPath[ upPath.Length() - 1 ] = '\0';
+	upPath.RemoveLast();
 
 	for (int i = 0; i < levels; i++)
 	{
@@ -446,7 +446,7 @@ tString tSystem::tGetUpDir(const tString& path, int levels)
 		if (lastSlash == -1)
 			return tString();
 
-		upPath[lastSlash] = '\0';
+		upPath.SetLength(lastSlash);
 	}
 
 	upPath += "/";
@@ -696,7 +696,7 @@ bool tSystem::tIsHidden(const tString& path)
 	else
 	{
 		tString dirName = path;
-		dirName[dirName.Length()-1] = '\0';
+		dirName.RemoveLast();
 		dirName = tGetFileName(dirName);
 		if ((dirName != ".") && (dirName != "..") && (dirName[0] == '.'))
 			return true;
@@ -1160,6 +1160,8 @@ bool tSystem::tDeleteFile(const tString& file, bool deleteReadOnly, bool useRecy
 		*(filenameDoubleNull16.Units() + filenameDoubleNull16.Length() - 1) = 0;
 		#else
 		tString filenameDoubleNull(filenamePlusChar);
+
+		// This is ok. tString allows multiple nulls.
 		filenameDoubleNull[filenameDoubleNull.Length()-1] = '\0';
 		#endif
 
@@ -1262,16 +1264,20 @@ bool tSystem::tLoadFile(const tString& file, tString& dst, char convertZeroesTo)
 		return true;
 	}
 
-	dst.Reserve(filesize);
+	dst.ReserveCapacity(filesize);	// Does not mod string length.
 	uint8* check = tLoadFile(file, (uint8*)dst.Text());
 	if ((check != (uint8*)dst.Text()) || !check)
+	{
+		dst.Clear();
 		return false;
+	}
+	dst.SetLength(filesize);		/// Also writes the internal null.
 
 	if (convertZeroesTo != '\0')
 	{
 		for (int i = 0; i < filesize; i++)
 			if (dst[i] == '\0')
-			dst[i] = convertZeroesTo;
+				dst[i] = convertZeroesTo;
 	}
 
 	return true;
@@ -1363,15 +1369,16 @@ tString tSystem::tGetProgramDir()
 	ulong l = GetModuleFileName(0, result16.GetLPWSTR(), MAX_PATH);
 	tString result(result16);
 	#else
-	tString result(MAX_PATH);
-	ulong l = GetModuleFileName(0, result.Txt(), MAX_PATH);
+	char resBuf[MAX_PATH+1];
+	ulong l = GetModuleFileName(0, resBuf, MAX_PATH);
+	tString result(resBuf);
 	#endif
 
 	tPathStd(result);
 	int bi = result.FindChar('/', true);
 	tAssert(bi != -1);
 
-	result[bi + 1] = '\0';
+	result.SetLength(bi + 1);
 	return result;
 
 	#elif defined(PLATFORM_LINUX)
@@ -1380,7 +1387,7 @@ tString tSystem::tGetProgramDir()
 	
 	int bi = result.FindChar('/', true);
 	tAssert(bi != -1);
-	result[bi + 1] = '\0';
+	result.SetLength(bi + 1);
 	return result;
 
 	#else
@@ -1400,16 +1407,18 @@ tString tSystem::tGetProgramPath()
 	tString result(result16);
 
 	#else
-	tString result(MAX_PATH);
-	ulong l = GetModuleFileName(0, result.Txt(), MAX_PATH);
+	char resBuf[MAX_PATH+1];
+	ulong l = GetModuleFileName(0, resBuf, MAX_PATH);
+	tString result(resBuf);
 	#endif
 
 	tPathStd(result);
 	return result;
 
 	#elif defined(PLATFORM_LINUX)
-	tString result(PATH_MAX+1);
-	readlink("/proc/self/exe", result.Txt(), PATH_MAX);
+	char resBuf[PATH_MAX+1];
+	readlink("/proc/self/exe", resBuf, PATH_MAX);
+	tString result(resBuf);
 	return result;
 
 	#else
@@ -1429,13 +1438,15 @@ tString tSystem::tGetCurrentDir()
 	tString r(r16);
 
 	#else
-	tString r(MAX_PATH);
-	GetCurrentDirectory(MAX_PATH, r.Txt());
+	char rbuf[MAX_PATH+1];
+	GetCurrentDirectory(MAX_PATH, rbuf);
+	tString r(rbuf);
 	#endif
 
 	#else
-	tString r(PATH_MAX + 1);
-	getcwd(r.Txt(), PATH_MAX);
+	char rbuf[PATH_MAX+1];
+	getcwd(rbuf, PATH_MAX);
+	tString r(rbuf);
 	#endif
 
 	tPathStdDir(r);
@@ -1499,8 +1510,9 @@ tString tSystem::tGetWindowsDir()
 	GetWindowsDirectory(windir16.GetLPWSTR(), MAX_PATH);
 	tString windir(windir16);
 	#else
-	tString windir(MAX_PATH);
-	GetWindowsDirectory(windir.Txt(), MAX_PATH);
+	char windirbuf[MAX_PATH+1];
+	GetWindowsDirectory(windirbuf, MAX_PATH);
+	tString windir(windirbuf);
 	#endif
 
 	tPathStdDir(windir);
@@ -1515,8 +1527,9 @@ tString tSystem::tGetSystemDir()
 	GetSystemDirectory(sysdir16.GetLPWSTR(), MAX_PATH);
 	tString sysdir(sysdir16);
 	#else
-	tString sysdir(MAX_PATH);
-	GetSystemDirectory(sysdir.Txt(), MAX_PATH);
+	char sysdirbuf[MAX_PATH+1];
+	GetSystemDirectory(sysdirbuf, MAX_PATH);
+	tString sysdir(sysdirbuf);
 	#endif
 
 	tPathStdDir(sysdir);
@@ -1667,7 +1680,7 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 		#ifdef TACENT_UTF16_API_CALLS
 		driveInfo.VolumeName.SetUTF16(volumeInfoName.Units());
 		#else
-		driveInfo.VolumeName = volumeInfoName;
+		driveInfo.VolumeName.Set(volumeInfoName.Units());
 		#endif
 		driveInfo.SerialNumber = serial;
 	}
@@ -2283,23 +2296,22 @@ bool tSystem::tGetFileDetails(tFileDetails& details, const tString& path)
 			tStringUTF16 title(33);
 			StrRetToBuf(&shellDetail.str, localPidl, title.GetLPWSTR(), 32);
 			#else
-			tString title(33);
-			StrRetToBuf(&shellDetail.str, localPidl, title.Txt(), 32);
+			char titlebuf[33];
+			StrRetToBuf(&shellDetail.str, localPidl, titlebuf, 32);
+			tString title(titlebuf);
 			#endif
 
 			// Get detail.
-			#ifdef TACENT_UTF16_API_CALLS
-			tStringUTF16 detail(33);
-			#else
-			tString detail(33);
-			#endif
 			result = shellFolder2->GetDetailsOf(localPidl, col, &shellDetail);
 			if (result == S_OK)
 			{
 				#ifdef TACENT_UTF16_API_CALLS
+				tStringUTF16 detail(33);
 				StrRetToBuf(&shellDetail.str, localPidl, detail.GetLPWSTR(), 32);
 				#else
-				StrRetToBuf(&shellDetail.str, localPidl, detail.Txt(), 32);
+				char detailBuf[33];
+				StrRetToBuf(&shellDetail.str, localPidl, detailBuf, 32);
+				tString detail(detailBuf);
 				#endif
 
 				// We only add the detail to the list if both title and detail are present.
@@ -2397,7 +2409,8 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	ext.ToLower();
 	tString keyString = "Software\\Classes\\.";
 	keyString += ext;
-	tString appName(127);
+	tString appName;
+	char appNameBuf[128];
 	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 keyString16A(keyString);
 	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString16A.GetLPWSTR(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
@@ -2407,10 +2420,11 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	{
 		ulong numBytesIO = 127;
 		#ifdef TACENT_UTF16_API_CALLS
-		RegGetValue(key, LPCWSTR(u""), 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, appName.Text(), &numBytesIO);
+		RegGetValue(key, LPCWSTR(u""), 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, appNameBuf, &numBytesIO);
 		#else
-		RegGetValue(key, "", 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, appName.Text(), &numBytesIO);
+		RegGetValue(key, "", 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, appNameBuf, &numBytesIO);
 		#endif
+		appName.Set(appNameBuf);
 		RegCloseKey(key);
 	}
 
@@ -2420,7 +2434,8 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	keyString = "Software\\Classes\\";
 	keyString += appName;
 	keyString += "\\shell\\open\\command";
-	tString exeName(255);
+	tString exeName;
+	char exeNameBuf[256];
 	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 keyString16B(keyString);
 	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString16B.GetLPWSTR(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
@@ -2430,10 +2445,11 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	{
 		ulong numBytesIO = 255;
 		#ifdef TACENT_UTF16_API_CALLS
-		RegGetValue(key, LPCWSTR(u""), 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, exeName.Txt(), &numBytesIO);
+		RegGetValue(key, LPCWSTR(u""), 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, exeNameBuf, &numBytesIO);
 		#else
-		RegGetValue(key, "", 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, exeName.Txt(), &numBytesIO);
+		RegGetValue(key, "", 0, RRF_RT_REG_SZ | RRF_ZEROONFAILURE, 0, exeNameBuf, &numBytesIO);
 		#endif
+		exeName.Set(exeNameBuf);
 		RegCloseKey(key);
 	}
 
@@ -3112,7 +3128,7 @@ bool tSystem::tCreateDir(const tString& dir)
 
 	#endif
 	if (!success)
-		success = tDirExists(dirPath.Chr());
+		success = tDirExists(dirPath);
 
 	return success;
 
@@ -3120,7 +3136,7 @@ bool tSystem::tCreateDir(const tString& dir)
 	tPathStdFile(dirPath);
 	bool ok = std::filesystem::create_directory(dirPath.Chr());
 	if (!ok)
-		return tDirExists(dirPath.Chr());
+		return tDirExists(dirPath);
 
 	return ok;
 

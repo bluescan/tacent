@@ -17,7 +17,7 @@
 #include <future>
 #include <Foundation/tVersion.cmake.h>
 #include <Foundation/tStandard.h>
-#include <Foundation/bString.h>
+#include <Foundation/tString.h>
 #include <Foundation/tArray.h>
 #include <Foundation/tBitArray.h>
 #include <Foundation/tBitField.h>
@@ -929,29 +929,19 @@ tTestUnit(String)
 	presuf.ExtractRight("suf");
 	tPrintf("PreSuf [%s]\n", presuf.Chr());
 	tRequire(presuf == "preMIDDLEsuf");
-}
 
-
-tTestUnit(StringNew)
-{
-	// Test construction.
-	//bString str;
-
+	// The following tests were introduced when tString was rewritten to support capacity.
+	//
 	// Testing the string substitution code.
-	bString strAsc("abc1234abcd12345abcdef123456");
+	tString strAsc("abc1234abcd12345abcdef123456");
 	tPrintf("strAsc:[%s] Len:%d Cap:%d\n", strAsc.Chr(), strAsc.Length(), strAsc.Capacity());
 
-	bString strUtf(u8"abc1234abcd12345abcdef123456");
+	tString strUtf(u8"abc1234abcd12345abcdef123456");
 	tPrintf("strUtf:[%s] Len:%d Cap:%d\n", strUtf.Chr(), strUtf.Length(), strUtf.Capacity());
 
-//	src.Replace("abc", "cartoon");
-//	tPrintf("Replacing abc with cartoon\n");
-//	tPrintf("After : '%s'\n\n", src.Chr());
-//	tRequire(src == "cartoon1234cartoond12345cartoondef123456");
-
 	// Test Left, Mid, Right.
-	bString left, mid, right;
-	bString lmr("leftMIDright");
+	tString left, mid, right;
+	tString lmr("leftMIDright");
 	tPrintf("LMR [%s]\n", lmr.Chr());
 
 	tPrintf("\nMarker left/right\n");
@@ -1133,7 +1123,7 @@ tTestUnit(StringNew)
 
 	// Testing Replace.
 	tPrintf("\nTesting Replace\n");
-	bString haystack;
+	tString haystack;
 	const char8_t* search = nullptr;
 	const char8_t* replace = nullptr;
 	int numReplaced = 0;
@@ -1220,7 +1210,7 @@ tTestUnit(StringNew)
 
 	// Testing remove functions.
 	tPrintf("\nTesting Remove\n");
-	bString remove;
+	tString remove;
 
 	remove = "cbbabZINGabc";
 	tPrintf("\nRemove Leading Before: %s\n", remove.Chr());
@@ -1257,6 +1247,18 @@ tTestUnit(StringNew)
 	numRemoved = remove.RemoveAny("abc");
 	tPrintf("Remove Any After: %s\n", remove.Chr());
 	tRequire((numRemoved == 12) && (remove.Length() == 4));
+
+	remove = "abc123";
+	tPrintf("\nRemove First Before: %s\n", remove.Chr());
+	numRemoved = remove.RemoveFirst();
+	tPrintf("Remove First After: %s\n", remove.Chr());
+	tRequire((numRemoved == 1) && (remove.Length() == 5) && (remove == "bc123"));
+
+	remove = "abc123";
+	tPrintf("\nRemove Last Before: %s\n", remove.Chr());
+	numRemoved = remove.RemoveLast();
+	tPrintf("Remove Last After: %s\n", remove.Chr());
+	tRequire((numRemoved == 1) && (remove.Length() == 5) && (remove == "abc12"));
 }
 
 

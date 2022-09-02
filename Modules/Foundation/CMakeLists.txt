@@ -21,7 +21,6 @@ add_library(
 	Src/tPool.cpp
 	Src/tStandard.cpp
 	Src/tString.cpp
-	Src/bString.cpp
 	Src/tUnits.cpp
 	Inc/Foundation/tVersion.cmake.h
 	Inc/Foundation/tArray.h
@@ -42,7 +41,6 @@ add_library(
 	Inc/Foundation/tSort.h
 	Inc/Foundation/tStandard.h
 	Inc/Foundation/tString.h
-	Inc/Foundation/bString.h
 	Inc/Foundation/tUnits.h
 )
 

@@ -1,11 +1,41 @@
 // tString.cpp
 //
-// tString is a simple and readable string class that implements sensible operators, including implicit casts. There is
-// no UCS2 or UTF-16 support. The text in a tString is considerd to be UTF-8 and terminated with a nul. You cannot
-// stream (from cin etc) more than 512 chars into a string. This restriction is only for wacky << streaming. For
-// conversions of arbitrary types to tStrings, see tsPrint in the higher level System module.
+// tString is a simple and readable string class that implements sensible operators and implicit casts. The text in a
+// tString is considerd to be UTF-8 encoded. With UTF-8 encoding each character (code-point) may be encoded by 1 or more
+// code-units (a code-unit is 8 bits). The char8_t is used to repreresent a code-unit (as the C++ standard encourages).
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021 Tristan Grimmer.
+// Externally a tString should be thought of as an array of code-units which may contain multiple null characters. A
+// valid string of length 5 could be "ab\0\0e" for example. Internally a tString is null-terminated, but that is for
+// implementational efficiency only -- many external functions require null-terminated strings, so it makes it easy to
+// return one if the internal representation already has a null terminator. For example the length-5 string "abcde" is
+// stored internally as 'a' 'b' 'c' 'd' 'e' '\0'.
+//
+// It can be inefficient (in time) to only maintain the exact amount of memory needed to store a particular string -- it
+// would require a new memory allocation every time a string changes size. For this reason tStrings have a 'capacity'.
+// The capacity of a tString is the number of code-units that can be stored without requiring additional memory
+// management calls. For example, a tString with capacity 10 could be storing "abcde". If you were to add "fghij" to the
+// string, it would be done without any delete[] or new calls. Note that internally a tString of capacity 10 actually
+// has malloced an array of 11 code-units, the 11th one being for the terminating null. Functions that affect capacity
+// (like Reserve) do not change the behaviour of a tString and are always safe, they simply affect the efficiency.
+//
+// When the tString does need to grow its capacity (perhaps another string is being added/appended to it) there is the
+// question of how much extra space to reserve. The SetGrowMethod may be used to set how much extra space is reserved
+// when a memory-size-changing operation takes place. By default a constant amount of extra memory is reserved.
+//
+// A few of the salient functions related to the above are:
+// Lenght		:	Returns how many code-units are used by the string. This is NOT like a strlen call as it does not
+//					rely on nul-termination. It does not need to iterate as the length is stored explicitely.
+// Capacity		:	Returns the current capacity of the tString in code-units.
+// Reserve		:	This is instead of a SetCapacity call. There is no SetCapacity as we could not guarantee that a
+//					requested capacity is non-destructive. Calling Reserve(5) on a string of Length 10 will not result
+//					in a new capacity of 5 because it would require culling half of the code-units. Reserve can also be
+//					used to shrink (release memory) if possible. See the comments before the function itself.
+// Shrink		:	Shrinks the tString to the least amount of memory used possible. Like calling Reserver(Length());
+// SetGrowMethod:	Controls how much extra space (Capacity - Length) to reserve when performing a memory operation.
+//
+// For conversions of arbitrary types to tStrings, see tsPrint in the higher level System module.
+//
+// Copyright (c) 2004-2006, 2015, 2017, 2019-2022 Tristan Grimmer.
 // Copyright (c) 2020 Stefan Wessels.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
@@ -21,9 +51,6 @@
 #include "Foundation/tHash.h"
 
 
-char8_t tString::EmptyChar = '\0';
-
-
 tString::operator uint32()
 {
 	return tHash::tHashStringFast32(CodeUnits);
@@ -37,49 +64,62 @@ tString::operator uint32() const
 }
 
 
-tString tString::Left(const char c) const
+tString tString::Left(const char marker) const
 {
-	int pos = FindChar(c);
+	int pos = FindChar(marker);
 	if (pos == -1)
 		return *this;
 	if (pos == 0)
 		return tString();
 
-	// Remember, this zeros the memory, so tStrncpy not dealing with the terminating null is ok.
 	tString buf(pos);
-	tStd::tStrncpy(buf.CodeUnits, CodeUnits, pos);
+	tStd::tMemcpy(buf.CodeUnits, CodeUnits, pos);
 	return buf;
 }
 
 
-tString tString::Right(const char c) const
+tString tString::Right(const char marker) const
 {
-	int pos = FindChar(c, true);
+	int pos = FindChar(marker, true);
 	if (pos == -1)
 		return *this;
 
-	int length = Length();
+	int length = StringLength;
 	if (pos == (length-1))
 		return tString();
 
-	// Remember, this zeros the memory, so tStrncpy not dealing with the terminating null is ok.
 	tString buf(length - 1 - pos);
-	tStd::tStrncpy(buf.CodeUnits, CodeUnits + pos + 1, length - 1 - pos);
+	tStd::tMemcpy(buf.CodeUnits, CodeUnits + pos + 1, length - 1 - pos);
 	return buf;
 }
 
 
 tString tString::Left(int count) const
 {
-	if(count <= 0)
+	if (count <= 0)
 		return tString();
 
-	int length = Length();
+	int length = StringLength;
 	if (count > length)
 		count = length;
 
 	tString buf(count);
-	tStd::tStrncpy(buf.CodeUnits, CodeUnits, count);
+	tStd::tMemcpy(buf.CodeUnits, CodeUnits, count);
+	return buf;
+}
+
+
+tString tString::Mid(int start, int count) const
+{
+	int length = StringLength;
+	if ((start < 0) || (start >= length) || (count <= 0))
+		return tString();
+
+	if ((start + count) > length)
+		count = length - start;
+
+	tString buf(count);
+	tStd::tMemcpy(buf.CodeUnits, CodeUnits + start, count);
 	return buf;
 }
 
@@ -88,8 +128,8 @@ tString tString::Right(int count) const
 {
 	if (count <= 0)
 		return tString();
-		
-	int length = Length();
+
+	int length = StringLength;
 	int start = length - count;
 	if (start < 0)
 	{
@@ -98,22 +138,7 @@ tString tString::Right(int count) const
 	}
 
 	tString buf(count);
-	tStd::tStrncpy(buf.CodeUnits, CodeUnits + start, count);
-	return buf;
-}
-
-
-tString tString::Mid(int start, int count) const
-{
-	int length = Length();
-	if(start < 0 || start >= length || count <= 0)
-		return tString();
-
-	if(start + count > length)
-		count = length - start;
-
-	tString buf(count);
-	tStd::tStrncpy(buf.CodeUnits, CodeUnits + start, count);
+	tStd::tMemcpy(buf.CodeUnits, CodeUnits + start, count);
 	return buf;
 }
 
@@ -123,26 +148,23 @@ tString tString::ExtractLeft(const char divider)
 	int pos = FindChar(divider);
 	if (pos == -1)
 	{
-		tString buf(Text());
+		tString left(*this);
 		Clear();
-		return buf;
+		return left;
 	}
 
-	// Remember, this constructor zeros the memory, so strncpy not dealing with the terminating null is ok.
-	tString buf(pos);
-	tStd::tStrncpy(buf.CodeUnits, CodeUnits, pos);
+	int count = pos;
+	tString left(count);
+	tStd::tMemcpy(left.CodeUnits, CodeUnits, count);
 
-	int length = Length();
-	char8_t* newText = new char8_t[length-pos];
+	// We don't need to reallocate memory for this string. We can just do a memmove and adjust the StringLength.
+	// Memmove is needed since src and dest overlap. Capacity can stay the same.
+	StringLength -= count+1;
+	if (StringLength > 0)
+		tStd::tMemmov(CodeUnits, CodeUnits+pos+1, StringLength);
+	CodeUnits[StringLength] = '\0';
 
-	// This will append the null.
-	tStd::tStrncpy(newText, CodeUnits+pos+1, length-pos);
-
-	if (CodeUnits != &EmptyChar)
-		delete[] CodeUnits;
-	CodeUnits = newText;
-
-	return buf;
+	return left;
 }
 
 
@@ -151,113 +173,115 @@ tString tString::ExtractRight(const char divider)
 	int pos = FindChar(divider, true);
 	if (pos == -1)
 	{
-		tString buf(Text());
+		tString right(*this);
 		Clear();
-		return buf;
-	}
-
-	int wordLength = Length() - pos - 1;
-
-	// Remember, this constructor zeros the memory, so strncpy not dealing with the terminating null is ok.
-	tString buf(wordLength);
-	tStd::tStrncpy(buf.CodeUnits, CodeUnits+pos+1, wordLength);
-
-	char8_t* newText = new char8_t[pos+1];
-	tStd::tStrncpy(newText, CodeUnits, pos);
-	newText[pos] = '\0';
-
-	if (CodeUnits != &EmptyChar)
-		delete[] CodeUnits;
-	CodeUnits = newText;
-
-	return buf;
-}
-
-
-tString tString::ExtractLeft(int count)
-{
-	int length = Length();
-	if (count > length)
-		count = length;
-
-	if (count <= 0)
-		return tString();
-
-	tString left(count);
-	tStd::tStrncpy(left.CodeUnits, CodeUnits, count);
-	
-	// Source string is known not to be empty now
-	int newLength = length - count;
-	if (newLength == 0)
-	{
-		delete CodeUnits;
-		CodeUnits = &EmptyChar;
-		return left;
-	}
-
-	char8_t* newText = new char8_t[newLength+1];
-	tStd::tStrcpy(newText, CodeUnits+count);
-
-	delete[] CodeUnits;
-	CodeUnits = newText;
-
-	return left;
-}
-
-
-tString tString::ExtractRight(int count)
-{
-	int length = Length();
-	int start = length - count;
-	if(start < 0)
-	{
-		start = 0;
-		count = length;
-	}
-
-	if(count <= 0)
-		return tString();
-
-	tString right(count);
-	tStd::tStrncpy(right.CodeUnits, CodeUnits + start, count);
-
-	// Source string is known not to be empty now
-	int newLength = length - count;
-	if (newLength == 0)
-	{
-		delete CodeUnits;
-		CodeUnits = &EmptyChar;
 		return right;
 	}
 
-	char8_t* newText = new char8_t[newLength+1];
-	CodeUnits[length - count] = '\0';
+	int count = StringLength - pos - 1;
+	tString right(count);
+	tStd::tMemcpy(right.CodeUnits, CodeUnits+pos+1, count);
 
-	tStd::tStrcpy(newText, CodeUnits);
-
-	delete[] CodeUnits;
-	CodeUnits = newText;
+	// We don't need to reallocate or move memory for this string. We can just adjust the StringLength.
+	// Capacity can stay the same.
+	StringLength -= count+1;
+	CodeUnits[StringLength] = '\0';
 
 	return right;
 }
 
 
-tString tString::ExtractLeft(const char* prefix)
+tString tString::ExtractLeft(int count)
 {
-	if (!CodeUnits || (CodeUnits == &EmptyChar) || !prefix)
+	if (count >= StringLength)
+	{
+		tString left(*this);
+		Clear();
+		return left;
+	}
+
+	if (count <= 0)
+		return tString();
+
+	tString left(count);
+	tStd::tMemcpy(left.CodeUnits, CodeUnits, count);
+
+	// We don't need to reallocate memory for this string. We can just do a memmove and adjust the StringLength.
+	// Memmove is needed since src and dest overlap. Capacity can stay the same.
+	StringLength -= count;
+	if (StringLength > 0)
+		tStd::tMemmov(CodeUnits, CodeUnits+count, StringLength);
+	CodeUnits[StringLength] = '\0';
+
+	return left;
+}
+
+
+tString tString::ExtractMid(int start, int count)
+{
+	int length = StringLength;
+	if ((start < 0) || (start >= length) || (count <= 0))
+		return tString();
+
+	if ((start + count) > length)
+		count = length - start;
+
+	tString mid(count);
+	tStd::tMemcpy(mid.CodeUnits, CodeUnits + start, count);
+
+	// We don't need to reallocate memory for this string. We can just do a memmove and adjust the StringLength.
+	// Memmove is needed since src and dest overlap. Capacity can stay the same.
+	int numMove = length - (start + count);
+	if (numMove > 0)
+		tStd::tMemcpy(CodeUnits + start, CodeUnits + start + count, numMove);
+	StringLength -= count;
+	CodeUnits[StringLength] = '\0';
+
+	return mid;
+}
+
+
+tString tString::ExtractRight(int count)
+{
+	if (count >= StringLength)
+	{
+		tString right(*this);
+		Clear();
+		return right;
+	}
+
+	if (count <= 0)
+		return tString();
+
+	tString right(count);
+	tStd::tMemcpy(right.CodeUnits, CodeUnits+StringLength-count, count);
+
+	// We don't need to reallocate or move memory for this string. We can just adjust the StringLength.
+	// Capacity can stay the same.
+	StringLength -= count;
+	CodeUnits[StringLength] = '\0';
+
+	return right;
+}
+
+
+tString tString::ExtractLeft(const char8_t* prefix)
+{
+	if (IsEmpty() || !prefix)
 		return tString();
 
 	int len = tStd::tStrlen(prefix);
-	if ((len <= 0) || (Length() < len))
+	if ((len <= 0) || (len > StringLength))
 		return tString();
 
-	if (tStd::tStrncmp(CodeUnits, (const char8_t*)prefix, len) == 0)
+	if (tStd::tStrncmp(CodeUnits, prefix, len) == 0)
 	{
-		int oldlen = Length();
-		char8_t* newtext = new char8_t[oldlen-len+1];
-		tStd::tStrcpy(newtext, &CodeUnits[len]);
-		delete[] CodeUnits;
-		CodeUnits = newtext;
+		// We don't need to reallocate memory for this string. We can just do a memmove and adjust the StringLength.
+		// Memmove is needed since src and dest overlap. Capacity can stay the same.
+		if (StringLength > len)
+			tStd::tMemmov(CodeUnits, CodeUnits+len, StringLength-len);
+		StringLength -= len;
+		CodeUnits[StringLength] = '\0';
 		return tString(prefix);
 	}
 
@@ -265,18 +289,21 @@ tString tString::ExtractLeft(const char* prefix)
 }
 
 
-tString tString::ExtractRight(const char* suffix)
+tString tString::ExtractRight(const char8_t* suffix)
 {
-	if (!CodeUnits || (CodeUnits == &EmptyChar) || !suffix)
+	if (IsEmpty() || !suffix)
 		return tString();
 
 	int len = tStd::tStrlen(suffix);
-	if ((len <= 0) || (Length() < len))
+	if ((len <= 0) || (len > StringLength))
 		return tString();
 
-	if (tStd::tStrncmp(&CodeUnits[Length()-len], (const char8_t*)suffix, len) == 0)
+	if (tStd::tStrncmp(&CodeUnits[StringLength-len], suffix, len) == 0)
 	{
-		CodeUnits[Length()-len] = '\0';
+		// We don't need to reallocate or move memory for this string. We can just adjust the StringLength.
+		// Capacity can stay the same.
+		StringLength -= len;
+		CodeUnits[StringLength] = '\0';
 		return tString(suffix);
 	}
 
@@ -284,156 +311,127 @@ tString tString::ExtractRight(const char* suffix)
 }
 
 
-tString tString::ExtractMid(int start, int count)
+int tString::Replace(const char8_t* search, const char8_t* replace)
 {
-	int length = Length();
-	if(start < 0 || start >= length || count <= 0)
-		return tString();
-
-	if(start + count > length)
-		count = length - start;
-
-	tString mid(count);
-	tStd::tStrncpy(mid.CodeUnits, CodeUnits + start, count);
-
-	int newLength = length - count;
-	if(newLength == 0)
-	{
-		delete CodeUnits;
-		CodeUnits = &EmptyChar;
-		return mid;
-	}
-
-	char8_t* newText = new char8_t[newLength+1];
-	newText[newLength] = '\0';
-
-	tStd::tStrncpy(newText, CodeUnits, start);
-	tStd::tStrncpy(newText+start, CodeUnits+start+count, newLength-start);
-
-	delete[] CodeUnits;
-	CodeUnits = newText;
-
-	return mid;
-}
-
-
-int tString::Replace(const char8_t* s, const char8_t* r)
-{
-	if (!s || (s[0] == '\0'))
+	// Zeroth scenario (trivial) -- Search is empty. Definitely won't be able to find it.
+	if (!search || (search[0] == '\0'))
 		return 0;
 
-	int origTextLength = tStd::tStrlen(CodeUnits);
-	int searchStringLength = tStd::tStrlen(s);
-	int replaceStringLength = r ? tStd::tStrlen(r) : 0;
+	// First scenario (trivial) -- The search length is bigger than the string length. It simply can't be there.
+	int searchLength = tStd::tStrlen(search);
+	if (searchLength > StringLength)
+		return 0;
+
+	int replaceLength = replace ? tStd::tStrlen(replace) : 0;
 	int replaceCount = 0;
 
-	if (searchStringLength != replaceStringLength)
+	// Second scenario (easy) -- The search and replace string lengths are equal. We know in this case there will be no
+	// need to mess with memory and we don't care how many replacements there will be. We can just go ahead and replace
+	// them in one loop.
+	if (replaceLength == searchLength)
 	{
-		// Since the replacement string is a different size, we'll need to reallocate
-		// out memory. We start by finding out how many replacements we will need to do.
 		char8_t* searchStart = CodeUnits;
-
-		while (searchStart < (CodeUnits + origTextLength))
+		while (searchStart < (CodeUnits + StringLength))
 		{
-			char8_t* foundString = tStd::tStrstr(searchStart, s);
-			if (!foundString)
-				break;
-
-			replaceCount++;
-			searchStart = foundString + searchStringLength;
-		}
-
-		// The new length may be bigger or smaller than the original. If the newlength is precisely
-		// 0, it means that the entire string is being replaced with nothing, so we can exit early.
-		// eg. Replace "abcd" in "abcdabcd" with ""
-		int newTextLength = origTextLength + replaceCount*(replaceStringLength - searchStringLength);
-		if (!newTextLength)
-		{
-			if (CodeUnits != &EmptyChar)
-				delete[] CodeUnits;
-			CodeUnits = &EmptyChar;
-			return replaceCount;
-		}
-
-		char8_t* newText = new char8_t[newTextLength + 16];
-		newText[newTextLength] = '\0';
-
-		tStd::tMemset( newText, 0, newTextLength + 16 );
-
-		int newTextWritePos = 0;
-
-		searchStart = CodeUnits;
-		while (searchStart < (CodeUnits + origTextLength))
-		{
-			char8_t* foundString = tStd::tStrstr(searchStart, s);
-
+			char8_t* foundString = (char8_t*)tStd::tMemsrch(searchStart, StringLength-(searchStart-CodeUnits), search, searchLength);
 			if (foundString)
 			{
-				tStd::tMemcpy(newText+newTextWritePos, searchStart, int(foundString-searchStart));
-				newTextWritePos += int(foundString-searchStart);
-
-				tStd::tMemcpy(newText+newTextWritePos, r, replaceStringLength);
-				newTextWritePos += replaceStringLength;
-			}
-			else
-			{
-				tStd::tStrcpy(newText+newTextWritePos, searchStart);
-				break;
-			}
-
-			searchStart = foundString + searchStringLength;
-		}
-
-		if (CodeUnits != &EmptyChar)
-			delete[] CodeUnits;
-		CodeUnits = newText;
-	}
-	else
-	{
-		// In this case the replacement string is exactly the same length at the search string.
-		// Much easier to deal with and no need for memory allocation.
-		char8_t* searchStart = CodeUnits;
-
-		while (searchStart < (CodeUnits + origTextLength))
-		{
-			char8_t* foundString = tStd::tStrstr(searchStart, s);
-			if (foundString)
-			{
-				tStd::tMemcpy(foundString, r, replaceStringLength);
+				tStd::tMemcpy(foundString, replace, replaceLength);
 				replaceCount++;
 			}
 			else
 			{
 				break;
 			}
-
-			searchStart = foundString + searchStringLength;
+			searchStart = foundString + searchLength;
 		}
+		return replaceCount;
 	}
+
+	// Third scenario (hard) -- Different search and replace sizes. Supports empty replace string as well.
+	// The first step is to count how many replacements there are going to be so we can set the capacity properly.
+	char8_t* searchStart = CodeUnits;
+	while (searchStart < (CodeUnits + StringLength))
+	{
+		char8_t* foundString = (char8_t*)tStd::tMemsrch(searchStart, StringLength-(searchStart-CodeUnits), search, searchLength);
+		if (!foundString)
+			break;
+
+		replaceCount++;
+		searchStart = foundString + searchLength;
+	}
+
+	// The new length may be bigger or smaller than the original. If the capNeeded is precisely
+	// 0, it means that the entire string is being replaced with nothing, so we can exit early.
+	// eg. Replace "abcd" in "abcdabcd" with ""
+	int newLength = StringLength - (replaceCount*searchLength) + (replaceCount*replaceLength);
+	if (newLength == 0)
+	{
+		Clear();
+		return replaceCount;
+	}
+
+	// The easiest way of doing this is to have a scratchpad we can write the new string into.
+	char8_t* newText = new char8_t[newLength];
+	int newWritePos = 0;
+
+	searchStart = CodeUnits;
+	while (searchStart < (CodeUnits + StringLength))
+	{
+		char8_t* foundString = (char8_t*)tStd::tMemsrch(searchStart, StringLength-(searchStart-CodeUnits), search, searchLength);
+		if (foundString)
+		{
+			// Copy the stuff before the found string.
+			int lenBeforeFound = int(foundString-searchStart);
+			if (lenBeforeFound > 0)
+				tStd::tMemcpy(newText+newWritePos, searchStart, lenBeforeFound);
+			newWritePos += int(foundString-searchStart);
+
+			// Copy the replacement in.
+			if (replaceLength > 0)
+				tStd::tMemcpy(newText+newWritePos, replace, replaceLength);
+			newWritePos += replaceLength;
+		}
+		else
+		{
+			// Copy the remainder when nothing found.
+			int numRemain = newLength-newWritePos;
+			if (numRemain > 0)
+				tStd::tMemcpy(newText+newWritePos, searchStart, numRemain);
+			break;
+		}
+		searchStart = foundString + searchLength;
+	}
+
+	// Make sure there's enough capacity.
+	UpdateCapacity(newLength, false);
+
+	// Copy the scratchpad data over.
+	if (newLength > 0)
+		tStd::tMemcpy(CodeUnits, newText, newLength);
+	CodeUnits[newLength] = '\0';
+	StringLength = newLength;
+	delete[] newText;
 
 	return replaceCount;
 }
 
 
-int tString::Remove(const char c)
+int tString::Remove(char rem)
 {
 	int destIndex = 0;
 	int numRemoved = 0;
 
 	// This operation can be done in place.
-	for (int i = 0; i < Length(); i++)
+	for (int i = 0; i < StringLength; i++)
 	{
-		if (CodeUnits[i] != c)
-		{
-			CodeUnits[destIndex] = CodeUnits[i];
-			destIndex++;
-		}
+		if (CodeUnits[i] != rem)
+			CodeUnits[destIndex++] = CodeUnits[i];
 		else
-		{
 			numRemoved++;
-		}
 	}
-	CodeUnits[destIndex] = '\0';
+	StringLength -= numRemoved;
+	CodeUnits[StringLength] = '\0';
 
 	return numRemoved;
 }
@@ -441,90 +439,173 @@ int tString::Remove(const char c)
 
 int tString::RemoveLeading(const char* removeThese)
 {
-	if (!CodeUnits || (CodeUnits == &EmptyChar) || !removeThese)
+	if (IsEmpty() || !removeThese || !removeThese[0])
 		return 0;
 
-	int cnt = 0;
-	while (CodeUnits[cnt])
+	// Since the StringLength can't get bigger, no need to do any memory management. We can do it in one pass.
+	int writeIndex = 0;
+	bool checkPresence = true;
+	int numRemoved = 0;
+	for (int readIndex = 0; readIndex < StringLength; readIndex++)
 	{
-		bool matches = false;
-		int j = 0;
-		while (removeThese[j] && !matches)
+		char8_t readChar = CodeUnits[readIndex];
+
+		// Is readChar present in theseChars?
+		bool present = false; int j = 0;
+		if (checkPresence)
+			while (removeThese[j] && !present)
+				if (removeThese[j++] == readChar)
+					present = true;
+
+		if (present && checkPresence)
 		{
-			if (removeThese[j] == CodeUnits[cnt])
-				matches = true;
-			j++;
+			numRemoved++;
+			continue;
 		}
-		if (matches) 		
-			cnt++;
-		else
-			break;
+
+		// Stop checking after hit first char not found.
+		checkPresence = false;
+		CodeUnits[writeIndex++] = readChar;
 	}
 
-	if (cnt > 0)
-	{
-		int oldlen = Length();
-		char8_t* newtext = new char8_t[oldlen-cnt+1];
-		tStd::tStrcpy(newtext, &CodeUnits[cnt]);
-		delete[] CodeUnits;
-		CodeUnits = newtext;
-	}
-
-	return cnt;
+	StringLength -= numRemoved;
+	CodeUnits[StringLength] = '\0';
+	return numRemoved;
 }
 
 
 int tString::RemoveTrailing(const char* removeThese)
 {
-	if (!CodeUnits || (CodeUnits == &EmptyChar) || !removeThese)
+	if (IsEmpty() || !removeThese || !removeThese[0])
 		return 0;
 
-	int oldlen = Length();
-			
-	int i = oldlen - 1;
-	while (i > -1)
+	// Since the StringLength can't get bigger, no need to do any memory management. We can do it in one pass.
+	int writeIndex = StringLength-1;
+	bool checkPresence = true;
+	int numRemoved = 0;
+	for (int readIndex = StringLength-1; readIndex >= 0; readIndex--)
 	{
-		bool matches = false;
-		int j = 0;
-		while (removeThese[j] && !matches)
-		{
-			if (removeThese[j] == CodeUnits[i])
-				matches = true;
-			j++;
-		}
-		if (matches) 		
-			i--;
-		else
-			break;
-	}
-	int numRemoved = oldlen - i;
-	CodeUnits[i+1] = '\0';
+		char8_t readChar = CodeUnits[readIndex];
 
+		// Is readChar present in theseChars?
+		bool present = false; int j = 0;
+		if (checkPresence)
+			while (removeThese[j] && !present)
+				if (removeThese[j++] == readChar)
+					present = true;
+
+		if (present && checkPresence)
+		{
+			numRemoved++;
+			continue;
+		}
+
+		// Stop checking after hit first char (going backwards) not found.
+		checkPresence = false;
+		CodeUnits[writeIndex--] = readChar;
+	}
+
+	StringLength -= numRemoved;
+
+	// Cuz we went backwards we now need to shift everything left to where Codeunits begins.
+	// Important to use memory-move and not memory-copy because they overlap.
+	if (numRemoved > 0)
+		tStd::tMemmov(CodeUnits, CodeUnits+writeIndex+1, StringLength);
+	CodeUnits[StringLength] = '\0';
+	return numRemoved;
+}
+
+int tString::RemoveFirst()
+{
+	if (IsEmpty())
+		return 0;
+	
+	// We don't have a -1 on the StringLength here so we get the internal null terminator for free.
+	tStd::tMemmov(CodeUnits, CodeUnits+1, StringLength);
+	StringLength--;
+	return 1;
+}
+
+
+int tString::RemoveLast()
+{
+	if (IsEmpty())
+		return 0;
+
+	StringLength--;
+	CodeUnits[StringLength] = '\0';
+	return 1;
+}
+
+
+int tString::RemoveAny(const char* removeThese)
+{
+	if (IsEmpty() || !removeThese || !removeThese[0])
+		return 0;
+
+	// Since the StringLength can't get bigger, no need to do any memory management. We can do it in one pass.
+	int writeIndex = 0;
+	int numRemoved = 0;
+	for (int readIndex = 0; readIndex < StringLength; readIndex++)
+	{
+		char8_t readChar = CodeUnits[readIndex];
+
+		// Is readChar present in theseChars?
+		bool present = false; int j = 0;
+		while (removeThese[j] && !present)
+			if (removeThese[j++] == readChar)
+				present = true;
+
+		if (present)
+		{
+			numRemoved++;
+			continue;
+		}
+
+		CodeUnits[writeIndex++] = readChar;
+	}
+
+	StringLength -= numRemoved;
+	CodeUnits[StringLength] = '\0';
 	return numRemoved;
 }
 
 
 int tString::GetUTF16(char16_t* dst, bool incNullTerminator) const
 {
+	if (IsEmpty())
+		return 0;
+
 	if (!dst)
-		return tStd::tUTF16s(nullptr, CodeUnits) + (incNullTerminator ? 1 : 0);
+		return tStd::tUTF16(nullptr, CodeUnits, StringLength) + (incNullTerminator ? 1 : 0);
 
+	int numUnitsWritten = tStd::tUTF16(dst, CodeUnits, StringLength);
 	if (incNullTerminator)
-		return tStd::tUTF16s(dst, CodeUnits);
+	{
+		dst[numUnitsWritten] = 0;
+		numUnitsWritten++;
+	}
 
-	return tStd::tUTF16(dst, CodeUnits, Length());
+	return numUnitsWritten;
 }
 
 
 int tString::GetUTF32(char32_t* dst, bool incNullTerminator) const
 {
+	if (IsEmpty())
+		return 0;
+
 	if (!dst)
-		return tStd::tUTF32s(nullptr, CodeUnits) + (incNullTerminator ? 1 : 0);
+		return tStd::tUTF32(nullptr, CodeUnits, StringLength) + (incNullTerminator ? 1 : 0);
 
+	int numUnitsWritten = tStd::tUTF32(dst, CodeUnits, StringLength);
 	if (incNullTerminator)
-		return tStd::tUTF32s(dst, CodeUnits);
+	{
+		dst[numUnitsWritten] = 0;
+		numUnitsWritten++;
+	}
 
-	return tStd::tUTF32(dst, CodeUnits, Length());
+	return numUnitsWritten;
 }
 
 
@@ -535,17 +616,24 @@ int tString::SetUTF16(const char16_t* src, int srcLen)
 		Clear();
 		return 0;
 	}
+
+	// If srcLen < 0 it means ignore srcLen and assume src is null-terminated.
 	if (srcLen < 0)
 	{
-		int lenNeeded = tStd::tUTF8s(nullptr, src);
-		Reserve(lenNeeded, false);
-		return tStd::tUTF8s(CodeUnits, src);
+		int len = tStd::tUTF8s(nullptr, src);
+		UpdateCapacity(len, false);
+		StringLength = tStd::tUTF8s(CodeUnits, src);
 	}
-	int lenNeeded = tStd::tUTF8(nullptr, src, srcLen);
-	Reserve(lenNeeded, false);
-	tStd::tUTF8(CodeUnits, src, srcLen);
-	CodeUnits[lenNeeded] = '\0';
-	return lenNeeded;
+	else
+	{
+		int len = tStd::tUTF8(nullptr, src, srcLen);
+		UpdateCapacity(len, false);
+		tStd::tUTF8(CodeUnits, src, srcLen);
+		CodeUnits[len] = '\0';
+		StringLength = len;
+	}
+
+	return StringLength;
 }
 
 
@@ -556,17 +644,64 @@ int tString::SetUTF32(const char32_t* src, int srcLen)
 		Clear();
 		return 0;
 	}
+
+	// If srcLen < 0 it means ignore srcLen and assume src is null-terminated.
 	if (srcLen < 0)
 	{
-		int lenNeeded = tStd::tUTF8s(nullptr, src);
-		Reserve(lenNeeded, false);
-		return tStd::tUTF8s(CodeUnits, src);
+		int len = tStd::tUTF8s(nullptr, src);
+		UpdateCapacity(len, false);
+		StringLength = tStd::tUTF8s(CodeUnits, src);
 	}
-	int lenNeeded = tStd::tUTF8(nullptr, src, srcLen);
-	Reserve(lenNeeded, false);
-	tStd::tUTF8(CodeUnits, src, srcLen);
-	CodeUnits[lenNeeded] = '\0';
-	return lenNeeded;
+	else
+	{
+		int len = tStd::tUTF8(nullptr, src, srcLen);
+		UpdateCapacity(len, false);
+		tStd::tUTF8(CodeUnits, src, srcLen);
+		CodeUnits[len] = '\0';
+		StringLength = len;
+	}
+
+	return StringLength;
+}
+
+
+void tString::UpdateCapacity(int capNeeded, bool preserve)
+{
+	int grow = 0;
+	if (capNeeded > 0)
+		grow = (GrowParam >= 0) ? GrowParam : capNeeded*(-GrowParam);
+
+	capNeeded += grow;
+	if (capNeeded < MinCapacity)
+		capNeeded = MinCapacity;
+
+	if (CurrCapacity >= capNeeded)
+	{
+		if (!preserve)
+		{
+			StringLength = 0;
+			CodeUnits[0] = '\0';
+		}
+		return;
+	}
+
+	char8_t* newUnits = new char8_t[capNeeded+1];
+	if (preserve)
+	{
+		tAssert(capNeeded >= StringLength);
+		if (StringLength > 0)
+			tStd::tMemcpy(newUnits, CodeUnits, StringLength);
+	}
+	else
+	{
+		StringLength = 0;
+	}
+	newUnits[StringLength] = '\0';
+
+	// CodeUnits mey be nullptr the first time.
+	delete[] CodeUnits;
+	CodeUnits = newUnits;
+	CurrCapacity = capNeeded;
 }
 
 

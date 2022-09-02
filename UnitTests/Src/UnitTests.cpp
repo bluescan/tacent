@@ -122,7 +122,6 @@ int main(int argc, char** argv)
 	tTest(BitField);
 	tTest(FixInt);
 	tTest(String);
-	tTest(StringNew);
 	tTest(RingBuffer);
 	tTest(PriorityQueue);
 	tTest(MemoryPool);
@@ -176,19 +175,18 @@ int main(int argc, char** argv)
 	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
 	// tTest(FileTypes);
 	// tTest(Directories);
-	// tTest(File);
+	tTest(File);
 	// tTest(FindRec);
 	// tTest(Network);
 	// tTest(CmdLine);
 	// tTest(String);
-	tTest(StringNew);
 	// tTest(List);
 	// tTest(ListExtra);
 	// tTest(Colour);
 	// tTest(Print);
 	// tTest(Map);
 	// tTest(Promise);
-	// tTest(Script);
+	tTest(Script);
 	// tTest(Rule);
 	// #if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
 	// tTest(ImageLoad);

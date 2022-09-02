@@ -512,11 +512,12 @@ tString& tvsPrintf(tString& dest, const char* format, va_list argList)
 {
 	va_list argList2;
 	va_copy(argList2, argList);
-	
+
 	int reqChars = tvcPrintf(format, argList);
-	dest.Reserve(reqChars);
+	dest.ReserveCapacity(reqChars);
 	
 	tvsPrintf(dest.Txt(), format, argList2);
+	dest.SetLength(reqChars);
 	return dest;
 }
 
@@ -2044,21 +2045,34 @@ bool tSystem::tFtostr(tString& dest, float f, bool incBitRep)
 	}
 
 	// How much room do we need?
-	int c = tcPrintf("%8.8f", f);
-	c++;								// Possible 0 added.
+	int baseNeeded = tcPrintf("%8.8f", f);
+	int extraNeeded = 0;
+	int totWritten = 0;
 	if (incBitRep)
-		c += 9;							// Possible hash(#) plus 8 hex digits.
+		extraNeeded = 9;				// Hash(#) plus 8 hex digits.
 
-	dest.Reserve(c);					// We rely on the mem clear here.
+	// The +1 is in case we decide later on we want a trailing '0'. Fine to have extra for capacity.
+	dest.ReserveCapacity(baseNeeded + extraNeeded + 1);
 	char* cval = dest.Txt();
-	cval += tsPrintf(cval, "%8.8f", f);
+	int baseWritten = tsPrintf(cval, "%8.8f", f);
+	tAssert(baseWritten == baseNeeded);
+	cval += baseWritten;
+	totWritten += baseWritten;
 
-	// Add a trailing 0 because it looks better.
+	// Add a trailing '0' because it looks better.
 	if (*(cval-1) == '.')
+	{
 		*cval++ = '0';
+		totWritten++;
+	}
 
 	if (incBitRep)
-		cval += tsPrintf(cval, "#%08X", *((uint32*)&f));
+	{
+		int extraWritten = tsPrintf(cval, "#%08X", *((uint32*)&f));
+		tAssert(extraWritten == extraNeeded);
+		totWritten += extraWritten;
+	}
+	dest.SetLength(totWritten);
 
 	return success;
 }
@@ -2074,21 +2088,34 @@ bool tSystem::tDtostr(tString& dest, double d, bool incBitRep)
 	}
 
 	// How much room do we need?
-	int c = tcPrintf("%16.16f", d);
-	c++;								// Possible 0 added.
+	int baseNeeded = tcPrintf("%16.16f", d);
+	int extraNeeded = 0;
+	int totWritten = 0;
 	if (incBitRep)
-		c += 17;						// Possible hash(#) plus 16 hex digits.
+		extraNeeded += 17;						// Hash(#) plus 16 hex digits.
 
-	dest.Reserve(c);					// We rely on the mem clear here.
+	// The +1 is in case we decide later on we want a trailing '0'. Fine to have extra for capacity.
+	dest.ReserveCapacity(baseNeeded + extraNeeded + 1);
 	char* cval = dest.Txt();
-	cval += tsPrintf(cval, "%16.16f", d);
+	int baseWritten = tsPrintf(cval, "%16.16f", d);
+	tAssert(baseWritten == baseNeeded);
+	cval += baseWritten;
+	totWritten += baseWritten;
 
-	// Add a trailing 0 because it looks better.
+	// Add a trailing '0' because it looks better.
 	if (*(cval-1) == '.')
+	{
 		*cval++ = '0';
+		totWritten++;
+	}
 
 	if (incBitRep)
-		cval += tsPrintf(cval, "#%016|64X", *((uint64*)&d));
+	{
+		int extraWritten = tsPrintf(cval, "#%016|64X", *((uint64*)&d));
+		tAssert(extraWritten == extraNeeded);
+		totWritten += extraWritten;
+	}
+	dest.SetLength(totWritten);
 
 	return success;
 }

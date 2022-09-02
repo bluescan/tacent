@@ -29,7 +29,6 @@ namespace tUnitTest
 	tTestUnit(BitField);
 	tTestUnit(FixInt);
 	tTestUnit(String);
-	tTestUnit(StringNew);
 	tTestUnit(RingBuffer);
 	tTestUnit(PriorityQueue);
 	tTestUnit(MemoryPool);
