@@ -122,7 +122,7 @@ struct tString
 	// adjustments are made. The returned value will be >= Length(). You can also use this function to shrink the mem
 	// used -- just call it with a value less than the current capacity. It won't be able to reduce it lower than the
 	// current StringLength (or the MinCapacity) however.
-	int ReserveCapacity(int numUnits);
+	int Reserve(int numUnits);
 
 	// Shrink releases as much memory as possible. It returns the new capacity after shrinking. Note that the new
 	// capacity will be at least MinCapacity big. This basically calls Reserve(Length());
@@ -131,7 +131,7 @@ struct tString
 	// This is like Reserve except it takes in the number of _extra_ code-units you want. It will attempt to add or
 	// subtract from the current capacity. Putting in a negative to shrink is supported. Again, it cannot shrink below
 	// the current string length or lower than the minimum capacity. Returns the new capacity.
-	int Grow(int numUnits)																								{ return ReserveCapacity(CurrCapacity + numUnits); }
+	int Grow(int numUnits)																								{ return Reserve(CurrCapacity + numUnits); }
 
 	bool IsEmpty() const																								{ return (StringLength <= 0); }
 	bool IsValid() const			/* Returns true is string is not empty. */											{ return !IsEmpty(); }
@@ -674,7 +674,7 @@ inline void tString::Set(const tStringUTF32& src)
 }
 
 
-inline int tString::ReserveCapacity(int numUnits)
+inline int tString::Reserve(int numUnits)
 {
 	if (numUnits < StringLength)
 		numUnits = StringLength;
@@ -700,7 +700,7 @@ inline int tString::Shrink()
 		return CurrCapacity;
 
 	tAssert(StringLength < CurrCapacity);
-	return ReserveCapacity(StringLength);
+	return Reserve(StringLength);
 }
 
 
