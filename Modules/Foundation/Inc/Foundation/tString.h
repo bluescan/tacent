@@ -84,6 +84,7 @@ struct tString
 	tString(const tStringUTF32&		src)																				{ Set(src); }
 	virtual ~tString()																									{ delete[] CodeUnits; }
 
+	// The set functions always clear the current string and set it to the supplied src.
 	void Set(const tString&			src);
 	void Set(int length);
 	void Set(char);
@@ -97,6 +98,16 @@ struct tString
 	void Set(const char32_t*		src, int srcLen);
 	void Set(const tStringUTF16&	src);
 	void Set(const tStringUTF32&	src);
+
+	// Some external functions write directly into the CodeUnits and need to manually set the StringLength first. This
+	// function allows you to do that. It also writes the internal null terminator. If you call this with a length >
+	// capacity, it updates the capacity to be >= the requested length. This function preserves all existing characters
+	// if it can. Calling with a number < the current length will cut off the end characters. If you call with a value >
+	// current length, it sets the extra characters (up to length) with zeros. In all cases the string length will be
+	// left at what you called this with. It is illegal to call with a negative value.
+	// For efficiency you can opt to set preserve to false. In this case the characters may be completely uninitialized
+	// and it is your responsibility to populate them with something valid. Internal null still written.
+	void SetLength(int length, bool preserve = true);
 
 	// Does not release memory. Simply sets the string to empty. Fast.
 	void Clear()																										{ StringLength = 0; CodeUnits[0] = '\0'; }
@@ -349,31 +360,6 @@ struct tString
 	int SetUTF16(const char16_t* src, int srcLen = -1);
 	int SetUTF32(const char32_t* src, int srcLen = -1);
 
-	// Not a great function. Some external functions print directly into reserved CodeUnits (eg. tvsPPrintf) and need to
-	// manually set the StringLength afterwards. This function also writes the internal null terminator (only).
-	void SetLength(int length)																							{ tAssert(length <= CurrCapacity); StringLength = length; CodeUnits[StringLength] = '\0'; }
-
-protected:
-	// This could be made to be dynamic. Just didn't want to waste 4 bytes for every tString instance.
-	const int MinCapacity			= 15;
-
-	// If GrowParam is positive, it represents how many extra code-units to grow by when out of capacity.
-	// If GrowParam is negative, its absolute value represents how many times bigger the capacity should be
-	// compared to the required lenght of the string.
-	// If GrowParam is zero, everthing still works, you just don't get the extra code-units so it's less efficient.
-	int GrowParam					= 64;
-
-	// The length of the tString currently used in code-units.
-	int StringLength				= 0;
-
-	// The capacity. The number of allocated CodeUnuts is always one more than this.
-	int CurrCapacity				= 0;
-
-	// By using the char8_t we are indicating the data is stored in UTF-8 encoding. Note that unlike char, a char8_t
-	// is guaranteed to be unsigned, as well as a distinct type. In unicode spec for UTFn, these are called code-units.
-	// With tStrings the CodeUnits pointer is never nullptr after construction. There is always some capacity.
-	char8_t* CodeUnits				= nullptr;
-
 protected:
 	// The basic idea behind this function is you ask it for a specific amount of room that you know you will need -- to
 	// do say an append operaion. It guarantees that the capacity afterwards will be at least as big as what you requested.
@@ -398,6 +384,26 @@ protected:
 	//
 	// This function never shrinks the capacity. Use Reserve, Shrink, or Grow (with negative input) for that.
 	void UpdateCapacity(int capNeeded, bool preserve);
+
+	// This could be made to be dynamic. Just didn't want to waste 4 bytes for every tString instance.
+	const int MinCapacity			= 15;
+
+	// If GrowParam is positive, it represents how many extra code-units to grow by when out of capacity.
+	// If GrowParam is negative, its absolute value represents how many times bigger the capacity should be
+	// compared to the required lenght of the string.
+	// If GrowParam is zero, everthing still works, you just don't get the extra code-units so it's less efficient.
+	int GrowParam					= 64;
+
+	// The length of the tString currently used in code-units.
+	int StringLength				= 0;
+
+	// The capacity. The number of allocated CodeUnuts is always one more than this.
+	int CurrCapacity				= 0;
+
+	// By using the char8_t we are indicating the data is stored in UTF-8 encoding. Note that unlike char, a char8_t
+	// is guaranteed to be unsigned, as well as a distinct type. In unicode spec for UTFn, these are called code-units.
+	// With tStrings the CodeUnits pointer is never nullptr after construction. There is always some capacity.
+	char8_t* CodeUnits				= nullptr;
 };
 
 
@@ -412,7 +418,7 @@ protected:
 struct tStringUTF16
 {
 	tStringUTF16()																										{ }
-	explicit tStringUTF16(int length);	// Reserves length+1 char16_t code units (+1 for terminator).
+	explicit tStringUTF16(int length);	// Reserves length+1 char16_t code units (+1 for the inernal terminator).
 	tStringUTF16(const tStringUTF16& src)																				{ Set(src); }
 	tStringUTF16(const tString& src)																					{ Set(src); }
 
@@ -441,6 +447,15 @@ struct tStringUTF16
 	void Set(const char8_t*  src);				// Assumes src is null-terminated.
 	void Set(const char16_t* src, int length);	// As many nulls as you like.
 	void Set(const char8_t*  src, int length);	// As meny nulls as you like.
+
+	// Some external functions write directly into the CodeUnits and need to manually set the StringLength first. This
+	// function allows you to do that. It also writes the internal null terminator. This function preserves all existing
+	// code-units if it can. Calling with a number < the current length will cut off the end units. If you call with a
+	// value > current length it sets the extra characters (up to length) with zeros. In all cases the string length
+	// will be left at what you called this with. It is illegal to call with a negative value.
+	// For efficiency you can opt to set preserve to false. In this case the characters may be completely uninitialized
+	// and it is your responsibility to populate them with something valid. Internal null still written.
+	void SetLength(int length, bool preserve = true);
 
 private:
 	int StringLength	= 0;					// In char16_t codeunits, not including terminating null.
@@ -477,6 +492,15 @@ struct tStringUTF32
 	void Set(const char8_t* src);				// Assumes src is null-terminated.
 	void Set(const char32_t* src, int length);	// As many nulls as you like.
 	void Set(const char8_t*  src, int length);	// As meny nulls as you like.
+
+	// Some external functions write directly into the CodeUnits and need to manually set the StringLength first. This
+	// function allows you to do that. It also writes the internal null terminator. This function preserves all existing
+	// code-units if it can. Calling with a number < the current length will cut off the end units. If you call with a
+	// value > current length it sets the extra characters (up to length) with zeros. In all cases the string length
+	// will be left at what you called this with. It is illegal to call with a negative value.
+	// For efficiency you can opt to set preserve to false. In this case the characters may be completely uninitialized
+	// and it is your responsibility to populate them with something valid. Internal null still written.
+	void SetLength(int length, bool preserve = true);
 
 private:
 	int StringLength	= 0;					// In char32_t codeunits, not including terminating null.
@@ -852,6 +876,20 @@ inline int tString::Replace(const char search, const char replace)
 }
 
 
+inline void tString::SetLength(int length, bool preserve)
+{
+	tAssert(length >= 0);		
+	if (length > CurrCapacity)
+		UpdateCapacity(length, preserve);
+	
+	// If new length is bigger, pad with zeros. The UpdateCapacity call will NOT modify the string length when preserve is true.
+	if (preserve && (length > StringLength))
+		tStd::tMemset(CodeUnits+StringLength, 0, length - StringLength);
+	StringLength = length;
+	CodeUnits[StringLength] = '\0';
+}
+
+
 inline tStringUTF16::tStringUTF16(int length)
 {
 	if (length <= 0)
@@ -921,6 +959,37 @@ inline void tStringUTF16::Set(const char8_t* src, int lenSrc)
 }
 
 
+inline void tStringUTF16::SetLength(int length, bool preserve)
+{
+	tAssert(length >= 0);
+	if (length == StringLength)
+		return;
+
+	if (length == 0)
+	{
+		delete[] CodeUnits;
+		CodeUnits = nullptr;
+		StringLength = 0;
+		return;
+	}
+	
+	// If new length is bigger, pad with zeros. The UpdateCapacity call will NOT modify the string length when preserve is true.
+	if (length > StringLength)
+	{
+		char16_t* newUnits = new char16_t[length+1];
+		if (preserve)
+		{
+			tStd::tMemcpy(newUnits, CodeUnits, StringLength*sizeof(char16_t));
+			tStd::tMemset(newUnits + StringLength, 0, (length - StringLength)*sizeof(char16_t));
+		}
+		delete[] CodeUnits;
+		CodeUnits = newUnits;
+	}
+	StringLength = length;
+	CodeUnits[StringLength] = 0;
+}
+
+
 inline tStringUTF32::tStringUTF32(int length)
 {
 	if (length <= 0)
@@ -987,6 +1056,37 @@ inline void tStringUTF32::Set(const char8_t* src, int lenSrc)
 	tStd::tUTF32(CodeUnits, src, lenSrc);
 	CodeUnits[lenSrc] = 0;
 	StringLength = len32;
+}
+
+
+inline void tStringUTF32::SetLength(int length, bool preserve)
+{
+	tAssert(length >= 0);
+	if (length == StringLength)
+		return;
+
+	if (length == 0)
+	{
+		delete[] CodeUnits;
+		CodeUnits = nullptr;
+		StringLength = 0;
+		return;
+	}
+	
+	// If new length is bigger, pad with zeros. The UpdateCapacity call will NOT modify the string length when preserve is true.
+	if (length > StringLength)
+	{
+		char32_t* newUnits = new char32_t[length+1];
+		if (preserve)
+		{
+			tStd::tMemcpy(newUnits, CodeUnits, StringLength*sizeof(char32_t));
+			tStd::tMemset(newUnits + StringLength, 0, (length - StringLength)*sizeof(char32_t));
+		}
+		delete[] CodeUnits;
+		CodeUnits = newUnits;
+	}
+	StringLength = length;
+	CodeUnits[StringLength] = 0;
 }
 
 

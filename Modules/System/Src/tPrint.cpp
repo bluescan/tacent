@@ -514,10 +514,8 @@ tString& tvsPrintf(tString& dest, const char* format, va_list argList)
 	va_copy(argList2, argList);
 
 	int reqChars = tvcPrintf(format, argList);
-	dest.ReserveCapacity(reqChars);
-	
+	dest.SetLength(reqChars, false);
 	tvsPrintf(dest.Txt(), format, argList2);
-	dest.SetLength(reqChars);
 	return dest;
 }
 
@@ -2051,8 +2049,8 @@ bool tSystem::tFtostr(tString& dest, float f, bool incBitRep)
 	if (incBitRep)
 		extraNeeded = 9;				// Hash(#) plus 8 hex digits.
 
-	// The +1 is in case we decide later on we want a trailing '0'. Fine to have extra for capacity.
-	dest.ReserveCapacity(baseNeeded + extraNeeded + 1);
+	// The +1 is in case we decide later on we want a trailing '0'.
+	dest.SetLength(baseNeeded + extraNeeded + 1, false);
 	char* cval = dest.Txt();
 	int baseWritten = tsPrintf(cval, "%8.8f", f);
 	tAssert(baseWritten == baseNeeded);
@@ -2072,6 +2070,8 @@ bool tSystem::tFtostr(tString& dest, float f, bool incBitRep)
 		tAssert(extraWritten == extraNeeded);
 		totWritten += extraWritten;
 	}
+
+	// If we didn't write the '0' we need to shrink by 1. This will be fast as it's either the same size or smaller.
 	dest.SetLength(totWritten);
 
 	return success;
@@ -2094,8 +2094,8 @@ bool tSystem::tDtostr(tString& dest, double d, bool incBitRep)
 	if (incBitRep)
 		extraNeeded += 17;						// Hash(#) plus 16 hex digits.
 
-	// The +1 is in case we decide later on we want a trailing '0'. Fine to have extra for capacity.
-	dest.ReserveCapacity(baseNeeded + extraNeeded + 1);
+	// The +1 is in case we decide later on we want a trailing '0'.
+	dest.SetLength(baseNeeded + extraNeeded + 1, false);
 	char* cval = dest.Txt();
 	int baseWritten = tsPrintf(cval, "%16.16f", d);
 	tAssert(baseWritten == baseNeeded);
@@ -2115,6 +2115,8 @@ bool tSystem::tDtostr(tString& dest, double d, bool incBitRep)
 		tAssert(extraWritten == extraNeeded);
 		totWritten += extraWritten;
 	}
+
+	// If we didn't write the '0' we need to shrink by 1. This will be fast as it's either the same size or smaller.
 	dest.SetLength(totWritten);
 
 	return success;

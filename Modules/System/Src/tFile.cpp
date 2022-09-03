@@ -296,6 +296,7 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 		relLoc16.GetLPWSTR(), basePathMod16.GetLPWSTR(), FILE_ATTRIBUTE_DIRECTORY,
 		pathMod16.GetLPWSTR(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
 	);
+	relLoc16.SetLength( tStd::tStrlen(relLoc16.Chars()) );
 	#else
 	char relLocBuf[MAX_PATH+1];
 	int success = PathRelativePathTo
@@ -1264,14 +1265,13 @@ bool tSystem::tLoadFile(const tString& file, tString& dst, char convertZeroesTo)
 		return true;
 	}
 
-	dst.ReserveCapacity(filesize);	// Does not mod string length.
+	dst.SetLength(filesize, false);
 	uint8* check = tLoadFile(file, (uint8*)dst.Text());
 	if ((check != (uint8*)dst.Text()) || !check)
 	{
 		dst.Clear();
 		return false;
 	}
-	dst.SetLength(filesize);		/// Also writes the internal null.
 
 	if (convertZeroesTo != '\0')
 	{
@@ -1367,6 +1367,7 @@ tString tSystem::tGetProgramDir()
 	tStringUTF16 result16(MAX_PATH);
 	// Except for windows XP (which I don't care about TBH), the result is always null-terminated.
 	ulong l = GetModuleFileName(0, result16.GetLPWSTR(), MAX_PATH);
+	result16.SetLength( tStd::tStrlen(result16.Chars()) );
 	tString result(result16);
 	#else
 	char resBuf[MAX_PATH+1];
@@ -1404,6 +1405,7 @@ tString tSystem::tGetProgramPath()
 	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 result16(MAX_PATH);
 	ulong l = GetModuleFileName(0, result16.GetLPWSTR(), MAX_PATH);
+	result16.SetLength( tStd::tStrlen(result16.Chars()) );
 	tString result(result16);
 
 	#else
@@ -1435,6 +1437,7 @@ tString tSystem::tGetCurrentDir()
 	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 r16(MAX_PATH);
 	GetCurrentDirectory(MAX_PATH, r16.GetLPWSTR());
+	r16.SetLength( tStd::tStrlen(r16.Chars()) );
 	tString r(r16);
 
 	#else
@@ -1508,6 +1511,7 @@ tString tSystem::tGetWindowsDir()
 	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 windir16(MAX_PATH);
 	GetWindowsDirectory(windir16.GetLPWSTR(), MAX_PATH);
+	windir16.SetLength( tStd::tStrlen(windir16.Chars()) );
 	tString windir(windir16);
 	#else
 	char windirbuf[MAX_PATH+1];
@@ -1525,6 +1529,7 @@ tString tSystem::tGetSystemDir()
 	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 sysdir16(MAX_PATH);
 	GetSystemDirectory(sysdir16.GetLPWSTR(), MAX_PATH);
+	sysdir16.SetLength( tStd::tStrlen(sysdir16.Chars()) );
 	tString sysdir(sysdir16);
 	#else
 	char sysdirbuf[MAX_PATH+1];
@@ -2295,6 +2300,8 @@ bool tSystem::tGetFileDetails(tFileDetails& details, const tString& path)
 			#ifdef TACENT_UTF16_API_CALLS
 			tStringUTF16 title(33);
 			StrRetToBuf(&shellDetail.str, localPidl, title.GetLPWSTR(), 32);
+			title.SetLength( tStd::tStrlen(title.Chars()) );
+
 			#else
 			char titlebuf[33];
 			StrRetToBuf(&shellDetail.str, localPidl, titlebuf, 32);
@@ -2308,6 +2315,7 @@ bool tSystem::tGetFileDetails(tFileDetails& details, const tString& path)
 				#ifdef TACENT_UTF16_API_CALLS
 				tStringUTF16 detail(33);
 				StrRetToBuf(&shellDetail.str, localPidl, detail.GetLPWSTR(), 32);
+				detail.SetLength( tStd::tStrlen(detail.Chars()) );
 				#else
 				char detailBuf[33];
 				StrRetToBuf(&shellDetail.str, localPidl, detailBuf, 32);

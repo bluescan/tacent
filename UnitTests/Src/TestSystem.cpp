@@ -975,6 +975,19 @@ tTestUnit(Directories)
 	tPrintf("Desktop Dir is: %s\n", deskDir.Chr());
 	tRequire(!deskDir.IsEmpty());
 	#endif
+
+	// Returns the relative location of path from basePath. Both these input strings must have a common prefix for this to
+	// succeed. Returns an empty string if it fails.
+	#ifdef PLATFORM_WINDOWS
+	tString basePath = "C:/TopLevel/";
+	tString fullPath = "C:/TopLevel/SubLevel/";
+	#elif defined(PLATFORM_LINUX)
+	tString basePath = "/TopLevel/";
+	tString fullPath = "/TopLevel/SubLevel/";
+	#endif
+	tString relPath = tGetRelativePath(basePath, fullPath);
+	tPrintf("Rel Path is: %s\n", relPath.Chr());
+	tRequire((relPath == "./SubLevel/") && (relPath.Length() == 11));
 }
 
 

@@ -310,7 +310,7 @@ template<class T> T* NamedList<T>::FindNodeByName(const tString& name)
 
 struct NamedNode : public NamedLink<NamedNode>
 {
-	NamedNode(int id) : NamedLink(id+1), ID(id) { }
+	NamedNode(int id) : NamedLink(id), ID(id) { }
 	int ID;
 };
 
@@ -364,7 +364,7 @@ tTestUnit(ListExtra)
 	for (NamedNode* nn = nodes.First(); nn; nn = nn->Next())
 		tPrintf("ListExtra: ID:%d  Name:%s\n", nn->ID, nn->Name.Chr());
 
-	NamedNode* foundNode = nodes.FindNodeByName("Name4");
+	NamedNode* foundNode = nodes.FindNodeByName("Name3");
 	tRequire(foundNode);
 	tPrintf("ListExtra: Found ID%d:%s\n", foundNode->ID, tPod(foundNode->Name));
 
