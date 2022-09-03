@@ -194,7 +194,7 @@ int main(int argc, char** argv)
 	// tTest(ImagePicture);
 	// tTest(ImageMetaData);
 	// #endif
-	// tTest(UTF);
+	tTest(UTF);
 	// tTest(Hash);
 	// tTest(BitArray);
 	// tTest(BitField);

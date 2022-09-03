@@ -229,21 +229,21 @@ const char32_t cCodepoint_BOM				= 0x0000FEFF;	// U+FEFF Bute order marker. If b
 // assumed to be UTF-8. These are provided so external or OS-specific calls can be made when they expect non-UTF-8
 // input, and when results are supplied, converted back to UTF-8.
 //
-// Null termination is not part of UTF encoding. These work on arrays of codeunits (charN types). Not null terminated.
-// 1) If (only) dst is nullptr, returns the exact number of codeunits (charNs) needed for dst.
-// 2) If src is nullptr, dst is ignored and length is used to return a fast, worst-case number of codeunits (charNs)
+// Null termination is not part of UTF encoding. These work on arrays of code-units (charN types). Not null terminated.
+// 1) If (only) dst is nullptr, returns the exact number of code-units (charNs) needed for dst.
+// 2) If src is nullptr, dst is ignored and srcLen is used to return a fast, worst-case number of codeunits (charNs)
 //    needed for dst assuming no overlong encoding. This second method is fast because the contents of src are not
 //    inspected, but it often gives conservative (larger) results.
 // 3) If all args are valid, converts the UTFn src data to the dst UTFn encoding. Returns the number of dst codeunits
 //    (charNs) written.
-// Caller is responsibe for making sure dst is big enough! Length is not the number of codepoints, it is the number of
-// codeunits (charNs) provided by the src pointer.
-int tUTF8 (char8_t*  dst, const char16_t* src, int length);		// UFT-16 to UTF-8.
-int tUTF8 (char8_t*  dst, const char32_t* src, int length);		// UFT-32 to UTF-8.
-int tUTF16(char16_t* dst, const char8_t*  src, int length);		// UFT-8  to UTF-16.
-int tUTF16(char16_t* dst, const char32_t* src, int length);		// UFT-32 to UTF-16.
-int tUTF32(char32_t* dst, const char8_t*  src, int length);		// UFT-8  to UTF-32.
-int tUTF32(char32_t* dst, const char16_t* src, int length);		// UFT-16 to UTF-32.
+// Caller is responsibe for making sure dst is big enough! srcLen is not the number of code-points, it is the number of
+// code-units (charNs) provided by the src pointer.
+int tUTF8 (char8_t*  dst, const char16_t* src, int srcLen);		// UFT-16 to UTF-8.
+int tUTF8 (char8_t*  dst, const char32_t* src, int srcLen);		// UFT-32 to UTF-8.
+int tUTF16(char16_t* dst, const char8_t*  src, int srcLen);		// UFT-8  to UTF-16.
+int tUTF16(char16_t* dst, const char32_t* src, int srcLen);		// UFT-32 to UTF-16.
+int tUTF32(char32_t* dst, const char8_t*  src, int srcLen);		// UFT-8  to UTF-32.
+int tUTF32(char32_t* dst, const char16_t* src, int srcLen);		// UFT-16 to UTF-32.
 
 // String termination is not part of UTF encoding. These functions assume null terminated strings are input as src.
 // 1) If dst (only) is nullptr, computes and returns the exact number of dst codeunits (charNs) needed -- not including
@@ -281,17 +281,17 @@ int tUTF32s(char32_t* dst, const char16_t* src);				// UTF-16 to UTF-32.
 //
 // These read codeunit arrays and return a single codepoint in UTF-32. Special replacement returned on error. An error
 // is either an invalid encoding OR when src is nullptr. Length is not needed as it's implicit in the encoding.
-char32_t tUTF32c(const char8_t*  src);				// Reads 1 to 4 char8 codeunits from src.
-char32_t tUTF32c(const char16_t* src);				// Reads 1 or 2(surrogtate) char16 codeunits from src.
-char32_t tUTF32c(const char32_t* src);				// Reads 1 char32 codeunit from src.
+char32_t tUTF32c(const char8_t*  srcPoint);			// Reads 1 to 4 char8 codeunits from srcPoint.
+char32_t tUTF32c(const char16_t* srcPoint);			// Reads 1 or 2(surrogtate) char16 codeunits from srcPoint.
+char32_t tUTF32c(const char32_t* srcPoint);			// Reads 1 char32 codeunit from srcPoint.
 
 // These take a codepoint in UTF-32 (src) and write to the dst array without adding a null-terminator. If dst is nullptr
 // returns 0. If src is invalid, dst receives the special replacement. Returns num charNs written. The size hints in the
 // arrays are worst case amounts of room you may need. If you want a null terminated string after conversion (with the
 // single codepoint in it), make dst 1 bigger than suggested and set the Nth charN to 0, where N is the value returned.
-int tUTF8c (char8_t  dst[4], char32_t src);			// Reads src codepoint and returns [0,4].
-int tUTF16c(char16_t dst[2], char32_t src);			// Reads src codepoint and returns [0,2].
-int tUTF32c(char32_t dst[1], char32_t src);			// Reads src codepoint and returns [0,1].
+int tUTF8c (char8_t  dst[4], char32_t srcPoint);	// Reads srcPoint and returns [0,4].
+int tUTF16c(char16_t dst[2], char32_t srcPoint);	// Reads srcPoint and returns [0,2].
+int tUTF32c(char32_t dst[1], char32_t srcPoint);	// Reads srcPoint and returns [0,1].
 
 
 // These are non UTF-8 functions that work on individual ASCII characters or ASCII strings. tStrrev, for example,

@@ -211,7 +211,7 @@ namespace tUTF
 };
 
 
-int tStd::tUTF8(char8_t* dst, const char16_t* src, int length)
+int tStd::tUTF8(char8_t* dst, const char16_t* src, int srcLen)
 {
 	// Compute fast worst-case size needed.
 	// UTF-8 can use up to 3 bytes to encode some codepoints in the BMP (Basic Multilingual Plane). This has
@@ -219,14 +219,14 @@ int tStd::tUTF8(char8_t* dst, const char16_t* src, int length)
 	// either 2 codepoints in the BMP (6 bytes in UTF-8) or a single codepoint if the second char16 is a surrogate (4 bytes
 	// in UTF-8). Therefore worst case without inspecting data is 3*numChar16s.
 	if (!src)
-		return length * 3;
+		return srcLen * 3;
 
 	int total = 0;
-	while (length > 0)
+	while (srcLen > 0)
 	{
 		char32_t codepoint;
 		int read = tUTF::DecodeUtf16(codepoint, src);
-		length -= read;
+		srcLen -= read;
 		src += read;
 
 		int written = 0;
@@ -247,15 +247,15 @@ int tStd::tUTF8(char8_t* dst, const char16_t* src, int length)
 }
 
 
-int tStd::tUTF8(char8_t* dst, const char32_t* src, int length)
+int tStd::tUTF8(char8_t* dst, const char32_t* src, int srcLen)
 {
 	// Compute fast worst-case size needed.
 	// Worst case is every char32 needing 4 char8s.
 	if (!src)
-		return length * 4;
+		return srcLen * 4;
 
 	int total = 0;
-	for (int i = 0; i < length; i++)
+	for (int i = 0; i < srcLen; i++)
 	{
 		char32_t codepoint = src[i];
 
@@ -277,7 +277,7 @@ int tStd::tUTF8(char8_t* dst, const char32_t* src, int length)
 }
 
 
-int tStd::tUTF16(char16_t* dst, const char8_t* src, int length)
+int tStd::tUTF16(char16_t* dst, const char8_t* src, int srcLen)
 {
 	// Compute fast worst-case size needed.
 	// 1 char8					-> 1 char16.
@@ -286,14 +286,14 @@ int tStd::tUTF16(char16_t* dst, const char8_t* src, int length)
 	// 4 char8s (surrogates)	-> 2 char16s.
 	// So worst-case is every byte needing 1 whole char16.
 	if (!src)
-		return length;
+		return srcLen;
 
 	int total = 0;
-	while (length > 0)
+	while (srcLen > 0)
 	{
 		char32_t codepoint;
 		int read = tUTF::DecodeUtf8(codepoint, src);
-		length -= read;
+		srcLen -= read;
 		src += read;
 
 		int written = 0;
@@ -314,15 +314,15 @@ int tStd::tUTF16(char16_t* dst, const char8_t* src, int length)
 }
 
 
-int tStd::tUTF16(char16_t* dst, const char32_t* src, int length)
+int tStd::tUTF16(char16_t* dst, const char32_t* src, int srcLen)
 {
 	// Compute fast worst-case size needed.
 	// Worst case is every char32 needing 2 char16s.
 	if (!src)
-		return length * 2;
+		return srcLen * 2;
 
 	int total = 0;
-	for (int i = 0; i < length; i++)
+	for (int i = 0; i < srcLen; i++)
 	{
 		char32_t codepoint = src[i];
 
@@ -344,19 +344,19 @@ int tStd::tUTF16(char16_t* dst, const char32_t* src, int length)
 }
 
 
-int tStd::tUTF32(char32_t* dst, const char8_t* src, int length)
+int tStd::tUTF32(char32_t* dst, const char8_t* src, int srcLen)
 {
 	// Compute fast worst-case size needed.
 	// Worst-case is every char8 needing 1 whole char32.
 	if (!src)
-		return length;
+		return srcLen;
 
 	int total = 0;
-	while (length > 0)
+	while (srcLen > 0)
 	{
 		char32_t codepoint;
 		int read = tUTF::DecodeUtf8(codepoint, src);
-		length -= read;
+		srcLen -= read;
 		src += read;
 
 		if (dst)
@@ -371,19 +371,19 @@ int tStd::tUTF32(char32_t* dst, const char8_t* src, int length)
 }
 
 
-int tStd::tUTF32(char32_t* dst, const char16_t* src, int length)
+int tStd::tUTF32(char32_t* dst, const char16_t* src, int srcLen)
 {
 	// Compute fast worst-case size needed.
 	// Worst-case is every char16 needing 1 whole char32.
 	if (!src)
-		return length;
+		return srcLen;
 
 	int total = 0;
-	while (length > 0)
+	while (srcLen > 0)
 	{
 		char32_t codepoint;
 		int read = tUTF::DecodeUtf16(codepoint, src);
-		length -= read;
+		srcLen -= read;
 		src += read;
 
 		if (dst)
@@ -476,64 +476,64 @@ int tStd::tUTF32s(char32_t* dst, const char16_t* src)
 }
 
 
-char32_t tStd::tUTF32c(const char8_t* src)
+char32_t tStd::tUTF32c(const char8_t* srcPoint)
 {
 	char32_t codepoint = cCodepoint_Replacement;
-	if (!src)
+	if (!srcPoint)
 		return codepoint;
 	
-	tUTF::DecodeUtf8(codepoint, src);
+	tUTF::DecodeUtf8(codepoint, srcPoint);
 	return codepoint;
 }
 
 
-char32_t tStd::tUTF32c(const char16_t* src)
+char32_t tStd::tUTF32c(const char16_t* srcPoint)
 {
 	char32_t codepoint = cCodepoint_Replacement;
-	if (!src)
+	if (!srcPoint)
 		return codepoint;
 	
-	tUTF::DecodeUtf16(codepoint, src);
+	tUTF::DecodeUtf16(codepoint, srcPoint);
 	return codepoint;
 }
 
 
-char32_t tStd::tUTF32c(const char32_t* src)
+char32_t tStd::tUTF32c(const char32_t* srcPoint)
 {
 	char32_t codepoint = cCodepoint_Replacement;
-	if (!src)
+	if (!srcPoint)
 		return codepoint;
 
-	if (*src > tUTF::cCodepoint_UnicodeMax)
+	if (*srcPoint > tUTF::cCodepoint_UnicodeMax)
 		codepoint = cCodepoint_Replacement;
 	else
-		codepoint = *src;
+		codepoint = *srcPoint;
 
-	return *src;
+	return codepoint;
 }
 
 
-int tStd::tUTF8c(char8_t dst[4], char32_t src)
+int tStd::tUTF8c(char8_t dst[4], char32_t srcPoint)
 {
-	return tUTF::EncodeUtf8(dst, src);
+	return tUTF::EncodeUtf8(dst, srcPoint);
 }
 
 
-int tStd::tUTF16c(char16_t dst[2], char32_t src)
+int tStd::tUTF16c(char16_t dst[2], char32_t srcPoint)
 {
-	return tUTF::EncodeUtf16(dst, src);
+	return tUTF::EncodeUtf16(dst, srcPoint);
 }
 
 
-int tStd::tUTF32c(char32_t dst[1], char32_t src)
+int tStd::tUTF32c(char32_t dst[1], char32_t srcPoint)
 {
 	if (!dst)
 		return 0;
 
-	if (src > tUTF::cCodepoint_UnicodeMax)
+	if (srcPoint > tUTF::cCodepoint_UnicodeMax)
 		dst[0] = cCodepoint_Replacement;
 	else
-		dst[0] = src;
+		dst[0] = srcPoint;
 	return 1;
 }
 

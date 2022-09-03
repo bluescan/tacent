@@ -218,15 +218,15 @@ struct tString
 	char8_t* Text()																										{ return CodeUnits; }
 	const char8_t* Chars() const																						{ return CodeUnits; }
 	const char8_t* Charz() const	/* Like Chars() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : CodeUnits; }
-	char8_t* Units() const			/* Same as Text but uses unicode naming, Code Units (that make the Code Points. */	{ return CodeUnits; }
+	char8_t* Units() const			/* Unicode naming. Code 'units'. */													{ return CodeUnits; }
 
 	// Many other functions and libraries that are UTF-8 compliant do not yet (and may never) use the proper char8_t
 	// type and use char* and const char*. These functions allow you to retrieve the tString using the char type.
-	// You can also use these with tPrintf and %s.
+	// You can also use these with tPrintf and %s. These are synonyms of the above 4 calls.
 	char* Txt()																											{ return (char*)CodeUnits; }
 	const char* Chr() const																								{ return (const char*)CodeUnits; }
 	const char* Chz() const			/* Like Chr() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : (const char*)CodeUnits; }
-	char* Pod() const				/* Plain Old Data */																{ return (char*)CodeUnits; }
+	char8_t* Pod() const			/* Plain Old Data */																{ return CodeUnits; }
 
 	// Counts the number of occurrences of c. Does not stop at first null. Iterates over the full StringLength.
 	int CountChar(char c) const;
@@ -419,34 +419,31 @@ struct tStringUTF16
 {
 	tStringUTF16()																										{ }
 	explicit tStringUTF16(int length);	// Reserves length+1 char16_t code units (+1 for the inernal terminator).
-	tStringUTF16(const tStringUTF16& src)																				{ Set(src); }
 	tStringUTF16(const tString& src)																					{ Set(src); }
+	tStringUTF16(const tStringUTF16& src)																				{ Set(src); }
+	tStringUTF16(const tStringUTF32& src)																				{ Set(src); }
 
 	// These constructors expect null-termination of the input arrays.
-	tStringUTF16(const char16_t* src)																					{ Set(src); }
 	tStringUTF16(const char8_t*  src)																					{ Set(src); }
+	tStringUTF16(const char16_t* src)																					{ Set(src); }
+	tStringUTF16(const char32_t* src)																					{ Set(src); }
 
 	// These constructors do not require null-termination of the input arrays.
-	tStringUTF16(const char16_t* src, int length)																		{ Set(src, length); }
 	tStringUTF16(const char8_t*  src, int length)																		{ Set(src, length); }
+	tStringUTF16(const char16_t* src, int length)																		{ Set(src, length); }
+	tStringUTF16(const char32_t* src, int length)																		{ Set(src, length); }
 
 	~tStringUTF16()																										{ delete[] CodeUnits; }
 
-	void Clear()																										{ delete[] CodeUnits; CodeUnits = nullptr; StringLength = 0; }
-	bool IsValid() const																								{ return (Length() > 0); }
-	int Length() const																									{ return StringLength; }
-	const char16_t* Chars() const																						{ return CodeUnits; }
-	char16_t* Units() const																								{ return CodeUnits; }
-	#if defined(PLATFORM_WINDOWS)
-	wchar_t* GetLPWSTR() const																							{ return (wchar_t*)CodeUnits; }
-	#endif
-
-	void Set(const tStringUTF16& src);
 	void Set(const tString& src);
-	void Set(const char16_t* src);				// Assumes src is null-terminated.
+	void Set(const tStringUTF16& src);
+	void Set(const tStringUTF32& src);
 	void Set(const char8_t*  src);				// Assumes src is null-terminated.
-	void Set(const char16_t* src, int length);	// As many nulls as you like.
+	void Set(const char16_t* src);				// Assumes src is null-terminated.
+	void Set(const char32_t* src);				// Assumes src is null-terminated.
 	void Set(const char8_t*  src, int length);	// As meny nulls as you like.
+	void Set(const char16_t* src, int length);	// As many nulls as you like.
+	void Set(const char32_t* src, int length);	// As many nulls as you like.
 
 	// Some external functions write directly into the CodeUnits and need to manually set the StringLength first. This
 	// function allows you to do that. It also writes the internal null terminator. This function preserves all existing
@@ -456,6 +453,25 @@ struct tStringUTF16
 	// For efficiency you can opt to set preserve to false. In this case the characters may be completely uninitialized
 	// and it is your responsibility to populate them with something valid. Internal null still written.
 	void SetLength(int length, bool preserve = true);
+
+	void Clear()																										{ delete[] CodeUnits; CodeUnits = nullptr; StringLength = 0; }
+	bool IsValid() const																								{ return (Length() > 0); }
+	bool IsEmpty() const																								{ return !IsValid(); }
+	int Length() const																									{ return StringLength; }
+
+	// Accesses the raw UTF-16 codeunits represented by the 'official' unsigned UTF-16 character datatype char16_t.
+	char16_t* Text()				/* Unlike tString, will be nullptr if empty. */										{ return CodeUnits; }
+	const char16_t* Chars() const	/* Unlike tString, will be nullptr if empty. */										{ return CodeUnits; }
+	char16_t* Units() const			/* Unicode naming. Code 'units'. */													{ return CodeUnits; }
+
+	// Shorter synonyms of the above.
+	char16_t* Txt()																										{ return CodeUnits; }
+	const char16_t* Chr() const																							{ return CodeUnits; }
+	char16_t* Pod() const			/* Plain Old Data */																{ return CodeUnits; }
+
+	#if defined(PLATFORM_WINDOWS)
+	wchar_t* GetLPWSTR() const																							{ return (wchar_t*)CodeUnits; }
+	#endif
 
 private:
 	int StringLength	= 0;					// In char16_t codeunits, not including terminating null.
@@ -467,31 +483,31 @@ struct tStringUTF32
 {
 	tStringUTF32()																										{ }
 	explicit tStringUTF32(int length);	// Reserves length char32_t+1 code units (+1 for terminator).
-	tStringUTF32(const tStringUTF32& src)																				{ Set(src); }
 	tStringUTF32(const tString& src)																					{ Set(src); }
+	tStringUTF32(const tStringUTF16& src)																				{ Set(src); }
+	tStringUTF32(const tStringUTF32& src)																				{ Set(src); }
 
 	// These constructors expect null-termination of the input arrays.
-	tStringUTF32(const char32_t* src)																					{ Set(src); }
 	tStringUTF32(const char8_t*  src)																					{ Set(src); }
+	tStringUTF32(const char16_t* src)																					{ Set(src); }
+	tStringUTF32(const char32_t* src)																					{ Set(src); }
 
 	// These constructors do not require null-termination of the input arrays.
-	tStringUTF32(const char32_t* src, int length)																		{ Set(src, length); }
 	tStringUTF32(const char8_t*  src, int length)																		{ Set(src, length); }
+	tStringUTF32(const char16_t* src, int length)																		{ Set(src, length); }
+	tStringUTF32(const char32_t* src, int length)																		{ Set(src, length); }
 
 	~tStringUTF32()																										{ delete[] CodeUnits; }
 
-	void Clear()																										{ delete[] CodeUnits; CodeUnits = nullptr; StringLength = 0; }
-	bool IsValid() const																								{ return (Length() > 0); }
-	int Length() const																									{ return StringLength; }
-	const char32_t* Chars() const																						{ return CodeUnits; }
-	char32_t* Units() const																								{ return CodeUnits; }
-
-	void Set(const tStringUTF32& src);
 	void Set(const tString& src);
-	void Set(const char32_t* src);				// Assumes src is null-terminated.
+	void Set(const tStringUTF16& src);
+	void Set(const tStringUTF32& src);
 	void Set(const char8_t* src);				// Assumes src is null-terminated.
-	void Set(const char32_t* src, int length);	// As many nulls as you like.
+	void Set(const char16_t* src);				// Assumes src is null-terminated.
+	void Set(const char32_t* src);				// Assumes src is null-terminated.
 	void Set(const char8_t*  src, int length);	// As meny nulls as you like.
+	void Set(const char16_t* src, int length);	// As many nulls as you like.
+	void Set(const char32_t* src, int length);	// As many nulls as you like.
 
 	// Some external functions write directly into the CodeUnits and need to manually set the StringLength first. This
 	// function allows you to do that. It also writes the internal null terminator. This function preserves all existing
@@ -501,6 +517,21 @@ struct tStringUTF32
 	// For efficiency you can opt to set preserve to false. In this case the characters may be completely uninitialized
 	// and it is your responsibility to populate them with something valid. Internal null still written.
 	void SetLength(int length, bool preserve = true);
+
+	void Clear()																										{ delete[] CodeUnits; CodeUnits = nullptr; StringLength = 0; }
+	bool IsValid() const																								{ return (Length() > 0); }
+	bool IsEmpty() const																								{ return !IsValid(); }
+	int Length() const																									{ return StringLength; }
+
+	// Accesses the raw UTF-32 codeunits represented by the 'official' unsigned UTF-32 character datatype char32_t.
+	char32_t* Text()				/* Unlike tString, will be nullptr if empty. */										{ return CodeUnits; }
+	const char32_t* Chars() const	/* Unlike tString, will be nullptr if empty. */										{ return CodeUnits; }
+	char32_t* Units() const			/* Unicode naming. Code 'units'. */													{ return CodeUnits; }
+
+	// Shorter synonyms of the above.
+	char32_t* Txt()																										{ return CodeUnits; }
+	const char32_t* Chr() const																							{ return CodeUnits; }
+	char32_t* Pod() const			/* Plain Old Data */																{ return CodeUnits; }
 
 private:
 	int StringLength	= 0;					// In char32_t codeunits, not including terminating null.
@@ -934,7 +965,7 @@ inline void tStringUTF16::Set(const char8_t* src)
 inline void tStringUTF16::Set(const char16_t* src, int lenSrc)
 {
 	Clear();
-	if (!src ||(lenSrc <= 0))
+	if (!src || (lenSrc <= 0))
 		return;
 
 	CodeUnits = new char16_t[lenSrc+1];
@@ -948,14 +979,14 @@ inline void tStringUTF16::Set(const char16_t* src, int lenSrc)
 inline void tStringUTF16::Set(const char8_t* src, int lenSrc)
 {
 	Clear();
-	if (!src ||(lenSrc <= 0))
+	if (!src || (lenSrc <= 0))
 		return;
 
 	int len16 = tStd::tUTF16(nullptr, src, lenSrc);
 	CodeUnits = new char16_t[len16+1];
-	tStd::tUTF16(CodeUnits, src, lenSrc);
-	CodeUnits[lenSrc] = 0;
-	StringLength = len16;
+	StringLength = tStd::tUTF16(CodeUnits, src, lenSrc);
+	tAssert(StringLength == len16);
+	CodeUnits[StringLength] = 0;
 }
 
 
@@ -1034,7 +1065,7 @@ inline void tStringUTF32::Set(const char8_t* src)
 inline void tStringUTF32::Set(const char32_t* src, int lenSrc)
 {
 	Clear();
-	if (!src ||(lenSrc <= 0))
+	if (!src || (lenSrc <= 0))
 		return;
 
 	CodeUnits = new char32_t[lenSrc+1];
@@ -1048,14 +1079,16 @@ inline void tStringUTF32::Set(const char32_t* src, int lenSrc)
 inline void tStringUTF32::Set(const char8_t* src, int lenSrc)
 {
 	Clear();
-	if (!src ||(lenSrc <= 0))
+	if (!src || (lenSrc <= 0))
 		return;
 
 	int len32 = tStd::tUTF32(nullptr, src, lenSrc);
 	CodeUnits = new char32_t[len32+1];
-	tStd::tUTF32(CodeUnits, src, lenSrc);
+	StringLength = tStd::tUTF32(CodeUnits, src, lenSrc);
 	CodeUnits[lenSrc] = 0;
 	StringLength = len32;
+	tAssert(StringLength == len32);
+	CodeUnits[StringLength] = 0;
 }
 
 

@@ -1342,6 +1342,23 @@ tTestUnit(UTF)
 
 	delete[] utf16str;
 	delete[] utf32str;
+
+	// Test tStringUTF16 and tStringUTF32.
+	tString utf8String(utf8src);
+
+	int numUTF16UnitsNeeded = tStd::tUTF16(nullptr, utf8String.Units(), utf8String.Length());
+	int numUTF16UnitsNeededStr = tStd::tUTF16s(nullptr, utf8String.Units());
+	tRequire(numUTF16UnitsNeeded == numUTF16UnitsNeededStr);
+	tStringUTF16 utf16String(utf8String);
+	tRequire(utf16String.Length() == numUTF16UnitsNeeded);
+	tRequire(*(utf16String.Units() + utf16String.Length()) == 0);
+
+	int numUTF32UnitsNeeded = tStd::tUTF32(nullptr, utf8String.Units(), utf8String.Length());
+	int numUTF32UnitsNeededStr = tStd::tUTF32s(nullptr, utf8String.Units());
+	tRequire(numUTF32UnitsNeeded == numUTF32UnitsNeededStr);
+	tStringUTF32 utf32String(utf8String);
+	tRequire(utf32String.Length() == numUTF32UnitsNeeded);
+	tRequire(*(utf32String.Units() + utf32String.Length()) == 0);
 }
 
 

@@ -624,7 +624,7 @@ int ttvfPrintf(tFileHandle dest, const char* format, va_list argList)
 		return 0;
 
 	tString stamp = tSystem::tConvertTimeToString(tSystem::tGetTimeLocal(), tSystem::tTimeFormat::Short) + " ";
-	int count = tSystem::tPrint(stamp.Pod(), dest);
+	int count = tSystem::tPrint(stamp.Chr(), dest);
 
 	tArray<char> buffer;
 	tSystem::Receiver receiver(&buffer);
