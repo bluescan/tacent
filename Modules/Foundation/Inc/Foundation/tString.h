@@ -932,6 +932,14 @@ inline tStringUTF16::tStringUTF16(int length)
 }
 
 
+inline void tStringUTF16::Set(const tString& src)
+{
+	Clear();
+	if (src.IsValid())
+		Set(src.Units(), src.Length());
+}
+
+
 inline void tStringUTF16::Set(const tStringUTF16& src)
 {
 	Clear();
@@ -940,11 +948,18 @@ inline void tStringUTF16::Set(const tStringUTF16& src)
 }
 
 
-inline void tStringUTF16::Set(const tString& src)
+inline void tStringUTF16::Set(const tStringUTF32& src)
 {
 	Clear();
 	if (src.IsValid())
-		Set(src.Chars(), src.Length());
+		Set(src.Units(), src.Length());
+}
+
+
+inline void tStringUTF16::Set(const char8_t* src)
+{
+	int lenSrc = src ? tStd::tStrlen(src) : 0;
+	Set(src, lenSrc);
 }
 
 
@@ -955,10 +970,24 @@ inline void tStringUTF16::Set(const char16_t* src)
 }
 
 
-inline void tStringUTF16::Set(const char8_t* src)
+inline void tStringUTF16::Set(const char32_t* src)
 {
 	int lenSrc = src ? tStd::tStrlen(src) : 0;
 	Set(src, lenSrc);
+}
+
+
+inline void tStringUTF16::Set(const char8_t* src, int lenSrc)
+{
+	Clear();
+	if (!src || (lenSrc <= 0))
+		return;
+
+	int len16 = tStd::tUTF16(nullptr, src, lenSrc);
+	CodeUnits = new char16_t[len16+1];
+	StringLength = tStd::tUTF16(CodeUnits, src, lenSrc);
+	tAssert(StringLength == len16);
+	CodeUnits[StringLength] = 0;
 }
 
 
@@ -971,12 +1000,12 @@ inline void tStringUTF16::Set(const char16_t* src, int lenSrc)
 	CodeUnits = new char16_t[lenSrc+1];
 	for (int cu = 0; cu < lenSrc; cu++)
 		CodeUnits[cu] = src[cu];
-	CodeUnits[lenSrc] = 0;
 	StringLength = lenSrc;
+	CodeUnits[StringLength] = 0;
 }
 
 
-inline void tStringUTF16::Set(const char8_t* src, int lenSrc)
+inline void tStringUTF16::Set(const char32_t* src, int lenSrc)
 {
 	Clear();
 	if (!src || (lenSrc <= 0))
@@ -1032,26 +1061,27 @@ inline tStringUTF32::tStringUTF32(int length)
 }
 
 
-inline void tStringUTF32::Set(const tStringUTF32& src)
-{
-	Clear();
-	if (src.IsValid())
-		Set(src.Chars(), src.Length());
-}
-
-
 inline void tStringUTF32::Set(const tString& src)
 {
 	Clear();
 	if (src.IsValid())
-		Set(src.Chars(), src.Length());
+		Set(src.Units(), src.Length());
 }
 
 
-inline void tStringUTF32::Set(const char32_t* src)
+inline void tStringUTF32::Set(const tStringUTF16& src)
 {
-	int lenSrc = src ? tStd::tStrlen(src) : 0;
-	Set(src, lenSrc);
+	Clear();
+	if (src.IsValid())
+		Set(src.Units(), src.Length());
+}
+
+
+inline void tStringUTF32::Set(const tStringUTF32& src)
+{
+	Clear();
+	if (src.IsValid())
+		Set(CodeUnits, StringLength);
 }
 
 
@@ -1062,17 +1092,17 @@ inline void tStringUTF32::Set(const char8_t* src)
 }
 
 
-inline void tStringUTF32::Set(const char32_t* src, int lenSrc)
+inline void tStringUTF32::Set(const char16_t* src)
 {
-	Clear();
-	if (!src || (lenSrc <= 0))
-		return;
+	int lenSrc = src ? tStd::tStrlen(src) : 0;
+	Set(src, lenSrc);
+}
 
-	CodeUnits = new char32_t[lenSrc+1];
-	for (int cu = 0; cu < lenSrc; cu++)
-		CodeUnits[cu] = src[cu];
-	CodeUnits[lenSrc] = 0;
-	StringLength = lenSrc;
+
+inline void tStringUTF32::Set(const char32_t* src)
+{
+	int lenSrc = src ? tStd::tStrlen(src) : 0;
+	Set(src, lenSrc);
 }
 
 
@@ -1088,6 +1118,36 @@ inline void tStringUTF32::Set(const char8_t* src, int lenSrc)
 	CodeUnits[lenSrc] = 0;
 	StringLength = len32;
 	tAssert(StringLength == len32);
+	CodeUnits[StringLength] = 0;
+}
+
+
+inline void tStringUTF32::Set(const char16_t* src, int lenSrc)
+{
+	Clear();
+	if (!src || (lenSrc <= 0))
+		return;
+
+	int len32 = tStd::tUTF32(nullptr, src, lenSrc);
+	CodeUnits = new char32_t[len32+1];
+	StringLength = tStd::tUTF32(CodeUnits, src, lenSrc);
+	CodeUnits[lenSrc] = 0;
+	StringLength = len32;
+	tAssert(StringLength == len32);
+	CodeUnits[StringLength] = 0;
+}
+
+
+inline void tStringUTF32::Set(const char32_t* src, int lenSrc)
+{
+	Clear();
+	if (!src || (lenSrc <= 0))
+		return;
+
+	CodeUnits = new char32_t[lenSrc+1];
+	for (int cu = 0; cu < lenSrc; cu++)
+		CodeUnits[cu] = src[cu];
+	StringLength = lenSrc;
 	CodeUnits[StringLength] = 0;
 }
 
