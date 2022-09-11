@@ -37,26 +37,55 @@ public:
 	// Creates an invalid tImageDDS. You must call Load manually.
 	tImageDDS();
 
-	// If the dds file fails to load it will throw a tDDSError iff throwOnError is true. If throwOnError is false and
-	// an error is encountered, the resultant object will return false for IsValid. The reverse row order flag allows
-	// this class to reverse the order of the rows from how thay are stored in a dds file. OpenGL uses the lower left
-	// of the texture as the origin, while DirectX uses the upper left. Use this set to true for OpenGL style textures.
-	// This flag does _not_ cause a decompress/recompress pass even for BC compressed dds files. BC blocks can be
-	// massaged without decompression to fix the row order -- and that is what this class does.
-	tImageDDS(const tString& ddsFile, bool correctRowOrder = true, bool throwOnError = false);
+	// If an error is encountered loading the resultant object will return false for IsValid. The reverse row order
+	// flag allows this class to reverse the order of the rows from how thay are stored in a dds file. OpenGL uses the
+	// lower left of the texture as the origin, while DirectX uses the upper left. Use this set to true for OpenGL style
+	// textures. This flag does _not_ cause a decompress/recompress pass even for BC compressed dds files. BC blocks can
+	// be massaged without decompression to fix the row order -- and that is what this class does.
+	tImageDDS(const tString& ddsFile, bool reverseRowOrder = true);
 
-	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is copied
-	// from and the owner may delete it immediately after if desired.
-	tImageDDS(const uint8* ddsFileInMemory, int numBytes, bool correctRowOrder = true, bool throwOnError = false);
-	virtual ~tImageDDS()																									{ Clear(); }
+	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is read from
+	// and the caller may delete it immediately after if desired.
+	tImageDDS(const uint8* ddsFileInMemory, int numBytes, bool reverseRowOrder = true);
+	virtual ~tImageDDS()																								{ Clear(); }
 
-	// Clears the current tImageDDS before loading. If the dds file failed to load for any reason it will throw a
-	// tDDSError that indicates the problem. A dds may fail to load for a number of reasons: Volume textures are not
-	// supported, some pixel-formats may not yet be supported, or inconsistent flags.
-	void Load(const tString& ddsFile, bool reverseRowOrder = true, bool throwOnError = false);
-	void Load(const uint8* ddsFileInMemory, int numBytes, bool reverseRowOrder = true, bool throwOnError = false);
+	enum class ErrorCode
+	{
+		NoError,
+		Success									= NoError,
 
-	// After this call no memory will be consumed by the object and it will be invalid.
+		FileNonexistent,
+		IncorrectExtension,
+		IncorrectFileSize,
+		Magic,
+		IncorrectHeaderSize,
+		PitchOrLinearSize,
+		VolumeTexturesNotSupported,
+		IncorrectPixelFormatSize,
+		InconsistentPixelFormat,
+		UnsupportedFourCCPixelFormat,
+		UnsupportedRGBPixelFormat,
+		IncorrectDXTDataSize,
+		UnsupportedDXTDimensions,
+		LoaderSupportsPowerOfTwoDimsOnly,
+		MaxNumMipmapLevelsExceeded,
+		UnsuportedFloatingPointPixelFormat,
+		Unknown,
+		NumCodes
+	};
+
+	// After construction if the object is invalid you can call GetLastError() to find out what went wrong.
+	ErrorCode GetLastError() const																						{ return Result; }
+	static const char* GetErrorName(ErrorCode);
+	const char* GetLastErrorName() const																				{ return GetErrorName(Result); }
+
+	// Clears the current tImageDDS before loading. If the dds file failed to load for any reason it will result in an
+	// invalid object. A dds may fail to load for a number of reasons: Volume textures are not supported, some
+	// pixel-formats may not yet be supported, or inconsistent flags.
+	ErrorCode Load(const tString& ddsFile, bool reverseRowOrder = true);
+	ErrorCode Load(const uint8* ddsFileInMemory, int numBytes, bool reverseRowOrder = true);
+
+	// After this call no memory will be consumed by the object and it will be invalid. Does not clear filename.
 	void Clear();
 
 	// Will return true if a dds file has been successfully loaded.
@@ -122,9 +151,9 @@ public:
 	tString Filename;
 
 private:
-	// This does not delete[] the ddsData. Neither does it clear the object. The caller is expected to have done that.
-	void LoadFromMemory(const uint8* ddsData, int ddsSizeBytes, bool reverseRowOrder, bool throwOnError);
 	bool DoDXT1BlocksHaveBinaryAlpha(tDXT1Block* blocks, int numBlocks);
+
+	ErrorCode Result = ErrorCode::Success;
 
 	// The surface is only valid if this is not PixelFormat_Invalid.
 	tPixelFormat PixelFormat;
@@ -141,41 +170,10 @@ private:
 	// Cubemaps are always specified using a left-handed coord system even when using the OpenGL functions.
 	const static int MaxImages = 6;
 	tLayer* MipmapLayers[MaxMipmapLayers][MaxImages];
+
+public:
+	static const char* ErrorDescriptions[];
 };
 
 
 }
-
-
-// Error objects of this type may be thrown by the tImageDDS class if something went wrong.
-struct tDDSError : public tError
-{
-	enum class tCode
-	{
-		Unknown,
-		FileNonexistent,
-		IncorrectExtension,
-		IncorrectFileSize,
-		Magic,
-		IncorrectHeaderSize,
-		PitchOrLinearSize,
-		VolumeTexturesNotSupported,
-		IncorrectPixelFormatSize,
-		InconsistentPixelFormat,
-		UnsupportedFourCCPixelFormat,
-		UnsupportedRGBPixelFormat,
-		IncorrectDXTDataSize,
-		UnsupportedDXTDimensions,
-		LoaderSupportsPowerOfTwoDimsOnly,
-		MaxNumMipmapLevelsExceeded,
-		UnsuportedFloatingPointPixelFormat,
-		NumCodes
-	};
-
-	tDDSError()																											: tError("Unknown DDS"), Code(tCode::Unknown) { }
-	tDDSError(tCode code, const tString& message = tString())															: tError("Direct Draw Surface: %s %s", message.Chr(), CodeStrings[int(code)]) { }
-
-	static const char* CodeStrings[int(tCode::NumCodes)];
-	tCode Code;
-};
-

@@ -597,4 +597,66 @@ tTestUnit(ImageMultiFrame)
 }
 
 
+tTestUnit(ImageGradient)
+{
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageMultiFrame)
+
+	const int width = 640;
+	const int height = 120;
+	tPixel* pixels = nullptr;
+
+	// Gradient black to transparent.
+	pixels = new tPixel[width*height];
+	for (int y = 0; y < height; y++)
+		for (int x = 0; x < width; x++)
+			pixels[y*width + x] = tColour(0, 0, 0, 255 - 256*x / width);
+	tImageTGA blackToTrans(pixels, width, height, true);
+	tRequire(blackToTrans.IsValid());
+	blackToTrans.Save("TestData/Images/Written_Gradient_BlackToTrans.tga", tImageTGA::tFormat::Bit32, tImageTGA::tCompression::RLE);
+
+	// Gradient transparent to white.
+	pixels = new tPixel[width*height];
+	for (int y = 0; y < height; y++)
+		for (int x = 0; x < width; x++)
+			pixels[y*width + x] = tColour(255, 255, 255, 256*x / width);
+	tImageTGA transToWhite(pixels, width, height, true);
+	tRequire(transToWhite.IsValid());
+	transToWhite.Save("TestData/Images/Written_Gradient_TransToWhite.tga", tImageTGA::tFormat::Bit32, tImageTGA::tCompression::RLE);
+
+	// Gradient red to yellow to green to cyan to blue.
+	const int section = width / 6;
+	pixels = new tPixel[width*height];
+	for (int y = 0; y < height; y++)
+	{
+		// Red to yellow.
+		for (int x = 0; x < section; x++)
+			pixels[y*width + section*0+x+0] = tColour(255, 256*x/section, 0, 255);
+
+		// Yellow to Green.
+		for (int x = 0; x < section+1; x++)
+			pixels[y*width + section*1+x+0] = tColour(255-256*x/section, 255, 0, 255);
+
+		// Green to Cyan.
+		for (int x = 0; x < section+1; x++)
+			pixels[y*width + section*2+x+1] = tColour(0, 255, 256*x/section, 255);
+
+		// Cyan to Blue.
+		for (int x = 0; x < section+1; x++)
+			pixels[y*width + section*3+x+2] = tColour(0, 255-256*x/section, 255, 255);
+
+		// Blue to Magenta.
+		for (int x = 0; x < section+1; x++)
+			pixels[y*width + section*4+x+3] = tColour(256*x/section, 0, 255, 255);
+
+		// Magenta to Red.
+		for (int x = 0; x < section; x++)
+			pixels[y*width + section*5+x+4] = tColour(255, 0, 255-256*x/section, 255);
+	}
+	tImageTGA redToBlue(pixels, width, height, true);
+	tRequire(redToBlue.IsValid());
+	redToBlue.Save("TestData/Images/Written_Gradient_RedToBlue.tga", tImageTGA::tFormat::Bit32, tImageTGA::tCompression::RLE);
+}
+
+
 }
