@@ -168,6 +168,7 @@ int main(int argc, char** argv)
 	tTest(ImageDetection);
 	tTest(ImageFilter);
 	tTest(ImageMultiFrame);
+	tTest(ImageGradient);
 	#endif
 
 	#else

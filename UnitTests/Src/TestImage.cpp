@@ -603,8 +603,17 @@ tTestUnit(ImageGradient)
 		tSkipUnit(ImageMultiFrame)
 
 	const int width = 640;
-	const int height = 120;
+	const int height = 90;
 	tPixel* pixels = nullptr;
+
+	// Gradient black to white.
+	pixels = new tPixel[width*height];
+	for (int y = 0; y < height; y++)
+		for (int x = 0; x < width; x++)
+			pixels[y*width + x] = tColour(256*x / width, 256*x / width, 256*x / width, 255);
+	tImageTGA blackToWhite(pixels, width, height, true);
+	tRequire(blackToWhite.IsValid());
+	blackToWhite.Save("TestData/Images/Written_Gradient_BlackToWhite.tga", tImageTGA::tFormat::Bit24, tImageTGA::tCompression::RLE);
 
 	// Gradient black to transparent.
 	pixels = new tPixel[width*height];
@@ -624,7 +633,7 @@ tTestUnit(ImageGradient)
 	tRequire(transToWhite.IsValid());
 	transToWhite.Save("TestData/Images/Written_Gradient_TransToWhite.tga", tImageTGA::tFormat::Bit32, tImageTGA::tCompression::RLE);
 
-	// Gradient red to yellow to green to cyan to blue.
+	// Gradient red to yellow to green to cyan to blue to magenta to red.
 	const int section = width / 6;
 	pixels = new tPixel[width*height];
 	for (int y = 0; y < height; y++)
@@ -653,9 +662,9 @@ tTestUnit(ImageGradient)
 		for (int x = 0; x < section; x++)
 			pixels[y*width + section*5+x+4] = tColour(255, 0, 255-256*x/section, 255);
 	}
-	tImageTGA redToBlue(pixels, width, height, true);
-	tRequire(redToBlue.IsValid());
-	redToBlue.Save("TestData/Images/Written_Gradient_RedToBlue.tga", tImageTGA::tFormat::Bit32, tImageTGA::tCompression::RLE);
+	tImageTGA redToRed(pixels, width, height, true);
+	tRequire(redToRed.IsValid());
+	redToRed.Save("TestData/Images/Written_Gradient_RedToRed.tga", tImageTGA::tFormat::Bit24, tImageTGA::tCompression::RLE);
 }
 
 
