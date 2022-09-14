@@ -136,9 +136,9 @@ inline int tLayer::GetDataSize() const
 	int numBytes = 0;
 	if (tIsBlockFormat(PixelFormat))
 	{
-		int widthNumBlocks = (Width + ((Width%4) ? 4-(Width%4) : 0)) >> 2;
-		int heightNumBlocks = (Height + ((Height%4) ? 4-(Height%4) : 0)) >> 2;
-		int numBlocks = widthNumBlocks * heightNumBlocks;
+		int numBlocksW = tMath::tMax(1, (Width + 3) / 4);
+		int numBlocksH = tMath::tMax(1, (Height + 3) / 4);
+		int numBlocks = numBlocksW * numBlocksH;
 		numBytes = numBlocks * tGetBytesPer4x4PixelBlock(PixelFormat);
 	}
 	else

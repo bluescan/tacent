@@ -29,4 +29,5 @@ namespace tUnitTest
 	tTestUnit(ImageFilter);
 	tTestUnit(ImageMultiFrame);
 	tTestUnit(ImageGradient);
+	tTestUnit(ImageDDS);
 }

@@ -64,6 +64,10 @@ add_library(
 	# TinyEXIF
 	Contrib/TinyEXIF/TinyEXIF.h
 	Contrib/TinyEXIF/TinyEXIF.cpp
+
+	# BC Decode
+	Contrib/bcdec/bcdec.h
+	Contrib/etcdec/etcdec.h
 )
 
 tacent_target_include_directories(${PROJECT_NAME})

@@ -600,7 +600,7 @@ tTestUnit(ImageMultiFrame)
 tTestUnit(ImageGradient)
 {
 	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageMultiFrame)
+		tSkipUnit(ImageGradient)
 
 	const int width = 640;
 	const int height = 90;
@@ -665,6 +665,27 @@ tTestUnit(ImageGradient)
 	tImageTGA redToRed(pixels, width, height, true);
 	tRequire(redToRed.IsValid());
 	redToRed.Save("TestData/Images/Written_Gradient_RedToRed.tga", tImageTGA::tFormat::Bit24, tImageTGA::tCompression::RLE);
+}
+
+
+tTestUnit(ImageDDS)
+{
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageDDS)
+
+	tImageDDS dds("TestData/Images/TacentTestPattern_BC7_RGBA.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+
+	tList<tImage::tLayer> layers;
+	dds.StealTextureLayers(layers);
+
+	int mipNum = 0;
+	for (tLayer* layer = layers.First(); layer; layer = layer->Next(), mipNum++)
+	{
+		tImageTGA tga((tPixel*)layer->Data, layer->Width, layer->Height);
+		tString mipName;
+		tsPrintf(mipName, "TestData/Images/WrittenTestPatternMip_%02d.tga", mipNum);
+		tga.Save(mipName);
+	}
 }
 
 

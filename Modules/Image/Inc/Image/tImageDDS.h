@@ -1,12 +1,8 @@
 // tImageDDS.h
 //
-// This class knows how to load Direct Draw Surface (.dds) files. Saving is not implemented yet.
-// It does zero processing of image data. It knows the details of the dds file format and loads the data into tLayers.
-// Currently it does not compress or decompress the image data if it is compressed (DXTn), it simply keeps it in the
-// same format as the source file. The layers may be 'stolen' from a tImageDDS so that excessive memcpys are avoided.
-// After they are stolen the tImageDDS is invalid.
+// This class knows how to load Direct Draw Surface (.dds) files.
 //
-// Copyright (c) 2006, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -28,25 +24,31 @@ struct tDXT1Block;
 
 
 // A tImageDDS object represents and knows how to load a dds file. In general a DirectDrawSurface is composed of
-// multiple layers -- each one a mipmap. This class does not compress or decompress the image data if it is compressed
-// (DXTn), it simply keeps it in the same format as the source file. The layers may be 'stolen' from a tImageDDS so that
-// excessive memcpys are avoided.
+// multiple layers -- each one a mipmap. It loads the data into tLayers. It can either decode to RGBA layers, or leave
+// the data as-is. Decode from BCn is supported. ASTC is not. The layers may be 'stolen' from a tImageDDS so that
+// excessive memcpys are avoided. After they are stolen the tImageDDS is invalid. 1D and 3D textures are not supported.
+// Cubemaps and mipmaps are.
 class tImageDDS
 {
 public:
 	// Creates an invalid tImageDDS. You must call Load manually.
 	tImageDDS();
 
-	// If an error is encountered loading the resultant object will return false for IsValid. The reverse row order
-	// flag allows this class to reverse the order of the rows from how thay are stored in a dds file. OpenGL uses the
-	// lower left of the texture as the origin, while DirectX uses the upper left. Use this set to true for OpenGL style
-	// textures. This flag does _not_ cause a decompress/recompress pass even for BC compressed dds files. BC blocks can
-	// be massaged without decompression to fix the row order -- and that is what this class does.
-	tImageDDS(const tString& ddsFile, bool reverseRowOrder = true);
+	enum LoadFlag
+	{
+		LoadFlag_Decode				= 1 << 0,	// Decode the dds texture data into RGBA 32 bit layers. If not set, the layer data will remain unmodified.
+		LoadFlag_ReverseRowOrder	= 1 << 1,	// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.
+		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder
+	};
+
+	// If an error is encountered loading the resultant object will return false for IsValid. You can call GetLastError
+	// to get more detailed information. When decoding _and_ reversing row order, BC 4x4 blocks can be massaged without
+	// decompression to fix the row order.
+	tImageDDS(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default);
 
 	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is read from
 	// and the caller may delete it immediately after if desired.
-	tImageDDS(const uint8* ddsFileInMemory, int numBytes, bool reverseRowOrder = true);
+	tImageDDS(const uint8* ddsFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default);
 	virtual ~tImageDDS()																								{ Clear(); }
 
 	enum class ErrorCode
@@ -82,8 +84,8 @@ public:
 	// Clears the current tImageDDS before loading. If the dds file failed to load for any reason it will result in an
 	// invalid object. A dds may fail to load for a number of reasons: Volume textures are not supported, some
 	// pixel-formats may not yet be supported, or inconsistent flags.
-	ErrorCode Load(const tString& ddsFile, bool reverseRowOrder = true);
-	ErrorCode Load(const uint8* ddsFileInMemory, int numBytes, bool reverseRowOrder = true);
+	ErrorCode Load(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default);
+	ErrorCode Load(const uint8* ddsFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default);
 
 	// After this call no memory will be consumed by the object and it will be invalid. Does not clear filename.
 	void Clear();
@@ -99,6 +101,8 @@ public:
 	int GetNumImages() const																							{ return NumImages; }
 	int GetWidth() const																								{ return IsValid() ? MipmapLayers[0][0]->Width : 0; }
 	int GetHeight() const																								{ return IsValid() ? MipmapLayers[0][0]->Height : 0; }
+
+	// Will return RGBA if you chose to decode the layers. Otherwise it will be whatever format the dds data was in.
 	tPixelFormat GetPixelFormat() const																					{ return PixelFormat; }
 
 	// The texture is considered to have alphas if it is in a pixel format that supports them. For DXT1, the data is
@@ -110,13 +114,14 @@ public:
 	// list. If the current object is not valid the passed-in layer list is left unmodified. The layer list is appended
 	// to. It is not emptied if there are layers on the list when passed in. This call gives management of the layers
 	// to the caller. It does not memcpy and create new layers which is why the object becomes invalid afterwards. If
-	// the tImageDDS is a cubemap, this function returns false and leaves the object unmodified.
+	// the tImageDDS is a cubemap, this function returns false and leaves the object unmodified. See StealCubemapLayers
+	// if you want to steal cubemap layers.
 	bool StealTextureLayers(tList<tLayer>&);
 
 	enum tSurfIndex
 	{
 		tSurfIndex_Default,
-		tSurfIndex_PosX																									= tSurfIndex_Default,
+		tSurfIndex_PosX					= tSurfIndex_Default,
 		tSurfIndex_NegX,
 		tSurfIndex_PosY,
 		tSurfIndex_NegY,
@@ -128,13 +133,13 @@ public:
 	// Cubemaps are always specified using a left-handed coord system even when using the OpenGL functions.
 	enum tSurfFlag
 	{
-		tSurfFlag_PosX																									= 1 << tSurfIndex_PosX,
-		tSurfFlag_NegX																									= 1 << tSurfIndex_NegX,
-		tSurfFlag_PosY																									= 1 << tSurfIndex_PosY,
-		tSurfFlag_NegY																									= 1 << tSurfIndex_NegY,
-		tSurfFlag_PosZ																									= 1 << tSurfIndex_PosZ,
-		tSurfFlag_NegZ																									= 1 << tSurfIndex_NegZ,
-		tSurfFlag_All																									= 0xFFFFFFFF
+		tSurfFlag_PosX					= 1 << tSurfIndex_PosX,
+		tSurfFlag_NegX					= 1 << tSurfIndex_NegX,
+		tSurfFlag_PosY					= 1 << tSurfIndex_PosY,
+		tSurfFlag_NegY					= 1 << tSurfIndex_NegY,
+		tSurfFlag_PosZ					= 1 << tSurfIndex_PosZ,
+		tSurfFlag_NegZ					= 1 << tSurfIndex_NegZ,
+		tSurfFlag_All					= 0xFFFFFFFF
 	};
 
 	// Similar to StealTextureLayers except it steals up to 6 layer-lists if the object is a cubemap. If the tImageDDS
@@ -159,7 +164,7 @@ private:
 	tPixelFormat PixelFormat;
 	bool IsCubeMap;
 
-	// This will be 1 for textures.  For cubemaps, iNumImages == 6.
+	// This will be 1 for textures. For cubemaps NumImages == 6.
 	int NumImages;
 
 	// If this is 1, you can consider the texture(s) to NOT be mipmapped. If there is more than a single image (like

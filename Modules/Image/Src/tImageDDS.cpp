@@ -18,6 +18,8 @@
 
 #include <Foundation/tString.h>
 #include "Image/tImageDDS.h"
+#define BCDEC_IMPLEMENTATION
+#include "bcdec/bcdec.h"
 #define STRICT_DDS_HEADER_CHECKING
 #define FourCC(ch0, ch1, ch2, ch3) (uint(uint8(ch0)) | (uint(uint8(ch1)) << 8) | (uint(uint8(ch2)) << 16) | (uint(uint8(ch3)) << 24))
 namespace tImage
@@ -35,7 +37,7 @@ tImageDDS::tImageDDS() :
 }
 
 
-tImageDDS::tImageDDS(const tString& ddsFile, bool reverseRowOrder) :
+tImageDDS::tImageDDS(const tString& ddsFile, uint32 loadFlags) :
 	Filename(ddsFile),
 	PixelFormat(tPixelFormat::Invalid),
 	IsCubeMap(false),
@@ -43,11 +45,11 @@ tImageDDS::tImageDDS(const tString& ddsFile, bool reverseRowOrder) :
 	NumMipmapLayers(0)
 {
 	tStd::tMemset(MipmapLayers, 0, sizeof(MipmapLayers));
-	Result = Load(ddsFile, reverseRowOrder);
+	Result = Load(ddsFile, loadFlags);
 }
 
 
-tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, bool reverseRowOrder) :
+tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, uint32 loadFlags) :
 	Filename(),
 	PixelFormat(tPixelFormat::Invalid),
 	IsCubeMap(false),
@@ -55,7 +57,7 @@ tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, bool reverseRow
 	NumMipmapLayers(0)
 {
 	tStd::tMemset(MipmapLayers, 0, sizeof(MipmapLayers));
-	Result = Load(ddsFileInMemory, numBytes, reverseRowOrder);
+	Result = Load(ddsFileInMemory, numBytes, loadFlags);
 }
 
 
@@ -87,6 +89,7 @@ bool tImageDDS::IsOpaque() const
 		case tPixelFormat::BC1_DXT1BA:
 		case tPixelFormat::BC2_DXT3:
 		case tPixelFormat::BC3_DXT5:
+		case tPixelFormat::BC7:
 		case tPixelFormat::G3B5A1R5G2:
 		case tPixelFormat::G4B4A4R4:
 			return false;
@@ -339,6 +342,152 @@ struct tDDSHeader
 	tDDSCapabilities Capabilities;				// 16 Bytes.
 	uint32 UnusedB;
 };
+
+
+/////////////////////////////////
+enum tDXGI_FORMAT 
+{
+	tDXGI_FORMAT_UNKNOWN = 0,
+	tDXGI_FORMAT_R32G32B32A32_TYPELESS = 1,
+	tDXGI_FORMAT_R32G32B32A32_FLOAT = 2,
+	tDXGI_FORMAT_R32G32B32A32_UINT = 3,
+	tDXGI_FORMAT_R32G32B32A32_SINT = 4,
+	tDXGI_FORMAT_R32G32B32_TYPELESS = 5,
+	tDXGI_FORMAT_R32G32B32_FLOAT = 6,
+	tDXGI_FORMAT_R32G32B32_UINT = 7,
+	tDXGI_FORMAT_R32G32B32_SINT = 8,
+	tDXGI_FORMAT_R16G16B16A16_TYPELESS = 9,
+	tDXGI_FORMAT_R16G16B16A16_FLOAT = 10,
+	tDXGI_FORMAT_R16G16B16A16_UNORM = 11,
+	tDXGI_FORMAT_R16G16B16A16_UINT = 12,
+	tDXGI_FORMAT_R16G16B16A16_SNORM = 13,
+	tDXGI_FORMAT_R16G16B16A16_SINT = 14,
+	tDXGI_FORMAT_R32G32_TYPELESS = 15,
+	tDXGI_FORMAT_R32G32_FLOAT = 16,
+	tDXGI_FORMAT_R32G32_UINT = 17,
+	tDXGI_FORMAT_R32G32_SINT = 18,
+	tDXGI_FORMAT_R32G8X24_TYPELESS = 19,
+	tDXGI_FORMAT_D32_FLOAT_S8X24_UINT = 20,
+	tDXGI_FORMAT_R32_FLOAT_X8X24_TYPELESS = 21,
+	tDXGI_FORMAT_X32_TYPELESS_G8X24_UINT = 22,
+	tDXGI_FORMAT_R10G10B10A2_TYPELESS = 23,
+	tDXGI_FORMAT_R10G10B10A2_UNORM = 24,
+	tDXGI_FORMAT_R10G10B10A2_UINT = 25,
+	tDXGI_FORMAT_R11G11B10_FLOAT = 26,
+	tDXGI_FORMAT_R8G8B8A8_TYPELESS = 27,
+	tDXGI_FORMAT_R8G8B8A8_UNORM = 28,
+	tDXGI_FORMAT_R8G8B8A8_UNORM_SRGB = 29,
+	tDXGI_FORMAT_R8G8B8A8_UINT = 30,
+	tDXGI_FORMAT_R8G8B8A8_SNORM = 31,
+	tDXGI_FORMAT_R8G8B8A8_SINT = 32,
+	tDXGI_FORMAT_R16G16_TYPELESS = 33,
+	tDXGI_FORMAT_R16G16_FLOAT = 34,
+	tDXGI_FORMAT_R16G16_UNORM = 35,
+	tDXGI_FORMAT_R16G16_UINT = 36,
+	tDXGI_FORMAT_R16G16_SNORM = 37,
+	tDXGI_FORMAT_R16G16_SINT = 38,
+	tDXGI_FORMAT_R32_TYPELESS = 39,
+	tDXGI_FORMAT_D32_FLOAT = 40,
+	tDXGI_FORMAT_R32_FLOAT = 41,
+	tDXGI_FORMAT_R32_UINT = 42,
+	tDXGI_FORMAT_R32_SINT = 43,
+	tDXGI_FORMAT_R24G8_TYPELESS = 44,
+	tDXGI_FORMAT_D24_UNORM_S8_UINT = 45,
+	tDXGI_FORMAT_R24_UNORM_X8_TYPELESS = 46,
+	tDXGI_FORMAT_X24_TYPELESS_G8_UINT = 47,
+	tDXGI_FORMAT_R8G8_TYPELESS = 48,
+	tDXGI_FORMAT_R8G8_UNORM = 49,
+	tDXGI_FORMAT_R8G8_UINT = 50,
+	tDXGI_FORMAT_R8G8_SNORM = 51,
+	tDXGI_FORMAT_R8G8_SINT = 52,
+	tDXGI_FORMAT_R16_TYPELESS = 53,
+	tDXGI_FORMAT_R16_FLOAT = 54,
+	tDXGI_FORMAT_D16_UNORM = 55,
+	tDXGI_FORMAT_R16_UNORM = 56,
+	tDXGI_FORMAT_R16_UINT = 57,
+	tDXGI_FORMAT_R16_SNORM = 58,
+	tDXGI_FORMAT_R16_SINT = 59,
+	tDXGI_FORMAT_R8_TYPELESS = 60,
+	tDXGI_FORMAT_R8_UNORM = 61,
+	tDXGI_FORMAT_R8_UINT = 62,
+	tDXGI_FORMAT_R8_SNORM = 63,
+	tDXGI_FORMAT_R8_SINT = 64,
+	tDXGI_FORMAT_A8_UNORM = 65,
+	tDXGI_FORMAT_R1_UNORM = 66,
+	tDXGI_FORMAT_R9G9B9E5_SHAREDEXP = 67,
+	tDXGI_FORMAT_R8G8_B8G8_UNORM = 68,
+	tDXGI_FORMAT_G8R8_G8B8_UNORM = 69,
+	tDXGI_FORMAT_BC1_TYPELESS = 70,
+	tDXGI_FORMAT_BC1_UNORM = 71,
+	tDXGI_FORMAT_BC1_UNORM_SRGB = 72,
+	tDXGI_FORMAT_BC2_TYPELESS = 73,
+	tDXGI_FORMAT_BC2_UNORM = 74,
+	tDXGI_FORMAT_BC2_UNORM_SRGB = 75,
+	tDXGI_FORMAT_BC3_TYPELESS = 76,
+	tDXGI_FORMAT_BC3_UNORM = 77,
+	tDXGI_FORMAT_BC3_UNORM_SRGB = 78,
+	tDXGI_FORMAT_BC4_TYPELESS = 79,
+	tDXGI_FORMAT_BC4_UNORM = 80,
+	tDXGI_FORMAT_BC4_SNORM = 81,
+	tDXGI_FORMAT_BC5_TYPELESS = 82,
+	tDXGI_FORMAT_BC5_UNORM = 83,
+	tDXGI_FORMAT_BC5_SNORM = 84,
+	tDXGI_FORMAT_B5G6R5_UNORM = 85,
+	tDXGI_FORMAT_B5G5R5A1_UNORM = 86,
+	tDXGI_FORMAT_B8G8R8A8_UNORM = 87,
+	tDXGI_FORMAT_B8G8R8X8_UNORM = 88,
+	tDXGI_FORMAT_R10G10B10_XR_BIAS_A2_UNORM = 89,
+	tDXGI_FORMAT_B8G8R8A8_TYPELESS = 90,
+	tDXGI_FORMAT_B8G8R8A8_UNORM_SRGB = 91,
+	tDXGI_FORMAT_B8G8R8X8_TYPELESS = 92,
+	tDXGI_FORMAT_B8G8R8X8_UNORM_SRGB = 93,
+	tDXGI_FORMAT_BC6H_TYPELESS = 94,
+	tDXGI_FORMAT_BC6H_UF16 = 95,
+	tDXGI_FORMAT_BC6H_SF16 = 96,
+	tDXGI_FORMAT_BC7_TYPELESS = 97,
+	tDXGI_FORMAT_BC7_UNORM = 98,
+	tDXGI_FORMAT_BC7_UNORM_SRGB = 99,
+	tDXGI_FORMAT_AYUV = 100,
+	tDXGI_FORMAT_Y410 = 101,
+	tDXGI_FORMAT_Y416 = 102,
+	tDXGI_FORMAT_NV12 = 103,
+	tDXGI_FORMAT_P010 = 104,
+	tDXGI_FORMAT_P016 = 105,
+	tDXGI_FORMAT_420_OPAQUE = 106,
+	tDXGI_FORMAT_YUY2 = 107,
+	tDXGI_FORMAT_Y210 = 108,
+	tDXGI_FORMAT_Y216 = 109,
+	tDXGI_FORMAT_NV11 = 110,
+	tDXGI_FORMAT_AI44 = 111,
+	tDXGI_FORMAT_IA44 = 112,
+	tDXGI_FORMAT_P8 = 113,
+	tDXGI_FORMAT_A8P8 = 114,
+	tDXGI_FORMAT_B4G4R4A4_UNORM = 115,
+	tDXGI_FORMAT_P208 = 130,
+	tDXGI_FORMAT_V208 = 131,
+	tDXGI_FORMAT_V408 = 132,
+	tDXGI_FORMAT_FORCE_UINT = 0xffffffff
+};
+
+
+enum tD3D10_RESOURCE_DIMENSION 
+{
+	tD3D10_RESOURCE_DIMENSION_UNKNOWN = 0,
+	tD3D10_RESOURCE_DIMENSION_BUFFER = 1,
+	tD3D10_RESOURCE_DIMENSION_TEXTURE1D = 2,
+	tD3D10_RESOURCE_DIMENSION_TEXTURE2D = 3,
+	tD3D10_RESOURCE_DIMENSION_TEXTURE3D = 4
+};
+
+
+struct tDDSHeaderDX10Ext
+{
+	tDXGI_FORMAT DxgiFormat;
+	tD3D10_RESOURCE_DIMENSION ResourceDimension;
+	uint32 MiscFlag;
+    uint32 ArraySize;
+    uint32 Eeserved;
+};
 #pragma pack(pop)
 
 
@@ -427,7 +576,7 @@ struct tDXT5Block
 #pragma pack(pop)
 
 
-tImageDDS::ErrorCode tImageDDS::Load(const tString& ddsFile, bool reverseRowOrder)
+tImageDDS::ErrorCode tImageDDS::Load(const tString& ddsFile, uint32 loadFlags)
 {
 	Clear();
 	Filename = ddsFile;
@@ -439,14 +588,14 @@ tImageDDS::ErrorCode tImageDDS::Load(const tString& ddsFile, bool reverseRowOrde
 
 	int ddsSizeBytes = 0;
 	uint8* ddsData = (uint8*)tSystem::tLoadFile(ddsFile, 0, &ddsSizeBytes);
-	Result = Load(ddsData, ddsSizeBytes, reverseRowOrder);
+	Result = Load(ddsData, ddsSizeBytes, loadFlags);
 	delete[] ddsData;
 
 	return Result;
 }
 
 
-tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, bool reverseRowOrder)
+tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 {
 	Clear();
 
@@ -470,9 +619,6 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, boo
 	int mainWidth = header.Width;						// Main image.
 	int mainHeight = header.Height;						// Main image.
 
-	if (!tMath::tIsPower2(mainWidth) || !tMath::tIsPower2(mainHeight))
-		return Result = ErrorCode::LoaderSupportsPowerOfTwoDimsOnly;
-
 	// It seems ATI tools like GenCubeMap don't set the correct bits.
 	#ifdef STRICT_DDS_HEADER_CHECKING
 	int pitch = 0;										// Num bytes per line on main image (uncompressed images only).
@@ -494,7 +640,7 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, boo
 		return Result = ErrorCode::VolumeTexturesNotSupported;
 
 	// Determine the expected number of layers by looking at the mipmap count if it is supplied. We assume a single layer
-	// if it's not specified.
+	// if it is not specified.
 	NumMipmapLayers = 1;
 	bool hasMipmaps = (header.Capabilities.FlagsCapsBasic & tDDSCapsBasic_Mipmap) ? true : false;
 	if ((flags & tDDSFlag_MipmapCount) && hasMipmaps)
@@ -503,34 +649,60 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, boo
 	if (NumMipmapLayers > MaxMipmapLayers)
 		return Result = ErrorCode::MaxNumMipmapLevelsExceeded;
 
-	// Determine if this is a cubemap dds with 6 images. No need to check which images are present since they are
-	// required to be all there by the dds standard. All tools these days seem to write them all. If there are complaints
-	// when using legacy files we can fix this.
-	if (header.Capabilities.FlagsCapsExtra & tDDSCapsExtra_CubeMap)
-	{
-		IsCubeMap = true;
-		NumImages = 6;
-	}
-	else
-	{
-		IsCubeMap = false;
-		NumImages = 1;
-	}
-
-	// Determine if we support the pixel format and which one it is.
 	tDDSPixelFormat& format = header.PixelFormat;
 	if (format.Size != 32)
 		return Result = ErrorCode::IncorrectPixelFormatSize;
 
 	// Has alpha should be true if the pixel format is uncompressed (RGB) and there is an alpha channel.
+	// Determine if we support the pixel format and which one it is.
 	bool rgbHasAlpha = (format.Flags & tDDSPixelFormatFlag_Alpha) ? true : false;
 	bool rgbFormat = (format.Flags & tDDSPixelFormatFlag_RGB) ? true : false;
 	bool fourCCFormat = (format.Flags & tDDSPixelFormatFlag_FourCC) ? true : false;
 
 	if ((!rgbFormat && !fourCCFormat) || (rgbFormat && fourCCFormat))
-		Result = ErrorCode::InconsistentPixelFormat;
+		return Result = ErrorCode::InconsistentPixelFormat;
 
-	if (fourCCFormat)
+	bool useDX10Ext = fourCCFormat && (format.FourCC == FourCC('D', 'X', '1', '0'));
+
+	// Determine if this is a cubemap dds with 6 images. No need to check which images are present since they are
+	// required to be all there by the dds standard. All tools these days seem to write them all. If there are complaints
+	// when using legacy files we can fix this. We use FlagsCapsExtra in all cases where we are not
+	// using the DX10 extension header.
+	IsCubeMap = false;
+	NumImages = 1;
+	if (!useDX10Ext && (header.Capabilities.FlagsCapsExtra & tDDSCapsExtra_CubeMap))
+	{
+		IsCubeMap = true;
+		NumImages = 6;
+	}
+
+	if (useDX10Ext)
+	{
+		tDDSHeaderDX10Ext& headerDX10 = *((tDDSHeaderDX10Ext*)ddsCurr);  ddsCurr += sizeof(tDDSHeaderDX10Ext);
+		pixelData = ddsCurr;
+		if (headerDX10.ArraySize == 0)
+			return Result = ErrorCode::Unknown;
+
+		// We only handle 2D textures for now.
+		if (headerDX10.ResourceDimension != tD3D10_RESOURCE_DIMENSION_TEXTURE2D)
+			return Result = ErrorCode::Unknown;
+
+		if (headerDX10.MiscFlag & 0x00000004)		// Cubemap.
+		{
+			IsCubeMap = true;
+			NumImages = 6;
+		}
+
+		switch (headerDX10.DxgiFormat)
+		{
+			// case tDXGI_FORMAT_BC7_TYPELESS:
+			case tDXGI_FORMAT_BC7_UNORM:
+			// case tDXGI_FORMAT_BC7_UNORM_SRGB:
+				PixelFormat = tPixelFormat::BC7;
+				break;
+		}
+	}
+	else if (fourCCFormat)
 	{
 		switch (format.FourCC)
 		{
@@ -560,7 +732,6 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, boo
 				PixelFormat = tPixelFormat::A32B32G32R32F;
 				break;
 
-			case FourCC('D','X','1','0'):
 			default:
 				return Result = ErrorCode::UnsupportedFourCCPixelFormat;
 		}
@@ -686,7 +857,7 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, boo
 				numBytes = width*height*format.RGBBitCount/8;
 
 				// Deal with the reverseRowOrder for these RGB formats as well.
-				if (reverseRowOrder)
+				if (loadFlags & LoadFlag_ReverseRowOrder)
 				{
 					uint8* reversedPixelData = new uint8[numBytes];
 					uint8* dstData = reversedPixelData;
@@ -716,14 +887,16 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, boo
 			}
 			else
 			{
-				// Otherwise it's a FourCC DXTn format.  Each block encodes a 4x4 square of pixels.  DXT2,3,4,5 use 128
-				// bits per block.  DXT1 and DXT1BA use 64bits per block.
-				int dxtBlockSize = 16;
+				// Otherwise it's a DXTn format. Each block encodes a 4x4 square of pixels.  DXT2,3,4,5 and BC 6,7 use 128
+				// bits per block.  DXT1 and DXT1BA (BC1) use 64bits per block.
+				int bcBlockSize = 16;
 				if ((PixelFormat == tPixelFormat::BC1_DXT1BA) || (PixelFormat == tPixelFormat::BC1_DXT1))
-					dxtBlockSize = 8;
+					bcBlockSize = 8;
 
-				int numBlocks = tMath::tMax(1, width/4) * tMath::tMax(1, height/4);
-				numBytes = numBlocks * dxtBlockSize;
+				int numBlocksW = tMath::tMax(1, (width + 3) / 4);
+				int numBlocksH = tMath::tMax(1, (height + 3) / 4);
+				int numBlocks = numBlocksW*numBlocksH;
+				numBytes = numBlocks * bcBlockSize;
 
 				// Here's where we possibly modify the opaque DXT1 texture to be DXT1BA if there are blocks with binary
 				// transparency. We only bother checking the main layer. If it's opaque we assume all the others are too.
@@ -735,40 +908,30 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, boo
 				// the top to the bottom row. We also need to flip the rows within the 4x4 block by flipping the lookup
 				// tables. This should be fairly fast as there is no encoding or encoding going on. Width and height
 				// will go down to 1x1, which will still use a 4x4 DXT pixel-block.
-				if (reverseRowOrder)
+				if ((loadFlags & LoadFlag_ReverseRowOrder) && (PixelFormat != tPixelFormat::BC7))
 				{
-					int heightBlocks = height / 4;
-					if (height % 4)
-						heightBlocks++;
-
-					int widthBlocks = width / 4;
-					if (width % 4)
-						widthBlocks++;
-
 					uint8* reversedPixelData = new uint8[numBytes];
 					uint8* dstData = reversedPixelData;
 
-					for (int row = heightBlocks-1; row >= 0; row--)
+					for (int row = numBlocksH-1; row >= 0; row--)
 					{
-						for (int col = 0; col < widthBlocks; col++)
+						for (int col = 0; col < numBlocksW; col++)
 						{
-							const uint8* srcData = pixelData + row*dxtBlockSize*widthBlocks + col*dxtBlockSize;
-							for (int byte = 0; byte < dxtBlockSize; byte++, dstData++, srcData++)
+							const uint8* srcData = pixelData + row*bcBlockSize*numBlocksW + col*bcBlockSize;
+							for (int byte = 0; byte < bcBlockSize; byte++, dstData++, srcData++)
 								*dstData = *srcData;
 						}
 					}
 
 					// Now we flip the inter-block rows by messing with the block's lookup-table.  We need to handle all
 					// three types of blocks: 1) DXT1, DXT1BA  2) DXT2, DXT3  3) DXT4, DXT5
-					int totalBlocks = widthBlocks * heightBlocks;
-
 					switch (PixelFormat)
 					{
 						case tPixelFormat::BC1_DXT1BA:
 						case tPixelFormat::BC1_DXT1:
 						{
 							tDXT1Block* block = (tDXT1Block*)reversedPixelData;
-							for (int b = 0; b < totalBlocks; b++, block++)
+							for (int b = 0; b < numBlocks; b++, block++)
 							{
 								// Reorder each row's colour indexes.
 								tStd::tSwap(block->LookupTableRows[0], block->LookupTableRows[3]);
@@ -780,7 +943,7 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, boo
 						case tPixelFormat::BC2_DXT3:
 						{
 							tDXT3Block* block = (tDXT3Block*)reversedPixelData;
-							for (int b = 0; b < totalBlocks; b++, block++)
+							for (int b = 0; b < numBlocks; b++, block++)
 							{
 								// Reorder the explicit alphas AND the colour indexes.
 								tStd::tSwap(block->AlphaTableRows[0], block->AlphaTableRows[3]);
@@ -794,7 +957,7 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, boo
 						case tPixelFormat::BC3_DXT5:
 						{
 							tDXT5Block* block = (tDXT5Block*)reversedPixelData;
-							for (int b = 0; b < totalBlocks; b++, block++)
+							for (int b = 0; b < numBlocks; b++, block++)
 							{
 								// Reorder the alpha indexes AND the colour indexes.
 								uint16 orig0 = block->GetAlphaRow(0);
@@ -810,6 +973,10 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, boo
 							}
 							break;
 						}
+
+						case tPixelFormat::BC7:
+							break;
+							//return Result = ErrorCode::UnsupportedFourCCPixelFormat;
 
 						case tPixelFormat::R32F:
 						case tPixelFormat::G32R32F:
@@ -844,6 +1011,50 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, boo
 			height /= 2;
 			if (height < 1)
 				height = 1;
+		}
+	}
+
+	// Decode if requested.
+	if (loadFlags & LoadFlag_Decode)
+	{
+		for (int image = 0; image < NumImages; image++)
+		{
+			for (int layerNum = 0; layerNum < NumMipmapLayers; layerNum++)
+			{
+				tLayer* layer = MipmapLayers[layerNum][image];
+				int w = layer->Width;
+				int h = layer->Height;
+				uint8* src = layer->Data;
+				switch (layer->PixelFormat)
+				{
+					case tPixelFormat::BC7:
+					{
+						int wextra = (w + 3);
+						int hextra = (h + 3);
+						uint8* uncompData = new uint8[wextra*hextra*4];
+						uint8* dst = (uint8*)uncompData;
+
+						for (int i = 0; i < h; i += 4)
+						{
+							for (int j = 0; j < w; j += 4)
+							{
+								dst = uncompData + (i * w + j) * 4;
+
+								// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be
+								// written into multiple rows of the destination... and we need to know how far to get to the
+								// next row for each pixel.
+								bcdec_bc7(src, dst, w * 4);
+								src += BCDEC_BC7_BLOCK_SIZE;
+							}
+						}
+
+						delete[] layer->Data;
+						layer->Data = uncompData;
+						layer->PixelFormat = tPixelFormat::B8G8R8A8;
+						break;
+					}
+				}
+			}
 		}
 	}
 

@@ -193,8 +193,9 @@ int main(int argc, char** argv)
 	// tTest(ImageLoad);
 	// tTest(ImageMultiFrame);
 	// tTest(ImagePicture);
-	tTest(ImageGradient);
+	// tTest(ImageGradient);
 	// tTest(ImageMetaData);
+	tTest(ImageDDS);
 	// #endif
 	// tTest(UTF);
 	// tTest(Hash);
