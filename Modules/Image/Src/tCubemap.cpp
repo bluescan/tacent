@@ -70,7 +70,7 @@ bool tCubemap::Load(const tString& ddsFile, bool reverseRowOrder)
 	if ((tSystem::tGetFileType(ddsFile) != tSystem::tFileType::DDS) || !tSystem::tFileExists(ddsFile))
 		return false;
 
-	tImageDDS dds(ddsFile, reverseRowOrder);
+	tImageDDS dds(ddsFile, tImageDDS::LoadFlag_ReverseRowOrder);
 	if (!dds.IsValid() || !dds.IsCubemap())
 		return false;
 
