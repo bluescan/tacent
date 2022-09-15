@@ -47,9 +47,9 @@ enum class tPixelFormat
 	BC3_DXT5,							// BC 3, DXT5. Variable alpha.
 	BC4_ATI1,							// BC 4. One colour channel only. May not be HW supported.
 	BC5_ATI2,							// BC 5. Two colour channels only. May not be HW supported.
-	BC6H,								// BC 6 HDR. No alpha. 3 x 16bit half-floats.
-	BC7,								// BC 7. Full colour. Variable alpha 0 to 8 bits.
-	LastBlock			= BC7,
+	BC6H_S16,							// BC 6 HDR. No alpha. 3 x 16bit signed half-floats.
+	BC7_UNORM,							// BC 7. Full colour. Variable alpha 0 to 8 bits.
+	LastBlock			= BC7_UNORM,
 
 	FirstHDR,
 	HDR_RAD				= FirstHDR,		// Radiance hdr.

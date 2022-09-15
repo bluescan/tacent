@@ -43,7 +43,7 @@ tTestUnit(ImageLoad)
 	tImageAPNG imgAPNG("TestData/Images/Flame.apng");
 	tRequire(imgAPNG.IsValid());
 
-	tImageDDS imgDDS("TestData/Images/TestDXT1.dds");
+	tImageDDS imgDDS("TestData/Images/DDS_KTX2/Legacy_BC1DXT1_RGB.dds");
 	tRequire(imgDDS.IsValid());
 
 	tImageEXR imgEXR("TestData/Images/Desk.exr");
@@ -99,7 +99,7 @@ tTestUnit(ImageTexture)
 		tSkipUnit(ImageTexture)
 
 	// Test dxt1 texture.
-	tTexture dxt1Tex("TestData/Images/TestDXT1.dds");
+	tTexture dxt1Tex("TestData/Images/DDS_KTX2/Legacy_BC1DXT1_RGB.dds");
 	tRequire(dxt1Tex.IsValid());
 
 	tChunkWriter writer("TestData/Images/WrittenTestDXT1.tac");
@@ -111,7 +111,7 @@ tTestUnit(ImageTexture)
 	tRequire(dxt1Tex.IsValid());
 
 	// Test cubemap.
-	tTexture cubemap("TestData/Images/CubemapLayoutGuide.dds");
+	tTexture cubemap("TestData/Images/DDS_KTX2/CubemapLayoutGuide.dds");
 	tRequire(cubemap.IsValid());
 
 	// Test jpg to texture. This will do conversion to BC1.
@@ -673,19 +673,26 @@ tTestUnit(ImageDDS)
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImageDDS)
 
-	tImageDDS dds("TestData/Images/TacentTestPattern_BC7_RGBA.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
-
+	tImageDDS dds("TestData/Images/DDS_KTX2/Pattern_BC7_RGBA.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
 	tList<tImage::tLayer> layers;
 	dds.StealTextureLayers(layers);
-
 	int mipNum = 0;
 	for (tLayer* layer = layers.First(); layer; layer = layer->Next(), mipNum++)
 	{
 		tImageTGA tga((tPixel*)layer->Data, layer->Width, layer->Height);
 		tString mipName;
-		tsPrintf(mipName, "TestData/Images/WrittenTestPatternMip_%02d.tga", mipNum);
+		tsPrintf(mipName, "TestData/Images/DDS_KTX2/WrittenPatternMip_%02d.tga", mipNum);
 		tga.Save(mipName);
 	}
+
+/*
+	tImageDDS ddsbc6("TestData/Images/DDS_KTX2/Pattern_BC6Hs_HDRRGB.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	layers.Empty();
+	ddsbc6.StealTextureLayers(layers);
+	tLayer* layer = layers.First();
+	tImageTGA tgabc6((tPixel*)layer->Data, layer->Width, layer->Height);
+	tgabc6.Save("TestData/Images/DDS_KTX2/WrittenPattern_BC6S.tga");
+*/
 }
 
 

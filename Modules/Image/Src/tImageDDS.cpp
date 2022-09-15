@@ -89,7 +89,7 @@ bool tImageDDS::IsOpaque() const
 		case tPixelFormat::BC1_DXT1BA:
 		case tPixelFormat::BC2_DXT3:
 		case tPixelFormat::BC3_DXT5:
-		case tPixelFormat::BC7:
+		case tPixelFormat::BC7_UNORM:
 		case tPixelFormat::G3B5A1R5G2:
 		case tPixelFormat::G4B4A4R4:
 			return false;
@@ -696,9 +696,15 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 		switch (headerDX10.DxgiFormat)
 		{
 			// case tDXGI_FORMAT_BC7_TYPELESS:
-			case tDXGI_FORMAT_BC7_UNORM:
 			// case tDXGI_FORMAT_BC7_UNORM_SRGB:
-				PixelFormat = tPixelFormat::BC7;
+			case tDXGI_FORMAT_BC7_UNORM:
+				PixelFormat = tPixelFormat::BC7_UNORM;
+				break;
+
+			case tDXGI_FORMAT_BC6H_SF16:
+	//		case tDXGI_FORMAT_BC6H_UF16:
+	//		case tDXGI_FORMAT_BC6H_TYPELESS:
+				PixelFormat = tPixelFormat::BC6H_S16;
 				break;
 		}
 	}
@@ -740,92 +746,34 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 	// It must be an RGB format.
 	else
 	{
-		// Remember this is a little endian machine, so the masks are lying. Eg. 0xFF0000 in memory is 00 00 FF, so the red
-		// is last.
+		// Remember this is a little endian machine, so the masks are lying. Eg. 0xFF0000 in memory is 00 00 FF, so the red is last.
+		bool   hasA = rgbHasAlpha;
+		uint32 mskA = format.MaskAlpha; uint32 mskR = format.MaskRed; uint32 mskG = format.MaskGreen; uint32 mskB = format.MaskBlue;
 		switch (format.RGBBitCount)
 		{
-			case 16:
-				// Supports G3B5A1R5G2, G4B4A4R4, and G3B5R5G3.
-				if
-				(
-					rgbHasAlpha &&
-					(format.MaskAlpha	== 0x8000) &&
-					(format.MaskRed		== 0x7C00) &&
-					(format.MaskGreen	== 0x03E0) &&
-					(format.MaskBlue	== 0x001F)
-				)
-				{
+			case 16:		// Supports G3B5A1R5G2, G4B4A4R4, and G3B5R5G3.
+				if (hasA && (mskA == 0x8000) && (mskR == 0x7C00) && (mskG == 0x03E0) && (mskB == 0x001F))
 					PixelFormat = tPixelFormat::G3B5A1R5G2;
-				}
-
-				else if
-				(
-					rgbHasAlpha &&
-					(format.MaskAlpha	== 0xF000) &&
-					(format.MaskRed		== 0x0F00) &&
-					(format.MaskGreen	== 0x00F0) &&
-					(format.MaskBlue	== 0x000F)
-				)
-				{
+				else if (hasA && (mskA == 0xF000) && (mskR == 0x0F00) && (mskG == 0x00F0) && (mskB == 0x000F))
 					PixelFormat = tPixelFormat::G4B4A4R4;
-				}
-
-				else if
-				(
-					!rgbHasAlpha &&
-					(format.MaskRed		== 0xF800) &&
-					(format.MaskGreen	== 0x07E0) &&
-					(format.MaskBlue	== 0x001F)
-				)
-				{
+				else if (!hasA && (mskR == 0xF800) && (mskG == 0x07E0) && (mskB == 0x001F))
 					PixelFormat = tPixelFormat::G3B5R5G3;
-				}
-
 				else
-				{
 					return Result = ErrorCode::UnsupportedRGBPixelFormat;
-				}
-
 				break;
 
-			case 24:
-				// Supports B8G8R8.
-				if
-				(
-					!rgbHasAlpha &&
-					(format.MaskRed		== 0xFF0000) &&
-					(format.MaskGreen	== 0x00FF00) &&
-					(format.MaskBlue	== 0x0000FF)
-				)
-				{
+			case 24:		// Supports B8G8R8.
+				if (!hasA && (mskR == 0xFF0000) && (mskG == 0x00FF00) && (mskB == 0x0000FF))
 					PixelFormat = tPixelFormat::B8G8R8;
-				}
-
 				else
-				{
 					return Result = ErrorCode::UnsupportedRGBPixelFormat;
-				}
-
 				break;
 
-			case 32:
-				// Supports B8G8R8A8. This is a little endian machine so the masks are lying. 0xFF000000 in memory is
-				// 00 00 00 FF with alpha last.
-				if
-				(
-					rgbHasAlpha &&
-					(format.MaskAlpha	== 0xFF000000) &&
-					(format.MaskRed		== 0x00FF0000) &&
-					(format.MaskGreen	== 0x0000FF00) &&
-					(format.MaskBlue	== 0x000000FF)
-				)
-				{
+			case 32:		// Supports B8G8R8A8. This is a little endian machine so the masks are lying. 0xFF000000 in memory is 00 00 00 FF with alpha last.
+				if (hasA && (mskA == 0xFF000000) && (mskR == 0x00FF0000) && (mskG == 0x0000FF00) && (mskB == 0x000000FF))
 					PixelFormat = tPixelFormat::B8G8R8A8;
-				}
 				else
-				{
 					return Result = ErrorCode::UnsupportedRGBPixelFormat;
-				}
 				break;
 
 			default:
@@ -887,7 +835,7 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 			}
 			else
 			{
-				// Otherwise it's a DXTn format. Each block encodes a 4x4 square of pixels.  DXT2,3,4,5 and BC 6,7 use 128
+				// Otherwise it's a BC/DXTn format. Each block encodes a 4x4 square of pixels.  DXT2,3,4,5 and BC 6,7 use 128
 				// bits per block.  DXT1 and DXT1BA (BC1) use 64bits per block.
 				int bcBlockSize = 16;
 				if ((PixelFormat == tPixelFormat::BC1_DXT1BA) || (PixelFormat == tPixelFormat::BC1_DXT1))
@@ -908,7 +856,7 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 				// the top to the bottom row. We also need to flip the rows within the 4x4 block by flipping the lookup
 				// tables. This should be fairly fast as there is no encoding or encoding going on. Width and height
 				// will go down to 1x1, which will still use a 4x4 DXT pixel-block.
-				if ((loadFlags & LoadFlag_ReverseRowOrder) && (PixelFormat != tPixelFormat::BC7))
+				if ((loadFlags & LoadFlag_ReverseRowOrder) && (PixelFormat != tPixelFormat::BC7_UNORM))
 				{
 					uint8* reversedPixelData = new uint8[numBytes];
 					uint8* dstData = reversedPixelData;
@@ -974,9 +922,12 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 							break;
 						}
 
-						case tPixelFormat::BC7:
+						case tPixelFormat::BC7_UNORM:
 							break;
 							//return Result = ErrorCode::UnsupportedFourCCPixelFormat;
+
+						case tPixelFormat::BC6H_S16:
+							break;
 
 						case tPixelFormat::R32F:
 						case tPixelFormat::G32R32F:
@@ -1027,10 +978,13 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 				uint8* src = layer->Data;
 				switch (layer->PixelFormat)
 				{
-					case tPixelFormat::BC7:
+					case tPixelFormat::BC7_UNORM:
 					{
-						int wextra = (w + 3);
-						int hextra = (h + 3);
+						// We need extra room because the decompressor (bcdec) does not take an input for
+						// the width and height, only the pitch (bytes per row). This means a texture that is 5
+						// high will actually have row 6, 7, 8 written to.
+						int wextra = w + ((w%4) ? 4-(w%4) : 0);
+						int hextra = h + ((h%4) ? 4-(h%4) : 0);
 						uint8* uncompData = new uint8[wextra*hextra*4];
 						uint8* dst = (uint8*)uncompData;
 
@@ -1045,6 +999,34 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 								// next row for each pixel.
 								bcdec_bc7(src, dst, w * 4);
 								src += BCDEC_BC7_BLOCK_SIZE;
+							}
+						}
+
+						delete[] layer->Data;
+						layer->Data = uncompData;
+						layer->PixelFormat = tPixelFormat::B8G8R8A8;
+						break;
+					}
+
+					case tPixelFormat::BC6H_S16:
+					{
+						int wextra = w + ((w%4) ? 4-(w%4) : 0);
+						int hextra = h + ((h%4) ? 4-(h%4) : 0);
+						uint8* uncompData = new uint8[wextra*hextra*4];
+						uint8* dst = (uint8*)uncompData;
+
+						for (int i = 0; i < h; i += 4)
+						{
+							for (int j = 0; j < w; j += 4)
+							{
+								dst = uncompData + (i * w + j) * 3;
+
+								// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be
+								// written into multiple rows of the destination... and we need to know how far to get to the
+								// next row for each pixel.
+								bcdec_bc6h_half(src, dst, w * 3, true);
+//								bcdec_bc6h_float(src, dst, w * 4, true);
+								src += BCDEC_BC6H_BLOCK_SIZE;
 							}
 						}
 
