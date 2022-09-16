@@ -53,15 +53,15 @@ public:
 
 	enum class ErrorCode
 	{
-		NoError,
-		Success									= NoError,
+		Success,
+		NoError									= Success,
 
 		FileNonexistent,
 		IncorrectExtension,
 		IncorrectFileSize,
-		Magic,
+		IncorrectMagic,
 		IncorrectHeaderSize,
-		PitchOrLinearSize,
+		PitchXORLinearSize,
 		VolumeTexturesNotSupported,
 		IncorrectPixelFormatSize,
 		InconsistentPixelFormat,
@@ -72,6 +72,7 @@ public:
 		LoaderSupportsPowerOfTwoDimsOnly,
 		MaxNumMipmapLevelsExceeded,
 		UnsuportedFloatingPointPixelFormat,
+		DecodingError,
 		Unknown,
 		NumCodes
 	};

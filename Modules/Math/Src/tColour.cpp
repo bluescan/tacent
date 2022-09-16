@@ -20,35 +20,35 @@ using namespace tMath;
 
 
 // Uses C++11 aggregate initialization syntax.
-const tColouri tColouri::black			= { 0x00, 0x00, 0x00, 0xFF };
-const tColouri tColouri::white			= { 0xFF, 0xFF, 0xFF, 0xFF };
-const tColouri tColouri::pink			= { 0xFF, 0x80, 0x80, 0xFF };
-const tColouri tColouri::red			= { 0xFF, 0x00, 0x00, 0xFF };
-const tColouri tColouri::green			= { 0x00, 0xFF, 0x00, 0xFF };
-const tColouri tColouri::blue			= { 0x00, 0x00, 0xFF, 0xFF };
-const tColouri tColouri::grey			= { 0x80, 0x80, 0x80, 0xFF };
-const tColouri tColouri::lightgrey		= { 0xC0, 0xC0, 0xC0, 0xFF };
-const tColouri tColouri::darkgrey		= { 0x40, 0x40, 0x40, 0xFF };
-const tColouri tColouri::cyan			= { 0x00, 0xFF, 0xFF, 0xFF };
-const tColouri tColouri::magenta		= { 0xFF, 0x00, 0xFF, 0xFF };
-const tColouri tColouri::yellow			= { 0xFF, 0xFF, 0x00, 0xFF };
-const tColouri tColouri::transparent	= { 0x00, 0x00, 0x00, 0x00 };
+const tColour4i tColour4i::black		= { 0x00, 0x00, 0x00, 0xFF };
+const tColour4i tColour4i::white		= { 0xFF, 0xFF, 0xFF, 0xFF };
+const tColour4i tColour4i::pink			= { 0xFF, 0x80, 0x80, 0xFF };
+const tColour4i tColour4i::red			= { 0xFF, 0x00, 0x00, 0xFF };
+const tColour4i tColour4i::green		= { 0x00, 0xFF, 0x00, 0xFF };
+const tColour4i tColour4i::blue			= { 0x00, 0x00, 0xFF, 0xFF };
+const tColour4i tColour4i::grey			= { 0x80, 0x80, 0x80, 0xFF };
+const tColour4i tColour4i::lightgrey	= { 0xC0, 0xC0, 0xC0, 0xFF };
+const tColour4i tColour4i::darkgrey		= { 0x40, 0x40, 0x40, 0xFF };
+const tColour4i tColour4i::cyan			= { 0x00, 0xFF, 0xFF, 0xFF };
+const tColour4i tColour4i::magenta		= { 0xFF, 0x00, 0xFF, 0xFF };
+const tColour4i tColour4i::yellow		= { 0xFF, 0xFF, 0x00, 0xFF };
+const tColour4i tColour4i::transparent	= { 0x00, 0x00, 0x00, 0x00 };
 
 
-const tColourf tColourf::invalid		= { -1.0f, -1.0f, -1.0f, -1.0f };
-const tColourf tColourf::black			= { 0.00f, 0.00f, 0.00f, 1.00f };
-const tColourf tColourf::white			= { 1.00f, 1.00f, 1.00f, 1.00f };
-const tColourf tColourf::hotpink		= { 1.00f, 0.50f, 0.50f, 1.00f };
-const tColourf tColourf::red			= { 1.00f, 0.00f, 0.00f, 1.00f };
-const tColourf tColourf::green			= { 0.00f, 1.00f, 0.00f, 1.00f };
-const tColourf tColourf::blue			= { 0.00f, 0.00f, 1.00f, 1.00f };
-const tColourf tColourf::grey			= { 0.50f, 0.50f, 0.50f, 1.00f };
-const tColourf tColourf::lightgrey		= { 0.75f, 0.75f, 0.75f, 1.00f };
-const tColourf tColourf::darkgrey		= { 0.25f, 0.25f, 0.25f, 1.00f };
-const tColourf tColourf::cyan			= { 0.00f, 1.00f, 1.00f, 1.00f };
-const tColourf tColourf::magenta		= { 1.00f, 0.00f, 1.00f, 1.00f };
-const tColourf tColourf::yellow			= { 1.00f, 1.00f, 0.00f, 1.00f };
-const tColourf tColourf::transparent	= { 0.00f, 0.00f, 0.00f, 0.00f };
+const tColour4f tColour4f::invalid		= { -1.0f, -1.0f, -1.0f, -1.0f };
+const tColour4f tColour4f::black		= { 0.00f, 0.00f, 0.00f, 1.00f };
+const tColour4f tColour4f::white		= { 1.00f, 1.00f, 1.00f, 1.00f };
+const tColour4f tColour4f::hotpink		= { 1.00f, 0.50f, 0.50f, 1.00f };
+const tColour4f tColour4f::red			= { 1.00f, 0.00f, 0.00f, 1.00f };
+const tColour4f tColour4f::green		= { 0.00f, 1.00f, 0.00f, 1.00f };
+const tColour4f tColour4f::blue			= { 0.00f, 0.00f, 1.00f, 1.00f };
+const tColour4f tColour4f::grey			= { 0.50f, 0.50f, 0.50f, 1.00f };
+const tColour4f tColour4f::lightgrey	= { 0.75f, 0.75f, 0.75f, 1.00f };
+const tColour4f tColour4f::darkgrey		= { 0.25f, 0.25f, 0.25f, 1.00f };
+const tColour4f tColour4f::cyan			= { 0.00f, 1.00f, 1.00f, 1.00f };
+const tColour4f tColour4f::magenta		= { 1.00f, 0.00f, 1.00f, 1.00f };
+const tColour4f tColour4f::yellow		= { 1.00f, 1.00f, 0.00f, 1.00f };
+const tColour4f tColour4f::transparent	= { 0.00f, 0.00f, 0.00f, 0.00f };
 
 
 const tColour3f tColour3f::invalid		= { -1.0f, -1.0f, -1.0f };
@@ -220,25 +220,13 @@ void tMath::tRGBToHSV(float& h, float& s, float& v, float r, float g, float b, t
 	float fullCircle = 360.0f;
 	switch (angleMode)
 	{
-		case tAngleMode::Radians:
-			fullCircle = TwoPi;
-			break;
-
-		case tAngleMode::Degrees:
-			fullCircle = 360.0f;
-			break;
-
-		case tAngleMode::Norm256:
-			fullCircle = 256.0f;
-			break;
-
-		case tAngleMode::NormOne:
-			fullCircle = 1.0f;
-			break;
+		case tAngleMode::Radians:			fullCircle = TwoPi;		break;
+		case tAngleMode::Degrees:			fullCircle = 360.0f;	break;
+		case tAngleMode::Norm256:			fullCircle = 256.0f;	break;
+		case tAngleMode::NormOne:			fullCircle = 1.0f;		break;
 	}
 
 	h *= fullCircle / 6.0f;
-
 	if (h < 0.0f)
 		h += fullCircle;
 }
@@ -249,30 +237,17 @@ void tMath::tHSVToRGB(float& r, float& g, float& b, float h, float s, float v, t
 	// If sat is zero we always ignore the hue. That is, we're a shade of grey on the vertical line.
 	if (s <= 0.0f)
 	{
-		r = v;
-		g = v;
-		b = v;
+		r = v;	g = v;	b = v;
 		return;
 	}
 
 	float fullCircle = 360.0f;
 	switch (angleMode)
 	{
-		case tAngleMode::Radians:
-			fullCircle = TwoPi;
-			break;
-
-		case tAngleMode::Degrees:
-			fullCircle = 360.0f;
-			break;
-
-		case tAngleMode::Norm256:
-			fullCircle = 256.0f;
-			break;
-
-		case tAngleMode::NormOne:
-			fullCircle = 1.0f;
-			break;
+		case tAngleMode::Radians:			fullCircle = TwoPi;		break;
+		case tAngleMode::Degrees:			fullCircle = 360.0f;	break;
+		case tAngleMode::Norm256:			fullCircle = 256.0f;	break;
+		case tAngleMode::NormOne:			fullCircle = 1.0f;		break;
 	}
 
 	if (h >= fullCircle)
@@ -287,66 +262,37 @@ void tMath::tHSVToRGB(float& r, float& g, float& b, float h, float s, float v, t
 
 	switch (i)
 	{
-		case 0:
-			r = v;
-			g = t;
-			b = p;
-			break;
-
-		case 1:
-			r = q;
-			g = v;
-			b = p;
-			break;
-
-		case 2:
-			r = p;
-			g = v;
-			b = t;
-			break;
-
-		case 3:
-			r = p;
-			g = q;
-			b = v;
-			break;
-
-		case 4:
-			r = t;
-			g = p;
-			b = v;
-			break;
-
+		case 0:		r = v;	g = t;	b = p;	break;
+		case 1:		r = q;	g = v;	b = p;	break;
+		case 2:		r = p;	g = v;	b = t;	break;
+		case 3:		r = p;	g = q;	b = v;	break;
+		case 4:		r = t;	g = p;	b = v;	break;
 		case 5:
-		default:
-			r = v;
-			g = p;
-			b = q;
-			break;
+		default:	r = v;	g = p;	b = q;	break;
 	}
 }
 
 
-tColouri tMath::tGetColour(const char* colourName)
+tColour4i tMath::tGetColour(const char* colourName)
 {
 	tString lowerName(colourName);
 	lowerName.ToLower();
 	uint32 colourHash = tHash::tHashStringFast32(lowerName);
-	tColouri colour = tColouri::white;
+	tColour4i colour = tColour4i::white;
 
 	// This switch uses compile-time hashes. Collisions will be automatically detected by the compiler.
 	switch (colourHash)
 	{
-		case tHash::tHashCT("none"):		colour = 0xFFFFFFFF;	break;
-		case tHash::tHashCT("black"):		colour = 0x000000FF;	break;
-		default:											break;
+		case tHash::tHashCT("none"):	colour = 0xFFFFFFFF;	break;
+		case tHash::tHashCT("black"):	colour = 0x000000FF;	break;
+		default:												break;
 	}
-	
-	return colour;	
+
+	return colour;
 }
 
 
-float tMath::tColourDiffRedmean(const tColouri& aa, const tColouri& bb)
+float tMath::tColourDiffRedmean(const tColour4i& aa, const tColour4i& bb)
 {
 	tVector3 a; aa.GetDenorm(a);
 	tVector3 b; bb.GetDenorm(b);

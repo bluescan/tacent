@@ -344,7 +344,6 @@ struct tDDSHeader
 };
 
 
-/////////////////////////////////
 enum tDXGI_FORMAT 
 {
 	tDXGI_FORMAT_UNKNOWN = 0,
@@ -606,7 +605,7 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 	const uint8* ddsCurr = ddsData;
 	uint32& magic = *((uint32*)ddsCurr); ddsCurr += sizeof(uint32);
 	if (magic != ' SDD')
-		return Result = ErrorCode::Magic;
+		return Result = ErrorCode::IncorrectMagic;
 
 	tDDSHeader& header = *((tDDSHeader*)ddsCurr);  ddsCurr += sizeof(header);
 	tAssert(sizeof(tDDSHeader) == 124);
@@ -632,7 +631,7 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 
 	// Linear size xor pitch must be specified.
 	if ((!linearSize && !pitch) || (linearSize && pitch))
-		return Result = ErrorCode::PitchOrLinearSize;
+		return Result = ErrorCode::PitchXORLinearSize;
 	#endif
 
 	// Volume textures are not supported.
@@ -693,6 +692,11 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 			NumImages = 6;
 		}
 
+		// If we found a dx10 chunk, use it to determine the pixel format over 
+		// 	tDXGI_FORMAT_BC1_TYPELESS = 70,
+//	tDXGI_FORMAT_BC1_UNORM = 71,
+//	tDXGI_FORMAT_BC1_UNORM_SRGB = 72,
+//
 		switch (headerDX10.DxgiFormat)
 		{
 			// case tDXGI_FORMAT_BC7_TYPELESS:
@@ -701,9 +705,9 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 				PixelFormat = tPixelFormat::BC7_UNORM;
 				break;
 
+			// case tDXGI_FORMAT_BC6H_UF16:
+			// case tDXGI_FORMAT_BC6H_TYPELESS:
 			case tDXGI_FORMAT_BC6H_SF16:
-	//		case tDXGI_FORMAT_BC6H_UF16:
-	//		case tDXGI_FORMAT_BC6H_TYPELESS:
 				PixelFormat = tPixelFormat::BC6H_S16;
 				break;
 		}
@@ -856,7 +860,7 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 				// the top to the bottom row. We also need to flip the rows within the 4x4 block by flipping the lookup
 				// tables. This should be fairly fast as there is no encoding or encoding going on. Width and height
 				// will go down to 1x1, which will still use a 4x4 DXT pixel-block.
-				if ((loadFlags & LoadFlag_ReverseRowOrder) && (PixelFormat != tPixelFormat::BC7_UNORM))
+				if ((loadFlags & LoadFlag_ReverseRowOrder) && (PixelFormat != tPixelFormat::BC7_UNORM) && (PixelFormat != tPixelFormat::BC6H_S16))
 				{
 					uint8* reversedPixelData = new uint8[numBytes];
 					uint8* dstData = reversedPixelData;
@@ -953,8 +957,6 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 			}
 
 			pixelData += numBytes;
-
-			// @todo Does this assume power-of-2 dimensions?  Can we avoid this assumption in this low-level class?
 			width /= 2;
 			if (width < 1)
 				width = 1;
@@ -965,7 +967,7 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 		}
 	}
 
-	// Decode if requested.
+	// Decode to 32-bit RGBA if requested.
 	if (loadFlags & LoadFlag_Decode)
 	{
 		for (int image = 0; image < NumImages; image++)
@@ -976,66 +978,79 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 				int w = layer->Width;
 				int h = layer->Height;
 				uint8* src = layer->Data;
+
+				// We need extra room because the decompressor (bcdec) does not take an input for
+				// the width and height, only the pitch (bytes per row). This means a texture that is 5
+				// high will actually have row 6, 7, 8 written to.
+				int wextra = w + ((w%4) ? 4-(w%4) : 0);
+				int hextra = h + ((h%4) ? 4-(h%4) : 0);
+				tPixel* uncompData = new tPixel[wextra*hextra];
+
 				switch (layer->PixelFormat)
 				{
-					case tPixelFormat::BC7_UNORM:
+					case tPixelFormat::BC1_DXT1:
 					{
-						// We need extra room because the decompressor (bcdec) does not take an input for
-						// the width and height, only the pitch (bytes per row). This means a texture that is 5
-						// high will actually have row 6, 7, 8 written to.
-						int wextra = w + ((w%4) ? 4-(w%4) : 0);
-						int hextra = h + ((h%4) ? 4-(h%4) : 0);
-						uint8* uncompData = new uint8[wextra*hextra*4];
-						uint8* dst = (uint8*)uncompData;
-
 						for (int i = 0; i < h; i += 4)
-						{
 							for (int j = 0; j < w; j += 4)
 							{
-								dst = uncompData + (i * w + j) * 4;
+								uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
 
 								// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be
 								// written into multiple rows of the destination... and we need to know how far to get to the
 								// next row for each pixel.
+								bcdec_bc1(src, dst, w * 4);
+								src += BCDEC_BC1_BLOCK_SIZE;
+							}
+						
+						break;
+					}
+
+					case tPixelFormat::BC7_UNORM:
+					{
+						for (int i = 0; i < h; i += 4)
+							for (int j = 0; j < w; j += 4)
+							{
+								uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
 								bcdec_bc7(src, dst, w * 4);
 								src += BCDEC_BC7_BLOCK_SIZE;
 							}
-						}
-
-						delete[] layer->Data;
-						layer->Data = uncompData;
-						layer->PixelFormat = tPixelFormat::B8G8R8A8;
 						break;
 					}
 
 					case tPixelFormat::BC6H_S16:
 					{
-						int wextra = w + ((w%4) ? 4-(w%4) : 0);
-						int hextra = h + ((h%4) ? 4-(h%4) : 0);
-						uint8* uncompData = new uint8[wextra*hextra*4];
-						uint8* dst = (uint8*)uncompData;
+						// This HDR format decompresses to RGB floats.
+						tColour3f* rgbData = new tColour3f[wextra*hextra];
 
 						for (int i = 0; i < h; i += 4)
-						{
 							for (int j = 0; j < w; j += 4)
 							{
-								dst = uncompData + (i * w + j) * 3;
-
-								// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be
-								// written into multiple rows of the destination... and we need to know how far to get to the
-								// next row for each pixel.
-								bcdec_bc6h_half(src, dst, w * 3, true);
-//								bcdec_bc6h_float(src, dst, w * 4, true);
+								uint8* dst = (uint8*)((float*)rgbData + (i * w + j) * 3);
+								bcdec_bc6h_float(src, dst, w * 3, true);
 								src += BCDEC_BC6H_BLOCK_SIZE;
 							}
-						}
 
-						delete[] layer->Data;
-						layer->Data = uncompData;
-						layer->PixelFormat = tPixelFormat::B8G8R8A8;
+						// Now convert to 32-bit RGBA with 255 alpha.
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							tColour4f col(rgbData[ij], 1.0f);
+							col.ToGammaSpaceApprox();
+							uncompData[ij].Set(col);
+						}
+						delete[] rgbData;
 						break;
 					}
+
+					default:
+						delete[] uncompData;
+						Clear();
+						return Result = ErrorCode::DecodingError;
 				}
+
+				// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
+				delete[] layer->Data;
+				layer->Data = (uint8*)uncompData;
+				layer->PixelFormat = tPixelFormat::B8G8R8A8;
 			}
 		}
 	}
@@ -1101,6 +1116,7 @@ const char* tImageDDS::ErrorDescriptions[] =
 	"Current DDS loader only supports power-of-2 dimensions.",
 	"Maximum number of mipmap levels exceeded.",
 	"Floating point pixel formats not supported yet.",
+	"Unable to decode.",
 	"Unknown"
 };
 tStaticAssert(tNumElements(tImageDDS::ErrorDescriptions) == int(tImageDDS::ErrorCode::NumCodes));
