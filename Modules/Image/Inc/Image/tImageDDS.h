@@ -13,7 +13,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include <System/tThrow.h>
 #include "Image/tLayer.h"
 #include "Image/tPixelFormat.h"
 namespace tImage

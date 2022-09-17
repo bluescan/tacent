@@ -45,29 +45,27 @@ add_library(
 	Inc/Image/tTexture.h
 	Inc/Image/tResample.h
 	
-	# OpenEXR
-	Contrib/OpenEXR/loadImage.h
-	Contrib/OpenEXR/loadImage.cpp
-
-	# ApngDis
-	Contrib/ApngDis/apngdis.h
-	Contrib/ApngDis/apngdis.cpp
-
-	# ApngAsm
+	# Contributed source including image loaders.
 	Contrib/ApngAsm/apngasm.h
 	Contrib/ApngAsm/apngasm.cpp
-
-	# TinyXML2
-	Contrib/TinyXML2/tinyxml2.h
-	Contrib/TinyXML2/tinyxml2.cpp
-
-	# TinyEXIF
+	Contrib/ApngDis/apngdis.h
+	Contrib/ApngDis/apngdis.cpp
+	Contrib/bcdec/bcdec.h
+	Contrib/GifLoad/gif_load.h
+	Contrib/GifSave/gif.h
+	Contrib/LibPNG/include/png.h
+	Contrib/LibTIFF/include/tiff.h
+	Contrib/OpenEXR/loadImage.h
+	Contrib/OpenEXR/loadImage.cpp
 	Contrib/TinyEXIF/TinyEXIF.h
 	Contrib/TinyEXIF/TinyEXIF.cpp
-
-	# BC Decode
-	Contrib/bcdec/bcdec.h
-	Contrib/etcdec/etcdec.h
+	Contrib/TinyXML2/tinyxml2.h
+	Contrib/TinyXML2/tinyxml2.cpp
+	Contrib/TurboJpeg/turbojpeg.h
+	Contrib/WebP/include/mux.h
+	Contrib/WebP/include/demux.h
+	Contrib/WebP/include/encode.h
+	Contrib/ZLib/include/zlib.h
 )
 
 tacent_target_include_directories(${PROJECT_NAME})
@@ -79,16 +77,26 @@ target_include_directories(
 	# PUBLIC means both building and for users of the lib. Populates both.
 	PUBLIC
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib>
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TinyXML2>
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/include>
 		$<INSTALL_INTERFACE:Contrib>
+		$<INSTALL_INTERFACE:Contrib/TinyXML2>
+		$<INSTALL_INTERFACE:Contrib/ZLib/include>
 	PRIVATE
-		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/include
-		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include
-		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include/OpenEXR
-		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ApngDis
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ApngAsm
-		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TinyXML2
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/bcdec
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/GifLoad
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/GifSave
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/include
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibTIFF/include
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include/OpenEXR
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TinyEXIF
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg
+		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Windows>
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Linux>
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/include
 )
 
 tacent_target_compile_definitions(${PROJECT_NAME})

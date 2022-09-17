@@ -9,7 +9,7 @@
 // layer, and gif/webp/apng images may be animated and have more than one frame. A tPicture can only prepresent _one_
 // of these frames.
 //
-// Copyright (c) 2006, 2016, 2017, 2019, 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2017, 2019-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -27,15 +27,12 @@
 #include <png.h>
 #include <apngdis.h>
 #include <apngasm.h>
-#include "LibTIFF/include/tiffvers.h"
-#ifdef PLATFORM_WINDOWS
-#include "TurboJpeg/Windows/jconfig.h"
-#elif defined(PLATFORM_LINUX)
-#include "TurboJpeg/Linux/jconfig.h"
-#endif
-#include "WebP/include/demux.h"
-#include "TinyXML2/tinyxml2.h"
-#include "TinyEXIF/TinyEXIF.h"
+#include <bcdec.h>
+#include <tiffvers.h>
+#include <jconfig.h>			// JpegTurbo
+#include <demux.h>				// WebP
+#include <tinyxml2.h>
+#include <TinyEXIF.h>
 #include "Image/tResample.h"
 
 
@@ -53,6 +50,8 @@ const char* tImage::Version_ApngAsm			= APNGASM_VERSION_STRING;
 const char* tImage::Version_LibTIFF			= TIFFLIB_STANDARD_VERSION_STR;
 int tImage::Version_WEBP_Major				= WEBP_DECODER_ABI_VERSION >> 8;
 int tImage::Version_WEBP_Minor				= WEBP_DECODER_ABI_VERSION & 0xFF;
+int tImage::Version_BCDec_Major				= BCDEC_VERSION_MAJOR;
+int tImage::Version_BCDec_Minor				= BCDEC_VERSION_MINOR;
 int tImage::Version_TinyXML2_Major			= TINYXML2_MAJOR_VERSION;
 int tImage::Version_TinyXML2_Minor			= TINYXML2_MINOR_VERSION;
 int tImage::Version_TinyXML2_Patch			= TINYXML2_PATCH_VERSION;

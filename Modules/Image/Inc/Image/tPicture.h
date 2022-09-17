@@ -9,7 +9,7 @@
 // page, and gif/webp images may be animated and have more than one frame. A tPicture can only prepresent _one_ of 
 // these frames.
 //
-// Copyright (c) 2006, 2016, 2017, 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2017, 2020-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -27,6 +27,7 @@
 #include <System/tChunk.h>
 #include "Image/tImageAPNG.h"
 #include "Image/tImageBMP.h"
+#include "Image/tImageDDS.h"
 #include "Image/tImageEXR.h"
 #include "Image/tImageGIF.h"
 #include "Image/tImageHDR.h"
@@ -54,6 +55,8 @@ extern const char* Version_ApngDis;
 extern const char* Version_ApngAsm;
 extern int Version_WEBP_Major;
 extern int Version_WEBP_Minor;
+extern int Version_BCDec_Major;
+extern int Version_BCDec_Minor;
 extern int Version_TinyXML2_Major;
 extern int Version_TinyXML2_Minor;
 extern int Version_TinyXML2_Patch;
