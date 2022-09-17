@@ -693,10 +693,9 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 		}
 
 		// If we found a dx10 chunk, use it to determine the pixel format over 
-		// 	tDXGI_FORMAT_BC1_TYPELESS = 70,
-//	tDXGI_FORMAT_BC1_UNORM = 71,
-//	tDXGI_FORMAT_BC1_UNORM_SRGB = 72,
-//
+		// tDXGI_FORMAT_BC1_TYPELESS = 70,
+		// tDXGI_FORMAT_BC1_UNORM = 71,
+		// tDXGI_FORMAT_BC1_UNORM_SRGB = 72,
 		switch (headerDX10.DxgiFormat)
 		{
 			// case tDXGI_FORMAT_BC7_TYPELESS:
@@ -731,19 +730,19 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 				break;
 
 			case tD3DFMT_R32F:
-				PixelFormat = tPixelFormat::R32F;
+				// Unsupported.
+				// PixelFormat = tPixelFormat::R32F;
 				break;
 
 			case tD3DFMT_G32R32F:
-				PixelFormat = tPixelFormat::G32R32F;
+				// Unsupported.
+				// PixelFormat = tPixelFormat::G32R32F;
 				break;
 
 			case tD3DFMT_A32B32G32R32F:
-				PixelFormat = tPixelFormat::A32B32G32R32F;
+				// Unsupported.
+				// PixelFormat = tPixelFormat::A32B32G32R32F;
 				break;
-
-			default:
-				return Result = ErrorCode::UnsupportedFourCCPixelFormat;
 		}
 	}
 
@@ -762,34 +761,25 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 					PixelFormat = tPixelFormat::G4B4A4R4;
 				else if (!hasA && (mskR == 0xF800) && (mskG == 0x07E0) && (mskB == 0x001F))
 					PixelFormat = tPixelFormat::G3B5R5G3;
-				else
-					return Result = ErrorCode::UnsupportedRGBPixelFormat;
 				break;
 
 			case 24:		// Supports B8G8R8.
 				if (!hasA && (mskR == 0xFF0000) && (mskG == 0x00FF00) && (mskB == 0x0000FF))
 					PixelFormat = tPixelFormat::B8G8R8;
-				else
-					return Result = ErrorCode::UnsupportedRGBPixelFormat;
 				break;
 
 			case 32:		// Supports B8G8R8A8. This is a little endian machine so the masks are lying. 0xFF000000 in memory is 00 00 00 FF with alpha last.
 				if (hasA && (mskA == 0xFF000000) && (mskR == 0x00FF0000) && (mskG == 0x0000FF00) && (mskB == 0x000000FF))
 					PixelFormat = tPixelFormat::B8G8R8A8;
-				else
-					return Result = ErrorCode::UnsupportedRGBPixelFormat;
 				break;
-
-			default:
-				return Result = ErrorCode::UnsupportedRGBPixelFormat;
 		}
 	}
 
 	// @todo We do not yet support these formats.
-	if ((PixelFormat == tPixelFormat::R32F) || (PixelFormat == tPixelFormat::G32R32F) || (PixelFormat == tPixelFormat::A32B32G32R32F))
+	if (PixelFormat == tPixelFormat::Invalid)
 	{
 		Clear();
-		return Result = ErrorCode::UnsupportedFourCCPixelFormat;
+		return Result = ErrorCode::UnsupportedPixelFormat;
 	}
 
 	tAssert(PixelFormat != tPixelFormat::Invalid);
@@ -928,20 +918,13 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 
 						case tPixelFormat::BC7_UNORM:
 							break;
-							//return Result = ErrorCode::UnsupportedFourCCPixelFormat;
 
 						case tPixelFormat::BC6H_S16:
 							break;
 
-						case tPixelFormat::R32F:
-						case tPixelFormat::G32R32F:
-						case tPixelFormat::A32B32G32R32F:
-							Clear();
-							return Result = ErrorCode::UnsuportedFloatingPointPixelFormat;
-
 						default:
 							Clear();
-							return Result = ErrorCode::UnsupportedFourCCPixelFormat;
+							return Result = ErrorCode::UnsupportedPixelFormat;
 					}
 
 					// Finally we can append a layer with the massaged dxt data. We can simply get the layer to steal the memory (the
@@ -1109,8 +1092,7 @@ const char* tImageDDS::ErrorDescriptions[] =
 	"Volume textures unsupported.",
 	"Pixel format size incorrect.",
 	"Pixel format must be either an RGB format or a FourCC format.",
-	"Unsupported FourCC pixel format. Supported FourCC formats include DXT1, DXT3, DXT5.",
-	"Unsupported RGB pixel format. Supported formats include A1R5G5B5, A4R4G4B4, R5G6B5, R8G8B8, and A8R8G8B8.",
+	"Unsupported pixel format.",
 	"Incorrect DXT pixel data size.",
 	"DXT Texture dimensions must be divisible by 4.",
 	"Current DDS loader only supports power-of-2 dimensions.",
