@@ -38,12 +38,15 @@ public:
 	{
 		LoadFlag_Decode				= 1 << 0,	// Decode the dds texture data into RGBA 32 bit layers. If not set, the layer data will remain unmodified.
 		LoadFlag_ReverseRowOrder	= 1 << 1,	// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.
+		LoadFlag_GammaCorrectHDR	= 1 << 2,	// Gamma correct HDR (BC6) images during load.
 		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder
 	};
 
-	// If an error is encountered loading the resultant object will return false for IsValid. You can call GetLastError
-	// to get more detailed information. When decoding _and_ reversing row order, BC 4x4 blocks can be massaged without
-	// decompression to fix the row order.
+	// If an error is encountered loading the resultant object will return false for IsValid. You can call GetLastResult
+	// to get more detailed information. There are some results that are not full-success that leave the object valid.
+	// When decoding _and_ reversing row order, most BC 4x4 blocks can be massaged without decompression to fix the row
+	// order. The more complex ones like BC6 and BC7 cannot be swizzled around like this (well, they probably could be,
+	// but it's a non-trivial amount of work).
 	tImageDDS(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default);
 
 	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is read from
@@ -51,7 +54,7 @@ public:
 	tImageDDS(const uint8* ddsFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default);
 	virtual ~tImageDDS()																								{ Clear(); }
 
-	enum class ErrorCode
+	enum class ResultCode
 	{
 		Success,
 		NoError									= Success,
@@ -76,16 +79,16 @@ public:
 		NumCodes
 	};
 
-	// After construction if the object is invalid you can call GetLastError() to find out what went wrong.
-	ErrorCode GetLastError() const																						{ return Result; }
-	static const char* GetErrorName(ErrorCode);
-	const char* GetLastErrorName() const																				{ return GetErrorName(Result); }
+	// After construction if the object is invalid you can call GetLastResult() to find out what went wrong.
+	ResultCode GetLastResult() const																					{ return Result; }
+	static const char* GetResultDesc(ResultCode);
+	const char* GetLastResultDesc() const																				{ return GetResultDesc(Result); }
 
 	// Clears the current tImageDDS before loading. If the dds file failed to load for any reason it will result in an
 	// invalid object. A dds may fail to load for a number of reasons: Volume textures are not supported, some
 	// pixel-formats may not yet be supported, or inconsistent flags.
-	ErrorCode Load(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default);
-	ErrorCode Load(const uint8* ddsFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default);
+	ResultCode Load(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default);
+	ResultCode Load(const uint8* ddsFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default);
 
 	// After this call no memory will be consumed by the object and it will be invalid. Does not clear filename.
 	void Clear();
@@ -158,7 +161,7 @@ public:
 private:
 	bool DoDXT1BlocksHaveBinaryAlpha(tDXT1Block* blocks, int numBlocks);
 
-	ErrorCode Result = ErrorCode::Success;
+	ResultCode Result = ResultCode::Success;
 
 	// The surface is only valid if this is not PixelFormat_Invalid.
 	tPixelFormat PixelFormat;
@@ -177,7 +180,7 @@ private:
 	tLayer* MipmapLayers[MaxMipmapLayers][MaxImages];
 
 public:
-	static const char* ErrorDescriptions[];
+	static const char* ResultDescriptions[];
 };
 
 

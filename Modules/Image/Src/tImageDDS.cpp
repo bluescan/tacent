@@ -76,7 +76,7 @@ void tImageDDS::Clear()
 	IsCubeMap = false;
 	NumImages = 0;
 	NumMipmapLayers = 0;
-	Result = ErrorCode::Success;
+	Result = ResultCode::Success;
 }
 
 
@@ -575,15 +575,15 @@ struct tDXT5Block
 #pragma pack(pop)
 
 
-tImageDDS::ErrorCode tImageDDS::Load(const tString& ddsFile, uint32 loadFlags)
+tImageDDS::ResultCode tImageDDS::Load(const tString& ddsFile, uint32 loadFlags)
 {
 	Clear();
 	Filename = ddsFile;
 	if (tSystem::tGetFileType(ddsFile) != tSystem::tFileType::DDS)
-		return Result = ErrorCode::IncorrectExtension;
+		return Result = ResultCode::IncorrectExtension;
 
 	if (!tSystem::tFileExists(ddsFile))
-		return Result = ErrorCode::FileNonexistent;
+		return Result = ResultCode::FileNonexistent;
 
 	int ddsSizeBytes = 0;
 	uint8* ddsData = (uint8*)tSystem::tLoadFile(ddsFile, 0, &ddsSizeBytes);
@@ -594,25 +594,25 @@ tImageDDS::ErrorCode tImageDDS::Load(const tString& ddsFile, uint32 loadFlags)
 }
 
 
-tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
+tImageDDS::ResultCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 {
 	Clear();
 
 	// This will deal with zero-sized files properly as well.
 	if (ddsSizeBytes < int(sizeof(tDDSHeader)+4))
-		return Result = ErrorCode::IncorrectFileSize;
+		return Result = ResultCode::IncorrectFileSize;
 
 	const uint8* ddsCurr = ddsData;
 	uint32& magic = *((uint32*)ddsCurr); ddsCurr += sizeof(uint32);
 	if (magic != ' SDD')
-		return Result = ErrorCode::IncorrectMagic;
+		return Result = ResultCode::IncorrectMagic;
 
 	tDDSHeader& header = *((tDDSHeader*)ddsCurr);  ddsCurr += sizeof(header);
 	tAssert(sizeof(tDDSHeader) == 124);
 	const uint8* pixelData = ddsCurr;
 
 	if (header.Size != 124)
-		return Result = ErrorCode::IncorrectHeaderSize;
+		return Result = ResultCode::IncorrectHeaderSize;
 
 	uint32 flags = header.Flags;
 	int mainWidth = header.Width;						// Main image.
@@ -631,12 +631,12 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 
 	// Linear size xor pitch must be specified.
 	if ((!linearSize && !pitch) || (linearSize && pitch))
-		return Result = ErrorCode::PitchXORLinearSize;
+		return Result = ResultCode::PitchXORLinearSize;
 	#endif
 
 	// Volume textures are not supported.
 	if (flags & tDDSFlag_Depth)
-		return Result = ErrorCode::VolumeTexturesNotSupported;
+		return Result = ResultCode::VolumeTexturesNotSupported;
 
 	// Determine the expected number of layers by looking at the mipmap count if it is supplied. We assume a single layer
 	// if it is not specified.
@@ -646,11 +646,11 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 		NumMipmapLayers = header.MipmapCount;
 
 	if (NumMipmapLayers > MaxMipmapLayers)
-		return Result = ErrorCode::MaxNumMipmapLevelsExceeded;
+		return Result = ResultCode::MaxNumMipmapLevelsExceeded;
 
 	tDDSPixelFormat& format = header.PixelFormat;
 	if (format.Size != 32)
-		return Result = ErrorCode::IncorrectPixelFormatSize;
+		return Result = ResultCode::IncorrectPixelFormatSize;
 
 	// Has alpha should be true if the pixel format is uncompressed (RGB) and there is an alpha channel.
 	// Determine if we support the pixel format and which one it is.
@@ -659,7 +659,7 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 	bool fourCCFormat = (format.Flags & tDDSPixelFormatFlag_FourCC) ? true : false;
 
 	if ((!rgbFormat && !fourCCFormat) || (rgbFormat && fourCCFormat))
-		return Result = ErrorCode::InconsistentPixelFormat;
+		return Result = ResultCode::InconsistentPixelFormat;
 
 	bool useDX10Ext = fourCCFormat && (format.FourCC == FourCC('D', 'X', '1', '0'));
 
@@ -680,11 +680,11 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 		tDDSHeaderDX10Ext& headerDX10 = *((tDDSHeaderDX10Ext*)ddsCurr);  ddsCurr += sizeof(tDDSHeaderDX10Ext);
 		pixelData = ddsCurr;
 		if (headerDX10.ArraySize == 0)
-			return Result = ErrorCode::Unknown;
+			return Result = ResultCode::Unknown;
 
 		// We only handle 2D textures for now.
 		if (headerDX10.ResourceDimension != tD3D10_RESOURCE_DIMENSION_TEXTURE2D)
-			return Result = ErrorCode::Unknown;
+			return Result = ResultCode::Unknown;
 
 		if (headerDX10.MiscFlag & 0x00000004)		// Cubemap.
 		{
@@ -779,12 +779,12 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 	if (PixelFormat == tPixelFormat::Invalid)
 	{
 		Clear();
-		return Result = ErrorCode::UnsupportedPixelFormat;
+		return Result = ResultCode::UnsupportedPixelFormat;
 	}
 
 	tAssert(PixelFormat != tPixelFormat::Invalid);
 	if (!rgbFormat && ((mainWidth%4) || (mainHeight%4)))
-		return Result = ErrorCode::UnsupportedDXTDimensions;
+		return Result = ResultCode::UnsupportedDXTDimensions;
 
 	for (int image = 0; image < NumImages; image++)
 	{
@@ -924,7 +924,7 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 
 						default:
 							Clear();
-							return Result = ErrorCode::UnsupportedPixelFormat;
+							return Result = ResultCode::UnsupportedPixelFormat;
 					}
 
 					// Finally we can append a layer with the massaged dxt data. We can simply get the layer to steal the memory (the
@@ -1017,7 +1017,8 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 						for (int ij = 0; ij < w*h; ij++)
 						{
 							tColour4f col(rgbData[ij], 1.0f);
-							col.ToGammaSpaceApprox();
+							if (loadFlags & LoadFlag_GammaCorrectHDR)
+								col.ToGammaSpaceApprox();
 							uncompData[ij].Set(col);
 						}
 						delete[] rgbData;
@@ -1027,7 +1028,7 @@ tImageDDS::ErrorCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uin
 					default:
 						delete[] uncompData;
 						Clear();
-						return Result = ErrorCode::DecodingError;
+						return Result = ResultCode::DecodingError;
 				}
 
 				// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
@@ -1074,13 +1075,13 @@ bool tImageDDS::DoDXT1BlocksHaveBinaryAlpha(tDXT1Block* block, int numBlocks)
 }
 
 
-const char* tImageDDS::GetErrorName(ErrorCode code)
+const char* tImageDDS::GetResultDesc(ResultCode code)
 {
-	return ErrorDescriptions[int(code)];
+	return ResultDescriptions[int(code)];
 }
 
 
-const char* tImageDDS::ErrorDescriptions[] =
+const char* tImageDDS::ResultDescriptions[] =
 {
 	"Success",
 	"File doesn't exist.",
@@ -1101,7 +1102,7 @@ const char* tImageDDS::ErrorDescriptions[] =
 	"Unable to decode.",
 	"Unknown"
 };
-tStaticAssert(tNumElements(tImageDDS::ErrorDescriptions) == int(tImageDDS::ErrorCode::NumCodes));
+tStaticAssert(tNumElements(tImageDDS::ResultDescriptions) == int(tImageDDS::ResultCode::NumCodes));
 
 
 }
