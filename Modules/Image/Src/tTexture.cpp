@@ -91,21 +91,6 @@ bool tTexture::Set(tImageDDS& dds, tImageDDS::tSurfIndex surface)
 	int width = mainLayer->Width;
 	int height = mainLayer->Height;
 
-	if (!tMath::tIsPower2(width) || !tMath::tIsPower2(height))
-	{
-		int nearestWidth = tMath::tClosestPower2(width);
-		int nearestHeight = tMath::tClosestPower2(height);
-
-		Clear();
-		throw tError
-		(
-			"Direct Draw texture '%s' must have power-of-2 dimensions. "
-			"Direct Draw textures do not get automatically resized by the pipeline. "
-			"The current dimensions are %dx%d. The suggested size to make the texture is %dx%d.",
-			tSystem::tGetFileBaseName(dds.Filename).Pod(), width, height, nearestWidth, nearestHeight
-		);
-	}
-
 	if
 	(
 		!tMath::tInRange(width, tLayer::MinLayerDimension, tLayer::MaxLayerDimension) ||
@@ -113,11 +98,7 @@ bool tTexture::Set(tImageDDS& dds, tImageDDS::tSurfIndex surface)
 	)
 	{
 		Clear();
-		throw tError
-		(
-			"Direct Draw texture '%s' has dimensions %dx%d but must have texture dimensions within the allowable range of [%d, %d].",
-			tSystem::tGetFileBaseName(dds.Filename).Pod(), width, height, tLayer::MinLayerDimension, tLayer::MaxLayerDimension
-		);
+		return false;
 	}
 
 	return true;
