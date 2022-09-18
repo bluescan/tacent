@@ -27,7 +27,7 @@ namespace tImage
 
 tImageDDS::tImageDDS() :
 	Filename(),
-	Results(1 << int(ResultCode::Fatal_LoadNotCalled)),
+	Results(1 << int(ResultCode::Fatal_DefaultInitialized)),
 	PixelFormat(tPixelFormat::Invalid),
 	IsCubeMap(false),
 	RowsFlipped(false),
@@ -40,7 +40,7 @@ tImageDDS::tImageDDS() :
 
 tImageDDS::tImageDDS(const tString& ddsFile, uint32 loadFlags) :
 	Filename(ddsFile),
-	Results(1 << int(ResultCode::Fatal_LoadNotCalled)),
+	Results(1 << int(ResultCode::Success)),
 	PixelFormat(tPixelFormat::Invalid),
 	IsCubeMap(false),
 	RowsFlipped(false),
@@ -54,7 +54,7 @@ tImageDDS::tImageDDS(const tString& ddsFile, uint32 loadFlags) :
 
 tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, uint32 loadFlags) :
 	Filename(),
-	Results(1 << int(ResultCode::Fatal_LoadNotCalled)),
+	Results(1 << int(ResultCode::Success)),
 	PixelFormat(tPixelFormat::Invalid),
 	IsCubeMap(false),
 	RowsFlipped(false),
@@ -77,7 +77,7 @@ void tImageDDS::Clear()
 		}
 	}
 
-	Results = (1 << int(ResultCode::Fatal_LoadNotCalled));
+	Results = (1 << int(ResultCode::Success));
 	PixelFormat = tPixelFormat::Invalid;
 	IsCubeMap = false;
 	RowsFlipped = false;
@@ -485,6 +485,30 @@ enum tD3D10_RESOURCE_DIMENSION
 };
 
 
+enum tD3D11_RESOURCE_MISC_FLAG
+{
+	tD3D11_RESOURCE_MISC_GENERATE_MIPS = 0x1L,
+	tD3D11_RESOURCE_MISC_SHARED = 0x2L,
+	tD3D11_RESOURCE_MISC_TEXTURECUBE = 0x4L,
+	tD3D11_RESOURCE_MISC_DRAWINDIRECT_ARGS = 0x10L,
+	tD3D11_RESOURCE_MISC_BUFFER_ALLOW_RAW_VIEWS = 0x20L,
+	tD3D11_RESOURCE_MISC_BUFFER_STRUCTURED = 0x40L,
+	tD3D11_RESOURCE_MISC_RESOURCE_CLAMP = 0x80L,
+	tD3D11_RESOURCE_MISC_SHARED_KEYEDMUTEX = 0x100L,
+	tD3D11_RESOURCE_MISC_GDI_COMPATIBLE = 0x200L,
+	tD3D11_RESOURCE_MISC_SHARED_NTHANDLE = 0x800L,
+	tD3D11_RESOURCE_MISC_RESTRICTED_CONTENT = 0x1000L,
+	tD3D11_RESOURCE_MISC_RESTRICT_SHARED_RESOURCE = 0x2000L,
+	tD3D11_RESOURCE_MISC_RESTRICT_SHARED_RESOURCE_DRIVER = 0x4000L,
+	tD3D11_RESOURCE_MISC_GUARDED = 0x8000L,
+	tD3D11_RESOURCE_MISC_TILE_POOL = 0x20000L,
+	tD3D11_RESOURCE_MISC_TILED = 0x40000L,
+	tD3D11_RESOURCE_MISC_HW_PROTECTED = 0x80000L,
+	tD3D11_RESOURCE_MISC_SHARED_DISPLAYABLE,
+	tD3D11_RESOURCE_MISC_SHARED_EXCLUSIVE_WRITER
+};
+
+
 struct tDDSHeaderDX10Ext
 {
 	tDXGI_FORMAT DxgiFormat;
@@ -619,7 +643,8 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 
 	const uint8* ddsCurr = ddsData;
 	uint32& magic = *((uint32*)ddsCurr); ddsCurr += sizeof(uint32);
-	if (magic != ' SDD')
+//	if (magic != ' SDD')
+	if (magic != FourCC('D','D','S',' '))
 	{
 		Results |= 1 << int(ResultCode::Fatal_IncorrectMagicNumber);
 		return false;
@@ -720,7 +745,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 			return false;
 		}
 
-		if (headerDX10.MiscFlag & 0x00000004)		// Cubemap.
+		if (headerDX10.MiscFlag & tD3D11_RESOURCE_MISC_TEXTURECUBE)
 		{
 			IsCubeMap = true;
 			NumImages = 6;

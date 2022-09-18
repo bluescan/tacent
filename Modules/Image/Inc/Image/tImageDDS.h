@@ -63,7 +63,7 @@ public:
 		Conditional_PitchXORLinearSize,
 
 		// Fatal. Load was uncuccessful and object is invalid.
-		Fatal_LoadNotCalled,
+		Fatal_DefaultInitialized,
 		Fatal_FileDoesNotExist,
 		Fatal_IncorrectFileType,
 		Fatal_IncorrectFileSize,
@@ -85,7 +85,7 @@ public:
 		MaxCodes							= 32,
 		FirstValid							= Success,
 		LastValid							= Conditional_PitchXORLinearSize,
-		FirstFatal							= Fatal_LoadNotCalled,
+		FirstFatal							= Fatal_DefaultInitialized,
 		LastFatal							= Fatal_DX10DimensionNotSupported
 	};
 
