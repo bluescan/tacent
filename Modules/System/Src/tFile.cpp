@@ -317,6 +317,7 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 	tPathStd(relLoc);
 	if (relLoc[0] == '/')
 		relLoc.RemoveFirst();
+	relLoc.ExtractLeft("./");
 
 	return relLoc;
 

@@ -976,18 +976,31 @@ tTestUnit(Directories)
 	tRequire(!deskDir.IsEmpty());
 	#endif
 
-	// Returns the relative location of path from basePath. Both these input strings must have a common prefix for this to
-	// succeed. Returns an empty string if it fails.
+	// Returns the relative location of path from basePath. Returns an empty string if it fails.
+	tString basePath, fullPath, relPath;
 	#ifdef PLATFORM_WINDOWS
-	tString basePath = "C:/TopLevel/";
-	tString fullPath = "C:/TopLevel/SubLevel/";
+	basePath = "C:/TopLevel/";
+	fullPath = "C:/TopLevel/SubLevel/";
 	#elif defined(PLATFORM_LINUX)
-	tString basePath = "/TopLevel/";
-	tString fullPath = "/TopLevel/SubLevel/";
+	basePath = "/TopLevel/";
+	fullPath = "/TopLevel/SubLevel/";
 	#endif
-	tString relPath = tGetRelativePath(basePath, fullPath);
+	relPath = tGetRelativePath(basePath, fullPath);
 	tPrintf("Rel Path is: %s\n", relPath.Chr());
-	tRequire((relPath == "./SubLevel/") && (relPath.Length() == 11));
+	tRequire((relPath == "SubLevel/") && (relPath.Length() == 9));
+
+#if 0
+	#ifdef PLATFORM_WINDOWS
+	basePath = "C:/TopLevel/a/b/";
+	fullPath = "C:/TopLevel/x/y/z/";
+	#elif defined(PLATFORM_LINUX)
+	basePath = "/TopLevel/a/b/";
+	fullPath = "/TopLevel/x/y/z/";
+	#endif
+	relPath = tGetRelativePath(basePath, fullPath);
+	tPrintf("Rel Path is: %s\n", relPath.Chr());
+	tRequire((relPath == "../../x/y/z/") && (relPath.Length() == 12));
+#endif
 }
 
 

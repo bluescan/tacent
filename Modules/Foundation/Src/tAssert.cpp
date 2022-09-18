@@ -17,8 +17,8 @@
 #ifdef TACENT_UTF16_API_CALLS
 #include "Foundation/tStandard.h"
 #endif
-#ifdef PLATFORM_WINDOWS
 #include <signal.h>
+#ifdef PLATFORM_WINDOWS
 #include <Windows.h>
 #endif
 
@@ -90,5 +90,9 @@ void tAssertPrintBreak(const char* expr, const char* fileName, int lineNum, cons
 		case IDIGNORE:
 			return;
 	}
+	#endif
+
+	#ifdef PLATFORM_LINUX
+	raise(SIGTRAP);
 	#endif
 }
