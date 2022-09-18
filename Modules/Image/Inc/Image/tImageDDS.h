@@ -55,47 +55,59 @@ public:
 
 	enum class ResultCode
 	{
+		// Full success. All load flags applied successfully.
 		Success,
-		NoError									= Success,
 
-		FileNonexistent,
-		IncorrectExtension,
-		IncorrectFileSize,
-		IncorrectMagic,
-		IncorrectHeaderSize,
-		PitchXORLinearSize,
-		VolumeTexturesNotSupported,
-		IncorrectPixelFormatSize,
-		InconsistentPixelFormat,
-		UnsupportedPixelFormat,
-		IncorrectDXTDataSize,
-		UnsupportedDXTDimensions,
-		LoaderSupportsPowerOfTwoDimsOnly,
-		MaxNumMipmapLevelsExceeded,
-		UnsuportedFloatingPointPixelFormat,
-		DecodingError,
-		Unknown,
-		NumCodes
+		// Conditional success. Object is valid, but not all load flags applied.
+		Conditional_CouldNotFlipRows,
+		Conditional_PitchXORLinearSize,
+
+		// Fatal. Load was uncuccessful and object is invalid.
+		Fatal_LoadNotCalled,
+		Fatal_FileDoesNotExist,
+		Fatal_IncorrectFileType,
+		Fatal_IncorrectFileSize,
+		Fatal_IncorrectMagicNumber,
+		Fatal_IncorrectHeaderSize,
+		Fatal_VolumeTexturesNotSupported,
+		Fatal_IncorrectPixelFormatHeaderSize,
+		Fatal_IncorrectPixelFormatSpec,
+		Fatal_UnsupportedPixelFormat,
+		Fatal_IncorrectBCDataSize,
+		Fatal_BCDimensionsNotDivisibleByFour,
+		Fatal_MaxNumMipmapLevelsExceeded,
+		Fatal_BlockDecodeError,
+		Fatal_DX10HeaderSizeIncorrect,
+		Fatal_DX10DimensionNotSupported,
+		NumCodes,
+
+		// Since we store result codes as bits in a 32-bit uint, we need to make sure we don't have too many codes.
+		MaxCodes							= 32,
+		FirstValid							= Success,
+		LastValid							= Conditional_PitchXORLinearSize,
+		FirstFatal							= Fatal_LoadNotCalled,
+		LastFatal							= Fatal_DX10DimensionNotSupported
 	};
 
-	// After construction if the object is invalid you can call GetLastResult() to find out what went wrong.
-	ResultCode GetLastResult() const																					{ return Result; }
+	// After a load you can call GetResults() to find out what, if anything, went wrong.
+	uint32 GetResults() const																							{ return Results; }
+	bool IsResultSet(ResultCode code) const																				{ return (Results & (1<<int(code))); }
 	static const char* GetResultDesc(ResultCode);
-	const char* GetLastResultDesc() const																				{ return GetResultDesc(Result); }
+
+	// Will return true if a dds file has been successfully loaded. This includes conditional success results.
+	bool IsValid() const																								{ return (Results < (1 << int(ResultCode::FirstFatal))); }
 
 	// Clears the current tImageDDS before loading. If the dds file failed to load for any reason it will result in an
 	// invalid object. A dds may fail to load for a number of reasons: Volume textures are not supported, some
-	// pixel-formats may not yet be supported, or inconsistent flags.
-	ResultCode Load(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default);
-	ResultCode Load(const uint8* ddsFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default);
+	// pixel-formats may not yet be supported, or inconsistent flags. Returns true on success or conditional success.
+	bool Load(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default);
+	bool Load(const uint8* ddsFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default);
 
 	// After this call no memory will be consumed by the object and it will be invalid. Does not clear filename.
 	void Clear();
-
-	// Will return true if a dds file has been successfully loaded.
-	bool IsValid() const																								{ return ((NumMipmapLayers > 0) && (NumImages > 0) && (PixelFormat != tPixelFormat::Invalid)) ? true : false; }
 	bool IsMipmapped() const																							{ return (NumMipmapLayers > 1) ? true : false; }
 	bool IsCubemap() const																								{ return IsCubeMap; }
+	bool AreRowsFlipped() const																							{ return RowsFlipped; }
 
 	// The number of mipmap levels per image is always the same if there is more than one image in the direct texture
 	// (like for cube maps). Same for the dimensions and pixel format.
@@ -160,11 +172,12 @@ public:
 private:
 	bool DoDXT1BlocksHaveBinaryAlpha(tDXT1Block* blocks, int numBlocks);
 
-	ResultCode Result = ResultCode::Success;
+	// The result codes are bits in this Results member.
+	uint32 Results;
 
-	// The surface is only valid if this is not PixelFormat_Invalid.
 	tPixelFormat PixelFormat;
 	bool IsCubeMap;
+	bool RowsFlipped;
 
 	// This will be 1 for textures. For cubemaps NumImages == 6.
 	int NumImages;

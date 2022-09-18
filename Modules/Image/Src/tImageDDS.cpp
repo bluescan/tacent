@@ -20,7 +20,6 @@
 #include "Image/tImageDDS.h"
 #define BCDEC_IMPLEMENTATION
 #include "bcdec/bcdec.h"
-#define STRICT_DDS_HEADER_CHECKING
 #define FourCC(ch0, ch1, ch2, ch3) (uint(uint8(ch0)) | (uint(uint8(ch1)) << 8) | (uint(uint8(ch2)) << 16) | (uint(uint8(ch3)) << 24))
 namespace tImage
 {
@@ -28,8 +27,10 @@ namespace tImage
 
 tImageDDS::tImageDDS() :
 	Filename(),
+	Results(1 << int(ResultCode::Fatal_LoadNotCalled)),
 	PixelFormat(tPixelFormat::Invalid),
 	IsCubeMap(false),
+	RowsFlipped(false),
 	NumImages(0),
 	NumMipmapLayers(0)
 {
@@ -39,25 +40,29 @@ tImageDDS::tImageDDS() :
 
 tImageDDS::tImageDDS(const tString& ddsFile, uint32 loadFlags) :
 	Filename(ddsFile),
+	Results(1 << int(ResultCode::Fatal_LoadNotCalled)),
 	PixelFormat(tPixelFormat::Invalid),
 	IsCubeMap(false),
+	RowsFlipped(false),
 	NumImages(0),
 	NumMipmapLayers(0)
 {
 	tStd::tMemset(MipmapLayers, 0, sizeof(MipmapLayers));
-	Result = Load(ddsFile, loadFlags);
+	Load(ddsFile, loadFlags);
 }
 
 
 tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, uint32 loadFlags) :
 	Filename(),
+	Results(1 << int(ResultCode::Fatal_LoadNotCalled)),
 	PixelFormat(tPixelFormat::Invalid),
 	IsCubeMap(false),
+	RowsFlipped(false),
 	NumImages(0),
 	NumMipmapLayers(0)
 {
 	tStd::tMemset(MipmapLayers, 0, sizeof(MipmapLayers));
-	Result = Load(ddsFileInMemory, numBytes, loadFlags);
+	Load(ddsFileInMemory, numBytes, loadFlags);
 }
 
 
@@ -72,11 +77,12 @@ void tImageDDS::Clear()
 		}
 	}
 
+	Results = (1 << int(ResultCode::Fatal_LoadNotCalled));
 	PixelFormat = tPixelFormat::Invalid;
 	IsCubeMap = false;
+	RowsFlipped = false;
 	NumImages = 0;
 	NumMipmapLayers = 0;
-	Result = ResultCode::Success;
 }
 
 
@@ -575,68 +581,82 @@ struct tDXT5Block
 #pragma pack(pop)
 
 
-tImageDDS::ResultCode tImageDDS::Load(const tString& ddsFile, uint32 loadFlags)
+bool tImageDDS::Load(const tString& ddsFile, uint32 loadFlags)
 {
 	Clear();
 	Filename = ddsFile;
 	if (tSystem::tGetFileType(ddsFile) != tSystem::tFileType::DDS)
-		return Result = ResultCode::IncorrectExtension;
+	{
+		Results |= 1 << int(ResultCode::Fatal_IncorrectFileType);
+		return false;
+	}
 
 	if (!tSystem::tFileExists(ddsFile))
-		return Result = ResultCode::FileNonexistent;
+	{
+		Results |= 1 << int(ResultCode::Fatal_FileDoesNotExist);
+		return false;
+	}
 
 	int ddsSizeBytes = 0;
 	uint8* ddsData = (uint8*)tSystem::tLoadFile(ddsFile, 0, &ddsSizeBytes);
-	Result = Load(ddsData, ddsSizeBytes, loadFlags);
+	bool success = Load(ddsData, ddsSizeBytes, loadFlags);
 	delete[] ddsData;
 
-	return Result;
+	return success;
 }
 
 
-tImageDDS::ResultCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
+bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 {
 	Clear();
 
 	// This will deal with zero-sized files properly as well.
 	if (ddsSizeBytes < int(sizeof(tDDSHeader)+4))
-		return Result = ResultCode::IncorrectFileSize;
+	{
+		Results |= 1 << int(ResultCode::Fatal_IncorrectFileSize);
+		return false;
+	}
 
 	const uint8* ddsCurr = ddsData;
 	uint32& magic = *((uint32*)ddsCurr); ddsCurr += sizeof(uint32);
 	if (magic != ' SDD')
-		return Result = ResultCode::IncorrectMagic;
+	{
+		Results |= 1 << int(ResultCode::Fatal_IncorrectMagicNumber);
+		return false;
+	}
 
 	tDDSHeader& header = *((tDDSHeader*)ddsCurr);  ddsCurr += sizeof(header);
 	tAssert(sizeof(tDDSHeader) == 124);
 	const uint8* pixelData = ddsCurr;
-
 	if (header.Size != 124)
-		return Result = ResultCode::IncorrectHeaderSize;
+	{
+		Results |= 1 << int(ResultCode::Fatal_IncorrectHeaderSize);
+		return false;
+	}
 
 	uint32 flags = header.Flags;
 	int mainWidth = header.Width;						// Main image.
 	int mainHeight = header.Height;						// Main image.
 
-	// It seems ATI tools like GenCubeMap don't set the correct bits.
-	#ifdef STRICT_DDS_HEADER_CHECKING
+	// A strictly correct dds will have linear-size xor pitch set (one, not both).
+	// It seems ATI tools like GenCubeMap don't set the correct bits, but we still load
+	// with a conditional success.
 	int pitch = 0;										// Num bytes per line on main image (uncompressed images only).
 	int linearSize = 0;									// Num bytes total main image (compressed images only).
-
 	if (flags & tDDSFlag_Pitch)
 		pitch = header.PitchLinearSize;
-
 	if (flags & tDDSFlag_LinearSize)
 		linearSize = header.PitchLinearSize;
 
-	// Linear size xor pitch must be specified.
 	if ((!linearSize && !pitch) || (linearSize && pitch))
-		return Result = ResultCode::PitchXORLinearSize;
-	#endif
+		Results |= 1 << int(ResultCode::Conditional_PitchXORLinearSize);
 
 	// Volume textures are not supported.
 	if (flags & tDDSFlag_Depth)
-		return Result = ResultCode::VolumeTexturesNotSupported;
+	{
+		Results |= 1 << int(ResultCode::Fatal_VolumeTexturesNotSupported);
+		return false;
+	}
 
 	// Determine the expected number of layers by looking at the mipmap count if it is supplied. We assume a single layer
 	// if it is not specified.
@@ -646,20 +666,28 @@ tImageDDS::ResultCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, ui
 		NumMipmapLayers = header.MipmapCount;
 
 	if (NumMipmapLayers > MaxMipmapLayers)
-		return Result = ResultCode::MaxNumMipmapLevelsExceeded;
+	{
+		Results |= 1 << int(ResultCode::Fatal_MaxNumMipmapLevelsExceeded);
+		return false;
+	}
 
 	tDDSPixelFormat& format = header.PixelFormat;
 	if (format.Size != 32)
-		return Result = ResultCode::IncorrectPixelFormatSize;
+	{
+		Results |= 1 << int(ResultCode::Fatal_IncorrectPixelFormatHeaderSize);
+		return false;
+	}
 
 	// Has alpha should be true if the pixel format is uncompressed (RGB) and there is an alpha channel.
 	// Determine if we support the pixel format and which one it is.
 	bool rgbHasAlpha = (format.Flags & tDDSPixelFormatFlag_Alpha) ? true : false;
 	bool rgbFormat = (format.Flags & tDDSPixelFormatFlag_RGB) ? true : false;
 	bool fourCCFormat = (format.Flags & tDDSPixelFormatFlag_FourCC) ? true : false;
-
 	if ((!rgbFormat && !fourCCFormat) || (rgbFormat && fourCCFormat))
-		return Result = ResultCode::InconsistentPixelFormat;
+	{
+		Results |= 1 << int(ResultCode::Fatal_IncorrectPixelFormatSpec);
+		return false;
+	}
 
 	bool useDX10Ext = fourCCFormat && (format.FourCC == FourCC('D', 'X', '1', '0'));
 
@@ -680,11 +708,17 @@ tImageDDS::ResultCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, ui
 		tDDSHeaderDX10Ext& headerDX10 = *((tDDSHeaderDX10Ext*)ddsCurr);  ddsCurr += sizeof(tDDSHeaderDX10Ext);
 		pixelData = ddsCurr;
 		if (headerDX10.ArraySize == 0)
-			return Result = ResultCode::Unknown;
+		{
+			Results |= 1 << int(ResultCode::Fatal_DX10HeaderSizeIncorrect);
+			return false;
+		}
 
 		// We only handle 2D textures for now.
 		if (headerDX10.ResourceDimension != tD3D10_RESOURCE_DIMENSION_TEXTURE2D)
-			return Result = ResultCode::Unknown;
+		{
+			Results |= 1 << int(ResultCode::Fatal_DX10DimensionNotSupported);
+			return false;
+		}
 
 		if (headerDX10.MiscFlag & 0x00000004)		// Cubemap.
 		{
@@ -778,13 +812,16 @@ tImageDDS::ResultCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, ui
 	// @todo We do not yet support these formats.
 	if (PixelFormat == tPixelFormat::Invalid)
 	{
-		Clear();
-		return Result = ResultCode::UnsupportedPixelFormat;
+		Results |= 1 << int(ResultCode::Fatal_UnsupportedPixelFormat);
+		return false;
 	}
 
 	tAssert(PixelFormat != tPixelFormat::Invalid);
 	if (!rgbFormat && ((mainWidth%4) || (mainHeight%4)))
-		return Result = ResultCode::UnsupportedDXTDimensions;
+	{
+		Results |= 1 << int(ResultCode::Fatal_BCDimensionsNotDivisibleByFour);
+		return false;
+	}
 
 	for (int image = 0; image < NumImages; image++)
 	{
@@ -916,15 +953,10 @@ tImageDDS::ResultCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, ui
 							break;
 						}
 
-						case tPixelFormat::BC7_UNORM:
-							break;
-
-						case tPixelFormat::BC6H_S16:
-							break;
-
 						default:
-							Clear();
-							return Result = ResultCode::UnsupportedPixelFormat;
+							delete[] reversedPixelData;
+							Results |= 1 << int(ResultCode::Fatal_UnsupportedPixelFormat);
+							return false;
 					}
 
 					// Finally we can append a layer with the massaged dxt data. We can simply get the layer to steal the memory (the
@@ -1028,7 +1060,8 @@ tImageDDS::ResultCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, ui
 					default:
 						delete[] uncompData;
 						Clear();
-						return Result = ResultCode::DecodingError;
+						Results |= 1 << int(ResultCode::Fatal_BlockDecodeError);
+						return false;
 				}
 
 				// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
@@ -1039,7 +1072,8 @@ tImageDDS::ResultCode tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, ui
 		}
 	}
 
-	return Result;
+	tAssert(IsValid());
+	return true;
 }
 
 
@@ -1084,25 +1118,27 @@ const char* tImageDDS::GetResultDesc(ResultCode code)
 const char* tImageDDS::ResultDescriptions[] =
 {
 	"Success",
-	"File doesn't exist.",
-	"Incorrect DDS extension.",
-	"Filesize incorrect.",
-	"Magic FourCC Incorrect.",
-	"Incorrect DDS header size.",
-	"One of Pitch or LinearSize must be specified.",
-	"Volume textures unsupported.",
-	"Pixel format size incorrect.",
-	"Pixel format must be either an RGB format or a FourCC format.",
-	"Unsupported pixel format.",
-	"Incorrect DXT pixel data size.",
-	"DXT Texture dimensions must be divisible by 4.",
-	"Current DDS loader only supports power-of-2 dimensions.",
-	"Maximum number of mipmap levels exceeded.",
-	"Floating point pixel formats not supported yet.",
-	"Unable to decode.",
-	"Unknown"
+	"Conditional Success. Image rows could not be flipped.",
+	"Conditional Success. Only one of Pitch or LinearSize should be specified. Using dimensions instead.",
+	"Fatal Error. Load not called. Invalid object.",
+	"Fatal Error. File does not exist.",
+	"Fatal Error. Incorrect file type. Must be a DDS file.",
+	"Fatal Error. Filesize incorrect.",
+	"Fatal Error. Magic FourCC Incorrect.",
+	"Fatal Error. Incorrect DDS header size.",
+	"Fatal Error. DDS volume textures not supported.",
+	"Fatal Error. Pixel format header size incorrect.",
+	"Fatal Error. Pixel format specification incorrect.",
+	"Fatal Error. Unsupported pixel format.",
+	"Fatal Error. Incorrect BC data size.",
+	"Fatal Error. BC texture dimensions not divisible by 4.",
+	"Fatal Error. Maximum number of mipmap levels exceeded.",
+	"Fatal Error. Unable to decode BC pixels.",
+	"Fatal Error. DX10 header size incorrect.",
+	"Fatal Error. DX10 resource dimension not supported. 2D support only."
 };
 tStaticAssert(tNumElements(tImageDDS::ResultDescriptions) == int(tImageDDS::ResultCode::NumCodes));
+tStaticAssert(int(tImageDDS::ResultCode::NumCodes) <= int(tImageDDS::ResultCode::MaxCodes));
 
 
 }
