@@ -71,8 +71,8 @@ jobs:
         echo 'Running Unit Tests'
         cd build
         cd TacentInstall
-        ./UnitTests | tee Ubuntu_TestResults.txt
-        echo 'Done Running Unit Tests'
+        ./UnitTests > Ubuntu_TestResults.txt
+        echo '*** Done Running Unit Tests ***'
 
     - name: Unit Test Results
       uses: actions/upload-artifact@v1
