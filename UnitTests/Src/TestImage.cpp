@@ -710,8 +710,6 @@ tTestUnit(ImageDDS)
 	layer = layers.First();
 	tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
 	tga.Save("TestData/Images/DDS_KTX2/WrittenPattern_BC6Hs_HDRRGB.tga");
-
-	tRequire(false);
 }
 
 
