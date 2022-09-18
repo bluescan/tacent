@@ -277,88 +277,93 @@ tString tSystem::tGetAbsolutePath(const tString& path, const tString& basePath)
 
 tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 {
+	#if defined(USE_PLATFORM_SPECIFIC_IMPLEMENTATION_FOR_GETRELATIVEPATH)
+		#if defined(PLATFORM_WINDOWS)
+		tAssert(basePath[ basePath.Length() - 1 ] == '/');
+		bool isDir = (path[path.Length() - 1] == '/') ? true : false;
+
+		tString basePathMod = basePath;
+		tPathWin(basePathMod);
+
+		tString pathMod = path;
+		tPathWin(pathMod);
+
+		#ifdef TACENT_UTF16_API_CALLS	
+		tStringUTF16 relLoc16(MAX_PATH);
+		tStringUTF16 basePathMod16(basePathMod);
+		tStringUTF16 pathMod16(pathMod);
+		int success = PathRelativePathTo
+		(
+			relLoc16.GetLPWSTR(), basePathMod16.GetLPWSTR(), FILE_ATTRIBUTE_DIRECTORY,
+			pathMod16.GetLPWSTR(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
+		);
+		relLoc16.SetLength( tStd::tStrlen(relLoc16.Chars()) );
+		#else
+		char relLocBuf[MAX_PATH+1];
+		int success = PathRelativePathTo
+		(
+			relLocBuf, basePathMod.Chr(), FILE_ATTRIBUTE_DIRECTORY,
+			pathMod.Chr(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
+		);
+		tString relLoc(relLocBuf);
+		#endif
+
+		if (!success)
+			return tString();
+
+		#ifdef TACENT_UTF16_API_CALLS
+		tString relLoc(relLoc16);
+		#endif
+
+		tPathStd(relLoc);
+		if (relLoc[0] == '/')
+			relLoc.RemoveFirst();
+		relLoc.ExtractLeft("./");
+		return relLoc;
+
+		#else
+		tAssert(!"No platform-specific tGetRelativePath implementation available.");
+		#endif
+
+	#else
+	// Below is the better non-platform-specific implementation. Only thing plat-specific is no case-sensitivity on
+	// windows. First lets standardize both input paths to use the tacent standard (forward slashes and trailing slash
+	// mandatory for directory paths.
+	tString base(basePath);		tPathStdDir(base);
+	tString full(path);			tPathStdDir(full);
+
+	// Early exit on trivial paths.
+	if (full.IsEmpty())			return tString();
+	if (base.IsEmpty())			return full;
+
+	// Find a common prefix and extract if from both paths.
+	int lenBase = base.Length();
+	int lenFull = full.Length();
+
+	int last = 0;
 	#if defined(PLATFORM_WINDOWS)
-	tAssert(basePath[ basePath.Length() - 1 ] == '/');
-	bool isDir = (path[path.Length() - 1] == '/') ? true : false;
-
-	tString basePathMod = basePath;
-	tPathWin(basePathMod);
-
-	tString pathMod = path;
-	tPathWin(pathMod);
-
-	#ifdef TACENT_UTF16_API_CALLS	
-	tStringUTF16 relLoc16(MAX_PATH);
-	tStringUTF16 basePathMod16(basePathMod);
-	tStringUTF16 pathMod16(pathMod);
-	int success = PathRelativePathTo
-	(
-		relLoc16.GetLPWSTR(), basePathMod16.GetLPWSTR(), FILE_ATTRIBUTE_DIRECTORY,
-		pathMod16.GetLPWSTR(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
-	);
-	relLoc16.SetLength( tStd::tStrlen(relLoc16.Chars()) );
+	// Case insensitive on windows.
+	while (tStd::tChrlwr(base[last]) == tStd::tChrlwr(full[last]))
 	#else
-	char relLocBuf[MAX_PATH+1];
-	int success = PathRelativePathTo
-	(
-		relLocBuf, basePathMod.Chr(), FILE_ATTRIBUTE_DIRECTORY,
-		pathMod.Chr(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
-	);
-	tString relLoc(relLocBuf);
+	while (base[last] == full[last])
 	#endif
+		last++;
 
-	if (!success)
-		return tString();
-
-	#ifdef TACENT_UTF16_API_CALLS
-	tString relLoc(relLoc16);
-	#endif
-
-	tPathStd(relLoc);
-	if (relLoc[0] == '/')
-		relLoc.RemoveFirst();
-	relLoc.ExtractLeft("./");
-
-	return relLoc;
-
-	#else
-	tString refPath(basePath);
-	tString absPath(path);
-	
-	int sizer = refPath.Length()+1;
-	int sizea = absPath.Length()+1;
-	if (sizea <= 1)
-		return tString();
-	if (sizer<= 1)
-		return absPath;
-
-	// From stackoverflow cuz I don't feel like thinking.
-	// https://stackoverflow.com/questions/36173695/how-to-retrieve-filepath-relatively-to-a-given-directory-in-c	
-	char relPath[1024];
-	relPath[0] = '\0';
-	char* pathr = refPath.Txt();
-	char* patha = absPath.Txt();
-	int inc = 0;
-
-	for (; (inc < sizea) && (inc < sizer); inc += tStd::tStrlen(patha+inc)+1)
+	if (last > 0)
 	{
-		char* tokena = tStd::tStrchr(patha+inc, '/');
-		char* tokenr = tStd::tStrchr(pathr+inc, '/');
-		
-		if (tokena) *tokena = '\0';
-		if (tokenr) *tokenr = '\0';
-		if (tStd::tStrcmp(patha+inc, pathr+inc) != 0)
-			break;
+		base.ExtractLeft(last);
+		full.ExtractLeft(last);
 	}
 
-	if (inc < sizea)
-		tStd::tStrcat(relPath, absPath.Txt()+inc);
+	// Now we count how many times we need to go up from base.
+	tString rel;
+	int numDirsUp = base.CountChar('/');
+	for (int up = 0; up < numDirsUp; up++)
+		rel += "../";
 
-	tString ret(relPath);
-	if (ret[ret.Length()-1] != '/')
-		ret += '/';
-		
-	return ret;
+	// And now just append what's left in the full path to get us there.
+	rel += full;
+	return rel;
 	#endif
 }
 

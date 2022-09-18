@@ -979,8 +979,8 @@ tTestUnit(Directories)
 	// Returns the relative location of path from basePath. Returns an empty string if it fails.
 	tString basePath, fullPath, relPath;
 	#ifdef PLATFORM_WINDOWS
-	basePath = "C:/TopLevel/";
-	fullPath = "C:/TopLevel/SubLevel/";
+	basePath = "C:/TopLeVel/";
+	fullPath = "C:/TopLeveL/SubLevel/";
 	#elif defined(PLATFORM_LINUX)
 	basePath = "/TopLevel/";
 	fullPath = "/TopLevel/SubLevel/";
@@ -989,10 +989,9 @@ tTestUnit(Directories)
 	tPrintf("Rel Path is: %s\n", relPath.Chr());
 	tRequire((relPath == "SubLevel/") && (relPath.Length() == 9));
 
-#if 0
 	#ifdef PLATFORM_WINDOWS
 	basePath = "C:/TopLevel/a/b/";
-	fullPath = "C:/TopLevel/x/y/z/";
+	fullPath = "C:/TopLEVEL/x/y/z/";
 	#elif defined(PLATFORM_LINUX)
 	basePath = "/TopLevel/a/b/";
 	fullPath = "/TopLevel/x/y/z/";
@@ -1000,7 +999,6 @@ tTestUnit(Directories)
 	relPath = tGetRelativePath(basePath, fullPath);
 	tPrintf("Rel Path is: %s\n", relPath.Chr());
 	tRequire((relPath == "../../x/y/z/") && (relPath.Length() == 12));
-#endif
 }
 
 
