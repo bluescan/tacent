@@ -41,7 +41,7 @@ jobs:
         cd build
         cd TacentInstall
         powershell ".\UnitTests.exe | tee Windows_TestResults.txt"
-        echo %errorlevel%
+        Write-Output "Exit Code: ${LASTEXITCODE}"
         echo '*** Done Running Unit Tests ***'
 
     - name: Unit Test Results
@@ -72,6 +72,7 @@ jobs:
         cd build
         cd TacentInstall
         ./UnitTests > Ubuntu_TestResults.txt
+        echo "Exit Code: $?"
         echo '*** Done Running Unit Tests ***'
 
     - name: Unit Test Results
