@@ -277,58 +277,9 @@ tString tSystem::tGetAbsolutePath(const tString& path, const tString& basePath)
 
 tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 {
-	#if defined(USE_PLATFORM_SPECIFIC_IMPLEMENTATION_FOR_GETRELATIVEPATH)
-		#if defined(PLATFORM_WINDOWS)
-		tAssert(basePath[ basePath.Length() - 1 ] == '/');
-		bool isDir = (path[path.Length() - 1] == '/') ? true : false;
-
-		tString basePathMod = basePath;
-		tPathWin(basePathMod);
-
-		tString pathMod = path;
-		tPathWin(pathMod);
-
-		#ifdef TACENT_UTF16_API_CALLS	
-		tStringUTF16 relLoc16(MAX_PATH);
-		tStringUTF16 basePathMod16(basePathMod);
-		tStringUTF16 pathMod16(pathMod);
-		int success = PathRelativePathTo
-		(
-			relLoc16.GetLPWSTR(), basePathMod16.GetLPWSTR(), FILE_ATTRIBUTE_DIRECTORY,
-			pathMod16.GetLPWSTR(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
-		);
-		relLoc16.SetLength( tStd::tStrlen(relLoc16.Chars()) );
-		#else
-		char relLocBuf[MAX_PATH+1];
-		int success = PathRelativePathTo
-		(
-			relLocBuf, basePathMod.Chr(), FILE_ATTRIBUTE_DIRECTORY,
-			pathMod.Chr(), isDir ? FILE_ATTRIBUTE_DIRECTORY : 0
-		);
-		tString relLoc(relLocBuf);
-		#endif
-
-		if (!success)
-			return tString();
-
-		#ifdef TACENT_UTF16_API_CALLS
-		tString relLoc(relLoc16);
-		#endif
-
-		tPathStd(relLoc);
-		if (relLoc[0] == '/')
-			relLoc.RemoveFirst();
-		relLoc.ExtractLeft("./");
-		return relLoc;
-
-		#else
-		tAssert(!"No platform-specific tGetRelativePath implementation available.");
-		#endif
-
-	#else
-	// Below is the better non-platform-specific implementation. Only thing plat-specific is no case-sensitivity on
-	// windows. First lets standardize both input paths to use the tacent standard (forward slashes and trailing slash
-	// mandatory for directory paths.
+	// Below is the platform-agnostic implementation that doesn't use windows-only PathRelativePathTo. Only thing
+	// plat-specific is no case-sensitivity on windows. First let's standardize both input paths to use the tacent
+	// standard -- forward slashes and trailing-slash mandatory for directory paths.
 	tString base(basePath);		tPathStdDir(base);
 	tString full(path);			tPathStdDir(full);
 
@@ -349,11 +300,9 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 	#endif
 		last++;
 
-	if (last > 0)
-	{
-		base.ExtractLeft(last);
-		full.ExtractLeft(last);
-	}
+	// It's ok to call extract with 0 if nothing was the same. It just extracts nothing.
+	base.ExtractLeft(last);
+	full.ExtractLeft(last);
 
 	// Now we count how many times we need to go up from base.
 	tString rel;
@@ -364,7 +313,6 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 	// And now just append what's left in the full path to get us there.
 	rel += full;
 	return rel;
-	#endif
 }
 
 
