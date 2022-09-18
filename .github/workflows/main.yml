@@ -72,7 +72,7 @@ jobs:
         cd build
         cd TacentInstall
         ./UnitTests > Ubuntu_TestResults.txt
-        echo "Exit Code: $?"
+        echo Exit Code: $?
         echo '*** Done Running Unit Tests ***'
 
     - name: Unit Test Results
