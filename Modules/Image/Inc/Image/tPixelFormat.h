@@ -51,10 +51,10 @@ enum class tPixelFormat
 	BC7_UNORM,							// BC 7. Full colour. Variable alpha 0 to 8 bits.
 	LastBlock			= BC7_UNORM,
 
-	FirstHDR,
-	HDR_RAD				= FirstHDR,		// Radiance hdr.
-	HDR_EXR,							// OpenEXR.
-	LastHDR				= HDR_EXR,
+	FirstVendor,
+	RADIANCE_HDR		= FirstVendor,	// Radiance hdr.
+	OPENEXR_HDR,						// OpenEXR.
+	LastVendor			= OPENEXR_HDR,
 
 	FirstPAL,
 	PAL_8BIT			= FirstPAL,		// 8bit indexes to a Palette. ex. gif files.
@@ -65,15 +65,16 @@ enum class tPixelFormat
 	NumPixelFormats,
 	NumNormalFormats	= LastNormal - FirstNormal + 1,
 	NumBlockFormats		= LastBlock - FirstBlock + 1,
-	NumHDRFormats		= LastHDR - FirstHDR + 1,
+	NumVendorFormats	= LastVendor - FirstVendor + 1,
 	NumPALFormats		= LastPAL - FirstPAL + 1
 };
 
 
 bool tIsNormalFormat(tPixelFormat);
-bool tIsBlockFormat(tPixelFormat);
-bool tIsHDRFormat(tPixelFormat);
+bool tIsBlockCompressedFormat(tPixelFormat);
+bool tIsVendorFormat(tPixelFormat);
 bool tIsPaletteFormat(tPixelFormat);
+bool tFormatSupportsAlpha(tPixelFormat);
 int tGetBitsPerPixel(tPixelFormat);				// Some formats (dxt1) are only half a byte per pixel, so we report bits.
 int tGetBytesPer4x4PixelBlock(tPixelFormat);	// This function must be given a BC pixel format.
 const char* tGetPixelFormatName(tPixelFormat);

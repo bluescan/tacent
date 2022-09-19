@@ -40,12 +40,20 @@ public:
 		LoadFlag_GammaCorrectHDR	= 1 << 2,	// Gamma correct HDR (BC6) images during load.
 		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder
 	};
-
 	// If an error is encountered loading the resultant object will return false for IsValid. You can call GetLastResult
 	// to get more detailed information. There are some results that are not full-success that leave the object valid.
 	// When decoding _and_ reversing row order, most BC 4x4 blocks can be massaged without decompression to fix the row
 	// order. The more complex ones like BC6 and BC7 cannot be swizzled around like this (well, they probably could be,
 	// but it's a non-trivial amount of work).
+	//
+	// A note on LoadFlag_ReverseRowOrder. tImageDDS tries to perform row-reversing before any decode operation. This is
+	// often possible even if the DDS texture data is BC-compressed. However, for some of the more complex BC schemes
+	// (eg. BC6 BC7) this reversal cannot be easily accomplished without a full decode and re-encode which would be
+	// lossy. In these cases the row-reversal is done _after_ decoding. Unfortunalely decoding may not always be
+	// requested (for example if you want to pass the image data directly to the GPU memory in OpenGL). In these cases
+	// tImageDDS will be unable to reverse the rows. You will still get a valid object, but it will be a conditional
+	// success (GetResults() will have Conditional_CouldNotFlipRows flag set). You can call RowsReversed() to see
+	// if row-reversal was performed.
 	tImageDDS(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default);
 
 	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is read from
@@ -107,7 +115,7 @@ public:
 	void Clear();
 	bool IsMipmapped() const																							{ return (NumMipmapLayers > 1) ? true : false; }
 	bool IsCubemap() const																								{ return IsCubeMap; }
-	bool AreRowsFlipped() const																							{ return RowsFlipped; }
+	bool RowsReversed() const																							{ return RowReversalOperationPerformed; }
 
 	// The number of mipmap levels per image is always the same if there is more than one image in the direct texture
 	// (like for cube maps). Same for the dimensions and pixel format.
@@ -118,6 +126,9 @@ public:
 
 	// Will return RGBA if you chose to decode the layers. Otherwise it will be whatever format the dds data was in.
 	tPixelFormat GetPixelFormat() const																					{ return PixelFormat; }
+
+	// Will return the format the dds data was in, even if you chose to decode.
+	tPixelFormat GetPixelFormatOrig() const																				{ return PixelFormatOrig; }
 
 	// The texture is considered to have alphas if it is in a pixel format that supports them. For DXT1, the data is
 	// checked to see if any DXT1 blocks have a binary alpha index. We could check the data for the RGBA formats, but
@@ -171,13 +182,16 @@ public:
 
 private:
 	bool DoDXT1BlocksHaveBinaryAlpha(tDXT1Block* blocks, int numBlocks);
+	uint8* CreateReversedRowData_Normal(const uint8* pixelData, tPixelFormat pixelDataFormat, int width, int height);
+	uint8* CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH);
 
 	// The result codes are bits in this Results member.
 	uint32 Results;
 
 	tPixelFormat PixelFormat;
+	tPixelFormat PixelFormatOrig;
 	bool IsCubeMap;
-	bool RowsFlipped;
+	bool RowReversalOperationPerformed;
 
 	// This will be 1 for textures. For cubemaps NumImages == 6.
 	int NumImages;

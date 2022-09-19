@@ -29,8 +29,9 @@ tImageDDS::tImageDDS() :
 	Filename(),
 	Results(1 << int(ResultCode::Fatal_DefaultInitialized)),
 	PixelFormat(tPixelFormat::Invalid),
+	PixelFormatOrig(tPixelFormat::Invalid),
 	IsCubeMap(false),
-	RowsFlipped(false),
+	RowReversalOperationPerformed(false),
 	NumImages(0),
 	NumMipmapLayers(0)
 {
@@ -42,8 +43,9 @@ tImageDDS::tImageDDS(const tString& ddsFile, uint32 loadFlags) :
 	Filename(ddsFile),
 	Results(1 << int(ResultCode::Success)),
 	PixelFormat(tPixelFormat::Invalid),
+	PixelFormatOrig(tPixelFormat::Invalid),
 	IsCubeMap(false),
-	RowsFlipped(false),
+	RowReversalOperationPerformed(false),
 	NumImages(0),
 	NumMipmapLayers(0)
 {
@@ -56,8 +58,9 @@ tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, uint32 loadFlag
 	Filename(),
 	Results(1 << int(ResultCode::Success)),
 	PixelFormat(tPixelFormat::Invalid),
+	PixelFormatOrig(tPixelFormat::Invalid),
 	IsCubeMap(false),
-	RowsFlipped(false),
+	RowReversalOperationPerformed(false),
 	NumImages(0),
 	NumMipmapLayers(0)
 {
@@ -79,8 +82,9 @@ void tImageDDS::Clear()
 
 	Results = (1 << int(ResultCode::Success));
 	PixelFormat = tPixelFormat::Invalid;
+	PixelFormatOrig = tPixelFormat::Invalid;
 	IsCubeMap = false;
-	RowsFlipped = false;
+	RowReversalOperationPerformed = false;
 	NumImages = 0;
 	NumMipmapLayers = 0;
 }
@@ -88,23 +92,7 @@ void tImageDDS::Clear()
 
 bool tImageDDS::IsOpaque() const
 {
-	switch (PixelFormat)
-	{
-		case tPixelFormat::R8G8B8A8:
-		case tPixelFormat::B8G8R8A8:
-		case tPixelFormat::BC1_DXT1BA:
-		case tPixelFormat::BC2_DXT3:
-		case tPixelFormat::BC3_DXT5:
-		case tPixelFormat::BC7_UNORM:
-		case tPixelFormat::G3B5A1R5G2:
-		case tPixelFormat::G4B4A4R4:
-			return false;
-
-		default:
-			return true;
-	}
-
-	return true;
+	return !tImage::tFormatSupportsAlpha(PixelFormat);
 }
 
 
@@ -652,7 +640,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 
 	tDDSHeader& header = *((tDDSHeader*)ddsCurr);  ddsCurr += sizeof(header);
 	tAssert(sizeof(tDDSHeader) == 124);
-	const uint8* pixelData = ddsCurr;
+	const uint8* currPixelData = ddsCurr;
 	if (header.Size != 124)
 	{
 		Results |= 1 << int(ResultCode::Fatal_IncorrectHeaderSize);
@@ -731,7 +719,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 	if (useDX10Ext)
 	{
 		tDDSHeaderDX10Ext& headerDX10 = *((tDDSHeaderDX10Ext*)ddsCurr);  ddsCurr += sizeof(tDDSHeaderDX10Ext);
-		pixelData = ddsCurr;
+		currPixelData = ddsCurr;
 		if (headerDX10.ArraySize == 0)
 		{
 			Results |= 1 << int(ResultCode::Fatal_DX10HeaderSizeIncorrect);
@@ -760,13 +748,13 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 			// case tDXGI_FORMAT_BC7_TYPELESS:
 			// case tDXGI_FORMAT_BC7_UNORM_SRGB:
 			case tDXGI_FORMAT_BC7_UNORM:
-				PixelFormat = tPixelFormat::BC7_UNORM;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC7_UNORM;
 				break;
 
 			// case tDXGI_FORMAT_BC6H_UF16:
 			// case tDXGI_FORMAT_BC6H_TYPELESS:
 			case tDXGI_FORMAT_BC6H_SF16:
-				PixelFormat = tPixelFormat::BC6H_S16;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC6H_S16;
 				break;
 		}
 	}
@@ -777,30 +765,30 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 			case FourCC('D','X','T','1'):
 				// Note that during inspecition of the individual layer data, the DXT1 pixel format might be modified
 				// to DXT1BA (binary alpha).
-				PixelFormat = tPixelFormat::BC1_DXT1;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC1_DXT1;
 				break;
 
 			case FourCC('D','X','T','3'):
-				PixelFormat = tPixelFormat::BC2_DXT3;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC2_DXT3;
 				break;
 
 			case FourCC('D','X','T','5'):
-				PixelFormat = tPixelFormat::BC3_DXT5;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC3_DXT5;
 				break;
 
 			case tD3DFMT_R32F:
 				// Unsupported.
-				// PixelFormat = tPixelFormat::R32F;
+				// PixelFormat = PixelFormatOrig = tPixelFormat::R32F;
 				break;
 
 			case tD3DFMT_G32R32F:
 				// Unsupported.
-				// PixelFormat = tPixelFormat::G32R32F;
+				// PixelFormat = PixelFormatOrig = tPixelFormat::G32R32F;
 				break;
 
 			case tD3DFMT_A32B32G32R32F:
 				// Unsupported.
-				// PixelFormat = tPixelFormat::A32B32G32R32F;
+				// PixelFormat = PixelFormatOrig = tPixelFormat::A32B32G32R32F;
 				break;
 		}
 	}
@@ -815,21 +803,21 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 		{
 			case 16:		// Supports G3B5A1R5G2, G4B4A4R4, and G3B5R5G3.
 				if (hasA && (mskA == 0x8000) && (mskR == 0x7C00) && (mskG == 0x03E0) && (mskB == 0x001F))
-					PixelFormat = tPixelFormat::G3B5A1R5G2;
+					PixelFormat = PixelFormatOrig = tPixelFormat::G3B5A1R5G2;
 				else if (hasA && (mskA == 0xF000) && (mskR == 0x0F00) && (mskG == 0x00F0) && (mskB == 0x000F))
-					PixelFormat = tPixelFormat::G4B4A4R4;
+					PixelFormat = PixelFormatOrig = tPixelFormat::G4B4A4R4;
 				else if (!hasA && (mskR == 0xF800) && (mskG == 0x07E0) && (mskB == 0x001F))
-					PixelFormat = tPixelFormat::G3B5R5G3;
+					PixelFormat = PixelFormatOrig = tPixelFormat::G3B5R5G3;
 				break;
 
 			case 24:		// Supports B8G8R8.
 				if (!hasA && (mskR == 0xFF0000) && (mskG == 0x00FF00) && (mskB == 0x0000FF))
-					PixelFormat = tPixelFormat::B8G8R8;
+					PixelFormat = PixelFormatOrig = tPixelFormat::B8G8R8;
 				break;
 
 			case 32:		// Supports B8G8R8A8. This is a little endian machine so the masks are lying. 0xFF000000 in memory is 00 00 00 FF with alpha last.
 				if (hasA && (mskA == 0xFF000000) && (mskR == 0x00FF0000) && (mskG == 0x0000FF00) && (mskB == 0x000000FF))
-					PixelFormat = tPixelFormat::B8G8R8A8;
+					PixelFormat = PixelFormatOrig = tPixelFormat::B8G8R8A8;
 				break;
 		}
 	}
@@ -841,6 +829,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 		return false;
 	}
 
+	// From now on we should just be using the PixelFormat to decide what to do next.
 	tAssert(PixelFormat != tPixelFormat::Invalid);
 	if (!rgbFormat && ((mainWidth%4) || (mainHeight%4)))
 	{
@@ -848,55 +837,48 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 		return false;
 	}
 
+	bool reverseRowOrderRequested = loadFlags & LoadFlag_ReverseRowOrder;
+	RowReversalOperationPerformed = false;
+
 	for (int image = 0; image < NumImages; image++)
 	{
 		int width = mainWidth;
 		int height = mainHeight;
-
 		for (int layer = 0; layer < NumMipmapLayers; layer++)
 		{
-			int numBytes;
-			if (rgbFormat)
+			int numBytes = 0;
+			if (tImage::tIsNormalFormat(PixelFormat))
 			{
-				numBytes = width*height*format.RGBBitCount/8;
+				numBytes = width*height*tImage::tGetBitsPerPixel(PixelFormat)/8;
 
-				// Deal with the reverseRowOrder for these RGB formats as well.
-				if (loadFlags & LoadFlag_ReverseRowOrder)
+				// Deal with reversing row order for RGB formats.
+				if (reverseRowOrderRequested)
 				{
-					uint8* reversedPixelData = new uint8[numBytes];
-					uint8* dstData = reversedPixelData;
-
-					// We only support pixel formats that contain a whole number of bytes per pixel. That will cover
-					// all reasonable formats.
-					int bytesPerPixel = format.RGBBitCount/8;
-
-					for (int row = height-1; row >= 0; row--)
+					uint8* reversedPixelData = CreateReversedRowData_Normal(currPixelData, PixelFormat, width, height);
+					if (reversedPixelData)
 					{
-						for (int col = 0; col < width; col++)
-						{
-							const uint8* srcData = pixelData + row*bytesPerPixel*width + col*bytesPerPixel;
-							for (int byte = 0; byte < bytesPerPixel; byte++, dstData++, srcData++)
-								*dstData = *srcData;
-						}
+						// We can simply get the layer to steal the memory (the last true arg).
+						MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, reversedPixelData, true);
+						RowReversalOperationPerformed = true;
 					}
-
-					// We can simply get the layer to steal the memory (the last true arg).
-					MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, reversedPixelData, true);
+					else
+					{
+						// Row reversal failed. May be a conditional success if we don't convert to RGBA 32-bit later.
+						MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
+					}
 				}
 				else
 				{
-					MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)pixelData);
+					MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
 				}
 				tAssert(MipmapLayers[layer][image]->GetDataSize() == numBytes);
 			}
-			else
-			{
-				// Otherwise it's a BC/DXTn format. Each block encodes a 4x4 square of pixels.  DXT2,3,4,5 and BC 6,7 use 128
-				// bits per block.  DXT1 and DXT1BA (BC1) use 64bits per block.
-				int bcBlockSize = 16;
-				if ((PixelFormat == tPixelFormat::BC1_DXT1BA) || (PixelFormat == tPixelFormat::BC1_DXT1))
-					bcBlockSize = 8;
 
+			else if (tImage::tIsBlockCompressedFormat(PixelFormat))
+			{
+				// It's a BC/DXTn format. Each block encodes a 4x4 square of pixels. DXT2,3,4,5 and BC 6,7 use 128
+				// bits per block.  DXT1 and DXT1BA (BC1) use 64bits per block.
+				int bcBlockSize = tImage::tGetBytesPer4x4PixelBlock(PixelFormat);
 				int numBlocksW = tMath::tMax(1, (width + 3) / 4);
 				int numBlocksH = tMath::tMax(1, (height + 3) / 4);
 				int numBlocks = numBlocksW*numBlocksH;
@@ -904,99 +886,44 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 
 				// Here's where we possibly modify the opaque DXT1 texture to be DXT1BA if there are blocks with binary
 				// transparency. We only bother checking the main layer. If it's opaque we assume all the others are too.
-				if ((layer == 0) && (PixelFormat == tPixelFormat::BC1_DXT1) && DoDXT1BlocksHaveBinaryAlpha((tDXT1Block*)pixelData, numBlocks))
-					PixelFormat = tPixelFormat::BC1_DXT1BA;
+				if ((layer == 0) && (PixelFormat == tPixelFormat::BC1_DXT1) && DoDXT1BlocksHaveBinaryAlpha((tDXT1Block*)currPixelData, numBlocks))
+					PixelFormat = PixelFormatOrig = tPixelFormat::BC1_DXT1BA;
 
 				// DDS files store textures upside down. In the OpenGL RH coord system, the lower left of the texture
 				// is the origin and consecutive rows go up. For this reason we need to read each row of blocks from
 				// the top to the bottom row. We also need to flip the rows within the 4x4 block by flipping the lookup
 				// tables. This should be fairly fast as there is no encoding or encoding going on. Width and height
 				// will go down to 1x1, which will still use a 4x4 DXT pixel-block.
-				if ((loadFlags & LoadFlag_ReverseRowOrder) && (PixelFormat != tPixelFormat::BC7_UNORM) && (PixelFormat != tPixelFormat::BC6H_S16))
+				if (reverseRowOrderRequested)
 				{
-					uint8* reversedPixelData = new uint8[numBytes];
-					uint8* dstData = reversedPixelData;
-
-					for (int row = numBlocksH-1; row >= 0; row--)
+					uint8* reversedPixelData = CreateReversedRowData_BC(currPixelData, PixelFormat, numBlocksW, numBlocksH);
+					if (reversedPixelData)
 					{
-						for (int col = 0; col < numBlocksW; col++)
-						{
-							const uint8* srcData = pixelData + row*bcBlockSize*numBlocksW + col*bcBlockSize;
-							for (int byte = 0; byte < bcBlockSize; byte++, dstData++, srcData++)
-								*dstData = *srcData;
-						}
+						// We can simply get the layer to steal the memory (the last true arg).
+						MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, reversedPixelData, true);
+						RowReversalOperationPerformed = true;
 					}
-
-					// Now we flip the inter-block rows by messing with the block's lookup-table.  We need to handle all
-					// three types of blocks: 1) DXT1, DXT1BA  2) DXT2, DXT3  3) DXT4, DXT5
-					switch (PixelFormat)
+					else
 					{
-						case tPixelFormat::BC1_DXT1BA:
-						case tPixelFormat::BC1_DXT1:
-						{
-							tDXT1Block* block = (tDXT1Block*)reversedPixelData;
-							for (int b = 0; b < numBlocks; b++, block++)
-							{
-								// Reorder each row's colour indexes.
-								tStd::tSwap(block->LookupTableRows[0], block->LookupTableRows[3]);
-								tStd::tSwap(block->LookupTableRows[1], block->LookupTableRows[2]);
-							}
-							break;
-						}
-
-						case tPixelFormat::BC2_DXT3:
-						{
-							tDXT3Block* block = (tDXT3Block*)reversedPixelData;
-							for (int b = 0; b < numBlocks; b++, block++)
-							{
-								// Reorder the explicit alphas AND the colour indexes.
-								tStd::tSwap(block->AlphaTableRows[0], block->AlphaTableRows[3]);
-								tStd::tSwap(block->AlphaTableRows[1], block->AlphaTableRows[2]);
-								tStd::tSwap(block->ColourBlock.LookupTableRows[0], block->ColourBlock.LookupTableRows[3]);
-								tStd::tSwap(block->ColourBlock.LookupTableRows[1], block->ColourBlock.LookupTableRows[2]);
-							}
-							break;
-						}
-
-						case tPixelFormat::BC3_DXT5:
-						{
-							tDXT5Block* block = (tDXT5Block*)reversedPixelData;
-							for (int b = 0; b < numBlocks; b++, block++)
-							{
-								// Reorder the alpha indexes AND the colour indexes.
-								uint16 orig0 = block->GetAlphaRow(0);
-								block->SetAlphaRow(0, block->GetAlphaRow(3));
-								block->SetAlphaRow(3, orig0);
-
-								uint16 orig1 = block->GetAlphaRow(1);
-								block->SetAlphaRow(1, block->GetAlphaRow(2));
-								block->SetAlphaRow(2, orig1);
-
-								tStd::tSwap(block->ColourBlock.LookupTableRows[0], block->ColourBlock.LookupTableRows[3]);
-								tStd::tSwap(block->ColourBlock.LookupTableRows[1], block->ColourBlock.LookupTableRows[2]);
-							}
-							break;
-						}
-
-						default:
-							delete[] reversedPixelData;
-							Results |= 1 << int(ResultCode::Fatal_UnsupportedPixelFormat);
-							return false;
+						MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
 					}
-
-					// Finally we can append a layer with the massaged dxt data. We can simply get the layer to steal the memory (the
-					// last true arg).
-					MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, reversedPixelData, true);
 				}
 				else
 				{
-					// If reverseRowOrder is false we want the data to go straight in so we use the pixelData directly.
-					MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)pixelData);
+					// If reverseRowOrder is false we want the data to go straight in so we use the currPixelData directly.
+					MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
 				}
 				tAssert(MipmapLayers[layer][image]->GetDataSize() == numBytes);
 			}
+			else
+			{
+				// Upsupported pixel format.
+				Clear();
+				Results |= 1 << int(ResultCode::Fatal_UnsupportedPixelFormat);
+				return false;
+			}
 
-			pixelData += numBytes;
+			currPixelData += numBytes;
 			width /= 2;
 			if (width < 1)
 				width = 1;
@@ -1019,86 +946,217 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 				int h = layer->Height;
 				uint8* src = layer->Data;
 
-				// We need extra room because the decompressor (bcdec) does not take an input for
-				// the width and height, only the pitch (bytes per row). This means a texture that is 5
-				// high will actually have row 6, 7, 8 written to.
-				int wextra = w + ((w%4) ? 4-(w%4) : 0);
-				int hextra = h + ((h%4) ? 4-(h%4) : 0);
-				tPixel* uncompData = new tPixel[wextra*hextra];
-
-				switch (layer->PixelFormat)
+				if (tImage::tIsNormalFormat(PixelFormat))
 				{
-					case tPixelFormat::BC1_DXT1:
+					// @todo Convert/decode normal formats. Easier than the BC ones.
+				}
+				else if (tImage::tIsBlockCompressedFormat(PixelFormat))
+				{
+					// We need extra room because the decompressor (bcdec) does not take an input for
+					// the width and height, only the pitch (bytes per row). This means a texture that is 5
+					// high will actually have row 6, 7, 8 written to.
+					int wextra = w + ((w%4) ? 4-(w%4) : 0);
+					int hextra = h + ((h%4) ? 4-(h%4) : 0);
+					tPixel* uncompData = new tPixel[wextra*hextra];
+					switch (layer->PixelFormat)
 					{
-						for (int i = 0; i < h; i += 4)
-							for (int j = 0; j < w; j += 4)
-							{
-								uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
-
-								// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be
-								// written into multiple rows of the destination... and we need to know how far to get to the
-								// next row for each pixel.
-								bcdec_bc1(src, dst, w * 4);
-								src += BCDEC_BC1_BLOCK_SIZE;
-							}
-						
-						break;
-					}
-
-					case tPixelFormat::BC7_UNORM:
-					{
-						for (int i = 0; i < h; i += 4)
-							for (int j = 0; j < w; j += 4)
-							{
-								uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
-								bcdec_bc7(src, dst, w * 4);
-								src += BCDEC_BC7_BLOCK_SIZE;
-							}
-						break;
-					}
-
-					case tPixelFormat::BC6H_S16:
-					{
-						// This HDR format decompresses to RGB floats.
-						tColour3f* rgbData = new tColour3f[wextra*hextra];
-
-						for (int i = 0; i < h; i += 4)
-							for (int j = 0; j < w; j += 4)
-							{
-								uint8* dst = (uint8*)((float*)rgbData + (i * w + j) * 3);
-								bcdec_bc6h_float(src, dst, w * 3, true);
-								src += BCDEC_BC6H_BLOCK_SIZE;
-							}
-
-						// Now convert to 32-bit RGBA with 255 alpha.
-						for (int ij = 0; ij < w*h; ij++)
+						case tPixelFormat::BC1_DXT1:
+						case tPixelFormat::BC1_DXT1BA:
 						{
-							tColour4f col(rgbData[ij], 1.0f);
-							if (loadFlags & LoadFlag_GammaCorrectHDR)
-								col.ToGammaSpaceApprox();
-							uncompData[ij].Set(col);
+							for (int i = 0; i < h; i += 4)
+								for (int j = 0; j < w; j += 4)
+								{
+									uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
+
+									// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be
+									// written into multiple rows of the destination... and we need to know how far to get to the
+									// next row for each pixel.
+									bcdec_bc1(src, dst, w * 4);
+									src += BCDEC_BC1_BLOCK_SIZE;
+								}
+							
+							break;
 						}
-						delete[] rgbData;
-						break;
+
+						case tPixelFormat::BC7_UNORM:
+						{
+							for (int i = 0; i < h; i += 4)
+								for (int j = 0; j < w; j += 4)
+								{
+									uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
+									bcdec_bc7(src, dst, w * 4);
+									src += BCDEC_BC7_BLOCK_SIZE;
+								}
+							break;
+						}
+
+						case tPixelFormat::BC6H_S16:
+						{
+							// This HDR format decompresses to RGB floats.
+							tColour3f* rgbData = new tColour3f[wextra*hextra];
+
+							for (int i = 0; i < h; i += 4)
+								for (int j = 0; j < w; j += 4)
+								{
+									uint8* dst = (uint8*)((float*)rgbData + (i * w + j) * 3);
+									bcdec_bc6h_float(src, dst, w * 3, true);
+									src += BCDEC_BC6H_BLOCK_SIZE;
+								}
+
+							// Now convert to 32-bit RGBA with 255 alpha.
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								tColour4f col(rgbData[ij], 1.0f);
+								if (loadFlags & LoadFlag_GammaCorrectHDR)
+									col.ToGammaSpaceApprox();
+								uncompData[ij].Set(col);
+							}
+							delete[] rgbData;
+							break;
+						}
+
+						default:
+							delete[] uncompData;
+							Clear();
+							Results |= 1 << int(ResultCode::Fatal_BlockDecodeError);
+							return false;
 					}
 
-					default:
-						delete[] uncompData;
-						Clear();
-						Results |= 1 << int(ResultCode::Fatal_BlockDecodeError);
-						return false;
+					// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
+					delete[] layer->Data;
+					layer->Data = (uint8*)uncompData;
+					layer->PixelFormat = tPixelFormat::B8G8R8A8;
+				}
+				else // Unsupported PixelFormat
+				{
+					// ASTC Would fall in this category.
 				}
 
-				// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
-				delete[] layer->Data;
-				layer->Data = (uint8*)uncompData;
-				layer->PixelFormat = tPixelFormat::B8G8R8A8;
+				// We've got one more chance to reverse the rows here (if we still need to) because we were asked to decode.
+				if (reverseRowOrderRequested && !RowReversalOperationPerformed && (layer->PixelFormat == tPixelFormat::B8G8R8A8))
+				{
+					// This shouldn't ever fail. Too easy to reverse RGBA 32-bit.
+					uint8* reversedRowData = CreateReversedRowData_Normal(layer->Data, layer->PixelFormat, w, h);
+					tAssert(reversedRowData);
+					delete[] layer->Data;
+					layer->Data = reversedRowData;
+				}
 			}
 		}
+
+		// All images decoded. Can now set the object's pixel format. We do _not_ set the PixelFormatOrig here!
+		PixelFormat = tPixelFormat::B8G8R8A8;
 	}
 
 	tAssert(IsValid());
 	return true;
+}
+
+
+uint8* tImageDDS::CreateReversedRowData_Normal(const uint8* pixelData, tPixelFormat pixelDataFormat, int width, int height)
+{
+	// We only support pixel formats that contain a whole number of bytes per pixel. That will cover
+	// all reasonable RGB and RGBA formats.
+	int bitsPerPixel = tImage::tGetBitsPerPixel(pixelDataFormat);
+	if (bitsPerPixel % 8)
+		return nullptr;
+	int bytesPerPixel = bitsPerPixel/8;
+	int numBytes = width*height*bytesPerPixel;
+
+	uint8* reversedPixelData = new uint8[numBytes];
+	uint8* dstData = reversedPixelData;
+	for (int row = height-1; row >= 0; row--)
+	{
+		for (int col = 0; col < width; col++)
+		{
+			const uint8* srcData = pixelData + row*bytesPerPixel*width + col*bytesPerPixel;
+			for (int byte = 0; byte < bytesPerPixel; byte++, dstData++, srcData++)
+				*dstData = *srcData;
+		}
+	}
+	return reversedPixelData;
+}
+
+
+uint8* tImageDDS::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH)
+{
+	if ((pixelDataFormat == tPixelFormat::BC7_UNORM) || (pixelDataFormat == tPixelFormat::BC6H_S16))
+		return nullptr;
+
+	int bcBlockSize = tImage::tGetBytesPer4x4PixelBlock(pixelDataFormat);
+	int numBlocks = numBlocksW*numBlocksH;
+	int numBytes = numBlocks * bcBlockSize;
+
+	uint8* reversedPixelData = new uint8[numBytes];
+	uint8* dstData = reversedPixelData;
+	for (int row = numBlocksH-1; row >= 0; row--)
+	{
+		for (int col = 0; col < numBlocksW; col++)
+		{
+			const uint8* srcData = pixelData + row*bcBlockSize*numBlocksW + col*bcBlockSize;
+			for (int byte = 0; byte < bcBlockSize; byte++, dstData++, srcData++)
+				*dstData = *srcData;
+		}
+	}
+
+	// Now we flip the inter-block rows by messing with the block's lookup-table.  We need to handle all
+	// three types of blocks: 1) DXT1, DXT1BA  2) DXT2, DXT3  3) DXT4, DXT5
+	switch (pixelDataFormat)
+	{
+		case tPixelFormat::BC1_DXT1BA:
+		case tPixelFormat::BC1_DXT1:
+		{
+			tDXT1Block* block = (tDXT1Block*)reversedPixelData;
+			for (int b = 0; b < numBlocks; b++, block++)
+			{
+				// Reorder each row's colour indexes.
+				tStd::tSwap(block->LookupTableRows[0], block->LookupTableRows[3]);
+				tStd::tSwap(block->LookupTableRows[1], block->LookupTableRows[2]);
+			}
+			break;
+		}
+
+		case tPixelFormat::BC2_DXT3:
+		{
+			tDXT3Block* block = (tDXT3Block*)reversedPixelData;
+			for (int b = 0; b < numBlocks; b++, block++)
+			{
+				// Reorder the explicit alphas AND the colour indexes.
+				tStd::tSwap(block->AlphaTableRows[0], block->AlphaTableRows[3]);
+				tStd::tSwap(block->AlphaTableRows[1], block->AlphaTableRows[2]);
+				tStd::tSwap(block->ColourBlock.LookupTableRows[0], block->ColourBlock.LookupTableRows[3]);
+				tStd::tSwap(block->ColourBlock.LookupTableRows[1], block->ColourBlock.LookupTableRows[2]);
+			}
+			break;
+		}
+
+		case tPixelFormat::BC3_DXT5:
+		{
+			tDXT5Block* block = (tDXT5Block*)reversedPixelData;
+			for (int b = 0; b < numBlocks; b++, block++)
+			{
+				// Reorder the alpha indexes AND the colour indexes.
+				uint16 orig0 = block->GetAlphaRow(0);
+				block->SetAlphaRow(0, block->GetAlphaRow(3));
+				block->SetAlphaRow(3, orig0);
+
+				uint16 orig1 = block->GetAlphaRow(1);
+				block->SetAlphaRow(1, block->GetAlphaRow(2));
+				block->SetAlphaRow(2, orig1);
+
+				tStd::tSwap(block->ColourBlock.LookupTableRows[0], block->ColourBlock.LookupTableRows[3]);
+				tStd::tSwap(block->ColourBlock.LookupTableRows[1], block->ColourBlock.LookupTableRows[2]);
+			}
+			break;
+		}
+
+		default:
+			// We should not get here. Should have early returned already.
+			delete[] reversedPixelData;
+			return nullptr;
+	}
+
+	return reversedPixelData;
 }
 
 
