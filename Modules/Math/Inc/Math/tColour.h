@@ -29,6 +29,23 @@ class tColour4f;	// tColourf	tColour
 class tColour3f;	//			tColour3;
 
 
+// Generally floating point colour representations are considered to be in linear colour-space. Linear is where you
+// want to do all the work. sRGB (gamma corrected) is probably the space of most textures, especially diffuse textures
+// as they were authored on monitors that had a non-linear (gamma) response. The sucky thing is, this is all leftover
+// cruft from CRTs. LCD TVs have circuitry to mimic the old response of phosphor. Anyway, use this enum to indicate
+// the colour-space of pixel data you have... if you know it. Unfortunatly you can't in general determine the space
+// from, say, the pixel format -- a non sRGB format may contain sRGB data (but an sRGB format definitely should contain
+// sRGB data.
+enum class tColourSpace
+{
+	Unknown,
+	Linear,		RGB = Linear,	// Colours represented in this space can be added and multiplied with each other.
+	Gamma,						// Colours can be multiplied with each other, but not added.
+	sRGB,						// Standard RGB. A full spec. Not always a gamma of 2.2, Neither mult or add. Most common space of src art.
+	HSV							// Hue, sat, val.
+};
+
+
 namespace tMath
 {
 	// Colour space conversions. The integer versions accept angle modes of Degrees and Norm256 only. The angle mode
@@ -282,8 +299,8 @@ public:
 	// Gamma-space here should really be sRGB but we're just using an approximation by squaring (gamma=2) when the
 	// average sRGB gamma should be 2.2. To do the conversion properly, the gamma varies with intensity from 1 to 2.4,
 	// but, again, we're only approximating here.
-	void ToLinearSpaceApprox()																							{ R *= R; G *= G; B *= B; }
-	void ToGammaSpaceApprox()																							{ R = tMath::tSqrt(R); G = tMath::tSqrt(G); B = tMath::tSqrt(B); }
+	void ToLinearSpaceApprox()			/* Will darken the image. */													{ R *= R; G *= G; B *= B; }
+	void ToGammaSpaceApprox()			/* Will brighten the image. */													{ R = tMath::tSqrt(R); G = tMath::tSqrt(G); B = tMath::tSqrt(B); }
 
 	// When using the HSV representation of a tColourf, the hue is in NormOne angle mode. See the tRGBToHSV and
 	// tHSVToRGB functions if you wish to use different angle units. All the components (h, s, v, r, g, b, a) are in

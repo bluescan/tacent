@@ -21,6 +21,11 @@ namespace tImage
 // Unlike DirectX, which assumes all machines are little-endian, the enumeration below specifies the components in the
 // order they appear in memory. To make matters worse, Microsoft's R8G8B8 format is B8R8G8 in memory, but their R5G6B5
 // format is correctly the same order in memory. So a little inconsistent there. BC stands for Block Compression.
+//
+// A note regarding sRGB. We are _not_ indicating via the pixel format what space the colour encoded by the format is
+// in. Tacent separates the encoding (the pixel format) from how the encoded data is to be interpreted. This is in
+// contrast to all the MS DXGI formats where they effectively at least double the number of formats unnecessarily.
+// See tColourSpace enum in tColour.h
 enum class tPixelFormat
 {
 	Invalid				= -1,
@@ -48,8 +53,8 @@ enum class tPixelFormat
 	BC4_ATI1,							// BC 4. One colour channel only. May not be HW supported.
 	BC5_ATI2,							// BC 5. Two colour channels only. May not be HW supported.
 	BC6H_S16,							// BC 6 HDR. No alpha. 3 x 16bit signed half-floats.
-	BC7_UNORM,							// BC 7. Full colour. Variable alpha 0 to 8 bits.
-	LastBlock			= BC7_UNORM,
+	BC7,								// BC 7. Full colour. Variable alpha 0 to 8 bits.
+	LastBlock			= BC7,
 
 	FirstVendor,
 	RADIANCE_HDR		= FirstVendor,	// Radiance hdr.

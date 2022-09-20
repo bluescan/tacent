@@ -101,7 +101,7 @@ bool tImage::tFormatSupportsAlpha(tPixelFormat format)
 		case tPixelFormat::BC1_DXT1BA:
 		case tPixelFormat::BC2_DXT3:
 		case tPixelFormat::BC3_DXT5:
-		case tPixelFormat::BC7_UNORM:
+		case tPixelFormat::BC7:
 		case tPixelFormat::OPENEXR_HDR:
 
 		// For palettized the palette may have an entry that can be considered alpha. However for only 1-bit

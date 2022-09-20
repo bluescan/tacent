@@ -190,6 +190,7 @@ private:
 
 	tPixelFormat PixelFormat;
 	tPixelFormat PixelFormatOrig;
+	tColourSpace ColourSpace		= tColourSpace::Unknown;
 	bool IsCubeMap;
 	bool RowReversalOperationPerformed;
 

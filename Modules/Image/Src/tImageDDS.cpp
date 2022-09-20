@@ -83,6 +83,7 @@ void tImageDDS::Clear()
 	Results = (1 << int(ResultCode::Success));
 	PixelFormat = tPixelFormat::Invalid;
 	PixelFormatOrig = tPixelFormat::Invalid;
+	ColourSpace = tColourSpace::Unknown;
 	IsCubeMap = false;
 	RowReversalOperationPerformed = false;
 	NumImages = 0;
@@ -631,7 +632,6 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 
 	const uint8* ddsCurr = ddsData;
 	uint32& magic = *((uint32*)ddsCurr); ddsCurr += sizeof(uint32);
-//	if (magic != ' SDD')
 	if (magic != FourCC('D','D','S',' '))
 	{
 		Results |= 1 << int(ResultCode::Fatal_IncorrectMagicNumber);
@@ -739,22 +739,43 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 			NumImages = 6;
 		}
 
-		// If we found a dx10 chunk, use it to determine the pixel format over 
-		// tDXGI_FORMAT_BC1_TYPELESS = 70,
-		// tDXGI_FORMAT_BC1_UNORM = 71,
-		// tDXGI_FORMAT_BC1_UNORM_SRGB = 72,
+		// If we found a dx10 chunk. It must be used to determine the pixel format.
+		// 
 		switch (headerDX10.DxgiFormat)
 		{
-			// case tDXGI_FORMAT_BC7_TYPELESS:
-			// case tDXGI_FORMAT_BC7_UNORM_SRGB:
+			case tDXGI_FORMAT_BC1_UNORM_SRGB:
+				ColourSpace = tColourSpace::sRGB;
+			case tDXGI_FORMAT_BC1_TYPELESS:
+			case tDXGI_FORMAT_BC1_UNORM:
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC1_DXT1;
+				break;
+
+			case tDXGI_FORMAT_BC2_UNORM_SRGB:
+				ColourSpace = tColourSpace::sRGB;
+			case tDXGI_FORMAT_BC2_TYPELESS:
+			case tDXGI_FORMAT_BC2_UNORM:
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC2_DXT3;
+				break;
+
+			case tDXGI_FORMAT_BC3_UNORM_SRGB:
+				ColourSpace = tColourSpace::sRGB;
+			case tDXGI_FORMAT_BC3_TYPELESS:
+			case tDXGI_FORMAT_BC3_UNORM:
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC3_DXT5;
+				break;
+
+			case tDXGI_FORMAT_BC7_UNORM_SRGB:
+				ColourSpace = tColourSpace::sRGB;
+			case tDXGI_FORMAT_BC7_TYPELESS:			// Interpret typeless as BC7_UNORM... we gotta choose something.
 			case tDXGI_FORMAT_BC7_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC7_UNORM;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC7;
 				break;
 
 			// case tDXGI_FORMAT_BC6H_UF16:
-			// case tDXGI_FORMAT_BC6H_TYPELESS:
+			case tDXGI_FORMAT_BC6H_TYPELESS:		// Interpret typeless as BC6H_S16... we gotta choose something.
 			case tDXGI_FORMAT_BC6H_SF16:
 				PixelFormat = PixelFormatOrig = tPixelFormat::BC6H_S16;
+				ColourSpace = tColourSpace::Linear;
 				break;
 		}
 	}
@@ -978,7 +999,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 							break;
 						}
 
-						case tPixelFormat::BC7_UNORM:
+						case tPixelFormat::BC7:
 						{
 							for (int i = 0; i < h; i += 4)
 								for (int j = 0; j < w; j += 4)
@@ -1029,7 +1050,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 				}
 				else // Unsupported PixelFormat
 				{
-					// ASTC Would fall in this category.
+					// ASTC Would fall in this category. It's neither a BC format or a normal RGB format.
 				}
 
 				// We've got one more chance to reverse the rows here (if we still need to) because we were asked to decode.
@@ -1040,6 +1061,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 					tAssert(reversedRowData);
 					delete[] layer->Data;
 					layer->Data = reversedRowData;
+					RowReversalOperationPerformed = true;
 				}
 			}
 		}
@@ -1080,7 +1102,7 @@ uint8* tImageDDS::CreateReversedRowData_Normal(const uint8* pixelData, tPixelFor
 
 uint8* tImageDDS::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH)
 {
-	if ((pixelDataFormat == tPixelFormat::BC7_UNORM) || (pixelDataFormat == tPixelFormat::BC6H_S16))
+	if ((pixelDataFormat == tPixelFormat::BC7) || (pixelDataFormat == tPixelFormat::BC6H_S16))
 		return nullptr;
 
 	int bcBlockSize = tImage::tGetBytesPer4x4PixelBlock(pixelDataFormat);

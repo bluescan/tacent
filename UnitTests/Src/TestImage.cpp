@@ -679,7 +679,7 @@ tTestUnit(ImageDDS)
 	tImageDDS dds;
 	tImageTGA tga;
 
-	tPrintf("Load DDS BC7 (new format)\n");
+	tPrintf("Load DDS BC7 (dx10 header)\n");
 	dds.Load("TestData/Images/DDS_KTX2/Pattern_BC7_RGBA.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
 	tRequire(dds.IsValid());
 	layers.Empty();
@@ -693,32 +693,38 @@ tTestUnit(ImageDDS)
 		tga.Save(mipName);
 	}
 
-	tPrintf("Load DDS BC1 (legacy format)\n");
-	dds.Load("TestData/Images/DDS_KTX2/Legacy_BC1DXT1_RGB.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
-	tRequire(dds.IsValid());
-	layers.Empty();
-	dds.StealTextureLayers(layers);
-	layer = layers.First();
-	tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
-	tga.Save("TestData/Images/DDS_KTX2/WrittenLegacy_BC1DXT1_RGB.tga");
-
-	tPrintf("Load DDS BC6 (new format)\n");
+	tPrintf("Load DDS BC6 (dx10 header)\n");
 	dds.Load("TestData/Images/DDS_KTX2/Pattern_BC6Hs_HDRRGB.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder | tImageDDS::LoadFlag_GammaCorrectHDR);
 	tRequire(dds.IsValid());
 	layers.Empty();
 	dds.StealTextureLayers(layers);
-	layer = layers.First();
-	tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
-	tga.Save("TestData/Images/DDS_KTX2/WrittenPattern_BC6Hs_HDRRGB.tga");
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("TestData/Images/DDS_KTX2/WrittenPattern_BC6Hs_HDRRGB.tga");
+	}
 
-	tPrintf("Load DDS BC1 (new format)\n");
+	tPrintf("Load DDS BC1 (legacy header)\n");
+	dds.Load("TestData/Images/DDS_KTX2/Legacy_BC1DXT1_RGB.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	tRequire(dds.IsValid());
+	layers.Empty();
+	dds.StealTextureLayers(layers);
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("TestData/Images/DDS_KTX2/WrittenLegacy_BC1DXT1_RGB.tga");
+	}
+
+	tPrintf("Load DDS BC1 (dx10 header)\n");
 	dds.Load("TestData/Images/DDS_KTX2/Pattern_BC1DXT1_RGB.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
 	tRequire(dds.IsValid());
 	layers.Empty();
 	dds.StealTextureLayers(layers);
-	layer = layers.First();
-	tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
-	tga.Save("TestData/Images/DDS_KTX2/WrittenPattern_BC1DXT1_RGB.tga");
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("TestData/Images/DDS_KTX2/WrittenPattern_BC1DXT1_RGB.tga");
+	}
 }
 
 
