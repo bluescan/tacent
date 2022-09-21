@@ -36,8 +36,8 @@ bool tLayer::IsOpaqueFormat() const
 		case tPixelFormat::R8G8B8A8:
 		case tPixelFormat::B8G8R8A8:
 		case tPixelFormat::BC1_DXT1BA:
-		case tPixelFormat::BC2_DXT3:
-		case tPixelFormat::BC3_DXT5:
+		case tPixelFormat::BC2_DXT2_DXT3:
+		case tPixelFormat::BC3_DXT4_DXT5:
 		case tPixelFormat::G3B5A1R5G2:
 		case tPixelFormat::G4B4A4R4:
 		case tPixelFormat::L8A8:

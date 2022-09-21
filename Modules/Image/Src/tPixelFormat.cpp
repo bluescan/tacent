@@ -99,8 +99,8 @@ bool tImage::tFormatSupportsAlpha(tPixelFormat format)
 		case tPixelFormat::R32F:
 		case tPixelFormat::A32B32G32R32F:
 		case tPixelFormat::BC1_DXT1BA:
-		case tPixelFormat::BC2_DXT3:
-		case tPixelFormat::BC3_DXT5:
+		case tPixelFormat::BC2_DXT2_DXT3:
+		case tPixelFormat::BC3_DXT4_DXT5:
 		case tPixelFormat::BC7:
 		case tPixelFormat::OPENEXR_HDR:
 

@@ -181,7 +181,7 @@ inline tPixelFormat tTexture::DeterminePixelFormat(const tPicture& image)
 	if (Opaque)
 		return tPixelFormat::BC1_DXT1;
 	else
-		return tPixelFormat::BC3_DXT5;
+		return tPixelFormat::BC3_DXT4_DXT5;
 }
 
 

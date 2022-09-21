@@ -35,14 +35,27 @@ class tColour3f;	//			tColour3;
 // cruft from CRTs. LCD TVs have circuitry to mimic the old response of phosphor. Anyway, use this enum to indicate
 // the colour-space of pixel data you have... if you know it. Unfortunatly you can't in general determine the space
 // from, say, the pixel format -- a non sRGB format may contain sRGB data (but an sRGB format definitely should contain
-// sRGB data.
+// sRGB data).
 enum class tColourSpace
 {
-	Unknown,
-	Linear,		RGB = Linear,	// Colours represented in this space can be added and multiplied with each other.
-	Gamma,						// Colours can be multiplied with each other, but not added.
-	sRGB,						// Standard RGB. A full spec. Not always a gamma of 2.2, Neither mult or add. Most common space of src art.
-	HSV							// Hue, sat, val.
+	Unspecified,
+	RGB, Linear = RGB,	// Colours represented in this space can be added and multiplied with each other.
+	Gamma,				// Colours can be multiplied with each other, but not added.
+	sRGB,				// Standard RGB. A full spec. Not always a gamma of 2.2, Neither mult or add. Most common space of src art.
+	HSV					// Hue, sat, val.
+};
+
+
+// It's the same sort of deal with premultiplied alpha. The data encoded/represented using any particular pixel format
+// could be anything. If you have 32-bit RGBA for example, you don't know if the alpha was premultiplied or not. Some
+// file formats will tell you, and some legacy DXT formats will tell you (dxt2 dxt4 simply mean you know the alpha was
+// premultiplied). In tacent (and much like BC3 doesn't distinguish between dxt4 and dxt5) this sort of satellite info
+// is stored outside of the pixel format -- with the data itself.
+enum class tAlphaMode
+{
+	Unspecified,
+	Normal,				// Not premultiplied. Independent alpha channel.
+	Premultiplied
 };
 
 

@@ -130,6 +130,9 @@ public:
 	// Will return the format the dds data was in, even if you chose to decode.
 	tPixelFormat GetPixelFormatOrig() const																				{ return PixelFormatOrig; }
 
+	tColourSpace GetColourSpace() const																					{ return ColourSpace; }
+	tAlphaMode GetAlphaMode() const																						{ return AlphaMode; }
+
 	// The texture is considered to have alphas if it is in a pixel format that supports them. For DXT1, the data is
 	// checked to see if any DXT1 blocks have a binary alpha index. We could check the data for the RGBA formats, but
 	// we don't as it shouldn't have been saved in an alpha supporting format if an all opaque texture was desired.
@@ -190,7 +193,11 @@ private:
 
 	tPixelFormat PixelFormat;
 	tPixelFormat PixelFormatOrig;
-	tColourSpace ColourSpace		= tColourSpace::Unknown;
+
+	// These two are not considered part of the pixel format in tacent.
+	tColourSpace ColourSpace		= tColourSpace::Unspecified;
+	tAlphaMode AlphaMode			= tAlphaMode::Unspecified;
+
 	bool IsCubeMap;
 	bool RowReversalOperationPerformed;
 

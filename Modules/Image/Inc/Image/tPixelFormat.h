@@ -48,8 +48,8 @@ enum class tPixelFormat
 	FirstBlock,
 	BC1_DXT1			= FirstBlock,	// BC 1, DXT1. No alpha.
 	BC1_DXT1BA,							// BC 1, DXT1. Binary alpha.
-	BC2_DXT3,							// BC 2, DXT3. Large alpha gradients (outlines).
-	BC3_DXT5,							// BC 3, DXT5. Variable alpha.
+	BC2_DXT2_DXT3,						// BC 2, DXT2 (premult-alpha) and DXT3 share the same format. Large alpha gradients (alpha banding).
+	BC3_DXT4_DXT5,						// BC 3, DXT4 (premult-alpha) and DXT5 share the same format. Variable alpha (smooth).
 	BC4_ATI1,							// BC 4. One colour channel only. May not be HW supported.
 	BC5_ATI2,							// BC 5. Two colour channels only. May not be HW supported.
 	BC6H_S16,							// BC 6 HDR. No alpha. 3 x 16bit signed half-floats.

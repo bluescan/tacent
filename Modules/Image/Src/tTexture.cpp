@@ -166,8 +166,8 @@ bool tTexture::Set(tPicture& image, bool generateMipmaps, tPixelFormat pixelForm
 
 		case tPixelFormat::BC1_DXT1BA:
 		case tPixelFormat::BC1_DXT1:
-		case tPixelFormat::BC2_DXT3:
-		case tPixelFormat::BC3_DXT5:
+		case tPixelFormat::BC2_DXT2_DXT3:
+		case tPixelFormat::BC3_DXT4_DXT5:
 			ProcessImageTo_BCTC(image, pixelFormat, generateMipmaps, quality);
 			break;
 
@@ -324,7 +324,7 @@ void tTexture::ProcessImageTo_BCTC(tPicture& image, tPixelFormat pixelFormat, bo
 					rgbcx::encode_bc1(encoderQualityLevel, blockDest, pixelSrc, allow3colour, useTransparentTexelsForBlack);
 					break;
 
-				case tPixelFormat::BC3_DXT5:
+				case tPixelFormat::BC3_DXT4_DXT5:
 					rgbcx::encode_bc3(encoderQualityLevel, blockDest, pixelSrc);
 					break;
 
