@@ -704,7 +704,8 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 	}
 
 	bool useDX10Ext = fourCCFormat && (format.FourCC == FourCC('D', 'X', '1', '0'));
-
+	
+	// tPrintf("DDS File Type: %s\n", useDX10Ext ? "Modern DX10 Header" : "Legacy");
 	// Determine if this is a cubemap dds with 6 images. No need to check which images are present since they are
 	// required to be all there by the dds standard. All tools these days seem to write them all. If there are complaints
 	// when using legacy files we can fix this. We use FlagsCapsExtra in all cases where we are not
@@ -950,6 +951,8 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 					{
 						// We can simply get the layer to steal the memory (the last true arg).
 						MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, reversedPixelData, true);
+
+						// If we can do one layer, we can do them all -- in all images.
 						RowReversalOperationPerformed = true;
 					}
 					else
@@ -986,6 +989,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 	// Decode to 32-bit RGBA if requested.
 	if (loadFlags & LoadFlag_Decode)
 	{
+		bool didRowReversalAfterDecode = false;
 		for (int image = 0; image < NumImages; image++)
 		{
 			for (int layerNum = 0; layerNum < NumMipmapLayers; layerNum++)
@@ -1067,7 +1071,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 							// Now convert to 32-bit RGBA with 255 GBA.
 							for (int ij = 0; ij < w*h; ij++)
 							{
-								tColour4i col(rData[ij], 255u, 255u, 255u);
+								tColour4i col(rData[ij], 0u, 0u, 255u);
 								uncompData[ij].Set(col);
 							}
 							delete[] rData;
@@ -1091,7 +1095,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 							// Now convert to 32-bit RGBA with 255 BA.
 							for (int ij = 0; ij < w*h; ij++)
 							{
-								tColour4i col(rgData[ij].R, rgData[ij].G, 255u, 255u);
+								tColour4i col(rgData[ij].R, rgData[ij].G, 0u, 255u);
 								uncompData[ij].Set(col);
 							}
 							delete[] rgData;
@@ -1160,10 +1164,13 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 					tAssert(reversedRowData);
 					delete[] layer->Data;
 					layer->Data = reversedRowData;
-					RowReversalOperationPerformed = true;
+					didRowReversalAfterDecode = true;
 				}
 			}
 		}
+
+		if (reverseRowOrderRequested && !RowReversalOperationPerformed && didRowReversalAfterDecode)
+			RowReversalOperationPerformed = true;
 
 		// All images decoded. Can now set the object's pixel format. We do _not_ set the PixelFormatOrig here!
 		PixelFormat = tPixelFormat::B8G8R8A8;

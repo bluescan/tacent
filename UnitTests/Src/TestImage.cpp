@@ -664,7 +664,7 @@ tTestUnit(ImageGradient)
 	}
 	tImageTGA redToRed(pixels, width, height, true);
 	tRequire(redToRed.IsValid());
-	redToRed.Save("TestData/Images/Written_Gradient_RedToRed.tga", tImageTGA::tFormat::Bit24, tImageTGA::tCompression::RLE);
+	redToRed.Save("TestData/Images/Written_Gradient_RedToRed.tga", tImageTGA::tFormat::Bit24, tImageTGA::tCompression::RLE);	
 }
 
 
@@ -672,6 +672,8 @@ tTestUnit(ImageDDS)
 {
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImageDDS)
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/DDS/");
 
 	// We're just going to reuse these objects for the different tests.
 	tList<tImage::tLayer> layers;
@@ -679,8 +681,148 @@ tTestUnit(ImageDDS)
 	tImageDDS dds;
 	tImageTGA tga;
 
-	tPrintf("Load DDS BC7 (dx10 header)\n");
-	dds.Load("TestData/Images/DDS_KTX2/Pattern_BC7_RGBA.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	// BC1
+	tPrintf("\nLoad-Decode-Save DDS BC1 (legacy)\n");
+	dds.Load("BC1DXT1_RGB_Legacy.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	tRequire(dds.IsValid());
+	layers.Empty();
+	dds.StealTextureLayers(layers);
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_BC1DXT1_RGB_Legacy.tga");
+	}
+
+	tPrintf("\nLoad-Decode-Save DDS BC1 (modern dx10 header)\n");
+	dds.Load("BC1DXT1_RGB_Modern.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	tRequire(dds.IsValid());
+	layers.Empty();
+	dds.StealTextureLayers(layers);
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_BC1DXT1_RGB_Modern.tga");
+	}
+
+	// BC1a
+	tPrintf("\nLoad-Decode-Save DDS BC1a (legacy)\n");
+	dds.Load("BC1DXT1a_RGBA_Legacy.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	tRequire(dds.IsValid());
+	layers.Empty();
+	dds.StealTextureLayers(layers);
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_BC1DXT1a_RGBA_Legacy.tga");
+	}
+
+	tPrintf("\nLoad-Decode-Save DDS BC1a (modern dx10 header)\n");
+	dds.Load("BC1DXT1a_RGBA_Modern.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	tRequire(dds.IsValid());
+	layers.Empty();
+	dds.StealTextureLayers(layers);
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_BC1DXT1a_RGBA_Modern.tga");
+	}
+
+	// BC2
+	tPrintf("\nLoad-Decode-Save DDS BC2 (legacy)\n");
+	dds.Load("BC2DXT3_RGBA_Legacy.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	tRequire(dds.IsValid());
+	layers.Empty();
+	dds.StealTextureLayers(layers);
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_BC2DXT3_RGBA_Legacy.tga");
+	}
+
+	tPrintf("\nLoad-Decode-Save DDS BC2 (modern dx10 header)\n");
+	dds.Load("BC2DXT3_RGBA_Modern.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	tRequire(dds.IsValid());
+	layers.Empty();
+	dds.StealTextureLayers(layers);
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_BC2DXT3_RGBA_Modern.tga");
+	}
+
+	// BC3
+	tPrintf("\nLoad-Decode-Save DDS BC3 (legacy)\n");
+	dds.Load("BC3DXT5_RGBA_Legacy.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	tRequire(dds.IsValid());
+	layers.Empty();
+	dds.StealTextureLayers(layers);
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_BC3DXT5_RGBA_Legacy.tga");
+	}
+
+	tPrintf("\nLoad-Decode-Save DDS BC3 (modern dx10 header)\n");
+	dds.Load("BC3DXT5_RGBA_Modern.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	tRequire(dds.IsValid());
+	layers.Empty();
+	dds.StealTextureLayers(layers);
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_BC3DXT5_RGBA_Modern.tga");
+	}
+
+	// BC4
+	tPrintf("\nLoad-Decode-Save DDS BC4 (modern dx10 header)\n");
+	dds.Load("BC4ATI1_R_Modern.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	tRequire(dds.IsValid());
+	layers.Empty();
+	dds.StealTextureLayers(layers);
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_BC4ATI1_R_Modern.tga");
+	}
+
+	// BC5
+	tPrintf("\nLoad-Decode-Save DDS BC5 (modern dx10 header)\n");
+	dds.Load("BC5ATI2_RG_Modern.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	tRequire(dds.IsValid());
+	layers.Empty();
+	dds.StealTextureLayers(layers);
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_BC5ATI2_RG_Modern.tga");
+	}
+
+	// BC6
+	tPrintf("\nLoad-Decode-Save DDS BC6 (modern dx10 header)\n");
+	dds.Load("BC6Hs_HDRRGB_Modern.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder | tImageDDS::LoadFlag_GammaCorrectHDR);
+	tRequire(dds.IsValid());
+	layers.Empty();
+	dds.StealTextureLayers(layers);
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_BC6Hs_HDRRGB_Modern.tga");
+	}
+
+	// BC7
+	tPrintf("\nLoad-Decode-Save DDS BC7 (modern dx10 header)\n");
+	dds.Load("BC7_RGBA_Modern.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	tRequire(dds.IsValid());
+	layers.Empty();
+	dds.StealTextureLayers(layers);
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_BC7_RGBA_Modern.tga");
+	}
+
+	tPrintf("\nLoad-Decode-Save-Mips DDS BC7 (modern dx10 header)\n");
+	dds.Load("BC7_RGBA_Modern.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
 	tRequire(dds.IsValid());
 	layers.Empty();
 	dds.StealTextureLayers(layers);
@@ -689,42 +831,11 @@ tTestUnit(ImageDDS)
 	{
 		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
 		tString mipName;
-		tsPrintf(mipName, "TestData/Images/DDS_KTX2/WrittenPattern_BC7_RGBA_%02d.tga", mipNum);
+		tsPrintf(mipName, "Written_BC7_RGBA_Modern_Mip%02d.tga", mipNum);
 		tga.Save(mipName);
 	}
 
-	tPrintf("Load DDS BC6 (dx10 header)\n");
-	dds.Load("TestData/Images/DDS_KTX2/Pattern_BC6Hs_HDRRGB.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder | tImageDDS::LoadFlag_GammaCorrectHDR);
-	tRequire(dds.IsValid());
-	layers.Empty();
-	dds.StealTextureLayers(layers);
-	if (layer = layers.First())
-	{
-		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
-		tga.Save("TestData/Images/DDS_KTX2/WrittenPattern_BC6Hs_HDRRGB.tga");
-	}
-
-	tPrintf("Load DDS BC1 (legacy header)\n");
-	dds.Load("TestData/Images/DDS_KTX2/Legacy_BC1DXT1_RGB.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
-	tRequire(dds.IsValid());
-	layers.Empty();
-	dds.StealTextureLayers(layers);
-	if (layer = layers.First())
-	{
-		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
-		tga.Save("TestData/Images/DDS_KTX2/WrittenLegacy_BC1DXT1_RGB.tga");
-	}
-
-	tPrintf("Load DDS BC1 (dx10 header)\n");
-	dds.Load("TestData/Images/DDS_KTX2/Pattern_BC1DXT1_RGB.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
-	tRequire(dds.IsValid());
-	layers.Empty();
-	dds.StealTextureLayers(layers);
-	if (layer = layers.First())
-	{
-		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
-		tga.Save("TestData/Images/DDS_KTX2/WrittenPattern_BC1DXT1_RGB.tga");
-	}
+	tSystem::tSetCurrentDir(origDir.Chr());
 }
 
 
