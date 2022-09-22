@@ -43,7 +43,7 @@ tTestUnit(ImageLoad)
 	tImageAPNG imgAPNG("TestData/Images/Flame.apng");
 	tRequire(imgAPNG.IsValid());
 
-	tImageDDS imgDDS("TestData/Images/DDS_KTX2/Legacy_BC1DXT1_RGB.dds");
+	tImageDDS imgDDS("TestData/Images/DDS/BC1DXT1_RGB_Legacy.dds");
 	tRequire(imgDDS.IsValid());
 
 	tImageEXR imgEXR("TestData/Images/Desk.exr");
@@ -99,34 +99,34 @@ tTestUnit(ImageTexture)
 		tSkipUnit(ImageTexture)
 
 	// Test dxt1 texture.
-	tTexture dxt1Tex("TestData/Images/DDS_KTX2/Legacy_BC1DXT1_RGB.dds");
+	tTexture dxt1Tex("TestData/Images/DDS/BC1DXT1_RGB_Legacy.dds");
 	tRequire(dxt1Tex.IsValid());
 
-	tChunkWriter writer("TestData/Images/WrittenTestDXT1.tac");
+	tChunkWriter writer("TestData/Images/Written_BC1DXT1_RGB_Legacy.tac");
 	dxt1Tex.Save(writer);
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenTestDXT1.tac") );
+	tRequire( tSystem::tFileExists("TestData/Images/Written_BC1DXT1_RGB_Legacy.tac") );
 
-	tChunkReader reader("TestData/Images/WrittenTestDXT1.tac");
+	tChunkReader reader("TestData/Images/Written_BC1DXT1_RGB_Legacy.tac");
 	dxt1Tex.Load( reader.Chunk() );
 	tRequire(dxt1Tex.IsValid());
 
 	// Test cubemap.
-	tTexture cubemap("TestData/Images/DDS_KTX2/CubemapLayoutGuide.dds");
+	tTexture cubemap("TestData/Images/DDS/CubemapLayoutGuide.dds");
 	tRequire(cubemap.IsValid());
 
 	// Test jpg to texture. This will do conversion to BC1.
 	tTexture bc1Tex("TestData/Images/WiredDrives.jpg", true);
 	tRequire(bc1Tex.IsValid());
-	tChunkWriter chunkWriterBC1("TestData/Images/WrittenBC1.tac");
+	tChunkWriter chunkWriterBC1("TestData/Images/Written_WiredDrives_BC1.tac");
 	bc1Tex.Save(chunkWriterBC1);
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenBC1.tac"));
+	tRequire( tSystem::tFileExists("TestData/Images/Written_WiredDrives_BC1.tac"));
 
 	// Test ico with alpha to texture. This will do conversion to BC3.
 	tTexture bc3Tex("TestData/Images/UpperBounds.ico", true);
 	tRequire(bc3Tex.IsValid());
-	tChunkWriter chunkWriterBC3("TestData/Images/WrittenBC3.tac");
+	tChunkWriter chunkWriterBC3("TestData/Images/Written_UpperBounds_BC3.tac");
 	bc3Tex.Save(chunkWriterBC3);
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenBC3.tac"));
+	tRequire( tSystem::tFileExists("TestData/Images/Written_UpperBounds_BC3.tac"));
 }
 
 
