@@ -3,7 +3,7 @@
 // Pixel formats in Tacent. Not all formats are fully supported. Certainly BC 4, 5, and 7 may not have extensive HW
 // support at this time.
 //
-// Copyright (c) 2004-2006, 2017, 2019, 2021 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2019, 2021, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -14,12 +14,13 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <Foundation/tAssert.h>
+#include <Foundation/tStandard.h>
 #include "Image/tPixelFormat.h"
 
 
 namespace tImage
 {
-	int NormalFormat_BytesPerPixel[int(tPixelFormat::NumNormalFormats)] =
+	int NormalFormat_BytesPerPixel[] =
 	{
 		3,				// R8G8B8
 		4,				// R8G8B8A8
@@ -28,10 +29,15 @@ namespace tImage
 		2,				// G3B5A1R5G2
 		2,				// G4B4A4R4
 		2,				// G3B5R5G3
-		2				// L8A8
+		2,				// L8A8
+		1,				// A8
+		4,				// R32F
+		8,				// G32R32F
+		16,				// A32B32G32R32F
 	};
+	tStaticAssert(tNumElements(NormalFormat_BytesPerPixel) == int(tPixelFormat::NumNormalFormats));
 
-	int BlockFormat_BytesPer4x4PixelBlock[int(tPixelFormat::NumBlockFormats)] =
+	int BlockFormat_BytesPer4x4PixelBlock[] =
 	{
 		8,				// BC1_DXT1
 		8,				// BC1_DXT1BA
@@ -40,14 +46,16 @@ namespace tImage
 		8,				// BC4_ATI1
 		16,				// BC5_ATI2
 		16,				// BC6H_S16
-		16,				// BC7_UNORM
+		16				// BC7_UNORM
 	};
+	tStaticAssert(tNumElements(BlockFormat_BytesPer4x4PixelBlock) == int(tPixelFormat::NumBlockFormats));
 
-	int VendorFormat_BytesPerPixel[int(tPixelFormat::NumVendorFormats)] =
+	int VendorFormat_BytesPerPixel[] =
 	{
 		4,				// Radiance. 3 bytes for each RGB. 1 byte shared exponent.
 		0				// OpenEXR. @todo There are multiple exr pixel formats. We don't yet determine which one.
 	};
+	tStaticAssert(tNumElements(VendorFormat_BytesPerPixel) == int(tPixelFormat::NumVendorFormats));
 }
 
 
@@ -164,6 +172,7 @@ const char* tImage::tGetPixelFormatName(tPixelFormat pixelFormat)
 		"G4B4A4R4",
 		"G3B5R5G3",
 		"L8A8",
+		"A8",
 		"R32F",
 		"G32R32F",
 		"A32B32G32R32F",

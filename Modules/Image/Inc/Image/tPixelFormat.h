@@ -40,6 +40,7 @@ enum class tPixelFormat
 	G4B4A4R4,							// 16 bit. 12 colour. 4 bit alpha.
 	G3B5R5G3,							// 16 bit. No alpha. The first 3 green bits are the low order ones.
 	L8A8,								// 16 bit. Luminance and alpha.
+	A8,									// 8  bit. Alpha only.
 	R32F,
 	G32R32F,
 	A32B32G32R32F,

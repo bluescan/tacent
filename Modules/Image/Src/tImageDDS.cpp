@@ -140,16 +140,53 @@ int tImageDDS::StealCubemapLayers(tList<tLayer> layerLists[tSurfIndex_NumSurface
 }
 
 
-enum tDDSPixelFormatFlag
+// Direct draw pixel formats. When we say legacy here, we really mean it. Not just legacy in that there's no DX10 block,
+// but legacy in that there won't be a DX10 block AND it's still a really old-style dds.
+enum tDDPF : uint32
 {
-	// May be used in the DDSPixelFormat struct to indicate alphas present for RGB formats.
-	tDDSPixelFormatFlag_Alpha	= 0x00000001,
+	// Pixel has alpha. tDDSPixelFormat's MaskAlpha will be valid. From what I can tell, tDDPF_ALPHAPIXELS is only ever
+	// used in combination with RGB, YUV, or LUMINANCE. An alpha-only dds would use tDDPF_ALPHA instead.
+	tDDPF_HASALPHA		= 0x00000001,
 
-	// A DDS file may contain this type of data (pixel format). eg. DXT1 is a fourCC format.
-	tDDSPixelFormatFlag_FourCC	= 0x00000004,
+	// Legacy. Some dds files use this if all they contain is an alpha channel. tDDSPixelFormat's RGBBitCount is
+	// the number of bits used for the alpha channel and MaskAlpha will be valid.
+	tDDPF_A				= 0x00000002,
 
-	// A DDS file may contain this type of data (pixel format). eg. A8R8G8B8
-	tDDSPixelFormatFlag_RGB		= 0x00000040
+	// Use the four-CC to determine format. That's another whole thing. tDDSPixelFormat's FourCC will be valid.
+	// Modern dds files have a four-CC of 'DX10' and another whole header specifies the actual pixel format. Complex-much?
+	tDDPF_FOURCC		= 0x00000004,
+
+	// Palette indexed. 8-bit. Never seen a dds with this.
+	tDDPF_PAL8			= 0x00000020,
+
+	// Pixels contain RGB data. tDDSPixelFormat's RGBBitCount is the number of bits used for RGB. Also go ahead and read
+	// MaskRed, MaskGreen, and MaskBlue to determine where the data is and how many bits for each component.
+	tDDPF_RGB			= 0x00000040,
+
+	// Legacy. Some dds files use this for YUV pixels. tDDSPixelFormat's RGBBitCount will be the number of bits used for
+	// YUV (not RGB). Similarly, MaskRed, MaskGreen, and MaskBlue will contain the masks for each YUV component. Red for
+	// Y, green for U, and blue for V.
+	tDDPF_YUV			= 0x00000200,
+
+	// Legacy. Some dds files use this for single channel luminance-only data. tDDSPixelFormat's RGBBitCount will be the
+	// number of bits used for luminance and MaskRed will contain the mask for the luminance component. If the
+	// tDDPF_ALPHAPIXELS bit is also set, it would be a luminance-alpha (LA) dds.
+	tDDPF_L				= 0x00020000
+};
+
+
+// Now that the raw pixel-formats are out if the way, here is an enum of what you can expect to find in a real dds file.
+// This is basically just a convenience enum that contains some bitwise-ORs of the above pixel formats. You can check
+// for full equality with these enums (no need to check bits).
+enum tDDSPixelFormatType : uint32
+{
+	tDDSPixelFormatType_FourCC			= tDDPF_FOURCC,
+	tDDSPixelFormatType_RGB				= tDDPF_RGB,
+	tDDSPixelFormatType_RGBA			= tDDPF_RGB | tDDPF_HASALPHA,
+	tDDSPixelFormatType_L				= tDDPF_L,
+	tDDSPixelFormatType_LA				= tDDPF_L | tDDPF_HASALPHA,
+	tDDSPixelFormatType_A				= tDDPF_A,
+	tDDSPixelFormatType_PAL8			= tDDPF_PAL8
 };
 
 
@@ -694,10 +731,11 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 
 	// Has alpha should be true if the pixel format is uncompressed (RGB) and there is an alpha channel.
 	// Determine if we support the pixel format and which one it is.
-	bool rgbHasAlpha = (format.Flags & tDDSPixelFormatFlag_Alpha) ? true : false;
-	bool rgbFormat = (format.Flags & tDDSPixelFormatFlag_RGB) ? true : false;
-	bool fourCCFormat = (format.Flags & tDDSPixelFormatFlag_FourCC) ? true : false;
-	if ((!rgbFormat && !fourCCFormat) || (rgbFormat && fourCCFormat))
+	bool isRGB			= (format.Flags == tDDSPixelFormatType_RGB);
+	bool isRGBA			= (format.Flags == tDDSPixelFormatType_RGBA);
+	bool isA			= (format.Flags == tDDSPixelFormatType_A);
+	bool fourCCFormat	= (format.Flags == tDDSPixelFormatType_FourCC);
+	if (!isRGB && !isRGBA && !isA && !fourCCFormat)
 	{
 		Results |= 1 << int(ResultCode::Fatal_IncorrectPixelFormatSpec);
 		return false;
@@ -792,15 +830,19 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 			case tDXGI_FORMAT_BC7_UNORM:
 				PixelFormat = PixelFormatOrig = tPixelFormat::BC7;
 				break;
+
+			case tDXGI_FORMAT_A8_UNORM:
+				PixelFormat = PixelFormatOrig = tPixelFormat::A8;
+				break;
 		}
 	}
 	else if (fourCCFormat)
 	{
 		switch (format.FourCC)
 		{
+			// Note that during inspecition of the individual layer data, the DXT1 pixel format might be modified
+			// to DXT1BA (binary alpha).
 			case FourCC('D','X','T','1'):
-				// Note that during inspecition of the individual layer data, the DXT1 pixel format might be modified
-				// to DXT1BA (binary alpha).
 				PixelFormat = PixelFormatOrig = tPixelFormat::BC1_DXT1;
 				break;
 
@@ -843,30 +885,36 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 		}
 	}
 
-	// It must be an RGB format.
+	// It must be a simple uncompressed format.
 	else
 	{
-		// Remember this is a little endian machine, so the masks are lying. Eg. 0xFF0000 in memory is 00 00 FF, so the red is last.
-		bool   hasA = rgbHasAlpha;
+		// Remember this is a little endian machine, so the masks are lying. Eg. 0x00FF0000 in memory is 00 00 FF 00 cuz it's encoded
+		// as an int32 -- so the red comes after blue and green.
+		//bool   hasA = rgbHasAlpha;
 		uint32 mskA = format.MaskAlpha; uint32 mskR = format.MaskRed; uint32 mskG = format.MaskGreen; uint32 mskB = format.MaskBlue;
 		switch (format.RGBBitCount)
 		{
+			case 8:			// Supports A8.
+				if (isA && (mskA == 0xFF))
+					PixelFormat = PixelFormatOrig = tPixelFormat::A8;
+				break;
+
 			case 16:		// Supports G3B5A1R5G2, G4B4A4R4, and G3B5R5G3.
-				if (hasA && (mskA == 0x8000) && (mskR == 0x7C00) && (mskG == 0x03E0) && (mskB == 0x001F))
+				if (isRGBA && (mskA == 0x8000) && (mskR == 0x7C00) && (mskG == 0x03E0) && (mskB == 0x001F))
 					PixelFormat = PixelFormatOrig = tPixelFormat::G3B5A1R5G2;
-				else if (hasA && (mskA == 0xF000) && (mskR == 0x0F00) && (mskG == 0x00F0) && (mskB == 0x000F))
+				else if (isRGBA && (mskA == 0xF000) && (mskR == 0x0F00) && (mskG == 0x00F0) && (mskB == 0x000F))
 					PixelFormat = PixelFormatOrig = tPixelFormat::G4B4A4R4;
-				else if (!hasA && (mskR == 0xF800) && (mskG == 0x07E0) && (mskB == 0x001F))
+				else if (isRGB && (mskR == 0xF800) && (mskG == 0x07E0) && (mskB == 0x001F))
 					PixelFormat = PixelFormatOrig = tPixelFormat::G3B5R5G3;
 				break;
 
 			case 24:		// Supports B8G8R8.
-				if (!hasA && (mskR == 0xFF0000) && (mskG == 0x00FF00) && (mskB == 0x0000FF))
+				if (isRGB && (mskR == 0xFF0000) && (mskG == 0x00FF00) && (mskB == 0x0000FF))
 					PixelFormat = PixelFormatOrig = tPixelFormat::B8G8R8;
 				break;
 
 			case 32:		// Supports B8G8R8A8. This is a little endian machine so the masks are lying. 0xFF000000 in memory is 00 00 00 FF with alpha last.
-				if (hasA && (mskA == 0xFF000000) && (mskR == 0x00FF0000) && (mskG == 0x0000FF00) && (mskB == 0x000000FF))
+				if (isRGBA && (mskA == 0xFF000000) && (mskR == 0x00FF0000) && (mskG == 0x0000FF00) && (mskB == 0x000000FF))
 					PixelFormat = PixelFormatOrig = tPixelFormat::B8G8R8A8;
 				break;
 		}
@@ -881,7 +929,9 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 
 	// From now on we should just be using the PixelFormat to decide what to do next.
 	tAssert(PixelFormat != tPixelFormat::Invalid);
-	if (!rgbFormat && ((mainWidth%4) || (mainHeight%4)))
+
+	// Is this overly restrictive?
+	if (tIsBlockCompressedFormat(PixelFormat) && ((mainWidth%4) || (mainHeight%4)))
 	{
 		Results |= 1 << int(ResultCode::Fatal_BCDimensionsNotDivisibleByFour);
 		return false;
@@ -1001,7 +1051,29 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 
 				if (tImage::tIsNormalFormat(PixelFormat))
 				{
-					// @todo Convert/decode normal formats. Easier than the BC ones.
+					tPixel* uncompData = new tPixel[w*h];
+					switch (layer->PixelFormat)
+					{
+						case tPixelFormat::A8:
+							// Convert to 32-bit RGBA with alpha and 0s for RGB.
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								tColour4i col(0u, 0u, 0u, src[ij]);
+								uncompData[ij].Set(col);
+							}
+							break;
+
+						default:
+							delete[] uncompData;
+							Clear();
+							Results |= 1 << int(ResultCode::Fatal_NormalDecodeError);
+							return false;
+					}
+
+					// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
+					delete[] layer->Data;
+					layer->Data = (uint8*)uncompData;
+					layer->PixelFormat = tPixelFormat::B8G8R8A8;
 				}
 				else if (tImage::tIsBlockCompressedFormat(PixelFormat))
 				{
@@ -1353,6 +1425,7 @@ const char* tImageDDS::ResultDescriptions[] =
 	"Fatal Error. BC texture dimensions not divisible by 4.",
 	"Fatal Error. Maximum number of mipmap levels exceeded.",
 	"Fatal Error. Unable to decode BC pixels.",
+	"Fatal Error. Unable to decode normal uncompressed pixels.",
 	"Fatal Error. DX10 header size incorrect.",
 	"Fatal Error. DX10 resource dimension not supported. 2D support only."
 };

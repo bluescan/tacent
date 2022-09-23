@@ -85,6 +85,7 @@ public:
 		Fatal_BCDimensionsNotDivisibleByFour,
 		Fatal_MaxNumMipmapLevelsExceeded,
 		Fatal_BlockDecodeError,
+		Fatal_NormalDecodeError,
 		Fatal_DX10HeaderSizeIncorrect,
 		Fatal_DX10DimensionNotSupported,
 		NumCodes,

@@ -835,6 +835,29 @@ tTestUnit(ImageDDS)
 		tga.Save(mipName);
 	}
 
+	// Uncompressed. A8.
+	tPrintf("\nLoad-Decode-Save A8 (legacy)\n");
+	dds.Load("A8_A_Legacy.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	tRequire(dds.IsValid());
+	layers.Empty();
+	dds.StealTextureLayers(layers);
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_A8_A_Legacy.tga");
+	}
+
+	tPrintf("\nLoad-Decode-Save A8 (modern)\n");
+	dds.Load("A8_A_Modern.dds", tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder);
+	tRequire(dds.IsValid());
+	layers.Empty();
+	dds.StealTextureLayers(layers);
+	if (layer = layers.First())
+	{
+		tga.Set((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_A8_A_Modern.tga");
+	}
+
 	tSystem::tSetCurrentDir(origDir.Chr());
 }
 
