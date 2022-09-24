@@ -739,7 +739,8 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("BC5ATI2_RG_Modern.dds");
 
 	// BC6
-	DDSLoadDecodeSave("BC6Hs_HDRRGB_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
+	DDSLoadDecodeSave("BC6Hs_HDRRGB_Modern.dds");	// tImageDDS::LoadFlag_GammaCorrectHDR
+	DDSLoadDecodeSave("BC6Hu_HDRRGB_Modern.dds");	// tImageDDS::LoadFlag_GammaCorrectHDR
 
 	// BC7
 	DDSLoadDecodeSave("BC7_RGBA_Modern.dds", 0, true);
@@ -760,6 +761,10 @@ tTestUnit(ImageDDS)
 	// B8G8R8A8
 	DDSLoadDecodeSave("B8G8R8A8_RGBA_Legacy.dds");
 	DDSLoadDecodeSave("B8G8R8A8_RGBA_Modern.dds");
+
+	// B5G6R5
+	DDSLoadDecodeSave("B5G6R5_RGB_Legacy.dds");
+	DDSLoadDecodeSave("B5G6R5_RGB_Modern.dds");
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }

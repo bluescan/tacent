@@ -47,6 +47,7 @@ namespace tImage
 		8,				// BC4_ATI1
 		16,				// BC5_ATI2
 		16,				// BC6H_S16
+		16,				// BC6H_U16
 		16				// BC7_UNORM
 	};
 	tStaticAssert(tNumElements(BlockFormat_BytesPer4x4PixelBlock) == int(tPixelFormat::NumBlockFormats));
@@ -184,7 +185,8 @@ const char* tImage::tGetPixelFormatName(tPixelFormat pixelFormat)
 		"BC3_DXT5",
 		"BC4_ATI1",
 		"BC5_ATI2",
-		"BC6H",
+		"BC6Hs",
+		"BC6Hu",
 		"BC7",
 		"RADIANCE",
 		"EXR",

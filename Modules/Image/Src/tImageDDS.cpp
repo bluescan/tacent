@@ -820,10 +820,14 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 				PixelFormat = PixelFormatOrig = tPixelFormat::BC5_ATI2;
 				break;
 
-			// case tDXGI_FORMAT_BC6H_UF16:
 			case tDXGI_FORMAT_BC6H_TYPELESS:		// Interpret typeless as BC6H_S16... we gotta choose something.
 			case tDXGI_FORMAT_BC6H_SF16:
 				PixelFormat = PixelFormatOrig = tPixelFormat::BC6H_S16;
+				ColourSpace = tColourSpace::Linear;
+				break;
+
+			case tDXGI_FORMAT_BC6H_UF16:
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC6H_U16;
 				ColourSpace = tColourSpace::Linear;
 				break;
 
@@ -848,7 +852,11 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 			case tDXGI_FORMAT_B8G8R8A8_UNORM:
 			case tDXGI_FORMAT_B8G8R8A8_TYPELESS:
 				PixelFormat = PixelFormatOrig = tPixelFormat::B8G8R8A8;
-				break;	
+				break;
+
+			case tDXGI_FORMAT_B5G6R5_UNORM:
+				PixelFormat = PixelFormatOrig = tPixelFormat::B5G6R5;
+				break;
 		}
 	}
 	else if (fourCCFormat)
@@ -955,7 +963,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 				else if (isRGBA && (mskA == 0xF000) && (mskR == 0x0F00) && (mskG == 0x00F0) && (mskB == 0x000F))
 					PixelFormat = PixelFormatOrig = tPixelFormat::G4B4A4R4;
 				else if (isRGB && (mskR == 0xF800) && (mskG == 0x07E0) && (mskB == 0x001F))
-					PixelFormat = PixelFormatOrig = tPixelFormat::G3B5R5G3;
+					PixelFormat = PixelFormatOrig = tPixelFormat::B5G6R5;
 				break;
 
 			case 24:		// Supports B8G8R8.
@@ -1142,6 +1150,23 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 							}
 							break;
 
+						case tPixelFormat::B5G6R5:
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								// On an LE machine casting to a uint16 effectively swaps the bytes when doing bit ops.
+								// This means red will be in the most significant bits -- that's why it looks backwards.
+								uint16 u = *((uint16*)(src+ij*2));
+								uint8 r = u >> 11;
+								uint8 g = (u >> 5) & 0x003F;
+								uint8 b = u & 0x001F;
+								float fr = (float(r) / 31.0f);		// Max is 2^5 - 1.
+								float fg = (float(g) / 63.0f);		// Max is 2^6 - 1.
+								float fb = (float(b) / 31.0f);		// Max is 2^5 - 1.
+								tColour4i col(fr, fg, fb, 1.0f);
+								uncompData[ij].Set(col);
+							}
+							break;
+
 						default:
 							delete[] uncompData;
 							Clear();
@@ -1254,6 +1279,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 						}
 
 						case tPixelFormat::BC6H_S16:
+						case tPixelFormat::BC6H_U16:
 						{
 							// This HDR format decompresses to RGB floats.
 							tColour3f* rgbData = new tColour3f[wextra*hextra];
@@ -1262,7 +1288,8 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 								for (int j = 0; j < w; j += 4)
 								{
 									uint8* dst = (uint8*)((float*)rgbData + (i * w + j) * 3);
-									bcdec_bc6h_float(src, dst, w * 3, true);
+									bool signedData = layer->PixelFormat == tPixelFormat::BC6H_S16;
+									bcdec_bc6h_float(src, dst, w * 3, signedData);
 									src += BCDEC_BC6H_BLOCK_SIZE;
 								}
 
@@ -1365,6 +1392,7 @@ uint8* tImageDDS::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat 
 		case tPixelFormat::BC4_ATI1:		// @todo Consider implementing.
 		case tPixelFormat::BC5_ATI2:		// @todo Consider implementing.
 		case tPixelFormat::BC6H_S16:
+		case tPixelFormat::BC6H_U16:
 		case tPixelFormat::BC7:
 			return nullptr;
 	}

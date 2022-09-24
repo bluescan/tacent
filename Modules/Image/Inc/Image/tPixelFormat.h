@@ -25,7 +25,14 @@ namespace tImage
 // A note regarding sRGB. We are _not_ indicating via the pixel format what space the colour encoded by the format is
 // in. Tacent separates the encoding (the pixel format) from how the encoded data is to be interpreted. This is in
 // contrast to all the MS DXGI formats where they effectively at least double the number of formats unnecessarily.
-// See tColourSpace enum in tColour.h
+// See tColourSpace enum in tColour.h.
+//
+// A way to think of it is as follows -- You have some input data (Din) that gets encoded using a pixel format (Epf)
+// resulting in some output data (Dout). Din -> Epf -> Dout.
+// Without changing Din, if changing Epf would result in different Dout, it is correct to have separate formats (eg.
+// BCH6_S vs BCH6_U. DXT1 vs DXT1BA). If changing Epf would not result in different Dout then the formats are not
+// different and satellite info should be used if what's stored in Din (and Dout) has certain properties (eg. sRGB space
+// vs Linear, premultiplied vs not, DXT2 and DXT3 are the same).
 enum class tPixelFormat
 {
 	Invalid				= -1,
@@ -38,7 +45,7 @@ enum class tPixelFormat
 	B8G8R8A8,							// 32 bit. Full alpha. Matches GL_BGRA source ordering. Most drivers do not need to swizzle.
 	G3B5A1R5G2,							// 16 bit. 15 colour. Binary alpha. First bits are the low order ones.
 	G4B4A4R4,							// 16 bit. 12 colour. 4 bit alpha.
-	G3B5R5G3,							// 16 bit. No alpha. The first 3 green bits are the low order ones.
+	B5G6R5,								// 16 bit. No alpha. The truth is in memory this is actually G3B5R5G3, but no-one calls it that.
 	A8L8,								// 16 bit. Alpha and Luminance.
 	A8,									// 8  bit. Alpha only.
 	L8,									// 8  bit. Luminance only.
@@ -55,6 +62,7 @@ enum class tPixelFormat
 	BC4_ATI1,							// BC 4. One colour channel only. May not be HW supported.
 	BC5_ATI2,							// BC 5. Two colour channels only. May not be HW supported.
 	BC6H_S16,							// BC 6 HDR. No alpha. 3 x 16bit signed half-floats.
+	BC6H_U16,							// BC 6 HDR. No alpha. 3 x 16bit unsigned half-floats.
 	BC7,								// BC 7. Full colour. Variable alpha 0 to 8 bits.
 	LastBlock			= BC7,
 

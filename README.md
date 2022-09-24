@@ -142,7 +142,7 @@ Credits are found directly in the code where appropriate. Here is a list of some
 * Erik B. Dam, Martin Koch, and Martin Lillholm for their paper "Quaternions, Interpolation and Animation."
 * Alberto Demichelis for his TRex regular expression class.
 * Woboq for their code browser.
-* Microsoft for their Community Edition version of Visual Studio.
+* Microsoft for VSCode, GitHub, and the MIT-licensed DirectXTex converion utility.
 * Simon Brown for his SquishLib texture block compression library.
 * Ignacio Castano and nVidia for nVidia Texture Tools and placing the code under the MIT license.
 * Davide Pizzolato for CxImage and for placing it under the zlib license.
