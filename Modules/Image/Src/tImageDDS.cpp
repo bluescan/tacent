@@ -731,11 +731,14 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 
 	// Has alpha should be true if the pixel format is uncompressed (RGB) and there is an alpha channel.
 	// Determine if we support the pixel format and which one it is.
+
+	bool anyRGB			= (format.Flags & tDDPF_RGB);
 	bool isRGB			= (format.Flags == tDDSPixelFormatType_RGB);
 	bool isRGBA			= (format.Flags == tDDSPixelFormatType_RGBA);
 	bool isA			= (format.Flags == tDDSPixelFormatType_A);
+	bool isL			= (format.Flags == tDDSPixelFormatType_L);
 	bool fourCCFormat	= (format.Flags == tDDSPixelFormatType_FourCC);
-	if (!isRGB && !isRGBA && !isA && !fourCCFormat)
+	if (!isRGB && !isRGBA && !isA && !isL && !fourCCFormat)
 	{
 		Results |= 1 << int(ResultCode::Fatal_IncorrectPixelFormatSpec);
 		return false;
@@ -834,6 +837,18 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 			case tDXGI_FORMAT_A8_UNORM:
 				PixelFormat = PixelFormatOrig = tPixelFormat::A8;
 				break;
+
+			case tDXGI_FORMAT_R8_UNORM:
+			case tDXGI_FORMAT_R8_TYPELESS:
+				PixelFormat = PixelFormatOrig = tPixelFormat::L8;
+				break;
+
+			case tDXGI_FORMAT_B8G8R8A8_UNORM_SRGB:
+				ColourSpace = tColourSpace::sRGB;
+			case tDXGI_FORMAT_B8G8R8A8_UNORM:
+			case tDXGI_FORMAT_B8G8R8A8_TYPELESS:
+				PixelFormat = PixelFormatOrig = tPixelFormat::B8G8R8A8;
+				break;	
 		}
 	}
 	else if (fourCCFormat)
@@ -868,19 +883,53 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 				PixelFormat = PixelFormatOrig = tPixelFormat::BC3_DXT4_DXT5;
 				break;
 
+			case FourCC('A','T','I','1'):
+			case FourCC('B','C','4','U'):
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC4_ATI1;
+				break;
+
+			case FourCC('A','T','I','2'):
+			case FourCC('B','C','5','U'):
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC5_ATI2;
+				break;
+
+			case FourCC('B','C','4','S'):	// We don't support signed BC4.
+			case FourCC('B','C','5','S'):	// We don't support signed BC5.
+			case FourCC('R','G','B','G'):	// We don't support tDXGI_FORMAT_R8G8_B8G8_UNORM -- That's a lot of green precision.
+			case FourCC('G','R','G','B'):	// We don't support tDXGI_FORMAT_G8R8_G8B8_UNORM -- That's a lot of green precision.
+				break;
+
+			// Sometimes these D3D formats may be stored in the FourCC slot.
+
+			case tD3DFMT_A16B16G16R16:		// We don't support tDXGI_FORMAT_R16G16B16A16_UNORM.
+			case tD3DFMT_Q16W16V16U16:		// We don't support tDXGI_FORMAT_R16G16B16A16_SNORM.
+			case tD3DFMT_R16F:				// We don't support tDXGI_FORMAT_R16_FLOAT.
+			case tD3DFMT_G16R16F:			// We don't support tDXGI_FORMAT_R16G16_FLOAT.
+			case tD3DFMT_A16B16G16R16F:		// We don't support tDXGI_FORMAT_R16G16B16A16_FLOAT.
+				break;
+			
+			case tD3DFMT_A8:
+				PixelFormat = PixelFormatOrig = tPixelFormat::A8;
+				break;
+
+			case tD3DFMT_L8:
+				PixelFormat = PixelFormatOrig = tPixelFormat::L8;
+				break;
+
+			case tD3DFMT_A8B8G8R8:
+				PixelFormat = PixelFormatOrig = tPixelFormat::B8G8R8A8;
+				break;
+
 			case tD3DFMT_R32F:
-				// Unsupported.
-				// PixelFormat = PixelFormatOrig = tPixelFormat::R32F;
+				PixelFormat = PixelFormatOrig = tPixelFormat::R32F;
 				break;
 
 			case tD3DFMT_G32R32F:
-				// Unsupported.
-				// PixelFormat = PixelFormatOrig = tPixelFormat::G32R32F;
+				PixelFormat = PixelFormatOrig = tPixelFormat::G32R32F;
 				break;
 
 			case tD3DFMT_A32B32G32R32F:
-				// Unsupported.
-				// PixelFormat = PixelFormatOrig = tPixelFormat::A32B32G32R32F;
+				PixelFormat = PixelFormatOrig = tPixelFormat::A32B32G32R32F;
 				break;
 		}
 	}
@@ -890,13 +939,14 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 	{
 		// Remember this is a little endian machine, so the masks are lying. Eg. 0x00FF0000 in memory is 00 00 FF 00 cuz it's encoded
 		// as an int32 -- so the red comes after blue and green.
-		//bool   hasA = rgbHasAlpha;
 		uint32 mskA = format.MaskAlpha; uint32 mskR = format.MaskRed; uint32 mskG = format.MaskGreen; uint32 mskB = format.MaskBlue;
 		switch (format.RGBBitCount)
 		{
-			case 8:			// Supports A8.
-				if (isA && (mskA == 0xFF))
+			case 8:			// Supports A8, L8.
+				if ((isA || anyRGB) && (mskA == 0xFF))
 					PixelFormat = PixelFormatOrig = tPixelFormat::A8;
+				else if ((isL || anyRGB) && (mskR == 0xFF))
+					PixelFormat = PixelFormatOrig = tPixelFormat::L8;
 				break;
 
 			case 16:		// Supports G3B5A1R5G2, G4B4A4R4, and G3B5R5G3.
@@ -913,7 +963,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 					PixelFormat = PixelFormatOrig = tPixelFormat::B8G8R8;
 				break;
 
-			case 32:		// Supports B8G8R8A8. This is a little endian machine so the masks are lying. 0xFF000000 in memory is 00 00 00 FF with alpha last.
+			case 32:		// Supports B8G8R8A8. Alpha really is last (even though ABGR may seem more consistent).
 				if (isRGBA && (mskA == 0xFF000000) && (mskR == 0x00FF0000) && (mskG == 0x0000FF00) && (mskB == 0x000000FF))
 					PixelFormat = PixelFormatOrig = tPixelFormat::B8G8R8A8;
 				break;
@@ -1055,10 +1105,39 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 					switch (layer->PixelFormat)
 					{
 						case tPixelFormat::A8:
-							// Convert to 32-bit RGBA with alpha and 0s for RGB.
+							// Convert to 32-bit RGBA with alpha in A and 0s for RGB.
 							for (int ij = 0; ij < w*h; ij++)
 							{
 								tColour4i col(0u, 0u, 0u, src[ij]);
+								uncompData[ij].Set(col);
+							}
+							break;
+
+						case tPixelFormat::L8:
+						{
+							// Convert to 32-bit RGBA with luminance in R and 255 for A. If SpreadLuminance flag set,
+							// also set luminance in the GB channels, if not then GB get 0s.
+							bool spread = loadFlags & LoadFlag_SpreadLuminance;
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								tColour4i col(src[ij], spread ? src[ij] : 0u, spread ? src[ij] : 0u, 255u);
+								uncompData[ij].Set(col);
+							}
+							break;
+						}
+
+						case tPixelFormat::B8G8R8:
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								tColour4i col(src[ij*3+2], src[ij*3+1], src[ij*3+0], 255u);
+								uncompData[ij].Set(col);
+							}
+							break;
+
+						case tPixelFormat::B8G8R8A8:
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								tColour4i col(src[ij*4+2], src[ij*4+1], src[ij*4+0], src[ij*4+3]);
 								uncompData[ij].Set(col);
 							}
 							break;

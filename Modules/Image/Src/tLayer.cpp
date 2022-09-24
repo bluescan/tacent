@@ -40,7 +40,7 @@ bool tLayer::IsOpaqueFormat() const
 		case tPixelFormat::BC3_DXT4_DXT5:
 		case tPixelFormat::G3B5A1R5G2:
 		case tPixelFormat::G4B4A4R4:
-		case tPixelFormat::L8A8:
+		case tPixelFormat::A8L8:
 			return false;
 
 		default:

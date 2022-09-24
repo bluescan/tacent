@@ -38,7 +38,8 @@ public:
 		LoadFlag_Decode				= 1 << 0,	// Decode the dds texture data into RGBA 32 bit layers. If not set, the layer data will remain unmodified.
 		LoadFlag_ReverseRowOrder	= 1 << 1,	// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.
 		LoadFlag_GammaCorrectHDR	= 1 << 2,	// Gamma correct HDR (BC6) images during load.
-		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder
+		LoadFlag_SpreadLuminance	= 1 << 3,	// For DDS files with Luminance, spread it to the RGB channels. Otherwise uses Red channel.
+		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance
 	};
 	// If an error is encountered loading the resultant object will return false for IsValid. You can call GetLastResult
 	// to get more detailed information. There are some results that are not full-success that leave the object valid.

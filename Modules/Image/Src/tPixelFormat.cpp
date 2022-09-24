@@ -31,6 +31,7 @@ namespace tImage
 		2,				// G3B5R5G3
 		2,				// L8A8
 		1,				// A8
+		1,				// L8
 		4,				// R32F
 		8,				// G32R32F
 		16,				// A32B32G32R32F
@@ -103,7 +104,7 @@ bool tImage::tFormatSupportsAlpha(tPixelFormat format)
 		case tPixelFormat::B8G8R8A8:
 		case tPixelFormat::G3B5A1R5G2:
 		case tPixelFormat::G4B4A4R4:
-		case tPixelFormat::L8A8:
+		case tPixelFormat::A8L8:
 		case tPixelFormat::R32F:
 		case tPixelFormat::A32B32G32R32F:
 		case tPixelFormat::BC1_DXT1BA:
@@ -173,6 +174,7 @@ const char* tImage::tGetPixelFormatName(tPixelFormat pixelFormat)
 		"G3B5R5G3",
 		"L8A8",
 		"A8",
+		"L8",
 		"R32F",
 		"G32R32F",
 		"A32B32G32R32F",
