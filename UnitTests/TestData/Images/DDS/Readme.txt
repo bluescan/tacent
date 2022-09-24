@@ -1,6 +1,15 @@
 dds files with 'Legacy' do not contain the D.X.1.0. FourCC header.
 dds files with 'Modern' do     contain the D.X.1.0. FourCC header.
 
+If you run the unit-tests there will be a bunch of tga's written to the DDS folder. They all take the form
+Written_Format_Channels_Flags.tga
+The Flags field contains the load-flags when the unit-tests were performed (or an x if not present).
+The flags are:
+D : Decode to raw 32-bit RGBA (otherwise leaves the data in same format as in dds file).
+G : Gamma-correct resulting image data. Generally not needed if src file is in sRGB already.
+R : Reverse rows. Useful for binding textures in OpenGL. Never affects quality. If can't do (eg BC7 and no decode) it will tell you.
+S : Spead luminance. If set dds files with luminance will spread (dupe) the data to the RGB channels. Uses Red-only otherwise.
+
 Three tools were tried when generating the dds test images (versions as of Sept 20, 2022).
 1) NVidia Texture Tools Generator (NVTT). A drag-and-drop closed-source ImGui application.
 2) Microsoft's texconv.exe (TEXC) from their DirectXTex tool suite.
