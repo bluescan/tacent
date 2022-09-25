@@ -714,13 +714,8 @@ tTestUnit(ImageDDS)
 	tString origDir = tSystem::tGetCurrentDir();
 	tSystem::tSetCurrentDir(origDir + "TestData/Images/DDS/");
 
-
-	// B5G5R5A1
-	//	DDSLoadDecodeSave("B5G5R5A1_RGBA_Legacy.dds");
-	//	DDSLoadDecodeSave("B5G5R5A1_RGBA_Modern.dds");
-	// return;
-
 	tPrintf("Testing DDS Loading. Legacy = No DDX10 Header.\n\n");
+	// return;
 
 	// BC1
 	DDSLoadDecodeSave("BC1DXT1_RGB_Legacy.dds");
@@ -775,6 +770,10 @@ tTestUnit(ImageDDS)
 	// B4G4R4A4
 	DDSLoadDecodeSave("B4G4R4A4_RGBA_Legacy.dds");
 	DDSLoadDecodeSave("B4G4R4A4_RGBA_Modern.dds");
+
+	// B5G5R5A1
+	DDSLoadDecodeSave("B5G5R5A1_RGBA_Legacy.dds");
+	DDSLoadDecodeSave("B5G5R5A1_RGBA_Modern.dds");
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }

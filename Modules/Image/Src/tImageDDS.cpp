@@ -861,6 +861,10 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 			case tDXGI_FORMAT_B4G4R4A4_UNORM:
 				PixelFormat = PixelFormatOrig = tPixelFormat::B4G4R4A4;
 				break;
+
+			case tDXGI_FORMAT_B5G5R5A1_UNORM:
+				PixelFormat = PixelFormatOrig = tPixelFormat::B5G5R5A1;
+				break;
 		}
 	}
 	else if (fourCCFormat)
@@ -1158,13 +1162,23 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 								// On an LE machine casting to a uint16 effectively swaps the bytes when doing bit ops.
 								// This means red will be in the most significant bits -- that's why it looks backwards.
 								uint16 u = *((uint16*)(src+ij*2));
-								uint8 r = u >> 11;
-								uint8 g = (u >> 5) & 0x003F;
-								uint8 b = u & 0x001F;
-								float fr = (float(r) / 31.0f);		// Max is 2^5 - 1.
-								float fg = (float(g) / 63.0f);		// Max is 2^6 - 1.
-								float fb = (float(b) / 31.0f);		// Max is 2^5 - 1.
-								tColour4i col(fr, fg, fb, 1.0f);
+
+								uint8 r = (u         ) >> 11;		// 1111 1000 0000 0000 >> 11.
+								uint8 g = (u & 0x07E0) >> 5;		// 0000 0111 1110 0000 >> 5.
+								uint8 b = (u & 0x001F)     ;		// 0000 0000 0001 1111 >> 0.
+
+								// Normalize to range.
+								// Careful here, you can't just do bit ops to get the components into position.
+								// For example, a full red (11111) has to go to 255 (1.0f), and a zero red (00000) to 0(0.0f).
+								// That is, the normalize has to divide by the range. At first I just masked and shifted the bits
+								// to the right spot in an 8-bit type, but you don't know what to put in the LSBits. Putting 0s
+								// would be bad (an 4 bit alpha of 1111 would go to 11110000... suddenly image not fully opaque)
+								// and putting all 1s would add red (or alpha or whatever) when there was none. Half way won't
+								// work either. You need the endpoints to work.
+								float rf = (float(r) / 31.0f);		// Max is 2^5 - 1.
+								float gf = (float(g) / 63.0f);		// Max is 2^6 - 1.
+								float bf = (float(b) / 31.0f);		// Max is 2^5 - 1.
+								tColour4i col(rf, gf, bf, 1.0f);
 								uncompData[ij].Set(col);
 							}
 							break;
@@ -1172,13 +1186,38 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 						case tPixelFormat::B4G4R4A4:
 							for (int ij = 0; ij < w*h; ij++)
 							{
-								uint8 b0 = src[ij*2];
-								uint8 b1 = src[ij*2+1];
-								uint8 g = b0 & 0xF0;				// Normalizes result by leaving in-place.
-								uint8 b = (b0 & 0x0F) << 4;
-								uint8 a = b1 & 0xF0;				// Normalizes result by leaving in-place.
-								uint8 r = (b1 & 0x0F) << 4;
-								tColour4i col(r, g, b, a);
+								uint16 u = *((uint16*)(src+ij*2));
+								uint8 a = (u         ) >> 12;		// 1111 0000 0000 0000 >> 12.
+								uint8 r = (u & 0x0F00) >> 8;		// 0000 1111 0000 0000 >> 8.
+								uint8 g = (u & 0x00F0) >> 4;		// 0000 0000 1111 0000 >> 4.
+								uint8 b = (u & 0x000F)     ;		// 0000 0000 0000 1111 >> 0.
+
+								// Normalize to range.
+								float af = float(a) / 15.0f;		// Max is 2^4 - 1.
+								float rf = float(r) / 15.0f;
+								float gf = float(g) / 15.0f;
+								float bf = float(b) / 15.0f;
+
+								tColour4i col(rf, gf, bf, af);
+								uncompData[ij].Set(col);
+							}
+							break;
+
+						case tPixelFormat::B5G5R5A1:
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								uint16 u = *((uint16*)(src+ij*2));
+								bool  a = (u & 0x8000);				// 1000 0000 0000 0000.
+								uint8 r = (u & 0x7C00) >> 10;		// 0111 1100 0000 0000 >> 10.
+								uint8 g = (u & 0x03E0) >> 5;		// 0000 0011 1110 0000 >> 5.
+								uint8 b = (u & 0x001F)     ;		// 0000 0000 0001 1111 >> 0.
+
+								// Normalize to range.
+								float rf = float(r) / 31.0f;		// Max is 2^5 - 1.
+								float gf = float(g) / 31.0f;
+								float bf = float(b) / 31.0f;
+
+								tColour4i col(rf, gf, bf, a ? 1.0f : 0.0f);
 								uncompData[ij].Set(col);
 							}
 							break;
