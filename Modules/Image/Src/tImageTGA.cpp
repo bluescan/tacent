@@ -88,7 +88,7 @@ bool tImageTGA::Set(const uint8* tgaFileInMemory, int numBytes)
 	}
 	SrcPixelFormat = tPixelFormat::R8G8B8A8;
 	if (bitDepth == 16)
-		SrcPixelFormat = tPixelFormat::G3B5A1R5G2;
+		SrcPixelFormat = tPixelFormat::B5G5R5A1;
 	else if (bitDepth == 24)
 		SrcPixelFormat = tPixelFormat::R8G8B8;
 	uint8* srcData = (uint8*)(header + 1);

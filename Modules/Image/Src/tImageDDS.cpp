@@ -94,7 +94,7 @@ void tImageDDS::Clear()
 
 bool tImageDDS::IsOpaque() const
 {
-	return !tImage::tFormatSupportsAlpha(PixelFormat);
+	return tImage::tIsOpaqueFormat(PixelFormat);
 }
 
 
@@ -542,7 +542,7 @@ struct tDDSHeaderDX10Ext
 	tD3D10_RESOURCE_DIMENSION ResourceDimension;
 	uint32 MiscFlag;
     uint32 ArraySize;
-    uint32 Eeserved;
+    uint32 Reserved;
 };
 #pragma pack(pop)
 
@@ -857,6 +857,10 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 			case tDXGI_FORMAT_B5G6R5_UNORM:
 				PixelFormat = PixelFormatOrig = tPixelFormat::B5G6R5;
 				break;
+
+			case tDXGI_FORMAT_B4G4R4A4_UNORM:
+				PixelFormat = PixelFormatOrig = tPixelFormat::B4G4R4A4;
+				break;
 		}
 	}
 	else if (fourCCFormat)
@@ -957,11 +961,11 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 					PixelFormat = PixelFormatOrig = tPixelFormat::L8;
 				break;
 
-			case 16:		// Supports G3B5A1R5G2, G4B4A4R4, and G3B5R5G3.
+			case 16:		// Supports B5G6R5, B4G4R4A4, and B5G5R5A1.
 				if (isRGBA && (mskA == 0x8000) && (mskR == 0x7C00) && (mskG == 0x03E0) && (mskB == 0x001F))
-					PixelFormat = PixelFormatOrig = tPixelFormat::G3B5A1R5G2;
+					PixelFormat = PixelFormatOrig = tPixelFormat::B5G5R5A1;
 				else if (isRGBA && (mskA == 0xF000) && (mskR == 0x0F00) && (mskG == 0x00F0) && (mskB == 0x000F))
-					PixelFormat = PixelFormatOrig = tPixelFormat::G4B4A4R4;
+					PixelFormat = PixelFormatOrig = tPixelFormat::B4G4R4A4;
 				else if (isRGB && (mskR == 0xF800) && (mskG == 0x07E0) && (mskB == 0x001F))
 					PixelFormat = PixelFormatOrig = tPixelFormat::B5G6R5;
 				break;
@@ -979,14 +983,12 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 	}
 
 	// @todo We do not yet support these formats.
+	// From now on we should just be using the PixelFormat to decide what to do next.
 	if (PixelFormat == tPixelFormat::Invalid)
 	{
 		Results |= 1 << int(ResultCode::Fatal_UnsupportedPixelFormat);
 		return false;
 	}
-
-	// From now on we should just be using the PixelFormat to decide what to do next.
-	tAssert(PixelFormat != tPixelFormat::Invalid);
 
 	// Is this overly restrictive?
 	if (tIsBlockCompressedFormat(PixelFormat) && ((mainWidth%4) || (mainHeight%4)))
@@ -1163,6 +1165,20 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 								float fg = (float(g) / 63.0f);		// Max is 2^6 - 1.
 								float fb = (float(b) / 31.0f);		// Max is 2^5 - 1.
 								tColour4i col(fr, fg, fb, 1.0f);
+								uncompData[ij].Set(col);
+							}
+							break;
+
+						case tPixelFormat::B4G4R4A4:
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								uint8 b0 = src[ij*2];
+								uint8 b1 = src[ij*2+1];
+								uint8 g = b0 & 0xF0;				// Normalizes result by leaving in-place.
+								uint8 b = (b0 & 0x0F) << 4;
+								uint8 a = b1 & 0xF0;				// Normalizes result by leaving in-place.
+								uint8 r = (b1 & 0x0F) << 4;
+								tColour4i col(r, g, b, a);
 								uncompData[ij].Set(col);
 							}
 							break;

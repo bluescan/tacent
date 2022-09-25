@@ -43,9 +43,10 @@ enum class tPixelFormat
 	R8G8B8A8,							// 32 bit. Full alpha. Matches GL_RGBA source ordering. Not efficient. Most drivers will swizzle to ABGR.
 	B8G8R8,								// 24 bit. Full colour. No alpha. Matches GL_BGR source ordering. Efficient. Most drivers do not need to swizzle.
 	B8G8R8A8,							// 32 bit. Full alpha. Matches GL_BGRA source ordering. Most drivers do not need to swizzle.
-	G3B5A1R5G2,							// 16 bit. 15 colour. Binary alpha. First bits are the low order ones.
-	G4B4A4R4,							// 16 bit. 12 colour. 4 bit alpha.
+
 	B5G6R5,								// 16 bit. No alpha. The truth is in memory this is actually G3B5R5G3, but no-one calls it that.
+	B4G4R4A4,							// 16 bit. 12 colour bits. 4 bit alpha.
+	B5G5R5A1,							// 16 bit. 15 colour bits. Binary alpha.
 	A8L8,								// 16 bit. Alpha and Luminance.
 	A8,									// 8  bit. Alpha only.
 	L8,									// 8  bit. Luminance only.
@@ -89,10 +90,84 @@ bool tIsNormalFormat(tPixelFormat);
 bool tIsBlockCompressedFormat(tPixelFormat);
 bool tIsVendorFormat(tPixelFormat);
 bool tIsPaletteFormat(tPixelFormat);
-bool tFormatSupportsAlpha(tPixelFormat);
+bool tIsAlphaFormat(tPixelFormat);
+bool tIsOpaqueFormat(tPixelFormat);
 int tGetBitsPerPixel(tPixelFormat);				// Some formats (dxt1) are only half a byte per pixel, so we report bits.
 int tGetBytesPer4x4PixelBlock(tPixelFormat);	// This function must be given a BC pixel format.
 const char* tGetPixelFormatName(tPixelFormat);
 
 
+}
+
+
+// Implementation below this line.
+
+
+inline bool tImage::tIsNormalFormat(tPixelFormat format)
+{
+	if ((format >= tPixelFormat::FirstNormal) && (format <= tPixelFormat::LastNormal))
+		return true;
+
+	return false;
+}
+
+
+inline bool tImage::tIsBlockCompressedFormat(tPixelFormat format)
+{
+	if ((format >= tPixelFormat::FirstBlock) && (format <= tPixelFormat::LastBlock))
+		return true;
+
+	return false;
+}
+
+
+inline bool tImage::tIsVendorFormat(tPixelFormat format)
+{
+	if ((format >= tPixelFormat::FirstVendor) && (format <= tPixelFormat::LastVendor))
+		return true;
+
+	return false;
+}
+
+
+inline bool tImage::tIsPaletteFormat(tPixelFormat format)
+{
+	if ((format >= tPixelFormat::FirstPAL) && (format <= tPixelFormat::LastPAL))
+		return true;
+
+	return false;
+}
+
+
+inline bool tImage::tIsAlphaFormat(tPixelFormat format)
+{
+	switch (format)
+	{
+		case tPixelFormat::R8G8B8A8:
+		case tPixelFormat::B8G8R8A8:
+		case tPixelFormat::B4G4R4A4:
+		case tPixelFormat::B5G5R5A1:
+		case tPixelFormat::A8L8:
+		case tPixelFormat::R32F:
+		case tPixelFormat::A32B32G32R32F:
+		case tPixelFormat::BC1_DXT1BA:
+		case tPixelFormat::BC2_DXT2_DXT3:
+		case tPixelFormat::BC3_DXT4_DXT5:
+		case tPixelFormat::BC7:
+		case tPixelFormat::OPENEXR_HDR:
+
+		// For palettized the palette may have an entry that can be considered alpha. However for only 1-bit
+		// palettes we consider it dithered (ColourA/ColourB) and not to have an alpha.
+		case tPixelFormat::PAL_8BIT:
+		case tPixelFormat::PAL_4BIT:
+			return true;
+	}
+
+	return false;
+}
+
+
+inline bool tImage::tIsOpaqueFormat(tPixelFormat format)
+{
+	return !tImage::tIsAlphaFormat(format);
 }

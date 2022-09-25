@@ -65,7 +65,7 @@ public:
 	void Clear()																										{ PixelFormat = tPixelFormat::Invalid; Width = Height = 0; if (OwnsData) delete[] Data; Data = nullptr; OwnsData = true; }
 
 	// This just checks the pixel format to see if it supports alpha. It does NOT check the data.
-	bool IsOpaqueFormat() const;
+	bool IsOpaqueFormat() const																							{ return tImage::tIsOpaqueFormat(PixelFormat); }
 
 	// An invalid layer is never considered equal to another layer even if the other layer is also invalid. Whether the
 	// layer owns the data is considered irrelevant for equivalency purposes.

@@ -26,9 +26,9 @@ namespace tImage
 		4,				// R8G8B8A8
 		3,				// B8G8R8
 		4,				// B8G8R8A8
-		2,				// G3B5A1R5G2
-		2,				// G4B4A4R4
-		2,				// G3B5R5G3
+		2,				// B5G6R5
+		2,				// B4G4R4A4
+		2,				// B5G5R5A1
 		2,				// L8A8
 		1,				// A8
 		1,				// L8
@@ -58,70 +58,6 @@ namespace tImage
 		0				// OpenEXR. @todo There are multiple exr pixel formats. We don't yet determine which one.
 	};
 	tStaticAssert(tNumElements(VendorFormat_BytesPerPixel) == int(tPixelFormat::NumVendorFormats));
-}
-
-
-bool tImage::tIsNormalFormat(tPixelFormat format)
-{
-	if ((format >= tPixelFormat::FirstNormal) && (format <= tPixelFormat::LastNormal))
-		return true;
-
-	return false;
-}
-
-
-bool tImage::tIsBlockCompressedFormat(tPixelFormat format)
-{
-	if ((format >= tPixelFormat::FirstBlock) && (format <= tPixelFormat::LastBlock))
-		return true;
-
-	return false;
-}
-
-
-bool tImage::tIsVendorFormat(tPixelFormat format)
-{
-	if ((format >= tPixelFormat::FirstVendor) && (format <= tPixelFormat::LastVendor))
-		return true;
-
-	return false;
-}
-
-
-bool tImage::tIsPaletteFormat(tPixelFormat format)
-{
-	if ((format >= tPixelFormat::FirstPAL) && (format <= tPixelFormat::LastPAL))
-		return true;
-
-	return false;
-}
-
-
-bool tImage::tFormatSupportsAlpha(tPixelFormat format)
-{
-	switch (format)
-	{
-		case tPixelFormat::R8G8B8A8:
-		case tPixelFormat::B8G8R8A8:
-		case tPixelFormat::G3B5A1R5G2:
-		case tPixelFormat::G4B4A4R4:
-		case tPixelFormat::A8L8:
-		case tPixelFormat::R32F:
-		case tPixelFormat::A32B32G32R32F:
-		case tPixelFormat::BC1_DXT1BA:
-		case tPixelFormat::BC2_DXT2_DXT3:
-		case tPixelFormat::BC3_DXT4_DXT5:
-		case tPixelFormat::BC7:
-		case tPixelFormat::OPENEXR_HDR:
-
-		// For palettized the palette may have an entry that can be considered alpha. However for only 1-bit
-		// palettes we consider it dithered (ColourA/ColourB) and not to have an alpha.
-		case tPixelFormat::PAL_8BIT:
-		case tPixelFormat::PAL_4BIT:
-			return true;
-	}
-
-	return false;
 }
 
 
@@ -170,9 +106,9 @@ const char* tImage::tGetPixelFormatName(tPixelFormat pixelFormat)
 		"R8G8B8A8",
 		"B8G8R8",
 		"B8G8R8A8",
-		"G3B5A1R5G2",
-		"G4B4A4R4",
-		"G3B5R5G3",
+		"B5G6R5",
+		"B4G4R4A4",
+		"B5G5R5A1",
 		"L8A8",
 		"A8",
 		"L8",

@@ -32,12 +32,12 @@ NVTT does during the conversion is up to them. In any case using TEXC for the dd
 The ASTC versions do not seem to have written the alpha channel properly with NVTT -- At least when dragging them back
 into the NVTT exporter, only the BC7 ones show the correct alpha channel.
 
-I didn't use Compressonator much, but generating a BC6 HDR image did not work out. The image was the correct
+I didn't use Compressonator much, but generating a BC6 HDR image had a couple of issues. The image was the correct
 brightness just like TEXC, but if you look at the RGB colour gradient there were vertical dark 'lines' where each
 colour component was supposed to be completely saturated -- one line for each of red, green and blue. It looked like
-those spectral lines you get from black-body radiation. There is definitely an issue with values at 1.0. There were
-also some 'bleeding' issues between blocks, or the blocks are all out by one or something, because the test image
-has the borders between the top-left gradient areas on multiple of 4 pixel boundaries, so there should have been
+those spectral lines you get from black-body radiation of pure elements -- definitely an issue with values at 1.0.
+There were also some 'bleeding' issues between blocks, or the blocks are all out by one or something, because the test
+image has the borders between the top-left gradient areas on multiple of 4 pixel boundaries, so there should have been
 nice crisp boundaries between them. NVTT and TEXC didn't have this 'bleeding'.
 
 Summary:

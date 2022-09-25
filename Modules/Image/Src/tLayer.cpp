@@ -12,7 +12,7 @@
 // and height. A higher level system, for example, may want to ensure power-of-two sizes, or multiple of 4, but that
 // shouldn't and doesn't happen here.
 //
-// Copyright (c) 2006, 2017 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -24,31 +24,6 @@
 
 #include "Image/tLayer.h"
 using namespace tImage;
-
-
-bool tLayer::IsOpaqueFormat() const
-{
-	// We assume that if the layer is using a format that supports transparency that there are, in fact, transparent
-	// pixels present. It won't hurt if there aren't, but it would be rendered with blending on if the material was
-	// opaque and might be a bit slower.
-	switch (PixelFormat)
-	{
-		case tPixelFormat::R8G8B8A8:
-		case tPixelFormat::B8G8R8A8:
-		case tPixelFormat::BC1_DXT1BA:
-		case tPixelFormat::BC2_DXT2_DXT3:
-		case tPixelFormat::BC3_DXT4_DXT5:
-		case tPixelFormat::G3B5A1R5G2:
-		case tPixelFormat::G4B4A4R4:
-		case tPixelFormat::A8L8:
-			return false;
-
-		default:
-			return true;
-	}
-
-	return true;
-}
 
 
 bool tLayer::operator==(const tLayer& src) const

@@ -129,7 +129,7 @@ bool tImageBMP::Load(const tString& bmpFile)
 
 		case 16: 
 			ReadRow_Pixels16(file, buf);
-			SrcPixelFormat = tPixelFormat::G3B5A1R5G2;
+			SrcPixelFormat = tPixelFormat::B5G5R5A1;
 			break;
 
 		case 8:
