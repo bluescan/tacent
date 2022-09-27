@@ -62,8 +62,8 @@ enum class tPixelFormat
 	BC3_DXT4_DXT5,						// BC 3, DXT4 (premult-alpha) and DXT5 share the same format. Variable alpha (smooth).
 	BC4_ATI1,							// BC 4. One colour channel only. May not be HW supported.
 	BC5_ATI2,							// BC 5. Two colour channels only. May not be HW supported.
-	BC6H_S16,							// BC 6 HDR. No alpha. 3 x 16bit signed half-floats.
-	BC6H_U16,							// BC 6 HDR. No alpha. 3 x 16bit unsigned half-floats.
+	BC6S,								// BC 6 HDR. No alpha. 3 x 16bit signed half-floats per pixel.
+	BC6U,								// BC 6 HDR. No alpha. 3 x 16bit unsigned half-floats per pixel.
 	BC7,								// BC 7. Full colour. Variable alpha 0 to 8 bits.
 	LastBlock			= BC7,
 

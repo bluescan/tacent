@@ -39,6 +39,8 @@ public:
 		LoadFlag_ReverseRowOrder	= 1 << 1,	// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.
 		LoadFlag_GammaCorrectHDR	= 1 << 2,	// Gamma correct HDR (BC6) images during load.
 		LoadFlag_SpreadLuminance	= 1 << 3,	// For DDS files with Luminance, spread it to the RGB channels. Otherwise uses Red channel.
+		LoadFlag_CondMultFourDim	= 1 << 4,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,
+		LoadFlag_CondPowerTwoDim	= 1 << 5,	// Produce conditional success if image dimension not a power of 2. Only checks BC formats.
 		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance
 	};
 	// If an error is encountered loading the resultant object will return false for IsValid. You can call GetLastResult
@@ -70,6 +72,8 @@ public:
 		// Conditional success. Object is valid, but not all load flags applied.
 		Conditional_CouldNotFlipRows,
 		Conditional_PitchXORLinearSize,
+		Conditional_DimNotMultFourBC,
+		Conditional_DimNotPowerTwoBC,
 
 		// Fatal. Load was uncuccessful and object is invalid.
 		Fatal_DefaultInitialized,
@@ -83,7 +87,6 @@ public:
 		Fatal_IncorrectPixelFormatSpec,
 		Fatal_UnsupportedPixelFormat,
 		Fatal_IncorrectBCDataSize,
-		Fatal_BCDimensionsNotDivisibleByFour,
 		Fatal_MaxNumMipmapLevelsExceeded,
 		Fatal_BlockDecodeError,
 		Fatal_NormalDecodeError,

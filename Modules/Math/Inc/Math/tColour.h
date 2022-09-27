@@ -34,15 +34,29 @@ class tColour3f;	//			tColour3;
 // as they were authored on monitors that had a non-linear (gamma) response. The sucky thing is, this is all leftover
 // cruft from CRTs. LCD TVs have circuitry to mimic the old response of phosphor. Anyway, use this enum to indicate
 // the colour-space of pixel data you have... if you know it. Unfortunatly you can't in general determine the space
-// from, say, the pixel format -- a non sRGB format may contain sRGB data (but an sRGB format definitely should contain
-// sRGB data).
+// from, say, the pixel format -- a non sRGB format may contain sRGB data (but an sRGB format should be assumed to
+// contain sRGB data).
 enum class tColourSpace
 {
 	Unspecified,
-	RGB, Linear = RGB,	// Colours represented in this space can be added and multiplied with each other.
-	Gamma,				// Colours can be multiplied with each other, but not added.
-	sRGB,				// Standard RGB. A full spec. Not always a gamma of 2.2, Neither mult or add. Most common space of src art.
-	HSV					// Hue, sat, val.
+
+	// Colours represented in this space can be added and multiplied with each other. This is your basic RGB cube.
+	RGB, Linear = RGB,
+
+	// Colours can be multiplied with each other, but not added. This is a common approximation of sRGB-space in
+	// which a simple pow function is used with a nominal gamma value of 2.2. 
+	Gamma,
+
+	// This is a lame approximation of gamma-space in which gamma is taken to be 2.0. This allows fast conversion
+	// between linear and gamma-square because a square and square-root function are all that's needed.
+	GammaSq,
+
+	// Standard RGB. This is the real-deal and uses the full sRGB spec (https://en.wikipedia.org/wiki/SRGB)
+	// Neither mult or add. Most common space of src art.
+	sRGB,
+
+	// Hue, Saturation, and Value.
+	HSV
 };
 
 
@@ -78,8 +92,17 @@ namespace tMath
 
 	// Alpha is ignored for these colour difference functions.
 	float tColourDiffEuclideanSq(const tColour4i& a, const tColour4i& b);		// Returns value E [0.0, 195075.0]
-	float tColourDiffEuclidean(const tColour4i& a, const tColour4i& b);			// Returns value E [0.0, 441.672956]
-	float tColourDiffRedmean(const tColour4i& a, const tColour4i& b);			// Returns value E [0.0, 764.8340]
+	float tColourDiffEuclidean  (const tColour4i& a, const tColour4i& b);		// Returns value E [0.0, 441.672956]
+	float tColourDiffRedmean    (const tColour4i& a, const tColour4i& b);		// Returns value E [0.0, 764.8340]
+
+	// Some colour-space component conversion functions. Gamma-space is probably more ubiquitous than the more accurate
+	// sRGB space. Unless speed is an issue, probably best to stay away from GammaSq.
+	float tSRGBToLinear   (float Csrgb);
+	float tLinearToSRGB   (float Clinear);
+	float tGammaToLinear  (float Cgamma);
+	float tLinearToGamma  (float Clinear);
+	float tGammaSqToLinear(float Cgammasq);
+	float tLinearToGammaSq(float Clinear);
 
 	enum ColourChannel
 	{
@@ -312,14 +335,24 @@ public:
 	// Gamma-space here should really be sRGB but we're just using an approximation by squaring (gamma=2) when the
 	// average sRGB gamma should be 2.2. To do the conversion properly, the gamma varies with intensity from 1 to 2.4,
 	// but, again, we're only approximating here.
-	void ToLinearSpaceApprox()			/* Will darken the image. */													{ R *= R; G *= G; B *= B; }
-	void ToGammaSpaceApprox()			/* Will brighten the image. */													{ R = tMath::tSqrt(R); G = tMath::tSqrt(G); B = tMath::tSqrt(B); }
+	void GammaSqToLinear()				/* Will darken the image. */													{ R = tMath::tGammaSqToLinear(R); G = tMath::tGammaSqToLinear(G); B = tMath::tGammaSqToLinear(B); }
+	void LinearToGammaSq()				/* Will brighten the image. */													{ R = tMath::tLinearToGammaSq(R); G = tMath::tLinearToGammaSq(G); B = tMath::tLinearToGammaSq(B); }
+
+	// These two are more accurate versions of the above two functions. The sRGB-space assumes the colour will be
+	// displayed on an output device with a gamma or 2.2. These use a slower power function instead of squaring or
+	// square-rooting like the approx versions above.
+	void GammaToLinear()				/* Will darken the image. */													{ R = tMath::tGammaToLinear(R); G = tMath::tGammaToLinear(G); B = tMath::tGammaToLinear(B); }
+	void LinearToGamma()				/* Will brighten the image. */													{ R = tMath::tLinearToGamma(R); G = tMath::tLinearToGamma(G); B = tMath::tLinearToGamma(B); }
+
+	// The slowest conversion but for high fidelity, the sRGB space is likely what the image was authored in.
+	void SRGBToLinear()					/* Will darken the image. */													{ R = tMath::tSRGBToLinear(R); G = tMath::tSRGBToLinear(G); B = tMath::tSRGBToLinear(B); }
+	void LinearToSRGB()					/* Will brighten the image. */													{ R = tMath::tLinearToSRGB(R); G = tMath::tLinearToSRGB(G); B = tMath::tLinearToSRGB(B); }
 
 	// When using the HSV representation of a tColourf, the hue is in NormOne angle mode. See the tRGBToHSV and
 	// tHSVToRGB functions if you wish to use different angle units. All the components (h, s, v, r, g, b, a) are in
 	// [0.0, 1.0]. Both of the functions below leave the alpha unchanged.
-	void RGBToHSV();										// Assumes current values are RGB.
-	void HSVToRGB();										// Assumes current values are HSV.
+	void RGBToHSV();					// Assumes current values are RGB.
+	void HSVToRGB();					// Assumes current values are HSV.
 
 	bool operator==(const tColour4f& c) const																			{ return ((BP0 == c.BP0) && (BP1 == c.BP1)); }
 	bool operator!=(const tColour4f& c) const 																			{ return ((BP0 != c.BP0) || (BP1 != c.BP1)); }
@@ -468,6 +501,54 @@ typedef tColour3f tColour3;
 
 
 // Implementation below this line.
+
+
+inline float tMath::tSRGBToLinear(float Csrgb)
+{
+	// See https://en.wikipedia.org/wiki/SRGB
+	float Clinear =
+		(Csrgb <= 0.04045f)			?
+		(Csrgb / 12.92f)			:
+		tMath::tPow((Csrgb + 0.055f)/1.055f, 2.4f);
+
+	return tMath::tSaturate(Clinear);
+}
+
+
+inline float tMath::tLinearToSRGB(float Clinear)
+{
+	// See https://en.wikipedia.org/wiki/SRGB
+	float Csrgb =
+		(Clinear <= 0.0031308f)		?
+		(12.92f*Clinear)			:
+		1.055f*tMath::tPow(Clinear, 1.0f/2.4f) - 0.055f;
+
+	return tMath::tSaturate(Csrgb);
+}
+
+
+inline float tMath::tGammaToLinear(float Cgamma)
+{
+	return tMath::tPow(Cgamma, 1.0f/2.2f);
+}
+
+
+inline float tMath::tLinearToGamma(float Clinear)
+{
+	return tMath::tPow(Clinear, 2.2f);
+}
+
+
+inline float tMath::tGammaSqToLinear(float Cgammasq)
+{
+	return Cgammasq*Cgammasq;
+}
+
+
+inline float tMath::tLinearToGammaSq(float Clinear)
+{
+	return tMath::tSqrt(Clinear);
+}
 
 
 inline void tColour4i::Set(const tColour4f& c)

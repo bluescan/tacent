@@ -238,8 +238,8 @@ template<int N> bool operator<(const tFixIntU<N>& a, const tFixIntU<N>& b);
 template<int N> tFixIntU<N> tSqrt(const tFixIntU<N>&);	// Square root.
 template<int N> tFixIntU<N> tCurt(const tFixIntU<N>&);	// Cube root.
 template<int N> tFixIntU<N> tFactorial(const tFixIntU<N>&);
-template<int N> bool tIsPow2(const tFixIntU<N>&);
-template<int N> tFixIntU<N> tNextPow2(const tFixIntU<N>&);
+template<int N> bool tIsPower2(const tFixIntU<N>&);
+template<int N> tFixIntU<N> tNextPower2(const tFixIntU<N>&);
 template<int N> uint32 tCeilLog2(const tFixIntU<N>&);
 template<int N> tFixIntU<N> tPow(tFixIntU<N> a, int b);
 template<int N> tFixIntU<N> tModPow(tFixIntU<N> base, tFixIntU<N> exp, const tFixIntU<N>& mod);
@@ -981,7 +981,7 @@ template<int N> inline int tFixIntU<N>::FindLowestBitSet() const
 }
 
 
-template<int N> inline bool tIsPow2(const tFixIntU<N>& v)
+template<int N> inline bool tIsPower2(const tFixIntU<N>& v)
 {
 	bool found = false;
 	for (int i = 0; i < tFixIntU<N>::NumElements; i++)

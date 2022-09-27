@@ -1,3 +1,33 @@
+Licences
+--------
+Licensing information for the test images may be see one directory up in the Readme.txt
+
+HDR Test Images
+---------------
+Three tools were used when generating the dds test images (versions as of Sept 20, 2022).
+1) NVidia Texture Tools Generator (NVTT). A drag-and-drop closed-source ImGui application.
+2) Microsoft's texconv.exe (TEXC) from their DirectXTex tool suite.
+3) AMD's Compressonator (COMP).
+
+The BC6s_RGB_Modern.dds and BC6u_RGB_Modern.dds test images were generated from TacentTestPattern.tga. The test
+pattern image is _not_ an HDR image, so there will no HDR data to leverage -- the 32bit RGBs were just be converted
+to floats, so you won't get good exposure control for example. These two images were generated with TEXC converter
+and are in sRGB (artist-authoring) space. TEXC did not convert them to linear-space, so there is no need to
+gamma-correct them when loading / displaying -- they are already in sRGB.
+
+BC6s_HDRRGB_Modern.dds and all of the signed-floating-point dds files _were_ generated from a proper floating-point
+source image (Desk.exr from a directory up). These ones will have the extra information needed since they were a
+float-to-float conversion. They were all created by NVTT.
+
+The way NVTT works is it looks at the input file-type and assumes that non-floating-point files are in sRGB. When
+saving NVTT puts any floating-point output in linear-space.
+
+NVTT does not support BC6u (unsigned). Unfortunately TEXC was unable to load the (perfectly valid) Desk.exr file.
+So... to create the BC6u_HDRRGB_Modern.dds, TEXC was used with the R32G32B32 linear-space file and converted it
+to the BC6u_HDRRGB_Modern.dds unsigned format. The BC6 is the only HDR format that supports unsigned floats.
+
+Encoding Tools
+--------------
 dds files with 'Legacy' do not contain the D.X.1.0. FourCC header.
 dds files with 'Modern' do     contain the D.X.1.0. FourCC header.
 
@@ -10,35 +40,26 @@ G : Gamma-correct resulting image data. Generally not needed if src file is in s
 R : Reverse rows. Useful for binding textures in OpenGL. Never affects quality. If can't do (eg BC7 and no decode) it will tell you.
 S : Spead luminance. If set dds files with luminance will spread (dupe) the data to the RGB channels. Uses Red-only otherwise.
 
-Three tools were tried when generating the dds test images (versions as of Sept 20, 2022).
-1) NVidia Texture Tools Generator (NVTT). A drag-and-drop closed-source ImGui application.
-2) Microsoft's texconv.exe (TEXC) from their DirectXTex tool suite.
-3) AMD's Compressonator (COMP).
-
 The compression quality of NVTT beats TEXC. Try encoding the test image to BC1ba. The opaque gradient at the top left
 is quite banded with TEXC no matter what settings are used (although there isn't much choice here). NVTT wins.
 Note for binary alpha formats you need a -0.5 alpha-bias in NVTT to get a 0.5 alpha cutoff threshold.
 
 NVTT can't generate as many formats though. The legacy 16-bit and unsigned BC6 for example are not available. In these
 cases TEXC is being used. Also there is an out-by-one pixel error in the drawing in the preview window. Open in
-tacent-view to see that the data is fine.
-
-NVTT erroneously applies a gamma when saving BC6 HDR dds files. The output is too dark. The input when in sRGB-space
-looks to be linear in the output, so you need a gamma-correction step after. I checked the bcdec decode to make sure
-it wasn't doing anything wrong (it isn't), and both BC6 16 signed and unsigned images generated from TEXC do not have
-this issue. Basically the input image should look the same as the output and be in the same colour-space -- whatever
-NVTT does during the conversion is up to them. In any case using TEXC for the dds BC6 test images.
+tacentview to see that the data is fine.
 
 The ASTC versions do not seem to have written the alpha channel properly with NVTT -- At least when dragging them back
 into the NVTT exporter, only the BC7 ones show the correct alpha channel.
 
-I didn't use Compressonator much, but generating a BC6 HDR image had a couple of issues. The image was the correct
-brightness just like TEXC, but if you look at the RGB colour gradient there were vertical dark 'lines' where each
-colour component was supposed to be completely saturated -- one line for each of red, green and blue. It looked like
-those spectral lines you get from black-body radiation of pure elements -- definitely an issue with values at 1.0.
-There were also some 'bleeding' issues between blocks, or the blocks are all out by one or something, because the test
-image has the borders between the top-left gradient areas on multiple of 4 pixel boundaries, so there should have been
-nice crisp boundaries between them. NVTT and TEXC didn't have this 'bleeding'.
+NVTT can't write the unsigned BC6 HDR format. TEXC can, but can't read valid EXR files.
+
+I didn't use Compressonator much, but generating a BC6 HDR image had a couple of issues. After converting the test-
+pattern the RGB colour gradient (top-left quadrant) had vertical dark 'lines' where each colour component was supposed
+to be completely saturated -- one line for each of red, green and blue. It looked like those spectral lines you get from
+black-body radiation of pure elements -- definitely an issue with values at 1.0. There were also some 'bleeding' issues
+between blocks, or the blocks are all out by one or something, because the test image has the borders between the
+top-left gradient areas on multiple-of-4 pixel boundaries so there should have been nice crisp boundaries between them.
+NVTT and TEXC didn't have this 'bleeding' issue.
 
 Summary:
-Currently using NVTT where possible for the quality, and TEXC for more obscure pixel formats and HDR BC6.
+Currently using NVTT where possible for the quality, and TEXC for more obscure pixel formats and HDR BC6 unsigned.

@@ -740,8 +740,10 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("BC5ATI2_RG_Modern.dds");
 
 	// BC6
-	DDSLoadDecodeSave("BC6Hs_HDRRGB_Modern.dds");	// tImageDDS::LoadFlag_GammaCorrectHDR
-	DDSLoadDecodeSave("BC6Hu_HDRRGB_Modern.dds");	// tImageDDS::LoadFlag_GammaCorrectHDR
+	DDSLoadDecodeSave("BC6s_RGB_Modern.dds");
+	DDSLoadDecodeSave("BC6u_RGB_Modern.dds");
+	DDSLoadDecodeSave("BC6s_HDRRGB_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
+	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
 
 	// BC7
 	DDSLoadDecodeSave("BC7_RGBA_Modern.dds", 0, true);

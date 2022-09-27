@@ -18,7 +18,6 @@ texconv.exe -f B5G6R5_UNORM -dx9 -y TacentTestPattern.tga
 del B5G6R5_RGB_Legacy.dds
 ren TacentTestPattern.dds B5G6R5_RGB_Legacy.dds
 
-:lastimg
 rem B4G4R4A4
 texconv.exe -f B4G4R4A4_UNORM -dx10 -y TacentTestPattern.tga
 del B4G4R4A4_RGBA_Modern.dds
@@ -37,3 +36,4 @@ texconv.exe -f B5G5R5A1_UNORM -dx9 -y TacentTestPattern.tga
 del B5G5R5A1_RGBA_Legacy.dds
 ren TacentTestPattern.dds B5G5R5A1_RGBA_Legacy.dds
 
+:lastimg

@@ -800,7 +800,11 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 				PixelFormat = PixelFormatOrig = tPixelFormat::BC2_DXT2_DXT3;
 				break;
 
-			// DXGI formats do not specify premultiplied alpha mode like DXT4/5 so we leave it unspecified.
+			// DXGI formats do not specify premultiplied alpha mode like DXT4/5 so we leave it unspecified. As for sRGB,
+			// if it says UNORM_SRGB, sure, it may not contain sRGB data, but it's as good as you can get in terms of knowing.
+			// I mean if the DirectX loader 'treats' it as being sRGB (in that it will convert it to linear), then we should
+			// treat it as being sRGB data in general. Of course it could just be a recipe for apple pie, and if it is, it is
+			// a recipe the authors wanted interpreted as sRGB data, otherwise they wouldn't have chosen the _SRGB pixel format.
 			case tDXGI_FORMAT_BC3_UNORM_SRGB:
 				ColourSpace = tColourSpace::sRGB;
 			case tDXGI_FORMAT_BC3_TYPELESS:
@@ -822,12 +826,12 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 
 			case tDXGI_FORMAT_BC6H_TYPELESS:		// Interpret typeless as BC6H_S16... we gotta choose something.
 			case tDXGI_FORMAT_BC6H_SF16:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC6H_S16;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC6S;
 				ColourSpace = tColourSpace::Linear;
 				break;
 
 			case tDXGI_FORMAT_BC6H_UF16:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC6H_U16;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC6U;
 				ColourSpace = tColourSpace::Linear;
 				break;
 
@@ -994,11 +998,12 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 		return false;
 	}
 
-	// Is this overly restrictive?
-	if (tIsBlockCompressedFormat(PixelFormat) && ((mainWidth%4) || (mainHeight%4)))
+	if (tIsBlockCompressedFormat(PixelFormat))
 	{
-		Results |= 1 << int(ResultCode::Fatal_BCDimensionsNotDivisibleByFour);
-		return false;
+		if ((loadFlags & LoadFlag_CondMultFourDim) && ((mainWidth%4) || (mainHeight%4)))
+			Results |= 1 << int(ResultCode::Conditional_DimNotMultFourBC);
+		if ((loadFlags & LoadFlag_CondPowerTwoDim) && (!tMath::tIsPower2(mainWidth) || !tMath::tIsPower2(mainHeight)))
+			Results |= 1 << int(ResultCode::Conditional_DimNotMultFourBC);
 	}
 
 	bool reverseRowOrderRequested = loadFlags & LoadFlag_ReverseRowOrder;
@@ -1333,8 +1338,8 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 							break;
 						}
 
-						case tPixelFormat::BC6H_S16:
-						case tPixelFormat::BC6H_U16:
+						case tPixelFormat::BC6S:
+						case tPixelFormat::BC6U:
 						{
 							// This HDR format decompresses to RGB floats.
 							tColour3f* rgbData = new tColour3f[wextra*hextra];
@@ -1343,7 +1348,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 								for (int j = 0; j < w; j += 4)
 								{
 									uint8* dst = (uint8*)((float*)rgbData + (i * w + j) * 3);
-									bool signedData = layer->PixelFormat == tPixelFormat::BC6H_S16;
+									bool signedData = layer->PixelFormat == tPixelFormat::BC6S;
 									bcdec_bc6h_float(src, dst, w * 3, signedData);
 									src += BCDEC_BC6H_BLOCK_SIZE;
 								}
@@ -1353,7 +1358,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 							{
 								tColour4f col(rgbData[ij], 1.0f);
 								if (loadFlags & LoadFlag_GammaCorrectHDR)
-									col.ToGammaSpaceApprox();
+									col.LinearToSRGB();
 								uncompData[ij].Set(col);
 							}
 							delete[] rgbData;
@@ -1446,8 +1451,8 @@ uint8* tImageDDS::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat 
 	{
 		case tPixelFormat::BC4_ATI1:		// @todo Consider implementing.
 		case tPixelFormat::BC5_ATI2:		// @todo Consider implementing.
-		case tPixelFormat::BC6H_S16:
-		case tPixelFormat::BC6H_U16:
+		case tPixelFormat::BC6S:
+		case tPixelFormat::BC6U:
 		case tPixelFormat::BC7:
 			return nullptr;
 	}
@@ -1572,7 +1577,9 @@ const char* tImageDDS::ResultDescriptions[] =
 {
 	"Success",
 	"Conditional Success. Image rows could not be flipped.",
-	"Conditional Success. Only one of Pitch or LinearSize should be specified. Using dimensions instead.",
+	"Conditional Success. One of Pitch or LinearSize should be specified. Using dimensions instead.",
+	"Conditional Success. Image has dimension not multiple of four.",
+	"Conditional Success. Image has dimension not power of two.",
 	"Fatal Error. Load not called. Invalid object.",
 	"Fatal Error. File does not exist.",
 	"Fatal Error. Incorrect file type. Must be a DDS file.",
@@ -1584,7 +1591,6 @@ const char* tImageDDS::ResultDescriptions[] =
 	"Fatal Error. Pixel format specification incorrect.",
 	"Fatal Error. Unsupported pixel format.",
 	"Fatal Error. Incorrect BC data size.",
-	"Fatal Error. BC texture dimensions not divisible by 4.",
 	"Fatal Error. Maximum number of mipmap levels exceeded.",
 	"Fatal Error. Unable to decode BC pixels.",
 	"Fatal Error. Unable to decode normal uncompressed pixels.",
