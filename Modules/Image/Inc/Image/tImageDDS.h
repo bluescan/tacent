@@ -38,7 +38,7 @@ public:
 		LoadFlag_Decode				= 1 << 0,	// Decode the dds texture data into RGBA 32 bit layers. If not set, the layer data will remain unmodified.
 		LoadFlag_ReverseRowOrder	= 1 << 1,	// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.
 		LoadFlag_GammaCorrectHDR	= 1 << 2,	// Gamma correct HDR (BC6) images during load.
-		LoadFlag_SpreadLuminance	= 1 << 3,	// For DDS files with Luminance, spread it to the RGB channels. Otherwise uses Red channel.
+		LoadFlag_SpreadLuminance	= 1 << 3,	// For DDS files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats.
 		LoadFlag_CondMultFourDim	= 1 << 4,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,
 		LoadFlag_CondPowerTwoDim	= 1 << 5,	// Produce conditional success if image dimension not a power of 2. Only checks BC formats.
 		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance

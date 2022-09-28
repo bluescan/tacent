@@ -1318,23 +1318,25 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 						case tPixelFormat::BC4_ATI1:
 						{
 							// This HDR format decompresses to R uint8s.
-							uint8* rData = new uint8[wextra*hextra];
+							uint8* rdata = new uint8[wextra*hextra];
 
 							for (int i = 0; i < h; i += 4)
 								for (int j = 0; j < w; j += 4)
 								{
-									uint8* dst = (rData + (i * w + j) * 1);
+									uint8* dst = (rdata + (i * w + j) * 1);
 									bcdec_bc4(src, dst, w * 1);
 									src += BCDEC_BC4_BLOCK_SIZE;
 								}
 
-							// Now convert to 32-bit RGBA with 255 GBA.
+							// Now convert to 32-bit RGBA.
+							bool spread = loadFlags & LoadFlag_SpreadLuminance;
 							for (int ij = 0; ij < w*h; ij++)
 							{
-								tColour4i col(rData[ij], 0u, 0u, 255u);
+								uint8 v = rdata[ij];
+								tColour4i col(v, spread ? v : 0u, spread ? v : 0u, 255u);
 								uncompData[ij].Set(col);
 							}
-							delete[] rData;
+							delete[] rdata;
 							break;
 						}
 
@@ -1352,7 +1354,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 									src += BCDEC_BC5_BLOCK_SIZE;
 								}
 
-							// Now convert to 32-bit RGBA with 255 BA.
+							// Now convert to 32-bit RGBA with 0,255 for B,A.
 							for (int ij = 0; ij < w*h; ij++)
 							{
 								tColour4i col(rgData[ij].R, rgData[ij].G, 0u, 255u);
