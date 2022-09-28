@@ -869,6 +869,10 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 			case tDXGI_FORMAT_B5G5R5A1_UNORM:
 				PixelFormat = PixelFormatOrig = tPixelFormat::B5G5R5A1;
 				break;
+
+			case tDXGI_FORMAT_R32G32B32A32_FLOAT:
+				PixelFormat = PixelFormatOrig = tPixelFormat::R32G32B32A32F;
+				break;
 		}
 	}
 	else if (fourCCFormat)
@@ -920,7 +924,6 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 				break;
 
 			// Sometimes these D3D formats may be stored in the FourCC slot.
-
 			case tD3DFMT_A16B16G16R16:		// We don't support tDXGI_FORMAT_R16G16B16A16_UNORM.
 			case tD3DFMT_Q16W16V16U16:		// We don't support tDXGI_FORMAT_R16G16B16A16_SNORM.
 			case tD3DFMT_R16F:				// We don't support tDXGI_FORMAT_R16_FLOAT.
@@ -949,7 +952,10 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 				break;
 
 			case tD3DFMT_A32B32G32R32F:
-				PixelFormat = PixelFormatOrig = tPixelFormat::A32B32G32R32F;
+				// It's inconsistent calling the D3D format A32B32G32R32F. The floats in this case are clearly in RGBA
+				// order, not ABGR. Anyway, I only have control over the tPixelFormat names. In fairness, it looks like
+				// the format-name was fixed in the DX10 header format type names.
+				PixelFormat = PixelFormatOrig = tPixelFormat::R32G32B32A32F;
 				break;
 		}
 	}
@@ -1226,6 +1232,24 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 								uncompData[ij].Set(col);
 							}
 							break;
+
+						case tPixelFormat::R32G32B32A32F:
+						{
+							// This HDR format has 4 RGBA floats.
+							float* fdata = (float*)src;
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								float r = fdata[ij*4 + 0];
+								float g = fdata[ij*4 + 1];
+								float b = fdata[ij*4 + 2];
+								float a = fdata[ij*4 + 3];
+								tColour4f col(r, g, b, a);
+								if (loadFlags & LoadFlag_GammaCorrectHDR)
+									col.LinearToSRGB();
+								uncompData[ij].Set(col);
+							}
+							break;
+						}
 
 						default:
 							delete[] uncompData;

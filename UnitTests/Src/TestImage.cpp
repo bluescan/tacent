@@ -717,6 +717,9 @@ tTestUnit(ImageDDS)
 	tPrintf("Testing DDS Loading. Legacy = No DDX10 Header.\n\n");
 	// return;
 
+	//
+	// Block Compressed Formats.
+	//
 	// BC1
 	DDSLoadDecodeSave("BC1DXT1_RGB_Legacy.dds");
 	DDSLoadDecodeSave("BC1DXT1_RGB_Modern.dds");
@@ -748,6 +751,9 @@ tTestUnit(ImageDDS)
 	// BC7
 	DDSLoadDecodeSave("BC7_RGBA_Modern.dds", 0, true);
 
+	//
+	// Uncompressed Integer Formats.
+	//
 	// A8
 	DDSLoadDecodeSave("A8_A_Legacy.dds");
 	DDSLoadDecodeSave("A8_A_Modern.dds");
@@ -776,6 +782,13 @@ tTestUnit(ImageDDS)
 	// B5G5R5A1
 	DDSLoadDecodeSave("B5G5R5A1_RGBA_Legacy.dds");
 	DDSLoadDecodeSave("B5G5R5A1_RGBA_Modern.dds");
+
+	//
+	// Uncompressed Floating-Point (HDR) Formats.
+	//
+	// R32G32B32A32F
+	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
+	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }
