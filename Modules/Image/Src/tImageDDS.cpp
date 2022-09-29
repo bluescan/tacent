@@ -17,6 +17,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <Foundation/tString.h>
+#include <Foundation/tHalf.h>
 #include "Image/tImageDDS.h"
 #define BCDEC_IMPLEMENTATION
 #include "bcdec/bcdec.h"

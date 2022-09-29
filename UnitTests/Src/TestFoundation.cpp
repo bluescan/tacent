@@ -28,6 +28,7 @@
 #include <Foundation/tSort.h>
 #include <Foundation/tPriorityQueue.h>
 #include <Foundation/tPool.h>
+#include <Foundation/tHalf.h>
 #include <System/tFile.h>
 #include "UnitTests.h"
 using namespace tStd;
@@ -1639,6 +1640,39 @@ tTestUnit(Hash)
 	shaCorr.Set("CDC76E5C 9914FB92 81A1C7E2 84D73E67 F1809A48 A497200E 046D39CC C7112CD0", 16);
 	tPrintf("Message : One million 'a's\n" "Computed: %0_64|256X\n" "Correct : %0_64|256X\n", shaComp, shaCorr);
 	tRequire(shaComp == shaCorr);
+}
+
+
+tTestUnit(Half)
+{
+	tPrintf("Testing tHalf (half-precision float).\n");
+
+	tHalf v1(uint16(0x3c00));
+	tHalf v2(uint16(0x3c01));
+	float val1 = float(v1);
+	float val2 = v2;
+	float sum = val1 + val2;
+
+	tPrintf("Sum: 0x%04x\n", tHalf(sum).Raw());
+	tRequire(tHalf(sum).Raw() == 0x4000);
+        
+	float tiny = 0.5f*5.9604644775390625e-08f;
+	tPrintf("Tiny: 0x%04x\n", tHalf(tiny).Raw());
+	tRequire(tHalf(tiny).Raw() == 0x0000);
+
+	for (int i = 0; i <= 20; i++)
+	{
+		float orig = 10.0f*float(i-10);
+		tHalf half(orig);
+		float conv = half.Float();
+		tPrintf("Orig Float: %f  Conv Float: %f\n", orig, conv);
+	}
+
+	float orig = 1.23456789f;
+	tHalf half(orig);
+	float conv = half.Float();
+	tPrintf("Orig Float: %.8f  Conv Float: %.8f\n", orig, conv);
+	tRequire(tMath::tApproxEqual(orig, conv, 0.001f));
 }
 
 

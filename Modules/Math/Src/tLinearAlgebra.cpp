@@ -361,9 +361,19 @@ float tMath::tDeterminant(const tMat4& m)
 
 bool tMath::tInvert(tMat4& m)
 {
+	tMat4 s;
+	tSet(s, m);
+	return tInvert(m, s);
+}
+
+
+bool tMath::tInvert(tMat4& d, const tMat4& s)
+{
 	#if defined(PLATFORM_WINDOWS)
-	if (tDeterminant(m) == 0.0f)
+	if (tDeterminant(s) == 0.0f)
 		return false;
+
+	tSet(d, s);
 
 	// Naming: m for minor. de for determinant. t0 for temporary. r for row.
 	__m128 m1, m2, m3, m4, r1, r3, de;
@@ -372,12 +382,12 @@ bool tMath::tInvert(tMat4& m)
 	__m128 t0 = _mm_setzero_ps();
 
 	// Cramer's rule used here (not Gaussian Elim).
-	t0 = _mm_loadh_pi(_mm_loadl_pi(t0, (__m64*)(m.E+ 0)), (__m64*)(m.E+ 4));
-	r2 = _mm_loadh_pi(_mm_loadl_pi(r2, (__m64*)(m.E+ 8)), (__m64*)(m.E+12));
+	t0 = _mm_loadh_pi(_mm_loadl_pi(t0, (__m64*)(d.E+ 0)), (__m64*)(d.E+ 4));
+	r2 = _mm_loadh_pi(_mm_loadl_pi(r2, (__m64*)(d.E+ 8)), (__m64*)(d.E+12));
 	r1 = _mm_shuffle_ps(t0, r2, 0x88);
 	r2 = _mm_shuffle_ps(r2, t0, 0xDD);
-	t0 = _mm_loadh_pi(_mm_loadl_pi(t0, (__m64*)(m.E+ 2)), (__m64*)(m.E+ 6));
-	r4 = _mm_loadh_pi(_mm_loadl_pi(r4, (__m64*)(m.E+10)), (__m64*)(m.E+14));
+	t0 = _mm_loadh_pi(_mm_loadl_pi(t0, (__m64*)(d.E+ 2)), (__m64*)(d.E+ 6));
+	r4 = _mm_loadh_pi(_mm_loadl_pi(r4, (__m64*)(d.E+10)), (__m64*)(d.E+14));
 	r3 = _mm_shuffle_ps(t0, r4, 0x88);
 	r4 = _mm_shuffle_ps(r4, t0, 0xDD);
 	t0 = _mm_mul_ps(r3, r4);
@@ -435,34 +445,18 @@ bool tMath::tInvert(tMat4& m)
 	m1 = _mm_mul_ps(de, m1);
 
 	// Assign the result.
-	_mm_storel_pi((__m64*)(m.E+ 0), m1);
-	_mm_storeh_pi((__m64*)(m.E+ 2), m1);
+	_mm_storel_pi((__m64*)(d.E+ 0), m1);
+	_mm_storeh_pi((__m64*)(d.E+ 2), m1);
 	m2 = _mm_mul_ps(de, m2);
-	_mm_storel_pi((__m64*)(m.E+ 4), m2);
-	_mm_storeh_pi((__m64*)(m.E+ 6), m2);
+	_mm_storel_pi((__m64*)(d.E+ 4), m2);
+	_mm_storeh_pi((__m64*)(d.E+ 6), m2);
 	m3 = _mm_mul_ps(de, m3);
-	_mm_storel_pi((__m64*)(m.E+ 8), m3);
-	_mm_storeh_pi((__m64*)(m.E+10), m3);
+	_mm_storel_pi((__m64*)(d.E+ 8), m3);
+	_mm_storeh_pi((__m64*)(d.E+10), m3);
 	m4 = _mm_mul_ps(de, m4);
-	_mm_storel_pi((__m64*)(m.E+12), m4);
-	_mm_storeh_pi((__m64*)(m.E+14), m4);
-	return true;
+	_mm_storel_pi((__m64*)(d.E+12), m4);
+	_mm_storeh_pi((__m64*)(d.E+14), m4);
 
-	#else
-	tMat4 s;
-	tSet(s, m);
-	return tInvert(m, s);
-
-	#endif
-}
-
-
-bool tMath::tInvert(tMat4& d, const tMat4& s)
-{
-	#if defined(PLATFORM_WINDOWS)
-	tSet(d, s);
-	return tInvert(d);
-	
 	#else
 	tMat4 t;
 	tTranspose(t, s);

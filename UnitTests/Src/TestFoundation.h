@@ -29,9 +29,10 @@ namespace tUnitTest
 	tTestUnit(BitField);
 	tTestUnit(FixInt);
 	tTestUnit(String);
+	tTestUnit(UTF);
 	tTestUnit(RingBuffer);
 	tTestUnit(PriorityQueue);
 	tTestUnit(MemoryPool);
 	tTestUnit(Hash);
-	tTestUnit(UTF);
+	tTestUnit(Half);
 }

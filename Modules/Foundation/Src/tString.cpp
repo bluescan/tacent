@@ -54,7 +54,6 @@
 tString::operator uint32()
 {
 	return tHash::tHashStringFast32(CodeUnits);
-
 }
 
 

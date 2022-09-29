@@ -30,6 +30,7 @@ add_library(
 	Inc/Foundation/tConstants.h
 	Inc/Foundation/tFixInt.h
 	Inc/Foundation/tFundamentals.h
+	Inc/Foundation/tHalf.h
 	Inc/Foundation/tHash.h
 	Inc/Foundation/tList.h
 	Inc/Foundation/tMap.h
