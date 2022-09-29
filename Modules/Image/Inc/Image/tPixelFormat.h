@@ -49,8 +49,12 @@ enum class tPixelFormat
 	A8L8,								// 16  bit. Alpha and Luminance.
 	A8,									// 8   bit. Alpha only.
 	L8,									// 8   bit. Luminance only.
-	R32F,
-	G32R32F,
+
+	R16F,								// 16  bit. Half-float red/luminance channel only.
+	R16G16F,							// 32  bit. Two half-floats per pixel. Red and green.
+	R16G16B16A16F,						// 64  bit. Four half-floats per pixel. RGBA.
+	R32F,								// 32  bit. Float red/luminance channel only.
+	R32G32F,							// 64  bit. Two floats per pixel. Red and green.
 	R32G32B32A32F,						// 128 bit. HDR format (linear-space), RGBA in 4 floats.
 	LastNormal			= R32G32B32A32F,
 
@@ -147,6 +151,7 @@ inline bool tImage::tIsAlphaFormat(tPixelFormat format)
 		case tPixelFormat::B4G4R4A4:
 		case tPixelFormat::B5G5R5A1:
 		case tPixelFormat::A8L8:
+		case tPixelFormat::R16G16B16A16F:
 		case tPixelFormat::R32G32B32A32F:
 		case tPixelFormat::BC1_DXT1BA:
 		case tPixelFormat::BC2_DXT2_DXT3:

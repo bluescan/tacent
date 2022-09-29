@@ -730,9 +730,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 		return false;
 	}
 
-	// Has alpha should be true if the pixel format is uncompressed (RGB) and there is an alpha channel.
 	// Determine if we support the pixel format and which one it is.
-
 	bool anyRGB			= (format.Flags & tDDPF_RGB);
 	bool isRGB			= (format.Flags == tDDSPixelFormatType_RGB);
 	bool isRGBA			= (format.Flags == tDDSPixelFormatType_RGBA);
@@ -871,6 +869,18 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 				PixelFormat = PixelFormatOrig = tPixelFormat::B5G5R5A1;
 				break;
 
+			case tDXGI_FORMAT_R16_FLOAT:
+				PixelFormat = PixelFormatOrig = tPixelFormat::R16F;
+				break;
+
+			case tDXGI_FORMAT_R16G16_FLOAT:
+				PixelFormat = PixelFormatOrig = tPixelFormat::R16G16F;
+				break;
+
+			case tDXGI_FORMAT_R16G16B16A16_FLOAT:
+				PixelFormat = PixelFormatOrig = tPixelFormat::R16G16B16A16F;
+				break;
+
 			case tDXGI_FORMAT_R32G32B32A32_FLOAT:
 				PixelFormat = PixelFormatOrig = tPixelFormat::R32G32B32A32F;
 				break;
@@ -927,9 +937,6 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 			// Sometimes these D3D formats may be stored in the FourCC slot.
 			case tD3DFMT_A16B16G16R16:		// We don't support tDXGI_FORMAT_R16G16B16A16_UNORM.
 			case tD3DFMT_Q16W16V16U16:		// We don't support tDXGI_FORMAT_R16G16B16A16_SNORM.
-			case tD3DFMT_R16F:				// We don't support tDXGI_FORMAT_R16_FLOAT.
-			case tD3DFMT_G16R16F:			// We don't support tDXGI_FORMAT_R16G16_FLOAT.
-			case tD3DFMT_A16B16G16R16F:		// We don't support tDXGI_FORMAT_R16G16B16A16_FLOAT.
 				break;
 			
 			case tD3DFMT_A8:
@@ -944,12 +951,27 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 				PixelFormat = PixelFormatOrig = tPixelFormat::B8G8R8A8;
 				break;
 
+			case tD3DFMT_R16F:
+				PixelFormat = PixelFormatOrig = tPixelFormat::R16F;
+				break;
+
+			case tD3DFMT_G16R16F:
+				// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
+				PixelFormat = PixelFormatOrig = tPixelFormat::R16G16F;
+				break;
+
+			case tD3DFMT_A16B16G16R16F:
+				// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
+				PixelFormat = PixelFormatOrig = tPixelFormat::R16G16B16A16F;
+				break;
+
 			case tD3DFMT_R32F:
 				PixelFormat = PixelFormatOrig = tPixelFormat::R32F;
 				break;
 
 			case tD3DFMT_G32R32F:
-				PixelFormat = PixelFormatOrig = tPixelFormat::G32R32F;
+				// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
+				PixelFormat = PixelFormatOrig = tPixelFormat::R32G32F;
 				break;
 
 			case tD3DFMT_A32B32G32R32F:
@@ -1233,6 +1255,56 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 								uncompData[ij].Set(col);
 							}
 							break;
+
+						case tPixelFormat::R16F:
+						{
+							// This HDR format has 1 red half-float channel.
+							tHalf* hdata = (tHalf*)src;
+							bool spread = loadFlags & LoadFlag_SpreadLuminance;
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								float r = hdata[ij*1 + 0];
+								tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
+								if (loadFlags & LoadFlag_GammaCorrectHDR)
+									col.LinearToSRGB();
+								uncompData[ij].Set(col);
+							}
+							break;
+						}
+
+						case tPixelFormat::R16G16F:
+						{
+							// This HDR format has 2 half-float channels. Red and green.
+							tHalf* hdata = (tHalf*)src;
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								float r = hdata[ij*2 + 0];
+								float g = hdata[ij*2 + 1];
+								tColour4f col(r, g, 0.0f, 1.0f);
+								if (loadFlags & LoadFlag_GammaCorrectHDR)
+									col.LinearToSRGB();
+								uncompData[ij].Set(col);
+							}
+							break;
+						}
+
+						case tPixelFormat::R16G16B16A16F:
+						{
+							// This HDR format has 4 half-float channels. RGBA.
+							tHalf* hdata = (tHalf*)src;
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								float r = hdata[ij*4 + 0];
+								float g = hdata[ij*4 + 1];
+								float b = hdata[ij*4 + 2];
+								float a = hdata[ij*4 + 3];
+								tColour4f col(r, g, b, a);
+								if (loadFlags & LoadFlag_GammaCorrectHDR)
+									col.LinearToSRGB();
+								uncompData[ij].Set(col);
+							}
+							break;
+						}
 
 						case tPixelFormat::R32G32B32A32F:
 						{

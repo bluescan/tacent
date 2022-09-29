@@ -131,8 +131,8 @@ inline tHalf::FP32 tHalf::HalfToFloat(FP16 h)
 {
 	const FP32 magic				= { 113 << 23 };
 	const uint32 shiftedExp			= 0x7c00 << 13;				// Exponent mask after shift.
-	FP32 o;
 
+	FP32 o;
 	o.u								= (h.u & 0x7fff) << 13;		// Exponent/mantissa bits.
 	uint32 exp						= shiftedExp & o.u;			// Just the exponent.
 	o.u += (127 - 15) << 23;		// Exponent adjust.

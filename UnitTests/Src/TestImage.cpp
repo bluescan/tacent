@@ -787,21 +787,21 @@ tTestUnit(ImageDDS)
 	//
 	// Uncompressed Floating-Point (HDR) Formats.
 	//
-	// @todo The following commented-out tests are the final HDR formats we need to support.
 	// R16F
-	// DDSLoadDecodeSave("R16f_R_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
-	// DDSLoadDecodeSave("R16f_R_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
-	// DDSLoadDecodeSave("R16f_R_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR | tImageDDS::LoadFlag_SpreadLuminance);
-	// DDSLoadDecodeSave("R16f_R_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR | tImageDDS::LoadFlag_SpreadLuminance);
+	DDSLoadDecodeSave("R16f_R_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
+	DDSLoadDecodeSave("R16f_R_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
+	DDSLoadDecodeSave("R16f_R_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR | tImageDDS::LoadFlag_SpreadLuminance);
+	DDSLoadDecodeSave("R16f_R_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR | tImageDDS::LoadFlag_SpreadLuminance);
 
 	// R16G16F
-	// DDSLoadDecodeSave("R16G16f_RG_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
-	// DDSLoadDecodeSave("R16G16f_RG_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
+	DDSLoadDecodeSave("R16G16f_RG_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
+	DDSLoadDecodeSave("R16G16f_RG_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
 
 	// R16G16B16A16F
-	// DDSLoadDecodeSave("R16G16B16A16f_RGBA_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
-	// DDSLoadDecodeSave("R16G16B16A16f_RGBA_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
+	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
+	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
 
+	// @todo The following commented-out tests are the final HDR formats we need to support.
 	// R32F
 	// DDSLoadDecodeSave("R32f_R_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
 	// DDSLoadDecodeSave("R32f_R_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);

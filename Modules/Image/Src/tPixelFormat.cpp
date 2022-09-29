@@ -32,9 +32,12 @@ namespace tImage
 		2,				// L8A8
 		1,				// A8
 		1,				// L8
+		2,				// R16F
+		4,				// R16G16F
+		8,				// R16G16B16A16F
 		4,				// R32F
-		8,				// G32R32F
-		16,				// A32B32G32R32F
+		8,				// R32G32F
+		16,				// R32G32B32A32F
 	};
 	tStaticAssert(tNumElements(NormalFormat_BytesPerPixel) == int(tPixelFormat::NumNormalFormats));
 
@@ -112,17 +115,20 @@ const char* tImage::tGetPixelFormatName(tPixelFormat pixelFormat)
 		"L8A8",
 		"A8",
 		"L8",
-		"R32F",
-		"G32R32F",
-		"A32B32G32R32F",
+		"R16f",
+		"R16G16f",
+		"R16G16B16A16f",
+		"R32f",
+		"R32G32f",
+		"R32G32B32A32f",
 		"BC1_DXT1",
 		"BC1_DXT1BA",
 		"BC2_DXT3",
 		"BC3_DXT5",
 		"BC4_ATI1",
 		"BC5_ATI2",
-		"BC6Hs",
-		"BC6Hu",
+		"BC6s",
+		"BC6u",
 		"BC7",
 		"RADIANCE",
 		"EXR",
