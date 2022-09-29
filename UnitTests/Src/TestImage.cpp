@@ -816,6 +816,8 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
 	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
 
+	// @todo Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
+
 	tSystem::tSetCurrentDir(origDir.Chr());
 }
 
