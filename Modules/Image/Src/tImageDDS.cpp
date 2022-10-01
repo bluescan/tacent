@@ -1143,6 +1143,8 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 	}
 
 	// Decode to 32-bit RGBA if requested. If we're already in the correct R8G8B8A8 format, no need to do anything.
+	// Note, gamma-correct load flag only applies when decoding HDR/floating-point formats, so never any need to do
+	// it on R8G8B8A8. Likewise for spread-flag, never applies to R8G8B8A8 (only R-only or L-only formats)..
 	if ((loadFlags & LoadFlag_Decode) && (PixelFormat != tPixelFormat::R8G8B8A8))
 	{
 		bool spread = loadFlags & LoadFlag_SpreadLuminance;
@@ -1551,6 +1553,9 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 		// All images decoded. Can now set the object's pixel format. We do _not_ set the PixelFormatOrig here!
 		PixelFormat = tPixelFormat::R8G8B8A8;
 	}
+
+	if (reverseRowOrderRequested && !RowReversalOperationPerformed)
+		Results |= 1 << int(ResultCode::Conditional_CouldNotFlipRows);
 
 	tAssert(IsValid());
 	return true;

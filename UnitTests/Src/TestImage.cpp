@@ -677,7 +677,7 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 	savename += (loadFlags & tImageDDS::LoadFlag_GammaCorrectHDR)	? "G" : "x";
 	savename += (loadFlags & tImageDDS::LoadFlag_ReverseRowOrder)	? "R" : "x";
 	savename += (loadFlags & tImageDDS::LoadFlag_SpreadLuminance)	? "S" : "x";
-	tPrintf("DDS Load -> TGA Save %s\n", savename.Chr());
+	tPrintf("DDS Load %s\n", savename.Chr());
 	tString formatname = basename.Left('_');
 
 	tImageDDS dds(ddsfile, loadFlags);
@@ -691,8 +691,9 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 	else
 		tRequire(ddsformat == fileformat);
 
-	// If we asked to flip rows but it couldn't, print a message.
-	if ((loadFlags & tImageDDS::LoadFlag_ReverseRowOrder) && dds.IsResultSet(tImageDDS::ResultCode::Conditional_CouldNotFlipRows))
+	// If we asked to flip rows but it couldn't, print a message. The conditional is
+	// only set if we requested and it couldn't be done.
+	if (dds.IsResultSet(tImageDDS::ResultCode::Conditional_CouldNotFlipRows))
 		tPrintf("Could not flip rows for %s\n", savename.Chr());
 
 	tList<tImage::tLayer> layers;
@@ -739,13 +740,13 @@ tTestUnit(ImageDDS)
 	uint32 revrow = tImageDDS::LoadFlag_ReverseRowOrder;
 	uint32 spread = tImageDDS::LoadFlag_SpreadLuminance;
 	uint32 gammac = tImageDDS::LoadFlag_GammaCorrectHDR;
-
-	tPrintf("Testing DDS Loading. Legacy = No DDX10 Header.\n\n");
-	//return;
+	// return;
 
 	//
 	// Block Compressed Formats.
 	//
+	tPrintf("Testing DDS Loading/Decoding. Legacy = No DDX10 Header.\n\n");
+
 	// BC1
 	DDSLoadDecodeSave("BC1DXT1_RGB_Legacy.dds", decode | revrow);
 	DDSLoadDecodeSave("BC1DXT1_RGB_Modern.dds", decode | revrow);
@@ -843,9 +844,35 @@ tTestUnit(ImageDDS)
 
 	// Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
 	// This time, since not decoding, it may be impossible to reverse the rows, so we can also expect
-	// to get conditional valids if it couldn't be done (for some of the BC formats).
-	DDSLoadDecodeSave("BC1DXT1_RGB_Legacy.dds", revrow);		// Revrow should work for BC1.
-	DDSLoadDecodeSave("BC1DXT1_RGB_Modern.dds");
+	// to get conditional valids if it couldn't be done (for some of the BC formats). We're only going
+	// to bother with the modern-style dds files this time through.
+
+	tPrintf("Testing DDS Loading/No-decoding.\n\n");
+	DDSLoadDecodeSave("BC1DXT1_RGB_Modern.dds", revrow);		// Revrow should work for BC1.
+	DDSLoadDecodeSave("BC1DXT1a_RGBA_Modern.dds");
+	DDSLoadDecodeSave("BC2DXT2DXT3_RGBA_Modern.dds", revrow);
+	DDSLoadDecodeSave("BC3DXT4DXT5_RGBA_Modern.dds", revrow);
+	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds", revrow);			// Should print warning and be unable to flip rows. May be able to implement.
+	DDSLoadDecodeSave("BC5ATI2_RG_Modern.dds", revrow);			// Should print warning and be unable to flip rows. May be able to implement.
+	DDSLoadDecodeSave("BC6s_RGB_Modern.dds", revrow);			// Should print warning and be unable to flip rows.
+	DDSLoadDecodeSave("BC6u_RGB_Modern.dds");
+	DDSLoadDecodeSave("BC6s_HDRRGB_Modern.dds");
+	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds", revrow);		// Should print warning and be unable to flip rows.
+	DDSLoadDecodeSave("BC7_RGBA_Modern.dds", revrow);			// Should print warning and be unable to flip rows.
+	DDSLoadDecodeSave("A8_A_Modern.dds");
+	DDSLoadDecodeSave("L8_L_Modern.dds", revrow);
+	DDSLoadDecodeSave("B8G8R8_RGB_Legacy.dds");					// Only legacy supports this format.
+	DDSLoadDecodeSave("B8G8R8A8_RGBA_Modern.dds");
+	DDSLoadDecodeSave("B5G6R5_RGB_Modern.dds", revrow);
+	DDSLoadDecodeSave("B4G4R4A4_RGBA_Modern.dds", revrow);
+	DDSLoadDecodeSave("B5G5R5A1_RGBA_Modern.dds");
+	DDSLoadDecodeSave("R16f_R_Modern.dds", revrow);
+	DDSLoadDecodeSave("R16f_R_Modern.dds");
+	DDSLoadDecodeSave("R16G16f_RG_Modern.dds", revrow);
+	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Modern.dds");
+	DDSLoadDecodeSave("R32f_R_Modern.dds", revrow);
+	DDSLoadDecodeSave("R32G32f_RG_Modern.dds");
+	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Modern.dds", revrow);
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }

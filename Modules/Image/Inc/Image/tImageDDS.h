@@ -37,8 +37,8 @@ public:
 	{
 		LoadFlag_Decode				= 1 << 0,	// Decode the dds texture data into RGBA 32 bit layers. If not set, the layer data will remain unmodified.
 		LoadFlag_ReverseRowOrder	= 1 << 1,	// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.
-		LoadFlag_GammaCorrectHDR	= 1 << 2,	// Gamma correct HDR (BC6) images during load.
-		LoadFlag_SpreadLuminance	= 1 << 3,	// For DDS files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats.
+		LoadFlag_GammaCorrectHDR	= 1 << 2,	// Gamma correct HDR (BC6) images during decode. Flag only applies when decoding HDR/floating-point formats
+		LoadFlag_SpreadLuminance	= 1 << 3,	// For DDS files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats. Applies only if decoding a dds is an R-only or L-only format.
 		LoadFlag_CondMultFourDim	= 1 << 4,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,
 		LoadFlag_CondPowerTwoDim	= 1 << 5,	// Produce conditional success if image dimension not a power of 2. Only checks BC formats.
 		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance
@@ -55,8 +55,8 @@ public:
 	// lossy. In these cases the row-reversal is done _after_ decoding. Unfortunalely decoding may not always be
 	// requested (for example if you want to pass the image data directly to the GPU memory in OpenGL). In these cases
 	// tImageDDS will be unable to reverse the rows. You will still get a valid object, but it will be a conditional
-	// success (GetResults() will have Conditional_CouldNotFlipRows flag set). You can call RowsReversed() to see
-	// if row-reversal was performed.
+	// success (GetResults() will have Conditional_CouldNotFlipRows flag set). You can call also call RowsReversed() to
+	// see if row-reversal was performed. The conditional is only set if reversal was requested.
 	tImageDDS(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default);
 
 	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is read from
