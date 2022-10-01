@@ -135,7 +135,7 @@ bool tImageGIF::Load(const tString& gifFile)
 	if (result <= 0)
 		return false;
 
-	SrcPixelFormat = tPixelFormat::PAL_8BIT;
+	SrcPixelFormat = tPixelFormat::PAL8BIT;
 	return true;
 }
 

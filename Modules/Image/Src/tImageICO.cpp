@@ -237,7 +237,7 @@ tFrame* tImageICO::CreateFrame(const uint8* cursor, int width, int height, int n
 	if (realBitsCount == 8)
 	{
 		// 256 colour palette.
-		srcPixelFormat = tPixelFormat::PAL_8BIT;
+		srcPixelFormat = tPixelFormat::PAL8BIT;
 		
 		uint8* colors = (uint8*)cursor;
 		cursor += 256 * 4;
@@ -263,8 +263,8 @@ tFrame* tImageICO::CreateFrame(const uint8* cursor, int width, int height, int n
 	if (realBitsCount == 4)
 	{
 		// 16 colour palette.
-		srcPixelFormat = tPixelFormat::PAL_4BIT;
-		
+		srcPixelFormat = tPixelFormat::PAL4BIT;
+
 		uint8* colors = (uint8*)cursor;
 		cursor += 16 * 4;
 		for (int x = 0; x < width; x++)
@@ -295,7 +295,7 @@ tFrame* tImageICO::CreateFrame(const uint8* cursor, int width, int height, int n
 	if (realBitsCount == 1)
 	{
 		// 2 colour palette.
-		srcPixelFormat = tPixelFormat::PAL_1BIT;
+		srcPixelFormat = tPixelFormat::PAL1BIT;
 
 		uint8* colors = (uint8*)cursor;
 		cursor += 2 * 4;
@@ -316,7 +316,7 @@ tFrame* tImageICO::CreateFrame(const uint8* cursor, int width, int height, int n
 				
 				uint8 index = cursor[shift2 / 8];
 
-				// select 1 bit only
+				// Select 1 bit only.
 				uint8 bit = 7 - (x % 8);
 				index = (index >> bit) & 0x01;
 				index *= 4;

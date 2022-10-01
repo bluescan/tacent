@@ -788,7 +788,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 				ColourSpace = tColourSpace::sRGB;
 			case tDXGI_FORMAT_BC1_TYPELESS:
 			case tDXGI_FORMAT_BC1_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC1_DXT1;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC1DXT1;
 				break;
 
 			// DXGI formats do not specify premultiplied alpha mode like DXT2/3 so we leave it unspecified.
@@ -796,7 +796,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 				ColourSpace = tColourSpace::sRGB;
 			case tDXGI_FORMAT_BC2_TYPELESS:
 			case tDXGI_FORMAT_BC2_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC2_DXT2_DXT3;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC2DXT2DXT3;
 				break;
 
 			// DXGI formats do not specify premultiplied alpha mode like DXT4/5 so we leave it unspecified. As for sRGB,
@@ -808,19 +808,19 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 				ColourSpace = tColourSpace::sRGB;
 			case tDXGI_FORMAT_BC3_TYPELESS:
 			case tDXGI_FORMAT_BC3_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC3_DXT4_DXT5;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC3DXT4DXT5;
 				break;
 
 			// case tDXGI_FORMAT_BC4_SNORM:
 			case tDXGI_FORMAT_BC4_TYPELESS:
 			case tDXGI_FORMAT_BC4_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC4_ATI1;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC4ATI1;
 				break;
 
 			// case tDXGI_FORMAT_BC5_SNORM:
 			case tDXGI_FORMAT_BC5_TYPELESS:
 			case tDXGI_FORMAT_BC5_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC5_ATI2;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC5ATI2;
 				break;
 
 			case tDXGI_FORMAT_BC6H_TYPELESS:		// Interpret typeless as BC6H_S16... we gotta choose something.
@@ -881,6 +881,14 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 				PixelFormat = PixelFormatOrig = tPixelFormat::R16G16B16A16F;
 				break;
 
+			case tDXGI_FORMAT_R32_FLOAT:
+				PixelFormat = PixelFormatOrig = tPixelFormat::R32F;
+				break;
+
+			case tDXGI_FORMAT_R32G32_FLOAT:
+				PixelFormat = PixelFormatOrig = tPixelFormat::R32G32F;
+				break;
+
 			case tDXGI_FORMAT_R32G32B32A32_FLOAT:
 				PixelFormat = PixelFormatOrig = tPixelFormat::R32G32B32A32F;
 				break;
@@ -893,39 +901,39 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 			// Note that during inspecition of the individual layer data, the DXT1 pixel format might be modified
 			// to DXT1BA (binary alpha).
 			case FourCC('D','X','T','1'):
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC1_DXT1;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC1DXT1;
 				break;
 
 			// DXT2 and DXT3 are the same format. Only how you interpret the data is different. In tacent we treat them
 			// as the same pixel-format. How contents are interpreted (the data) is not part of the format. 
 			case FourCC('D','X','T','2'):
 				AlphaMode = tAlphaMode::Premultiplied;
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC2_DXT2_DXT3;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC2DXT2DXT3;
 				break;
 
 			case FourCC('D','X','T','3'):
 				AlphaMode = tAlphaMode::Normal;
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC2_DXT2_DXT3;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC2DXT2DXT3;
 				break;
 
 			case FourCC('D','X','T','4'):
 				AlphaMode = tAlphaMode::Premultiplied;
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC3_DXT4_DXT5;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC3DXT4DXT5;
 				break;
 
 			case FourCC('D','X','T','5'):
 				AlphaMode = tAlphaMode::Normal;
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC3_DXT4_DXT5;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC3DXT4DXT5;
 				break;
 
 			case FourCC('A','T','I','1'):
 			case FourCC('B','C','4','U'):
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC4_ATI1;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC4ATI1;
 				break;
 
 			case FourCC('A','T','I','2'):
 			case FourCC('B','C','5','U'):
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC5_ATI2;
+				PixelFormat = PixelFormatOrig = tPixelFormat::BC5ATI2;
 				break;
 
 			case FourCC('B','C','4','S'):	// We don't support signed BC4.
@@ -1075,17 +1083,17 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 			else if (tImage::tIsBlockCompressedFormat(PixelFormat))
 			{
 				// It's a BC/DXTn format. Each block encodes a 4x4 square of pixels. DXT2,3,4,5 and BC 6,7 use 128
-				// bits per block.  DXT1 and DXT1BA (BC1) use 64bits per block.
+				// bits per block.  DXT1 and DXT1A (BC1) use 64bits per block.
 				int bcBlockSize = tImage::tGetBytesPer4x4PixelBlock(PixelFormat);
 				int numBlocksW = tMath::tMax(1, (width + 3) / 4);
 				int numBlocksH = tMath::tMax(1, (height + 3) / 4);
 				int numBlocks = numBlocksW*numBlocksH;
 				numBytes = numBlocks * bcBlockSize;
 
-				// Here's where we possibly modify the opaque DXT1 texture to be DXT1BA if there are blocks with binary
+				// Here's where we possibly modify the opaque DXT1 texture to be DXT1A if there are blocks with binary
 				// transparency. We only bother checking the main layer. If it's opaque we assume all the others are too.
-				if ((layer == 0) && (PixelFormat == tPixelFormat::BC1_DXT1) && DoDXT1BlocksHaveBinaryAlpha((tDXT1Block*)currPixelData, numBlocks))
-					PixelFormat = PixelFormatOrig = tPixelFormat::BC1_DXT1BA;
+				if ((layer == 0) && (PixelFormat == tPixelFormat::BC1DXT1) && DoDXT1BlocksHaveBinaryAlpha((tDXT1Block*)currPixelData, numBlocks))
+					PixelFormat = PixelFormatOrig = tPixelFormat::BC1DXT1A;
 
 				// DDS files store textures upside down. In the OpenGL RH coord system, the lower left of the texture
 				// is the origin and consecutive rows go up. For this reason we need to read each row of blocks from
@@ -1134,9 +1142,10 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 		}
 	}
 
-	// Decode to 32-bit RGBA if requested.
-	if (loadFlags & LoadFlag_Decode)
+	// Decode to 32-bit RGBA if requested. If we're already in the correct R8G8B8A8 format, no need to do anything.
+	if ((loadFlags & LoadFlag_Decode) && (PixelFormat != tPixelFormat::R8G8B8A8))
 	{
+		bool spread = loadFlags & LoadFlag_SpreadLuminance;
 		bool didRowReversalAfterDecode = false;
 		for (int image = 0; image < NumImages; image++)
 		{
@@ -1165,7 +1174,6 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 						{
 							// Convert to 32-bit RGBA with luminance in R and 255 for A. If SpreadLuminance flag set,
 							// also set luminance in the GB channels, if not then GB get 0s.
-							bool spread = loadFlags & LoadFlag_SpreadLuminance;
 							for (int ij = 0; ij < w*h; ij++)
 							{
 								tColour4i col(src[ij], spread ? src[ij] : 0u, spread ? src[ij] : 0u, 255u);
@@ -1260,7 +1268,6 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 						{
 							// This HDR format has 1 red half-float channel.
 							tHalf* hdata = (tHalf*)src;
-							bool spread = loadFlags & LoadFlag_SpreadLuminance;
 							for (int ij = 0; ij < w*h; ij++)
 							{
 								float r = hdata[ij*1 + 0];
@@ -1306,6 +1313,37 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 							break;
 						}
 
+						case tPixelFormat::R32F:
+						{
+							// This HDR format has 1 red float channel.
+							float* fdata = (float*)src;
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								float r = fdata[ij*1 + 0];
+								tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
+								if (loadFlags & LoadFlag_GammaCorrectHDR)
+									col.LinearToSRGB();
+								uncompData[ij].Set(col);
+							}
+							break;
+						}
+
+						case tPixelFormat::R32G32F:
+						{
+							// This HDR format has 2 float channels. Red and green.
+							float* fdata = (float*)src;
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								float r = fdata[ij*2 + 0];
+								float g = fdata[ij*2 + 1];
+								tColour4f col(r, g, 0.0f, 1.0f);
+								if (loadFlags & LoadFlag_GammaCorrectHDR)
+									col.LinearToSRGB();
+								uncompData[ij].Set(col);
+							}
+							break;
+						}
+
 						case tPixelFormat::R32G32B32A32F:
 						{
 							// This HDR format has 4 RGBA floats.
@@ -1334,7 +1372,9 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 					// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
 					delete[] layer->Data;
 					layer->Data = (uint8*)uncompData;
-					layer->PixelFormat = tPixelFormat::B8G8R8A8;
+
+					// We are now in in RGBA. In that order in memory.
+					layer->PixelFormat = tPixelFormat::R8G8B8A8;
 				}
 				else if (tImage::tIsBlockCompressedFormat(PixelFormat))
 				{
@@ -1346,8 +1386,8 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 					tPixel* uncompData = new tPixel[wextra*hextra];
 					switch (layer->PixelFormat)
 					{
-						case tPixelFormat::BC1_DXT1:
-						case tPixelFormat::BC1_DXT1BA:
+						case tPixelFormat::BC1DXT1:
+						case tPixelFormat::BC1DXT1A:
 						{
 							for (int i = 0; i < h; i += 4)
 								for (int j = 0; j < w; j += 4)
@@ -1364,7 +1404,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 							break;
 						}
 
-						case tPixelFormat::BC2_DXT2_DXT3:
+						case tPixelFormat::BC2DXT2DXT3:
 						{
 							for (int i = 0; i < h; i += 4)
 								for (int j = 0; j < w; j += 4)
@@ -1376,7 +1416,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 							break;
 						}
 
-						case tPixelFormat::BC3_DXT4_DXT5:
+						case tPixelFormat::BC3DXT4DXT5:
 						{
 							for (int i = 0; i < h; i += 4)
 								for (int j = 0; j < w; j += 4)
@@ -1388,7 +1428,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 							break;
 						}
 
-						case tPixelFormat::BC4_ATI1:
+						case tPixelFormat::BC4ATI1:
 						{
 							// This HDR format decompresses to R uint8s.
 							uint8* rdata = new uint8[wextra*hextra];
@@ -1402,7 +1442,6 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 								}
 
 							// Now convert to 32-bit RGBA.
-							bool spread = loadFlags & LoadFlag_SpreadLuminance;
 							for (int ij = 0; ij < w*h; ij++)
 							{
 								uint8 v = rdata[ij];
@@ -1413,7 +1452,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 							break;
 						}
 
-						case tPixelFormat::BC5_ATI2:
+						case tPixelFormat::BC5ATI2:
 						{
 							struct RG { uint8 R; uint8 G; };
 							// This HDR format decompresses to RG uint8s.
@@ -1486,7 +1525,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 					// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
 					delete[] layer->Data;
 					layer->Data = (uint8*)uncompData;
-					layer->PixelFormat = tPixelFormat::B8G8R8A8;
+					layer->PixelFormat = tPixelFormat::R8G8B8A8;
 				}
 				else // Unsupported PixelFormat
 				{
@@ -1494,7 +1533,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 				}
 
 				// We've got one more chance to reverse the rows here (if we still need to) because we were asked to decode.
-				if (reverseRowOrderRequested && !RowReversalOperationPerformed && (layer->PixelFormat == tPixelFormat::B8G8R8A8))
+				if (reverseRowOrderRequested && !RowReversalOperationPerformed && (layer->PixelFormat == tPixelFormat::R8G8B8A8))
 				{
 					// This shouldn't ever fail. Too easy to reverse RGBA 32-bit.
 					uint8* reversedRowData = CreateReversedRowData_Normal(layer->Data, layer->PixelFormat, w, h);
@@ -1510,7 +1549,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags)
 			RowReversalOperationPerformed = true;
 
 		// All images decoded. Can now set the object's pixel format. We do _not_ set the PixelFormatOrig here!
-		PixelFormat = tPixelFormat::B8G8R8A8;
+		PixelFormat = tPixelFormat::R8G8B8A8;
 	}
 
 	tAssert(IsValid());
@@ -1548,8 +1587,8 @@ uint8* tImageDDS::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat 
 	// We do not support the following block formats for non-destructive row reversal.
 	switch (pixelDataFormat)
 	{
-		case tPixelFormat::BC4_ATI1:		// @todo Consider implementing.
-		case tPixelFormat::BC5_ATI2:		// @todo Consider implementing.
+		case tPixelFormat::BC4ATI1:		// @todo Consider implementing row reversal.
+		case tPixelFormat::BC5ATI2:		// @todo Consider implementing row reversal.
 		case tPixelFormat::BC6S:
 		case tPixelFormat::BC6U:
 		case tPixelFormat::BC7:
@@ -1576,8 +1615,8 @@ uint8* tImageDDS::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat 
 	// blocks: BC1, BC2, and BC3. BC4/5 probably could be handled, and BC6/7 are too complex.
 	switch (pixelDataFormat)
 	{
-		case tPixelFormat::BC1_DXT1BA:
-		case tPixelFormat::BC1_DXT1:
+		case tPixelFormat::BC1DXT1A:
+		case tPixelFormat::BC1DXT1:
 		{
 			tDXT1Block* block = (tDXT1Block*)reversedPixelData;
 			for (int b = 0; b < numBlocks; b++, block++)
@@ -1589,7 +1628,7 @@ uint8* tImageDDS::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat 
 			break;
 		}
 
-		case tPixelFormat::BC2_DXT2_DXT3:
+		case tPixelFormat::BC2DXT2DXT3:
 		{
 			tDXT3Block* block = (tDXT3Block*)reversedPixelData;
 			for (int b = 0; b < numBlocks; b++, block++)
@@ -1603,7 +1642,7 @@ uint8* tImageDDS::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat 
 			break;
 		}
 
-		case tPixelFormat::BC3_DXT4_DXT5:
+		case tPixelFormat::BC3DXT4DXT5:
 		{
 			tDXT5Block* block = (tDXT5Block*)reversedPixelData;
 			for (int b = 0; b < numBlocks; b++, block++)

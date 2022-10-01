@@ -669,38 +669,59 @@ tTestUnit(ImageGradient)
 
 
 // Helper for ImageDDS unit tests.
-void DDSLoadDecodeSave(const tString& ddsfile, uint32 extraLoadFlags = 0, bool saveAllMips = false)
+void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAllMips = false)
 {
-	tString basename = tSystem::tGetFileBaseName(ddsfile) + "_";
-	uint32 loadFlags = tImageDDS::LoadFlag_Decode | tImageDDS::LoadFlag_ReverseRowOrder | extraLoadFlags;
-	basename += (loadFlags & tImageDDS::LoadFlag_Decode)			? "D" : "x";
-	basename += (loadFlags & tImageDDS::LoadFlag_GammaCorrectHDR)	? "G" : "x";
-	basename += (loadFlags & tImageDDS::LoadFlag_ReverseRowOrder)	? "R" : "x";
-	basename += (loadFlags & tImageDDS::LoadFlag_SpreadLuminance)	? "S" : "x";
-	tPrintf("DDS Load-Decode-Save %s\n", basename.Chr());
+	tString basename = tSystem::tGetFileBaseName(ddsfile);
+	tString savename = basename + "_";
+	savename += (loadFlags & tImageDDS::LoadFlag_Decode)			? "D" : "x";
+	savename += (loadFlags & tImageDDS::LoadFlag_GammaCorrectHDR)	? "G" : "x";
+	savename += (loadFlags & tImageDDS::LoadFlag_ReverseRowOrder)	? "R" : "x";
+	savename += (loadFlags & tImageDDS::LoadFlag_SpreadLuminance)	? "S" : "x";
+	tPrintf("DDS Load -> TGA Save %s\n", savename.Chr());
+	tString formatname = basename.Left('_');
 
 	tImageDDS dds(ddsfile, loadFlags);
 	tRequire(dds.IsValid());
+	tPixelFormat fileformat = tGetPixelFormat(formatname.Chr());
+	tPixelFormat ddsformat = dds.GetPixelFormat();
+	tPixelFormat ddsformatorig = dds.GetPixelFormatOrig();
+	tRequire(fileformat == ddsformatorig);
+	if (loadFlags & tImageDDS::LoadFlag_Decode)
+		tRequire(ddsformat == tPixelFormat::R8G8B8A8);
+	else
+		tRequire(ddsformat == fileformat);
+
+	// If we asked to flip rows but it couldn't, print a message.
+	if ((loadFlags & tImageDDS::LoadFlag_ReverseRowOrder) && dds.IsResultSet(tImageDDS::ResultCode::Conditional_CouldNotFlipRows))
+		tPrintf("Could not flip rows for %s\n", savename.Chr());
+
 	tList<tImage::tLayer> layers;
 	dds.StealTextureLayers(layers);
 
-	if (saveAllMips)
+	if (ddsformat != tPixelFormat::R8G8B8A8)
 	{
-		int mipNum = 0;
-		for (tLayer* layer = layers.First(); layer; layer = layer->Next(), mipNum++)
-		{
-			tImageTGA tga((tPixel*)layer->Data, layer->Width, layer->Height);
-			tString mipName;
-			tsPrintf(mipName, "Written_%s_Mip%02d.tga", basename.Chr(), mipNum);
-			tga.Save(mipName);
-		}
+		tPrintf("No tga save. Pixel format not R8G8B8A8\n");
 	}
 	else
 	{
-		if (tLayer* layer = layers.First())
+		if (saveAllMips)
 		{
-			tImageTGA tga((tPixel*)layer->Data, layer->Width, layer->Height);
-			tga.Save("Written_" + basename + ".tga");
+			int mipNum = 0;
+			for (tLayer* layer = layers.First(); layer; layer = layer->Next(), mipNum++)
+			{
+				tImageTGA tga((tPixel*)layer->Data, layer->Width, layer->Height);
+				tString mipName;
+				tsPrintf(mipName, "Written_%s_Mip%02d.tga", savename.Chr(), mipNum);
+				tga.Save(mipName);
+			}
+		}
+		else
+		{
+			if (tLayer* layer = layers.First())
+			{
+				tImageTGA tga((tPixel*)layer->Data, layer->Width, layer->Height);
+				tga.Save("Written_" + savename + ".tga");
+			}
 		}
 	}
 	tPrintf("\n");
@@ -714,109 +735,117 @@ tTestUnit(ImageDDS)
 	tString origDir = tSystem::tGetCurrentDir();
 	tSystem::tSetCurrentDir(origDir + "TestData/Images/DDS/");
 
+	uint32 decode = tImageDDS::LoadFlag_Decode;
+	uint32 revrow = tImageDDS::LoadFlag_ReverseRowOrder;
+	uint32 spread = tImageDDS::LoadFlag_SpreadLuminance;
+	uint32 gammac = tImageDDS::LoadFlag_GammaCorrectHDR;
+
 	tPrintf("Testing DDS Loading. Legacy = No DDX10 Header.\n\n");
-	// return;
+	//return;
 
 	//
 	// Block Compressed Formats.
 	//
 	// BC1
-	DDSLoadDecodeSave("BC1DXT1_RGB_Legacy.dds");
-	DDSLoadDecodeSave("BC1DXT1_RGB_Modern.dds");
+	DDSLoadDecodeSave("BC1DXT1_RGB_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("BC1DXT1_RGB_Modern.dds", decode | revrow);
 
 	// BC1a
-	DDSLoadDecodeSave("BC1DXT1a_RGBA_Legacy.dds");
-	DDSLoadDecodeSave("BC1DXT1a_RGBA_Modern.dds");
+	DDSLoadDecodeSave("BC1DXT1a_RGBA_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("BC1DXT1a_RGBA_Modern.dds", decode | revrow);
 
 	// BC2
-	DDSLoadDecodeSave("BC2DXT3_RGBA_Legacy.dds");
-	DDSLoadDecodeSave("BC2DXT3_RGBA_Modern.dds");
+	DDSLoadDecodeSave("BC2DXT2DXT3_RGBA_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("BC2DXT2DXT3_RGBA_Modern.dds", decode | revrow);
 
 	// BC3
-	DDSLoadDecodeSave("BC3DXT5_RGBA_Legacy.dds");
-	DDSLoadDecodeSave("BC3DXT5_RGBA_Modern.dds");
+	DDSLoadDecodeSave("BC3DXT4DXT5_RGBA_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("BC3DXT4DXT5_RGBA_Modern.dds", decode | revrow);
 
 	// BC4
-	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds");
-	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds", tImageDDS::LoadFlag_SpreadLuminance);
+	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds", decode | revrow | spread);
 
 	// BC5
-	DDSLoadDecodeSave("BC5ATI2_RG_Modern.dds");
+	DDSLoadDecodeSave("BC5ATI2_RG_Modern.dds", decode | revrow);
 
 	// BC6
-	DDSLoadDecodeSave("BC6s_RGB_Modern.dds");
-	DDSLoadDecodeSave("BC6u_RGB_Modern.dds");
-	DDSLoadDecodeSave("BC6s_HDRRGB_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
-	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
+	DDSLoadDecodeSave("BC6s_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("BC6u_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("BC6s_HDRRGB_Modern.dds", decode | revrow | gammac);
+	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds", decode | revrow | gammac);
 
 	// BC7
-	DDSLoadDecodeSave("BC7_RGBA_Modern.dds", 0, true);
+	DDSLoadDecodeSave("BC7_RGBA_Modern.dds", decode | revrow, true);
 
 	//
 	// Uncompressed Integer Formats.
 	//
 	// A8
-	DDSLoadDecodeSave("A8_A_Legacy.dds");
-	DDSLoadDecodeSave("A8_A_Modern.dds");
+	DDSLoadDecodeSave("A8_A_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("A8_A_Modern.dds", decode | revrow);
 
 	// L8
-	DDSLoadDecodeSave("L8_L_Legacy.dds");
-	DDSLoadDecodeSave("L8_L_Legacy.dds", tImageDDS::LoadFlag_SpreadLuminance);
-	DDSLoadDecodeSave("L8_L_Modern.dds");
-	DDSLoadDecodeSave("L8_L_Modern.dds", tImageDDS::LoadFlag_SpreadLuminance);
+	DDSLoadDecodeSave("L8_L_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("L8_L_Legacy.dds", decode | revrow | spread);
+	DDSLoadDecodeSave("L8_L_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("L8_L_Modern.dds", decode | revrow | spread);
 
 	// B8G8R8
-	DDSLoadDecodeSave("B8G8R8_RGB_Legacy.dds");
+	DDSLoadDecodeSave("B8G8R8_RGB_Legacy.dds", decode | revrow);
 
 	// B8G8R8A8
-	DDSLoadDecodeSave("B8G8R8A8_RGBA_Legacy.dds");
-	DDSLoadDecodeSave("B8G8R8A8_RGBA_Modern.dds");
+	DDSLoadDecodeSave("B8G8R8A8_RGBA_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("B8G8R8A8_RGBA_Modern.dds", decode | revrow);
 
 	// B5G6R5
-	DDSLoadDecodeSave("B5G6R5_RGB_Legacy.dds");
-	DDSLoadDecodeSave("B5G6R5_RGB_Modern.dds");
+	DDSLoadDecodeSave("B5G6R5_RGB_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("B5G6R5_RGB_Modern.dds", decode | revrow);
 
 	// B4G4R4A4
-	DDSLoadDecodeSave("B4G4R4A4_RGBA_Legacy.dds");
-	DDSLoadDecodeSave("B4G4R4A4_RGBA_Modern.dds");
+	DDSLoadDecodeSave("B4G4R4A4_RGBA_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("B4G4R4A4_RGBA_Modern.dds", decode | revrow);
 
 	// B5G5R5A1
-	DDSLoadDecodeSave("B5G5R5A1_RGBA_Legacy.dds");
-	DDSLoadDecodeSave("B5G5R5A1_RGBA_Modern.dds");
+	DDSLoadDecodeSave("B5G5R5A1_RGBA_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("B5G5R5A1_RGBA_Modern.dds", decode | revrow);
 
 	//
 	// Uncompressed Floating-Point (HDR) Formats.
 	//
 	// R16F
-	DDSLoadDecodeSave("R16f_R_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
-	DDSLoadDecodeSave("R16f_R_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
-	DDSLoadDecodeSave("R16f_R_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR | tImageDDS::LoadFlag_SpreadLuminance);
-	DDSLoadDecodeSave("R16f_R_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR | tImageDDS::LoadFlag_SpreadLuminance);
+	DDSLoadDecodeSave("R16f_R_Legacy.dds", decode | revrow | gammac);
+	DDSLoadDecodeSave("R16f_R_Modern.dds", decode | revrow | gammac);
+	DDSLoadDecodeSave("R16f_R_Legacy.dds", decode | revrow | gammac | spread);
+	DDSLoadDecodeSave("R16f_R_Modern.dds", decode | revrow | gammac | spread);
 
 	// R16G16F
-	DDSLoadDecodeSave("R16G16f_RG_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
-	DDSLoadDecodeSave("R16G16f_RG_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
+	DDSLoadDecodeSave("R16G16f_RG_Legacy.dds", decode | revrow | gammac);
+	DDSLoadDecodeSave("R16G16f_RG_Modern.dds", decode | revrow | gammac);
 
 	// R16G16B16A16F
-	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
-	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
+	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Legacy.dds", decode | revrow | gammac);
+	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Modern.dds", decode | revrow | gammac);
 
-	// @todo The following commented-out tests are the final HDR formats we need to support.
 	// R32F
-	// DDSLoadDecodeSave("R32f_R_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
-	// DDSLoadDecodeSave("R32f_R_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
-	// DDSLoadDecodeSave("R32f_R_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR | tImageDDS::LoadFlag_SpreadLuminance);
-	// DDSLoadDecodeSave("R32f_R_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR | tImageDDS::LoadFlag_SpreadLuminance);
+	DDSLoadDecodeSave("R32f_R_Legacy.dds", decode | revrow | gammac);
+	DDSLoadDecodeSave("R32f_R_Modern.dds", decode | revrow | gammac);
+	DDSLoadDecodeSave("R32f_R_Legacy.dds", decode | revrow | gammac | spread);
+	DDSLoadDecodeSave("R32f_R_Modern.dds", decode | revrow | gammac | spread);
 
 	// R32G32F
-	// DDSLoadDecodeSave("R32G32f_RG_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
-	// DDSLoadDecodeSave("R32G32f_RG_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
+	DDSLoadDecodeSave("R32G32f_RG_Legacy.dds", decode | revrow | gammac);
+	DDSLoadDecodeSave("R32G32f_RG_Modern.dds", decode | revrow | gammac);
 
 	// R32G32B32A32F
-	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Legacy.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
-	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Modern.dds", tImageDDS::LoadFlag_GammaCorrectHDR);
+	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Legacy.dds", decode | revrow | gammac);
+	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Modern.dds", decode | revrow | gammac);
 
-	// @todo Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
+	// Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
+	// This time, since not decoding, it may be impossible to reverse the rows, so we can also expect
+	// to get conditional valids if it couldn't be done (for some of the BC formats).
+	DDSLoadDecodeSave("BC1DXT1_RGB_Legacy.dds", revrow);		// Revrow should work for BC1.
+	DDSLoadDecodeSave("BC1DXT1_RGB_Modern.dds");
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }

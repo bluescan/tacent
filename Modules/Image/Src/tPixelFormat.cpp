@@ -20,6 +20,42 @@
 
 namespace tImage
 {
+	const char* PixelFormatNames[] =
+	{
+		"Unknown",
+		"R8G8B8",
+		"R8G8B8A8",
+		"B8G8R8",
+		"B8G8R8A8",
+		"B5G6R5",
+		"B4G4R4A4",
+		"B5G5R5A1",
+		"L8A8",
+		"A8",
+		"L8",
+		"R16f",
+		"R16G16f",
+		"R16G16B16A16f",
+		"R32f",
+		"R32G32f",
+		"R32G32B32A32f",
+		"BC1DXT1",
+		"BC1DXT1A",
+		"BC2DXT2DXT3",
+		"BC3DXT4DXT5",
+		"BC4ATI1",
+		"BC5ATI2",
+		"BC6s",
+		"BC6u",
+		"BC7",
+		"RADIANCE",
+		"OPENEXR",
+		"PAL8BIT",
+		"PAL4BIT",
+		"PAL1BIT"
+	};
+	tStaticAssert(int(tPixelFormat::NumPixelFormats)+1 == tNumElements(PixelFormatNames));
+
 	int NormalFormat_BytesPerPixel[] =
 	{
 		3,				// R8G8B8
@@ -43,15 +79,15 @@ namespace tImage
 
 	int BlockFormat_BytesPer4x4PixelBlock[] =
 	{
-		8,				// BC1_DXT1
-		8,				// BC1_DXT1BA
-		16,				// BC2_DXT3
-		16,				// BC3_DXT5
-		8,				// BC4_ATI1
-		16,				// BC5_ATI2
-		16,				// BC6H_S16
-		16,				// BC6H_U16
-		16				// BC7_UNORM
+		8,				// BC1DXT1
+		8,				// BC1DXT1A
+		16,				// BC2DXT2DXT3
+		16,				// BC3DXT4DXT5
+		8,				// BC4ATI1
+		16,				// BC5ATI2
+		16,				// BC6s
+		16,				// BC6u
+		16				// BC7
 	};
 	tStaticAssert(tNumElements(BlockFormat_BytesPer4x4PixelBlock) == int(tPixelFormat::NumBlockFormats));
 
@@ -79,9 +115,9 @@ int tImage::tGetBitsPerPixel(tPixelFormat format)
 	{
 		switch (format)
 		{
-			case tPixelFormat::PAL_8BIT:		return 8;
-			case tPixelFormat::PAL_4BIT:		return 4;
-			case tPixelFormat::PAL_1BIT:		return 1;
+			case tPixelFormat::PAL8BIT:		return 8;
+			case tPixelFormat::PAL4BIT:		return 4;
+			case tPixelFormat::PAL1BIT:		return 1;
 		}
 	}
 
@@ -102,42 +138,19 @@ int tImage::tGetBytesPer4x4PixelBlock(tPixelFormat format)
 
 const char* tImage::tGetPixelFormatName(tPixelFormat pixelFormat)
 {
-	const char* names[] =
-	{
-		"Unknown",
-		"R8G8B8",
-		"R8G8B8A8",
-		"B8G8R8",
-		"B8G8R8A8",
-		"B5G6R5",
-		"B4G4R4A4",
-		"B5G5R5A1",
-		"L8A8",
-		"A8",
-		"L8",
-		"R16f",
-		"R16G16f",
-		"R16G16B16A16f",
-		"R32f",
-		"R32G32f",
-		"R32G32B32A32f",
-		"BC1_DXT1",
-		"BC1_DXT1BA",
-		"BC2_DXT3",
-		"BC3_DXT5",
-		"BC4_ATI1",
-		"BC5_ATI2",
-		"BC6s",
-		"BC6u",
-		"BC7",
-		"RADIANCE",
-		"EXR",
-		"PAL8BIT",
-		"PAL4BIT",
-		"PAL1BIT"
-	};
-
-	tStaticAssert(int(tPixelFormat::NumPixelFormats)+1 == sizeof(names)/sizeof(*names));
 	int index = int(pixelFormat) + 1;
-	return names[index];
+	return PixelFormatNames[index];
+}
+
+
+tImage::tPixelFormat tImage::tGetPixelFormat(const char* name)
+{
+	if (!name || (name[0] == '\0'))
+		return tPixelFormat::Invalid;
+
+	for (int p = 0; p < int(tPixelFormat::NumPixelFormats); p++)
+		if (tStd::tStricmp(PixelFormatNames[p+1], name) == 0)
+			return tPixelFormat(p);
+
+	return tPixelFormat::Invalid;
 }

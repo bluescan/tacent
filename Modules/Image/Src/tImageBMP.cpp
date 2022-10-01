@@ -138,7 +138,7 @@ bool tImageBMP::Load(const tString& bmpFile)
 				ReadRow_IndexedRLE8(file, buf, palette);
 			else
 				ReadRow_Indexed8(file, buf, palette);
-			SrcPixelFormat = tPixelFormat::PAL_8BIT;
+			SrcPixelFormat = tPixelFormat::PAL8BIT;
 			break;
 
 		case 4:
@@ -147,13 +147,13 @@ bool tImageBMP::Load(const tString& bmpFile)
 				ReadRow_IndexedRLE4(file, buf, palette);
 			else
 				ReadRow_Indexed4(file, buf, palette);
-			SrcPixelFormat = tPixelFormat::PAL_4BIT;
+			SrcPixelFormat = tPixelFormat::PAL4BIT;
 			break;
 
 		case 1:
 			tAssert(palette);
 			ReadRow_Indexed1(file, buf, palette);
-			SrcPixelFormat = tPixelFormat::PAL_1BIT;
+			SrcPixelFormat = tPixelFormat::PAL1BIT;
 			break;
 	}
 

@@ -2,7 +2,7 @@
 //
 // Tacent asserts and warnings.
 //
-// Copyright (c) 2004-2006, 2015, 2017 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -20,11 +20,11 @@
 // compiled out only in profile and ship configurations.
 void tAssertPrintBreak(const char* expr, const char* fileName, int lineNum, const char* message);
 #if defined(CONFIG_PROFILE) || defined(CONFIG_SHIP)
-	#define tAssert(expr) ((void)(expr));
-	#define tAssertMsg(expr, msg) ((void)(expr));
+	#define tAssert(expr) ((void)(expr))
+	#define tAssertMsg(expr, msg) ((void)(expr))
 #else
-	#define tAssert(expr) if (!(expr)) tAssertPrintBreak(#expr, __FILE__, __LINE__, nullptr);
-	#define tAssertMsg(expr, msg) if (!(expr)) tAssertPrintBreak(#expr, __FILE__, __LINE__, msg);
+	#define tAssert(expr) if (!(expr)) tAssertPrintBreak(#expr, __FILE__, __LINE__, nullptr)
+	#define tAssertMsg(expr, msg) if (!(expr)) tAssertPrintBreak(#expr, __FILE__, __LINE__, msg)
 #endif
 
 #define tStaticAssert(expr) static_assert(expr, #expr)

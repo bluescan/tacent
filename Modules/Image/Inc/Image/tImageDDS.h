@@ -129,7 +129,7 @@ public:
 	int GetWidth() const																								{ return IsValid() ? MipmapLayers[0][0]->Width : 0; }
 	int GetHeight() const																								{ return IsValid() ? MipmapLayers[0][0]->Height : 0; }
 
-	// Will return RGBA if you chose to decode the layers. Otherwise it will be whatever format the dds data was in.
+	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the dds data was in.
 	tPixelFormat GetPixelFormat() const																					{ return PixelFormat; }
 
 	// Will return the format the dds data was in, even if you chose to decode.

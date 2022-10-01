@@ -164,10 +164,10 @@ bool tTexture::Set(tPicture& image, bool generateMipmaps, tPixelFormat pixelForm
 			ProcessImageTo_B5G6R5(image, generateMipmaps, quality);
 			break;
 
-		case tPixelFormat::BC1_DXT1BA:
-		case tPixelFormat::BC1_DXT1:
-		case tPixelFormat::BC2_DXT2_DXT3:
-		case tPixelFormat::BC3_DXT4_DXT5:
+		case tPixelFormat::BC1DXT1A:
+		case tPixelFormat::BC1DXT1:
+		case tPixelFormat::BC2DXT2DXT3:
+		case tPixelFormat::BC3DXT4DXT5:
 			ProcessImageTo_BCTC(image, pixelFormat, generateMipmaps, quality);
 			break;
 
@@ -306,7 +306,7 @@ void tTexture::ProcessImageTo_BCTC(tPicture& image, tPixelFormat pixelFormat, bo
 	{
 		// Setup the layer data to receive the compressed data.
 		int numBlocks = tMath::tMax(1, width/4) * tMath::tMax(1, height/4);
-		int blockSize = (pixelFormat == tPixelFormat::BC1_DXT1) ? 8 : 16;
+		int blockSize = (pixelFormat == tPixelFormat::BC1DXT1) ? 8 : 16;
 		int outputSize = numBlocks * blockSize;
 		uint8* outputData = new uint8[outputSize];
 
@@ -320,11 +320,11 @@ void tTexture::ProcessImageTo_BCTC(tPicture& image, tPixelFormat pixelFormat, bo
 		{
 			switch (pixelFormat)
 			{
-				case tPixelFormat::BC1_DXT1:
+				case tPixelFormat::BC1DXT1:
 					rgbcx::encode_bc1(encoderQualityLevel, blockDest, pixelSrc, allow3colour, useTransparentTexelsForBlack);
 					break;
 
-				case tPixelFormat::BC3_DXT4_DXT5:
+				case tPixelFormat::BC3DXT4DXT5:
 					rgbcx::encode_bc3(encoderQualityLevel, blockDest, pixelSrc);
 					break;
 

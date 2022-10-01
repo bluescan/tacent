@@ -212,7 +212,7 @@ bool tImage::tImageEXR::Load
 
 		// Set width, height, and allocate and set Pixels.
 		tFrame* newFrame = new tFrame;
-		newFrame->SrcPixelFormat = tPixelFormat::OPENEXR_HDR;
+		newFrame->SrcPixelFormat = tPixelFormat::OPENEXR;
 		newFrame->Width = width;
 		newFrame->Height = height;
 		newFrame->Pixels = new tPixel[width*height];
@@ -271,7 +271,7 @@ bool tImage::tImageEXR::Load
 		Frames.Append(newFrame);
 	}
 
-	SrcPixelFormat = tPixelFormat::OPENEXR_HDR;
+	SrcPixelFormat = tPixelFormat::OPENEXR;
 	return true;
 }
 

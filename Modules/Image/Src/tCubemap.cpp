@@ -228,7 +228,7 @@ void tCubemap::Load(const tChunk& chunk)
 			{
 				for (tChunk sideChunk = ch.First(); sideChunk.IsValid(); sideChunk = sideChunk.Next())
 				{
-					tAssert(sideChunk.ID() == tChunkID::Image_CubemapSide)
+					tAssert(sideChunk.ID() == tChunkID::Image_CubemapSide);
 					tSide side = tSide::Invalid;
 					for (tChunk sideSub = sideChunk.First(); sideSub.IsValid(); sideSub = sideSub.Next())
 					{

@@ -379,7 +379,7 @@ bool tImageHDR::Set(uint8* hdrFileInMemory, int numBytes, float gammaCorr, int e
 		return false;
 	}
 
-	SrcPixelFormat = tPixelFormat::RADIANCE_HDR;
+	SrcPixelFormat = tPixelFormat::RADIANCE;
 	return true;
 }
 

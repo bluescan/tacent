@@ -75,7 +75,7 @@ private:
 
 template<typename T> inline void tArray<T>::Clear(int capacity, int growCount)
 {
-	tAssert((capacity >= 0) && (growCount >= -1))
+	tAssert((capacity >= 0) && (growCount >= -1));
 	delete[] Elements;
 	Elements = nullptr;
 	Capacity = capacity;

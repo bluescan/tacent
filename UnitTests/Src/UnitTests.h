@@ -28,18 +28,18 @@ namespace tUnitTest
 // tRequire takes a boolean expression as input. A failure of a tRequire (false evaluation of the expression)
 // means the test will fail and the overall result of the unit tests will be a fail.
 #ifdef UNIT_TEST_CALLSTACK_ON_FAIL_REQUIREMENT
-	#define tRequire(expr) { tCheckRequire((expr) ? true : false, #expr, __FILE__, __LINE__, 0); tAssert(expr); }
+	#define tRequire(expr) tCheckRequire((expr)?true:false, #expr, __FILE__, __LINE__, 0, true)
 #else
-	#define tRequire(expr) tCheckRequire((expr) ? true : false, #expr, __FILE__, __LINE__, 0);
+	#define tRequire(expr) tCheckRequire((expr)?true:false, #expr, __FILE__, __LINE__, 0, false)
 #endif
 
 
 // Use tGoal if it would be nice if the expression evaluates to true. A failure will be reported, but it will not
 // prevent the test suite from receiving a pass.
 #ifdef UNIT_TEST_CALLSTACK_ON_FAIL_GOAL
-	#define tGoal(expr) { bool goalPass = (expr)?true:false; tCheckGoal(goalPass, #expr, __FILE__, __LINE__, 0); tAssert(goalPass); }
+	#define tGoal(expr) tCheckGoal((expr)?true:false, #expr, __FILE__, __LINE__, 0, true)
 #else
-	#define tGoal(expr) tCheckGoal((expr) ? true : false, #expr, __FILE__, __LINE__, 0);
+	#define tGoal(expr) tCheckGoal((expr)?true:false, #expr, __FILE__, __LINE__, 0, false)
 #endif
 
 
@@ -69,7 +69,7 @@ inline int rPrintf(const char* f, ...)
 }
 
 
-inline void tCheckRequire(bool pass, const char* expr, const char* fileName, int lineNum, const char* msg)
+inline void tCheckRequire(bool pass, const char* expr, const char* fileName, int lineNum, const char* msg, bool breakOnFail)
 {
 	rPrintf("Require %03d ", UnitRequirementNumber);
 	if (pass)
@@ -78,15 +78,19 @@ inline void tCheckRequire(bool pass, const char* expr, const char* fileName, int
 		RequirementsPassed++;
 	}
 	else
-	{;
+	{
 		rPrintf("Fail  [ %s ]  File: %s  Line: %d\n", expr, tSystem::tGetFileName(fileName).Pod(), lineNum);
 	}
+
+	if (breakOnFail)
+		tAssertMsg(pass, expr);
+
 	UnitRequirementNumber++;
 	TotalRequirements++;
 }
 
 
-inline void tCheckGoal(bool pass, const char* expr, const char* fileName, int lineNum, const char* msg)
+inline void tCheckGoal(bool pass, const char* expr, const char* fileName, int lineNum, const char* msg, bool breakOnFail)
 {
 	rPrintf("Goal    %03d ", UnitGoalNumber);
 	if (pass)
@@ -98,6 +102,10 @@ inline void tCheckGoal(bool pass, const char* expr, const char* fileName, int li
 	{
 		rPrintf("Fail  [ %s ]  File: %s  Line: %d\n", expr, tSystem::tGetFileName(fileName).Pod(), lineNum);
 	}
+
+	if (breakOnFail)
+		tAssertMsg(pass, expr);
+
 	UnitGoalNumber++;
 	TotalGoals++;
 }

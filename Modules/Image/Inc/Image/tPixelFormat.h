@@ -3,7 +3,7 @@
 // Pixel formats in Tacent. Not all formats are fully supported. Certainly BC 4, 5, and 7 may not have extensive HW
 // support at this time.
 //
-// Copyright (c) 2004-2006, 2017, 2019 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2019, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -59,27 +59,27 @@ enum class tPixelFormat
 	LastNormal			= R32G32B32A32F,
 
 	FirstBlock,
-	BC1_DXT1			= FirstBlock,	// BC 1, DXT1. No alpha.
-	BC1_DXT1BA,							// BC 1, DXT1. Binary alpha.
-	BC2_DXT2_DXT3,						// BC 2, DXT2 (premult-alpha) and DXT3 share the same format. Large alpha gradients (alpha banding).
-	BC3_DXT4_DXT5,						// BC 3, DXT4 (premult-alpha) and DXT5 share the same format. Variable alpha (smooth).
-	BC4_ATI1,							// BC 4. One colour channel only. May not be HW supported.
-	BC5_ATI2,							// BC 5. Two colour channels only. May not be HW supported.
+	BC1DXT1				= FirstBlock,	// BC 1, DXT1. No alpha.
+	BC1DXT1A,							// BC 1, DXT1. Binary alpha.
+	BC2DXT2DXT3,						// BC 2, DXT2 (premult-alpha) and DXT3 share the same format. Large alpha gradients (alpha banding).
+	BC3DXT4DXT5,						// BC 3, DXT4 (premult-alpha) and DXT5 share the same format. Variable alpha (smooth).
+	BC4ATI1,							// BC 4. One colour channel only. May not be HW supported.
+	BC5ATI2,							// BC 5. Two colour channels only. May not be HW supported.
 	BC6S,								// BC 6 HDR. No alpha. 3 x 16bit signed half-floats per pixel.
 	BC6U,								// BC 6 HDR. No alpha. 3 x 16bit unsigned half-floats per pixel.
 	BC7,								// BC 7. Full colour. Variable alpha 0 to 8 bits.
 	LastBlock			= BC7,
 
 	FirstVendor,
-	RADIANCE_HDR		= FirstVendor,	// Radiance hdr.
-	OPENEXR_HDR,						// OpenEXR.
-	LastVendor			= OPENEXR_HDR,
+	RADIANCE			= FirstVendor,	// Radiance HDR.
+	OPENEXR,							// OpenEXR HDR.
+	LastVendor			= OPENEXR,
 
 	FirstPAL,
-	PAL_8BIT			= FirstPAL,		// 8bit indexes to a Palette. ex. gif files.
-	PAL_4BIT,
-	PAL_1BIT,
-	LastPAL				= PAL_1BIT,
+	PAL8BIT				= FirstPAL,		// 8bit indexes to a Palette. ex. gif files.
+	PAL4BIT,
+	PAL1BIT,
+	LastPAL				= PAL1BIT,
 
 	NumPixelFormats,
 	NumNormalFormats	= LastNormal - FirstNormal + 1,
@@ -98,6 +98,7 @@ bool tIsOpaqueFormat(tPixelFormat);
 int tGetBitsPerPixel(tPixelFormat);				// Some formats (dxt1) are only half a byte per pixel, so we report bits.
 int tGetBytesPer4x4PixelBlock(tPixelFormat);	// This function must be given a BC pixel format.
 const char* tGetPixelFormatName(tPixelFormat);
+tPixelFormat tGetPixelFormat(const char* name);	// Gets the pixel format from its name. Case insensitive. Slow. Use for testing only.
 
 
 }
@@ -153,16 +154,16 @@ inline bool tImage::tIsAlphaFormat(tPixelFormat format)
 		case tPixelFormat::A8L8:
 		case tPixelFormat::R16G16B16A16F:
 		case tPixelFormat::R32G32B32A32F:
-		case tPixelFormat::BC1_DXT1BA:
-		case tPixelFormat::BC2_DXT2_DXT3:
-		case tPixelFormat::BC3_DXT4_DXT5:
+		case tPixelFormat::BC1DXT1A:
+		case tPixelFormat::BC2DXT2DXT3:
+		case tPixelFormat::BC3DXT4DXT5:
 		case tPixelFormat::BC7:
-		case tPixelFormat::OPENEXR_HDR:
+		case tPixelFormat::OPENEXR:
 
 		// For palettized the palette may have an entry that can be considered alpha. However for only 1-bit
 		// palettes we consider it dithered (ColourA/ColourB) and not to have an alpha.
-		case tPixelFormat::PAL_8BIT:
-		case tPixelFormat::PAL_4BIT:
+		case tPixelFormat::PAL8BIT:
+		case tPixelFormat::PAL4BIT:
 			return true;
 	}
 
