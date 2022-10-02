@@ -153,7 +153,7 @@ public:
 
 	// Alternative to StealLayers. Gets the layers but you're not allowed to delete them, they're not yours. Make
 	// sure the list you supply doesn't delete them when it's destructed.
-	bool GetLayers(tList<tLayer>&);
+	bool GetLayers(tList<tLayer>&) const;
 
 	enum tSurfIndex
 	{
@@ -188,7 +188,7 @@ public:
 
 	// Alternative to StealCubemapLayers. Gets the layers but you're not allowed to delete them, they're not yours. Make
 	// sure the list you supply doesn't delete them when it's destructed.
-	int GetCubemapLayers(tList<tLayer> layers[tSurfIndex_NumSurfaces], uint32 sideFlags = tSurfFlag_All);
+	int GetCubemapLayers(tList<tLayer> layers[tSurfIndex_NumSurfaces], uint32 sideFlags = tSurfFlag_All) const;
 
 	// You do not own the returned pointer.
 	tLayer* GetLayer(int layerNum, int imageNum) const																	{ return MipmapLayers[layerNum][imageNum]; }

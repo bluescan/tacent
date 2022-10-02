@@ -115,7 +115,7 @@ bool tImageDDS::StealLayers(tList<tLayer>& layers)
 }
 
 
-bool tImageDDS::GetLayers(tList<tLayer>& layers)
+bool tImageDDS::GetLayers(tList<tLayer>& layers) const
 {
 	if (!IsValid() || IsCubemap() || (NumImages <= 0))
 		return false;
@@ -153,7 +153,7 @@ int tImageDDS::StealCubemapLayers(tList<tLayer> layerLists[tSurfIndex_NumSurface
 }
 
 
-int tImageDDS::GetCubemapLayers(tList<tLayer> layerLists[tSurfIndex_NumSurfaces], uint32 sideFlags)
+int tImageDDS::GetCubemapLayers(tList<tLayer> layerLists[tSurfIndex_NumSurfaces], uint32 sideFlags) const
 {
 	if (!IsValid() || !IsCubemap() || !sideFlags)
 		return 0;
