@@ -697,7 +697,7 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 		tPrintf("Could not flip rows for %s\n", savename.Chr());
 
 	tList<tImage::tLayer> layers;
-	dds.StealTextureLayers(layers);
+	dds.StealLayers(layers);
 
 	if (ddsformat != tPixelFormat::R8G8B8A8)
 	{

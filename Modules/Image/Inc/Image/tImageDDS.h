@@ -143,13 +143,17 @@ public:
 	// we don't as it shouldn't have been saved in an alpha supporting format if an all opaque texture was desired.
 	bool IsOpaque() const;
 
-	// After calling StealTextureLayers the current object will be invalid. This call populates the passed in layer
+	// After calling StealLayers the current object will be invalid. This call populates the passed in layer
 	// list. If the current object is not valid the passed-in layer list is left unmodified. The layer list is appended
 	// to. It is not emptied if there are layers on the list when passed in. This call gives management of the layers
 	// to the caller. It does not memcpy and create new layers which is why the object becomes invalid afterwards. If
-	// the tImageDDS is a cubemap, this function returns false and leaves the object unmodified. See StealCubemapLayers
-	// if you want to steal cubemap layers.
-	bool StealTextureLayers(tList<tLayer>&);
+	// the tImageDDS is a cubemap, this function returns false and leaves the object (and list) unmodified. See
+	// StealCubemapLayers if you want to steal cubemap layers.
+	bool StealLayers(tList<tLayer>&);
+
+	// Alternative to StealLayers. Gets the layers but you're not allowed to delete them, they're not yours. Make
+	// sure the list you supply doesn't delete them when it's destructed.
+	bool GetLayers(tList<tLayer>&);
 
 	enum tSurfIndex
 	{
@@ -175,12 +179,16 @@ public:
 		tSurfFlag_All					= 0xFFFFFFFF
 	};
 
-	// Similar to StealTextureLayers except it steals up to 6 layer-lists if the object is a cubemap. If the tImageDDS
-	// is not a cubemap this function returns 0 and leaves the object unmodified. If you only steal a single cubemap
-	// side, the object becomes completely invalid afterwards. The six passed in list pointers must all be non-zero
-	// otherwise this function does nothing. The lists are appended to. Returns the number of layer-lists that were
-	// populated.
+	// Similar to StealLayers except it steals up to 6 layer-lists if the object is a cubemap. If the tImageDDS
+	// is not a cubemap this function returns 0 and leaves the object (and list) unmodified. If you only steal a single
+	// cubemap side, the object becomes completely invalid afterwards. The six passed in list pointers must all be
+	// non-zero otherwise this function does nothing. The lists are appended to. Returns the number of layer-lists that
+	// were populated.
 	int StealCubemapLayers(tList<tLayer> layers[tSurfIndex_NumSurfaces], uint32 sideFlags = tSurfFlag_All);
+
+	// Alternative to StealCubemapLayers. Gets the layers but you're not allowed to delete them, they're not yours. Make
+	// sure the list you supply doesn't delete them when it's destructed.
+	int GetCubemapLayers(tList<tLayer> layers[tSurfIndex_NumSurfaces], uint32 sideFlags = tSurfFlag_All);
 
 	// You do not own the returned pointer.
 	tLayer* GetLayer(int layerNum, int imageNum) const																	{ return MipmapLayers[layerNum][imageNum]; }

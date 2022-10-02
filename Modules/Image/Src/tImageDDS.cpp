@@ -99,7 +99,7 @@ bool tImageDDS::IsOpaque() const
 }
 
 
-bool tImageDDS::StealTextureLayers(tList<tLayer>& layers)
+bool tImageDDS::StealLayers(tList<tLayer>& layers)
 {
 	if (!IsValid() || IsCubemap() || (NumImages <= 0))
 		return false;
@@ -111,6 +111,18 @@ bool tImageDDS::StealTextureLayers(tList<tLayer>& layers)
 	}
 
 	Clear();
+	return true;
+}
+
+
+bool tImageDDS::GetLayers(tList<tLayer>& layers)
+{
+	if (!IsValid() || IsCubemap() || (NumImages <= 0))
+		return false;
+
+	for (int mip = 0; mip < NumMipmapLayers; mip++)
+		layers.Append(MipmapLayers[mip][0]);
+
 	return true;
 }
 
@@ -137,6 +149,29 @@ int tImageDDS::StealCubemapLayers(tList<tLayer> layerLists[tSurfIndex_NumSurface
 	}
 
 	Clear();
+	return sideCount;
+}
+
+
+int tImageDDS::GetCubemapLayers(tList<tLayer> layerLists[tSurfIndex_NumSurfaces], uint32 sideFlags)
+{
+	if (!IsValid() || !IsCubemap() || !sideFlags)
+		return 0;
+
+	int sideCount = 0;
+	for (int side = 0; side < tSurfIndex_NumSurfaces; side++)
+	{
+		uint32 sideFlag = 1 << side;
+		if (!(sideFlag & sideFlags))
+			continue;
+
+		tList<tLayer>& layers = layerLists[side];
+		for (int mip = 0; mip < NumMipmapLayers; mip++)
+			layers.Append( MipmapLayers[mip][side] );
+
+		sideCount++;
+	}
+
 	return sideCount;
 }
 

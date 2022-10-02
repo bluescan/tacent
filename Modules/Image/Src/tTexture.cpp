@@ -68,7 +68,7 @@ bool tTexture::Set(tImageDDS& dds, tImageDDS::tSurfIndex surface)
 
 	if (!dds.IsCubemap())
 	{
-		dds.StealTextureLayers(Layers);
+		dds.StealLayers(Layers);
 	}
 	else
 	{
