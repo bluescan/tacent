@@ -15,6 +15,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <cstdint>
 #include <Foundation/tStandard.h>
 #include <Foundation/tFundamentals.h>
 

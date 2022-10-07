@@ -64,12 +64,13 @@ public:
 	// success (GetResults() will have Conditional_CouldNotFlipRows flag set). You can call also call RowsReversed() to
 	// see if row-reversal was performed. The conditional is only set if reversal was requested.
 	//
-	// Additional parameters may be processed during dds-loading. Gamma is only used if GammExpandHDR flag is set.
+	// Additional parameters may be processed during dds-loading. Gamma is only used if GammaCompression flag is set.
 	// Exposure >= 0 (black) and only used if ToneMapExposure flag set.
 	struct LoadParams
 	{
-		float Gamma = tMath::DefaultGamma;
-		float Exposure = 1.0f;
+		LoadParams() : Gamma(tMath::DefaultGamma), Exposure(-1.0f) { }
+		float Gamma;
+		float Exposure;
 	};
 
 	tImageDDS(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default, const LoadParams& = LoadParams());
