@@ -4,7 +4,7 @@
 // cross/dot products, inversion functions, projections, normalization etc. These POD types are used as superclasses
 // for the more object-oriented and complete derived types. eg. tVector3 derives from the POD type tVec2 found here.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -17,57 +17,65 @@
 #pragma once
 #include <Foundation/tStandard.h>
 #include <Foundation/tFundamentals.h>
-namespace tMath
-{
 
 
-// These can be ORed together if necessary and are generally passed around using the tComponents type.
+// These can be ORed together if necessary and are generally passed around using the comps type.
+// It used to be inside tMath, but just found it a bit arduous to specify in headers all the time.
 enum tComponent
 {
-	tComponent_X																										= 0x00000001,
-	tComponent_Y																										= 0x00000002,
-	tComponent_Z																										= 0x00000004,
-	tComponent_W																										= 0x00000008,
-	tComponent_XY																										= tComponent_X | tComponent_Y,
-	tComponent_YZ																										= tComponent_Y | tComponent_Z,
-	tComponent_ZX																										= tComponent_Z | tComponent_X,
-	tComponent_XYZ																										= tComponent_X | tComponent_Y | tComponent_Z,
-	tComponent_XYZW																										= tComponent_X | tComponent_Y | tComponent_Z | tComponent_W,
+	// Vector components.
+	tComp_X																												= 0x00000001,
+	tComp_Y																												= 0x00000002,
+	tComp_Z																												= 0x00000004,
+	tComp_W																												= 0x00000008,
+	tComp_XY																											= tComp_X | tComp_Y,
+	tComp_YZ																											= tComp_Y | tComp_Z,
+	tComp_ZX																											= tComp_Z | tComp_X,
+	tComp_XYZ																											= tComp_X | tComp_Y | tComp_Z,
+	tComp_XYZW																											= tComp_X | tComp_Y | tComp_Z | tComp_W,
 
+	// Colour components use the same values as the vector components. Colours are also vectors.
+	tComp_R			= tComp_X,
+	tComp_G			= tComp_Y,
+	tComp_B			= tComp_Z,
+	tComp_A			= tComp_W,
+	tComp_RG		= tComp_XY,
+	tComp_RGB		= tComp_XYZ,
+	tComp_RGBA		= tComp_XYZW,
+	
 	// For matrices the notation Amn means the component at row m and column n (like in linear algebra).
-	tComponent_A11																										= 0x00000010,
-	tComponent_A21																										= 0x00000020,
-	tComponent_A31																										= 0x00000040,
-	tComponent_A41																										= 0x00000080,
-	tComponent_A12																										= 0x00000100,
-	tComponent_A22																										= 0x00000200,
-	tComponent_A32																										= 0x00000400,
-	tComponent_A42																										= 0x00000800,
-	tComponent_A13																										= 0x00001000,
-	tComponent_A23																										= 0x00002000,
-	tComponent_A33																										= 0x00004000,
-	tComponent_A43																										= 0x00008000,
-	tComponent_A14																										= 0x00010000,
-	tComponent_A24																										= 0x00020000,
-	tComponent_A34																										= 0x00040000,
-	tComponent_A44																										= 0x00080000,
-	tComponent_C1																										= tComponent_A11 | tComponent_A21 | tComponent_A31 | tComponent_A41,
-	tComponent_C2																										= tComponent_A12 | tComponent_A22 | tComponent_A32 | tComponent_A42,
-	tComponent_C3																										= tComponent_A13 | tComponent_A23 | tComponent_A33 | tComponent_A43,
-	tComponent_C4																										= tComponent_A14 | tComponent_A24 | tComponent_A34 | tComponent_A44,
-	tComponent_R1																										= tComponent_A11 | tComponent_A12 | tComponent_A13 | tComponent_A14,
-	tComponent_R2																										= tComponent_A21 | tComponent_A22 | tComponent_A23 | tComponent_A24,
-	tComponent_R3																										= tComponent_A31 | tComponent_A32 | tComponent_A33 | tComponent_A34,
-	tComponent_R4																										= tComponent_A41 | tComponent_A42 | tComponent_A43 | tComponent_A44,
+	tComp_A11																											= 0x00000010,
+	tComp_A21																											= 0x00000020,
+	tComp_A31																											= 0x00000040,
+	tComp_A41																											= 0x00000080,
+	tComp_A12																											= 0x00000100,
+	tComp_A22																											= 0x00000200,
+	tComp_A32																											= 0x00000400,
+	tComp_A42																											= 0x00000800,
+	tComp_A13																											= 0x00001000,
+	tComp_A23																											= 0x00002000,
+	tComp_A33																											= 0x00004000,
+	tComp_A43																											= 0x00008000,
+	tComp_A14																											= 0x00010000,
+	tComp_A24																											= 0x00020000,
+	tComp_A34																											= 0x00040000,
+	tComp_A44																											= 0x00080000,
+	tComp_C1																											= tComp_A11 | tComp_A21 | tComp_A31 | tComp_A41,
+	tComp_C2																											= tComp_A12 | tComp_A22 | tComp_A32 | tComp_A42,
+	tComp_C3																											= tComp_A13 | tComp_A23 | tComp_A33 | tComp_A43,
+	tComp_C4																											= tComp_A14 | tComp_A24 | tComp_A34 | tComp_A44,
+	tComp_R1																											= tComp_A11 | tComp_A12 | tComp_A13 | tComp_A14,
+	tComp_R2																											= tComp_A21 | tComp_A22 | tComp_A23 | tComp_A24,
+	tComp_R3																											= tComp_A31 | tComp_A32 | tComp_A33 | tComp_A34,
+	tComp_R4																											= tComp_A41 | tComp_A42 | tComp_A43 | tComp_A44,
 
-	tComponent_All																										= 0xFFFFFFFF
+	tComp_All																											= 0xFFFFFFFF
 };
+typedef uint32_t tcomps;
 
 
-// Since it is awkward to do bitwise operations on the enum and enum class types we simply use a uint32 for components.
-typedef uint32 tComponents;
-
-
+namespace tMath
+{
 #pragma pack(push, 4)
 
 
@@ -237,71 +245,71 @@ inline void tGet
 inline void tGet(float* a, const tMat4& m)																				{ for (int e = 0; e < 16; e++) a[e] = m.E[e]; }
 
 inline void tZero(tVec2& d)																								{ d.x = 0.0f; d.y = 0.0f; }
-inline void tZero(tVec2& d, tComponents c)																				{ if (c & tComponent_X) d.x = 0.0f; if (c & tComponent_Y) d.y = 0.0f; }
+inline void tZero(tVec2& d, tcomps c)																					{ if (c & tComp_X) d.x = 0.0f; if (c & tComp_Y) d.y = 0.0f; }
 inline void tZero(tVec3& d)																								{ d.x = 0.0f; d.y = 0.0f; d.z = 0.0f; }
-inline void tZero(tVec3& d, tComponents c)																				{ if (c & tComponent_X) d.x = 0.0f; if (c & tComponent_Y) d.y = 0.0f; if (c & tComponent_Z) d.z = 0.0f; }
+inline void tZero(tVec3& d, tcomps c)																					{ if (c & tComp_X) d.x = 0.0f; if (c & tComp_Y) d.y = 0.0f; if (c & tComp_Z) d.z = 0.0f; }
 inline void tZero(tVec4& d)																								{ d.x = 0.0f; d.y = 0.0f; d.z = 0.0f; d.w = 0.0f; }
-inline void tZero(tVec4& d, tComponents c)																				{ if (c & tComponent_X) d.x = 0.0f; if (c & tComponent_Y) d.y = 0.0f; if (c & tComponent_Z) d.z = 0.0f; if (c & tComponent_W) d.w = 0.0f; }
+inline void tZero(tVec4& d, tcomps c)																					{ if (c & tComp_X) d.x = 0.0f; if (c & tComp_Y) d.y = 0.0f; if (c & tComp_Z) d.z = 0.0f; if (c & tComp_W) d.w = 0.0f; }
 inline void tZero(tQuat& d)																								{ d.x = 0.0f; d.y = 0.0f; d.z = 0.0f; d.w = 0.0f; }
-inline void tZero(tQuat& d, tComponents c)																				{ if (c & tComponent_X) d.x = 0.0f; if (c & tComponent_Y) d.y = 0.0f; if (c & tComponent_Z) d.z = 0.0f; if (c & tComponent_W) d.w = 0.0f; }
+inline void tZero(tQuat& d, tcomps c)																					{ if (c & tComp_X) d.x = 0.0f; if (c & tComp_Y) d.y = 0.0f; if (c & tComp_Z) d.z = 0.0f; if (c & tComp_W) d.w = 0.0f; }
 inline void tZero(tMat2& d)																								{ tZero(d.C1); tZero(d.C2); }
-inline void tZero(tMat2& d, tComponents c)																				{ if (c & tComponent_A11) d.a11 = 0.0f; if (c & tComponent_A21) d.a21 = 0.0f; if (c & tComponent_A12) d.a12 = 0.0f; if (c & tComponent_A22) d.a22 = 0.0f; }
+inline void tZero(tMat2& d, tcomps c)																					{ if (c & tComp_A11) d.a11 = 0.0f; if (c & tComp_A21) d.a21 = 0.0f; if (c & tComp_A12) d.a12 = 0.0f; if (c & tComp_A22) d.a22 = 0.0f; }
 inline void tZero(tMat4& d)																								{ for (int e = 0; e < 16; e++) d.E[e] = 0.0f; }
-inline void tZero(tMat4& d, tComponents c);
+inline void tZero(tMat4& d, tcomps c);
 
 inline bool tIsZero(const tVec2& v)																						{ return (v.x == 0.0f) && (v.y == 0.0f); }
-inline bool tIsZero(const tVec2& v, tComponents c)																		{ return (!(c & tComponent_X) || (v.x == 0.0f)) && (!(c & tComponent_Y) || (v.y == 0.0f)); }
+inline bool tIsZero(const tVec2& v, tcomps c)																			{ return (!(c & tComp_X) || (v.x == 0.0f)) && (!(c & tComp_Y) || (v.y == 0.0f)); }
 inline bool tIsZero(const tVec3& v)																						{ return (v.x == 0.0f) && (v.y == 0.0f) && (v.z == 0.0f); }
-inline bool tIsZero(const tVec3& v, tComponents c)																		{ return (!(c & tComponent_X) || (v.x == 0.0f)) && (!(c & tComponent_Y) || (v.y == 0.0f)) && (!(c & tComponent_Z) || (v.z == 0.0f)); }
+inline bool tIsZero(const tVec3& v, tcomps c)																			{ return (!(c & tComp_X) || (v.x == 0.0f)) && (!(c & tComp_Y) || (v.y == 0.0f)) && (!(c & tComp_Z) || (v.z == 0.0f)); }
 inline bool tIsZero(const tVec4& v)																						{ return (v.x == 0.0f) && (v.y == 0.0f) && (v.z == 0.0f) && (v.w == 0.0f); }
-inline bool tIsZero(const tVec4& v, tComponents c)																		{ return (!(c & tComponent_X) || (v.x == 0.0f)) && (!(c & tComponent_Y) || (v.y == 0.0f)) && (!(c & tComponent_Z) || (v.z == 0.0f)) && (!(c & tComponent_W) || (v.w == 0.0f)); }
+inline bool tIsZero(const tVec4& v, tcomps c)																			{ return (!(c & tComp_X) || (v.x == 0.0f)) && (!(c & tComp_Y) || (v.y == 0.0f)) && (!(c & tComp_Z) || (v.z == 0.0f)) && (!(c & tComp_W) || (v.w == 0.0f)); }
 inline bool tIsZero(const tQuat& q)																						{ return (q.x == 0.0f) && (q.y == 0.0f) && (q.z == 0.0f) && (q.w == 0.0f); }
-inline bool tIsZero(const tQuat& q, tComponents c)																		{ return (!(c & tComponent_X) || (q.x == 0.0f)) && (!(c & tComponent_Y) || (q.y == 0.0f)) && (!(c & tComponent_Z) || (q.z == 0.0f)) && (!(c & tComponent_W) || (q.w == 0.0f)); }
+inline bool tIsZero(const tQuat& q, tcomps c)																			{ return (!(c & tComp_X) || (q.x == 0.0f)) && (!(c & tComp_Y) || (q.y == 0.0f)) && (!(c & tComp_Z) || (q.z == 0.0f)) && (!(c & tComp_W) || (q.w == 0.0f)); }
 inline bool tIsZero(const tMat2& m)																						{ return tIsZero(m.C1) && tIsZero(m.C2); }
-inline bool tIsZero(const tMat2& m, tComponents c)																		{ return (!(c & tComponent_A11) || (m.a11 == 0.0f)) && (!(c & tComponent_A21) || (m.a21 == 0.0f)) && (!(c & tComponent_A12) || (m.a12 == 0.0f)) && (!(c & tComponent_A22) || (m.a22 == 0.0f)); }
+inline bool tIsZero(const tMat2& m, tcomps c)																			{ return (!(c & tComp_A11) || (m.a11 == 0.0f)) && (!(c & tComp_A21) || (m.a21 == 0.0f)) && (!(c & tComp_A12) || (m.a12 == 0.0f)) && (!(c & tComp_A22) || (m.a22 == 0.0f)); }
 inline bool tIsZero(const tMat4& m)																						{ return tIsZero(m.C1) && tIsZero(m.C2) && tIsZero(m.C3) && tIsZero(m.C4); }
-inline bool tIsZero(const tMat4& m, tComponents c);
+inline bool tIsZero(const tMat4& m, tcomps c);
 
 // Test for equality within epsilon. Each basis component is tested independently. A relative error metric would behave
 // better: http://www.cygnus-software.com/papers/comparingfloats/comparingfloats.htm
 inline bool tApproxEqual(const tVec2& a, const tVec2& b, float e = Epsilon)												{ return (tAbs(a.x-b.x) < e) && (tAbs(a.y-b.y) < e); }
-inline bool tApproxEqual(const tVec2& a, const tVec2& b, tComponents c, float e = Epsilon)								{ return (!(c & tComponent_X) || (tAbs(a.x-b.x) < e)) && (!(c & tComponent_Y) || (tAbs(a.y-b.y) < e)); }
+inline bool tApproxEqual(const tVec2& a, const tVec2& b, tcomps c, float e = Epsilon)									{ return (!(c & tComp_X) || (tAbs(a.x-b.x) < e)) && (!(c & tComp_Y) || (tAbs(a.y-b.y) < e)); }
 inline bool tApproxEqual(const tVec3& a, const tVec3& b, float e = Epsilon)												{ return (tAbs(a.x-b.x) < e) && (tAbs(a.y-b.y) < e) && (tAbs(a.z-b.z) < e); }
-inline bool tApproxEqual(const tVec3& a, const tVec3& b, tComponents c, float e = Epsilon)								{ return (!(c & tComponent_X) || (tAbs(a.x-b.x) < e)) && (!(c & tComponent_Y) || (tAbs(a.y-b.y) < e)) && (!(c & tComponent_Z) || (tAbs(a.z-b.z) < e)); }
+inline bool tApproxEqual(const tVec3& a, const tVec3& b, tcomps c, float e = Epsilon)									{ return (!(c & tComp_X) || (tAbs(a.x-b.x) < e)) && (!(c & tComp_Y) || (tAbs(a.y-b.y) < e)) && (!(c & tComp_Z) || (tAbs(a.z-b.z) < e)); }
 inline bool tApproxEqual(const tVec4& a, const tVec4& b, float e = Epsilon)												{ return (tAbs(a.x-b.x) < e) && (tAbs(a.y-b.y) < e) && (tAbs(a.z-b.z) < e) && (tAbs(a.w-b.w) < e); }
-inline bool tApproxEqual(const tVec4& a, const tVec4& b, tComponents c, float e = Epsilon)								{ return (!(c & tComponent_X) || (tAbs(a.x-b.x) < e)) && (!(c & tComponent_Y) || (tAbs(a.y-b.y) < e)) && (!(c & tComponent_Z) || (tAbs(a.z-b.z) < e)) && (!(c & tComponent_W) || (tAbs(a.w-b.w) < e)); }
+inline bool tApproxEqual(const tVec4& a, const tVec4& b, tcomps c, float e = Epsilon)									{ return (!(c & tComp_X) || (tAbs(a.x-b.x) < e)) && (!(c & tComp_Y) || (tAbs(a.y-b.y) < e)) && (!(c & tComp_Z) || (tAbs(a.z-b.z) < e)) && (!(c & tComp_W) || (tAbs(a.w-b.w) < e)); }
 inline bool tApproxEqual(const tQuat& a, const tQuat& b, float e = Epsilon)												{ return (tAbs(a.x-b.x) < e) && (tAbs(a.y-b.y) < e) && (tAbs(a.z-b.z) < e) && (tAbs(a.w-b.w) < e); }
-inline bool tApproxEqual(const tQuat& a, const tQuat& b, tComponents c, float e = Epsilon)								{ return (!(c & tComponent_X) || (tAbs(a.x-b.x) < e)) && (!(c & tComponent_Y) || (tAbs(a.y-b.y) < e)) && (!(c & tComponent_Z) || (tAbs(a.z-b.z) < e)) && (!(c & tComponent_W) || (tAbs(a.w-b.w) < e)); }
+inline bool tApproxEqual(const tQuat& a, const tQuat& b, tcomps c, float e = Epsilon)									{ return (!(c & tComp_X) || (tAbs(a.x-b.x) < e)) && (!(c & tComp_Y) || (tAbs(a.y-b.y) < e)) && (!(c & tComp_Z) || (tAbs(a.z-b.z) < e)) && (!(c & tComp_W) || (tAbs(a.w-b.w) < e)); }
 inline bool tApproxEqual(const tMat2& a, const tMat2& b, float e = Epsilon)												{ return tApproxEqual(a.C1, b.C1, e) && tApproxEqual(a.C2, b.C2, e); }
-inline bool tApproxEqual(const tMat2& a, const tMat2& b, tComponents c, float e = Epsilon);
+inline bool tApproxEqual(const tMat2& a, const tMat2& b, tcomps c, float e = Epsilon);
 inline bool tApproxEqual(const tMat4& a, const tMat4& b, float e = Epsilon)												{ return tApproxEqual(a.C1, b.C1, e) && tApproxEqual(a.C2, b.C2, e) && tApproxEqual(a.C3, b.C3, e) && tApproxEqual(a.C4, b.C4, e); }
-inline bool tApproxEqual(const tMat4& a, const tMat4& b, tComponents c, float e = Epsilon);
+inline bool tApproxEqual(const tMat4& a, const tMat4& b, tcomps c, float e = Epsilon);
 
 inline bool tEqual(const tVec2& a, const tVec2& b)																		{ return (a.x == b.x) && (a.y == b.y); }
-inline bool tEqual(const tVec2& a, const tVec2& b, tComponents c)														{ return (!(c & tComponent_X) || (a.x == b.x)) && (!(c & tComponent_Y) || (a.y == b.y)); }
+inline bool tEqual(const tVec2& a, const tVec2& b, tcomps c)															{ return (!(c & tComp_X) || (a.x == b.x)) && (!(c & tComp_Y) || (a.y == b.y)); }
 inline bool tEqual(const tVec3& a, const tVec3& b)																		{ return (a.x == b.x) && (a.y == b.y) && (a.z == b.z); }
-inline bool tEqual(const tVec3& a, const tVec3& b, tComponents c)														{ return (!(c & tComponent_X) || (a.x == b.x)) && (!(c & tComponent_Y) || (a.y == b.y)) && (!(c & tComponent_Z) || (a.z == b.z)); }
+inline bool tEqual(const tVec3& a, const tVec3& b, tcomps c)															{ return (!(c & tComp_X) || (a.x == b.x)) && (!(c & tComp_Y) || (a.y == b.y)) && (!(c & tComp_Z) || (a.z == b.z)); }
 inline bool tEqual(const tVec4& a, const tVec4& b)																		{ return (a.x == b.x) && (a.y == b.y) && (a.z == b.z) && (a.w == b.w); }
-inline bool tEqual(const tVec4& a, const tVec4& b, tComponents c)														{ return (!(c & tComponent_X) || (a.x == b.x)) && (!(c & tComponent_Y) || (a.y == b.y)) && (!(c & tComponent_Z) || (a.z == b.z)) && (!(c & tComponent_W) || (a.w == b.w)); }
+inline bool tEqual(const tVec4& a, const tVec4& b, tcomps c)															{ return (!(c & tComp_X) || (a.x == b.x)) && (!(c & tComp_Y) || (a.y == b.y)) && (!(c & tComp_Z) || (a.z == b.z)) && (!(c & tComp_W) || (a.w == b.w)); }
 inline bool tEqual(const tQuat& a, const tQuat& b)																		{ return (a.x == b.x) && (a.y == b.y) && (a.z == b.z) && (a.w == b.w); }
-inline bool tEqual(const tQuat& a, const tQuat& b, tComponents c)														{ return (!(c & tComponent_X) || (a.x == b.x)) && (!(c & tComponent_Y) || (a.y == b.y)) && (!(c & tComponent_Z) || (a.z == b.z)) && (!(c & tComponent_W) || (a.w == b.w)); }
+inline bool tEqual(const tQuat& a, const tQuat& b, tcomps c)															{ return (!(c & tComp_X) || (a.x == b.x)) && (!(c & tComp_Y) || (a.y == b.y)) && (!(c & tComp_Z) || (a.z == b.z)) && (!(c & tComp_W) || (a.w == b.w)); }
 inline bool tEqual(const tMat2& a, const tMat2& b)																		{ return tEqual(a.C1, b.C1) && tEqual(a.C2, b.C2); }
-inline bool tEqual(const tMat2& a, const tMat2& b, tComponents c)														{ return (!(c & tComponent_A11) || (a.a11 == b.a11)) && (!(c & tComponent_A21) || (a.a21 == b.a21)) && (!(c & tComponent_A12) || (a.a12 == b.a12)) && (!(c & tComponent_A22) || (a.a22 == b.a22)); }
+inline bool tEqual(const tMat2& a, const tMat2& b, tcomps c)															{ return (!(c & tComp_A11) || (a.a11 == b.a11)) && (!(c & tComp_A21) || (a.a21 == b.a21)) && (!(c & tComp_A12) || (a.a12 == b.a12)) && (!(c & tComp_A22) || (a.a22 == b.a22)); }
 inline bool tEqual(const tMat4& a, const tMat4& b)																		{ return tEqual(a.C1, b.C1) && tEqual(a.C2, b.C2) && tEqual(a.C3, b.C3) && tEqual(a.C4, b.C4); }
-inline bool tEqual(const tMat4& a, const tMat4& b, tComponents c);
+inline bool tEqual(const tMat4& a, const tMat4& b, tcomps c);
 
 inline bool tNotEqual(const tVec2& a, const tVec2& b)																	{ return (a.x != b.x) || (a.y != b.y); }
-inline bool tNotEqual(const tVec2& a, const tVec2& b, tComponents c)													{ return ((c & tComponent_X) && (a.x != b.x)) || ((c & tComponent_Y) && (a.y != b.y)); }
+inline bool tNotEqual(const tVec2& a, const tVec2& b, tcomps c)															{ return ((c & tComp_X) && (a.x != b.x)) || ((c & tComp_Y) && (a.y != b.y)); }
 inline bool tNotEqual(const tVec3& a, const tVec3& b)																	{ return (a.x != b.x) || (a.y != b.y) || (a.z != b.z); }
-inline bool tNotEqual(const tVec3& a, const tVec3& b, tComponents c)													{ return ((c & tComponent_X) && (a.x != b.x)) || ((c & tComponent_Y) && (a.y != b.y)) || ((c & tComponent_Z) && (a.z != b.z)); }
+inline bool tNotEqual(const tVec3& a, const tVec3& b, tcomps c)															{ return ((c & tComp_X) && (a.x != b.x)) || ((c & tComp_Y) && (a.y != b.y)) || ((c & tComp_Z) && (a.z != b.z)); }
 inline bool tNotEqual(const tVec4& a, const tVec4& b)																	{ return (a.x != b.x) || (a.y != b.y) || (a.z != b.z) || (a.w != b.w); }
-inline bool tNotEqual(const tVec4& a, const tVec4& b, tComponents c)													{ return ((c & tComponent_X) && (a.x != b.x)) || ((c & tComponent_Y) && (a.y != b.y)) || ((c & tComponent_Z) && (a.z != b.z)) || ((c & tComponent_W) && (a.w != b.w)); }
+inline bool tNotEqual(const tVec4& a, const tVec4& b, tcomps c)															{ return ((c & tComp_X) && (a.x != b.x)) || ((c & tComp_Y) && (a.y != b.y)) || ((c & tComp_Z) && (a.z != b.z)) || ((c & tComp_W) && (a.w != b.w)); }
 inline bool tNotEqual(const tQuat& a, const tQuat& b)																	{ return (a.x != b.x) || (a.y != b.y) || (a.z != b.z) || (a.w != b.w); }
-inline bool tNotEqual(const tQuat& a, const tQuat& b, tComponents c)													{ return ((c & tComponent_X) && (a.x != b.x)) || ((c & tComponent_Y) && (a.y != b.y)) || ((c & tComponent_Z) && (a.z != b.z)) || ((c & tComponent_W) && (a.w != b.w)); }
+inline bool tNotEqual(const tQuat& a, const tQuat& b, tcomps c)															{ return ((c & tComp_X) && (a.x != b.x)) || ((c & tComp_Y) && (a.y != b.y)) || ((c & tComp_Z) && (a.z != b.z)) || ((c & tComp_W) && (a.w != b.w)); }
 inline bool tNotEqual(const tMat2& a, const tMat2& b)																	{ return tNotEqual(a.C1, b.C1) || tNotEqual(a.C2, b.C2); }
-inline bool tNotEqual(const tMat2& a, const tMat2& b, tComponents c)													{ return ((c & tComponent_A11) && (a.a11 != b.a11)) || ((c & tComponent_A21) && (a.a21 != b.a21)) || ((c & tComponent_A12) && (a.a12 != b.a12)) || ((c & tComponent_A22) && (a.a22 != b.a22)); }
+inline bool tNotEqual(const tMat2& a, const tMat2& b, tcomps c)															{ return ((c & tComp_A11) && (a.a11 != b.a11)) || ((c & tComp_A21) && (a.a21 != b.a21)) || ((c & tComp_A12) && (a.a12 != b.a12)) || ((c & tComp_A22) && (a.a22 != b.a22)); }
 inline bool tNotEqual(const tMat4& a, const tMat4& b)																	{ return tNotEqual(a.C1, b.C1) || tNotEqual(a.C2, b.C2) || tNotEqual(a.C3, b.C3) || tNotEqual(a.C4, b.C4); }
-inline bool tNotEqual(const tMat4& a, const tMat4& b, tComponents c);
+inline bool tNotEqual(const tMat4& a, const tMat4& b, tcomps c);
 
 inline float tLengthSq(const tVec2& v)																					{ return v.x*v.x + v.y*v.y; }
 inline float tLengthSq(const tVec3& v)																					{ return v.x*v.x + v.y*v.y + v.z*v.z; }
@@ -781,138 +789,138 @@ inline void tMath::tGet
 }
 
 
-inline void tMath::tZero(tMat4& d, tComponents c)
+inline void tMath::tZero(tMat4& d, tcomps c)
 {
-	if (c & tComponent_A11) d.a11 = 0.0f;
-	if (c & tComponent_A21) d.a21 = 0.0f;
-	if (c & tComponent_A31) d.a31 = 0.0f;
-	if (c & tComponent_A41) d.a41 = 0.0f;
+	if (c & tComp_A11) d.a11 = 0.0f;
+	if (c & tComp_A21) d.a21 = 0.0f;
+	if (c & tComp_A31) d.a31 = 0.0f;
+	if (c & tComp_A41) d.a41 = 0.0f;
 
-	if (c & tComponent_A12) d.a12 = 0.0f;
-	if (c & tComponent_A22) d.a22 = 0.0f;
-	if (c & tComponent_A32) d.a32 = 0.0f;
-	if (c & tComponent_A42) d.a42 = 0.0f;
+	if (c & tComp_A12) d.a12 = 0.0f;
+	if (c & tComp_A22) d.a22 = 0.0f;
+	if (c & tComp_A32) d.a32 = 0.0f;
+	if (c & tComp_A42) d.a42 = 0.0f;
 
-	if (c & tComponent_A13) d.a13 = 0.0f;
-	if (c & tComponent_A23) d.a23 = 0.0f;
-	if (c & tComponent_A33) d.a33 = 0.0f;
-	if (c & tComponent_A43) d.a43 = 0.0f;
+	if (c & tComp_A13) d.a13 = 0.0f;
+	if (c & tComp_A23) d.a23 = 0.0f;
+	if (c & tComp_A33) d.a33 = 0.0f;
+	if (c & tComp_A43) d.a43 = 0.0f;
 
-	if (c & tComponent_A14) d.a14 = 0.0f;
-	if (c & tComponent_A24) d.a24 = 0.0f;
-	if (c & tComponent_A34) d.a34 = 0.0f;
-	if (c & tComponent_A44) d.a44 = 0.0f;
+	if (c & tComp_A14) d.a14 = 0.0f;
+	if (c & tComp_A24) d.a24 = 0.0f;
+	if (c & tComp_A34) d.a34 = 0.0f;
+	if (c & tComp_A44) d.a44 = 0.0f;
 }
 
 
-inline bool tMath::tIsZero(const tMat4& m, tComponents c)
+inline bool tMath::tIsZero(const tMat4& m, tcomps c)
 {
 	return
-		(!(c & tComponent_A11) || (m.a11 == 0.0f)) &&
-		(!(c & tComponent_A21) || (m.a21 == 0.0f)) &&
-		(!(c & tComponent_A31) || (m.a31 == 0.0f)) &&
-		(!(c & tComponent_A41) || (m.a41 == 0.0f)) &&
+		(!(c & tComp_A11) || (m.a11 == 0.0f)) &&
+		(!(c & tComp_A21) || (m.a21 == 0.0f)) &&
+		(!(c & tComp_A31) || (m.a31 == 0.0f)) &&
+		(!(c & tComp_A41) || (m.a41 == 0.0f)) &&
 
-		(!(c & tComponent_A12) || (m.a12 == 0.0f)) &&
-		(!(c & tComponent_A22) || (m.a22 == 0.0f)) &&
-		(!(c & tComponent_A32) || (m.a32 == 0.0f)) &&
-		(!(c & tComponent_A42) || (m.a42 == 0.0f)) &&
+		(!(c & tComp_A12) || (m.a12 == 0.0f)) &&
+		(!(c & tComp_A22) || (m.a22 == 0.0f)) &&
+		(!(c & tComp_A32) || (m.a32 == 0.0f)) &&
+		(!(c & tComp_A42) || (m.a42 == 0.0f)) &&
 
-		(!(c & tComponent_A13) || (m.a13 == 0.0f)) &&
-		(!(c & tComponent_A23) || (m.a23 == 0.0f)) &&
-		(!(c & tComponent_A33) || (m.a33 == 0.0f)) &&
-		(!(c & tComponent_A43) || (m.a43 == 0.0f)) &&
+		(!(c & tComp_A13) || (m.a13 == 0.0f)) &&
+		(!(c & tComp_A23) || (m.a23 == 0.0f)) &&
+		(!(c & tComp_A33) || (m.a33 == 0.0f)) &&
+		(!(c & tComp_A43) || (m.a43 == 0.0f)) &&
 
-		(!(c & tComponent_A14) || (m.a14 == 0.0f)) &&
-		(!(c & tComponent_A24) || (m.a24 == 0.0f)) &&
-		(!(c & tComponent_A34) || (m.a34 == 0.0f)) &&
-		(!(c & tComponent_A44) || (m.a44 == 0.0f));
+		(!(c & tComp_A14) || (m.a14 == 0.0f)) &&
+		(!(c & tComp_A24) || (m.a24 == 0.0f)) &&
+		(!(c & tComp_A34) || (m.a34 == 0.0f)) &&
+		(!(c & tComp_A44) || (m.a44 == 0.0f));
 }
 
 
-inline bool tMath::tApproxEqual(const tMat2& a, const tMat2& b, tComponents c, float e)
+inline bool tMath::tApproxEqual(const tMat2& a, const tMat2& b, tcomps c, float e)
 {
 	return
-		(!(c & tComponent_A11) || (tAbs(a.a11-b.a11) < e)) &&
-		(!(c & tComponent_A21) || (tAbs(a.a21-b.a21) < e)) &&
+		(!(c & tComp_A11) || (tAbs(a.a11-b.a11) < e)) &&
+		(!(c & tComp_A21) || (tAbs(a.a21-b.a21) < e)) &&
 
-		(!(c & tComponent_A12) || (tAbs(a.a12-b.a12) < e)) &&
-		(!(c & tComponent_A22) || (tAbs(a.a22-b.a22) < e));
+		(!(c & tComp_A12) || (tAbs(a.a12-b.a12) < e)) &&
+		(!(c & tComp_A22) || (tAbs(a.a22-b.a22) < e));
 }
 
 
-inline bool tMath::tApproxEqual(const tMat4& a, const tMat4& b, tComponents c, float e)
+inline bool tMath::tApproxEqual(const tMat4& a, const tMat4& b, tcomps c, float e)
 {
 	return
-		(!(c & tComponent_A11) || (tAbs(a.a11-b.a11) < e)) &&
-		(!(c & tComponent_A21) || (tAbs(a.a21-b.a21) < e)) &&
-		(!(c & tComponent_A31) || (tAbs(a.a31-b.a31) < e)) &&
-		(!(c & tComponent_A41) || (tAbs(a.a41-b.a41) < e)) &&
+		(!(c & tComp_A11) || (tAbs(a.a11-b.a11) < e)) &&
+		(!(c & tComp_A21) || (tAbs(a.a21-b.a21) < e)) &&
+		(!(c & tComp_A31) || (tAbs(a.a31-b.a31) < e)) &&
+		(!(c & tComp_A41) || (tAbs(a.a41-b.a41) < e)) &&
 
-		(!(c & tComponent_A12) || (tAbs(a.a12-b.a12) < e)) &&
-		(!(c & tComponent_A22) || (tAbs(a.a22-b.a22) < e)) &&
-		(!(c & tComponent_A32) || (tAbs(a.a32-b.a32) < e)) &&
-		(!(c & tComponent_A42) || (tAbs(a.a42-b.a42) < e)) &&
+		(!(c & tComp_A12) || (tAbs(a.a12-b.a12) < e)) &&
+		(!(c & tComp_A22) || (tAbs(a.a22-b.a22) < e)) &&
+		(!(c & tComp_A32) || (tAbs(a.a32-b.a32) < e)) &&
+		(!(c & tComp_A42) || (tAbs(a.a42-b.a42) < e)) &&
 
-		(!(c & tComponent_A13) || (tAbs(a.a13-b.a13) < e)) &&
-		(!(c & tComponent_A23) || (tAbs(a.a23-b.a23) < e)) &&
-		(!(c & tComponent_A33) || (tAbs(a.a33-b.a33) < e)) &&
-		(!(c & tComponent_A43) || (tAbs(a.a43-b.a43) < e)) &&
+		(!(c & tComp_A13) || (tAbs(a.a13-b.a13) < e)) &&
+		(!(c & tComp_A23) || (tAbs(a.a23-b.a23) < e)) &&
+		(!(c & tComp_A33) || (tAbs(a.a33-b.a33) < e)) &&
+		(!(c & tComp_A43) || (tAbs(a.a43-b.a43) < e)) &&
 
-		(!(c & tComponent_A14) || (tAbs(a.a14-b.a14) < e)) &&
-		(!(c & tComponent_A24) || (tAbs(a.a24-b.a24) < e)) &&
-		(!(c & tComponent_A34) || (tAbs(a.a34-b.a34) < e)) &&
-		(!(c & tComponent_A44) || (tAbs(a.a44-b.a44) < e));
+		(!(c & tComp_A14) || (tAbs(a.a14-b.a14) < e)) &&
+		(!(c & tComp_A24) || (tAbs(a.a24-b.a24) < e)) &&
+		(!(c & tComp_A34) || (tAbs(a.a34-b.a34) < e)) &&
+		(!(c & tComp_A44) || (tAbs(a.a44-b.a44) < e));
 }
 
 
-inline bool tMath::tEqual(const tMat4& a, const tMat4& b, tComponents c)
+inline bool tMath::tEqual(const tMat4& a, const tMat4& b, tcomps c)
 {
 	return
-		(!(c & tComponent_A11) || (a.a11 == b.a11)) &&
-		(!(c & tComponent_A21) || (a.a21 == b.a21)) &&
-		(!(c & tComponent_A31) || (a.a31 == b.a31)) &&
-		(!(c & tComponent_A41) || (a.a41 == b.a41)) &&
+		(!(c & tComp_A11) || (a.a11 == b.a11)) &&
+		(!(c & tComp_A21) || (a.a21 == b.a21)) &&
+		(!(c & tComp_A31) || (a.a31 == b.a31)) &&
+		(!(c & tComp_A41) || (a.a41 == b.a41)) &&
 
-		(!(c & tComponent_A12) || (a.a12 == b.a12)) &&
-		(!(c & tComponent_A22) || (a.a22 == b.a22)) &&
-		(!(c & tComponent_A32) || (a.a32 == b.a32)) &&
-		(!(c & tComponent_A42) || (a.a42 == b.a42)) &&
+		(!(c & tComp_A12) || (a.a12 == b.a12)) &&
+		(!(c & tComp_A22) || (a.a22 == b.a22)) &&
+		(!(c & tComp_A32) || (a.a32 == b.a32)) &&
+		(!(c & tComp_A42) || (a.a42 == b.a42)) &&
 
-		(!(c & tComponent_A13) || (a.a13 == b.a13)) &&
-		(!(c & tComponent_A23) || (a.a23 == b.a23)) &&
-		(!(c & tComponent_A33) || (a.a33 == b.a33)) &&
-		(!(c & tComponent_A43) || (a.a43 == b.a43)) &&
+		(!(c & tComp_A13) || (a.a13 == b.a13)) &&
+		(!(c & tComp_A23) || (a.a23 == b.a23)) &&
+		(!(c & tComp_A33) || (a.a33 == b.a33)) &&
+		(!(c & tComp_A43) || (a.a43 == b.a43)) &&
 
-		(!(c & tComponent_A14) || (a.a14 == b.a14)) &&
-		(!(c & tComponent_A24) || (a.a24 == b.a24)) &&
-		(!(c & tComponent_A34) || (a.a34 == b.a34)) &&
-		(!(c & tComponent_A44) || (a.a44 == b.a44));
+		(!(c & tComp_A14) || (a.a14 == b.a14)) &&
+		(!(c & tComp_A24) || (a.a24 == b.a24)) &&
+		(!(c & tComp_A34) || (a.a34 == b.a34)) &&
+		(!(c & tComp_A44) || (a.a44 == b.a44));
 }
 
 
-inline bool tMath::tNotEqual(const tMat4& a, const tMat4& b, tComponents c)
+inline bool tMath::tNotEqual(const tMat4& a, const tMat4& b, tcomps c)
 {
 	return
-		((c & tComponent_A11) && (a.a11 != b.a11)) ||
-		((c & tComponent_A21) && (a.a21 != b.a21)) ||
-		((c & tComponent_A31) && (a.a31 != b.a31)) ||
-		((c & tComponent_A41) && (a.a41 != b.a41)) ||
+		((c & tComp_A11) && (a.a11 != b.a11)) ||
+		((c & tComp_A21) && (a.a21 != b.a21)) ||
+		((c & tComp_A31) && (a.a31 != b.a31)) ||
+		((c & tComp_A41) && (a.a41 != b.a41)) ||
 
-		((c & tComponent_A12) && (a.a12 != b.a12)) ||
-		((c & tComponent_A22) && (a.a22 != b.a22)) ||
-		((c & tComponent_A32) && (a.a32 != b.a32)) ||
-		((c & tComponent_A42) && (a.a42 != b.a42)) ||
+		((c & tComp_A12) && (a.a12 != b.a12)) ||
+		((c & tComp_A22) && (a.a22 != b.a22)) ||
+		((c & tComp_A32) && (a.a32 != b.a32)) ||
+		((c & tComp_A42) && (a.a42 != b.a42)) ||
 
-		((c & tComponent_A13) && (a.a13 != b.a13)) ||
-		((c & tComponent_A23) && (a.a23 != b.a23)) ||
-		((c & tComponent_A33) && (a.a33 != b.a33)) ||
-		((c & tComponent_A43) && (a.a43 != b.a43)) ||
+		((c & tComp_A13) && (a.a13 != b.a13)) ||
+		((c & tComp_A23) && (a.a23 != b.a23)) ||
+		((c & tComp_A33) && (a.a33 != b.a33)) ||
+		((c & tComp_A43) && (a.a43 != b.a43)) ||
 
-		((c & tComponent_A14) && (a.a14 != b.a14)) ||
-		((c & tComponent_A24) && (a.a24 != b.a24)) ||
-		((c & tComponent_A34) && (a.a34 != b.a34)) ||
-		((c & tComponent_A44) && (a.a44 != b.a44));
+		((c & tComp_A14) && (a.a14 != b.a14)) ||
+		((c & tComp_A24) && (a.a24 != b.a24)) ||
+		((c & tComp_A34) && (a.a34 != b.a34)) ||
+		((c & tComp_A44) && (a.a44 != b.a44));
 }
 
 

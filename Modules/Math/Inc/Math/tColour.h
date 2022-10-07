@@ -5,7 +5,7 @@
 // * A 96 bit colour. 3 32-bit float components.
 // * A 128 bit colour. 4 32-bit float components (rgb + alpha).
 //
-// Copyright (c) 2006, 2011, 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2006, 2011, 2017, 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -96,24 +96,15 @@ namespace tMath
 	float tColourDiffRedmean    (const tColour4i& a, const tColour4i& b);		// Returns value E [0.0, 764.8340]
 
 	// Some colour-space component conversion functions. Gamma-space is probably more ubiquitous than the more accurate
-	// sRGB space. Unless speed is an issue, probably best to stay away from GammaSq.
-	float tSRGBToLinear   (float Csrgb);
-	float tLinearToSRGB   (float Clinear);
-	float tGammaToLinear  (float Cgamma);
-	float tLinearToGamma  (float Clinear);
-	float tGammaSqToLinear(float Cgammasq);
-	float tLinearToGammaSq(float Clinear);
+	// sRGB space. Unless speed is an issue, probably best to stay away from the Square functions (gamma = 2.0).
+	float tSquareToLinear (float squareComponent);
+	float tLinearToSquare (float linearComponent);
+	float tGammaToLinear  (float gammaComponent, float gamma = DefaultGamma);
+	float tLinearToGamma  (float linearComponent, float gamma = DefaultGamma);
+	float tSRGBToLinear   (float srgbComponent);
+	float tLinearToSRGB   (float linearComponent);
 
-	enum ColourChannel
-	{
-		ColourChannel_R			= 1 << 0,
-		ColourChannel_G			= 1 << 1,
-		ColourChannel_B			= 1 << 2,
-		ColourChannel_A			= 1 << 3,
-		ColourChannel_RGB		= ColourChannel_R | ColourChannel_G | ColourChannel_B,
-		ColourChannel_RGBA		= ColourChannel_R | ColourChannel_G | ColourChannel_B | ColourChannel_A,
-		ColourChannel_All		= ColourChannel_RGBA
-	};
+	float tTonemapExposureSimple(float linearComponent, float exposure = 1.0f);
 }
 
 
@@ -199,7 +190,7 @@ public:
 	void RGBToHSV();										// Assumes current values are RGB.
 	void HSVToRGB();										// Assumes current values are HSV.
 
-	bool Equal(const tColour4i&, uint32 channels = tMath::ColourChannel_All) const;
+	bool Equal(const tColour4i&, tcomps channels = tComp_All) const;
 	bool operator==(const tColour4i& c) const																			{ return (BP == c.BP); }
 	bool operator!=(const tColour4i& c) const 																			{ return (BP != c.BP); }
 	tColour4i& operator=(const tColour4i& c)																			{ BP = c.BP; return *this; }
@@ -265,8 +256,8 @@ public:
 typedef tColour3i tPixel3;
 
 
-// The tColour4f class represents a colour in 4 floats and is made of 4 floats in the order RGBA.
-// The values of each float component are E [0.0, 1.0].
+// The tColour4f class represents a colour in 4 floats and is made of 4 floats in the order RGBA. The values of each
+// float component are E [0.0, 1.0]. tColour4f is usually considered to be in linear space rather than sRGB or Gamma.
 class tColour4f
 {
 public:
@@ -330,23 +321,24 @@ public:
 	bool IsGreen() const																								{ return ((R == 0.0f) && (G == 1.0f) && (B == 0.0f)) ? true : false; }
 	bool IsBlue() const																									{ return ((R == 0.0f) && (G == 0.0f) && (B == 1.0f)) ? true : false; }
 
-	// Colours in textures in files may be in Gamma space and ought to be converted to linear space before
-	// lighting calculations are made. They should then be converted back to Gamma space before being displayed.
-	// Gamma-space here should really be sRGB but we're just using an approximation by squaring (gamma=2) when the
-	// average sRGB gamma should be 2.2. To do the conversion properly, the gamma varies with intensity from 1 to 2.4,
-	// but, again, we're only approximating here.
-	void GammaSqToLinear()				/* Will darken the image. */													{ R = tMath::tGammaSqToLinear(R); G = tMath::tGammaSqToLinear(G); B = tMath::tGammaSqToLinear(B); }
-	void LinearToGammaSq()				/* Will brighten the image. */													{ R = tMath::tLinearToGammaSq(R); G = tMath::tLinearToGammaSq(G); B = tMath::tLinearToGammaSq(B); }
+	// Colours in textures in files may be in Gamma space and ought to be converted to linear space before lighting
+	// calculations are made. They should then be converted back to Gamma space before being displayed. SquareToLinear
+	// and LinearToSquare are identical to GammaToLinear and LinearToGamme with a gamma value of 2.0. They're a bit
+	// faster because they don't use the tPow function, only square and square-root.
+	void SquareToLinear(tcomps = tComp_RGB);									// Will darken the image.
+	void LinearToSquare(tcomps = tComp_RGB);									// Will brighten the image.
 
-	// These two are more accurate versions of the above two functions. The sRGB-space assumes the colour will be
-	// displayed on an output device with a gamma or 2.2. These use a slower power function instead of squaring or
-	// square-rooting like the approx versions above.
-	void GammaToLinear()				/* Will darken the image. */													{ R = tMath::tGammaToLinear(R); G = tMath::tGammaToLinear(G); B = tMath::tGammaToLinear(B); }
-	void LinearToGamma()				/* Will brighten the image. */													{ R = tMath::tLinearToGamma(R); G = tMath::tLinearToGamma(G); B = tMath::tLinearToGamma(B); }
+	// These two are more general versions of the above two functions and use a slower power function instead of
+	// squaring or square-rooting. They support an arbitrary gamma value (default to 2.2).
+	void GammaToLinear(float gamma = tMath::DefaultGamma, tcomps = tComp_RGB);	// Will darken the image.
+	void LinearToGamma(float gamma = tMath::DefaultGamma, tcomps = tComp_RGB);	// Will brighten the image.
 
 	// The slowest conversion but for high fidelity, the sRGB space is likely what the image was authored in.
-	void SRGBToLinear()					/* Will darken the image. */													{ R = tMath::tSRGBToLinear(R); G = tMath::tSRGBToLinear(G); B = tMath::tSRGBToLinear(B); }
-	void LinearToSRGB()					/* Will brighten the image. */													{ R = tMath::tLinearToSRGB(R); G = tMath::tLinearToSRGB(G); B = tMath::tLinearToSRGB(B); }
+	void SRGBToLinear(tcomps = tComp_RGB);										// Will darken the image.
+	void LinearToSRGB(tcomps = tComp_RGB);										// Will brighten the image.
+
+	// Simple exposure tonemapping.
+	void TonemapExposureSimple(float exposure, tcomps = tComp_RGB);
 
 	// When using the HSV representation of a tColourf, the hue is in NormOne angle mode. See the tRGBToHSV and
 	// tHSVToRGB functions if you wish to use different angle units. All the components (h, s, v, r, g, b, a) are in
@@ -503,51 +495,57 @@ typedef tColour3f tColour3;
 // Implementation below this line.
 
 
-inline float tMath::tSRGBToLinear(float Csrgb)
+inline float tMath::tSquareToLinear(float squareComponent)
+{
+	return squareComponent*squareComponent;
+}
+
+
+inline float tMath::tLinearToSquare(float linearComponent)
+{
+	return tMath::tSqrt(linearComponent);
+}
+
+
+inline float tMath::tGammaToLinear(float gammaComponent, float gamma)
+{
+	return tMath::tPow(gammaComponent, 1.0f/gamma);
+}
+
+
+inline float tMath::tLinearToGamma(float linearComponent, float gamma)
+{
+	return tMath::tPow(linearComponent, gamma);
+}
+
+
+inline float tMath::tSRGBToLinear(float srgbComponent)
 {
 	// See https://en.wikipedia.org/wiki/SRGB
-	float Clinear =
-		(Csrgb <= 0.04045f)			?
-		(Csrgb / 12.92f)			:
-		tMath::tPow((Csrgb + 0.055f)/1.055f, 2.4f);
+	float linear =
+		(srgbComponent <= 0.04045f)			?
+		(srgbComponent / 12.92f)			:
+		tMath::tPow((srgbComponent + 0.055f)/1.055f, 2.4f);
 
-	return tMath::tSaturate(Clinear);
+	return tMath::tSaturate(linear);
 }
 
 
-inline float tMath::tLinearToSRGB(float Clinear)
+inline float tMath::tLinearToSRGB(float linearComponent)
 {
 	// See https://en.wikipedia.org/wiki/SRGB
-	float Csrgb =
-		(Clinear <= 0.0031308f)		?
-		(12.92f*Clinear)			:
-		1.055f*tMath::tPow(Clinear, 1.0f/2.4f) - 0.055f;
+	float srgb =
+		(linearComponent <= 0.0031308f)		?
+		(12.92f*linearComponent)			:
+		1.055f*tMath::tPow(linearComponent, 1.0f/2.4f) - 0.055f;
 
-	return tMath::tSaturate(Csrgb);
+	return tMath::tSaturate(srgb);
 }
 
 
-inline float tMath::tGammaToLinear(float Cgamma)
+inline float tMath::tTonemapExposureSimple(float linearComponent, float exposure)
 {
-	return tMath::tPow(Cgamma, 1.0f/2.2f);
-}
-
-
-inline float tMath::tLinearToGamma(float Clinear)
-{
-	return tMath::tPow(Clinear, 2.2f);
-}
-
-
-inline float tMath::tGammaSqToLinear(float Cgammasq)
-{
-	return Cgammasq*Cgammasq;
-}
-
-
-inline float tMath::tLinearToGammaSq(float Clinear)
-{
-	return tMath::tSqrt(Clinear);
+	return 1.0f - tMath::tExp(-linearComponent * exposure);
 }
 
 
@@ -595,18 +593,18 @@ inline void tColour4i::HSVToRGB()
 }
 
 
-inline bool tColour4i::Equal(const tColour4i& colour, uint32 channels) const
+inline bool tColour4i::Equal(const tColour4i& colour, tcomps channels) const
 {
-	if ((channels & tMath::ColourChannel_R) && (R != colour.R))
+	if ((channels & tComp_R) && (R != colour.R))
 		return false;
 
-	if ((channels & tMath::ColourChannel_G) && (G != colour.G))
+	if ((channels & tComp_G) && (G != colour.G))
 		return false;
 
-	if ((channels & tMath::ColourChannel_B) && (B != colour.B))
+	if ((channels & tComp_B) && (B != colour.B))
 		return false;
 
-	if ((channels & tMath::ColourChannel_A) && (A != colour.A))
+	if ((channels & tComp_A) && (A != colour.A))
 		return false;
 
 	return true;
@@ -616,6 +614,69 @@ inline bool tColour4i::Equal(const tColour4i& colour, uint32 channels) const
 inline void tColour4f::Set(const tColour3f& c, float a)
 {
 	Set(c.R, c.G, c.B, a);
+}
+
+
+inline void tColour4f::SquareToLinear(tcomps chans)
+{
+	if (chans & tComp_R) R = tMath::tSquareToLinear(R);
+	if (chans & tComp_G) G = tMath::tSquareToLinear(G);
+	if (chans & tComp_B) B = tMath::tSquareToLinear(B);
+	if (chans & tComp_A) A = tMath::tSquareToLinear(A);
+}
+
+
+inline void tColour4f::LinearToSquare(tcomps chans)
+{
+	if (chans & tComp_R) R = tMath::tLinearToSquare(R);
+	if (chans & tComp_G) G = tMath::tLinearToSquare(G);
+	if (chans & tComp_B) B = tMath::tLinearToSquare(B);
+	if (chans & tComp_A) A = tMath::tLinearToSquare(A);
+}
+
+
+inline void tColour4f::GammaToLinear(float gamma, tcomps chans)
+{
+	if (chans & tComp_R) R = tMath::tGammaToLinear(R, gamma);
+	if (chans & tComp_G) G = tMath::tGammaToLinear(G, gamma);
+	if (chans & tComp_B) B = tMath::tGammaToLinear(B, gamma);
+	if (chans & tComp_A) A = tMath::tGammaToLinear(A, gamma);
+}
+
+
+inline void tColour4f::LinearToGamma(float gamma, tcomps chans)
+{
+	if (chans & tComp_R) R = tMath::tLinearToGamma(R, gamma);
+	if (chans & tComp_G) G = tMath::tLinearToGamma(G, gamma);
+	if (chans & tComp_B) B = tMath::tLinearToGamma(B, gamma);
+	if (chans & tComp_A) A = tMath::tLinearToGamma(A, gamma);
+}
+
+
+inline void tColour4f::SRGBToLinear(tcomps chans)
+{
+	if (chans & tComp_R) R = tMath::tSRGBToLinear(R);
+	if (chans & tComp_G) G = tMath::tSRGBToLinear(G);
+	if (chans & tComp_B) B = tMath::tSRGBToLinear(B);
+	if (chans & tComp_A) A = tMath::tSRGBToLinear(A);
+}
+
+
+inline void tColour4f::LinearToSRGB(tcomps chans)
+{
+	if (chans & tComp_R) R = tMath::tLinearToSRGB(R);
+	if (chans & tComp_G) G = tMath::tLinearToSRGB(G);
+	if (chans & tComp_B) B = tMath::tLinearToSRGB(B);
+	if (chans & tComp_A) A = tMath::tLinearToSRGB(A);
+}
+
+
+inline void tColour4f::TonemapExposureSimple(float exposure, tcomps chans)
+{
+	if (chans & tComp_R) R = tMath::tTonemapExposureSimple(R, exposure);
+	if (chans & tComp_G) G = tMath::tTonemapExposureSimple(G, exposure);
+	if (chans & tComp_B) B = tMath::tTonemapExposureSimple(B, exposure);
+	if (chans & tComp_A) A = tMath::tTonemapExposureSimple(A, exposure);
 }
 
 

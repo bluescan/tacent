@@ -37,10 +37,16 @@ public:
 	{
 		LoadFlag_Decode				= 1 << 0,	// Decode the dds texture data into RGBA 32 bit layers. If not set, the layer data will remain unmodified.
 		LoadFlag_ReverseRowOrder	= 1 << 1,	// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.
-		LoadFlag_GammaCorrectHDR	= 1 << 2,	// Gamma correct HDR (BC6) images during decode. Flag only applies when decoding HDR/floating-point formats
-		LoadFlag_SpreadLuminance	= 1 << 3,	// For DDS files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats. Applies only if decoding a dds is an R-only or L-only format.
-		LoadFlag_CondMultFourDim	= 1 << 4,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,
-		LoadFlag_CondPowerTwoDim	= 1 << 5,	// Produce conditional success if image dimension not a power of 2. Only checks BC formats.
+
+		// Gamma-correct. Gamma expansion using a decoding gamma of 2.2. Flag only applies when decoding HDR / floating-
+		// point formats (BC6, rgb16f/32f, etc) images during decode.  Assumes (colour) data is linear and puts it in
+		// gamma-space (brighter) for diaplay on a monitor.
+		LoadFlag_GammaExpandHDR		= 1 << 2,
+		LoadFlag_SRGBExpandHDR		= 1 << 3,	// Same as above but uses the official sRGB transformation. Linear -> sRGB.
+		LoadFlag_ToneMapExposure	= 1 << 4,	// Apply exposure value when loading the dds. Only affects HDR (linear-colour) formats.
+		LoadFlag_SpreadLuminance	= 1 << 5,	// For DDS files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats. Applies only if decoding a dds is an R-only or L-only format.
+		LoadFlag_CondMultFourDim	= 1 << 6,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,
+		LoadFlag_CondPowerTwoDim	= 1 << 7,	// Produce conditional success if image dimension not a power of 2. Only checks BC formats.
 		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance
 	};
 	// If an error is encountered loading the resultant object will return false for IsValid. You can call GetLastResult
@@ -57,11 +63,20 @@ public:
 	// tImageDDS will be unable to reverse the rows. You will still get a valid object, but it will be a conditional
 	// success (GetResults() will have Conditional_CouldNotFlipRows flag set). You can call also call RowsReversed() to
 	// see if row-reversal was performed. The conditional is only set if reversal was requested.
-	tImageDDS(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default);
+	//
+	// Additional parameters may be processed during dds-loading. Gamma is only used if GammExpandHDR flag is set.
+	// Exposure >= 0 (black) and only used if ToneMapExposure flag set.
+	struct LoadParams
+	{
+		float Gamma = tMath::DefaultGamma;
+		float Exposure = 1.0f;
+	};
+
+	tImageDDS(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default, const LoadParams& = LoadParams());
 
 	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is read from
 	// and the caller may delete it immediately after if desired.
-	tImageDDS(const uint8* ddsFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default);
+	tImageDDS(const uint8* ddsMem, int numBytes, uint32 flags = LoadFlags_Default, const LoadParams& = LoadParams());
 	virtual ~tImageDDS()																								{ Clear(); }
 
 	enum class ResultCode
@@ -102,6 +117,12 @@ public:
 		LastFatal							= Fatal_DX10DimensionNotSupported
 	};
 
+	// Clears the current tImageDDS before loading. If the dds file failed to load for any reason it will result in an
+	// invalid object. A dds may fail to load for a number of reasons: Volume textures are not supported, some
+	// pixel-formats may not yet be supported, or inconsistent flags. Returns true on success or conditional-success.
+	bool Load(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default, const LoadParams& = LoadParams());
+	bool Load(const uint8* ddsMem, int numBytes, uint32 flags = LoadFlags_Default, const LoadParams& = LoadParams());
+
 	// After a load you can call GetResults() to find out what, if anything, went wrong.
 	uint32 GetResults() const																							{ return Results; }
 	bool IsResultSet(ResultCode code) const																				{ return (Results & (1<<int(code))); }
@@ -109,12 +130,6 @@ public:
 
 	// Will return true if a dds file has been successfully loaded. This includes conditional success results.
 	bool IsValid() const																								{ return (Results < (1 << int(ResultCode::FirstFatal))); }
-
-	// Clears the current tImageDDS before loading. If the dds file failed to load for any reason it will result in an
-	// invalid object. A dds may fail to load for a number of reasons: Volume textures are not supported, some
-	// pixel-formats may not yet be supported, or inconsistent flags. Returns true on success or conditional success.
-	bool Load(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default);
-	bool Load(const uint8* ddsFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default);
 
 	// After this call no memory will be consumed by the object and it will be invalid. Does not clear filename.
 	void Clear();
@@ -225,6 +240,8 @@ private:
 	// Cubemaps are always specified using a left-handed coord system even when using the OpenGL functions.
 	const static int MaxImages = 6;
 	tLayer* MipmapLayers[MaxMipmapLayers][MaxImages];
+
+	void ProcessHDRFlags(tColour4f& colour, tcomps channels, uint32 flags, const LoadParams& params);
 
 public:
 	static const char* ResultDescriptions[];

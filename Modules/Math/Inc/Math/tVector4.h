@@ -3,7 +3,7 @@
 // A 3D vector class with the expected member functions and overloads. Backs off of the tVec4 POD type and the
 // tLinearAlgebra library functions.
 //
-// Copyright (c) 2004-2006, 2015, 2017 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -42,11 +42,11 @@ struct tVector4 : public tVec4
 	void Get(float* a) const																							{ tGet(a, *this); }
 
 	void Zero()																											{ tZero(*this); }
-	void Zero(tComponents c)																							{ tZero(*this, c); }
+	void Zero(tcomps c)																									{ tZero(*this, c); }
 	bool IsZero() const																									{ return tIsZero((tVec4&)*this); }
-	bool IsZero(tComponents c) const																					{ return tIsZero(*this, c); }
+	bool IsZero(tcomps c) const																							{ return tIsZero(*this, c); }
 	bool ApproxEqual(const tVec4& v, float e = Epsilon) const															{ return tApproxEqual(*this, v, e); }
-	bool ApproxEqual(const tVec4& v, tComponents c, float e = Epsilon) const											{ return tApproxEqual(*this, v, c, e); }
+	bool ApproxEqual(const tVec4& v, tcomps c, float e = Epsilon) const													{ return tApproxEqual(*this, v, c, e); }
 
 	float LengthSq() const																								{ return tLengthSq(*this); }
 	float Length() const																								{ return tLength(*this); }

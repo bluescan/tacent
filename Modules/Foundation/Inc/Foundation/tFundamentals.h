@@ -3,7 +3,7 @@
 // Core math functions needed by the rest or of the module as well as for external use. Functions include trigonometric
 // functions, intervals, angle manipulation, power functions, and other analytic functions.
 //
-// Copyright (c) 2004, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2004, 2017, 2019, 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -154,17 +154,17 @@ inline float tArcSin(float x)																							{ return asinf(x); }
 inline float tArcCos(float x)																							{ return acosf(x); }
 inline float tArcTan(float y, float x)						/* Order is y, x. Returns angle of a slope (rise/run). */	{ return atan2f(y, x); }
 inline float tArcTan(float m)																							{ return atanf(m); }
-inline float tExp(float x)																								{ return expf(x); }
+inline float tExp(float a)																								{ return expf(a); }
+inline double tExp(double a)																							{ return exp(a); }
 inline float tLog(float x)									/* Natural logarithm. */									{ return logf(x); }
 inline float tSa(float x)									/* Unnormalized (sampling) sinc. */							{ if (x == 0.0f) return 1.0f; return tSin(x) / x; }
 inline float tSinc(float x)									/* Normalized sinc. */										{ if (x == 0.0f) return 1.0f; float pix = Pi*x; return tSin(pix) / pix; }
+inline float tPow(float a, float b)																						{ return powf(a, b); }
+inline double tPow(double a, double b)																					{ return pow(a, b); }
 
 // For the 'ti' versions of the below functions, the 'i' means 'in-place' (ref var).
 inline float& tiDegToRad(float& ang)																					{ ang = ang * Pi / 180.0f; return ang; }
 inline float& tiRadToDeg(float& ang)																					{ ang = ang * 180.0f / Pi; return ang; }
-
-inline float tPow(float a, float b)																						{ return powf(a, b); }
-inline double tPow(double a, double b)																					{ return pow(a, b); }
 
 // Returns integral base 2 logarithm. If v is <= 0 returns MinInt32. If v is a power of 2 you will get an exact
 // result. If v is not a power of two it will return the logarithm of the next lowest power of 2. For example,

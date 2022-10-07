@@ -176,7 +176,7 @@ public:
 
 	void SetPixel(int x, int y, const tColouri& c)																		{ Pixels[ GetIndex(x, y) ] = c; }
 	void SetPixel(int x, int y, uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)												{ Pixels[ GetIndex(x, y) ] = tColouri(r, g, b, a); }
-	void SetAll(const tColouri& = tColouri(0, 0, 0), uint32 channels = tMath::ColourChannel_RGBA);
+	void SetAll(const tColouri& = tColouri(0, 0, 0), tcomps channels = tComp_RGBA);
 
 	// Blends in supplied colour according to the current alpha. If pixel alpha is 255, then none of the blend colour is
 	// used for that pixel. If alpha is 0, all of it is used. If alpha is 64, then 1/4 of the current pixel colour and
@@ -223,7 +223,7 @@ public:
 
 	// Crops sides that match the specified colour. Optionally select only some channels to be considered.
 	// If this function wants to remove everything it returns false and leaves the image untouched.
-	bool Crop(const tColouri& = tColouri::transparent, uint32 channels = tMath::ColourChannel_A);
+	bool Crop(const tColouri& = tColouri::transparent, uint32 channels = tComp_A);
 
 	// This function scales the image by half using a box filter. Useful for generating mipmaps. This function returns
 	// false if the rescale could not be performed. For this function to succeed:
@@ -323,13 +323,13 @@ inline bool tPicture::IsOpaque() const
 }
 
 
-inline void tPicture::SetAll(const tColouri& clearColour, uint32 channels)
+inline void tPicture::SetAll(const tColouri& clearColour, tcomps channels)
 {
 	if (!Pixels)
 		return;
 
 	int numPixels = Width*Height;
-	if (channels == tMath::ColourChannel_RGBA)
+	if (channels == tComp_RGBA)
 	{
 		for (int p = 0; p < numPixels; p++)
 			Pixels[p] = clearColour;
@@ -338,10 +338,10 @@ inline void tPicture::SetAll(const tColouri& clearColour, uint32 channels)
 	{
 		for (int p = 0; p < numPixels; p++)
 		{
-			if (channels & tMath::ColourChannel_R) Pixels[p].R = clearColour.R;
-			if (channels & tMath::ColourChannel_G) Pixels[p].G = clearColour.G;
-			if (channels & tMath::ColourChannel_B) Pixels[p].B = clearColour.B;
-			if (channels & tMath::ColourChannel_A) Pixels[p].A = clearColour.A;
+			if (channels & tComp_R) Pixels[p].R = clearColour.R;
+			if (channels & tComp_G) Pixels[p].G = clearColour.G;
+			if (channels & tComp_B) Pixels[p].B = clearColour.B;
+			if (channels & tComp_A) Pixels[p].A = clearColour.A;
 		}
 	}
 }

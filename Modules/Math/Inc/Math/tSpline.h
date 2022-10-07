@@ -78,12 +78,12 @@ public:
 	void GetTangent(tVector3&, float t) const;				// t E [0, 1].
 	float GetClosestParam
 	(
-		const tVector3& pos, tComponents components = tMath::tComponent_All,
+		const tVector3& pos, tcomps components = tComp_All,
 		float paramThreshold = tMath::Epsilon
 	) const																												{ return GetClosestParamRec(pos, components, 0.0f, 1.0f, paramThreshold); }
 
 private:
-	float GetClosestParamRec(const tVector3& pos, tComponents components, float beginT, float endT, float thresholdT) const;
+	float GetClosestParamRec(const tVector3& pos, tcomps components, float beginT, float endT, float thresholdT) const;
 	const tVector3* ControlVerts;							// Not owned by this class.
 };
 
@@ -135,7 +135,7 @@ public:
 	// Access to the raw CVs.
 	int GetNumControlVerts() const																						{ return NumControlVerts; }
 	const tVector3* GetControlVerts() const																				{ return ControlVerts; }
-	float ComputeApproxParamPerCoordinateUnit(tComponents = tComponent_All) const;
+	float ComputeApproxParamPerCoordinateUnit(tcomps = tComp_All) const;
 
 	// Sets the mode to internal and interpolates the supplied points. Internally generates any interior CVs. numPoints
 	// must be >= 2. @todo Allow the mode to be set by returning the new array of CVs if the mode is external.
@@ -164,15 +164,15 @@ public:
 	// member functions of this object.
 	struct tFastSectionState
 	{
-		tFastSectionState()																								: Components(tComponent_All), Sections(tListMode::ListOwns) { }
+		tFastSectionState()																								: Components(tComp_All), Sections(tListMode::ListOwns) { }
 		tFastSectionState(const tFastSectionState&);
 		tFastSectionState& operator=(const tFastSectionState&);
 		~tFastSectionState()																							{ }
 
-		void Clear() const																								{ Sections.Empty(); Components = tComponent_All; }
+		void Clear() const																								{ Sections.Empty(); Components = tComp_All; }
 
 		// Initializes the state. A bit slower than update.
-		void Set(const tVector3& pos, tComponents components, const tVector3* cvs, int numCVs) const;
+		void Set(const tVector3& pos, tcomps components, const tVector3* cvs, int numCVs) const;
 		void Update(const tVector3& pos, const tVector3* cvs) const;
 
 		struct tSectionInfo : public tLink<tSectionInfo>
@@ -181,12 +181,12 @@ public:
 			int StartIndex;
 		};
 
-		static tComponents CompareComponents;
+		static tcomps CompareComponents;
 		static tVector3 ComparePos;
 		static const tVector3* CompareControlVerts;
 		static bool CompareSections(const tSectionInfo& a, const tSectionInfo& b);
 
-		mutable tComponents Components;
+		mutable tcomps Components;
 		mutable tList<tSectionInfo> Sections;
 	};
 
@@ -195,14 +195,14 @@ public:
 	// want a 15cm threshold, use: paramThreshold = ComputeApproxParamPerCoordinateUnit(X | Y | Z) * 0.15f.
 	float GetClosestParam
 	(
-		const tVector3& pos, uint32 coords, float paramThreshold,
+		const tVector3& pos, tcomps coords, float paramThreshold,
 		const tFastSectionState& = tFastSectionState()
 	) const;
 
 	// Same as GetClosestParam but returns the param normalized to [0.0, 1.0].
 	float GetClosestParamNorm
 	(
-		const tVector3& pos, uint32 coords, float paramThreshold,
+		const tVector3& pos, tcomps coords, float paramThreshold,
 		const tFastSectionState& optObj = tFastSectionState()
 	) const																												{ return GetClosestParam(pos, coords, paramThreshold, optObj) / float(NumCurveSegments); }
 

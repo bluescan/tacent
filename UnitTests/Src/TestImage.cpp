@@ -458,7 +458,7 @@ tTestUnit(ImageCrop)
 	tPicture planePic("TestData/Images/plane.png");
 	int w = planePic.GetWidth();
 	int h = planePic.GetHeight();
-	planePic.Crop(tColouri::black, tMath::ColourChannel_RGB);
+	planePic.Crop(tColouri::black, tComp_RGB);
 	planePic.Crop(w, h, tPicture::Anchor::MiddleMiddle, tColouri::transparent);
 	planePic.Save("TestData/Images/WrittenPlane.png");
 }
@@ -674,7 +674,7 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 	tString basename = tSystem::tGetFileBaseName(ddsfile);
 	tString savename = basename + "_";
 	savename += (loadFlags & tImageDDS::LoadFlag_Decode)			? "D" : "x";
-	savename += (loadFlags & tImageDDS::LoadFlag_GammaCorrectHDR)	? "G" : "x";
+	savename += (loadFlags & tImageDDS::LoadFlag_GammaExpandHDR)	? "G" : "x";
 	savename += (loadFlags & tImageDDS::LoadFlag_ReverseRowOrder)	? "R" : "x";
 	savename += (loadFlags & tImageDDS::LoadFlag_SpreadLuminance)	? "S" : "x";
 	tPrintf("DDS Load %s\n", savename.Chr());
@@ -739,13 +739,12 @@ tTestUnit(ImageDDS)
 	uint32 decode = tImageDDS::LoadFlag_Decode;
 	uint32 revrow = tImageDDS::LoadFlag_ReverseRowOrder;
 	uint32 spread = tImageDDS::LoadFlag_SpreadLuminance;
-	uint32 gammac = tImageDDS::LoadFlag_GammaCorrectHDR;
-	// return;
+	uint32 gammac = tImageDDS::LoadFlag_GammaExpandHDR;
 
 	//
 	// Block Compressed Formats.
 	//
-	tPrintf("Testing DDS Loading/Decoding. Legacy = No DDX10 Header.\n\n");
+	tPrintf("Testing DDS Loading/Decoding. Legacy = No DX10 Header.\n\n");
 
 	// BC1
 	DDSLoadDecodeSave("BC1DXT1_RGB_Legacy.dds", decode | revrow);

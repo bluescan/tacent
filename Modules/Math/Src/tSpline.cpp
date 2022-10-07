@@ -10,7 +10,7 @@
 // word 'path' is used for a composite of Bezier curves or a composite of line segments, and we reserve the word spline
 // for paths composed of multiple cubic polynomial pieces.
 //
-// Copyright (c) 2006, 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -149,7 +149,7 @@ void tMath::tBezierCurve::GetTangent(tVector3& v, float t) const
 }
 
 
-float tMath::tBezierCurve::GetClosestParamRec(const tVector3& p, tComponents components, float start, float end, float threshold) const
+float tMath::tBezierCurve::GetClosestParamRec(const tVector3& p, tcomps components, float start, float end, float threshold) const
 {
 	float mid = (start + end)/2.0f;
 
@@ -186,7 +186,7 @@ float tMath::tBezierCurve::GetClosestParamRec(const tVector3& p, tComponents com
 }
 
 
-tMath::tComponents tMath::tBezierPath::tFastSectionState::CompareComponents = tMath::tComponent_All;
+tcomps tMath::tBezierPath::tFastSectionState::CompareComponents = tComp_All;
 tMath::tVector3 tMath::tBezierPath::tFastSectionState::ComparePos = tVector3::zero;
 const tMath::tVector3* tMath::tBezierPath::tFastSectionState::CompareControlVerts = nullptr;
 
@@ -230,7 +230,7 @@ void tMath::tBezierPath::Clear()
 }
 
 
-float tMath::tBezierPath::ComputeApproxParamPerCoordinateUnit(tComponents components) const
+float tMath::tBezierPath::ComputeApproxParamPerCoordinateUnit(tcomps components) const
 {
 	if (!IsValid())
 		return 0.0f;
@@ -473,7 +473,7 @@ bool tMath::tBezierPath::tFastSectionState::CompareSections(const tSectionInfo& 
 }
 
 
-void tMath::tBezierPath::tFastSectionState::Set(const tVector3& pos, tComponents components, const tVector3* cvs, int numCVs) const
+void tMath::tBezierPath::tFastSectionState::Set(const tVector3& pos, tcomps components, const tVector3* cvs, int numCVs) const
 {
 	Clear();
 	Components = components;
@@ -497,7 +497,7 @@ void tMath::tBezierPath::tFastSectionState::Update(const tVector3& pos, const tV
 }
 
 
-float tMath::tBezierPath::GetClosestParam(const tVector3& p, tComponents components, float paramThreshold, const tBezierPath::tFastSectionState& optObj) const
+float tMath::tBezierPath::GetClosestParam(const tVector3& p, tcomps components, float paramThreshold, const tBezierPath::tFastSectionState& optObj) const
 {
 	// Can we use the supplied FastSectionState if it has the correct components, number of sections, and CVs. If
 	// anything is wrong, we simply clear the optimization object for next time.

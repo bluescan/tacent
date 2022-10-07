@@ -3,7 +3,7 @@
 // A 4x4 matrix class with the expected member functions and overloads. Backs off of the tMat4 POD type and the
 // tLinearAlgebra library functions.
 //
-// Copyright (c) 2004-2006, 2015, 2017 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -56,11 +56,11 @@ struct tMatrix4 : public tMat4
 	tVector4& Col4()																									{ return *((tVector4*)&C4); }
 
 	void Zero()																											{ tZero(*this); }
-	void Zero(tComponents c)																							{ tZero(*this, c); }
+	void Zero(tcomps c)																									{ tZero(*this, c); }
 	bool IsZero() const																									{ return tIsZero((tMat4&)*this); }
-	bool IsZero(tComponents c) const																					{ return tIsZero(*this, c); }
+	bool IsZero(tcomps c) const																							{ return tIsZero(*this, c); }
 	bool ApproxEqual(const tMat4& m, float e = Epsilon) const															{ return tApproxEqual(*this, m, e); }
-	bool ApproxEqual(const tMat4& m, tComponents c, float e = Epsilon) const											{ return tApproxEqual(*this, m, c, e); }
+	bool ApproxEqual(const tMat4& m, tcomps c, float e = Epsilon) const													{ return tApproxEqual(*this, m, c, e); }
 
 	void Identity()																										{ tIdentity(*this); }
 	void Transpose()										/* Will invert a purely orthogonal matrix. */				{ tTranspose(*this); }
