@@ -509,13 +509,13 @@ inline float tMath::tLinearToSquare(float linearComponent)
 
 inline float tMath::tGammaToLinear(float gammaComponent, float gamma)
 {
-	return tMath::tPow(gammaComponent, 1.0f/gamma);
+	return tMath::tPow(gammaComponent, gamma);
 }
 
 
 inline float tMath::tLinearToGamma(float linearComponent, float gamma)
 {
-	return tMath::tPow(linearComponent, gamma);
+	return tMath::tPow(linearComponent, 1.0f/gamma);
 }
 
 

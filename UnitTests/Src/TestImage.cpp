@@ -674,7 +674,7 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 	tString basename = tSystem::tGetFileBaseName(ddsfile);
 	tString savename = basename + "_";
 	savename += (loadFlags & tImageDDS::LoadFlag_Decode)			? "D" : "x";
-	savename += (loadFlags & tImageDDS::LoadFlag_GammaExpandHDR)	? "G" : "x";
+	savename += ((loadFlags & tImageDDS::LoadFlag_GammaCompression) || (loadFlags & tImageDDS::LoadFlag_SRGBCompression)) ? "G" : "x";
 	savename += (loadFlags & tImageDDS::LoadFlag_ReverseRowOrder)	? "R" : "x";
 	savename += (loadFlags & tImageDDS::LoadFlag_SpreadLuminance)	? "S" : "x";
 	tPrintf("DDS Load %s\n", savename.Chr());
@@ -739,7 +739,8 @@ tTestUnit(ImageDDS)
 	uint32 decode = tImageDDS::LoadFlag_Decode;
 	uint32 revrow = tImageDDS::LoadFlag_ReverseRowOrder;
 	uint32 spread = tImageDDS::LoadFlag_SpreadLuminance;
-	uint32 gammac = tImageDDS::LoadFlag_GammaExpandHDR;
+	uint32 gammac = tImageDDS::LoadFlag_GammaCompression;
+	// uint32 gammac = tImageDDS::LoadFlag_SRGBCompression;
 
 	//
 	// Block Compressed Formats.

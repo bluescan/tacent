@@ -1594,9 +1594,9 @@ void tImageDDS::ProcessHDRFlags(tColour4f& colour, tcomps channels, uint32 loadF
 {
 	if (loadFlags & LoadFlag_ToneMapExposure)
 		colour.TonemapExposureSimple(loadParams.Exposure, channels);
-	if (loadFlags & LoadFlag_SRGBExpandHDR)
+	if (loadFlags & LoadFlag_SRGBCompression)
 		colour.LinearToSRGB(channels);
-	if (loadFlags & LoadFlag_GammaExpandHDR)
+	if (loadFlags & LoadFlag_GammaCompression)
 		colour.LinearToGamma(loadParams.Gamma, channels);
 }
 

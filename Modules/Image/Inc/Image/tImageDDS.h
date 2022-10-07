@@ -38,11 +38,11 @@ public:
 		LoadFlag_Decode				= 1 << 0,	// Decode the dds texture data into RGBA 32 bit layers. If not set, the layer data will remain unmodified.
 		LoadFlag_ReverseRowOrder	= 1 << 1,	// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.
 
-		// Gamma-correct. Gamma expansion using a decoding gamma of 2.2. Flag only applies when decoding HDR / floating-
-		// point formats (BC6, rgb16f/32f, etc) images during decode.  Assumes (colour) data is linear and puts it in
+		// Gamma-correct. Gamma compression using a encoding gamma of 1/2.2. Flag only applies when decode flag set for
+		// HDR / floating-point formats (BC6, rgb16f/32f, etc) images. Assumes (colour) data is linear and puts it in
 		// gamma-space (brighter) for diaplay on a monitor.
-		LoadFlag_GammaExpandHDR		= 1 << 2,
-		LoadFlag_SRGBExpandHDR		= 1 << 3,	// Same as above but uses the official sRGB transformation. Linear -> sRGB.
+		LoadFlag_GammaCompression	= 1 << 2,
+		LoadFlag_SRGBCompression	= 1 << 3,	// Same as above but uses the official sRGB transformation. Linear -> sRGB. Approx encoding gamma of 1/2.4 for part of curve.
 		LoadFlag_ToneMapExposure	= 1 << 4,	// Apply exposure value when loading the dds. Only affects HDR (linear-colour) formats.
 		LoadFlag_SpreadLuminance	= 1 << 5,	// For DDS files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats. Applies only if decoding a dds is an R-only or L-only format.
 		LoadFlag_CondMultFourDim	= 1 << 6,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,
