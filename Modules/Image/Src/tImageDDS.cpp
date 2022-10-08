@@ -40,7 +40,7 @@ tImageDDS::tImageDDS() :
 }
 
 
-tImageDDS::tImageDDS(const tString& ddsFile, uint32 loadFlags, const LoadParams& loadParams) :
+tImageDDS::tImageDDS(const tString& ddsFile, const LoadParams& loadParams) :
 	Filename(ddsFile),
 	Results(1 << int(ResultCode::Success)),
 	PixelFormat(tPixelFormat::Invalid),
@@ -51,11 +51,11 @@ tImageDDS::tImageDDS(const tString& ddsFile, uint32 loadFlags, const LoadParams&
 	NumMipmapLayers(0)
 {
 	tStd::tMemset(MipmapLayers, 0, sizeof(MipmapLayers));
-	Load(ddsFile, loadFlags, loadParams);
+	Load(ddsFile, loadParams);
 }
 
 
-tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, uint32 loadFlags, const LoadParams& loadParams) :
+tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, const LoadParams& loadParams) :
 	Filename(),
 	Results(1 << int(ResultCode::Success)),
 	PixelFormat(tPixelFormat::Invalid),
@@ -66,7 +66,7 @@ tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, uint32 loadFlag
 	NumMipmapLayers(0)
 {
 	tStd::tMemset(MipmapLayers, 0, sizeof(MipmapLayers));
-	Load(ddsFileInMemory, numBytes, loadFlags, loadParams);
+	Load(ddsFileInMemory, numBytes, loadParams);
 }
 
 
@@ -668,7 +668,7 @@ struct tDXT5Block
 #pragma pack(pop)
 
 
-bool tImageDDS::Load(const tString& ddsFile, uint32 loadFlags, const LoadParams& loadParams)
+bool tImageDDS::Load(const tString& ddsFile, const LoadParams& loadParams)
 {
 	Clear();
 	Filename = ddsFile;
@@ -686,14 +686,14 @@ bool tImageDDS::Load(const tString& ddsFile, uint32 loadFlags, const LoadParams&
 
 	int ddsSizeBytes = 0;
 	uint8* ddsData = (uint8*)tSystem::tLoadFile(ddsFile, 0, &ddsSizeBytes);
-	bool success = Load(ddsData, ddsSizeBytes, loadFlags, loadParams);
+	bool success = Load(ddsData, ddsSizeBytes, loadParams);
 	delete[] ddsData;
 
 	return success;
 }
 
 
-bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags, const LoadParams& loadParams)
+bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& params)
 {
 	Clear();
 
@@ -1072,13 +1072,13 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags, c
 
 	if (tIsBlockCompressedFormat(PixelFormat))
 	{
-		if ((loadFlags & LoadFlag_CondMultFourDim) && ((mainWidth%4) || (mainHeight%4)))
+		if ((params.Flags & LoadFlag_CondMultFourDim) && ((mainWidth%4) || (mainHeight%4)))
 			Results |= 1 << int(ResultCode::Conditional_DimNotMultFourBC);
-		if ((loadFlags & LoadFlag_CondPowerTwoDim) && (!tMath::tIsPower2(mainWidth) || !tMath::tIsPower2(mainHeight)))
+		if ((params.Flags & LoadFlag_CondPowerTwoDim) && (!tMath::tIsPower2(mainWidth) || !tMath::tIsPower2(mainHeight)))
 			Results |= 1 << int(ResultCode::Conditional_DimNotMultFourBC);
 	}
 
-	bool reverseRowOrderRequested = loadFlags & LoadFlag_ReverseRowOrder;
+	bool reverseRowOrderRequested = params.Flags & LoadFlag_ReverseRowOrder;
 	RowReversalOperationPerformed = false;
 
 	for (int image = 0; image < NumImages; image++)
@@ -1180,9 +1180,9 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags, c
 	// Decode to 32-bit RGBA if requested. If we're already in the correct R8G8B8A8 format, no need to do anything.
 	// Note, gamma-correct load flag only applies when decoding HDR/floating-point formats, so never any need to do
 	// it on R8G8B8A8. Likewise for spread-flag, never applies to R8G8B8A8 (only R-only or L-only formats)..
-	if ((loadFlags & LoadFlag_Decode) && (PixelFormat != tPixelFormat::R8G8B8A8))
+	if ((params.Flags & LoadFlag_Decode) && (PixelFormat != tPixelFormat::R8G8B8A8))
 	{
-		bool spread = loadFlags & LoadFlag_SpreadLuminance;
+		bool spread = params.Flags & LoadFlag_SpreadLuminance;
 		bool didRowReversalAfterDecode = false;
 		for (int image = 0; image < NumImages; image++)
 		{
@@ -1309,7 +1309,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags, c
 							{
 								float r = hdata[ij*1 + 0];
 								tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
-								ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, loadFlags, loadParams);
+								ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
 								uncompData[ij].Set(col);
 							}
 							break;
@@ -1324,7 +1324,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags, c
 								float r = hdata[ij*2 + 0];
 								float g = hdata[ij*2 + 1];
 								tColour4f col(r, g, 0.0f, 1.0f);
-								ProcessHDRFlags(col, tComp_RG, loadFlags, loadParams);
+								ProcessHDRFlags(col, tComp_RG, params);
 								uncompData[ij].Set(col);
 							}
 							break;
@@ -1341,7 +1341,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags, c
 								float b = hdata[ij*4 + 2];
 								float a = hdata[ij*4 + 3];
 								tColour4f col(r, g, b, a);
-								ProcessHDRFlags(col, tComp_RGB, loadFlags, loadParams);
+								ProcessHDRFlags(col, tComp_RGB, params);
 								uncompData[ij].Set(col);
 							}
 							break;
@@ -1355,7 +1355,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags, c
 							{
 								float r = fdata[ij*1 + 0];
 								tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
-								ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, loadFlags, loadParams);
+								ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
 								uncompData[ij].Set(col);
 							}
 							break;
@@ -1370,7 +1370,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags, c
 								float r = fdata[ij*2 + 0];
 								float g = fdata[ij*2 + 1];
 								tColour4f col(r, g, 0.0f, 1.0f);
-								ProcessHDRFlags(col, tComp_RG, loadFlags, loadParams);
+								ProcessHDRFlags(col, tComp_RG, params);
 								uncompData[ij].Set(col);
 							}
 							break;
@@ -1387,7 +1387,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags, c
 								float b = fdata[ij*4 + 2];
 								float a = fdata[ij*4 + 3];
 								tColour4f col(r, g, b, a);
-								ProcessHDRFlags(col, tComp_RGB, loadFlags, loadParams);
+								ProcessHDRFlags(col, tComp_RGB, params);
 								uncompData[ij].Set(col);
 							}
 							break;
@@ -1526,7 +1526,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags, c
 							for (int ij = 0; ij < w*h; ij++)
 							{
 								tColour4f col(rgbData[ij], 1.0f);
-								ProcessHDRFlags(col, tComp_RGB, loadFlags, loadParams);
+								ProcessHDRFlags(col, tComp_RGB, params);
 								uncompData[ij].Set(col);
 							}
 							delete[] rgbData;
@@ -1590,14 +1590,14 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags, c
 }
 
 
-void tImageDDS::ProcessHDRFlags(tColour4f& colour, tcomps channels, uint32 loadFlags, const LoadParams& loadParams)
+void tImageDDS::ProcessHDRFlags(tColour4f& colour, tcomps channels, const LoadParams& params)
 {
-	if (loadFlags & LoadFlag_ToneMapExposure)
-		colour.TonemapExposure(loadParams.Exposure, channels);
-	if (loadFlags & LoadFlag_SRGBCompression)
+	if (params.Flags & LoadFlag_ToneMapExposure)
+		colour.TonemapExposure(params.Exposure, channels);
+	if (params.Flags & LoadFlag_SRGBCompression)
 		colour.LinearToSRGB(channels);
-	if (loadFlags & LoadFlag_GammaCompression)
-		colour.LinearToGamma(loadParams.Gamma, channels);
+	if (params.Flags & LoadFlag_GammaCompression)
+		colour.LinearToGamma(params.Gamma, channels);
 }
 
 

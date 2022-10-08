@@ -68,17 +68,18 @@ public:
 	struct LoadParams
 	{
 		LoadParams()		{ }						// MSVC does not require this. GCC/Clang do.
+		uint32 Flags		= LoadFlags_Default;
 		float Gamma			= tMath::DefaultGamma;
 		float Exposure		= 1.0f;
 	};
 
 	// Creates an invalid tImageDDS. You must call Load manually.
 	tImageDDS();
-	tImageDDS(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default, const LoadParams& = LoadParams());
+	tImageDDS(const tString& ddsFile, const LoadParams& = LoadParams());
 
 	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is read from
 	// and the caller may delete it immediately after if desired.
-	tImageDDS(const uint8* ddsMem, int numBytes, uint32 flags = LoadFlags_Default, const LoadParams& = LoadParams());
+	tImageDDS(const uint8* ddsMem, int numBytes, const LoadParams& = LoadParams());
 	virtual ~tImageDDS()																								{ Clear(); }
 
 	enum class ResultCode
@@ -122,8 +123,8 @@ public:
 	// Clears the current tImageDDS before loading. If the dds file failed to load for any reason it will result in an
 	// invalid object. A dds may fail to load for a number of reasons: Volume textures are not supported, some
 	// pixel-formats may not yet be supported, or inconsistent flags. Returns true on success or conditional-success.
-	bool Load(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default, const LoadParams& = LoadParams());
-	bool Load(const uint8* ddsMem, int numBytes, uint32 flags = LoadFlags_Default, const LoadParams& = LoadParams());
+	bool Load(const tString& ddsFile, const LoadParams& = LoadParams());
+	bool Load(const uint8* ddsMem, int numBytes, const LoadParams& = LoadParams());
 
 	// After a load you can call GetResults() to find out what, if anything, went wrong.
 	uint32 GetResults() const																							{ return Results; }
@@ -243,7 +244,7 @@ private:
 	const static int MaxImages = 6;
 	tLayer* MipmapLayers[MaxMipmapLayers][MaxImages];
 
-	void ProcessHDRFlags(tColour4f& colour, tcomps channels, uint32 flags, const LoadParams& params);
+	void ProcessHDRFlags(tColour4f& colour, tcomps channels, const LoadParams& params);
 
 public:
 	static const char* ResultDescriptions[];

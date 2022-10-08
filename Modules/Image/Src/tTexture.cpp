@@ -51,8 +51,9 @@ bool tTexture::Load(const tString& ddsFile, tImageDDS::tSurfIndex surface, bool 
 	Clear();
 	if ((tSystem::tGetFileType(ddsFile) != tSystem::tFileType::DDS) || !tSystem::tFileExists(ddsFile))
 		return false;
-
-	tImageDDS dds(ddsFile, tImageDDS::LoadFlag_ReverseRowOrder);
+	tImageDDS::LoadParams params;
+	params.Flags = tImageDDS::LoadFlag_ReverseRowOrder;
+	tImageDDS dds(ddsFile, params);
 	if (!dds.IsValid())
 		return false;
 

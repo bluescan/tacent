@@ -388,9 +388,7 @@ bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 		{
 			tImageDDS dds;
 			tImageDDS::LoadParams loadParams;
-			uint32 loadFlags = tImageDDS::LoadFlags_Default;
-
-			bool ok = dds.Load(imageFile, loadFlags, loadParams);
+			bool ok = dds.Load(imageFile, loadParams);
 			if (!ok || !dds.IsValid() || dds.IsCubemap())
 				return false;
 

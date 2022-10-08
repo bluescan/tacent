@@ -680,7 +680,9 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 	tPrintf("DDS Load %s\n", savename.Chr());
 	tString formatname = basename.Left('_');
 
-	tImageDDS dds(ddsfile, loadFlags);
+	tImageDDS::LoadParams params;
+	params.Flags = loadFlags;
+	tImageDDS dds(ddsfile, params);
 	tRequire(dds.IsValid());
 	tPixelFormat fileformat = tGetPixelFormat(formatname.Chr());
 	tPixelFormat ddsformat = dds.GetPixelFormat();
