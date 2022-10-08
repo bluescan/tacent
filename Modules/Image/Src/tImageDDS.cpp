@@ -1593,7 +1593,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, uint32 loadFlags, c
 void tImageDDS::ProcessHDRFlags(tColour4f& colour, tcomps channels, uint32 loadFlags, const LoadParams& loadParams)
 {
 	if (loadFlags & LoadFlag_ToneMapExposure)
-		colour.TonemapExposureSimple(loadParams.Exposure, channels);
+		colour.TonemapExposure(loadParams.Exposure, channels);
 	if (loadFlags & LoadFlag_SRGBCompression)
 		colour.LinearToSRGB(channels);
 	if (loadFlags & LoadFlag_GammaCompression)

@@ -97,14 +97,42 @@ namespace tMath
 
 	// Some colour-space component conversion functions. Gamma-space is probably more ubiquitous than the more accurate
 	// sRGB space. Unless speed is an issue, probably best to stay away from the Square functions (gamma = 2.0).
+
+
+	// Colours in textures in files may be in 'Gamma-space' and ought to be converted to linear space before lighting
+	// calculations are made. They should then be converted back to Gamma space before being displayed. SquareToLinear
+	// and LinearToSquare are identical to GammaToLinear and LinearToGamme with a gamma value of 2.0. They're a bit
+	// faster because they don't use the tPow function, only square and square-root.
+	//
+	// SquareToLinear will darken  the image. Gamma = 2.0 (decoding). Gamma expansion.
+	// LinearToSquare Will lighten the image. Gamma = 0.5 (encoding). Gamma compression.
 	float tSquareToLinear (float squareComponent);
 	float tLinearToSquare (float linearComponent);
+
+	// These two are more general versions of the above two functions and use the power function instead of squaring or
+	// square-rooting. They support an arbitrary gamma value (default to 2.2). For LinearToGamma you are actually
+	// supplying the inverse of the gamma when you supply the ~2.2 gamma. It takes the invGamma and inverts it to get
+	// the actual gamma to use.
+	//
+	// GammaToLinear will darken  the image. Gamma = 2.2   (default/decoding). Gamma expansion.
+	// LinearToGamma Will lighten the image. Gamma = 1/2,2 (default/encoding). Gamma compression.
 	float tGammaToLinear  (float gammaComponent, float gamma = DefaultGamma);
 	float tLinearToGamma  (float linearComponent, float gamma = DefaultGamma);
+
+	// The slowest conversion but for high fidelity, the sRGB space is likely what the image was authored in. sRGB
+	// conversions do not use the pow function for the whole domain, and the amplitude is not quite 1, but generally
+	// speaking they us a gamma of 2.4 and 1/2.4 respectively.
+	//
+	// SRGBToLinear will darken  the image. Gamma = ~2.4   (decoding). Gamma expansion.
+	// LinearToSRGB Will lighten the image. Gamma = ~1/2.4 (encoding). Gamma compression.
 	float tSRGBToLinear   (float srgbComponent);
 	float tLinearToSRGB   (float linearComponent);
 
-	float tTonemapExposureSimple(float linearComponent, float exposure = 1.0f);
+	// See https://learnopengl.com/Advanced-Lighting/HDR for this simple exposure map.
+	float tTonemapExposure(float linearComponent, float exposure = 1.0f);
+
+	// Reinhard tone mapping. Evenly distributes brightness.
+	float tTonemapReinhard(float linearComponent);
 }
 
 
@@ -321,24 +349,40 @@ public:
 	bool IsGreen() const																								{ return ((R == 0.0f) && (G == 1.0f) && (B == 0.0f)) ? true : false; }
 	bool IsBlue() const																									{ return ((R == 0.0f) && (G == 0.0f) && (B == 1.0f)) ? true : false; }
 
-	// Colours in textures in files may be in Gamma space and ought to be converted to linear space before lighting
+	// Colours in textures in files may be in 'Gamma-space' and ought to be converted to linear space before lighting
 	// calculations are made. They should then be converted back to Gamma space before being displayed. SquareToLinear
 	// and LinearToSquare are identical to GammaToLinear and LinearToGamme with a gamma value of 2.0. They're a bit
 	// faster because they don't use the tPow function, only square and square-root.
-	void SquareToLinear(tcomps = tComp_RGB);									// Will darken the image.
-	void LinearToSquare(tcomps = tComp_RGB);									// Will brighten the image.
+	//
+	// SquareToLinear will darken  the image. Gamma = 2.0 (decoding). Gamma expansion.
+	// LinearToSquare Will lighten the image. Gamma = 0.5 (encoding). Gamma compression.
+	void SquareToLinear(tcomps = tComp_RGB);
+	void LinearToSquare(tcomps = tComp_RGB);
 
-	// These two are more general versions of the above two functions and use a slower power function instead of
-	// squaring or square-rooting. They support an arbitrary gamma value (default to 2.2).
-	void GammaToLinear(float gamma = tMath::DefaultGamma, tcomps = tComp_RGB);	// Will darken the image.
-	void LinearToGamma(float gamma = tMath::DefaultGamma, tcomps = tComp_RGB);	// Will brighten the image.
+	// These two are more general versions of the above two functions and use the power function instead of squaring or
+	// square-rooting. They support an arbitrary gamma value (default to 2.2). For LinearToGamma you are actually
+	// supplying the inverse of the gamma when you supply the ~2.2 gamma. It takes the invGamma and inverts it to get
+	// the actual gamma to use.
+	//
+	// GammaToLinear will darken  the image. Gamma = 2.2   (default/decoding). Gamma expansion.
+	// LinearToGamma Will lighten the image. Gamma = 1/2,2 (default/encoding). Gamma compression.
+	void GammaToLinear(float gamma    = tMath::DefaultGamma, tcomps = tComp_RGB);
+	void LinearToGamma(float invGamma = tMath::DefaultGamma, tcomps = tComp_RGB);
 
-	// The slowest conversion but for high fidelity, the sRGB space is likely what the image was authored in.
-	void SRGBToLinear(tcomps = tComp_RGB);										// Will darken the image.
-	void LinearToSRGB(tcomps = tComp_RGB);										// Will brighten the image.
+	// The slowest conversion but for high fidelity, the sRGB space is likely what the image was authored in. sRGB
+	// conversions do not use the pow function for the whole domain, and the amplitude is not quite 1, but generally
+	// speaking they us a gamma of 2.4 and 1/2.4 respectively.
+	//
+	// SRGBToLinear will darken  the image. Gamma = ~2.4   (decoding). Gamma expansion.
+	// LinearToSRGB Will lighten the image. Gamma = ~1/2.4 (encoding). Gamma compression.
+	void SRGBToLinear(tcomps = tComp_RGB);
+	void LinearToSRGB(tcomps = tComp_RGB);
 
 	// Simple exposure tonemapping.
-	void TonemapExposureSimple(float exposure, tcomps = tComp_RGB);
+	void TonemapExposure(float exposure, tcomps = tComp_RGB);
+
+	// Evently distributes brightness.
+	void TonemapReinhard(tcomps = tComp_RGB);
 
 	// When using the HSV representation of a tColourf, the hue is in NormOne angle mode. See the tRGBToHSV and
 	// tHSVToRGB functions if you wish to use different angle units. All the components (h, s, v, r, g, b, a) are in
@@ -543,9 +587,15 @@ inline float tMath::tLinearToSRGB(float linearComponent)
 }
 
 
-inline float tMath::tTonemapExposureSimple(float linearComponent, float exposure)
+inline float tMath::tTonemapExposure(float linearComponent, float exposure)
 {
 	return 1.0f - tMath::tExp(-linearComponent * exposure);
+}
+
+
+inline float tMath::tTonemapReinhard(float linearComponent)
+{
+	return linearComponent / (linearComponent + 1.0f);
 }
 
 
@@ -671,12 +721,21 @@ inline void tColour4f::LinearToSRGB(tcomps chans)
 }
 
 
-inline void tColour4f::TonemapExposureSimple(float exposure, tcomps chans)
+inline void tColour4f::TonemapExposure(float exposure, tcomps chans)
 {
-	if (chans & tComp_R) R = tMath::tTonemapExposureSimple(R, exposure);
-	if (chans & tComp_G) G = tMath::tTonemapExposureSimple(G, exposure);
-	if (chans & tComp_B) B = tMath::tTonemapExposureSimple(B, exposure);
-	if (chans & tComp_A) A = tMath::tTonemapExposureSimple(A, exposure);
+	if (chans & tComp_R) R = tMath::tTonemapExposure(R, exposure);
+	if (chans & tComp_G) G = tMath::tTonemapExposure(G, exposure);
+	if (chans & tComp_B) B = tMath::tTonemapExposure(B, exposure);
+	if (chans & tComp_A) A = tMath::tTonemapExposure(A, exposure);
+}
+
+
+inline void tColour4f::TonemapReinhard(tcomps chans)
+{
+	if (chans & tComp_R) R = tMath::tTonemapReinhard(R);
+	if (chans & tComp_G) G = tMath::tTonemapReinhard(G);
+	if (chans & tComp_B) B = tMath::tTonemapReinhard(B);
+	if (chans & tComp_A) A = tMath::tTonemapReinhard(A);
 }
 
 
