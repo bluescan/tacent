@@ -38,6 +38,7 @@
 using namespace tSystem;
 using namespace IMF;
 using namespace IMATH;
+using namespace tImage;
 
 
 namespace EXR
@@ -146,11 +147,7 @@ float EXR::Gamma::operator()(half h)
 }
 
 
-bool tImage::tImageEXR::Load
-(
-	const tString& exrFile, float gamma, float exposure,
-	float defog, float kneeLow, float kneeHigh
-)
+bool tImageEXR::Load(const tString& exrFile, const LoadParams& loadParams)
 {
 	Clear();
 	if (tSystem::tGetFileType(exrFile) != tSystem::tFileType::EXR)
@@ -158,6 +155,12 @@ bool tImage::tImageEXR::Load
 
 	if (!tFileExists(exrFile))
 		return false;
+
+	float defog			= loadParams.Defog;
+	float exposure		= loadParams.Exposure;
+	float kneeLow		= loadParams.KneeLow;
+	float kneeHigh		= loadParams.KneeHigh;
+	float gamma			= loadParams.Gamma;
 
 	// Leave two cores free unless we are on a three core or lower machine, in which case we always use a min of 2 threads.
 	int numThreads = tMath::tClampMin((tSystem::tGetNumCores()) - 2, 2);

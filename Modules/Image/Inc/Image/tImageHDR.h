@@ -4,7 +4,7 @@
 // file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if
 // an HDR file is specified. After the array is stolen the tImageHDR is invalid. This is purely for performance.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -48,14 +48,19 @@ namespace tImage
 class tImageHDR
 {
 public:
-	inline const static int DefaultExposure				= 0;
+	struct LoadParams
+	{
+		LoadParams()		{ }						// MSVC does not require this. GCC/Clang do.
+		float Gamma			= tMath::DefaultGamma;
+		int Exposure		= 0;
+	};
 
 	// Creates an invalid tImageHDR. You must call Load manually.
 	tImageHDR()																											{ }
-	tImageHDR(const tString& hdrFile, float gamma = tMath::DefaultGamma, int exp = DefaultExposure)						{ Load(hdrFile, gamma, exp); }
+	tImageHDR(const tString& hdrFile, const LoadParams& loadParams = LoadParams())										{ Load(hdrFile, loadParams); }
 
 	// hdrFileInMemory can be deleted after this runs.
-	tImageHDR(uint8* hdrFileInMemory, int numBytes, float gamma = tMath::DefaultGamma, int exp = DefaultExposure)		{ Set(hdrFileInMemory, numBytes, gamma, exp); }
+	tImageHDR(uint8* hdrFileInMemory, int numBytes, const LoadParams& loadParams = LoadParams())						{ Set(hdrFileInMemory, numBytes, loadParams); }
 
 	// This one sets from a supplied pixel array. It just reads the data (or steals the array if steal set).
 	tImageHDR(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
@@ -63,8 +68,8 @@ public:
 	virtual ~tImageHDR()																								{ Clear(); }
 
 	// Clears the current tImageHDR before loading. If false returned object is invalid.
-	bool Load(const tString& hdrFile, float = tMath::DefaultGamma, int = DefaultExposure);
-	bool Set(uint8* hdrFileInMemory, int numBytes, float = tMath::DefaultGamma, int = DefaultExposure);
+	bool Load(const tString& hdrFile, const LoadParams& = LoadParams());
+	bool Set(uint8* hdrFileInMemory, int numBytes, const LoadParams& = LoadParams());
 
 	// This one sets from a supplied pixel array.
 	bool Set(tPixel* pixels, int width, int height, bool steal = false);

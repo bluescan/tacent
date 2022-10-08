@@ -4,7 +4,7 @@
 // file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if
 // an EXR file is specified. After the array is stolen the tImageEXR is invalid. This is purely for performance.
 //
-// Copyright (c) 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2020-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -26,38 +26,26 @@ namespace tImage
 class tImageEXR
 {
 public:
-	// Gamma range [0.6, 3.0]
-	inline const static float DefaultExposure		= 1.0f;		// [ -10.0, 10.0 ]
-	inline const static float DefaultDefog			= 0.0f;		// [   0.0, 0.1 ] Try to keep below 0.01.
-	inline const static float DefaultKneeLow		= 0.0f;		// [  -3.0, 3.0  ]
-	inline const static float DefaultKneeHigh		= 3.5f;		// [   3.5, 7.5  ]
+	struct LoadParams
+	{
+		LoadParams()		{ }						// MSVC does not require this. GCC/Clang do.
+		float Gamma			= tMath::DefaultGamma;	// [   0.6, 3.0  ]
+		float Exposure		= 1.0f;					// [ -10.0, 10.0 ]
+		float Defog			= 0.0f;					// [   0.0, 0.1  ] Try to keep below 0.01.
+		float KneeLow		= 0.0f;					// [  -3.0, 3.0  ]
+		float KneeHigh		= 3.5f;					// [   3.5, 7.5  ]
+	};
 
 	// Creates an invalid tImageEXR. You must call Load manually.
 	tImageEXR()																											{ }
-	tImageEXR
-	(
-		const tString& exrFile,
-		float gamma				= tMath::DefaultGamma,
-		float exposure			= DefaultExposure,
-		float defog				= DefaultDefog,
-		float kneeLow			= DefaultKneeLow,
-		float kneeHigh			= DefaultKneeHigh
-	)																													{ Load(exrFile, gamma, exposure, defog, kneeLow, kneeHigh); }
+	tImageEXR(const tString& exrFile, const LoadParams& loadParams = LoadParams())										{ Load(exrFile, loadParams); }
 
-	// Creates a tImageAPNG from a bunch of frames. If steal is true, the srcFrames will be empty after.
+	// Creates a tImageEXR from a bunch of frames. If steal is true, the srcFrames will be empty after.
 	tImageEXR(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
 	virtual ~tImageEXR()																								{ Clear(); }
 
 	// Clears the current tImageEXR before loading. If false returned object is invalid.
-	bool Load
-	(
-		const tString& exrFile,
-		float gamma				= tMath::DefaultGamma,
-		float exposure			= DefaultExposure,
-		float defog				= DefaultDefog,
-		float kneeLow			= DefaultKneeLow,
-		float kneeHigh			= DefaultKneeHigh
-	);
+	bool Load(const tString& exrFile, const LoadParams& = LoadParams());
 
 	// This one sets from a supplied pixel array.
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
@@ -71,7 +59,7 @@ public:
 	bool IsOpaque() const;
 
 	// After this call you are the owner of the frame and must eventually delete it. The frame you stole will no
-	// longer be a valid frame of the tImageAPNG, but the remaining ones will still be valid.
+	// longer be a valid frame of the tImageEXR, but the remaining ones will still be valid.
 	tFrame* StealFrame(int frameNum);
 	tFrame* GetFrame(int frameNum);
 	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;

@@ -67,6 +67,8 @@ public:
 	// This just checks the pixel format to see if it supports alpha. It does NOT check the data.
 	bool IsOpaqueFormat() const																							{ return tImage::tIsOpaqueFormat(PixelFormat); }
 
+	uint8* StealData()																									{ if (!OwnsData) return nullptr; OwnsData = false; return Data; }
+
 	// An invalid layer is never considered equal to another layer even if the other layer is also invalid. Whether the
 	// layer owns the data is considered irrelevant for equivalency purposes.
 	bool operator==(const tLayer&) const;

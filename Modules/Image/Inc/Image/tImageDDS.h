@@ -30,9 +30,6 @@ struct tDXT1Block;
 class tImageDDS
 {
 public:
-	// Creates an invalid tImageDDS. You must call Load manually.
-	tImageDDS();
-
 	enum LoadFlag
 	{
 		LoadFlag_Decode				= 1 << 0,	// Decode the dds texture data into RGBA 32 bit layers. If not set, the layer data will remain unmodified.
@@ -47,8 +44,10 @@ public:
 		LoadFlag_SpreadLuminance	= 1 << 5,	// For DDS files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats. Applies only if decoding a dds is an R-only or L-only format.
 		LoadFlag_CondMultFourDim	= 1 << 6,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,
 		LoadFlag_CondPowerTwoDim	= 1 << 7,	// Produce conditional success if image dimension not a power of 2. Only checks BC formats.
-		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance
+		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance | LoadFlag_GammaCompression
 	};
+
+
 	// If an error is encountered loading the resultant object will return false for IsValid. You can call GetLastResult
 	// to get more detailed information. There are some results that are not full-success that leave the object valid.
 	// When decoding _and_ reversing row order, most BC 4x4 blocks can be massaged without decompression to fix the row
@@ -68,11 +67,13 @@ public:
 	// Exposure >= 0 (black) and only used if ToneMapExposure flag set.
 	struct LoadParams
 	{
-		LoadParams() : Gamma(tMath::DefaultGamma), Exposure(-1.0f) { }
-		float Gamma;
-		float Exposure;
+		LoadParams()		{ }						// MSVC does not require this. GCC/Clang do.
+		float Gamma			= tMath::DefaultGamma;
+		float Exposure		= 1.0f;
 	};
 
+	// Creates an invalid tImageDDS. You must call Load manually.
+	tImageDDS();
 	tImageDDS(const tString& ddsFile, uint32 loadFlags = LoadFlags_Default, const LoadParams& = LoadParams());
 
 	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is read from

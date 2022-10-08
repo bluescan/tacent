@@ -360,15 +360,14 @@ bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 		case tFileType::EXR:
 		{
 			tImageEXR exr;
-			bool ok = exr.Load
-			(
-				imageFile,
-				params.GammaValue,
-				params.EXR_Exposure,
-				params.EXR_Defog,
-				params.EXR_KneeLow,
-				params.EXR_KneeHigh
-			);
+			tImageEXR::LoadParams loadParams;
+			loadParams.Gamma		= params.GammaValue;
+			loadParams.Exposure		= params.EXR_Exposure;
+			loadParams.Defog		= params.EXR_Defog;
+			loadParams.KneeLow		= params.EXR_KneeLow;
+			loadParams.KneeHigh		= params.EXR_KneeHigh;
+
+			bool ok = exr.Load(imageFile, loadParams);
 			if (!ok || !exr.IsValid())
 				return false;
 
@@ -382,6 +381,34 @@ bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 		
 			Pixels = stolenFrame->StealPixels();
 			delete stolenFrame;
+			return true;
+		}
+
+		case tFileType::DDS:
+		{
+			tImageDDS dds;
+			tImageDDS::LoadParams loadParams;
+			uint32 loadFlags = tImageDDS::LoadFlags_Default;
+
+			bool ok = dds.Load(imageFile, loadFlags, loadParams);
+			if (!ok || !dds.IsValid() || dds.IsCubemap())
+				return false;
+
+			if (frameNum >= dds.GetNumMipmapLevels())
+				return false;
+
+			tLayer* layer = dds.GetLayer(frameNum, 0);
+			if (!layer || (layer->PixelFormat != tPixelFormat::R8G8B8A8))
+				return false;
+
+			uint8* pixels = layer->StealData();
+			if (!pixels)
+				return false;
+			
+			Width = layer->Width;
+			Height = layer->Height;
+			SrcPixelFormat = dds.GetPixelFormatOrig();
+			Pixels = (tPixel*)pixels;
 			return true;
 		}
 
@@ -412,12 +439,11 @@ bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 			if (frameNum != 0)
 				return false;
 			tImageHDR hdr;
-			hdr.Load
-			(
-				imageFile,
-				params.GammaValue,
-				params.HDR_Exposure
-			);
+			tImageHDR::LoadParams loadParams;
+			loadParams.Gamma		= params.GammaValue;
+			loadParams.Exposure		= params.HDR_Exposure;
+
+			hdr.Load(imageFile, loadParams);
 			if (!hdr.IsValid())
 				return false;
 			Width = hdr.GetWidth();

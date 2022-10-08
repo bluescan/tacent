@@ -4,7 +4,7 @@
 // file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if
 // an HDR file is specified. After the array is stolen the tImageHDR is invalid. This is purely for performance.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -92,7 +92,7 @@ void tImageHDR::CleanupGammaTables()
 }
 
 
-bool tImageHDR::Load(const tString& hdrFile, float gamma, int exposure)
+bool tImageHDR::Load(const tString& hdrFile, const LoadParams& loadParams)
 {
 	Clear();
 
@@ -104,7 +104,7 @@ bool tImageHDR::Load(const tString& hdrFile, float gamma, int exposure)
 
 	int numBytes = 0;
 	uint8* hdrFileInMemory = tLoadFile(hdrFile, nullptr, &numBytes, true);
-	bool success = Set(hdrFileInMemory, numBytes, gamma, exposure);
+	bool success = Set(hdrFileInMemory, numBytes, loadParams);
 	delete[] hdrFileInMemory;
 
 	return success;
@@ -284,12 +284,14 @@ void tImageHDR::AdjustExposure(tPixel* scan, int len, int adjust)
 }
 
 
-bool tImageHDR::Set(uint8* hdrFileInMemory, int numBytes, float gammaCorr, int exposureAdj)
+bool tImageHDR::Set(uint8* hdrFileInMemory, int numBytes, const LoadParams& loadParams)
 {
 	Clear();
 	if ((numBytes <= 0) || !hdrFileInMemory)
 		return false;
 
+	float gammaCorr = loadParams.Gamma;
+	int exposureAdj = loadParams.Exposure;
 	SetupGammaTables(gammaCorr);
 
 	// Search for the first double 0x0A (linefeed).

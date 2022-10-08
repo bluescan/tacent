@@ -85,18 +85,35 @@ public:
 
 	struct LoadParams
 	{
-		LoadParams() { }
-		float	GammaValue				= 2.2f;//::tMath::DefaultGamma;
-		int		HDR_Exposure			= tImageHDR::DefaultExposure;
-		float	EXR_Exposure			= tImageEXR::DefaultExposure;
-		float	EXR_Defog				= tImageEXR::DefaultDefog;
-		float	EXR_KneeLow				= tImageEXR::DefaultKneeLow;
-		float	EXR_KneeHigh			= tImageEXR::DefaultKneeHigh;
+		// @todo Revisit this. Currently we're extracting the defaults for _all_ the different filetypes by constructing
+		// a temporary LoadParams object. Whole thing feels awkward. Re-evaluate how tPicture will be used.
+		LoadParams()
+		{
+			GammaValue			= tMath::DefaultGamma;
+
+			tImageHDR::LoadParams hdrParams;
+			HDR_Exposure		= hdrParams.Exposure;
+
+			tImageEXR::LoadParams exrParams;
+			EXR_Exposure		= exrParams.Exposure;
+			EXR_Defog			= exrParams.Defog;
+			EXR_KneeLow			= exrParams.KneeLow;
+			EXR_KneeHigh		= exrParams.KneeHigh;
+		}
+		float	GammaValue;
+		int		HDR_Exposure;
+		float	EXR_Exposure;
+		float	EXR_Defog;
+		float	EXR_KneeLow;
+		float	EXR_KneeHigh;
+
+		uint32	DDS_Flags;
+		
 	};
 
 	// Loads the supplied image file. If the image couldn't be loaded, IsValid will return false afterwards. Uses the
-	// filename extension to determine what file type it is loading. dds files may _not_ be loaded into a tPicture.
-	// Use a tTexture if you want to load a dds. For images with more than one frame (animated gif, tiff, etc) the
+	// filename extension to determine what file type it is loading. For images with more than one frame (animated gif,
+	// tiff, etc) the
 	// frameNum specifies which one to load and will result in an invalid tPicture if you go too high.
 	tPicture(const tString& imageFile, int frameNum = 0, LoadParams params = LoadParams())								{ Load(imageFile, frameNum, params); }
 
