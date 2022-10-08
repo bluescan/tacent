@@ -28,12 +28,13 @@ class tImageEXR
 public:
 	struct LoadParams
 	{
-		LoadParams()		{ }						// MSVC does not require this. GCC/Clang do.
-		float Gamma			= tMath::DefaultGamma;	// [   0.6, 3.0  ]
-		float Exposure		= 1.0f;					// [ -10.0, 10.0 ]
-		float Defog			= 0.0f;					// [   0.0, 0.1  ] Try to keep below 0.01.
-		float KneeLow		= 0.0f;					// [  -3.0, 3.0  ]
-		float KneeHigh		= 3.5f;					// [   3.5, 7.5  ]
+		LoadParams()																									{ Reset(); }
+		void Reset();
+		float Gamma;		// [   0.6, 3.0  ]
+		float Exposure;		// [ -10.0, 10.0 ]
+		float Defog;		// [   0.0, 0.1  ] Try to keep below 0.01.
+		float KneeLow;		// [  -3.0, 3.0  ]
+		float KneeHigh;		// [   3.5, 7.5  ]
 	};
 
 	// Creates an invalid tImageEXR. You must call Load manually.
@@ -72,7 +73,17 @@ private:
 // Implementation only below.
 
 
-inline bool tImage::tImageEXR::IsOpaque() const
+inline void tImageEXR::LoadParams::Reset()
+{
+	Gamma			= tMath::DefaultGamma;
+	Exposure		= 1.0f;
+	Defog			= 0.0f;
+	KneeLow			= 0.0f;
+	KneeHigh		= 3.5f;
+}
+
+
+inline bool tImageEXR::IsOpaque() const
 {
 	for (tFrame* frame = Frames.Head(); frame; frame = frame->Next())
 		if (!frame->IsOpaque())
@@ -82,7 +93,7 @@ inline bool tImage::tImageEXR::IsOpaque() const
 }
 
 
-inline tFrame* tImage::tImageEXR::StealFrame(int frameNum)
+inline tFrame* tImageEXR::StealFrame(int frameNum)
 {
 	tFrame* f = GetFrame(frameNum);
 	if (!f)
@@ -92,7 +103,7 @@ inline tFrame* tImage::tImageEXR::StealFrame(int frameNum)
 }
 
 
-inline tFrame* tImage::tImageEXR::GetFrame(int frameNum)
+inline tFrame* tImageEXR::GetFrame(int frameNum)
 {
 	if ((frameNum >= Frames.GetNumItems()) || (frameNum < 0))
 		return nullptr;

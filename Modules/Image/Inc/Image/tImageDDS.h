@@ -67,10 +67,12 @@ public:
 	// Exposure >= 0 (black) and only used if ToneMapExposure flag set.
 	struct LoadParams
 	{
-		LoadParams()		{ }						// MSVC does not require this. GCC/Clang do.
-		uint32 Flags		= LoadFlags_Default;
-		float Gamma			= tMath::DefaultGamma;
-		float Exposure		= 1.0f;
+		LoadParams()																									{ Reset(); }
+		void Reset();
+
+		uint32 Flags;
+		float Gamma;
+		float Exposure;
 	};
 
 	// Creates an invalid tImageDDS. You must call Load manually.
@@ -251,4 +253,15 @@ public:
 };
 
 
+}
+
+
+// Implementation below this line.
+
+
+inline void tImage::tImageDDS::LoadParams::Reset()
+{
+	Flags		= LoadFlags_Default;
+	Gamma		= tMath::DefaultGamma;
+	Exposure	= 1.0f;
 }

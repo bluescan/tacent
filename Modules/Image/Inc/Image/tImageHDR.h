@@ -50,9 +50,10 @@ class tImageHDR
 public:
 	struct LoadParams
 	{
-		LoadParams()		{ }						// MSVC does not require this. GCC/Clang do.
-		float Gamma			= tMath::DefaultGamma;
-		int Exposure		= 0;
+		LoadParams()																									{ Reset(); }
+		void Reset();
+		float Gamma;
+		int Exposure;
 	};
 
 	// Creates an invalid tImageHDR. You must call Load manually.
@@ -126,6 +127,13 @@ private:
 
 
 // Implementation below this line.
+
+
+inline void tImageHDR::LoadParams::Reset()
+{
+	Gamma			= tMath::DefaultGamma;
+	Exposure		= 0;
+}
 
 
 inline void tImageHDR::Clear()
