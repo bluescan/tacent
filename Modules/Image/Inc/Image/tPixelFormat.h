@@ -95,6 +95,7 @@ bool tIsVendorFormat(tPixelFormat);
 bool tIsPaletteFormat(tPixelFormat);
 bool tIsAlphaFormat(tPixelFormat);
 bool tIsOpaqueFormat(tPixelFormat);
+bool tIsHDRFormat(tPixelFormat);
 int tGetBitsPerPixel(tPixelFormat);				// Some formats (dxt1) are only half a byte per pixel, so we report bits.
 int tGetBytesPer4x4PixelBlock(tPixelFormat);	// This function must be given a BC pixel format.
 const char* tGetPixelFormatName(tPixelFormat);
@@ -174,4 +175,25 @@ inline bool tImage::tIsAlphaFormat(tPixelFormat format)
 inline bool tImage::tIsOpaqueFormat(tPixelFormat format)
 {
 	return !tImage::tIsAlphaFormat(format);
+}
+
+
+inline bool tImage::tIsHDRFormat(tPixelFormat format)
+{
+	switch (format)
+	{
+		case tPixelFormat::R16F:
+		case tPixelFormat::R16G16F:
+		case tPixelFormat::R16G16B16A16F:
+		case tPixelFormat::R32F:
+		case tPixelFormat::R32G32F:
+		case tPixelFormat::R32G32B32A32F:
+		case tPixelFormat::BC6S:
+		case tPixelFormat::BC6U:
+		case tPixelFormat::RADIANCE:
+		case tPixelFormat::OPENEXR:
+			return true;
+	}
+
+	return false;
 }
