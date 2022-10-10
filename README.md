@@ -95,9 +95,9 @@ You may use VSCode with the CMake Tools extension or from the command line. Both
 The 'install' target creates a directory called 'Install' that has all the built libraries (.a or .lib), exported headers, cmake target files, and the unit-test executable.
 
 #### Windows
-* Install Visual Studio Community 2019
+* Install Visual Studio Community 2022
 * Install VS Code (optional)
-* Open 64bit Command Prompt for VS2019 and cd into the the 'tacent' directory. Do an out-of-source build.
+* Open 64bit Command Prompt for VS2022 and cd into the the 'tacent' directory. Do an out-of-source build.
 ```
 mkdir buildninja
 cd buildninja
