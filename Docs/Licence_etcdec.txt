@@ -1,5 +1,7 @@
-Tacent View will choose the MIT licence for no particular reason other than
-it's been around longer.
+This is the licence for the etcdec library https://github.com/iOrange/etcdec
+It is available under 2 licences -- and we get to choose. We will choose the
+MIT licence for no particular reason other than it's been around longer and is
+similar to ISC.
 
 /* LICENSE:
 
