@@ -741,8 +741,8 @@ tTestUnit(ImageDDS)
 	uint32 decode = tImageDDS::LoadFlag_Decode;
 	uint32 revrow = tImageDDS::LoadFlag_ReverseRowOrder;
 	uint32 spread = tImageDDS::LoadFlag_SpreadLuminance;
-	uint32 gammac = tImageDDS::LoadFlag_GammaCompression;
-	// uint32 gammac = tImageDDS::LoadFlag_SRGBCompression;
+	uint32 gammac = tImageDDS::LoadFlag_SRGBCompression;
+	// uint32 gammac = tImageDDS::LoadFlag_GammaCompression;
 
 	//
 	// Block Compressed Formats.
