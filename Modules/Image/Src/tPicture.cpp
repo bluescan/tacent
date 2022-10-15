@@ -405,7 +405,7 @@ bool tPicture::Load(const tString& imageFile, int frameNum, LoadParams params)
 			
 			Width = layer->Width;
 			Height = layer->Height;
-			SrcPixelFormat = dds.GetPixelFormatOrig();
+			SrcPixelFormat = dds.GetPixelFormatSrc();
 			Pixels = (tPixel*)pixels;
 			return true;
 		}

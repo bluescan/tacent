@@ -352,6 +352,8 @@ enum class tFileType
 	JPG,						// Image. Joint Picture Motion Group (or something like that).
 	TIFF,						// Image. Tag Interchange File Format.
 	DDS,						// Image. Direct Draw Surface. TextureMap/CubeMap.
+	KTX,						// Image. Khronos Texture. Similar to a dds file.
+	KTX2,						// Image. Khronos Texture V2. Similar to a dds file.
 	HDR,						// Image. Radiance High Dynamic Range.
 	EXR,						// Image. OpenEXR High Dynamic Range.
 	PCX,						// Image.

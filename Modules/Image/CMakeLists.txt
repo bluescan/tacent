@@ -12,6 +12,7 @@ add_library(
 	Src/tImageHDR.cpp
 	Src/tImageICO.cpp
 	Src/tImageJPG.cpp
+	Src/tImageKTX.cpp
 	Src/tImagePNG.cpp
 	Src/tImageTGA.cpp
 	Src/tImageTIFF.cpp
@@ -33,6 +34,7 @@ add_library(
 	Inc/Image/tImageHDR.h
 	Inc/Image/tImageICO.h
 	Inc/Image/tImageJPG.h
+	Inc/Image/tImageKTX.h
 	Inc/Image/tImagePNG.h
 	Inc/Image/tImageTGA.h
 	Inc/Image/tImageTIFF.h
@@ -53,6 +55,7 @@ add_library(
 	Contrib/bcdec/bcdec.h
 	Contrib/GifLoad/gif_load.h
 	Contrib/GifSave/gif.h
+	Contrib/LibKTX/include/ktx.h
 	Contrib/LibPNG/include/png.h
 	Contrib/LibTIFF/include/tiff.h
 	Contrib/OpenEXR/loadImage.h
@@ -88,6 +91,7 @@ target_include_directories(
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/bcdec
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/GifLoad
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/GifSave
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibTIFF/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include
@@ -127,6 +131,10 @@ target_link_libraries(
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/lib/libwebp.lib>
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/lib/libwebpdemux.lib>
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/lib/libwebpmux.lib>
+
+		# LibKTX
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/lib/libktx.a>
+		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/lib/ktx.lib>
 
 		# LibPNG
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/lib/libpng16.a>

@@ -1841,6 +1841,8 @@ tSystem::FileTypeExts tSystem::FileTypeExtTable[] =
 	{ "jpg", "jpeg" },					// JPG
 	{ "tif", "tiff" },					// TIFF
 	{ "dds" },							// DDS
+	{ "ktx" },							// KTX
+	{ "ktx2" },							// KTX2
 	{ "hdr", "rgbe" },					// HDR
 	{ "exr" },							// EXR
 	{ "pcx" },							// PCX

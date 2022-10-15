@@ -152,7 +152,7 @@ public:
 	tPixelFormat GetPixelFormat() const																					{ return PixelFormat; }
 
 	// Will return the format the dds data was in, even if you chose to decode.
-	tPixelFormat GetPixelFormatOrig() const																				{ return PixelFormatOrig; }
+	tPixelFormat GetPixelFormatSrc() const																				{ return PixelFormatSrc; }
 
 	tColourSpace GetColourSpace() const																					{ return ColourSpace; }
 	tAlphaMode GetAlphaMode() const																						{ return AlphaMode; }
@@ -224,7 +224,7 @@ private:
 	uint32 Results;
 
 	tPixelFormat PixelFormat;
-	tPixelFormat PixelFormatOrig;
+	tPixelFormat PixelFormatSrc;
 
 	// These two are not considered part of the pixel format in tacent.
 	tColourSpace ColourSpace		= tColourSpace::Unspecified;

@@ -30,7 +30,7 @@ tImageDDS::tImageDDS() :
 	Filename(),
 	Results(1 << int(ResultCode::Fatal_DefaultInitialized)),
 	PixelFormat(tPixelFormat::Invalid),
-	PixelFormatOrig(tPixelFormat::Invalid),
+	PixelFormatSrc(tPixelFormat::Invalid),
 	IsCubeMap(false),
 	RowReversalOperationPerformed(false),
 	NumImages(0),
@@ -44,7 +44,7 @@ tImageDDS::tImageDDS(const tString& ddsFile, const LoadParams& loadParams) :
 	Filename(ddsFile),
 	Results(1 << int(ResultCode::Success)),
 	PixelFormat(tPixelFormat::Invalid),
-	PixelFormatOrig(tPixelFormat::Invalid),
+	PixelFormatSrc(tPixelFormat::Invalid),
 	IsCubeMap(false),
 	RowReversalOperationPerformed(false),
 	NumImages(0),
@@ -59,7 +59,7 @@ tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, const LoadParam
 	Filename(),
 	Results(1 << int(ResultCode::Success)),
 	PixelFormat(tPixelFormat::Invalid),
-	PixelFormatOrig(tPixelFormat::Invalid),
+	PixelFormatSrc(tPixelFormat::Invalid),
 	IsCubeMap(false),
 	RowReversalOperationPerformed(false),
 	NumImages(0),
@@ -83,7 +83,7 @@ void tImageDDS::Clear()
 
 	Results = (1 << int(ResultCode::Success));
 	PixelFormat = tPixelFormat::Invalid;
-	PixelFormatOrig = tPixelFormat::Invalid;
+	PixelFormatSrc = tPixelFormat::Invalid;
 	ColourSpace = tColourSpace::Unspecified;
 	AlphaMode = tAlphaMode::Unspecified;
 	IsCubeMap = false;
@@ -823,7 +823,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				ColourSpace = tColourSpace::sRGB;
 			case tDXGI_FORMAT_BC1_TYPELESS:
 			case tDXGI_FORMAT_BC1_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC1DXT1;
+				PixelFormat = PixelFormatSrc = tPixelFormat::BC1DXT1;
 				break;
 
 			// DXGI formats do not specify premultiplied alpha mode like DXT2/3 so we leave it unspecified.
@@ -831,7 +831,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				ColourSpace = tColourSpace::sRGB;
 			case tDXGI_FORMAT_BC2_TYPELESS:
 			case tDXGI_FORMAT_BC2_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC2DXT2DXT3;
+				PixelFormat = PixelFormatSrc = tPixelFormat::BC2DXT2DXT3;
 				break;
 
 			// DXGI formats do not specify premultiplied alpha mode like DXT4/5 so we leave it unspecified. As for sRGB,
@@ -843,29 +843,29 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				ColourSpace = tColourSpace::sRGB;
 			case tDXGI_FORMAT_BC3_TYPELESS:
 			case tDXGI_FORMAT_BC3_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC3DXT4DXT5;
+				PixelFormat = PixelFormatSrc = tPixelFormat::BC3DXT4DXT5;
 				break;
 
 			// case tDXGI_FORMAT_BC4_SNORM:
 			case tDXGI_FORMAT_BC4_TYPELESS:
 			case tDXGI_FORMAT_BC4_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC4ATI1;
+				PixelFormat = PixelFormatSrc = tPixelFormat::BC4ATI1;
 				break;
 
 			// case tDXGI_FORMAT_BC5_SNORM:
 			case tDXGI_FORMAT_BC5_TYPELESS:
 			case tDXGI_FORMAT_BC5_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC5ATI2;
+				PixelFormat = PixelFormatSrc = tPixelFormat::BC5ATI2;
 				break;
 
 			case tDXGI_FORMAT_BC6H_TYPELESS:		// Interpret typeless as BC6H_S16... we gotta choose something.
 			case tDXGI_FORMAT_BC6H_SF16:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC6S;
+				PixelFormat = PixelFormatSrc = tPixelFormat::BC6S;
 				ColourSpace = tColourSpace::Linear;
 				break;
 
 			case tDXGI_FORMAT_BC6H_UF16:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC6U;
+				PixelFormat = PixelFormatSrc = tPixelFormat::BC6U;
 				ColourSpace = tColourSpace::Linear;
 				break;
 
@@ -873,59 +873,59 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				ColourSpace = tColourSpace::sRGB;
 			case tDXGI_FORMAT_BC7_TYPELESS:			// Interpret typeless as BC7_UNORM... we gotta choose something.
 			case tDXGI_FORMAT_BC7_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC7;
+				PixelFormat = PixelFormatSrc = tPixelFormat::BC7;
 				break;
 
 			case tDXGI_FORMAT_A8_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::A8;
+				PixelFormat = PixelFormatSrc = tPixelFormat::A8;
 				break;
 
 			case tDXGI_FORMAT_R8_UNORM:
 			case tDXGI_FORMAT_R8_TYPELESS:
-				PixelFormat = PixelFormatOrig = tPixelFormat::L8;
+				PixelFormat = PixelFormatSrc = tPixelFormat::L8;
 				break;
 
 			case tDXGI_FORMAT_B8G8R8A8_UNORM_SRGB:
 				ColourSpace = tColourSpace::sRGB;
 			case tDXGI_FORMAT_B8G8R8A8_UNORM:
 			case tDXGI_FORMAT_B8G8R8A8_TYPELESS:
-				PixelFormat = PixelFormatOrig = tPixelFormat::B8G8R8A8;
+				PixelFormat = PixelFormatSrc = tPixelFormat::B8G8R8A8;
 				break;
 
 			case tDXGI_FORMAT_B5G6R5_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::B5G6R5;
+				PixelFormat = PixelFormatSrc = tPixelFormat::B5G6R5;
 				break;
 
 			case tDXGI_FORMAT_B4G4R4A4_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::B4G4R4A4;
+				PixelFormat = PixelFormatSrc = tPixelFormat::B4G4R4A4;
 				break;
 
 			case tDXGI_FORMAT_B5G5R5A1_UNORM:
-				PixelFormat = PixelFormatOrig = tPixelFormat::B5G5R5A1;
+				PixelFormat = PixelFormatSrc = tPixelFormat::B5G5R5A1;
 				break;
 
 			case tDXGI_FORMAT_R16_FLOAT:
-				PixelFormat = PixelFormatOrig = tPixelFormat::R16F;
+				PixelFormat = PixelFormatSrc = tPixelFormat::R16F;
 				break;
 
 			case tDXGI_FORMAT_R16G16_FLOAT:
-				PixelFormat = PixelFormatOrig = tPixelFormat::R16G16F;
+				PixelFormat = PixelFormatSrc = tPixelFormat::R16G16F;
 				break;
 
 			case tDXGI_FORMAT_R16G16B16A16_FLOAT:
-				PixelFormat = PixelFormatOrig = tPixelFormat::R16G16B16A16F;
+				PixelFormat = PixelFormatSrc = tPixelFormat::R16G16B16A16F;
 				break;
 
 			case tDXGI_FORMAT_R32_FLOAT:
-				PixelFormat = PixelFormatOrig = tPixelFormat::R32F;
+				PixelFormat = PixelFormatSrc = tPixelFormat::R32F;
 				break;
 
 			case tDXGI_FORMAT_R32G32_FLOAT:
-				PixelFormat = PixelFormatOrig = tPixelFormat::R32G32F;
+				PixelFormat = PixelFormatSrc = tPixelFormat::R32G32F;
 				break;
 
 			case tDXGI_FORMAT_R32G32B32A32_FLOAT:
-				PixelFormat = PixelFormatOrig = tPixelFormat::R32G32B32A32F;
+				PixelFormat = PixelFormatSrc = tPixelFormat::R32G32B32A32F;
 				break;
 		}
 	}
@@ -936,39 +936,39 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 			// Note that during inspecition of the individual layer data, the DXT1 pixel format might be modified
 			// to DXT1BA (binary alpha).
 			case FourCC('D','X','T','1'):
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC1DXT1;
+				PixelFormat = PixelFormatSrc = tPixelFormat::BC1DXT1;
 				break;
 
 			// DXT2 and DXT3 are the same format. Only how you interpret the data is different. In tacent we treat them
 			// as the same pixel-format. How contents are interpreted (the data) is not part of the format. 
 			case FourCC('D','X','T','2'):
 				AlphaMode = tAlphaMode::Premultiplied;
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC2DXT2DXT3;
+				PixelFormat = PixelFormatSrc = tPixelFormat::BC2DXT2DXT3;
 				break;
 
 			case FourCC('D','X','T','3'):
 				AlphaMode = tAlphaMode::Normal;
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC2DXT2DXT3;
+				PixelFormat = PixelFormatSrc = tPixelFormat::BC2DXT2DXT3;
 				break;
 
 			case FourCC('D','X','T','4'):
 				AlphaMode = tAlphaMode::Premultiplied;
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC3DXT4DXT5;
+				PixelFormat = PixelFormatSrc = tPixelFormat::BC3DXT4DXT5;
 				break;
 
 			case FourCC('D','X','T','5'):
 				AlphaMode = tAlphaMode::Normal;
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC3DXT4DXT5;
+				PixelFormat = PixelFormatSrc = tPixelFormat::BC3DXT4DXT5;
 				break;
 
 			case FourCC('A','T','I','1'):
 			case FourCC('B','C','4','U'):
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC4ATI1;
+				PixelFormat = PixelFormatSrc = tPixelFormat::BC4ATI1;
 				break;
 
 			case FourCC('A','T','I','2'):
 			case FourCC('B','C','5','U'):
-				PixelFormat = PixelFormatOrig = tPixelFormat::BC5ATI2;
+				PixelFormat = PixelFormatSrc = tPixelFormat::BC5ATI2;
 				break;
 
 			case FourCC('B','C','4','S'):	// We don't support signed BC4.
@@ -983,45 +983,45 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				break;
 			
 			case tD3DFMT_A8:
-				PixelFormat = PixelFormatOrig = tPixelFormat::A8;
+				PixelFormat = PixelFormatSrc = tPixelFormat::A8;
 				break;
 
 			case tD3DFMT_L8:
-				PixelFormat = PixelFormatOrig = tPixelFormat::L8;
+				PixelFormat = PixelFormatSrc = tPixelFormat::L8;
 				break;
 
 			case tD3DFMT_A8B8G8R8:
-				PixelFormat = PixelFormatOrig = tPixelFormat::B8G8R8A8;
+				PixelFormat = PixelFormatSrc = tPixelFormat::B8G8R8A8;
 				break;
 
 			case tD3DFMT_R16F:
-				PixelFormat = PixelFormatOrig = tPixelFormat::R16F;
+				PixelFormat = PixelFormatSrc = tPixelFormat::R16F;
 				break;
 
 			case tD3DFMT_G16R16F:
 				// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
-				PixelFormat = PixelFormatOrig = tPixelFormat::R16G16F;
+				PixelFormat = PixelFormatSrc = tPixelFormat::R16G16F;
 				break;
 
 			case tD3DFMT_A16B16G16R16F:
 				// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
-				PixelFormat = PixelFormatOrig = tPixelFormat::R16G16B16A16F;
+				PixelFormat = PixelFormatSrc = tPixelFormat::R16G16B16A16F;
 				break;
 
 			case tD3DFMT_R32F:
-				PixelFormat = PixelFormatOrig = tPixelFormat::R32F;
+				PixelFormat = PixelFormatSrc = tPixelFormat::R32F;
 				break;
 
 			case tD3DFMT_G32R32F:
 				// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
-				PixelFormat = PixelFormatOrig = tPixelFormat::R32G32F;
+				PixelFormat = PixelFormatSrc = tPixelFormat::R32G32F;
 				break;
 
 			case tD3DFMT_A32B32G32R32F:
 				// It's inconsistent calling the D3D format A32B32G32R32F. The floats in this case are clearly in RGBA
 				// order, not ABGR. Anyway, I only have control over the tPixelFormat names. In fairness, it looks like
 				// the format-name was fixed in the DX10 header format type names.
-				PixelFormat = PixelFormatOrig = tPixelFormat::R32G32B32A32F;
+				PixelFormat = PixelFormatSrc = tPixelFormat::R32G32B32A32F;
 				break;
 		}
 	}
@@ -1036,28 +1036,28 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 		{
 			case 8:			// Supports A8, L8.
 				if ((isA || anyRGB) && (mskA == 0xFF))
-					PixelFormat = PixelFormatOrig = tPixelFormat::A8;
+					PixelFormat = PixelFormatSrc = tPixelFormat::A8;
 				else if ((isL || anyRGB) && (mskR == 0xFF))
-					PixelFormat = PixelFormatOrig = tPixelFormat::L8;
+					PixelFormat = PixelFormatSrc = tPixelFormat::L8;
 				break;
 
 			case 16:		// Supports B5G6R5, B4G4R4A4, and B5G5R5A1.
 				if (isRGBA && (mskA == 0x8000) && (mskR == 0x7C00) && (mskG == 0x03E0) && (mskB == 0x001F))
-					PixelFormat = PixelFormatOrig = tPixelFormat::B5G5R5A1;
+					PixelFormat = PixelFormatSrc = tPixelFormat::B5G5R5A1;
 				else if (isRGBA && (mskA == 0xF000) && (mskR == 0x0F00) && (mskG == 0x00F0) && (mskB == 0x000F))
-					PixelFormat = PixelFormatOrig = tPixelFormat::B4G4R4A4;
+					PixelFormat = PixelFormatSrc = tPixelFormat::B4G4R4A4;
 				else if (isRGB && (mskR == 0xF800) && (mskG == 0x07E0) && (mskB == 0x001F))
-					PixelFormat = PixelFormatOrig = tPixelFormat::B5G6R5;
+					PixelFormat = PixelFormatSrc = tPixelFormat::B5G6R5;
 				break;
 
 			case 24:		// Supports B8G8R8.
 				if (isRGB && (mskR == 0xFF0000) && (mskG == 0x00FF00) && (mskB == 0x0000FF))
-					PixelFormat = PixelFormatOrig = tPixelFormat::B8G8R8;
+					PixelFormat = PixelFormatSrc = tPixelFormat::B8G8R8;
 				break;
 
 			case 32:		// Supports B8G8R8A8. Alpha really is last (even though ABGR may seem more consistent).
 				if (isRGBA && (mskA == 0xFF000000) && (mskR == 0x00FF0000) && (mskG == 0x0000FF00) && (mskB == 0x000000FF))
-					PixelFormat = PixelFormatOrig = tPixelFormat::B8G8R8A8;
+					PixelFormat = PixelFormatSrc = tPixelFormat::B8G8R8A8;
 				break;
 		}
 	}
@@ -1128,7 +1128,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				// Here's where we possibly modify the opaque DXT1 texture to be DXT1A if there are blocks with binary
 				// transparency. We only bother checking the main layer. If it's opaque we assume all the others are too.
 				if ((layer == 0) && (PixelFormat == tPixelFormat::BC1DXT1) && DoDXT1BlocksHaveBinaryAlpha((tDXT1Block*)currPixelData, numBlocks))
-					PixelFormat = PixelFormatOrig = tPixelFormat::BC1DXT1A;
+					PixelFormat = PixelFormatSrc = tPixelFormat::BC1DXT1A;
 
 				// DDS files store textures upside down. In the OpenGL RH coord system, the lower left of the texture
 				// is the origin and consecutive rows go up. For this reason we need to read each row of blocks from
@@ -1578,7 +1578,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 		if (reverseRowOrderRequested && !RowReversalOperationPerformed && didRowReversalAfterDecode)
 			RowReversalOperationPerformed = true;
 
-		// All images decoded. Can now set the object's pixel format. We do _not_ set the PixelFormatOrig here!
+		// All images decoded. Can now set the object's pixel format. We do _not_ set the PixelFormatSrc here!
 		PixelFormat = tPixelFormat::R8G8B8A8;
 	}
 

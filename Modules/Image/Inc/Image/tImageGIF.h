@@ -39,7 +39,7 @@ public:
 
 	// OverrideframeDuration is in 1/100 seconds. Set to >= 0 to override all frames. Note that values of 0 or 1 get
 	// min-clamped to 2 during save since many viewers do not handle values below 2 properly.
-	bool Save(const tString& webpFile, int overrideFrameDuration = -1);
+	bool Save(const tString& gifFile, int overrideFrameDuration = -1);
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
 	// After this call no memory will be consumed by the object and it will be invalid.
