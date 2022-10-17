@@ -29,6 +29,10 @@
 #include <apngasm.h>
 #include <bcdec.h>
 #include <tiffvers.h>
+#include <LibKTX/include/version.h>
+#define KTXSTRINGIFY(x) #x
+#define KTXTOSTRING(x) KTXSTRINGIFY(x)
+#define LIBKTX_VERSION_STRING KTXTOSTRING(LIBKTX_VERSION);
 #include <jconfig.h>			// JpegTurbo
 #include <demux.h>				// WebP
 #include <tinyxml2.h>
@@ -48,6 +52,7 @@ const char* tImage::Version_LibPNG			= PNG_LIBPNG_VER_STRING;
 const char* tImage::Version_ApngDis			= APNGDIS_VERSION_STRING;
 const char* tImage::Version_ApngAsm			= APNGASM_VERSION_STRING;
 const char* tImage::Version_LibTIFF			= TIFFLIB_STANDARD_VERSION_STR;
+const char* tImage::Version_LibKTX			= LIBKTX_VERSION_STRING;
 int tImage::Version_WEBP_Major				= WEBP_DECODER_ABI_VERSION >> 8;
 int tImage::Version_WEBP_Minor				= WEBP_DECODER_ABI_VERSION & 0xFF;
 int tImage::Version_BCDec_Major				= BCDEC_VERSION_MAJOR;

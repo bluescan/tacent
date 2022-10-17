@@ -30,4 +30,5 @@ namespace tUnitTest
 	tTestUnit(ImageMultiFrame);
 	tTestUnit(ImageGradient);
 	tTestUnit(ImageDDS);
+	tTestUnit(ImageKTX);
 }

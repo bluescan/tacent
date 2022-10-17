@@ -51,6 +51,7 @@ extern const char* Version_OpenEXR;
 extern const char* Version_ZLIB;
 extern const char* Version_LibPNG;
 extern const char* Version_LibTIFF;
+extern const char* Version_LibKTX;
 extern const char* Version_ApngDis;
 extern const char* Version_ApngAsm;
 extern int Version_WEBP_Major;

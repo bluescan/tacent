@@ -17,9 +17,9 @@
 #include <Foundation/tString.h>
 #include <System/tFile.h>
 #include "Image/tImageKTX.h"
-
 #define KHRONOS_STATIC
 #include "LibKTX/include/ktx.h"
+
 
 using namespace tSystem;
 namespace tImage
@@ -38,14 +38,14 @@ bool tImageKTX::Load(const tString& ktxFile)
 
 	int numBytes = 0;
 	uint8* ktxFileInMemory = tLoadFile(ktxFile, nullptr, &numBytes, true);
-	bool success = Set(ktxFileInMemory, numBytes);
+	bool success = Load(ktxFileInMemory, numBytes);
 	delete[] ktxFileInMemory;
 
 	return success;
 }
 
 
-bool tImageKTX::Set(uint8* ktxFileInMemory, int numBytes)
+bool tImageKTX::Load(uint8* ktxFileInMemory, int numBytes)
 {
 	ktx_size_t offset;
 
@@ -64,7 +64,10 @@ bool tImageKTX::Set(uint8* ktxFileInMemory, int numBytes)
 	ktxTexture1* ktx1 = (texture->classId == ktxTexture1_c) ? (ktxTexture1*)texture : nullptr;
 	ktxTexture2* ktx2 = (texture->classId == ktxTexture2_c) ? (ktxTexture2*)texture : nullptr;
 	if ((ktx1 && ktx2) || (!ktx1 && !ktx2))
+	{
+		ktxTexture_Destroy(texture);
 		return false;
+	}
 
 	tPixelFormat pixelFormat = tPixelFormat::Invalid;
 	if (ktx1)
@@ -72,7 +75,10 @@ bool tImageKTX::Set(uint8* ktxFileInMemory, int numBytes)
 	else if (ktx2)
 		pixelFormat = GetPixelFormatFromVKFormat(ktx2->vkFormat);
 	if (pixelFormat == tPixelFormat::Invalid)
+	{
+		ktxTexture_Destroy(texture);
 		return false;
+	}
 	
 	// Retrieve a data pointer to the image for a specific miplevel, arraylayer, and slice (face or depth.
 	ktx_uint32_t miplevel = 1;
@@ -88,14 +94,14 @@ bool tImageKTX::Set(uint8* ktxFileInMemory, int numBytes)
 }
 
 
-tPixelFormat GetPixelFormatFromGLFormat(uint32 glFormat)
+tPixelFormat tImageKTX::GetPixelFormatFromGLFormat(uint32 glFormat)
 {
 	// WIP
 	return tPixelFormat::Invalid;
 }
 
 
-tPixelFormat GetPixelFormatFromVKFormat(uint32 vkFormat)
+tPixelFormat tImageKTX::GetPixelFormatFromVKFormat(uint32 vkFormat)
 {
 	// WIP
 	return tPixelFormat::Invalid;

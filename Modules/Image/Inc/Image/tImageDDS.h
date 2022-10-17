@@ -67,8 +67,8 @@ public:
 	struct LoadParams
 	{
 		LoadParams()																									{ Reset(); }
-		void Reset();
-
+		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::DefaultGamma; Exposure = 1.0f; }
+	
 		uint32 Flags;
 		float Gamma;
 		float Exposure;
@@ -76,6 +76,7 @@ public:
 
 	// Creates an invalid tImageDDS. You must call Load manually.
 	tImageDDS();
+
 	tImageDDS(const tString& ddsFile, const LoadParams& = LoadParams());
 
 	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is read from
@@ -252,15 +253,4 @@ public:
 };
 
 
-}
-
-
-// Implementation below this line.
-
-
-inline void tImage::tImageDDS::LoadParams::Reset()
-{
-	Flags		= LoadFlags_Default;
-	Gamma		= tMath::DefaultGamma;
-	Exposure	= 1.0f;
 }
