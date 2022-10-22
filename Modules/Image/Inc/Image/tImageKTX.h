@@ -103,14 +103,11 @@ public:
 		Fatal_CorruptedFile,
 		Fatal_InvalidDimensions,
 		Fatal_VolumeTexturesNotSupported,
-//WIP		Fatal_IncorrectPixelFormatHeaderSize,
 		Fatal_PixelFormatNotSupported,
-//WIP		Fatal_IncorrectBCDataSize,
+		Fatal_InvalidDataOffset,
 		Fatal_MaxNumMipmapLevelsExceeded,
 		Fatal_BlockDecodeError,
-		Fatal_NormalDecodeError,
-//WIP		Fatal_DX10HeaderSizeIncorrect,
-//WIP		Fatal_DX10DimensionNotSupported,
+		Fatal_PackedDecodeError,
 		NumCodes,
 
 		// Since we store result codes as bits in a 32-bit uint, we need to make sure we don't have too many codes. 32
@@ -119,7 +116,7 @@ public:
 		FirstValid							= Success,
 		LastValid							= Conditional_DimNotPowerTwoBC,
 		FirstFatal							= Fatal_FileDoesNotExist,
-		LastFatal							= Fatal_NormalDecodeError
+		LastFatal							= Fatal_PackedDecodeError
 	};
 
 	// Clears the current tImageKTX before loading. If the ktx file failed to load for any reason it will result in an
@@ -216,9 +213,6 @@ public:
 	tString Filename;
 
 private:
-	uint8* CreateReversedRowData_Normal(const uint8* pixelData, tPixelFormat pixelDataFormat, int width, int height);
-	uint8* CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH);
-
 	// The result codes are bits in this Results member.
 	uint32 Results						= 0;
 

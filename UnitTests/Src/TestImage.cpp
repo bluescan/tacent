@@ -962,10 +962,10 @@ tTestUnit(ImageKTX)
 	//
 	tPrintf("Testing KTX Loading/Decoding.\n\n");
 
-#if 0
 	// BC1
 	KTXLoadDecodeSave("BC1DXT1_RGB.ktx2", decode | revrow);
 
+#if 0
 	// BC1a
 	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx2", decode | revrow);
 

@@ -22,6 +22,7 @@ add_library(
 	Src/tMetaData.cpp
 	Src/tPicture.cpp
 	Src/tPixelFormat.cpp
+	Src/tPixelUtil.cpp
 	Src/tTexture.cpp
 	Src/tResample.cpp
 	Inc/Image/tCubemap.h
@@ -44,6 +45,7 @@ add_library(
 	Inc/Image/tMetaData.h
 	Inc/Image/tPicture.h
 	Inc/Image/tPixelFormat.h
+	Inc/Image/tPixelUtil.h
 	Inc/Image/tTexture.h
 	Inc/Image/tResample.h
 	

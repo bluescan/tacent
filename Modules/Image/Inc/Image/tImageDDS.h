@@ -104,7 +104,6 @@ public:
 		Fatal_IncorrectPixelFormatHeaderSize,
 		Fatal_IncorrectPixelFormatSpec,
 		Fatal_PixelFormatNotSupported,
-		Fatal_IncorrectBCDataSize,
 		Fatal_MaxNumMipmapLevelsExceeded,
 		Fatal_BlockDecodeError,
 		Fatal_PackedDecodeError,
@@ -214,9 +213,6 @@ public:
 	tString Filename;
 
 private:
-	uint8* CreateReversedRowData_Normal(const uint8* pixelData, tPixelFormat pixelDataFormat, int width, int height);
-	uint8* CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH);
-
 	// The result codes are bits in this Results member.
 	uint32 Results							= 0;
 

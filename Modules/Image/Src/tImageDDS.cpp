@@ -19,9 +19,8 @@
 #include <Foundation/tString.h>
 #include <Foundation/tHalf.h>
 #include "Image/tImageDDS.h"
-#define BCDEC_IMPLEMENTATION
+#include "Image/tPixelUtil.h"
 #include "bcdec/bcdec.h"
-#define FourCC(ch0, ch1, ch2, ch3) (uint32(uint8(ch0)) | (uint32(uint8(ch1)) << 8) | (uint32(uint8(ch2)) << 16) | (uint32(uint8(ch3)) << 24))
 namespace tImage
 {
 
@@ -427,89 +426,6 @@ namespace tDDS
 	};
 	#pragma pack(pop)
 
-	// These BC blocks are needed so that the tImageDDS class can re-order the rows by messing with each block's lookup
-	// table and alpha tables. This is because DDS files have the rows of their textures upside down (texture origin in
-	// OpenGL is lower left, while in DirectX it is upper left). See: http://en.wikipedia.org/wiki/S3_Texture_Compression
-	#pragma pack(push, 1)
-
-	// The BC1 block is used for both DXT1 and DXT1 with binary alpha. It's also used as the colour information block in the
-	// DXT 2, 3, 4 and 5 formats. Size is 64 bits.
-	struct BC1Block
-	{
-		uint16 Colour0;								// R5G6B5
-		uint16 Colour1;								// R5G6B5
-		uint8 LookupTableRows[4];
-	};
-
-	// The BC2 block is the same for DXT2 and DXT3, although we don't support 2 (premultiplied alpha). Size is 128 bits.
-	struct BC2Block
-	{
-		uint16 AlphaTableRows[4];					// Each alpha is 4 bits.
-		BC1Block ColourBlock;
-	};
-
-	// The BC3 block is the same for DXT4 and 5, although we don't support 4 (premultiplied alpha). Size is 128 bits.
-	struct BC3Block
-	{
-		uint8 Alpha0;
-		uint8 Alpha1;
-		uint8 AlphaTable[6];						// Each of the 4x4 pixel entries is 3 bits.
-		BC1Block ColourBlock;
-
-		// These accessors are needed because of the unusual alignment of the 3bit alpha indexes. They each return or set a
-		// value in [0, 2^12) which represents a single row. The row variable should be in [0, 3]
-		uint16 GetAlphaRow(int row)
-		{
-			tAssert(row < 4);
-			switch (row)
-			{
-				case 1:
-					return (AlphaTable[2] << 4) | (0x0F & (AlphaTable[1] >> 4));
-
-				case 0:
-					return ((AlphaTable[1] & 0x0F) << 8) | AlphaTable[0];
-
-				case 3:
-					return (AlphaTable[5] << 4) | (0x0F & (AlphaTable[4] >> 4));
-
-				case 2:
-					return ((AlphaTable[4] & 0x0F) << 8) | AlphaTable[3];
-			}
-			return 0;
-		}
-
-		void SetAlphaRow(int row, uint16 val)
-		{
-			tAssert(row < 4);
-			tAssert(val < 4096);
-			switch (row)
-			{
-				case 1:
-					AlphaTable[2] = val >> 4;
-					AlphaTable[1] = (AlphaTable[1] & 0x0F) | ((val & 0x000F) << 4);
-					break;
-
-				case 0:
-					AlphaTable[1] = (AlphaTable[1] & 0xF0) | (val >> 8);
-					AlphaTable[0] = val & 0x00FF;
-					break;
-
-				case 3:
-					AlphaTable[5] = val >> 4;
-					AlphaTable[4] = (AlphaTable[4] & 0x0F) | ((val & 0x000F) << 4);
-					break;
-
-				case 2:
-					AlphaTable[4] = (AlphaTable[4] & 0xF0) | (val >> 8);
-					AlphaTable[3] = val & 0x00FF;
-					break;
-			}
-		}
-	};
-	#pragma pack(pop)
-
-	bool DoBC1BlocksHaveBinaryAlpha(BC1Block* blocks, int numBlocks);
-
 	// These figure out the pixel format, the colour-space, and the alpha mode. tPixelFormat does not specify ancilllary
 	// properties of the data -- it specified the encoding of the data. The extra information, like the colour-space it
 	// was authored in, is stored in tColourSpace and tAlphaMode. In many cases this satellite information cannot be
@@ -517,39 +433,6 @@ namespace tDDS
 	void GetFormatInfo_FromDXGIFormat		(tPixelFormat&, tColourSpace&, tAlphaMode&, uint32 dxgiFormat);
 	void GetFormatInfo_FromFourCC			(tPixelFormat&, tColourSpace&, tAlphaMode&, uint32 fourCC);
 	void GetFormatInfo_FromComponentMasks	(tPixelFormat&, tColourSpace&, tAlphaMode&, const FormatData&);
-}
-
-
-bool tDDS::DoBC1BlocksHaveBinaryAlpha(tDDS::BC1Block* block, int numBlocks)
-{
-	// The only way to check if the DXT1 format has alpha is by checking each block individually. If the block uses
-	// alpha, the min and max colours are ordered in a particular order.
-	for (int b = 0; b < numBlocks; b++)
-	{
-		if (block->Colour0 <= block->Colour1)
-		{
-			// It seems that at least the nVidia DXT compressor can generate an opaque DXT1 block with the colours in the order for a transparent one.
-			// This forces us to check all the indexes to see if the alpha index (11 in binary) is used -- if not then it's still an opaque block.
-			for (int row = 0; row < 4; row++)
-			{
-				uint8 bits = block->LookupTableRows[row];
-				if
-				(
-					((bits & 0x03) == 0x03) ||
-					((bits & 0x0C) == 0x0C) ||
-					((bits & 0x30) == 0x30) ||
-					((bits & 0xC0) == 0xC0)
-				)
-				{
-					return true;
-				}
-			}
-		}
-
-		block++;
-	}
-
-	return false;
 }
 
 
@@ -1149,7 +1032,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				// Deal with reversing row order for RGB formats.
 				if (reverseRowOrderRequested)
 				{
-					uint8* reversedPixelData = CreateReversedRowData_Normal(currPixelData, PixelFormat, width, height);
+					uint8* reversedPixelData = tImage::CreateReversedRowData_Packed(currPixelData, PixelFormat, width, height);
 					if (reversedPixelData)
 					{
 						// We can simply get the layer to steal the memory (the last true arg).
@@ -1181,7 +1064,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 
 				// Here's where we possibly modify the opaque DXT1 texture to be DXT1A if there are blocks with binary
 				// transparency. We only bother checking the main layer. If it's opaque we assume all the others are too.
-				if ((layer == 0) && (PixelFormat == tPixelFormat::BC1DXT1) && tDDS::DoBC1BlocksHaveBinaryAlpha((tDDS::BC1Block*)currPixelData, numBlocks))
+				if ((layer == 0) && (PixelFormat == tPixelFormat::BC1DXT1) && tImage::DoBC1BlocksHaveBinaryAlpha((tImage::BC1Block*)currPixelData, numBlocks))
 					PixelFormat = PixelFormatSrc = tPixelFormat::BC1DXT1A;
 
 				// DDS files store textures upside down. In the OpenGL RH coord system, the lower left of the texture
@@ -1191,7 +1074,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				// will go down to 1x1, which will still use a 4x4 DXT pixel-block.
 				if (reverseRowOrderRequested)
 				{
-					uint8* reversedPixelData = CreateReversedRowData_BC(currPixelData, PixelFormat, numBlocksW, numBlocksH);
+					uint8* reversedPixelData = tImage::CreateReversedRowData_BC(currPixelData, PixelFormat, numBlocksW, numBlocksH);
 					if (reversedPixelData)
 					{
 						// We can simply get the layer to steal the memory (the last true arg).
@@ -1620,7 +1503,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				if (reverseRowOrderRequested && !RowReversalOperationPerformed && (layer->PixelFormat == tPixelFormat::R8G8B8A8))
 				{
 					// This shouldn't ever fail. Too easy to reverse RGBA 32-bit.
-					uint8* reversedRowData = CreateReversedRowData_Normal(layer->Data, layer->PixelFormat, w, h);
+					uint8* reversedRowData = tImage::CreateReversedRowData_Packed(layer->Data, layer->PixelFormat, w, h);
 					tAssert(reversedRowData);
 					delete[] layer->Data;
 					layer->Data = reversedRowData;
@@ -1657,122 +1540,6 @@ void tImageDDS::ProcessHDRFlags(tColour4f& colour, tcomps channels, const LoadPa
 }
 
 
-uint8* tImageDDS::CreateReversedRowData_Normal(const uint8* pixelData, tPixelFormat pixelDataFormat, int width, int height)
-{
-	// We only support pixel formats that contain a whole number of bytes per pixel. That will cover
-	// all reasonable RGB and RGBA formats.
-	int bitsPerPixel = tImage::tGetBitsPerPixel(pixelDataFormat);
-	if (bitsPerPixel % 8)
-		return nullptr;
-	int bytesPerPixel = bitsPerPixel/8;
-	int numBytes = width*height*bytesPerPixel;
-
-	uint8* reversedPixelData = new uint8[numBytes];
-	uint8* dstData = reversedPixelData;
-	for (int row = height-1; row >= 0; row--)
-	{
-		for (int col = 0; col < width; col++)
-		{
-			const uint8* srcData = pixelData + row*bytesPerPixel*width + col*bytesPerPixel;
-			for (int byte = 0; byte < bytesPerPixel; byte++, dstData++, srcData++)
-				*dstData = *srcData;
-		}
-	}
-	return reversedPixelData;
-}
-
-
-uint8* tImageDDS::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH)
-{
-	// We do not support the following block formats for non-destructive row reversal.
-	switch (pixelDataFormat)
-	{
-		case tPixelFormat::BC4ATI1:		// @todo Consider implementing row reversal.
-		case tPixelFormat::BC5ATI2:		// @todo Consider implementing row reversal.
-		case tPixelFormat::BC6S:
-		case tPixelFormat::BC6U:
-		case tPixelFormat::BC7:
-			return nullptr;
-	}
-
-	int bcBlockSize = tImage::tGetBytesPer4x4PixelBlock(pixelDataFormat);
-	int numBlocks = numBlocksW*numBlocksH;
-	int numBytes = numBlocks * bcBlockSize;
-
-	uint8* reversedPixelData = new uint8[numBytes];
-	uint8* dstData = reversedPixelData;
-	for (int row = numBlocksH-1; row >= 0; row--)
-	{
-		for (int col = 0; col < numBlocksW; col++)
-		{
-			const uint8* srcData = pixelData + row*bcBlockSize*numBlocksW + col*bcBlockSize;
-			for (int byte = 0; byte < bcBlockSize; byte++, dstData++, srcData++)
-				*dstData = *srcData;
-		}
-	}
-
-	// Now we flip the inter-block rows by messing with the block's lookup-table.  We handle three types of
-	// blocks: BC1, BC2, and BC3. BC4/5 probably could be handled, and BC6/7 are too complex.
-	switch (pixelDataFormat)
-	{
-		case tPixelFormat::BC1DXT1A:
-		case tPixelFormat::BC1DXT1:
-		{
-			tDDS::BC1Block* block = (tDDS::BC1Block*)reversedPixelData;
-			for (int b = 0; b < numBlocks; b++, block++)
-			{
-				// Reorder each row's colour indexes.
-				tStd::tSwap(block->LookupTableRows[0], block->LookupTableRows[3]);
-				tStd::tSwap(block->LookupTableRows[1], block->LookupTableRows[2]);
-			}
-			break;
-		}
-
-		case tPixelFormat::BC2DXT2DXT3:
-		{
-			tDDS::BC2Block* block = (tDDS::BC2Block*)reversedPixelData;
-			for (int b = 0; b < numBlocks; b++, block++)
-			{
-				// Reorder the explicit alphas AND the colour indexes.
-				tStd::tSwap(block->AlphaTableRows[0], block->AlphaTableRows[3]);
-				tStd::tSwap(block->AlphaTableRows[1], block->AlphaTableRows[2]);
-				tStd::tSwap(block->ColourBlock.LookupTableRows[0], block->ColourBlock.LookupTableRows[3]);
-				tStd::tSwap(block->ColourBlock.LookupTableRows[1], block->ColourBlock.LookupTableRows[2]);
-			}
-			break;
-		}
-
-		case tPixelFormat::BC3DXT4DXT5:
-		{
-			tDDS::BC3Block* block = (tDDS::BC3Block*)reversedPixelData;
-			for (int b = 0; b < numBlocks; b++, block++)
-			{
-				// Reorder the alpha indexes AND the colour indexes.
-				uint16 orig0 = block->GetAlphaRow(0);
-				block->SetAlphaRow(0, block->GetAlphaRow(3));
-				block->SetAlphaRow(3, orig0);
-
-				uint16 orig1 = block->GetAlphaRow(1);
-				block->SetAlphaRow(1, block->GetAlphaRow(2));
-				block->SetAlphaRow(2, orig1);
-
-				tStd::tSwap(block->ColourBlock.LookupTableRows[0], block->ColourBlock.LookupTableRows[3]);
-				tStd::tSwap(block->ColourBlock.LookupTableRows[1], block->ColourBlock.LookupTableRows[2]);
-			}
-			break;
-		}
-
-		default:
-			// We should not get here. Should have early returned already.
-			tAssert(!"Should be unreachable.");
-			delete[] reversedPixelData;
-			return nullptr;
-	}
-
-	return reversedPixelData;
-}
-
-
 const char* tImageDDS::GetResultDesc(ResultCode code)
 {
 	return ResultDescriptions[int(code)];
@@ -1796,10 +1563,9 @@ const char* tImageDDS::ResultDescriptions[] =
 	"Fatal Error. Pixel format header size incorrect.",
 	"Fatal Error. Pixel format specification incorrect.",
 	"Fatal Error. Unsupported pixel format.",
-	"Fatal Error. Incorrect BC data size.",
 	"Fatal Error. Maximum number of mipmap levels exceeded.",
 	"Fatal Error. Unable to decode BC pixels.",
-	"Fatal Error. Unable to decode normal uncompressed pixels.",
+	"Fatal Error. Unable to decode packed pixels.",
 	"Fatal Error. DX10 header size incorrect.",
 	"Fatal Error. DX10 resource dimension not supported. 2D support only."
 };
