@@ -123,7 +123,7 @@ namespace tDDS
 	};
 
 	#pragma pack(push, 4)
-	struct Capabilities
+	struct Caps
 	{
 		// DDS files should always include CapsBasicFlag_Texture. If the file contains mipmaps CapsBasicFlag_Mipmap
 		// should be set. For any dds file with more than one main surface, such as a mipmap, cubic environment map,
@@ -166,7 +166,7 @@ namespace tDDS
 		uint32 MipmapCount;							// Valid if tDDSFlag_MipmapCount set. @todo Count includes main image?
 		uint32 UnusedA[11];
 		FormatData Format;							// 32 Bytes.
-		Capabilities Capabilities;					// 16 Bytes.
+		Caps Capabilities;							// 16 Bytes.
 		uint32 UnusedB;
 	};
 	#pragma pack(pop)
