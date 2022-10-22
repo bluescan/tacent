@@ -38,8 +38,8 @@ enum class tPixelFormat
 	Invalid				= -1,
 	Auto				= Invalid,
 
-	FirstNormal,
-	R8G8B8				= FirstNormal,	// 24  bit. Full colour. No alpha. Matches GL_RGB source ordering. Not efficient. Most drivers will swizzle to BGR.
+	FirstPacked,
+	R8G8B8				= FirstPacked,	// 24  bit. Full colour. No alpha. Matches GL_RGB source ordering. Not efficient. Most drivers will swizzle to BGR.
 	R8G8B8A8,							// 32  bit. Full alpha. Matches GL_RGBA source ordering. Not efficient. Most drivers will swizzle to ABGR.
 	B8G8R8,								// 24  bit. Full colour. No alpha. Matches GL_BGR source ordering. Efficient. Most drivers do not need to swizzle.
 	B8G8R8A8,							// 32  bit. Full alpha. Matches GL_BGRA source ordering. Most drivers do not need to swizzle.
@@ -56,7 +56,7 @@ enum class tPixelFormat
 	R32F,								// 32  bit. Float red/luminance channel only.
 	R32G32F,							// 64  bit. Two floats per pixel. Red and green.
 	R32G32B32A32F,						// 128 bit. HDR format (linear-space), RGBA in 4 floats.
-	LastNormal			= R32G32B32A32F,
+	LastPacked			= R32G32B32A32F,
 
 	FirstBlock,
 	BC1DXT1				= FirstBlock,	// BC 1, DXT1. No alpha.
@@ -82,14 +82,14 @@ enum class tPixelFormat
 	LastPAL				= PAL1BIT,
 
 	NumPixelFormats,
-	NumNormalFormats	= LastNormal - FirstNormal + 1,
+	NumPackedFormats	= LastPacked - FirstPacked + 1,
 	NumBlockFormats		= LastBlock - FirstBlock + 1,
 	NumVendorFormats	= LastVendor - FirstVendor + 1,
 	NumPALFormats		= LastPAL - FirstPAL + 1
 };
 
 
-bool tIsNormalFormat(tPixelFormat);
+bool tIsPackedFormat(tPixelFormat);				// Simple RGB and RGBA formats with different numbers of bits per component and different orderings.
 bool tIsBlockCompressedFormat(tPixelFormat);
 bool tIsVendorFormat(tPixelFormat);
 bool tIsPaletteFormat(tPixelFormat);
@@ -109,9 +109,9 @@ tPixelFormat tGetPixelFormat(const char* name);	// Gets the pixel format from it
 // Implementation below this line.
 
 
-inline bool tImage::tIsNormalFormat(tPixelFormat format)
+inline bool tImage::tIsPackedFormat(tPixelFormat format)
 {
-	if ((format >= tPixelFormat::FirstNormal) && (format <= tPixelFormat::LastNormal))
+	if ((format >= tPixelFormat::FirstPacked) && (format <= tPixelFormat::LastPacked))
 		return true;
 
 	return false;

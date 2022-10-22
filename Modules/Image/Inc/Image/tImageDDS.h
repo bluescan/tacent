@@ -19,14 +19,12 @@ namespace tImage
 {
 
 
-struct tDXT1Block;
-
-
 // A tImageDDS object represents and knows how to load a dds file. In general a DirectDrawSurface is composed of
-// multiple layers -- each one a mipmap. It loads the data into tLayers. It can either decode to RGBA layers, or leave
-// the data as-is. Decode from BCn is supported. ASTC is not. The layers may be 'stolen' from a tImageDDS so that
-// excessive memcpys are avoided. After they are stolen the tImageDDS is invalid. 1D and 3D textures are not supported.
-// Cubemaps and mipmaps are.
+// multiple layers -- each one a mipmap. It loads the data into tLayers. It can either decode to R8G8B8A8 layers, or leave
+// the data as-is. Decode from BCn is supported. The layers may be 'stolen' from a tImageDDS so that excessive memcpys
+// are avoided. After they are stolen the tImageDDS is invalid. Cubemaps and mipmaps are supported.
+// @todo 1D and 3D textures are not supported yet.
+// @todo ASTC is not supported yet.
 class tImageDDS
 {
 public:
@@ -35,7 +33,7 @@ public:
 		LoadFlag_Decode				= 1 << 0,	// Decode the dds texture data into RGBA 32 bit layers. If not set, the layer data will remain unmodified.
 		LoadFlag_ReverseRowOrder	= 1 << 1,	// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.
 
-		// Gamma-correct. Gamma compression using a encoding gamma of 1/2.2. Flag only applies when decode flag set for
+		// Gamma-correct. Gamma compression using an encoding gamma of 1/2.2. Flag only applies when decode flag set for
 		// HDR / floating-point formats (BC6, rgb16f/32f, etc) images. Assumes (colour) data is linear and puts it in
 		// gamma-space (brighter) for diaplay on a monitor.
 		LoadFlag_GammaCompression	= 1 << 2,
@@ -86,7 +84,7 @@ public:
 
 	enum class ResultCode
 	{
-		// Full success. All load flags applied successfully.
+		// Success. The tImageDDS is considered valid. May be combined with the conditionals below.
 		Success,
 
 		// Conditional success. Object is valid, but not all load flags applied.
@@ -95,21 +93,21 @@ public:
 		Conditional_DimNotMultFourBC,
 		Conditional_DimNotPowerTwoBC,
 
-		// Fatal. Load was uncuccessful and object is invalid.
-		Fatal_DefaultInitialized,
+		// Fatal. Load was uncuccessful and object is invalid. The success flag will not be set.
 		Fatal_FileDoesNotExist,
 		Fatal_IncorrectFileType,
 		Fatal_IncorrectFileSize,
 		Fatal_IncorrectMagicNumber,
 		Fatal_IncorrectHeaderSize,
+		Fatal_InvalidDimensions,
 		Fatal_VolumeTexturesNotSupported,
 		Fatal_IncorrectPixelFormatHeaderSize,
 		Fatal_IncorrectPixelFormatSpec,
-		Fatal_UnsupportedPixelFormat,
+		Fatal_PixelFormatNotSupported,
 		Fatal_IncorrectBCDataSize,
 		Fatal_MaxNumMipmapLevelsExceeded,
 		Fatal_BlockDecodeError,
-		Fatal_NormalDecodeError,
+		Fatal_PackedDecodeError,
 		Fatal_DX10HeaderSizeIncorrect,
 		Fatal_DX10DimensionNotSupported,
 		NumCodes,
@@ -117,8 +115,8 @@ public:
 		// Since we store result codes as bits in a 32-bit uint, we need to make sure we don't have too many codes.
 		MaxCodes							= 32,
 		FirstValid							= Success,
-		LastValid							= Conditional_PitchXORLinearSize,
-		FirstFatal							= Fatal_DefaultInitialized,
+		LastValid							= Conditional_DimNotPowerTwoBC,
+		FirstFatal							= Fatal_FileDoesNotExist,
 		LastFatal							= Fatal_DX10DimensionNotSupported
 	};
 
@@ -146,8 +144,8 @@ public:
 	// (like for cube maps). Same for the dimensions and pixel format.
 	int GetNumMipmapLevels() const																						{ return NumMipmapLayers; }
 	int GetNumImages() const																							{ return NumImages; }
-	int GetWidth() const																								{ return IsValid() ? MipmapLayers[0][0]->Width : 0; }
-	int GetHeight() const																								{ return IsValid() ? MipmapLayers[0][0]->Height : 0; }
+	int GetWidth() const																								{ return IsValid() ? Layers[0][0]->Width : 0; }
+	int GetHeight() const																								{ return IsValid() ? Layers[0][0]->Height : 0; }
 
 	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the dds data was in.
 	tPixelFormat GetPixelFormat() const																					{ return PixelFormat; }
@@ -158,8 +156,8 @@ public:
 	tColourSpace GetColourSpace() const																					{ return ColourSpace; }
 	tAlphaMode GetAlphaMode() const																						{ return AlphaMode; }
 
-	// The texture is considered to have alphas if it is in a pixel format that supports them. For DXT1, the data is
-	// checked to see if any DXT1 blocks have a binary alpha index. We could check the data for the RGBA formats, but
+	// The texture is considered to have alphas if it is in a pixel format that supports them. For BC1, the data is
+	// checked to see if any BC1 blocks have a binary alpha index. We could check the data for the RGBA formats, but
 	// we don't as it shouldn't have been saved in an alpha supporting format if an all opaque texture was desired.
 	bool IsOpaque() const;
 
@@ -211,40 +209,38 @@ public:
 	int GetCubemapLayers(tList<tLayer> layers[tSurfIndex_NumSurfaces], uint32 sideFlags = tSurfFlag_All) const;
 
 	// You do not own the returned pointer.
-	tLayer* GetLayer(int layerNum, int imageNum) const																	{ return MipmapLayers[layerNum][imageNum]; }
+	tLayer* GetLayer(int layerNum, int imageNum) const																	{ return Layers[layerNum][imageNum]; }
 
-	// This is only for reporting the filename in case of errors.
 	tString Filename;
 
 private:
-	bool DoDXT1BlocksHaveBinaryAlpha(tDXT1Block* blocks, int numBlocks);
 	uint8* CreateReversedRowData_Normal(const uint8* pixelData, tPixelFormat pixelDataFormat, int width, int height);
 	uint8* CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH);
 
 	// The result codes are bits in this Results member.
-	uint32 Results;
+	uint32 Results							= 0;
 
-	tPixelFormat PixelFormat;
-	tPixelFormat PixelFormatSrc;
+	tPixelFormat PixelFormat				= tPixelFormat::Invalid;
+	tPixelFormat PixelFormatSrc				= tPixelFormat::Invalid;
 
-	// These two are not considered part of the pixel format in tacent.
-	tColourSpace ColourSpace		= tColourSpace::Unspecified;
-	tAlphaMode AlphaMode			= tAlphaMode::Unspecified;
+	// These two _not_ part of the pixel format in tacent.
+	tColourSpace ColourSpace				= tColourSpace::Unspecified;
+	tAlphaMode AlphaMode					= tAlphaMode::Unspecified;
 
-	bool IsCubeMap;
-	bool RowReversalOperationPerformed;
+	bool IsCubeMap							= false;
+	bool RowReversalOperationPerformed		= false;
 
-	// This will be 1 for textures. For cubemaps NumImages == 6.
-	int NumImages;
+	// This will be 1 for textures and 6 for cubemaps.
+	int NumImages							= 0;
 
 	// If this is 1, you can consider the texture(s) to NOT be mipmapped. If there is more than a single image (like
 	// with a cubemap), all images have the same number of mipmap layers.
-	int NumMipmapLayers;
-	const static int MaxMipmapLayers = 16;
+	int NumMipmapLayers						= 0;
+	const static int MaxMipmapLayers		= 16;		// Max dimension 32768.
 
 	// Cubemaps are always specified using a left-handed coord system even when using the OpenGL functions.
-	const static int MaxImages = 6;
-	tLayer* MipmapLayers[MaxMipmapLayers][MaxImages];
+	const static int MaxImages				= 6;
+	tLayer* Layers[MaxMipmapLayers][MaxImages];
 
 	void ProcessHDRFlags(tColour4f& colour, tcomps channels, const LoadParams& params);
 

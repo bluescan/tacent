@@ -5,7 +5,7 @@
 // different type sizes and can print integral types in a variety of bases. Redirection via a callback as well as
 // visibility channels are also supported.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019, 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -169,6 +169,7 @@ namespace tSystem
 
 	// Here are all the handler functions. One per type.
 	void Handler_b(Receiver& out, const FormatSpec&, void* data);
+	void Handler_B(Receiver& out, const FormatSpec&, void* data);
 	void Handler_o(Receiver& out, const FormatSpec&, void* data);
 	void Handler_d(Receiver& out, const FormatSpec&, void* data);
 	void Handler_i(Receiver& out, const FormatSpec&, void* data);
@@ -186,6 +187,7 @@ namespace tSystem
 	void Handler_m(Receiver& out, const FormatSpec&, void* data);
 	void Handler_c(Receiver& out, const FormatSpec&, void* data);
 	void Handler_s(Receiver& out, const FormatSpec&, void* data);
+	void Handler_B(Receiver& out, const FormatSpec&, void* data);
 }
 
 
@@ -422,6 +424,7 @@ tSystem::HandlerInfo tSystem::HandlerInfos[] =
 	{ 'm',			tSystem::BaseType::Flt,		sizeof(tMat4),			tSystem::Handler_m },	// 13
 	{ 'c',			tSystem::BaseType::Int,		4,						tSystem::Handler_c },	// 14
 	{ 's',			tSystem::BaseType::Int,		sizeof(char*),			tSystem::Handler_s },	// 15
+	{ 'B',			tSystem::BaseType::Int,		4,						tSystem::Handler_B },	// 16
 };
 
 // Filling this in correctly will speed things up. However, not filling it in or filling it in incorrectly will still
@@ -434,11 +437,11 @@ int tSystem::HandlerJumpTable[256] =
 	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// [16, 31]
 
 	//                   %
-	-1, -1, -1, -1, -1, 16, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// [32, 47]
+	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// [32, 47]
 	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// [48, 63]
 
 	//   A   B   C   D   E   F   G   H   I   J   K   L   M   N   O
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// [64, 79]
+	-1, -1, 16, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// [64, 79]
 
 	//   Q   R   S   T   U   V   W   X   Y   Z
 	-1, -1, -1, -1, -1, -1, -1, -1,  6, -1, -1, -1, -1, -1, -1, -1,		// [80, 95]
@@ -648,7 +651,7 @@ tSystem::HandlerInfo* tSystem::FindHandler(char type)
 
 	// First we try to use the jump table.
 	int index = HandlerJumpTable[int(type)];
-	if ((index != -1) && (index < NumHandlers) && (index >= 0))
+	if ((index < NumHandlers) && (index >= 0))
 	{
 		HandlerInfo* h = &HandlerInfos[index];
 		tAssert(h);
@@ -684,9 +687,8 @@ bool tSystem::IsValidFormatSpecifierCharacter(char c)
 		return true;
 
 	// Finally check for type.
-	for (int i = 0; i < NumHandlers; i++)
-		if (c == HandlerInfos[i].SpecChar)
-			return true;
+	if (FindHandler(c))
+		return true;
 
 	return false;
 }
@@ -2015,7 +2017,11 @@ void tSystem::Handler_m(Receiver& receiver, const FormatSpec& spec, void* data)
 void tSystem::Handler_c(Receiver& receiver, const FormatSpec& spec, void* data)
 {
 	const char chr = *((const char*)data);
+
+	// It is valid to have a width specifier even with %c. This is how regular printf works too.
+	HandlerHelper_JustificationProlog(receiver, 1, spec);
 	receiver.Receive(chr);
+	HandlerHelper_JustificationEpilog(receiver, 1, spec);
 }
 
 
@@ -2029,6 +2035,35 @@ void tSystem::Handler_s(Receiver& receiver, const FormatSpec& spec, void* data)
 
 	HandlerHelper_JustificationProlog(receiver, numToAppend, spec);
 	receiver.Receive(str, numToAppend);
+	HandlerHelper_JustificationEpilog(receiver, numToAppend, spec);
+}
+
+
+void tSystem::Handler_B(Receiver& receiver, const FormatSpec& spec, void* data)
+{
+	const bool boolean = *((const bool*)data);
+
+	const char* bstr = nullptr;
+	int numToAppend = 0;
+
+	if (spec.Flags & Flag_DecorativeFormatting)
+	{
+		numToAppend = 1;
+		bstr = boolean ? "T" : "F";
+	}
+	else if (spec.Flags & Flag_DecorativeFormattingAlt)
+	{
+		numToAppend = 1;
+		bstr = boolean ? "Y" : "N";
+	}
+	else
+	{
+		numToAppend = boolean	? 4			: 5;
+		bstr = boolean			? "true"	: "false";
+	}
+
+	HandlerHelper_JustificationProlog(receiver, numToAppend, spec);
+	receiver.Receive(bstr, numToAppend);
 	HandlerHelper_JustificationEpilog(receiver, numToAppend, spec);
 }
 

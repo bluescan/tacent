@@ -220,7 +220,7 @@ template<typename T> static tString ConvertToString(T value)
 tTestUnit(Print)
 {
 	tSetDefaultPrecision(6);
-	
+
 	tPrint("tPrintf Tests.\n");
 	tRequire(PrintCompare("Hex %#010X\n", 0x0123ABCD));
 	tRequire(PrintCompare("Hex %#010x\n", 0));
@@ -263,9 +263,70 @@ tTestUnit(Print)
 	);
 
 	PrintTest
+
 	(
 		"Octal   0001 3417 0443 2270 7413 4360 (64 bit):\n"
 		"      __%0_24:2o__\n", u64
+	);
+
+	PrintTest
+	(
+		"Boolean true:\n"
+		"      __%B__\n", true
+	);
+
+	PrintTest
+	(
+		"Boolean false:\n"
+		"      __%B__\n", false
+	);
+
+	PrintTest
+	(
+		"Boolean true:\n"
+		"      __%_B__\n", true
+	);
+
+	PrintTest
+	(
+		"Boolean false:\n"
+		"      __%_B__\n", false
+	);
+
+	PrintTest
+	(
+		"Boolean true:\n"
+		"      __%'B__\n", true
+	);
+
+	PrintTest
+	(
+		"Boolean false:\n"
+		"      __%'B__\n", false
+	);
+
+	PrintTest
+	(
+		"Boolean true:\n"
+		"      __%_08B__\n", true
+	);
+
+	PrintTest
+	(
+		"Boolean false:\n"
+		"      __%010B__\n", false
+	);
+
+	PrintTest
+	(
+		"Boolean true:\n"
+		"      __%2B__\n", true
+	);
+
+	PrintTest
+	(
+		"Boolean false:\n"
+		"      __%12B__\n", false
 	);
 
 	tRequire(PrintCompare("Percent symbol.                      ___%%___\n"));
@@ -329,8 +390,9 @@ tTestUnit(Print)
 	tRequire(PrintCompare("tString: %s\n", tPod(test)));
 	tRequire(PrintCompare("Reg String: %s\n", "A regular string"));
 
-	tRequire(PrintCompare("Char %c\n", 65));
-	tRequire(PrintCompare("Char %c %c %c\n", 65, 66, 67));
+	tRequire(PrintCompare("Char %c\n", 65));					// A
+	tRequire(PrintCompare("Char %c %c %c\n", 65, 66, 67));		// A B C
+	tRequire(PrintCompare("Char %4c %06c %8c\n", 65, 66, 67));
 
 	#ifdef PLATFORM_WINDOWS
 	tPrintf("Windows non-POD tString print.\n");

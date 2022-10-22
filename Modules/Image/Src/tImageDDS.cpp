@@ -21,51 +21,827 @@
 #include "Image/tImageDDS.h"
 #define BCDEC_IMPLEMENTATION
 #include "bcdec/bcdec.h"
-#define FourCC(ch0, ch1, ch2, ch3) (uint(uint8(ch0)) | (uint(uint8(ch1)) << 8) | (uint(uint8(ch2)) << 16) | (uint(uint8(ch3)) << 24))
+#define FourCC(ch0, ch1, ch2, ch3) (uint32(uint8(ch0)) | (uint32(uint8(ch1)) << 8) | (uint32(uint8(ch2)) << 16) | (uint32(uint8(ch3)) << 24))
 namespace tImage
 {
 
 
-tImageDDS::tImageDDS() :
-	Filename(),
-	Results(1 << int(ResultCode::Fatal_DefaultInitialized)),
-	PixelFormat(tPixelFormat::Invalid),
-	PixelFormatSrc(tPixelFormat::Invalid),
-	IsCubeMap(false),
-	RowReversalOperationPerformed(false),
-	NumImages(0),
-	NumMipmapLayers(0)
+// Helper functions, enums, and types for parsing DDS files.
+namespace tDDS
 {
-	tStd::tMemset(MipmapLayers, 0, sizeof(MipmapLayers));
+	// Direct Draw pixel format flags. When the comment says legacy here, we really mean it. Not just legacy in that
+	// there's no DX10 block, but legacy in that there won't be a DX10 block AND it's still a really old-style dds.
+	enum DDFormatFlag : uint32
+	{
+		// Pixel has alpha. tDDS::Format's MaskAlpha will be valid. I believe ALPHAPIXELS is only ever used in
+		// combination with RGB, YUV, or LUMINANCE. An alpha-only dds would use DDFormatFlag_A instead.
+		DDFormatFlag_HASALPHA		= 0x00000001,
+
+		// Legacy. Some dds files use this if all they contain is an alpha channel. tDDS::Format's RGBBitCount is the
+		// number of bits used for the alpha channel and MaskAlpha will be valid.
+		DDFormatFlag_A				= 0x00000002,
+
+		// Use the Four-CC to determine format. That's another whole thing. tDDS::Format's FourCC will be valid. Modern
+		// dds files have a Four-CC of 'DX10' and another whole header specifies the actual pixel format. Complex-much?
+		DDFormatFlag_FOURCC			= 0x00000004,
+
+		// Palette indexed. 8-bit. Never seen a dds with this.
+		DDFormatFlag_PAL8			= 0x00000020,
+
+		// Pixels contain RGB data. tDDS::Format's RGBBitCount is the number of bits used for RGB. Also go ahead and
+		// read MaskRed, MaskGreen, and MaskBlue to determine where the data is and how many bits for each component.
+		DDFormatFlag_RGB			= 0x00000040,
+
+		// Legacy. Some dds files use this for YUV pixels. tDDS::Format's RGBBitCount will be the number of bits used
+		// for YUV (not RGB). Similarly, MaskRed, MaskGreen, and MaskBlue will contain the masks for each YUV component.
+		// Red for Y, green for U, and blue for V.
+		DDFormatFlag_YUV			= 0x00000200,
+
+		// Legacy. Some dds files use this for single channel luminance-only data. tDDS::Format's RGBBitCount will be
+		// the number of bits used for luminance and MaskRed will contain the mask for the luminance component. If the
+		// tDDPF_ALPHAPIXELS bit is also set, it would be a luminance-alpha (LA) dds.
+		DDFormatFlag_L				= 0x00020000,
+
+		// Now that the raw format flags are out of the way, here are some combinations representing what you can
+		// expect to find in a real dds file. These are basically just convenience enumerants that contains some
+		// bitwise-ORs of the above flags. You can check for full equality with these enums (no need to check bits).
+		DDFormatFlags_FourCC		= DDFormatFlag_FOURCC,
+		DDFormatFlags_RGB			= DDFormatFlag_RGB,
+		DDFormatFlags_RGBA			= DDFormatFlag_RGB	| DDFormatFlag_HASALPHA,
+		DDFormatFlags_L				= DDFormatFlag_L,
+		DDFormatFlags_LA			= DDFormatFlag_L	| DDFormatFlag_HASALPHA,
+		DDFormatFlags_A				= DDFormatFlag_A,
+		DDFormatFlags_PAL8			= DDFormatFlag_PAL8
+	};
+
+	#pragma pack(push, 4)
+	struct FormatData
+	{
+		// Must be 32.
+		uint32 Size;
+
+		// See tDDS::PixelFormatFlags. Flags to indicate valid fields. Uncompressed formats will usually use
+		// tDDS::PixelFormatFlags_RGB to indicate an RGB format, while compressed formats will use tDDS::PixelFormatFlags_FourCC
+		// with a four-character code.
+		uint32 Flags;
+
+		// "DXT1", "DXT3", and "DXT5" are examples. m_flags should have DDSPixelFormatFlag_FourCC.
+		uint32 FourCC;
+
+		// Valid if flags has DDSPixelFormatFlag_RGB. For RGB formats this is the total number of bits per pixel. This
+		// value is usually 16, 24, or 32. For A8R8G8B8, this value would be 32.
+		uint32 RGBBitCount;
+
+		// For RGB formats these three fields contain the masks for the red, green, and blue channels. For A8R8G8B8 these
+		// values would be 0x00FF0000, 0x0000FF00, and 0x000000FF respectively.
+		uint32 MaskRed;
+		uint32 MaskGreen;
+		uint32 MaskBlue;
+
+		// If the flags have DDSPixelFormatFlag_Alpha set, this is valid and contains tha alpha mask. Eg. For A8R8G8B8 this
+		// value would be 0xFF000000.
+		uint32 MaskAlpha;
+	};
+	#pragma pack(pop)
+
+	enum CapsBasicFlag : uint32
+	{
+		CapsBasicFlag_Complex		= 0x00000008,
+		CapsBasicFlag_Texture		= 0x00001000,
+		CapsBasicFlag_Mipmap		= 0x00400000
+	};
+
+	enum CapsExtraFlag : uint32
+	{
+		CapsExtraFlag_CubeMap		= 0x00000200,
+		CapsExtraFlag_CubeMapPosX	= 0x00000400,
+		CapsExtraFlag_CubeMapNegX	= 0x00000800,
+		CapsExtraFlag_CubeMapPosY	= 0x00001000,
+		CapsExtraFlag_CubeMapNegY	= 0x00002000,
+		CapsExtraFlag_CubeMapPosZ	= 0x00004000,
+		CapsExtraFlag_CubeMapNegZ	= 0x00008000,
+		CapsExtraFlag_Volume		= 0x00200000
+	};
+
+	#pragma pack(push, 4)
+	struct Capabilities
+	{
+		// DDS files should always include CapsBasicFlag_Texture. If the file contains mipmaps CapsBasicFlag_Mipmap
+		// should be set. For any dds file with more than one main surface, such as a mipmap, cubic environment map,
+		// or volume texture, CapsBasicFlag_Complex should also be set.
+		uint32 FlagsCapsBasic;
+
+		// For cubic environment maps CapsExtraFlag_CubeMap should be included as well as one or more faces of the map
+		// (CapsExtraFlag_CubeMapPosX, etc). For volume textures CapsExtraFlag_Volume should be set.
+		uint32 FlagsCapsExtra;
+		uint32 Unused[2];
+	};
+	#pragma pack(pop)
+
+	enum HeaderFlag : uint32
+	{
+		HeaderFlag_Caps				= 0x00000001,	// Always included.
+		HeaderFlag_Height			= 0x00000002,	// Always included. Height of largest image if mipmaps included.
+		HeaderFlag_Width			= 0x00000004,	// Always included. Width of largest image if mipmaps included.
+		HeaderFlag_Pitch			= 0x00000008,
+		HeaderFlag_PixelFormat		= 0x00001000,	// Always included.
+		HeaderFlag_MipmapCount		= 0x00020000,
+		HeaderFlag_LinearSize		= 0x00080000,
+		HeaderFlag_Depth			= 0x00800000
+	};
+
+	// Default packing is 8 bytes but the header is 128 bytes (mult of 4), so we make it all work here.
+	#pragma pack(push, 4)
+	struct Header
+	{
+		uint32 Size;								// Must be set to 124.
+		uint32 Flags;								// See tDDSFlags.
+		uint32 Height;								// Height of main image.
+		uint32 Width;								// Width of main image.
+
+		// For uncompressed formats, this is the number of bytes per scan line (32-bit aligned) for the main image. dwFlags
+		// should include DDSD_PITCH in this case. For compressed formats, this is the total number of bytes for the main
+		// image. m_flags should have tDDSFlag_LinearSize in this case.
+		uint32 PitchLinearSize;
+		uint32 Depth;								// For volume textures. tDDSFlag_Depth is set for this to be valid.
+		uint32 MipmapCount;							// Valid if tDDSFlag_MipmapCount set. @todo Count includes main image?
+		uint32 UnusedA[11];
+		FormatData Format;							// 32 Bytes.
+		Capabilities Capabilities;					// 16 Bytes.
+		uint32 UnusedB;
+	};
+	#pragma pack(pop)
+
+	// D3D formats that may appear in DDS files. Would normally not uint32 them, but these are also used for FourCCs.
+	enum D3DFMT : uint32
+	{
+		D3DFMT_UNKNOWN				=  0,
+
+		D3DFMT_R8G8B8				= 20,
+		D3DFMT_A8R8G8B8				= 21,
+		D3DFMT_X8R8G8B8				= 22,
+		D3DFMT_R5G6B5				= 23,
+		D3DFMT_X1R5G5B5				= 24,
+		D3DFMT_A1R5G5B5				= 25,
+		D3DFMT_A4R4G4B4				= 26,
+		D3DFMT_R3G3B2				= 27,
+		D3DFMT_A8					= 28,
+		D3DFMT_A8R3G3B2				= 29,
+		D3DFMT_X4R4G4B4				= 30,
+		D3DFMT_A2B10G10R10			= 31,
+		D3DFMT_A8B8G8R8				= 32,
+		D3DFMT_X8B8G8R8				= 33,
+		D3DFMT_G16R16				= 34,
+		D3DFMT_A2R10G10B10			= 35,
+		D3DFMT_A16B16G16R16			= 36,
+
+		D3DFMT_A8P8					= 40,
+		D3DFMT_P8					= 41,
+
+		D3DFMT_L8					= 50,
+		D3DFMT_A8L8					= 51,
+		D3DFMT_A4L4					= 52,
+
+		D3DFMT_V8U8					= 60,
+		D3DFMT_L6V5U5				= 61,
+		D3DFMT_X8L8V8U8				= 62,
+		D3DFMT_Q8W8V8U8				= 63,
+		D3DFMT_V16U16				= 64,
+		D3DFMT_A2W10V10U10			= 67,
+
+		D3DFMT_UYVY					= FourCC('U', 'Y', 'V', 'Y'),
+		D3DFMT_R8G8_B8G8			= FourCC('R', 'G', 'B', 'G'),
+		D3DFMT_YUY2					= FourCC('Y', 'U', 'Y', '2'),
+		D3DFMT_G8R8_G8B8			= FourCC('G', 'R', 'G', 'B'),
+		D3DFMT_DXT1					= FourCC('D', 'X', 'T', '1'),
+		D3DFMT_DXT2					= FourCC('D', 'X', 'T', '2'),
+		D3DFMT_DXT3					= FourCC('D', 'X', 'T', '3'),
+		D3DFMT_DXT4					= FourCC('D', 'X', 'T', '4'),
+		D3DFMT_DXT5					= FourCC('D', 'X', 'T', '5'),
+
+		D3DFMT_D16_LOCKABLE			= 70,
+		D3DFMT_D32					= 71,
+		D3DFMT_D15S1				= 73,
+		D3DFMT_D24S8				= 75,
+		D3DFMT_D24X8				= 77,
+		D3DFMT_D24X4S4				= 79,
+		D3DFMT_D16					= 80,
+
+		D3DFMT_D32F_LOCKABLE		= 82,
+		D3DFMT_D24FS8				= 83,
+
+		D3DFMT_D32_LOCKABLE			= 84,
+		D3DFMT_S8_LOCKABLE			= 85,
+
+		D3DFMT_L16					= 81,
+
+		D3DFMT_VERTEXDATA			= 100,
+		D3DFMT_INDEX16				= 101,
+		D3DFMT_INDEX32				= 102,
+
+		D3DFMT_Q16W16V16U16			= 110,
+
+		D3DFMT_MULTI2_ARGB8			= FourCC('M','E','T','1'),
+
+		D3DFMT_R16F					= 111,
+		D3DFMT_G16R16F				= 112,
+		D3DFMT_A16B16G16R16F		= 113,
+
+		D3DFMT_R32F					= 114,
+		D3DFMT_G32R32F				= 115,
+		D3DFMT_A32B32G32R32F		= 116,
+
+		D3DFMT_CxV8U8				= 117,
+
+		D3DFMT_FORCE_DWORD			= 0x7fffffff
+	};
+
+	// More modern DX formats. Made unsigned due to the force-uint (last member).
+	enum DXGIFMT : uint32 
+	{
+		DXGIFMT_UNKNOWN,					// 0
+		DXGIFMT_R32G32B32A32_TYPELESS,
+		DXGIFMT_R32G32B32A32_FLOAT,
+		DXGIFMT_R32G32B32A32_UINT,
+		DXGIFMT_R32G32B32A32_SINT,
+		DXGIFMT_R32G32B32_TYPELESS,
+		DXGIFMT_R32G32B32_FLOAT,
+		DXGIFMT_R32G32B32_UINT,
+		DXGIFMT_R32G32B32_SINT,
+		DXGIFMT_R16G16B16A16_TYPELESS,
+		DXGIFMT_R16G16B16A16_FLOAT,			// 10
+		DXGIFMT_R16G16B16A16_UNORM,
+		DXGIFMT_R16G16B16A16_UINT,
+		DXGIFMT_R16G16B16A16_SNORM,
+		DXGIFMT_R16G16B16A16_SINT,
+		DXGIFMT_R32G32_TYPELESS,
+		DXGIFMT_R32G32_FLOAT,
+		DXGIFMT_R32G32_UINT,
+		DXGIFMT_R32G32_SINT,
+		DXGIFMT_R32G8X24_TYPELESS,
+		DXGIFMT_D32_FLOAT_S8X24_UINT,		// 20
+		DXGIFMT_R32_FLOAT_X8X24_TYPELESS,
+		DXGIFMT_X32_TYPELESS_G8X24_UINT,
+		DXGIFMT_R10G10B10A2_TYPELESS,
+		DXGIFMT_R10G10B10A2_UNORM,
+		DXGIFMT_R10G10B10A2_UINT,
+		DXGIFMT_R11G11B10_FLOAT,
+		DXGIFMT_R8G8B8A8_TYPELESS,
+		DXGIFMT_R8G8B8A8_UNORM,
+		DXGIFMT_R8G8B8A8_UNORM_SRGB,
+		DXGIFMT_R8G8B8A8_UINT,				// 30
+		DXGIFMT_R8G8B8A8_SNORM,
+		DXGIFMT_R8G8B8A8_SINT,
+		DXGIFMT_R16G16_TYPELESS,
+		DXGIFMT_R16G16_FLOAT,
+		DXGIFMT_R16G16_UNORM,
+		DXGIFMT_R16G16_UINT,
+		DXGIFMT_R16G16_SNORM,
+		DXGIFMT_R16G16_SINT,
+		DXGIFMT_R32_TYPELESS,
+		DXGIFMT_D32_FLOAT,					// 40
+		DXGIFMT_R32_FLOAT,
+		DXGIFMT_R32_UINT,
+		DXGIFMT_R32_SINT,
+		DXGIFMT_R24G8_TYPELESS,
+		DXGIFMT_D24_UNORM_S8_UINT,
+		DXGIFMT_R24_UNORM_X8_TYPELESS,
+		DXGIFMT_X24_TYPELESS_G8_UINT,
+		DXGIFMT_R8G8_TYPELESS,
+		DXGIFMT_R8G8_UNORM,
+		DXGIFMT_R8G8_UINT,					// 50
+		DXGIFMT_R8G8_SNORM,
+		DXGIFMT_R8G8_SINT,
+		DXGIFMT_R16_TYPELESS,
+		DXGIFMT_R16_FLOAT,
+		DXGIFMT_D16_UNORM,
+		DXGIFMT_R16_UNORM,
+		DXGIFMT_R16_UINT,
+		DXGIFMT_R16_SNORM,
+		DXGIFMT_R16_SINT,
+		DXGIFMT_R8_TYPELESS,				// 60
+		DXGIFMT_R8_UNORM,
+		DXGIFMT_R8_UINT,
+		DXGIFMT_R8_SNORM,
+		DXGIFMT_R8_SINT,
+		DXGIFMT_A8_UNORM,
+		DXGIFMT_R1_UNORM,
+		DXGIFMT_R9G9B9E5_SHAREDEXP,
+		DXGIFMT_R8G8_B8G8_UNORM,
+		DXGIFMT_G8R8_G8B8_UNORM,
+		DXGIFMT_BC1_TYPELESS,				// 70
+		DXGIFMT_BC1_UNORM,
+		DXGIFMT_BC1_UNORM_SRGB,
+		DXGIFMT_BC2_TYPELESS,
+		DXGIFMT_BC2_UNORM,
+		DXGIFMT_BC2_UNORM_SRGB,
+		DXGIFMT_BC3_TYPELESS,
+		DXGIFMT_BC3_UNORM,
+		DXGIFMT_BC3_UNORM_SRGB,
+		DXGIFMT_BC4_TYPELESS,
+		DXGIFMT_BC4_UNORM,					// 80
+		DXGIFMT_BC4_SNORM,
+		DXGIFMT_BC5_TYPELESS,
+		DXGIFMT_BC5_UNORM,
+		DXGIFMT_BC5_SNORM,
+		DXGIFMT_B5G6R5_UNORM,
+		DXGIFMT_B5G5R5A1_UNORM,
+		DXGIFMT_B8G8R8A8_UNORM,
+		DXGIFMT_B8G8R8X8_UNORM,
+		DXGIFMT_R10G10B10_XR_BIAS_A2_UNORM,
+		DXGIFMT_B8G8R8A8_TYPELESS,			// 90
+		DXGIFMT_B8G8R8A8_UNORM_SRGB,
+		DXGIFMT_B8G8R8X8_TYPELESS,
+		DXGIFMT_B8G8R8X8_UNORM_SRGB,
+		DXGIFMT_BC6H_TYPELESS,
+		DXGIFMT_BC6H_UF16,
+		DXGIFMT_BC6H_SF16,
+		DXGIFMT_BC7_TYPELESS,
+		DXGIFMT_BC7_UNORM,
+		DXGIFMT_BC7_UNORM_SRGB,
+		DXGIFMT_AYUV,						// 100
+		DXGIFMT_Y410,
+		DXGIFMT_Y416,
+		DXGIFMT_NV12,
+		DXGIFMT_P010,
+		DXGIFMT_P016,
+		DXGIFMT_420_OPAQUE,
+		DXGIFMT_YUY2,
+		DXGIFMT_Y210,
+		DXGIFMT_Y216,
+		DXGIFMT_NV11,						// 110
+		DXGIFMT_AI44,
+		DXGIFMT_IA44,
+		DXGIFMT_P8,
+		DXGIFMT_A8P8,
+		DXGIFMT_B4G4R4A4_UNORM,				// 115
+		
+		DXGIFMT_P208						= 130,
+		DXGIFMT_V208,
+		DXGIFMT_V408,
+		DXGIFMT_FORCE_UINT					= 0xffffffff
+	};
+
+	enum D3D10_DIMENSION
+	{
+		D3D10_DIMENSION_UNKNOWN				= 0,
+		D3D10_DIMENSION_BUFFER				= 1,
+		D3D10_DIMENSION_TEXTURE1D			= 2,
+		D3D10_DIMENSION_TEXTURE2D			= 3,
+		D3D10_DIMENSION_TEXTURE3D			= 4
+	};
+
+	enum D3D11_MISCFLAG : uint32
+	{
+		D3D11_MISCFLAG_GENERATE_MIPS					= 0x00000001,
+		D3D11_MISCFLAG_SHARED							= 0x00000002,
+		D3D11_MISCFLAG_TEXTURECUBE						= 0x00000004,
+		D3D11_MISCFLAG_DRAWINDIRECT_ARGS				= 0x00000010,
+		D3D11_MISCFLAG_BUFFER_ALLOW_RAW_VIEWS			= 0x00000020,
+		D3D11_MISCFLAG_BUFFER_STRUCTURED				= 0x00000040,
+		D3D11_MISCFLAG_RESOURCE_CLAMP					= 0x00000080,
+		D3D11_MISCFLAG_SHARED_KEYEDMUTEX				= 0x00000100,
+		D3D11_MISCFLAG_GDI_COMPATIBLE					= 0x00000200,
+		D3D11_MISCFLAG_SHARED_NTHANDLE					= 0x00000800,
+		D3D11_MISCFLAG_RESTRICTED_CONTENT				= 0x00001000,
+		D3D11_MISCFLAG_RESTRICT_SHARED_RESOURCE			= 0x00002000,
+		D3D11_MISCFLAG_RESTRICT_SHARED_RESOURCE_DRIVER	= 0x00004000,
+		D3D11_MISCFLAG_GUARDED							= 0x00008000,
+		D3D11_MISCFLAG_TILE_POOL						= 0x00020000,
+		D3D11_MISCFLAG_TILED							= 0x00040000,
+		D3D11_MISCFLAG_HW_PROTECTED						= 0x00080000,
+
+		// These are TBD. Don't use.
+		D3D11_MISCFLAG_SHARED_DISPLAYABLE,
+		D3D11_MISCFLAG_SHARED_EXCLUSIVE_WRITER
+	};
+
+	#pragma pack(push, 4)
+	struct DX10Header
+	{
+		DXGIFMT DxgiFormat;
+		D3D10_DIMENSION Dimension;
+		uint32 MiscFlag;
+		uint32 ArraySize;
+		uint32 Reserved;
+	};
+	#pragma pack(pop)
+
+	// These BC blocks are needed so that the tImageDDS class can re-order the rows by messing with each block's lookup
+	// table and alpha tables. This is because DDS files have the rows of their textures upside down (texture origin in
+	// OpenGL is lower left, while in DirectX it is upper left). See: http://en.wikipedia.org/wiki/S3_Texture_Compression
+	#pragma pack(push, 1)
+
+	// The BC1 block is used for both DXT1 and DXT1 with binary alpha. It's also used as the colour information block in the
+	// DXT 2, 3, 4 and 5 formats. Size is 64 bits.
+	struct BC1Block
+	{
+		uint16 Colour0;								// R5G6B5
+		uint16 Colour1;								// R5G6B5
+		uint8 LookupTableRows[4];
+	};
+
+	// The BC2 block is the same for DXT2 and DXT3, although we don't support 2 (premultiplied alpha). Size is 128 bits.
+	struct BC2Block
+	{
+		uint16 AlphaTableRows[4];					// Each alpha is 4 bits.
+		BC1Block ColourBlock;
+	};
+
+	// The BC3 block is the same for DXT4 and 5, although we don't support 4 (premultiplied alpha). Size is 128 bits.
+	struct BC3Block
+	{
+		uint8 Alpha0;
+		uint8 Alpha1;
+		uint8 AlphaTable[6];						// Each of the 4x4 pixel entries is 3 bits.
+		BC1Block ColourBlock;
+
+		// These accessors are needed because of the unusual alignment of the 3bit alpha indexes. They each return or set a
+		// value in [0, 2^12) which represents a single row. The row variable should be in [0, 3]
+		uint16 GetAlphaRow(int row)
+		{
+			tAssert(row < 4);
+			switch (row)
+			{
+				case 1:
+					return (AlphaTable[2] << 4) | (0x0F & (AlphaTable[1] >> 4));
+
+				case 0:
+					return ((AlphaTable[1] & 0x0F) << 8) | AlphaTable[0];
+
+				case 3:
+					return (AlphaTable[5] << 4) | (0x0F & (AlphaTable[4] >> 4));
+
+				case 2:
+					return ((AlphaTable[4] & 0x0F) << 8) | AlphaTable[3];
+			}
+			return 0;
+		}
+
+		void SetAlphaRow(int row, uint16 val)
+		{
+			tAssert(row < 4);
+			tAssert(val < 4096);
+			switch (row)
+			{
+				case 1:
+					AlphaTable[2] = val >> 4;
+					AlphaTable[1] = (AlphaTable[1] & 0x0F) | ((val & 0x000F) << 4);
+					break;
+
+				case 0:
+					AlphaTable[1] = (AlphaTable[1] & 0xF0) | (val >> 8);
+					AlphaTable[0] = val & 0x00FF;
+					break;
+
+				case 3:
+					AlphaTable[5] = val >> 4;
+					AlphaTable[4] = (AlphaTable[4] & 0x0F) | ((val & 0x000F) << 4);
+					break;
+
+				case 2:
+					AlphaTable[4] = (AlphaTable[4] & 0xF0) | (val >> 8);
+					AlphaTable[3] = val & 0x00FF;
+					break;
+			}
+		}
+	};
+	#pragma pack(pop)
+
+	bool DoBC1BlocksHaveBinaryAlpha(BC1Block* blocks, int numBlocks);
+
+	// These figure out the pixel format, the colour-space, and the alpha mode. tPixelFormat does not specify ancilllary
+	// properties of the data -- it specified the encoding of the data. The extra information, like the colour-space it
+	// was authored in, is stored in tColourSpace and tAlphaMode. In many cases this satellite information cannot be
+	// determined, in which case colour-space and/or alpha-mode will be set to their 'unspecified' enumerant.
+	void GetFormatInfo_FromDXGIFormat		(tPixelFormat&, tColourSpace&, tAlphaMode&, uint32 dxgiFormat);
+	void GetFormatInfo_FromFourCC			(tPixelFormat&, tColourSpace&, tAlphaMode&, uint32 fourCC);
+	void GetFormatInfo_FromComponentMasks	(tPixelFormat&, tColourSpace&, tAlphaMode&, const FormatData&);
+}
+
+
+bool tDDS::DoBC1BlocksHaveBinaryAlpha(tDDS::BC1Block* block, int numBlocks)
+{
+	// The only way to check if the DXT1 format has alpha is by checking each block individually. If the block uses
+	// alpha, the min and max colours are ordered in a particular order.
+	for (int b = 0; b < numBlocks; b++)
+	{
+		if (block->Colour0 <= block->Colour1)
+		{
+			// It seems that at least the nVidia DXT compressor can generate an opaque DXT1 block with the colours in the order for a transparent one.
+			// This forces us to check all the indexes to see if the alpha index (11 in binary) is used -- if not then it's still an opaque block.
+			for (int row = 0; row < 4; row++)
+			{
+				uint8 bits = block->LookupTableRows[row];
+				if
+				(
+					((bits & 0x03) == 0x03) ||
+					((bits & 0x0C) == 0x0C) ||
+					((bits & 0x30) == 0x30) ||
+					((bits & 0xC0) == 0xC0)
+				)
+				{
+					return true;
+				}
+			}
+		}
+
+		block++;
+	}
+
+	return false;
+}
+
+
+void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourSpace& space, tAlphaMode& alpha, uint32 dxgiFormat)
+{
+	format = tPixelFormat::Invalid;
+	space = tColourSpace::Unspecified;
+	alpha = tAlphaMode::Unspecified;
+
+	switch (dxgiFormat)
+	{
+		case tDDS::DXGIFMT_BC1_UNORM_SRGB:
+			space = tColourSpace::sRGB;
+		case tDDS::DXGIFMT_BC1_TYPELESS:
+		case tDDS::DXGIFMT_BC1_UNORM:
+			format = tPixelFormat::BC1DXT1;
+			break;
+
+		// DXGI formats do not specify premultiplied alpha mode like DXT2/3 so we leave it unspecified.
+		case tDDS::DXGIFMT_BC2_UNORM_SRGB:
+			space = tColourSpace::sRGB;
+		case tDDS::DXGIFMT_BC2_TYPELESS:
+		case tDDS::DXGIFMT_BC2_UNORM:
+			format = tPixelFormat::BC2DXT2DXT3;
+			break;
+
+		// DXGI formats do not specify premultiplied alpha mode like DXT4/5 so we leave it unspecified. As for sRGB,
+		// if it says UNORM_SRGB, sure, it may not contain sRGB data, but it's as good as you can get in terms of knowing.
+		// I mean if the DirectX loader 'treats' it as being sRGB (in that it will convert it to linear), then we should
+		// treat it as being sRGB data in general. Of course it could just be a recipe for apple pie, and if it is, it is
+		// a recipe the authors wanted interpreted as sRGB data, otherwise they wouldn't have chosen the _SRGB pixel format.
+		case tDDS::DXGIFMT_BC3_UNORM_SRGB:
+			space = tColourSpace::sRGB;
+		case tDDS::DXGIFMT_BC3_TYPELESS:
+		case tDDS::DXGIFMT_BC3_UNORM:
+			format = tPixelFormat::BC3DXT4DXT5;
+			break;
+
+		// case DXGIFMT_BC4_SNORM:
+		case tDDS::DXGIFMT_BC4_TYPELESS:
+		case tDDS::DXGIFMT_BC4_UNORM:
+			format = tPixelFormat::BC4ATI1;
+			break;
+
+		// case DXGIFMT_BC5_SNORM:
+		case tDDS::DXGIFMT_BC5_TYPELESS:
+		case tDDS::DXGIFMT_BC5_UNORM:
+			format = tPixelFormat::BC5ATI2;
+			break;
+
+		case tDDS::DXGIFMT_BC6H_TYPELESS:		// Interpret typeless as BC6H_S16... we gotta choose something.
+		case tDDS::DXGIFMT_BC6H_SF16:
+			format = tPixelFormat::BC6S;
+			space = tColourSpace::Linear;
+			break;
+
+		case tDDS::DXGIFMT_BC6H_UF16:
+			format = tPixelFormat::BC6U;
+			space = tColourSpace::Linear;
+			break;
+
+		case tDDS::DXGIFMT_BC7_UNORM_SRGB:
+			space = tColourSpace::sRGB;
+		case tDDS::DXGIFMT_BC7_TYPELESS:			// Interpret typeless as BC7_UNORM... we gotta choose something.
+		case tDDS::DXGIFMT_BC7_UNORM:
+			format = tPixelFormat::BC7;
+			break;
+
+		case tDDS::DXGIFMT_A8_UNORM:
+			format = tPixelFormat::A8;
+			break;
+
+		case tDDS::DXGIFMT_R8_UNORM:
+		case tDDS::DXGIFMT_R8_TYPELESS:
+			format = tPixelFormat::L8;
+			break;
+
+		case tDDS::DXGIFMT_B8G8R8A8_UNORM_SRGB:
+			space = tColourSpace::sRGB;
+		case tDDS::DXGIFMT_B8G8R8A8_UNORM:
+		case tDDS::DXGIFMT_B8G8R8A8_TYPELESS:
+			format = tPixelFormat::B8G8R8A8;
+			break;
+
+		case tDDS::DXGIFMT_B5G6R5_UNORM:
+			format = tPixelFormat::B5G6R5;
+			break;
+
+		case tDDS::DXGIFMT_B4G4R4A4_UNORM:
+			format = tPixelFormat::B4G4R4A4;
+			break;
+
+		case tDDS::DXGIFMT_B5G5R5A1_UNORM:
+			format = tPixelFormat::B5G5R5A1;
+			break;
+
+		case tDDS::DXGIFMT_R16_FLOAT:
+			format = tPixelFormat::R16F;
+			break;
+
+		case tDDS::DXGIFMT_R16G16_FLOAT:
+			format = tPixelFormat::R16G16F;
+			break;
+
+		case tDDS::DXGIFMT_R16G16B16A16_FLOAT:
+			format = tPixelFormat::R16G16B16A16F;
+			break;
+
+		case tDDS::DXGIFMT_R32_FLOAT:
+			format = tPixelFormat::R32F;
+			break;
+
+		case tDDS::DXGIFMT_R32G32_FLOAT:
+			format = tPixelFormat::R32G32F;
+			break;
+
+		case tDDS::DXGIFMT_R32G32B32A32_FLOAT:
+			format = tPixelFormat::R32G32B32A32F;
+			break;
+	}
+}
+
+
+void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& format, tColourSpace& space, tAlphaMode& alpha, uint32 fourCC)
+{
+	format = tPixelFormat::Invalid;
+	space = tColourSpace::Unspecified;
+	alpha = tAlphaMode::Unspecified;
+
+	switch (fourCC)
+	{
+		// Note that during inspecition of the individual layer data, the DXT1 pixel format might be modified
+		// to DXT1BA (binary alpha).
+		case FourCC('D','X','T','1'):
+			format = tPixelFormat::BC1DXT1;
+			break;
+
+		// DXT2 and DXT3 are the same format. Only how you interpret the data is different. In tacent we treat them
+		// as the same pixel-format. How contents are interpreted (the data) is not part of the format. 
+		case FourCC('D','X','T','2'):
+			alpha = tAlphaMode::Premultiplied;
+			format = tPixelFormat::BC2DXT2DXT3;
+			break;
+
+		case FourCC('D','X','T','3'):
+			alpha = tAlphaMode::Normal;
+			format = tPixelFormat::BC2DXT2DXT3;
+			break;
+
+		case FourCC('D','X','T','4'):
+			alpha = tAlphaMode::Premultiplied;
+			format = tPixelFormat::BC3DXT4DXT5;
+			break;
+
+		case FourCC('D','X','T','5'):
+			alpha = tAlphaMode::Normal;
+			format = tPixelFormat::BC3DXT4DXT5;
+			break;
+
+		case FourCC('A','T','I','1'):
+		case FourCC('B','C','4','U'):
+			format = tPixelFormat::BC4ATI1;
+			break;
+
+		case FourCC('A','T','I','2'):
+		case FourCC('B','C','5','U'):
+			format = tPixelFormat::BC5ATI2;
+			break;
+
+		case FourCC('B','C','4','S'):	// We don't support signed BC4.
+		case FourCC('B','C','5','S'):	// We don't support signed BC5.
+		case FourCC('R','G','B','G'):	// We don't support DXGIFMT_R8G8_B8G8_UNORM -- That's a lot of green precision.
+		case FourCC('G','R','G','B'):	// We don't support DXGIFMT_G8R8_G8B8_UNORM -- That's a lot of green precision.
+			break;
+
+		// Sometimes these D3D formats may be stored in the FourCC slot.
+		case tDDS::D3DFMT_A16B16G16R16:	// We don't support DXGIFMT_R16G16B16A16_UNORM.
+		case tDDS::D3DFMT_Q16W16V16U16:	// We don't support DXGIFMT_R16G16B16A16_SNORM.
+			break;
+		
+		case tDDS::D3DFMT_A8:
+			format = tPixelFormat::A8;
+			break;
+
+		case tDDS::D3DFMT_L8:
+			format = tPixelFormat::L8;
+			break;
+
+		case tDDS::D3DFMT_A8B8G8R8:
+			format = tPixelFormat::B8G8R8A8;
+			break;
+
+		case tDDS::D3DFMT_R16F:
+			format = tPixelFormat::R16F;
+			break;
+
+		case tDDS::D3DFMT_G16R16F:
+			// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
+			format = tPixelFormat::R16G16F;
+			break;
+
+		case tDDS::D3DFMT_A16B16G16R16F:
+			// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
+			format = tPixelFormat::R16G16B16A16F;
+			break;
+
+		case tDDS::D3DFMT_R32F:
+			format = tPixelFormat::R32F;
+			break;
+
+		case tDDS::D3DFMT_G32R32F:
+			// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
+			format = tPixelFormat::R32G32F;
+			break;
+
+		case tDDS::D3DFMT_A32B32G32R32F:
+			// It's inconsistent calling the D3D format A32B32G32R32F. The floats in this case are clearly in RGBA
+			// order, not ABGR. Anyway, I only have control over the tPixelFormat names. In fairness, it looks like
+			// the format-name was fixed in the DX10 header format type names.
+			format = tPixelFormat::R32G32B32A32F;
+			break;
+	}
+}
+
+
+void tDDS::GetFormatInfo_FromComponentMasks(tPixelFormat& format, tColourSpace& space, tAlphaMode& alpha, const FormatData& fmtData)
+{
+	format = tPixelFormat::Invalid;
+	space = tColourSpace::Unspecified;
+	alpha = tAlphaMode::Unspecified;
+
+	uint32 bitCount	= fmtData.RGBBitCount;
+	bool anyRGB		= (fmtData.Flags &  tDDS::DDFormatFlag_RGB);
+	bool isRGB		= (fmtData.Flags == tDDS::DDFormatFlags_RGB);
+	bool isRGBA		= (fmtData.Flags == tDDS::DDFormatFlags_RGBA);
+	bool isA		= (fmtData.Flags == tDDS::DDFormatFlags_A);
+	bool isL		= (fmtData.Flags == tDDS::DDFormatFlags_L);
+	uint32 mskR		= fmtData.MaskRed;
+	uint32 mskG		= fmtData.MaskGreen;
+	uint32 mskB		= fmtData.MaskBlue;
+	uint32 mskA		= fmtData.MaskAlpha;
+
+	// Remember this is a little endian machine, so the masks are lying. Eg. 0x00FF0000 in memory is 00 00 FF 00 cuz it's encoded
+	// as an int32 -- so the red comes after blue and green.
+	switch (bitCount)
+	{
+		case 8:			// Supports A8, L8.
+			if ((isA || anyRGB) && (mskA == 0xFF))
+				format = tPixelFormat::A8;
+			else if ((isL || anyRGB) && (mskR == 0xFF))
+				format = tPixelFormat::L8;
+			break;
+
+		case 16:		// Supports B5G6R5, B4G4R4A4, and B5G5R5A1.
+			if (isRGBA && (mskA == 0x8000) && (mskR == 0x7C00) && (mskG == 0x03E0) && (mskB == 0x001F))
+				format = tPixelFormat::B5G5R5A1;
+			else if (isRGBA && (mskA == 0xF000) && (mskR == 0x0F00) && (mskG == 0x00F0) && (mskB == 0x000F))
+				format = tPixelFormat::B4G4R4A4;
+			else if (isRGB && (mskR == 0xF800) && (mskG == 0x07E0) && (mskB == 0x001F))
+				format = tPixelFormat::B5G6R5;
+			break;
+
+		case 24:		// Supports B8G8R8.
+			if (isRGB && (mskR == 0xFF0000) && (mskG == 0x00FF00) && (mskB == 0x0000FF))
+				format = tPixelFormat::B8G8R8;
+			break;
+
+		case 32:		// Supports B8G8R8A8. Alpha really is last (even though ABGR may seem more consistent).
+			if (isRGBA && (mskA == 0xFF000000) && (mskR == 0x00FF0000) && (mskG == 0x0000FF00) && (mskB == 0x000000FF))
+				format = tPixelFormat::B8G8R8A8;
+			break;
+	}
+}
+
+
+tImageDDS::tImageDDS()
+{
+	tStd::tMemset(Layers, 0, sizeof(Layers));
 }
 
 
 tImageDDS::tImageDDS(const tString& ddsFile, const LoadParams& loadParams) :
-	Filename(ddsFile),
-	Results(1 << int(ResultCode::Success)),
-	PixelFormat(tPixelFormat::Invalid),
-	PixelFormatSrc(tPixelFormat::Invalid),
-	IsCubeMap(false),
-	RowReversalOperationPerformed(false),
-	NumImages(0),
-	NumMipmapLayers(0)
+	Filename(ddsFile)
 {
-	tStd::tMemset(MipmapLayers, 0, sizeof(MipmapLayers));
+	tStd::tMemset(Layers, 0, sizeof(Layers));
 	Load(ddsFile, loadParams);
 }
 
 
-tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, const LoadParams& loadParams) :
-	Filename(),
-	Results(1 << int(ResultCode::Success)),
-	PixelFormat(tPixelFormat::Invalid),
-	PixelFormatSrc(tPixelFormat::Invalid),
-	IsCubeMap(false),
-	RowReversalOperationPerformed(false),
-	NumImages(0),
-	NumMipmapLayers(0)
+tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, const LoadParams& loadParams)
 {
-	tStd::tMemset(MipmapLayers, 0, sizeof(MipmapLayers));
+	tStd::tMemset(Layers, 0, sizeof(Layers));
 	Load(ddsFileInMemory, numBytes, loadParams);
 }
 
@@ -76,20 +852,20 @@ void tImageDDS::Clear()
 	{
 		for (int layer = 0; layer < NumMipmapLayers; layer++)
 		{
-			delete MipmapLayers[layer][image];
-			MipmapLayers[layer][image] = nullptr;
+			delete Layers[layer][image];
+			Layers[layer][image] = nullptr;
 		}
 	}
 
-	Results = (1 << int(ResultCode::Success));
-	PixelFormat = tPixelFormat::Invalid;
-	PixelFormatSrc = tPixelFormat::Invalid;
-	ColourSpace = tColourSpace::Unspecified;
-	AlphaMode = tAlphaMode::Unspecified;
-	IsCubeMap = false;
-	RowReversalOperationPerformed = false;
-	NumImages = 0;
-	NumMipmapLayers = 0;
+	Results							= 0;							// This means no results.
+	PixelFormat						= tPixelFormat::Invalid;
+	PixelFormatSrc					= tPixelFormat::Invalid;
+	ColourSpace						= tColourSpace::Unspecified;
+	AlphaMode						= tAlphaMode::Unspecified;
+	IsCubeMap						= false;
+	RowReversalOperationPerformed	= false;
+	NumImages						= 0;
+	NumMipmapLayers					= 0;
 }
 
 
@@ -106,8 +882,8 @@ bool tImageDDS::StealLayers(tList<tLayer>& layers)
 
 	for (int mip = 0; mip < NumMipmapLayers; mip++)
 	{
-		layers.Append(MipmapLayers[mip][0]);
-		MipmapLayers[mip][0] = nullptr;
+		layers.Append(Layers[mip][0]);
+		Layers[mip][0] = nullptr;
 	}
 
 	Clear();
@@ -121,7 +897,7 @@ bool tImageDDS::GetLayers(tList<tLayer>& layers) const
 		return false;
 
 	for (int mip = 0; mip < NumMipmapLayers; mip++)
-		layers.Append(MipmapLayers[mip][0]);
+		layers.Append(Layers[mip][0]);
 
 	return true;
 }
@@ -142,8 +918,8 @@ int tImageDDS::StealCubemapLayers(tList<tLayer> layerLists[tSurfIndex_NumSurface
 		tList<tLayer>& layers = layerLists[side];
 		for (int mip = 0; mip < NumMipmapLayers; mip++)
 		{
-			layers.Append( MipmapLayers[mip][side] );
-			MipmapLayers[mip][side] = nullptr;
+			layers.Append( Layers[mip][side] );
+			Layers[mip][side] = nullptr;
 		}
 		sideCount++;
 	}
@@ -167,505 +943,13 @@ int tImageDDS::GetCubemapLayers(tList<tLayer> layerLists[tSurfIndex_NumSurfaces]
 
 		tList<tLayer>& layers = layerLists[side];
 		for (int mip = 0; mip < NumMipmapLayers; mip++)
-			layers.Append( MipmapLayers[mip][side] );
+			layers.Append( Layers[mip][side] );
 
 		sideCount++;
 	}
 
 	return sideCount;
 }
-
-
-// Direct draw pixel formats. When we say legacy here, we really mean it. Not just legacy in that there's no DX10 block,
-// but legacy in that there won't be a DX10 block AND it's still a really old-style dds.
-enum tDDPF : uint32
-{
-	// Pixel has alpha. tDDSPixelFormat's MaskAlpha will be valid. From what I can tell, tDDPF_ALPHAPIXELS is only ever
-	// used in combination with RGB, YUV, or LUMINANCE. An alpha-only dds would use tDDPF_ALPHA instead.
-	tDDPF_HASALPHA		= 0x00000001,
-
-	// Legacy. Some dds files use this if all they contain is an alpha channel. tDDSPixelFormat's RGBBitCount is
-	// the number of bits used for the alpha channel and MaskAlpha will be valid.
-	tDDPF_A				= 0x00000002,
-
-	// Use the four-CC to determine format. That's another whole thing. tDDSPixelFormat's FourCC will be valid.
-	// Modern dds files have a four-CC of 'DX10' and another whole header specifies the actual pixel format. Complex-much?
-	tDDPF_FOURCC		= 0x00000004,
-
-	// Palette indexed. 8-bit. Never seen a dds with this.
-	tDDPF_PAL8			= 0x00000020,
-
-	// Pixels contain RGB data. tDDSPixelFormat's RGBBitCount is the number of bits used for RGB. Also go ahead and read
-	// MaskRed, MaskGreen, and MaskBlue to determine where the data is and how many bits for each component.
-	tDDPF_RGB			= 0x00000040,
-
-	// Legacy. Some dds files use this for YUV pixels. tDDSPixelFormat's RGBBitCount will be the number of bits used for
-	// YUV (not RGB). Similarly, MaskRed, MaskGreen, and MaskBlue will contain the masks for each YUV component. Red for
-	// Y, green for U, and blue for V.
-	tDDPF_YUV			= 0x00000200,
-
-	// Legacy. Some dds files use this for single channel luminance-only data. tDDSPixelFormat's RGBBitCount will be the
-	// number of bits used for luminance and MaskRed will contain the mask for the luminance component. If the
-	// tDDPF_ALPHAPIXELS bit is also set, it would be a luminance-alpha (LA) dds.
-	tDDPF_L				= 0x00020000
-};
-
-
-// Now that the raw pixel-formats are out if the way, here is an enum of what you can expect to find in a real dds file.
-// This is basically just a convenience enum that contains some bitwise-ORs of the above pixel formats. You can check
-// for full equality with these enums (no need to check bits).
-enum tDDSPixelFormatType : uint32
-{
-	tDDSPixelFormatType_FourCC			= tDDPF_FOURCC,
-	tDDSPixelFormatType_RGB				= tDDPF_RGB,
-	tDDSPixelFormatType_RGBA			= tDDPF_RGB | tDDPF_HASALPHA,
-	tDDSPixelFormatType_L				= tDDPF_L,
-	tDDSPixelFormatType_LA				= tDDPF_L | tDDPF_HASALPHA,
-	tDDSPixelFormatType_A				= tDDPF_A,
-	tDDSPixelFormatType_PAL8			= tDDPF_PAL8
-};
-
-
-#pragma pack(push, 4)
-struct tDDSPixelFormat
-{
-	// Must be 32.
-	uint32 Size;
-
-	// See tDDSPixelFormatFlag. Flags to indicate valid fields. Uncompressed formats will usually use
-	// tDDSPixelFormatFlag_RGB to indicate an RGB format, while compressed formats will use tDDSPixelFormatFlag_FourCC
-	// with a four-character code.
-	uint32 Flags;
-
-	// "DXT1", "DXT3", and "DXT5" are examples. m_flags should have DDSPixelFormatFlag_FourCC.
-	uint32 FourCC;
-
-	// Valid if flags has DDSPixelFormatFlag_RGB. For RGB formats this is the total number of bits per pixel. This
-	// value is usually 16, 24, or 32. For A8R8G8B8, this value would be 32.
-	uint32 RGBBitCount;
-
-	// For RGB formats these three fields contain the masks for the red, green, and blue channels. For A8R8G8B8 these
-	// values would be 0x00FF0000, 0x0000FF00, and 0x000000FF respectively.
-	uint32 MaskRed;
-	uint32 MaskGreen;
-	uint32 MaskBlue;
-
-	// If the flags have DDSPixelFormatFlag_Alpha set, this is valid and contains tha alpha mask. Eg. For A8R8G8B8 this
-	// value would be 0xFF000000.
-	uint32 MaskAlpha;
-};
-#pragma pack(pop)
-
-
-enum tDDSCapsBasic
-{
-	tDDSCapsBasic_Complex		= 0x00000008,
-	tDDSCapsBasic_Texture		= 0x00001000,
-	tDDSCapsBasic_Mipmap		= 0x00400000
-};
-
-
-enum tDDSCapsExtra
-{
-	tDDSCapsExtra_CubeMap		= 0x00000200,
-	tDDSCapsExtra_CubeMapPosX	= 0x00000400,
-	tDDSCapsExtra_CubeMapNegX	= 0x00000800,
-	tDDSCapsExtra_CubeMapPosY	= 0x00001000,
-	tDDSCapsExtra_CubeMapNegY	= 0x00002000,
-	tDDSCapsExtra_CubeMapPosZ	= 0x00004000,
-	tDDSCapsExtra_CubeMapNegZ	= 0x00008000,
-	tDDSCapsExtra_Volume		= 0x00200000
-};
-
-
-#pragma pack(push, 4)
-struct tDDSCapabilities
-{
-	// DDS files should always include tDDSCapsBasic_Texture. If the file contains mipmaps tDDSCapsBasic_Mipmap should
-	// be set. For any dds file with more than one main surface, such as a mipmap, cubic environment map, or volume
-	// texture, DDSCapsBasic_Complex should also be set.
-	uint32 FlagsCapsBasic;
-
-	// For cubic environment maps tDDSCapsExtra_CubeMap should be included as well as one or more faces of the map
-	// (tDDSCapsExtra_CubeMapPosX, etc). For volume textures tDDSCapsExtra_Volume should be included.
-	uint32 FlagsCapsExtra;
-	uint32 Unused[2];
-};
-#pragma pack(pop)
-
-
-enum tDDSFlag
-{
-	tDDSFlag_Caps				= 0x00000001,	// Always included.
-	tDDSFlag_Height				= 0x00000002,	// Always included. Height of largest image if mipmaps included.
-	tDDSFlag_Width				= 0x00000004,	// Always included. Width of largest image if mipmaps included.
-	tDDSFlag_Pitch				= 0x00000008,
-	tDDSFlag_PixelFormat		= 0x00001000,	// Always included.
-	tDDSFlag_MipmapCount		= 0x00020000,
-	tDDSFlag_LinearSize			= 0x00080000,
-	tDDSFlag_Depth				= 0x00800000
-};
-
-
-enum tD3DFORMAT
-{
-	tD3DFMT_UNKNOWN				=  0,
-
-	tD3DFMT_R8G8B8				= 20,
-	tD3DFMT_A8R8G8B8			= 21,
-	tD3DFMT_X8R8G8B8			= 22,
-	tD3DFMT_R5G6B5				= 23,
-	tD3DFMT_X1R5G5B5			= 24,
-	tD3DFMT_A1R5G5B5			= 25,
-	tD3DFMT_A4R4G4B4			= 26,
-	tD3DFMT_R3G3B2				= 27,
-	tD3DFMT_A8					= 28,
-	tD3DFMT_A8R3G3B2			= 29,
-	tD3DFMT_X4R4G4B4			= 30,
-	tD3DFMT_A2B10G10R10			= 31,
-	tD3DFMT_A8B8G8R8			= 32,
-	tD3DFMT_X8B8G8R8			= 33,
-	tD3DFMT_G16R16				= 34,
-	tD3DFMT_A2R10G10B10			= 35,
-	tD3DFMT_A16B16G16R16		= 36,
-
-	tD3DFMT_A8P8				= 40,
-	tD3DFMT_P8					= 41,
-
-	tD3DFMT_L8					= 50,
-	tD3DFMT_A8L8				= 51,
-	tD3DFMT_A4L4				= 52,
-
-	tD3DFMT_V8U8				= 60,
-	tD3DFMT_L6V5U5				= 61,
-	tD3DFMT_X8L8V8U8			= 62,
-	tD3DFMT_Q8W8V8U8			= 63,
-	tD3DFMT_V16U16				= 64,
-	tD3DFMT_A2W10V10U10			= 67,
-
-	tD3DFMT_UYVY				= FourCC('U', 'Y', 'V', 'Y'),
-	tD3DFMT_R8G8_B8G8			= FourCC('R', 'G', 'B', 'G'),
-	tD3DFMT_YUY2				= FourCC('Y', 'U', 'Y', '2'),
-	tD3DFMT_G8R8_G8B8			= FourCC('G', 'R', 'G', 'B'),
-	tD3DFMT_DXT1				= FourCC('D', 'X', 'T', '1'),
-	tD3DFMT_DXT2				= FourCC('D', 'X', 'T', '2'),
-	tD3DFMT_DXT3				= FourCC('D', 'X', 'T', '3'),
-	tD3DFMT_DXT4				= FourCC('D', 'X', 'T', '4'),
-	tD3DFMT_DXT5				= FourCC('D', 'X', 'T', '5'),
-
-	tD3DFMT_D16_LOCKABLE		= 70,
-	tD3DFMT_D32					= 71,
-	tD3DFMT_D15S1				= 73,
-	tD3DFMT_D24S8				= 75,
-	tD3DFMT_D24X8				= 77,
-	tD3DFMT_D24X4S4				= 79,
-	tD3DFMT_D16					= 80,
-
-	tD3DFMT_D32F_LOCKABLE		= 82,
-	tD3DFMT_D24FS8				= 83,
-
-	tD3DFMT_D32_LOCKABLE		= 84,
-	tD3DFMT_S8_LOCKABLE			= 85,
-
-	tD3DFMT_L16					= 81,
-
-	tD3DFMT_VERTEXDATA			= 100,
-	tD3DFMT_INDEX16				= 101,
-	tD3DFMT_INDEX32				= 102,
-
-	tD3DFMT_Q16W16V16U16		= 110,
-
-	tD3DFMT_MULTI2_ARGB8		= FourCC('M','E','T','1'),
-
-	tD3DFMT_R16F				= 111,
-	tD3DFMT_G16R16F				= 112,
-	tD3DFMT_A16B16G16R16F		= 113,
-
-	tD3DFMT_R32F				= 114,
-	tD3DFMT_G32R32F				= 115,
-	tD3DFMT_A32B32G32R32F		= 116,
-
-	tD3DFMT_CxV8U8				= 117,
-
-	tD3DFMT_FORCE_DWORD			= 0x7fffffff
-};
-
-
-// Default packing is 8 bytes but the header is 128 bytes (mult of 4), so we make it all work here.
-#pragma pack(push, 4)
-struct tDDSHeader
-{
-	uint32 Size;								// Must be set to 124.
-	uint32 Flags;								// See tDDSFlags.
-	uint32 Height;								// Height of main image.
-	uint32 Width;								// Width of main image.
-
-	// For uncompressed formats, this is the number of bytes per scan line (32-bit aligned) for the main image. dwFlags
-	// should include DDSD_PITCH in this case. For compressed formats, this is the total number of bytes for the main
-	// image. m_flags should have tDDSFlag_LinearSize in this case.
-	uint32 PitchLinearSize;
-	uint32 Depth;								// For volume textures. tDDSFlag_Depth is set for this to be valid.
-	uint32 MipmapCount;							// Valid if tDDSFlag_MipmapCount set. @todo Count includes main image?
-	uint32 UnusedA[11];
-	tDDSPixelFormat PixelFormat;				// 32 Bytes.
-	tDDSCapabilities Capabilities;				// 16 Bytes.
-	uint32 UnusedB;
-};
-
-
-enum tDXGI_FORMAT 
-{
-	tDXGI_FORMAT_UNKNOWN = 0,
-	tDXGI_FORMAT_R32G32B32A32_TYPELESS = 1,
-	tDXGI_FORMAT_R32G32B32A32_FLOAT = 2,
-	tDXGI_FORMAT_R32G32B32A32_UINT = 3,
-	tDXGI_FORMAT_R32G32B32A32_SINT = 4,
-	tDXGI_FORMAT_R32G32B32_TYPELESS = 5,
-	tDXGI_FORMAT_R32G32B32_FLOAT = 6,
-	tDXGI_FORMAT_R32G32B32_UINT = 7,
-	tDXGI_FORMAT_R32G32B32_SINT = 8,
-	tDXGI_FORMAT_R16G16B16A16_TYPELESS = 9,
-	tDXGI_FORMAT_R16G16B16A16_FLOAT = 10,
-	tDXGI_FORMAT_R16G16B16A16_UNORM = 11,
-	tDXGI_FORMAT_R16G16B16A16_UINT = 12,
-	tDXGI_FORMAT_R16G16B16A16_SNORM = 13,
-	tDXGI_FORMAT_R16G16B16A16_SINT = 14,
-	tDXGI_FORMAT_R32G32_TYPELESS = 15,
-	tDXGI_FORMAT_R32G32_FLOAT = 16,
-	tDXGI_FORMAT_R32G32_UINT = 17,
-	tDXGI_FORMAT_R32G32_SINT = 18,
-	tDXGI_FORMAT_R32G8X24_TYPELESS = 19,
-	tDXGI_FORMAT_D32_FLOAT_S8X24_UINT = 20,
-	tDXGI_FORMAT_R32_FLOAT_X8X24_TYPELESS = 21,
-	tDXGI_FORMAT_X32_TYPELESS_G8X24_UINT = 22,
-	tDXGI_FORMAT_R10G10B10A2_TYPELESS = 23,
-	tDXGI_FORMAT_R10G10B10A2_UNORM = 24,
-	tDXGI_FORMAT_R10G10B10A2_UINT = 25,
-	tDXGI_FORMAT_R11G11B10_FLOAT = 26,
-	tDXGI_FORMAT_R8G8B8A8_TYPELESS = 27,
-	tDXGI_FORMAT_R8G8B8A8_UNORM = 28,
-	tDXGI_FORMAT_R8G8B8A8_UNORM_SRGB = 29,
-	tDXGI_FORMAT_R8G8B8A8_UINT = 30,
-	tDXGI_FORMAT_R8G8B8A8_SNORM = 31,
-	tDXGI_FORMAT_R8G8B8A8_SINT = 32,
-	tDXGI_FORMAT_R16G16_TYPELESS = 33,
-	tDXGI_FORMAT_R16G16_FLOAT = 34,
-	tDXGI_FORMAT_R16G16_UNORM = 35,
-	tDXGI_FORMAT_R16G16_UINT = 36,
-	tDXGI_FORMAT_R16G16_SNORM = 37,
-	tDXGI_FORMAT_R16G16_SINT = 38,
-	tDXGI_FORMAT_R32_TYPELESS = 39,
-	tDXGI_FORMAT_D32_FLOAT = 40,
-	tDXGI_FORMAT_R32_FLOAT = 41,
-	tDXGI_FORMAT_R32_UINT = 42,
-	tDXGI_FORMAT_R32_SINT = 43,
-	tDXGI_FORMAT_R24G8_TYPELESS = 44,
-	tDXGI_FORMAT_D24_UNORM_S8_UINT = 45,
-	tDXGI_FORMAT_R24_UNORM_X8_TYPELESS = 46,
-	tDXGI_FORMAT_X24_TYPELESS_G8_UINT = 47,
-	tDXGI_FORMAT_R8G8_TYPELESS = 48,
-	tDXGI_FORMAT_R8G8_UNORM = 49,
-	tDXGI_FORMAT_R8G8_UINT = 50,
-	tDXGI_FORMAT_R8G8_SNORM = 51,
-	tDXGI_FORMAT_R8G8_SINT = 52,
-	tDXGI_FORMAT_R16_TYPELESS = 53,
-	tDXGI_FORMAT_R16_FLOAT = 54,
-	tDXGI_FORMAT_D16_UNORM = 55,
-	tDXGI_FORMAT_R16_UNORM = 56,
-	tDXGI_FORMAT_R16_UINT = 57,
-	tDXGI_FORMAT_R16_SNORM = 58,
-	tDXGI_FORMAT_R16_SINT = 59,
-	tDXGI_FORMAT_R8_TYPELESS = 60,
-	tDXGI_FORMAT_R8_UNORM = 61,
-	tDXGI_FORMAT_R8_UINT = 62,
-	tDXGI_FORMAT_R8_SNORM = 63,
-	tDXGI_FORMAT_R8_SINT = 64,
-	tDXGI_FORMAT_A8_UNORM = 65,
-	tDXGI_FORMAT_R1_UNORM = 66,
-	tDXGI_FORMAT_R9G9B9E5_SHAREDEXP = 67,
-	tDXGI_FORMAT_R8G8_B8G8_UNORM = 68,
-	tDXGI_FORMAT_G8R8_G8B8_UNORM = 69,
-	tDXGI_FORMAT_BC1_TYPELESS = 70,
-	tDXGI_FORMAT_BC1_UNORM = 71,
-	tDXGI_FORMAT_BC1_UNORM_SRGB = 72,
-	tDXGI_FORMAT_BC2_TYPELESS = 73,
-	tDXGI_FORMAT_BC2_UNORM = 74,
-	tDXGI_FORMAT_BC2_UNORM_SRGB = 75,
-	tDXGI_FORMAT_BC3_TYPELESS = 76,
-	tDXGI_FORMAT_BC3_UNORM = 77,
-	tDXGI_FORMAT_BC3_UNORM_SRGB = 78,
-	tDXGI_FORMAT_BC4_TYPELESS = 79,
-	tDXGI_FORMAT_BC4_UNORM = 80,
-	tDXGI_FORMAT_BC4_SNORM = 81,
-	tDXGI_FORMAT_BC5_TYPELESS = 82,
-	tDXGI_FORMAT_BC5_UNORM = 83,
-	tDXGI_FORMAT_BC5_SNORM = 84,
-	tDXGI_FORMAT_B5G6R5_UNORM = 85,
-	tDXGI_FORMAT_B5G5R5A1_UNORM = 86,
-	tDXGI_FORMAT_B8G8R8A8_UNORM = 87,
-	tDXGI_FORMAT_B8G8R8X8_UNORM = 88,
-	tDXGI_FORMAT_R10G10B10_XR_BIAS_A2_UNORM = 89,
-	tDXGI_FORMAT_B8G8R8A8_TYPELESS = 90,
-	tDXGI_FORMAT_B8G8R8A8_UNORM_SRGB = 91,
-	tDXGI_FORMAT_B8G8R8X8_TYPELESS = 92,
-	tDXGI_FORMAT_B8G8R8X8_UNORM_SRGB = 93,
-	tDXGI_FORMAT_BC6H_TYPELESS = 94,
-	tDXGI_FORMAT_BC6H_UF16 = 95,
-	tDXGI_FORMAT_BC6H_SF16 = 96,
-	tDXGI_FORMAT_BC7_TYPELESS = 97,
-	tDXGI_FORMAT_BC7_UNORM = 98,
-	tDXGI_FORMAT_BC7_UNORM_SRGB = 99,
-	tDXGI_FORMAT_AYUV = 100,
-	tDXGI_FORMAT_Y410 = 101,
-	tDXGI_FORMAT_Y416 = 102,
-	tDXGI_FORMAT_NV12 = 103,
-	tDXGI_FORMAT_P010 = 104,
-	tDXGI_FORMAT_P016 = 105,
-	tDXGI_FORMAT_420_OPAQUE = 106,
-	tDXGI_FORMAT_YUY2 = 107,
-	tDXGI_FORMAT_Y210 = 108,
-	tDXGI_FORMAT_Y216 = 109,
-	tDXGI_FORMAT_NV11 = 110,
-	tDXGI_FORMAT_AI44 = 111,
-	tDXGI_FORMAT_IA44 = 112,
-	tDXGI_FORMAT_P8 = 113,
-	tDXGI_FORMAT_A8P8 = 114,
-	tDXGI_FORMAT_B4G4R4A4_UNORM = 115,
-	tDXGI_FORMAT_P208 = 130,
-	tDXGI_FORMAT_V208 = 131,
-	tDXGI_FORMAT_V408 = 132,
-	tDXGI_FORMAT_FORCE_UINT = 0xffffffff
-};
-
-
-enum tD3D10_RESOURCE_DIMENSION 
-{
-	tD3D10_RESOURCE_DIMENSION_UNKNOWN = 0,
-	tD3D10_RESOURCE_DIMENSION_BUFFER = 1,
-	tD3D10_RESOURCE_DIMENSION_TEXTURE1D = 2,
-	tD3D10_RESOURCE_DIMENSION_TEXTURE2D = 3,
-	tD3D10_RESOURCE_DIMENSION_TEXTURE3D = 4
-};
-
-
-enum tD3D11_RESOURCE_MISC_FLAG
-{
-	tD3D11_RESOURCE_MISC_GENERATE_MIPS = 0x1L,
-	tD3D11_RESOURCE_MISC_SHARED = 0x2L,
-	tD3D11_RESOURCE_MISC_TEXTURECUBE = 0x4L,
-	tD3D11_RESOURCE_MISC_DRAWINDIRECT_ARGS = 0x10L,
-	tD3D11_RESOURCE_MISC_BUFFER_ALLOW_RAW_VIEWS = 0x20L,
-	tD3D11_RESOURCE_MISC_BUFFER_STRUCTURED = 0x40L,
-	tD3D11_RESOURCE_MISC_RESOURCE_CLAMP = 0x80L,
-	tD3D11_RESOURCE_MISC_SHARED_KEYEDMUTEX = 0x100L,
-	tD3D11_RESOURCE_MISC_GDI_COMPATIBLE = 0x200L,
-	tD3D11_RESOURCE_MISC_SHARED_NTHANDLE = 0x800L,
-	tD3D11_RESOURCE_MISC_RESTRICTED_CONTENT = 0x1000L,
-	tD3D11_RESOURCE_MISC_RESTRICT_SHARED_RESOURCE = 0x2000L,
-	tD3D11_RESOURCE_MISC_RESTRICT_SHARED_RESOURCE_DRIVER = 0x4000L,
-	tD3D11_RESOURCE_MISC_GUARDED = 0x8000L,
-	tD3D11_RESOURCE_MISC_TILE_POOL = 0x20000L,
-	tD3D11_RESOURCE_MISC_TILED = 0x40000L,
-	tD3D11_RESOURCE_MISC_HW_PROTECTED = 0x80000L,
-	tD3D11_RESOURCE_MISC_SHARED_DISPLAYABLE,
-	tD3D11_RESOURCE_MISC_SHARED_EXCLUSIVE_WRITER
-};
-
-
-struct tDDSHeaderDX10Ext
-{
-	tDXGI_FORMAT DxgiFormat;
-	tD3D10_RESOURCE_DIMENSION ResourceDimension;
-	uint32 MiscFlag;
-    uint32 ArraySize;
-    uint32 Reserved;
-};
-#pragma pack(pop)
-
-
-// These DXT blocks are needed so that the tImageDDS class can re-order the rows by messing with each block's lookup
-// table and alpha tables. This is because DDS files have the rows of their textures upside down (texture origin in
-// OpenGL is lower left, while in DirectX it is upper left). See: http://en.wikipedia.org/wiki/S3_Texture_Compression
-#pragma pack(push, 1)
-
-
-// This block is used for both DXT1 and DXT1 with binary alpha. It's also used as the colour information block in the
-// DXT 2, 3, 4 and 5 formats. Size is 64 bits.
-struct tDXT1Block
-{
-	uint16 Colour0;								// R5G6B5
-	uint16 Colour1;								// R5G6B5
-	uint8 LookupTableRows[4];
-};
-
-
-// This one is the same for DXT2 and 3, although we don't support 2 (premultiplied alpha). Size is 128 bits.
-struct tDXT3Block
-{
-	uint16 AlphaTableRows[4];					// Each alpha is 4 bits.
-	tDXT1Block ColourBlock;
-};
-
-
-// This one is the same for DXT4 and 5, although we don't support 4 (premultiplied alpha). Size is 128 bits.
-struct tDXT5Block
-{
-	uint8 Alpha0;
-	uint8 Alpha1;
-	uint8 AlphaTable[6];						// Each of the 4x4 pixel entries is 3 bits.
-	tDXT1Block ColourBlock;
-
-	// These accessors are needed because of the unusual alignment of the 3bit alpha indexes. They each return or set a
-	// value in [0, 2^12) which represents a single row. The row variable should be in [0, 3]
-	uint16 GetAlphaRow(int row)
-	{
-		tAssert(row < 4);
-		switch (row)
-		{
-			case 1:
-				return (AlphaTable[2] << 4) | (0x0F & (AlphaTable[1] >> 4));
-
-			case 0:
-				return ((AlphaTable[1] & 0x0F) << 8) | AlphaTable[0];
-
-			case 3:
-				return (AlphaTable[5] << 4) | (0x0F & (AlphaTable[4] >> 4));
-
-			case 2:
-				return ((AlphaTable[4] & 0x0F) << 8) | AlphaTable[3];
-		}
-		return 0;
-	}
-
-	void SetAlphaRow(int row, uint16 val)
-	{
-		tAssert(row < 4);
-		tAssert(val < 4096);
-		switch (row)
-		{
-			case 1:
-				AlphaTable[2] = val >> 4;
-				AlphaTable[1] = (AlphaTable[1] & 0x0F) | ((val & 0x000F) << 4);
-				break;
-
-			case 0:
-				AlphaTable[1] = (AlphaTable[1] & 0xF0) | (val >> 8);
-				AlphaTable[0] = val & 0x00FF;
-				break;
-
-			case 3:
-				AlphaTable[5] = val >> 4;
-				AlphaTable[4] = (AlphaTable[4] & 0x0F) | ((val & 0x000F) << 4);
-				break;
-
-			case 2:
-				AlphaTable[4] = (AlphaTable[4] & 0xF0) | (val >> 8);
-				AlphaTable[3] = val & 0x00FF;
-				break;
-		}
-	}
-};
-#pragma pack(pop)
 
 
 bool tImageDDS::Load(const tString& ddsFile, const LoadParams& loadParams)
@@ -698,7 +982,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 	Clear();
 
 	// This will deal with zero-sized files properly as well.
-	if (ddsSizeBytes < int(sizeof(tDDSHeader)+4))
+	if (ddsSizeBytes < int(sizeof(tDDS::Header)+4))
 	{
 		Results |= 1 << int(ResultCode::Fatal_IncorrectFileSize);
 		return false;
@@ -712,8 +996,8 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 		return false;
 	}
 
-	tDDSHeader& header = *((tDDSHeader*)ddsCurr);  ddsCurr += sizeof(header);
-	tAssert(sizeof(tDDSHeader) == 124);
+	tDDS::Header& header = *((tDDS::Header*)ddsCurr);  ddsCurr += sizeof(header);
+	tAssert(sizeof(tDDS::Header) == 124);
 	const uint8* currPixelData = ddsCurr;
 	if (header.Size != 124)
 	{
@@ -724,22 +1008,27 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 	uint32 flags = header.Flags;
 	int mainWidth = header.Width;						// Main image.
 	int mainHeight = header.Height;						// Main image.
+	if ((mainWidth <= 0) || (mainHeight <= 0))
+	{
+		Results |= 1 << int(ResultCode::Fatal_InvalidDimensions);
+		return false;
+	}
 
 	// A strictly correct dds will have linear-size xor pitch set (one, not both).
 	// It seems ATI tools like GenCubeMap don't set the correct bits, but we still load
 	// with a conditional success.
 	int pitch = 0;										// Num bytes per line on main image (uncompressed images only).
 	int linearSize = 0;									// Num bytes total main image (compressed images only).
-	if (flags & tDDSFlag_Pitch)
+	if (flags & tDDS::HeaderFlag_Pitch)
 		pitch = header.PitchLinearSize;
-	if (flags & tDDSFlag_LinearSize)
+	if (flags & tDDS::HeaderFlag_LinearSize)
 		linearSize = header.PitchLinearSize;
 
 	if ((!linearSize && !pitch) || (linearSize && pitch))
 		Results |= 1 << int(ResultCode::Conditional_PitchXORLinearSize);
 
 	// Volume textures are not supported.
-	if (flags & tDDSFlag_Depth)
+	if (flags & tDDS::HeaderFlag_Depth)
 	{
 		Results |= 1 << int(ResultCode::Fatal_VolumeTexturesNotSupported);
 		return false;
@@ -748,8 +1037,8 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 	// Determine the expected number of layers by looking at the mipmap count if it is supplied. We assume a single layer
 	// if it is not specified.
 	NumMipmapLayers = 1;
-	bool hasMipmaps = (header.Capabilities.FlagsCapsBasic & tDDSCapsBasic_Mipmap) ? true : false;
-	if ((flags & tDDSFlag_MipmapCount) && hasMipmaps)
+	bool hasMipmaps = (header.Capabilities.FlagsCapsBasic & tDDS::CapsBasicFlag_Mipmap) ? true : false;
+	if ((flags & tDDS::HeaderFlag_MipmapCount) && hasMipmaps)
 		NumMipmapLayers = header.MipmapCount;
 
 	if (NumMipmapLayers > MaxMipmapLayers)
@@ -758,7 +1047,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 		return false;
 	}
 
-	tDDSPixelFormat& format = header.PixelFormat;
+	tDDS::FormatData& format = header.Format;
 	if (format.Size != 32)
 	{
 		Results |= 1 << int(ResultCode::Fatal_IncorrectPixelFormatHeaderSize);
@@ -766,28 +1055,26 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 	}
 
 	// Determine if we support the pixel format and which one it is.
-	bool anyRGB			= (format.Flags & tDDPF_RGB);
-	bool isRGB			= (format.Flags == tDDSPixelFormatType_RGB);
-	bool isRGBA			= (format.Flags == tDDSPixelFormatType_RGBA);
-	bool isA			= (format.Flags == tDDSPixelFormatType_A);
-	bool isL			= (format.Flags == tDDSPixelFormatType_L);
-	bool fourCCFormat	= (format.Flags == tDDSPixelFormatType_FourCC);
-	if (!isRGB && !isRGBA && !isA && !isL && !fourCCFormat)
+	bool isRGB			= (format.Flags == tDDS::DDFormatFlags_RGB);
+	bool isRGBA			= (format.Flags == tDDS::DDFormatFlags_RGBA);
+	bool isA			= (format.Flags == tDDS::DDFormatFlags_A);
+	bool isL			= (format.Flags == tDDS::DDFormatFlags_L);
+	bool isFourCCFormat	= (format.Flags == tDDS::DDFormatFlags_FourCC);
+	if (!isRGB && !isRGBA && !isA && !isL && !isFourCCFormat)
 	{
 		Results |= 1 << int(ResultCode::Fatal_IncorrectPixelFormatSpec);
 		return false;
 	}
 
-	bool useDX10Ext = fourCCFormat && (format.FourCC == FourCC('D', 'X', '1', '0'));
-	
-	// tPrintf("DDS File Type: %s\n", useDX10Ext ? "Modern DX10 Header" : "Legacy");
+	bool useDX10Ext = isFourCCFormat && (format.FourCC == FourCC('D', 'X', '1', '0'));
+
 	// Determine if this is a cubemap dds with 6 images. No need to check which images are present since they are
-	// required to be all there by the dds standard. All tools these days seem to write them all. If there are complaints
-	// when using legacy files we can fix this. We use FlagsCapsExtra in all cases where we are not
-	// using the DX10 extension header.
+	// required to be all there by the dds standard. All tools these days seem to write them all. If there are
+	// complaints when using legacy files we can fix this. We use FlagsCapsExtra in all cases where we are not using
+	// the DX10 extension header.
 	IsCubeMap = false;
 	NumImages = 1;
-	if (!useDX10Ext && (header.Capabilities.FlagsCapsExtra & tDDSCapsExtra_CubeMap))
+	if (!useDX10Ext && (header.Capabilities.FlagsCapsExtra & tDDS::CapsExtraFlag_CubeMap))
 	{
 		IsCubeMap = true;
 		NumImages = 6;
@@ -795,7 +1082,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 
 	if (useDX10Ext)
 	{
-		tDDSHeaderDX10Ext& headerDX10 = *((tDDSHeaderDX10Ext*)ddsCurr);  ddsCurr += sizeof(tDDSHeaderDX10Ext);
+		tDDS::DX10Header& headerDX10 = *((tDDS::DX10Header*)ddsCurr);  ddsCurr += sizeof(tDDS::DX10Header);
 		currPixelData = ddsCurr;
 		if (headerDX10.ArraySize == 0)
 		{
@@ -804,269 +1091,36 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 		}
 
 		// We only handle 2D textures for now.
-		if (headerDX10.ResourceDimension != tD3D10_RESOURCE_DIMENSION_TEXTURE2D)
+		if (headerDX10.Dimension != tDDS::D3D10_DIMENSION_TEXTURE2D)
 		{
 			Results |= 1 << int(ResultCode::Fatal_DX10DimensionNotSupported);
 			return false;
 		}
 
-		if (headerDX10.MiscFlag & tD3D11_RESOURCE_MISC_TEXTURECUBE)
+		if (headerDX10.MiscFlag & tDDS::D3D11_MISCFLAG_TEXTURECUBE)
 		{
 			IsCubeMap = true;
 			NumImages = 6;
 		}
 
-		// If we found a dx10 chunk. It must be used to determine the pixel format.
-		switch (headerDX10.DxgiFormat)
-		{
-			case tDXGI_FORMAT_BC1_UNORM_SRGB:
-				ColourSpace = tColourSpace::sRGB;
-			case tDXGI_FORMAT_BC1_TYPELESS:
-			case tDXGI_FORMAT_BC1_UNORM:
-				PixelFormat = PixelFormatSrc = tPixelFormat::BC1DXT1;
-				break;
-
-			// DXGI formats do not specify premultiplied alpha mode like DXT2/3 so we leave it unspecified.
-			case tDXGI_FORMAT_BC2_UNORM_SRGB:
-				ColourSpace = tColourSpace::sRGB;
-			case tDXGI_FORMAT_BC2_TYPELESS:
-			case tDXGI_FORMAT_BC2_UNORM:
-				PixelFormat = PixelFormatSrc = tPixelFormat::BC2DXT2DXT3;
-				break;
-
-			// DXGI formats do not specify premultiplied alpha mode like DXT4/5 so we leave it unspecified. As for sRGB,
-			// if it says UNORM_SRGB, sure, it may not contain sRGB data, but it's as good as you can get in terms of knowing.
-			// I mean if the DirectX loader 'treats' it as being sRGB (in that it will convert it to linear), then we should
-			// treat it as being sRGB data in general. Of course it could just be a recipe for apple pie, and if it is, it is
-			// a recipe the authors wanted interpreted as sRGB data, otherwise they wouldn't have chosen the _SRGB pixel format.
-			case tDXGI_FORMAT_BC3_UNORM_SRGB:
-				ColourSpace = tColourSpace::sRGB;
-			case tDXGI_FORMAT_BC3_TYPELESS:
-			case tDXGI_FORMAT_BC3_UNORM:
-				PixelFormat = PixelFormatSrc = tPixelFormat::BC3DXT4DXT5;
-				break;
-
-			// case tDXGI_FORMAT_BC4_SNORM:
-			case tDXGI_FORMAT_BC4_TYPELESS:
-			case tDXGI_FORMAT_BC4_UNORM:
-				PixelFormat = PixelFormatSrc = tPixelFormat::BC4ATI1;
-				break;
-
-			// case tDXGI_FORMAT_BC5_SNORM:
-			case tDXGI_FORMAT_BC5_TYPELESS:
-			case tDXGI_FORMAT_BC5_UNORM:
-				PixelFormat = PixelFormatSrc = tPixelFormat::BC5ATI2;
-				break;
-
-			case tDXGI_FORMAT_BC6H_TYPELESS:		// Interpret typeless as BC6H_S16... we gotta choose something.
-			case tDXGI_FORMAT_BC6H_SF16:
-				PixelFormat = PixelFormatSrc = tPixelFormat::BC6S;
-				ColourSpace = tColourSpace::Linear;
-				break;
-
-			case tDXGI_FORMAT_BC6H_UF16:
-				PixelFormat = PixelFormatSrc = tPixelFormat::BC6U;
-				ColourSpace = tColourSpace::Linear;
-				break;
-
-			case tDXGI_FORMAT_BC7_UNORM_SRGB:
-				ColourSpace = tColourSpace::sRGB;
-			case tDXGI_FORMAT_BC7_TYPELESS:			// Interpret typeless as BC7_UNORM... we gotta choose something.
-			case tDXGI_FORMAT_BC7_UNORM:
-				PixelFormat = PixelFormatSrc = tPixelFormat::BC7;
-				break;
-
-			case tDXGI_FORMAT_A8_UNORM:
-				PixelFormat = PixelFormatSrc = tPixelFormat::A8;
-				break;
-
-			case tDXGI_FORMAT_R8_UNORM:
-			case tDXGI_FORMAT_R8_TYPELESS:
-				PixelFormat = PixelFormatSrc = tPixelFormat::L8;
-				break;
-
-			case tDXGI_FORMAT_B8G8R8A8_UNORM_SRGB:
-				ColourSpace = tColourSpace::sRGB;
-			case tDXGI_FORMAT_B8G8R8A8_UNORM:
-			case tDXGI_FORMAT_B8G8R8A8_TYPELESS:
-				PixelFormat = PixelFormatSrc = tPixelFormat::B8G8R8A8;
-				break;
-
-			case tDXGI_FORMAT_B5G6R5_UNORM:
-				PixelFormat = PixelFormatSrc = tPixelFormat::B5G6R5;
-				break;
-
-			case tDXGI_FORMAT_B4G4R4A4_UNORM:
-				PixelFormat = PixelFormatSrc = tPixelFormat::B4G4R4A4;
-				break;
-
-			case tDXGI_FORMAT_B5G5R5A1_UNORM:
-				PixelFormat = PixelFormatSrc = tPixelFormat::B5G5R5A1;
-				break;
-
-			case tDXGI_FORMAT_R16_FLOAT:
-				PixelFormat = PixelFormatSrc = tPixelFormat::R16F;
-				break;
-
-			case tDXGI_FORMAT_R16G16_FLOAT:
-				PixelFormat = PixelFormatSrc = tPixelFormat::R16G16F;
-				break;
-
-			case tDXGI_FORMAT_R16G16B16A16_FLOAT:
-				PixelFormat = PixelFormatSrc = tPixelFormat::R16G16B16A16F;
-				break;
-
-			case tDXGI_FORMAT_R32_FLOAT:
-				PixelFormat = PixelFormatSrc = tPixelFormat::R32F;
-				break;
-
-			case tDXGI_FORMAT_R32G32_FLOAT:
-				PixelFormat = PixelFormatSrc = tPixelFormat::R32G32F;
-				break;
-
-			case tDXGI_FORMAT_R32G32B32A32_FLOAT:
-				PixelFormat = PixelFormatSrc = tPixelFormat::R32G32B32A32F;
-				break;
-		}
+		// If we found a dx10 chunk. It must be used to determine the pixel format and possibly any known colour-space info.
+		tDDS::GetFormatInfo_FromDXGIFormat(PixelFormat, ColourSpace, AlphaMode, headerDX10.DxgiFormat);
 	}
-	else if (fourCCFormat)
+	else if (isFourCCFormat)
 	{
-		switch (format.FourCC)
-		{
-			// Note that during inspecition of the individual layer data, the DXT1 pixel format might be modified
-			// to DXT1BA (binary alpha).
-			case FourCC('D','X','T','1'):
-				PixelFormat = PixelFormatSrc = tPixelFormat::BC1DXT1;
-				break;
-
-			// DXT2 and DXT3 are the same format. Only how you interpret the data is different. In tacent we treat them
-			// as the same pixel-format. How contents are interpreted (the data) is not part of the format. 
-			case FourCC('D','X','T','2'):
-				AlphaMode = tAlphaMode::Premultiplied;
-				PixelFormat = PixelFormatSrc = tPixelFormat::BC2DXT2DXT3;
-				break;
-
-			case FourCC('D','X','T','3'):
-				AlphaMode = tAlphaMode::Normal;
-				PixelFormat = PixelFormatSrc = tPixelFormat::BC2DXT2DXT3;
-				break;
-
-			case FourCC('D','X','T','4'):
-				AlphaMode = tAlphaMode::Premultiplied;
-				PixelFormat = PixelFormatSrc = tPixelFormat::BC3DXT4DXT5;
-				break;
-
-			case FourCC('D','X','T','5'):
-				AlphaMode = tAlphaMode::Normal;
-				PixelFormat = PixelFormatSrc = tPixelFormat::BC3DXT4DXT5;
-				break;
-
-			case FourCC('A','T','I','1'):
-			case FourCC('B','C','4','U'):
-				PixelFormat = PixelFormatSrc = tPixelFormat::BC4ATI1;
-				break;
-
-			case FourCC('A','T','I','2'):
-			case FourCC('B','C','5','U'):
-				PixelFormat = PixelFormatSrc = tPixelFormat::BC5ATI2;
-				break;
-
-			case FourCC('B','C','4','S'):	// We don't support signed BC4.
-			case FourCC('B','C','5','S'):	// We don't support signed BC5.
-			case FourCC('R','G','B','G'):	// We don't support tDXGI_FORMAT_R8G8_B8G8_UNORM -- That's a lot of green precision.
-			case FourCC('G','R','G','B'):	// We don't support tDXGI_FORMAT_G8R8_G8B8_UNORM -- That's a lot of green precision.
-				break;
-
-			// Sometimes these D3D formats may be stored in the FourCC slot.
-			case tD3DFMT_A16B16G16R16:		// We don't support tDXGI_FORMAT_R16G16B16A16_UNORM.
-			case tD3DFMT_Q16W16V16U16:		// We don't support tDXGI_FORMAT_R16G16B16A16_SNORM.
-				break;
-			
-			case tD3DFMT_A8:
-				PixelFormat = PixelFormatSrc = tPixelFormat::A8;
-				break;
-
-			case tD3DFMT_L8:
-				PixelFormat = PixelFormatSrc = tPixelFormat::L8;
-				break;
-
-			case tD3DFMT_A8B8G8R8:
-				PixelFormat = PixelFormatSrc = tPixelFormat::B8G8R8A8;
-				break;
-
-			case tD3DFMT_R16F:
-				PixelFormat = PixelFormatSrc = tPixelFormat::R16F;
-				break;
-
-			case tD3DFMT_G16R16F:
-				// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
-				PixelFormat = PixelFormatSrc = tPixelFormat::R16G16F;
-				break;
-
-			case tD3DFMT_A16B16G16R16F:
-				// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
-				PixelFormat = PixelFormatSrc = tPixelFormat::R16G16B16A16F;
-				break;
-
-			case tD3DFMT_R32F:
-				PixelFormat = PixelFormatSrc = tPixelFormat::R32F;
-				break;
-
-			case tD3DFMT_G32R32F:
-				// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
-				PixelFormat = PixelFormatSrc = tPixelFormat::R32G32F;
-				break;
-
-			case tD3DFMT_A32B32G32R32F:
-				// It's inconsistent calling the D3D format A32B32G32R32F. The floats in this case are clearly in RGBA
-				// order, not ABGR. Anyway, I only have control over the tPixelFormat names. In fairness, it looks like
-				// the format-name was fixed in the DX10 header format type names.
-				PixelFormat = PixelFormatSrc = tPixelFormat::R32G32B32A32F;
-				break;
-		}
+		tDDS::GetFormatInfo_FromFourCC(PixelFormat, ColourSpace, AlphaMode, format.FourCC);
 	}
-
 	// It must be a simple uncompressed format.
 	else
 	{
-		// Remember this is a little endian machine, so the masks are lying. Eg. 0x00FF0000 in memory is 00 00 FF 00 cuz it's encoded
-		// as an int32 -- so the red comes after blue and green.
-		uint32 mskA = format.MaskAlpha; uint32 mskR = format.MaskRed; uint32 mskG = format.MaskGreen; uint32 mskB = format.MaskBlue;
-		switch (format.RGBBitCount)
-		{
-			case 8:			// Supports A8, L8.
-				if ((isA || anyRGB) && (mskA == 0xFF))
-					PixelFormat = PixelFormatSrc = tPixelFormat::A8;
-				else if ((isL || anyRGB) && (mskR == 0xFF))
-					PixelFormat = PixelFormatSrc = tPixelFormat::L8;
-				break;
-
-			case 16:		// Supports B5G6R5, B4G4R4A4, and B5G5R5A1.
-				if (isRGBA && (mskA == 0x8000) && (mskR == 0x7C00) && (mskG == 0x03E0) && (mskB == 0x001F))
-					PixelFormat = PixelFormatSrc = tPixelFormat::B5G5R5A1;
-				else if (isRGBA && (mskA == 0xF000) && (mskR == 0x0F00) && (mskG == 0x00F0) && (mskB == 0x000F))
-					PixelFormat = PixelFormatSrc = tPixelFormat::B4G4R4A4;
-				else if (isRGB && (mskR == 0xF800) && (mskG == 0x07E0) && (mskB == 0x001F))
-					PixelFormat = PixelFormatSrc = tPixelFormat::B5G6R5;
-				break;
-
-			case 24:		// Supports B8G8R8.
-				if (isRGB && (mskR == 0xFF0000) && (mskG == 0x00FF00) && (mskB == 0x0000FF))
-					PixelFormat = PixelFormatSrc = tPixelFormat::B8G8R8;
-				break;
-
-			case 32:		// Supports B8G8R8A8. Alpha really is last (even though ABGR may seem more consistent).
-				if (isRGBA && (mskA == 0xFF000000) && (mskR == 0x00FF0000) && (mskG == 0x0000FF00) && (mskB == 0x000000FF))
-					PixelFormat = PixelFormatSrc = tPixelFormat::B8G8R8A8;
-				break;
-		}
+		tDDS::GetFormatInfo_FromComponentMasks(PixelFormat, ColourSpace, AlphaMode, format);
 	}
+	PixelFormatSrc = PixelFormat;
 
-	// @todo We do not yet support these formats.
 	// From now on we should just be using the PixelFormat to decide what to do next.
 	if (PixelFormat == tPixelFormat::Invalid)
 	{
-		Results |= 1 << int(ResultCode::Fatal_UnsupportedPixelFormat);
+		Results |= 1 << int(ResultCode::Fatal_PixelFormatNotSupported);
 		return false;
 	}
 
@@ -1088,7 +1142,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 		for (int layer = 0; layer < NumMipmapLayers; layer++)
 		{
 			int numBytes = 0;
-			if (tImage::tIsNormalFormat(PixelFormat))
+			if (tImage::tIsPackedFormat(PixelFormat))
 			{
 				numBytes = width*height*tImage::tGetBitsPerPixel(PixelFormat)/8;
 
@@ -1099,20 +1153,20 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 					if (reversedPixelData)
 					{
 						// We can simply get the layer to steal the memory (the last true arg).
-						MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, reversedPixelData, true);
+						Layers[layer][image] = new tLayer(PixelFormat, width, height, reversedPixelData, true);
 						RowReversalOperationPerformed = true;
 					}
 					else
 					{
 						// Row reversal failed. May be a conditional success if we don't convert to RGBA 32-bit later.
-						MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
+						Layers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
 					}
 				}
 				else
 				{
-					MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
+					Layers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
 				}
-				tAssert(MipmapLayers[layer][image]->GetDataSize() == numBytes);
+				tAssert(Layers[layer][image]->GetDataSize() == numBytes);
 			}
 
 			else if (tImage::tIsBlockCompressedFormat(PixelFormat))
@@ -1127,7 +1181,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 
 				// Here's where we possibly modify the opaque DXT1 texture to be DXT1A if there are blocks with binary
 				// transparency. We only bother checking the main layer. If it's opaque we assume all the others are too.
-				if ((layer == 0) && (PixelFormat == tPixelFormat::BC1DXT1) && DoDXT1BlocksHaveBinaryAlpha((tDXT1Block*)currPixelData, numBlocks))
+				if ((layer == 0) && (PixelFormat == tPixelFormat::BC1DXT1) && tDDS::DoBC1BlocksHaveBinaryAlpha((tDDS::BC1Block*)currPixelData, numBlocks))
 					PixelFormat = PixelFormatSrc = tPixelFormat::BC1DXT1A;
 
 				// DDS files store textures upside down. In the OpenGL RH coord system, the lower left of the texture
@@ -1141,28 +1195,28 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 					if (reversedPixelData)
 					{
 						// We can simply get the layer to steal the memory (the last true arg).
-						MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, reversedPixelData, true);
+						Layers[layer][image] = new tLayer(PixelFormat, width, height, reversedPixelData, true);
 
 						// If we can do one layer, we can do them all -- in all images.
 						RowReversalOperationPerformed = true;
 					}
 					else
 					{
-						MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
+						Layers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
 					}
 				}
 				else
 				{
 					// If reverseRowOrder is false we want the data to go straight in so we use the currPixelData directly.
-					MipmapLayers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
+					Layers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
 				}
-				tAssert(MipmapLayers[layer][image]->GetDataSize() == numBytes);
+				tAssert(Layers[layer][image]->GetDataSize() == numBytes);
 			}
 			else
 			{
 				// Upsupported pixel format.
 				Clear();
-				Results |= 1 << int(ResultCode::Fatal_UnsupportedPixelFormat);
+				Results |= 1 << int(ResultCode::Fatal_PixelFormatNotSupported);
 				return false;
 			}
 
@@ -1188,12 +1242,12 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 		{
 			for (int layerNum = 0; layerNum < NumMipmapLayers; layerNum++)
 			{
-				tLayer* layer = MipmapLayers[layerNum][image];
+				tLayer* layer = Layers[layerNum][image];
 				int w = layer->Width;
 				int h = layer->Height;
 				uint8* src = layer->Data;
 
-				if (tImage::tIsNormalFormat(PixelFormat))
+				if (tImage::tIsPackedFormat(PixelFormat))
 				{
 					tPixel* uncompData = new tPixel[w*h];
 					switch (layer->PixelFormat)
@@ -1396,7 +1450,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 						default:
 							delete[] uncompData;
 							Clear();
-							Results |= 1 << int(ResultCode::Fatal_NormalDecodeError);
+							Results |= 1 << int(ResultCode::Fatal_PackedDecodeError);
 							return false;
 					}
 
@@ -1586,6 +1640,8 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 		Results |= 1 << int(ResultCode::Conditional_CouldNotFlipRows);
 
 	tAssert(IsValid());
+
+	Results |= 1 << int(ResultCode::Success);
 	return true;
 }
 
@@ -1662,7 +1718,7 @@ uint8* tImageDDS::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat 
 		case tPixelFormat::BC1DXT1A:
 		case tPixelFormat::BC1DXT1:
 		{
-			tDXT1Block* block = (tDXT1Block*)reversedPixelData;
+			tDDS::BC1Block* block = (tDDS::BC1Block*)reversedPixelData;
 			for (int b = 0; b < numBlocks; b++, block++)
 			{
 				// Reorder each row's colour indexes.
@@ -1674,7 +1730,7 @@ uint8* tImageDDS::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat 
 
 		case tPixelFormat::BC2DXT2DXT3:
 		{
-			tDXT3Block* block = (tDXT3Block*)reversedPixelData;
+			tDDS::BC2Block* block = (tDDS::BC2Block*)reversedPixelData;
 			for (int b = 0; b < numBlocks; b++, block++)
 			{
 				// Reorder the explicit alphas AND the colour indexes.
@@ -1688,7 +1744,7 @@ uint8* tImageDDS::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat 
 
 		case tPixelFormat::BC3DXT4DXT5:
 		{
-			tDXT5Block* block = (tDXT5Block*)reversedPixelData;
+			tDDS::BC3Block* block = (tDDS::BC3Block*)reversedPixelData;
 			for (int b = 0; b < numBlocks; b++, block++)
 			{
 				// Reorder the alpha indexes AND the colour indexes.
@@ -1717,38 +1773,6 @@ uint8* tImageDDS::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat 
 }
 
 
-bool tImageDDS::DoDXT1BlocksHaveBinaryAlpha(tDXT1Block* block, int numBlocks)
-{
-	// The only way to check if the DXT1 format has alpha is by checking each block individually. If the block uses
-	// alpha, the min and max colours are ordered in a particular order.
-	for (int b = 0; b < numBlocks; b++)
-	{
-		if (block->Colour0 <= block->Colour1)
-		{
-			// OK, well, that's annoying. It seems that at least the nVidia DXT compressor can generate an opaque DXT1
-			// block with the colours in the order for a transparent one. This forces us to check all the indexes to
-			// see if the alpha index (11 in binary) is used -- if not then it's still an opaque block.
-			for (int row = 0; row < 4; row++)
-			{
-				uint8 bits = block->LookupTableRows[row];
-				if
-				(
-					((bits & 0x03) == 0x03) ||
-					((bits & 0x0C) == 0x0C) ||
-					((bits & 0x30) == 0x30) ||
-					((bits & 0xC0) == 0xC0)
-				)
-					return true;
-			}
-		}
-
-		block++;
-	}
-
-	return false;
-}
-
-
 const char* tImageDDS::GetResultDesc(ResultCode code)
 {
 	return ResultDescriptions[int(code)];
@@ -1762,12 +1786,12 @@ const char* tImageDDS::ResultDescriptions[] =
 	"Conditional Success. One of Pitch or LinearSize should be specified. Using dimensions instead.",
 	"Conditional Success. Image has dimension not multiple of four.",
 	"Conditional Success. Image has dimension not power of two.",
-	"Fatal Error. Load not called. Invalid object.",
 	"Fatal Error. File does not exist.",
 	"Fatal Error. Incorrect file type. Must be a DDS file.",
 	"Fatal Error. Filesize incorrect.",
 	"Fatal Error. Magic FourCC Incorrect.",
 	"Fatal Error. Incorrect DDS header size.",
+	"Fatal Error. Incorrect Dimensions.",
 	"Fatal Error. DDS volume textures not supported.",
 	"Fatal Error. Pixel format header size incorrect.",
 	"Fatal Error. Pixel format specification incorrect.",

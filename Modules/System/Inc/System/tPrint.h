@@ -153,6 +153,8 @@ namespace tSystem
 //																b	]
 //						Default expected vector size is :3 (3 elements). If you pass in a 2 or 4 component vector you
 //						must specify the size.
+//					Bool Types:
+//						A _ results in the bool being printed as T or F. A single-quote ' results in Y or N. 
 //
 // [width]
 // A number representing the minimum num chars printed, or a * to indicate read width from the vararg list.
@@ -169,7 +171,7 @@ namespace tSystem
 // |32 or |64 may be used with integer types d, i, o, u, x, X, and b to specify the bit-size of the integer to print.
 //
 // [type]
-// A single letter chosen from the types below:
+// A single (case-sensitive) letter chosen from the types below:
 //		Integer:	b o d i u x X	For these types 'i' is same as 'd'. 'o' is octal. 'b' is binary. Handles Tacent
 //									integer types tint128, tint256, as well as all the built-in integral types.
 //		Pointer:	p				ISO C. Similar to %#010X (32bit systems) and %#018X (on 64bit systems) with the
@@ -191,6 +193,7 @@ namespace tSystem
 //		String:		s				You must call pod(string) or string.Pod() for tStrings, or use char*.
 //					t				Windows only. Allows passing of non-POD tString directly. Warning: You cannot pass
 //									in an tStringItem! You must either cast to an tString or call pod() and use %s.
+//		Boolean:	B				For printing a bool as either "true" or "false".
 //		Percent:	%				Displays percent sign.
 //
 // The functions return the number of characters printed. They do NOT care about channels in that they always report

@@ -56,7 +56,7 @@ namespace tImage
 	};
 	tStaticAssert(int(tPixelFormat::NumPixelFormats)+1 == tNumElements(PixelFormatNames));
 
-	int NormalFormat_BytesPerPixel[] =
+	int PackedFormat_BytesPerPixel[] =
 	{
 		3,				// R8G8B8
 		4,				// R8G8B8A8
@@ -75,7 +75,7 @@ namespace tImage
 		8,				// R32G32F
 		16,				// R32G32B32A32F
 	};
-	tStaticAssert(tNumElements(NormalFormat_BytesPerPixel) == int(tPixelFormat::NumNormalFormats));
+	tStaticAssert(tNumElements(PackedFormat_BytesPerPixel) == int(tPixelFormat::NumPackedFormats));
 
 	int BlockFormat_BytesPer4x4PixelBlock[] =
 	{
@@ -102,8 +102,8 @@ namespace tImage
 
 int tImage::tGetBitsPerPixel(tPixelFormat format)
 {
-	if (tIsNormalFormat(format))
-		return 8*NormalFormat_BytesPerPixel[int(format) - int(tPixelFormat::FirstNormal)];
+	if (tIsPackedFormat(format))
+		return 8 * PackedFormat_BytesPerPixel[int(format) - int(tPixelFormat::FirstPacked)];
 
 	if (tIsBlockCompressedFormat(format))
 		return (8*tGetBytesPer4x4PixelBlock(format)) >> 4;
