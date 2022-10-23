@@ -135,6 +135,9 @@ namespace tSystem
 //
 //		Standard:	hyphen (-) means left justify. Plus (+) means show sign for numeric types. # means force decimal
 //					point for e, E, f, g, and G. It also means prefix with 0, 0x, or 0X for o, x, and X.
+//					Using the 0 prefix flag works differently on Linux vs Windows with non-integral types like %c.
+//					Tacent behaves (on purpose) like Windows where the leading 0s are printed even though the type is
+//					not integral.
 //		Enhanced:	Underscore (_) or single-quote (') chooses a more readable decorative or alternative printing method.
 //					Integral Types:
 //						For built-in integral types, an _ inserts an underscore every 4 characters starting from the

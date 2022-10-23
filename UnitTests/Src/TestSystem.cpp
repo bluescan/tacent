@@ -198,7 +198,7 @@ bool PrintCompare(const char* format, ...)
 // Tests the tPrintf formatting engine.
 void PrintTest(const char* format, ...)
 {
-	tPrint("Testing Tacent formatted output. Next two entries: (format, tPrintf)\n");
+	tPrint("Next two entries: (format, tPrintf)\n");
 	tPrint(format);
 	va_list args;
 
@@ -206,7 +206,7 @@ void PrintTest(const char* format, ...)
 	int tcount = tvPrintf(format, args);
 	va_end(args);
 
-	tPrintf("Str Length: %d\n\n", tcount);
+	tPrintf("Char Count: %d\n\n", tcount);
 }
 
 
@@ -263,7 +263,6 @@ tTestUnit(Print)
 	);
 
 	PrintTest
-
 	(
 		"Octal   0001 3417 0443 2270 7413 4360 (64 bit):\n"
 		"      __%0_24:2o__\n", u64
@@ -329,6 +328,7 @@ tTestUnit(Print)
 		"      __%12B__\n", false
 	);
 
+	tRequire(PrintCompare("Octal value forty-nine:              ___%#o___\n", 49));
 	tRequire(PrintCompare("Percent symbol.                      ___%%___\n"));
 
 	// I prefer the behaviour of windows printf here. If char after % is invalid, just print the character and
@@ -336,6 +336,9 @@ tTestUnit(Print)
 	#ifdef PLATFORM_WINDOWS
 	tRequire(PrintCompare("Invalid char after percent.          ___%^___\n"));
 	tRequire(PrintCompare("Invalid char after percent.          ___%%%^___\n"));
+	#else
+	PrintTest            ("Invalid char after percent.          ___%^___\n");
+	PrintTest            ("Invalid char after percent.          ___%%%^___\n");
 	#endif
 	
 	tRequire(PrintCompare("Float value forty-two:               ___%f___\n", float(42.0f)));
@@ -392,9 +395,16 @@ tTestUnit(Print)
 
 	tRequire(PrintCompare("Char %c\n", 65));					// A
 	tRequire(PrintCompare("Char %c %c %c\n", 65, 66, 67));		// A B C
+	tRequire(PrintCompare("Char %4c %6c %8c\n", 65, 66, 67));	// A B C
 
-// WIP FAILING ON LINUX.
-//	tRequire(PrintCompare("Char %4c %06c %8c\n", 65, 66, 67));
+	// Using the 0 prefix works differently on Linux vs Windows so we can't PrintCompare.
+	// Tacent behaves (on purpose) like Windows where the leading 0s are printed even though
+	// the type is not integral.
+	#ifdef PLATFORM_WINDOWS
+	tRequire(PrintCompare("Char %04c %06c %08c\n", 65, 66, 67));
+	#else
+	PrintTest("Char %04c %06c %08c\n", 65, 66, 67);
+	#endif
 
 	#ifdef PLATFORM_WINDOWS
 	tPrintf("Windows non-POD tString print.\n");
