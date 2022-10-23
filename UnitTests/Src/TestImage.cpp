@@ -965,7 +965,6 @@ tTestUnit(ImageKTX)
 	// BC1
 	KTXLoadDecodeSave("BC1DXT1_RGB.ktx2", decode | revrow);
 
-#if 0
 	// BC1a
 	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx2", decode | revrow);
 
@@ -992,12 +991,13 @@ tTestUnit(ImageKTX)
 	// Uncompressed Integer Formats.
 	//
 	// A8
-	KTXLoadDecodeSave("A8_A.ktx2", decode | revrow);
+//WIP	KTXLoadDecodeSave("A8_A.ktx2", decode | revrow);
 
 	// L8
 	KTXLoadDecodeSave("L8_L.ktx2", decode | revrow);
 	KTXLoadDecodeSave("L8_L.ktx2", decode | revrow | spread);
 
+#if 0
 	// B8G8R8
 	KTXLoadDecodeSave("B8G8R8_RGB.ktx2", decode | revrow);
 

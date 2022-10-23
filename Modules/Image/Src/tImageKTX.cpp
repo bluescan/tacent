@@ -56,16 +56,73 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourSpace& space,
 		// returned in a separate variable.
 		case VK_FORMAT_BC1_RGB_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
-
 		case VK_FORMAT_BC1_RGB_UNORM_BLOCK:
 			format = tPixelFormat::BC1DXT1;
 			break;
 
 		case VK_FORMAT_BC1_RGBA_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
-
 		case VK_FORMAT_BC1_RGBA_UNORM_BLOCK:
 			format = tPixelFormat::BC1DXT1A;
+			break;
+
+		case VK_FORMAT_BC2_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_BC2_UNORM_BLOCK:
+			format = tPixelFormat::BC2DXT2DXT3;
+			break;
+
+		case VK_FORMAT_BC3_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_BC3_UNORM_BLOCK:
+			format = tPixelFormat::BC3DXT4DXT5;
+			break;
+
+		case VK_FORMAT_BC4_SNORM_BLOCK:				// Signed not supported yet.
+			break;
+		case VK_FORMAT_BC4_UNORM_BLOCK:
+			format = tPixelFormat::BC4ATI1;
+			break;
+
+		case VK_FORMAT_BC5_SNORM_BLOCK:				// Signed not supported yet.
+			break;
+		case VK_FORMAT_BC5_UNORM_BLOCK:
+			format = tPixelFormat::BC5ATI2;
+			break;
+
+		case VK_FORMAT_BC6H_SFLOAT_BLOCK:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::BC6S;
+			break;
+
+		case VK_FORMAT_BC6H_UFLOAT_BLOCK:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::BC6U;
+			break;
+
+		case VK_FORMAT_BC7_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_BC7_UNORM_BLOCK:
+			format = tPixelFormat::BC7;
+			break;
+
+		// @todo NVTT can export ktx2 as A8. There is no A8 in VkFormat -- only an R8. What's it doing?
+		
+		case VK_FORMAT_R8_UNORM:
+			format = tPixelFormat::L8;
+			break;
+		case VK_FORMAT_R8_SNORM:					// Unsupported.
+		case VK_FORMAT_R8_USCALED:
+		case VK_FORMAT_R8_SSCALED:
+			break;
+		case VK_FORMAT_R8_UINT:						// How different to VK_FORMAT_R8_UNORM?
+			format = tPixelFormat::L8;
+			break;
+		case VK_FORMAT_R8_SINT:						// Unsupported.
+			break;
+		case VK_FORMAT_R8_SRGB:						// UNORM?
+			space = tColourSpace::sRGB;
+			format = tPixelFormat::L8;
 			break;
 	}
 }

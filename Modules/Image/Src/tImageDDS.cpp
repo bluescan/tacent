@@ -483,7 +483,7 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourSpace& spac
 			format = tPixelFormat::BC5ATI2;
 			break;
 
-		case tDDS::DXGIFMT_BC6H_TYPELESS:		// Interpret typeless as BC6H_S16... we gotta choose something.
+		case tDDS::DXGIFMT_BC6H_TYPELESS:			// Interpret typeless as BC6H_S16... we gotta choose something.
 		case tDDS::DXGIFMT_BC6H_SF16:
 			format = tPixelFormat::BC6S;
 			space = tColourSpace::Linear;
