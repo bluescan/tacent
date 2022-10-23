@@ -28,6 +28,7 @@
 #include "Image/tImageAPNG.h"
 #include "Image/tImageBMP.h"
 #include "Image/tImageDDS.h"
+#include "Image/tImageKTX.h"
 #include "Image/tImageEXR.h"
 #include "Image/tImageGIF.h"
 #include "Image/tImageHDR.h"
