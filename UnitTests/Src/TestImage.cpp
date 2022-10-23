@@ -960,7 +960,7 @@ tTestUnit(ImageKTX)
 	//
 	// Block Compressed Formats.
 	//
-	tPrintf("Testing KTX Loading/Decoding.\n\n");
+	tPrintf("Testing KTX Loading/Decoding Using LibKTX %s\n\n", tImage::Version_LibKTX);
 
 	// BC1
 	KTXLoadDecodeSave("BC1DXT1_RGB.ktx2", decode | revrow);
