@@ -792,8 +792,8 @@ tTestUnit(ImageDDS)
 	// L8
 	DDSLoadDecodeSave("L8_L_Legacy.dds", decode | revrow);
 	DDSLoadDecodeSave("L8_L_Legacy.dds", decode | revrow | spread);
-	DDSLoadDecodeSave("L8_L_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("L8_L_Modern.dds", decode | revrow | spread);
+	DDSLoadDecodeSave("R8_L_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("R8_L_Modern.dds", decode | revrow | spread);
 
 	// B8G8R8
 	DDSLoadDecodeSave("B8G8R8_RGB_Legacy.dds", decode | revrow);
@@ -848,7 +848,7 @@ tTestUnit(ImageDDS)
 	// Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
 	// This time, since not decoding, it may be impossible to reverse the rows, so we can also expect
 	// to get conditional valids if it couldn't be done (for some of the BC formats). We're only going
-	// to bother with the modern-style dds files this time through.
+	// to bother with the modern-style dds files (for the most part) this time through.
 
 	tPrintf("Testing DDS Loading/No-decoding.\n\n");
 	DDSLoadDecodeSave("BC1DXT1_RGB_Modern.dds", revrow);		// Revrow should work for BC1.
@@ -863,17 +863,21 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds", revrow);		// Should print warning and be unable to flip rows.
 	DDSLoadDecodeSave("BC7_RGBA_Modern.dds", revrow);			// Should print warning and be unable to flip rows.
 	DDSLoadDecodeSave("A8_A_Modern.dds");
-	DDSLoadDecodeSave("L8_L_Modern.dds", revrow);
+	DDSLoadDecodeSave("R8_L_Modern.dds", revrow);
+	DDSLoadDecodeSave("L8_L_Legacy.dds", revrow);
 	DDSLoadDecodeSave("B8G8R8_RGB_Legacy.dds");					// Only legacy supports this format.
 	DDSLoadDecodeSave("B8G8R8A8_RGBA_Modern.dds");
 	DDSLoadDecodeSave("B5G6R5_RGB_Modern.dds", revrow);
 	DDSLoadDecodeSave("B4G4R4A4_RGBA_Modern.dds", revrow);
 	DDSLoadDecodeSave("B5G5R5A1_RGBA_Modern.dds");
+
 	DDSLoadDecodeSave("R16f_R_Modern.dds", revrow);
 	DDSLoadDecodeSave("R16f_R_Modern.dds");
 	DDSLoadDecodeSave("R16G16f_RG_Modern.dds", revrow);
 	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Modern.dds");
+
 	DDSLoadDecodeSave("R32f_R_Modern.dds", revrow);
+	DDSLoadDecodeSave("R32f_R_Modern.dds");
 	DDSLoadDecodeSave("R32G32f_RG_Modern.dds");
 	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Modern.dds", revrow);
 
@@ -961,6 +965,10 @@ tTestUnit(ImageKTX)
 	// Block Compressed Formats.
 	//
 	tPrintf("Testing KTX Loading/Decoding Using LibKTX %s\n\n", tImage::Version_LibKTX);
+	tPrintf("D = Decode\n");
+	tPrintf("G = Gamma Compression\n");
+	tPrintf("R = Reverse Row Order\n");
+	tPrintf("S = Spread Luminance\n");
 
 	// BC1
 	KTXLoadDecodeSave("BC1DXT1_RGB.ktx2", decode | revrow);
@@ -990,16 +998,17 @@ tTestUnit(ImageKTX)
 	//
 	// Uncompressed Integer Formats.
 	//
-	// A8
-//WIP	KTXLoadDecodeSave("A8_A.ktx2", decode | revrow);
+	// R8
+	// Currently not loadable by LibKTX.
+	// KTXLoadDecodeSave("R8_A.ktx2", decode | revrow);
 
 	// L8
-	KTXLoadDecodeSave("L8_L.ktx2", decode | revrow);
-	KTXLoadDecodeSave("L8_L.ktx2", decode | revrow | spread);
+	KTXLoadDecodeSave("R8_L.ktx2", decode | revrow);
+	KTXLoadDecodeSave("R8_L.ktx2", decode | revrow | spread);
 
-#if 0
 	// B8G8R8
-	KTXLoadDecodeSave("B8G8R8_RGB.ktx2", decode | revrow);
+	// Currently not loadable by LibKTX.
+	// KTXLoadDecodeSave("B8G8R8_RGB.ktx2", decode | revrow);
 
 	// B8G8R8A8
 	KTXLoadDecodeSave("B8G8R8A8_RGBA.ktx2", decode | revrow);
@@ -1041,18 +1050,26 @@ tTestUnit(ImageKTX)
 	KTXLoadDecodeSave("BC6s_RGB.ktx2", revrow);					// Should print warning and be unable to flip rows.
 	KTXLoadDecodeSave("BC7_RGBA.ktx2", revrow);					// Should print warning and be unable to flip rows.
 	KTXLoadDecodeSave("BC7_RGBANoSuper.ktx2", revrow);			// Should print warning and be unable to flip rows.
-	KTXLoadDecodeSave("A8_A.ktx2");
-	KTXLoadDecodeSave("L8_L.ktx2", revrow);
-	KTXLoadDecodeSave("B8G8R8_RGB.ktx2");
+
+	// Currently not loadable by LibKTX.
+	// KTXLoadDecodeSave("R8_A.ktx2");
+
+	KTXLoadDecodeSave("R8_L.ktx2", revrow);
+
+	// Currently not loadable by LibKTX.
+	// KTXLoadDecodeSave("B8G8R8_RGB.ktx2");
+
 	KTXLoadDecodeSave("B8G8R8A8_RGBA.ktx2");
+
 	KTXLoadDecodeSave("R16f_R.ktx2", revrow);
 	KTXLoadDecodeSave("R16f_R.ktx2");
 	KTXLoadDecodeSave("R16G16f_RG.ktx2", revrow);
 	KTXLoadDecodeSave("R16G16B16A16f_RGBA.ktx2");
+
 	KTXLoadDecodeSave("R32f_R.ktx2", revrow);
+	KTXLoadDecodeSave("R32f_R.ktx2");
 	KTXLoadDecodeSave("R32G32f_RG.ktx2");
 	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx2", revrow);
-#endif
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }

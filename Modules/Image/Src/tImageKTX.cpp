@@ -106,23 +106,114 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourSpace& space,
 			format = tPixelFormat::BC7;
 			break;
 
-		// @todo NVTT can export ktx2 as A8. There is no A8 in VkFormat -- only an R8. What's it doing?
-		
-		case VK_FORMAT_R8_UNORM:
-			format = tPixelFormat::L8;
-			break;
-		case VK_FORMAT_R8_SNORM:					// Unsupported.
-		case VK_FORMAT_R8_USCALED:
-		case VK_FORMAT_R8_SSCALED:
-			break;
-		case VK_FORMAT_R8_UINT:						// How different to VK_FORMAT_R8_UNORM?
-			format = tPixelFormat::L8;
-			break;
-		case VK_FORMAT_R8_SINT:						// Unsupported.
-			break;
-		case VK_FORMAT_R8_SRGB:						// UNORM?
+		// NVTT can export ktx2 as A8. There is no A8 in VkFormat so it uses R8 instead.
+		// There is no difference in storage between UNORM (unsigned normalized) and UINT. The only difference is
+		// when the texture is bound, the UNORM textures get their component values converted to floats in [0.0, 1.0],
+		// whereas the UINT textures would just have the int returned by a shader texture sampler.
+		case VK_FORMAT_R8_SRGB:					// UNORM?
 			space = tColourSpace::sRGB;
-			format = tPixelFormat::L8;
+		case VK_FORMAT_R8_UNORM:
+		case VK_FORMAT_R8_UINT:
+		// Not implemented yet.
+		// VK_FORMAT_R8_SNORM
+		// VK_FORMAT_R8_USCALED
+		// VK_FORMAT_R8_SSCALED
+		// VK_FORMAT_R8_SINT
+			format = tPixelFormat::R8;
+			break;
+
+		case VK_FORMAT_R8G8_SRGB:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_R8G8_UNORM:
+		case VK_FORMAT_R8G8_UINT:
+		// Not implemented yet.
+		// VK_FORMAT_R8G8_SNORM
+		// VK_FORMAT_R8G8_USCALED
+		// VK_FORMAT_R8G8_SSCALED
+		// VK_FORMAT_R8G8_SINT
+			format = tPixelFormat::R8G8;
+			break;
+
+		case VK_FORMAT_R8G8B8_SRGB:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_R8G8B8_UNORM:
+		case VK_FORMAT_R8G8B8_UINT:
+		// Not implemented yet.
+		// VK_FORMAT_R8G8B8_SNORM
+		// VK_FORMAT_R8G8B8_USCALED
+		// VK_FORMAT_R8G8B8_SSCALED
+		// VK_FORMAT_R8G8B8_SINT
+			format = tPixelFormat::R8G8B8;
+			break;
+		
+		case VK_FORMAT_R8G8B8A8_SRGB:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_R8G8B8A8_UNORM:
+		case VK_FORMAT_R8G8B8A8_UINT:
+		// Not implemented yet.
+		// VK_FORMAT_R8G8B8A8_SNORM
+		// VK_FORMAT_R8G8B8A8_USCALED
+		// VK_FORMAT_R8G8B8A8_SSCALED
+		// VK_FORMAT_R8G8B8A8_SINT
+			format = tPixelFormat::R8G8B8A8;
+			break;
+
+		case VK_FORMAT_B8G8R8_SRGB:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_B8G8R8_UNORM:
+		case VK_FORMAT_B8G8R8_UINT:
+		// VK_FORMAT_B8G8R8_SNORM
+		// VK_FORMAT_B8G8R8_USCALED
+		// VK_FORMAT_B8G8R8_SSCALED
+		// VK_FORMAT_B8G8R8_SINT
+			format = tPixelFormat::B8G8R8;
+			break;
+
+		case VK_FORMAT_B8G8R8A8_SRGB:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_B8G8R8A8_UNORM:
+		case VK_FORMAT_B8G8R8A8_UINT:
+		// VK_FORMAT_B8G8R8A8_SNORM
+		// VK_FORMAT_B8G8R8A8_USCALED
+		// VK_FORMAT_B8G8R8A8_SSCALED
+		// VK_FORMAT_B8G8R8A8_SINT
+			format = tPixelFormat::B8G8R8A8;
+			break;
+
+		case VK_FORMAT_B5G6R5_UNORM_PACK16:
+			format = tPixelFormat::B5G6R5;
+			break;
+
+		case VK_FORMAT_B4G4R4A4_UNORM_PACK16:
+			format = tPixelFormat::B4G4R4A4;
+			break;
+
+		case VK_FORMAT_B5G5R5A1_UNORM_PACK16:
+			format = tPixelFormat::B5G5R5A1;
+			break;
+
+		case VK_FORMAT_R16_SFLOAT:
+			format = tPixelFormat::R16F;
+			break;
+
+		case VK_FORMAT_R16G16_SFLOAT:
+			format = tPixelFormat::R16G16F;
+			break;
+
+		case VK_FORMAT_R16G16B16A16_SFLOAT:
+			format = tPixelFormat::R16G16B16A16F;
+			break;
+
+		case VK_FORMAT_R32_SFLOAT:
+			format = tPixelFormat::R32F;
+			break;
+
+		case VK_FORMAT_R32G32_SFLOAT:
+			format = tPixelFormat::R32G32F;
+			break;
+
+		case VK_FORMAT_R32G32B32A32_SFLOAT:
+			format = tPixelFormat::R32G32B32A32F;
 			break;
 	}
 }
@@ -501,9 +592,10 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 							break;
 
 						case tPixelFormat::L8:
+						case tPixelFormat::R8:
 						{
-							// Convert to 32-bit RGBA with luminance in R and 255 for A. If SpreadLuminance flag set,
-							// also set luminance in the GB channels, if not then GB get 0s.
+							// Convert to 32-bit RGBA with red or luminance in R and 255 for A. If SpreadLuminance flag set,
+							// also set luminance or red in the GB channels, if not then GB get 0s.
 							for (int ij = 0; ij < w*h; ij++)
 							{
 								tColour4i col(src[ij], spread ? src[ij] : 0u, spread ? src[ij] : 0u, 255u);
@@ -511,6 +603,31 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 							}
 							break;
 						}
+
+						case tPixelFormat::R8G8:
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								tColour4i col(src[ij*2+0], src[ij*2+1], 0u, 255u);
+								uncompData[ij].Set(col);
+							}
+							break;
+
+						case tPixelFormat::R8G8B8:
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								tColour4i col(src[ij*3+0], src[ij*3+1], src[ij*3+2], 255u);
+								uncompData[ij].Set(col);
+							}
+							break;
+
+
+						case tPixelFormat::R8G8B8A8:
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								tColour4i col(src[ij*4+0], src[ij*4+1], src[ij*4+2], src[ij*4+3]);
+								uncompData[ij].Set(col);
+							}
+							break;
 
 						case tPixelFormat::B8G8R8:
 							for (int ij = 0; ij < w*h; ij++)

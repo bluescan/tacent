@@ -23,6 +23,8 @@ namespace tImage
 	const char* PixelFormatNames[] =
 	{
 		"Unknown",
+		"R8",
+		"R8G8",
 		"R8G8B8",
 		"R8G8B8A8",
 		"B8G8R8",
@@ -58,6 +60,8 @@ namespace tImage
 
 	int PackedFormat_BytesPerPixel[] =
 	{
+		1,				// R8
+		2,				// R8G8
 		3,				// R8G8B8
 		4,				// R8G8B8A8
 		3,				// B8G8R8

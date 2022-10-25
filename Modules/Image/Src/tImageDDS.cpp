@@ -506,8 +506,29 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourSpace& spac
 			break;
 
 		case tDDS::DXGIFMT_R8_UNORM:
+		case tDDS::DXGIFMT_R8_UINT:
 		case tDDS::DXGIFMT_R8_TYPELESS:
-			format = tPixelFormat::L8;
+		// DXGIFMT_R8_SNORM not implemented yet.
+		// DXGIFMT_R8_SINT  not implemented yet.
+			format = tPixelFormat::R8;
+			break;
+
+		case tDDS::DXGIFMT_R8G8_UNORM:
+		case tDDS::DXGIFMT_R8G8_UINT:
+		case tDDS::DXGIFMT_R8G8_TYPELESS:
+		// DXGIFMT_R8G8_SNORM not implemented yet.
+		// DXGIFMT_R8G8_SINT  not implemented yet.
+			format = tPixelFormat::R8G8;
+			break;
+
+		case tDDS::DXGIFMT_R8G8B8A8_UNORM_SRGB:
+			space = tColourSpace::sRGB;
+		case tDDS::DXGIFMT_R8G8B8A8_UNORM:
+		case tDDS::DXGIFMT_R8G8B8A8_UINT:
+		case tDDS::DXGIFMT_R8G8B8A8_TYPELESS:
+		// DXGIFMT_R8G8B8A8_SNORM not implemented yet.
+		// DXGIFMT_R8G8B8A8_SINT  not implemented yet.
+			format = tPixelFormat::R8G8B8A8;
 			break;
 
 		case tDDS::DXGIFMT_B8G8R8A8_UNORM_SRGB:
@@ -1145,9 +1166,10 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 							break;
 
 						case tPixelFormat::L8:
+						case tPixelFormat::R8:
 						{
-							// Convert to 32-bit RGBA with luminance in R and 255 for A. If SpreadLuminance flag set,
-							// also set luminance in the GB channels, if not then GB get 0s.
+							// Convert to 32-bit RGBA with red or luminance in R and 255 for A. If SpreadLuminance flag set,
+							// also set luminance or red in the GB channels, if not then GB get 0s.
 							for (int ij = 0; ij < w*h; ij++)
 							{
 								tColour4i col(src[ij], spread ? src[ij] : 0u, spread ? src[ij] : 0u, 255u);
@@ -1155,6 +1177,30 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 							}
 							break;
 						}
+
+						case tPixelFormat::R8G8:
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								tColour4i col(src[ij*2+0], src[ij*2+1], 0u, 255u);
+								uncompData[ij].Set(col);
+							}
+							break;
+
+						case tPixelFormat::R8G8B8:
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								tColour4i col(src[ij*3+0], src[ij*3+1], src[ij*3+2], 255u);
+								uncompData[ij].Set(col);
+							}
+							break;
+						
+						case tPixelFormat::R8G8B8A8:
+							for (int ij = 0; ij < w*h; ij++)
+							{
+								tColour4i col(src[ij*4+0], src[ij*4+1], src[ij*4+2], src[ij*4+3]);
+								uncompData[ij].Set(col);
+							}
+							break;
 
 						case tPixelFormat::B8G8R8:
 							for (int ij = 0; ij < w*h; ij++)

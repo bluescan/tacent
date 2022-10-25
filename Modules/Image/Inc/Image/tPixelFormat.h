@@ -28,18 +28,28 @@ namespace tImage
 // See tColourSpace enum in tColour.h.
 //
 // A way to think of it is as follows -- You have some input data (Din) that gets encoded using a pixel format (Epf)
-// resulting in some output data (Dout). Din -> Epf -> Dout.
-// Without changing Din, if changing Epf would result in different Dout, it is correct to have separate formats (eg.
-// BCH6_S vs BCH6_U. DXT1 vs DXT1BA). If changing Epf would not result in different Dout then the formats are not
-// different and satellite info should be used if what's stored in Din (and Dout) has certain properties (eg. sRGB space
-// vs Linear, premultiplied vs not, DXT2 and DXT3 are the same).
+// resulting in some output data (Dout). Din -> Epf -> Dout. Without changing Din, if changing Epf would result in
+// different Dout, it is correct to have separate formats (eg. BCH6_S vs BCH6_U. DXT1 vs DXT1BA). If changing Epf would
+// not result in different Dout then the formats are not different and satellite info should be used if what's stored in
+// Din (and Dout) has certain properties (eg. sRGB space vs Linear, premultiplied vs not, DXT2 and DXT3 are the same).
+// This is also why we don't distinguish between UNORM and UINT for example, as this is just a runtime distinction, not
+// an encoding difference (UNORM gets converted to a float in [0.0, 1.0] in shaders, UINT doesn't).
+//
+// The only exception to this rule is the Tacent pixel format _does_ make distinctions between formats based on the
+// colour components being represented. It's not ideal, but pixel formats do generally specify R, G, B, A, L etc and
+// what order they appear in. In a perfect world (in my perfect world anyways), R8G8B8 would just be C8C8C8 (C8X3) and
+// satellite info would describe what the data represented (RGB in this case). Anyway, that's too much of a divergence.
+// This exception is why there is a tPixelFormat R8 (Vulkan has one of these), A8, and L8, all 3 with the same internal
+// representation.
 enum class tPixelFormat
 {
 	Invalid				= -1,
 	Auto				= Invalid,
 
 	FirstPacked,
-	R8G8B8				= FirstPacked,	// 24  bit. Full colour. No alpha. Matches GL_RGB source ordering. Not efficient. Most drivers will swizzle to BGR.
+	R8					= FirstPacked,	// 8   bit. Unsigned representing red. Some file-types not supporting A8 or L8 (eg ktx2) will export to this.
+	R8G8,								// 16  bit. Unsigned representing red and green. Vulkan has an analagous format.
+	R8G8B8,								// 24  bit. Full colour. No alpha. Matches GL_RGB source ordering. Not efficient. Most drivers will swizzle to BGR.
 	R8G8B8A8,							// 32  bit. Full alpha. Matches GL_RGBA source ordering. Not efficient. Most drivers will swizzle to ABGR.
 	B8G8R8,								// 24  bit. Full colour. No alpha. Matches GL_BGR source ordering. Efficient. Most drivers do not need to swizzle.
 	B8G8R8A8,							// 32  bit. Full alpha. Matches GL_BGRA source ordering. Most drivers do not need to swizzle.
