@@ -999,16 +999,14 @@ tTestUnit(ImageKTX)
 	// Uncompressed Integer Formats.
 	//
 	// R8
-	// Currently not loadable by LibKTX.
-	// KTXLoadDecodeSave("R8_A.ktx2", decode | revrow);
+	KTXLoadDecodeSave("R8_A.ktx2", decode | revrow);
 
 	// L8
 	KTXLoadDecodeSave("R8_L.ktx2", decode | revrow);
 	KTXLoadDecodeSave("R8_L.ktx2", decode | revrow | spread);
 
 	// B8G8R8
-	// Currently not loadable by LibKTX.
-	// KTXLoadDecodeSave("B8G8R8_RGB.ktx2", decode | revrow);
+	KTXLoadDecodeSave("B8G8R8_RGB.ktx2", decode | revrow);
 
 	// B8G8R8A8
 	KTXLoadDecodeSave("B8G8R8A8_RGBA.ktx2", decode | revrow);
@@ -1051,14 +1049,9 @@ tTestUnit(ImageKTX)
 	KTXLoadDecodeSave("BC7_RGBA.ktx2", revrow);					// Should print warning and be unable to flip rows.
 	KTXLoadDecodeSave("BC7_RGBANoSuper.ktx2", revrow);			// Should print warning and be unable to flip rows.
 
-	// Currently not loadable by LibKTX.
-	// KTXLoadDecodeSave("R8_A.ktx2");
-
+	KTXLoadDecodeSave("R8_A.ktx2");
 	KTXLoadDecodeSave("R8_L.ktx2", revrow);
-
-	// Currently not loadable by LibKTX.
-	// KTXLoadDecodeSave("B8G8R8_RGB.ktx2");
-
+	KTXLoadDecodeSave("B8G8R8_RGB.ktx2");
 	KTXLoadDecodeSave("B8G8R8A8_RGBA.ktx2");
 
 	KTXLoadDecodeSave("R16f_R.ktx2", revrow);
