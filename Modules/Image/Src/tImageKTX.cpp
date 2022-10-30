@@ -69,6 +69,14 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			format = tPixelFormat::BC5ATI2;
 			break;
 
+		case GL_COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT:
+			format = tPixelFormat::BC6U;
+			break;
+
+		case GL_COMPRESSED_RGB_BPTC_SIGNED_FLOAT:
+			format = tPixelFormat::BC6S;
+			break;
+
 		case GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM:
 			space = tColourSpace::sRGB;
 		case GL_COMPRESSED_RGBA_BPTC_UNORM:
