@@ -52,6 +52,28 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 		case GL_COMPRESSED_RGBA_S3TC_DXT1_EXT:
 			format = tPixelFormat::BC1DXT1A;
 			break;
+
+		case GL_COMPRESSED_RGBA_S3TC_DXT3_EXT:
+			format = tPixelFormat::BC2DXT2DXT3;
+			break;
+
+		case GL_COMPRESSED_RGBA_S3TC_DXT5_EXT:
+			format = tPixelFormat::BC3DXT4DXT5;
+			break;
+
+		case GL_COMPRESSED_RED_RGTC1:
+			format = tPixelFormat::BC4ATI1;
+			break;
+
+		case GL_COMPRESSED_RG_RGTC2:
+			format = tPixelFormat::BC5ATI2;
+			break;
+
+		case GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM:
+			space = tColourSpace::sRGB;
+		case GL_COMPRESSED_RGBA_BPTC_UNORM:
+			format = tPixelFormat::BC7;
+			break;
 	}
 }
 

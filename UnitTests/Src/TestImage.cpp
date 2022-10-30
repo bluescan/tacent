@@ -1097,22 +1097,22 @@ tTestUnit(ImageKTX1)
 	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx", decode | revrow);
 
 	// BC2
-//	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx", decode | revrow);
 
 	// BC3
-//	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx", decode | revrow);
 
 	// BC4
-//	KTXLoadDecodeSave("BC4ATI1_R.ktx", decode | revrow);
+	KTXLoadDecodeSave("BC4ATI1_R.ktx", decode | revrow);
 
 	// BC5
-//	KTXLoadDecodeSave("BC5ATI2_RG.ktx", decode | revrow);
+	KTXLoadDecodeSave("BC5ATI2_RG.ktx", decode | revrow);
 
 	// BC6
 //	KTXLoadDecodeSave("BC6s_RGB.ktx2", decode | revrow | gammac);
 
 	// BC7
-//	KTXLoadDecodeSave("BC7_RGBA.ktx", decode | revrow, true);
+	KTXLoadDecodeSave("BC7_RGBA.ktx", decode | revrow, true);
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }
