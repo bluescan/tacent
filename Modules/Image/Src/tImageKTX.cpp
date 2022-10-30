@@ -462,14 +462,6 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 		return false;
 	}
 
-	// WIP For now we only support ktx2 files. Try using toktx to gen ktx (1) test files.
-//	if (!ktx2)
-//	{
-//		ktxTexture_Destroy(texture);
-//		Results |= 1 << int(ResultCode::Fatal_FileVersionNotSupported);
-//		return false;
-//	}
-
 	if (ktx1)
 		tKTX::GetFormatInfo_FromGLFormat(PixelFormat, ColourSpace, ktx1->glInternalformat);
 	else if (ktx2)
@@ -1070,7 +1062,6 @@ const char* tImageKTX::ResultDescriptions[] =
 	"Fatal Error. File does not exist.",
 	"Fatal Error. Incorrect file type. Must be a KTX or KTX2 file.",
 	"Fatal Error. LibKTX could not parse file.",
-	"Fatal Error. KTX file version not supported.",
 	"Fatal Error. KTX file corrupted.",
 	"Fatal Error. Incorrect Dimensions.",
 	"Fatal Error. KTX volume textures not supported.",

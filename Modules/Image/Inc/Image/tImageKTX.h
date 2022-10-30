@@ -99,7 +99,6 @@ public:
 		Fatal_FileDoesNotExist,
 		Fatal_IncorrectFileType,
 		Fatal_CouldNotParseFile,
-		Fatal_FileVersionNotSupported,
 		Fatal_CorruptedFile,
 		Fatal_InvalidDimensions,
 		Fatal_VolumeTexturesNotSupported,
