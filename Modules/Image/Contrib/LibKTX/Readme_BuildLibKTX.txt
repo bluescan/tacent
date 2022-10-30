@@ -19,6 +19,7 @@ Windows:
 * In buildwinrel/Release you will find ktx.lib.
 * In folder 'include' you will find ktx.h
 * In lib\dfdutils\vulkan you will find vulkan_core.h and vk_platform.h (Needed for Vulkan pixelformats)
+* In lib you will find gl_format.h (A standalone header needed for OpenGL pixel formats. Not generated.) This also requires vkformat_enum.h (odd) and formatsize.h from the same folder.
 * In lib you will find version.h
 * Note: ktx_read.lib is a readling library only (no saving). We are using the full lib (libktx) so we can add
   save-support later.

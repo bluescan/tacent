@@ -885,7 +885,7 @@ tTestUnit(ImageDDS)
 }
 
 
-// Helper for ImageKTX unit tests.
+// Helper for ImageKTX (V1 and V2) unit tests.
 void KTXLoadDecodeSave(const tString& ktxfile, uint32 loadFlags = 0, bool saveAllMips = false)
 {
 	tString basename = tSystem::tGetFileBaseName(ktxfile);
@@ -948,10 +948,10 @@ void KTXLoadDecodeSave(const tString& ktxfile, uint32 loadFlags = 0, bool saveAl
 }
 
 
-tTestUnit(ImageKTX)
+tTestUnit(ImageKTX2)
 {
 	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageKTX)
+		tSkipUnit(ImageKTX2)
 	tString origDir = tSystem::tGetCurrentDir();
 	tSystem::tSetCurrentDir(origDir + "TestData/Images/KTX2/");
 
@@ -964,7 +964,7 @@ tTestUnit(ImageKTX)
 	//
 	// Block Compressed Formats.
 	//
-	tPrintf("Testing KTX Loading/Decoding Using LibKTX %s\n\n", tImage::Version_LibKTX);
+	tPrintf("Testing KTX2 Loading/Decoding Using LibKTX %s\n\n", tImage::Version_LibKTX);
 	tPrintf("D = Decode\n");
 	tPrintf("G = Gamma Compression\n");
 	tPrintf("R = Reverse Row Order\n");
@@ -1063,6 +1063,56 @@ tTestUnit(ImageKTX)
 	KTXLoadDecodeSave("R32f_R.ktx2");
 	KTXLoadDecodeSave("R32G32f_RG.ktx2");
 	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx2", revrow);
+
+	tSystem::tSetCurrentDir(origDir.Chr());
+}
+
+
+tTestUnit(ImageKTX1)
+{
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageKTX1)
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/KTX1/");
+
+	uint32 decode = tImageKTX::LoadFlag_Decode;
+	uint32 revrow = tImageKTX::LoadFlag_ReverseRowOrder;
+	uint32 spread = tImageKTX::LoadFlag_SpreadLuminance;
+	uint32 gammac = tImageKTX::LoadFlag_SRGBCompression;
+	// uint32 gammac = tImageKTX::LoadFlag_GammaCompression;
+
+	//
+	// Block Compressed Formats.
+	//
+	tPrintf("Testing KTX V1 Loading/Decoding Using LibKTX %s\n\n", tImage::Version_LibKTX);
+	tPrintf("D = Decode\n");
+	tPrintf("G = Gamma Compression\n");
+	tPrintf("R = Reverse Row Order\n");
+	tPrintf("S = Spread Luminance\n");
+
+	// BC1
+	KTXLoadDecodeSave("BC1DXT1_RGB.ktx", decode | revrow);
+
+	// BC1a
+	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx", decode | revrow);
+
+	// BC2
+//	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx", decode | revrow);
+
+	// BC3
+//	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx", decode | revrow);
+
+	// BC4
+//	KTXLoadDecodeSave("BC4ATI1_R.ktx", decode | revrow);
+
+	// BC5
+//	KTXLoadDecodeSave("BC5ATI2_RG.ktx", decode | revrow);
+
+	// BC6
+//	KTXLoadDecodeSave("BC6s_RGB.ktx2", decode | revrow | gammac);
+
+	// BC7
+//	KTXLoadDecodeSave("BC7_RGBA.ktx", decode | revrow, true);
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }

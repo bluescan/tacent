@@ -21,6 +21,7 @@
 #define KHRONOS_STATIC
 #include "LibKTX/include/ktx.h"
 #include "LibKTX/include/vulkan_core.h"
+#include "LibKTX/include/gl_format.h"
 namespace tImage
 {
 
@@ -41,7 +42,17 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 {
 	format = tPixelFormat::Invalid;
 	space = tColourSpace::Unspecified;
-	// WIP
+
+	switch (glFormat)
+	{
+		case GL_COMPRESSED_RGB_S3TC_DXT1_EXT:
+			format = tPixelFormat::BC1DXT1;
+			break;
+
+		case GL_COMPRESSED_RGBA_S3TC_DXT1_EXT:
+			format = tPixelFormat::BC1DXT1A;
+			break;
+	}
 }
 
 
@@ -422,12 +433,12 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 	}
 
 	// WIP For now we only support ktx2 files. Try using toktx to gen ktx (1) test files.
-	if (!ktx2)
-	{
-		ktxTexture_Destroy(texture);
-		Results |= 1 << int(ResultCode::Fatal_FileVersionNotSupported);
-		return false;
-	}
+//	if (!ktx2)
+//	{
+//		ktxTexture_Destroy(texture);
+//		Results |= 1 << int(ResultCode::Fatal_FileVersionNotSupported);
+//		return false;
+//	}
 
 	if (ktx1)
 		tKTX::GetFormatInfo_FromGLFormat(PixelFormat, ColourSpace, ktx1->glInternalformat);
@@ -514,7 +525,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 				if ((layer == 0) && (PixelFormat == tPixelFormat::BC1DXT1) && tImage::DoBC1BlocksHaveBinaryAlpha((tImage::BC1Block*)currPixelData, numBlocks))
 					PixelFormat = PixelFormatSrc = tPixelFormat::BC1DXT1A;
 
-				// DDS files store textures upside down. In the OpenGL RH coord system, the lower left of the texture
+				// KTX files store textures upside down. In the OpenGL RH coord system, the lower left of the texture
 				// is the origin and consecutive rows go up. For this reason we need to read each row of blocks from
 				// the top to the bottom row. We also need to flip the rows within the 4x4 block by flipping the lookup
 				// tables. This should be fairly fast as there is no encoding or encoding going on. Width and height
