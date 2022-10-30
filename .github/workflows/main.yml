@@ -19,7 +19,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     # msvc-dev-cmd needed so old gnu compiler not used. Want latest msvc on windows.
     - uses: ilammy/msvc-dev-cmd@v1
@@ -54,7 +54,7 @@ jobs:
   Ubuntu_CM_NI_CL:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: seanmiddleditch/gha-setup-ninja@master
     - name: Build Using CMake Ninja
       run: |
