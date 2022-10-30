@@ -22,7 +22,7 @@ jobs:
     - uses: actions/checkout@v2
 
     # msvc-dev-cmd needed so old gnu compiler not used. Want latest msvc on windows.
-    - uses: ilammy/msvc-dev-cmd@v1.10.0
+    - uses: ilammy/msvc-dev-cmd@v1
     - name: Build using CMake VS MSVC
       run: |
         echo '*** Configuring CMake ***'
