@@ -1038,7 +1038,7 @@ tTestUnit(ImageKTX2)
 	// This time, since not decoding, it may be impossible to reverse the rows, so we can also expect
 	// to get conditional valids if it couldn't be done (for some of the BC formats).
 
-	tPrintf("Testing KTX Loading/No-decoding.\n\n");
+	tPrintf("Testing KTX2 Loading/No-decoding.\n\n");
 	KTXLoadDecodeSave("BC1DXT1_RGB.ktx2", revrow);				// Revrow should work for BC1.
 	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx2");
 	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx2", revrow);
@@ -1114,6 +1114,21 @@ tTestUnit(ImageKTX1)
 
 	// BC7
 	KTXLoadDecodeSave("BC7_RGBA.ktx", decode | revrow, true);
+
+	// Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
+	// This time, since not decoding, it may be impossible to reverse the rows, so we can also expect
+	// to get conditional valids if it couldn't be done (for some of the BC formats).
+
+	tPrintf("Testing KTX V1 Loading/No-decoding.\n\n");
+	KTXLoadDecodeSave("BC1DXT1_RGB.ktx", revrow);				// Revrow should work for BC1.
+	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx");
+	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx", revrow);
+	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx", revrow);
+	KTXLoadDecodeSave("BC4ATI1_R.ktx", revrow);					// Should print warning and be unable to flip rows. May be able to implement.
+	KTXLoadDecodeSave("BC5ATI2_RG.ktx", revrow);				// Should print warning and be unable to flip rows. May be able to implement.
+	KTXLoadDecodeSave("BC6u_RGB.ktx", revrow);					// Should print warning and be unable to flip rows.
+	KTXLoadDecodeSave("BC6s_RGB.ktx", revrow);					// Should print warning and be unable to flip rows.
+	KTXLoadDecodeSave("BC7_RGBA.ktx", revrow);					// Should print warning and be unable to flip rows.
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }
