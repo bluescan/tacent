@@ -849,8 +849,8 @@ tTestUnit(ImageDDS)
 	// This time, since not decoding, it may be impossible to reverse the rows, so we can also expect
 	// to get conditional valids if it couldn't be done (for some of the BC formats). We're only going
 	// to bother with the modern-style dds files (for the most part) this time through.
-
 	tPrintf("Testing DDS Loading/No-decoding.\n\n");
+
 	DDSLoadDecodeSave("BC1DXT1_RGB_Modern.dds", revrow);		// Revrow should work for BC1.
 	DDSLoadDecodeSave("BC1DXT1a_RGBA_Modern.dds");
 	DDSLoadDecodeSave("BC2DXT2DXT3_RGBA_Modern.dds", revrow);
@@ -1037,8 +1037,8 @@ tTestUnit(ImageKTX2)
 	// Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
 	// This time, since not decoding, it may be impossible to reverse the rows, so we can also expect
 	// to get conditional valids if it couldn't be done (for some of the BC formats).
-
 	tPrintf("Testing KTX2 Loading/No-decoding.\n\n");
+
 	KTXLoadDecodeSave("BC1DXT1_RGB.ktx2", revrow);				// Revrow should work for BC1.
 	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx2");
 	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx2", revrow);
@@ -1113,13 +1113,22 @@ tTestUnit(ImageKTX1)
 	KTXLoadDecodeSave("BC6s_RGB.ktx", decode | revrow | gammac);
 
 	// BC7
-	KTXLoadDecodeSave("BC7_RGBA.ktx", decode | revrow, true);
+	KTXLoadDecodeSave("BC7_RGBA.ktx", decode | revrow);
+
+	//
+	// Uncompressed Formats.
+	//
+	KTXLoadDecodeSave("R8G8B8A8_RGBA.ktx", decode | revrow );
+	KTXLoadDecodeSave("R16G16B16A16f_RGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx", decode | revrow | gammac);
 
 	// Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
 	// This time, since not decoding, it may be impossible to reverse the rows, so we can also expect
 	// to get conditional valids if it couldn't be done (for some of the BC formats).
-
+	// Note that without decoding KTXLoadDecodeSave will NOT write a tga file unless the pixel-format
+	// is already R8G8B8A8.
 	tPrintf("Testing KTX V1 Loading/No-decoding.\n\n");
+
 	KTXLoadDecodeSave("BC1DXT1_RGB.ktx", revrow);				// Revrow should work for BC1.
 	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx");
 	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx", revrow);
@@ -1129,6 +1138,9 @@ tTestUnit(ImageKTX1)
 	KTXLoadDecodeSave("BC6u_RGB.ktx", revrow);					// Should print warning and be unable to flip rows.
 	KTXLoadDecodeSave("BC6s_RGB.ktx", revrow);					// Should print warning and be unable to flip rows.
 	KTXLoadDecodeSave("BC7_RGBA.ktx", revrow);					// Should print warning and be unable to flip rows.
+	KTXLoadDecodeSave("R8G8B8A8_RGBA.ktx", revrow);				// Will write a tga even without decode since it's already in correct format.
+	KTXLoadDecodeSave("R16G16B16A16f_RGBA.ktx", revrow | gammac);
+	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx", revrow | gammac);
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }

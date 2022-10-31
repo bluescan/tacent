@@ -33,17 +33,22 @@ namespace tKTX
 	// properties of the data -- it specified the encoding of the data. The extra information, like the colour-space it
 	// was authored in, is stored in tColourSpace. In many cases this satellite information cannot be determined, in
 	// which case colour-space will be set to their 'unspecified' enumerant.
-	void GetFormatInfo_FromGLFormat(tPixelFormat&, tColourSpace&, uint32 glFormat);
+	void GetFormatInfo_FromGLFormat(tPixelFormat&, tColourSpace&, uint32 glType, uint32 glFormat, uint32 glInternalFormat);
 	void GetFormatInfo_FromVKFormat(tPixelFormat&, tColourSpace&, uint32 vkFormat);
 }
 
 
-void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space, uint32 glFormat)
+void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space, uint32 glType, uint32 glFormat, uint32 glInternalFormat)
 {
 	format = tPixelFormat::Invalid;
 	space = tColourSpace::Unspecified;
 
-	switch (glFormat)
+	// First deal with compressed formats. For these the internal-format must be specified and can be used
+	// to determine the format of the data in the ktx file. See https://registry.khronos.org/KTX/specs/1.0/ktxspec_v1.html
+	// In cases where it's not a compressed format, the internal-format should not be queried to determine the format
+	// of the ktx file data because it represents the desired format the data should be converted to when binding --
+	// all we care about is the format of the actual data, and glType/glFormat can be used to determine that.
+	switch (glInternalFormat)
 	{
 		case GL_COMPRESSED_RGB_S3TC_DXT1_EXT:
 			format = tPixelFormat::BC1DXT1;
@@ -70,10 +75,12 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case GL_COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::BC6U;
 			break;
 
 		case GL_COMPRESSED_RGB_BPTC_SIGNED_FLOAT:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::BC6S;
 			break;
 
@@ -81,6 +88,88 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			space = tColourSpace::sRGB;
 		case GL_COMPRESSED_RGBA_BPTC_UNORM:
 			format = tPixelFormat::BC7;
+			break;
+	}
+
+	if (format != tPixelFormat::Invalid)
+		return;
+
+	// Not a compressed format. Look at glFormat.
+	switch (glFormat)
+	{
+		case GL_LUMINANCE:
+			switch (glType)
+			{
+				case GL_UNSIGNED_BYTE:				format = tPixelFormat::L8;				break;
+			}
+			break;
+
+		case GL_ALPHA:
+			switch (glType)
+			{
+				case GL_UNSIGNED_BYTE:				format = tPixelFormat::A8;				break;
+			}
+			break;
+
+		// It's ok to also include the 'INTEGER' versions here as it just restricts what the glType
+		// may be. For example R32f would still be GL_RED with type GL_FLOAT, and R8 could be either
+		// GL_RED/GL_UNSIGNED_BYTE or GL_RED_INTEGER/GL_UNSIGNED_BYTE.
+		case GL_RED:
+		case GL_RED_INTEGER:
+			switch (glType)
+			{
+				case GL_UNSIGNED_BYTE:				format = tPixelFormat::R8;				break;
+				case GL_HALF_FLOAT:					format = tPixelFormat::R16F;			break;
+				case GL_FLOAT:						format = tPixelFormat::R32F;			break;
+			}
+			break;
+		
+		case GL_RG:
+		case GL_RG_INTEGER:
+			switch (glType)
+			{
+				case GL_UNSIGNED_BYTE:				format = tPixelFormat::R8G8;			break;
+				case GL_HALF_FLOAT:					format = tPixelFormat::R16G16F;			break;
+				case GL_FLOAT:						format = tPixelFormat::R32G32F;			break;
+			}
+			break;
+
+		case GL_RGB:
+		case GL_RGB_INTEGER:
+			switch (glType)
+			{
+				case GL_UNSIGNED_BYTE:				format = tPixelFormat::R8G8B8;			break;
+				case GL_UNSIGNED_SHORT_5_6_5_REV:	format = tPixelFormat::B5G6R5;			break;
+			}
+			break;
+
+		case GL_RGBA:
+		case GL_RGBA_INTEGER:
+			switch (glType)
+			{
+				case GL_UNSIGNED_BYTE:				format = tPixelFormat::R8G8B8A8;		break;
+				case GL_HALF_FLOAT:					format = tPixelFormat::R16G16B16A16F;	break;
+				case GL_FLOAT:						format = tPixelFormat::R32G32B32A32F;	break;
+			}
+			break;
+
+		case GL_BGR:
+		case GL_BGR_INTEGER:
+			switch (glType)
+			{
+				case GL_UNSIGNED_BYTE:				format = tPixelFormat::B8G8R8;			break;
+				case GL_UNSIGNED_SHORT_5_6_5:		format = tPixelFormat::B5G6R5;			break;
+			}
+			break;
+
+		case GL_BGRA:
+		case GL_BGRA_INTEGER:
+			switch (glType)
+			{
+				case GL_UNSIGNED_BYTE:				format = tPixelFormat::B8G8R8A8;		break;
+				case GL_UNSIGNED_SHORT_4_4_4_4:		format = tPixelFormat::B4G4R4A4;		break;
+				case GL_UNSIGNED_SHORT_5_5_5_1:		format = tPixelFormat::B5G5R5A1;		break;
+			}
 			break;
 	}
 }
@@ -463,7 +552,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 	}
 
 	if (ktx1)
-		tKTX::GetFormatInfo_FromGLFormat(PixelFormat, ColourSpace, ktx1->glInternalformat);
+		tKTX::GetFormatInfo_FromGLFormat(PixelFormat, ColourSpace, ktx1->glType, ktx1->glFormat, ktx1->glInternalformat);
 	else if (ktx2)
 		tKTX::GetFormatInfo_FromVKFormat(PixelFormat, ColourSpace, ktx2->vkFormat);
 	PixelFormatSrc = PixelFormat;
