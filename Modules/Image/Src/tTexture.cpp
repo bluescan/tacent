@@ -84,10 +84,6 @@ bool tTexture::Set(tImageDDS& dds, tImageDDS::tSurfIndex surface)
 
 	Opaque = Layers.First()->IsOpaqueFormat();
 
-	// Does the dds texture have power-of-2 dimensions? For dds textures we never do a decompress and recompress (loss
-	// of quality, time consuming, and misses the point of using dds files in the first place). That is, we treat
-	// direct surfaces as "direct" textures. For this reason we require them to have power-of-2 dimensions and do not
-	// resample them. It is a catastrophic error if the DDS does not have power-of-2 dimensions.
 	tLayer* mainLayer = Layers.First();
 	int width = mainLayer->Width;
 	int height = mainLayer->Height;

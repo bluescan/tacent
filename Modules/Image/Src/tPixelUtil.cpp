@@ -104,8 +104,8 @@ bool tImage::DoBC1BlocksHaveBinaryAlpha(tImage::BC1Block* block, int numBlocks)
 
 uint8* tImage::CreateReversedRowData_Packed(const uint8* pixelData, tPixelFormat pixelDataFormat, int width, int height)
 {
-	// We only support pixel formats that contain a whole number of bytes per pixel. That will cover
-	// all reasonable RGB and RGBA formats.
+	// We only support pixel formats that contain a whole number of bytes per pixel.
+	// That will cover all reasonable RGB and RGBA formats, but not ASTC formats.
 	int bitsPerPixel = tImage::tGetBitsPerPixel(pixelDataFormat);
 	if (bitsPerPixel % 8)
 		return nullptr;
@@ -140,7 +140,7 @@ uint8* tImage::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat pix
 			return nullptr;
 	}
 
-	int bcBlockSize = tImage::tGetBytesPer4x4PixelBlock(pixelDataFormat);
+	int bcBlockSize = tImage::tGetBytesPerBlock(pixelDataFormat);
 	int numBlocks = numBlocksW*numBlocksH;
 	int numBytes = numBlocks * bcBlockSize;
 

@@ -961,15 +961,19 @@ tTestUnit(ImageKTX2)
 	uint32 gammac = tImageKTX::LoadFlag_SRGBCompression;
 	// uint32 gammac = tImageKTX::LoadFlag_GammaCompression;
 
-	//
-	// Block Compressed Formats.
-	//
 	tPrintf("Testing KTX2 Loading/Decoding Using LibKTX %s\n\n", tImage::Version_LibKTX);
 	tPrintf("D = Decode\n");
 	tPrintf("G = Gamma Compression\n");
 	tPrintf("R = Reverse Row Order\n");
 	tPrintf("S = Spread Luminance\n");
 
+	//KTXLoadDecodeSave("ASTC4x4_RGBA.ktx2", decode | revrow);
+	//tSystem::tSetCurrentDir(origDir.Chr());
+	//return;
+
+	//
+	// Block Compressed Formats.
+	//
 	// BC1
 	KTXLoadDecodeSave("BC1DXT1_RGB.ktx2", decode | revrow);
 
@@ -994,6 +998,9 @@ tTestUnit(ImageKTX2)
 	// BC7
 	KTXLoadDecodeSave("BC7_RGBA.ktx2", decode | revrow, true);
 	KTXLoadDecodeSave("BC7_RGBANoSuper.ktx2", decode | revrow, true);
+
+	// ASTC4x4 LDR
+	// KTXLoadDecodeSave("ASTC4x4_RGBA.ktx2", decode | revrow);
 
 	//
 	// Uncompressed Integer Formats.

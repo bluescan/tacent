@@ -184,6 +184,146 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourSpace& space,
 	{
 		// The VK formats conflate the format with the data. The colour-space is not part of the format in tacent and is
 		// returned in a separate variable.
+		case VK_FORMAT_ASTC_4x4_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_ASTC_4x4_UNORM_BLOCK:
+			format = tPixelFormat::ASTC4X4;
+			break;
+
+		case VK_FORMAT_ASTC_5x4_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_ASTC_5x4_UNORM_BLOCK:
+			format = tPixelFormat::ASTC5X4;
+			break;
+
+		case VK_FORMAT_ASTC_5x5_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_ASTC_5x5_UNORM_BLOCK:
+			format = tPixelFormat::ASTC5X5;
+			break;
+
+		case VK_FORMAT_ASTC_6x5_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_ASTC_6x5_UNORM_BLOCK:
+			format = tPixelFormat::ASTC6X5;
+			break;
+
+		case VK_FORMAT_ASTC_6x6_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_ASTC_6x6_UNORM_BLOCK:
+			format = tPixelFormat::ASTC6X6;
+			break;
+
+		case VK_FORMAT_ASTC_8x5_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_ASTC_8x5_UNORM_BLOCK:
+			format = tPixelFormat::ASTC8X5;
+			break;
+
+		case VK_FORMAT_ASTC_8x6_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_ASTC_8x6_UNORM_BLOCK:
+			format = tPixelFormat::ASTC8X6;
+			break;
+
+		case VK_FORMAT_ASTC_8x8_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_ASTC_8x8_UNORM_BLOCK:
+			format = tPixelFormat::ASTC8X8;
+			break;
+
+		case VK_FORMAT_ASTC_10x5_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_ASTC_10x5_UNORM_BLOCK:
+			format = tPixelFormat::ASTC10X5;
+			break;
+
+		case VK_FORMAT_ASTC_10x6_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_ASTC_10x6_UNORM_BLOCK:
+			format = tPixelFormat::ASTC10X6;
+			break;
+
+		case VK_FORMAT_ASTC_10x8_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_ASTC_10x8_UNORM_BLOCK:
+			format = tPixelFormat::ASTC10X8;
+			break;
+
+		case VK_FORMAT_ASTC_10x10_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_ASTC_10x10_UNORM_BLOCK:
+			format = tPixelFormat::ASTC10X10;
+			break;
+
+		case VK_FORMAT_ASTC_12x10_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_ASTC_12x10_UNORM_BLOCK:
+			format = tPixelFormat::ASTC12X10;
+			break;
+
+		case VK_FORMAT_ASTC_12x12_SRGB_BLOCK:
+			space = tColourSpace::sRGB;
+		case VK_FORMAT_ASTC_12x12_UNORM_BLOCK:
+			format = tPixelFormat::ASTC12X12;
+			break;
+
+		case VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT:
+			format = tPixelFormat::ASTC4X4F;
+			break;
+
+		case VK_FORMAT_ASTC_5x4_SFLOAT_BLOCK_EXT:
+			format = tPixelFormat::ASTC5X4F;
+			break;
+
+		case VK_FORMAT_ASTC_5x5_SFLOAT_BLOCK_EXT:
+			format = tPixelFormat::ASTC5X5F;
+			break;
+
+		case VK_FORMAT_ASTC_6x5_SFLOAT_BLOCK_EXT:
+			format = tPixelFormat::ASTC6X5F;
+			break;
+
+		case VK_FORMAT_ASTC_6x6_SFLOAT_BLOCK_EXT:
+			format = tPixelFormat::ASTC6X6F;
+			break;
+
+		case VK_FORMAT_ASTC_8x5_SFLOAT_BLOCK_EXT:
+			format = tPixelFormat::ASTC8X5F;
+			break;
+
+		case VK_FORMAT_ASTC_8x6_SFLOAT_BLOCK_EXT:
+			format = tPixelFormat::ASTC8X6F;
+			break;
+
+		case VK_FORMAT_ASTC_8x8_SFLOAT_BLOCK_EXT:
+			format = tPixelFormat::ASTC8X8F;
+			break;
+
+		case VK_FORMAT_ASTC_10x5_SFLOAT_BLOCK_EXT:
+			format = tPixelFormat::ASTC10X5F;
+			break;
+
+		case VK_FORMAT_ASTC_10x6_SFLOAT_BLOCK_EXT:
+			format = tPixelFormat::ASTC10X6F;
+			break;
+
+		case VK_FORMAT_ASTC_10x8_SFLOAT_BLOCK_EXT:
+			format = tPixelFormat::ASTC10X8F;
+			break;
+
+		case VK_FORMAT_ASTC_10x10_SFLOAT_BLOCK_EXT:
+			format = tPixelFormat::ASTC10X10F;
+			break;
+
+		case VK_FORMAT_ASTC_12x10_SFLOAT_BLOCK_EXT:
+			format = tPixelFormat::ASTC12X10F;
+			break;
+
+		case VK_FORMAT_ASTC_12x12_SFLOAT_BLOCK_EXT:
+			format = tPixelFormat::ASTC12X12F;
+			break;
+
 		case VK_FORMAT_BC1_RGB_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
 		case VK_FORMAT_BC1_RGB_UNORM_BLOCK:
@@ -565,7 +705,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 		return false;
 	}
 
-	if (tIsBlockCompressedFormat(PixelFormat))
+	if (tIsBCFormat(PixelFormat))
 	{
 		if ((params.Flags & LoadFlag_CondMultFourDim) && ((mainWidth%4) || (mainHeight%4)))
 			Results |= 1 << int(ResultCode::Conditional_DimNotMultFourBC);
@@ -621,15 +761,17 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 				tAssert(Layers[layer][image]->GetDataSize() == numBytes);
 			}
 
-			else if (tImage::tIsBlockCompressedFormat(PixelFormat))
+			else if (tImage::tIsBCFormat(PixelFormat))
 			{
 				// It's a BC/DXTn format. Each block encodes a 4x4 square of pixels. DXT2,3,4,5 and BC 6,7 use 128
 				// bits per block.  DXT1 and DXT1A (BC1) use 64bits per block.
-				int bcBlockSize = tImage::tGetBytesPer4x4PixelBlock(PixelFormat);
-				int numBlocksW = tMath::tMax(1, (width + 3) / 4);
-				int numBlocksH = tMath::tMax(1, (height + 3) / 4);
+				int blockW = tGetBlockWidth(PixelFormat);
+				int blockH = tGetBlockWidth(PixelFormat);
+				int bytesPerBlock = tImage::tGetBytesPerBlock(PixelFormat);
+				int numBlocksW = tGetNumBlocks(blockW, width);
+				int numBlocksH = tGetNumBlocks(blockH, height);
 				int numBlocks = numBlocksW*numBlocksH;
-				numBytes = numBlocks * bcBlockSize;
+				numBytes = numBlocks * bytesPerBlock;
 
 				// Here's where we possibly modify the opaque DXT1 texture to be DXT1A if there are blocks with binary
 				// transparency. We only bother checking the main layer. If it's opaque we assume all the others are too.
@@ -664,6 +806,9 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 				}
 				tAssert(Layers[layer][image]->GetDataSize() == numBytes);
 			}
+
+			// WIP Do ASTC formats.
+			
 			else
 			{
 				// Upsupported pixel format.
@@ -939,7 +1084,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 					// We are now in in RGBA. In that order in memory.
 					layer->PixelFormat = tPixelFormat::R8G8B8A8;
 				}
-				else if (tImage::tIsBlockCompressedFormat(PixelFormat))
+				else if (tImage::tIsBCFormat(PixelFormat))
 				{
 					// We need extra room because the decompressor (bcdec) does not take an input for
 					// the width and height, only the pitch (bytes per row). This means a texture that is 5

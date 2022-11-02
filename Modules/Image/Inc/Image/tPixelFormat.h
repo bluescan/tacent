@@ -68,8 +68,8 @@ enum class tPixelFormat
 	R32G32B32A32F,						// 128 bit. HDR format (linear-space), RGBA in 4 floats.
 	LastPacked			= R32G32B32A32F,
 
-	FirstBlock,
-	BC1DXT1				= FirstBlock,	// BC 1, DXT1. No alpha.
+	FirstBC,
+	BC1DXT1				= FirstBC,		// BC 1, DXT1. No alpha.
 	BC1DXT1A,							// BC 1, DXT1. Binary alpha.
 	BC2DXT2DXT3,						// BC 2, DXT2 (premult-alpha) and DXT3 share the same format. Large alpha gradients (alpha banding).
 	BC3DXT4DXT5,						// BC 3, DXT4 (premult-alpha) and DXT5 share the same format. Variable alpha (smooth).
@@ -78,7 +78,38 @@ enum class tPixelFormat
 	BC6S,								// BC 6 HDR. No alpha. 3 x 16bit signed half-floats per pixel.
 	BC6U,								// BC 6 HDR. No alpha. 3 x 16bit unsigned half-floats per pixel.
 	BC7,								// BC 7. Full colour. Variable alpha 0 to 8 bits.
-	LastBlock			= BC7,
+	LastBC				= BC7,
+
+	FirstASTC,
+	ASTC4X4				= FirstASTC,	// 128 bits per 16  pixels. 8    bpp. LDR UNORM.
+	ASTC5X4,							// 128 bits per 20  pixels. 6.4  bpp. LDR UNORM.
+	ASTC5X5,							// 128 bits per 25  pixels. 5.12 bpp. LDR UNORM.
+	ASTC6X5,							// 128 bits per 30  pixels. 4.27 bpp. LDR UNORM.
+	ASTC6X6,							// 128 bits per 36  pixels. 3.56 bpp. LDR UNORM.
+	ASTC8X5,							// 128 bits per 40  pixels. 3.2  bpp. LDR UNORM.
+	ASTC8X6,							// 128 bits per 48  pixels. 2.67 bpp. LDR UNORM.
+	ASTC8X8,							// 128 bits per 64  pixels. 2.56 bpp. LDR UNORM.
+	ASTC10X5,							// 128 bits per 50  pixels. 2.13 bpp. LDR UNORM.
+	ASTC10X6,							// 128 bits per 60  pixels. 2    bpp. LDR UNORM.
+	ASTC10X8,							// 128 bits per 80  pixels. 1.6  bpp. LDR UNORM.
+	ASTC10X10,							// 128 bits per 100 pixels. 1.28 bpp. LDR UNORM.
+	ASTC12X10,							// 128 bits per 120 pixels. 1.07 bpp. LDR UNORM.
+	ASTC12X12,							// 128 bits per 144 pixels. 0.89 bpp. LDR UNORM.
+	ASTC4X4F,							// 128 bits per 16  pixels. 8    bpp. HDR Half-float.
+	ASTC5X4F,							// 128 bits per 20  pixels. 6.4  bpp. HDR Half-float.
+	ASTC5X5F,							// 128 bits per 25  pixels. 5.12 bpp. HDR Half-float.
+	ASTC6X5F,							// 128 bits per 30  pixels. 4.27 bpp. HDR Half-float.
+	ASTC6X6F,							// 128 bits per 36  pixels. 3.56 bpp. HDR Half-float.
+	ASTC8X5F,							// 128 bits per 40  pixels. 3.2  bpp. HDR Half-float.
+	ASTC8X6F,							// 128 bits per 48  pixels. 2.67 bpp. HDR Half-float.
+	ASTC8X8F,							// 128 bits per 64  pixels. 2.56 bpp. HDR Half-float.
+	ASTC10X5F,							// 128 bits per 50  pixels. 2.13 bpp. HDR Half-float.
+	ASTC10X6F,							// 128 bits per 60  pixels. 2    bpp. HDR Half-float.
+	ASTC10X8F,							// 128 bits per 80  pixels. 1.6  bpp. HDR Half-float.
+	ASTC10X10F,							// 128 bits per 100 pixels. 1.28 bpp. HDR Half-float.
+	ASTC12X10F,							// 128 bits per 120 pixels. 1.07 bpp. HDR Half-float.
+	ASTC12X12F,							// 128 bits per 144 pixels. 0.89 bpp. HDR Half-float.
+	LastASTC			= ASTC12X12F,
 
 	FirstVendor,
 	RADIANCE			= FirstVendor,	// Radiance HDR.
@@ -92,25 +123,48 @@ enum class tPixelFormat
 	LastPAL				= PAL1BIT,
 
 	NumPixelFormats,
-	NumPackedFormats	= LastPacked - FirstPacked + 1,
-	NumBlockFormats		= LastBlock - FirstBlock + 1,
-	NumVendorFormats	= LastVendor - FirstVendor + 1,
-	NumPALFormats		= LastPAL - FirstPAL + 1
+	NumPackedFormats	= LastPacked	- FirstPacked	+ 1,
+	NumBCFormats		= LastBC		- FirstBC		+ 1,
+	NumASTCFormats		= LastASTC		- FirstASTC		+ 1,
+	NumVendorFormats	= LastVendor	- FirstVendor	+ 1,
+	NumPALFormats		= LastPAL		- FirstPAL		+ 1
 };
 
 
-bool tIsPackedFormat(tPixelFormat);				// Simple RGB and RGBA formats with different numbers of bits per component and different orderings.
-bool tIsBlockCompressedFormat(tPixelFormat);
-bool tIsVendorFormat(tPixelFormat);
-bool tIsPaletteFormat(tPixelFormat);
-bool tIsAlphaFormat(tPixelFormat);
-bool tIsOpaqueFormat(tPixelFormat);
-bool tIsHDRFormat(tPixelFormat);
-bool tIsLuminanceFormat(tPixelFormat);			// Single-channel luminance formats. Includes red-only formats. Does not include alpha only.
-int tGetBitsPerPixel(tPixelFormat);				// Some formats (dxt1) are only half a byte per pixel, so we report bits.
-int tGetBytesPer4x4PixelBlock(tPixelFormat);	// This function must be given a BC pixel format.
+bool tIsPackedFormat	(tPixelFormat);				// Simple RGB and RGBA formats with different numbers of bits per component and different orderings.
+bool tIsBCFormat		(tPixelFormat);				// Is the format an original 4x4 BC (Block Compression) format. These 4x4 blocks use various numbers of bits per block.
+bool tIsASTCFormat		(tPixelFormat);				// Is it one of the ASTC (Adaptive Scalable Texture Compression) block formats. Block sizes are avail from 4x4 up to 12x12.
+bool tIsVendorFormat	(tPixelFormat);
+bool tIsPaletteFormat	(tPixelFormat);
+bool tIsAlphaFormat		(tPixelFormat);
+bool tIsOpaqueFormat	(tPixelFormat);
+bool tIsHDRFormat		(tPixelFormat);
+bool tIsLuminanceFormat	(tPixelFormat);				// Single-channel luminance formats. Includes red-only formats. Does not include alpha only.
+
+// Gets the pixel width/height of the block size specified by the pixel-format. BC blocks are all 4x4. ASTC blocks have
+// varying width/height depending on specific ASTC format. Packed, Vendor, and Palette formats return 1 for width and
+// height. Invalid pixel-formats return 0.
+int tGetBlockWidth		(tPixelFormat);
+int tGetBlockHeight		(tPixelFormat);
+
+// Given a block=width or block-height and how may pixels you need to store (image-width or image-height), returns the
+// number of blocks you will need in that dimension.
+int tGetNumBlocks		(int blockWH, int imageWH);
+
+// Only applies to formats that can guarantee an integer number of bits per pixel. In particular does not apply to ASTC
+// formats (even if the particular ASTC format has an integer number of bits per pixel). We report in bits (not bytes)
+// because some formats (i.e. BC1) are only half a byte per pixel. Returns -1 for non-integral bpp formats and all ASTC
+// formats.
+int tGetBitsPerPixel(tPixelFormat);
+
+// This function must be given a block-compression format - either a BC format (4x4 with different number of bytes) or
+// an ASTC format (varying MxN but always 16 bytes). Returns -1 otherwise.
+int tGetBytesPerBlock(tPixelFormat);
+
 const char* tGetPixelFormatName(tPixelFormat);
-tPixelFormat tGetPixelFormat(const char* name);	// Gets the pixel format from its name. Case insensitive. Slow. Use for testing only.
+
+// Gets the pixel format from its name. Case insensitive. Slow. Use for testing/unit-tests only.
+tPixelFormat tGetPixelFormat(const char* name);
 
 
 }
@@ -128,9 +182,18 @@ inline bool tImage::tIsPackedFormat(tPixelFormat format)
 }
 
 
-inline bool tImage::tIsBlockCompressedFormat(tPixelFormat format)
+inline bool tImage::tIsBCFormat(tPixelFormat format)
 {
-	if ((format >= tPixelFormat::FirstBlock) && (format <= tPixelFormat::LastBlock))
+	if ((format >= tPixelFormat::FirstBC) && (format <= tPixelFormat::LastBC))
+		return true;
+
+	return false;
+}
+
+
+inline bool tImage::tIsASTCFormat(tPixelFormat format)
+{
+	if ((format >= tPixelFormat::FirstASTC) && (format <= tPixelFormat::LastASTC))
 		return true;
 
 	return false;
@@ -179,6 +242,10 @@ inline bool tImage::tIsAlphaFormat(tPixelFormat format)
 			return true;
 	}
 
+	// Not quite sure how to hadle ASTC formats, but they usually contain an alpha.
+	if (tIsASTCFormat(format))
+		return true;
+
 	return false;
 }
 
@@ -203,6 +270,21 @@ inline bool tImage::tIsHDRFormat(tPixelFormat format)
 		case tPixelFormat::BC6U:
 		case tPixelFormat::RADIANCE:
 		case tPixelFormat::OPENEXR:
+
+		case tPixelFormat::ASTC4X4F:
+		case tPixelFormat::ASTC5X4F:
+		case tPixelFormat::ASTC5X5F:
+		case tPixelFormat::ASTC6X5F:
+		case tPixelFormat::ASTC6X6F:
+		case tPixelFormat::ASTC8X5F:
+		case tPixelFormat::ASTC8X6F:
+		case tPixelFormat::ASTC8X8F:
+		case tPixelFormat::ASTC10X5F:
+		case tPixelFormat::ASTC10X6F:
+		case tPixelFormat::ASTC10X8F:
+		case tPixelFormat::ASTC10X10F:
+		case tPixelFormat::ASTC12X10F:
+		case tPixelFormat::ASTC12X12F:
 			return true;
 	}
 
@@ -221,4 +303,11 @@ inline bool tImage::tIsLuminanceFormat(tPixelFormat format)
 	}
 
 	return false;
+}
+
+
+inline int tImage::tGetNumBlocks(int blockWH, int imageWH)
+{
+	tAssert(blockWH > 0);
+	return (imageWH + blockWH - 1) / blockWH;
 }

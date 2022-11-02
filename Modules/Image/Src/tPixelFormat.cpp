@@ -23,6 +23,8 @@ namespace tImage
 	const char* PixelFormatNames[] =
 	{
 		"Unknown",
+
+		// Packed formats.
 		"R8",
 		"R8G8",
 		"R8G8B8",
@@ -41,6 +43,8 @@ namespace tImage
 		"R32f",
 		"R32G32f",
 		"R32G32B32A32f",
+
+		// Original BC (4x4 Block Compression) formats.
 		"BC1DXT1",
 		"BC1DXT1A",
 		"BC2DXT2DXT3",
@@ -50,8 +54,42 @@ namespace tImage
 		"BC6s",
 		"BC6u",
 		"BC7",
+
+		// ASTC (Adaptive Scalable Texture Compression) formats.
+		"ASTC4X4",
+		"ASTC5X4",
+		"ASTC5X5",
+		"ASTC6X5",
+		"ASTC6X6",
+		"ASTC8X5",
+		"ASTC8X6",
+		"ASTC8X8",
+		"ASTC10X5",
+		"ASTC10X6",
+		"ASTC10X8",
+		"ASTC10X10",
+		"ASTC12X10",
+		"ASTC12X12",
+		"ASTC4X4F",
+		"ASTC5X4F",
+		"ASTC5X5F",
+		"ASTC6X5F",
+		"ASTC6X6F",
+		"ASTC8X5F",
+		"ASTC8X6F",
+		"ASTC8X8F",
+		"ASTC10X5F",
+		"ASTC10X6F",
+		"ASTC10X8F",
+		"ASTC10X10F",
+		"ASTC12X10F",
+		"ASTC12X12F",
+		
+		// Vendor-specific formats.
 		"RADIANCE",
 		"OPENEXR",
+
+		// Palette formats.
 		"PAL8BIT",
 		"PAL4BIT",
 		"PAL1BIT"
@@ -81,7 +119,7 @@ namespace tImage
 	};
 	tStaticAssert(tNumElements(PackedFormat_BytesPerPixel) == int(tPixelFormat::NumPackedFormats));
 
-	int BlockFormat_BytesPer4x4PixelBlock[] =
+	int BCFormat_BytesPerBlock[] =
 	{
 		8,				// BC1DXT1
 		8,				// BC1DXT1A
@@ -93,7 +131,73 @@ namespace tImage
 		16,				// BC6u
 		16				// BC7
 	};
-	tStaticAssert(tNumElements(BlockFormat_BytesPer4x4PixelBlock) == int(tPixelFormat::NumBlockFormats));
+	tStaticAssert(tNumElements(BCFormat_BytesPerBlock) == int(tPixelFormat::NumBCFormats));
+
+	int ASTCFormat_BlockWidth[] =
+	{
+		4,				// ASTC4X4
+		5,				// ASTC5X4
+		5,				// ASTC5X5
+		6,				// ASTC6X5
+		6,				// ASTC6X6
+		8,				// ASTC8X5
+		8,				// ASTC8X6
+		8,				// ASTC8X8
+		10,				// ASTC10X5
+		10,				// ASTC10X6
+		10,				// ASTC10X8
+		10,				// ASTC10X10
+		12,				// ASTC12X10
+		12,				// ASTC12X12
+		4,				// ASTC4X4F
+		5,				// ASTC5X4F
+		5,				// ASTC5X5F
+		6,				// ASTC6X5F
+		6,				// ASTC6X6F
+		8,				// ASTC8X5F
+		8,				// ASTC8X6F
+		8,				// ASTC8X8F
+		10,				// ASTC10X5F
+		10,				// ASTC10X6F
+		10,				// ASTC10X8F
+		10,				// ASTC10X10F
+		12,				// ASTC12X10F
+		12				// ASTC12X12F
+	};
+	tStaticAssert(tNumElements(ASTCFormat_BlockWidth) == int(tPixelFormat::NumASTCFormats));
+
+	int ASTCFormat_BlockHeight[] =
+	{
+		4,				// ASTC4X4
+		4,				// ASTC5X4
+		5,				// ASTC5X5
+		5,				// ASTC6X5
+		6,				// ASTC6X6
+		5,				// ASTC8X5
+		6,				// ASTC8X6
+		8,				// ASTC8X8
+		5,				// ASTC10X5
+		6,				// ASTC10X6
+		8,				// ASTC10X8
+		10,				// ASTC10X10
+		10,				// ASTC12X10
+		12,				// ASTC12X12
+		4,				// ASTC4X4F
+		4,				// ASTC5X4F
+		5,				// ASTC5X5F
+		5,				// ASTC6X5F
+		6,				// ASTC6X6F
+		5,				// ASTC8X5F
+		6,				// ASTC8X6F
+		8,				// ASTC8X8F
+		5,				// ASTC10X5F
+		6,				// ASTC10X6F
+		8,				// ASTC10X8F
+		10,				// ASTC10X10F
+		10,				// ASTC12X10F
+		12				// ASTC12X12F
+	};
+	tStaticAssert(tNumElements(ASTCFormat_BlockHeight) == int(tPixelFormat::NumASTCFormats));
 
 	int VendorFormat_BytesPerPixel[] =
 	{
@@ -104,13 +208,45 @@ namespace tImage
 }
 
 
+int tImage::tGetBlockWidth(tPixelFormat format)
+{
+	if (tIsPackedFormat(format) || tIsVendorFormat(format) || tIsPaletteFormat(format))
+		return 1;
+
+	if (tIsBCFormat(format))
+		return 4;
+
+	// ASTC formats have different widths depending on format.
+	if (tIsASTCFormat(format))
+		return ASTCFormat_BlockWidth[int(format) - int(tPixelFormat::FirstASTC)];
+
+	return 0;
+}
+
+
+int tImage::tGetBlockHeight(tPixelFormat format)
+{
+	if (tIsPackedFormat(format) || tIsVendorFormat(format) || tIsPaletteFormat(format))
+		return 1;
+
+	if (tIsBCFormat(format))
+		return 4;
+
+	// ASTC formats have different heights depending on format.
+	if (tIsASTCFormat(format))
+		return ASTCFormat_BlockHeight[int(format) - int(tPixelFormat::FirstASTC)];
+
+	return 0;
+}
+
+
 int tImage::tGetBitsPerPixel(tPixelFormat format)
 {
 	if (tIsPackedFormat(format))
 		return 8 * PackedFormat_BytesPerPixel[int(format) - int(tPixelFormat::FirstPacked)];
 
-	if (tIsBlockCompressedFormat(format))
-		return (8*tGetBytesPer4x4PixelBlock(format)) >> 4;
+	if (tIsBCFormat(format))
+		return (8*tGetBytesPerBlock(format)) >> 4;
 
 	if (tIsVendorFormat(format))
 		return 8*VendorFormat_BytesPerPixel[int(format) - int(tPixelFormat::FirstVendor)];
@@ -129,14 +265,15 @@ int tImage::tGetBitsPerPixel(tPixelFormat format)
 }
 
 
-int tImage::tGetBytesPer4x4PixelBlock(tPixelFormat format)
+int tImage::tGetBytesPerBlock(tPixelFormat format)
 {
-	if (format == tPixelFormat::Invalid)
-		return -1;
+	if (tIsBCFormat(format))
+		return BCFormat_BytesPerBlock[int(format) - int(tPixelFormat::FirstBC)];
 
-	tAssert(tIsBlockCompressedFormat(format));
-	int index = int(format) - int(tPixelFormat::FirstBlock);
-	return BlockFormat_BytesPer4x4PixelBlock[index];
+	if (tIsASTCFormat(format))
+		return 16;
+
+	return -1;
 }
 
 

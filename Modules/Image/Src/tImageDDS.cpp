@@ -1028,7 +1028,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 		return false;
 	}
 
-	if (tIsBlockCompressedFormat(PixelFormat))
+	if (tIsBCFormat(PixelFormat))
 	{
 		if ((params.Flags & LoadFlag_CondMultFourDim) && ((mainWidth%4) || (mainHeight%4)))
 			Results |= 1 << int(ResultCode::Conditional_DimNotMultFourBC);
@@ -1073,15 +1073,17 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				tAssert(Layers[layer][image]->GetDataSize() == numBytes);
 			}
 
-			else if (tImage::tIsBlockCompressedFormat(PixelFormat))
+			else if (tImage::tIsBCFormat(PixelFormat))
 			{
 				// It's a BC/DXTn format. Each block encodes a 4x4 square of pixels. DXT2,3,4,5 and BC 6,7 use 128
 				// bits per block.  DXT1 and DXT1A (BC1) use 64bits per block.
-				int bcBlockSize = tImage::tGetBytesPer4x4PixelBlock(PixelFormat);
-				int numBlocksW = tMath::tMax(1, (width + 3) / 4);
-				int numBlocksH = tMath::tMax(1, (height + 3) / 4);
+				int blockW = tGetBlockWidth(PixelFormat);
+				int blockH = tGetBlockWidth(PixelFormat);
+				int bytesPerBlock = tImage::tGetBytesPerBlock(PixelFormat);
+				int numBlocksW = tGetNumBlocks(blockW, width);
+				int numBlocksH = tGetNumBlocks(blockH, height);
 				int numBlocks = numBlocksW*numBlocksH;
-				numBytes = numBlocks * bcBlockSize;
+				numBytes = numBlocks * bytesPerBlock;
 
 				// Here's where we possibly modify the opaque DXT1 texture to be DXT1A if there are blocks with binary
 				// transparency. We only bother checking the main layer. If it's opaque we assume all the others are too.
@@ -1390,7 +1392,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 					// We are now in in RGBA. In that order in memory.
 					layer->PixelFormat = tPixelFormat::R8G8B8A8;
 				}
-				else if (tImage::tIsBlockCompressedFormat(PixelFormat))
+				else if (tImage::tIsBCFormat(PixelFormat))
 				{
 					// We need extra room because the decompressor (bcdec) does not take an input for
 					// the width and height, only the pitch (bytes per row). This means a texture that is 5

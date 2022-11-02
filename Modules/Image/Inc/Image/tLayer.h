@@ -12,7 +12,7 @@
 // and height. A higher level system, for example, may want to ensure power-of-two sizes, or multiple of 4, but that
 // shouldn't and doesn't happen here.
 //
-// Copyright (c) 2006, 2017 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -50,9 +50,10 @@ public:
 
 	bool IsValid() const																								{ return Data ? true : false; }
 
-	// Returns the size of the data in bytes. For BC formats the data size will be a multiple of the block size. For
-	// example, a 1x1 BC1 format layer still needs 8 bytes. A 5x5 BC1 format layer would need a whole 4 blocks (same as
-	// an 8x8) and would yield 32 bytes.
+	// Returns the size of the data in bytes by reading the Width, Height, and PixelFormat. For block-compressed format
+	// the data size will be a multiple of the block size in bytes. BC 4x4 blocks may be different sizes, whereas ASTC
+	// block size is always 16 bytes. eg. a 1x1 BC1 format layer still needs 8 bytes. A 5x5 BC1 format layer would need
+	// a whole 4 blocks (same as an 8x8) and would yield 32 bytes.
 	int GetDataSize() const;
 
 	void Save(tChunkWriter&) const;
@@ -79,8 +80,8 @@ public:
 	uint8* Data;
 	bool OwnsData;
 
-	// Most hardware can handle up to a 4096 x 4096 texture.
-	const static int MaxLayerDimension = 4096;
+	// 4096 x 4096 is pretty much a minimum requirement these days. 16Kx16k has good support. 32kx32k exists.
+	const static int MaxLayerDimension = 32768;
 	const static int MinLayerDimension = 1;
 };
 
@@ -135,20 +136,19 @@ inline int tLayer::GetDataSize() const
 	if (!Width || !Height || (PixelFormat == tPixelFormat::Invalid))
 		return 0;
 
-	int numBytes = 0;
-	if (tIsBlockCompressedFormat(PixelFormat))
-	{
-		int numBlocksW = tMath::tMax(1, (Width + 3) / 4);
-		int numBlocksH = tMath::tMax(1, (Height + 3) / 4);
-		int numBlocks = numBlocksW * numBlocksH;
-		numBytes = numBlocks * tGetBytesPer4x4PixelBlock(PixelFormat);
-	}
-	else
-	{
-		numBytes = Width * Height * (tGetBitsPerPixel(PixelFormat) >> 3);
-	}
+	// Non-block-compressed textures are considered as having a single pixel per block.
+	int blockW = tGetBlockWidth(PixelFormat);
+	int blockH = tGetBlockHeight(PixelFormat);
+	tAssert((blockW > 0) && (blockH > 0));
 
-	return numBytes;
+	int numBlocks = tGetNumBlocks(blockW, Width) * tGetNumBlocks(blockH, Height);
+	int bytesPerBlock = 0;
+	if (tIsBCFormat(PixelFormat) || tIsASTCFormat(PixelFormat))
+		bytesPerBlock = tGetBytesPerBlock(PixelFormat);
+	else
+		bytesPerBlock = tGetBitsPerPixel(PixelFormat) >> 3;
+
+	return numBlocks * bytesPerBlock;
 }
 
 
