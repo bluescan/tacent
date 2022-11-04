@@ -19,7 +19,16 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#include "Foundation/tStandard.h"
+#include <LibKTX/include/version.h>
+#define KTXSTRINGIFY(x) #x
+#define KTXTOSTRING(x) KTXSTRINGIFY(x)
+#define LIBKTX_VERSION_STRING KTXTOSTRING(LIBKTX_VERSION);
+
+// It says cli, but it's only the version number. Nothing to do with a CLI.
+#include <astcenccli_version.h>
+const char* ASTCENCODER_VERSION_STRING		= VERSION_STRING;
+#undef VERSION_STRING
+
 #include "Image/tPicture.h"
 #include "Math/tMatrix2.h"
 #include <OpenEXR/loadImage.h>
@@ -29,10 +38,6 @@
 #include <apngasm.h>
 #include <bcdec.h>
 #include <tiffvers.h>
-#include <LibKTX/include/version.h>
-#define KTXSTRINGIFY(x) #x
-#define KTXTOSTRING(x) KTXSTRINGIFY(x)
-#define LIBKTX_VERSION_STRING KTXTOSTRING(LIBKTX_VERSION);
 #include <jconfig.h>			// JpegTurbo
 #include <demux.h>				// WebP
 #include <tinyxml2.h>
@@ -46,6 +51,7 @@ using namespace tSystem;
 
 
 const char* tImage::Version_LibJpegTurbo	= LIBJPEG_TURBO_VERSION;
+const char* tImage::Version_ASTCEncoder		= ASTCENCODER_VERSION_STRING;
 const char* tImage::Version_OpenEXR			= OPENEXR_VERSION_STRING;
 const char* tImage::Version_ZLIB			= ZLIB_VERSION;
 const char* tImage::Version_LibPNG			= PNG_LIBPNG_VER_STRING;

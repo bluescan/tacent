@@ -18,6 +18,7 @@
 #include "Image/tImageKTX.h"
 #include "Image/tPixelUtil.h"
 #include "bcdec/bcdec.h"
+#include "astcenc.h"
 #define KHRONOS_STATIC
 #include "LibKTX/include/ktx.h"
 #include "LibKTX/include/vulkan_core.h"
@@ -808,6 +809,71 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 			}
 
 			// WIP Do ASTC formats.
+			else if (tImage::tIsASTCFormat(PixelFormat))
+			{
+				static const unsigned int block_x = 6;
+				static const unsigned int block_y = 6;
+				static const unsigned int block_z = 1;
+				static const astcenc_profile profile = ASTCENC_PRF_LDR;
+				static const float quality = ASTCENC_PRE_MEDIUM;
+
+				astcenc_config config;
+				config.block_x = block_x;
+				config.block_y = block_y;
+				config.profile = profile;
+
+				astcenc_error status;
+				status = astcenc_config_init(profile, block_x, block_y, block_z, quality, 0, &config);
+				if (status != ASTCENC_SUCCESS)
+				{
+					printf("ERROR: Codec config init failed: %s\n", astcenc_get_error_string(status));
+					return 1;
+				}
+			}
+
+			// WIP
+			// ------------------------------------------------------------------------
+			// For the purposes of this sample we hard-code the compressor settings
+			#if 0
+			static const unsigned int thread_count = 1;
+			static const unsigned int block_x = 6;
+			static const unsigned int block_y = 6;
+			static const unsigned int block_z = 1;
+			static const astcenc_profile profile = ASTCENC_PRF_LDR;
+			static const float quality = ASTCENC_PRE_MEDIUM;
+			static const astcenc_swizzle swizzle {
+				ASTCENC_SWZ_R, ASTCENC_SWZ_G, ASTCENC_SWZ_B, ASTCENC_SWZ_A
+			};
+
+			// ------------------------------------------------------------------------
+			// Load input image, forcing 4 components
+			int image_x, image_y, image_c;
+			uint8_t *image_data = (uint8_t*)stbi_load(argv[1], &image_x, &image_y, &image_c, 4);
+			if (!image_data)
+			{
+				printf("Failed to load image \"%s\"\n", argv[1]);
+				return 1;
+			}
+
+			// Compute the number of ASTC blocks in each dimension
+			unsigned int block_count_x = (image_x + block_x - 1) / block_x;
+			unsigned int block_count_y = (image_y + block_y - 1) / block_y;
+
+			// ------------------------------------------------------------------------
+			// Initialize the default configuration for the block size and quality
+			astcenc_config config;
+			config.block_x = block_x;
+			config.block_y = block_y;
+			config.profile = profile;
+
+			astcenc_error status;
+			status = astcenc_config_init(profile, block_x, block_y, block_z, quality, 0, &config);
+			if (status != ASTCENC_SUCCESS)
+			{
+				printf("ERROR: Codec config init failed: %s\n", astcenc_get_error_string(status));
+				return 1;
+			}
+			#endif
 			
 			else
 			{

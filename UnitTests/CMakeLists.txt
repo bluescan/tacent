@@ -77,11 +77,15 @@ else()
 	)
 endif()
 
-# Why do we still need this?
 if (MSVC)
+	# Why do we still need this?
 	if (CMAKE_BUILD_TYPE MATCHES Debug)
 		target_link_options(${PROJECT_NAME} PRIVATE "/NODEFAULTLIB:LIBCMT.lib")
 	endif()
+	# This was necessary for astcenc library linking, but decided to turn off whole-program optimization.
+	#	if (CMAKE_BUILD_TYPE MATCHES Release)
+	#		target_link_options(${PROJECT_NAME} PRIVATE "/LTCG")
+	#	endif()
 endif()
 
 target_include_directories(

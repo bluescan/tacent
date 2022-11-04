@@ -55,6 +55,7 @@ add_library(
 	Contrib/ApngDis/apngdis.h
 	Contrib/ApngDis/apngdis.cpp
 	Contrib/bcdec/bcdec.h
+	Contrib/ASTCEncoder/include/astcenc.h
 	Contrib/GifLoad/gif_load.h
 	Contrib/GifSave/gif.h
 	Contrib/LibKTX/include/ktx.h
@@ -91,6 +92,7 @@ target_include_directories(
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ApngDis
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ApngAsm
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/bcdec
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/GifLoad
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/GifSave
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/include
@@ -133,6 +135,12 @@ target_link_libraries(
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/lib/libwebp.lib>
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/lib/libwebpdemux.lib>
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/lib/libwebpmux.lib>
+
+		# ASTCEncoder
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/debug/libastcenc-sse2-static.a>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/release/libastcenc-sse2-static.a>
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/debug/astcenc-sse2-static.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/release/astcenc-sse2-static.lib>
 
 		# LibKTX
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/lib/libktx.a>

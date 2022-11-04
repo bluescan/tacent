@@ -46,8 +46,9 @@ namespace tImage
 {
 
 
-// Verion information for the image loaders. This is all in the tImage namespace.
+// Verion information for the image loaders and libraries they may use. This is all in the tImage namespace.
 extern const char* Version_LibJpegTurbo;
+extern const char* Version_ASTCEncoder;
 extern const char* Version_OpenEXR;
 extern const char* Version_ZLIB;
 extern const char* Version_LibPNG;
