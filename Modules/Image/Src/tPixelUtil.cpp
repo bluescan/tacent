@@ -19,6 +19,13 @@
 #include "bcdec/bcdec.h"
 
 
+namespace tImage
+{
+	uint8* CreateReversedRowData_Packed	(const uint8* pixelData, tPixelFormat pixelDataFormat, int width, int height);
+	uint8* CreateReversedRowData_BC		(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH);
+}
+
+
 uint16 tImage::BC3Block::GetAlphaRow(int row)
 {
 	tAssert(row < 4);
@@ -102,6 +109,18 @@ bool tImage::DoBC1BlocksHaveBinaryAlpha(tImage::BC1Block* block, int numBlocks)
 }
 
 
+uint8* tImage::CreateReversedRowData(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH)
+{
+	if (tIsPackedFormat(pixelDataFormat))
+		return CreateReversedRowData_Packed(pixelData, pixelDataFormat, numBlocksW, numBlocksH);
+
+	if (tIsBCFormat(pixelDataFormat))
+		return CreateReversedRowData_BC(pixelData, pixelDataFormat, numBlocksW, numBlocksH);
+
+	return nullptr;
+}
+
+
 uint8* tImage::CreateReversedRowData_Packed(const uint8* pixelData, tPixelFormat pixelDataFormat, int width, int height)
 {
 	// We only support pixel formats that contain a whole number of bytes per pixel.
@@ -129,16 +148,19 @@ uint8* tImage::CreateReversedRowData_Packed(const uint8* pixelData, tPixelFormat
 
 uint8* tImage::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH)
 {
-	// We do not support the following block formats for non-destructive row reversal.
+	// We only support the following block formats for lossless row reversal.
+	bool reversalSupported = false;
 	switch (pixelDataFormat)
 	{
-		case tPixelFormat::BC4ATI1:		// @todo Consider implementing row reversal.
-		case tPixelFormat::BC5ATI2:		// @todo Consider implementing row reversal.
-		case tPixelFormat::BC6S:
-		case tPixelFormat::BC6U:
-		case tPixelFormat::BC7:
-			return nullptr;
+		case tPixelFormat::BC1DXT1A:
+		case tPixelFormat::BC1DXT1:
+		case tPixelFormat::BC2DXT2DXT3:
+		case tPixelFormat::BC3DXT4DXT5:
+			reversalSupported = true;
+			break;
 	}
+	if (!reversalSupported)
+		return nullptr;
 
 	int bcBlockSize = tImage::tGetBytesPerBlock(pixelDataFormat);
 	int numBlocks = numBlocksW*numBlocksH;

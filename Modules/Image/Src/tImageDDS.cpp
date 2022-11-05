@@ -1046,40 +1046,15 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 		for (int layer = 0; layer < NumMipmapLayers; layer++)
 		{
 			int numBytes = 0;
-			if (tImage::tIsPackedFormat(PixelFormat))
+			if (tImage::tIsBCFormat(PixelFormat) || tImage::tIsASTCFormat(PixelFormat) || tImage::tIsPackedFormat(PixelFormat))
 			{
-				numBytes = width*height*tImage::tGetBitsPerPixel(PixelFormat)/8;
-
-				// Deal with reversing row order for RGB formats.
-				if (reverseRowOrderRequested)
-				{
-					uint8* reversedPixelData = tImage::CreateReversedRowData_Packed(currPixelData, PixelFormat, width, height);
-					if (reversedPixelData)
-					{
-						// We can simply get the layer to steal the memory (the last true arg).
-						Layers[layer][image] = new tLayer(PixelFormat, width, height, reversedPixelData, true);
-						RowReversalOperationPerformed = true;
-					}
-					else
-					{
-						// Row reversal failed. May be a conditional success if we don't convert to RGBA 32-bit later.
-						Layers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
-					}
-				}
-				else
-				{
-					Layers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
-				}
-				tAssert(Layers[layer][image]->GetDataSize() == numBytes);
-			}
-
-			else if (tImage::tIsBCFormat(PixelFormat))
-			{
-				// It's a BC/DXTn format. Each block encodes a 4x4 square of pixels. DXT2,3,4,5 and BC 6,7 use 128
-				// bits per block.  DXT1 and DXT1A (BC1) use 64bits per block.
+				// It's a block format (BC/DXTn or ASTC). Each block encodes a 4x4 up to 12x12 square of pixels. DXT2,3,4,5 and BC 6,7 use 128
+				// bits per block.  DXT1 and DXT1A (BC1) use 64bits per block. ASTC always uses 128 bits per block but it's not always 4x4.
+				// Packed formats are considered to have a block width and height of 1.
 				int blockW = tGetBlockWidth(PixelFormat);
 				int blockH = tGetBlockWidth(PixelFormat);
 				int bytesPerBlock = tImage::tGetBytesPerBlock(PixelFormat);
+				tAssert(bytesPerBlock > 0);
 				int numBlocksW = tGetNumBlocks(blockW, width);
 				int numBlocksH = tGetNumBlocks(blockH, height);
 				int numBlocks = numBlocksW*numBlocksH;
@@ -1097,7 +1072,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				// will go down to 1x1, which will still use a 4x4 DXT pixel-block.
 				if (reverseRowOrderRequested)
 				{
-					uint8* reversedPixelData = tImage::CreateReversedRowData_BC(currPixelData, PixelFormat, numBlocksW, numBlocksH);
+					uint8* reversedPixelData = tImage::CreateReversedRowData(currPixelData, PixelFormat, numBlocksW, numBlocksH);
 					if (reversedPixelData)
 					{
 						// We can simply get the layer to steal the memory (the last true arg).
@@ -1551,7 +1526,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				if (reverseRowOrderRequested && !RowReversalOperationPerformed && (layer->PixelFormat == tPixelFormat::R8G8B8A8))
 				{
 					// This shouldn't ever fail. Too easy to reverse RGBA 32-bit.
-					uint8* reversedRowData = tImage::CreateReversedRowData_Packed(layer->Data, layer->PixelFormat, w, h);
+					uint8* reversedRowData = tImage::CreateReversedRowData(layer->Data, layer->PixelFormat, w, h);
 					tAssert(reversedRowData);
 					delete[] layer->Data;
 					layer->Data = reversedRowData;

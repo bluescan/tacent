@@ -59,8 +59,9 @@ struct BC3Block
 
 constexpr uint32 FourCC(uint8 ch0, uint8 ch1, uint8 ch2, uint8 ch3);
 bool DoBC1BlocksHaveBinaryAlpha(BC1Block* blocks, int numBlocks);
-uint8* CreateReversedRowData_Packed	(const uint8* pixelData, tPixelFormat pixelDataFormat, int width, int height);
-uint8* CreateReversedRowData_BC		(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH);
+
+// This also works for packed formats which are considered to have a block width and height of 1.
+uint8* CreateReversedRowData(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH);
 
 
 }

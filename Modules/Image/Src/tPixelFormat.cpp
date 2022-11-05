@@ -273,6 +273,9 @@ int tImage::tGetBytesPerBlock(tPixelFormat format)
 	if (tIsASTCFormat(format))
 		return 16;
 
+	if (tIsPackedFormat(format))
+		return tGetBitsPerPixel(format) / 8;
+
 	return -1;
 }
 

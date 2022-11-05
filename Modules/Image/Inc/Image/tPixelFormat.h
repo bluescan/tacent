@@ -157,8 +157,11 @@ int tGetNumBlocks		(int blockWH, int imageWH);
 // formats.
 int tGetBitsPerPixel(tPixelFormat);
 
-// This function must be given a block-compression format - either a BC format (4x4 with different number of bytes) or
-// an ASTC format (varying MxN but always 16 bytes). Returns -1 otherwise.
+// This function must be given a BC format, an ASTC format, or a packed format.
+// BC formats		: 4x4 with different number of bytes per block.
+// ASTC formats		: Varying MxN but always 16 bytes.
+// Packed Formats	: Considered 1x1 with varying number of bytes per pixel.
+// Returns -1 otherwise.
 int tGetBytesPerBlock(tPixelFormat);
 
 const char* tGetPixelFormatName(tPixelFormat);
