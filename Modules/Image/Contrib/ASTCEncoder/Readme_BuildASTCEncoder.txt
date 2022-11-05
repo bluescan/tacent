@@ -28,7 +28,8 @@ Building for Linux
 * If using WSL you can just cd into /mnt/c/ and go to the root where you already cloned.
 * If running Kubuntu you'll need to clone again with smartgit or whatever.
 * In root of clone, mkdir buildlinrel, cd buildlinrel
-* cmake -G "Unix Makefiles" -DISA_SSE2=ON -DCMAKE_BUILD_TYPE=Release ..
+* I was having some difficulty with LTO. Adding the -DCLI=OFF turns it off.
+* cmake -G "Unix Makefiles" -DISA_SSE2=ON -DCMAKE_BUILD_TYPE=Release -DCLI=OFF ..
 * make
 * Do same thing again but with buildwindeb and Debug for the type.
 * Source folder where you just built will have libastcenc-sse2-static.a in it.

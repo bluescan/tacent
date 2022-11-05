@@ -809,7 +809,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 			}
 
 			// WIP Do ASTC formats.
-			#if 0
+//			#if 0
 			else if (tImage::tIsASTCFormat(PixelFormat))
 			{
 				static const unsigned int block_x = 6;
@@ -831,7 +831,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 					return 1;
 				}
 			}
-			#endif
+//			#endif
 
 			// WIP
 			// ------------------------------------------------------------------------

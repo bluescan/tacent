@@ -137,8 +137,8 @@ target_link_libraries(
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/lib/libwebpmux.lib>
 
 		# ASTCEncoder
-#		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/debug/libastcenc-sse2-static.a>
-#		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/release/libastcenc-sse2-static.a>
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/debug/libastcenc-sse2-static.a>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/release/libastcenc-sse2-static.a>
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/debug/astcenc-sse2-static.lib>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/release/astcenc-sse2-static.lib>
 
