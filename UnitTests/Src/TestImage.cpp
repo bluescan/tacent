@@ -1124,6 +1124,21 @@ tTestUnit(ImageKTX2)
 	KTXLoadDecodeSave("ASTC12x10_RGBA.ktx2", decode | revrow);
 	KTXLoadDecodeSave("ASTC12x12_RGBA.ktx2", decode | revrow);
 
+	KTXLoadDecodeSave("ASTC4x4_HDRRGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC5x4_HDRRGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC5x5_HDRRGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC6x5_HDRRGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC6x6_HDRRGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC8x5_HDRRGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC8x6_HDRRGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC8x8_HDRRGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC10x5_HDRRGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC10x6_HDRRGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC10x8_HDRRGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC10x10_HDRRGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC12x10_HDRRGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC12x12_HDRRGBA.ktx2", decode | revrow | gammac);
+
 	//
 	// Uncompressed Integer Formats.
 	//
@@ -1191,6 +1206,20 @@ tTestUnit(ImageKTX2)
 	KTXLoadDecodeSave("ASTC10x10_RGBA.ktx2", revrow);			// No reverse.
 	KTXLoadDecodeSave("ASTC12x10_RGBA.ktx2", revrow);			// No reverse.
 	KTXLoadDecodeSave("ASTC12x12_RGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC4x4_HDRRGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC5x4_HDRRGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC5x5_HDRRGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC6x5_HDRRGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC6x6_HDRRGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC8x5_HDRRGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC8x6_HDRRGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC8x8_HDRRGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC10x5_HDRRGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC10x6_HDRRGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC10x8_HDRRGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC10x10_HDRRGBA.ktx2", revrow);		// No reverse.
+	KTXLoadDecodeSave("ASTC12x10_HDRRGBA.ktx2", revrow);		// No reverse.
+	KTXLoadDecodeSave("ASTC12x12_HDRRGBA.ktx2", revrow);		// No reverse.
 	KTXLoadDecodeSave("R8_A.ktx2");
 	KTXLoadDecodeSave("R8_L.ktx2", revrow);
 	KTXLoadDecodeSave("B8G8R8_RGB.ktx2");
