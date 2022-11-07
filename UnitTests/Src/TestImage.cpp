@@ -856,12 +856,12 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("BC2DXT2DXT3_RGBA_Modern.dds", revrow);
 	DDSLoadDecodeSave("BC3DXT4DXT5_RGBA_Modern.dds", revrow);
 	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds", revrow);			// Should print warning and be unable to flip rows. May be able to implement.
-	DDSLoadDecodeSave("BC5ATI2_RG_Modern.dds", revrow);			// Should print warning and be unable to flip rows. May be able to implement.
-	DDSLoadDecodeSave("BC6s_RGB_Modern.dds", revrow);			// Should print warning and be unable to flip rows.
+	DDSLoadDecodeSave("BC5ATI2_RG_Modern.dds", revrow);			// No reverse.
+	DDSLoadDecodeSave("BC6s_RGB_Modern.dds", revrow);			// No reverse.
 	DDSLoadDecodeSave("BC6u_RGB_Modern.dds");
 	DDSLoadDecodeSave("BC6s_HDRRGB_Modern.dds");
-	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds", revrow);		// Should print warning and be unable to flip rows.
-	DDSLoadDecodeSave("BC7_RGBA_Modern.dds", revrow);			// Should print warning and be unable to flip rows.
+	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds", revrow);		// No reverse.
+	DDSLoadDecodeSave("BC7_RGBA_Modern.dds", revrow);			// No reverse.
 	DDSLoadDecodeSave("A8_A_Modern.dds");
 	DDSLoadDecodeSave("R8_L_Modern.dds", revrow);
 	DDSLoadDecodeSave("L8_L_Legacy.dds", revrow);
@@ -948,6 +948,116 @@ void KTXLoadDecodeSave(const tString& ktxfile, uint32 loadFlags = 0, bool saveAl
 }
 
 
+tTestUnit(ImageKTX1)
+{
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageKTX1)
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/KTX1/");
+
+	uint32 decode = tImageKTX::LoadFlag_Decode;
+	uint32 revrow = tImageKTX::LoadFlag_ReverseRowOrder;
+	uint32 spread = tImageKTX::LoadFlag_SpreadLuminance;
+	uint32 gammac = tImageKTX::LoadFlag_SRGBCompression;
+	// uint32 gammac = tImageKTX::LoadFlag_GammaCompression;
+
+	//
+	// Block Compressed Formats.
+	//
+	tPrintf("Testing KTX V1 Loading/Decoding Using LibKTX %s\n\n", tImage::Version_LibKTX);
+	tPrintf("D = Decode\n");
+	tPrintf("G = Gamma Compression\n");
+	tPrintf("R = Reverse Row Order\n");
+	tPrintf("S = Spread Luminance\n");
+
+	// BC1
+	KTXLoadDecodeSave("BC1DXT1_RGB.ktx", decode | revrow);
+
+	// BC1a
+	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx", decode | revrow);
+
+	// BC2
+	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx", decode | revrow);
+
+	// BC3
+	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx", decode | revrow);
+
+	// BC4
+	KTXLoadDecodeSave("BC4ATI1_R.ktx", decode | revrow);
+
+	// BC5
+	KTXLoadDecodeSave("BC5ATI2_RG.ktx", decode | revrow);
+
+	// BC6
+	KTXLoadDecodeSave("BC6u_RGB.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("BC6s_RGB.ktx", decode | revrow | gammac);
+
+	// BC7
+	KTXLoadDecodeSave("BC7_RGBA.ktx", decode | revrow);
+
+	//
+	// ASTC
+	//
+	KTXLoadDecodeSave("ASTC4x4_HDRRGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC5x4_HDRRGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC5x5_HDRRGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC6x5_HDRRGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC6x6_HDRRGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC8x5_HDRRGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC8x6_HDRRGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC8x8_HDRRGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC10x5_HDRRGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC10x6_HDRRGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC10x8_HDRRGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC10x10_HDRRGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC12x10_HDRRGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC12x12_HDRRGBA.ktx", decode | revrow | gammac);
+
+	//
+	// Uncompressed Formats.
+	//
+	KTXLoadDecodeSave("R8G8B8A8_RGBA.ktx", decode | revrow );
+	KTXLoadDecodeSave("R16G16B16A16f_RGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx", decode | revrow | gammac);
+
+	// Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
+	// This time, since not decoding, it may be impossible to reverse the rows, so we can also expect
+	// to get conditional valids if it couldn't be done (for some of the BC formats).
+	// Note that without decoding KTXLoadDecodeSave will NOT write a tga file unless the pixel-format
+	// is already R8G8B8A8.
+	tPrintf("Testing KTX V1 Loading/No-decoding.\n\n");
+
+	KTXLoadDecodeSave("BC1DXT1_RGB.ktx", revrow);				// Revrow should work for BC1.
+	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx");
+	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx", revrow);
+	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx", revrow);
+	KTXLoadDecodeSave("BC4ATI1_R.ktx", revrow);					// Should print warning and be unable to flip rows. May be able to implement.
+	KTXLoadDecodeSave("BC5ATI2_RG.ktx", revrow);				// No reverse.
+	KTXLoadDecodeSave("BC6u_RGB.ktx", revrow);					// No reverse.
+	KTXLoadDecodeSave("BC6s_RGB.ktx", revrow);					// No reverse.
+	KTXLoadDecodeSave("BC7_RGBA.ktx", revrow);					// No reverse.
+	KTXLoadDecodeSave("ASTC4x4_HDRRGBA.ktx", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC5x4_HDRRGBA.ktx", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC5x5_HDRRGBA.ktx", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC6x5_HDRRGBA.ktx", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC6x6_HDRRGBA.ktx", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC8x5_HDRRGBA.ktx", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC8x6_HDRRGBA.ktx", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC8x8_HDRRGBA.ktx", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC10x5_HDRRGBA.ktx", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC10x6_HDRRGBA.ktx", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC10x8_HDRRGBA.ktx", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC10x10_HDRRGBA.ktx", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC12x10_HDRRGBA.ktx", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC12x12_HDRRGBA.ktx", revrow);			// No reverse.
+	KTXLoadDecodeSave("R8G8B8A8_RGBA.ktx", revrow);				// Will write a tga even without decode since it's already in correct format.
+	KTXLoadDecodeSave("R16G16B16A16f_RGBA.ktx", revrow | gammac);
+	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx", revrow | gammac);
+
+	tSystem::tSetCurrentDir(origDir.Chr());
+}
+
+
 tTestUnit(ImageKTX2)
 {
 	if (!tSystem::tDirExists("TestData/Images/"))
@@ -966,10 +1076,6 @@ tTestUnit(ImageKTX2)
 	tPrintf("G = Gamma Compression\n");
 	tPrintf("R = Reverse Row Order\n");
 	tPrintf("S = Spread Luminance\n");
-
-	//KTXLoadDecodeSave("ASTC4x4_RGBA.ktx2", decode | revrow);
-	//tSystem::tSetCurrentDir(origDir.Chr());
-	//return;
 
 	//
 	// Block Compressed Formats.
@@ -999,8 +1105,24 @@ tTestUnit(ImageKTX2)
 	KTXLoadDecodeSave("BC7_RGBA.ktx2", decode | revrow, true);
 	KTXLoadDecodeSave("BC7_RGBANoSuper.ktx2", decode | revrow, true);
 
-	// ASTC4x4 LDR
-	// KTXLoadDecodeSave("ASTC4x4_RGBA.ktx2", decode | revrow);
+	//
+	// ASTC
+	//
+	KTXLoadDecodeSave("ASTC4x4_RGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC5x4_RGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC5x5_RGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC6x5_RGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC6x6_RGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC8x5_RGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC8x6_RGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC8x8_RGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC10x5_RGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC10x5_RGBA_Mipmaps.ktx2", decode | revrow, true);
+	KTXLoadDecodeSave("ASTC10x6_RGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC10x8_RGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC10x10_RGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC12x10_RGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC12x12_RGBA.ktx2", decode | revrow);
 
 	//
 	// Uncompressed Integer Formats.
@@ -1050,12 +1172,25 @@ tTestUnit(ImageKTX2)
 	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx2");
 	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx2", revrow);
 	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx2", revrow);
-	KTXLoadDecodeSave("BC4ATI1_R.ktx2", revrow);				// Should print warning and be unable to flip rows. May be able to implement.
-	KTXLoadDecodeSave("BC5ATI2_RG.ktx2", revrow);				// Should print warning and be unable to flip rows. May be able to implement.
-	KTXLoadDecodeSave("BC6s_RGB.ktx2", revrow);					// Should print warning and be unable to flip rows.
-	KTXLoadDecodeSave("BC7_RGBA.ktx2", revrow);					// Should print warning and be unable to flip rows.
-	KTXLoadDecodeSave("BC7_RGBANoSuper.ktx2", revrow);			// Should print warning and be unable to flip rows.
-
+	KTXLoadDecodeSave("BC4ATI1_R.ktx2", revrow);				// Should print warning and be unable to reverse rows. May be able to implement.
+	KTXLoadDecodeSave("BC5ATI2_RG.ktx2", revrow);				// No reverse.
+	KTXLoadDecodeSave("BC6s_RGB.ktx2", revrow);					// No reverse.
+	KTXLoadDecodeSave("BC7_RGBA.ktx2", revrow);					// No reverse.
+	KTXLoadDecodeSave("BC7_RGBANoSuper.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC4x4_RGBA.ktx2", revrow);				// No reverse.
+	KTXLoadDecodeSave("ASTC5x4_RGBA.ktx2", revrow);				// No reverse.
+	KTXLoadDecodeSave("ASTC5x5_RGBA.ktx2", revrow);				// No reverse.
+	KTXLoadDecodeSave("ASTC6x5_RGBA.ktx2", revrow);				// No reverse.
+	KTXLoadDecodeSave("ASTC6x6_RGBA.ktx2", revrow);				// No reverse.
+	KTXLoadDecodeSave("ASTC8x5_RGBA.ktx2", revrow);				// No reverse.
+	KTXLoadDecodeSave("ASTC8x6_RGBA.ktx2", revrow);				// No reverse.
+	KTXLoadDecodeSave("ASTC8x8_RGBA.ktx2", revrow);				// No reverse.
+	KTXLoadDecodeSave("ASTC10x5_RGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC10x6_RGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC10x8_RGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC10x10_RGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC12x10_RGBA.ktx2", revrow);			// No reverse.
+	KTXLoadDecodeSave("ASTC12x12_RGBA.ktx2", revrow);			// No reverse.
 	KTXLoadDecodeSave("R8_A.ktx2");
 	KTXLoadDecodeSave("R8_L.ktx2", revrow);
 	KTXLoadDecodeSave("B8G8R8_RGB.ktx2");
@@ -1070,84 +1205,6 @@ tTestUnit(ImageKTX2)
 	KTXLoadDecodeSave("R32f_R.ktx2");
 	KTXLoadDecodeSave("R32G32f_RG.ktx2");
 	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx2", revrow);
-
-	tSystem::tSetCurrentDir(origDir.Chr());
-}
-
-
-tTestUnit(ImageKTX1)
-{
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageKTX1)
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/KTX1/");
-
-	uint32 decode = tImageKTX::LoadFlag_Decode;
-	uint32 revrow = tImageKTX::LoadFlag_ReverseRowOrder;
-	uint32 spread = tImageKTX::LoadFlag_SpreadLuminance;
-	uint32 gammac = tImageKTX::LoadFlag_SRGBCompression;
-	// uint32 gammac = tImageKTX::LoadFlag_GammaCompression;
-
-	//
-	// Block Compressed Formats.
-	//
-	tPrintf("Testing KTX V1 Loading/Decoding Using LibKTX %s\n\n", tImage::Version_LibKTX);
-	tPrintf("D = Decode\n");
-	tPrintf("G = Gamma Compression\n");
-	tPrintf("R = Reverse Row Order\n");
-	tPrintf("S = Spread Luminance\n");
-
-	// BC1
-	KTXLoadDecodeSave("BC1DXT1_RGB.ktx", decode | revrow);
-
-	// BC1a
-	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx", decode | revrow);
-
-	// BC2
-	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx", decode | revrow);
-
-	// BC3
-	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx", decode | revrow);
-
-	// BC4
-	KTXLoadDecodeSave("BC4ATI1_R.ktx", decode | revrow);
-
-	// BC5
-	KTXLoadDecodeSave("BC5ATI2_RG.ktx", decode | revrow);
-
-	// BC6
-	KTXLoadDecodeSave("BC6u_RGB.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("BC6s_RGB.ktx", decode | revrow | gammac);
-
-	// BC7
-	KTXLoadDecodeSave("BC7_RGBA.ktx", decode | revrow);
-
-	//
-	// Uncompressed Formats.
-	//
-	KTXLoadDecodeSave("R8G8B8A8_RGBA.ktx", decode | revrow );
-	KTXLoadDecodeSave("R16G16B16A16f_RGBA.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx", decode | revrow | gammac);
-
-	// Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
-	// This time, since not decoding, it may be impossible to reverse the rows, so we can also expect
-	// to get conditional valids if it couldn't be done (for some of the BC formats).
-	// Note that without decoding KTXLoadDecodeSave will NOT write a tga file unless the pixel-format
-	// is already R8G8B8A8.
-	tPrintf("Testing KTX V1 Loading/No-decoding.\n\n");
-
-	KTXLoadDecodeSave("BC1DXT1_RGB.ktx", revrow);				// Revrow should work for BC1.
-	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx");
-	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx", revrow);
-	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx", revrow);
-	KTXLoadDecodeSave("BC4ATI1_R.ktx", revrow);					// Should print warning and be unable to flip rows. May be able to implement.
-	KTXLoadDecodeSave("BC5ATI2_RG.ktx", revrow);				// Should print warning and be unable to flip rows. May be able to implement.
-	KTXLoadDecodeSave("BC6u_RGB.ktx", revrow);					// Should print warning and be unable to flip rows.
-	KTXLoadDecodeSave("BC6s_RGB.ktx", revrow);					// Should print warning and be unable to flip rows.
-	KTXLoadDecodeSave("BC7_RGBA.ktx", revrow);					// Should print warning and be unable to flip rows.
-	KTXLoadDecodeSave("R8G8B8A8_RGBA.ktx", revrow);				// Will write a tga even without decode since it's already in correct format.
-	KTXLoadDecodeSave("R16G16B16A16f_RGBA.ktx", revrow | gammac);
-	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx", revrow | gammac);
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }

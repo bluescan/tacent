@@ -105,8 +105,9 @@ public:
 		Fatal_PixelFormatNotSupported,
 		Fatal_InvalidDataOffset,
 		Fatal_MaxNumMipmapLevelsExceeded,
-		Fatal_BlockDecodeError,
 		Fatal_PackedDecodeError,
+		Fatal_BCDecodeError,
+		Fatal_ASTCDecodeError,
 		NumCodes,
 
 		// Since we store result codes as bits in a 32-bit uint, we need to make sure we don't have too many codes. 32

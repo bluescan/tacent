@@ -41,7 +41,7 @@ enum class tColourSpace
 	Unspecified,
 
 	// Colours represented in this space can be added and multiplied with each other. This is your basic RGB cube.
-	RGB, Linear = RGB,
+	RGB, Linear = RGB, lRGB = RGB,
 
 	// Colours can be multiplied with each other, but not added. This is a common approximation of sRGB-space in
 	// which a simple pow function is used with a nominal gamma value of 2.2. 

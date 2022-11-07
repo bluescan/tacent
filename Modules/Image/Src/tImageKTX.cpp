@@ -15,6 +15,7 @@
 
 #include <Foundation/tString.h>
 #include <Foundation/tHalf.h>
+#include <System/tMachine.h>
 #include "Image/tImageKTX.h"
 #include "Image/tPixelUtil.h"
 #include "bcdec/bcdec.h"
@@ -89,6 +90,133 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			space = tColourSpace::sRGB;
 		case GL_COMPRESSED_RGBA_BPTC_UNORM:
 			format = tPixelFormat::BC7;
+			break;
+
+		// For ASTC formats we assume linear space if SRGB not specified.
+		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_4x4_KHR:
+			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC4X4;
+			break;
+		case GL_COMPRESSED_RGBA_ASTC_4x4_KHR:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::ASTC4X4;
+			break;
+
+		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_5x4_KHR:
+			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC5X4;
+			break;
+		case GL_COMPRESSED_RGBA_ASTC_5x4_KHR:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::ASTC5X4;
+			break;
+
+		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_5x5_KHR:
+			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC5X5;
+			break;
+		case GL_COMPRESSED_RGBA_ASTC_5x5_KHR:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::ASTC5X5;
+			break;
+
+		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_6x5_KHR:
+			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC6X5;
+			break;
+		case GL_COMPRESSED_RGBA_ASTC_6x5_KHR:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::ASTC6X5;
+			break;
+
+		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_6x6_KHR:
+			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC6X6;
+			break;
+		case GL_COMPRESSED_RGBA_ASTC_6x6_KHR:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::ASTC6X6;
+			break;
+
+		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_8x5_KHR:
+			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC8X5;
+			break;
+		case GL_COMPRESSED_RGBA_ASTC_8x5_KHR:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::ASTC8X5;
+			break;
+
+		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_8x6_KHR:
+			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC8X6;
+			break;
+		case GL_COMPRESSED_RGBA_ASTC_8x6_KHR:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::ASTC8X6;
+			break;
+
+		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_8x8_KHR:
+			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC8X8;
+			break;
+		case GL_COMPRESSED_RGBA_ASTC_8x8_KHR:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::ASTC8X8;
+			break;
+
+		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_10x5_KHR:
+			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC10X5;
+			break;
+		case GL_COMPRESSED_RGBA_ASTC_10x5_KHR:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::ASTC10X5;
+			break;
+
+		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_10x6_KHR:
+			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC10X6;
+			break;
+		case GL_COMPRESSED_RGBA_ASTC_10x6_KHR:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::ASTC10X6;
+			break;
+
+		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_10x8_KHR:
+			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC10X8;
+			break;
+		case GL_COMPRESSED_RGBA_ASTC_10x8_KHR:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::ASTC10X8;
+			break;
+
+		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_10x10_KHR:
+			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC10X10;
+			break;
+		case GL_COMPRESSED_RGBA_ASTC_10x10_KHR:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::ASTC10X10;
+			break;
+
+		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_12x10_KHR:
+			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC12X10;
+			break;
+		case GL_COMPRESSED_RGBA_ASTC_12x10_KHR:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::ASTC12X10;
+			break;
+
+		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR:
+			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC12X12;
+			break;
+		case GL_COMPRESSED_RGBA_ASTC_12x12_KHR:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::ASTC12X12;
 			break;
 	}
 
@@ -185,144 +313,146 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourSpace& space,
 	{
 		// The VK formats conflate the format with the data. The colour-space is not part of the format in tacent and is
 		// returned in a separate variable.
+		//
+		// UNORM means E [0.0, 1.0].
+		// From the Khronos description of ASTC:	
+		// "Whether floats larger than 1.0 are allowed is not a per-image property; it's a per-block property. An HDR-compressed ASTC image is simply one where blocks can return values larger than 1.0."
+		// "So the format does not specify if floating point values are greater than 1.0."
+		// "There are only two properties of an ASTC compressed image that are per-image (and therefore part of the format) rather than being per-block. These properties are block size and sRGB colorspace conversion."
+		//
+		// It seems to me for an HDR ASTC KTX2 image there are two possibilities for VK_FORMAT:
+		// 
+		// 1) VK_FORMAT_ASTC_4x4_UNORM_BLOCK or VK_FORMAT_ASTC_4x4_SRGB_BLOCK, in which case blocks that return
+		// component values > 1.0 are making a liar out of "UNORM" -- and
+		// 2) VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT
+		//
+		// Which one is correct? AMD's compressonator, after converting an EXR to ASTCif it can't guarantee blocks won't return values above 1.0 (i.e. an HDR image).
+		//
+		// For now I'm going to assume VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT is unused and unless SRGB is in the name, it's linear space (HDR).
 		case VK_FORMAT_ASTC_4x4_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC4X4;
+			break;
 		case VK_FORMAT_ASTC_4x4_UNORM_BLOCK:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::ASTC4X4;
 			break;
 
 		case VK_FORMAT_ASTC_5x4_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC5X4;
+			break;
 		case VK_FORMAT_ASTC_5x4_UNORM_BLOCK:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::ASTC5X4;
 			break;
 
 		case VK_FORMAT_ASTC_5x5_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC5X5;
+			break;
 		case VK_FORMAT_ASTC_5x5_UNORM_BLOCK:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::ASTC5X5;
 			break;
 
 		case VK_FORMAT_ASTC_6x5_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC6X5;
+			break;
 		case VK_FORMAT_ASTC_6x5_UNORM_BLOCK:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::ASTC6X5;
 			break;
 
 		case VK_FORMAT_ASTC_6x6_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC6X6;
+			break;
 		case VK_FORMAT_ASTC_6x6_UNORM_BLOCK:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::ASTC6X6;
 			break;
 
 		case VK_FORMAT_ASTC_8x5_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC8X5;
+			break;
 		case VK_FORMAT_ASTC_8x5_UNORM_BLOCK:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::ASTC8X5;
 			break;
 
 		case VK_FORMAT_ASTC_8x6_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC8X6;
+			break;
 		case VK_FORMAT_ASTC_8x6_UNORM_BLOCK:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::ASTC8X6;
 			break;
 
 		case VK_FORMAT_ASTC_8x8_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC8X8;
+			break;
 		case VK_FORMAT_ASTC_8x8_UNORM_BLOCK:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::ASTC8X8;
 			break;
 
 		case VK_FORMAT_ASTC_10x5_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC10X5;
+			break;
 		case VK_FORMAT_ASTC_10x5_UNORM_BLOCK:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::ASTC10X5;
 			break;
 
 		case VK_FORMAT_ASTC_10x6_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC10X6;
+			break;
 		case VK_FORMAT_ASTC_10x6_UNORM_BLOCK:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::ASTC10X6;
 			break;
 
 		case VK_FORMAT_ASTC_10x8_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC10X8;
+			break;
 		case VK_FORMAT_ASTC_10x8_UNORM_BLOCK:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::ASTC10X8;
 			break;
 
 		case VK_FORMAT_ASTC_10x10_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC10X10;
+			break;
 		case VK_FORMAT_ASTC_10x10_UNORM_BLOCK:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::ASTC10X10;
 			break;
 
 		case VK_FORMAT_ASTC_12x10_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
+			format = tPixelFormat::ASTC12X10;
+			break;
 		case VK_FORMAT_ASTC_12x10_UNORM_BLOCK:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::ASTC12X10;
 			break;
 
 		case VK_FORMAT_ASTC_12x12_SRGB_BLOCK:
 			space = tColourSpace::sRGB;
-		case VK_FORMAT_ASTC_12x12_UNORM_BLOCK:
 			format = tPixelFormat::ASTC12X12;
 			break;
-
-		case VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT:
-			format = tPixelFormat::ASTC4X4F;
-			break;
-
-		case VK_FORMAT_ASTC_5x4_SFLOAT_BLOCK_EXT:
-			format = tPixelFormat::ASTC5X4F;
-			break;
-
-		case VK_FORMAT_ASTC_5x5_SFLOAT_BLOCK_EXT:
-			format = tPixelFormat::ASTC5X5F;
-			break;
-
-		case VK_FORMAT_ASTC_6x5_SFLOAT_BLOCK_EXT:
-			format = tPixelFormat::ASTC6X5F;
-			break;
-
-		case VK_FORMAT_ASTC_6x6_SFLOAT_BLOCK_EXT:
-			format = tPixelFormat::ASTC6X6F;
-			break;
-
-		case VK_FORMAT_ASTC_8x5_SFLOAT_BLOCK_EXT:
-			format = tPixelFormat::ASTC8X5F;
-			break;
-
-		case VK_FORMAT_ASTC_8x6_SFLOAT_BLOCK_EXT:
-			format = tPixelFormat::ASTC8X6F;
-			break;
-
-		case VK_FORMAT_ASTC_8x8_SFLOAT_BLOCK_EXT:
-			format = tPixelFormat::ASTC8X8F;
-			break;
-
-		case VK_FORMAT_ASTC_10x5_SFLOAT_BLOCK_EXT:
-			format = tPixelFormat::ASTC10X5F;
-			break;
-
-		case VK_FORMAT_ASTC_10x6_SFLOAT_BLOCK_EXT:
-			format = tPixelFormat::ASTC10X6F;
-			break;
-
-		case VK_FORMAT_ASTC_10x8_SFLOAT_BLOCK_EXT:
-			format = tPixelFormat::ASTC10X8F;
-			break;
-
-		case VK_FORMAT_ASTC_10x10_SFLOAT_BLOCK_EXT:
-			format = tPixelFormat::ASTC10X10F;
-			break;
-
-		case VK_FORMAT_ASTC_12x10_SFLOAT_BLOCK_EXT:
-			format = tPixelFormat::ASTC12X10F;
-			break;
-
-		case VK_FORMAT_ASTC_12x12_SFLOAT_BLOCK_EXT:
-			format = tPixelFormat::ASTC12X12F;
+		case VK_FORMAT_ASTC_12x12_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::ASTC12X12;
 			break;
 
 		case VK_FORMAT_BC1_RGB_SRGB_BLOCK:
@@ -740,7 +870,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 				// bits per block.  DXT1 and DXT1A (BC1) use 64bits per block. ASTC always uses 128 bits per block but it's not always 4x4.
 				// Packed formats are considered to have a block width and height of 1.
 				int blockW = tGetBlockWidth(PixelFormat);
-				int blockH = tGetBlockWidth(PixelFormat);
+				int blockH = tGetBlockHeight(PixelFormat);
 				int bytesPerBlock = tImage::tGetBytesPerBlock(PixelFormat);
 				tAssert(bytesPerBlock > 0);
 				int numBlocksW = tGetNumBlocks(blockW, width);
@@ -781,77 +911,8 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 				}
 				tAssert(Layers[layer][image]->GetDataSize() == numBytes);
 			}
-
-			#if 0
-			// WIP Do ASTC formats.
-			else if (tImage::tIsASTCFormat(PixelFormat))
-			{
-				static const unsigned int block_x = 6;
-				static const unsigned int block_y = 6;
-				static const unsigned int block_z = 1;
-				static const astcenc_profile profile = ASTCENC_PRF_LDR;
-				static const float quality = ASTCENC_PRE_MEDIUM;
-
-				astcenc_config config;
-				config.block_x = block_x;
-				config.block_y = block_y;
-				config.profile = profile;
-
-				astcenc_error status;
-				status = astcenc_config_init(profile, block_x, block_y, block_z, quality, 0, &config);
-				if (status != ASTCENC_SUCCESS)
-				{
-					printf("ERROR: Codec config init failed: %s\n", astcenc_get_error_string(status));
-					return 1;
-				}
-			}
-
-			// WIP
-			// ------------------------------------------------------------------------
-			// For the purposes of this sample we hard-code the compressor settings
-			static const unsigned int thread_count = 1;
-			static const unsigned int block_x = 6;
-			static const unsigned int block_y = 6;
-			static const unsigned int block_z = 1;
-			static const astcenc_profile profile = ASTCENC_PRF_LDR;
-			static const float quality = ASTCENC_PRE_MEDIUM;
-			static const astcenc_swizzle swizzle {
-				ASTCENC_SWZ_R, ASTCENC_SWZ_G, ASTCENC_SWZ_B, ASTCENC_SWZ_A
-			};
-
-			// ------------------------------------------------------------------------
-			// Load input image, forcing 4 components
-			int image_x, image_y, image_c;
-			uint8_t *image_data = (uint8_t*)stbi_load(argv[1], &image_x, &image_y, &image_c, 4);
-			if (!image_data)
-			{
-				printf("Failed to load image \"%s\"\n", argv[1]);
-				return 1;
-			}
-
-			// Compute the number of ASTC blocks in each dimension
-			unsigned int block_count_x = (image_x + block_x - 1) / block_x;
-			unsigned int block_count_y = (image_y + block_y - 1) / block_y;
-
-			// ------------------------------------------------------------------------
-			// Initialize the default configuration for the block size and quality
-			astcenc_config config;
-			config.block_x = block_x;
-			config.block_y = block_y;
-			config.profile = profile;
-
-			astcenc_error status;
-			status = astcenc_config_init(profile, block_x, block_y, block_z, quality, 0, &config);
-			if (status != ASTCENC_SUCCESS)
-			{
-				printf("ERROR: Codec config init failed: %s\n", astcenc_get_error_string(status));
-				return 1;
-			}
-			#endif
-
 			else
 			{
-				// Upsupported pixel format.
 				Clear();
 				Results |= 1 << int(ResultCode::Fatal_PixelFormatNotSupported);
 				return false;
@@ -1264,7 +1325,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 						default:
 							delete[] uncompData;
 							Clear();
-							Results |= 1 << int(ResultCode::Fatal_BlockDecodeError);
+							Results |= 1 << int(ResultCode::Fatal_BCDecodeError);
 							return false;
 					}
 
@@ -1273,9 +1334,111 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 					layer->Data = (uint8*)uncompData;
 					layer->PixelFormat = tPixelFormat::R8G8B8A8;
 				}
+				else if (tImage::tIsASTCFormat(PixelFormat))
+				{
+					int blockW = 0;
+					int blockH = 0;
+					int blockD = 1;
+
+					// We use HDR profile if we detect a linear colour-space. Otherwise it's the LDR or LDR_SRGB profile.
+					astcenc_profile profile = ASTCENC_PRF_LDR;
+					if (ColourSpace == tColourSpace::Linear)
+						profile = ASTCENC_PRF_HDR_RGB_LDR_A;
+					else if (ColourSpace == tColourSpace::sRGB)
+						profile = ASTCENC_PRF_LDR_SRGB;
+
+					switch (PixelFormat)
+					{
+						case tPixelFormat::ASTC4X4:		blockW = 4;		blockH = 4;		break;
+						case tPixelFormat::ASTC5X4:		blockW = 5;		blockH = 4;		break;
+						case tPixelFormat::ASTC5X5:		blockW = 5;		blockH = 5;		break;
+						case tPixelFormat::ASTC6X5:		blockW = 6;		blockH = 5;		break;
+						case tPixelFormat::ASTC6X6:		blockW = 6;		blockH = 6;		break;
+						case tPixelFormat::ASTC8X5:		blockW = 8;		blockH = 5;		break;
+						case tPixelFormat::ASTC8X6:		blockW = 8;		blockH = 6;		break;
+						case tPixelFormat::ASTC8X8:		blockW = 8;		blockH = 8;		break;
+						case tPixelFormat::ASTC10X5:	blockW = 10;	blockH = 5;		break;
+						case tPixelFormat::ASTC10X6:	blockW = 10;	blockH = 6;		break;
+						case tPixelFormat::ASTC10X8:	blockW = 10;	blockH = 8;		break;
+						case tPixelFormat::ASTC10X10:	blockW = 10;	blockH = 10;	break;
+						case tPixelFormat::ASTC12X10:	blockW = 12;	blockH = 10;	break;
+						case tPixelFormat::ASTC12X12:	blockW = 12;	blockH = 12;	break;
+						default:														break;
+					}
+
+					if (!blockW || !blockH)
+					{
+						// astcenc_get_error_string(status) can be called for details.
+						Clear();
+						Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
+						return false;
+					}
+
+					float quality = ASTCENC_PRE_MEDIUM;			// Only need for compression.
+					astcenc_error result = ASTCENC_SUCCESS;
+
+					astcenc_config config;
+					astcenc_config_init(profile, blockW, blockH, blockD, quality, ASTCENC_FLG_DECOMPRESS_ONLY, &config);
+					if (result != ASTCENC_SUCCESS)
+					{
+						// astcenc_get_error_string(status) can be called for details.
+						Clear();
+						Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
+						return false;
+					}
+
+					astcenc_context* context = nullptr;
+					int numThreads = tMath::tMax(tSystem::tGetNumCores(), 2);
+					result = astcenc_context_alloc(&config, numThreads, &context);
+					if (result != ASTCENC_SUCCESS)
+					{
+						Clear();
+						Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
+						return false;
+					}
+
+					tColour4f* uncompData = new tColour4f[w*h];
+					astcenc_image image;
+					image.dim_x = w;
+					image.dim_y = h;
+					image.dim_z = 1;
+					image.data_type = ASTCENC_TYPE_F32;
+
+					tColour4f* slices = uncompData;
+					image.data = reinterpret_cast<void**>(&slices);
+					astcenc_swizzle swizzle { ASTCENC_SWZ_R, ASTCENC_SWZ_G, ASTCENC_SWZ_B, ASTCENC_SWZ_A };
+
+					result = astcenc_decompress_image(context, src, layer->GetDataSize(), &image, &swizzle, 0);
+					if (result != ASTCENC_SUCCESS)
+					{
+						Clear();
+						Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
+						return false;
+					}
+
+					// Convert to 32-bit RGBA.
+					tPixel* pixelData = new tPixel[w*h];
+					for (int p = 0; p < w*h; p++)
+					{
+						tColour4f col(uncompData[p]);
+						ProcessHDRFlags(col, tComp_RGB, params);
+						pixelData[p].Set(col);
+					}
+					delete[] uncompData;
+
+					// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
+					delete[] layer->Data;
+					layer->Data = (uint8*)pixelData;
+					layer->PixelFormat = tPixelFormat::R8G8B8A8;
+
+					astcenc_context_free(context);
+				}
+
 				else // Unsupported PixelFormat
 				{
-					// ASTC Would fall in this category. It's neither a BC format or a normal RGB format.
+					Clear();
+					Results |= 1 << int(ResultCode::Fatal_PixelFormatNotSupported);
+					return false;
 				}
 
 				// We've got one more chance to reverse the rows here (if we still need to) because we were asked to decode.
@@ -1341,8 +1504,9 @@ const char* tImageKTX::ResultDescriptions[] =
 	"Fatal Error. Unsupported pixel format.",
 	"Fatal Error. Invalid pixel data offset.",
 	"Fatal Error. Maximum number of mipmap levels exceeded.",
+	"Fatal Error. Unable to decode packed pixels.",
 	"Fatal Error. Unable to decode BC pixels.",
-	"Fatal Error. Unable to decode packed pixels."
+	"Fatal Error. Unable to decode ASTC pixels."
 };
 tStaticAssert(tNumElements(tImageKTX::ResultDescriptions) == int(tImageKTX::ResultCode::NumCodes));
 tStaticAssert(int(tImageKTX::ResultCode::NumCodes) <= int(tImageKTX::ResultCode::MaxCodes));

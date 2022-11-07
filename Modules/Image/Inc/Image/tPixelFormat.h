@@ -95,21 +95,7 @@ enum class tPixelFormat
 	ASTC10X10,							// 128 bits per 100 pixels. 1.28 bpp. LDR UNORM.
 	ASTC12X10,							// 128 bits per 120 pixels. 1.07 bpp. LDR UNORM.
 	ASTC12X12,							// 128 bits per 144 pixels. 0.89 bpp. LDR UNORM.
-	ASTC4X4F,							// 128 bits per 16  pixels. 8    bpp. HDR Half-float.
-	ASTC5X4F,							// 128 bits per 20  pixels. 6.4  bpp. HDR Half-float.
-	ASTC5X5F,							// 128 bits per 25  pixels. 5.12 bpp. HDR Half-float.
-	ASTC6X5F,							// 128 bits per 30  pixels. 4.27 bpp. HDR Half-float.
-	ASTC6X6F,							// 128 bits per 36  pixels. 3.56 bpp. HDR Half-float.
-	ASTC8X5F,							// 128 bits per 40  pixels. 3.2  bpp. HDR Half-float.
-	ASTC8X6F,							// 128 bits per 48  pixels. 2.67 bpp. HDR Half-float.
-	ASTC8X8F,							// 128 bits per 64  pixels. 2.56 bpp. HDR Half-float.
-	ASTC10X5F,							// 128 bits per 50  pixels. 2.13 bpp. HDR Half-float.
-	ASTC10X6F,							// 128 bits per 60  pixels. 2    bpp. HDR Half-float.
-	ASTC10X8F,							// 128 bits per 80  pixels. 1.6  bpp. HDR Half-float.
-	ASTC10X10F,							// 128 bits per 100 pixels. 1.28 bpp. HDR Half-float.
-	ASTC12X10F,							// 128 bits per 120 pixels. 1.07 bpp. HDR Half-float.
-	ASTC12X12F,							// 128 bits per 144 pixels. 0.89 bpp. HDR Half-float.
-	LastASTC			= ASTC12X12F,
+	LastASTC			= ASTC12X12,
 
 	FirstVendor,
 	RADIANCE			= FirstVendor,	// Radiance HDR.
@@ -138,7 +124,7 @@ bool tIsVendorFormat	(tPixelFormat);
 bool tIsPaletteFormat	(tPixelFormat);
 bool tIsAlphaFormat		(tPixelFormat);
 bool tIsOpaqueFormat	(tPixelFormat);
-bool tIsHDRFormat		(tPixelFormat);
+bool tSupportsHDR		(tPixelFormat);
 bool tIsLuminanceFormat	(tPixelFormat);				// Single-channel luminance formats. Includes red-only formats. Does not include alpha only.
 
 // Gets the pixel width/height of the block size specified by the pixel-format. BC blocks are all 4x4. ASTC blocks have
@@ -259,7 +245,7 @@ inline bool tImage::tIsOpaqueFormat(tPixelFormat format)
 }
 
 
-inline bool tImage::tIsHDRFormat(tPixelFormat format)
+inline bool tImage::tSupportsHDR(tPixelFormat format)
 {
 	switch (format)
 	{
@@ -274,20 +260,21 @@ inline bool tImage::tIsHDRFormat(tPixelFormat format)
 		case tPixelFormat::RADIANCE:
 		case tPixelFormat::OPENEXR:
 
-		case tPixelFormat::ASTC4X4F:
-		case tPixelFormat::ASTC5X4F:
-		case tPixelFormat::ASTC5X5F:
-		case tPixelFormat::ASTC6X5F:
-		case tPixelFormat::ASTC6X6F:
-		case tPixelFormat::ASTC8X5F:
-		case tPixelFormat::ASTC8X6F:
-		case tPixelFormat::ASTC8X8F:
-		case tPixelFormat::ASTC10X5F:
-		case tPixelFormat::ASTC10X6F:
-		case tPixelFormat::ASTC10X8F:
-		case tPixelFormat::ASTC10X10F:
-		case tPixelFormat::ASTC12X10F:
-		case tPixelFormat::ASTC12X12F:
+		// These can be LDR or HDR.
+		case tPixelFormat::ASTC4X4:
+		case tPixelFormat::ASTC5X4:
+		case tPixelFormat::ASTC5X5:
+		case tPixelFormat::ASTC6X5:
+		case tPixelFormat::ASTC6X6:
+		case tPixelFormat::ASTC8X5:
+		case tPixelFormat::ASTC8X6:
+		case tPixelFormat::ASTC8X8:
+		case tPixelFormat::ASTC10X5:
+		case tPixelFormat::ASTC10X6:
+		case tPixelFormat::ASTC10X8:
+		case tPixelFormat::ASTC10X10:
+		case tPixelFormat::ASTC12X10:
+		case tPixelFormat::ASTC12X12:
 			return true;
 	}
 

@@ -70,20 +70,6 @@ namespace tImage
 		"ASTC10X10",
 		"ASTC12X10",
 		"ASTC12X12",
-		"ASTC4X4F",
-		"ASTC5X4F",
-		"ASTC5X5F",
-		"ASTC6X5F",
-		"ASTC6X6F",
-		"ASTC8X5F",
-		"ASTC8X6F",
-		"ASTC8X8F",
-		"ASTC10X5F",
-		"ASTC10X6F",
-		"ASTC10X8F",
-		"ASTC10X10F",
-		"ASTC12X10F",
-		"ASTC12X12F",
 		
 		// Vendor-specific formats.
 		"RADIANCE",
@@ -148,21 +134,7 @@ namespace tImage
 		10,				// ASTC10X8
 		10,				// ASTC10X10
 		12,				// ASTC12X10
-		12,				// ASTC12X12
-		4,				// ASTC4X4F
-		5,				// ASTC5X4F
-		5,				// ASTC5X5F
-		6,				// ASTC6X5F
-		6,				// ASTC6X6F
-		8,				// ASTC8X5F
-		8,				// ASTC8X6F
-		8,				// ASTC8X8F
-		10,				// ASTC10X5F
-		10,				// ASTC10X6F
-		10,				// ASTC10X8F
-		10,				// ASTC10X10F
-		12,				// ASTC12X10F
-		12				// ASTC12X12F
+		12				// ASTC12X12
 	};
 	tStaticAssert(tNumElements(ASTCFormat_BlockWidth) == int(tPixelFormat::NumASTCFormats));
 
@@ -181,21 +153,7 @@ namespace tImage
 		8,				// ASTC10X8
 		10,				// ASTC10X10
 		10,				// ASTC12X10
-		12,				// ASTC12X12
-		4,				// ASTC4X4F
-		4,				// ASTC5X4F
-		5,				// ASTC5X5F
-		5,				// ASTC6X5F
-		6,				// ASTC6X6F
-		5,				// ASTC8X5F
-		6,				// ASTC8X6F
-		8,				// ASTC8X8F
-		5,				// ASTC10X5F
-		6,				// ASTC10X6F
-		8,				// ASTC10X8F
-		10,				// ASTC10X10F
-		10,				// ASTC12X10F
-		12				// ASTC12X12F
+		12				// ASTC12X12
 	};
 	tStaticAssert(tNumElements(ASTCFormat_BlockHeight) == int(tPixelFormat::NumASTCFormats));
 
