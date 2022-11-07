@@ -152,7 +152,13 @@ public:
 	// Will return the format the ktx data was in, even if you chose to decode.
 	tPixelFormat GetPixelFormatSrc() const																				{ return PixelFormatSrc; }
 
+	// Returns the current colour space.
 	tColourSpace GetColourSpace() const																					{ return ColourSpace; }
+
+	// Returns the colour space of the source file that was loaded. This may not match the current if, say, gamma
+	// correction was requested on load.
+	tColourSpace GetColourSpaceSrc() const																				{ return ColourSpaceSrc; }
+
 	tAlphaMode GetAlphaMode() const																						{ return AlphaMode; }
 
 	// The texture is considered to have alphas if it is in a pixel format that supports them. For BC1, the data is
@@ -209,7 +215,7 @@ public:
 
 	// You do not own the returned pointer.
 	tLayer* GetLayer(int layerNum, int imageNum) const																	{ return Layers[layerNum][imageNum]; }
-
+ 
 	tString Filename;
 
 private:
@@ -219,8 +225,9 @@ private:
 	tPixelFormat PixelFormat			= tPixelFormat::Invalid;
 	tPixelFormat PixelFormatSrc			= tPixelFormat::Invalid;
 
-	// These two _not_ part of the pixel format in tacent.
+	// The colour-space and alpha-mode are _not_ part of the pixel format in tacent.
 	tColourSpace ColourSpace				= tColourSpace::Unspecified;
+	tColourSpace ColourSpaceSrc				= tColourSpace::Unspecified;
 	tAlphaMode AlphaMode					= tAlphaMode::Unspecified;
 
 	bool IsCubeMap							= false;

@@ -656,6 +656,7 @@ void tImageKTX::Clear()
 	PixelFormat						= tPixelFormat::Invalid;
 	PixelFormatSrc					= tPixelFormat::Invalid;
 	ColourSpace						= tColourSpace::Unspecified;
+	ColourSpaceSrc					= tColourSpace::Unspecified;
 	AlphaMode						= tAlphaMode::Unspecified;
 	IsCubeMap						= false;
 	RowReversalOperationPerformed	= false;
@@ -827,6 +828,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 	else if (ktx2)
 		tKTX::GetFormatInfo_FromVKFormat(PixelFormat, ColourSpace, ktx2->vkFormat);
 	PixelFormatSrc = PixelFormat;
+	ColourSpaceSrc = ColourSpace;
 
 	// From now on we should just be using the PixelFormat to decide what to do next.
 	if (PixelFormat == tPixelFormat::Invalid)
@@ -936,6 +938,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 	{
 		bool spread = params.Flags & LoadFlag_SpreadLuminance;
 		bool didRowReversalAfterDecode = false;
+		bool processedHDRFlags = false;
 		for (int image = 0; image < NumImages; image++)
 		{
 			for (int layerNum = 0; layerNum < NumMipmapLayers; layerNum++)
@@ -1089,6 +1092,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 								ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
 								uncompData[ij].Set(col);
 							}
+							processedHDRFlags = true;
 							break;
 						}
 
@@ -1104,6 +1108,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 								ProcessHDRFlags(col, tComp_RG, params);
 								uncompData[ij].Set(col);
 							}
+							processedHDRFlags = true;
 							break;
 						}
 
@@ -1121,6 +1126,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 								ProcessHDRFlags(col, tComp_RGB, params);
 								uncompData[ij].Set(col);
 							}
+							processedHDRFlags = true;
 							break;
 						}
 
@@ -1135,6 +1141,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 								ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
 								uncompData[ij].Set(col);
 							}
+							processedHDRFlags = true;
 							break;
 						}
 
@@ -1150,6 +1157,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 								ProcessHDRFlags(col, tComp_RG, params);
 								uncompData[ij].Set(col);
 							}
+							processedHDRFlags = true;
 							break;
 						}
 
@@ -1167,6 +1175,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 								ProcessHDRFlags(col, tComp_RGB, params);
 								uncompData[ij].Set(col);
 							}
+							processedHDRFlags = true;
 							break;
 						}
 
@@ -1306,6 +1315,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 								ProcessHDRFlags(col, tComp_RGB, params);
 								uncompData[ij].Set(col);
 							}
+							processedHDRFlags = true;
 							delete[] rgbData;
 							break;
 						}
@@ -1342,9 +1352,9 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 
 					// We use HDR profile if we detect a linear colour-space. Otherwise it's the LDR or LDR_SRGB profile.
 					astcenc_profile profile = ASTCENC_PRF_LDR;
-					if (ColourSpace == tColourSpace::Linear)
+					if (ColourSpaceSrc == tColourSpace::Linear)
 						profile = ASTCENC_PRF_HDR_RGB_LDR_A;
-					else if (ColourSpace == tColourSpace::sRGB)
+					else if (ColourSpaceSrc == tColourSpace::sRGB)
 						profile = ASTCENC_PRF_LDR_SRGB;
 
 					switch (PixelFormat)
@@ -1424,6 +1434,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 						ProcessHDRFlags(col, tComp_RGB, params);
 						pixelData[p].Set(col);
 					}
+					processedHDRFlags = true;
 					delete[] uncompData;
 
 					// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
@@ -1456,6 +1467,12 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 
 		if (reverseRowOrderRequested && !RowReversalOperationPerformed && didRowReversalAfterDecode)
 			RowReversalOperationPerformed = true;
+
+		if (processedHDRFlags)
+		{
+			if (params.Flags & LoadFlag_SRGBCompression)  ColourSpace = tColourSpace::sRGB;
+			if (params.Flags & LoadFlag_GammaCompression) ColourSpace = tColourSpace::Gamma;
+		}
 
 		// All images decoded. Can now set the object's pixel format. We do _not_ set the PixelFormatSrc here!
 		PixelFormat = tPixelFormat::R8G8B8A8;

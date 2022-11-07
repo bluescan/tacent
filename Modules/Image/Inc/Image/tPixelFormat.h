@@ -124,7 +124,7 @@ bool tIsVendorFormat	(tPixelFormat);
 bool tIsPaletteFormat	(tPixelFormat);
 bool tIsAlphaFormat		(tPixelFormat);
 bool tIsOpaqueFormat	(tPixelFormat);
-bool tSupportsHDR		(tPixelFormat);
+bool tIsHDRFormat		(tPixelFormat);
 bool tIsLuminanceFormat	(tPixelFormat);				// Single-channel luminance formats. Includes red-only formats. Does not include alpha only.
 
 // Gets the pixel width/height of the block size specified by the pixel-format. BC blocks are all 4x4. ASTC blocks have
@@ -245,7 +245,7 @@ inline bool tImage::tIsOpaqueFormat(tPixelFormat format)
 }
 
 
-inline bool tImage::tSupportsHDR(tPixelFormat format)
+inline bool tImage::tIsHDRFormat(tPixelFormat format)
 {
 	switch (format)
 	{
@@ -259,25 +259,10 @@ inline bool tImage::tSupportsHDR(tPixelFormat format)
 		case tPixelFormat::BC6U:
 		case tPixelFormat::RADIANCE:
 		case tPixelFormat::OPENEXR:
-
-		// These can be LDR or HDR.
-		case tPixelFormat::ASTC4X4:
-		case tPixelFormat::ASTC5X4:
-		case tPixelFormat::ASTC5X5:
-		case tPixelFormat::ASTC6X5:
-		case tPixelFormat::ASTC6X6:
-		case tPixelFormat::ASTC8X5:
-		case tPixelFormat::ASTC8X6:
-		case tPixelFormat::ASTC8X8:
-		case tPixelFormat::ASTC10X5:
-		case tPixelFormat::ASTC10X6:
-		case tPixelFormat::ASTC10X8:
-		case tPixelFormat::ASTC10X10:
-		case tPixelFormat::ASTC12X10:
-		case tPixelFormat::ASTC12X12:
 			return true;
 	}
 
+	// ASTCNxM can be LDR or HDR, but since they are not guaranteed to be HDR we return false for them.
 	return false;
 }
 
