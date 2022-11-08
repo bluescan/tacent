@@ -3,7 +3,7 @@
 // This knows how to load/save animated PNGs (APNGs). It knows the details of the apng file format and loads the data
 // into multiple tPixel arrays, one for each frame. These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2020-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -26,7 +26,9 @@ namespace tImage
 
 bool tImageAPNG::IsAnimatedPNG(const tString& pngFile)
 {
-	int numBytes = 1024;
+	int numBytes = 2048;
+
+	// Remember, tLoadFileHead modifies numBytes if the file is smaller than the head-size requested.
 	uint8* headData = tSystem::tLoadFileHead(pngFile, numBytes);
 	if (!headData)
 		return false;
