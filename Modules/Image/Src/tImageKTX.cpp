@@ -43,7 +43,13 @@ namespace tKTX
 void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space, uint32 glType, uint32 glFormat, uint32 glInternalFormat)
 {
 	format = tPixelFormat::Invalid;
-	space = tColourSpace::Unspecified;
+
+	// For colour space (the space of the data) we try to make an educated guess. In general only the asset author knows the
+	// colour space. For most (non-HDR) pixel formats for colours, we assume the data is sRGB. If the pixel format has a specific
+	// sRGB alternative, we assume if it's not the alternative, that the space is linear. Floating-point formats are likewise
+	// assumed to be in linear-space (and are usually used for HDR images). In addition when the data is probably not colour data
+	// (like ATI1/2) we assume it's in linear.
+	space = tColourSpace::sRGB;
 
 	// First deal with compressed formats. For these the internal-format must be specified and can be used
 	// to determine the format of the data in the ktx file. See https://registry.khronos.org/KTX/specs/1.0/ktxspec_v1.html
@@ -69,10 +75,12 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case GL_COMPRESSED_RED_RGTC1:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::BC4ATI1;
 			break;
 
 		case GL_COMPRESSED_RG_RGTC2:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::BC5ATI2;
 			break;
 
@@ -86,15 +94,14 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			format = tPixelFormat::BC6S;
 			break;
 
-		case GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM:
-			space = tColourSpace::sRGB;
 		case GL_COMPRESSED_RGBA_BPTC_UNORM:
+			space = tColourSpace::Linear;
+		case GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM:
 			format = tPixelFormat::BC7;
 			break;
 
 		// For ASTC formats we assume linear space if SRGB not specified.
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_4x4_KHR:
-			space = tColourSpace::sRGB;
 			format = tPixelFormat::ASTC4X4;
 			break;
 		case GL_COMPRESSED_RGBA_ASTC_4x4_KHR:
@@ -103,7 +110,6 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_5x4_KHR:
-			space = tColourSpace::sRGB;
 			format = tPixelFormat::ASTC5X4;
 			break;
 		case GL_COMPRESSED_RGBA_ASTC_5x4_KHR:
@@ -112,7 +118,6 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_5x5_KHR:
-			space = tColourSpace::sRGB;
 			format = tPixelFormat::ASTC5X5;
 			break;
 		case GL_COMPRESSED_RGBA_ASTC_5x5_KHR:
@@ -121,7 +126,6 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_6x5_KHR:
-			space = tColourSpace::sRGB;
 			format = tPixelFormat::ASTC6X5;
 			break;
 		case GL_COMPRESSED_RGBA_ASTC_6x5_KHR:
@@ -130,7 +134,6 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_6x6_KHR:
-			space = tColourSpace::sRGB;
 			format = tPixelFormat::ASTC6X6;
 			break;
 		case GL_COMPRESSED_RGBA_ASTC_6x6_KHR:
@@ -139,7 +142,6 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_8x5_KHR:
-			space = tColourSpace::sRGB;
 			format = tPixelFormat::ASTC8X5;
 			break;
 		case GL_COMPRESSED_RGBA_ASTC_8x5_KHR:
@@ -148,7 +150,6 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_8x6_KHR:
-			space = tColourSpace::sRGB;
 			format = tPixelFormat::ASTC8X6;
 			break;
 		case GL_COMPRESSED_RGBA_ASTC_8x6_KHR:
@@ -157,7 +158,6 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_8x8_KHR:
-			space = tColourSpace::sRGB;
 			format = tPixelFormat::ASTC8X8;
 			break;
 		case GL_COMPRESSED_RGBA_ASTC_8x8_KHR:
@@ -166,7 +166,6 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_10x5_KHR:
-			space = tColourSpace::sRGB;
 			format = tPixelFormat::ASTC10X5;
 			break;
 		case GL_COMPRESSED_RGBA_ASTC_10x5_KHR:
@@ -175,7 +174,6 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_10x6_KHR:
-			space = tColourSpace::sRGB;
 			format = tPixelFormat::ASTC10X6;
 			break;
 		case GL_COMPRESSED_RGBA_ASTC_10x6_KHR:
@@ -184,7 +182,6 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_10x8_KHR:
-			space = tColourSpace::sRGB;
 			format = tPixelFormat::ASTC10X8;
 			break;
 		case GL_COMPRESSED_RGBA_ASTC_10x8_KHR:
@@ -193,7 +190,6 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_10x10_KHR:
-			space = tColourSpace::sRGB;
 			format = tPixelFormat::ASTC10X10;
 			break;
 		case GL_COMPRESSED_RGBA_ASTC_10x10_KHR:
@@ -202,7 +198,6 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_12x10_KHR:
-			space = tColourSpace::sRGB;
 			format = tPixelFormat::ASTC12X10;
 			break;
 		case GL_COMPRESSED_RGBA_ASTC_12x10_KHR:
@@ -211,7 +206,6 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR:
-			space = tColourSpace::sRGB;
 			format = tPixelFormat::ASTC12X12;
 			break;
 		case GL_COMPRESSED_RGBA_ASTC_12x12_KHR:
@@ -248,8 +242,8 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			switch (glType)
 			{
 				case GL_UNSIGNED_BYTE:				format = tPixelFormat::R8;				break;
-				case GL_HALF_FLOAT:					format = tPixelFormat::R16F;			break;
-				case GL_FLOAT:						format = tPixelFormat::R32F;			break;
+				case GL_HALF_FLOAT:					format = tPixelFormat::R16F;			space = tColourSpace::Linear; break;
+				case GL_FLOAT:						format = tPixelFormat::R32F;			space = tColourSpace::Linear; break;
 			}
 			break;
 		
@@ -258,8 +252,8 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			switch (glType)
 			{
 				case GL_UNSIGNED_BYTE:				format = tPixelFormat::R8G8;			break;
-				case GL_HALF_FLOAT:					format = tPixelFormat::R16G16F;			break;
-				case GL_FLOAT:						format = tPixelFormat::R32G32F;			break;
+				case GL_HALF_FLOAT:					format = tPixelFormat::R16G16F;			space = tColourSpace::Linear; break;
+				case GL_FLOAT:						format = tPixelFormat::R32G32F;			space = tColourSpace::Linear; break;
 			}
 			break;
 
@@ -277,8 +271,8 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			switch (glType)
 			{
 				case GL_UNSIGNED_BYTE:				format = tPixelFormat::R8G8B8A8;		break;
-				case GL_HALF_FLOAT:					format = tPixelFormat::R16G16B16A16F;	break;
-				case GL_FLOAT:						format = tPixelFormat::R32G32B32A32F;	break;
+				case GL_HALF_FLOAT:					format = tPixelFormat::R16G16B16A16F;	space = tColourSpace::Linear; break;
+				case GL_FLOAT:						format = tPixelFormat::R32G32B32A32F;	space = tColourSpace::Linear; break;
 			}
 			break;
 
@@ -307,7 +301,13 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourSpace& space, uint32 vkFormat)
 {
 	format = tPixelFormat::Invalid;
-	space = tColourSpace::Unspecified;
+
+	// For colour space (the space of the data) we try to make an educated guess. In general only the asset author knows the
+	// colour space. For most (non-HDR) pixel formats for colours, we assume the data is sRGB. If the pixel format has a specific
+	// sRGB alternative, we assume if it's not the alternative, that the space is linear. Floating-point formats are likewise
+	// assumed to be in linear-space (and are usually used for HDR images). In addition when the data is probably not colour data
+	// (like ATI1/2) we assume it's in linear.
+	space = tColourSpace::sRGB;
 
 	switch (vkFormat)
 	{
@@ -329,165 +329,125 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourSpace& space,
 		// Which one is correct? AMD's compressonator, after converting an EXR to ASTCif it can't guarantee blocks won't return values above 1.0 (i.e. an HDR image).
 		//
 		// For now I'm going to assume VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT is unused and unless SRGB is in the name, it's linear space (HDR).
-		case VK_FORMAT_ASTC_4x4_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
-			format = tPixelFormat::ASTC4X4;
-			break;
 		case VK_FORMAT_ASTC_4x4_UNORM_BLOCK:
 			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_4x4_SRGB_BLOCK:
 			format = tPixelFormat::ASTC4X4;
 			break;
 
-		case VK_FORMAT_ASTC_5x4_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
-			format = tPixelFormat::ASTC5X4;
-			break;
 		case VK_FORMAT_ASTC_5x4_UNORM_BLOCK:
 			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_5x4_SRGB_BLOCK:
 			format = tPixelFormat::ASTC5X4;
 			break;
 
-		case VK_FORMAT_ASTC_5x5_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
-			format = tPixelFormat::ASTC5X5;
-			break;
 		case VK_FORMAT_ASTC_5x5_UNORM_BLOCK:
 			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_5x5_SRGB_BLOCK:
 			format = tPixelFormat::ASTC5X5;
 			break;
 
-		case VK_FORMAT_ASTC_6x5_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
-			format = tPixelFormat::ASTC6X5;
-			break;
 		case VK_FORMAT_ASTC_6x5_UNORM_BLOCK:
 			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_6x5_SRGB_BLOCK:
 			format = tPixelFormat::ASTC6X5;
 			break;
 
-		case VK_FORMAT_ASTC_6x6_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
-			format = tPixelFormat::ASTC6X6;
-			break;
 		case VK_FORMAT_ASTC_6x6_UNORM_BLOCK:
 			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_6x6_SRGB_BLOCK:
 			format = tPixelFormat::ASTC6X6;
 			break;
 
-		case VK_FORMAT_ASTC_8x5_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
-			format = tPixelFormat::ASTC8X5;
-			break;
 		case VK_FORMAT_ASTC_8x5_UNORM_BLOCK:
 			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_8x5_SRGB_BLOCK:
 			format = tPixelFormat::ASTC8X5;
 			break;
 
-		case VK_FORMAT_ASTC_8x6_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
-			format = tPixelFormat::ASTC8X6;
-			break;
 		case VK_FORMAT_ASTC_8x6_UNORM_BLOCK:
 			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_8x6_SRGB_BLOCK:
 			format = tPixelFormat::ASTC8X6;
 			break;
 
-		case VK_FORMAT_ASTC_8x8_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
-			format = tPixelFormat::ASTC8X8;
-			break;
 		case VK_FORMAT_ASTC_8x8_UNORM_BLOCK:
 			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_8x8_SRGB_BLOCK:
 			format = tPixelFormat::ASTC8X8;
 			break;
 
-		case VK_FORMAT_ASTC_10x5_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
-			format = tPixelFormat::ASTC10X5;
-			break;
 		case VK_FORMAT_ASTC_10x5_UNORM_BLOCK:
 			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_10x5_SRGB_BLOCK:
 			format = tPixelFormat::ASTC10X5;
 			break;
 
-		case VK_FORMAT_ASTC_10x6_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
-			format = tPixelFormat::ASTC10X6;
-			break;
 		case VK_FORMAT_ASTC_10x6_UNORM_BLOCK:
 			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_10x6_SRGB_BLOCK:
 			format = tPixelFormat::ASTC10X6;
 			break;
 
-		case VK_FORMAT_ASTC_10x8_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
-			format = tPixelFormat::ASTC10X8;
-			break;
 		case VK_FORMAT_ASTC_10x8_UNORM_BLOCK:
 			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_10x8_SRGB_BLOCK:
 			format = tPixelFormat::ASTC10X8;
 			break;
 
-		case VK_FORMAT_ASTC_10x10_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
-			format = tPixelFormat::ASTC10X10;
-			break;
 		case VK_FORMAT_ASTC_10x10_UNORM_BLOCK:
 			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_10x10_SRGB_BLOCK:
 			format = tPixelFormat::ASTC10X10;
 			break;
 
-		case VK_FORMAT_ASTC_12x10_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
-			format = tPixelFormat::ASTC12X10;
-			break;
 		case VK_FORMAT_ASTC_12x10_UNORM_BLOCK:
 			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_12x10_SRGB_BLOCK:
 			format = tPixelFormat::ASTC12X10;
 			break;
 
-		case VK_FORMAT_ASTC_12x12_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
-			format = tPixelFormat::ASTC12X12;
-			break;
 		case VK_FORMAT_ASTC_12x12_UNORM_BLOCK:
 			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_12x12_SRGB_BLOCK:
 			format = tPixelFormat::ASTC12X12;
 			break;
 
-		case VK_FORMAT_BC1_RGB_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
 		case VK_FORMAT_BC1_RGB_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_BC1_RGB_SRGB_BLOCK:
 			format = tPixelFormat::BC1DXT1;
 			break;
 
-		case VK_FORMAT_BC1_RGBA_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
 		case VK_FORMAT_BC1_RGBA_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_BC1_RGBA_SRGB_BLOCK:
 			format = tPixelFormat::BC1DXT1A;
 			break;
 
-		case VK_FORMAT_BC2_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
 		case VK_FORMAT_BC2_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_BC2_SRGB_BLOCK:
 			format = tPixelFormat::BC2DXT2DXT3;
 			break;
 
-		case VK_FORMAT_BC3_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
 		case VK_FORMAT_BC3_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_BC3_SRGB_BLOCK:
 			format = tPixelFormat::BC3DXT4DXT5;
 			break;
 
 		case VK_FORMAT_BC4_SNORM_BLOCK:				// Signed not supported yet.
 			break;
 		case VK_FORMAT_BC4_UNORM_BLOCK:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::BC4ATI1;
 			break;
 
 		case VK_FORMAT_BC5_SNORM_BLOCK:				// Signed not supported yet.
 			break;
 		case VK_FORMAT_BC5_UNORM_BLOCK:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::BC5ATI2;
 			break;
 
@@ -501,9 +461,9 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourSpace& space,
 			format = tPixelFormat::BC6U;
 			break;
 
-		case VK_FORMAT_BC7_SRGB_BLOCK:
-			space = tColourSpace::sRGB;
 		case VK_FORMAT_BC7_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_BC7_SRGB_BLOCK:
 			format = tPixelFormat::BC7;
 			break;
 
@@ -511,73 +471,73 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourSpace& space,
 		// There is no difference in storage between UNORM (unsigned normalized) and UINT. The only difference is
 		// when the texture is bound, the UNORM textures get their component values converted to floats in [0.0, 1.0],
 		// whereas the UINT textures would just have the int returned by a shader texture sampler.
-		case VK_FORMAT_R8_SRGB:					// UNORM?
-			space = tColourSpace::sRGB;
-		case VK_FORMAT_R8_UNORM:
-		case VK_FORMAT_R8_UINT:
 		// Not implemented yet.
 		// VK_FORMAT_R8_SNORM
 		// VK_FORMAT_R8_USCALED
 		// VK_FORMAT_R8_SSCALED
 		// VK_FORMAT_R8_SINT
+		case VK_FORMAT_R8_UNORM:
+		case VK_FORMAT_R8_UINT:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_R8_SRGB:					// UNORM?
 			format = tPixelFormat::R8;
 			break;
 
-		case VK_FORMAT_R8G8_SRGB:
-			space = tColourSpace::sRGB;
-		case VK_FORMAT_R8G8_UNORM:
-		case VK_FORMAT_R8G8_UINT:
 		// Not implemented yet.
 		// VK_FORMAT_R8G8_SNORM
 		// VK_FORMAT_R8G8_USCALED
 		// VK_FORMAT_R8G8_SSCALED
 		// VK_FORMAT_R8G8_SINT
+		case VK_FORMAT_R8G8_UNORM:
+		case VK_FORMAT_R8G8_UINT:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_R8G8_SRGB:
 			format = tPixelFormat::R8G8;
 			break;
 
-		case VK_FORMAT_R8G8B8_SRGB:
-			space = tColourSpace::sRGB;
-		case VK_FORMAT_R8G8B8_UNORM:
-		case VK_FORMAT_R8G8B8_UINT:
 		// Not implemented yet.
 		// VK_FORMAT_R8G8B8_SNORM
 		// VK_FORMAT_R8G8B8_USCALED
 		// VK_FORMAT_R8G8B8_SSCALED
 		// VK_FORMAT_R8G8B8_SINT
+		case VK_FORMAT_R8G8B8_UNORM:
+		case VK_FORMAT_R8G8B8_UINT:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_R8G8B8_SRGB:
 			format = tPixelFormat::R8G8B8;
 			break;
 		
-		case VK_FORMAT_R8G8B8A8_SRGB:
-			space = tColourSpace::sRGB;
-		case VK_FORMAT_R8G8B8A8_UNORM:
-		case VK_FORMAT_R8G8B8A8_UINT:
 		// Not implemented yet.
 		// VK_FORMAT_R8G8B8A8_SNORM
 		// VK_FORMAT_R8G8B8A8_USCALED
 		// VK_FORMAT_R8G8B8A8_SSCALED
 		// VK_FORMAT_R8G8B8A8_SINT
+		case VK_FORMAT_R8G8B8A8_UNORM:
+		case VK_FORMAT_R8G8B8A8_UINT:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_R8G8B8A8_SRGB:
 			format = tPixelFormat::R8G8B8A8;
 			break;
 
-		case VK_FORMAT_B8G8R8_SRGB:
-			space = tColourSpace::sRGB;
-		case VK_FORMAT_B8G8R8_UNORM:
-		case VK_FORMAT_B8G8R8_UINT:
 		// VK_FORMAT_B8G8R8_SNORM
 		// VK_FORMAT_B8G8R8_USCALED
 		// VK_FORMAT_B8G8R8_SSCALED
 		// VK_FORMAT_B8G8R8_SINT
+		case VK_FORMAT_B8G8R8_UNORM:
+		case VK_FORMAT_B8G8R8_UINT:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_B8G8R8_SRGB:
 			format = tPixelFormat::B8G8R8;
 			break;
 
-		case VK_FORMAT_B8G8R8A8_SRGB:
-			space = tColourSpace::sRGB;
-		case VK_FORMAT_B8G8R8A8_UNORM:
-		case VK_FORMAT_B8G8R8A8_UINT:
 		// VK_FORMAT_B8G8R8A8_SNORM
 		// VK_FORMAT_B8G8R8A8_USCALED
 		// VK_FORMAT_B8G8R8A8_SSCALED
 		// VK_FORMAT_B8G8R8A8_SINT
+		case VK_FORMAT_B8G8R8A8_UNORM:
+		case VK_FORMAT_B8G8R8A8_UINT:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_B8G8R8A8_SRGB:
 			format = tPixelFormat::B8G8R8A8;
 			break;
 
@@ -594,26 +554,32 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourSpace& space,
 			break;
 
 		case VK_FORMAT_R16_SFLOAT:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R16F;
 			break;
 
 		case VK_FORMAT_R16G16_SFLOAT:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R16G16F;
 			break;
 
 		case VK_FORMAT_R16G16B16A16_SFLOAT:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R16G16B16A16F;
 			break;
 
 		case VK_FORMAT_R32_SFLOAT:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R32F;
 			break;
 
 		case VK_FORMAT_R32G32_SFLOAT:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R32G32F;
 			break;
 
 		case VK_FORMAT_R32G32B32A32_SFLOAT:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R32G32B32A32F;
 			break;
 	}
@@ -774,9 +740,10 @@ bool tImageKTX::Load(const tString& ktxFile, const LoadParams& loadParams)
 }
 
 
-bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& params)
+bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& paramsIn)
 {
 	Clear();
+	LoadParams params(paramsIn);
 
 	ktx_error_code_e result = KTX_SUCCESS;
 	ktxTexture* texture = nullptr;
@@ -931,12 +898,36 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 		}
 	}
 
-	// Decode to 32-bit RGBA if requested. If we're already in the correct R8G8B8A8 format, no need to do anything.
-	// Note, gamma-correct load flag only applies when decoding HDR/floating-point formats, so never any need to do
-	// it on R8G8B8A8. Likewise for spread-flag, never applies to R8G8B8A8 (only R-only or L-only formats)..
+	// Decode to 32-bit RGBA if requested. If we're already in the correct R8G8B8A8 format, no need to do anything.	
 	if ((params.Flags & LoadFlag_Decode) && (PixelFormat != tPixelFormat::R8G8B8A8))
 	{
+		// Spread only applies to single-channel (R-only or L-only) formats.
 		bool spread = params.Flags & LoadFlag_SpreadLuminance;
+
+		// The gamma-compression load flags only apply when decoding. If the gamma mode is auto, we determine here
+		// whether to apply sRGB compression. If the space is linear and a format that often encodes colours, we apply it.
+		if (params.Flags & LoadFlag_AutoGamma)
+		{
+			// Clear all related flags.
+			params.Flags &= ~(LoadFlag_AutoGamma | LoadFlag_SRGBCompression | LoadFlag_GammaCompression);
+			if (ColourSpace == tColourSpace::Linear)
+			{
+				// Just cuz it's linear doesn't mean we want to gamma transform. Some formats should be kept linear.
+				if
+				(
+					(PixelFormat != tPixelFormat::A8) && (PixelFormat != tPixelFormat::A8L8) &&
+					(PixelFormat != tPixelFormat::BC4ATI1) && (PixelFormat != tPixelFormat::BC5ATI2)
+				)
+					params.Flags |= LoadFlag_SRGBCompression;
+
+				// It's very unclear whether to auto-gamma-compress the R and RG formats. For now we are only
+				// going to compress if it's the single channel (R) format and 'spread' is true -- since that
+				// would usually mean something like luminance was being stored there (which needs g-compression).
+				if (((PixelFormat == tPixelFormat::R16F) || (PixelFormat == tPixelFormat::R32F)) && spread)
+					params.Flags |= LoadFlag_SRGBCompression;	
+			}
+		}
+
 		bool didRowReversalAfterDecode = false;
 		bool processedHDRFlags = false;
 		for (int image = 0; image < NumImages; image++)

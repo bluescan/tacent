@@ -743,7 +743,6 @@ tTestUnit(ImageDDS)
 	uint32 revrow = tImageDDS::LoadFlag_ReverseRowOrder;
 	uint32 spread = tImageDDS::LoadFlag_SpreadLuminance;
 	uint32 gammac = tImageDDS::LoadFlag_SRGBCompression;
-	// uint32 gammac = tImageDDS::LoadFlag_GammaCompression;
 
 	//
 	// Block Compressed Formats.
@@ -888,10 +887,18 @@ tTestUnit(ImageDDS)
 // Helper for ImageKTX (V1 and V2) unit tests.
 void KTXLoadDecodeSave(const tString& ktxfile, uint32 loadFlags = 0, bool saveAllMips = false)
 {
+	// We're just going to turn on auto-gamma-compression for all files.
+	loadFlags |= tImageKTX::LoadFlag_AutoGamma;
+
 	tString basename = tSystem::tGetFileBaseName(ktxfile);
 	tString savename = basename + "_";
 	savename += (loadFlags & tImageKTX::LoadFlag_Decode)			? "D" : "x";
-	savename += ((loadFlags & tImageKTX::LoadFlag_GammaCompression) || (loadFlags & tImageKTX::LoadFlag_SRGBCompression)) ? "G" : "x";
+	if ((loadFlags & tImageKTX::LoadFlag_GammaCompression) || (loadFlags & tImageKTX::LoadFlag_SRGBCompression))
+		savename += "G";
+	else if (loadFlags & tImageKTX::LoadFlag_AutoGamma)
+		savename += "g";
+	else
+		savename += "x";
 	savename += (loadFlags & tImageKTX::LoadFlag_ReverseRowOrder)	? "R" : "x";
 	savename += (loadFlags & tImageKTX::LoadFlag_SpreadLuminance)	? "S" : "x";
 	tPrintf("KTX Load %s\n", savename.Chr());
@@ -958,15 +965,13 @@ tTestUnit(ImageKTX1)
 	uint32 decode = tImageKTX::LoadFlag_Decode;
 	uint32 revrow = tImageKTX::LoadFlag_ReverseRowOrder;
 	uint32 spread = tImageKTX::LoadFlag_SpreadLuminance;
-	uint32 gammac = tImageKTX::LoadFlag_SRGBCompression;
-	// uint32 gammac = tImageKTX::LoadFlag_GammaCompression;
 
 	//
 	// Block Compressed Formats.
 	//
 	tPrintf("Testing KTX V1 Loading/Decoding Using LibKTX %s\n\n", tImage::Version_LibKTX);
 	tPrintf("D = Decode\n");
-	tPrintf("G = Gamma Compression\n");
+	tPrintf("G = Explicit Gamma or sRGB Compression. g = auto\n");
 	tPrintf("R = Reverse Row Order\n");
 	tPrintf("S = Spread Luminance\n");
 
@@ -989,8 +994,8 @@ tTestUnit(ImageKTX1)
 	KTXLoadDecodeSave("BC5ATI2_RG.ktx", decode | revrow);
 
 	// BC6
-	KTXLoadDecodeSave("BC6u_RGB.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("BC6s_RGB.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("BC6u_RGB.ktx", decode | revrow);
+	KTXLoadDecodeSave("BC6s_RGB.ktx", decode | revrow);
 
 	// BC7
 	KTXLoadDecodeSave("BC7_RGBA.ktx", decode | revrow);
@@ -998,27 +1003,27 @@ tTestUnit(ImageKTX1)
 	//
 	// ASTC
 	//
-	KTXLoadDecodeSave("ASTC4x4_HDRRGBA.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC5x4_HDRRGBA.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC5x5_HDRRGBA.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC6x5_HDRRGBA.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC6x6_HDRRGBA.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC8x5_HDRRGBA.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC8x6_HDRRGBA.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC8x8_HDRRGBA.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC10x5_HDRRGBA.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC10x6_HDRRGBA.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC10x8_HDRRGBA.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC10x10_HDRRGBA.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC12x10_HDRRGBA.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC12x12_HDRRGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC4x4_HDRRGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("ASTC5x4_HDRRGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("ASTC5x5_HDRRGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("ASTC6x5_HDRRGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("ASTC6x6_HDRRGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("ASTC8x5_HDRRGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("ASTC8x6_HDRRGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("ASTC8x8_HDRRGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("ASTC10x5_HDRRGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("ASTC10x6_HDRRGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("ASTC10x8_HDRRGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("ASTC10x10_HDRRGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("ASTC12x10_HDRRGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("ASTC12x12_HDRRGBA.ktx", decode | revrow);
 
 	//
 	// Uncompressed Formats.
 	//
 	KTXLoadDecodeSave("R8G8B8A8_RGBA.ktx", decode | revrow );
-	KTXLoadDecodeSave("R16G16B16A16f_RGBA.ktx", decode | revrow | gammac);
-	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx", decode | revrow | gammac);
+	KTXLoadDecodeSave("R16G16B16A16f_RGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx", decode | revrow);
 
 	// Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
 	// This time, since not decoding, it may be impossible to reverse the rows, so we can also expect
@@ -1051,8 +1056,8 @@ tTestUnit(ImageKTX1)
 	KTXLoadDecodeSave("ASTC12x10_HDRRGBA.ktx", revrow);			// No reverse.
 	KTXLoadDecodeSave("ASTC12x12_HDRRGBA.ktx", revrow);			// No reverse.
 	KTXLoadDecodeSave("R8G8B8A8_RGBA.ktx", revrow);				// Will write a tga even without decode since it's already in correct format.
-	KTXLoadDecodeSave("R16G16B16A16f_RGBA.ktx", revrow | gammac);
-	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx", revrow | gammac);
+	KTXLoadDecodeSave("R16G16B16A16f_RGBA.ktx", revrow);
+	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx", revrow);
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }
@@ -1068,12 +1073,10 @@ tTestUnit(ImageKTX2)
 	uint32 decode = tImageKTX::LoadFlag_Decode;
 	uint32 revrow = tImageKTX::LoadFlag_ReverseRowOrder;
 	uint32 spread = tImageKTX::LoadFlag_SpreadLuminance;
-	uint32 gammac = tImageKTX::LoadFlag_SRGBCompression;
-	// uint32 gammac = tImageKTX::LoadFlag_GammaCompression;
 
 	tPrintf("Testing KTX2 Loading/Decoding Using LibKTX %s\n\n", tImage::Version_LibKTX);
 	tPrintf("D = Decode\n");
-	tPrintf("G = Gamma Compression\n");
+	tPrintf("G = Explicit Gamma or sRGB Compression. g = auto\n");
 	tPrintf("R = Reverse Row Order\n");
 	tPrintf("S = Spread Luminance\n");
 
@@ -1099,7 +1102,7 @@ tTestUnit(ImageKTX2)
 	KTXLoadDecodeSave("BC5ATI2_RG.ktx2", decode | revrow);
 
 	// BC6
-	KTXLoadDecodeSave("BC6s_RGB.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("BC6s_RGB.ktx2", decode | revrow);
 
 	// BC7
 	KTXLoadDecodeSave("BC7_RGBA.ktx2", decode | revrow, true);
@@ -1124,20 +1127,20 @@ tTestUnit(ImageKTX2)
 	KTXLoadDecodeSave("ASTC12x10_RGBA.ktx2", decode | revrow);
 	KTXLoadDecodeSave("ASTC12x12_RGBA.ktx2", decode | revrow);
 
-	KTXLoadDecodeSave("ASTC4x4_HDRRGBA.ktx2", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC5x4_HDRRGBA.ktx2", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC5x5_HDRRGBA.ktx2", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC6x5_HDRRGBA.ktx2", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC6x6_HDRRGBA.ktx2", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC8x5_HDRRGBA.ktx2", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC8x6_HDRRGBA.ktx2", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC8x8_HDRRGBA.ktx2", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC10x5_HDRRGBA.ktx2", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC10x6_HDRRGBA.ktx2", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC10x8_HDRRGBA.ktx2", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC10x10_HDRRGBA.ktx2", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC12x10_HDRRGBA.ktx2", decode | revrow | gammac);
-	KTXLoadDecodeSave("ASTC12x12_HDRRGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("ASTC4x4_HDRRGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC5x4_HDRRGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC5x5_HDRRGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC6x5_HDRRGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC6x6_HDRRGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC8x5_HDRRGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC8x6_HDRRGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC8x8_HDRRGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC10x5_HDRRGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC10x6_HDRRGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC10x8_HDRRGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC10x10_HDRRGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC12x10_HDRRGBA.ktx2", decode | revrow);
+	KTXLoadDecodeSave("ASTC12x12_HDRRGBA.ktx2", decode | revrow);
 
 	//
 	// Uncompressed Integer Formats.
@@ -1159,24 +1162,24 @@ tTestUnit(ImageKTX2)
 	// Uncompressed Floating-Point (HDR) Formats.
 	//
 	// R16F
-	KTXLoadDecodeSave("R16f_R.ktx2", decode | revrow | gammac);
-	KTXLoadDecodeSave("R16f_R.ktx2", decode | revrow | gammac | spread);
+	KTXLoadDecodeSave("R16f_R.ktx2", decode | revrow);
+	KTXLoadDecodeSave("R16f_R.ktx2", decode | revrow | spread);
 
 	// R16G16F
-	KTXLoadDecodeSave("R16G16f_RG.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("R16G16f_RG.ktx2", decode | revrow);
 
 	// R16G16B16A16F
-	KTXLoadDecodeSave("R16G16B16A16f_RGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("R16G16B16A16f_RGBA.ktx2", decode | revrow);
 
 	// R32F
-	KTXLoadDecodeSave("R32f_R.ktx2", decode | revrow | gammac);
-	KTXLoadDecodeSave("R32f_R.ktx2", decode | revrow | gammac | spread);
+	KTXLoadDecodeSave("R32f_R.ktx2", decode | revrow);
+	KTXLoadDecodeSave("R32f_R.ktx2", decode | revrow | spread);
 
 	// R32G32F
-	KTXLoadDecodeSave("R32G32f_RG.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("R32G32f_RG.ktx2", decode | revrow);
 
 	// R32G32B32A32F
-	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx2", decode | revrow | gammac);
+	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx2", decode | revrow);
 
 	// Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
 	// This time, since not decoding, it may be impossible to reverse the rows, so we can also expect
