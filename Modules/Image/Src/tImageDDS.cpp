@@ -18,9 +18,11 @@
 
 #include <Foundation/tString.h>
 #include <Foundation/tHalf.h>
+#include <System/tMachine.h>
 #include "Image/tImageDDS.h"
 #include "Image/tPixelUtil.h"
 #include "bcdec/bcdec.h"
+#include "astcenc.h"
 namespace tImage
 {
 
@@ -374,10 +376,69 @@ namespace tDDS
 		DXGIFMT_P8,
 		DXGIFMT_A8P8,
 		DXGIFMT_B4G4R4A4_UNORM,				// 115
-		
+
 		DXGIFMT_P208						= 130,
 		DXGIFMT_V208,
 		DXGIFMT_V408,
+
+		// These ASTC formats are extended DXGI formats not (yet?) officially supported by microsoft.
+		// The NVTT exporter uses the UNORM versions of these (dx10 header only) when exporting ASTC dds files.
+		DXGIFMT_EXT_ASTC_4X4_TYPELESS		= 133,
+		DXGIFMT_EXT_ASTC_4X4_UNORM,
+		DXGIFMT_EXT_ASTC_4X4_UNORM_SRGB,
+
+		DXGIFMT_EXT_ASTC_5X4_TYPELESS		= 137,
+		DXGIFMT_EXT_ASTC_5X4_UNORM,
+		DXGIFMT_EXT_ASTC_5X4_UNORM_SRGB,
+
+		DXGIFMT_EXT_ASTC_5X5_TYPELESS		= 141,
+		DXGIFMT_EXT_ASTC_5X5_UNORM,
+		DXGIFMT_EXT_ASTC_5X5_UNORM_SRGB,
+
+		DXGIFMT_EXT_ASTC_6X5_TYPELESS		= 145,
+		DXGIFMT_EXT_ASTC_6X5_UNORM,
+		DXGIFMT_EXT_ASTC_6X5_UNORM_SRGB,
+
+		DXGIFMT_EXT_ASTC_6X6_TYPELESS		= 149,
+		DXGIFMT_EXT_ASTC_6X6_UNORM,
+		DXGIFMT_EXT_ASTC_6X6_UNORM_SRGB,
+
+		DXGIFMT_EXT_ASTC_8X5_TYPELESS		= 153,
+		DXGIFMT_EXT_ASTC_8X5_UNORM,
+		DXGIFMT_EXT_ASTC_8X5_UNORM_SRGB,
+
+		DXGIFMT_EXT_ASTC_8X6_TYPELESS		= 157,
+		DXGIFMT_EXT_ASTC_8X6_UNORM,
+		DXGIFMT_EXT_ASTC_8X6_UNORM_SRGB,
+
+		DXGIFMT_EXT_ASTC_8X8_TYPELESS		= 161,
+		DXGIFMT_EXT_ASTC_8X8_UNORM,
+		DXGIFMT_EXT_ASTC_8X8_UNORM_SRGB,
+
+		DXGIFMT_EXT_ASTC_10X5_TYPELESS		= 165,
+		DXGIFMT_EXT_ASTC_10X5_UNORM,
+		DXGIFMT_EXT_ASTC_10X5_UNORM_SRGB,
+
+		DXGIFMT_EXT_ASTC_10X6_TYPELESS		= 169,
+		DXGIFMT_EXT_ASTC_10X6_UNORM,
+		DXGIFMT_EXT_ASTC_10X6_UNORM_SRGB,
+
+		DXGIFMT_EXT_ASTC_10X8_TYPELESS		= 173,
+		DXGIFMT_EXT_ASTC_10X8_UNORM,
+		DXGIFMT_EXT_ASTC_10X8_UNORM_SRGB,
+
+		DXGIFMT_EXT_ASTC_10X10_TYPELESS		= 177,
+		DXGIFMT_EXT_ASTC_10X10_UNORM,
+		DXGIFMT_EXT_ASTC_10X10_UNORM_SRGB,
+
+		DXGIFMT_EXT_ASTC_12X10_TYPELESS		= 181,
+		DXGIFMT_EXT_ASTC_12X10_UNORM,
+		DXGIFMT_EXT_ASTC_12X10_UNORM_SRGB,
+
+		DXGIFMT_EXT_ASTC_12X12_TYPELESS		= 185,
+		DXGIFMT_EXT_ASTC_12X12_UNORM,
+		DXGIFMT_EXT_ASTC_12X12_UNORM_SRGB,
+
 		DXGIFMT_FORCE_UINT					= 0xffffffff
 	};
 
@@ -439,23 +500,32 @@ namespace tDDS
 void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourSpace& space, tAlphaMode& alpha, uint32 dxgiFormat)
 {
 	format = tPixelFormat::Invalid;
-	space = tColourSpace::Unspecified;
 	alpha = tAlphaMode::Unspecified;
+
+	// For colour space (the space of the data) we try to make an educated guess. In general only the asset author knows the
+	// colour space. For most (non-HDR) pixel formats for colours, we assume the data is sRGB. If the pixel format has a specific
+	// sRGB alternative, we _should_ assume if it's not the alternative, that the space is linear -- however many dds files in
+	// the wild set them as UNORM rather than UNORM_SRGB. NVTT for example uses  use the UNORM (non sRGB) format for all ASTC
+	// compressed textures, when it probably should have gone with the sRGB variant (i.e. They 'usually' encode colours).
+	// Floating-point formats are assumed to be in linear-space (and are usually used for HDR images). In addition when the data
+	// is probably not colour data (like ATI1/2) we assume it's in linear.
+	space = tColourSpace::sRGB;
 
 	switch (dxgiFormat)
 	{
-		case tDDS::DXGIFMT_BC1_UNORM_SRGB:
-			space = tColourSpace::sRGB;
+		//
+		// BC Formats.
+		//
 		case tDDS::DXGIFMT_BC1_TYPELESS:
 		case tDDS::DXGIFMT_BC1_UNORM:
+		case tDDS::DXGIFMT_BC1_UNORM_SRGB:
 			format = tPixelFormat::BC1DXT1;
 			break;
 
 		// DXGI formats do not specify premultiplied alpha mode like DXT2/3 so we leave it unspecified.
-		case tDDS::DXGIFMT_BC2_UNORM_SRGB:
-			space = tColourSpace::sRGB;
 		case tDDS::DXGIFMT_BC2_TYPELESS:
 		case tDDS::DXGIFMT_BC2_UNORM:
+		case tDDS::DXGIFMT_BC2_UNORM_SRGB:
 			format = tPixelFormat::BC2DXT2DXT3;
 			break;
 
@@ -464,44 +534,48 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourSpace& spac
 		// I mean if the DirectX loader 'treats' it as being sRGB (in that it will convert it to linear), then we should
 		// treat it as being sRGB data in general. Of course it could just be a recipe for apple pie, and if it is, it is
 		// a recipe the authors wanted interpreted as sRGB data, otherwise they wouldn't have chosen the _SRGB pixel format.
-		case tDDS::DXGIFMT_BC3_UNORM_SRGB:
-			space = tColourSpace::sRGB;
 		case tDDS::DXGIFMT_BC3_TYPELESS:
 		case tDDS::DXGIFMT_BC3_UNORM:
+		case tDDS::DXGIFMT_BC3_UNORM_SRGB:
 			format = tPixelFormat::BC3DXT4DXT5;
 			break;
 
 		// case DXGIFMT_BC4_SNORM:
 		case tDDS::DXGIFMT_BC4_TYPELESS:
 		case tDDS::DXGIFMT_BC4_UNORM:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::BC4ATI1;
 			break;
 
 		// case DXGIFMT_BC5_SNORM:
 		case tDDS::DXGIFMT_BC5_TYPELESS:
 		case tDDS::DXGIFMT_BC5_UNORM:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::BC5ATI2;
 			break;
 
 		case tDDS::DXGIFMT_BC6H_TYPELESS:			// Interpret typeless as BC6H_S16... we gotta choose something.
 		case tDDS::DXGIFMT_BC6H_SF16:
-			format = tPixelFormat::BC6S;
 			space = tColourSpace::Linear;
+			format = tPixelFormat::BC6S;
 			break;
 
 		case tDDS::DXGIFMT_BC6H_UF16:
-			format = tPixelFormat::BC6U;
 			space = tColourSpace::Linear;
+			format = tPixelFormat::BC6U;
 			break;
 
-		case tDDS::DXGIFMT_BC7_UNORM_SRGB:
-			space = tColourSpace::sRGB;
 		case tDDS::DXGIFMT_BC7_TYPELESS:			// Interpret typeless as BC7_UNORM... we gotta choose something.
 		case tDDS::DXGIFMT_BC7_UNORM:
+		case tDDS::DXGIFMT_BC7_UNORM_SRGB:
 			format = tPixelFormat::BC7;
 			break;
 
+		//
+		// Packed Formats.
+		//
 		case tDDS::DXGIFMT_A8_UNORM:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::A8;
 			break;
 
@@ -510,6 +584,7 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourSpace& spac
 		case tDDS::DXGIFMT_R8_TYPELESS:
 		// DXGIFMT_R8_SNORM not implemented yet.
 		// DXGIFMT_R8_SINT  not implemented yet.
+		// It 'probably' makes more sense to consider this format as sRGB even though it's only one channel.
 			format = tPixelFormat::R8;
 			break;
 
@@ -518,11 +593,11 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourSpace& spac
 		case tDDS::DXGIFMT_R8G8_TYPELESS:
 		// DXGIFMT_R8G8_SNORM not implemented yet.
 		// DXGIFMT_R8G8_SINT  not implemented yet.
+		// It 'probably' makes more sense to consider this format as sRGB even though it's only one channel.
 			format = tPixelFormat::R8G8;
 			break;
 
 		case tDDS::DXGIFMT_R8G8B8A8_UNORM_SRGB:
-			space = tColourSpace::sRGB;
 		case tDDS::DXGIFMT_R8G8B8A8_UNORM:
 		case tDDS::DXGIFMT_R8G8B8A8_UINT:
 		case tDDS::DXGIFMT_R8G8B8A8_TYPELESS:
@@ -532,7 +607,6 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourSpace& spac
 			break;
 
 		case tDDS::DXGIFMT_B8G8R8A8_UNORM_SRGB:
-			space = tColourSpace::sRGB;
 		case tDDS::DXGIFMT_B8G8R8A8_UNORM:
 		case tDDS::DXGIFMT_B8G8R8A8_TYPELESS:
 			format = tPixelFormat::B8G8R8A8;
@@ -551,27 +625,126 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourSpace& spac
 			break;
 
 		case tDDS::DXGIFMT_R16_FLOAT:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R16F;
 			break;
 
 		case tDDS::DXGIFMT_R16G16_FLOAT:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R16G16F;
 			break;
 
 		case tDDS::DXGIFMT_R16G16B16A16_FLOAT:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R16G16B16A16F;
 			break;
 
 		case tDDS::DXGIFMT_R32_FLOAT:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R32F;
 			break;
 
 		case tDDS::DXGIFMT_R32G32_FLOAT:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R32G32F;
 			break;
 
 		case tDDS::DXGIFMT_R32G32B32A32_FLOAT:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R32G32B32A32F;
+			break;
+
+		//
+		// ASTC Formats.
+		//
+		// For these we're assuming they are in sRGB-space even if the format is NOT the sRGB one.
+		// This is because I know some popular exporters (NVTT) always use the UNORM (no sRGB) enumerant.
+		case tDDS::DXGIFMT_EXT_ASTC_4X4_TYPELESS:
+		case tDDS::DXGIFMT_EXT_ASTC_4X4_UNORM:
+		case tDDS::DXGIFMT_EXT_ASTC_4X4_UNORM_SRGB:
+			format = tPixelFormat::ASTC4X4;
+			break;
+
+		case tDDS::DXGIFMT_EXT_ASTC_5X4_TYPELESS:
+		case tDDS::DXGIFMT_EXT_ASTC_5X4_UNORM:
+		case tDDS::DXGIFMT_EXT_ASTC_5X4_UNORM_SRGB:
+			format = tPixelFormat::ASTC5X4;
+			break;
+
+		case tDDS::DXGIFMT_EXT_ASTC_5X5_TYPELESS:
+		case tDDS::DXGIFMT_EXT_ASTC_5X5_UNORM:
+		case tDDS::DXGIFMT_EXT_ASTC_5X5_UNORM_SRGB:
+			format = tPixelFormat::ASTC5X5;
+			break;
+
+		case tDDS::DXGIFMT_EXT_ASTC_6X5_TYPELESS:
+		case tDDS::DXGIFMT_EXT_ASTC_6X5_UNORM:
+		case tDDS::DXGIFMT_EXT_ASTC_6X5_UNORM_SRGB:
+			format = tPixelFormat::ASTC6X5;
+			break;
+
+		case tDDS::DXGIFMT_EXT_ASTC_6X6_TYPELESS:
+		case tDDS::DXGIFMT_EXT_ASTC_6X6_UNORM:
+		case tDDS::DXGIFMT_EXT_ASTC_6X6_UNORM_SRGB:
+			format = tPixelFormat::ASTC6X6;
+			break;
+
+		case tDDS::DXGIFMT_EXT_ASTC_8X5_TYPELESS:
+		case tDDS::DXGIFMT_EXT_ASTC_8X5_UNORM:
+		case tDDS::DXGIFMT_EXT_ASTC_8X5_UNORM_SRGB:
+			format = tPixelFormat::ASTC8X5;
+			break;
+
+		case tDDS::DXGIFMT_EXT_ASTC_8X6_TYPELESS:
+		case tDDS::DXGIFMT_EXT_ASTC_8X6_UNORM:
+		case tDDS::DXGIFMT_EXT_ASTC_8X6_UNORM_SRGB:
+			format = tPixelFormat::ASTC8X6;
+			break;
+
+		case tDDS::DXGIFMT_EXT_ASTC_8X8_TYPELESS:
+		case tDDS::DXGIFMT_EXT_ASTC_8X8_UNORM:
+		case tDDS::DXGIFMT_EXT_ASTC_8X8_UNORM_SRGB:
+			format = tPixelFormat::ASTC8X8;
+			break;
+
+		case tDDS::DXGIFMT_EXT_ASTC_10X5_TYPELESS:
+		case tDDS::DXGIFMT_EXT_ASTC_10X5_UNORM:
+		case tDDS::DXGIFMT_EXT_ASTC_10X5_UNORM_SRGB:
+			format = tPixelFormat::ASTC10X5;
+			break;
+
+		case tDDS::DXGIFMT_EXT_ASTC_10X6_TYPELESS:
+		case tDDS::DXGIFMT_EXT_ASTC_10X6_UNORM:
+		case tDDS::DXGIFMT_EXT_ASTC_10X6_UNORM_SRGB:
+			format = tPixelFormat::ASTC10X6;
+			break;
+
+		case tDDS::DXGIFMT_EXT_ASTC_10X8_TYPELESS:
+		case tDDS::DXGIFMT_EXT_ASTC_10X8_UNORM:
+		case tDDS::DXGIFMT_EXT_ASTC_10X8_UNORM_SRGB:
+			format = tPixelFormat::ASTC10X8;
+			break;
+
+		case tDDS::DXGIFMT_EXT_ASTC_10X10_TYPELESS:
+		case tDDS::DXGIFMT_EXT_ASTC_10X10_UNORM:
+		case tDDS::DXGIFMT_EXT_ASTC_10X10_UNORM_SRGB:
+			format = tPixelFormat::ASTC10X10;
+			break;
+
+		case tDDS::DXGIFMT_EXT_ASTC_12X10_TYPELESS:
+		case tDDS::DXGIFMT_EXT_ASTC_12X10_UNORM:
+		case tDDS::DXGIFMT_EXT_ASTC_12X10_UNORM_SRGB:
+			format = tPixelFormat::ASTC12X10;
+			break;
+
+		case tDDS::DXGIFMT_EXT_ASTC_12X12_TYPELESS:
+		case tDDS::DXGIFMT_EXT_ASTC_12X12_UNORM:
+		case tDDS::DXGIFMT_EXT_ASTC_12X12_UNORM_SRGB:
+			format = tPixelFormat::ASTC12X12;
+			break;
+
+		default:
+			space = tColourSpace::Unspecified;
 			break;
 	}
 }
@@ -580,7 +753,7 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourSpace& spac
 void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& format, tColourSpace& space, tAlphaMode& alpha, uint32 fourCC)
 {
 	format = tPixelFormat::Invalid;
-	space = tColourSpace::Unspecified;
+	space = tColourSpace::sRGB;
 	alpha = tAlphaMode::Unspecified;
 
 	switch (fourCC)
@@ -615,11 +788,13 @@ void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& format, tColourSpace& space, t
 
 		case FourCC('A','T','I','1'):
 		case FourCC('B','C','4','U'):
+			space = tColourSpace::Linear;
 			format = tPixelFormat::BC4ATI1;
 			break;
 
 		case FourCC('A','T','I','2'):
 		case FourCC('B','C','5','U'):
+			space = tColourSpace::Linear;
 			format = tPixelFormat::BC5ATI2;
 			break;
 
@@ -635,6 +810,7 @@ void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& format, tColourSpace& space, t
 			break;
 		
 		case tDDS::D3DFMT_A8:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::A8;
 			break;
 
@@ -643,29 +819,39 @@ void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& format, tColourSpace& space, t
 			break;
 
 		case tDDS::D3DFMT_A8B8G8R8:
-			format = tPixelFormat::B8G8R8A8;
+			// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
+			// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
+			format = tPixelFormat::R8G8B8A8;
 			break;
 
 		case tDDS::D3DFMT_R16F:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R16F;
 			break;
 
 		case tDDS::D3DFMT_G16R16F:
 			// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
+			// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R16G16F;
 			break;
 
 		case tDDS::D3DFMT_A16B16G16R16F:
 			// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
+			// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R16G16B16A16F;
 			break;
 
 		case tDDS::D3DFMT_R32F:
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R32F;
 			break;
 
 		case tDDS::D3DFMT_G32R32F:
 			// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
+			// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R32G32F;
 			break;
 
@@ -673,7 +859,13 @@ void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& format, tColourSpace& space, t
 			// It's inconsistent calling the D3D format A32B32G32R32F. The floats in this case are clearly in RGBA
 			// order, not ABGR. Anyway, I only have control over the tPixelFormat names. In fairness, it looks like
 			// the format-name was fixed in the DX10 header format type names.
+			// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
+			space = tColourSpace::Linear;
 			format = tPixelFormat::R32G32B32A32F;
+			break;
+
+		default:
+			space = tColourSpace::Unspecified;
 			break;
 	}
 }
@@ -682,7 +874,7 @@ void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& format, tColourSpace& space, t
 void tDDS::GetFormatInfo_FromComponentMasks(tPixelFormat& format, tColourSpace& space, tAlphaMode& alpha, const FormatData& fmtData)
 {
 	format = tPixelFormat::Invalid;
-	space = tColourSpace::Unspecified;
+	space = tColourSpace::sRGB;
 	alpha = tAlphaMode::Unspecified;
 
 	uint32 bitCount	= fmtData.RGBBitCount;
@@ -726,6 +918,17 @@ void tDDS::GetFormatInfo_FromComponentMasks(tPixelFormat& format, tColourSpace& 
 				format = tPixelFormat::B8G8R8A8;
 			break;
 	}
+
+	switch (format)
+	{
+		case tPixelFormat::A8:
+			space = tColourSpace::Linear;
+			break;
+
+		case tPixelFormat::Invalid:
+			space = tColourSpace::Unspecified;
+			break;
+	}
 }
 
 
@@ -765,6 +968,7 @@ void tImageDDS::Clear()
 	PixelFormat						= tPixelFormat::Invalid;
 	PixelFormatSrc					= tPixelFormat::Invalid;
 	ColourSpace						= tColourSpace::Unspecified;
+	ColourSpaceSrc					= tColourSpace::Unspecified;
 	AlphaMode						= tAlphaMode::Unspecified;
 	IsCubeMap						= false;
 	RowReversalOperationPerformed	= false;
@@ -881,9 +1085,10 @@ bool tImageDDS::Load(const tString& ddsFile, const LoadParams& loadParams)
 }
 
 
-bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& params)
+bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& paramsIn)
 {
 	Clear();
+	LoadParams params(paramsIn);
 
 	// This will deal with zero-sized files properly as well.
 	if (ddsSizeBytes < int(sizeof(tDDS::Header)+4))
@@ -1020,6 +1225,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 		tDDS::GetFormatInfo_FromComponentMasks(PixelFormat, ColourSpace, AlphaMode, format);
 	}
 	PixelFormatSrc = PixelFormat;
+	ColourSpaceSrc = ColourSpace;
 
 	// From now on we should just be using the PixelFormat to decide what to do next.
 	if (PixelFormat == tPixelFormat::Invalid)
@@ -1052,7 +1258,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				// bits per block.  DXT1 and DXT1A (BC1) use 64bits per block. ASTC always uses 128 bits per block but it's not always 4x4.
 				// Packed formats are considered to have a block width and height of 1.
 				int blockW = tGetBlockWidth(PixelFormat);
-				int blockH = tGetBlockWidth(PixelFormat);
+				int blockH = tGetBlockHeight(PixelFormat);
 				int bytesPerBlock = tImage::tGetBytesPerBlock(PixelFormat);
 				tAssert(bytesPerBlock > 0);
 				int numBlocksW = tGetNumBlocks(blockW, width);
@@ -1117,8 +1323,35 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 	// it on R8G8B8A8. Likewise for spread-flag, never applies to R8G8B8A8 (only R-only or L-only formats)..
 	if ((params.Flags & LoadFlag_Decode) && (PixelFormat != tPixelFormat::R8G8B8A8))
 	{
+		// Spread only applies to single-channel (R-only or L-only) formats.
 		bool spread = params.Flags & LoadFlag_SpreadLuminance;
+
+		// The gamma-compression load flags only apply when decoding. If the gamma mode is auto, we determine here
+		// whether to apply sRGB compression. If the space is linear and a format that often encodes colours, we apply it.
+		if (params.Flags & LoadFlag_AutoGamma)
+		{
+			// Clear all related flags.
+			params.Flags &= ~(LoadFlag_AutoGamma | LoadFlag_SRGBCompression | LoadFlag_GammaCompression);
+			if (ColourSpace == tColourSpace::Linear)
+			{
+				// Just cuz it's linear doesn't mean we want to gamma transform. Some formats should be kept linear.
+				if
+				(
+					(PixelFormat != tPixelFormat::A8) && (PixelFormat != tPixelFormat::A8L8) &&
+					(PixelFormat != tPixelFormat::BC4ATI1) && (PixelFormat != tPixelFormat::BC5ATI2)
+				)
+					params.Flags |= LoadFlag_SRGBCompression;
+
+				// It's very unclear whether to auto-gamma-compress the R and RG formats. For now we are only
+				// going to compress if it's the single channel (R) format and 'spread' is true -- since that
+				// would usually mean something like luminance was being stored there (which needs g-compression).
+				if (((PixelFormat == tPixelFormat::R16F) || (PixelFormat == tPixelFormat::R32F)) && spread)
+					params.Flags |= LoadFlag_SRGBCompression;	
+			}
+		}
+
 		bool didRowReversalAfterDecode = false;
+		bool processedHDRFlags = false;
 		for (int image = 0; image < NumImages; image++)
 		{
 			for (int layerNum = 0; layerNum < NumMipmapLayers; layerNum++)
@@ -1272,6 +1505,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 								ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
 								uncompData[ij].Set(col);
 							}
+							processedHDRFlags = true;
 							break;
 						}
 
@@ -1287,6 +1521,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 								ProcessHDRFlags(col, tComp_RG, params);
 								uncompData[ij].Set(col);
 							}
+							processedHDRFlags = true;
 							break;
 						}
 
@@ -1304,6 +1539,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 								ProcessHDRFlags(col, tComp_RGB, params);
 								uncompData[ij].Set(col);
 							}
+							processedHDRFlags = true;
 							break;
 						}
 
@@ -1318,6 +1554,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 								ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
 								uncompData[ij].Set(col);
 							}
+							processedHDRFlags = true;
 							break;
 						}
 
@@ -1333,6 +1570,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 								ProcessHDRFlags(col, tComp_RG, params);
 								uncompData[ij].Set(col);
 							}
+							processedHDRFlags = true;
 							break;
 						}
 
@@ -1350,6 +1588,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 								ProcessHDRFlags(col, tComp_RGB, params);
 								uncompData[ij].Set(col);
 							}
+							processedHDRFlags = true;
 							break;
 						}
 
@@ -1489,6 +1728,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 								ProcessHDRFlags(col, tComp_RGB, params);
 								uncompData[ij].Set(col);
 							}
+							processedHDRFlags = true;
 							delete[] rgbData;
 							break;
 						}
@@ -1508,7 +1748,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 						default:
 							delete[] uncompData;
 							Clear();
-							Results |= 1 << int(ResultCode::Fatal_BlockDecodeError);
+							Results |= 1 << int(ResultCode::Fatal_BCDecodeError);
 							return false;
 					}
 
@@ -1517,9 +1757,112 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 					layer->Data = (uint8*)uncompData;
 					layer->PixelFormat = tPixelFormat::R8G8B8A8;
 				}
+				else if (tImage::tIsASTCFormat(PixelFormat))
+				{
+					int blockW = 0;
+					int blockH = 0;
+					int blockD = 1;
+
+					// We use HDR profile if we detect a linear colour-space. Otherwise it's the LDR or LDR_SRGB profile.
+					astcenc_profile profile = ASTCENC_PRF_LDR;
+					if (ColourSpaceSrc == tColourSpace::Linear)
+						profile = ASTCENC_PRF_HDR_RGB_LDR_A;
+					else if (ColourSpaceSrc == tColourSpace::sRGB)
+						profile = ASTCENC_PRF_LDR_SRGB;
+
+					switch (PixelFormat)
+					{
+						case tPixelFormat::ASTC4X4:		blockW = 4;		blockH = 4;		break;
+						case tPixelFormat::ASTC5X4:		blockW = 5;		blockH = 4;		break;
+						case tPixelFormat::ASTC5X5:		blockW = 5;		blockH = 5;		break;
+						case tPixelFormat::ASTC6X5:		blockW = 6;		blockH = 5;		break;
+						case tPixelFormat::ASTC6X6:		blockW = 6;		blockH = 6;		break;
+						case tPixelFormat::ASTC8X5:		blockW = 8;		blockH = 5;		break;
+						case tPixelFormat::ASTC8X6:		blockW = 8;		blockH = 6;		break;
+						case tPixelFormat::ASTC8X8:		blockW = 8;		blockH = 8;		break;
+						case tPixelFormat::ASTC10X5:	blockW = 10;	blockH = 5;		break;
+						case tPixelFormat::ASTC10X6:	blockW = 10;	blockH = 6;		break;
+						case tPixelFormat::ASTC10X8:	blockW = 10;	blockH = 8;		break;
+						case tPixelFormat::ASTC10X10:	blockW = 10;	blockH = 10;	break;
+						case tPixelFormat::ASTC12X10:	blockW = 12;	blockH = 10;	break;
+						case tPixelFormat::ASTC12X12:	blockW = 12;	blockH = 12;	break;
+						default:														break;
+					}
+
+					if (!blockW || !blockH)
+					{
+						// astcenc_get_error_string(status) can be called for details.
+						Clear();
+						Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
+						return false;
+					}
+
+					float quality = ASTCENC_PRE_MEDIUM;			// Only need for compression.
+					astcenc_error result = ASTCENC_SUCCESS;
+
+					astcenc_config config;
+					astcenc_config_init(profile, blockW, blockH, blockD, quality, ASTCENC_FLG_DECOMPRESS_ONLY, &config);
+					if (result != ASTCENC_SUCCESS)
+					{
+						// astcenc_get_error_string(status) can be called for details.
+						Clear();
+						Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
+						return false;
+					}
+
+					astcenc_context* context = nullptr;
+					int numThreads = tMath::tMax(tSystem::tGetNumCores(), 2);
+					result = astcenc_context_alloc(&config, numThreads, &context);
+					if (result != ASTCENC_SUCCESS)
+					{
+						Clear();
+						Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
+						return false;
+					}
+
+					tColour4f* uncompData = new tColour4f[w*h];
+					astcenc_image image;
+					image.dim_x = w;
+					image.dim_y = h;
+					image.dim_z = 1;
+					image.data_type = ASTCENC_TYPE_F32;
+
+					tColour4f* slices = uncompData;
+					image.data = reinterpret_cast<void**>(&slices);
+					astcenc_swizzle swizzle { ASTCENC_SWZ_R, ASTCENC_SWZ_G, ASTCENC_SWZ_B, ASTCENC_SWZ_A };
+
+					result = astcenc_decompress_image(context, src, layer->GetDataSize(), &image, &swizzle, 0);
+					if (result != ASTCENC_SUCCESS)
+					{
+						Clear();
+						Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
+						return false;
+					}
+
+					// Convert to 32-bit RGBA.
+					tPixel* pixelData = new tPixel[w*h];
+					for (int p = 0; p < w*h; p++)
+					{
+						tColour4f col(uncompData[p]);
+						ProcessHDRFlags(col, tComp_RGB, params);
+						pixelData[p].Set(col);
+					}
+					processedHDRFlags = true;
+					delete[] uncompData;
+
+					// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
+					delete[] layer->Data;
+					layer->Data = (uint8*)pixelData;
+					layer->PixelFormat = tPixelFormat::R8G8B8A8;
+
+					astcenc_context_free(context);
+				}
+
 				else // Unsupported PixelFormat
 				{
-					// ASTC Would fall in this category. It's neither a BC format or a normal RGB format.
+					Clear();
+					Results |= 1 << int(ResultCode::Fatal_PixelFormatNotSupported);
+					return false;
 				}
 
 				// We've got one more chance to reverse the rows here (if we still need to) because we were asked to decode.
@@ -1537,6 +1880,12 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 
 		if (reverseRowOrderRequested && !RowReversalOperationPerformed && didRowReversalAfterDecode)
 			RowReversalOperationPerformed = true;
+
+		if (processedHDRFlags)
+		{
+			if (params.Flags & LoadFlag_SRGBCompression)  ColourSpace = tColourSpace::sRGB;
+			if (params.Flags & LoadFlag_GammaCompression) ColourSpace = tColourSpace::Gamma;
+		}
 
 		// All images decoded. Can now set the object's pixel format. We do _not_ set the PixelFormatSrc here!
 		PixelFormat = tPixelFormat::R8G8B8A8;
@@ -1587,10 +1936,11 @@ const char* tImageDDS::ResultDescriptions[] =
 	"Fatal Error. Pixel format specification incorrect.",
 	"Fatal Error. Unsupported pixel format.",
 	"Fatal Error. Maximum number of mipmap levels exceeded.",
-	"Fatal Error. Unable to decode BC pixels.",
-	"Fatal Error. Unable to decode packed pixels.",
 	"Fatal Error. DX10 header size incorrect.",
-	"Fatal Error. DX10 resource dimension not supported. 2D support only."
+	"Fatal Error. DX10 resource dimension not supported. 2D support only.",
+	"Fatal Error. Unable to decode packed pixels.",
+	"Fatal Error. Unable to decode BC pixels.",
+	"Fatal Error. Unable to decode ASTC pixels."
 };
 tStaticAssert(tNumElements(tImageDDS::ResultDescriptions) == int(tImageDDS::ResultCode::NumCodes));
 tStaticAssert(int(tImageDDS::ResultCode::NumCodes) <= int(tImageDDS::ResultCode::MaxCodes));

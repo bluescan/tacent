@@ -200,9 +200,9 @@ int main(int argc, char** argv)
 	// tTest(ImagePicture);
 	// tTest(ImageGradient);
 	// tTest(ImageMetaData);
-	// tTest(ImageDDS);
-	tTest(ImageKTX1);
-	tTest(ImageKTX2);
+	tTest(ImageDDS);
+	// tTest(ImageKTX1);
+	// tTest(ImageKTX2);
 	// #endif
 	// tTest(UTF);
 	// tTest(Hash);

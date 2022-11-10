@@ -295,6 +295,9 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			}
 			break;
 	}
+
+	if (format == tPixelFormat::Invalid)
+		space = tColourSpace::Unspecified;
 }
 
 
@@ -583,6 +586,9 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourSpace& space,
 			format = tPixelFormat::R32G32B32A32F;
 			break;
 	}
+
+	if (format == tPixelFormat::Invalid)
+		space = tColourSpace::Unspecified;
 }
 
 

@@ -672,10 +672,18 @@ tTestUnit(ImageGradient)
 // Helper for ImageDDS unit tests.
 void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAllMips = false)
 {
+	// We're just going to turn on auto-gamma-compression for all files.
+	loadFlags |= tImageKTX::LoadFlag_AutoGamma;
+
 	tString basename = tSystem::tGetFileBaseName(ddsfile);
 	tString savename = basename + "_";
 	savename += (loadFlags & tImageDDS::LoadFlag_Decode)			? "D" : "x";
-	savename += ((loadFlags & tImageDDS::LoadFlag_GammaCompression) || (loadFlags & tImageDDS::LoadFlag_SRGBCompression)) ? "G" : "x";
+	if ((loadFlags & tImageKTX::LoadFlag_GammaCompression) || (loadFlags & tImageKTX::LoadFlag_SRGBCompression))
+		savename += "G";
+	else if (loadFlags & tImageKTX::LoadFlag_AutoGamma)
+		savename += "g";
+	else
+		savename += "x";
 	savename += (loadFlags & tImageDDS::LoadFlag_ReverseRowOrder)	? "R" : "x";
 	savename += (loadFlags & tImageDDS::LoadFlag_SpreadLuminance)	? "S" : "x";
 	tPrintf("DDS Load %s\n", savename.Chr());
@@ -742,13 +750,16 @@ tTestUnit(ImageDDS)
 	uint32 decode = tImageDDS::LoadFlag_Decode;
 	uint32 revrow = tImageDDS::LoadFlag_ReverseRowOrder;
 	uint32 spread = tImageDDS::LoadFlag_SpreadLuminance;
-	uint32 gammac = tImageDDS::LoadFlag_SRGBCompression;
+
+	tPrintf("Testing DDS Loading/Decoding. Legacy = No DX10 Header.\n\n");
+	tPrintf("D = Decode\n");
+	tPrintf("G = Explicit Gamma or sRGB Compression. g = auto\n");
+	tPrintf("R = Reverse Row Order\n");
+	tPrintf("S = Spread Luminance\n");
 
 	//
 	// Block Compressed Formats.
 	//
-	tPrintf("Testing DDS Loading/Decoding. Legacy = No DX10 Header.\n\n");
-
 	// BC1
 	DDSLoadDecodeSave("BC1DXT1_RGB_Legacy.dds", decode | revrow);
 	DDSLoadDecodeSave("BC1DXT1_RGB_Modern.dds", decode | revrow);
@@ -775,11 +786,29 @@ tTestUnit(ImageDDS)
 	// BC6
 	DDSLoadDecodeSave("BC6s_RGB_Modern.dds", decode | revrow);
 	DDSLoadDecodeSave("BC6u_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("BC6s_HDRRGB_Modern.dds", decode | revrow | gammac);
-	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds", decode | revrow | gammac);
+	DDSLoadDecodeSave("BC6s_HDRRGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds", decode | revrow);
 
 	// BC7
 	DDSLoadDecodeSave("BC7_RGBA_Modern.dds", decode | revrow, true);
+
+	//
+	// ASTC
+	//
+	DDSLoadDecodeSave("ASTC4x4_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("ASTC5x4_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("ASTC5x5_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("ASTC6x5_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("ASTC6x6_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("ASTC8x5_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("ASTC8x6_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("ASTC8x8_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("ASTC10x5_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("ASTC10x6_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("ASTC10x8_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("ASTC10x10_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("ASTC12x10_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("ASTC12x12_RGB_Modern.dds", decode | revrow);
 
 	//
 	// Uncompressed Integer Formats.
@@ -817,32 +846,32 @@ tTestUnit(ImageDDS)
 	// Uncompressed Floating-Point (HDR) Formats.
 	//
 	// R16F
-	DDSLoadDecodeSave("R16f_R_Legacy.dds", decode | revrow | gammac);
-	DDSLoadDecodeSave("R16f_R_Modern.dds", decode | revrow | gammac);
-	DDSLoadDecodeSave("R16f_R_Legacy.dds", decode | revrow | gammac | spread);
-	DDSLoadDecodeSave("R16f_R_Modern.dds", decode | revrow | gammac | spread);
+	DDSLoadDecodeSave("R16f_R_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("R16f_R_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("R16f_R_Legacy.dds", decode | revrow | spread);
+	DDSLoadDecodeSave("R16f_R_Modern.dds", decode | revrow | spread);
 
 	// R16G16F
-	DDSLoadDecodeSave("R16G16f_RG_Legacy.dds", decode | revrow | gammac);
-	DDSLoadDecodeSave("R16G16f_RG_Modern.dds", decode | revrow | gammac);
+	DDSLoadDecodeSave("R16G16f_RG_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("R16G16f_RG_Modern.dds", decode | revrow);
 
 	// R16G16B16A16F
-	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Legacy.dds", decode | revrow | gammac);
-	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Modern.dds", decode | revrow | gammac);
+	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Modern.dds", decode | revrow);
 
 	// R32F
-	DDSLoadDecodeSave("R32f_R_Legacy.dds", decode | revrow | gammac);
-	DDSLoadDecodeSave("R32f_R_Modern.dds", decode | revrow | gammac);
-	DDSLoadDecodeSave("R32f_R_Legacy.dds", decode | revrow | gammac | spread);
-	DDSLoadDecodeSave("R32f_R_Modern.dds", decode | revrow | gammac | spread);
+	DDSLoadDecodeSave("R32f_R_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("R32f_R_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("R32f_R_Legacy.dds", decode | revrow | spread);
+	DDSLoadDecodeSave("R32f_R_Modern.dds", decode | revrow | spread);
 
 	// R32G32F
-	DDSLoadDecodeSave("R32G32f_RG_Legacy.dds", decode | revrow | gammac);
-	DDSLoadDecodeSave("R32G32f_RG_Modern.dds", decode | revrow | gammac);
+	DDSLoadDecodeSave("R32G32f_RG_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("R32G32f_RG_Modern.dds", decode | revrow);
 
 	// R32G32B32A32F
-	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Legacy.dds", decode | revrow | gammac);
-	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Modern.dds", decode | revrow | gammac);
+	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Modern.dds", decode | revrow);
 
 	// Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
 	// This time, since not decoding, it may be impossible to reverse the rows, so we can also expect
@@ -861,6 +890,22 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("BC6s_HDRRGB_Modern.dds");
 	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds", revrow);		// No reverse.
 	DDSLoadDecodeSave("BC7_RGBA_Modern.dds", revrow);			// No reverse.
+
+	DDSLoadDecodeSave("ASTC4x4_RGB_Modern.dds", revrow);		// No reverse.
+	DDSLoadDecodeSave("ASTC5x4_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC5x5_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC6x5_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC6x6_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC8x5_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC8x6_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC8x8_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC10x5_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC10x6_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC10x8_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC10x10_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC12x10_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC12x12_RGB_Modern.dds");
+
 	DDSLoadDecodeSave("A8_A_Modern.dds");
 	DDSLoadDecodeSave("R8_L_Modern.dds", revrow);
 	DDSLoadDecodeSave("L8_L_Legacy.dds", revrow);
@@ -966,15 +1011,15 @@ tTestUnit(ImageKTX1)
 	uint32 revrow = tImageKTX::LoadFlag_ReverseRowOrder;
 	uint32 spread = tImageKTX::LoadFlag_SpreadLuminance;
 
-	//
-	// Block Compressed Formats.
-	//
 	tPrintf("Testing KTX V1 Loading/Decoding Using LibKTX %s\n\n", tImage::Version_LibKTX);
 	tPrintf("D = Decode\n");
 	tPrintf("G = Explicit Gamma or sRGB Compression. g = auto\n");
 	tPrintf("R = Reverse Row Order\n");
 	tPrintf("S = Spread Luminance\n");
 
+	//
+	// Block Compressed Formats.
+	//
 	// BC1
 	KTXLoadDecodeSave("BC1DXT1_RGB.ktx", decode | revrow);
 

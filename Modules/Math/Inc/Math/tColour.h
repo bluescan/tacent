@@ -35,28 +35,42 @@ class tColour3f;	//			tColour3;
 // cruft from CRTs. LCD TVs have circuitry to mimic the old response of phosphor. Anyway, use this enum to indicate
 // the colour-space of pixel data you have... if you know it. Unfortunatly you can't in general determine the space
 // from, say, the pixel format -- a non sRGB format may contain sRGB data (but an sRGB format should be assumed to
-// contain sRGB data).
+// actually contain sRGB data). In the below enumerants:
+// l = linear
+// g = gamma
+// q = square
+// s = standard
 enum class tColourSpace
 {
 	Unspecified,
 
-	// Colours represented in this space can be added and multiplied with each other. This is your basic RGB cube.
-	RGB, Linear = RGB, lRGB = RGB,
+	// Colours (and alpha) represented in this space can be added and multiplied with each other. This is your basic
+	// RGB cube. Alphas are also considered linear.
+	lRGB, 		lRGBA = lRGB,
 
 	// Colours can be multiplied with each other, but not added. This is a common approximation of sRGB-space in
-	// which a simple pow function is used with a nominal gamma value of 2.2. 
-	Gamma,
+	// which a simple pow function is used with a nominal gamma value of 2.2. If the data contains alpha, the alpha
+	// is considered to be linear.
+	gRGB, 		gRGBlA = gRGB,
 
 	// This is a lame approximation of gamma-space in which gamma is taken to be 2.0. This allows fast conversion
 	// between linear and gamma-square because a square and square-root function are all that's needed.
-	GammaSq,
+	qRGB,		qRGBlA = qRGB,
 
 	// Standard RGB. This is the real-deal and uses the full sRGB spec (https://en.wikipedia.org/wiki/SRGB)
-	// Neither mult or add. Most common space of src art.
-	sRGB,
+	// Neither mult or add. Most common space of source art.
+	sRGB,		sRGBlA = sRGB,
 
+	// I don't think we're going to need it, but we could add sRGBA if needed, where A is also in standard space.
+	
 	// Hue, Saturation, and Value.
-	HSV
+	HSV,
+
+	// Synonyms.
+	Linear		= lRGB,
+	Gamma		= gRGB,
+	Square		= qRGB,
+	Standard	= sRGB
 };
 
 

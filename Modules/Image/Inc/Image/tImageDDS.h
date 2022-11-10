@@ -38,11 +38,12 @@ public:
 		// gamma-space (brighter) for diaplay on a monitor.
 		LoadFlag_GammaCompression	= 1 << 2,
 		LoadFlag_SRGBCompression	= 1 << 3,	// Same as above but uses the official sRGB transformation. Linear -> sRGB. Approx encoding gamma of 1/2.4 for part of curve.
-		LoadFlag_ToneMapExposure	= 1 << 4,	// Apply exposure value when loading the dds. Only affects HDR (linear-colour) formats.
-		LoadFlag_SpreadLuminance	= 1 << 5,	// For DDS files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats. Applies only if decoding a dds is an R-only or L-only format.
-		LoadFlag_CondMultFourDim	= 1 << 6,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,
-		LoadFlag_CondPowerTwoDim	= 1 << 7,	// Produce conditional success if image dimension not a power of 2. Only checks BC formats.
-		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance | LoadFlag_SRGBCompression
+		LoadFlag_AutoGamma			= 1 << 4,	// Tries to determine whether to apply sRGB compression based on pixel format. Call GetColourSpace to see if it applied.
+		LoadFlag_ToneMapExposure	= 1 << 5,	// Apply exposure value when loading the dds. Only affects HDR (linear-colour) formats.
+		LoadFlag_SpreadLuminance	= 1 << 6,	// For DDS files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats. Applies only if decoding a dds is an R-only or L-only format.
+		LoadFlag_CondMultFourDim	= 1 << 7,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,
+		LoadFlag_CondPowerTwoDim	= 1 << 8,	// Produce conditional success if image dimension not a power of 2. Only checks BC formats.
+		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance | LoadFlag_AutoGamma
 	};
 
 	// If an error is encountered loading the resultant object will return false for IsValid. You can call GetLastResult
@@ -65,8 +66,10 @@ public:
 	struct LoadParams
 	{
 		LoadParams()																									{ Reset(); }
+		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Gamma(src.Gamma), Exposure(src.Exposure) { }
 		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::DefaultGamma; Exposure = 1.0f; }
-	
+		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Gamma = src.Gamma; Exposure = src.Exposure; }
+
 		uint32 Flags;
 		float Gamma;
 		float Exposure;
@@ -105,10 +108,11 @@ public:
 		Fatal_IncorrectPixelFormatSpec,
 		Fatal_PixelFormatNotSupported,
 		Fatal_MaxNumMipmapLevelsExceeded,
-		Fatal_BlockDecodeError,
-		Fatal_PackedDecodeError,
 		Fatal_DX10HeaderSizeIncorrect,
 		Fatal_DX10DimensionNotSupported,
+		Fatal_PackedDecodeError,
+		Fatal_BCDecodeError,
+		Fatal_ASTCDecodeError,
 		NumCodes,
 
 		// Since we store result codes as bits in a 32-bit uint, we need to make sure we don't have too many codes.
@@ -152,7 +156,13 @@ public:
 	// Will return the format the dds data was in, even if you chose to decode.
 	tPixelFormat GetPixelFormatSrc() const																				{ return PixelFormatSrc; }
 
+	// Returns the current colour space.
 	tColourSpace GetColourSpace() const																					{ return ColourSpace; }
+
+	// Returns the colour space of the source file that was loaded. This may not match the current if, say, gamma
+	// correction was requested on load.
+	tColourSpace GetColourSpaceSrc() const																				{ return ColourSpaceSrc; }
+
 	tAlphaMode GetAlphaMode() const																						{ return AlphaMode; }
 
 	// The texture is considered to have alphas if it is in a pixel format that supports them. For BC1, the data is
@@ -221,6 +231,7 @@ private:
 
 	// These two _not_ part of the pixel format in tacent.
 	tColourSpace ColourSpace				= tColourSpace::Unspecified;
+	tColourSpace ColourSpaceSrc				= tColourSpace::Unspecified;
 	tAlphaMode AlphaMode					= tAlphaMode::Unspecified;
 
 	bool IsCubeMap							= false;
