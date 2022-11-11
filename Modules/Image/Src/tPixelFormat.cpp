@@ -219,7 +219,19 @@ int tImage::tGetBitsPerPixel(tPixelFormat format)
 		}
 	}
 
-	return -1;
+	return 0;
+}
+
+
+float tImage::tGetBitsPerPixelFloat(tPixelFormat format)
+{
+	int bitsPerPixel = tGetBitsPerPixel(format);
+	if (bitsPerPixel)
+		return float(bitsPerPixel);
+
+	int pixelsPerBlock = tGetBlockWidth(format) * tGetBlockHeight(format);
+	int bitsPerBlock = tGetBytesPerBlock(format) * 8;
+	return float(bitsPerBlock) / float(pixelsPerBlock);
 }
 
 
@@ -234,7 +246,7 @@ int tImage::tGetBytesPerBlock(tPixelFormat format)
 	if (tIsPackedFormat(format))
 		return tGetBitsPerPixel(format) / 8;
 
-	return -1;
+	return 0;
 }
 
 

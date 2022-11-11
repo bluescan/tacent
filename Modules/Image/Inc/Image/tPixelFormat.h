@@ -133,21 +133,24 @@ bool tIsLuminanceFormat	(tPixelFormat);				// Single-channel luminance formats. 
 int tGetBlockWidth		(tPixelFormat);
 int tGetBlockHeight		(tPixelFormat);
 
-// Given a block=width or block-height and how may pixels you need to store (image-width or image-height), returns the
+// Given a block-width or block-height and how may pixels you need to store (image-width or image-height), returns the
 // number of blocks you will need in that dimension.
 int tGetNumBlocks		(int blockWH, int imageWH);
 
 // Only applies to formats that can guarantee an integer number of bits per pixel. In particular does not apply to ASTC
-// formats (even if the particular ASTC format has an integer number of bits per pixel). We report in bits (not bytes)
-// because some formats (i.e. BC1) are only half a byte per pixel. Returns -1 for non-integral bpp formats and all ASTC
-// formats.
+// formats (even if the particular ASTC format has an integer number of bpp). We report in bits (not bytes) because some
+// formats (i.e. BC1) are only half a byte per pixel. Returns 0 for non-integral bpp formats and all ASTC formats.
 int tGetBitsPerPixel(tPixelFormat);
+
+// Works for any pixel format, even if a non-integral number of bits per pixel. In particular does work for ASTC
+// formats. Returns 0.0f if pixel format is invalid.
+float tGetBitsPerPixelFloat(tPixelFormat);
 
 // This function must be given a BC format, an ASTC format, or a packed format.
 // BC formats		: 4x4 with different number of bytes per block.
 // ASTC formats		: Varying MxN but always 16 bytes.
 // Packed Formats	: Considered 1x1 with varying number of bytes per pixel.
-// Returns -1 otherwise.
+// Returns 0 otherwise.
 int tGetBytesPerBlock(tPixelFormat);
 
 const char* tGetPixelFormatName(tPixelFormat);
