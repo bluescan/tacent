@@ -21,6 +21,7 @@
 #include <Image/tImageICO.h>
 #include <Image/tImageJPG.h>
 #include <Image/tImagePNG.h>
+#include <Image/tImageQOI.h>
 #include <Image/tImageAPNG.h>
 #include <Image/tImageTGA.h>
 #include <Image/tImageWEBP.h>
@@ -67,6 +68,12 @@ tTestUnit(ImageLoad)
 
 	tImageWEBP imgWEBP("TestData/Images/RockyBeach.webp");
 	tRequire(imgWEBP.IsValid());
+
+	tImageQOI imgQOI24("TestData/Images/TacentTestPattern24.qoi");
+	tRequire(imgQOI24.IsValid());
+
+	tImageQOI imgQOI32("TestData/Images/TacentTestPattern32.qoi");
+	tRequire(imgQOI32.IsValid());
 }
 
 
@@ -74,6 +81,16 @@ tTestUnit(ImageSave)
 {
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImageSave)
+
+	tImageTGA tga("TestData/Images/TacentTestPattern32.tga");
+	int tgaW = tga.GetWidth();
+	int tgaH = tga.GetHeight();
+	tPixel* tgaPixels = tga.StealPixels();
+	tImageQOI qoi(tgaPixels, tgaW, tgaH, true);
+	tImageQOI::tFormat result32 = qoi.Save("TestData/Images/WrittenTacentTestPattern32.qoi", tImageQOI::tFormat::Bit32);
+	tRequire(result32 == tImageQOI::tFormat::Bit32);
+	tImageQOI::tFormat result24 = qoi.Save("TestData/Images/WrittenTacentTestPattern24.qoi", tImageQOI::tFormat::Bit24);
+	tRequire(result24 == tImageQOI::tFormat::Bit24);
 
 	tPicture newPngA("TestData/Images/Xeyes.png");
 	newPngA.Save("TestData/Images/WrittenNewA.png");

@@ -472,7 +472,7 @@ tImageBMP::tFormat tImageBMP::Save(const tString& bmpFile, tFormat format) const
 
 	if (format == tFormat::Auto)
 		format = IsOpaque() ? tFormat::BPP24 : tFormat::BPP32;
-	
+
 	tFileHandle file = tOpenFile(bmpFile.Chars(), "wb");
 	if (!file)
 		return tFormat::Invalid;

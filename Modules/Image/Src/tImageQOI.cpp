@@ -48,7 +48,23 @@ bool tImageQOI::Set(const uint8* qoiFileInMemory, int numBytes)
 	if ((numBytes <= 0) || !qoiFileInMemory)
 		return false;
 
-	// WIP
+	// Decode a QOI image from memory. The function either returns NULL on failure (invalid parameters or malloc failed)
+	// or a pointer to the decoded pixels. On success, the qoi_desc struct is filled with the description from the file
+	// header. The returned pixel data should be free()d after use.
+	qoi_desc results;
+	void* pixelData = qoi_decode(qoiFileInMemory, numBytes, &results, 4);
+	if (!pixelData)
+		return false;
+
+	Width			= results.width;	
+	Height			= results.height;
+	ColourSpace		= (results.colorspace == QOI_LINEAR) ? tSpace::Linear : tSpace::sRGB;
+	SrcPixelFormat	= (results.channels == 3) ? tPixelFormat::R8G8B8 : tPixelFormat::R8G8B8A8;
+
+	tAssert((Width > 0) && (Height > 0));
+	Pixels = new tPixel[Width*Height];
+	tStd::tMemcpy(Pixels, pixelData, Width*Height*sizeof(tPixel));
+	free(pixelData);
 
 	return true;
 }
@@ -94,11 +110,49 @@ tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, tFormat format) const
 			format = tFormat::Bit32;
 	}
 
-	bool success = false;
+	tFileHandle file = tSystem::tOpenFile(qoiFile.Chr(), "wb");
+	if (!file)
+		return tFormat::Invalid;
 
-	// WIP
+	qoi_desc qoiDesc;
+	qoiDesc.channels	= (format == tFormat::Bit24) ? 3 : 4;
+	qoiDesc.colorspace	= (ColourSpace == tSpace::Linear) ? QOI_LINEAR : QOI_SRGB;
+	qoiDesc.height		= Height;
+	qoiDesc.width		= Width;
 
-	if (!success)
+	// If we're saving in 24bit we need to convert our source data to 24bit.
+	uint8* pixels		= (uint8*)Pixels;
+	bool deletePixels	= false;
+	if (format == tFormat::Bit24)
+	{
+		int numPixels = Width*Height;
+		pixels = new uint8[numPixels*3];
+		for (int p = 0; p < numPixels; p++)
+		{
+			pixels[p*3 + 0] = Pixels[p].R;
+			pixels[p*3 + 1] = Pixels[p].G;
+			pixels[p*3 + 2] = Pixels[p].B;
+		}
+		deletePixels = true;
+	}
+
+	// Encode raw RGB or RGBA pixels into a QOI image in memory. The function either returns NULL on failure (invalid
+	// parameters or malloc failed) or a pointer to the encoded data on success. On success the out_len is set to the
+	// size in bytes of the encoded data. The returned qoi data should be free()d after use.
+	int outLength = 0;
+	void* memImage = qoi_encode(pixels, &qoiDesc, &outLength);
+	if (deletePixels)
+		delete[] pixels;
+
+	if (!memImage)
+		return tFormat::Invalid;
+		
+	tAssert(outLength);
+	int numWritten = tSystem::tWriteFile(file, memImage, outLength);
+	tSystem::tCloseFile(file);
+	free(memImage);
+	
+	if (numWritten != outLength)
 		return tFormat::Invalid;
 
 	return format;
