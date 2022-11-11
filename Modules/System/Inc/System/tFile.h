@@ -344,6 +344,7 @@ enum class tFileType
 
 	TGA,						// Image. Targa.
 	BMP,						// Image. Windows bitmap.
+	QOI,						// Image. Quite OK Image Format.
 	PNG,						// Image. Portable Network Graphics.
 	APNG,						// Image. Animated PNG.
 	GIF,						// Image. Graphics Interchange Format. Pronounced like the peanut butter.
@@ -354,6 +355,7 @@ enum class tFileType
 	DDS,						// Image. Direct Draw Surface. TextureMap/CubeMap.
 	KTX,						// Image. Khronos Texture. Similar to a dds file.
 	KTX2,						// Image. Khronos Texture V2. Similar to a dds file.
+	ASTC,						// Image. ARM's Adaptive Scalable Texture Compression format.
 	HDR,						// Image. Radiance High Dynamic Range.
 	EXR,						// Image. OpenEXR High Dynamic Range.
 	PCX,						// Image.

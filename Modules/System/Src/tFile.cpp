@@ -1833,6 +1833,7 @@ tSystem::FileTypeExts tSystem::FileTypeExtTable[] =
 //	Extensions							Filetype
 	{ "tga" },							// TGA
 	{ "bmp" },							// BMP
+	{ "qoi" },							// QOI
 	{ "png" },							// PNG
 	{ "apng" },							// APNG
 	{ "gif" },							// GIF
@@ -1843,6 +1844,7 @@ tSystem::FileTypeExts tSystem::FileTypeExtTable[] =
 	{ "dds" },							// DDS
 	{ "ktx" },							// KTX
 	{ "ktx2" },							// KTX2
+	{ "astc" },							// ASTC
 	{ "hdr", "rgbe" },					// HDR
 	{ "exr" },							// EXR
 	{ "pcx" },							// PCX
