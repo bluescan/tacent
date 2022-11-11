@@ -102,18 +102,18 @@ enum class tPixelFormat
 	OPENEXR,							// OpenEXR HDR.
 	LastVendor			= OPENEXR,
 
-	FirstPAL,
-	PAL8BIT				= FirstPAL,		// 8bit indexes to a Palette. ex. gif files.
+	FirstPalette,
+	PAL8BIT				= FirstPalette,	// 8bit indexes to a Palette. ex. gif files.
 	PAL4BIT,
 	PAL1BIT,
-	LastPAL				= PAL1BIT,
+	LastPalette			= PAL1BIT,
 
 	NumPixelFormats,
 	NumPackedFormats	= LastPacked	- FirstPacked	+ 1,
 	NumBCFormats		= LastBC		- FirstBC		+ 1,
 	NumASTCFormats		= LastASTC		- FirstASTC		+ 1,
 	NumVendorFormats	= LastVendor	- FirstVendor	+ 1,
-	NumPALFormats		= LastPAL		- FirstPAL		+ 1
+	NumPaletteFormats	= LastPalette	- FirstPalette	+ 1
 };
 
 
@@ -138,8 +138,10 @@ int tGetBlockHeight		(tPixelFormat);
 int tGetNumBlocks		(int blockWH, int imageWH);
 
 // Only applies to formats that can guarantee an integer number of bits per pixel. In particular does not apply to ASTC
-// formats (even if the particular ASTC format has an integer number of bpp). We report in bits (not bytes) because some
-// formats (i.e. BC1) are only half a byte per pixel. Returns 0 for non-integral bpp formats and all ASTC formats.
+// formats (even if the particular ASTC format has an integer number of bits-per-pixel). We report in bits (not bytes)
+// because some formats (i.e. BC1) are only half a byte per pixel. Palette formats do not consider the palette entry,
+// size, but rather the size of the index as there is one index per pixel. Returns 0 for non-integral bpp formats and
+// all ASTC formats.
 int tGetBitsPerPixel(tPixelFormat);
 
 // Works for any pixel format, even if a non-integral number of bits per pixel. In particular does work for ASTC
@@ -203,7 +205,7 @@ inline bool tImage::tIsVendorFormat(tPixelFormat format)
 
 inline bool tImage::tIsPaletteFormat(tPixelFormat format)
 {
-	if ((format >= tPixelFormat::FirstPAL) && (format <= tPixelFormat::LastPAL))
+	if ((format >= tPixelFormat::FirstPalette) && (format <= tPixelFormat::LastPalette))
 		return true;
 
 	return false;

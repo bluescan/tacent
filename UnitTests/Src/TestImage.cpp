@@ -479,6 +479,15 @@ tTestUnit(ImageDetection)
 
 	bool isAnimC = tImageAPNG::IsAnimatedPNG("TestData/Images/Icos4D.png");
 	tRequire(isAnimC);
+
+	int rgbaBPP		= tImage::tGetBitsPerPixel(tPixelFormat::R8G8B8A8);
+	float rgbaBPPf	= tImage::tGetBitsPerPixelFloat(tPixelFormat::R8G8B8A8);
+	tRequire(rgbaBPP == 32);
+	tRequire(rgbaBPPf == 32.0f);
+
+	int exrBPP		= tImage::tGetBitsPerPixel(tPixelFormat::OPENEXR);
+	float exrBPPf	= tImage::tGetBitsPerPixelFloat(tPixelFormat::OPENEXR);
+	tPrintf("EXR BPP:%d BPPf:%f\n", exrBPP, exrBPPf);
 }
 
 

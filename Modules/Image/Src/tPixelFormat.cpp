@@ -82,28 +82,28 @@ namespace tImage
 	};
 	tStaticAssert(int(tPixelFormat::NumPixelFormats)+1 == tNumElements(PixelFormatNames));
 
-	int PackedFormat_BytesPerPixel[] =
+	int PackedFormat_BitsPerPixel[] =
 	{
-		1,				// R8
-		2,				// R8G8
-		3,				// R8G8B8
-		4,				// R8G8B8A8
-		3,				// B8G8R8
-		4,				// B8G8R8A8
-		2,				// B5G6R5
-		2,				// B4G4R4A4
-		2,				// B5G5R5A1
-		2,				// L8A8
-		1,				// A8
-		1,				// L8
-		2,				// R16F
-		4,				// R16G16F
-		8,				// R16G16B16A16F
-		4,				// R32F
-		8,				// R32G32F
-		16,				// R32G32B32A32F
+		8,				// R8
+		16,				// R8G8
+		27,				// R8G8B8
+		32,				// R8G8B8A8
+		24,				// B8G8R8
+		32,				// B8G8R8A8
+		16,				// B5G6R5
+		16,				// B4G4R4A4
+		16,				// B5G5R5A1
+		16,				// L8A8
+		8,				// A8
+		8,				// L8
+		16,				// R16F
+		32,				// R16G16F
+		64,				// R16G16B16A16F
+		32,				// R32F
+		64,				// R32G32F
+		128,			// R32G32B32A32F
 	};
-	tStaticAssert(tNumElements(PackedFormat_BytesPerPixel) == int(tPixelFormat::NumPackedFormats));
+	tStaticAssert(tNumElements(PackedFormat_BitsPerPixel) == int(tPixelFormat::NumPackedFormats));
 
 	int BCFormat_BytesPerBlock[] =
 	{
@@ -157,12 +157,20 @@ namespace tImage
 	};
 	tStaticAssert(tNumElements(ASTCFormat_BlockHeight) == int(tPixelFormat::NumASTCFormats));
 
-	int VendorFormat_BytesPerPixel[] =
+	int VendorFormat_BitsPerPixel[] =
 	{
-		4,				// Radiance. 3 bytes for each RGB. 1 byte shared exponent.
-		0				// OpenEXR. @todo There are multiple exr pixel formats. We don't yet determine which one.
+		32,				// Radiance. 3 bytes for each RGB. 1 byte shared exponent.
+		128				// OpenEXR. @todo There are multiple exr pixel formats. We don't yet determine which one.
 	};
-	tStaticAssert(tNumElements(VendorFormat_BytesPerPixel) == int(tPixelFormat::NumVendorFormats));
+	tStaticAssert(tNumElements(VendorFormat_BitsPerPixel) == int(tPixelFormat::NumVendorFormats));
+
+	int PaletteFormat_BitsPerPixel[] =
+	{
+		8,
+		4,
+		1
+	};
+	tStaticAssert(tNumElements(PaletteFormat_BitsPerPixel) == int(tPixelFormat::NumPaletteFormats));
 }
 
 
@@ -201,23 +209,16 @@ int tImage::tGetBlockHeight(tPixelFormat format)
 int tImage::tGetBitsPerPixel(tPixelFormat format)
 {
 	if (tIsPackedFormat(format))
-		return 8 * PackedFormat_BytesPerPixel[int(format) - int(tPixelFormat::FirstPacked)];
+		return PackedFormat_BitsPerPixel[int(format) - int(tPixelFormat::FirstPacked)];
 
 	if (tIsBCFormat(format))
 		return (8*tGetBytesPerBlock(format)) >> 4;
 
 	if (tIsVendorFormat(format))
-		return 8*VendorFormat_BytesPerPixel[int(format) - int(tPixelFormat::FirstVendor)];
+		return VendorFormat_BitsPerPixel[int(format) - int(tPixelFormat::FirstVendor)];
 
 	if (tIsPaletteFormat(format))
-	{
-		switch (format)
-		{
-			case tPixelFormat::PAL8BIT:		return 8;
-			case tPixelFormat::PAL4BIT:		return 4;
-			case tPixelFormat::PAL1BIT:		return 1;
-		}
-	}
+		return PaletteFormat_BitsPerPixel[int(format) - int(tPixelFormat::FirstPalette)];
 
 	return 0;
 }

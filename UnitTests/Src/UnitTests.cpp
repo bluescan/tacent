@@ -144,10 +144,12 @@ int main(int argc, char** argv)
 	tTest(Print);
 	tTest(Regex);
 	tTest(Script);
+	tTest(Rule);
 	tTest(Chunk);
 	tTest(FileTypes);
 	tTest(Directories);
 	tTest(File);
+	tTest(FindRec);
 	tTest(Network);
 	tTest(Time);
 	tTest(Machine);
@@ -193,17 +195,18 @@ int main(int argc, char** argv)
 	// tTest(Promise);
 	// tTest(Script);
 	// tTest(Rule);
-	// #if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
+	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
 	// tTest(ImageLoad);
 	// tTest(ImageTexture);
 	// tTest(ImageMultiFrame);
 	// tTest(ImagePicture);
 	// tTest(ImageGradient);
 	// tTest(ImageMetaData);
-	tTest(ImageDDS);
+	tTest(ImageDetection);
+	// tTest(ImageDDS);
 	// tTest(ImageKTX1);
 	// tTest(ImageKTX2);
-	// #endif
+	#endif
 	// tTest(UTF);
 	// tTest(Hash);
 	// tTest(BitArray);
