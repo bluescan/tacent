@@ -1432,14 +1432,15 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 						pixelData[p].Set(col);
 					}
 					processedHDRFlags = true;
-					delete[] uncompData;
 
 					// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
+					tAssert(layer->OwnsData);
 					delete[] layer->Data;
 					layer->Data = (uint8*)pixelData;
 					layer->PixelFormat = tPixelFormat::R8G8B8A8;
 
 					astcenc_context_free(context);
+					delete[] uncompData;
 				}
 
 				else // Unsupported PixelFormat
