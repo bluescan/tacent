@@ -86,7 +86,7 @@ namespace tImage
 	{
 		8,				// R8
 		16,				// R8G8
-		27,				// R8G8B8
+		24,				// R8G8B8
 		32,				// R8G8B8A8
 		24,				// B8G8R8
 		32,				// B8G8R8A8
