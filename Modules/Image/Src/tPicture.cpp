@@ -29,6 +29,16 @@
 const char* ASTCENCODER_VERSION_STRING		= VERSION_STRING;
 #undef VERSION_STRING
 
+// The QOI encoder/decoder does not have a version number. The claim is this is because the file format is finalized
+// (which is a good thing) and that they want to keep the implementation easy-to-read and so are not accepting
+// performance PRs (this is not a good thing). This is also at odds with all the performance metrics touted comparing
+// qoi to other encoders/decoders. The latter is why there should be a version number. I suspect the real reason
+// for no version is the dev time/effort to maintain/improve the encode/decode speed. In any case, I'm assigning a
+// low version number here.
+#define QOI_NO_STDIO
+#include <QOI/qoi.h>
+#define QOI_VERSION_STRING					"0.0.1"
+
 #include "Image/tPicture.h"
 #include "Math/tMatrix2.h"
 #include <OpenEXR/loadImage.h>
@@ -38,8 +48,8 @@ const char* ASTCENCODER_VERSION_STRING		= VERSION_STRING;
 #include <apngasm.h>
 #include <bcdec.h>
 #include <tiffvers.h>
-#include <jconfig.h>			// JpegTurbo
-#include <demux.h>				// WebP
+#include <jconfig.h>						// JpegTurbo
+#include <demux.h>							// WebP
 #include <tinyxml2.h>
 #include <TinyEXIF.h>
 #include "Image/tResample.h"
@@ -59,6 +69,7 @@ const char* tImage::Version_ApngDis			= APNGDIS_VERSION_STRING;
 const char* tImage::Version_ApngAsm			= APNGASM_VERSION_STRING;
 const char* tImage::Version_LibTIFF			= TIFFLIB_STANDARD_VERSION_STR;
 const char* tImage::Version_LibKTX			= LIBKTX_VERSION_STRING;
+const char* tImage::Version_QOI				= QOI_VERSION_STRING;
 int tImage::Version_WEBP_Major				= WEBP_DECODER_ABI_VERSION >> 8;
 int tImage::Version_WEBP_Minor				= WEBP_DECODER_ABI_VERSION & 0xFF;
 int tImage::Version_BCDec_Major				= BCDEC_VERSION_MAJOR;

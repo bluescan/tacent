@@ -5,6 +5,7 @@ add_library(
 	${PROJECT_NAME}
 	Src/tCubemap.cpp
 	Src/tImageAPNG.cpp
+	Src/tImageASTC.cpp
 	Src/tImageBMP.cpp
 	Src/tImageDDS.cpp
 	Src/tImageEXR.cpp
@@ -14,6 +15,7 @@ add_library(
 	Src/tImageJPG.cpp
 	Src/tImageKTX.cpp
 	Src/tImagePNG.cpp
+	Src/tImageQOI.cpp
 	Src/tImageTGA.cpp
 	Src/tImageTIFF.cpp
 	Src/tImageWEBP.cpp
@@ -28,6 +30,7 @@ add_library(
 	Inc/Image/tCubemap.h
 	Inc/Image/tFrame.h
 	Inc/Image/tImageAPNG.h
+	Inc/Image/tImageASTC.h
 	Inc/Image/tImageBMP.h
 	Inc/Image/tImageDDS.h
 	Inc/Image/tImageEXR.h
@@ -37,6 +40,7 @@ add_library(
 	Inc/Image/tImageJPG.h
 	Inc/Image/tImageKTX.h
 	Inc/Image/tImagePNG.h
+	Inc/Image/tImageQOI.h
 	Inc/Image/tImageTGA.h
 	Inc/Image/tImageTIFF.h
 	Inc/Image/tImageWEBP.h
@@ -63,6 +67,7 @@ add_library(
 	Contrib/LibTIFF/include/tiff.h
 	Contrib/OpenEXR/loadImage.h
 	Contrib/OpenEXR/loadImage.cpp
+	Contrib/QOI/qoi.h
 	Contrib/TinyEXIF/TinyEXIF.h
 	Contrib/TinyEXIF/TinyEXIF.cpp
 	Contrib/TinyXML2/tinyxml2.h

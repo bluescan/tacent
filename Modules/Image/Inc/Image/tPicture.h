@@ -26,6 +26,7 @@
 #include <System/tFile.h>
 #include <System/tChunk.h>
 #include "Image/tImageAPNG.h"
+#include "Image/tImageASTC.h"
 #include "Image/tImageBMP.h"
 #include "Image/tImageDDS.h"
 #include "Image/tImageKTX.h"
@@ -35,6 +36,7 @@
 #include "Image/tImageICO.h"
 #include "Image/tImageJPG.h"
 #include "Image/tImagePNG.h"
+#include "Image/tImageQOI.h"
 #include "Image/tImageTGA.h"
 #include "Image/tImageTIFF.h"
 #include "Image/tImageWEBP.h"
@@ -56,6 +58,7 @@ extern const char* Version_LibTIFF;
 extern const char* Version_LibKTX;
 extern const char* Version_ApngDis;
 extern const char* Version_ApngAsm;
+extern const char* Version_QOI;
 extern int Version_WEBP_Major;
 extern int Version_WEBP_Minor;
 extern int Version_BCDec_Major;
