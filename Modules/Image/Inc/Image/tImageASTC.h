@@ -18,6 +18,7 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tLayer.h>
 namespace tImage
 {
 
@@ -25,12 +26,46 @@ namespace tImage
 class tImageASTC
 {
 public:
+	enum LoadFlag
+	{
+		LoadFlag_Decode				= 1 << 0,	// Decode the astc texture data into RGBA 32 bit. If not set, the pixel data will remain unmodified.
+
+		// The remaining flags only apply when decode flag set.
+		LoadFlag_GammaCompression	= 1 << 1,	// Gamma-correct. Gamma compression using an encoding gamma of 1/2.2.
+		LoadFlag_SRGBCompression	= 1 << 2,	// Same as above but uses the official sRGB transformation. Linear -> sRGB. Approx encoding gamma of 1/2.4 for part of curve.
+		LoadFlag_ToneMapExposure	= 1 << 3,	// Apply exposure value when loading the astc.
+		LoadFlags_Default			= LoadFlag_Decode
+	};	
+
+	enum class ColourProfile
+	{
+		// LDR menas no value above 1.0. HDR means there are.
+		// RGBA values are either in linear (lin) or sRGB (srgb) space.
+		LDRsrgbRGB_LDRlinA,			LDR			= LDRsrgbRGB_LDRlinA,
+		LDRlinRGBA,					LDR_FULL	= LDRlinRGBA,
+		HDRlinRGB_LDRlinA,			HDR			= HDRlinRGB_LDRlinA,
+		HDRlinRGBA,					HDR_FULL	= HDRlinRGBA
+	};
+
+	struct LoadParams
+	{
+		LoadParams()																									{ Reset(); }
+		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Gamma(src.Gamma), Exposure(src.Exposure), Profile(src.Profile) { }
+		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::DefaultGamma; Exposure = 1.0f; Profile = ColourProfile::LDR; }
+		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Gamma = src.Gamma; Exposure = src.Exposure; Profile = src.Profile; }
+
+		uint32 Flags;
+		ColourProfile Profile;		// Used iff decoding.
+		float Gamma;				// Used iff decoding.
+		float Exposure;				// Used iff decoding.
+	};
+
 	// Creates an invalid tImageASTC. You must call Load manually.
 	tImageASTC()																										{ }
-	tImageASTC(const tString& astcFile)																					{ Load(astcFile); }
+	tImageASTC(const tString& astcFile, const LoadParams& params = LoadParams())										{ Load(astcFile, params); }
 
 	// The data is copied out of astcFileInMemory. Go ahead and delete[] after if you want.
-	tImageASTC(const uint8* astcFileInMemory, int numBytes)																{ Set(astcFileInMemory, numBytes); }
+	tImageASTC(const uint8* astcFileInMemory, int numBytes, const LoadParams& params = LoadParams())					{ Set(astcFileInMemory, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out. Sets the colour space to sRGB. Call SetColourSpace after if you wanted linear.
@@ -39,59 +74,48 @@ public:
 	virtual ~tImageASTC()																								{ Clear(); }
 
 	// Clears the current tImageASTC before loading. Returns success. If false returned, object is invalid.
-	bool Load(const tString& astcFile);
-	bool Set(const uint8* astcFileInMemory, int numBytes);
+	bool Load(const tString& astcFile, const LoadParams& params = LoadParams());
+	bool Set(const uint8* astcFileInMemory, int numBytes, const LoadParams& params = LoadParams());
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
-	// it just copies the data out. After this call the objects ColourSpace is set to sRGB. If the data was all linear
-	// you can call SetColourSpace() manually afterwards.
+	// it just copies the data out.
 	bool Set(tPixel* pixels, int width, int height, bool steal = false);
 
-	enum class tFormat
-	{
-		Invalid,	// Invalid must be 0.
-		Auto,		// Save function will decide format. Bit24 if all image pixels are opaque and Bit32 otherwise.
-		Bit24,		// 24 bit colour.
-		Bit32		// 24 bit colour with 8 bits opacity in the alpha channel.
-	};
-	enum class tSpace
-	{
-		sRGB,		// sRGB (RGB in sRGB and A linear).
-		Linear		// RGB(A) all linear.
-	};
-
-	// Saves the tImageASTC to the file specified. The extension of filename must be ".astc". If tFormat is Auto, this
-	// function will decide the format. Bit24 if all image pixels are opaque and Bit32 otherwise. Returns the format
-	// that the file was saved in, or tFormat::Invalid if there was a problem. Since Invalid is 0, you can use an 'if'.
-	// The colour-space is also saved with the file and can be retrieved on load. Optionally call SetColourSpace before
+	// Saves the tImageASTC to the file specified. The extension of filename must be ".astc". Returns the format that
+	// the file was saved in, or tFormat::Invalid if there was a problem. Since Invalid is 0, you can use an 'if'. The
+	// colour-space is also saved with the file and can be retrieved on load. Optionally call SetColourSpace before
 	// saving if you need to (although usually the default sRGB is the correct one).
-	tFormat Save(const tString& qoiFile, tFormat = tFormat::Auto) const;
+	bool Save(const tString& astcFile) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear();
-	bool IsValid() const																								{ return Pixels ? true : false; }
+	bool IsValid() const																								{ return (Layer && Layer->IsValid()); }
 
-	int GetWidth() const																								{ return Width; }
-	int GetHeight() const																								{ return Height; }
+	int GetWidth() const																								{ return Layer ? Layer->Width  : 0; }
+	int GetHeight() const																								{ return Layer ? Layer->Height : 0; }
 
-	// All pixels must be opaque (alpha = 255) for this to return true.
+	// All pixels must be opaque (alpha = 255) for this to return true. Always returns true if the object is not in the
+	// R8G8B8A8 pixel-format (i.e. not decoded) since all ASTC pixel formats support alpha.
 	bool IsOpaque() const;
 
-	tSpace GetColourSpace() const																						{ return ColourSpace; }
-	void SetColourSpace(tSpace space)																					{ ColourSpace = space; }
+	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the astc data is in.
+	tPixelFormat GetPixelFormat() const																					{ return PixelFormat; }
 
-	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageASTC object is
+	// Will return the format the astc data was in, even if you chose to decode.
+	tPixelFormat GetPixelFormatSrc() const																				{ return PixelFormatSrc; }
+
+	// After the steal call you are the owner of the layer and must eventually delete it. This tImageASTC object is
 	// invalid afterwards.
-	tPixel* StealPixels();
-	tPixel* GetPixels() const																							{ return Pixels; }
-	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
+	tLayer* StealLayer()																								{ tLayer* layer = Layer; Layer = nullptr; return layer; }
+	tLayer* GetLayer() const																							{ return Layer; }
 
 private:
+	tPixelFormat PixelFormat	= tPixelFormat::Invalid;
+	tPixelFormat PixelFormatSrc	= tPixelFormat::Invalid;
 
-	tSpace ColourSpace		= tSpace::sRGB;
-	int Width				= 0;
-	int Height				= 0;
-	tPixel* Pixels			= nullptr;
+	// We store the data in a tLayer because that's the container we use for pixel data than may be in any format.
+	// The user of tImageASTC is not required to decode, so we can't just use a tPixel array.
+	tLayer* Layer				= nullptr;
 };
 
 
@@ -100,12 +124,10 @@ private:
 
 inline void tImageASTC::Clear()
 {
-	ColourSpace		= tSpace::sRGB;
-	Width			= 0;
-	Height			= 0;
-	delete[]		Pixels;
-	Pixels			= nullptr;
-	SrcPixelFormat = tPixelFormat::Invalid;
+	PixelFormat					= tPixelFormat::Invalid;
+	PixelFormatSrc				= tPixelFormat::Invalid;
+	delete						Layer;
+	Layer						= nullptr;
 }
 
 

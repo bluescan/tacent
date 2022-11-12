@@ -494,6 +494,8 @@ namespace tDDS
 	void GetFormatInfo_FromDXGIFormat		(tPixelFormat&, tColourSpace&, tAlphaMode&, uint32 dxgiFormat);
 	void GetFormatInfo_FromFourCC			(tPixelFormat&, tColourSpace&, tAlphaMode&, uint32 fourCC);
 	void GetFormatInfo_FromComponentMasks	(tPixelFormat&, tColourSpace&, tAlphaMode&, const FormatData&);
+
+	void ProcessHDRFlags(tColour4f& colour, tcomps channels, const tImageDDS::LoadParams& params);
 }
 
 
@@ -932,6 +934,17 @@ void tDDS::GetFormatInfo_FromComponentMasks(tPixelFormat& format, tColourSpace& 
 }
 
 
+void tDDS::ProcessHDRFlags(tColour4f& colour, tcomps channels, const tImageDDS::LoadParams& params)
+{
+	if (params.Flags & tImageDDS::LoadFlag_ToneMapExposure)
+		colour.TonemapExposure(params.Exposure, channels);
+	if (params.Flags & tImageDDS::LoadFlag_SRGBCompression)
+		colour.LinearToSRGB(channels);
+	if (params.Flags & tImageDDS::LoadFlag_GammaCompression)
+		colour.LinearToGamma(params.Gamma, channels);
+}
+
+
 tImageDDS::tImageDDS()
 {
 	tStd::tMemset(Layers, 0, sizeof(Layers));
@@ -1287,16 +1300,12 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 						// If we can do one layer, we can do them all -- in all images.
 						RowReversalOperationPerformed = true;
 					}
-					else
-					{
-						Layers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
-					}
 				}
-				else
-				{
-					// If reverseRowOrder is false we want the data to go straight in so we use the currPixelData directly.
+
+				// If no luck reversing or no request to reverse in the first place, use the data directly.
+				if (!reverseRowOrderRequested || (reverseRowOrderRequested && !RowReversalOperationPerformed))
 					Layers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
-				}
+
 				tAssert(Layers[layer][image]->GetDataSize() == numBytes);
 			}
 			else
@@ -1502,7 +1511,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 							{
 								float r = hdata[ij*1 + 0];
 								tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
-								ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
+								tDDS::ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1518,7 +1527,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 								float r = hdata[ij*2 + 0];
 								float g = hdata[ij*2 + 1];
 								tColour4f col(r, g, 0.0f, 1.0f);
-								ProcessHDRFlags(col, tComp_RG, params);
+								tDDS::ProcessHDRFlags(col, tComp_RG, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1536,7 +1545,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 								float b = hdata[ij*4 + 2];
 								float a = hdata[ij*4 + 3];
 								tColour4f col(r, g, b, a);
-								ProcessHDRFlags(col, tComp_RGB, params);
+								tDDS::ProcessHDRFlags(col, tComp_RGB, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1551,7 +1560,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 							{
 								float r = fdata[ij*1 + 0];
 								tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
-								ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
+								tDDS::ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1567,7 +1576,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 								float r = fdata[ij*2 + 0];
 								float g = fdata[ij*2 + 1];
 								tColour4f col(r, g, 0.0f, 1.0f);
-								ProcessHDRFlags(col, tComp_RG, params);
+								tDDS::ProcessHDRFlags(col, tComp_RG, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1585,7 +1594,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 								float b = fdata[ij*4 + 2];
 								float a = fdata[ij*4 + 3];
 								tColour4f col(r, g, b, a);
-								ProcessHDRFlags(col, tComp_RGB, params);
+								tDDS::ProcessHDRFlags(col, tComp_RGB, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1725,7 +1734,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 							for (int ij = 0; ij < w*h; ij++)
 							{
 								tColour4f col(rgbData[ij], 1.0f);
-								ProcessHDRFlags(col, tComp_RGB, params);
+								tDDS::ProcessHDRFlags(col, tComp_RGB, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1834,6 +1843,8 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 					result = astcenc_decompress_image(context, src, layer->GetDataSize(), &image, &swizzle, 0);
 					if (result != ASTCENC_SUCCESS)
 					{
+						astcenc_context_free(context);
+						delete[] uncompData;
 						Clear();
 						Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
 						return false;
@@ -1844,18 +1855,19 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 					for (int p = 0; p < w*h; p++)
 					{
 						tColour4f col(uncompData[p]);
-						ProcessHDRFlags(col, tComp_RGB, params);
+						tDDS::ProcessHDRFlags(col, tComp_RGB, params);
 						pixelData[p].Set(col);
 					}
 					processedHDRFlags = true;
-					delete[] uncompData;
 
 					// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
+					tAssert(layer->OwnsData);
 					delete[] layer->Data;
 					layer->Data = (uint8*)pixelData;
 					layer->PixelFormat = tPixelFormat::R8G8B8A8;
 
 					astcenc_context_free(context);
+					delete[] uncompData;
 				}
 
 				else // Unsupported PixelFormat
@@ -1898,17 +1910,6 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 
 	Results |= 1 << int(ResultCode::Success);
 	return true;
-}
-
-
-void tImageDDS::ProcessHDRFlags(tColour4f& colour, tcomps channels, const LoadParams& params)
-{
-	if (params.Flags & LoadFlag_ToneMapExposure)
-		colour.TonemapExposure(params.Exposure, channels);
-	if (params.Flags & LoadFlag_SRGBCompression)
-		colour.LinearToSRGB(channels);
-	if (params.Flags & LoadFlag_GammaCompression)
-		colour.LinearToGamma(params.Gamma, channels);
 }
 
 

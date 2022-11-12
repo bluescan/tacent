@@ -249,8 +249,6 @@ private:
 	const static int MaxImages				= 6;
 	tLayer* Layers[MaxMipmapLayers][MaxImages];
 
-	void ProcessHDRFlags(tColour4f& colour, tcomps channels, const LoadParams& params);
-
 public:
 	static const char* ResultDescriptions[];
 };

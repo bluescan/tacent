@@ -37,6 +37,8 @@ namespace tKTX
 	// which case colour-space will be set to their 'unspecified' enumerant.
 	void GetFormatInfo_FromGLFormat(tPixelFormat&, tColourSpace&, uint32 glType, uint32 glFormat, uint32 glInternalFormat);
 	void GetFormatInfo_FromVKFormat(tPixelFormat&, tColourSpace&, uint32 vkFormat);
+
+	void ProcessHDRFlags(tColour4f& colour, tcomps channels, const tImageKTX::LoadParams& params);
 }
 
 
@@ -592,6 +594,17 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourSpace& space,
 }
 
 
+void tKTX::ProcessHDRFlags(tColour4f& colour, tcomps channels, const tImageKTX::LoadParams& params)
+{
+	if (params.Flags & tImageKTX::LoadFlag_ToneMapExposure)
+		colour.TonemapExposure(params.Exposure, channels);
+	if (params.Flags & tImageKTX::LoadFlag_SRGBCompression)
+		colour.LinearToSRGB(channels);
+	if (params.Flags & tImageKTX::LoadFlag_GammaCompression)
+		colour.LinearToGamma(params.Gamma, channels);
+}
+
+
 tImageKTX::tImageKTX()
 {
 	tStd::tMemset(Layers, 0, sizeof(Layers));
@@ -874,16 +887,12 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 						// If we can do one layer, we can do them all -- in all images.
 						RowReversalOperationPerformed = true;
 					}
-					else
-					{
-						Layers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
-					}
 				}
-				else
-				{
-					// If reverseRowOrder is false we want the data to go straight in so we use the currPixelData directly.
+				
+				// If no luck reversing or no request to reverse in the first place, use the data directly.
+				if (!reverseRowOrderRequested || (reverseRowOrderRequested && !RowReversalOperationPerformed))
 					Layers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
-				}
+
 				tAssert(Layers[layer][image]->GetDataSize() == numBytes);
 			}
 			else
@@ -1086,7 +1095,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 							{
 								float r = hdata[ij*1 + 0];
 								tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
-								ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
+								tKTX::ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1102,7 +1111,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 								float r = hdata[ij*2 + 0];
 								float g = hdata[ij*2 + 1];
 								tColour4f col(r, g, 0.0f, 1.0f);
-								ProcessHDRFlags(col, tComp_RG, params);
+								tKTX::ProcessHDRFlags(col, tComp_RG, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1120,7 +1129,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 								float b = hdata[ij*4 + 2];
 								float a = hdata[ij*4 + 3];
 								tColour4f col(r, g, b, a);
-								ProcessHDRFlags(col, tComp_RGB, params);
+								tKTX::ProcessHDRFlags(col, tComp_RGB, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1135,7 +1144,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 							{
 								float r = fdata[ij*1 + 0];
 								tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
-								ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
+								tKTX::ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1151,7 +1160,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 								float r = fdata[ij*2 + 0];
 								float g = fdata[ij*2 + 1];
 								tColour4f col(r, g, 0.0f, 1.0f);
-								ProcessHDRFlags(col, tComp_RG, params);
+								tKTX::ProcessHDRFlags(col, tComp_RG, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1169,7 +1178,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 								float b = fdata[ij*4 + 2];
 								float a = fdata[ij*4 + 3];
 								tColour4f col(r, g, b, a);
-								ProcessHDRFlags(col, tComp_RGB, params);
+								tKTX::ProcessHDRFlags(col, tComp_RGB, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1309,7 +1318,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 							for (int ij = 0; ij < w*h; ij++)
 							{
 								tColour4f col(rgbData[ij], 1.0f);
-								ProcessHDRFlags(col, tComp_RGB, params);
+								tKTX::ProcessHDRFlags(col, tComp_RGB, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1418,6 +1427,8 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 					result = astcenc_decompress_image(context, src, layer->GetDataSize(), &image, &swizzle, 0);
 					if (result != ASTCENC_SUCCESS)
 					{
+						astcenc_context_free(context);
+						delete[] uncompData;
 						Clear();
 						Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
 						return false;
@@ -1428,7 +1439,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 					for (int p = 0; p < w*h; p++)
 					{
 						tColour4f col(uncompData[p]);
-						ProcessHDRFlags(col, tComp_RGB, params);
+						tKTX::ProcessHDRFlags(col, tComp_RGB, params);
 						pixelData[p].Set(col);
 					}
 					processedHDRFlags = true;
@@ -1484,17 +1495,6 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 
 	Results |= 1 << int(ResultCode::Success);
 	return true;
-}
-
-
-void tImageKTX::ProcessHDRFlags(tColour4f& colour, tcomps channels, const LoadParams& params)
-{
-	if (params.Flags & LoadFlag_ToneMapExposure)
-		colour.TonemapExposure(params.Exposure, channels);
-	if (params.Flags & LoadFlag_SRGBCompression)
-		colour.LinearToSRGB(channels);
-	if (params.Flags & LoadFlag_GammaCompression)
-		colour.LinearToGamma(params.Gamma, channels);
 }
 
 

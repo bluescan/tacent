@@ -15,38 +15,200 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <System/tFile.h>
+#include <System/tMachine.h>
 #include "Image/tImageASTC.h"
-using namespace tSystem;
+#include "astcenc.h"
 namespace tImage
 {
 
 
-bool tImageASTC::Load(const tString& astcFile)
+namespace tASTC
+{
+	struct Header
+	{
+		uint8_t Magic[4];
+		uint8_t BlockW;
+		uint8_t BlockH;
+		uint8_t BlockD;
+		uint8_t DimX[3];
+		uint8_t DimY[3];
+		uint8_t DimZ[3];
+	};
+	tStaticAssert(sizeof(Header) == 16);
+
+	tPixelFormat GetFormatFromBlockDimensions(int blockW, int blockH);
+	void ProcessHDRFlags(tColour4f& colour, tcomps channels, const tImageASTC::LoadParams& params);
+};
+
+
+tPixelFormat tASTC::GetFormatFromBlockDimensions(int blockW, int blockH)
+{
+	int pixelsPerBlock = blockW * blockH;
+	switch (pixelsPerBlock)
+	{
+		case 16:	return tPixelFormat::ASTC4X4;
+		case 20:	return tPixelFormat::ASTC5X4;
+		case 25:	return tPixelFormat::ASTC5X5;
+		case 30:	return tPixelFormat::ASTC6X5;
+		case 36:	return tPixelFormat::ASTC6X6;
+		case 40:	return tPixelFormat::ASTC8X5;
+		case 48:	return tPixelFormat::ASTC8X6;
+		case 50:	return tPixelFormat::ASTC10X5;
+		case 60:	return tPixelFormat::ASTC10X6;
+		case 64:	return tPixelFormat::ASTC8X8;
+		case 80:	return tPixelFormat::ASTC10X8;
+		case 100:	return tPixelFormat::ASTC10X10;
+		case 120:	return tPixelFormat::ASTC12X10;
+		case 144:	return tPixelFormat::ASTC12X12;
+	}
+	return tPixelFormat::Invalid;
+}
+
+
+void tASTC::ProcessHDRFlags(tColour4f& colour, tcomps channels, const tImageASTC::LoadParams& params)
+{
+	if (params.Flags & tImageASTC::LoadFlag_ToneMapExposure)
+		colour.TonemapExposure(params.Exposure, channels);
+	if (params.Flags & tImageASTC::LoadFlag_SRGBCompression)
+		colour.LinearToSRGB(channels);
+	if (params.Flags & tImageASTC::LoadFlag_GammaCompression)
+		colour.LinearToGamma(params.Gamma, channels);
+}
+
+
+bool tImageASTC::Load(const tString& astcFile, const LoadParams& params)
 {
 	Clear();
 
 	if (tSystem::tGetFileType(astcFile) != tSystem::tFileType::ASTC)
 		return false;
 
-	if (!tFileExists(astcFile))
+	if (!tSystem::tFileExists(astcFile))
 		return false;
 
 	int numBytes = 0;
-	uint8* astcFileInMemory = tLoadFile(astcFile, nullptr, &numBytes);
-	bool success = Set(astcFileInMemory, numBytes);
+	uint8* astcFileInMemory = tSystem::tLoadFile(astcFile, nullptr, &numBytes);
+	bool success = Set(astcFileInMemory, numBytes, params);
 	delete[] astcFileInMemory;
 
 	return success;
 }
 
 
-bool tImageASTC::Set(const uint8* astcFileInMemory, int numBytes)
+bool tImageASTC::Set(const uint8* astcInMemory, int numBytes, const LoadParams& params)
 {
 	Clear();
-	if ((numBytes <= 0) || !astcFileInMemory)
+
+	// This will deal with zero-sized files properly as well. Basically we need
+	// the header and at least one block of data. All ASTC blocks are 16 bytes.
+	if (!astcInMemory || (numBytes < (sizeof(tASTC::Header)+16)))
 		return false;
 
-	// WIP
+	const uint8* astcCurr = astcInMemory;
+	tASTC::Header& header = *((tASTC::Header*)astcInMemory);
+
+	// Check the magic.
+	if ((header.Magic[0] != 0x13) || (header.Magic[1] != 0xAB) || (header.Magic[2] != 0xA1) || (header.Magic[3] != 0x5C))
+		return false;
+
+	int blockW = header.BlockW;
+	int blockH = header.BlockH;
+	int blockD = header.BlockD;
+
+	// We only support block depth of 1 (2D blocks) -- for now.
+	if (blockD != 1)
+		return false;
+
+	int width  = header.DimX[0] + (header.DimX[1] << 8) + (header.DimX[2] << 16);
+	int height = header.DimY[0] + (header.DimY[1] << 8) + (header.DimY[2] << 16);
+	int depth  = header.DimZ[0] + (header.DimZ[1] << 8) + (header.DimZ[2] << 16);
+
+	// We only support depth of 1 (2D images) -- for now.
+	if ((width <= 0) || (height <= 0) || (depth > 1))
+		return false;
+
+	tPixelFormat format = tASTC::GetFormatFromBlockDimensions(blockW, blockH);
+	if (!tIsASTCFormat(format))
+		return false;
+
+	PixelFormat = format;
+	PixelFormatSrc = format;
+	const uint8* astcData = astcInMemory + sizeof(tASTC::Header);
+	int astcDataSize = numBytes - sizeof(tASTC::Header);
+	tAssert(!Layer);
+
+	// If we were not asked to decode we just get the data over to the Layer and we're done.
+	if (!(params.Flags & LoadFlag_Decode))
+	{
+		Layer = new tLayer(PixelFormat, width, height, (uint8*)astcData);
+		return true;
+	}
+
+	//
+	// We were asked to decode. Decode to RGBA data and then populate a new layer.
+	//
+	// ASTC Colour Profile.
+	astcenc_profile profile = ASTCENC_PRF_LDR_SRGB;
+	switch (params.Profile)
+	{
+		case ColourProfile::LDR:		profile = ASTCENC_PRF_LDR_SRGB;			break;
+		case ColourProfile::LDR_FULL:	profile = ASTCENC_PRF_LDR;				break;
+		case ColourProfile::HDR:		profile = ASTCENC_PRF_HDR_RGB_LDR_A;	break;
+		case ColourProfile::HDR_FULL:	profile = ASTCENC_PRF_HDR;				break;
+	}
+
+	// ASTC Config.
+	float quality = ASTCENC_PRE_MEDIUM;			// Only need for compression.
+	astcenc_error result = ASTCENC_SUCCESS;
+	astcenc_config config;
+	astcenc_config_init(profile, blockW, blockH, blockD, quality, ASTCENC_FLG_DECOMPRESS_ONLY, &config);
+	if (result != ASTCENC_SUCCESS)
+		return false;
+
+	// ASTC Context.
+	astcenc_context* context = nullptr;
+	int numThreads = tMath::tMax(tSystem::tGetNumCores(), 2);
+	result = astcenc_context_alloc(&config, numThreads, &context);
+	if (result != ASTCENC_SUCCESS)
+		return false;
+
+	// ASTC Image.
+	tColour4f* uncompData = new tColour4f[width*height];
+	astcenc_image image;
+	image.dim_x = width;
+	image.dim_y = height;
+	image.dim_z = depth;
+	image.data_type = ASTCENC_TYPE_F32;
+
+	// ASTC Decode.
+	tColour4f* slices = uncompData;
+	image.data = reinterpret_cast<void**>(&slices);
+	astcenc_swizzle swizzle { ASTCENC_SWZ_R, ASTCENC_SWZ_G, ASTCENC_SWZ_B, ASTCENC_SWZ_A };
+	result = astcenc_decompress_image(context, astcData, astcDataSize, &image, &swizzle, 0);
+	if (result != ASTCENC_SUCCESS)
+	{
+		astcenc_context_free(context);
+		delete[] uncompData;
+		return false;
+	}
+
+	// Convert to 32-bit RGBA and apply any HDR flags.
+	tPixel* pixelData = new tPixel[width*height];
+	for (int p = 0; p < width*height; p++)
+	{
+		tColour4f col(uncompData[p]);
+		tASTC::ProcessHDRFlags(col, tComp_RGB, params);
+		pixelData[p].Set(col);
+	}
+
+	// Give decoded data to layer.
+	tAssert(!Layer);
+	Layer = new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)uncompData, true);
+	tAssert(Layer->OwnsData);
+
+	// ASTC Cleanup.
+	astcenc_context_free(context);
+	delete[] uncompData;
 
 	return true;
 }
@@ -58,71 +220,45 @@ bool tImageASTC::Set(tPixel* pixels, int width, int height, bool steal)
 	if (!pixels || (width <= 0) || (height <= 0))
 		return false;
 
-	Width = width;
-	Height = height;
-
-	if (steal)
-	{
-		Pixels = pixels;
-	}
-	else
-	{
-		Pixels = new tPixel[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
-	}
-
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	Layer = new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)pixels, steal);
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	PixelFormat = tPixelFormat::R8G8B8A8;
 	return true;
 }
 
 
-tImageASTC::tFormat tImageASTC::Save(const tString& astcFile, tFormat format) const
+bool tImageASTC::Save(const tString& astcFile) const
 {
-	if (!IsValid() || (format == tFormat::Invalid))
-		return tFormat::Invalid;
+	if (!IsValid())
+		return false;
 
 	if (tSystem::tGetFileType(astcFile) != tSystem::tFileType::ASTC)
-		return tFormat::Invalid;
-
-	if (format == tFormat::Auto)
-	{
-		if (IsOpaque())
-			format = tFormat::Bit24;
-		else
-			format = tFormat::Bit32;
-	}
+		return false;
 
 	bool success = false;
 
 	// WIP
-	
-	if (!success)
-		return tFormat::Invalid;
 
-	return format;
+	return success;
 }
 
 
 bool tImageASTC::IsOpaque() const
 {
-	for (int p = 0; p < (Width*Height); p++)
+	if (!IsValid())
+		return false;
+	
+	if (Layer->PixelFormat == tPixelFormat::R8G8B8A8)
 	{
-		if (Pixels[p].A < 255)
-			return false;
+		tPixel* pixels = (tPixel*)Layer->Data;
+		for (int p = 0; p < (Layer->Width * Layer->Height); p++)
+		{
+			if (pixels[p].A < 255)
+				return false;
+		}
 	}
 
-	return true;
-}
-
-
-tPixel* tImageASTC::StealPixels()
-{
-	tPixel* pixels = Pixels;
-	Pixels = nullptr;
-	Width = 0;
-	Height = 0;
-	
-	return pixels;
+	return false;
 }
 
 
