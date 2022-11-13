@@ -198,6 +198,8 @@ bool tImageASTC::Set(const uint8* astcInMemory, int numBytes, const LoadParams& 
 	for (int p = 0; p < width*height; p++)
 	{
 		tColour4f col(uncompData[p]);
+		if (col.IsHDR())
+			DetectedHDRDecode = true;
 		tASTC::ProcessHDRFlags(col, tComp_RGB, params);
 		pixelData[p].Set(col);
 	}

@@ -100,6 +100,10 @@ public:
 	// R8G8B8A8 pixel-format (i.e. not decoded) since all ASTC pixel formats support alpha.
 	bool IsOpaque() const;
 
+	// If during decoding there were pixel values outside the [0.0, 1.0] range, this function will return true. It does
+	// not work if no decoding was requested because we can't inspect component values. In this case returns false.
+	bool IsHDR() const																									{ return DetectedHDRDecode; }
+
 	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the astc data is in.
 	tPixelFormat GetPixelFormat() const																					{ return PixelFormat; }
 
@@ -114,6 +118,7 @@ public:
 private:
 	tPixelFormat PixelFormat	= tPixelFormat::Invalid;
 	tPixelFormat PixelFormatSrc	= tPixelFormat::Invalid;
+	bool DetectedHDRDecode		= false;
 
 	// We store the data in a tLayer because that's the container we use for pixel data than may be in any format.
 	// The user of tImageASTC is not required to decode, so we can't just use a tPixel array.
@@ -128,6 +133,7 @@ inline void tImageASTC::Clear()
 {
 	PixelFormat					= tPixelFormat::Invalid;
 	PixelFormatSrc				= tPixelFormat::Invalid;
+	DetectedHDRDecode			= false;
 	delete						Layer;
 	Layer						= nullptr;
 }

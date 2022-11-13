@@ -299,7 +299,8 @@ typedef tColour3i tPixel3;
 
 
 // The tColour4f class represents a colour in 4 floats and is made of 4 floats in the order RGBA. The values of each
-// float component are E [0.0, 1.0]. tColour4f is usually considered to be in linear space rather than sRGB or Gamma.
+// float component are E [0.0, 1.0]. tColour4f is _usually_ considered to be in linear space rather than sRGB or Gamma.
+// Even in these cases, however, the alpha if often LDR (0..1) and in linear-space.
 class tColour4f
 {
 public:
@@ -362,6 +363,9 @@ public:
 	bool IsRed() const																									{ return ((R == 1.0f) && (G == 0.0f) && (B == 0.0f)) ? true : false; }
 	bool IsGreen() const																								{ return ((R == 0.0f) && (G == 1.0f) && (B == 0.0f)) ? true : false; }
 	bool IsBlue() const																									{ return ((R == 0.0f) && (G == 0.0f) && (B == 1.0f)) ? true : false; }
+
+	// Returns true if any component (including alpha currently) is above 1.0f.
+	bool IsHDR() const																									{ return ((R > 1.0f) || (G > 1.0f) || (B > 1.0f) || (A > 1.0f)); }
 
 	// Colours in textures in files may be in 'Gamma-space' and ought to be converted to linear space before lighting
 	// calculations are made. They should then be converted back to Gamma space before being displayed. SquareToLinear
