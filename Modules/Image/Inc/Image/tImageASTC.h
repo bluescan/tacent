@@ -30,12 +30,14 @@ public:
 	{
 		LoadFlag_Decode				= 1 << 0,	// Decode the astc texture data into RGBA 32 bit. If not set, the pixel data will remain unmodified.
 
-		// The remaining flags only apply when decode flag set.
-		LoadFlag_GammaCompression	= 1 << 1,	// Gamma-correct. Gamma compression using an encoding gamma of 1/2.2.
-		LoadFlag_SRGBCompression	= 1 << 2,	// Same as above but uses the official sRGB transformation. Linear -> sRGB. Approx encoding gamma of 1/2.4 for part of curve.
-		LoadFlag_ToneMapExposure	= 1 << 3,	// Apply exposure value when loading the astc.
-		LoadFlags_Default			= LoadFlag_Decode
-	};	
+		// The remaining flags only apply when decode flag set. ReverseRowOrder is guaranteed to work if decoding, and
+		// guaranteed to not work if not decoding.
+		LoadFlag_ReverseRowOrder	= 1 << 1,	// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.
+		LoadFlag_GammaCompression	= 1 << 2,	// Gamma-correct. Gamma compression using an encoding gamma of 1/2.2.
+		LoadFlag_SRGBCompression	= 1 << 3,	// Same as above but uses the official sRGB transformation. Linear -> sRGB. Approx encoding gamma of 1/2.4 for part of curve.
+		LoadFlag_ToneMapExposure	= 1 << 4,	// Apply exposure value when loading the astc.
+		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SRGBCompression
+	};
 
 	enum class ColourProfile
 	{

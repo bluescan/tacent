@@ -32,4 +32,5 @@ namespace tUnitTest
 	tTestUnit(ImageDDS);
 	tTestUnit(ImageKTX2);
 	tTestUnit(ImageKTX1);
+	tTestUnit(ImageASTC);
 }

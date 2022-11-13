@@ -17,6 +17,7 @@
 #include <System/tFile.h>
 #include <System/tMachine.h>
 #include "Image/tImageASTC.h"
+#include "Image/tPixelUtil.h"
 #include "astcenc.h"
 namespace tImage
 {
@@ -201,15 +202,26 @@ bool tImageASTC::Set(const uint8* astcInMemory, int numBytes, const LoadParams& 
 		pixelData[p].Set(col);
 	}
 
-	// Give decoded data to layer.
+	// If requested, reverse the row order of the decoded data.
+	if (params.Flags & LoadFlag_ReverseRowOrder)
+	{
+		uint8* reversedRowData = tImage::CreateReversedRowData((uint8*)pixelData, tPixelFormat::R8G8B8A8, width, height);
+		tAssert(reversedRowData);
+		delete[] pixelData;
+		pixelData = (tPixel*)reversedRowData;
+	}
+
+	// Give decoded pixelData to layer.
 	tAssert(!Layer);
-	Layer = new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)uncompData, true);
+	Layer = new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)pixelData, true);
 	tAssert(Layer->OwnsData);
 
 	// ASTC Cleanup.
 	astcenc_context_free(context);
 	delete[] uncompData;
 
+	// Finally update the current pixel format -- but not the source format.
+	PixelFormat = tPixelFormat::R8G8B8A8;
 	return true;
 }
 

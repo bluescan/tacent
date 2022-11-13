@@ -175,6 +175,7 @@ int main(int argc, char** argv)
 	tTest(ImageDDS);
 	tTest(ImageKTX1);
 	tTest(ImageKTX2);
+	tTest(ImageASTC);
 	#endif
 
 	#else
@@ -203,10 +204,11 @@ int main(int argc, char** argv)
 	// tTest(ImagePicture);
 	// tTest(ImageGradient);
 	// tTest(ImageMetaData);
-	tTest(ImageDetection);
+	// tTest(ImageDetection);
 	// tTest(ImageDDS);
 	// tTest(ImageKTX1);
 	// tTest(ImageKTX2);
+	tTest(ImageASTC);
 	#endif
 	// tTest(UTF);
 	// tTest(Hash);

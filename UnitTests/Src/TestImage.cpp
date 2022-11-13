@@ -15,6 +15,7 @@
 #include <Image/tTexture.h>
 #include <Image/tImageDDS.h>
 #include <Image/tImageKTX.h>
+#include <Image/tImageASTC.h>
 #include <Image/tImageEXR.h>
 #include <Image/tImageGIF.h>
 #include <Image/tImageHDR.h>
@@ -700,7 +701,7 @@ tTestUnit(ImageGradient)
 }
 
 
-// Helper for ImageDDS unit tests.
+// Helper for tImageDDS unit tests.
 void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAllMips = false)
 {
 	// We're just going to turn on auto-gamma-compression for all files.
@@ -960,7 +961,7 @@ tTestUnit(ImageDDS)
 }
 
 
-// Helper for ImageKTX (V1 and V2) unit tests.
+// Helper for tImageKTX (V1 and V2) unit tests.
 void KTXLoadDecodeSave(const tString& ktxfile, uint32 loadFlags = 0, bool saveAllMips = false)
 {
 	// We're just going to turn on auto-gamma-compression for all files.
@@ -1313,6 +1314,152 @@ tTestUnit(ImageKTX2)
 	KTXLoadDecodeSave("R32f_R.ktx2");
 	KTXLoadDecodeSave("R32G32f_RG.ktx2");
 	KTXLoadDecodeSave("R32G32B32A32f_RGBA.ktx2", revrow);
+
+	tSystem::tSetCurrentDir(origDir.Chr());
+}
+
+
+// Helper for tImageASTC unit tests.
+void ASTCLoadDecodeSave(const tString& astcfile, const tImageASTC::LoadParams& params)
+{
+	uint32 loadFlags = params.Flags;
+	tString basename = tSystem::tGetFileBaseName(astcfile);
+	tString savename = basename + "_";
+	if (loadFlags & tImageASTC::LoadFlag_Decode)
+		savename += "D";
+	if ((loadFlags & tImageASTC::LoadFlag_GammaCompression) || (loadFlags & tImageKTX::LoadFlag_SRGBCompression))
+		savename += "G";
+	if (loadFlags & tImageASTC::LoadFlag_ReverseRowOrder)
+		savename += "R";
+
+	switch (params.Profile)
+	{
+		case tImageASTC::ColourProfile::LDR:		savename += "l";	break;	// RGB in sRGB space. Linear alpha.
+		case tImageASTC::ColourProfile::LDR_FULL:	savename += "L";	break;	// RGBA all linear.
+		case tImageASTC::ColourProfile::HDR:		savename += "h";	break;	// RGB in linear HDR space. Linear LDR alpha.
+		case tImageASTC::ColourProfile::HDR_FULL:	savename += "H";	break;	// RGBA all in linear HDR.
+	}
+
+	tPrintf("ASTC Load %s\n", savename.Chr());
+	tString formatname = basename.Left('_');
+
+	tImageASTC astc(astcfile, params);
+	tRequire(astc.IsValid());
+	tPixelFormat fileformat = tGetPixelFormat(formatname.Chr());
+	tPixelFormat astcformat = astc.GetPixelFormat();
+	tPixelFormat astcformatsrc = astc.GetPixelFormatSrc();
+	tRequire(fileformat == astcformatsrc);
+	if (loadFlags & tImageASTC::LoadFlag_Decode)
+		tRequire(astcformat == tPixelFormat::R8G8B8A8);
+	else
+		tRequire(astcformat == fileformat);
+
+	tLayer* layer = astc.StealLayer();
+	tAssert(layer->OwnsData);
+	if (astcformat == tPixelFormat::R8G8B8A8)
+	{
+		tImageTGA tga((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_" + savename + ".tga");
+	}
+	else
+	{
+		tPrintf("No decode, no tga save. Pixel format not R8G8B8A8\n");
+	}
+	delete layer;
+	tPrintf("\n");
+}
+
+
+tTestUnit(ImageASTC)
+{
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageASTC)
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/ASTC/");
+
+	tPrintf("Testing ASTC Loading/Decoding using astcenc V %s\n\n", tImage::Version_ASTCEncoder);
+	tPrintf("D = Decode\n");
+	tPrintf("G = Explicit Gamma or sRGB Compression.\n");
+	tPrintf("l = LDR Profile.      RGB in sRGB space. Linear alpha. All in [0,1]\n");
+	tPrintf("L = LDR FULL Profile. RGBA all linear. All in [0, 1]\n");
+	tPrintf("h = HDR Profile.      RGB linear space in [0, inf]. LDR [0, 1] A in linear space.\n");
+	tPrintf("H = HDR FULL Profile. RGBA linear space in [0, inf].\n");
+
+	//
+	// LDR.
+	//
+	tImageASTC::LoadParams ldrParams;
+	ldrParams.Profile = tImageASTC::ColourProfile::LDR;
+	ldrParams.Flags = tImageASTC::LoadFlag_Decode | tImageASTC::LoadFlag_ReverseRowOrder;
+	ASTCLoadDecodeSave("ASTC4x4_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC5x4_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC5x5_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC6x5_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC6x6_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC8x5_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC8x6_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC8x8_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC10x5_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC10x6_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC10x8_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC10x10_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC12x10_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC12x12_LDR.astc", ldrParams);
+
+	//
+	// LDR.
+	//
+	tImageASTC::LoadParams hdrParams;
+	hdrParams.Profile = tImageASTC::ColourProfile::HDR;
+	hdrParams.Flags = tImageASTC::LoadFlag_Decode | tImageASTC::LoadFlag_SRGBCompression | tImageASTC::LoadFlag_ReverseRowOrder;
+	ASTCLoadDecodeSave("ASTC4x4_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC5x4_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC5x5_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC6x5_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC6x6_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC8x5_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC8x6_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC8x8_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC10x5_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC10x6_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC10x8_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC10x10_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC12x10_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC12x12_HDR.astc", hdrParams);
+
+	// Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
+	tPrintf("Testing ASTC Loading/No-decoding.\n\n");
+	ldrParams.Flags = 0;
+	ASTCLoadDecodeSave("ASTC4x4_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC5x4_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC5x5_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC6x5_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC6x6_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC8x5_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC8x6_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC8x8_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC10x5_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC10x6_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC10x8_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC10x10_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC12x10_LDR.astc", ldrParams);
+	ASTCLoadDecodeSave("ASTC12x12_LDR.astc", ldrParams);
+
+	hdrParams.Flags = 0;
+	ASTCLoadDecodeSave("ASTC4x4_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC5x4_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC5x5_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC6x5_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC6x6_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC8x5_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC8x6_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC8x8_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC10x5_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC10x6_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC10x8_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC10x10_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC12x10_HDR.astc", hdrParams);
+	ASTCLoadDecodeSave("ASTC12x12_HDR.astc", hdrParams);
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }
