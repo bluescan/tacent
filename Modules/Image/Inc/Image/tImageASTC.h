@@ -53,7 +53,10 @@ public:
 	{
 		LoadParams()																									{ Reset(); }
 		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Gamma(src.Gamma), Exposure(src.Exposure), Profile(src.Profile) { }
-		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::DefaultGamma; Exposure = 1.0f; Profile = ColourProfile::LDR; }
+
+		// We chose HDR as default colour profie because it can load LDR blocks. The other way around doesn't work with
+		// with the tests images -- the LDR profile doesn't appear capable of loading HDR blocks (they become magenta).
+		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::DefaultGamma; Exposure = 1.0f; Profile = ColourProfile::HDR; }
 		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Gamma = src.Gamma; Exposure = src.Exposure; Profile = src.Profile; }
 
 		uint32 Flags;
@@ -100,10 +103,6 @@ public:
 	// R8G8B8A8 pixel-format (i.e. not decoded) since all ASTC pixel formats support alpha.
 	bool IsOpaque() const;
 
-	// If during decoding there were pixel values outside the [0.0, 1.0] range, this function will return true. It does
-	// not work if no decoding was requested because we can't inspect component values. In this case returns false.
-	bool IsHDR() const																									{ return DetectedHDRDecode; }
-
 	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the astc data is in.
 	tPixelFormat GetPixelFormat() const																					{ return PixelFormat; }
 
@@ -118,7 +117,6 @@ public:
 private:
 	tPixelFormat PixelFormat	= tPixelFormat::Invalid;
 	tPixelFormat PixelFormatSrc	= tPixelFormat::Invalid;
-	bool DetectedHDRDecode		= false;
 
 	// We store the data in a tLayer because that's the container we use for pixel data than may be in any format.
 	// The user of tImageASTC is not required to decode, so we can't just use a tPixel array.
@@ -133,7 +131,6 @@ inline void tImageASTC::Clear()
 {
 	PixelFormat					= tPixelFormat::Invalid;
 	PixelFormatSrc				= tPixelFormat::Invalid;
-	DetectedHDRDecode			= false;
 	delete						Layer;
 	Layer						= nullptr;
 }
