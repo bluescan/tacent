@@ -52,12 +52,12 @@ public:
 	struct LoadParams
 	{
 		LoadParams()																									{ Reset(); }
-		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Gamma(src.Gamma), Exposure(src.Exposure), Profile(src.Profile) { }
+		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Profile(src.Profile), Gamma(src.Gamma), Exposure(src.Exposure) { }
 
-		// We chose HDR as default colour profie because it can load LDR blocks. The other way around doesn't work with
+		// We chose HDR as the default profile because it can load LDR blocks. The other way around doesn't work with
 		// with the tests images -- the LDR profile doesn't appear capable of loading HDR blocks (they become magenta).
-		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::DefaultGamma; Exposure = 1.0f; Profile = ColourProfile::HDR; }
-		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Gamma = src.Gamma; Exposure = src.Exposure; Profile = src.Profile; }
+		void Reset()																									{ Flags = LoadFlags_Default; Profile = ColourProfile::HDR; Gamma = tMath::DefaultGamma; Exposure = 1.0f; }
+		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Profile = src.Profile; Gamma = src.Gamma; Exposure = src.Exposure; return *this; }
 
 		uint32 Flags;
 		ColourProfile Profile;		// Used iff decoding.
