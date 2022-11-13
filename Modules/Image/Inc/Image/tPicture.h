@@ -58,7 +58,6 @@ extern const char* Version_LibTIFF;
 extern const char* Version_LibKTX;
 extern const char* Version_ApngDis;
 extern const char* Version_ApngAsm;
-extern const char* Version_QOI;
 extern int Version_WEBP_Major;
 extern int Version_WEBP_Minor;
 extern int Version_BCDec_Major;
