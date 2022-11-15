@@ -392,8 +392,13 @@ void tGetExtensions(tList<tStringItem>& extensions, tFileType);
 void tGetExtension(tList<tStringItem>& extensions, tFileType);
 tString tGetExtension(tFileType);
 
-// Currently this returns the same string as the most common (default) extension string.
-const char* tGetFileTypeName(tFileType);
+// For the file-type name we use the most common (default) extension string. Essentially this does the same thing as
+// tGetExtension. If we need something more descriptive we could add a tGetFileTypeDesc(...)
+tString tGetFileTypeName(tFileType);
+
+// This does the reverse. Gets the file-type from the supplied file-type name. Essentially this does the same thing as
+// tGetFileTypeFromExtension.
+tFileType tGetFileTypeFromName(const tString& name);
 
 // A little helper type that holds file extension strings. Extensions are lower-case and do not include the dot.
 struct tExtensions
@@ -784,6 +789,18 @@ inline void tSystem::tDriveInfo::Clear()
 	DriveType = tDriveType::Unknown;
 }
 #endif
+
+
+inline tString tSystem::tGetFileTypeName(tFileType fileType)
+{
+	return tGetExtension(fileType);
+}
+
+
+inline tSystem::tFileType tSystem::tGetFileTypeFromName(const tString& name)
+{
+	return tGetFileTypeFromExtension(name);
+}
 
 
 inline tSystem::tExtensions& tSystem::tExtensions::Add(const tExtensions& src)

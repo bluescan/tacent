@@ -1938,16 +1938,6 @@ tString tSystem::tGetExtension(tFileType fileType)
 }
 
 
-const char* tSystem::tGetFileTypeName(tFileType fileType)
-{
-	if (fileType == tFileType::Unknown)
-		return nullptr;
-
-	FileTypeExts& exts = FileTypeExtTable[ int(fileType) ];
-	return exts.Ext[0];
-}
-
-
 std::time_t tSystem::tConvertToPosixTime(std::filesystem::file_time_type ftime)
 {
 	using namespace std::chrono;
