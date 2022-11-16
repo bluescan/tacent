@@ -988,7 +988,7 @@ tTestUnit(FileTypes)
 	selected.AddSelected(fileTypes);
 	tPrintf("Selected Types:\n");
 	for (tFileTypes::tFileTypeItem* item = selected.First(); item; item = item->Next())
-		tPrintf("SelectedType: %s\n", tGetFileTypeName(item->FileType));
+		tPrintf("SelectedType: %s\n", tGetFileTypeName(item->FileType).Chr());
 
 	tPrintf("Selected String (comsp, nomax):[%s]\n", fileTypes.GetSelectedString().Chr());
 	tPrintf("Selected String (comsp, max 3):[%s]\n", fileTypes.GetSelectedString(tFileTypes::Separator::CommaSpace, 3).Chr());
@@ -999,7 +999,7 @@ tTestUnit(FileTypes)
 	selected.AddSelected(FileTypesGlobal, true);
 	tPrintf("Selected Types (Global All):\n");
 	for (tFileTypes::tFileTypeItem* item = fileTypes.First(); item; item = item->Next())
-		tPrintf("SelectedType: %s\n", tGetFileTypeName(item->FileType));
+		tPrintf("SelectedType: %s\n", tGetFileTypeName(item->FileType).Chr());
 }
 
 
