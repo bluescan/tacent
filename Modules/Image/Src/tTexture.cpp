@@ -102,6 +102,7 @@ bool tTexture::Set(tImageDDS& dds, tImageDDS::tSurfIndex surface)
 }
 
 
+/*
 bool tTexture::Load(const tString& imageFile, bool generateMipMaps, tPixelFormat format, tQuality quality, int forceWidth, int forceHeight)
 {
 	Clear();
@@ -111,6 +112,7 @@ bool tTexture::Load(const tString& imageFile, bool generateMipMaps, tPixelFormat
 
 	return Set(image, generateMipMaps, format, quality, forceWidth, forceHeight);
 }
+*/
 
 
 bool tTexture::Set(tPicture& image, bool generateMipmaps, tPixelFormat pixelFormat, tQuality quality, int forceWidth, int forceHeight)

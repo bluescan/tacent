@@ -31,6 +31,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#if 0
 #include <System/tChunk.h>
 #include "Image/tTexture.h"
 namespace tImage
@@ -139,3 +140,4 @@ private:
 
 
 }
+#endif

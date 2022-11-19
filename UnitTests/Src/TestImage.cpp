@@ -40,11 +40,14 @@ tTestUnit(ImageLoad)
 		tSkipUnit(ImageLoad)
 
 	// Test direct loading classes.
-	tImageTGA imgTGA("TestData/Images/WhiteBorderRLE.tga");
-	tRequire(imgTGA.IsValid());
-
 	tImageAPNG imgAPNG("TestData/Images/Flame.apng");
 	tRequire(imgAPNG.IsValid());
+
+	tImageASTC imgASTC("TestData/Images/ASTC/ASTC10x10_LDR.astc");
+	tRequire(imgASTC.IsValid());
+
+	tImageBMP imgBMP("TestData/Images/UpperB.bmp");
+	tRequire(imgBMP.IsValid());
 
 	tImageDDS imgDDS("TestData/Images/DDS/BC1DXT1_RGB_Legacy.dds");
 	tRequire(imgDDS.IsValid());
@@ -64,17 +67,26 @@ tTestUnit(ImageLoad)
 	tImageJPG imgJPG("TestData/Images/WiredDrives.jpg");
 	tRequire(imgJPG.IsValid());
 
-	tImageTIFF imgTIFF("TestData/Images/Tiff_NoComp.tif");
-	tRequire(imgTIFF.IsValid());
+	tImageKTX imgKTX("TestData/Images/KTX2/BC7_RGBA.ktx2");
+	tRequire(imgKTX.IsValid());
 
-	tImageWEBP imgWEBP("TestData/Images/RockyBeach.webp");
-	tRequire(imgWEBP.IsValid());
+	tImagePNG imgPNG("TestData/Images/TacentTestPattern.png");
+	tRequire(imgPNG.IsValid());
 
 	tImageQOI imgQOI24("TestData/Images/TacentTestPattern24.qoi");
 	tRequire(imgQOI24.IsValid());
 
 	tImageQOI imgQOI32("TestData/Images/TacentTestPattern32.qoi");
 	tRequire(imgQOI32.IsValid());
+
+	tImageTGA imgTGA("TestData/Images/WhiteBorderRLE.tga");
+	tRequire(imgTGA.IsValid());
+
+	tImageTIFF imgTIFF("TestData/Images/Tiff_NoComp.tif");
+	tRequire(imgTIFF.IsValid());
+
+	tImageWEBP imgWEBP("TestData/Images/RockyBeach.webp");
+	tRequire(imgWEBP.IsValid());
 }
 
 
@@ -93,21 +105,30 @@ tTestUnit(ImageSave)
 	tImageQOI::tFormat result24 = qoi.Save("TestData/Images/WrittenTacentTestPattern24.qoi", tImageQOI::tFormat::Bit24);
 	tRequire(result24 == tImageQOI::tFormat::Bit24);
 
-	tPicture newPngA("TestData/Images/Xeyes.png");
-	newPngA.Save("TestData/Images/WrittenNewA.png");
+	tImagePNG pngA("TestData/Images/Xeyes.png");
+	pngA.Save("TestData/Images/WrittenNewA.png");
 	tRequire( tSystem::tFileExists("TestData/Images/WrittenNewA.png"));
 
-	tPicture newPngB("TestData/Images/TextCursor.png");
-	newPngB.Save("TestData/Images/WrittenNewB.png");
+	tImagePNG pngB("TestData/Images/TextCursor.png");
+	pngB.Save("TestData/Images/WrittenNewB.png");
 	tRequire( tSystem::tFileExists("TestData/Images/WrittenNewB.png"));
 
-	tPicture apngPicForSave("TestData/Images/Flame.apng");
-	apngPicForSave.SaveWEBP("TestData/Images/WrittenFlameOneFrame.webp");
+	tList<tFrame> frames;
+
+	// Test writing webp images. The basic pattern to save as a different type is to steal from one and give to the other.
+	tImageAPNG apng("TestData/Images/Flame.apng");
+	apng.StealFrames(frames);
+	tImageWEBP webp;
+	webp.Set(frames, true);
+	webp.Save("TestData/Images/WrittenFlameOneFrame.webp");
+	tRequire(frames.IsEmpty());
 	tRequire(tSystem::tFileExists("TestData/Images/WrittenFlameOneFrame.webp"));
 
-	// Test writing webp images.
-	tPicture exrPicForSave("TestData/Images/Desk.exr");
-	exrPicForSave.SaveWEBP("TestData/Images/WrittenDesk.webp");
+	tImageEXR exr("TestData/Images/Desk.exr");
+	exr.StealFrames(frames);
+	webp.Set(frames, true);
+	webp.Save("TestData/Images/WrittenDesk.webp");
+	tRequire(frames.IsEmpty());
 	tRequire(tSystem::tFileExists("TestData/Images/WrittenDesk.webp"));
 }
 
@@ -134,14 +155,24 @@ tTestUnit(ImageTexture)
 	tRequire(cubemap.IsValid());
 
 	// Test jpg to texture. This will do conversion to BC1.
-	tTexture bc1Tex("TestData/Images/WiredDrives.jpg", true);
+	tImageJPG jpg("TestData/Images/WiredDrives.jpg");
+	int w = jpg.GetWidth(); int h = jpg.GetHeight();
+	tPicture pic(w, h, jpg.StealPixels(), false); 
+	tTexture bc1Tex(pic, true);
+
 	tRequire(bc1Tex.IsValid());
 	tChunkWriter chunkWriterBC1("TestData/Images/Written_WiredDrives_BC1.tac");
 	bc1Tex.Save(chunkWriterBC1);
-	tRequire( tSystem::tFileExists("TestData/Images/Written_WiredDrives_BC1.tac"));
+	tRequire( tSystem::tFileExists("TestData/Images/Written_WiredDrives_BC1.tac") );
 
 	// Test ico with alpha to texture. This will do conversion to BC3.
-	tTexture bc3Tex("TestData/Images/UpperBounds.ico", true);
+	tImageICO ico("TestData/Images/UpperBounds.ico");
+	tFrame* frame = ico.StealFrame(0);
+	w = frame->Width; h = frame->Height;
+	pic.Set(w, h, frame->StealPixels(), false);
+	delete frame;
+	tTexture bc3Tex(pic, true);
+
 	tRequire(bc3Tex.IsValid());
 	tChunkWriter chunkWriterBC3("TestData/Images/Written_UpperBounds_BC3.tac");
 	bc3Tex.Save(chunkWriterBC3);
@@ -155,7 +186,12 @@ tTestUnit(ImagePicture)
 		tSkipUnit(ImagePicture)
 
 	// Test generate layers.
-	tPicture srcPic("TestData/Images/UpperB.bmp");
+	tImageBMP bmp("TestData/Images/UpperB.bmp");
+	tRequire(bmp.IsValid());
+
+	int w = bmp.GetWidth(); int h = bmp.GetHeight();
+	tPicture srcPic(w, h, bmp.StealPixels(), false);
+	//tPicture srcPic("TestData/Images/UpperB.bmp");
 	tRequire(srcPic.IsValid());
 	tPrintf("GenLayers Orig W=%d H=%d\n", srcPic.GetWidth(), srcPic.GetHeight());
 	tList<tLayer> layers;
@@ -165,6 +201,7 @@ tTestUnit(ImagePicture)
 		tPrintf("GenLayers Mip:%02d W=%d H=%d\n", lev, lay->Width, lay->Height);
 	tRequire(layers.GetNumItems() == 10);
 
+#if 0
 	// Test tPicture loading bmp and saving as tga.
 	tPicture bmpPicUB("TestData/Images/UpperB.bmp");
 	tRequire(bmpPicUB.IsValid());
@@ -278,6 +315,7 @@ tTestUnit(ImagePicture)
 	tPicture exrPicToSaveAsTIFF("TestData/Images/Desk.exr");
 	exrPicToSaveAsTIFF.SaveTIFF("TestData/Images/WrittenDesk.tiff");
 	tRequire(tSystem::tFileExists("TestData/Images/WrittenDesk.tiff"));
+#endif
 }
 
 
@@ -429,7 +467,9 @@ tTestUnit(ImageRotation)
 		tSkipUnit(ImageRotation)
 
 	// Test writing rotated images.
-	tPicture aroPic("TestData/Images/RightArrow.png");
+	tImagePNG aropng("TestData/Images/RightArrow.png");
+	int w = aropng.GetWidth(); int h = aropng.GetHeight();
+	tPicture aroPic(w, h, aropng.StealPixels(), false);
 	tRequire(aroPic.IsValid());
 
 	tPrintf("Image dimensions before rotate: W:%d H:%d\n", aroPic.GetWidth(), aroPic.GetHeight());
@@ -444,7 +484,10 @@ tTestUnit(ImageRotation)
 		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
 		tString writeFile;
 		tsPrintf(writeFile, "TestData/Images/WrittenRightArrow_NoResampRot%03d.tga", int(tMath::tRadToDeg(angle)));
-		rotPic.Save(writeFile);
+
+		int w = rotPic.GetWidth(); int h = rotPic.GetHeight();
+		tImageTGA rottga(rotPic.StealPixels(), w, h, true);
+		rottga.Save(writeFile);
 	}
 
 	// Test resampled (high quality) rotations.
@@ -457,13 +500,17 @@ tTestUnit(ImageRotation)
 		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
 		tString writeFile;
 		tsPrintf(writeFile, "TestData/Images/WrittenRightArrow_BilinearResampleRot%03d.tga", int(tMath::tRadToDeg(angle)));
-		rotPic.Save(writeFile);
+		int w = rotPic.GetWidth(); int h = rotPic.GetHeight();
+		tImageTGA rottga(rotPic.StealPixels(), w, h, true);
+		rottga.Save(writeFile);
 	}
 
 	tPrintf("Test 'plane' rotation.\n");
-	tPicture planePic("TestData/Images/plane.png");
-	int w = planePic.GetWidth();
-	int h = planePic.GetHeight();
+	tImagePNG planepng("TestData/Images/plane.png");
+	w = planepng.GetWidth(); h = planepng.GetHeight();
+	tPicture planePic(w, h, planepng.StealPixels(), false);
+	w = planePic.GetWidth();
+	h = planePic.GetHeight();
 	planePic.RotateCenter(-tMath::PiOver4, tColouri::transparent);
 }
 
@@ -473,6 +520,7 @@ tTestUnit(ImageCrop)
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImageCrop)
 
+#if 0
 	// Crop black pixels ignoring alpha (RGB channels only).
 	tPicture planePic("TestData/Images/plane.png");
 	int w = planePic.GetWidth();
@@ -480,6 +528,7 @@ tTestUnit(ImageCrop)
 	planePic.Crop(tColouri::black, tComp_RGB);
 	planePic.Crop(w, h, tPicture::Anchor::MiddleMiddle, tColouri::transparent);
 	planePic.Save("TestData/Images/WrittenPlane.png");
+#endif
 }
 
 
@@ -522,6 +571,7 @@ tTestUnit(ImageFilter)
 	for (int filt = 0; filt < int(tResampleFilter::NumFilters); filt++)
 		tPrintf("Filter Name %d: %s\n", filt, tResampleFilterNames[filt]);
 
+#if 0
 	tPicture resamplePicNearest("TestData/Images/TextCursor.png");		// 512x256.
 	resamplePicNearest.Resample(800, 300, tResampleFilter::Nearest);
 	resamplePicNearest.SaveTGA("TestData/Images/WrittenResampledNearest.tga");
@@ -565,6 +615,7 @@ tTestUnit(ImageFilter)
 	tPicture resamplePicLanczosWide("TestData/Images/TextCursor.png");	// 512x256.
 	resamplePicLanczosWide.Resample(800, 300, tResampleFilter::Lanczos_Wide);
 	resamplePicLanczosWide.SaveTGA("TestData/Images/WrittenResampledLanczosWide.tga");
+#endif
 }
 
 
@@ -573,6 +624,7 @@ tTestUnit(ImageMultiFrame)
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImageMultiFrame)
 
+#if 0
 	// A multipage tiff.
 	tPicture tifPic_Multipage_ZIP_P1("TestData/Images/Tiff_Multipage_ZIP.tif", 0);
 	tRequire(tifPic_Multipage_ZIP_P1.IsValid());
@@ -588,6 +640,7 @@ tTestUnit(ImageMultiFrame)
 	tRequire(tifPic_Multipage_ZIP_P3.IsValid());
 	tifPic_Multipage_ZIP_P3.Save("TestData/Images/WrittenTiff_Multipage_ZIP_P3.tga");
 	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_Multipage_ZIP_P3.tga"));
+#endif
 
 	// tImageWEBP also supports saving multi-frame webp files.
 	tImageAPNG apngSrc("TestData/Images/Flame.apng");

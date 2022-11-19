@@ -108,11 +108,12 @@ bool tImageWEBP::Set(tList<tFrame>& srcFrames, bool stealFrames)
 	{
 		while (tFrame* frame = srcFrames.Remove())
 			Frames.Append(frame);
-		return true;
 	}
-
-	for (tFrame* frame = srcFrames.Head(); frame; frame = frame->Next())
-		Frames.Append(new tFrame(*frame));
+	else
+	{
+		for (tFrame* frame = srcFrames.Head(); frame; frame = frame->Next())
+			Frames.Append(new tFrame(*frame));
+	}
 
 	return true;
 }

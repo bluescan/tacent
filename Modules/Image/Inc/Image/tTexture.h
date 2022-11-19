@@ -33,6 +33,8 @@ namespace tImage
 {
 
 
+// @todo This class needs some work. It's too strongly linked to tImageDDS. It should probably just take in layers and
+// also be able to convert frames to layers and support various types of conversion/compression.
 class tTexture : public tLink<tTexture>
 {
 public:
@@ -69,18 +71,6 @@ public:
 		Production		// Lanczos sinc-based resample filter. High quality BCn compression.
 	};
 
-	// This constructor creates a texture from an image file such as a jpg, gif, tga, or bmp. It does this by creating
-	// a temporary tPicture object. If tPixelFormat is Auto, the constructor automatically chooses the most appropriate
-	// format for the texture based on the image's properties. DXT1/BC1 is chosen if the image is perfectly opaque, and
-	// DXT5/BC3 if it has alphas. This constructor forces power-of-2 texture dimensions and will resample to the nearest
-	// power-of-2 if required. If forceWidth is > 0, the image will be resampled if necessary to have that width. The
-	// same logic applies to forceHeight. Both forceWidth and forceHeight, if supplied, must be powers of 2.
-	tTexture
-	(
-		const tString& imageFile, bool generateMipMaps, tPixelFormat pixelFormat = tPixelFormat::Auto,
-		tQuality quality = tQuality::Production, int forceWidth = 0, int forceHeight = 0
-	)																													{ Load(imageFile, generateMipMaps, pixelFormat, quality, forceWidth, forceHeight); }
-
 	// Same as above except that an in-memory tPicture is used instead of a filename. The supplied tPicture will be
 	// invalid after this constructor. This is because resampling may occur on the tPicture.
 	tTexture
@@ -104,11 +94,7 @@ public:
 		bool correctRowOrder = true
 	);
 	bool Set(tImageDDS& ddsObject, tImageDDS::tSurfIndex = tImageDDS::tSurfIndex_Default);
-	bool Load
-	(
-		const tString& imageFile, bool generateMipMaps, tPixelFormat = tPixelFormat::Auto,
-		tQuality = tQuality::Production, int forceWidth = 0, int forceHeight = 0
-	);
+
 	bool Set
 	(
 		tPicture& imageObject, bool generateMipMaps, tPixelFormat = tPixelFormat::Auto,

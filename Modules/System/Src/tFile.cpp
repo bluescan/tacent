@@ -1853,10 +1853,7 @@ tSystem::FileTypeExts tSystem::FileTypeExtTable[] =
 	{ "jp2" },							// JP2
 	{ "jpc" },							// JPC
 	{ "ico" },							// ICO
-	{ "tex" },							// TEX
-	{ "img" },							// IMG
-	{ "cub" },							// CUB
-	{ "tac", "tim" },					// TAC
+	{ "tac" },							// TAC
 	{ "cfg" },							// CFG
 	{ "ini" },							// INI
 };

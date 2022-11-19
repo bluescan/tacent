@@ -70,9 +70,23 @@ extern int Version_TinyEXIF_Minor;
 extern int Version_TinyEXIF_Patch;
 
 
-// A tPicture is a single 2D image. A rectangular collection of RGBA pixels (32bits per pixel). The origin is the lower
-// left, and the rows are ordered from bottom to top in memory. This matches the expectation of OpenGL texture
-// manipulation functions for the most part (there are cases when it is inconsistent with itself).
+// A tPicture is a single 2D image. A rectangular collection of R8G8B8A8 pixels (32bits per pixel). The origin is the
+// lower left, and the rows are ordered from bottom to top in memory. @todo At some point we need to support HDR images and
+// should represent the pixels as R32G32B32A32f.
+//
+// The main purpose of a tPicture is to allow manipulation of a single image. Things like setting pixel colours,
+// rotation, flips, resampling and resizing are found here.
+//
+// There is no saving and loading directly from image files because some types may have multiple frames. For example
+// a gif or webp may be animated. We could just choose a particular frame, but that would mean loading all frames only
+// to keep a single one. There is the same complexity with saving. Different image formats have drastically different
+// parameters that need to be specified for saving -- jpgs need a quality setting, astc files have a multitude of
+// compression parameters in addition to the block size, targas can be RLE encoded, ktx files can be supercompressed...
+// or not, etc. The purpose of the tImageNNN files is to deal with that complexity for each specific image type. From
+// these loaders you can construct one or more tPictures by passing in the pixels, width, and height.
+//
+// There is some save/load functionality directly for a tPicture. It has it's own file format based of tChunks. It can
+// save/load itself to/from a .tac file.
 class tPicture : public tLink<tPicture>
 {
 public:
@@ -87,40 +101,6 @@ public:
 	// copies the values from the buffer you supply. If copyPixels is false, it means you are giving the buffer to the
 	// tPicture. In this case the tPicture will delete[] the buffer for you when appropriate.
 	tPicture(int width, int height, tPixel* pixelBuffer, bool copyPixels = true)										{ Set(width, height, pixelBuffer, copyPixels); }
-
-	struct LoadParams
-	{
-		// @todo Revisit this. Currently we're extracting the defaults for _all_ the different filetypes by constructing
-		// a temporary LoadParams object. Whole thing feels awkward. Re-evaluate how tPicture will be used.
-		LoadParams()
-		{
-			GammaValue			= tMath::DefaultGamma;
-
-			tImageHDR::LoadParams hdrParams;
-			HDR_Exposure		= hdrParams.Exposure;
-
-			tImageEXR::LoadParams exrParams;
-			EXR_Exposure		= exrParams.Exposure;
-			EXR_Defog			= exrParams.Defog;
-			EXR_KneeLow			= exrParams.KneeLow;
-			EXR_KneeHigh		= exrParams.KneeHigh;
-		}
-		float	GammaValue;
-		int		HDR_Exposure;
-		float	EXR_Exposure;
-		float	EXR_Defog;
-		float	EXR_KneeLow;
-		float	EXR_KneeHigh;
-
-		uint32	DDS_Flags;
-		
-	};
-
-	// Loads the supplied image file. If the image couldn't be loaded, IsValid will return false afterwards. Uses the
-	// filename extension to determine what file type it is loading. For images with more than one frame (animated gif,
-	// tiff, etc) the
-	// frameNum specifies which one to load and will result in an invalid tPicture if you go too high.
-	tPicture(const tString& imageFile, int frameNum = 0, LoadParams params = LoadParams())								{ Load(imageFile, frameNum, params); }
 
 	// Copy constructor.
 	tPicture(const tPicture& src)																						: tPicture() { Set(src); }
@@ -142,43 +122,6 @@ public:
 	// pixel data is lost.
 	void Set(int width, int height, tPixel* pixelBuffer, bool copyPixels = true);
 	void Set(const tPicture& src);
-
-	// Can this class save the the filetype supplied?
-	static bool CanSave(const tString& imageFile);
-	static bool CanSave(tSystem::tFileType);
-
-	// Can this class load the the filetype supplied?
-	static bool CanLoad(const tString& imageFile);
-	static bool CanLoad(tSystem::tFileType);
-
-	enum class tColourFormat
-	{
-		Invalid,	// Invalid must be 0.
-		Auto,		// Save function will decide format. Colour if all image pixels are opaque and ColourAndAlpha otherwise.
-		Colour,
-		ColourAndAlpha
-	};
-
-	// Saves to the image file you specify and examines the extension to determine filetype. Supports tga, png, bmp, jpg.
-	// If tColourFormat is set to auto, the opacity/alpha channel will be excluded if all pixels are opaque.
-	// Alpha channels are not supported for gif and jpg files. Quality (used for jpg) is in [1, 100].
-	bool Save(const tString& imageFile, tColourFormat = tColourFormat::Auto, int quality = 95);
-
-	bool SaveBMP(const tString& bmpFile) const;
-	bool SaveJPG(const tString& jpgFile, int quality = 95) const;
-	bool SavePNG(const tString& pngFile) const;
-	bool SaveTGA
-	(
-		const tString& tgaFile, tImageTGA::tFormat = tImageTGA::tFormat::Auto,
-		tImageTGA::tCompression = tImageTGA::tCompression::RLE
-	) const;
-	bool SaveWEBP(const tString& webpFile) const;
-	bool SaveAPNG(const tString& apngFile) const;
-	bool SaveTIFF(const tString& tiffFile, bool compress = true) const;
-	bool SaveGIF (const tString& gifFile ) const;
-
-	// Always clears the current image before loading. If false returned, you will have an invalid tPicture.
-	bool Load(const tString& imageFile, int frameNum = 0, LoadParams params = LoadParams());
 
 	// Save and Load to tChunk format.
 	void Save(tChunkWriter&) const;
@@ -320,17 +263,6 @@ inline void tPicture::Clear()
 	SrcPixelFormat = tPixelFormat::Invalid;
 }
 
-
-inline bool tPicture::CanLoad(const tString& imageFile)
-{
-	return CanLoad( tSystem::tGetFileType(imageFile) );
-}
-
-
-inline bool tPicture::CanSave(const tString& imageFile)
-{
-	return CanSave( tSystem::tGetFileType(imageFile) );
-}
 
 
 inline bool tPicture::IsOpaque() const

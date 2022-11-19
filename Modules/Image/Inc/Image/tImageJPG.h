@@ -38,7 +38,8 @@ public:
 	// Creates an invalid tImageJPG. You must call Load or Set manually.
 	tImageJPG()																											{ }
 	
-	tImageJPG(const tString& jpgFile, uint32 loadFlags = LoadFlags_Default)												{ Load(jpgFile, loadFlags); }
+	tImageJPG(const tString& jpgFile)																					{ Load(jpgFile, LoadFlags_Default); }
+	tImageJPG(const tString& jpgFile, uint32 loadFlags)																	{ Load(jpgFile, loadFlags); }
 
 	// The data is copied out of jpgFileInMemory. Go ahead and delete after if you want.
 	tImageJPG(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default)							{ Set(jpgFileInMemory, numBytes, loadFlags); }

@@ -59,9 +59,15 @@ public:
 	// Returns true if ALL frames are opaque. Slow. Checks all pixels.
 	bool IsOpaque() const;
 
-	// After this call you are the owner of the frame and must eventually delete it. The frame you stole will no
-	// longer be a valid frame of the tImageEXR, but the remaining ones will still be valid.
+	// After this call you are the owner of the frame and must eventually delete it. The frame you stole will no longer
+	// be part of the tImageEXR, but the remaining ones will still be there. GetNumFrames will be one fewer.
 	tFrame* StealFrame(int frameNum);
+
+	// Similar to above but takes all the frames from the tImageEXR and appends them to the supplied frame list. The
+	// object will be invalid after since it will have no frames.
+	void StealFrames(tList<tFrame>&);
+
+	// Returns a pointer to the frame, but it's not yours to delete. This object still owns it.
 	tFrame* GetFrame(int frameNum);
 	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
 
@@ -100,6 +106,13 @@ inline tFrame* tImageEXR::StealFrame(int frameNum)
 		return nullptr;
 
 	return Frames.Remove(f);
+}
+
+
+inline void tImage::tImageEXR::StealFrames(tList<tFrame>& frames)
+{
+	while (tFrame* frame = Frames.Remove())
+		frames.Append(frame);
 }
 
 

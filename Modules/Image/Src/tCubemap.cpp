@@ -31,6 +31,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include "Image/tCubemap.h"
+#if 0
 using namespace tImage;
 
 
@@ -271,3 +272,4 @@ bool tCubemap::operator==(const tCubemap& src) const
 
 	return true;
 }
+#endif

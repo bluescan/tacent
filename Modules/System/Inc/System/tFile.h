@@ -364,10 +364,7 @@ enum class tFileType
 	JP2,						// Image.
 	JPC,						// Image.
 	ICO,						// Image. Windows Icon.
-	TEX,						// Image. Tacent TextureMap.
-	IMG,						// Image. TextureMap.
-	CUB,						// Image. Tacent CubeMap.
-	TAC,						// Image. Tacent Layered 2D Image.
+	TAC,						// Image. Tacent Image.
 	CFG,						// Config. Text Config File.
 	INI,						// Config. Ini Config File.
 	NumFileTypes
