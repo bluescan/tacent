@@ -41,6 +41,7 @@
 #include <Foundation/tString.h>
 #include <System/tFile.h>
 #include "Image/tImageHDR.h"
+#include "Image/tPicture.h"
 using namespace tSystem;
 namespace tImage
 {
@@ -104,7 +105,7 @@ bool tImageHDR::Load(const tString& hdrFile, const LoadParams& loadParams)
 
 	int numBytes = 0;
 	uint8* hdrFileInMemory = tLoadFile(hdrFile, nullptr, &numBytes, true);
-	bool success = Set(hdrFileInMemory, numBytes, loadParams);
+	bool success = Load(hdrFileInMemory, numBytes, loadParams);
 	delete[] hdrFileInMemory;
 
 	return success;
@@ -284,7 +285,7 @@ void tImageHDR::AdjustExposure(tPixel* scan, int len, int adjust)
 }
 
 
-bool tImageHDR::Set(uint8* hdrFileInMemory, int numBytes, const LoadParams& loadParams)
+bool tImageHDR::Load(uint8* hdrFileInMemory, int numBytes, const LoadParams& loadParams)
 {
 	Clear();
 	if ((numBytes <= 0) || !hdrFileInMemory)
@@ -381,7 +382,7 @@ bool tImageHDR::Set(uint8* hdrFileInMemory, int numBytes, const LoadParams& load
 		return false;
 	}
 
-	SrcPixelFormat = tPixelFormat::RADIANCE;
+	PixelFormatSrc = tPixelFormat::RADIANCE;
 	return true;
 }
 
@@ -404,8 +405,46 @@ bool tImageHDR::Set(tPixel* pixels, int width, int height, bool steal)
 		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
 	}
 
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 	return true;
+}
+
+
+bool tImageHDR::Set(tFrame* frame, bool steal)
+{
+	Clear();
+	if (!frame || !frame->IsValid())
+		return false;
+
+	Set(frame->GetPixels(steal), frame->Width, frame->Height, steal);
+	if (steal)
+		delete frame;
+
+	return true;
+}
+
+
+bool tImageHDR::Set(tPicture& picture, bool steal)
+{
+	Clear();
+	if (!picture.IsValid())
+		return false;
+
+	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+}
+
+
+tFrame* tImageHDR::StealFrame()
+{
+	if (!IsValid())
+		return nullptr;
+
+	tFrame* frame = new tFrame();
+	frame->StealFrom(Pixels, Width, Height);
+	frame->PixelFormatSrc = PixelFormatSrc;
+	Pixels = nullptr;
+	return frame;
 }
 
 

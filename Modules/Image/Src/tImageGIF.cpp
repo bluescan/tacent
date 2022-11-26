@@ -3,7 +3,7 @@
 // This knows how to load gifs. It knows the details of the gif file format and loads the data into multiple tPixel
 // arrays, one for each frame (gifs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020, 2021, 2022 Tristan Grimmer.
+// Copyright (c) 2020-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -19,6 +19,7 @@
 #include <GifLoad/gif_load.h>
 #include <GifSave/gif.h>
 #include "Image/tImageGIF.h"
+#include "Image/tPicture.h"
 using namespace tSystem;
 namespace tImage
 {
@@ -135,7 +136,7 @@ bool tImageGIF::Load(const tString& gifFile)
 	if (result <= 0)
 		return false;
 
-	SrcPixelFormat = tPixelFormat::PAL8BIT;
+	PixelFormatSrc = tPixelFormat::PAL8BIT;
 	return true;
 }
 
@@ -148,19 +149,77 @@ bool tImageGIF::Set(tList<tFrame>& srcFrames, bool stealFrames)
 
 	Width = srcFrames.Head()->Width;
 	Height = srcFrames.Head()->Height;
-	tPixelFormat SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 
 	if (stealFrames)
 	{
 		while (tFrame* frame = srcFrames.Remove())
 			Frames.Append(frame);
-		return true;
+	}
+	else
+	{
+		for (tFrame* frame = srcFrames.Head(); frame; frame = frame->Next())
+			Frames.Append(new tFrame(*frame));
 	}
 
-	for (tFrame* frame = srcFrames.Head(); frame; frame = frame->Next())
+	return true;
+}
+
+
+bool tImageGIF::Set(tPixel* pixels, int width, int height, bool steal)
+{
+	Clear();
+	if (!pixels || (width <= 0) || (height <= 0))
+		return false;
+
+	Width = width;
+	Height = height;
+	tFrame* frame = new tFrame();
+	if (steal)
+		frame->StealFrom(pixels, width, height);
+	else
+		frame->Set(pixels, width, height);
+	Frames.Append(frame);
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	return true;
+}
+
+
+bool tImageGIF::Set(tFrame* frame, bool steal)
+{
+	Clear();
+	if (!frame || !frame->IsValid())
+		return false;
+
+	Width = frame->Width;
+	Height = frame->Height;
+	if (steal)
+		Frames.Append(frame);
+	else
 		Frames.Append(new tFrame(*frame));
 
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 	return true;
+}
+
+
+bool tImageGIF::Set(tPicture& picture, bool steal)
+{
+	Clear();
+	if (!picture.IsValid())
+		return false;
+
+	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+}
+
+
+tFrame* tImageGIF::StealFrame()
+{
+	if (!IsValid())
+		return nullptr;
+
+	return Frames.Remove();
 }
 
 

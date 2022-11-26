@@ -3,7 +3,7 @@
 // This knows how to load/save WebPs. It knows the details of the webp file format and loads the data into multiple
 // tPixel arrays, one for each frame (WebPs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2020-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -17,6 +17,7 @@
 #include <Foundation/tString.h>
 #include <System/tFile.h>
 #include "Image/tImageWEBP.h"
+#include "Image/tPicture.h"
 #include "WebP/include/mux.h"
 #include "WebP/include/demux.h"
 #include "WebP/include/encode.h"
@@ -57,7 +58,7 @@ bool tImageWEBP::Load(const tString& webpFile)
 	}
 
 	// Iterate over all frames.
-	SrcPixelFormat = tPixelFormat::R8G8B8;
+	PixelFormatSrc = tPixelFormat::R8G8B8;
 	WebPIterator iter;
 	if (WebPDemuxGetFrame(demux, 1, &iter))
 	{
@@ -74,9 +75,9 @@ bool tImageWEBP::Load(const tString& webpFile)
 				continue;
 
 			tFrame* newFrame = new tFrame;
-			newFrame->SrcPixelFormat = iter.has_alpha ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
+			newFrame->PixelFormatSrc = iter.has_alpha ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
 			if (iter.has_alpha)
-				SrcPixelFormat = tPixelFormat::R8G8B8A8;
+				PixelFormatSrc = tPixelFormat::R8G8B8A8;
 			newFrame->Width = width;
 			newFrame->Height = height;
 			newFrame->Pixels = new tPixel[width * height];
@@ -103,7 +104,7 @@ bool tImageWEBP::Set(tList<tFrame>& srcFrames, bool stealFrames)
 	if (srcFrames.GetNumItems() <= 0)
 		return false;
 
-	tPixelFormat SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 	if (stealFrames)
 	{
 		while (tFrame* frame = srcFrames.Remove())
@@ -116,6 +117,58 @@ bool tImageWEBP::Set(tList<tFrame>& srcFrames, bool stealFrames)
 	}
 
 	return true;
+}
+
+
+bool tImageWEBP::Set(tPixel* pixels, int width, int height, bool steal)
+{
+	Clear();
+	if (!pixels || (width <= 0) || (height <= 0))
+		return false;
+
+	tFrame* frame = new tFrame();
+	if (steal)
+		frame->StealFrom(pixels, width, height);
+	else
+		frame->Set(pixels, width, height);
+	Frames.Append(frame);
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	return true;
+}
+
+
+bool tImageWEBP::Set(tFrame* frame, bool steal)
+{
+	Clear();
+	if (!frame || !frame->IsValid())
+		return false;
+
+	if (steal)
+		Frames.Append(frame);
+	else
+		Frames.Append(new tFrame(*frame));
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	return true;
+}
+
+
+bool tImageWEBP::Set(tPicture& picture, bool steal)
+{
+	Clear();
+	if (!picture.IsValid())
+		return false;
+
+	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+}
+
+
+tFrame* tImageWEBP::StealFrame()
+{
+	if (!IsValid())
+		return nullptr;
+
+	return Frames.Remove();
 }
 
 

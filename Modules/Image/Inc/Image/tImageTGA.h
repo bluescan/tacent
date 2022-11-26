@@ -4,7 +4,7 @@
 // tPicture's constructor if a targa file is specified. After the array is stolen the tImageTGA is invalid. This is
 // purely for performance.
 //
-// Copyright (c) 2006, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -18,11 +18,13 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tBaseImage.h>
 namespace tImage
 {
+class tPicture;
 
 
-class tImageTGA
+class tImageTGA : public tBaseImage
 {
 public:
 	// Creates an invalid tImageTGA. You must call Load manually.
@@ -30,11 +32,17 @@ public:
 	tImageTGA(const tString& tgaFile)																					{ Load(tgaFile); }
 
 	// The data is copied out of tgaFileInMemory. Go ahead and delete after if you want.
-	tImageTGA(const uint8* tgaFileInMemory, int numBytes)																{ Set(tgaFileInMemory, numBytes); }
+	tImageTGA(const uint8* tgaFileInMemory, int numBytes)																{ Load(tgaFileInMemory, numBytes); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
 	tImageTGA(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+
+	// Sets from a single frame.
+	tImageTGA(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
+
+	// Constructs from a tPicture.
+	tImageTGA(tPicture& picture, bool steal = true)																		{ Set(picture, steal); }
 
 	virtual ~tImageTGA()																								{ Clear(); }
 
@@ -42,11 +50,17 @@ public:
 	// or RLE compressed. Other compression methods are rare and unsupported. Returns success. If false returned,
 	// object is invalid.
 	bool Load(const tString& tgaFile);
-	bool Set(const uint8* tgaFileInMemory, int numBytes);
+	bool Load(const uint8* tgaFileInMemory, int numBytes);
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	bool Set(tPixel* pixels, int width, int height, bool steal = false);
+	bool Set(tPixel* pixels, int width, int height, bool steal = false) override;
+
+	// Sets from a single frame.
+	bool Set(tFrame*, bool steal) override;
+
+	// Sets from a tPicture.
+	bool Set(tPicture& picture, bool steal = true) override;
 
 	enum class tFormat
 	{
@@ -67,8 +81,8 @@ public:
 	tFormat Save(const tString& tgaFile, tFormat = tFormat::Auto, tCompression = tCompression::RLE) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
-	void Clear();
-	bool IsValid() const																								{ return Pixels ? true : false; }
+	void Clear() override;
+	bool IsValid() const override																						{ return Pixels ? true : false; }
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
@@ -79,8 +93,10 @@ public:
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageTGA object is
 	// invalid afterwards.
 	tPixel* StealPixels();
+	tFrame* StealFrame() override;
+
 	tPixel* GetPixels() const																							{ return Pixels; }
-	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
+	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 
 private:
 	bool SaveUncompressed(const tString& tgaFile, tFormat) const;
@@ -103,7 +119,7 @@ inline void tImageTGA::Clear()
 	Height = 0;
 	delete[] Pixels;
 	Pixels = nullptr;
-	SrcPixelFormat = tPixelFormat::Invalid;
+	PixelFormatSrc = tPixelFormat::Invalid;
 }
 
 

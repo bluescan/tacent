@@ -19,11 +19,12 @@
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
 #include <Image/tLayer.h>
+#include <Image/tBaseImage.h>
 namespace tImage
 {
 
 
-class tImageASTC
+class tImageASTC : public tBaseImage
 {
 public:
 	enum LoadFlag
@@ -70,31 +71,43 @@ public:
 	tImageASTC(const tString& astcFile, const LoadParams& params = LoadParams())										{ Load(astcFile, params); }
 
 	// The data is copied out of astcFileInMemory. Go ahead and delete[] after if you want.
-	tImageASTC(const uint8* astcFileInMemory, int numBytes, const LoadParams& params = LoadParams())					{ Set(astcFileInMemory, numBytes, params); }
+	tImageASTC(const uint8* astcFileInMemory, int numBytes, const LoadParams& params = LoadParams())					{ Load(astcFileInMemory, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out. Sets the colour space to sRGB. Call SetColourSpace after if you wanted linear.
 	tImageASTC(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
+	// Sets from a single frame.
+	tImageASTC(tFrame* frame, bool steal = true)																		{ Set(frame, steal); }
+
+	// Constructs from a tPicture.
+	tImageASTC(tPicture& picture, bool steal = true)																	{ Set(picture, steal); }
+
 	virtual ~tImageASTC()																								{ Clear(); }
 
 	// Clears the current tImageASTC before loading. Returns success. If false returned, object is invalid.
 	bool Load(const tString& astcFile, const LoadParams& params = LoadParams());
-	bool Set(const uint8* astcFileInMemory, int numBytes, const LoadParams& params = LoadParams());
+	bool Load(const uint8* astcFileInMemory, int numBytes, const LoadParams& params = LoadParams());
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	bool Set(tPixel* pixels, int width, int height, bool steal = false);
+	bool Set(tPixel* pixels, int width, int height, bool steal = false) override;
+
+	// Sets from a single frame. After this is called the layer data will be in R8G8B8A8.
+	bool Set(tFrame*, bool steal = true) override;
+
+	// Sets from a tPicture.
+	bool Set(tPicture& picture, bool steal = true) override;
+
+	// After this call no memory will be consumed by the object and it will be invalid.
+	void Clear() override;
+	bool IsValid() const override																						{ return (Layer && Layer->IsValid()); }
 
 	// Saves the tImageASTC to the file specified. The extension of filename must be ".astc". Returns the format that
 	// the file was saved in, or tFormat::Invalid if there was a problem. Since Invalid is 0, you can use an 'if'. The
 	// colour-space is also saved with the file and can be retrieved on load. Optionally call SetColourSpace before
 	// saving if you need to (although usually the default sRGB is the correct one).
 	bool Save(const tString& astcFile) const;
-
-	// After this call no memory will be consumed by the object and it will be invalid.
-	void Clear();
-	bool IsValid() const																								{ return (Layer && Layer->IsValid()); }
 
 	int GetWidth() const																								{ return Layer ? Layer->Width  : 0; }
 	int GetHeight() const																								{ return Layer ? Layer->Height : 0; }
@@ -113,6 +126,7 @@ public:
 	// invalid afterwards.
 	tLayer* StealLayer()																								{ tLayer* layer = Layer; Layer = nullptr; return layer; }
 	tLayer* GetLayer() const																							{ return Layer; }
+	tFrame* StealFrame() override;
 
 private:
 	tPixelFormat PixelFormat	= tPixelFormat::Invalid;

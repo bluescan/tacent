@@ -119,6 +119,27 @@ void tPicture::Set(int width, int height, tPixel* pixelBuffer, bool copyPixels)
 }
 
 
+void tPicture::Set(tFrame* frame, bool steal)
+{
+	if (!frame || !frame->IsValid())
+		return;
+
+	Set(frame->Width, frame->Height, frame->GetPixels(steal), !steal);
+	if (steal)
+		delete frame;
+}
+
+
+void tPicture::Set(tBaseImage& image)
+{
+	if (!image.IsValid())
+		return;
+
+	tFrame* frame = image.StealFrame();
+	Set(frame, true);
+}
+
+
 void tPicture::Save(tChunkWriter& chunk) const
 {
 	chunk.Begin(tChunkID::Image_Picture);

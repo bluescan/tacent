@@ -4,7 +4,7 @@
 // png file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor
 // if a png file is specified. After the array is stolen the tImagePNG is invalid. This is purely for performance.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -21,6 +21,7 @@
 #include <System/tFile.h>
 #include "png.h"
 #include "Image/tImagePNG.h"
+#include "Image/tPicture.h"
 using namespace tSystem;
 namespace tImage
 {
@@ -38,14 +39,14 @@ bool tImagePNG::Load(const tString& pngFile)
 
 	int numBytes = 0;
 	uint8* pngFileInMemory = tLoadFile(pngFile, nullptr, &numBytes);
-	bool success = Set(pngFileInMemory, numBytes);
+	bool success = Load(pngFileInMemory, numBytes);
 	delete[] pngFileInMemory;
 
 	return success;
 }
 
 
-bool tImagePNG::Set(const uint8* pngFileInMemory, int numBytes)
+bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes)
 {
 	Clear();
 	if ((numBytes <= 0) || !pngFileInMemory)
@@ -61,7 +62,7 @@ bool tImagePNG::Set(const uint8* pngFileInMemory, int numBytes)
 		return false;
 	}
 
-	SrcPixelFormat = (pngImage.format & PNG_FORMAT_FLAG_ALPHA) ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
+	PixelFormatSrc = (pngImage.format & PNG_FORMAT_FLAG_ALPHA) ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
 
 	// We need to modify the format to match the type of the pixels we want to load into.
 	pngImage.format = PNG_FORMAT_RGBA;
@@ -108,8 +109,46 @@ bool tImagePNG::Set(tPixel* pixels, int width, int height, bool steal)
 		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
 	}
 
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 	return true;
+}
+
+
+bool tImagePNG::Set(tFrame* frame, bool steal)
+{
+	Clear();
+	if (!frame || !frame->IsValid())
+		return false;
+
+	Set(frame->GetPixels(steal), frame->Width, frame->Height, steal);
+	if (steal)
+		delete frame;
+
+	return true;
+}
+
+
+bool tImagePNG::Set(tPicture& picture, bool steal)
+{
+	Clear();
+	if (!picture.IsValid())
+		return false;
+
+	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+}
+
+
+tFrame* tImagePNG::StealFrame()
+{
+	if (!IsValid())
+		return nullptr;
+
+	tFrame* frame = new tFrame();
+	frame->StealFrom(Pixels, Width, Height);
+	frame->PixelFormatSrc = PixelFormatSrc;
+	Pixels = nullptr;
+	return frame;
 }
 
 

@@ -21,6 +21,7 @@
 #include <System/tMachine.h>
 #include "Image/tImageDDS.h"
 #include "Image/tPixelUtil.h"
+#include "Image/tPicture.h"
 #include "bcdec/bcdec.h"
 #include "astcenc.h"
 namespace tImage
@@ -987,6 +988,69 @@ void tImageDDS::Clear()
 	RowReversalOperationPerformed	= false;
 	NumImages						= 0;
 	NumMipmapLayers					= 0;
+}
+
+
+bool tImageDDS::Set(tPixel* pixels, int width, int height, bool steal)
+{
+	Clear();
+	if (!pixels || (width <= 0) || (height <= 0))
+		return false;
+
+	Layers[0][0] = new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)pixels, steal);
+	PixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	ColourSpace = tColourSpace::sRGB;
+	ColourSpaceSrc = tColourSpace::sRGB;
+	AlphaMode = tAlphaMode::Normal;
+	NumImages = 1;
+	NumMipmapLayers = 1;
+
+	return true;
+}
+
+
+bool tImageDDS::Set(tFrame* frame, bool steal)
+{
+	Clear();
+	if (!frame || !frame->IsValid())
+		return false;
+
+	tPixel* pixels = frame->GetPixels(steal);
+	Set(pixels, frame->Width, frame->Height, steal);
+	if (steal)
+		delete frame;
+
+	return true;
+}
+
+
+bool tImageDDS::Set(tPicture& picture, bool steal)
+{
+	Clear();
+	if (!picture.IsValid())
+		return false;
+
+	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+}
+
+
+tFrame* tImageDDS::StealFrame()
+{
+	// Data must be decoded for this to work.
+	if (!IsValid() || (PixelFormat != tPixelFormat::R8G8B8A8) || (Layers[0][0] == nullptr))
+		return nullptr;
+
+	tFrame* frame = new tFrame();
+	frame->Width = Layers[0][0]->Width;
+	frame->Height = Layers[0][0]->Height;
+	frame->PixelFormatSrc = PixelFormatSrc;
+	frame->Pixels = (tPixel*)Layers[0][0]->StealData();
+	delete Layers[0][0];
+	Layers[0][0] = nullptr;
+
+	return frame;
 }
 
 

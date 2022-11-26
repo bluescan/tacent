@@ -19,11 +19,12 @@
 #include <Image/tPixelFormat.h>
 #include <Image/tFrame.h>
 #include <LibTIFF/include/tiffio.h>
+#include <Image/tBaseImage.h>
 namespace tImage
 {
 
 
-class tImageTIFF
+class tImageTIFF : public tBaseImage
 {
 public:
 	// Creates an invalid tImageTIFF. You must call Load manually.
@@ -33,18 +34,39 @@ public:
 	// Creates a tImageAPNG from a bunch of frames. If steal is true, the srcFrames will be empty after.
 	tImageTIFF(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
 
+	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out.
+	tImageTIFF(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+
+	// Sets from a single frame.
+	tImageTIFF(tFrame* frame, bool steal = true)																		{ Set(frame, steal); }
+
+	// Constructs from a tPicture. Single-frame.
+	tImageTIFF(tPicture& picture, bool steal = true)																	{ Set(picture, steal); }
+
 	virtual ~tImageTIFF()																								{ Clear(); }
 
 	// Clears the current tImageTIFF before loading. If false returned object is invalid.
 	bool Load(const tString& tiffFile);
 
-	// OverrideframeDuration is in milliseconds. Set to >= 0 to override all frames.
-	bool Save(const tString& tiffFile, bool useZLibComp = true, int overrideFrameDuration = -1);
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
+	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out.
+	bool Set(tPixel* pixels, int width, int height, bool steal = false) override;
+
+	// Sets from a single frame.
+	bool Set(tFrame*, bool steal = true) override;
+
+	// Sets from a tPicture.
+	bool Set(tPicture& picture, bool steal = true) override;
+
+	// OverrideframeDuration is in milliseconds. Set to >= 0 to override all frames.
+	bool Save(const tString& tiffFile, bool useZLibComp = true, int overrideFrameDuration = -1);
+
 	// After this call no memory will be consumed by the object and it will be invalid.
-	void Clear();
-	bool IsValid() const																								{ return (GetNumFrames() >= 1); }
+	void Clear() override;
+	bool IsValid() const override																						{ return (GetNumFrames() >= 1); }
 	int GetNumFrames() const																							{ return Frames.GetNumItems(); }
 
 	// Returns true if ALL frames are opaque. Slow. Checks all pixels.
@@ -53,6 +75,7 @@ public:
 	// After this call you are the owner of the frame and must eventually delete it. The frame you stole will no longer
 	// be part of the tImageTIFF, but the remaining ones will still be there. GetNumFrames will be one fewer.
 	tFrame* StealFrame(int frameNum);
+	tFrame* StealFrame() override;
 
 	// Similar to above but takes all the frames from the tImageTIFF and appends them to the supplied frame list. The
 	// object will be invalid after since it will have no frames.
@@ -61,7 +84,7 @@ public:
 	// Returns a pointer to the frame, but it's not yours to delete. This object still owns it.
 	tFrame* GetFrame(int frameNum);
 
-	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
+	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 
 private:
 	int ReadSoftwarePageDuration(TIFF* tiff) const;
@@ -109,7 +132,7 @@ inline void tImageTIFF::Clear()
 	while (tFrame* frame = Frames.Remove())
 		delete frame;
 
-	SrcPixelFormat = tPixelFormat::Invalid;
+	PixelFormatSrc = tPixelFormat::Invalid;
 }
 
 

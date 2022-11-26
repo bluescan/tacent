@@ -4,7 +4,7 @@
 // file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if
 // an EXR file is specified. After the array is stolen the tImageEXR is invalid. This is purely for performance.
 //
-// Copyright (c) 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2020-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -32,6 +32,7 @@
 #include <System/tMachine.h>
 #include <System/tFile.h>
 #include "Image/tImageEXR.h"
+#include "Image/tPicture.h"
 #include <OpenEXR/loadImage.h>
 #include <OpenEXR/ImfMultiPartInputFile.h>
 #include <OpenEXR/halfFunction.h>
@@ -215,7 +216,7 @@ bool tImageEXR::Load(const tString& exrFile, const LoadParams& loadParams)
 
 		// Set width, height, and allocate and set Pixels.
 		tFrame* newFrame = new tFrame;
-		newFrame->SrcPixelFormat = tPixelFormat::OPENEXR;
+		newFrame->PixelFormatSrc = tPixelFormat::OPENEXR;
 		newFrame->Width = width;
 		newFrame->Height = height;
 		newFrame->Pixels = new tPixel[width*height];
@@ -274,7 +275,7 @@ bool tImageEXR::Load(const tString& exrFile, const LoadParams& loadParams)
 		Frames.Append(newFrame);
 	}
 
-	SrcPixelFormat = tPixelFormat::OPENEXR;
+	PixelFormatSrc = tPixelFormat::OPENEXR;
 	return true;
 }
 
@@ -285,16 +286,69 @@ bool tImage::tImageEXR::Set(tList<tFrame>& srcFrames, bool stealFrames)
 	if (srcFrames.GetNumItems() <= 0)
 		return false;
 
-	tPixelFormat SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 	if (stealFrames)
 	{
 		while (tFrame* frame = srcFrames.Remove())
 			Frames.Append(frame);
-		return true;
+	}
+	else
+	{
+		for (tFrame* frame = srcFrames.Head(); frame; frame = frame->Next())
+			Frames.Append(new tFrame(*frame));
 	}
 
-	for (tFrame* frame = srcFrames.Head(); frame; frame = frame->Next())
-		Frames.Append(new tFrame(*frame));
-
 	return true;
+}
+
+
+bool tImageEXR::Set(tPixel* pixels, int width, int height, bool steal)
+{
+	Clear();
+	if (!pixels || (width <= 0) || (height <= 0))
+		return false;
+
+	tFrame* frame = new tFrame();
+	if (steal)
+		frame->StealFrom(pixels, width, height);
+	else
+		frame->Set(pixels, width, height);
+	Frames.Append(frame);
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	return true;
+}
+
+
+bool tImageEXR::Set(tFrame* frame, bool steal)
+{
+	Clear();
+	if (!frame || !frame->IsValid())
+		return false;
+
+	if (steal)
+		Frames.Append(frame);
+	else
+		Frames.Append(new tFrame(*frame));
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	return true;
+}
+
+
+bool tImageEXR::Set(tPicture& picture, bool steal)
+{
+	Clear();
+	if (!picture.IsValid())
+		return false;
+
+	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+}
+
+
+tFrame* tImageEXR::StealFrame()
+{
+	if (!IsValid())
+		return nullptr;
+
+	return Frames.Remove();
 }

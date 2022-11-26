@@ -16,6 +16,7 @@
 
 #include <System/tFile.h>
 #include "Image/tImageQOI.h"
+#include "Image/tPicture.h"
 #define QOI_NO_STDIO
 #define QOI_IMPLEMENTATION
 #include <QOI/qoi.h>
@@ -35,14 +36,14 @@ bool tImageQOI::Load(const tString& qoiFile)
 
 	int numBytes = 0;
 	uint8* qoiFileInMemory = tSystem::tLoadFile(qoiFile, nullptr, &numBytes);
-	bool success = Set(qoiFileInMemory, numBytes);
+	bool success = Load(qoiFileInMemory, numBytes);
 	delete[] qoiFileInMemory;
 
 	return success;
 }
 
 
-bool tImageQOI::Set(const uint8* qoiFileInMemory, int numBytes)
+bool tImageQOI::Load(const uint8* qoiFileInMemory, int numBytes)
 {
 	Clear();
 	if ((numBytes <= 0) || !qoiFileInMemory)
@@ -59,7 +60,7 @@ bool tImageQOI::Set(const uint8* qoiFileInMemory, int numBytes)
 	Width			= results.width;	
 	Height			= results.height;
 	ColourSpace		= (results.colorspace == QOI_LINEAR) ? tSpace::Linear : tSpace::sRGB;
-	SrcPixelFormat	= (results.channels == 3) ? tPixelFormat::R8G8B8 : tPixelFormat::R8G8B8A8;
+	PixelFormatSrc	= (results.channels == 3) ? tPixelFormat::R8G8B8 : tPixelFormat::R8G8B8A8;
 
 	tAssert((Width > 0) && (Height > 0));
 	Pixels = new tPixel[Width*Height];
@@ -89,8 +90,47 @@ bool tImageQOI::Set(tPixel* pixels, int width, int height, bool steal)
 		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
 	}
 
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	ColourSpace = tSpace::sRGB;
 	return true;
+}
+
+
+bool tImageQOI::Set(tFrame* frame, bool steal)
+{
+	Clear();
+	if (!frame || !frame->IsValid())
+		return false;
+
+	Set(frame->GetPixels(steal), frame->Width, frame->Height, steal);
+	if (steal)
+		delete frame;
+
+	return true;
+}
+
+
+bool tImageQOI::Set(tPicture& picture, bool steal)
+{
+	Clear();
+	if (!picture.IsValid())
+		return false;
+
+	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+}
+
+
+tFrame* tImageQOI::StealFrame()
+{
+	if (!IsValid())
+		return nullptr;
+
+	tFrame* frame = new tFrame();
+	frame->StealFrom(Pixels, Width, Height);
+	frame->PixelFormatSrc = PixelFormatSrc;
+	Pixels = nullptr;
+	return frame;
 }
 
 

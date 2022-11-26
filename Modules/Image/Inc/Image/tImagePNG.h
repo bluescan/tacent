@@ -4,7 +4,7 @@
 // png file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor
 // if a png file is specified. After the array is stolen the tImagePNG is invalid. This is purely for performance.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -18,11 +18,12 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tBaseImage.h>
 namespace tImage
 {
 
 
-class tImagePNG
+class tImagePNG : public tBaseImage
 {
 public:
 	// Creates an invalid tImagePNG. You must call Load manually.
@@ -30,20 +31,33 @@ public:
 	tImagePNG(const tString& pngFile)																					{ Load(pngFile); }
 
 	// The data is copied out of pngFileInMemory. Go ahead and delete after if you want.
-	tImagePNG(const uint8* pngFileInMemory, int numBytes)																{ Set(pngFileInMemory, numBytes); }
+	tImagePNG(const uint8* pngFileInMemory, int numBytes)																{ Load(pngFileInMemory, numBytes); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
 	tImagePNG(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+
+	// Sets from a single frame.
+	tImagePNG(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
+
+	// Constructs from a tPicture.
+	tImagePNG(tPicture& picture, bool steal = true)																		{ Set(picture, steal); }
+
 	virtual ~tImagePNG()																								{ Clear(); }
 
 	// Clears the current tImagePNG before loading. Returns success. If false returned, object is invalid.
 	bool Load(const tString& pngFile);
-	bool Set(const uint8* pngFileInMemory, int numBytes);
+	bool Load(const uint8* pngFileInMemory, int numBytes);
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
 	bool Set(tPixel*, int width, int height, bool steal = false);
+
+	// Sets from a single frame.
+	bool Set(tFrame*, bool steal = true) override;
+
+	// Sets from a tPicture.
+	bool Set(tPicture& picture, bool steal = true) override;
 
 	enum class tFormat
 	{
@@ -56,8 +70,8 @@ public:
 	bool Save(const tString& pngFile, tFormat = tFormat::Auto) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
-	void Clear();
-	bool IsValid() const																								{ return Pixels ? true : false; }
+	void Clear() override;
+	bool IsValid() const override																						{ return Pixels ? true : false; }
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
@@ -66,13 +80,17 @@ public:
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImagePNG object is
 	// invalid afterwards.
 	tPixel* StealPixels();
+	tFrame* StealFrame() override;
+
 	tPixel* GetPixels() const																							{ return Pixels; }
-	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
+	tPixelFormat PixelFormatSrc		= tPixelFormat::Invalid;
 
 private:
-	int Width = 0;
-	int Height = 0;
-	tPixel* Pixels = nullptr;
+
+	// @todo We could just use a single tFrame here instead of the 3 members below. Might simplify it a bit.
+	int Width						= 0;
+	int Height						= 0;
+	tPixel* Pixels					= nullptr;
 };
 
 
@@ -85,7 +103,7 @@ inline void tImagePNG::Clear()
 	Height = 0;
 	delete[] Pixels;
 	Pixels = nullptr;
-	SrcPixelFormat = tPixelFormat::Invalid;
+	PixelFormatSrc = tPixelFormat::Invalid;
 }
 
 

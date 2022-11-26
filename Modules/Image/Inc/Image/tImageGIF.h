@@ -18,11 +18,12 @@
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
 #include <Image/tFrame.h>
+#include <Image/tBaseImage.h>
 namespace tImage
 {
 
 
-class tImageGIF
+class tImageGIF : public tBaseImage
 {
 public:
 	// Creates an invalid tImageGIF. You must call Load manually.
@@ -32,19 +33,40 @@ public:
 	// Creates a tImageGIF from a bunch of frames. If steal is true, the srcFrames will be empty after.
 	tImageGIF(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
 
+	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out.
+	tImageGIF(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+
+	// Sets from a single frame.
+	tImageGIF(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
+
+	// Constructs from a tPicture. Single-frame.
+	tImageGIF(tPicture& picture, bool steal = true)																		{ Set(picture, steal); }
+
 	virtual ~tImageGIF()																								{ Clear(); }
 
 	// Clears the current tImageGIF before loading. If false returned object is invalid.
 	bool Load(const tString& gifFile);
 
+	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
+
+	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out.
+	bool Set(tPixel* pixels, int width, int height, bool steal = false) override;
+
+	// Sets from a single frame.
+	bool Set(tFrame*, bool steal = true) override;
+
+	// Sets from a tPicture.
+	bool Set(tPicture& picture, bool steal = true) override;
+
 	// OverrideframeDuration is in 1/100 seconds. Set to >= 0 to override all frames. Note that values of 0 or 1 get
 	// min-clamped to 2 during save since many viewers do not handle values below 2 properly.
 	bool Save(const tString& gifFile, int overrideFrameDuration = -1);
-	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
 	// After this call no memory will be consumed by the object and it will be invalid.
-	void Clear();
-	bool IsValid() const																								{ return (GetNumFrames() >= 1); }
+	void Clear() override;
+	bool IsValid() const override																						{ return (GetNumFrames() >= 1); }
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
@@ -57,11 +79,12 @@ public:
 	// Similar to above but takes all the frames from the tImageGIF and appends them to the supplied frame list. The
 	// object will be invalid after since it will have no frames.
 	void StealFrames(tList<tFrame>&);
+	tFrame* StealFrame() override;
 
 	// Returns a pointer to the frame, but it's not yours to delete. This object still owns it.
 	tFrame* GetFrame(int frameNum);
 
-	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
+	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 
 private:
 	static void FrameCallbackBridge(void* imgGifRaw, struct GIF_WHDR*);
@@ -125,7 +148,7 @@ inline void tImageGIF::Clear()
 	while (tFrame* frame = Frames.Remove())
 		delete frame;
 
-	SrcPixelFormat = tPixelFormat::Invalid;
+	PixelFormatSrc = tPixelFormat::Invalid;
 }
 
 

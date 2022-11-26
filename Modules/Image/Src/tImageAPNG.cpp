@@ -17,6 +17,7 @@
 #include <Foundation/tString.h>
 #include <System/tFile.h>
 #include "Image/tImageAPNG.h"
+#include "Image/tPicture.h"
 #include "apngdis.h"
 #include "apngasm.h"
 using namespace tSystem;
@@ -68,12 +69,12 @@ bool tImageAPNG::Load(const tString& apngFile)
 		return false;
 
 	// Now we load and populate the frames.
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 	for (int f = 0; f < frames.size(); f++)
 	{
 		APngDis::Image& srcFrame = frames[f];
 		tFrame* newFrame = new tFrame;
-		newFrame->SrcPixelFormat = tPixelFormat::R8G8B8A8;
+		newFrame->PixelFormatSrc = tPixelFormat::R8G8B8A8;
 		int width = srcFrame.w;
 		int height = srcFrame.h;
 		newFrame->Width = width;
@@ -108,9 +109,9 @@ bool tImageAPNG::Load(const tString& apngFile)
 
 	if (IsOpaque())
 	{
-		SrcPixelFormat = tPixelFormat::R8G8B8;
+		PixelFormatSrc = tPixelFormat::R8G8B8;
 		for (tFrame* frame = Frames.Head(); frame; frame = frame->Next())
-			frame->SrcPixelFormat = SrcPixelFormat;
+			frame->PixelFormatSrc = PixelFormatSrc;
 	}
 
 	return true;
@@ -123,18 +124,71 @@ bool tImageAPNG::Set(tList<tFrame>& srcFrames, bool stealFrames)
 	if (srcFrames.GetNumItems() <= 0)
 		return false;
 
-	tPixelFormat SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 	if (stealFrames)
 	{
 		while (tFrame* frame = srcFrames.Remove())
 			Frames.Append(frame);
-		return true;
+	}
+	else
+	{
+		for (tFrame* frame = srcFrames.Head(); frame; frame = frame->Next())
+			Frames.Append(new tFrame(*frame));
 	}
 
-	for (tFrame* frame = srcFrames.Head(); frame; frame = frame->Next())
-		Frames.Append(new tFrame(*frame));
-
 	return true;
+}
+
+
+bool tImageAPNG::Set(tPixel* pixels, int width, int height, bool steal)
+{
+	Clear();
+	if (!pixels || (width <= 0) || (height <= 0))
+		return false;
+
+	tFrame* frame = new tFrame();
+	if (steal)
+		frame->StealFrom(pixels, width, height);
+	else
+		frame->Set(pixels, width, height);
+	Frames.Append(frame);
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	return true;
+}
+
+
+bool tImageAPNG::Set(tFrame* frame, bool steal)
+{
+	Clear();
+	if (!frame || !frame->IsValid())
+		return false;
+
+	if (steal)
+		Frames.Append(frame);
+	else
+		Frames.Append(new tFrame(*frame));
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	return true;
+}
+
+
+bool tImageAPNG::Set(tPicture& picture, bool steal)
+{
+	Clear();
+	if (!picture.IsValid())
+		return false;
+
+	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+}
+
+
+tFrame* tImageAPNG::StealFrame()
+{
+	if (!IsValid())
+		return nullptr;
+
+	return Frames.Remove();
 }
 
 

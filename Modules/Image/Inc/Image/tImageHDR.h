@@ -41,11 +41,12 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tBaseImage.h>
 namespace tImage
 {
 
 
-class tImageHDR
+class tImageHDR : public tBaseImage
 {
 public:
 	struct LoadParams
@@ -61,26 +62,38 @@ public:
 	tImageHDR(const tString& hdrFile, const LoadParams& loadParams = LoadParams())										{ Load(hdrFile, loadParams); }
 
 	// hdrFileInMemory can be deleted after this runs.
-	tImageHDR(uint8* hdrFileInMemory, int numBytes, const LoadParams& loadParams = LoadParams())						{ Set(hdrFileInMemory, numBytes, loadParams); }
+	tImageHDR(uint8* hdrFileInMemory, int numBytes, const LoadParams& loadParams = LoadParams())						{ Load(hdrFileInMemory, numBytes, loadParams); }
 
 	// This one sets from a supplied pixel array. It just reads the data (or steals the array if steal set).
 	tImageHDR(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+
+	// Sets from a single frame.
+	tImageHDR(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
+
+	// Constructs from a tPicture.
+	tImageHDR(tPicture& picture, bool steal = true)																		{ Set(picture, steal); }
 
 	virtual ~tImageHDR()																								{ Clear(); }
 
 	// Clears the current tImageHDR before loading. If false returned object is invalid.
 	bool Load(const tString& hdrFile, const LoadParams& = LoadParams());
-	bool Set(uint8* hdrFileInMemory, int numBytes, const LoadParams& = LoadParams());
+	bool Load(uint8* hdrFileInMemory, int numBytes, const LoadParams& = LoadParams());
 
 	// This one sets from a supplied pixel array.
-	bool Set(tPixel* pixels, int width, int height, bool steal = false);
+	bool Set(tPixel* pixels, int width, int height, bool steal = false) override;
+
+	// Sets from a single frame.
+	bool Set(tFrame*, bool steal = true) override;
+
+	// Sets from a tPicture.
+	bool Set(tPicture& picture, bool steal = true) override;
 
 	// Saves the tImageHDR to the hdr file specified. The extension of filename must be "hdr". Returns success.
 	bool Save(const tString& hdrFile) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
-	void Clear();
-	bool IsValid() const																								{ return Pixels ? true : false; }
+	void Clear() override;
+	bool IsValid() const override																						{ return Pixels ? true : false; }
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
@@ -88,8 +101,9 @@ public:
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageHDR object is
 	// invalid afterwards.
 	tPixel* StealPixels();
+	tFrame* StealFrame() override;
 	tPixel* GetPixels() const																							{ return Pixels; }
-	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
+	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 
 private:
 	bool LegacyReadRadianceColours(tPixel* scanline, int length);	// Older hdr files use this scanline format.
@@ -142,7 +156,7 @@ inline void tImageHDR::Clear()
 	Height = 0;
 	delete[] Pixels;
 	Pixels = nullptr;
-	SrcPixelFormat = tPixelFormat::Invalid;
+	PixelFormatSrc = tPixelFormat::Invalid;
 }
 
 

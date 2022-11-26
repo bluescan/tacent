@@ -27,6 +27,7 @@ add_library(
 	Src/tPixelUtil.cpp
 	Src/tTexture.cpp
 	Src/tResample.cpp
+	Inc/Image/tBaseImage.h
 	Inc/Image/tCubemap.h
 	Inc/Image/tFrame.h
 	Inc/Image/tImageAPNG.h

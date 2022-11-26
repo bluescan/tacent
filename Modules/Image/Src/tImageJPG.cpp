@@ -17,6 +17,7 @@
 
 #include <System/tFile.h>
 #include "Image/tImageJPG.h"
+#include "Image/tPicture.h"
 #include "turbojpeg.h"
 
 
@@ -37,14 +38,14 @@ bool tImageJPG::Load(const tString& jpgFile, uint32 loadFlags)
 
 	int numBytes = 0;
 	uint8* jpgFileInMemory = tLoadFile(jpgFile, nullptr, &numBytes);
-	bool success = Set(jpgFileInMemory, numBytes, loadFlags);
+	bool success = Load(jpgFileInMemory, numBytes, loadFlags);
 	delete[] jpgFileInMemory;
 
 	return success;
 }
 
 
-bool tImageJPG::Set(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags)
+bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags)
 {
 	Clear();
 	if ((numBytes <= 0) || !jpgFileInMemory)
@@ -101,7 +102,7 @@ bool tImageJPG::Set(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags
 		Clear();
 		return false;
 	}
-	SrcPixelFormat = tPixelFormat::R8G8B8;
+	PixelFormatSrc = tPixelFormat::R8G8B8;
 
 	// The flips and rotates below do not clear the pixel format.
 	if ((loadFlags & LoadFlag_ExifOrient))
@@ -171,8 +172,46 @@ bool tImageJPG::Set(tPixel* pixels, int width, int height, bool steal)
 		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
 	}
 
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 	return true;
+}
+
+
+bool tImageJPG::Set(tFrame* frame, bool steal)
+{
+	Clear();
+	if (!frame || !frame->IsValid())
+		return false;
+
+	Set(frame->GetPixels(steal), frame->Width, frame->Height, steal);
+	if (steal)
+		delete frame;
+
+	return true;
+}
+
+
+bool tImageJPG::Set(tPicture& picture, bool steal)
+{
+	Clear();
+	if (!picture.IsValid())
+		return false;
+
+	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+}
+
+
+tFrame* tImageJPG::StealFrame()
+{
+	if (!IsValid())
+		return nullptr;
+
+	tFrame* frame = new tFrame();
+	frame->StealFrom(Pixels, Width, Height);
+	frame->PixelFormatSrc = PixelFormatSrc;
+	Pixels = nullptr;
+	return frame;
 }
 
 

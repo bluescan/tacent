@@ -3,7 +3,7 @@
 // This knows how to load/save TIFFs. It knows the details of the tiff file format and loads the data into multiple
 // tPixel arrays, one for each frame (in a TIFF thay are called pages). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2020-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -19,6 +19,7 @@
 #include <System/tFile.h>
 #include <System/tScript.h>
 #include "Image/tImageTIFF.h"
+#include "Image/tPicture.h"
 #include "LibTIFF/include/tiff.h"
 #include "LibTIFF/include/tiffio.h"
 #include "LibTIFF/include/tiffvers.h"
@@ -101,7 +102,7 @@ bool tImageTIFF::Load(const tString& tiffFile)
 		frame->Width = width;
 		frame->Height = height;
 		frame->Pixels = new tPixel[width*height];
-		frame->SrcPixelFormat = tPixelFormat::R8G8B8A8;
+		frame->PixelFormatSrc = tPixelFormat::R8G8B8A8;
 
 		// If duration not set we use a default of 1 second.
 		frame->Duration = (durationMilliSeconds >= 0) ? float(durationMilliSeconds)/1000.0f : 1.0f;
@@ -117,7 +118,7 @@ bool tImageTIFF::Load(const tString& tiffFile)
 	if (Frames.GetNumItems() == 0)
 		return false;
 
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 	return true;
 }
 
@@ -128,18 +129,71 @@ bool tImageTIFF::Set(tList<tFrame>& srcFrames, bool stealFrames)
 	if (srcFrames.GetNumItems() <= 0)
 		return false;
 
-	tPixelFormat SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 	if (stealFrames)
 	{
 		while (tFrame* frame = srcFrames.Remove())
 			Frames.Append(frame);
-		return true;
+	}
+	else
+	{
+		for (tFrame* frame = srcFrames.Head(); frame; frame = frame->Next())
+			Frames.Append(new tFrame(*frame));
 	}
 
-	for (tFrame* frame = srcFrames.Head(); frame; frame = frame->Next())
-		Frames.Append(new tFrame(*frame));
-
 	return true;
+}
+
+
+bool tImageTIFF::Set(tPixel* pixels, int width, int height, bool steal)
+{
+	Clear();
+	if (!pixels || (width <= 0) || (height <= 0))
+		return false;
+
+	tFrame* frame = new tFrame();
+	if (steal)
+		frame->StealFrom(pixels, width, height);
+	else
+		frame->Set(pixels, width, height);
+	Frames.Append(frame);
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	return true;
+}
+
+
+bool tImageTIFF::Set(tFrame* frame, bool steal)
+{
+	Clear();
+	if (!frame || !frame->IsValid())
+		return false;
+
+	if (steal)
+		Frames.Append(frame);
+	else
+		Frames.Append(new tFrame(*frame));
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	return true;
+}
+
+
+bool tImageTIFF::Set(tPicture& picture, bool steal)
+{
+	Clear();
+	if (!picture.IsValid())
+		return false;
+
+	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+}
+
+
+tFrame* tImageTIFF::StealFrame()
+{
+	if (!IsValid())
+		return nullptr;
+
+	return Frames.Remove();
 }
 
 

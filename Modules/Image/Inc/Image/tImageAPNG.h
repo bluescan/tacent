@@ -18,11 +18,12 @@
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
 #include <Image/tFrame.h>
+#include <Image/tBaseImage.h>
 namespace tImage
 {
 
 
-class tImageAPNG
+class tImageAPNG : public tBaseImage
 {
 public:
 	// Creates an invalid tImageAPNG. You must call Load manually.
@@ -31,18 +32,40 @@ public:
 
 	// Creates a tImageAPNG from a bunch of frames. If steal is true, the srcFrames will be empty after.
 	tImageAPNG(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
+
+	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out.
+	tImageAPNG(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+
+	// Sets from a single frame.
+	tImageAPNG(tFrame* frame, bool steal = true)																		{ Set(frame, steal); }
+
+	// Constructs from a tPicture. Single-frame.
+	tImageAPNG(tPicture& picture, bool steal = true)																	{ Set(picture, steal); }
+
 	virtual ~tImageAPNG()																								{ Clear(); }
 
 	// Clears the current tImageAPNG before loading. If false returned object is invalid.
 	bool Load(const tString& apngFile);
 
-	// OverrideframeDuration is in milliseconds. Set to >= 0 to override all frames.
-	bool Save(const tString& apngFile, int overrideframeDuration = -1);
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
+	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out.
+	bool Set(tPixel* pixels, int width, int height, bool steal = false) override;
+
+	// Sets from a single frame.
+	bool Set(tFrame*, bool steal = true) override;
+
+	// Sets from a tPicture.
+	bool Set(tPicture& picture, bool steal = true) override;
+
+	// OverrideframeDuration is in milliseconds. Set to >= 0 to override all frames.
+	bool Save(const tString& apngFile, int overrideframeDuration = -1);
+
 	// After this call no memory will be consumed by the object and it will be invalid.
-	void Clear();
-	bool IsValid() const																								{ return (GetNumFrames() >= 1); }
+	void Clear() override;
+	bool IsValid() const override																						{ return (GetNumFrames() >= 1); }
 	int GetNumFrames() const																							{ return Frames.GetNumItems(); }
 
 	// Returns true if ALL frames are opaque. Slow. Checks all pixels.
@@ -52,6 +75,9 @@ public:
 	// be part of the tImageAPNG, but the remaining ones will still be there. GetNumFrames will be one fewer.
 	tFrame* StealFrame(int frameNum);
 
+	// Steals the first frame only.
+	tFrame* StealFrame() override;
+
 	// Similar to above but takes all the frames from the tImageAPNG and appends them to the supplied frame list. The
 	// object will be invalid after since it will have no frames.
 	void StealFrames(tList<tFrame>&);
@@ -59,7 +85,7 @@ public:
 	// Returns a pointer to the frame, but it's not yours to delete. This object still owns it.
 	tFrame* GetFrame(int frameNum);
 
-	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
+	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 
 	// Since some apng files may have a .png extension, it is hand to quickly be able to tell if a particular .png
 	// file is an apng. Probably no one will ever read this comment, but the Mozilla apng people should probably not
@@ -123,7 +149,7 @@ inline void tImageAPNG::Clear()
 	while (tFrame* frame = Frames.Remove())
 		delete frame;
 
-	SrcPixelFormat = tPixelFormat::Invalid;
+	PixelFormatSrc = tPixelFormat::Invalid;
 }
 
 

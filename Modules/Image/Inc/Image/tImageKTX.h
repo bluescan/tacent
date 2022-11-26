@@ -18,6 +18,7 @@
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
 #include <Image/tLayer.h>
+#include <Image/tBaseImage.h>
 namespace tImage
 {
 
@@ -28,7 +29,7 @@ namespace tImage
 // are avoided. After they are stolen the tImageKTX is invalid. Cubemaps and mipmaps are supported.
 // @todo 1D and 3D textures are not supported yet.
 // @todo ASTC is not supported yet.
-class tImageKTX
+class tImageKTX : public tBaseImage
 {
 public:
 	enum LoadFlag
@@ -87,6 +88,17 @@ public:
 	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is read from
 	// and the caller may delete it immediately after if desired.
 	tImageKTX(const uint8* ktxMem, int numBytes, const LoadParams& = LoadParams());
+
+	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out. Sets the colour space to sRGB. Call SetColourSpace after if you wanted linear.
+	tImageKTX(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+
+	// Sets from a single frame.
+	tImageKTX(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
+
+	// Constructs from a tPicture.
+	tImageKTX(tPicture& picture, bool steal = true)																		{ Set(picture, steal); }
+
 	virtual ~tImageKTX()																								{ Clear(); }
 
 	enum class ResultCode
@@ -129,16 +141,26 @@ public:
 	bool Load(const tString& ktxFile, const LoadParams& = LoadParams());
 	bool Load(const uint8* ktxMem, int numBytes, const LoadParams& = LoadParams());
 
+	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out.
+	bool Set(tPixel* pixels, int width, int height, bool steal = false) override;
+
+	// Sets from a single frame. After this is called the layer data will be in R8G8B8A8.
+	bool Set(tFrame*, bool steal = true) override;
+
+	// Sets from a tPicture.
+	bool Set(tPicture& picture, bool steal = true) override;
+
 	// After a load you can call GetResults() to find out what, if anything, went wrong.
 	uint32 GetResults() const																							{ return Results; }
 	bool IsResultSet(ResultCode code) const																				{ return (Results & (1<<int(code))); }
 	static const char* GetResultDesc(ResultCode);
 
 	// Will return true if a ktx file has been successfully loaded. This includes conditional success results.
-	bool IsValid() const																								{ return (Results < (1 << int(ResultCode::FirstFatal))); }
+	bool IsValid() const override																						{ return (Results < (1 << int(ResultCode::FirstFatal))); }
 
 	// After this call no memory will be consumed by the object and it will be invalid. Does not clear filename.
-	void Clear();
+	void Clear() override;
 	bool IsMipmapped() const																							{ return (NumMipmapLayers > 1) ? true : false; }
 	bool IsCubemap() const																								{ return IsCubeMap; }
 	bool RowsReversed() const																							{ return RowReversalOperationPerformed; }
@@ -177,6 +199,7 @@ public:
 	// tImageKTX is a cubemap, this function returns false and leaves the object (and list) unmodified. See
 	// StealCubemapLayers if you want to steal cubemap layers.
 	bool StealLayers(tList<tLayer>&);
+	tFrame* StealFrame() override;
 
 	// Alternative to StealLayers. Gets the layers but you're not allowed to delete them, they're not yours. Make
 	// sure the list you supply doesn't delete them when it's destructed.

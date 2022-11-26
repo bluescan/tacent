@@ -35,31 +35,59 @@
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
 #include <Image/tFrame.h>
+#include <Image/tBaseImage.h>
 namespace tImage
 {
 
 
-class tImageICO
+class tImageICO : public tBaseImage
 {
 public:
 	// Creates an invalid tImageICO. You must call Load manually.
 	tImageICO()																											{ }
 	tImageICO(const tString& icoFile)																					{ Load(icoFile); }
 
+	// Creates a tImageICO from a bunch of frames. If steal is true, the srcFrames will be empty after.
+	tImageICO(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
+
+	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out.
+	tImageICO(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+
+	// Sets from a single frame.
+	tImageICO(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
+
+	// Constructs from a tPicture. Single-frame.
+	tImageICO(tPicture& picture, bool steal = true)																		{ Set(picture, steal); }
+
 	virtual ~tImageICO()																								{ Clear(); }
 
 	// Clears the current tImageICO before loading. If false returned object is invalid.
 	bool Load(const tString& icoFile);
 
+	// This one sets from a supplied pixel array.
+	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
+
+	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out.
+	bool Set(tPixel* pixels, int width, int height, bool steal = false) override;
+
+	// Sets from a single frame.
+	bool Set(tFrame*, bool steal = true) override;
+
+	// Sets from a tPicture.
+	bool Set(tPicture& picture, bool steal = true) override;
+
 	// After this call no memory will be consumed by the object and it will be invalid.
-	void Clear();
-	bool IsValid() const																								{ return (GetNumFrames() >= 1); }
+	void Clear() override;
+	bool IsValid() const override																						{ return (GetNumFrames() >= 1); }
 	int GetNumFrames() const																							{ return Frames.GetNumItems(); }
 	tPixelFormat GetBestSrcPixelFormat() const;
 
 	// After this call you are the owner of the frame and must eventually delete it. The frame you stole will no longer
 	// be part of the tImageICO, but the remaining ones will still be there. GetNumFrames will be one fewer.
 	tFrame* StealFrame(int frameNum);
+	tFrame* StealFrame() override;
 
 	// Similar to above but takes all the frames from the tImageICO and appends them to the supplied frame list. The
 	// object will be invalid after since it will have no frames.
@@ -121,12 +149,12 @@ inline tPixelFormat tImageICO::GetBestSrcPixelFormat() const
 	tPixelFormat bestFormat = tPixelFormat::Invalid;
 	for (tFrame* frame = Frames.First(); frame; frame = frame->Next())
 	{
-		if (frame->SrcPixelFormat == tPixelFormat::Invalid)
+		if (frame->PixelFormatSrc == tPixelFormat::Invalid)
 			continue;
-		if (frame->SrcPixelFormat == tPixelFormat::R8G8B8A8)
+		if (frame->PixelFormatSrc == tPixelFormat::R8G8B8A8)
 			return tPixelFormat::R8G8B8A8;
-		else if (frame->SrcPixelFormat < bestFormat)
-			bestFormat = frame->SrcPixelFormat;
+		else if (frame->PixelFormatSrc < bestFormat)
+			bestFormat = frame->PixelFormatSrc;
 	}
 	
 	return bestFormat;

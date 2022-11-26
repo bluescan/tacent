@@ -18,6 +18,7 @@
 #include <System/tMachine.h>
 #include "Image/tImageASTC.h"
 #include "Image/tPixelUtil.h"
+#include "Image/tPicture.h"
 #include "astcenc.h"
 namespace tImage
 {
@@ -89,14 +90,14 @@ bool tImageASTC::Load(const tString& astcFile, const LoadParams& params)
 
 	int numBytes = 0;
 	uint8* astcFileInMemory = tSystem::tLoadFile(astcFile, nullptr, &numBytes);
-	bool success = Set(astcFileInMemory, numBytes, params);
+	bool success = Load(astcFileInMemory, numBytes, params);
 	delete[] astcFileInMemory;
 
 	return success;
 }
 
 
-bool tImageASTC::Set(const uint8* astcInMemory, int numBytes, const LoadParams& params)
+bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams& params)
 {
 	Clear();
 
@@ -236,6 +237,50 @@ bool tImageASTC::Set(tPixel* pixels, int width, int height, bool steal)
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 	PixelFormat = tPixelFormat::R8G8B8A8;
 	return true;
+}
+
+
+bool tImageASTC::Set(tFrame* frame, bool steal)
+{
+	Clear();
+	if (!frame || !frame->IsValid())
+		return false;
+
+	tPixel* pixels = frame->GetPixels(steal);
+	Set(pixels, frame->Width, frame->Height, steal);
+	if (steal)
+		delete frame;
+
+	return true;
+}
+
+
+bool tImageASTC::Set(tPicture& picture, bool steal)
+{
+	Clear();
+	if (!picture.IsValid())
+		return false;
+
+	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+}
+
+
+tFrame* tImageASTC::StealFrame()
+{
+	// Data must be decoded for this to work.
+	if (!IsValid() || (PixelFormat != tPixelFormat::R8G8B8A8))
+		return nullptr;
+
+	tFrame* frame = new tFrame();
+	frame->Width = Layer->Width;
+	frame->Height = Layer->Height;
+	frame->PixelFormatSrc = PixelFormatSrc;
+	frame->Pixels = (tPixel*)Layer->StealData();
+	delete Layer;
+	Layer = nullptr;
+
+	return frame;
 }
 
 

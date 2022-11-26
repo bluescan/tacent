@@ -25,15 +25,23 @@ namespace tImage
 
 struct tFrame : public tLink<tFrame>
 {
-	tFrame()																											: Width(0), Height(0), Pixels(nullptr), Duration(0.0f), SrcPixelFormat(tPixelFormat::Invalid) { }
+	tFrame()																											{ }
+
+	// These mem copy the pixels from src.
 	tFrame(const tFrame& src)																							{ Set(src); }
-	tFrame(const tPixel* srcPixels, int width, int height, float duration = 0.0f)										{ Set(srcPixels, width, height, duration); }
+	tFrame(const tPixel* src, int width, int height, float duration)													{ Set(src, width, height, duration); }
+
 	virtual ~tFrame()																									{ Clear(); }
 
-	void Set(const tFrame&);
-	void Set(const tPixel*, int width, int height, float duration = 0.0f);
-	void StealFrom(tFrame&);
-	tPixel* StealPixels()																								{ tPixel* p = Pixels; Pixels = nullptr; return p; }
+	// These mem copy the pixels from src.
+	bool Set(const tFrame& src);
+	bool Set(const tPixel* src, int width, int height, float duration = 0.0f);
+
+	// These steal the pixels from the frame, or take ownership of the pixel array.
+	bool StealFrom(tFrame&);
+	bool StealFrom(tPixel* src, int width, int height, float duration = 0.0f);
+
+	tPixel* GetPixels(bool steal = false)																				{ if (steal) { tPixel* p = Pixels; Pixels = nullptr; return p; } else return Pixels; }
 	void Clear();
 	bool IsValid() const																								{ return (Width > 0) && (Height > 0) && Pixels; }
 	void ReverseRows();
@@ -41,62 +49,80 @@ struct tFrame : public tLink<tFrame>
 
 	int Width																	= 0;
 	int Height																	= 0;
-	tPixel* Pixels																= nullptr;
 	float Duration					/* Frame duration in seconds. */			= 0.0f;
-	tPixelFormat SrcPixelFormat		/* Use of SrcPixelFormat is optional. */	= tPixelFormat::Invalid;
+	tPixelFormat PixelFormatSrc		/* Use of PixelFormatSrc is optional. */	= tPixelFormat::Invalid;
+	tPixel* Pixels																= nullptr;
 };
 
 
 // Implementation below this line.
 
 
-inline void tFrame::Set(const tFrame& frame)
+inline bool tFrame::Set(const tFrame& frame)
 {
 	Clear();
 
 	// If frame is not valid this one gets returned with defaults (also invalid).
 	if ((&frame == this) || !frame.IsValid())
-		return;
+		return false;
 
 	Width			= frame.Width;
 	Height			= frame.Height;
 	Duration		= frame.Duration;
-	SrcPixelFormat	= frame.SrcPixelFormat;
+	PixelFormatSrc	= frame.PixelFormatSrc;
 
 	tAssert((frame.Width > 0) && (frame.Height > 0) && frame.Pixels);
 	Pixels = new tPixel[Width*Height];
 	tStd::tMemcpy(Pixels, frame.Pixels, Width*Height*sizeof(tPixel));
+
+	return true;
 }
 
 
-inline void tFrame::Set(const tPixel* srcPixels, int width, int height, float duration)
+inline bool tFrame::Set(const tPixel* srcPixels, int width, int height, float duration)
 {
 	Clear();
 	if (!srcPixels || (width <= 0) || (height <= 0))
-		return;
+		return false;
 
 	Width = width;
 	Height = height;
 	Duration = duration;
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 
 	Pixels = new tPixel[Width*Height];
 	tStd::tMemcpy(Pixels, srcPixels, Width*Height*sizeof(tPixel));
+	return true;
 }
 
 
-inline void tFrame::StealFrom(tFrame& frame)
+inline bool tFrame::StealFrom(tFrame& frame)
 {
 	// If frame is not valid this one gets returned with defaults (also invalid).
 	if ((&frame == this) || !frame.IsValid())
-		return;
+		return false;
 
 	Width			= frame.Width;
 	Height			= frame.Height;
 	Duration		= frame.Duration;
-	SrcPixelFormat	= frame.SrcPixelFormat;
+	PixelFormatSrc	= frame.PixelFormatSrc;
 	Pixels			= frame.Pixels;
 	frame.Pixels	= nullptr;		// Frame is left invalid.
+	return true;
+}
+
+
+inline bool tFrame::StealFrom(tPixel* src, int width, int height, float duration)
+{
+	if (!src || (width <= 0) || (height <= 0))
+		return false;
+
+	Width			= width;
+	Height			= height;
+	Duration		= duration;
+	PixelFormatSrc	= tPixelFormat::R8G8B8A8;
+	Pixels			= src;
+	return true;
 }
 
 
@@ -107,7 +133,7 @@ inline void tFrame::Clear()
 	delete[] Pixels;
 	Pixels = nullptr;
 	Duration = 0.0f;
-	SrcPixelFormat = tPixelFormat::Invalid;
+	PixelFormatSrc = tPixelFormat::Invalid;
 }
 
 

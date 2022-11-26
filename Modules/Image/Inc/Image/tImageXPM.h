@@ -4,7 +4,7 @@
 // and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if a xpm file is
 // specified. After the array is stolen the tImageXPM is invalid. This is purely for performance.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -18,11 +18,12 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tBaseImage.h>
 namespace tImage
 {
 
 
-class tImageXPM
+class tImageXPM : public tBaseImage
 {
 public:
 	// Creates an invalid tImageXPM. You must call Load manually.
@@ -31,25 +32,37 @@ public:
 	tImageXPM(const tString& xpmFile)																					{ Load(xpmFile); }
 
 	// The data is copied out of xpmFileInMemory. Go ahead and delete after if you want.
-	tImageXPM(const uint8* xpmFileInMemory, int numBytes)																{ Set(xpmFileInMemory, numBytes); }
+	tImageXPM(const uint8* xpmFileInMemory, int numBytes)																{ Load(xpmFileInMemory, numBytes); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
 	tImageXPM(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
+	// Sets from a single frame.
+	tImageXPM(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
+
+	// Constructs from a tPicture.
+	tImageXPM(tPicture& picture, bool steal = true)																		{ Set(picture, steal); }
+
 	virtual ~tImageXPM()																								{ Clear(); }
 
 	// Clears the current tImageXPM before loading. Returns success. If false returned, object is invalid.
 	bool Load(const tString& xpmFile);
-	bool Set(const uint8* xpmFileInMemory, int numBytes);
+	bool Load(const uint8* xpmFileInMemory, int numBytes);
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
 	bool Set(tPixel*, int width, int height, bool steal = false);
 
+	// Sets from a single frame.
+	bool Set(tFrame*, bool steal = true) override;
+
+	// Sets from a tPicture.
+	bool Set(tPicture& picture, bool steal = true) override;
+
 	// After this call no memory will be consumed by the object and it will be invalid.
-	void Clear();
-	bool IsValid() const																								{ return Pixels ? true : false; }
+	void Clear() override;
+	bool IsValid() const override																						{ return Pixels ? true : false; }
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
@@ -59,6 +72,8 @@ public:
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageXPM object is
 	// invalid afterwards.
 	tPixel* StealPixels();
+	tFrame* StealFrame() override;
+
 	tPixel* GetPixels() const																							{ return Pixels; }
 	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
 

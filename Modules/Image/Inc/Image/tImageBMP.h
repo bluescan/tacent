@@ -24,7 +24,7 @@
 //
 // The modifications to use Tacent datatypes and conversion to C++ are under the ISC licence:
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -38,20 +38,26 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tBaseImage.h>
 namespace tImage
 {
 
 
-class tImageBMP
+class tImageBMP : public tBaseImage
 {
 public:
 	// Creates an invalid tImageBMP. You must call Load manually.
 	tImageBMP()																											{ }
 	tImageBMP(const tString& bmpFile)																					{ Load(bmpFile); }
 
-	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
-	// it just copies the data out.
+	// This one sets from a supplied pixel array. It just reads the data (or steals the array if steal set).
 	tImageBMP(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+
+	// Sets from a single frame.
+	tImageBMP(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
+
+	// Constructs from a tPicture.
+	tImageBMP(tPicture& picture, bool steal = true)																		{ Set(picture, steal); }
 
 	virtual ~tImageBMP()																								{ Clear(); }
 
@@ -61,7 +67,13 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	bool Set(tPixel* pixels, int width, int height, bool steal = false);
+	bool Set(tPixel* pixels, int width, int height, bool steal = false) override;
+
+	// Sets from a single frame.
+	bool Set(tFrame*, bool steal = true) override;
+
+	// Sets from a tPicture.
+	bool Set(tPicture& picture, bool steal = true) override;
 
 	enum class tFormat
 	{
@@ -77,8 +89,8 @@ public:
 	tFormat Save(const tString& bmpFile, tFormat = tFormat::Auto) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
-	void Clear();
-	bool IsValid() const																								{ return Pixels ? true : false; }
+	void Clear() override;
+	bool IsValid() const override																						{ return Pixels ? true : false; }
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
@@ -89,8 +101,9 @@ public:
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageBMP object is
 	// invalid afterwards.
 	tPixel* StealPixels();
+	tFrame* StealFrame() override;
 	tPixel* GetPixels() const																							{ return Pixels; }
-	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
+	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 
 private:
 	const uint16 FourCC = 0x4D42;
@@ -153,7 +166,7 @@ inline void tImageBMP::Clear()
 	Height = 0;
 	delete[] Pixels;
 	Pixels = nullptr;
-	SrcPixelFormat = tPixelFormat::Invalid;
+	PixelFormatSrc = tPixelFormat::Invalid;
 }
 
 

@@ -7,7 +7,7 @@
 // b) Supports embedded png images.
 // c) Supports widths and heights of 256.
 //
-// Copyright (c) 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2020-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -34,7 +34,8 @@
 #include <Foundation/tString.h>
 #include <System/tFile.h>
 #include "Image/tImageICO.h"
-#include "Image/tImagePNG.h"
+#include "Image/tImagePNG.h"			// ICO files may have embedded PNGs.
+#include "Image/tPicture.h"
 using namespace tSystem;
 namespace tImage
 {
@@ -108,6 +109,78 @@ bool tImageICO::Load(const tString& icoFile)
 }
 
 
+bool tImage::tImageICO::Set(tList<tFrame>& srcFrames, bool stealFrames)
+{
+	Clear();
+	if (srcFrames.GetNumItems() <= 0)
+		return false;
+
+	if (stealFrames)
+	{
+		while (tFrame* frame = srcFrames.Remove())
+			Frames.Append(frame);
+	}
+	else
+	{
+		for (tFrame* frame = srcFrames.Head(); frame; frame = frame->Next())
+			Frames.Append(new tFrame(*frame));
+	}
+
+	return true;
+}
+
+
+bool tImageICO::Set(tPixel* pixels, int width, int height, bool steal)
+{
+	Clear();
+	if (!pixels || (width <= 0) || (height <= 0))
+		return false;
+
+	tFrame* frame = new tFrame();
+	if (steal)
+		frame->StealFrom(pixels, width, height);
+	else
+		frame->Set(pixels, width, height);
+	Frames.Append(frame);
+	return true;
+}
+
+
+bool tImageICO::Set(tFrame* frame, bool steal)
+{
+	Clear();
+	if (!frame || !frame->IsValid())
+		return false;
+
+	if (steal)
+		Frames.Append(frame);
+	else
+		Frames.Append(new tFrame(*frame));
+
+	return true;
+}
+
+
+bool tImageICO::Set(tPicture& picture, bool steal)
+{
+	Clear();
+	if (!picture.IsValid())
+		return false;
+
+	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+}
+
+
+tFrame* tImageICO::StealFrame()
+{
+	if (!IsValid())
+		return nullptr;
+
+	return Frames.Remove();
+}
+
+
 bool tImageICO::PopulateFrames(const uint8* buffer, int numBytes)
 {
 	IconDir* icoDir = (IconDir*)buffer;
@@ -174,7 +247,7 @@ tFrame* tImageICO::CreateFrame(const uint8* cursor, int width, int height, int n
 		bool isOpaque = pngImage.IsOpaque();
 		
 		tFrame* newFrame = new tFrame;
-		newFrame->SrcPixelFormat = isOpaque ? tPixelFormat::R8G8B8 : tPixelFormat::R8G8B8A8;
+		newFrame->PixelFormatSrc = isOpaque ? tPixelFormat::R8G8B8 : tPixelFormat::R8G8B8A8;
 		newFrame->Width = width;
 		newFrame->Height = height;
 		newFrame->Pixels = pixels;
@@ -359,7 +432,7 @@ tFrame* tImageICO::CreateFrame(const uint8* cursor, int width, int height, int n
 	}
 	
 	tFrame* newFrame = new tFrame;
-	newFrame->SrcPixelFormat = srcPixelFormat;
+	newFrame->PixelFormatSrc = srcPixelFormat;
 	newFrame->Width = width;
 	newFrame->Height = height;
 	newFrame->Pixels = pixels;

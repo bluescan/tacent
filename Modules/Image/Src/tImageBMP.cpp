@@ -24,7 +24,7 @@
 //
 // The modifications to use Tacent datatypes and conversion to C++ are under the ISC licence:
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -37,6 +37,7 @@
 #include <System/tFile.h>
 #include <Foundation/tArray.h>
 #include "Image/tImageBMP.h"
+#include "Image/tPicture.h"
 using namespace tSystem;
 namespace tImage
 {
@@ -113,23 +114,23 @@ bool tImageBMP::Load(const tString& bmpFile)
 	uint8* buf = new uint8[Width * Height * 4];
 	tStd::tMemset(buf, 0x00, Width*Height * 4);
 	tFileSeek(file, bmpHeader.Offset, tSeekOrigin::Set);
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 
 	switch (infoHeader.BPP)
 	{
 		case 32:
 			ReadRow_Pixels32(file, buf);
-			SrcPixelFormat = tPixelFormat::R8G8B8A8;
+			PixelFormatSrc = tPixelFormat::R8G8B8A8;
 			break;
 
 		case 24:
 			ReadRow_Pixels24(file, buf);
-			SrcPixelFormat = tPixelFormat::R8G8B8;
+			PixelFormatSrc = tPixelFormat::R8G8B8;
 			break;
 
 		case 16: 
 			ReadRow_Pixels16(file, buf);
-			SrcPixelFormat = tPixelFormat::B5G5R5A1;
+			PixelFormatSrc = tPixelFormat::B5G5R5A1;
 			break;
 
 		case 8:
@@ -138,7 +139,7 @@ bool tImageBMP::Load(const tString& bmpFile)
 				ReadRow_IndexedRLE8(file, buf, palette);
 			else
 				ReadRow_Indexed8(file, buf, palette);
-			SrcPixelFormat = tPixelFormat::PAL8BIT;
+			PixelFormatSrc = tPixelFormat::PAL8BIT;
 			break;
 
 		case 4:
@@ -147,13 +148,13 @@ bool tImageBMP::Load(const tString& bmpFile)
 				ReadRow_IndexedRLE4(file, buf, palette);
 			else
 				ReadRow_Indexed4(file, buf, palette);
-			SrcPixelFormat = tPixelFormat::PAL4BIT;
+			PixelFormatSrc = tPixelFormat::PAL4BIT;
 			break;
 
 		case 1:
 			tAssert(palette);
 			ReadRow_Indexed1(file, buf, palette);
-			SrcPixelFormat = tPixelFormat::PAL1BIT;
+			PixelFormatSrc = tPixelFormat::PAL1BIT;
 			break;
 	}
 
@@ -462,6 +463,68 @@ void tImageBMP::ReadRow_IndexedRLE4(tFileHandle file, uint8* dest, PaletteColour
 }
 
 
+bool tImageBMP::Set(tPixel* pixels, int width, int height, bool steal)
+{
+	Clear();
+	if (!pixels || (width <= 0) || (height <= 0))
+		return false;
+
+	Width = width;
+	Height = height;
+
+	if (steal)
+	{
+		Pixels = pixels;
+	}
+	else
+	{
+		Pixels = new tPixel[Width*Height];
+		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
+	}
+
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	return true;
+}
+
+
+bool tImageBMP::Set(tFrame* frame, bool steal)
+{
+	Clear();
+	if (!frame || !frame->IsValid())
+		return false;
+
+	Set(frame->GetPixels(steal), frame->Width, frame->Height, steal);
+	if (steal)
+		delete frame;
+
+	return true;
+}
+
+
+bool tImageBMP::Set(tPicture& picture, bool steal)
+{
+	Clear();
+	if (!picture.IsValid())
+		return false;
+
+	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+}
+
+
+tFrame* tImageBMP::StealFrame()
+{
+	if (!IsValid())
+		return nullptr;
+
+	tFrame* frame = new tFrame();
+	frame->StealFrom(Pixels, Width, Height);
+	frame->PixelFormatSrc = PixelFormatSrc;
+	Pixels = nullptr;
+	return frame;
+}
+
+
 tImageBMP::tFormat tImageBMP::Save(const tString& bmpFile, tFormat format) const
 {
 	if (!IsValid() || (format == tFormat::Invalid))
@@ -522,30 +585,6 @@ tImageBMP::tFormat tImageBMP::Save(const tString& bmpFile, tFormat format) const
 	
 	tCloseFile(file);
 	return format;
-}
-
-
-bool tImageBMP::Set(tPixel* pixels, int width, int height, bool steal)
-{
-	Clear();
-	if (!pixels || (width <= 0) || (height <= 0))
-		return false;
-
-	Width = width;
-	Height = height;
-
-	if (steal)
-	{
-		Pixels = pixels;
-	}
-	else
-	{
-		Pixels = new tPixel[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
-	}
-
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
-	return true;
 }
 
 

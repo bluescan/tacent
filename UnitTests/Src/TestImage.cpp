@@ -27,6 +27,8 @@
 #include <Image/tImageTGA.h>
 #include <Image/tImageWEBP.h>
 #include <Image/tImageXPM.h>
+#include <Image/tImageBMP.h>
+#include <Image/tImageTIFF.h>
 #include <System/tFile.h>
 #include "UnitTests.h"
 using namespace tImage;
@@ -169,7 +171,7 @@ tTestUnit(ImageTexture)
 	tImageICO ico("TestData/Images/UpperBounds.ico");
 	tFrame* frame = ico.StealFrame(0);
 	w = frame->Width; h = frame->Height;
-	pic.Set(w, h, frame->StealPixels(), false);
+	pic.Set(w, h, frame->GetPixels(true), false);
 	delete frame;
 	tTexture bc3Tex(pic, true);
 
@@ -184,14 +186,16 @@ tTestUnit(ImagePicture)
 {
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImagePicture)
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
 
 	// Test generate layers.
-	tImageBMP bmp("TestData/Images/UpperB.bmp");
+	tImageBMP bmp("UpperB.bmp");
 	tRequire(bmp.IsValid());
 
+	// @todo CLEANUP
 	int w = bmp.GetWidth(); int h = bmp.GetHeight();
 	tPicture srcPic(w, h, bmp.StealPixels(), false);
-	//tPicture srcPic("TestData/Images/UpperB.bmp");
 	tRequire(srcPic.IsValid());
 	tPrintf("GenLayers Orig W=%d H=%d\n", srcPic.GetWidth(), srcPic.GetHeight());
 	tList<tLayer> layers;
@@ -200,6 +204,13 @@ tTestUnit(ImagePicture)
 	for (tLayer* lay = layers.First(); lay; lay = lay->Next(), lev++)
 		tPrintf("GenLayers Mip:%02d W=%d H=%d\n", lev, lay->Width, lay->Height);
 	tRequire(layers.GetNumItems() == 10);
+
+	// Test tPicture loading astc and saving as tga.
+	tImageASTC astc("ASTC/ASTC10x10_LDR.astc");
+	tPicture pic(astc);
+	tImageTGA tga(pic);
+	tga.Save("WrittenASTC10x10_LDR.tga");
+	tRequire(tSystem::tFileExists("WrittenASTC10x10_LDR.tga"));
 
 #if 0
 	// Test tPicture loading bmp and saving as tga.
@@ -316,6 +327,8 @@ tTestUnit(ImagePicture)
 	exrPicToSaveAsTIFF.SaveTIFF("TestData/Images/WrittenDesk.tiff");
 	tRequire(tSystem::tFileExists("TestData/Images/WrittenDesk.tiff"));
 #endif
+
+	tSystem::tSetCurrentDir(origDir);
 }
 
 

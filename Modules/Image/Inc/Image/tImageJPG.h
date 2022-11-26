@@ -20,11 +20,12 @@
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
 #include <Image/tMetaData.h>
+#include <Image/tBaseImage.h>
 namespace tImage
 {
 
 
-class tImageJPG
+class tImageJPG : public tBaseImage
 {
 public:
 	enum LoadFlags
@@ -42,21 +43,33 @@ public:
 	tImageJPG(const tString& jpgFile, uint32 loadFlags)																	{ Load(jpgFile, loadFlags); }
 
 	// The data is copied out of jpgFileInMemory. Go ahead and delete after if you want.
-	tImageJPG(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default)							{ Set(jpgFileInMemory, numBytes, loadFlags); }
+	tImageJPG(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default)							{ Load(jpgFileInMemory, numBytes, loadFlags); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
 	tImageJPG(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
+	// Sets from a single frame.
+	tImageJPG(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
+
+	// Constructs from a tPicture.
+	tImageJPG(tPicture& picture, bool steal = true)																		{ Set(picture, steal); }
+
 	virtual ~tImageJPG()																								{ Clear(); }
 
 	// Clears the current tImageJPG before loading. Returns success. If false returned, object is invalid.
 	bool Load(const tString& jpgFile, uint32 loadFlags = LoadFlags_Default);
-	bool Set(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default);
+	bool Load(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default);
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
 	bool Set(tPixel*, int width, int height, bool steal = false);
+
+	// Sets from a single frame.
+	bool Set(tFrame*, bool steal = true) override;
+
+	// Sets from a tPicture.
+	bool Set(tPicture& picture, bool steal = true) override;
 
 	// Saves the tImageJPG to the JPeg file specified. The extension of filename must be ".jpg" or ".jpeg".
 	// The quality int is should be a percent in [1,100]. Returns true on success.
@@ -64,8 +77,8 @@ public:
 	bool Save(const tString& jpgFile, int quality = DefaultQuality) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
-	void Clear();
-	bool IsValid() const																								{ return Pixels ? true : false; }
+	void Clear() override;
+	bool IsValid() const override																						{ return Pixels ? true : false; }
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
@@ -76,8 +89,10 @@ public:
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageJPG object is
 	// invalid afterwards.
 	tPixel* StealPixels();
+	tFrame* StealFrame() override;
+
 	tPixel* GetPixels() const																							{ return Pixels; }
-	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
+	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 
 	// A place to store EXIF and XMP metadata. JPeg file often contain this metadata.
 	tMetaData MetaData;
@@ -106,7 +121,7 @@ inline void tImageJPG::Clear()
 	Height = 0;
 	delete[] Pixels;
 	Pixels = nullptr;
-	SrcPixelFormat = tPixelFormat::Invalid;
+	PixelFormatSrc = tPixelFormat::Invalid;
 }
 
 

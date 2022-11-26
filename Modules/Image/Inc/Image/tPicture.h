@@ -25,6 +25,8 @@
 #include <Math/tColour.h>
 #include <System/tFile.h>
 #include <System/tChunk.h>
+#include "Image/tBaseImage.h"
+/*
 #include "Image/tImageAPNG.h"
 #include "Image/tImageASTC.h"
 #include "Image/tImageBMP.h"
@@ -41,6 +43,7 @@
 #include "Image/tImageTIFF.h"
 #include "Image/tImageWEBP.h"
 #include "Image/tImageXPM.h"
+*/
 #include "Image/tPixelFormat.h"
 #include "Image/tResample.h"
 #include "Image/tLayer.h"
@@ -102,6 +105,14 @@ public:
 	// tPicture. In this case the tPicture will delete[] the buffer for you when appropriate.
 	tPicture(int width, int height, tPixel* pixelBuffer, bool copyPixels = true)										{ Set(width, height, pixelBuffer, copyPixels); }
 
+	// Construct from a tFrame. If steal is true the tPicture will take ownership of the tFrame. If steal is false it
+	// will copy the pixels out.
+	tPicture(tFrame* frame, bool steal)																					{ Set(frame, steal); }
+
+	// Constructs from any type derived from tImageBase (eg. tImageASTC). Warning: The tImageBase may be modified. In
+	// particular it may be invalid afterwards because the pixels may have been stolen from it.
+	tPicture(tBaseImage& image)																							{ Set(image); }
+
 	// Copy constructor.
 	tPicture(const tPicture& src)																						: tPicture() { Set(src); }
 
@@ -121,6 +132,15 @@ public:
 	// tPicture. In this case the tPicture will delete[] the buffer for you when appropriate. In all cases, existing
 	// pixel data is lost.
 	void Set(int width, int height, tPixel* pixelBuffer, bool copyPixels = true);
+
+	// Sets from a tFrame. If steal is true the tPicture will take ownership of the tFrame. If steal is false it will
+	// copy the pixels out.
+	void Set(tFrame* frame, bool steal);
+
+	// Sets from any type derived from tImageBase (eg. tImageASTC). Warning: The tImageBase may be modified. In
+	// particular it may be invalid afterwards because the pixels may have been stolen from it.
+	void Set(tBaseImage& image);
+
 	void Set(const tPicture& src);
 
 	// Save and Load to tChunk format.

@@ -18,11 +18,12 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tBaseImage.h>
 namespace tImage
 {
 
 
-class tImageQOI
+class tImageQOI : public tBaseImage
 {
 public:
 	// Creates an invalid tImageQOI. You must call Load manually.
@@ -30,22 +31,34 @@ public:
 	tImageQOI(const tString& qoiFile)																					{ Load(qoiFile); }
 
 	// The data is copied out of qoiFileInMemory. Go ahead and delete[] after if you want.
-	tImageQOI(const uint8* qoiFileInMemory, int numBytes)																{ Set(qoiFileInMemory, numBytes); }
+	tImageQOI(const uint8* qoiFileInMemory, int numBytes)																{ Load(qoiFileInMemory, numBytes); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out. Sets the colour space to sRGB. Call SetColourSpace after if you wanted linear.
 	tImageQOI(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
+	// Sets from a single frame.
+	tImageQOI(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
+
+	// Constructs from a tPicture.
+	tImageQOI(tPicture& picture, bool steal = true)																		{ Set(picture, steal); }
+
 	virtual ~tImageQOI()																								{ Clear(); }
 
 	// Clears the current tImageQOI before loading. Returns success. If false returned, object is invalid.
 	bool Load(const tString& qoiFile);
-	bool Set(const uint8* qoiFileInMemory, int numBytes);
+	bool Load(const uint8* qoiFileInMemory, int numBytes);
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out. After this call the objects ColourSpace is set to sRGB. If the data was all linear
 	// you can call SetColourSpace() manually afterwards.
-	bool Set(tPixel* pixels, int width, int height, bool steal = false);
+	bool Set(tPixel* pixels, int width, int height, bool steal = false) override;
+
+	// Sets from a single frame.
+	bool Set(tFrame*, bool steal = true) override;
+
+	// Sets from a tPicture.
+	bool Set(tPicture& picture, bool steal = true) override;
 
 	enum class tFormat
 	{
@@ -68,8 +81,8 @@ public:
 	tFormat Save(const tString& qoiFile, tFormat = tFormat::Auto) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
-	void Clear();
-	bool IsValid() const																								{ return Pixels ? true : false; }
+	void Clear() override;
+	bool IsValid() const override																						{ return Pixels ? true : false; }
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
@@ -83,8 +96,10 @@ public:
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageQOI object is
 	// invalid afterwards.
 	tPixel* StealPixels();
+	tFrame* StealFrame() override;
+
 	tPixel* GetPixels() const																							{ return Pixels; }
-	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
+	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 
 private:
 
@@ -105,7 +120,7 @@ inline void tImageQOI::Clear()
 	Height			= 0;
 	delete[]		Pixels;
 	Pixels			= nullptr;
-	SrcPixelFormat = tPixelFormat::Invalid;
+	PixelFormatSrc	= tPixelFormat::Invalid;
 }
 
 

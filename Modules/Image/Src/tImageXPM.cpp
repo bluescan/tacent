@@ -35,14 +35,14 @@ bool tImageXPM::Load(const tString& xpmFile)
 
 	int numBytes = 0;
 	uint8* xpmFileInMemory = tLoadFile(xpmFile, nullptr, &numBytes);
-	bool success = Set(xpmFileInMemory, numBytes);
+	bool success = Load(xpmFileInMemory, numBytes);
 	delete[] xpmFileInMemory;
 
 	return success;
 }
 
 
-bool tImageXPM::Set(const uint8* xpmFileInMemory, int numBytes)
+bool tImageXPM::Load(const uint8* xpmFileInMemory, int numBytes)
 {
 	Clear();
 	if ((numBytes <= 0) || !xpmFileInMemory)

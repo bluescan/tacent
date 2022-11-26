@@ -16,6 +16,7 @@
 
 #include <System/tFile.h>
 #include "Image/tImageTGA.h"
+#include "Image/tPicture.h"
 using namespace tSystem;
 namespace tImage
 {
@@ -33,14 +34,14 @@ bool tImageTGA::Load(const tString& tgaFile)
 
 	int numBytes = 0;
 	uint8* tgaFileInMemory = tLoadFile(tgaFile, nullptr, &numBytes);
-	bool success = Set(tgaFileInMemory, numBytes);
+	bool success = Load(tgaFileInMemory, numBytes);
 	delete[] tgaFileInMemory;
 
 	return success;
 }
 
 
-bool tImageTGA::Set(const uint8* tgaFileInMemory, int numBytes)
+bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 {
 	Clear();
 	if ((numBytes <= 0) || !tgaFileInMemory)
@@ -86,11 +87,11 @@ bool tImageTGA::Set(const uint8* tgaFileInMemory, int numBytes)
 		Clear();
 		return false;
 	}
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 	if (bitDepth == 16)
-		SrcPixelFormat = tPixelFormat::B5G5R5A1;
+		PixelFormatSrc = tPixelFormat::B5G5R5A1;
 	else if (bitDepth == 24)
-		SrcPixelFormat = tPixelFormat::R8G8B8;
+		PixelFormatSrc = tPixelFormat::R8G8B8;
 	uint8* srcData = (uint8*)(header + 1);
 
 	// These usually are zero. In most cases the pixel data will follow directly after the header. iColourMapType is a
@@ -210,8 +211,46 @@ bool tImageTGA::Set(tPixel* pixels, int width, int height, bool steal)
 		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
 	}
 
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 	return true;
+}
+
+
+bool tImageTGA::Set(tFrame* frame, bool steal)
+{
+	Clear();
+	if (!frame || !frame->IsValid())
+		return false;
+
+	Set(frame->GetPixels(steal), frame->Width, frame->Height, steal);
+	if (steal)
+		delete frame;
+
+	return true;
+}
+
+
+bool tImageTGA::Set(tPicture& picture, bool steal)
+{
+	Clear();
+	if (!picture.IsValid())
+		return false;
+
+	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+}
+
+
+tFrame* tImageTGA::StealFrame()
+{
+	if (!IsValid())
+		return nullptr;
+
+	tFrame* frame = new tFrame();
+	frame->StealFrom(Pixels, Width, Height);
+	frame->PixelFormatSrc = PixelFormatSrc;
+	Pixels = nullptr;
+	return frame;
 }
 
 
