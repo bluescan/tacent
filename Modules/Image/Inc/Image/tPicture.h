@@ -106,7 +106,7 @@ public:
 	tPicture(int width, int height, tPixel* pixelBuffer, bool copyPixels = true)										{ Set(width, height, pixelBuffer, copyPixels); }
 
 	// Construct from a tFrame. If steal is true the tPicture will take ownership of the tFrame. If steal is false it
-	// will copy the pixels out.
+	// will copy the pixels out. The frame duration is also taken from the frame.
 	tPicture(tFrame* frame, bool steal)																					{ Set(frame, steal); }
 
 	// Constructs from any type derived from tImageBase (eg. tImageASTC). Warning: The tImageBase may be modified. In
@@ -130,11 +130,11 @@ public:
 	// copyPixels is true, it simply copies the values from the buffer you supply. In this case it will attempt to
 	// reuse it's existing buffer if it can. If copyPixels is false, it means you are giving the buffer to the
 	// tPicture. In this case the tPicture will delete[] the buffer for you when appropriate. In all cases, existing
-	// pixel data is lost.
+	// pixel data is lost. Other members of the tPicture are unmodified.
 	void Set(int width, int height, tPixel* pixelBuffer, bool copyPixels = true);
 
 	// Sets from a tFrame. If steal is true the tPicture will take ownership of the tFrame. If steal is false it will
-	// copy the pixels out.
+	// copy the pixels out. The frame duration is also taken from the frame.
 	void Set(tFrame* frame, bool steal);
 
 	// Sets from any type derived from tImageBase (eg. tImageASTC). Warning: The tImageBase may be modified. In
@@ -249,7 +249,7 @@ public:
 	bool operator!=(const tPicture&) const;
 
 	tString Filename;
-	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
+	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 	uint TextureID = 0;
 	float Duration = 0.5f;
 
@@ -280,7 +280,7 @@ inline void tPicture::Clear()
 	Pixels = nullptr;
 	Width = 0;
 	Height = 0;
-	SrcPixelFormat = tPixelFormat::Invalid;
+	PixelFormatSrc = tPixelFormat::Invalid;
 }
 
 
@@ -353,7 +353,7 @@ inline void tPicture::Set(const tPicture& src)
 
 	Set(src.Width, src.Height, src.Pixels);
 	Filename = src.Filename;
-	SrcPixelFormat = src.SrcPixelFormat;
+	PixelFormatSrc = src.PixelFormatSrc;
 	Duration = src.Duration;
 }
 

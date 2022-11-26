@@ -86,7 +86,7 @@ void tPicture::Set(int width, int height, const tPixel& colour)
 	for (int pixel = 0; pixel < (Width*Height); pixel++)
 		Pixels[pixel] = colour;
 
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 }
 
 
@@ -115,7 +115,7 @@ void tPicture::Set(int width, int height, tPixel* pixelBuffer, bool copyPixels)
 	if (copyPixels)
 		tStd::tMemcpy(Pixels, pixelBuffer, Width*Height*sizeof(tPixel));
 
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 }
 
 
@@ -125,6 +125,7 @@ void tPicture::Set(tFrame* frame, bool steal)
 		return;
 
 	Set(frame->Width, frame->Height, frame->GetPixels(steal), !steal);
+	Duration = frame->Duration;
 	if (steal)
 		delete frame;
 }
@@ -187,7 +188,7 @@ void tPicture::Load(const tChunk& chunk)
 			}
 		}
 	}
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 }
 
 
