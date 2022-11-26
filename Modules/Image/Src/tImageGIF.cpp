@@ -52,7 +52,6 @@ void tImageGIF::FrameCallback(struct GIF_WHDR* whdr)
 		tStd::tMemset(FrmPrev, 0, Width * Height * sizeof(tPixel));
 	}
 
-	int numPixels = Width * Height;
 	tPixel* pict = FrmPict;
 	tPixel* prev = nullptr;
 
@@ -69,14 +68,19 @@ void tImageGIF::FrameCallback(struct GIF_WHDR* whdr)
 				if (whdr->tran != (long)whdr->bptr[++dsrc])
 					pict[whdr->xdim * y + x + ddst].BP = RGBA(dsrc);
 
-	tFrame* frame = new tFrame();
-	Frames.Append(frame);
-	frame->Pixels = new tPixel[numPixels];
+	tFrame* frame = new tFrame;
+	frame->Width = Width;
+	frame->Height = Height;
+	frame->Pixels = new tPixel[Width*Height];
+	frame->PixelFormatSrc = tPixelFormat::PAL8BIT;
 	frame->Duration = float(whdr->time) / 100.0f;
 
 	// We store rows starting from the bottom (lower left is 0,0).
 	for (int row = Height-1; row >= 0; row--)
 		tStd::tMemcpy(frame->Pixels + (row*Width), pict + ((Height-row-1)*Width), Width*sizeof(tPixel));
+
+	// The frame is ready. Append it.
+	Frames.Append(frame);
 
 	if ((whdr->mode == GIF_PREV) && !FrmLast)
 	{
