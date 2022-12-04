@@ -103,10 +103,12 @@ enum class tPixelFormat
 	LastVendor			= OPENEXR,
 
 	FirstPalette,
-	PAL8BIT				= FirstPalette,	// 8bit indexes to a Palette. ex. gif files.
-	PAL4BIT,
-	PAL1BIT,
-	LastPalette			= PAL1BIT,
+	PAL1BIT				= FirstPalette,	// 1-bit  indexes to a palette. 2 colour.     8 pixels per byte. Often dithered B/W.
+	PAL2BIT,							// 2-bit  indexes to a palette. 4 colour.     4 pixels per byte.
+	PAL4BIT,							// 4-bit  indexes to a palette. 16 colour.    2 pixels per byte.
+	PAL8BIT,							// 8-bit  indexes to a palette. 256 colour.   1 pixel per byte.
+	PAL16BIT,							// 16-bit indexes to a palette. 65536 colour. 2 bytes per pixel.
+	LastPalette			= PAL16BIT,
 
 	NumPixelFormats,
 	NumPackedFormats	= LastPacked	- FirstPacked	+ 1,
@@ -231,12 +233,14 @@ inline bool tImage::tIsAlphaFormat(tPixelFormat format)
 
 		// For palettized the palette may have an entry that can be considered alpha. However for only 1-bit
 		// palettes we consider it dithered (ColourA/ColourB) and not to have an alpha.
-		case tPixelFormat::PAL8BIT:
+		case tPixelFormat::PAL2BIT:
 		case tPixelFormat::PAL4BIT:
+		case tPixelFormat::PAL8BIT:
+		case tPixelFormat::PAL16BIT:
 			return true;
 	}
 
-	// Not quite sure how to hadle ASTC formats, but they usually contain an alpha.
+	// Not quite sure how to handle ASTC formats, but they usually contain an alpha.
 	if (tIsASTCFormat(format))
 		return true;
 

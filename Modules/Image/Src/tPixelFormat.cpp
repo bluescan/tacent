@@ -76,9 +76,11 @@ namespace tImage
 		"OPENEXR",
 
 		// Palette formats.
-		"PAL8BIT",
+		"PAL1BIT",
+		"PAL2BIT",
 		"PAL4BIT",
-		"PAL1BIT"
+		"PAL8BIT",
+		"PAL16BIT"
 	};
 	tStaticAssert(int(tPixelFormat::NumPixelFormats)+1 == tNumElements(PixelFormatNames));
 
@@ -166,9 +168,11 @@ namespace tImage
 
 	int PaletteFormat_BitsPerPixel[] =
 	{
-		8,
+		1,
+		2,
 		4,
-		1
+		8,
+		16
 	};
 	tStaticAssert(tNumElements(PaletteFormat_BitsPerPixel) == int(tPixelFormat::NumPaletteFormats));
 }

@@ -29,6 +29,7 @@
 #include <Image/tImageXPM.h>
 #include <Image/tImageBMP.h>
 #include <Image/tImageTIFF.h>
+#include <Image/tPaletteImage.h>
 #include <System/tFile.h>
 #include "UnitTests.h"
 using namespace tImage;
@@ -212,14 +213,15 @@ tTestUnit(ImagePicture)
 	tga.Save("WrittenASTC10x10_LDR.tga");
 	tRequire(tSystem::tFileExists("WrittenASTC10x10_LDR.tga"));
 
-#if 0
-	// Test tPicture loading bmp and saving as tga.
-	tPicture bmpPicUB("TestData/Images/UpperB.bmp");
-	tRequire(bmpPicUB.IsValid());
-	bmpPicUB.Save("TestData/Images/WrittenUpperB.tga");
-	bmpPicUB.Save("TestData/Images/WrittenUpperB.bmp");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenUpperB.tga"));
+	// Test tPicture loading bmp and saving as bmp/tga.
+	tImageBMP bmpUB("UpperB.bmp");
+	bmpUB.Save("WrittenUpperB.bmp");
+	tPicture picUB(bmpUB);
+	tImageTGA tgaUB(picUB);
+	tgaUB.Save("WrittenUpperB.tga");
+	tRequire( tSystem::tFileExists("WrittenUpperB.tga"));
 
+#if 0
 	tPicture bmpPicA("TestData/Images/Bmp_Alpha.bmp");
 	tRequire(bmpPicA.IsValid());
 	bmpPicA.Save("TestData/Images/WrittenBmp_Alpha.tga");
@@ -329,6 +331,12 @@ tTestUnit(ImagePicture)
 #endif
 
 	tSystem::tSetCurrentDir(origDir);
+}
+
+
+tTestUnit(ImagePalette)
+{
+	tPaletteImage img1bit(tPixelFormat::PAL1BIT, 300, 200);
 }
 
 

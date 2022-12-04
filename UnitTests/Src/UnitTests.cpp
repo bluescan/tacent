@@ -165,6 +165,7 @@ int main(int argc, char** argv)
 	tTest(ImageSave);
 	tTest(ImageTexture);
 	tTest(ImagePicture);
+	tTest(ImagePalette);
 	tTest(ImageMetaData);
 	tTest(ImageRotation);
 	tTest(ImageCrop);
@@ -201,14 +202,15 @@ int main(int argc, char** argv)
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
 	// tTest(ImageMultiFrame);
-	// tTest(ImagePicture);
+	tTest(ImagePicture);
+	tTest(ImagePalette);
 	// tTest(ImageGradient);
 	// tTest(ImageMetaData);
 	// tTest(ImageDetection);
 	// tTest(ImageDDS);
 	// tTest(ImageKTX1);
 	// tTest(ImageKTX2);
-	tTest(ImageASTC);
+	// tTest(ImageASTC);
 	#endif
 	// tTest(UTF);
 	// tTest(Hash);

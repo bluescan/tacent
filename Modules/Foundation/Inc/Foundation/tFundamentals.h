@@ -55,9 +55,13 @@ enum class tIntervalBias
 std::function<bool(float,float)> tBiasLess(tIntervalBias);
 std::function<bool(float,float)> tBiasGreater(tIntervalBias);
 
+// For functions below there may be variants starting with 'ti'. The 'i' means 'in-place' (ref var). Supports chaining.
 inline int tAbs(int val)																								{ return (val < 0) ? -val : val; }
 inline float tAbs(float val)																							{ return (val < 0.0f) ? -val : val; }
 inline double tAbs(double val)																							{ return (val < 0.0) ? -val : val; }
+inline int& tiAbs(int& v)																								{ v = (v < 0) ? -v : v; return v; }
+inline float& tiAbs(float& v)																							{ v = (v < 0.0f) ? -v : v; return v; }
+inline double& tiAbs(double& v)																							{ v = (v < 0.0) ? -v : v; return v; }
 
 // A mathematical modulo. Does not just return remainder like the % operator. i.e. Handles negatives 'properly'.
 // The & and fmod functions are also here but called more appropriately tRem (for remainder). 
@@ -89,7 +93,6 @@ template<typename T> inline bool tApproxEqual(T a, T b, float e = Epsilon)						
 template<typename T> inline bool tEquals(T a, T b)																		{ return a == b; }
 template<typename T> inline bool tNotEqual(T a, T b)																	{ return a != b; }
 
-// For the 'ti' versions of the below functions, the 'i' means 'in-place' (ref var). Supports chaining.
 template<typename T> inline T& tiClamp(T& val, T min, T max)															{ val = (val < min) ? min : ((val > max) ? max : val); return val; }
 template<typename T> inline T& tiClampMin(T& val, T min)																{ val = (val < min) ? min : val; return val; }
 template<typename T> inline T& tiClampMax(T& val, T max)																{ val = (val > max) ? max : val; return val; }
@@ -112,21 +115,15 @@ inline int tFloatToInt(float val)																						{ return int(val + 0.5f);
 
 // tCeiling and tFloor both need to change the FPU from round mode to truncate. Could have performance hit.
 inline float tCeiling(float v)																							{ return ceilf(v); }
-inline float tFloor(float v)																							{ return floorf(v); }
-inline float tRound(float v)																							{ return floorf(v + 0.5f); }
-
-// This round lets you say round to the nearest [value]. For example, tRound(5.17f, 0.2f) = 5.2f
-float tRound(float v, float nearest);
-
-// For the 'ti' versions of the below functions, the 'i' means 'in-place' (ref var). A ref is also returned so it's
-// easy to chain calls.
 inline float& tiCeiling(float& v)																						{ v = ceilf(v); return v; }
+inline float tFloor(float v)																							{ return floorf(v); }
 inline float& tiFloor(float& v)																							{ v = floorf(v); return v; }
+
+// The 'nearest' round variants let you round to the nearest [value]. For example, tRound(5.17f, 0.2f) = 5.2f
+inline float tRound(float v)																							{ return floorf(v + 0.5f); }
 inline float& tiRound(float& v)																							{ v = floorf(v + 0.5f); return v; }
+float tRound(float v, float nearest);
 inline float& tiRound(float& v, float nearest)																			{ v = tRound(v, nearest); return v; }
-inline int& tiAbs(int& v)																								{ v = (v < 0) ? -v : v; return v; }
-inline float& tiAbs(float& v)																							{ v = (v < 0.0f) ? -v : v; return v; }
-inline double& tiAbs(double& v)																							{ v = (v < 0.0) ? -v : v; return v; }
 
 // The following Abs function deserves a little explanation. Some linear algebra texts use the term absolute value and
 // norm interchangeably. Others suggest that the absolute value of a matrix is the matrix with each component
@@ -143,6 +140,9 @@ float tRecipSqrtFast(float x);
 
 inline float tDegToRad(float deg)																						{ return deg * Pi / 180.0f; }
 inline float tRadToDeg(float rad)																						{ return rad * 180.0f / Pi; }
+inline float& tiDegToRad(float& ang)																					{ ang = ang * Pi / 180.0f; return ang; }
+inline float& tiRadToDeg(float& ang)																					{ ang = ang * 180.0f / Pi; return ang; }
+
 inline float tSin(float x)																								{ return sinf(x); }
 inline float tSinFast(float x);								// For x E [0, Pi/2].
 inline float tCos(float x)																								{ return cosf(x); }
@@ -161,10 +161,7 @@ inline float tSa(float x)									/* Unnormalized (sampling) sinc. */							{ if
 inline float tSinc(float x)									/* Normalized sinc. */										{ if (x == 0.0f) return 1.0f; float pix = Pi*x; return tSin(pix) / pix; }
 inline float tPow(float a, float b)																						{ return powf(a, b); }
 inline double tPow(double a, double b)																					{ return pow(a, b); }
-
-// For the 'ti' versions of the below functions, the 'i' means 'in-place' (ref var).
-inline float& tiDegToRad(float& ang)																					{ ang = ang * Pi / 180.0f; return ang; }
-inline float& tiRadToDeg(float& ang)																					{ ang = ang * 180.0f / Pi; return ang; }
+inline int tPow2(int n)										/* 2 ^ n. */												{ return 1 << n; }
 
 // Returns integral base 2 logarithm. If v is <= 0 returns MinInt32. If v is a power of 2 you will get an exact
 // result. If v is not a power of two it will return the logarithm of the next lowest power of 2. For example,

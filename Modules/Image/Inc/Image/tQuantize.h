@@ -1,8 +1,8 @@
-// TestImage.h
+// tQuantize.h
 //
-// Image module tests.
+// Generic interface for quantizing colours (creating colour palettes).
 //
-// Copyright (c) 2017, 2019, 2021, 2022 Tristan Grimmer.
+// Copyright (c) 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -13,25 +13,17 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include "UnitTests.h"
-
-
-namespace tUnitTest
+#include <Image/tPixelFormat.h>
+namespace tImage
 {
-	tTestUnit(ImageLoad);
-	tTestUnit(ImageSave);
-	tTestUnit(ImageTexture);
-	tTestUnit(ImagePicture);
-	tTestUnit(ImagePalette);
-	tTestUnit(ImageMetaData);
-	tTestUnit(ImageRotation);
-	tTestUnit(ImageCrop);
-	tTestUnit(ImageDetection);
-	tTestUnit(ImageFilter);
-	tTestUnit(ImageMultiFrame);
-	tTestUnit(ImageGradient);
-	tTestUnit(ImageDDS);
-	tTestUnit(ImageKTX2);
-	tTestUnit(ImageKTX1);
-	tTestUnit(ImageASTC);
+
+
+enum class tQuantizeAlgo
+{
+	Fixed,
+	Neu,
+	Wu
+};
+
+
 }

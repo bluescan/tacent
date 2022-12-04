@@ -22,6 +22,7 @@ add_library(
 	Src/tImageXPM.cpp
 	Src/tLayer.cpp
 	Src/tMetaData.cpp
+	Src/tPaletteImage.cpp
 	Src/tPicture.cpp
 	Src/tPixelFormat.cpp
 	Src/tPixelUtil.cpp
@@ -48,11 +49,12 @@ add_library(
 	Inc/Image/tImageXPM.h
 	Inc/Image/tLayer.h
 	Inc/Image/tMetaData.h
+	Inc/Image/tPaletteImage.h
 	Inc/Image/tPicture.h
 	Inc/Image/tPixelFormat.h
 	Inc/Image/tPixelUtil.h
-	Inc/Image/tTexture.h
 	Inc/Image/tResample.h
+	Inc/Image/tTexture.h
 	
 	# Contributed source including image loaders.
 	Contrib/ApngAsm/apngasm.h
