@@ -336,7 +336,7 @@ tTestUnit(ImagePicture)
 
 tTestUnit(ImagePalette)
 {
-	tPaletteImage img1bit(tPixelFormat::PAL1BIT, 300, 200);
+	// WIP tPaletteImage img1bit(tPixelFormat::PAL1BIT, 300, 200);
 }
 
 
