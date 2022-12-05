@@ -1,7 +1,7 @@
 // tPaletteImage.h
 //
 // A simple palettized image. Comprised of Width x Height pixel data storing indexes into a palette. The palette is
-// simply an array of tPixels (RGBA). Index resolution is determined by the pixel format (1, 2, 4, 8, or 16 bits). The
+// simply an array of tPixels (RGB). Index resolution is determined by the pixel format (1, 2, 4, 8, or 16 bits). The
 // number of palette entries (colours) is 2 ^ the index-resolution.
 //
 // Copyright (c) 2022 Tristan Grimmer.
@@ -23,7 +23,9 @@ namespace tImage
 
 
 // A simple palettized image class supporting 1, 2, 4, 8, and 16 bits per pixel-index. Origin is at the bottom-left and
-// rows are ordered left to right moving up the image.
+// rows are ordered left to right moving up the image. This palette only contains RGB values (no alpha). Formats like
+// gif handle (binary) alpha separately, and colour quantizers work on RGB values, so having a tPaletteImage with alpha
+// makes little sense.
 class tPaletteImage
 {
 public:
@@ -45,12 +47,16 @@ public:
 	// there are width*height of them. The data is copied out of the supplied arrays. You can use
 	// tGetBitsPerPixel(tPixelFormat) to give you the size in bits of each pixel-index. Each row must be padded to a
 	// byte-boundary. Call tPow2 with that value to give you the palette length needed.
-	tPaletteImage(tPixelFormat fmt, int width, int height, const uint8* pixelData, const tColour4i* palette)			{ Set(fmt, width, height, pixelData, palette); }
+	tPaletteImage(tPixelFormat fmt, int width, int height, const uint8* pixelData, const tColour3i* palette)			{ Set(fmt, width, height, pixelData, palette); }
 
 	// This is the workhorse constructor because it needs to quantize the present colours to create the palette.
 	// Quantizing, or rather doing a good job of quantizing, is quite complex. The Neu algorithm uses a neural net to
-	// accomplish this and gives good results.
-	tPaletteImage(tPixelFormat fmt, int width, int height, const tPixel* pixels, tQuantizeAlgo algo)					{ Set(fmt, width, height, pixels, algo); }
+	// accomplish this and gives good results. Alpha is ignored in the pixel array.
+	// Note: Neu and Wu quantizing methods support PAL8BIT only.
+	tPaletteImage(tPixelFormat fmt, int width, int height, const tPixel* pixels, tQuantizeMethod quantMethod)			{ Set(fmt, width, height, pixels, quantMethod); }
+
+	// Same as above but processed pixel data in RGB instead of ignoring the alpha.
+	tPaletteImage(tPixelFormat fmt, int width, int height, const tPixel3* pixels, tQuantizeMethod quantMethod)			{ Set(fmt, width, height, pixels, quantMethod); }
 
 	virtual ~tPaletteImage()																							{ Clear(); }
 
@@ -60,12 +66,16 @@ public:
 	// See the corresponding constructor comments for the set calls.
 	bool Set(const tPaletteImage&);
 	bool Set(tPixelFormat, int width, int height);
-	bool Set(tPixelFormat, int width, int height, const uint8* pixelData, const tColour4i* palette);
-	bool Set(tPixelFormat, int width, int height, const tPixel* pixels, tQuantizeAlgo);
+	bool Set(tPixelFormat, int width, int height, const uint8* pixelData, const tColour3i* palette);
+	bool Set(tPixelFormat, int width, int height, const tPixel* pixels, tQuantizeMethod);
+	bool Set(tPixelFormat, int width, int height, const tPixel3* pixels, tQuantizeMethod);
 
 	// Populates the supplied pixel array. It is up to you to make sure there is enough room for width*height tPixels in
 	// the supplied array. Returns success. You'll get false if either this image is invalid or null is passed in.
 	bool Get(tPixel* pixels);
+
+	// Same as above but populates an RGB array.
+	bool Get(tPixel3* pixels);
 
 	bool IsValid() const																								{ return (PixelData && Palette) ? true : false; }
 
@@ -79,7 +89,7 @@ public:
 	int Width							= 0;
 	int Height							= 0;
 	uint8* PixelData					= nullptr;
-	tColour4i* Palette					= nullptr;
+	tColour3i* Palette					= nullptr;
 };
 
 

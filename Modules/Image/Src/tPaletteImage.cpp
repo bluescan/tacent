@@ -27,31 +27,115 @@ bool tPaletteImage::Set(const tPaletteImage& src)
 		return true;
 
 	Clear();
+	if (!src.IsValid())
+		return false;
+
+	PixelFormat = src.PixelFormat;
+	Width = src.Width;
+	Height = src.Height;
+
+	int dataSize = src.GetDataSize();
+	tAssert((dataSize > 0) && src.PixelData);
+	PixelData = new uint8[dataSize];
+	tStd::tMemcpy(PixelData, src.PixelData, dataSize);
+
+	int palSize = src.GetPaletteSize();
+	tAssert((palSize > 0) && src.Palette);
+	Palette = new tColour3i[palSize];
+	tStd::tMemcpy(Palette, src.Palette, palSize*sizeof(tColour3i));
+
 	return true;
 }
 
 
 bool tPaletteImage::Set(tPixelFormat fmt, int width, int height)
 {
+	Clear();
+	if (!tIsPaletteFormat(fmt) || (width <= 0) || (height <= 0))
+		return false;
+
+	PixelFormat = fmt;
+	Width = width;
+	Height = height;
+
+	int dataSize = GetDataSize();
+	tAssert(dataSize > 0);
+	PixelData = new uint8[dataSize];
+	tStd::tMemset(PixelData, 0, dataSize);
+
+	int palSize = GetPaletteSize();
+	tAssert(palSize > 0);
+	Palette = new tColour3i[palSize];
+	tStd::tMemset(Palette, 0, palSize*sizeof(tColour3i));
+
 	return true;
 }
 
 
-bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const uint8* pixelData, const tColour4i* palette)
+bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const uint8* pixelData, const tColour3i* palette)
 {
+	Clear();
+	if (!tIsPaletteFormat(fmt) || (width <= 0) || (height <= 0) || !pixelData || !palette)
+		return false;
+
+	PixelFormat = fmt;
+	Width = width;
+	Height = height;
+
+	int dataSize = GetDataSize();
+	tAssert(dataSize > 0);
+	PixelData = new uint8[dataSize];
+	tStd::tMemcpy(PixelData, pixelData, dataSize);
+
+	int palSize = GetPaletteSize();
+	tAssert(palSize > 0);
+	Palette = new tColour3i[palSize];
+	tStd::tMemcpy(Palette, palette, palSize*sizeof(tColour3i));
+
 	return true;
 }
 
 
-bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel* pixels, tQuantizeAlgo quantAlgo)
+bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel* pixels, tQuantizeMethod quantMethod)
 {
+	Clear();
+	if (!tIsPaletteFormat(fmt) || (width <= 0) || (height <= 0) || !pixels)
+		return false;
+
+	if ((fmt != tPixelFormat::PAL8BIT) && (quantMethod != tQuantizeMethod::Fixed))
+		return false;
+
+// WIP
+	tPixel3* rgbPixels = new tPixel3[width*height];
+//	for (int i = 0; i < width*height; i++)
+//		rgbPixels[i].Se
+	bool success = Set(fmt, width, height, rgbPixels, quantMethod);
+
+	delete[] rgbPixels;
+	return true;
+}
+
+
+bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* pixels, tQuantizeMethod quantMethod)
+{
+	Clear();
+	if (!tIsPaletteFormat(fmt) || (width <= 0) || (height <= 0) || !pixels)
+		return false;
+
+	if ((fmt != tPixelFormat::PAL8BIT) && (quantMethod != tQuantizeMethod::Fixed))
+		return false;
+
+	// WIP
+	// Step 1. Create the palette.
+
+	// Step 2. Use a perceptual colour distance
 	return true;
 }
 
 
 int tPaletteImage::GetDataSize() const
 {
-	return true;
+	return 0;
 }
 
 

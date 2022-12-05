@@ -18,11 +18,11 @@ namespace tImage
 {
 
 
-enum class tQuantizeAlgo
+enum class tQuantizeMethod
 {
-	Fixed,
-	Neu,
-	Wu
+	Fixed,					// Supports all palette pixel formats.
+	Neu8,					// Supports 8-bit only.
+	Wu8						// Supports 8-bit only.
 };
 
 
