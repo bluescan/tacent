@@ -79,7 +79,7 @@ public:
 	// Similar to above but takes all the frames from the tImageGIF and appends them to the supplied frame list. The
 	// object will be invalid after since it will have no frames.
 	void StealFrames(tList<tFrame>&);
-	tFrame* StealFrame() override;
+	tFrame* GetFrame(bool steal = true) override;
 
 	// Returns a pointer to the frame, but it's not yours to delete. This object still owns it.
 	tFrame* GetFrame(int frameNum);

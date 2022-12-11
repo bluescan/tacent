@@ -78,9 +78,12 @@ namespace tImage
 		// Palette formats.
 		"PAL1BIT",
 		"PAL2BIT",
+		"PAL3BIT",
 		"PAL4BIT",
-		"PAL8BIT",
-		"PAL16BIT"
+		"PAL5BIT",
+		"PAL6BIT",
+		"PAL7BIT",
+		"PAL8BIT"
 	};
 	tStaticAssert(int(tPixelFormat::NumPixelFormats)+1 == tNumElements(PixelFormatNames));
 
@@ -170,9 +173,12 @@ namespace tImage
 	{
 		1,
 		2,
+		3,
 		4,
-		8,
-		16
+		5,
+		6,
+		7,
+		8
 	};
 	tStaticAssert(tNumElements(PaletteFormat_BitsPerPixel) == int(tPixelFormat::NumPaletteFormats));
 }

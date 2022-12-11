@@ -72,7 +72,7 @@ public:
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageXPM object is
 	// invalid afterwards.
 	tPixel* StealPixels();
-	tFrame* StealFrame() override;
+	tFrame* GetFrame(bool steal = true) override;
 
 	tPixel* GetPixels() const																							{ return Pixels; }
 	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;

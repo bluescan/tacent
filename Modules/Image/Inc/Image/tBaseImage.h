@@ -44,11 +44,13 @@ public:
 
 	// For some formats (eg. .astc, .dds, .ktx) the internal representation may not be R8G8B8A8 unless a decode was
 	// performed (which is optional). In these cases a new frame will be generated if the decode was performed, and
-	// nullptr otherwise. This is also why a GetFrame is not in the base-class -- because not all images have one. It
-	// is also worth noting that stealing a frame may or may-not invalidate an image. For multiframe image types, if
-	// there is more than one frame, steal-frame just takes one away. Only if it was the last one, will it invalidate
-	// the object.
-	virtual tFrame* StealFrame()													= 0;
+	// nullptr otherwise.
+	//
+	// Stealing a frame (the default) may or may-not invalidate an image. For multiframe image types, if there is more
+	// than one frame, stealing just takes one away. Only if it was the last one, will it invalidate the object. In all
+	// cases if steal is false, you are guaranteed the tImage is not modified. A new frame is created for you if
+	// possible (again it won't force a decode for, say, ktx2 files).
+	virtual tFrame* GetFrame(bool steal = true)										= 0;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	virtual void Clear()															= 0;

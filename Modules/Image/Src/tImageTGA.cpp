@@ -241,15 +241,24 @@ bool tImageTGA::Set(tPicture& picture, bool steal)
 }
 
 
-tFrame* tImageTGA::StealFrame()
+tFrame* tImageTGA::GetFrame(bool steal)
 {
 	if (!IsValid())
 		return nullptr;
 
 	tFrame* frame = new tFrame();
-	frame->StealFrom(Pixels, Width, Height);
 	frame->PixelFormatSrc = PixelFormatSrc;
-	Pixels = nullptr;
+
+	if (steal)
+	{
+		frame->StealFrom(Pixels, Width, Height);
+		Pixels = nullptr;
+	}
+	else
+	{
+		frame->Set(Pixels, Width, Height);
+	}
+	
 	return frame;
 }
 

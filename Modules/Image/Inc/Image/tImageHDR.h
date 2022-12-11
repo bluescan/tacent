@@ -88,9 +88,6 @@ public:
 	// Sets from a tPicture.
 	bool Set(tPicture& picture, bool steal = true) override;
 
-	// Saves the tImageHDR to the hdr file specified. The extension of filename must be "hdr". Returns success.
-	bool Save(const tString& hdrFile) const;
-
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;
 	bool IsValid() const override																						{ return Pixels ? true : false; }
@@ -101,7 +98,7 @@ public:
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageHDR object is
 	// invalid afterwards.
 	tPixel* StealPixels();
-	tFrame* StealFrame() override;
+	tFrame* GetFrame(bool steal = true) override;
 	tPixel* GetPixels() const																							{ return Pixels; }
 	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 

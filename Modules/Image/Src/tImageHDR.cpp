@@ -435,36 +435,25 @@ bool tImageHDR::Set(tPicture& picture, bool steal)
 }
 
 
-tFrame* tImageHDR::StealFrame()
+tFrame* tImageHDR::GetFrame(bool steal)
 {
 	if (!IsValid())
 		return nullptr;
 
 	tFrame* frame = new tFrame();
-	frame->StealFrom(Pixels, Width, Height);
 	frame->PixelFormatSrc = PixelFormatSrc;
-	Pixels = nullptr;
+
+	if (steal)
+	{
+		frame->StealFrom(Pixels, Width, Height);
+		Pixels = nullptr;
+	}
+	else
+	{
+		frame->Set(Pixels, Width, Height);
+	}
+
 	return frame;
-}
-
-
-bool tImageHDR::Save(const tString& hdrFile) const
-{
-	tAssertMsg(false, "HDR Save not implemented.");
-	if (!IsValid())
-		return false;
-
-	if (tSystem::tGetFileType(hdrFile) != tSystem::tFileType::HDR)
-		return false;
-
-	tFileHandle file = tOpenFile(hdrFile.Chr(), "wb");
-	if (!file)
-		return false;
-
-	// Write the data....
-
-	tCloseFile(file);
-	return true;
 }
 
 

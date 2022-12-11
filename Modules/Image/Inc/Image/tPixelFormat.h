@@ -103,12 +103,15 @@ enum class tPixelFormat
 	LastVendor			= OPENEXR,
 
 	FirstPalette,
-	PAL1BIT				= FirstPalette,	// 1-bit  indexes to a palette. 2 colour.     8 pixels per byte. Often dithered B/W.
-	PAL2BIT,							// 2-bit  indexes to a palette. 4 colour.     4 pixels per byte.
-	PAL4BIT,							// 4-bit  indexes to a palette. 16 colour.    2 pixels per byte.
-	PAL8BIT,							// 8-bit  indexes to a palette. 256 colour.   1 pixel per byte.
-	PAL16BIT,							// 16-bit indexes to a palette. 65536 colour. 2 bytes per pixel.
-	LastPalette			= PAL16BIT,
+	PAL1BIT				= FirstPalette,	// 1-bit indexes to a palette. 2 colour.   1 bpp. Often dithered B/W.
+	PAL2BIT,							// 2-bit indexes to a palette. 4 colour.   2 bpp.
+	PAL3BIT,							// 3-bit indexes to a palette. 8 colour.   3 bpp.
+	PAL4BIT,							// 4-bit indexes to a palette. 16 colour.  4 bpp.
+	PAL5BIT,							// 5-bit indexes to a palette. 32 colour.  5 bpp.
+	PAL6BIT,							// 6-bit indexes to a palette. 64 colour.  6 bpp.
+	PAL7BIT,							// 7-bit indexes to a palette. 128 colour. 7 bpp.
+	PAL8BIT,							// 8-bit indexes to a palette. 256 colour. 8 bpp.
+	LastPalette			= PAL8BIT,
 
 	NumPixelFormats,
 	NumPackedFormats	= LastPacked	- FirstPacked	+ 1,
@@ -236,7 +239,6 @@ inline bool tImage::tIsAlphaFormat(tPixelFormat format)
 		case tPixelFormat::PAL2BIT:
 		case tPixelFormat::PAL4BIT:
 		case tPixelFormat::PAL8BIT:
-		case tPixelFormat::PAL16BIT:
 			return true;
 	}
 

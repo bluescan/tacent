@@ -26,24 +26,6 @@
 #include <System/tFile.h>
 #include <System/tChunk.h>
 #include "Image/tBaseImage.h"
-/*
-#include "Image/tImageAPNG.h"
-#include "Image/tImageASTC.h"
-#include "Image/tImageBMP.h"
-#include "Image/tImageDDS.h"
-#include "Image/tImageKTX.h"
-#include "Image/tImageEXR.h"
-#include "Image/tImageGIF.h"
-#include "Image/tImageHDR.h"
-#include "Image/tImageICO.h"
-#include "Image/tImageJPG.h"
-#include "Image/tImagePNG.h"
-#include "Image/tImageQOI.h"
-#include "Image/tImageTGA.h"
-#include "Image/tImageTIFF.h"
-#include "Image/tImageWEBP.h"
-#include "Image/tImageXPM.h"
-*/
 #include "Image/tPixelFormat.h"
 #include "Image/tResample.h"
 #include "Image/tLayer.h"
@@ -109,9 +91,11 @@ public:
 	// will copy the pixels out. The frame duration is also taken from the frame.
 	tPicture(tFrame* frame, bool steal)																					{ Set(frame, steal); }
 
-	// Constructs from any type derived from tImageBase (eg. tImageASTC). Warning: The tImageBase may be modified. In
-	// particular it may be invalid afterwards because the pixels may have been stolen from it.
-	tPicture(tBaseImage& image)																							{ Set(image); }
+	// Constructs from any type derived from tImageBase (eg. tImageASTC). If steal is true the tImageBase MAY be
+	// modified. In particular it may be invalid afterwards because the pixels may have been stolen from it. For
+	// multiframe images it meay still be valid after but down a frame. On the other hand with steal false you are
+	// guaranteed that image remains unmodified, but at the cost of duplicating memory for the pixels.
+	tPicture(tBaseImage& image, bool steal = true)																		{ Set(image, steal); }
 
 	// Copy constructor.
 	tPicture(const tPicture& src)																						: tPicture() { Set(src); }
@@ -137,9 +121,11 @@ public:
 	// copy the pixels out. The frame duration is also taken from the frame.
 	void Set(tFrame* frame, bool steal);
 
-	// Sets from any type derived from tImageBase (eg. tImageASTC). Warning: The tImageBase may be modified. In
-	// particular it may be invalid afterwards because the pixels may have been stolen from it.
-	void Set(tBaseImage& image);
+	// Sets from any type derived from tImageBase (eg. tImageASTC). If steal is true the tImageBase MAY be
+	// modified. In particular it may be invalid afterwards because the pixels may have been stolen from it. For
+	// multiframe images it meay still be valid after but down a frame. On the other hand with steal false you are
+	// guaranteed that image remains unmodified, but at the cost of duplicating memory for the pixels.
+	void Set(tBaseImage& image, bool steal = true);
 
 	void Set(const tPicture& src);
 

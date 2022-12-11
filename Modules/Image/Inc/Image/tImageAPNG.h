@@ -75,8 +75,8 @@ public:
 	// be part of the tImageAPNG, but the remaining ones will still be there. GetNumFrames will be one fewer.
 	tFrame* StealFrame(int frameNum);
 
-	// Steals the first frame only.
-	tFrame* StealFrame() override;
+	// Gets the first frame only.
+	tFrame* GetFrame(bool steal = true) override;
 
 	// Similar to above but takes all the frames from the tImageAPNG and appends them to the supplied frame list. The
 	// object will be invalid after since it will have no frames.

@@ -266,7 +266,7 @@ bool tImageASTC::Set(tPicture& picture, bool steal)
 }
 
 
-tFrame* tImageASTC::StealFrame()
+tFrame* tImageASTC::GetFrame(bool steal)
 {
 	// Data must be decoded for this to work.
 	if (!IsValid() || (PixelFormat != tPixelFormat::R8G8B8A8))
@@ -276,27 +276,20 @@ tFrame* tImageASTC::StealFrame()
 	frame->Width = Layer->Width;
 	frame->Height = Layer->Height;
 	frame->PixelFormatSrc = PixelFormatSrc;
-	frame->Pixels = (tPixel*)Layer->StealData();
-	delete Layer;
-	Layer = nullptr;
+
+	if (steal)
+	{
+		frame->Pixels = (tPixel*)Layer->StealData();
+		delete Layer;
+		Layer = nullptr;
+	}
+	else
+	{
+		frame->Pixels = new tPixel[frame->Width * frame->Height];
+		tStd::tMemcpy(frame->Pixels, (tPixel*)Layer->Data, frame->Width * frame->Height * sizeof(tPixel));
+	}
 
 	return frame;
-}
-
-
-bool tImageASTC::Save(const tString& astcFile) const
-{
-	if (!IsValid())
-		return false;
-
-	if (tSystem::tGetFileType(astcFile) != tSystem::tFileType::ASTC)
-		return false;
-
-	bool success = false;
-
-	// WIP
-
-	return success;
 }
 
 

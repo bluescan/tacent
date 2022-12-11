@@ -163,12 +163,12 @@ bool tImageWEBP::Set(tPicture& picture, bool steal)
 }
 
 
-tFrame* tImageWEBP::StealFrame()
+tFrame* tImageWEBP::GetFrame(bool steal)
 {
 	if (!IsValid())
 		return nullptr;
 
-	return Frames.Remove();
+	return steal ? Frames.Remove() : new tFrame( *Frames.First() );
 }
 
 

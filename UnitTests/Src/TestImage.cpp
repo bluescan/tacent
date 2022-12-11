@@ -191,12 +191,12 @@ tTestUnit(ImagePicture)
 	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
 
 	// Test generate layers.
-	tImageBMP bmp("UpperB.bmp");
-	tRequire(bmp.IsValid());
+	tImageBMP bmpL("UpperB.bmp");
+	tRequire(bmpL.IsValid());
 
-	// @todo CLEANUP
-	int w = bmp.GetWidth(); int h = bmp.GetHeight();
-	tPicture srcPic(w, h, bmp.StealPixels(), false);
+	// Test pixel constructor and mipmap gen.
+	int w = bmpL.GetWidth(); int h = bmpL.GetHeight();
+	tPicture srcPic(w, h, bmpL.StealPixels(), false);
 	tRequire(srcPic.IsValid());
 	tPrintf("GenLayers Orig W=%d H=%d\n", srcPic.GetWidth(), srcPic.GetHeight());
 	tList<tLayer> layers;
@@ -205,130 +205,171 @@ tTestUnit(ImagePicture)
 	for (tLayer* lay = layers.First(); lay; lay = lay->Next(), lev++)
 		tPrintf("GenLayers Mip:%02d W=%d H=%d\n", lev, lay->Width, lay->Height);
 	tRequire(layers.GetNumItems() == 10);
+	tPicture pic;
+	tImageTGA tga;
 
-	// Test tPicture loading astc and saving as tga.
-	tImageASTC astc("ASTC/ASTC10x10_LDR.astc");
-	tPicture pic(astc);
-	tImageTGA tga(pic);
+	//
+	// tPicture loading/saving tests. These all save as tga and to the corresponding format if save is supported.
+	//
+	tImageAPNG apng;
+	apng.Load("Flame.apng");
+	apng.Save("WrittenFlame.apng");
+	pic.Set(apng); tga.Set(pic);
+	tga.Save("WrittenFlame.tga");
+	tRequire( tSystem::tFileExists("WrittenFlame.apng"));
+
+	tImageASTC astc;
+	astc.Load("ASTC/ASTC10x10_LDR.astc");
+	pic.Set(astc); tga.Set(pic);
 	tga.Save("WrittenASTC10x10_LDR.tga");
 	tRequire(tSystem::tFileExists("WrittenASTC10x10_LDR.tga"));
 
-	// Test tPicture loading bmp and saving as bmp/tga.
-	tImageBMP bmpUB("UpperB.bmp");
-	bmpUB.Save("WrittenUpperB.bmp");
-	tPicture picUB(bmpUB);
-	tImageTGA tgaUB(picUB);
-	tgaUB.Save("WrittenUpperB.tga");
-	tRequire( tSystem::tFileExists("WrittenUpperB.tga"));
+	tImageBMP bmp;
+	bmp.Load("UpperB.bmp");
+	bmp.Save("WrittenUpperB.bmp");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenUpperB.tga");
+	tRequire( tSystem::tFileExists("WrittenUpperB.bmp"));
 
-#if 0
-	tPicture bmpPicA("TestData/Images/Bmp_Alpha.bmp");
-	tRequire(bmpPicA.IsValid());
-	bmpPicA.Save("TestData/Images/WrittenBmp_Alpha.tga");
-	bmpPicA.Save("TestData/Images/WrittenBmp_Alpha.bmp");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenBmp_Alpha.tga"));
+	bmp.Load("Bmp_Alpha.bmp");
+	bmp.Save("WrittenBmp_Alpha.bmp");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenBmp_Alpha.tga");
+	tRequire( tSystem::tFileExists("WrittenBmp_Alpha.bmp"));
 
-	tPicture bmpPicL("TestData/Images/Bmp_Lambda.bmp");
-	tRequire(bmpPicL.IsValid());
-	bmpPicL.Save("TestData/Images/WrittenBmp_Lambda.tga");
-	bmpPicL.Save("TestData/Images/WrittenBmp_Lambda.bmp");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenBmp_Lambda.tga"));
+	bmp.Load("Bmp_Lambda.bmp");
+	bmp.Save("WrittenBmp_Lambda.bmp");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenBmp_Lambda.tga");
+	tRequire( tSystem::tFileExists("WrittenBmp_Lambda.bmp"));
 
-	tPicture bmpPicRL("TestData/Images/Bmp_RefLena.bmp");
-	tRequire(bmpPicRL.IsValid());
-	bmpPicRL.Save("TestData/Images/WrittenBmp_RefLena.tga");
-	bmpPicRL.Save("TestData/Images/WrittenBmp_RefLena.bmp");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenBmp_RefLena.tga"));
+	bmp.Load("Bmp_RefLena.bmp");
+	bmp.Save("WrittenBmp_RefLena.bmp");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenBmp_RefLena.tga");
+	tRequire( tSystem::tFileExists("WrittenBmp_RefLena.bmp"));
 
-	tPicture bmpPicRL101("TestData/Images/Bmp_RefLena101.bmp");
-	tRequire(bmpPicRL101.IsValid());
-	bmpPicRL101.Save("TestData/Images/WrittenBmp_RefLena101.tga");
-	bmpPicRL101.Save("TestData/Images/WrittenBmp_RefLena101.bmp");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenBmp_RefLena101.tga"));
+	bmp.Load("Bmp_RefLena101.bmp");
+	bmp.Save("WrittenBmp_RefLena101.bmp");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenBmp_RefLena101.tga");
+	tRequire( tSystem::tFileExists("WrittenBmp_RefLena101.bmp"));
 
-	tPicture bmpPicRLFlip("TestData/Images/Bmp_RefLenaFlip.bmp");
-	tRequire(bmpPicRLFlip.IsValid());
-	bmpPicRLFlip.Save("TestData/Images/WrittenBmp_RefLenaFlip.tga");
-	bmpPicRLFlip.Save("TestData/Images/WrittenBmp_RefLenaFlip.bmp");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenBmp_RefLenaFlip.tga"));
+	bmp.Load("Bmp_RefLenaFlip.bmp");
+	bmp.Save("WrittenBmp_RefLenaFlip.bmp");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenBmp_RefLenaFlip.tga");
+	tRequire( tSystem::tFileExists("WrittenBmp_RefLenaFlip.bmp"));
 
-	tPicture pngPicIcos("TestData/Images/Icos4D.png");
-	tRequire(pngPicIcos.IsValid());
-	pngPicIcos.Save("TestData/Images/WrittenBmp_Icos4D.bmp");
-	pngPicIcos.Save("TestData/Images/WrittenBmp_Icos4D.tga");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenBmp_Icos4D.tga"));
+	tImageDDS dds;
+	dds.Load("DDS/BC1DXT1_RGB_Modern.dds");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenBC1DXT1_RGB_Modern.tga");
+	tRequire( tSystem::tFileExists("WrittenBC1DXT1_RGB_Modern.tga"));
 
-	// Test tPicture loading jpg and saving as tga.
-	tPicture jpgPic("TestData/Images/WiredDrives.jpg");
-	tRequire(jpgPic.IsValid());
-	jpgPic.Save("TestData/Images/WrittenWiredDrives.tga");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenWiredDrives.tga"));
+	tImageEXR exr;
+	exr.Load("Desk.exr");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenDesk.tga");
+	tRequire( tSystem::tFileExists("WrittenDesk.tga"));
 
-	tPicture exrPic("TestData/Images/Desk.exr");
-	tRequire(exrPic.IsValid());
-	exrPic.Save("TestData/Images/WrittenDesk.tga");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenDesk.tga"));
+	tImageGIF gif;
+	gif.Load("8-cell-simple.gif");
+	gif.Save("Written8-cell-simple.gif");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("Written8-cell-simple.tga");
+	tRequire( tSystem::tFileExists("Written8-cell-simple.gif"));
 
-	tPicture apngPic("TestData/Images/Flame.apng", 100);
-	tRequire(apngPic.IsValid());
-	apngPic.Save("TestData/Images/WrittenFlame.tga");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenFlame.tga"));
+	tImageHDR hdr;
+	hdr.Load("mpi_atrium_3.hdr");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("Writtenmpi_atrium_3.tga");
+	tRequire( tSystem::tFileExists("Writtenmpi_atrium_3.tga"));
 
-	// Test tPicture loading xpm and saving as tga.
-	tPicture xpmPic("TestData/Images/Crane.xpm");
-	tRequire(xpmPic.IsValid());
-	xpmPic.Save("TestData/Images/WrittenCrane.tga");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenCrane.tga"));
+	tImageICO ico;
+	ico.Load("UpperBounds.ico");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenUpperBounds.tga");
+	tRequire( tSystem::tFileExists("WrittenUpperBounds.tga"));
 
-	// Test tPicture loading png (with alpha channel) and saving as tga (with alpha channel).
-	tPicture pngPic("TestData/Images/Xeyes.png");
-	tRequire(pngPic.IsValid());
-	pngPic.SaveTGA("TestData/Images/WrittenXeyes.tga");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenXeyes.tga"));
+	tImageJPG jpg;
+	jpg.Load("WiredDrives.jpg");
+	jpg.Save("WrittenWiredDrives.jpg");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenWiredDrives.tga");
+	tRequire( tSystem::tFileExists("WrittenWiredDrives.jpg"));
 
-	// Test saving tPicture in other supported formats.
-	pngPic.Save("TestData/Images/WrittenXeyesTGA.tga");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenXeyesTGA.tga"));
+	tImageKTX ktx;
+	ktx.Load("KTX1/BC7_RGBA.ktx");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenBC7_RGBA.tga");
+	tRequire( tSystem::tFileExists("WrittenBC7_RGBA.tga"));
 
-	pngPic.Save("TestData/Images/WrittenXeyesBMP.bmp");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenXeyesBMP.bmp"));
+	ktx.Load("KTX2/R32G32B32A32f_RGBA.ktx2");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenR32G32B32A32f_RGBA.tga");
+	tRequire( tSystem::tFileExists("WrittenR32G32B32A32f_RGBA.tga"));
 
-	pngPic.Save("TestData/Images/WrittenXeyesJPG.jpg");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenXeyesJPG.jpg"));
+	tImagePNG png;
+	png.Load("Icos4D.png");
+	png.Save("WrittenIcos4D.png");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenIcos4D.tga");
+	tRequire( tSystem::tFileExists("WrittenIcos4D.png"));
 
-	// Test tiff file loading and saving.
-	tPicture tifPic_NoComp("TestData/Images/Tiff_NoComp.tif");
-	tRequire(tifPic_NoComp.IsValid());
-	tifPic_NoComp.Save("TestData/Images/WrittenTiff_NoComp.tga");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_NoComp.tga"));
+	png.Load("Xeyes.png");
+	png.Save("WrittenXeyes.png");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenXeyes.tga");
+	tRequire( tSystem::tFileExists("WrittenXeyes.png"));
 
-	tPicture tifPic_Pack("TestData/Images/Tiff_Pack.tif");
-	tRequire(tifPic_Pack.IsValid());
-	tifPic_Pack.Save("TestData/Images/WrittenTiff_Pack.tga");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_Pack.tga"));
+	tImageQOI qoi;
+	qoi.Load("TacentTestPattern32.qoi");
+	qoi.Save("WrittenTacentTestPattern32.qoi");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenTacentTestPattern32.tga");
+	tRequire( tSystem::tFileExists("WrittenTacentTestPattern32.qoi"));
 
-	tPicture tifPic_LZW("TestData/Images/Tiff_LZW.tif");
-	tRequire(tifPic_LZW.IsValid());
-	tifPic_LZW.Save("TestData/Images/WrittenTiff_LZW.tga");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_LZW.tga"));
+	tga.Load("TacentTestPattern32RLE.tga");
+	tga.Save("WrittenTacentTestPattern32RLE.tga");
+	tRequire( tSystem::tFileExists("WrittenTacentTestPattern32RLE.tga"));
 
-	tPicture tifPic_ZIP("TestData/Images/Tiff_ZIP.tif");
-	tRequire(tifPic_ZIP.IsValid());
-	tifPic_ZIP.Save("TestData/Images/WrittenTiff_ZIP.tga");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_ZIP.tga"));
+	tImageTIFF tif;
+	tif.Load("Tiff_NoComp.tif");
+	tif.Save("WrittenTiff_NoComp.tif");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenTiff_NoComp.tga");
+	tRequire( tSystem::tFileExists("WrittenTiff_NoComp.tif"));
 
-	tPicture exrPicForSave2("TestData/Images/Desk.exr");
-	exrPicForSave2.SaveGIF("TestData/Images/WrittenDesk.gif");
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenDesk.gif"));
+	tif.Load("Tiff_Pack.tif");
+	tif.Save("WrittenTiff_Pack.tif");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenTiff_Pack.tga");
+	tRequire( tSystem::tFileExists("WrittenTiff_Pack.tif"));
 
-	tPicture exrPicToSaveAsAPNG("TestData/Images/Desk.exr");
-	exrPicToSaveAsAPNG.SaveAPNG("TestData/Images/WrittenDesk.apng");
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenDesk.apng"));
+	tif.Load("Tiff_LZW.tif");
+	tif.Save("WrittenTiff_LZW.tif");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenTiff_LZW.tga");
+	tRequire( tSystem::tFileExists("WrittenTiff_LZW.tif"));
 
-	tPicture exrPicToSaveAsTIFF("TestData/Images/Desk.exr");
-	exrPicToSaveAsTIFF.SaveTIFF("TestData/Images/WrittenDesk.tiff");
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenDesk.tiff"));
-#endif
+	tif.Load("Tiff_ZIP.tif");
+	tif.Save("WrittenTiff_ZIP.tif");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenTiff_ZIP.tga");
+	tRequire( tSystem::tFileExists("WrittenTiff_ZIP.tif"));
+
+	tImageWEBP webp;
+	webp.Load("RockyBeach.webp");
+	webp.Save("WrittenRockyBeach.webp");
+	pic.Set(bmp); tga.Set(pic);
+	tga.Save("WrittenRockyBeach.tga");
+	tRequire( tSystem::tFileExists("WrittenRockyBeach.webp"));
+
+	// tImageXPM xpm;
+	// xpm.Load("Crane.xmp"); pic.Set(xpm); tga.Set(pic);
+	// tga.Save("WrittenCrane.tga");
+	// tRequire( tSystem::tFileExists("WrittenCrane.tga"));
 
 	tSystem::tSetCurrentDir(origDir);
 }
@@ -541,15 +582,16 @@ tTestUnit(ImageCrop)
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImageCrop)
 
-#if 0
 	// Crop black pixels ignoring alpha (RGB channels only).
-	tPicture planePic("TestData/Images/plane.png");
+	tImagePNG png("TestData/Images/plane.png");
+	tPicture planePic(png);
 	int w = planePic.GetWidth();
 	int h = planePic.GetHeight();
 	planePic.Crop(tColouri::black, tComp_RGB);
 	planePic.Crop(w, h, tPicture::Anchor::MiddleMiddle, tColouri::transparent);
-	planePic.Save("TestData/Images/WrittenPlane.png");
-#endif
+	png.Set(planePic);
+	bool ok = png.Save("TestData/Images/WrittenPlane.png");
+	tRequire(ok);
 }
 
 
@@ -588,55 +630,62 @@ tTestUnit(ImageFilter)
 {
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImageFilter)
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
 
 	for (int filt = 0; filt < int(tResampleFilter::NumFilters); filt++)
 		tPrintf("Filter Name %d: %s\n", filt, tResampleFilterNames[filt]);
 
-#if 0
-	tPicture resamplePicNearest("TestData/Images/TextCursor.png");		// 512x256.
-	resamplePicNearest.Resample(800, 300, tResampleFilter::Nearest);
-	resamplePicNearest.SaveTGA("TestData/Images/WrittenResampledNearest.tga");
+	// Resample tests of 512x256 image.
+	tImagePNG png("TextCursor.png");
+	tImageTGA tga;
+	tPicture pic;
 
-	tPicture resamplePicBox("TestData/Images/TextCursor.png");		// 512x256.
-	resamplePicBox.Resample(800, 300, tResampleFilter::Box);
-	resamplePicBox.SaveTGA("TestData/Images/WrittenResampledBox.tga");
+	pic.Set(png, false);
+	pic.Resample(800, 300, tResampleFilter::Nearest);
+	tga.Set(pic); tga.Save("WrittenResampledNearest.tga");
 
-	tPicture resamplePicBilinear("TestData/Images/TextCursor.png");	// 512x256.
-	resamplePicBilinear.Resample(800, 300, tResampleFilter::Bilinear);
-	resamplePicBilinear.SaveTGA("TestData/Images/WrittenResampledBilinear.tga");
+	pic.Set(png, false);
+	pic.Resample(800, 300, tResampleFilter::Box);
+	tga.Set(pic); tga.Save("WrittenResampledBox.tga");
 
-	tPicture resamplePicBicubicStandard("TestData/Images/TextCursor.png");	// 512x256.
-	resamplePicBicubicStandard.Resample(800, 300, tResampleFilter::Bicubic_Standard);
-	resamplePicBicubicStandard.SaveTGA("TestData/Images/WrittenResampledBicubicStandard.tga");
+	pic.Set(png, false);
+	pic.Resample(800, 300, tResampleFilter::Bilinear);
+	tga.Set(pic); tga.Save("WrittenResampledBilinear.tga");
 
-	tPicture resamplePicBicubicCatmullRom("TestData/Images/TextCursor.png");	// 512x256.
-	resamplePicBicubicCatmullRom.Resample(800, 300, tResampleFilter::Bicubic_CatmullRom);
-	resamplePicBicubicCatmullRom.SaveTGA("TestData/Images/WrittenResampledBicubicCatmullRom.tga");
+	pic.Set(png, false);
+	pic.Resample(800, 300, tResampleFilter::Bicubic_Standard);
+	tga.Set(pic); tga.Save("WrittenResampledBicubicStandard.tga");
 
-	tPicture resamplePicBicubicMitchell("TestData/Images/TextCursor.png");	// 512x256.
-	resamplePicBicubicMitchell.Resample(800, 300, tResampleFilter::Bicubic_Mitchell);
-	resamplePicBicubicMitchell.SaveTGA("TestData/Images/WrittenResampledBicubicMitchell.tga");
+	pic.Set(png, false);
+	pic.Resample(800, 300, tResampleFilter::Bicubic_CatmullRom);
+	tga.Set(pic); tga.Save("WrittenResampledBicubicCatmullRom.tga");
 
-	tPicture resamplePicBicubicCardinal("TestData/Images/TextCursor.png");	// 512x256.
-	resamplePicBicubicCardinal.Resample(800, 300, tResampleFilter::Bicubic_Cardinal);
-	resamplePicBicubicCardinal.SaveTGA("TestData/Images/WrittenResampledBicubicCardinal.tga");
+	pic.Set(png, false);
+	pic.Resample(800, 300, tResampleFilter::Bicubic_Mitchell);
+	tga.Set(pic); tga.Save("WrittenResampledBicubicMitchell.tga");
 
-	tPicture resamplePicBicubicBSpline("TestData/Images/TextCursor.png");	// 512x256.
-	resamplePicBicubicBSpline.Resample(800, 300, tResampleFilter::Bicubic_BSpline);
-	resamplePicBicubicBSpline.SaveTGA("TestData/Images/WrittenResampledBicubicBSpline.tga");
+	pic.Set(png, false);
+	pic.Resample(800, 300, tResampleFilter::Bicubic_Cardinal);
+	tga.Set(pic); tga.Save("WrittenResampledBicubicCardinal.tga");
 
-	tPicture resamplePicLanczosNarrow("TestData/Images/TextCursor.png");	// 512x256.
-	resamplePicLanczosNarrow.Resample(800, 300, tResampleFilter::Lanczos_Narrow);
-	resamplePicLanczosNarrow.SaveTGA("TestData/Images/WrittenResampledLanczosNarrow.tga");
+	pic.Set(png, false);
+	pic.Resample(800, 300, tResampleFilter::Bicubic_BSpline);
+	tga.Set(pic); tga.Save("WrittenResampledBicubicBSpline.tga");
 
-	tPicture resamplePicLanczosNormal("TestData/Images/TextCursor.png");	// 512x256.
-	resamplePicLanczosNormal.Resample(800, 300, tResampleFilter::Lanczos_Normal);
-	resamplePicLanczosNormal.SaveTGA("TestData/Images/WrittenResampledLanczosNormal.tga");
+	pic.Set(png, false);
+	pic.Resample(800, 300, tResampleFilter::Lanczos_Narrow);
+	tga.Set(pic); tga.Save("WrittenResampledLanczosNarrow.tga");
 
-	tPicture resamplePicLanczosWide("TestData/Images/TextCursor.png");	// 512x256.
-	resamplePicLanczosWide.Resample(800, 300, tResampleFilter::Lanczos_Wide);
-	resamplePicLanczosWide.SaveTGA("TestData/Images/WrittenResampledLanczosWide.tga");
-#endif
+	pic.Set(png, false);
+	pic.Resample(800, 300, tResampleFilter::Lanczos_Normal);
+	tga.Set(pic); tga.Save("WrittenResampledLanczosNormal.tga");
+
+	pic.Set(png, false);
+	pic.Resample(800, 300, tResampleFilter::Lanczos_Wide);
+	tga.Set(pic); tga.Save("WrittenResampledLanczosWide.tga");
+
+	tSystem::tSetCurrentDir(origDir);
 }
 
 
@@ -645,23 +694,28 @@ tTestUnit(ImageMultiFrame)
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImageMultiFrame)
 
-#if 0
+	tImageTIFF tif;
+	tImageTGA tga;
+	tPicture pic;
+
 	// A multipage tiff.
-	tPicture tifPic_Multipage_ZIP_P1("TestData/Images/Tiff_Multipage_ZIP.tif", 0);
-	tRequire(tifPic_Multipage_ZIP_P1.IsValid());
-	tifPic_Multipage_ZIP_P1.Save("TestData/Images/WrittenTiff_Multipage_ZIP_P1.tga");
+	tif.Load("TestData/Images/Tiff_Multipage_ZIP.tif");
+	tRequire(tif.IsValid());
+
+	tFrame* frame0 = tif.GetFrame(0);
+	pic.Set(frame0, false); tga.Set(pic);
+	tga.Save("TestData/Images/WrittenTiff_Multipage_ZIP_P1.tga");
 	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_Multipage_ZIP_P1.tga"));
 
-	tPicture tifPic_Multipage_ZIP_P2("TestData/Images/Tiff_Multipage_ZIP.tif", 1);
-	tRequire(tifPic_Multipage_ZIP_P2.IsValid());
-	tifPic_Multipage_ZIP_P2.Save("TestData/Images/WrittenTiff_Multipage_ZIP_P2.tga");
+	tFrame* frame1 = tif.GetFrame(1);
+	pic.Set(frame1, false); tga.Set(pic);
+	tga.Save("TestData/Images/WrittenTiff_Multipage_ZIP_P2.tga");
 	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_Multipage_ZIP_P2.tga"));
 
-	tPicture tifPic_Multipage_ZIP_P3("TestData/Images/Tiff_Multipage_ZIP.tif", 2);
-	tRequire(tifPic_Multipage_ZIP_P3.IsValid());
-	tifPic_Multipage_ZIP_P3.Save("TestData/Images/WrittenTiff_Multipage_ZIP_P3.tga");
+	tFrame* frame2 = tif.GetFrame(2);
+	pic.Set(frame2, false); tga.Set(pic);
+	tga.Save("TestData/Images/WrittenTiff_Multipage_ZIP_P3.tga");
 	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_Multipage_ZIP_P3.tga"));
-#endif
 
 	// tImageWEBP also supports saving multi-frame webp files.
 	tImageAPNG apngSrc("TestData/Images/Flame.apng");

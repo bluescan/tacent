@@ -98,7 +98,7 @@ void tPicture::Set(int width, int height, tPixel* pixelBuffer, bool copyPixels)
 	// copying and the buffer is being handed to us, we just need to free our current buffer.
 	if (copyPixels)
 	{
-		if (width*height != Width*Height)
+		if ((width*height != Width*Height) || !Pixels)
 		{
 			delete[] Pixels;
 			Pixels = new tPixel[width*height];
@@ -131,12 +131,15 @@ void tPicture::Set(tFrame* frame, bool steal)
 }
 
 
-void tPicture::Set(tBaseImage& image)
+void tPicture::Set(tBaseImage& image, bool steal)
 {
 	if (!image.IsValid())
 		return;
 
-	tFrame* frame = image.StealFrame();
+	tFrame* frame = image.GetFrame(steal);
+
+	// The true here is correct. Whether steal was true or not, we now have a frame that is under our
+	// management and must be eventually deleted.
 	Set(frame, true);
 }
 

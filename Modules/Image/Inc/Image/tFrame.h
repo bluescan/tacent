@@ -37,11 +37,16 @@ struct tFrame : public tLink<tFrame>
 	bool Set(const tFrame& src);
 	bool Set(const tPixel* src, int width, int height, float duration = 0.0f);
 
-	// These steal the pixels from the frame, or take ownership of the pixel array.
-	bool StealFrom(tFrame&);
+	// Steals the pixels from the src frame.
+	bool StealFrom(tFrame& src);
+
+	// Takes ownership of the src pixel array.
 	bool StealFrom(tPixel* src, int width, int height, float duration = 0.0f);
 
+	// If steal is true the frame will be invalid after and you must delete[] the returned pixels. They are yours.
+	// If steal is false the pixels remain owned by this tFrame. You can look or modify them, but they're not yours.
 	tPixel* GetPixels(bool steal = false)																				{ if (steal) { tPixel* p = Pixels; Pixels = nullptr; return p; } else return Pixels; }
+
 	void Clear();
 	bool IsValid() const																								{ return (Width > 0) && (Height > 0) && Pixels; }
 	void ReverseRows();

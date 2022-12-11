@@ -183,12 +183,12 @@ bool tImageAPNG::Set(tPicture& picture, bool steal)
 }
 
 
-tFrame* tImageAPNG::StealFrame()
+tFrame* tImageAPNG::GetFrame(bool steal)
 {
 	if (!IsValid())
 		return nullptr;
 
-	return Frames.Remove();
+	return steal ? Frames.Remove() : new tFrame( *Frames.First() );
 }
 
 

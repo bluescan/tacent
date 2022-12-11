@@ -172,12 +172,12 @@ bool tImageICO::Set(tPicture& picture, bool steal)
 }
 
 
-tFrame* tImageICO::StealFrame()
+tFrame* tImageICO::GetFrame(bool steal)
 {
 	if (!IsValid())
 		return nullptr;
 
-	return Frames.Remove();
+	return steal ? Frames.Remove() : new tFrame( *Frames.First() );
 }
 
 

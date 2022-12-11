@@ -103,12 +103,6 @@ public:
 	void Clear() override;
 	bool IsValid() const override																						{ return (Layer && Layer->IsValid()); }
 
-	// Saves the tImageASTC to the file specified. The extension of filename must be ".astc". Returns the format that
-	// the file was saved in, or tFormat::Invalid if there was a problem. Since Invalid is 0, you can use an 'if'. The
-	// colour-space is also saved with the file and can be retrieved on load. Optionally call SetColourSpace before
-	// saving if you need to (although usually the default sRGB is the correct one).
-	bool Save(const tString& astcFile) const;
-
 	int GetWidth() const																								{ return Layer ? Layer->Width  : 0; }
 	int GetHeight() const																								{ return Layer ? Layer->Height : 0; }
 
@@ -126,7 +120,7 @@ public:
 	// invalid afterwards.
 	tLayer* StealLayer()																								{ tLayer* layer = Layer; Layer = nullptr; return layer; }
 	tLayer* GetLayer() const																							{ return Layer; }
-	tFrame* StealFrame() override;
+	tFrame* GetFrame(bool steal = true) override;
 
 private:
 	tPixelFormat PixelFormat	= tPixelFormat::Invalid;

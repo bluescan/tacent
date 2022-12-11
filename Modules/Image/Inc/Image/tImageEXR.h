@@ -83,7 +83,7 @@ public:
 	// After this call you are the owner of the frame and must eventually delete it. The frame you stole will no longer
 	// be part of the tImageEXR, but the remaining ones will still be there. GetNumFrames will be one fewer.
 	tFrame* StealFrame(int frameNum);
-	tFrame* StealFrame() override;
+	tFrame* GetFrame(bool steal = true) override;
 
 	// Similar to above but takes all the frames from the tImageEXR and appends them to the supplied frame list. The
 	// object will be invalid after since it will have no frames.

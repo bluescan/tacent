@@ -201,11 +201,14 @@ int main(int argc, char** argv)
 	// tTest(ImageLoad);
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
-	// tTest(ImageMultiFrame);
-	tTest(ImagePicture);
-	tTest(ImagePalette);
+	tTest(ImageMultiFrame);
+	// tTest(ImagePicture);
+	// tTest(ImagePalette);
+	// tTest(ImageFilter);
 	// tTest(ImageGradient);
 	// tTest(ImageMetaData);
+	// tTest(ImageRotation);
+	// tTest(ImageCrop);
 	// tTest(ImageDetection);
 	// tTest(ImageDDS);
 	// tTest(ImageKTX1);

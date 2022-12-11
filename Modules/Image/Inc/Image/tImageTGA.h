@@ -44,6 +44,8 @@ public:
 	// Constructs from a tPicture.
 	tImageTGA(tPicture& picture, bool steal = true)																		{ Set(picture, steal); }
 
+	tImageTGA(const tPicture& picture) {  }
+
 	virtual ~tImageTGA()																								{ Clear(); }
 
 	// Clears the current tImageTGA before loading. 16, 24, or 32 bit targas can be loaded. The tga may be uncompressed
@@ -93,7 +95,7 @@ public:
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageTGA object is
 	// invalid afterwards.
 	tPixel* StealPixels();
-	tFrame* StealFrame() override;
+	tFrame* GetFrame(bool steal = true) override;
 
 	tPixel* GetPixels() const																							{ return Pixels; }
 	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;

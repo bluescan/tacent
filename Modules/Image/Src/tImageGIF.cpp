@@ -218,12 +218,12 @@ bool tImageGIF::Set(tPicture& picture, bool steal)
 }
 
 
-tFrame* tImageGIF::StealFrame()
+tFrame* tImageGIF::GetFrame(bool steal)
 {
 	if (!IsValid())
 		return nullptr;
 
-	return Frames.Remove();
+	return steal ? Frames.Remove() : new tFrame( *Frames.First() );
 }
 
 

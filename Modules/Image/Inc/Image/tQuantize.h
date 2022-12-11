@@ -20,10 +20,14 @@ namespace tImage
 
 enum class tQuantizeMethod
 {
-	Fixed,					// Supports all palette pixel formats.
-	Neu8,					// Supports 8-bit only.
-	Wu8						// Supports 8-bit only.
+	Fixed,					// Supports from 2 to 256 colours. Low quality because used predefined palettes.
+	Spatial,				// AKA scolorq. Supports from 2 to 256 colours. Good for 32 colours or fewer.
+	Neu,					// AKA NeuQuant. Supports from 64 to 256 colours. Best for 128 to 256.
+	Wu						// AKA XiaolinWu. Supports from 2 to 256 colours. Best for 128 to 256.
 };
+
+
+tColour3i* tQuantizeColours(tPixel3* pixels, int width, int height, int tQuantizeMethod);
 
 
 }

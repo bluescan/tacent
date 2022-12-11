@@ -345,10 +345,10 @@ bool tImageEXR::Set(tPicture& picture, bool steal)
 }
 
 
-tFrame* tImageEXR::StealFrame()
+tFrame* tImageEXR::GetFrame(bool steal)
 {
 	if (!IsValid())
 		return nullptr;
 
-	return Frames.Remove();
+	return steal ? Frames.Remove() : new tFrame( *Frames.First() );
 }

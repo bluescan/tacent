@@ -200,7 +200,7 @@ public:
 	// the tImageDDS is a cubemap, this function returns false and leaves the object (and list) unmodified. See
 	// StealCubemapLayers if you want to steal cubemap layers.
 	bool StealLayers(tList<tLayer>&);
-	tFrame* StealFrame() override;
+	tFrame* GetFrame(bool steal = true) override;
 
 	// Alternative to StealLayers. Gets the layers but you're not allowed to delete them, they're not yours. Make
 	// sure the list you supply doesn't delete them when it's destructed.

@@ -1036,7 +1036,7 @@ bool tImageDDS::Set(tPicture& picture, bool steal)
 }
 
 
-tFrame* tImageDDS::StealFrame()
+tFrame* tImageDDS::GetFrame(bool steal)
 {
 	// Data must be decoded for this to work.
 	if (!IsValid() || (PixelFormat != tPixelFormat::R8G8B8A8) || (Layers[0][0] == nullptr))
@@ -1046,9 +1046,18 @@ tFrame* tImageDDS::StealFrame()
 	frame->Width = Layers[0][0]->Width;
 	frame->Height = Layers[0][0]->Height;
 	frame->PixelFormatSrc = PixelFormatSrc;
-	frame->Pixels = (tPixel*)Layers[0][0]->StealData();
-	delete Layers[0][0];
-	Layers[0][0] = nullptr;
+
+	if (steal)
+	{
+		frame->Pixels = (tPixel*)Layers[0][0]->StealData();
+		delete Layers[0][0];
+		Layers[0][0] = nullptr;
+	}
+	else
+	{
+		frame->Pixels = new tPixel[frame->Width * frame->Height];
+		tStd::tMemcpy(frame->Pixels, (tPixel*)Layers[0][0]->Data, frame->Width * frame->Height * sizeof(tPixel));
+	}
 
 	return frame;
 }

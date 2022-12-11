@@ -188,12 +188,12 @@ bool tImageTIFF::Set(tPicture& picture, bool steal)
 }
 
 
-tFrame* tImageTIFF::StealFrame()
+tFrame* tImageTIFF::GetFrame(bool steal)
 {
 	if (!IsValid())
 		return nullptr;
 
-	return Frames.Remove();
+	return steal ? Frames.Remove() : new tFrame( *Frames.First() );
 }
 
 
