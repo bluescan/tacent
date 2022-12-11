@@ -263,70 +263,70 @@ tTestUnit(ImagePicture)
 
 	tImageDDS dds;
 	dds.Load("DDS/BC1DXT1_RGB_Modern.dds");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(dds); tga.Set(pic);
 	tga.Save("WrittenBC1DXT1_RGB_Modern.tga");
 	tRequire( tSystem::tFileExists("WrittenBC1DXT1_RGB_Modern.tga"));
 
 	tImageEXR exr;
 	exr.Load("Desk.exr");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(exr); tga.Set(pic);
 	tga.Save("WrittenDesk.tga");
 	tRequire( tSystem::tFileExists("WrittenDesk.tga"));
 
 	tImageGIF gif;
 	gif.Load("8-cell-simple.gif");
 	gif.Save("Written8-cell-simple.gif");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(gif); tga.Set(pic);
 	tga.Save("Written8-cell-simple.tga");
 	tRequire( tSystem::tFileExists("Written8-cell-simple.gif"));
 
 	tImageHDR hdr;
 	hdr.Load("mpi_atrium_3.hdr");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(hdr); tga.Set(pic);
 	tga.Save("Writtenmpi_atrium_3.tga");
 	tRequire( tSystem::tFileExists("Writtenmpi_atrium_3.tga"));
 
 	tImageICO ico;
 	ico.Load("UpperBounds.ico");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(ico); tga.Set(pic);
 	tga.Save("WrittenUpperBounds.tga");
 	tRequire( tSystem::tFileExists("WrittenUpperBounds.tga"));
 
 	tImageJPG jpg;
 	jpg.Load("WiredDrives.jpg");
 	jpg.Save("WrittenWiredDrives.jpg");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(jpg); tga.Set(pic);
 	tga.Save("WrittenWiredDrives.tga");
 	tRequire( tSystem::tFileExists("WrittenWiredDrives.jpg"));
 
 	tImageKTX ktx;
 	ktx.Load("KTX1/BC7_RGBA.ktx");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(ktx); tga.Set(pic);
 	tga.Save("WrittenBC7_RGBA.tga");
 	tRequire( tSystem::tFileExists("WrittenBC7_RGBA.tga"));
 
 	ktx.Load("KTX2/R32G32B32A32f_RGBA.ktx2");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(ktx); tga.Set(pic);
 	tga.Save("WrittenR32G32B32A32f_RGBA.tga");
 	tRequire( tSystem::tFileExists("WrittenR32G32B32A32f_RGBA.tga"));
 
 	tImagePNG png;
 	png.Load("Icos4D.png");
 	png.Save("WrittenIcos4D.png");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(png); tga.Set(pic);
 	tga.Save("WrittenIcos4D.tga");
 	tRequire( tSystem::tFileExists("WrittenIcos4D.png"));
 
 	png.Load("Xeyes.png");
 	png.Save("WrittenXeyes.png");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(png); tga.Set(pic);
 	tga.Save("WrittenXeyes.tga");
 	tRequire( tSystem::tFileExists("WrittenXeyes.png"));
 
 	tImageQOI qoi;
 	qoi.Load("TacentTestPattern32.qoi");
 	qoi.Save("WrittenTacentTestPattern32.qoi");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(qoi); tga.Set(pic);
 	tga.Save("WrittenTacentTestPattern32.tga");
 	tRequire( tSystem::tFileExists("WrittenTacentTestPattern32.qoi"));
 
@@ -337,32 +337,32 @@ tTestUnit(ImagePicture)
 	tImageTIFF tif;
 	tif.Load("Tiff_NoComp.tif");
 	tif.Save("WrittenTiff_NoComp.tif");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(tif); tga.Set(pic);
 	tga.Save("WrittenTiff_NoComp.tga");
 	tRequire( tSystem::tFileExists("WrittenTiff_NoComp.tif"));
 
 	tif.Load("Tiff_Pack.tif");
 	tif.Save("WrittenTiff_Pack.tif");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(tif); tga.Set(pic);
 	tga.Save("WrittenTiff_Pack.tga");
 	tRequire( tSystem::tFileExists("WrittenTiff_Pack.tif"));
 
 	tif.Load("Tiff_LZW.tif");
 	tif.Save("WrittenTiff_LZW.tif");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(tif); tga.Set(pic);
 	tga.Save("WrittenTiff_LZW.tga");
 	tRequire( tSystem::tFileExists("WrittenTiff_LZW.tif"));
 
 	tif.Load("Tiff_ZIP.tif");
 	tif.Save("WrittenTiff_ZIP.tif");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(tif); tga.Set(pic);
 	tga.Save("WrittenTiff_ZIP.tga");
 	tRequire( tSystem::tFileExists("WrittenTiff_ZIP.tif"));
 
 	tImageWEBP webp;
 	webp.Load("RockyBeach.webp");
 	webp.Save("WrittenRockyBeach.webp");
-	pic.Set(bmp); tga.Set(pic);
+	pic.Set(webp); tga.Set(pic);
 	tga.Save("WrittenRockyBeach.tga");
 	tRequire( tSystem::tFileExists("WrittenRockyBeach.webp"));
 
