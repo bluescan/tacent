@@ -36,26 +36,26 @@ public:
 
 	// The pixel format must be one of the PALNNIDX formats. The palette size is determined by the pixel format. This
 	// constructor creates a palette with all black/zero-alpha colours and every pixel indexing the first palette entry.
-	// Note that internally there may be padding of the pixel-data for some palette pixel formats. For example, if the
-	// pixel format is PAL1IDX (1 bit per pixel) and you have a 9x10 image, you will need 2 bytes for the first row. 7
-	// bits of the second byte will be unused. There will be 10 such rows resulting in 70 bits of
-	// padding (8 bytes + 6 bits).
+	// Note that internally there may be padding of the pixel-data for some palette pixel formats. It pads to 32 bits.
+	// For example, if the pixel format is PAL1BIT (1 bit per pixel) and you have a 9x10 image, you will need 90 bits.
+	// That requires 3 32bit chunks costing 96bits total. Since only 26 bits of the last 32 were used, the last 6 get
+	// padded with 0 (6 bits of padding).
 	tPaletteImage(tPixelFormat fmt, int width, int height)																{ Set(fmt, width, height); }
 
 	// This is similar to above except you can construct a full image with palette and pixel-data. Caller is responsibe
 	// for making sure a) the palette is the correct length, and b) the pixel-data indexes are the correct size and
-	// there are width*height of them. The data is copied out of the supplied arrays. You can use
-	// tGetBitsPerPixel(tPixelFormat) to give you the size in bits of each pixel-index. Each row must be padded to a
-	// byte-boundary. Call tPow2 with that value to give you the palette length needed.
+	// there are width*height of them. The supplied pixelData array should be a multiple of 4 bytes big and include any
+	// necessary padding. eg. a 10x10 PAL1BIT image should be 16 bytes of data with 28 bits padded at the end. The data
+	// is copied out of the supplied arrays. You can use tGetBitsPerPixel(tPixelFormat) to give you the size in bits of
+	// each pixel-index. Call tPow2 with that value to give you the palette length needed.
 	tPaletteImage(tPixelFormat fmt, int width, int height, const uint8* pixelData, const tColour3i* palette)			{ Set(fmt, width, height, pixelData, palette); }
 
 	// This is the workhorse constructor because it needs to quantize the present colours to create the palette.
-	// Quantizing, or rather doing a good job of quantizing, is quite complex. The Neu algorithm uses a neural net to
-	// accomplish this and gives good results. Alpha is ignored in the pixel array.
-	// Note: Neu and Wu quantizing methods support PAL8BIT only.
+	// Quantizing, or rather doing a good job of quantizing, is quite complex. The NeuQuant algorithm uses a neural net
+	// to accomplish this and gives good results. Alpha is ignored in the pixel array.
 	tPaletteImage(tPixelFormat fmt, int width, int height, const tPixel* pixels, tQuantizeMethod quantMethod)			{ Set(fmt, width, height, pixels, quantMethod); }
 
-	// Same as above but processed pixel data in RGB instead of ignoring the alpha.
+	// Same as above but processes pixel data in RGB instead of ignoring the alpha.
 	tPaletteImage(tPixelFormat fmt, int width, int height, const tPixel3* pixels, tQuantizeMethod quantMethod)			{ Set(fmt, width, height, pixels, quantMethod); }
 
 	virtual ~tPaletteImage()																							{ Clear(); }
@@ -79,10 +79,11 @@ public:
 
 	bool IsValid() const																								{ return (PixelData && Palette) ? true : false; }
 
-	// Returns the size of the data in bytes by reading the Width, Height, and PixelFormat.
+	// Returns the size of the data in bytes by reading the Width, Height, and PixelFormat. Includes padding. The
+	// returned value is always a multiple of 4 butes.
 	int GetDataSize() const;
 
-	// Returns the size of the palette in tColour4i's.
+	// Returns the size of the palette in tColour3i's.
 	int GetPaletteSize() const;
 
 	tPixelFormat PixelFormat			= tPixelFormat::Invalid;

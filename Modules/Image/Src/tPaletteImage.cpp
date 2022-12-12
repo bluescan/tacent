@@ -135,7 +135,9 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* 
 
 int tPaletteImage::GetDataSize() const
 {
-	return 0;
+	int numBits = Width*Height*tGetBitsPerPixel(PixelFormat);
+	int numBytes = 4 * ((numBits + 31) / 32);
+	return numBytes;
 }
 
 
