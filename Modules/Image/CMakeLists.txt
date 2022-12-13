@@ -26,6 +26,7 @@ add_library(
 	Src/tPicture.cpp
 	Src/tPixelFormat.cpp
 	Src/tPixelUtil.cpp
+	Src/tQuantizeSpatial.cpp
 	Src/tTexture.cpp
 	Src/tResample.cpp
 	Inc/Image/tBaseImage.h
