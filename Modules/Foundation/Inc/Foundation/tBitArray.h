@@ -44,6 +44,13 @@ public:
 	bool IsValid() const																								{ return ElemData ? true : false; }
 
 	bool GetBit(int n) const;								// n is the bit index with 0 being the least significant.
+	uint8 GetBitInt(int n) const;							// n is the bit index with 0 being the least significant.
+
+	// n is the start bit (inclusive) and c is the count. You can get from 1 to 8 bits using this function c E [1, 8].
+	// Return value undefined if c <= 0 or c > 8 or n >= GetNumBits. If it goes off the end no more bits are returned,
+	// for example, if the bit array has 11101 and you call with (2,6) you'll get 101.
+	uint8 GetBits(int n, int c) const;
+	
 	void SetBit(int n, bool v);
 	void SetAll(bool v = true);
 	void ClearAll();
@@ -92,14 +99,39 @@ private:
 // Implementation below this line.
 
 
-inline bool tBitArray::GetBit(int index) const
+inline uint8 tBitArray::GetBitInt(int index) const
 {
 	tAssert(index < NumBits);
 	int fieldIndex = index >> 5;
 	int offset = index & 0x1F;
 	uint32 mask = 1 << offset;
 
-	return (ElemData[fieldIndex] & mask) ? true : false;
+	return (ElemData[fieldIndex] & mask) ? 1 : 0;
+}
+
+
+inline bool tBitArray::GetBit(int index) const
+{
+	return GetBitInt(index) ? true : false;
+}
+
+
+inline uint8 tBitArray::GetBits(int n, int c) const
+{
+	if ((c <= 0) || (c > 8) || (n >= NumBits))
+		return 0;
+
+	// Reduce count if it goes off end.
+	if ((n + c) > NumBits)
+		c = NumBits - n;
+
+	// @todo This could be made more efficient by grabbing the one or two 32-bit elements and
+	// doing bit ops on each to capture more than one bit at a time.
+	uint8 result = 0;
+	for (int i = 0; i < c; i++)
+		result |= GetBitInt(n+i) << (c-i-1);
+
+	return result;
 }
 
 

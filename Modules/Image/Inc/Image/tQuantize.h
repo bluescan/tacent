@@ -27,7 +27,11 @@ enum class tQuantizeMethod
 };
 
 
-tColour3i* tQuantizeColours(tPixel3* pixels, int width, int height, int tQuantizeMethod);
+//tColour3i* tQuantizeColours(tPixel3* pixels, int width, int height, int tQuantizeMethod);
+namespace tQuantizeSpatial
+{
+	bool Quantize(int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices);
+}
 
 
 }

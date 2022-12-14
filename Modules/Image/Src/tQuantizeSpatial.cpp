@@ -1000,7 +1000,7 @@ void spatial_color_quant(array2d< vector_fixed<double, 3> >& image,
 	}
 }
 
-bool Quantize(int numColours, int width, int height, tPixel3* pixels, tColour3i* destPalette, uint8* destIndices)//, int argc, char* argv[])
+bool Quantize(int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices)//, int argc, char* argv[])
 {
 	if ((numColours < 2) || (numColours > 256) || (width <= 0) || (height <= 0) || !pixels || !destPalette || !destIndices)
 		return false;
@@ -1011,6 +1011,7 @@ bool Quantize(int numColours, int width, int height, tPixel3* pixels, tColour3i*
 //	}
 
 	// Deterministic results every time we call Quantize. Not thread-safe tho.
+	// @todo Get rid of global state vars and pass a stack var random generator in. Make it thread-safe.
 	srand(RandomSeedFn);
 	RandomEngine.seed(RandomSeedEng);
 

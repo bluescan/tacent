@@ -96,6 +96,20 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const uint8* pi
 }
 
 
+int tPaletteImage::GetDataSize() const
+{
+	int numBits = Width*Height*tGetBitsPerPixel(PixelFormat);
+	int numBytes = 4 * ((numBits + 31) / 32);
+	return numBytes;
+}
+
+
+int tPaletteImage::GetPaletteSize() const
+{
+	return tMath::tPow2(tGetBitsPerPixel(PixelFormat));
+}
+
+
 bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel* pixels, tQuantizeMethod quantMethod)
 {
 	Clear();
@@ -105,10 +119,13 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel* p
 	if ((fmt != tPixelFormat::PAL8BIT) && (quantMethod != tQuantizeMethod::Fixed))
 		return false;
 
-// WIP
 	tPixel3* rgbPixels = new tPixel3[width*height];
-//	for (int i = 0; i < width*height; i++)
-//		rgbPixels[i].Se
+	for (int i = 0; i < width*height; i++)
+	{
+		rgbPixels[i].R = pixels[i].R;
+		rgbPixels[i].G = pixels[i].G;
+		rgbPixels[i].B = pixels[i].B;
+	}
 	bool success = Set(fmt, width, height, rgbPixels, quantMethod);
 
 	delete[] rgbPixels;
@@ -122,28 +139,33 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* 
 	if (!tIsPaletteFormat(fmt) || (width <= 0) || (height <= 0) || !pixels)
 		return false;
 
-	if ((fmt != tPixelFormat::PAL8BIT) && (quantMethod != tQuantizeMethod::Fixed))
-		return false;
+	PixelFormat = fmt;
+	Width = width;
+	Height = height;
+	int numColours	= GetPaletteSize();
+	Palette			= new tColour3i[numColours];
+	int dataSize	= GetDataSize();
+	PixelData		= new uint8[dataSize];
 
-	// WIP
-	// Step 1. Create the palette.
+	uint8* indices = new uint8[width*height];
 
-	// Step 2. Use a perceptual colour distance
+	// Step 1. Call quantize. Populates the palette and the indices.
+	switch (quantMethod)
+	{
+		case tQuantizeMethod::Spatial:
+			tQuantizeSpatial::Quantize(numColours, width, height, pixels, Palette, indices);
+			break;
+
+		default:
+			delete[] indices;
+			return false;
+	}
+
+	// Step 2. Populate PixelData from indices.
+	
+
+	delete[] indices;
 	return true;
-}
-
-
-int tPaletteImage::GetDataSize() const
-{
-	int numBits = Width*Height*tGetBitsPerPixel(PixelFormat);
-	int numBytes = 4 * ((numBits + 31) / 32);
-	return numBytes;
-}
-
-
-int tPaletteImage::GetPaletteSize() const
-{
-	return tMath::tPow2(tGetBitsPerPixel(PixelFormat));
 }
 
 
