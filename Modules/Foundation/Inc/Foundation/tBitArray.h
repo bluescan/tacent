@@ -82,8 +82,8 @@ public:
 	uint32& Element(int i)																								{ return ElemData[i]; }
 	uint32* Elements() const																							{ return ElemData; }
 
-	// Returns index of a bit that is clear. Which one is arbitrary. Returns -1 if none are available.
-	int GetClearedBitPos() const;
+	// Returns index of first bit that is 0. Returns -1 if no bits are clear.
+	int FindFirstClearBit() const;
 
 	// Binary operators must operate on arrays with the same number of bits.
 	tBitArray& operator=(const tBitArray& src)																			{ Set(src); return *this; }
@@ -97,7 +97,6 @@ public:
 	bool operator!=(const tBitArray&) const;
 
 private:
-	int GetClearedBit(int index) const;
 	void ClearPadBits();
 
 	int NumBits			= 0;								// Number of bits. Not number of fields.
@@ -157,8 +156,8 @@ public:
 	uint8& Element(int i)																								{ return ElemData[i]; }
 	uint8* Elements() const																								{ return ElemData; }
 
-	// Returns index of a bit that is clear. Which one is arbitrary. Returns -1 if none are available.
-	int GetClearedBitPos() const;
+	// Returns index of first bit that is 0. Returns -1 if no bits are clear.
+	int FindFirstClearBit() const;
 
 	// Binary operators must operate on arrays with the same number of bits.
 	tBitArray8& operator=(const tBitArray8& src)																		{ Set(src); return *this; }
@@ -172,7 +171,6 @@ public:
 	bool operator!=(const tBitArray8&) const;
 
 private:
-	int GetClearedBit(int index) const;
 	void ClearPadBits();
 
 	int NumBits			= 0;								// Number of bits. Not number of fields.
@@ -248,6 +246,49 @@ inline void tBitArray::ClearAll()
 	tAssert(ElemData);
 	int n = GetNumElements();
 	tStd::tMemset(ElemData, 0, n*sizeof(uint32));
+}
+
+
+inline void tBitArray::InvertAll()
+{
+	int n = GetNumElements();
+	for (int i = 0; i < n; i++)
+		ElemData[i] = ~ElemData[i];
+
+	ClearPadBits();
+}
+
+
+inline tBitArray& tBitArray::operator&=(const tBitArray& s)
+{
+	tAssert(NumBits == s.NumBits);
+	int n = GetNumElements();
+	for (int i = 0; i < n; i++)
+		ElemData[i] &= s.ElemData[i];
+
+	return *this;	// No need to ensure pad bits are cleared because 0 & 0 = 0.
+}
+
+
+inline tBitArray& tBitArray::operator|=(const tBitArray& s)
+{
+	tAssert(NumBits == s.NumBits);
+	int n = GetNumElements();
+	for (int i = 0; i < n; i++)
+		ElemData[i] |= s.ElemData[i];
+
+	return *this;	// No need to ensure pad bits are cleared because 0 | 0 = 0.
+}
+
+
+inline tBitArray& tBitArray::operator^=(const tBitArray& s)
+{
+	tAssert(NumBits == s.NumBits);
+	int n = GetNumElements();
+	for (int i = 0; i < n; i++)
+		ElemData[i] ^= s.ElemData[i];
+
+	return *this;	// No need to ensure pad bits are cleared because 0 ^ 0 = 0.
 }
 
 
@@ -341,6 +382,49 @@ inline void tBitArray8::ClearAll()
 	tAssert(ElemData);
 	int n = GetNumElements();
 	tStd::tMemset(ElemData, 0, n*sizeof(uint8));
+}
+
+
+inline void tBitArray8::InvertAll()
+{
+	int n = GetNumElements();
+	for (int i = 0; i < n; i++)
+		ElemData[i] = ~ElemData[i];
+
+	ClearPadBits();
+}
+
+
+inline tBitArray8& tBitArray8::operator&=(const tBitArray8& s)
+{
+	tAssert(NumBits == s.NumBits);
+	int n = GetNumElements();
+	for (int i = 0; i < n; i++)
+		ElemData[i] &= s.ElemData[i];
+
+	return *this;	// No need to ensure pad bits are cleared because 0 & 0 = 0.
+}
+
+
+inline tBitArray8& tBitArray8::operator|=(const tBitArray8& s)
+{
+	tAssert(NumBits == s.NumBits);
+	int n = GetNumElements();
+	for (int i = 0; i < n; i++)
+		ElemData[i] |= s.ElemData[i];
+
+	return *this;	// No need to ensure pad bits are cleared because 0 | 0 = 0.
+}
+
+
+inline tBitArray8& tBitArray8::operator^=(const tBitArray8& s)
+{
+	tAssert(NumBits == s.NumBits);
+	int n = GetNumElements();
+	for (int i = 0; i < n; i++)
+		ElemData[i] ^= s.ElemData[i];
+
+	return *this;	// No need to ensure pad bits are cleared because 0 ^ 0 = 0.
 }
 
 

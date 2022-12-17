@@ -124,6 +124,14 @@ inline float tRound(float v)																							{ return floorf(v + 0.5f); }
 inline float& tiRound(float& v)																							{ v = floorf(v + 0.5f); return v; }
 float tRound(float v, float nearest);
 inline float& tiRound(float& v, float nearest)																			{ v = tRound(v, nearest); return v; }
+inline uint8 tReverseBits(uint8 v)																						{ v = (v & 0xF0)>>4 | (v & 0x0F)<<4; v = (v & 0xCC)>>2 | (v & 0x33)<<2; v = (v & 0xAA)>>1 | (v & 0x55)<<1; return v; }
+inline uint8& tiReverseBits(uint8& v)																					{ v = tReverseBits(v); return v; }
+
+// Find index of first unset (0) bit starting from the LSB (right). For uint8 will return a value in [-1, 7]. For
+// uint32 will return a value in [-1, 31]. The -1 is returned if no bits were clear. These functions use fancy bit
+// manipulations to get the result -- they do not loop through inspecting individual bits.
+int tFindFirstClearBit(uint8 v);
+int tFindFirstClearBit(uint32 v);
 
 // The following Abs function deserves a little explanation. Some linear algebra texts use the term absolute value and
 // norm interchangeably. Others suggest that the absolute value of a matrix is the matrix with each component
@@ -168,6 +176,10 @@ inline int tPow2(int n)										/* 2 ^ n. */												{ return 1 << n; }
 // Log2(2) = 1, Log2(3) = 1, and Log2(4) = 2.
 inline int tLog2(int v);
 
+// This overload is for unsigned ints. It uses a slightly different (but also fast) algorithm to compute the base-2 log.
+// If 0 is passed in, returns -1 as the answer.
+inline int tLog2(uint32 v);
+
 // For the 'ti' versions of the functions, the 'i' means 'in-place' (ref var).
 inline bool tIsPower2(int v)																							{ if (v < 1) return false; return (v & (v-1)) ? false : true; }
 inline uint& tiNextLowerPower2(uint& v)																					{ uint pow2 = 1; while (pow2 < v) pow2 <<= 1; pow2 >>= 1; v = pow2 ? pow2 : 1; return v; }
@@ -176,7 +188,7 @@ inline uint& tiNextHigherPower2(uint& v)																				{ uint pow2 = 1; whi
 inline uint tNextHigherPower2(uint v)																					{ uint pow2 = 1; while (pow2 <= v) pow2 <<= 1; return pow2; }
 inline uint& tiClosestPower2(uint& v)																					{ if (tIsPower2(v)) return v; int h = tNextHigherPower2(v); int l = tNextLowerPower2(v); v = ((h - v) < (v - l)) ? h : l; return v; }
 inline uint tClosestPower2(uint v)																						{ if (tIsPower2(v)) return v; int h = tNextHigherPower2(v); int l = tNextLowerPower2(v); return ((h - v) < (v - l)) ? h : l; }
-float& tiNormalizeAngle(float& angle, tIntervalBias = tIntervalBias::Low);		// Results in angle E [(-Pi,Pi)].
+float& tiNormalizeAngle(float& angle, tIntervalBias = tIntervalBias::Low);			// Results in angle E [(-Pi,Pi)].
 inline float tNormalizedAngle(float angle, tIntervalBias bias = tIntervalBias::Low)										{ tiNormalizeAngle(angle, bias); return angle; }
 float& tiNormalizeAngle2Pi(float& angle, tIntervalBias = tIntervalBias::Low);		// Results in angle E [(0,2Pi)].
 inline float tNormalizedAngle2Pi(float angle, tIntervalBias bias = tIntervalBias::Low)									{ tiNormalizeAngle2Pi(angle, bias); return angle; }
@@ -310,13 +322,71 @@ inline float tMath::tRound(float v, float nearest)
 }
 
 
+inline int tMath::tFindFirstClearBit(uint8 v)
+{
+	// Find the first zero bit. The operation we do is log2((a xor (a+1)) +1)
+	// This is guaranteed to be a power of two.
+	uint8 freeBit = (v ^ (v+1)) + 1;
+
+	// If 0 it means nothing was found.
+	if (!freeBit)
+		return -1;
+
+	// Now get the log in base 2 of freeBit and wrap if position is 0.
+	int c = tMath::tLog2(freeBit) ;
+	if (c == 0)
+		c = 8;
+
+	// This is the first cleared index in the bit array (from the LSB).
+	return c-1;
+}
+
+
+inline int tMath::tFindFirstClearBit(uint32 v)
+{
+	// Find the first zero bit. The operation we do is log2((a xor (a+1)) +1)
+	// This is guaranteed to be a power of two.
+	uint32 freeBit = (v ^ (v+1)) + 1;
+
+	// If 0 it means nothing was found.
+	if (!freeBit)
+		return -1;
+
+	// Now get the log in base 2 of freeBit and wrap if position is 0.
+	int c = tMath::tLog2(freeBit) ;
+	if (c == 0)
+		c = 32;
+
+	// This is the first cleared index in the bit array (from the LSB).
+	return c-1;
+}
+
+
 inline int tMath::tLog2(int x)
 {
 	if (x <= 0)
 		return 0x80000000;
 
+	// Trick to use floating point rep.
 	float f = float(x);
 	return ((( *(uint32*)((void*)&f) ) & 0x7f800000) >> 23) - 127;
+}
+
+
+inline int tMath::tLog2(uint32 x)
+{
+	if (x == 0)
+		return -1;
+
+	// See "http://graphics.stanford.edu/~seander/bithacks.html#IntegerLog".
+	const uint32 b[] = { 0xAAAAAAAA, 0xCCCCCCCC, 0xF0F0F0F0, 0xFF00FF00, 0xFFFF0000 };
+	int c = (x & b[0]) != 0;
+
+	c |= ((x & b[4]) != 0) << 4;
+	c |= ((x & b[3]) != 0) << 3;
+	c |= ((x & b[2]) != 0) << 2;
+	c |= ((x & b[1]) != 0) << 1;
+	return c;
 }
 
 

@@ -582,7 +582,11 @@ tTestUnit(Sort)
 
 tTestUnit(BitArray)
 {
-
+	tBitArray8 b8;
+	uint8 bits[] = { 0b11111111, 0b01111001 };
+	b8.Set(bits, 16);
+	tPrintf("Bits: %08b %08b\n", bits[0], bits[1]);
+	tPrintf("FindFirstClearBit %d\n", b8.FindFirstClearBit());
 }
 
 
