@@ -55,8 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-#    - uses: seanmiddleditch/gha-setup-ninja@master
-    - uses: seanmiddleditch/gha-setup-ninja@v3
+    - uses: seanmiddleditch/gha-setup-ninja@master
     - name: Build Using CMake Ninja
       run: |
         echo '*** Configuring CMake ***'
