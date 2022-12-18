@@ -55,10 +55,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: seanmiddleditch/gha-setup-ninja@master
+#    - uses: seanmiddleditch/gha-setup-ninja@master
     - name: Build Using CMake Ninja
       run: |
         echo '*** Configuring CMake ***'
+        sudo apt-get install ninja-build
         mkdir build
         cd build
         cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON
