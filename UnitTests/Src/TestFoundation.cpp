@@ -599,13 +599,61 @@ tTestUnit(BitArray)
 	tRequire(bits32 == 0b11111101111100001001110011110010);
 	tRequire(tMath::tFindFirstClearBit(bits32) == 0);
 
-	tBitArray8 b8;
-	uint8 bits[] = { 0b11111111, 0b01111001 };
-	b8.Set(bits, 14);
+	//
+	// BitArray8 Tests.
+	//
+	tPrintf("Test tBitArray8 with 14 bits: 11101011 011101\n");
+	uint8 bits[] = { 0b11101011, 0b01110111 };
+	tBitArray8 b8; b8.Set(bits, 14);
+	tPrintf("Raw Bits: %08b %08b\n", bits[0], bits[1]);
+	tPrintf("Arr Bits: %08b %08b\n", b8.Element(0), b8.Element(1));
+
 	int firstClear = b8.FindFirstClearBit();
-	tRequire(firstClear == 8);
-	tPrintf("Bits: %08b %08b ", bits[0], bits[1]);
+	tRequire(firstClear == 3);
 	tPrintf("FindFirstClearBit %d\n", firstClear);
+
+	uint8 getBits = b8.GetBits(9, 5);
+	tPrintf("GetBits(9, 5) %08b\n", getBits);
+	tRequire(getBits == 0b00011101);
+
+	// Goes off end. Can only get 4 bits.
+	getBits = b8.GetBits(10, 5);
+	tPrintf("GetBits(10, 5) %08b\n", getBits);
+	tRequire(getBits == 0b00001101);
+
+	// Now test setting 
+	uint8 setBits = 0b00000010;
+	b8.SetBits(7, 3, setBits);
+	tPrintf("Arr Bits: %08b %08b\n", b8.Element(0), b8.Element(1));
+	tRequire((b8.Element(0) == 0b11101010) && (b8.Element(1) == 0b10110100));
+
+	//
+	// BitArray(32) Tests.
+	//                                                                   ES
+	tPrintf("Test tBitArray with 62 bits: 11010111111111111111111111111111111011101111111111111111111111\n");
+	uint32 bitsb[] = { 0b11111111111111111111111111101011, 0b11111111111111111111111101110111 };
+	tBitArray b32; b32.Set(bitsb, 62);
+	tPrintf("Raw Bits: %032b %032b\n", bitsb[0], bitsb[1]);
+	tPrintf("Arr Bits: %032b %032b\n", b32.Element(0), b32.Element(1));
+
+	firstClear = b32.FindFirstClearBit();
+	tRequire(firstClear == 2);
+	tPrintf("FindFirstClearBit %d\n", firstClear);
+
+	getBits = b32.GetBits(33, 7);
+	tPrintf("GetBits(33, 7) %08b\n", getBits);
+	tRequire(getBits == 0b01101110);
+
+	// Goes off end. Can only get 4 bits.
+	getBits = b32.GetBits(58, 5);
+	tPrintf("GetBits(58, 5) %08b\n", getBits);
+	tRequire(getBits == 0b00001111);
+
+	// Now test setting last 3 bits. These will be first 3 MSB bits of second raw element.
+	setBits = 0b00000010;
+	b32.SetBits(59, 3, setBits);
+	tPrintf("Arr Bits: %032b %032b\n", b32.Element(0), b32.Element(1));
+	tRequire(b32.Element(1) == 0b00010111111111111111111101110111);
 }
 
 

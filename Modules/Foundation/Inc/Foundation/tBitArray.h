@@ -54,13 +54,15 @@ public:
 
 	bool GetBit(int n) const;								// Gets the n-th bit. 0-based and n must be E [0, NumBits).
 	uint8 GetBitInt(int n) const;							// Gets the n-th bit. 0-based and n must be E [0, NumBits).
-
 	// n is the start bit (inclusive) and c is the count. You can get from 1 to 8 bits using this function c E [1, 8].
 	// Return value undefined if c <= 0 or c > 8 or n >= GetNumBits. If it goes off the end no more bits are returned,
 	// for example, if the bit array has 11101 and you call with (2,6) you'll get 101.
 	uint8 GetBits(int n, int c) const;
 	
 	void SetBit(int n, bool v);
+	void SetBitInt(int n, int v);							// If v non-zero, sets the bit. Otherwise clears it.
+	void SetBits(int n, int c, uint8 v);					// Similar to GetBits but sets from 1 to 8 bits from v.
+
 	void SetAll(bool v = true);
 	void ClearAll();
 	void InvertAll();
@@ -129,13 +131,15 @@ public:
 
 	bool GetBit(int n) const;								// Gets the n-th bit. 0-based and n must be E [0, NumBits).
 	uint8 GetBitInt(int n) const;							// Gets the n-th bit. 0-based and n must be E [0, NumBits).
-
 	// n is the start bit (inclusive) and c is the count. You can get from 1 to 8 bits using this function c E [1, 8].
 	// Return value undefined if c <= 0 or c > 8 or n >= GetNumBits. If it goes off the end no more bits are returned,
 	// for example, if the bit array has 11101 and you call with (2,6) you'll get 101.
 	uint8 GetBits(int n, int c) const;
 
 	void SetBit(int n, bool v);
+	void SetBitInt(int n, int v);							// If v non-zero, sets the bit. Otherwise clears it.
+	void SetBits(int n, int c, uint8 v);					// Similar to GetBits but sets from 1 to 8 bits from v.
+
 	void SetAll(bool v = true);
 	void ClearAll();
 	void InvertAll();
@@ -181,8 +185,14 @@ private:
 // Implementation below this line.
 
 //
-// tBitArray8 inlines.
+// tBitArray inlines.
 //
+inline bool tBitArray::GetBit(int index) const
+{
+	return GetBitInt(index) ? true : false;
+}
+
+
 inline uint8 tBitArray::GetBitInt(int index) const
 {
 	tAssert(index < NumBits);
@@ -191,12 +201,6 @@ inline uint8 tBitArray::GetBitInt(int index) const
 	uint32 mask = 1 << offset;
 
 	return (ElemData[fieldIndex] & mask) ? 1 : 0;
-}
-
-
-inline bool tBitArray::GetBit(int index) const
-{
-	return GetBitInt(index) ? true : false;
 }
 
 
@@ -221,6 +225,12 @@ inline uint8 tBitArray::GetBits(int n, int c) const
 
 inline void tBitArray::SetBit(int index, bool v)
 {
+	SetBitInt(index, v ? 1 : 0);
+}
+
+
+inline void tBitArray::SetBitInt(int index, int v)
+{
 	tAssert(index < NumBits);
 	int fieldIndex = index >> 5;
 	int offset = index & 0x1F;
@@ -229,6 +239,25 @@ inline void tBitArray::SetBit(int index, bool v)
 		ElemData[fieldIndex] |= mask;
 	else
 		ElemData[fieldIndex] &= ~mask;
+}
+
+
+inline void tBitArray::SetBits(int n, int c, uint8 v)
+{
+	if ((c <= 0) || (c > 8) || (n >= NumBits))
+		return;
+
+	// Reduce count if it goes off end.
+	if ((n + c) > NumBits)
+		c = NumBits - n;
+
+	// @todo This could be made more efficient by grabbing the one or two 8-bit elements and
+	// doing bit ops on each to set more than one bit at a time.
+	for (int i = 0; i < c; i++)
+	{
+		uint8 bit = v & (1<<(c-i-1));
+		SetBitInt(n+i, bit);
+	}
 }
 
 
@@ -319,6 +348,12 @@ inline void tBitArray::ClearPadBits()
 //
 // tBitArray8 inlines.
 //
+inline bool tBitArray8::GetBit(int index) const
+{
+	return GetBitInt(index) ? true : false;
+}
+
+
 inline uint8 tBitArray8::GetBitInt(int index) const
 {
 	tAssert(index < NumBits);
@@ -327,12 +362,6 @@ inline uint8 tBitArray8::GetBitInt(int index) const
 	uint8 mask = 1 << offset;
 
 	return (ElemData[fieldIndex] & mask) ? 1 : 0;
-}
-
-
-inline bool tBitArray8::GetBit(int index) const
-{
-	return GetBitInt(index) ? true : false;
 }
 
 
@@ -357,6 +386,12 @@ inline uint8 tBitArray8::GetBits(int n, int c) const
 
 inline void tBitArray8::SetBit(int index, bool v)
 {
+	SetBitInt(index, v ? 1 : 0);
+}
+
+
+inline void tBitArray8::SetBitInt(int index, int v)
+{
 	tAssert(index < NumBits);
 	int fieldIndex = index >> 3;
 	int offset = 7-(index & 0x07);
@@ -365,6 +400,25 @@ inline void tBitArray8::SetBit(int index, bool v)
 		ElemData[fieldIndex] |= mask;
 	else
 		ElemData[fieldIndex] &= ~mask;
+}
+
+
+inline void tBitArray8::SetBits(int n, int c, uint8 v)
+{
+	if ((c <= 0) || (c > 8) || (n >= NumBits))
+		return;
+
+	// Reduce count if it goes off end.
+	if ((n + c) > NumBits)
+		c = NumBits - n;
+
+	// @todo This could be made more efficient by grabbing the one or two 8-bit elements and
+	// doing bit ops on each to set more than one bit at a time.
+	for (int i = 0; i < c; i++)
+	{
+		uint8 bit = v & (1<<(c-i-1));
+		SetBitInt(n+i, bit);
+	}
 }
 
 
