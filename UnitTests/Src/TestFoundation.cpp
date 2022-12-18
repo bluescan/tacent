@@ -582,11 +582,30 @@ tTestUnit(Sort)
 
 tTestUnit(BitArray)
 {
+	// First we check the fundamentals. Specifically the tFindFirstClearBit and tReverseBits function.
+	// For the tFindFirstClearBit functions, the 0th index is the LSB (right).
+	uint8 bits8 = 0b11100110;
+	tMath::tiReverseBits(bits8);
+	tRequire(bits8 == 0b01100111);
+	tRequire(tMath::tFindFirstClearBit(bits8) == 3);
+
+	uint16 bits16 = 0b1100111100111001;
+	tMath::tiReverseBits(bits16);
+	tRequire(bits16 == 0b1001110011110011);
+	tRequire(tMath::tFindFirstClearBit(bits16) == 2);
+
+	uint32 bits32 = 0b01001111001110010000111110111111;
+	tMath::tiReverseBits(bits32);
+	tRequire(bits32 == 0b11111101111100001001110011110010);
+	tRequire(tMath::tFindFirstClearBit(bits32) == 0);
+
 	tBitArray8 b8;
 	uint8 bits[] = { 0b11111111, 0b01111001 };
-	b8.Set(bits, 16);
-	tPrintf("Bits: %08b %08b\n", bits[0], bits[1]);
-	tPrintf("FindFirstClearBit %d\n", b8.FindFirstClearBit());
+	b8.Set(bits, 14);
+	int firstClear = b8.FindFirstClearBit();
+	tRequire(firstClear == 8);
+	tPrintf("Bits: %08b %08b ", bits[0], bits[1]);
+	tPrintf("FindFirstClearBit %d\n", firstClear);
 }
 
 

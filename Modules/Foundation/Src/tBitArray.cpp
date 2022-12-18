@@ -42,15 +42,23 @@ void tBitArray::Set(int numBits)
 }
 
 
-void tBitArray::Set(const uint32* data, int numBits)
+void tBitArray::Set(uint32* data, int numBits, bool steal)
 {
 	Clear();
 	tAssert(data && numBits);
 
 	NumBits = numBits;
 	int n = GetNumElements();
-	ElemData = new uint32[n];
-	tStd::tMemcpy(ElemData, data, n*sizeof(uint32));
+
+	if (steal)
+	{
+		ElemData = data;
+	}
+	else
+	{
+		ElemData = new uint32[n];
+		tStd::tMemcpy(ElemData, data, n*sizeof(uint32));
+	}
 	ClearPadBits();
 }
 
@@ -123,6 +131,7 @@ int tBitArray::FindFirstClearBit() const
 		}
 	}
 
+	// If the zero was found in the padding bits, it doesn't count.
 	if (index >= NumBits)
 		return -1;
 
@@ -145,15 +154,21 @@ void tBitArray8::Set(int numBits)
 }
 
 
-void tBitArray8::Set(const uint8* data, int numBits)
+void tBitArray8::Set(uint8* data, int numBits, bool steal)
 {
 	Clear();
 	tAssert(data && numBits);
-
 	NumBits = numBits;
 	int n = GetNumElements();
-	ElemData = new uint8[n];
-	tStd::tMemcpy(ElemData, data, n);
+	if (steal)
+	{
+		ElemData = data;
+	}
+	else
+	{
+		ElemData = new uint8[n];
+		tStd::tMemcpy(ElemData, data, n);
+	}
 	ClearPadBits();
 }
 
@@ -230,6 +245,7 @@ int tBitArray8::FindFirstClearBit() const
 		}
 	}
 
+	// If the zero was found in the padding bits, it doesn't count.
 	if (index >= NumBits)
 		return -1;
 

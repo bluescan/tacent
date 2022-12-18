@@ -42,12 +42,12 @@ class tBitArray
 public:
 	tBitArray()												/* Creates an invalid bit array. Call Set before using. */	{ }
 	tBitArray(int numBits)									/* All bit values guaranteed to be 0 after this. */			{ Set(numBits); }
-	tBitArray(const uint32* data, int numBits)				/* Copies numBits from data. */								{ Set(data, numBits); }
+	tBitArray(uint32* data, int numBits, bool steal = false)/* Copies numBits from data. If steal true data is given. */{ Set(data, numBits, steal); }
 	tBitArray(const tBitArray& src)																						{ Set(src); }
 	~tBitArray()																										{ delete[] ElemData; }
 
 	void Set(int numBits);									// All bit values guaranteed to be 0 after this.
-	void Set(const uint32* data, int numBits);				// Copies numBits from data.
+	void Set(uint32* data, int numBits, bool steal = false);// Copies numBits from data. If steal is true data is given.
 	void Set(const tBitArray& src);
 	void Clear()											/* Invalidates. Use ClearAll if you want all bits clear. */	{ delete[] ElemData; ElemData = nullptr; NumBits = 0; }
 	bool IsValid() const																								{ return ElemData ? true : false; }
@@ -117,12 +117,12 @@ class tBitArray8
 public:
 	tBitArray8()											/* Creates an invalid bit array. Call Set before using. */	{ }
 	tBitArray8(int numBits)									/* All bit values guaranteed to be 0 after this. */			{ Set(numBits); }
-	tBitArray8(const uint8* data, int numBits)				/* Copies numBits from data. */								{ Set(data, numBits); }
+	tBitArray8(uint8* data, int numBits, bool steal = false)/* Copies numBits from data. If steal true data is given. */{ Set(data, numBits, steal); }
 	tBitArray8(const tBitArray8& src)																					{ Set(src); }
 	~tBitArray8()																										{ delete[] ElemData; }
 
 	void Set(int numBits);									// All bit values guaranteed to be 0 after this.
-	void Set(const uint8* data, int numBits);				// Copies numBits from data.
+	void Set(uint8* data, int numBits, bool steal = false);	// Copies numBits from data. If steal is true data is given.
 	void Set(const tBitArray8& src);
 	void Clear()											/* Invalidates. Use ClearAll if you want all bits clear. */	{ delete[] ElemData; ElemData = nullptr; NumBits = 0; }
 	bool IsValid() const																								{ return ElemData ? true : false; }

@@ -126,11 +126,17 @@ float tRound(float v, float nearest);
 inline float& tiRound(float& v, float nearest)																			{ v = tRound(v, nearest); return v; }
 inline uint8 tReverseBits(uint8 v)																						{ v = (v & 0xF0)>>4 | (v & 0x0F)<<4; v = (v & 0xCC)>>2 | (v & 0x33)<<2; v = (v & 0xAA)>>1 | (v & 0x55)<<1; return v; }
 inline uint8& tiReverseBits(uint8& v)																					{ v = tReverseBits(v); return v; }
+inline uint16 tReverseBits(uint16 v);
+inline uint16& tiReverseBits(uint16& v)																					{ v = tReverseBits(v); return v; }
+inline uint32 tReverseBits(uint32 v);
+inline uint32& tiReverseBits(uint32& v)																					{ v = tReverseBits(v); return v; }
 
 // Find index of first unset (0) bit starting from the LSB (right). For uint8 will return a value in [-1, 7]. For
-// uint32 will return a value in [-1, 31]. The -1 is returned if no bits were clear. These functions use fancy bit
-// manipulations to get the result -- they do not loop through inspecting individual bits.
+// uint16 will return a value in [-1, 15]. For uint32 will return a value in [-1, 31]. The -1 is returned if no bits
+// were clear. These functions use fancy bit manipulations to get the result -- they do not loop through inspecting
+// individual bits.
 int tFindFirstClearBit(uint8 v);
+int tFindFirstClearBit(uint16 v);
 int tFindFirstClearBit(uint32 v);
 
 // The following Abs function deserves a little explanation. Some linear algebra texts use the term absolute value and
@@ -322,6 +328,24 @@ inline float tMath::tRound(float v, float nearest)
 }
 
 
+inline uint16 tMath::tReverseBits(uint16 v)
+{
+	uint8 upper = tReverseBits( uint8((v & 0xFF00)>>8) );
+	uint8 lower = tReverseBits( uint8(v & 0x00FF) );
+	v = uint16(lower)<<8 | uint16(upper);
+	return v;
+}
+
+
+inline uint32 tMath::tReverseBits(uint32 v)
+{
+	uint16 upper = tReverseBits( uint16((v & 0xFFFF0000)>>16) );
+	uint16 lower = tReverseBits( uint16(v & 0x0000FFFF) );
+	v = uint32(lower)<<16 | uint32(upper);
+	return v;
+}
+
+
 inline int tMath::tFindFirstClearBit(uint8 v)
 {
 	// Find the first zero bit. The operation we do is log2((a xor (a+1)) +1)
@@ -342,22 +366,32 @@ inline int tMath::tFindFirstClearBit(uint8 v)
 }
 
 
-inline int tMath::tFindFirstClearBit(uint32 v)
+inline int tMath::tFindFirstClearBit(uint16 v)
 {
-	// Find the first zero bit. The operation we do is log2((a xor (a+1)) +1)
-	// This is guaranteed to be a power of two.
-	uint32 freeBit = (v ^ (v+1)) + 1;
-
-	// If 0 it means nothing was found.
+	// See comments for the uint8 version. This one works the same.
+	uint16 freeBit = (v ^ (v+1)) + 1;
 	if (!freeBit)
 		return -1;
 
-	// Now get the log in base 2 of freeBit and wrap if position is 0.
+	int c = tMath::tLog2(freeBit) ;
+	if (c == 0)
+		c = 16;
+
+	return c-1;
+}
+
+
+inline int tMath::tFindFirstClearBit(uint32 v)
+{
+	// See comments for the uint8 version. This one works the same.
+	uint32 freeBit = (v ^ (v+1)) + 1;
+	if (!freeBit)
+		return -1;
+
 	int c = tMath::tLog2(freeBit) ;
 	if (c == 0)
 		c = 32;
 
-	// This is the first cleared index in the bit array (from the LSB).
 	return c-1;
 }
 
