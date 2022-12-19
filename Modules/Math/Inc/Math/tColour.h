@@ -166,7 +166,8 @@ public:
 	tColour4i(const float* src)																							{ Set(src); }
 
 	void Set(const tColour4i& c)																						{ BP = c.BP; }
-	void Set(int r, int g, int b, int a = 255)																			{ R = uint8(r); G = uint8(g); B = uint8(b); A = uint8(a); }
+	void Set(int r, int g, int b, int a = 255)																			{ R = tMath::tClamp(r, 0, 0xFF); G = tMath::tClamp(g, 0, 0xFF); B = tMath::tClamp(b, 0, 0xFF); A = tMath::tClamp(a, 0, 0xFF); }
+	void Set(uint8 r, uint8 g, uint8 b, uint8 a = 255)																	{ R = r; G = g; B = b; A = a; }
 	void Set(const tColour4f& c);
 	void Set(const tColour3f& c, uint8 a);
 	void Set(const tColour3f& c, float a);
@@ -287,6 +288,14 @@ class tColour3i
 {
 public:
 	tColour3i()												/* Does NOT set the colour values. */						{ }
+	tColour3i(const tColour3i& c)																						: R(c.R), G(c.G), B(c.B) { }
+	tColour3i(int r, int g, int b)																						{ R = tMath::tClamp(r, 0, 0xFF); G = tMath::tClamp(g, 0, 0xFF); B = tMath::tClamp(b, 0, 0xFF); }
+	tColour3i(uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)																: R(r), G(g), B(b) { }
+
+	void Set(const tColour3i& c)																						{ R = c.R; G = c.G; B = c.B; }
+	void Set(int r, int g, int b)																						{ R = tMath::tClamp(r, 0, 0xFF); G = tMath::tClamp(g, 0, 0xFF); B = tMath::tClamp(b, 0, 0xFF); }
+	void Set(uint8 r, uint8 g, uint8 b)																					{ R = r; G = g; B = b; }
+
 	union
 	{
 		struct { uint8 R, G, B; };

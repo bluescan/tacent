@@ -203,7 +203,7 @@ int main(int argc, char** argv)
 	// tTest(ImageTexture);
 	// tTest(ImageMultiFrame);
 	// tTest(ImagePicture);
-	// tTest(ImagePalette);
+	tTest(ImagePalette);
 	// tTest(ImageFilter);
 	// tTest(ImageGradient);
 	// tTest(ImageMetaData);
@@ -217,7 +217,7 @@ int main(int argc, char** argv)
 	#endif
 	// tTest(UTF);
 	// tTest(Hash);
-	tTest(BitArray);
+	// tTest(BitArray);
 	// tTest(BitField);
 	// tTest(FixInt);
 	// tTest(Half);

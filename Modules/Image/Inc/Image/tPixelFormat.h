@@ -237,7 +237,11 @@ inline bool tImage::tIsAlphaFormat(tPixelFormat format)
 		// For palettized the palette may have an entry that can be considered alpha. However for only 1-bit
 		// palettes we consider it dithered (ColourA/ColourB) and not to have an alpha.
 		case tPixelFormat::PAL2BIT:
+		case tPixelFormat::PAL3BIT:
 		case tPixelFormat::PAL4BIT:
+		case tPixelFormat::PAL5BIT:
+		case tPixelFormat::PAL6BIT:
+		case tPixelFormat::PAL7BIT:
 		case tPixelFormat::PAL8BIT:
 			return true;
 	}

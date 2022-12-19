@@ -377,7 +377,60 @@ tTestUnit(ImagePicture)
 
 tTestUnit(ImagePalette)
 {
-	// WIP tPaletteImage img1bit(tPixelFormat::PAL1BIT, 300, 200);
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImagePalette)
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
+
+	// We'll start by loading a test image.
+	tImageTGA srctga;
+	tImageTGA dsttga;
+	srctga.Load("Dock640.tga");
+	int w = srctga.GetWidth();
+	int h = srctga.GetHeight();
+	tPixel* tgapix = srctga.GetPixels();
+
+	// And we'll create a palettized image with a specific-sized palette.
+	tPaletteImage pal;
+
+	pal.Set(tPixelFormat::PAL1BIT, w, h, tgapix, tImage::tQuantizeMethod::Spatial);
+
+	// Depalettize.
+	tPixel* palpix = new tPixel[w*h];
+	pal.Get(palpix);
+
+	// Give the pixels to the tga.
+	dsttga.Set(palpix, w, h, true);
+
+	// And save it out.
+	dsttga.Save("WrittenPal1.tga");
+
+	// Repeat for other palette sizes.
+	pal.Set(tPixelFormat::PAL2BIT, w, h, tgapix, tImage::tQuantizeMethod::Spatial);
+	palpix = new tPixel[w*h];
+	pal.Get(palpix);
+	dsttga.Set(palpix, w, h, true);
+	dsttga.Save("WrittenPal2.tga");
+
+	pal.Set(tPixelFormat::PAL3BIT, w, h, tgapix, tImage::tQuantizeMethod::Spatial);
+	palpix = new tPixel[w*h];
+	pal.Get(palpix);
+	dsttga.Set(palpix, w, h, true);
+	dsttga.Save("WrittenPal3.tga");
+
+	pal.Set(tPixelFormat::PAL4BIT, w, h, tgapix, tImage::tQuantizeMethod::Spatial);
+	palpix = new tPixel[w*h];
+	pal.Get(palpix);
+	dsttga.Set(palpix, w, h, true);
+	dsttga.Save("WrittenPal4.tga");
+
+	pal.Set(tPixelFormat::PAL5BIT, w, h, tgapix, tImage::tQuantizeMethod::Spatial);
+	palpix = new tPixel[w*h];
+	pal.Get(palpix);
+	dsttga.Set(palpix, w, h, true);
+	dsttga.Save("WrittenPal5.tga");
+	
+	tSystem::tSetCurrentDir(origDir);
 }
 
 

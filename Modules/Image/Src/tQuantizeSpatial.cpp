@@ -45,7 +45,11 @@
 //#include <time.h>
 #include <limits>
 #include <Math/tColour.h>
+#include "Image/tQuantize.h"
 using namespace std;
+//using namespace tImage;
+namespace tImage
+{
 namespace tQuantizeSpatial
 {
 
@@ -1000,7 +1004,10 @@ void spatial_color_quant(array2d< vector_fixed<double, 3> >& image,
 	}
 }
 
-bool Quantize(int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices)//, int argc, char* argv[])
+
+}
+
+bool tQuantizeSpatial::Quantize(int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices)//, int argc, char* argv[])
 {
 	if ((numColours < 2) || (numColours > 256) || (width <= 0) || (height <= 0) || !pixels || !destPalette || !destIndices)
 		return false;

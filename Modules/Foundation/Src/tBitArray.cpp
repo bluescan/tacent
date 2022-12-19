@@ -42,15 +42,16 @@ void tBitArray::Set(int numBits)
 }
 
 
-void tBitArray::Set(uint32* data, int numBits, bool steal)
+void tBitArray::Set(uint32* data, int numBits, bool external)
 {
 	Clear();
 	tAssert(data && numBits);
 
+	ExternalData = external;
 	NumBits = numBits;
 	int n = GetNumElements();
 
-	if (steal)
+	if (external)
 	{
 		ElemData = data;
 	}
@@ -154,13 +155,14 @@ void tBitArray8::Set(int numBits)
 }
 
 
-void tBitArray8::Set(uint8* data, int numBits, bool steal)
+void tBitArray8::Set(uint8* data, int numBits, bool external)
 {
 	Clear();
 	tAssert(data && numBits);
 	NumBits = numBits;
+	ExternalData = external;
 	int n = GetNumElements();
-	if (steal)
+	if (external)
 	{
 		ElemData = data;
 	}

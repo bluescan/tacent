@@ -1,8 +1,8 @@
 // tPaletteImage.cpp
 //
 // A simple palettized image. Comprised of Width x Height pixel data storing indexes into a palette. The palette is
-// simply an array of tPixels (RGBA). Index resolution is determined by the pixel format (1, 2, 4, 8, or 16 bits). The
-// number of palette entries (colours) is 2 ^ the index-resolution.
+// simply an array of tPixels (RGB). Index resolution is determined by the pixel format (1 to 8 bits). The number of
+// palette entries (colours) is 2 ^ the index-resolution.
 //
 // Copyright (c) 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -16,6 +16,7 @@
 
 #include <Foundation/tAssert.h>
 #include <Foundation/tStandard.h>
+#include <Foundation/tBitArray.h>
 #include "Image/tPaletteImage.h"
 namespace tImage
 {
@@ -96,28 +97,14 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const uint8* pi
 }
 
 
-int tPaletteImage::GetDataSize() const
-{
-	int numBits = Width*Height*tGetBitsPerPixel(PixelFormat);
-	int numBytes = 4 * ((numBits + 31) / 32);
-	return numBytes;
-}
-
-
-int tPaletteImage::GetPaletteSize() const
-{
-	return tMath::tPow2(tGetBitsPerPixel(PixelFormat));
-}
-
-
 bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel* pixels, tQuantizeMethod quantMethod)
 {
 	Clear();
 	if (!tIsPaletteFormat(fmt) || (width <= 0) || (height <= 0) || !pixels)
 		return false;
 
-	if ((fmt != tPixelFormat::PAL8BIT) && (quantMethod != tQuantizeMethod::Fixed))
-		return false;
+	//if ((fmt != tPixelFormat::PAL8BIT) && (quantMethod != tQuantizeMethod::Fixed))
+	//	return false;
 
 	tPixel3* rgbPixels = new tPixel3[width*height];
 	for (int i = 0; i < width*height; i++)
@@ -142,10 +129,10 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* 
 	PixelFormat = fmt;
 	Width = width;
 	Height = height;
-	int numColours	= GetPaletteSize();
-	Palette			= new tColour3i[numColours];
-	int dataSize	= GetDataSize();
-	PixelData		= new uint8[dataSize];
+	int numColours			= GetPaletteSize();
+	Palette					= new tColour3i[numColours];
+	int dataSize			= GetDataSize();
+	PixelData				= new uint8[dataSize];
 
 	uint8* indices = new uint8[width*height];
 
@@ -162,10 +149,83 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* 
 	}
 
 	// Step 2. Populate PixelData from indices.
+	int bpp = tGetBitsPerPixel(fmt);
+	int numBits = Width*Height*bpp;
+	int bitIndex = 0;
+	tBitArray8 bitArray(PixelData, numBits, true);
+	for (int y = 0; y < Height; y++)
+	{
+		for (int x = 0; x < Width; x++)
+		{
+			bitArray.SetBits(bitIndex, bpp, indices[x + y*Width]);
+			bitIndex += bpp;
+		}
+	}
 	
-
 	delete[] indices;
 	return true;
+}
+
+
+bool tPaletteImage::Get(tPixel* pixels)
+{
+	if (!IsValid() || !pixels)
+		return false;
+
+	int bpp = tGetBitsPerPixel(PixelFormat);
+	int numBits = Width*Height*bpp;
+	int bitIndex = 0;
+	tBitArray8 bitArray(PixelData, numBits, true);
+	for (int y = 0; y < Height; y++)
+	{
+		for (int x = 0; x < Width; x++)
+		{
+			uint8 palIdx = bitArray.GetBits(bitIndex, bpp);
+			tColour3i& colour = Palette[palIdx];
+			pixels[x + y*Width].Set(colour.R, colour.G, colour.B);
+			bitIndex += bpp;
+		}
+	}
+
+	return true;
+}
+
+
+bool tPaletteImage::Get(tPixel3* pixels)
+{
+	if (!IsValid() || !pixels)
+		return false;
+
+	int bpp = tGetBitsPerPixel(PixelFormat);
+	int numBits = Width*Height*bpp;
+	int bitIndex = 0;
+	tBitArray8 bitArray(PixelData, numBits, true);
+	for (int y = 0; y < Height; y++)
+	{
+		for (int x = 0; x < Width; x++)
+		{
+			uint8 palIdx = bitArray.GetBits(bitIndex, bpp);
+			tColour3i& colour = Palette[palIdx];
+			pixels[x + y*Width].Set(colour.R, colour.G, colour.B);
+			bitIndex += bpp;
+		}
+	}
+
+	return true;
+}
+
+
+int tPaletteImage::GetDataSize() const
+{
+	int numBits = Width*Height*tGetBitsPerPixel(PixelFormat);
+	int numBytes = (numBits + 7) / 8;
+	return numBytes;
+}
+
+
+int tPaletteImage::GetPaletteSize() const
+{
+	return tMath::tPow2(tGetBitsPerPixel(PixelFormat));
 }
 
 

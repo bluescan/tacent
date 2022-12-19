@@ -42,14 +42,14 @@ class tBitArray
 public:
 	tBitArray()												/* Creates an invalid bit array. Call Set before using. */	{ }
 	tBitArray(int numBits)									/* All bit values guaranteed to be 0 after this. */			{ Set(numBits); }
-	tBitArray(uint32* data, int numBits, bool steal = false)/* Copies numBits from data. If steal true data is given. */{ Set(data, numBits, steal); }
+	tBitArray(uint32* data, int numBits, bool ext = false)	/* Copies numBits from data. If ext data is external.*/		{ Set(data, numBits, ext); }
 	tBitArray(const tBitArray& src)																						{ Set(src); }
-	~tBitArray()																										{ delete[] ElemData; }
+	~tBitArray()																										{ if (!ExternalData) delete[] ElemData; }
 
 	void Set(int numBits);									// All bit values guaranteed to be 0 after this.
-	void Set(uint32* data, int numBits, bool steal = false);// Copies numBits from data. If steal is true data is given.
+	void Set(uint32* data, int numBits, bool ext = false);	// Copies numBits from data. If ext is true data is external.
 	void Set(const tBitArray& src);
-	void Clear()											/* Invalidates. Use ClearAll if you want all bits clear. */	{ delete[] ElemData; ElemData = nullptr; NumBits = 0; }
+	void Clear()											/* Invalidates. Use ClearAll if you want all bits clear. */	{ if (!ExternalData) delete[] ElemData; ElemData = nullptr; NumBits = 0; }
 	bool IsValid() const																								{ return ElemData ? true : false; }
 
 	bool GetBit(int n) const;								// Gets the n-th bit. 0-based and n must be E [0, NumBits).
@@ -102,6 +102,7 @@ private:
 	void ClearPadBits();
 
 	int NumBits			= 0;								// Number of bits. Not number of fields.
+	bool ExternalData	= false;							// If true this object doesn't own the ElemData.
 	uint32* ElemData	= nullptr;							// If there are padding bits, they must be set to 0.
 };
 
@@ -119,14 +120,14 @@ class tBitArray8
 public:
 	tBitArray8()											/* Creates an invalid bit array. Call Set before using. */	{ }
 	tBitArray8(int numBits)									/* All bit values guaranteed to be 0 after this. */			{ Set(numBits); }
-	tBitArray8(uint8* data, int numBits, bool steal = false)/* Copies numBits from data. If steal true data is given. */{ Set(data, numBits, steal); }
+	tBitArray8(uint8* data, int numBits, bool ext = false)	/* Copies numBits from data. If ext data is external.*/		{ Set(data, numBits, ext); }
 	tBitArray8(const tBitArray8& src)																					{ Set(src); }
-	~tBitArray8()																										{ delete[] ElemData; }
+	~tBitArray8()																										{ if (!ExternalData) delete[] ElemData; }
 
 	void Set(int numBits);									// All bit values guaranteed to be 0 after this.
-	void Set(uint8* data, int numBits, bool steal = false);	// Copies numBits from data. If steal is true data is given.
+	void Set(uint8* data, int numBits, bool ext = false);	// Copies numBits from data. If ext is true data is external.
 	void Set(const tBitArray8& src);
-	void Clear()											/* Invalidates. Use ClearAll if you want all bits clear. */	{ delete[] ElemData; ElemData = nullptr; NumBits = 0; }
+	void Clear()											/* Invalidates. Use ClearAll if you want all bits clear. */	{ if (!ExternalData) delete[] ElemData; ElemData = nullptr; NumBits = 0; }
 	bool IsValid() const																								{ return ElemData ? true : false; }
 
 	bool GetBit(int n) const;								// Gets the n-th bit. 0-based and n must be E [0, NumBits).
@@ -178,6 +179,7 @@ private:
 	void ClearPadBits();
 
 	int NumBits			= 0;								// Number of bits. Not number of fields.
+	bool ExternalData	= false;							// If true this object doesn't own the ElemData.
 	uint8* ElemData		= nullptr;							// If there are padding bits, they must be set to 0.
 };
 

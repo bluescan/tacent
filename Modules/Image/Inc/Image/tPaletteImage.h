@@ -1,8 +1,8 @@
 // tPaletteImage.h
 //
 // A simple palettized image. Comprised of Width x Height pixel data storing indexes into a palette. The palette is
-// simply an array of tPixels (RGB). Index resolution is determined by the pixel format (1, 2, 4, 8, or 16 bits). The
-// number of palette entries (colours) is 2 ^ the index-resolution.
+// simply an array of tPixels (RGB). Index resolution is determined by the pixel format (1 to 8 bits). The number of
+// palette entries (colours) is 2 ^ the index-resolution.
 //
 // Copyright (c) 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -22,10 +22,9 @@ namespace tImage
 {
 
 
-// A simple palettized image class supporting 1, 2, 4, 8, and 16 bits per pixel-index. Origin is at the bottom-left and
-// rows are ordered left to right moving up the image. This palette only contains RGB values (no alpha). Formats like
-// gif handle (binary) alpha separately, and colour quantizers work on RGB values, so having a tPaletteImage with alpha
-// makes little sense.
+// A simple palettized image class supporting 1 to 8 bits per pixel-index. Origin is at the bottom-left and rows are
+// ordered left to right moving up the image. This palette only contains RGB values (no alpha). Formats like gif handle
+// (binary) alpha separately, and colour quantizers work on RGB values, so no alpha for tPaletteImage.
 class tPaletteImage
 {
 public:
@@ -35,19 +34,18 @@ public:
 	tPaletteImage(const tPaletteImage& src)																				{ Set(src); }
 
 	// The pixel format must be one of the PALNNIDX formats. The palette size is determined by the pixel format. This
-	// constructor creates a palette with all black/zero-alpha colours and every pixel indexing the first palette entry.
-	// Note that internally there may be padding of the pixel-data for some palette pixel formats. It pads to 32 bits.
-	// For example, if the pixel format is PAL1BIT (1 bit per pixel) and you have a 9x10 image, you will need 90 bits.
-	// That requires 3 32bit chunks costing 96bits total. Since only 26 bits of the last 32 were used, the last 6 get
-	// padded with 0 (6 bits of padding).
+	// constructor creates a palette with all black colours and every pixel indexing the first palette entry. Note that
+	// internally there may be padding of the pixel-data for some palette pixel formats. It pads to 8 bits. For example,
+	// if the pixel format is PAL1BIT (1 bit per pixel) and you have a 9x10 image, you will need 90 bits. That requires
+	// 12 8-bit chunks costing 96 bits total. The last 6 bits get padded with 0.
 	tPaletteImage(tPixelFormat fmt, int width, int height)																{ Set(fmt, width, height); }
 
 	// This is similar to above except you can construct a full image with palette and pixel-data. Caller is responsibe
 	// for making sure a) the palette is the correct length, and b) the pixel-data indexes are the correct size and
-	// there are width*height of them. The supplied pixelData array should be a multiple of 4 bytes big and include any
-	// necessary padding. eg. a 10x10 PAL1BIT image should be 16 bytes of data with 28 bits padded at the end. The data
-	// is copied out of the supplied arrays. You can use tGetBitsPerPixel(tPixelFormat) to give you the size in bits of
-	// each pixel-index. Call tPow2 with that value to give you the palette length needed.
+	// there are width*height of them. The supplied pixelData array should include any necessary padding. eg. a 10x10
+	// PAL1BIT image should be 13 bytes of data with 4 bits padded at the end. The data is copied out of the supplied
+	// arrays. You can use tGetBitsPerPixel(tPixelFormat) to give you the size in bits of each pixel-index. Call tPow2
+	// with that value to give you the palette length needed.
 	tPaletteImage(tPixelFormat fmt, int width, int height, const uint8* pixelData, const tColour3i* palette)			{ Set(fmt, width, height, pixelData, palette); }
 
 	// This is the workhorse constructor because it needs to quantize the present colours to create the palette.
@@ -55,7 +53,7 @@ public:
 	// to accomplish this and gives good results. Alpha is ignored in the pixel array.
 	tPaletteImage(tPixelFormat fmt, int width, int height, const tPixel* pixels, tQuantizeMethod quantMethod)			{ Set(fmt, width, height, pixels, quantMethod); }
 
-	// Same as above but processes pixel data in RGB instead of ignoring the alpha.
+	// Same as above but processes pixel data in RGB directly.
 	tPaletteImage(tPixelFormat fmt, int width, int height, const tPixel3* pixels, tQuantizeMethod quantMethod)			{ Set(fmt, width, height, pixels, quantMethod); }
 
 	virtual ~tPaletteImage()																							{ Clear(); }
@@ -77,7 +75,7 @@ public:
 	// Same as above but populates an RGB array.
 	bool Get(tPixel3* pixels);
 
-	bool IsValid() const																								{ return (PixelData && Palette) ? true : false; }
+	bool IsValid() const																								{ return (PixelData && Palette && Width && Height && tIsPaletteFormat(PixelFormat)); }
 
 	// Returns the size of the data in bytes by reading the Width, Height, and PixelFormat. Includes padding. The
 	// returned value is always a multiple of 4 butes.
