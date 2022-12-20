@@ -21,16 +21,23 @@ namespace tImage
 enum class tQuantizeMethod
 {
 	Fixed,					// Supports from 2 to 256 colours. Low quality because used predefined palettes.
-	Spatial,				// AKA scolorq. Supports from 2 to 256 colours. Good for 32 colours or fewer.
+	Spatial,				// AKA scolorq. Supports from 2 to 256 colours. Good for 32 colours or fewer. Very slow for 64 colours or higher.
 	Neu,					// AKA NeuQuant. Supports from 64 to 256 colours. Best for 128 to 256.
 	Wu						// AKA XiaolinWu. Supports from 2 to 256 colours. Best for 128 to 256.
 };
 
 
-//tColour3i* tQuantizeColours(tPixel3* pixels, int width, int height, int tQuantizeMethod);
 namespace tQuantizeSpatial
 {
-	bool Quantize(int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices);
+	// If ditherLevel is 0.0 uses ComputeBaseDither, otherwise ditherLevel must be > 0.0. filterSize must be 1, 3, or 5.
+	bool QuantizeImage
+	(
+		int numColours, int width, int height, const tPixel3* pixels,
+		tColour3i* destPalette, uint8* destIndices,
+		double ditherLevel = 0.0, int filterSize = 3
+	);
+
+	double ComputeBaseDither(int width, int height, int numColours);
 }
 
 

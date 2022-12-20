@@ -140,7 +140,7 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* 
 	switch (quantMethod)
 	{
 		case tQuantizeMethod::Spatial:
-			tQuantizeSpatial::Quantize(numColours, width, height, pixels, Palette, indices);
+			tQuantizeSpatial::QuantizeImage(numColours, width, height, pixels, Palette, indices);
 			break;
 
 		default:
