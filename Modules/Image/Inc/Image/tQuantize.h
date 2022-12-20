@@ -25,6 +25,7 @@ enum class tQuantizeMethod
 	Neu,					// AKA NeuQuant. Supports from 64 to 256 colours. Best for 128 to 256.
 	Wu						// AKA XiaolinWu. Supports from 2 to 256 colours. Best for 128 to 256.
 };
+const char* tGetQuantizeMethodName(tQuantizeMethod);
 
 
 namespace tQuantizeSpatial
@@ -41,4 +42,30 @@ namespace tQuantizeSpatial
 }
 
 
+namespace tQuantizeNeu
+{
+	bool QuantizeImage
+	(
+		int numColours, int width, int height, const tPixel3* pixels,
+		tColour3i* destPalette, uint8* destIndices
+	);
+}
+
+
+}
+
+
+// Implementation below this line.
+
+
+inline const char* tImage::tGetQuantizeMethodName(tQuantizeMethod method)
+{
+	switch (method)
+	{
+		case tQuantizeMethod::Fixed:	return "fixed";
+		case tQuantizeMethod::Spatial:	return "scolorq";
+		case tQuantizeMethod::Neu:		return "neuquant";
+		case tQuantizeMethod::Wu:		return "wu";
+	}
+	return "unknown";
 }

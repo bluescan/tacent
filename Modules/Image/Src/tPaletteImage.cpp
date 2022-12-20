@@ -143,6 +143,10 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* 
 			tQuantizeSpatial::QuantizeImage(numColours, width, height, pixels, Palette, indices);
 			break;
 
+		case tQuantizeMethod::Neu:
+			tQuantizeNeu::QuantizeImage(numColours, width, height, pixels, Palette, indices);
+			break;
+
 		default:
 			delete[] indices;
 			return false;

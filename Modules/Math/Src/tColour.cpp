@@ -292,6 +292,25 @@ tColour4i tMath::tGetColour(const char* colourName)
 }
 
 
+float tMath::tColourDiffRedmean(const tColour3i& aa, const tColour3i& bb)
+{
+	tVector3 a; aa.GetDenorm(a);
+	tVector3 b; bb.GetDenorm(b);
+
+	float rhat = (a.x + b.x) / 2.0f;
+
+	float dR2 = tSquare(a.x - b.x);
+	float dG2 = tSquare(a.y - b.y);
+	float dB2 = tSquare(a.z - b.z);
+
+	float term1 = (2.0f + rhat/256.0f)*dR2;
+	float term2 = 4.0f * dG2;
+	float term3 = (2.0f + ((255.0f-rhat)/256.0f)) * dB2;
+
+	return tSqrt(term1 + term2 + term3);
+}
+
+
 float tMath::tColourDiffRedmean(const tColour4i& aa, const tColour4i& bb)
 {
 	tVector3 a; aa.GetDenorm(a);

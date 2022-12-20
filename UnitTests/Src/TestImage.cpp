@@ -375,6 +375,25 @@ tTestUnit(ImagePicture)
 }
 
 
+void QuantizeImage(int w, int h, tPixel* pixels, tPixelFormat fmt, tImage::tQuantizeMethod method)
+{
+	tPaletteImage pal;
+	pal.Set(fmt, w, h, pixels, method);	// Create a palettized image with a specific-sized palette.
+
+	//pal.Set(tPixelFormat::PAL1BIT, w, h, tgapix, tImage::tQuantizeMethod::Spatial);	
+	tPixel* palpix = new tPixel[w*h];
+	pal.Get(palpix);																// Depalettize into a pixel buffer.
+
+	tImageTGA dsttga;
+	dsttga.Set(palpix, w, h, true);													// Give the pixels to the tga.
+
+	tString saveName;
+	tsPrintf(saveName, "Written_%s_%s.tga", tGetPixelFormatName(fmt), tGetQuantizeMethodName(method));
+	dsttga.Save(saveName);										// And save it out.
+	tRequire(tSystem::tFileExists(saveName));
+}
+
+
 tTestUnit(ImagePalette)
 {
 	if (!tSystem::tDirExists("TestData/Images/"))
@@ -384,58 +403,34 @@ tTestUnit(ImagePalette)
 
 	// We'll start by loading a test image.
 	tImageTGA srctga;
-	tImageTGA dsttga;
 	srctga.Load("Dock640.tga");
 	int w = srctga.GetWidth();
 	int h = srctga.GetHeight();
 	tPixel* tgapix = srctga.GetPixels();
 
-	// And we'll create a palettized image with a specific-sized palette.
-	tPaletteImage pal;
+	//
+	// Spatial quantization (scolorq).
+	//
+	QuantizeImage(w, h, tgapix, tPixelFormat::PAL1BIT, tImage::tQuantizeMethod::Spatial);
+	QuantizeImage(w, h, tgapix, tPixelFormat::PAL2BIT, tImage::tQuantizeMethod::Spatial);
+	QuantizeImage(w, h, tgapix, tPixelFormat::PAL3BIT, tImage::tQuantizeMethod::Spatial);
+	QuantizeImage(w, h, tgapix, tPixelFormat::PAL4BIT, tImage::tQuantizeMethod::Spatial);
+	QuantizeImage(w, h, tgapix, tPixelFormat::PAL5BIT, tImage::tQuantizeMethod::Spatial);
 
-	pal.Set(tPixelFormat::PAL1BIT, w, h, tgapix, tImage::tQuantizeMethod::Spatial);
-
-	// Depalettize into a pixel buffer.
-	tPixel* palpix = new tPixel[w*h];
-	pal.Get(palpix);
-
-	// Give the pixels to the tga.
-	dsttga.Set(palpix, w, h, true);
-
-	// And save it out.
-	dsttga.Save("WrittenPal1.tga");
-	tRequire( tSystem::tFileExists("WrittenPal1.tga"));
-
-	// Repeat for other palette sizes.
-	pal.Set(tPixelFormat::PAL2BIT, w, h, tgapix, tImage::tQuantizeMethod::Spatial);
-	palpix = new tPixel[w*h];
-	pal.Get(palpix);
-	dsttga.Set(palpix, w, h, true);
-	dsttga.Save("WrittenPal2.tga");
-	tRequire( tSystem::tFileExists("WrittenPal2.tga"));
-
-	pal.Set(tPixelFormat::PAL3BIT, w, h, tgapix, tImage::tQuantizeMethod::Spatial);
-	palpix = new tPixel[w*h];
-	pal.Get(palpix);
-	dsttga.Set(palpix, w, h, true);
-	dsttga.Save("WrittenPal3.tga");
-	tRequire( tSystem::tFileExists("WrittenPal3.tga"));
-
-	pal.Set(tPixelFormat::PAL4BIT, w, h, tgapix, tImage::tQuantizeMethod::Spatial);
-	palpix = new tPixel[w*h];
-	pal.Get(palpix);
-	dsttga.Set(palpix, w, h, true);
-	dsttga.Save("WrittenPal4.tga");
-	tRequire( tSystem::tFileExists("WrittenPal4.tga"));
-
-	pal.Set(tPixelFormat::PAL5BIT, w, h, tgapix, tImage::tQuantizeMethod::Spatial);
-	palpix = new tPixel[w*h];
-	pal.Get(palpix);
-	dsttga.Set(palpix, w, h, true);
-	dsttga.Save("WrittenPal5.tga");
-	tRequire( tSystem::tFileExists("WrittenPal5.tga"));
+	//
+	// NeuQuant quantization.
+	//
+	/*
+	QuantizeImage(w, h, tgapix, tPixelFormat::PAL1BIT, tImage::tQuantizeMethod::Neu);
+	QuantizeImage(w, h, tgapix, tPixelFormat::PAL2BIT, tImage::tQuantizeMethod::Neu);
+	QuantizeImage(w, h, tgapix, tPixelFormat::PAL3BIT, tImage::tQuantizeMethod::Neu);
+	QuantizeImage(w, h, tgapix, tPixelFormat::PAL4BIT, tImage::tQuantizeMethod::Neu);
+	QuantizeImage(w, h, tgapix, tPixelFormat::PAL5BIT, tImage::tQuantizeMethod::Neu);
+	QuantizeImage(w, h, tgapix, tPixelFormat::PAL6BIT, tImage::tQuantizeMethod::Neu);
+	QuantizeImage(w, h, tgapix, tPixelFormat::PAL7BIT, tImage::tQuantizeMethod::Neu);
+	*/
+	QuantizeImage(w, h, tgapix, tPixelFormat::PAL8BIT, tImage::tQuantizeMethod::Neu);
 	
-	// It gets really slow using spatial quantization for more than 5-bit (32 colours).
 	tSystem::tSetCurrentDir(origDir);
 }
 

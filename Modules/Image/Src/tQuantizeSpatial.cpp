@@ -7,7 +7,7 @@
 // sure there is no global state so calls are threadsafe.
 //
 // The algrithm works well for smaller numbers of colours (generally 32 or fewer) but it can handle from 2 to 256
-// colours. The official name of this algorith is 'scolorq'.
+// colours. The official name of this algorith is 'scolorq'. Running on colours more than 32 takes a LONG time.
 // See https://github.com/samhocevar/scolorq/blob/master/spatial_color_quant.cpp
 //
 // Modifications Copyright (c) 2022 Tristan Grimmer.
@@ -42,122 +42,146 @@
 #include <Math/tRandom.h>
 #include "Image/tQuantize.h"
 using namespace std;
-namespace tImage { namespace tQuantizeSpatial
+namespace tImage {
+	
+	
+namespace tQuantizeSpatial
 {
-
-
-template <typename T, int length> class vector_fixed
-{
-public:
-	vector_fixed()															{ for (int i=0; i<length; i++) data[i] = 0; }
-	vector_fixed(const vector_fixed<T, length>& rhs)						{ for (int i=0; i<length; i++) data[i] = rhs.data[i]; }
-	vector_fixed(const vector<T>& rhs)										{ for (int i=0; i<length; i++) data[i] = rhs[i]; }
-
-	T& operator()(int i)													{ return data[i]; }
-	int get_length()														{ return length; }
-	T norm_squared()														{ T result = 0; for (int i=0; i<length; i++) result += (*this)(i) * (*this)(i); return result; }
-
-	vector_fixed<T, length>& operator=(const vector_fixed<T, length> rhs)	{ for (int i=0; i<length; i++) data[i] = rhs.data[i]; return *this; }
-	vector_fixed<T, length> direct_product(vector_fixed<T, length>& rhs)	{ vector_fixed<T, length> result; for (int i=0; i<length; i++) result(i) = (*this)(i) * rhs(i); return result; }
-
-	double dot_product(vector_fixed<T, length> rhs)							{ T result = 0; for (int i=0; i<length; i++) result += (*this)(i) * rhs(i); return result; }
-	vector_fixed<T, length>& operator+=(vector_fixed<T, length> rhs)		{ for (int i=0; i<length; i++) data[i] += rhs(i); return *this; }
-	vector_fixed<T, length> operator+(vector_fixed<T, length> rhs)			{ vector_fixed<T, length> result(*this); result += rhs; return result; }
-	vector_fixed<T, length>& operator-=(vector_fixed<T, length> rhs)		{ for (int i=0; i<length; i++) data[i] -= rhs(i); return *this; }
-	vector_fixed<T, length> operator-(vector_fixed<T, length> rhs)			{ vector_fixed<T, length> result(*this); result -= rhs; return result; }
-	vector_fixed<T, length>& operator*=(T scalar)							{ for (int i=0; i<length; i++) data[i] *= scalar; return *this; }
-	vector_fixed<T, length> operator*(T scalar)								{ vector_fixed<T, length> result(*this); result *= scalar; return result; }
-
-private:
-	T data[length];
-};
-
-
-template <typename T, int length> vector_fixed<T, length> operator*(T scalar, vector_fixed<T, length> vec)		{ return vec*scalar; }
-
-
-template <typename T> class array2d
-{
-public:
-	array2d(int w, int h)													{ width = w; height = h; data = new T[width * height]; }
-	array2d(const array2d<T>& rhs)											{ width = rhs.width; height = rhs.height; data = new T[width * height]; for (int i=0; i<width; i++) for (int j=0; j<height; j++) (*this)(i,j) = rhs.data[j*width + i]; }
-	~array2d()																{ delete [] data; }
-
-	T& operator()(int col, int row)											{ return data[row*width + col]; }
-	int get_width()															{ return width; }
-	int get_height()														{ return height; }
-
-	array2d<T>& operator*=(T scalar)										{ for (int i=0; i<width; i++) for (int j=0; j<height; j++) (*this)(i,j) *= scalar; return *this; }
-	array2d<T> operator*(T scalar)											{ array2d<T> result(*this); result *= scalar; return result; }
-	vector<T> operator*(vector<T> vec)										{ vector<T> result; T sum; for(int row=0; row<get_height(); row++) { sum = 0; for (int col=0; col<get_width(); col++) sum += (*this)(col,row) * vec[col]; result.push_back(sum); } return result; }
-	array2d<T>& multiply_row_scalar(int row, double mult)					{ for (int i=0; i<get_width(); i++) { (*this)(i,row) *= mult; } return *this; }
-	array2d<T>& add_row_multiple(int from_row, int to_row, double mult)		{ for (int i=0; i<get_width(); i++) { (*this)(i,to_row) += mult*(*this)(i,from_row); } return *this; }
-
-	// We use simple Gaussian elimination - perf doesn't matter since the matrices will be K x K, where K = number of palette entries.
-	array2d<T> matrix_inverse()
+	template <typename T, int length> class vector_fixed
 	{
-		array2d<T> result(get_width(), get_height());
-		array2d<T>& a = *this;
+	public:
+		vector_fixed()																									{ for (int i=0; i<length; i++) data[i] = 0; }
+		vector_fixed(const vector_fixed<T, length>& rhs)																{ for (int i=0; i<length; i++) data[i] = rhs.data[i]; }
+		vector_fixed(const vector<T>& rhs)																				{ for (int i=0; i<length; i++) data[i] = rhs[i]; }
 
-		// Set result to identity matrix
-		result *= 0;
-		for (int i=0; i<get_width(); i++)
-			result(i,i) = 1;
+		T& operator()(int i)																							{ return data[i]; }
+		int get_length()																								{ return length; }
+		T norm_squared()																								{ T result = 0; for (int i=0; i<length; i++) result += (*this)(i) * (*this)(i); return result; }
 
-		// Reduce to echelon form, mirroring in result
-		for (int i=0; i<get_width(); i++)
+		vector_fixed<T, length>& operator=(const vector_fixed<T, length> rhs)											{ for (int i=0; i<length; i++) data[i] = rhs.data[i]; return *this; }
+		vector_fixed<T, length> direct_product(vector_fixed<T, length>& rhs)											{ vector_fixed<T, length> result; for (int i=0; i<length; i++) result(i) = (*this)(i) * rhs(i); return result; }
+
+		double dot_product(vector_fixed<T, length> rhs)																	{ T result = 0; for (int i=0; i<length; i++) result += (*this)(i) * rhs(i); return result; }
+		vector_fixed<T, length>& operator+=(vector_fixed<T, length> rhs)												{ for (int i=0; i<length; i++) data[i] += rhs(i); return *this; }
+		vector_fixed<T, length> operator+(vector_fixed<T, length> rhs)													{ vector_fixed<T, length> result(*this); result += rhs; return result; }
+		vector_fixed<T, length>& operator-=(vector_fixed<T, length> rhs)												{ for (int i=0; i<length; i++) data[i] -= rhs(i); return *this; }
+		vector_fixed<T, length> operator-(vector_fixed<T, length> rhs)													{ vector_fixed<T, length> result(*this); result -= rhs; return result; }
+		vector_fixed<T, length>& operator*=(T scalar)																	{ for (int i=0; i<length; i++) data[i] *= scalar; return *this; }
+		vector_fixed<T, length> operator*(T scalar)																		{ vector_fixed<T, length> result(*this); result *= scalar; return result; }
+
+	private:
+		T data[length];
+	};
+
+	template <typename T, int length> vector_fixed<T, length> operator*(T scalar, vector_fixed<T, length> vec)			{ return vec*scalar; }
+
+	template <typename T> class array2d
+	{
+	public:
+		array2d(int w, int h)																							{ width = w; height = h; data = new T[width * height]; }
+		array2d(const array2d<T>& rhs)																					{ width = rhs.width; height = rhs.height; data = new T[width * height]; for (int i=0; i<width; i++) for (int j=0; j<height; j++) (*this)(i,j) = rhs.data[j*width + i]; }
+		~array2d()																										{ delete [] data; }
+
+		T& operator()(int col, int row)																					{ return data[row*width + col]; }
+		int get_width()																									{ return width; }
+		int get_height()																								{ return height; }
+
+		array2d<T>& operator*=(T scalar)																				{ for (int i=0; i<width; i++) for (int j=0; j<height; j++) (*this)(i,j) *= scalar; return *this; }
+		array2d<T> operator*(T scalar)																					{ array2d<T> result(*this); result *= scalar; return result; }
+		vector<T> operator*(vector<T> vec)																				{ vector<T> result; T sum; for(int row=0; row<get_height(); row++) { sum = 0; for (int col=0; col<get_width(); col++) sum += (*this)(col,row) * vec[col]; result.push_back(sum); } return result; }
+		array2d<T>& multiply_row_scalar(int row, double mult)															{ for (int i=0; i<get_width(); i++) { (*this)(i,row) *= mult; } return *this; }
+		array2d<T>& add_row_multiple(int from_row, int to_row, double mult)												{ for (int i=0; i<get_width(); i++) { (*this)(i,to_row) += mult*(*this)(i,from_row); } return *this; }
+
+		// We use simple Gaussian elimination - perf doesn't matter since the matrices will be K x K, where K = number of palette entries.
+		array2d<T> matrix_inverse()
 		{
-			result.multiply_row_scalar(i, 1/a(i,i));
-			multiply_row_scalar(i, 1/a(i,i));
-			for (int j=i+1; j<get_height(); j++)
+			array2d<T> result(get_width(), get_height());
+			array2d<T>& a = *this;
+
+			// Set result to identity matrix
+			result *= 0;
+			for (int i=0; i<get_width(); i++)
+				result(i,i) = 1;
+
+			// Reduce to echelon form, mirroring in result
+			for (int i=0; i<get_width(); i++)
 			{
-				result.add_row_multiple(i, j, -a(i,j));
-				add_row_multiple(i, j, -a(i,j));
+				result.multiply_row_scalar(i, 1/a(i,i));
+				multiply_row_scalar(i, 1/a(i,i));
+				for (int j=i+1; j<get_height(); j++)
+				{
+					result.add_row_multiple(i, j, -a(i,j));
+					add_row_multiple(i, j, -a(i,j));
+				}
 			}
-		}
-		// Back substitute, mirroring in result
-		for (int i=get_width()-1; i>=0; i--)
-		{
-			for (int j=i-1; j>=0; j--)
+			// Back substitute, mirroring in result
+			for (int i=get_width()-1; i>=0; i--)
 			{
-				result.add_row_multiple(i, j, -a(i,j));
-				add_row_multiple(i, j, -a(i,j));
+				for (int j=i-1; j>=0; j--)
+				{
+					result.add_row_multiple(i, j, -a(i,j));
+					add_row_multiple(i, j, -a(i,j));
+				}
 			}
+
+			// result is now the inverse
+			return result;
 		}
 
-		// result is now the inverse
-		return result;
-	}
+	private:
+		T* data;
+		int width, height;
+	};
 
-private:
-	T* data;
-	int width, height;
-};
+	template <typename T> array2d<T> operator*(T scalar, array2d<T> a)													{ return a*scalar; }
+
+	template <typename T> class array3d
+	{
+	public:
+		array3d(int w, int h, int d)																					{ width = w; height = h; depth = d; data = new T[width * height * depth]; }
+		array3d(const array3d<T>& rhs)																					{ width = rhs.width; height = rhs.height; depth = rhs.depth; data = new T[width * height * depth]; for (int i=0; i<width; i++) for (int j=0; j<height; j++) for (int k=0; k<depth; k++) (*this)(i,j,k) = rhs.data[j*width*depth + i*depth + k]; }
+		~array3d()																										{ delete [] data; }
+
+		T& operator()(int col, int row, int layer)																		{ return data[row*width*depth + col*depth + layer]; }
+
+		int get_width()																									{ return width; }
+		int get_height()																								{ return height; }
+		int get_depth()																									{ return depth; }
+
+	private:
+		T* data;
+		int width, height, depth;
+	};
+
+	int compute_max_coarse_level(int width, int height);
+	void fill_random(array3d<double>& a, tMath::tRandom::tGenerator& gen);
+	double get_initial_temperature();
+	double get_final_temperature();
+	void random_permutation(int count, vector<int>& result, std::default_random_engine& randEng);
+	void random_permutation_2d(int width, int height, deque< pair<int, int> >& result, std::default_random_engine& randEng);
+	void compute_b_array(array2d< vector_fixed<double, 3> >& filter_weights, array2d< vector_fixed<double, 3> >& b);
+	vector_fixed<double, 3> b_value(array2d< vector_fixed<double, 3> >& b, int i_x, int i_y, int j_x, int j_y);
+	void compute_a_image(array2d< vector_fixed<double, 3> >& image, array2d< vector_fixed<double, 3> >& b, array2d< vector_fixed<double, 3> >& a);
+	void sum_coarsen(array2d< vector_fixed<double, 3> >& fine, array2d< vector_fixed<double, 3> >& coarse);
+	template <typename T, int length> array2d<T> extract_vector_layer_2d(array2d< vector_fixed<T, length> > s, int k);
+	template <typename T, int length> vector<T> extract_vector_layer_1d(vector< vector_fixed<T, length> > s, int k);
+	int best_match_color(array3d<double>& vars, int i_x, int i_y, vector< vector_fixed<double, 3> >& palette);
+	void zoom_double(array3d<double>& small, array3d<double>& big);
+	void compute_initial_s(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_variables, array2d< vector_fixed<double, 3> >& b);
+	void update_s(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_variables, array2d< vector_fixed<double, 3> >& b, int j_x, int j_y, int alpha, double delta);
+	void refine_palette(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_variables, array2d< vector_fixed<double, 3> >& a, vector< vector_fixed<double, 3> >& palette);
+	void compute_initial_j_palette_sum(array2d< vector_fixed<double, 3> >& j_palette_sum, array3d<double>& coarse_variables, vector< vector_fixed<double, 3> >& palette);
+	bool spatial_color_quant
+	(
+		array2d< vector_fixed<double, 3> >& image, array2d< vector_fixed<double, 3> >& filter_weights, array2d< int >& quantized_image,
+		vector< vector_fixed<double, 3> >& palette, array3d<double>*& p_coarse_variables,
+		double initial_temperature, double final_temperature, int temps_per_level, int repeats_per_temp,
+		tMath::tRandom::tGenerator& randGen, std::default_random_engine& randEng
+	);
+}
 
 
-template <typename T> array2d<T> operator*(T scalar, array2d<T> a)			{ return a*scalar; }
-
-
-template <typename T> class array3d
-{
-public:
-	array3d(int w, int h, int d)								{ width = w; height = h; depth = d; data = new T[width * height * depth]; }
-	array3d(const array3d<T>& rhs)								{ width = rhs.width; height = rhs.height; depth = rhs.depth; data = new T[width * height * depth]; for (int i=0; i<width; i++) for (int j=0; j<height; j++) for (int k=0; k<depth; k++) (*this)(i,j,k) = rhs.data[j*width*depth + i*depth + k]; }
-	~array3d()													{ delete [] data; }
-
-	T& operator()(int col, int row, int layer)					{ return data[row*width*depth + col*depth + layer]; }
-
-	int get_width()												{ return width; }
-	int get_height()											{ return height; }
-	int get_depth()												{ return depth; }
-
-private:
-	T* data;
-	int width, height, depth;
-};
-
-
-int compute_max_coarse_level(int width, int height)
+int tQuantizeSpatial::compute_max_coarse_level(int width, int height)
 {
 	// We want the coarsest layer to have at most MAX_PIXELS pixels
 	const int MAX_PIXELS = 4000;
@@ -172,7 +196,7 @@ int compute_max_coarse_level(int width, int height)
 }
 
 
-void fill_random(array3d<double>& a, tMath::tRandom::tGenerator& gen)
+void tQuantizeSpatial::fill_random(array3d<double>& a, tMath::tRandom::tGenerator& gen)
 {
 	for (int i=0; i<a.get_width(); i++)
 		for (int j=0; j<a.get_height(); j++)
@@ -182,19 +206,19 @@ void fill_random(array3d<double>& a, tMath::tRandom::tGenerator& gen)
 }
 
 
-double get_initial_temperature()
+double tQuantizeSpatial::get_initial_temperature()
 {
 	return 2.0; // TODO: Figure out what to make this
 }
 
 
-double get_final_temperature()
+double tQuantizeSpatial::get_final_temperature()
 {
 	return 0.02; // TODO: Figure out what to make this
 }
 
 
-void random_permutation(int count, vector<int>& result, std::default_random_engine& randEng)
+void tQuantizeSpatial::random_permutation(int count, vector<int>& result, std::default_random_engine& randEng)
 {
 	result.clear();
 	for(int i=0; i<count; i++)
@@ -204,7 +228,7 @@ void random_permutation(int count, vector<int>& result, std::default_random_engi
 }
 
 
-void random_permutation_2d(int width, int height, deque< pair<int, int> >& result, std::default_random_engine& randEng)
+void tQuantizeSpatial::random_permutation_2d(int width, int height, deque< pair<int, int> >& result, std::default_random_engine& randEng)
 {
 	vector<int> perm1d;
 	random_permutation(width*height, perm1d, randEng);
@@ -217,7 +241,7 @@ void random_permutation_2d(int width, int height, deque< pair<int, int> >& resul
 }
 
 
-void compute_b_array(array2d< vector_fixed<double, 3> >& filter_weights, array2d< vector_fixed<double, 3> >& b)
+void tQuantizeSpatial::compute_b_array(array2d< vector_fixed<double, 3> >& filter_weights, array2d< vector_fixed<double, 3> >& b)
 {
 	// Assume that the pixel i is always located at the center of b, and vary pixel j's location through each location in b.
 	int radius_width = (filter_weights.get_width() - 1)/2, radius_height = (filter_weights.get_height() - 1)/2;
@@ -245,7 +269,7 @@ void compute_b_array(array2d< vector_fixed<double, 3> >& filter_weights, array2d
 }
 
 
-vector_fixed<double, 3> b_value(array2d< vector_fixed<double, 3> >& b, int i_x, int i_y, int j_x, int j_y)
+tQuantizeSpatial::vector_fixed<double, 3> tQuantizeSpatial::b_value(array2d< vector_fixed<double, 3> >& b, int i_x, int i_y, int j_x, int j_y)
 {
 	int radius_width = (b.get_width() - 1)/2, radius_height = (b.get_height() - 1)/2;
 	int k_x = j_x - i_x + radius_width;
@@ -257,7 +281,7 @@ vector_fixed<double, 3> b_value(array2d< vector_fixed<double, 3> >& b, int i_x, 
 }
 
 
-void compute_a_image(array2d< vector_fixed<double, 3> >& image, array2d< vector_fixed<double, 3> >& b, array2d< vector_fixed<double, 3> >& a)
+void tQuantizeSpatial::compute_a_image(array2d< vector_fixed<double, 3> >& image, array2d< vector_fixed<double, 3> >& b, array2d< vector_fixed<double, 3> >& a)
 {
 	int radius_width = (b.get_width() - 1)/2, radius_height = (b.get_height() - 1)/2;
 	for (int i_y = 0; i_y < a.get_height(); i_y++)
@@ -283,7 +307,7 @@ void compute_a_image(array2d< vector_fixed<double, 3> >& image, array2d< vector_
 }
 
 
-void sum_coarsen(array2d< vector_fixed<double, 3> >& fine, array2d< vector_fixed<double, 3> >& coarse)
+void tQuantizeSpatial::sum_coarsen(array2d< vector_fixed<double, 3> >& fine, array2d< vector_fixed<double, 3> >& coarse)
 {
 	for (int y=0; y<coarse.get_height(); y++)
 	{
@@ -309,7 +333,7 @@ void sum_coarsen(array2d< vector_fixed<double, 3> >& fine, array2d< vector_fixed
 }
 
 
-template <typename T, int length> array2d<T> extract_vector_layer_2d(array2d< vector_fixed<T, length> > s, int k)
+template <typename T, int length> tQuantizeSpatial::array2d<T> tQuantizeSpatial::extract_vector_layer_2d(array2d< vector_fixed<T, length> > s, int k)
 {
 	array2d<T> result(s.get_width(), s.get_height());
 	for (int i=0; i < s.get_width(); i++)
@@ -323,7 +347,7 @@ template <typename T, int length> array2d<T> extract_vector_layer_2d(array2d< ve
 }
 
 
-template <typename T, int length> vector<T> extract_vector_layer_1d(vector< vector_fixed<T, length> > s, int k)
+template <typename T, int length> vector<T> tQuantizeSpatial::extract_vector_layer_1d(vector< vector_fixed<T, length> > s, int k)
 {
 	vector<T> result;
 	for (unsigned int i=0; i < s.size(); i++)
@@ -334,7 +358,7 @@ template <typename T, int length> vector<T> extract_vector_layer_1d(vector< vect
 }
 
 
-int best_match_color(array3d<double>& vars, int i_x, int i_y, vector< vector_fixed<double, 3> >& palette)
+int tQuantizeSpatial::best_match_color(array3d<double>& vars, int i_x, int i_y, vector< vector_fixed<double, 3> >& palette)
 {
 	int max_v = 0;
 	double max_weight = vars(i_x, i_y, 0);
@@ -350,7 +374,7 @@ int best_match_color(array3d<double>& vars, int i_x, int i_y, vector< vector_fix
 }
 
 
-void zoom_double(array3d<double>& small, array3d<double>& big)
+void tQuantizeSpatial::zoom_double(array3d<double>& small, array3d<double>& big)
 {
 	// Simple scaling of the weights array based on mixing the four pixels falling under each fine pixel, weighted by area.
 	// To mix the pixels a little, we assume each fine pixel is 1.2 fine pixels wide and high.
@@ -395,7 +419,7 @@ void zoom_double(array3d<double>& small, array3d<double>& big)
 }
 
 
-void compute_initial_s(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_variables, array2d< vector_fixed<double, 3> >& b)
+void tQuantizeSpatial::compute_initial_s(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_variables, array2d< vector_fixed<double, 3> >& b)
 {
 	int palette_size  = s.get_width();
 	int coarse_width  = coarse_variables.get_width();
@@ -443,7 +467,7 @@ void compute_initial_s(array2d< vector_fixed<double,3> >& s, array3d<double>& co
 }
 
 
-void update_s(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_variables, array2d< vector_fixed<double, 3> >& b, int j_x, int j_y, int alpha, double delta)
+void tQuantizeSpatial::update_s(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_variables, array2d< vector_fixed<double, 3> >& b, int j_x, int j_y, int alpha, double delta)
 {
 	int palette_size  = s.get_width();
 	int coarse_width  = coarse_variables.get_width();
@@ -477,7 +501,7 @@ void update_s(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_vari
 }
 
 
-void refine_palette(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_variables, array2d< vector_fixed<double, 3> >& a, vector< vector_fixed<double, 3> >& palette)
+void tQuantizeSpatial::refine_palette(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_variables, array2d< vector_fixed<double, 3> >& a, vector< vector_fixed<double, 3> >& palette)
 {
 	// We only computed the half of S above the diagonal - reflect it
 	for (int v=0; v<s.get_width(); v++)
@@ -516,7 +540,7 @@ void refine_palette(array2d< vector_fixed<double,3> >& s, array3d<double>& coars
 }
 
 
-void compute_initial_j_palette_sum(array2d< vector_fixed<double, 3> >& j_palette_sum, array3d<double>& coarse_variables, vector< vector_fixed<double, 3> >& palette)
+void tQuantizeSpatial::compute_initial_j_palette_sum(array2d< vector_fixed<double, 3> >& j_palette_sum, array3d<double>& coarse_variables, vector< vector_fixed<double, 3> >& palette)
 {
 	for (int j_y=0; j_y<coarse_variables.get_height(); j_y++)
 	{
@@ -533,7 +557,7 @@ void compute_initial_j_palette_sum(array2d< vector_fixed<double, 3> >& j_palette
 }
 
 
-bool spatial_color_quant
+bool tQuantizeSpatial::spatial_color_quant
 (
 	array2d< vector_fixed<double, 3> >& image, array2d< vector_fixed<double, 3> >& filter_weights, array2d< int >& quantized_image,
 	vector< vector_fixed<double, 3> >& palette, array3d<double>*& p_coarse_variables,
@@ -792,7 +816,9 @@ bool spatial_color_quant
 }
 
 
-}
+//
+// The functions below make up the external interface.
+//
 
 
 double tQuantizeSpatial::ComputeBaseDither(int width, int height, int numColours)
@@ -819,6 +845,8 @@ bool tQuantizeSpatial::QuantizeImage
 
 	if (ditherLevel <= 0.0)
 		ditherLevel = tQuantizeSpatial::ComputeBaseDither(width, height, numColours);
+
+	// @WIP If numcolours-in-pixels <= numcolours we can represent the image exactly so we can skip the quantize entirely.
 
 	// Seeding the generator with the same value every time guarantees repeatability.
 	tMath::tRandom::tGeneratorMersenneTwister randGen(uint32(147));

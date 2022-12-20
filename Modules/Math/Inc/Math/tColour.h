@@ -105,8 +105,11 @@ namespace tMath
 	tColour4i tGetColour(const char* colourName);
 
 	// Alpha is ignored for these colour difference functions.
+	float tColourDiffEuclideanSq(const tColour3i& a, const tColour3i& b);		// Returns value E [0.0, 195075.0]
 	float tColourDiffEuclideanSq(const tColour4i& a, const tColour4i& b);		// Returns value E [0.0, 195075.0]
+	float tColourDiffEuclidean  (const tColour3i& a, const tColour3i& b);		// Returns value E [0.0, 441.672956]
 	float tColourDiffEuclidean  (const tColour4i& a, const tColour4i& b);		// Returns value E [0.0, 441.672956]
+	float tColourDiffRedmean    (const tColour3i& a, const tColour3i& b);		// Returns value E [0.0, 764.8340]
 	float tColourDiffRedmean    (const tColour4i& a, const tColour4i& b);		// Returns value E [0.0, 764.8340]
 
 	// Some colour-space component conversion functions. Gamma-space is probably more ubiquitous than the more accurate
@@ -295,6 +298,14 @@ public:
 	void Set(const tColour3i& c)																						{ R = c.R; G = c.G; B = c.B; }
 	void Set(int r, int g, int b)																						{ R = tMath::tClamp(r, 0, 0xFF); G = tMath::tClamp(g, 0, 0xFF); B = tMath::tClamp(b, 0, 0xFF); }
 	void Set(uint8 r, uint8 g, uint8 b)																					{ R = r; G = g; B = b; }
+
+	// These floating point get methods use a range of [0.0, 255.0] for each component.
+	float GetDenormR() const																							{ return float(R); }
+	float GetDenormG() const																							{ return float(G); }
+	float GetDenormB() const																							{ return float(B); }
+	void GetDenorm(float* dest) const																					{ dest[0] = GetDenormR(); dest[1] = GetDenormG(); dest[2] = GetDenormB(); }
+	void GetDenorm(tMath::tVector3& dest) const																			{ dest.x = GetDenormR(); dest.y = GetDenormG(); dest.z = GetDenormB(); }
+	void GetDenorm(float& r, float&g, float& b) const																	{ r = GetDenormR(); g = GetDenormG(); b = GetDenormB(); }
 
 	union
 	{
@@ -784,11 +795,27 @@ inline void tColour4f::HSVToRGB()
 }
 
 
+inline float tMath::tColourDiffEuclideanSq(const tColour3i& aa, const tColour3i& bb)
+{
+	tVector3 a; aa.GetDenorm(a);
+	tVector3 b; bb.GetDenorm(b);
+	return tDistBetweenSq(a, b);
+}
+
+
 inline float tMath::tColourDiffEuclideanSq(const tColour4i& aa, const tColour4i& bb)
 {
 	tVector3 a; aa.GetDenorm(a);
 	tVector3 b; bb.GetDenorm(b);
 	return tDistBetweenSq(a, b);
+}
+
+
+inline float tMath::tColourDiffEuclidean(const tColour3i& aa, const tColour3i& bb)
+{
+	tVector3 a; aa.GetDenorm(a);
+	tVector3 b; bb.GetDenorm(b);
+	return tDistBetween(a, b);
 }
 
 
