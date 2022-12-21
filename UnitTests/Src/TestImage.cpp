@@ -378,18 +378,17 @@ tTestUnit(ImagePicture)
 void QuantizeImage(int w, int h, tPixel* pixels, tPixelFormat fmt, tImage::tQuantizeMethod method)
 {
 	tPaletteImage pal;
-	pal.Set(fmt, w, h, pixels, method);	// Create a palettized image with a specific-sized palette.
+	pal.Set(fmt, w, h, pixels, method);					// Create a palettized image with a specific-sized palette.
 
-	//pal.Set(tPixelFormat::PAL1BIT, w, h, tgapix, tImage::tQuantizeMethod::Spatial);	
 	tPixel* palpix = new tPixel[w*h];
-	pal.Get(palpix);																// Depalettize into a pixel buffer.
+	pal.Get(palpix);									// Depalettize into a pixel buffer.
 
-	tImageTGA dsttga;
-	dsttga.Set(palpix, w, h, true);													// Give the pixels to the tga.
+	tImagePNG dstimg;
+	dstimg.Set(palpix, w, h, true);						// Give the pixels to the tga.
 
 	tString saveName;
-	tsPrintf(saveName, "Written_%s_%s.tga", tGetPixelFormatName(fmt), tGetQuantizeMethodName(method));
-	dsttga.Save(saveName);										// And save it out.
+	tsPrintf(saveName, "Written_%s_%s.png", tGetPixelFormatName(fmt), tGetQuantizeMethodName(method));
+	dstimg.Save(saveName);								// And save it out.
 	tRequire(tSystem::tFileExists(saveName));
 }
 
@@ -403,7 +402,7 @@ tTestUnit(ImagePalette)
 
 	// We'll start by loading a test image.
 	tImageTGA srctga;
-	srctga.Load("Dock640.tga");
+	srctga.Load("Dock512.tga");
 	int w = srctga.GetWidth();
 	int h = srctga.GetHeight();
 	tPixel* tgapix = srctga.GetPixels();
@@ -420,7 +419,6 @@ tTestUnit(ImagePalette)
 	//
 	// NeuQuant quantization.
 	//
-	/*
 	QuantizeImage(w, h, tgapix, tPixelFormat::PAL1BIT, tImage::tQuantizeMethod::Neu);
 	QuantizeImage(w, h, tgapix, tPixelFormat::PAL2BIT, tImage::tQuantizeMethod::Neu);
 	QuantizeImage(w, h, tgapix, tPixelFormat::PAL3BIT, tImage::tQuantizeMethod::Neu);
@@ -428,9 +426,8 @@ tTestUnit(ImagePalette)
 	QuantizeImage(w, h, tgapix, tPixelFormat::PAL5BIT, tImage::tQuantizeMethod::Neu);
 	QuantizeImage(w, h, tgapix, tPixelFormat::PAL6BIT, tImage::tQuantizeMethod::Neu);
 	QuantizeImage(w, h, tgapix, tPixelFormat::PAL7BIT, tImage::tQuantizeMethod::Neu);
-	*/
 	QuantizeImage(w, h, tgapix, tPixelFormat::PAL8BIT, tImage::tQuantizeMethod::Neu);
-	
+
 	tSystem::tSetCurrentDir(origDir);
 }
 
