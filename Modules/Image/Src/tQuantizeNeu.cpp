@@ -9,8 +9,8 @@
 // * Replacing the inxsearch and inxbuild with red-mean perceptual colour distance metric to choose best colours.
 // * Support for an arbitrary number of colours between 2 and 256.
 //
-// The algrithm works well for larger numbers of colours (generally 256 or 255) but it can handle values as low as 2.
-// In fact, at 32 colours it looks significantly better than scolorq, whereas scolorq looks better at 16 or fewer.
+// The algrithm works well for larger numbers of colours (generally 128 to 256 or 255) but it can handle values as
+// low as 2.
 //
 // Modifications Copyright (c) 2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -44,12 +44,8 @@ namespace tImage {
 
 namespace tQuantizeNeu
 {
-	// For 256 colours, fixed arrays need 8kb, plus space for the image
+	// For 256 colours, fixed arrays need 8kb, plus space for the image.
 	const int maxnetsize		= 256;					// Maximum network size (number of colours).
-//	const int netsize			= 255;					// number of colours used
-//	const int netsize			= 128;					// number of colours used
-//	const int netsize			= 64;					// number of colours used
-//	const int netsize			= 32;					// number of colours used
 
 	// Four primes near 500 - assume no image has a length so large that it is divisible by all four primes.
 	const int prime1			= 499;
@@ -57,34 +53,34 @@ namespace tQuantizeNeu
 	const int prime3			= 487;
 	const int prime4			= 503;
 
-	const int minpicturebytes	= (3 * prime4);			// minimum size for input image
+	const int minpicturebytes	= (3 * prime4);			// Minimum size for input image.
 
-	// Network Definitions
-	const int maxnetpos			= 255;					// netsize - 1
-	const int netbiasshift		= 4;					// bias for colour values
-	const int ncycles			= 100;					// no. of learning cycles
+	// Network Definitions.
+	const int maxnetpos			= maxnetsize - 1;
+	const int netbiasshift		= 4;					// Bias for colour values.
+	const int ncycles			= 100;					// Number of learning cycles.
 
-	// Defs for freq and bias
-	const int intbiasshift		= 16;					// bias for fractions
-	const int intbias			= 65536;				// 1 << intbiasshift
-	const int gammashift		= 10;					// gamma = 1024
-	const int gamma				= 1024;					// 1 << gammashift
+	// Defs for freq and bias.
+	const int intbiasshift		= 16;					// Bias for fractions.
+	const int intbias			= 65536;				// 1 << intbiasshift.
+	const int gammashift		= 10;					// Gamma = 1024.
+	const int gamma				= 1024;					// 1 << gammashift.
 	const int betashift			= 10;
-	const int beta				= 64;					// intbias >> betashift beta = 1/1024
-	const int betagamma			= 65536;				// intbias << (gammashift - betashift)
+	const int beta				= 64;					// intbias >> betashift beta = 1/1024.
+	const int betagamma			= 65536;				// intbias << (gammashift - betashift).
 
 	// Defs for decreasing radius factor.
 	const int initrad			= 32;					// netsize >> 3 for 256 cols, radius starts
-	const int radiusbiasshift	= 6;					// at 32.0 biased by 6 bits
+	const int radiusbiasshift	= 6;					// at 32.0 biased by 6 bits.
 	const int radiusbias		= 64;					// 1 << radiusbiasshift
 	const int initradius		= 2048;					// initrad * radiusbias and decreases by a
-	const int radiusdec			= 30;					// factor of 1/30 each cycle
+	const int radiusdec			= 30;					// factor of 1/30 each cycle.
 
 	// Defs for decreasing alpha factor.
-	const int alphabiasshift	= 10;					// alpha starts at 1.0
+	const int alphabiasshift	= 10;					// Alpha starts at 1.0
 	const int initalpha			= 1024;					// 1 << alphabiasshift
 
-	// Radbias and alpharadbias used for radpower calculation
+	// Radbias and alpharadbias used for radpower calculation.
 	const int radbiasshift		= 8;
 	const int radbias			= 256;					// 1 << radbiasshift
 	const int alpharadbshift	= 18;					// alphabiasshift + radbiasshift
@@ -93,41 +89,44 @@ namespace tQuantizeNeu
 	struct State
 	{
 		int netsize				= maxnetsize;			// This defaults to maxnetsize but can be reduced to as low as 2 colours.
-		int alphadec;							  // biased by 10 bits
-		unsigned char *thepicture;				// the input image itself
-		int lengthcount;						  // lengthcount = H*W*3
-		int samplefac;							// sampling factor 1..30 */
-		typedef int pixel_bgr[4];				 // BGRc
-		pixel_bgr network[maxnetsize];			   // the network itself
-		int netindex[maxnetsize];						// for network lookup - really 256
-		int bias[maxnetsize];						// bias and freq arrays for learning
-		int freq[maxnetsize];						// frequency array for learning
-		int radpower[initrad];					// radpower for precomputation
+		int alphadec;							 		// Biased by 10 bits.
+		unsigned char *thepicture;						// The input image itself.
+		int lengthcount;						  		// lengthcount = H*W*3.
+		int samplefac;									// Sampling factor 1..30.
+		typedef int pixel_bgr[4];						// BGRc
+		pixel_bgr network[maxnetsize];					// The network itself.
+		int netindex[maxnetsize];						// For network lookup - really 256.
+		int bias[maxnetsize];							// Bias and freq arrays for learning.
+		int freq[maxnetsize];							// Frequency array for learning.
+		int radpower[initrad];							// radpower for precomputation.
 	};
 
-	// Initialise network in range (0,0,0) to (255,255,255) and set parameters
+	// Initialise network in range (0,0,0) to (255,255,255) and set parameters.
 	int getNetwork(State&, int i, int j);
 	void initnet(State&, unsigned char *thepic, int len, int sample);
 
-	// Unbias network to give byte values 0..255 and record position i to prepare for sort */
+	// Unbias network to give byte values 0..255 and record position i to prepare for sort.
 	void unbiasnet(State&);
 
-	// Output colour dither
-	//int getColourMap(std::vector<ARGB> &out, uint32_t maxColorCount);
-	int getColourMap(State&, tColour3i* out, uint32_t numColours);
+	// This gets the palette in the out variable.
+	int getColourMap(State&, tColour3i* out);
 
-	// Insertion sort of network and building of netindex[0..255] (to do after unbias)
+	// Insertion sort of network and building of netindex[0..255] (to do after unbias).
+	// We don't call this function since we do an exhaustive red-mean distance check.
 	void inxbuild(State&);
 
-	// Search for BGR values 0..255 (after net is unbiased) and return colour index
+	// Search for BGR values 0..255 (after net is unbiased) and return colour index.
+	// We don't call this function since we do an exhaustive red-mean distance check.
 	int inxsearch(State&, int b, int g, int r);
 
-	// Main Learning Loop
+	// Main Learning Loop.
 	void learn(State&);
 
 	int contest(State&, int b, int g, int r);
 	void altersingle(State&, int alpha, int i, int b, int g, int r);
 	void alterneigh(State&, int rad, int i, int b, int g, int r);
+
+	int FindIndexOfClosestColour_Redmean(const tColour3i* searchSpace, int searchSize, const tColour3i& searchColour);
 }
 
 
@@ -135,6 +134,7 @@ int tQuantizeNeu::getNetwork(State& state, int i, int j)
 {
 	return state.network[i][j];
 }
+
 
 void tQuantizeNeu::initnet(State& state, unsigned char *thepic, int len, int sample)
 {
@@ -158,39 +158,35 @@ void tQuantizeNeu::initnet(State& state, unsigned char *thepic, int len, int sam
 
 void tQuantizeNeu::unbiasnet(State& state)
 {
-	/* Unbias network to give byte values 0..255 and record position i to prepare for sort */
+	// Unbias network to give byte values 0..255 and record position i to prepare for sort.
 	int i, j, temp;
 
 	for (i = 0; i < state.netsize; i++)
 	{
 		for (j = 0; j < 3; j++)
 		{
-			/* OLD CODE: network[i][j] >>= netbiasshift; */
-			/* Fix based on bug report by Juergen Weigert jw@suse.de */
+			// OLD CODE: network[i][j] >>= netbiasshift;
+			// Fix based on bug report by Juergen Weigert jw@suse.de.
 			temp = (state.network[i][j] + (1 << (netbiasshift - 1))) >> netbiasshift;
 			if (temp > 255) temp = 255;
 			state.network[i][j] = temp;
 		}
-		state.network[i][3] = i;			/* record colour no */
+
+		// Record colour no.
+		state.network[i][3] = i;
 	}
 }
 
-/* Output colour dither */
-int tQuantizeNeu::getColourMap(State& state, tColour3i* out, uint32_t numColours)
+
+int tQuantizeNeu::getColourMap(State& state, tColour3i* out)
 {
+	// Output colour map. The palette.
 	int index[maxnetsize];
 	for (int i = 0; i < state.netsize; i++)
-	{
 		index[state.network[i][3]] = i;
-	}
 
 	for (int j = 0; j < state.netsize; j++)
 	{
-		if (j >= numColours)
-		{
-			return j;
-		}
-
 		out[j].R = uint8(state.network[j][0]);
 		out[j].G = uint8(state.network[j][1]);
 		out[j].B = uint8(state.network[j][2]);
@@ -212,19 +208,21 @@ void tQuantizeNeu::inxbuild(State& state)
 	{
 		p = state.network[i];
 		smallpos = i;
-		smallval = p[1];			/* index on g */
-		/* find smallest in i..netsize-1 */
+		smallval = p[1];							// Index on g.
+
+		// Find smallest in i..netsize-1.
 		for (j = i + 1; j < state.netsize; j++)
 		{
 			q = state.network[j];
-			if (q[1] < smallval)
-			{	/* index on g */
+			if (q[1] < smallval)					// Index on g.
+			{
 				smallpos = j;
-				smallval = q[1];	/* index on g */
+				smallval = q[1];					// Index on g.
 			}
 		}
 		q = state.network[smallpos];
-		/* swap p (i) and q (smallpos) entries */
+
+		// Swap p (i) and q (smallpos) entries.
 		if (i != smallpos)
 		{
 			j = q[0];
@@ -240,7 +238,8 @@ void tQuantizeNeu::inxbuild(State& state)
 			q[3] = p[3];
 			p[3] = j;
 		}
-		/* smallval entry is now in position i */
+
+		// Smallval entry is now in position i.
 		if (smallval != previouscol)
 		{
 			state.netindex[previouscol] = (startpos + i) >> 1;
@@ -251,8 +250,9 @@ void tQuantizeNeu::inxbuild(State& state)
 	}
 	state.netindex[previouscol] = (startpos + maxnetpos) >> 1;
 	for (j = previouscol + 1; j < 256; j++)
-		state.netindex[j] = maxnetpos; /* really 256 */
+		state.netindex[j] = maxnetpos;
 }
+
 
 int tQuantizeNeu::inxsearch(State& state, int b, int g, int r)
 {
@@ -261,19 +261,19 @@ int tQuantizeNeu::inxsearch(State& state, int b, int g, int r)
 	int *p;
 	int best;
 
-	bestd = 1000;		/* biggest possible dist is 256*3 */
+	bestd = 1000;							// Biggest possible dist is 256*3.
 	best = -1;
-	i = state.netindex[g];	/* index on g */
-	j = i - 1;		/* start at netindex[g] and work outwards */
+	i = state.netindex[g];					// Index on g.
+	j = i - 1;								// Start at netindex[g] and work outwards.
 
 	while ((i < state.netsize) || (j >= 0))
 	{
 		if (i < state.netsize)
 		{
 			p = state.network[i];
-			dist = p[1] - g;		/* inx key */
+			dist = p[1] - g;				// Inx key.
 			if (dist >= bestd)
-				i = state.netsize;	/* stop iter */
+				i = state.netsize;			// Stop iter.
 			else
 			{
 				i++;
@@ -297,9 +297,9 @@ int tQuantizeNeu::inxsearch(State& state, int b, int g, int r)
 		if (j >= 0)
 		{
 			p = state.network[j];
-			dist = g - p[1]; /* inx key - reverse dif */
+			dist = g - p[1];				// Inx key - reverse dif.
 			if (dist >= bestd)
-				j = -1; /* stop iter */
+				j = -1;						// Stop iter.
 			else
 			{
 				j--;
@@ -324,14 +324,12 @@ int tQuantizeNeu::inxsearch(State& state, int b, int g, int r)
 	return best;
 }
 
-/* Search for biased BGR values */
+
 int tQuantizeNeu::contest(State& state, int b, int g, int r)
 {
-	/* finds closest neuron (min dist) and updates freq */
-	/* finds best neuron (min dist-bias) and returns position */
-	/* for frequently chosen neurons, freq[i] is high and bias[i] is negative */
-	/* bias[i] = gamma*((1/netsize)-freq[i]) */
-
+	// Search for biased BGR values. Finds closest neuron (min dist) and updates freq finds best neuron (min dist-bias)
+	// and returns position for frequently chosen neurons, freq[i] is high and bias[i] is negative.
+	// bias[i] = gamma*((1/netsize)-freq[i])
 	int i, dist, a, biasdist, betafreq;
 	int bestpos, bestbiaspos, bestd, bestbiasd;
 	int *p, *f, *n;
@@ -348,20 +346,17 @@ int tQuantizeNeu::contest(State& state, int b, int g, int r)
 		n = state.network[i];
 		dist = n[0] - b;
 		if (dist < 0)
-		{
 			dist = -dist;
-		}
+
 		a = n[1] - g;
 		if (a < 0)
-		{
 			a = -a;
-		}
+
 		dist += a;
 		a = n[2] - r;
 		if (a < 0)
-		{
 			a = -a;
-		}
+
 		dist += a;
 		if (dist < bestd)
 		{
@@ -383,12 +378,13 @@ int tQuantizeNeu::contest(State& state, int b, int g, int r)
 	return (bestbiaspos);
 }
 
-/* Move neuron i towards biased (b,g,r) by factor alpha */
+
 void tQuantizeNeu::altersingle(State& state, int alpha, int i, int b, int g, int r)
 {
+	// Move neuron i towards biased (b,g,r) by factor alpha.
 	int *n;
 
-	n = state.network[i];				/* alter hit neuron */
+	n = state.network[i];					// Alter hit neuron.
 	*n -= (alpha * (*n - b)) / initalpha;
 	n++;
 	*n -= (alpha * (*n - g)) / initalpha;
@@ -396,22 +392,20 @@ void tQuantizeNeu::altersingle(State& state, int alpha, int i, int b, int g, int
 	*n -= (alpha * (*n - r)) / initalpha;
 }
 
-/* Move adjacent neurons by precomputed alpha*(1-((i-j)^2/[r]^2)) in radpower[|i-j|] */
+
 void tQuantizeNeu::alterneigh(State& state, int rad, int i, int b, int g, int r)
 {
+	// Move adjacent neurons by precomputed alpha*(1-((i-j)^2/[r]^2)) in radpower[|i-j|].
 	int j, k, lo, hi, a;
 	int *p, *q;
 
 	lo = i - rad;
 	if (lo < -1)
-	{
 		lo = -1;
-	}
+
 	hi = i + rad;
 	if (hi > state.netsize)
-	{
 		hi = state.netsize;
-	}
 
 	j = i + 1;
 	k = i - 1;
@@ -442,9 +436,10 @@ void tQuantizeNeu::alterneigh(State& state, int rad, int i, int b, int g, int r)
 	}
 }
 
-/* Main Learning Loop */
+
 void tQuantizeNeu::learn(State& state)
 {
+	// Main Learning Loop.
 	int i, j, b, g, r;
 	int radius, rad, alpha, step, delta, samplepixels;
 	unsigned char *p;
@@ -460,13 +455,10 @@ void tQuantizeNeu::learn(State& state)
 
 	rad = radius >> radiusbiasshift;
 	if (rad <= 1)
-	{
 		rad = 0;
-	}
+
 	for (i = 0; i < rad; i++)
-	{
 		state.radpower[i] = alpha * (((rad * rad - i * i) * radbias) / (rad * rad));
-	}
 
 	if ((state.lengthcount % prime1) != 0)
 	{
@@ -481,13 +473,9 @@ void tQuantizeNeu::learn(State& state)
 		else
 		{
 			if ((state.lengthcount % prime3) != 0)
-			{
 				step = 3 * prime3;
-			}
 			else
-			{
 				step = 3 * prime4;
-			}
 		}
 	}
 
@@ -501,15 +489,11 @@ void tQuantizeNeu::learn(State& state)
 
 		altersingle(state, alpha, j, b, g, r);
 		if (rad)
-		{
-			alterneigh(state, rad, j, b, g, r); /* alter neighbours */
-		}
+			alterneigh(state, rad, j, b, g, r);			// Alter neighbours.
 
 		p += step;
 		if (p >= lim)
-		{
 			p -= state.lengthcount;
-		}
 
 		i++;
 		if (i % delta == 0)
@@ -518,24 +502,16 @@ void tQuantizeNeu::learn(State& state)
 			radius -= radius / radiusdec;
 			rad = radius >> radiusbiasshift;
 			if (rad <= 1)
-			{
 				rad = 0;
-			}
+
 			for (j = 0; j < rad; j++)
-			{
 				state.radpower[j] = alpha * (((rad * rad - j * j) * radbias) / (rad * rad));
-			}
 		}
 	}
 }
 
 
-//
-// The functions below make up the external interface.
-//
-
-
-int FindIndexOfClosestColour(const tColour3i* searchSpace, int searchSize, const tColour3i& colour)
+int tQuantizeNeu::FindIndexOfClosestColour_Redmean(const tColour3i* searchSpace, int searchSize, const tColour3i& colour)
 {
 	float closest = 1000.0f;
 	int closestIndex = -1;
@@ -553,37 +529,38 @@ int FindIndexOfClosestColour(const tColour3i* searchSpace, int searchSize, const
 }
 
 
+//
+// The functions below make up the external interface.
+//
+
+
 bool tQuantizeNeu::QuantizeImage
 (
 	int numColours, int width, int height, const tPixel3* pixels,
-	tColour3i* destPalette, uint8* destIndices
+	tColour3i* destPalette, uint8* destIndices, int sampleFactor
 )
 {
 	// @WIP If numcolours-in-pixels <= numcolours we can represent the image exactly so we can skip the quantize entirely.
- 	// samplefac in range 1..30
-	int samplefac = 1;
 
 	State state;
 	state.netsize = numColours;
 
-	initnet(state, (uint8*)pixels, width*height*3, samplefac);
+	initnet(state, (uint8*)pixels, width*height*3, sampleFactor);
 	learn(state);
 	unbiasnet(state);
-	int resultNumColours = getColourMap(state, destPalette, numColours);
+	int resultNumColours = getColourMap(state, destPalette);
 
-	// redmean is better.
+	// Exhaustive redmean is better.
 	// inxbuild(state);
 	for (int y = 0; y < height; y++)
 	{
 		for (int x = 0; x < width; x++)
 		{
-
 			const tPixel3& pixel = pixels[x + y*width];
-
-			destIndices[x + y*width] = FindIndexOfClosestColour(destPalette, numColours, pixel);
+			destIndices[x + y*width] = FindIndexOfClosestColour_Redmean(destPalette, numColours, pixel);
 
 			// Exhaustive redmean is better.
-			//destIndices[x + y*width] = inxsearch(state, pixel.R, pixel.G, pixel.B);
+			// destIndices[x + y*width] = inxsearch(state, pixel.R, pixel.G, pixel.B);
 		}
 	}
 

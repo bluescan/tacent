@@ -47,7 +47,12 @@ namespace tQuantizeNeu
 	bool QuantizeImage
 	(
 		int numColours, int width, int height, const tPixel3* pixels,
-		tColour3i* destPalette, uint8* destIndices
+		tColour3i* destPalette, uint8* destIndices,
+		
+		// With a sampling factor of 1 the entire image is used in the learning phase. With a factor of 10, a
+		// pseudo-random subset of 1/10 of the pixels are used in the learning phase. sampleFactor must be in [1, 30].
+		// Bigger values are faster but lower quality.
+		int sampleFactor = 1
 	);
 }
 
