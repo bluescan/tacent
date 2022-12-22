@@ -408,7 +408,6 @@ tTestUnit(ImagePalette)
 	w = tga.GetWidth(); h = tga.GetHeight(); pixels = tga.GetPixels();
 	PalettizeImage(w, h, pixels, tPixelFormat::PAL8BIT, tImage::tQuantizeMethod::Fixed);
 
-return;
 	// And now load the image with full colours for the remainder of the tests.
 	tga.Load("Dock512.tga");
 	w = tga.GetWidth(); h = tga.GetHeight(); pixels = tga.GetPixels();
