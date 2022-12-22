@@ -246,6 +246,10 @@ public:
 	tColour4i& operator+=(const tColour4i& c)																			{ R += c.R; G += c.G; B += c.B; A += c.A; return *this; }
 	const tColour4i operator+(const tColour4i& c) const																	{ tColour4i res(*this); res += c; return res; }
 
+	// These allow tColour4i to be keys in a tMap.
+	explicit operator uint32()																							{ return BP; }
+	explicit operator uint32() const																					{ return BP; }
+
 	// Predefined colours. Initialized using the C++11 aggregate initializer syntax. These may be used before main()
 	// in normally (non-aggregate syntax) constructed objects.
 	const static tColour4i black;
@@ -306,6 +310,11 @@ public:
 	void GetDenorm(float* dest) const																					{ dest[0] = GetDenormR(); dest[1] = GetDenormG(); dest[2] = GetDenormB(); }
 	void GetDenorm(tMath::tVector3& dest) const																			{ dest.x = GetDenormR(); dest.y = GetDenormG(); dest.z = GetDenormB(); }
 	void GetDenorm(float& r, float&g, float& b) const																	{ r = GetDenormR(); g = GetDenormG(); b = GetDenormB(); }
+
+	// These allow tColour4i to be keys in a tMap.
+	explicit operator uint32()																							{ return (uint32(R)<<16) | (uint32(G)<<8) | uint32(B); }
+	explicit operator uint32() const																					{ return (uint32(R)<<16) | (uint32(G)<<8) | uint32(B); }
+	bool operator==(const tColour3i& c) const																			{ return (c.R == R) && (c.G == G) && (c.B == B); }
 
 	union
 	{

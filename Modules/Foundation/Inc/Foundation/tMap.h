@@ -49,6 +49,8 @@ private:
 	struct Pair
 	{
 		Pair(const Pair& pair)																							: Key(pair.Key), Value(pair.Value) { }
+
+		// Note that values-types like int are default-constructed as 0 by Value().
 		Pair(const K& key)																								: Key(key), Value() { }
 		K Key; V Value;
 	};

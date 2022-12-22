@@ -834,7 +834,7 @@ double tQuantizeSpatial::ComputeBaseDither(int width, int height, int numColours
 bool tQuantizeSpatial::QuantizeImage
 (
 	int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices,
-	double ditherLevel, int filterSize
+	bool checkExact, double ditherLevel, int filterSize
 )
 {
 	if ((numColours < 2) || (numColours > 256) || (width <= 0) || (height <= 0) || !pixels || !destPalette || !destIndices)
@@ -846,7 +846,12 @@ bool tQuantizeSpatial::QuantizeImage
 	if (ditherLevel <= 0.0)
 		ditherLevel = tQuantizeSpatial::ComputeBaseDither(width, height, numColours);
 
-	// @WIP If numcolours-in-pixels <= numcolours we can represent the image exactly so we can skip the quantize entirely.
+	if (checkExact)
+	{
+		bool success = tQuantizeFixed::QuantizeImageExact(numColours, width, height, pixels, destPalette, destIndices);
+		if (success)
+			return true;
+	}
 
 	// Seeding the generator with the same value every time guarantees repeatability.
 	tMath::tRandom::tGeneratorMersenneTwister randGen(uint32(147));

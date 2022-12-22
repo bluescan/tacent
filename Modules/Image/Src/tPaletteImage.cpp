@@ -139,6 +139,10 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* 
 	// Step 1. Call quantize. Populates the palette and the indices.
 	switch (quantMethod)
 	{
+		case tQuantizeMethod::Fixed:
+			tQuantizeFixed::QuantizeImageExact(numColours, width, height, pixels, Palette, indices);
+			break;
+
 		case tQuantizeMethod::Spatial:
 			tQuantizeSpatial::QuantizeImage(numColours, width, height, pixels, Palette, indices);
 			break;

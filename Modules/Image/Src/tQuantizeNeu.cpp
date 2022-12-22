@@ -537,10 +537,22 @@ int tQuantizeNeu::FindIndexOfClosestColour_Redmean(const tColour3i* searchSpace,
 bool tQuantizeNeu::QuantizeImage
 (
 	int numColours, int width, int height, const tPixel3* pixels,
-	tColour3i* destPalette, uint8* destIndices, int sampleFactor
+	tColour3i* destPalette, uint8* destIndices,
+	bool checkExact, int sampleFactor
 )
 {
-	// @WIP If numcolours-in-pixels <= numcolours we can represent the image exactly so we can skip the quantize entirely.
+	if ((numColours < 2) || (numColours > 256) || (width <= 0) || (height <= 0) || !pixels || !destPalette || !destIndices)
+		return false;
+
+	if ((sampleFactor < 1) || (sampleFactor > 30))
+		return false;
+
+	if (checkExact)
+	{
+		bool success = tQuantizeFixed::QuantizeImageExact(numColours, width, height, pixels, destPalette, destIndices);
+		if (success)
+			return true;
+	}
 
 	State state;
 	state.netsize = numColours;

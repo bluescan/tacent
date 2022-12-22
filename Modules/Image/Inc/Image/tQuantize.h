@@ -28,14 +28,39 @@ enum class tQuantizeMethod
 const char* tGetQuantizeMethodName(tQuantizeMethod);
 
 
-namespace tQuantizeSpatial
+namespace tQuantizeFixed
 {
-	// If ditherLevel is 0.0 uses ComputeBaseDither, otherwise ditherLevel must be > 0.0. filterSize must be 1, 3, or 5.
+	// This is the interface for quantizing an image based on a fixed palette of colours without any 'smarts'.
 	bool QuantizeImage
 	(
 		int numColours, int width, int height, const tPixel3* pixels,
 		tColour3i* destPalette, uint8* destIndices,
-		double ditherLevel = 0.0, int filterSize = 3
+		bool checkExact = true
+	);
+
+	// This performs an exact palettization of an image if the number of unique colours in an image is less-than-or-equal
+	// to the supplied palette size (numColours). If there are too many unique colours, this function does nothing to
+	// either destPalette or destIndices and returns false.
+	bool QuantizeImageExact
+	(
+		int numColours, int width, int height, const tPixel3* pixels,
+		tColour3i* destPalette, uint8* destIndices
+	);
+}
+
+
+namespace tQuantizeSpatial
+{
+	// If ditherLevel is 0.0 uses ComputeBaseDither, otherwise ditherLevel must be > 0.0. filterSize must be 1, 3, or 5.
+	//
+	// If checkExact is true it will inspect all supplied pixels in case there are <= numColours of them. If that is
+	// true then the image is exactly representable given the palette size and the quantize is not needed. The operation
+	// to gather unique pixel colours is a little slow, so you are given the ability to turn this off.
+	bool QuantizeImage
+	(
+		int numColours, int width, int height, const tPixel3* pixels,
+		tColour3i* destPalette, uint8* destIndices,
+		bool checkExact = true, double ditherLevel = 0.0, int filterSize = 3
 	);
 
 	double ComputeBaseDither(int width, int height, int numColours);
@@ -44,15 +69,18 @@ namespace tQuantizeSpatial
 
 namespace tQuantizeNeu
 {
+	// With a sampling factor of 1 the entire image is used in the learning phase. With a factor of 10, a
+	// pseudo-random subset of 1/10 of the pixels are used in the learning phase. sampleFactor must be in [1, 30].
+	// Bigger values are faster but lower quality.
+	//
+	// If checkExact is true it will inspect all supplied pixels in case there are <= numColours of them. If that is
+	// true then the image is exactly representable given the palette size and the quantize is not needed. The operation
+	// to gather unique pixel colours is a little slow, so you are given the ability to turn this off.
 	bool QuantizeImage
 	(
 		int numColours, int width, int height, const tPixel3* pixels,
 		tColour3i* destPalette, uint8* destIndices,
-		
-		// With a sampling factor of 1 the entire image is used in the learning phase. With a factor of 10, a
-		// pseudo-random subset of 1/10 of the pixels are used in the learning phase. sampleFactor must be in [1, 30].
-		// Bigger values are faster but lower quality.
-		int sampleFactor = 1
+		bool checkExact = true, int sampleFactor = 1
 	);
 }
 

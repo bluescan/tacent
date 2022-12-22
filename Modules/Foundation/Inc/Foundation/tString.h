@@ -534,7 +534,7 @@ struct tStringUTF32
 	char32_t* Pod() const			/* Plain Old Data */																{ return CodeUnits; }
 
 private:
-	int StringLength	= 0;					// In char32_t codeunits, not including terminating null.
+	int StringLength	= 0;		// In char32_t codeunits, not including terminating null.
 	char32_t* CodeUnits	= nullptr;
 };
 
