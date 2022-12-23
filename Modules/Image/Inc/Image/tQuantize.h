@@ -14,18 +14,38 @@
 
 #pragma once
 #include <Image/tPixelFormat.h>
-namespace tImage
+namespace tImage {
+	
+	
+namespace tQuantize
 {
+	enum class Method
+	{
+		Fixed,					// Supports from 2 to 256 colours. Low quality because used predefined palettes.
+		Spatial,				// AKA scolorq. Supports from 2 to 256 colours. Good for 32 colours or fewer. Very slow for 64 colours or higher.
+		Neu,					// AKA NeuQuant. Supports from 64 to 256 colours. Best for 128 to 256.
+		Wu						// AKA XiaolinWu. Supports from 2 to 256 colours. Best for 128 to 256.
+	};
+	const char* GetMethodName(Method);
 
+	// This performs an exact palettization of an image if the number of unique colours in an image is less-than-or-equal
+	// to the supplied numColours (palette size). If there are too many unique colours, this function does nothing to
+	// either destPalette or destIndices and returns false.
+	bool QuantizeImageExact
+	(
+		int numColours, int width, int height, const tPixel3* pixels,
+		tColour3i* destPalette, uint8* destIndices
+	);
 
-enum class tQuantizeMethod
-{
-	Fixed,					// Supports from 2 to 256 colours. Low quality because used predefined palettes.
-	Spatial,				// AKA scolorq. Supports from 2 to 256 colours. Good for 32 colours or fewer. Very slow for 64 colours or higher.
-	Neu,					// AKA NeuQuant. Supports from 64 to 256 colours. Best for 128 to 256.
-	Wu						// AKA XiaolinWu. Supports from 2 to 256 colours. Best for 128 to 256.
-};
-const char* tGetQuantizeMethodName(tQuantizeMethod);
+	// Given a palette, array of indices, and the width and height of an image, this funcion converts back into a raw
+	// pixel array. You must ensure there is enough room for width*height pixels in destPixels and that all indices
+	// stay in the range of the palette you provide. Returns ture on success.
+	bool ConvertToPixels
+	(
+		tPixel3* destPixels, int width, int height,
+		const tColour3i* srcPalette, const uint8* srcIndices
+	);
+}
 
 
 namespace tQuantizeFixed
@@ -52,15 +72,6 @@ namespace tQuantizeFixed
 		int numColours, int width, int height, const tPixel3* pixels,
 		tColour3i* destPalette, uint8* destIndices,
 		bool checkExact = true
-	);
-
-	// This performs an exact palettization of an image if the number of unique colours in an image is less-than-or-equal
-	// to the supplied palette size (numColours). If there are too many unique colours, this function does nothing to
-	// either destPalette or destIndices and returns false.
-	bool QuantizeImageExact
-	(
-		int numColours, int width, int height, const tPixel3* pixels,
-		tColour3i* destPalette, uint8* destIndices
 	);
 }
 
@@ -101,20 +112,4 @@ namespace tQuantizeNeu
 }
 
 
-}
-
-
-// Implementation below this line.
-
-
-inline const char* tImage::tGetQuantizeMethodName(tQuantizeMethod method)
-{
-	switch (method)
-	{
-		case tQuantizeMethod::Fixed:	return "fixed";
-		case tQuantizeMethod::Spatial:	return "scolorq";
-		case tQuantizeMethod::Neu:		return "neuquant";
-		case tQuantizeMethod::Wu:		return "wu";
-	}
-	return "unknown";
 }

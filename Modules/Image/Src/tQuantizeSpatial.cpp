@@ -848,7 +848,7 @@ bool tQuantizeSpatial::QuantizeImage
 
 	if (checkExact)
 	{
-		bool success = tQuantizeFixed::QuantizeImageExact(numColours, width, height, pixels, destPalette, destIndices);
+		bool success = tQuantize::QuantizeImageExact(numColours, width, height, pixels, destPalette, destIndices);
 		if (success)
 			return true;
 	}

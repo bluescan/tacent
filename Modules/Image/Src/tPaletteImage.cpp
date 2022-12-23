@@ -97,14 +97,11 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const uint8* pi
 }
 
 
-bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel* pixels, tQuantizeMethod quantMethod)
+bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel* pixels, tQuantize::Method quantMethod)
 {
 	Clear();
 	if (!tIsPaletteFormat(fmt) || (width <= 0) || (height <= 0) || !pixels)
 		return false;
-
-	//if ((fmt != tPixelFormat::PAL8BIT) && (quantMethod != tQuantizeMethod::Fixed))
-	//	return false;
 
 	tPixel3* rgbPixels = new tPixel3[width*height];
 	for (int i = 0; i < width*height; i++)
@@ -120,7 +117,7 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel* p
 }
 
 
-bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* pixels, tQuantizeMethod quantMethod)
+bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* pixels, tQuantize::Method quantMethod)
 {
 	Clear();
 	if (!tIsPaletteFormat(fmt) || (width <= 0) || (height <= 0) || !pixels)
@@ -139,15 +136,15 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* 
 	// Step 1. Call quantize. Populates the palette and the indices.
 	switch (quantMethod)
 	{
-		case tQuantizeMethod::Fixed:
+		case tQuantize::Method::Fixed:
 			tQuantizeFixed::QuantizeImage(numColours, width, height, pixels, Palette, indices);
 			break;
 
-		case tQuantizeMethod::Spatial:
+		case tQuantize::Method::Spatial:
 			tQuantizeSpatial::QuantizeImage(numColours, width, height, pixels, Palette, indices);
 			break;
 
-		case tQuantizeMethod::Neu:
+		case tQuantize::Method::Neu:
 			tQuantizeNeu::QuantizeImage(numColours, width, height, pixels, Palette, indices);
 			break;
 
