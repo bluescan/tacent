@@ -30,7 +30,23 @@ const char* tGetQuantizeMethodName(tQuantizeMethod);
 
 namespace tQuantizeFixed
 {
-	// This is the interface for quantizing an image based on a fixed palette of colours without any 'smarts'.
+	// This is the function for quantizing an image based on a fixed palette of colours without any 'smarts'.
+	// The static palettes are not noteworthy in any particular regard -- they favour green, then red, then blue (the
+	// human eye is less sensitive to blue). The colours are roughy spread out evenly in the RGB cube. In all cases pure
+	// black and pure white are included. In particular the 2-colour (1-bit) palette has only black and white. For the
+	// 256-colour palette this ends up being the "8-8-4 levels RGB" palette. See:
+	// https://en.wikipedia.org/wiki/List_of_software_palettes for more information.
+	//
+	// The palettes for a non-power-of-2 number of colours are based on the next higher power-of-2 with some entries
+	// removed in a flip-flop skip pattern. The flip-flop controls which end the colour is removed from, the skip
+	// ensures adjacent colour entries are not removed. 
+	//
+	// Generating palettes without inspecting the image pixels will never produce good results, so if you need quality
+	// use one of the other adaptive quantizers. I could have used something like one of the CIE colour spaces or HSV
+	// and vary the angle etc, but since palette generation involves perception _and_ is subjective, _and_ can't be done
+	// well for arbitrary images, it's probably better to use noticably average fixed palettes -- even if only to
+	// encourage use of a different method like NeuQuant, Scolorq, or Wu. Note, to figure out what palette-index a
+	// particular pixel should map to, the red-mean colour difference function is used -- a common perceptual metric.
 	bool QuantizeImage
 	(
 		int numColours, int width, int height, const tPixel3* pixels,

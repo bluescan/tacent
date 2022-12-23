@@ -22,6 +22,7 @@ namespace tUnitTest
 	tTestUnit(ImageSave);
 	tTestUnit(ImageTexture);
 	tTestUnit(ImagePicture);
+	tTestUnit(ImageQuantize);
 	tTestUnit(ImagePalette);
 	tTestUnit(ImageMetaData);
 	tTestUnit(ImageRotation);

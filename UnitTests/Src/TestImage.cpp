@@ -375,6 +375,19 @@ tTestUnit(ImagePicture)
 }
 
 
+tTestUnit(ImageQuantize)
+{
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageQuantize)
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
+
+	// @todo Add quantize tests for various palette sizes here... including non-power-of-2 sizes.
+
+	tSystem::tSetCurrentDir(origDir);
+}
+
+
 void PalettizeImage(int w, int h, tPixel* pixels, tPixelFormat fmt, tImage::tQuantizeMethod method)
 {
 	tPaletteImage pal;
