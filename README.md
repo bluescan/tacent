@@ -21,7 +21,7 @@ Vectors, matrices, quaternions, projections, linear algebra, hash functions, ran
 File IO, path and file string parsing functions, chunk-based binary format, configuration file parsing, a light task system, a timer class, formatted printing, regular expression parser, a command-line parser with proper separation of concerns, and other utility functions. Depends on Foundation and Math.
 
 * __Image__
-Image loading, saving, manipulation, mipmapping, texture generation. Depends on Foundation, Math, and System.
+Image loading, saving, manipulation, mipmapping, texture generation, and colour quantization. Depends on Foundation, Math, and System.
 
 * __Pipeline__
 Process launching with captured output and exit codes, dependency rule checking. Depends on Foundation, Math, and System.
