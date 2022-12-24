@@ -165,7 +165,7 @@ int main(int argc, char** argv)
 	tTest(ImageSave);
 	tTest(ImageTexture);
 	tTest(ImagePicture);
-	//tTest(ImageQuantize);
+	tTest(ImageQuantize);
 	tTest(ImagePalette);
 	tTest(ImageMetaData);
 	tTest(ImageRotation);
