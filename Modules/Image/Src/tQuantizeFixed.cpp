@@ -233,8 +233,7 @@ int tQuantizeFixed::FindIndexOfClosestColour_Redmean(const tColour3i* searchSpac
 
 bool tQuantizeFixed::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel3* pixels,
-	tColour3i* destPalette, uint8* destIndices,
+	int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices,
 	bool checkExact
 )
 {
@@ -332,8 +331,7 @@ bool tQuantizeFixed::QuantizeImage
 
 bool tQuantizeFixed::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel* pixels,
-	tColour3i* destPalette, uint8* destIndices,
+	int numColours, int width, int height, const tPixel* pixels, tColour3i* destPalette, uint8* destIndices,
 	bool checkExact
 )
 {

@@ -33,13 +33,12 @@ namespace tQuantize
 	// either destPalette or destIndices and returns false.
 	bool QuantizeImageExact
 	(
-		int numColours, int width, int height, const tPixel3* pixels,
-		tColour3i* destPalette, uint8* destIndices
+		int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices
 	);
 
 	// Given a palette, array of indices, and the width and height of an image, this funcion converts back into a raw
 	// pixel array. You must ensure there is enough room for width*height pixels in destPixels and that all indices
-	// stay in the range of the palette you provide. Returns ture on success.
+	// stay in the range of the palette you provide. Returns true on success.
 	bool ConvertToPixels
 	(
 		tPixel3* destPixels, int width, int height,
@@ -72,16 +71,16 @@ namespace tQuantizeFixed
 	// well for arbitrary images, it's probably better to use noticably average fixed palettes -- even if only to
 	// encourage use of a different method like NeuQuant, Scolorq, or Wu. Note, to figure out what palette-index a
 	// particular pixel should map to, the red-mean colour difference function is used -- a common perceptual metric.
+	//
+	// The second variant is same as first but accepts RGBA pixels ignoring alpha.
 	bool QuantizeImage
 	(
-		int numColours, int width, int height, const tPixel3* pixels,
-		tColour3i* destPalette, uint8* destIndices,
+		int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices,
 		bool checkExact = true
 	);
 	bool QuantizeImage
 	(
-		int numColours, int width, int height, const tPixel* pixels,
-		tColour3i* destPalette, uint8* destIndices,
+		int numColours, int width, int height, const tPixel* pixels, tColour3i* destPalette, uint8* destIndices,
 		bool checkExact = true
 	);
 }
@@ -94,16 +93,16 @@ namespace tQuantizeSpatial
 	// If checkExact is true it will inspect all supplied pixels in case there are <= numColours of them. If that is
 	// true then the image is exactly representable given the palette size and the quantize is not needed. The operation
 	// to gather unique pixel colours is a little slow, so you are given the ability to turn this off.
+	//
+	// The second variant is same as first but accepts RGBA pixels ignoring alpha.
 	bool QuantizeImage
 	(
-		int numColours, int width, int height, const tPixel3* pixels,
-		tColour3i* destPalette, uint8* destIndices,
+		int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices,
 		bool checkExact = true, double ditherLevel = 0.0, int filterSize = 3
 	);
 	bool QuantizeImage
 	(
-		int numColours, int width, int height, const tPixel* pixels,
-		tColour3i* destPalette, uint8* destIndices,
+		int numColours, int width, int height, const tPixel* pixels, tColour3i* destPalette, uint8* destIndices,
 		bool checkExact = true, double ditherLevel = 0.0, int filterSize = 3
 	);
 
@@ -120,17 +119,37 @@ namespace tQuantizeNeu
 	// If checkExact is true it will inspect all supplied pixels in case there are <= numColours of them. If that is
 	// true then the image is exactly representable given the palette size and the quantize is not needed. The operation
 	// to gather unique pixel colours is a little slow, so you are given the ability to turn this off.
+	//
+	// The second variant is same as first but accepts RGBA pixels ignoring alpha.
 	bool QuantizeImage
 	(
-		int numColours, int width, int height, const tPixel3* pixels,
-		tColour3i* destPalette, uint8* destIndices,
+		int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices,
 		bool checkExact = true, int sampleFactor = 1
 	);
 	bool QuantizeImage
 	(
-		int numColours, int width, int height, const tPixel* pixels,
-		tColour3i* destPalette, uint8* destIndices,
+		int numColours, int width, int height, const tPixel* pixels, tColour3i* destPalette, uint8* destIndices,
 		bool checkExact = true, int sampleFactor = 1
+	);
+}
+
+
+namespace tQuantizeWu
+{
+	// If checkExact is true it will inspect all supplied pixels in case there are <= numColours of them. If that is
+	// true then the image is exactly representable given the palette size and the quantize is not needed. The operation
+	// to gather unique pixel colours is a little slow, so you are given the ability to turn this off.
+	//
+	// The second variant is same as first but accepts RGBA pixels ignoring alpha.
+	bool QuantizeImage
+	(
+		int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices,
+		bool checkExact = true
+	);
+	bool QuantizeImage
+	(
+		int numColours, int width, int height, const tPixel* pixels, tColour3i* destPalette, uint8* destIndices,
+		bool checkExact = true
 	);
 }
 

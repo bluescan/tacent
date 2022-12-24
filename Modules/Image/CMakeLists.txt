@@ -30,6 +30,7 @@ add_library(
 	Src/tQuantizeFixed.cpp
 	Src/tQuantizeSpatial.cpp
 	Src/tQuantizeNeu.cpp
+	Src/tQuantizeWu.cpp
 	Src/tTexture.cpp
 	Src/tResample.cpp
 	Inc/Image/tBaseImage.h

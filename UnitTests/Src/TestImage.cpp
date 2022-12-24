@@ -382,28 +382,70 @@ tTestUnit(ImageQuantize)
 	tString origDir = tSystem::tGetCurrentDir();
 	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
 
-	// @todo Add quantize tests for various palette sizes here... including non-power-of-2 sizes.
-	tImageTGA srctga; int w = 0; int h = 0; tPixel* srcpixels = nullptr;
-	srctga.Load("Dock512.tga");
-	w = srctga.GetWidth(); h = srctga.GetHeight(); srcpixels = srctga.GetPixels();
+	tImageTGA srctga; srctga.Load("Dock512.tga");
+	int w = srctga.GetWidth(); int h = srctga.GetHeight(); tPixel* srcpixels = srctga.GetPixels();
 
 	tColour3i* palette = new tColour3i[256];
 	uint8* indices = new uint8[w*h];
-	for (int palSize = 2; palSize <= 256; palSize++)
+
+	// The full range of palette sizes is [2, 256]. This takes a _long_ time to compute, especially for spatialized
+	// quantization. For testing purposes we only do 3 sizes: 15, 16, and 17.
+	int minPalSize = 15;
+	int maxPalSize = 17;
+
+	// Fixed Quantization
+	for (int palSize = minPalSize; palSize <= maxPalSize; palSize++)
 	{
-		//tQuantizeFixed::QuantizeImage(palSize, w, h, srcpixels, palette, indices, false);
-		//tQuantizeNeu::QuantizeImage(palSize, w, h, srcpixels, palette, indices, false);
+		// Quantize. Do not look for exact match.
+		tQuantizeFixed::QuantizeImage(palSize, w, h, srcpixels, palette, indices, false);
+
+		// Get the quantization back into a pixel array.
+		tPixel* dstpixels = new tPixel[w*h];
+		tQuantize::ConvertToPixels(dstpixels, w, h, palette, indices);
+
+		// Give the pixels to the dsttga object. The true does this.
+		tImageTGA dsttga; dsttga.Set(dstpixels, w, h, true);
+
+		// Save the quantized tga out.
+		tString filename; tsPrintf(filename, "Written_QuantizedFixed_%03dColours.tga", palSize);
+		dsttga.Save(filename); tRequire(tSystem::tFileExists(filename));
+	}
+
+	// Spatial Quantization
+	for (int palSize = minPalSize; palSize <= maxPalSize; palSize++)
+	{
 		tQuantizeSpatial::QuantizeImage(palSize, w, h, srcpixels, palette, indices, false);
 		tPixel* dstpixels = new tPixel[w*h];
 		tQuantize::ConvertToPixels(dstpixels, w, h, palette, indices);
-		tImageTGA dsttga;
-		dsttga.Set(dstpixels, w, h, true);		// true = gives dstpixels away.
-
-		tString filename;
-		tsPrintf(filename, "Written_QuantizedSpatial_%03dColours.tga", palSize);
-		dsttga.Save(filename);
+		tImageTGA dsttga; dsttga.Set(dstpixels, w, h, true);
+		tString filename; tsPrintf(filename, "Written_QuantizedSpatial_%03dColours.tga", palSize);
+		dsttga.Save(filename); tRequire(tSystem::tFileExists(filename));
 	}
 
+	// Neu Quantization
+	for (int palSize = minPalSize; palSize <= maxPalSize; palSize++)
+	{
+		tQuantizeNeu::QuantizeImage(palSize, w, h, srcpixels, palette, indices, false);
+		tPixel* dstpixels = new tPixel[w*h];
+		tQuantize::ConvertToPixels(dstpixels, w, h, palette, indices);
+		tImageTGA dsttga; dsttga.Set(dstpixels, w, h, true);
+		tString filename; tsPrintf(filename, "Written_QuantizedNeu_%03dColours.tga", palSize);
+		dsttga.Save(filename); tRequire(tSystem::tFileExists(filename));
+	}
+
+	// Wu Quantization
+	for (int palSize = minPalSize; palSize <= maxPalSize; palSize++)
+	{
+		tQuantizeWu::QuantizeImage(palSize, w, h, srcpixels, palette, indices, false);
+		tPixel* dstpixels = new tPixel[w*h];
+		tQuantize::ConvertToPixels(dstpixels, w, h, palette, indices);
+		tImageTGA dsttga; dsttga.Set(dstpixels, w, h, true);
+		tString filename; tsPrintf(filename, "Written_QuantizedWu_%03dColours.tga", palSize);
+		dsttga.Save(filename); tRequire(tSystem::tFileExists(filename));
+	}
+
+	delete[] indices;
+	delete[] palette;
 	tSystem::tSetCurrentDir(origDir);
 }
 
