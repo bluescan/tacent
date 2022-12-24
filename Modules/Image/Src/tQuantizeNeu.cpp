@@ -580,4 +580,24 @@ bool tQuantizeNeu::QuantizeImage
 }
 
 
+bool tQuantizeNeu::QuantizeImage
+(
+	int numColours, int width, int height, const tPixel* pixels,
+	tColour3i* destPalette, uint8* destIndices,
+	bool checkExact, int sampleFactor
+)
+{
+	if ((numColours < 2) || (numColours > 256) || (width <= 0) || (height <= 0) || !pixels || !destPalette || !destIndices)
+		return false;
+
+	tPixel3* pixels3 = new tPixel3[width*height];
+	for (int p = 0; p < width*height; p++)
+		pixels3[p].Set( pixels[p].R, pixels[p].G, pixels[p].B );
+
+	bool success = QuantizeImage(numColours, width, height, pixels3, destPalette, destIndices, checkExact, sampleFactor);
+	delete[] pixels3;
+	return success;
+}
+
+
 }

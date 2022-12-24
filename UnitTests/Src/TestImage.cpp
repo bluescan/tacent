@@ -383,6 +383,26 @@ tTestUnit(ImageQuantize)
 	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
 
 	// @todo Add quantize tests for various palette sizes here... including non-power-of-2 sizes.
+	tImageTGA srctga; int w = 0; int h = 0; tPixel* srcpixels = nullptr;
+	srctga.Load("Dock512.tga");
+	w = srctga.GetWidth(); h = srctga.GetHeight(); srcpixels = srctga.GetPixels();
+
+	tColour3i* palette = new tColour3i[256];
+	uint8* indices = new uint8[w*h];
+	for (int palSize = 2; palSize <= 256; palSize++)
+	{
+		//tQuantizeFixed::QuantizeImage(palSize, w, h, srcpixels, palette, indices, false);
+		//tQuantizeNeu::QuantizeImage(palSize, w, h, srcpixels, palette, indices, false);
+		tQuantizeSpatial::QuantizeImage(palSize, w, h, srcpixels, palette, indices, false);
+		tPixel* dstpixels = new tPixel[w*h];
+		tQuantize::ConvertToPixels(dstpixels, w, h, palette, indices);
+		tImageTGA dsttga;
+		dsttga.Set(dstpixels, w, h, true);		// true = gives dstpixels away.
+
+		tString filename;
+		tsPrintf(filename, "Written_QuantizedSpatial_%03dColours.tga", palSize);
+		dsttga.Save(filename);
+	}
 
 	tSystem::tSetCurrentDir(origDir);
 }

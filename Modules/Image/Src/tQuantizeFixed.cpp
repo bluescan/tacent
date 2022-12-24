@@ -258,12 +258,9 @@ bool tQuantizeFixed::QuantizeImage
 			return true;
 	}
 
-	numColours = 255;
 	int tableSize = numColours;
 	if (!tMath::tIsPower2(tableSize))
 		tableSize = tMath::tNextHigherPower2(tableSize);
-
-	tPrintf("numColours: %d  tableSize: %d\n", numColours, tableSize);
 	tAssert(tMath::tIsPower2(tableSize) && (tableSize >= 2) && (tableSize <= 256));
 
 	bool skipIndexArray[256];
@@ -330,6 +327,26 @@ bool tQuantizeFixed::QuantizeImage
 	}
 
 	return true;
+}
+
+
+bool tQuantizeFixed::QuantizeImage
+(
+	int numColours, int width, int height, const tPixel* pixels,
+	tColour3i* destPalette, uint8* destIndices,
+	bool checkExact
+)
+{
+	if ((numColours < 2) || (numColours > 256) || (width <= 0) || (height <= 0) || !pixels || !destPalette || !destIndices)
+		return false;
+
+	tPixel3* pixels3 = new tPixel3[width*height];
+	for (int p = 0; p < width*height; p++)
+		pixels3[p].Set( pixels[p].R, pixels[p].G, pixels[p].B );
+
+	bool success = QuantizeImage(numColours, width, height, pixels3, destPalette, destIndices, checkExact);
+	delete[] pixels3;
+	return success;
 }
 
 

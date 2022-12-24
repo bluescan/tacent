@@ -45,6 +45,11 @@ namespace tQuantize
 		tPixel3* destPixels, int width, int height,
 		const tColour3i* srcPalette, const uint8* srcIndices
 	);
+	bool ConvertToPixels
+	(
+		tPixel* destPixels, int width, int height,
+		const tColour3i* srcPalette, const uint8* srcIndices
+	);
 }
 
 
@@ -73,6 +78,12 @@ namespace tQuantizeFixed
 		tColour3i* destPalette, uint8* destIndices,
 		bool checkExact = true
 	);
+	bool QuantizeImage
+	(
+		int numColours, int width, int height, const tPixel* pixels,
+		tColour3i* destPalette, uint8* destIndices,
+		bool checkExact = true
+	);
 }
 
 
@@ -86,6 +97,12 @@ namespace tQuantizeSpatial
 	bool QuantizeImage
 	(
 		int numColours, int width, int height, const tPixel3* pixels,
+		tColour3i* destPalette, uint8* destIndices,
+		bool checkExact = true, double ditherLevel = 0.0, int filterSize = 3
+	);
+	bool QuantizeImage
+	(
+		int numColours, int width, int height, const tPixel* pixels,
 		tColour3i* destPalette, uint8* destIndices,
 		bool checkExact = true, double ditherLevel = 0.0, int filterSize = 3
 	);
@@ -106,6 +123,12 @@ namespace tQuantizeNeu
 	bool QuantizeImage
 	(
 		int numColours, int width, int height, const tPixel3* pixels,
+		tColour3i* destPalette, uint8* destIndices,
+		bool checkExact = true, int sampleFactor = 1
+	);
+	bool QuantizeImage
+	(
+		int numColours, int width, int height, const tPixel* pixels,
 		tColour3i* destPalette, uint8* destIndices,
 		bool checkExact = true, int sampleFactor = 1
 	);
