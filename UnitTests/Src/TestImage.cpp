@@ -390,6 +390,8 @@ tTestUnit(ImageQuantize)
 
 	// The full range of palette sizes is [2, 256]. This takes a _long_ time to compute, especially for spatialized
 	// quantization. For testing purposes we only do 3 sizes: 15, 16, and 17.
+	// int minPalSize = 2;
+	// int maxPalSize = 256;
 	int minPalSize = 15;
 	int maxPalSize = 17;
 

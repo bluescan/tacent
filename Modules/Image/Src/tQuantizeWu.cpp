@@ -143,20 +143,20 @@ void tQuantizeWu::M3d(int32* vwt, int32* vmr, int32* vmg, int32* vmb, float* m2)
 	int32 line, line_r, line_g, line_b, area[33], area_r[33], area_g[33], area_b[33];
 	float line2, area2[33];
 
-	for(r=1; r<=32; ++r)
+	for (r = 1; r <= 32; ++r)
 	{
-		for(i=0; i<=32; ++i)
+		for (i = 0; i <= 32; ++i)
 		{
 			area[i]=area_r[i]=area_g[i]=area_b[i]=0;
 			area2[i] = 0.0f;
 		}
-		for(g=1; g<=32; ++g)
+		for (g = 1; g <= 32; ++g)
 		{
 			line = line_r = line_g = line_b = 0;
 			line2 = 0.0f;
-			for(b=1; b<=32; ++b)
+			for (b = 1; b <= 32; ++b)
 			{
-				ind1 = (r<<10) + (r<<6) + r + (g<<5) + g + b; /* [r][g][b] */
+				ind1 = (r<<10) + (r<<6) + r + (g<<5) + g + b;	// [r][g][b]
 				line += vwt[ind1];
 				line_r += vmr[ind1]; 
 				line_g += vmg[ind1]; 
@@ -167,7 +167,7 @@ void tQuantizeWu::M3d(int32* vwt, int32* vmr, int32* vmg, int32* vmb, float* m2)
 				area_g[b] += line_g;
 				area_b[b] += line_b;
 				area2[b] += line2;
-				ind2 = ind1 - 1089; /* [r-1][g][b] */
+				ind2 = ind1 - 1089;								// [r-1][g][b]
 				vwt[ind1] = vwt[ind2] + area[b];
 				vmr[ind1] = vmr[ind2] + area_r[b];
 				vmg[ind1] = vmg[ind2] + area_g[b];
@@ -181,14 +181,17 @@ void tQuantizeWu::M3d(int32* vwt, int32* vmr, int32* vmg, int32* vmb, float* m2)
 
 int32 tQuantizeWu::Vol(Box* cube, int32 mmt[33][33][33])
 {
-	return( mmt[cube->r1][cube->g1][cube->b1] 
-	   -mmt[cube->r1][cube->g1][cube->b0]
-	   -mmt[cube->r1][cube->g0][cube->b1]
-	   +mmt[cube->r1][cube->g0][cube->b0]
-	   -mmt[cube->r0][cube->g1][cube->b1]
-	   +mmt[cube->r0][cube->g1][cube->b0]
-	   +mmt[cube->r0][cube->g0][cube->b1]
-	   -mmt[cube->r0][cube->g0][cube->b0] );
+	return
+	(
+		 mmt[cube->r1][cube->g1][cube->b1]
+		-mmt[cube->r1][cube->g1][cube->b0]
+		-mmt[cube->r1][cube->g0][cube->b1]
+		+mmt[cube->r1][cube->g0][cube->b0]
+		-mmt[cube->r0][cube->g1][cube->b1]
+		+mmt[cube->r0][cube->g1][cube->b0]
+		+mmt[cube->r0][cube->g0][cube->b1]
+		-mmt[cube->r0][cube->g0][cube->b0]
+	);
 }
 
 
@@ -197,25 +200,31 @@ int32 tQuantizeWu::Bottom(Box* cube, uint8 dir, int32 mmt[33][33][33])
 	switch(dir)
 	{
 		case Red:
-			return( -mmt[cube->r0][cube->g1][cube->b1]
+			return
+			(
+				-mmt[cube->r0][cube->g1][cube->b1]
 				+mmt[cube->r0][cube->g1][cube->b0]
 				+mmt[cube->r0][cube->g0][cube->b1]
-				-mmt[cube->r0][cube->g0][cube->b0] );
-			break;
+				-mmt[cube->r0][cube->g0][cube->b0]
+			);
 
 		case Green:
-			return( -mmt[cube->r1][cube->g0][cube->b1]
+			return
+			(
+				-mmt[cube->r1][cube->g0][cube->b1]
 				+mmt[cube->r1][cube->g0][cube->b0]
 				+mmt[cube->r0][cube->g0][cube->b1]
-				-mmt[cube->r0][cube->g0][cube->b0] );
-			break;
+				-mmt[cube->r0][cube->g0][cube->b0]
+			);
 
 		case Blue:
-			return( -mmt[cube->r1][cube->g1][cube->b0]
+			return
+			(
+				-mmt[cube->r1][cube->g1][cube->b0]
 				+mmt[cube->r1][cube->g0][cube->b0]
 				+mmt[cube->r0][cube->g1][cube->b0]
-				-mmt[cube->r0][cube->g0][cube->b0] );
-			break;
+				-mmt[cube->r0][cube->g0][cube->b0]
+			);
 	}
 
 	return 0;
@@ -227,23 +236,31 @@ int32 tQuantizeWu::Top(Box* cube, uint8 dir, int pos, int32 mmt[33][33][33])
 	switch(dir)
 	{
 		case Red:
-			return( mmt[pos][cube->g1][cube->b1] 
-			-mmt[pos][cube->g1][cube->b0]
-			-mmt[pos][cube->g0][cube->b1]
-			+mmt[pos][cube->g0][cube->b0] );
-			break;
+			return
+			(
+				 mmt[pos][cube->g1][cube->b1]
+				-mmt[pos][cube->g1][cube->b0]
+				-mmt[pos][cube->g0][cube->b1]
+				+mmt[pos][cube->g0][cube->b0]
+			);
+
 		case Green:
-			return( mmt[cube->r1][pos][cube->b1] 
-			-mmt[cube->r1][pos][cube->b0]
-			-mmt[cube->r0][pos][cube->b1]
-			+mmt[cube->r0][pos][cube->b0] );
-			break;
+			return
+			(
+				 mmt[cube->r1][pos][cube->b1]
+				-mmt[cube->r1][pos][cube->b0]
+				-mmt[cube->r0][pos][cube->b1]
+				+mmt[cube->r0][pos][cube->b0]
+			);
+
 		case Blue:
-			return( mmt[cube->r1][cube->g1][pos]
-			-mmt[cube->r1][cube->g0][pos]
-			-mmt[cube->r0][cube->g1][pos]
-			+mmt[cube->r0][cube->g0][pos] );
-			break;
+			return
+			(
+				 mmt[cube->r1][cube->g1][pos]
+				-mmt[cube->r1][cube->g0][pos]
+				-mmt[cube->r0][cube->g1][pos]
+				+mmt[cube->r0][cube->g0][pos]
+			);
 	}
 	return 0;
 }
@@ -256,7 +273,7 @@ float tQuantizeWu::Var(State& state, Box* cube)
 	dr = float( Vol(cube, state.mr) );
 	dg = float( Vol(cube, state.mg) );
 	db = float( Vol(cube, state.mb) );
-	xx =  state.m2[cube->r1][cube->g1][cube->b1] 
+	xx = state.m2[cube->r1][cube->g1][cube->b1]
 		-state.m2[cube->r1][cube->g1][cube->b0]
 		-state.m2[cube->r1][cube->g0][cube->b1]
 		+state.m2[cube->r1][cube->g0][cube->b0]
@@ -265,7 +282,7 @@ float tQuantizeWu::Var(State& state, Box* cube)
 		+state.m2[cube->r0][cube->g0][cube->b1]
 		-state.m2[cube->r0][cube->g0][cube->b0];
 
-	return( xx - (dr*dr+dg*dg+db*db)/(float)Vol(cube,state.wt) );
+	return (xx - (dr*dr+dg*dg+db*db)/(float)Vol(cube,state.wt));
 }
 
 
@@ -330,19 +347,19 @@ int tQuantizeWu::Cut(State& state, Box* set1, Box* set2)
 	whole_b = Vol(set1, state.mb);
 	whole_w = Vol(set1, state.wt);
 
-	maxr = Maximize(state, set1, Red, set1->r0+1, set1->r1, &cutr,
-			whole_r, whole_g, whole_b, whole_w);
-	maxg = Maximize(state, set1, Green, set1->g0+1, set1->g1, &cutg,
-			whole_r, whole_g, whole_b, whole_w);
-	maxb = Maximize(state, set1, Blue, set1->b0+1, set1->b1, &cutb,
-			whole_r, whole_g, whole_b, whole_w);
+	maxr = Maximize(state, set1, Red,	set1->r0+1, set1->r1, &cutr, whole_r, whole_g, whole_b, whole_w);
+	maxg = Maximize(state, set1, Green,	set1->g0+1, set1->g1, &cutg, whole_r, whole_g, whole_b, whole_w);
+	maxb = Maximize(state, set1, Blue,	set1->b0+1, set1->b1, &cutb, whole_r, whole_g, whole_b, whole_w);
 
-	if( (maxr>=maxg)&&(maxr>=maxb) )
+	if ((maxr >= maxg) && (maxr >= maxb))
 	{
 		dir = Red;
-		if (cutr < 0) return 0; /* can't split the box */
+
+		// Can't split the box.
+		if (cutr < 0)
+			return 0;
 	}
-	else if ((maxg>=maxr)&&(maxg>=maxb))
+	else if ((maxg >= maxr) && (maxg >= maxb))
 		dir = Green;
 	else
 		dir = Blue;
@@ -358,17 +375,20 @@ int tQuantizeWu::Cut(State& state, Box* set1, Box* set2)
 			set2->g0 = set1->g0;
 			set2->b0 = set1->b0;
 			break;
+
 		case Green:
 			set2->g0 = set1->g1 = cutg;
 			set2->r0 = set1->r0;
 			set2->b0 = set1->b0;
 			break;
+
 		case Blue:
 			set2->b0 = set1->b1 = cutb;
 			set2->r0 = set1->r0;
 			set2->g0 = set1->g0;
 			break;
 	}
+
 	set1->vol=(set1->r1-set1->r0)*(set1->g1-set1->g0)*(set1->b1-set1->b0);
 	set2->vol=(set2->r1-set2->r0)*(set2->g1-set2->g0)*(set2->b1-set2->b0);
 	return 1;
@@ -378,7 +398,6 @@ int tQuantizeWu::Cut(State& state, Box* set1, Box* set2)
 void tQuantizeWu::Mark(Box* cube, int label, uint8* tag)
 {
 	int r, g, b;
-
 	for(r=cube->r0+1; r<=cube->r1; ++r)
 		for(g=cube->g0+1; g<=cube->g1; ++g)
 			for(b=cube->b0+1; b<=cube->b1; ++b)
@@ -396,7 +415,10 @@ void tQuantizeWu::Quantize(int numColours, int width, int height, const tPixel3*
 	float vv[MaxColour], temp;
 	int numPixels = width*height;
 
+	// The arrays in the state are required to be initialized to 0 (and 0.0f for the float array).
 	State state;
+	tStd::tMemset(&state, 0, sizeof(State));
+
 	state.K = numColours;
 	state.size = numPixels;
 
@@ -420,6 +442,8 @@ void tQuantizeWu::Quantize(int numColours, int width, int height, const tPixel3*
 	}
 
 	Hist3d(state, (int32*)state.wt, (int32*)state.mr, (int32*)state.mg, (int32*)state.mb, (float*)state.m2);
+	
+	// These won't be accessed again.
 	delete[] state.Ib;
 	delete[] state.Ig;
 	delete[] state.Ir;
@@ -485,11 +509,16 @@ void tQuantizeWu::Quantize(int numColours, int width, int height, const tPixel3*
 	// Populate the palette. lut_r, lut_g, and lut_b contain the lookup table colours.
 	tAssert(state.K <= numColours);
 	for (int ind = 0; ind < state.K; ind++)
+	{
 		destPalette[ind].Set(lut_r[ind], lut_g[ind], lut_b[ind]);
+	}
 
 	// Copy the indices into the supplied dest array. These are stored in Qadd.
-	for (int ind = 0; ind < numColours; ind++)
+	for (int ind = 0; ind < numPixels; ind++)
+	{
+		tAssert( state.Qadd[ind] <= 255 );
 		destIndices[ind] = uint8(state.Qadd[ind]);
+	}
 	
 	delete[] state.Qadd;
 }
