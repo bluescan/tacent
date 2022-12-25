@@ -50,16 +50,16 @@ namespace tQuantizeWu
 	// We're putting all state on the stack (heap would work too). No globals. This allows the quantizer to be thread-safe.
 	struct State
 	{
-		/* Histogram is in elements 1..HISTSIZE along each axis,
-		* element 0 is for base or marginal value
-		* NB: these must start out 0!
-		*/
-		float		m2[33][33][33];
-		int32	wt[33][33][33], mr[33][33][33],	mg[33][33][33],	mb[33][33][33];
-		uint8   *Ir, *Ig, *Ib;
-		int			size; /*image size*/
-		int		K;	/*color look-up table size*/
-		uint16 *Qadd;
+		// Histogram is in elements 1..HISTSIZE along each axis, element 0 is for base or marginal value. These must start out 0.
+		float m2[33][33][33];
+		int32 wt[33][33][33];
+		int32 mr[33][33][33];
+		int32 mg[33][33][33];
+		int32 mb[33][33][33];
+		uint8 *Ir, *Ig, *Ib;
+		int size;						// Image size (width*height).
+		int K;							// Colour look-up table size (palette size).
+		uint16* Qadd;
 	};
 
 	struct Box
@@ -105,8 +105,8 @@ namespace tQuantizeWu
 	int Cut(State&, Box* set1, Box* set2);
 	void Mark(Box* cube, int label, uint8* tag);
 
-	void Quantize(int numColours, int width, int height);
-
+	// By the time this is called all parameters must be valid. It assumes the first 3 arguments are > 0 and the latter 3 non-null.
+	void Quantize(int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices);
 }
 
 
@@ -116,18 +116,17 @@ void tQuantizeWu::Hist3d(State& state, int32* vwt, int32* vmr, int32* vmg, int32
 	int inr, ing, inb, table[256];
 	int32 i;
 
-	for (i=0; i<256; ++i)
-		table[i]=i*i;
+	for (i = 0; i < 256; ++i)
+		table[i] = i*i;
 
-	state.Qadd = (uint16 *)malloc(sizeof(short int)*state.size);
-	for (i=0; i<state.size; ++i)
+	for (i = 0; i < state.size; ++i)
 	{
 		r = state.Ir[i]; g = state.Ig[i]; b = state.Ib[i];
-		inr=(r>>3)+1; 
-		ing=(g>>3)+1; 
-		inb=(b>>3)+1; 
-		state.Qadd[i]=ind=(inr<<10)+(inr<<6)+inr+(ing<<5)+ing+inb;
-		/*[inr][ing][inb]*/
+		inr = (r>>3)+1; 
+		ing = (g>>3)+1; 
+		inb = (b>>3)+1; 
+		state.Qadd[i] = ind = (inr<<10)+(inr<<6)+inr+(ing<<5)+ing+inb;
+		// [inr][ing][inb]
 		++vwt[ind];
 		vmr[ind] += r;
 		vmg[ind] += g;
@@ -283,17 +282,17 @@ float tQuantizeWu::Maximize(State& state, Box* cube, uint8 dir, int first, int l
 	base_w = Bottom(cube, dir, state.wt);
 	max = 0.0;
 	*cut = -1;
-	for(i=first; i<last; ++i)
+	for (i = first; i < last; ++i)
 	{
 		half_r = base_r + Top(cube, dir, i, state.mr);
 		half_g = base_g + Top(cube, dir, i, state.mg);
 		half_b = base_b + Top(cube, dir, i, state.mb);
 		half_w = base_w + Top(cube, dir, i, state.wt);
-		/* now half_x is sum over lower half of box, if split at i */
+
+		// Now half_x is sum over lower half of box, if split at i.
+		// Subbox could be empty of pixels. Never split into an empty box.
 		if (half_w == 0)
-		{	  /* subbox could be empty of pixels! */
-			continue;			 /* never split into an empty box */
-		}
+			continue;
 		else
 			temp = ((float)half_r*half_r + (float)half_g*half_g + (float)half_b*half_b)/half_w;
 
@@ -302,17 +301,20 @@ float tQuantizeWu::Maximize(State& state, Box* cube, uint8 dir, int first, int l
 		half_b = whole_b - half_b;
 		half_w = whole_w - half_w;
 
-		/* subbox could be empty of pixels! */
+		// Subbox could be empty of pixels. Never split into an empty box.
 		if (half_w == 0)
-		{
-			continue;		/* never split into an empty box */
-		}
+			continue;
 		else
 			temp += ((float)half_r*half_r + (float)half_g*half_g + (float)half_b*half_b)/half_w;
 
-		if (temp > max) { max=temp; *cut=i; }
+		if (temp > max)
+		{
+			max=temp;
+			*cut=i;
+		}
 	}
-	return(max);
+
+	return max;
 }
 
 
@@ -384,76 +386,83 @@ void tQuantizeWu::Mark(Box* cube, int label, uint8* tag)
 }
 
 
-void tQuantizeWu::Quantize(int numColours, int width, int height)
+void tQuantizeWu::Quantize(int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices)
 {
 	Box	cube[MaxColour];
-	uint8	*tag;
-	uint8	lut_r[MaxColour], lut_g[MaxColour], lut_b[MaxColour];
-	int		next;
-	int32	i, weight;
+	uint8 lut_r[MaxColour], lut_g[MaxColour], lut_b[MaxColour];
+	int next;
+	int32 i, weight;
 	int	k;
-	float		vv[MaxColour], temp;
+	float vv[MaxColour], temp;
+	int numPixels = width*height;
 
-	//////////////
 	State state;
 	state.K = numColours;
+	state.size = numPixels;
 
-	state.size = width*height;
-	/* input R,G,B components into Ir, Ig, Ib; set size to width*height */
+	// This is where the indices will be stored.
+	state.Qadd = new uint16[numPixels];
 
-	/////////////
-	//printf("no. of colors:\n");
-	//scanf("%d", &K);
+	// Input R,G,B components into Ir, Ig, Ib.
+	state.Ir = new uint8[numPixels];
+	state.Ig = new uint8[numPixels];
+	state.Ib = new uint8[numPixels];
+	for (int y = 0; y < height; y++)
+	{
+		for (int x = 0; x < width; x++)
+		{
+			int index = x + y*width;
+			const tPixel3& pixel = pixels[index];
+			state.Ir[index] = pixel.R;
+			state.Ig[index] = pixel.G;
+			state.Ib[index] = pixel.B;
+		}
+	}
 
-	///////////////Hist3d(wt, mr, mg, mb, m2); printf("Histogram done\n");
 	Hist3d(state, (int32*)state.wt, (int32*)state.mr, (int32*)state.mg, (int32*)state.mb, (float*)state.m2);
-	free(state.Ig); free(state.Ib); free(state.Ir);
+	delete[] state.Ib;
+	delete[] state.Ig;
+	delete[] state.Ir;
 
 	M3d((int32*)state.wt, (int32*)state.mr, (int32*)state.mg, (int32*)state.mb, (float*)state.m2);
-
 	cube[0].r0 = cube[0].g0 = cube[0].b0 = 0;
 	cube[0].r1 = cube[0].g1 = cube[0].b1 = 32;
 	next = 0;
-	for(i=1; i<state.K; ++i)
+
+	for (i = 1; i < state.K; ++i)
 	{
 		if (Cut(state, &cube[next], &cube[i]))
 		{
-			/* volume test ensures we won't try to cut one-cell box */
-			vv[next] = (cube[next].vol>1) ? Var(state, &cube[next]) : 0.0;
-			vv[i] = (cube[i].vol>1) ? Var(state, &cube[i]) : 0.0;
+			// Volume test ensures we won't try to cut one-cell box.
+			vv[next]	= (cube[next].vol>1)	? Var(state, &cube[next])	: 0.0;
+			vv[i]		= (cube[i].vol>1)		? Var(state, &cube[i])		: 0.0;
 		}
 		else
 		{
-			vv[next] = 0.0;		/* don't try to split this box again */
-			i--;				/* didn't create box i */
+			vv[next] = 0.0;		// Don't try to split this box again.
+			i--;				// Didn't create box i.
 		}
+
 		next = 0; temp = vv[0];
-		for(k=1; k<=i; ++k)
+		for (k = 1; k <= i; ++k)
+		{
 			if (vv[k] > temp)
 			{
-				temp = vv[k]; next = k;
+				temp = vv[k];
+				next = k;
 			}
+		}
+
 		if (temp <= 0.0)
 		{
 			state.K = i+1;
-			/////////////////
-			fprintf(stderr, "Only got %d boxes\n", state.K);
 			break;
 		}
 	}
 
-	////////////////////
-	printf("Partition done\n");
-
-	/* the space for array m2 can be freed now */
-	//////////////////////////////////
-	tag = (uint8 *)malloc(33*33*33);
-	if (tag==NULL)
-	{
-		printf("Not enough space\n"); exit(1);
-	}
-
-	for(k=0; k<state.K; ++k)
+	// The m2 float array will not be accessed further now.
+	uint8 tag[33*33*33];
+	for (k = 0; k < state.K; ++k)
 	{
 		Mark(&cube[k], k, tag);
 		weight = Vol(&cube[k], state.wt);
@@ -465,16 +474,24 @@ void tQuantizeWu::Quantize(int numColours, int width, int height)
 		}
 		else
 		{
-			///////////////////////
-			fprintf(stderr, "bogus box %d\n", k);
+			// k is a bogus box.
 			lut_r[k] = lut_g[k] = lut_b[k] = 0;		
 		}
 	}
 
-	for(i=0; i<state.size; ++i) state.Qadd[i] = tag[state.Qadd[i]];
+	for (i = 0; i < state.size; ++i)
+		state.Qadd[i] = tag[state.Qadd[i]];
+
+	// Populate the palette. lut_r, lut_g, and lut_b contain the lookup table colours.
+	tAssert(state.K <= numColours);
+	for (int ind = 0; ind < state.K; ind++)
+		destPalette[ind].Set(lut_r[ind], lut_g[ind], lut_b[ind]);
+
+	// Copy the indices into the supplied dest array. These are stored in Qadd.
+	for (int ind = 0; ind < numColours; ind++)
+		destIndices[ind] = uint8(state.Qadd[ind]);
 	
-	/* output lut_r, lut_g, lut_b as color look-up table contents, Qadd as the quantized image (array of table addresses). */
-	// Qadd needs to be freed!  Or supplied in the first place.
+	delete[] state.Qadd;
 }
 
 
@@ -499,30 +516,7 @@ bool tQuantizeWu::QuantizeImage
 			return true;
 	}
 
-#if 0
-	State state;
-	state.netsize = numColours;
-
-	initnet(state, (uint8*)pixels, width*height*3, sampleFactor);
-	learn(state);
-	unbiasnet(state);
-	int resultNumColours = getColourMap(state, destPalette);
-
-	// Exhaustive redmean is better.
-	// inxbuild(state);
-	for (int y = 0; y < height; y++)
-	{
-		for (int x = 0; x < width; x++)
-		{
-			const tPixel3& pixel = pixels[x + y*width];
-			destIndices[x + y*width] = FindIndexOfClosestColour_Redmean(destPalette, numColours, pixel);
-
-			// Exhaustive redmean is better.
-			// destIndices[x + y*width] = inxsearch(state, pixel.R, pixel.G, pixel.B);
-		}
-	}
-	#endif
-
+	Quantize(numColours, width, height, pixels, destPalette, destIndices);
 	return true;
 }
 
