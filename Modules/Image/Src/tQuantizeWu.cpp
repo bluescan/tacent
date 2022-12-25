@@ -34,107 +34,117 @@
 // and a cure to a previous bug.
 //
 // Free to distribute, comments and suggestions are appreciated.
-//#include <cstdint>
 #include <Math/tColour.h>
 #include "Image/tQuantize.h"
 namespace tImage {
 
 
-	// For 256 colours, fixed arrays need 8kb, plus space for the image.
-	const int MAXCOLOR			= 256;
-	const int RED				= 2;
-	const int GREEN				= 1;
-	const int BLUE				= 0;
-
-
 namespace tQuantizeWu
 {
+	// Constants.
+	const int MaxColour		= 256;		// For 256 colours, fixed arrays need 8kb, plus space for the image.
+	const int Red			= 2;
+	const int Green			= 1;
+	const int Blue			= 0;
 
+	// We're putting all state on the stack (heap would work too). No globals. This allows the quantizer to be thread-safe.
 	struct State
 	{
+		/* Histogram is in elements 1..HISTSIZE along each axis,
+		* element 0 is for base or marginal value
+		* NB: these must start out 0!
+		*/
+		float		m2[33][33][33];
+		int32	wt[33][33][33], mr[33][33][33],	mg[33][33][33],	mb[33][33][33];
+		uint8   *Ir, *Ig, *Ib;
+		int			size; /*image size*/
+		int		K;	/*color look-up table size*/
+		uint16 *Qadd;
 	};
+
+	struct Box
+	{
+		// X0 is min value, exclusive. X1 is max value, inclusive.
+		int r0; int r1; int g0; int g1; int b0; int b1;
+		int vol;
+	};
+
+	// Build 3-D color histogram of counts, r/g/b, c^2. At conclusion of the histogram step, we can interpret:
+ 	// wt[r][g][b] = sum over voxel of P(c)
+ 	// mr[r][g][b] = sum over voxel of r*P(c),  similarly for mg, mb
+ 	// m2[r][g][b] = sum over voxel of c^2*P(c)
+	// Actually each of these should be divided by 'size' to give the usual interpretation of P() as ranging from 0 to 1
+	// but we needn't do that here.
+	void Hist3d(State&, int32* vwt, int32* vmr, int32* vmg, int32* vmb, float* m2);
+
+	// Compute cumulative moments. We now convert histogram into moments so that we can rapidly calculate the sums of
+	// the above quantities over any desired box.
+	void M3d(int32* vwt, int32* vmr, int32* vmg, int32* vmb, float* m2);
+	
+	// Compute sum over a box of any given statistic.
+	int32 Vol(Box* cube, int32 mmt[33][33][33]);
+
+	// The next two routines allow a slightly more efficient calculation of Vol() for a proposed subbox of a given box.
+	// The sum of Top() and Bottom() is the Vol() of a subbox split in the given direction and with the specified new
+	// upper bound.
+	//
+	// Compute part of Vol(cube, mmt) that doesn't depend on r1, g1, or b1 (depending on dir).
+	int32 Bottom(Box* cube, uint8 dir, int32 mmt[33][33][33]);
+
+	// Compute remainder of Vol(cube, mmt), substituting pos for r1, g1, or b1 (depending on dir).
+	int32 Top(Box* cube, uint8 dir, int pos, int32 mmt[33][33][33]);
+
+	// Compute the weighted variance of a box NB: as with the raw statistics, this is really the variance * size.
+	float Var(State&, Box* cube);
+
+	// We want to minimize the sum of the variances of two subboxes. The sum(c^2) terms can be ignored since their sum
+	// over both subboxes is the same (the sum for the whole box) no matter where we split. The remaining terms have a
+	// minus sign in the variance formula, so we drop the minus sign and MAXIMIZE the sum of the two terms.
+	float Maximize(State&, Box* cube, uint8 dir, int first, int last, int* cut, int32 whole_r, int32 whole_g, int32 whole_b, int32 whole_w);
+
+	int Cut(State&, Box* set1, Box* set2);
+	void Mark(Box* cube, int label, uint8* tag);
+
+	void Quantize(int numColours, int width, int height);
 
 }
 
 
-	struct box
-	{
-		int r0;			 /* min value, exclusive */
-		int r1;			 /* max value, inclusive */
-		int g0;  
-		int g1;  
-		int b0;  
-		int b1;
-		int vol;
-	};
-
-
-/* Histogram is in elements 1..HISTSIZE along each axis,
- * element 0 is for base or marginal value
- * NB: these must start out 0!
- */
-
-float		m2[33][33][33];
-long int	wt[33][33][33], mr[33][33][33],	mg[33][33][33],	mb[33][33][33];
-unsigned char   *Ir, *Ig, *Ib;
-int	        size; /*image size*/
-int		K;    /*color look-up table size*/
-unsigned short int *Qadd;
-
-void Hist3d(long int* vwt, long int* vmr, long int* vmg, long int* vmb, float* m2) 
-/* build 3-D color histogram of counts, r/g/b, c^2 */
-//long int* vwt, *vmr, *vmg, *vmb;
-//float	*m2;
+void tQuantizeWu::Hist3d(State& state, int32* vwt, int32* vmr, int32* vmg, int32* vmb, float* m2)
 {
 	int ind, r, g, b;
-	int	     inr, ing, inb, table[256];
-	long int i;
+	int inr, ing, inb, table[256];
+	int32 i;
 
 	for (i=0; i<256; ++i)
 		table[i]=i*i;
 
-	Qadd = (unsigned short int *)malloc(sizeof(short int)*size);
-	for (i=0; i<size; ++i)
+	state.Qadd = (uint16 *)malloc(sizeof(short int)*state.size);
+	for (i=0; i<state.size; ++i)
 	{
-	    r = Ir[i]; g = Ig[i]; b = Ib[i];
-	    inr=(r>>3)+1; 
-	    ing=(g>>3)+1; 
-	    inb=(b>>3)+1; 
-	    Qadd[i]=ind=(inr<<10)+(inr<<6)+inr+(ing<<5)+ing+inb;
-	    /*[inr][ing][inb]*/
-	    ++vwt[ind];
-	    vmr[ind] += r;
-	    vmg[ind] += g;
-	    vmb[ind] += b;
+		r = state.Ir[i]; g = state.Ig[i]; b = state.Ib[i];
+		inr=(r>>3)+1; 
+		ing=(g>>3)+1; 
+		inb=(b>>3)+1; 
+		state.Qadd[i]=ind=(inr<<10)+(inr<<6)+inr+(ing<<5)+ing+inb;
+		/*[inr][ing][inb]*/
+		++vwt[ind];
+		vmr[ind] += r;
+		vmg[ind] += g;
+		vmb[ind] += b;
 		m2[ind] += (float)(table[r]+table[g]+table[b]);
 	}
 }
 
 
-/* At conclusion of the histogram step, we can interpret
- *   wt[r][g][b] = sum over voxel of P(c)
- *   mr[r][g][b] = sum over voxel of r*P(c)  ,  similarly for mg, mb
- *   m2[r][g][b] = sum over voxel of c^2*P(c)
- * Actually each of these should be divided by 'size' to give the usual
- * interpretation of P() as ranging from 0 to 1, but we needn't do that here.
- */
-
-/* We now convert histogram into moments so that we can rapidly calculate
- * the sums of the above quantities over any desired box.
- */
-
-
-/* compute cumulative moments. */
-void M3d(long int* vwt, long int* vmr, long int* vmg, long int* vmb, float* m2)
-//long int *vwt, *vmr, *vmg, *vmb;
-//float	*m2;
+void tQuantizeWu::M3d(int32* vwt, int32* vmr, int32* vmg, int32* vmb, float* m2)
 {
-	unsigned short int ind1, ind2;
-	unsigned char i, r, g, b;
-	long int line, line_r, line_g, line_b, area[33], area_r[33], area_g[33], area_b[33];
+	uint16 ind1, ind2;
+	uint8 i, r, g, b;
+	int32 line, line_r, line_g, line_b, area[33], area_r[33], area_g[33], area_b[33];
 	float line2, area2[33];
 
-    for(r=1; r<=32; ++r)
+	for(r=1; r<=32; ++r)
 	{
 		for(i=0; i<=32; ++i)
 		{
@@ -166,14 +176,13 @@ void M3d(long int* vwt, long int* vmr, long int* vmg, long int* vmb, float* m2)
 				m2[ind1] = m2[ind2] + area2[b];
 			}
 		}
-    }
+	}
 }
 
 
-/* Compute sum over a box of any given statistic */
-long int Vol(struct box* cube, long int mmt[33][33][33])
+int32 tQuantizeWu::Vol(Box* cube, int32 mmt[33][33][33])
 {
-    return( mmt[cube->r1][cube->g1][cube->b1] 
+	return( mmt[cube->r1][cube->g1][cube->b1] 
 	   -mmt[cube->r1][cube->g1][cube->b0]
 	   -mmt[cube->r1][cube->g0][cube->b1]
 	   +mmt[cube->r1][cube->g0][cube->b0]
@@ -184,122 +193,106 @@ long int Vol(struct box* cube, long int mmt[33][33][33])
 }
 
 
-/* The next two routines allow a slightly more efficient calculation
- * of Vol() for a proposed subbox of a given box.  The sum of Top()
- * and Bottom() is the Vol() of a subbox split in the given direction
- * and with the specified new upper bound.
- */
-
-/* Compute part of Vol(cube, mmt) that doesn't depend on r1, g1, or b1 */
-/* (depending on dir) */
-
-long int Bottom(struct box* cube, unsigned char dir, long int mmt[33][33][33])
+int32 tQuantizeWu::Bottom(Box* cube, uint8 dir, int32 mmt[33][33][33])
 {
-    switch(dir)
+	switch(dir)
 	{
-		case RED:
+		case Red:
 			return( -mmt[cube->r0][cube->g1][cube->b1]
 				+mmt[cube->r0][cube->g1][cube->b0]
 				+mmt[cube->r0][cube->g0][cube->b1]
 				-mmt[cube->r0][cube->g0][cube->b0] );
 			break;
-		case GREEN:
+
+		case Green:
 			return( -mmt[cube->r1][cube->g0][cube->b1]
 				+mmt[cube->r1][cube->g0][cube->b0]
 				+mmt[cube->r0][cube->g0][cube->b1]
 				-mmt[cube->r0][cube->g0][cube->b0] );
 			break;
-		case BLUE:
+
+		case Blue:
 			return( -mmt[cube->r1][cube->g1][cube->b0]
 				+mmt[cube->r1][cube->g0][cube->b0]
 				+mmt[cube->r0][cube->g1][cube->b0]
 				-mmt[cube->r0][cube->g0][cube->b0] );
 			break;
-    }
+	}
+
 	return 0;
 }
 
 
-/* Compute remainder of Vol(cube, mmt), substituting pos for */
-/* r1, g1, or b1 (depending on dir) */
-long int Top(struct box* cube, unsigned char dir, int   pos, long int mmt[33][33][33])
+int32 tQuantizeWu::Top(Box* cube, uint8 dir, int pos, int32 mmt[33][33][33])
 {
-    switch(dir)
+	switch(dir)
 	{
-		case RED:
+		case Red:
 			return( mmt[pos][cube->g1][cube->b1] 
 			-mmt[pos][cube->g1][cube->b0]
 			-mmt[pos][cube->g0][cube->b1]
 			+mmt[pos][cube->g0][cube->b0] );
 			break;
-		case GREEN:
+		case Green:
 			return( mmt[cube->r1][pos][cube->b1] 
 			-mmt[cube->r1][pos][cube->b0]
 			-mmt[cube->r0][pos][cube->b1]
 			+mmt[cube->r0][pos][cube->b0] );
 			break;
-		case BLUE:
+		case Blue:
 			return( mmt[cube->r1][cube->g1][pos]
 			-mmt[cube->r1][cube->g0][pos]
 			-mmt[cube->r0][cube->g1][pos]
 			+mmt[cube->r0][cube->g0][pos] );
 			break;
-    }
+	}
 	return 0;
 }
 
 
-/* Compute the weighted variance of a box */
-/* NB: as with the raw statistics, this is really the variance * size */
-float Var(struct box *cube)
+float tQuantizeWu::Var(State& state, Box* cube)
 {
 	float dr, dg, db, xx;
 
-	dr = float( Vol(cube, mr) );
-	dg = float( Vol(cube, mg) );
-	db = float( Vol(cube, mb) );
-	xx =  m2[cube->r1][cube->g1][cube->b1] 
-		-m2[cube->r1][cube->g1][cube->b0]
-		-m2[cube->r1][cube->g0][cube->b1]
-		+m2[cube->r1][cube->g0][cube->b0]
-		-m2[cube->r0][cube->g1][cube->b1]
-		+m2[cube->r0][cube->g1][cube->b0]
-		+m2[cube->r0][cube->g0][cube->b1]
-		-m2[cube->r0][cube->g0][cube->b0];
+	dr = float( Vol(cube, state.mr) );
+	dg = float( Vol(cube, state.mg) );
+	db = float( Vol(cube, state.mb) );
+	xx =  state.m2[cube->r1][cube->g1][cube->b1] 
+		-state.m2[cube->r1][cube->g1][cube->b0]
+		-state.m2[cube->r1][cube->g0][cube->b1]
+		+state.m2[cube->r1][cube->g0][cube->b0]
+		-state.m2[cube->r0][cube->g1][cube->b1]
+		+state.m2[cube->r0][cube->g1][cube->b0]
+		+state.m2[cube->r0][cube->g0][cube->b1]
+		-state.m2[cube->r0][cube->g0][cube->b0];
 
-    return( xx - (dr*dr+dg*dg+db*db)/(float)Vol(cube,wt) );    
+	return( xx - (dr*dr+dg*dg+db*db)/(float)Vol(cube,state.wt) );
 }
 
 
-/* We want to minimize the sum of the variances of two subboxes.
- * The sum(c^2) terms can be ignored since their sum over both subboxes
- * is the same (the sum for the whole box) no matter where we split.
- * The remaining terms have a minus sign in the variance formula,
- * so we drop the minus sign and MAXIMIZE the sum of the two terms.
- */
-float Maximize(struct box *cube, unsigned char dir, int first, int last, int* cut, int32 whole_r, int32 whole_g, int32 whole_b, int32 whole_w)
+float tQuantizeWu::Maximize(State& state, Box* cube, uint8 dir, int first, int last, int* cut, int32 whole_r, int32 whole_g, int32 whole_b, int32 whole_w)
 {
-	long int half_r, half_g, half_b, half_w;
-	long int base_r, base_g, base_b, base_w;
+	int32 half_r, half_g, half_b, half_w;
+	int32 base_r, base_g, base_b, base_w;
 	int i;
 	float temp, max;
 
-    base_r = Bottom(cube, dir, mr);
-    base_g = Bottom(cube, dir, mg);
-    base_b = Bottom(cube, dir, mb);
-    base_w = Bottom(cube, dir, wt);
-    max = 0.0;
-    *cut = -1;
-    for(i=first; i<last; ++i)
+	base_r = Bottom(cube, dir, state.mr);
+	base_g = Bottom(cube, dir, state.mg);
+	base_b = Bottom(cube, dir, state.mb);
+	base_w = Bottom(cube, dir, state.wt);
+	max = 0.0;
+	*cut = -1;
+	for(i=first; i<last; ++i)
 	{
-		half_r = base_r + Top(cube, dir, i, mr);
-		half_g = base_g + Top(cube, dir, i, mg);
-		half_b = base_b + Top(cube, dir, i, mb);
-		half_w = base_w + Top(cube, dir, i, wt);
-        /* now half_x is sum over lower half of box, if split at i */
-        if (half_w == 0)
-		{      /* subbox could be empty of pixels! */
-			continue;             /* never split into an empty box */
+		half_r = base_r + Top(cube, dir, i, state.mr);
+		half_g = base_g + Top(cube, dir, i, state.mg);
+		half_b = base_b + Top(cube, dir, i, state.mb);
+		half_w = base_w + Top(cube, dir, i, state.wt);
+		/* now half_x is sum over lower half of box, if split at i */
+		if (half_w == 0)
+		{	  /* subbox could be empty of pixels! */
+			continue;			 /* never split into an empty box */
 		}
 		else
 			temp = ((float)half_r*half_r + (float)half_g*half_g + (float)half_b*half_b)/half_w;
@@ -312,75 +305,75 @@ float Maximize(struct box *cube, unsigned char dir, int first, int last, int* cu
 		/* subbox could be empty of pixels! */
 		if (half_w == 0)
 		{
-			continue;             /* never split into an empty box */
+			continue;		/* never split into an empty box */
 		}
 		else
 			temp += ((float)half_r*half_r + (float)half_g*half_g + (float)half_b*half_b)/half_w;
 
 		if (temp > max) { max=temp; *cut=i; }
-    }
-    return(max);
+	}
+	return(max);
 }
 
 
-int Cut(struct box* set1, struct box* set2)
+int tQuantizeWu::Cut(State& state, Box* set1, Box* set2)
 {
-	unsigned char dir;
+	uint8 dir;
 	int32 cutr, cutg, cutb;
 	float maxr, maxg, maxb;
 	int32 whole_r, whole_g, whole_b, whole_w;
 
-    whole_r = Vol(set1, mr);
-    whole_g = Vol(set1, mg);
-    whole_b = Vol(set1, mb);
-    whole_w = Vol(set1, wt);
+	whole_r = Vol(set1, state.mr);
+	whole_g = Vol(set1, state.mg);
+	whole_b = Vol(set1, state.mb);
+	whole_w = Vol(set1, state.wt);
 
-    maxr = Maximize(set1, RED, set1->r0+1, set1->r1, &cutr,
-		    whole_r, whole_g, whole_b, whole_w);
-    maxg = Maximize(set1, GREEN, set1->g0+1, set1->g1, &cutg,
-		    whole_r, whole_g, whole_b, whole_w);
-    maxb = Maximize(set1, BLUE, set1->b0+1, set1->b1, &cutb,
-		    whole_r, whole_g, whole_b, whole_w);
+	maxr = Maximize(state, set1, Red, set1->r0+1, set1->r1, &cutr,
+			whole_r, whole_g, whole_b, whole_w);
+	maxg = Maximize(state, set1, Green, set1->g0+1, set1->g1, &cutg,
+			whole_r, whole_g, whole_b, whole_w);
+	maxb = Maximize(state, set1, Blue, set1->b0+1, set1->b1, &cutb,
+			whole_r, whole_g, whole_b, whole_w);
 
 	if( (maxr>=maxg)&&(maxr>=maxb) )
 	{
-		dir = RED;
+		dir = Red;
 		if (cutr < 0) return 0; /* can't split the box */
 	}
 	else if ((maxg>=maxr)&&(maxg>=maxb))
-		dir = GREEN;
+		dir = Green;
 	else
-		dir = BLUE;
+		dir = Blue;
 
-    set2->r1 = set1->r1;
-    set2->g1 = set1->g1;
-    set2->b1 = set1->b1;
+	set2->r1 = set1->r1;
+	set2->g1 = set1->g1;
+	set2->b1 = set1->b1;
 
 	switch (dir)
 	{
-		case RED:
+		case Red:
 			set2->r0 = set1->r1 = cutr;
 			set2->g0 = set1->g0;
 			set2->b0 = set1->b0;
 			break;
-		case GREEN:
+		case Green:
 			set2->g0 = set1->g1 = cutg;
 			set2->r0 = set1->r0;
 			set2->b0 = set1->b0;
 			break;
-		case BLUE:
+		case Blue:
 			set2->b0 = set1->b1 = cutb;
 			set2->r0 = set1->r0;
 			set2->g0 = set1->g0;
 			break;
-    }
-    set1->vol=(set1->r1-set1->r0)*(set1->g1-set1->g0)*(set1->b1-set1->b0);
-    set2->vol=(set2->r1-set2->r0)*(set2->g1-set2->g0)*(set2->b1-set2->b0);
-    return 1;
+	}
+	set1->vol=(set1->r1-set1->r0)*(set1->g1-set1->g0)*(set1->b1-set1->b0);
+	set2->vol=(set2->r1-set2->r0)*(set2->g1-set2->g0)*(set2->b1-set2->b0);
+	return 1;
 }
 
 
-void Mark(struct box *cube, int label, unsigned char *tag)
+void tQuantizeWu::Mark(Box* cube, int label, uint8* tag)
 {
 	int r, g, b;
 
@@ -391,43 +384,48 @@ void Mark(struct box *cube, int label, unsigned char *tag)
 }
 
 
-void quantize()
+void tQuantizeWu::Quantize(int numColours, int width, int height)
 {
-	struct box	cube[MAXCOLOR];
-	unsigned char	*tag;
-	unsigned char	lut_r[MAXCOLOR], lut_g[MAXCOLOR], lut_b[MAXCOLOR];
+	Box	cube[MaxColour];
+	uint8	*tag;
+	uint8	lut_r[MaxColour], lut_g[MaxColour], lut_b[MaxColour];
 	int		next;
-	long int	i, weight;
+	int32	i, weight;
 	int	k;
-	float		vv[MAXCOLOR], temp;
+	float		vv[MaxColour], temp;
 
+	//////////////
+	State state;
+	state.K = numColours;
+
+	state.size = width*height;
 	/* input R,G,B components into Ir, Ig, Ib; set size to width*height */
 
 	/////////////
-	printf("no. of colors:\n");
-	scanf("%d", &K);
+	//printf("no. of colors:\n");
+	//scanf("%d", &K);
 
 	///////////////Hist3d(wt, mr, mg, mb, m2); printf("Histogram done\n");
-	Hist3d((long int*)wt, (long int*)mr, (long int*)mg, (long int*)mb, (float*)m2); printf("Histogram done\n");
-	free(Ig); free(Ib); free(Ir);
+	Hist3d(state, (int32*)state.wt, (int32*)state.mr, (int32*)state.mg, (int32*)state.mb, (float*)state.m2);
+	free(state.Ig); free(state.Ib); free(state.Ir);
 
-	M3d((long int*)wt, (long int*)mr, (long int*)mg, (long int*)mb, (float*)m2);    printf("Moments done\n");
+	M3d((int32*)state.wt, (int32*)state.mr, (int32*)state.mg, (int32*)state.mb, (float*)state.m2);
 
 	cube[0].r0 = cube[0].g0 = cube[0].b0 = 0;
 	cube[0].r1 = cube[0].g1 = cube[0].b1 = 32;
 	next = 0;
-	for(i=1; i<K; ++i)
+	for(i=1; i<state.K; ++i)
 	{
-		if (Cut(&cube[next], &cube[i]))
+		if (Cut(state, &cube[next], &cube[i]))
 		{
 			/* volume test ensures we won't try to cut one-cell box */
-			vv[next] = (cube[next].vol>1) ? Var(&cube[next]) : 0.0;
-			vv[i] = (cube[i].vol>1) ? Var(&cube[i]) : 0.0;
+			vv[next] = (cube[next].vol>1) ? Var(state, &cube[next]) : 0.0;
+			vv[i] = (cube[i].vol>1) ? Var(state, &cube[i]) : 0.0;
 		}
 		else
 		{
-			vv[next] = 0.0;   /* don't try to split this box again */
-			i--;              /* didn't create box i */
+			vv[next] = 0.0;		/* don't try to split this box again */
+			i--;				/* didn't create box i */
 		}
 		next = 0; temp = vv[0];
 		for(k=1; k<=i; ++k)
@@ -437,32 +435,33 @@ void quantize()
 			}
 		if (temp <= 0.0)
 		{
-			K = i+1;
+			state.K = i+1;
 			/////////////////
-			fprintf(stderr, "Only got %d boxes\n", K);
+			fprintf(stderr, "Only got %d boxes\n", state.K);
 			break;
 		}
 	}
 
 	////////////////////
-    printf("Partition done\n");
+	printf("Partition done\n");
 
 	/* the space for array m2 can be freed now */
-	tag = (unsigned char *)malloc(33*33*33);
+	//////////////////////////////////
+	tag = (uint8 *)malloc(33*33*33);
 	if (tag==NULL)
 	{
 		printf("Not enough space\n"); exit(1);
 	}
 
-	for(k=0; k<K; ++k)
+	for(k=0; k<state.K; ++k)
 	{
 		Mark(&cube[k], k, tag);
-		weight = Vol(&cube[k], wt);
+		weight = Vol(&cube[k], state.wt);
 		if (weight)
 		{
-			lut_r[k] = Vol(&cube[k], mr) / weight;
-			lut_g[k] = Vol(&cube[k], mg) / weight;
-			lut_b[k] = Vol(&cube[k], mb) / weight;
+			lut_r[k] = Vol(&cube[k], state.mr) / weight;
+			lut_g[k] = Vol(&cube[k], state.mg) / weight;
+			lut_b[k] = Vol(&cube[k], state.mb) / weight;
 		}
 		else
 		{
@@ -472,14 +471,11 @@ void quantize()
 		}
 	}
 
-	for(i=0; i<size; ++i) Qadd[i] = tag[Qadd[i]];
+	for(i=0; i<state.size; ++i) state.Qadd[i] = tag[state.Qadd[i]];
 	
 	/* output lut_r, lut_g, lut_b as color look-up table contents, Qadd as the quantized image (array of table addresses). */
 	// Qadd needs to be freed!  Or supplied in the first place.
 }
-
-# if 0
-#endif
 
 
 //
