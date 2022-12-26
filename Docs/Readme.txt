@@ -1,1 +1,1 @@
-Licences used by Tacent.
+Licences used by Tacent. In some cases where the licence is only for a single cpp file or there is a code-snippet and the licence allows it, the permission information / licence is found in the cpp/h file itself.

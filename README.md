@@ -164,6 +164,10 @@ Credits are found directly in the code where appropriate. Here is a list of some
 * Davide Pizzolato for CxImage and for placing it under the zlib license.
 * Omar Cornut for Dear ImGui.
 * iOrange for bcdec and etcdec texture decoders on GitHub.
+* Anthony Dekker for NeuQuant colour quantizer.
+* Xiaolin Wu for the Wu colour quantizer.
+* Derrick Coetzee for the Scolorq spatial colour quantizer.
+* Khronos Group and Mark Callow for KTX-Software.
 
 
 ### Legal
