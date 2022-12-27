@@ -71,7 +71,6 @@ add_library(
 	Contrib/gifenc/gifenc.h
 	Contrib/gifenc/gifenc.c
 	Contrib/GifLoad/gif_load.h
-	Contrib/GifSave/gif.h
 	Contrib/LibKTX/include/ktx.h
 	Contrib/LibPNG/include/png.h
 	Contrib/LibTIFF/include/tiff.h
@@ -109,7 +108,7 @@ target_include_directories(
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/bcdec
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/GifLoad
-		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/GifSave
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/gifenc
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibTIFF/include
