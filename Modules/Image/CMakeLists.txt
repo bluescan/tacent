@@ -68,6 +68,8 @@ add_library(
 	Contrib/ApngDis/apngdis.cpp
 	Contrib/bcdec/bcdec.h
 	Contrib/ASTCEncoder/include/astcenc.h
+	Contrib/gifenc/gifenc.h
+	Contrib/gifenc/gifenc.c
 	Contrib/GifLoad/gif_load.h
 	Contrib/GifSave/gif.h
 	Contrib/LibKTX/include/ktx.h

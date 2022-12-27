@@ -17,6 +17,7 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tQuantize.h>
 #include <Image/tFrame.h>
 #include <Image/tBaseImage.h>
 namespace tImage
@@ -60,9 +61,31 @@ public:
 	// Sets from a tPicture.
 	bool Set(tPicture& picture, bool steal = true) override;
 
+	// This function returns true on success. If any required condition is not met false is returned. gifFile is the
+	// file to save to. It must end with a .gif extension.
+	//
+	// format must be one of the PALNBIT formats where N E [1,8]. i.e. Palette size 2, 4, 8, 16, 32, 64, 128, or 256.
+	//
+	// method should be set to one of the 4 available quantization methods: fixed, neuquant, wu, or scolorq.
+	//
+	// loop should be set to -1 for no looping. Single frame gifs always force loop to be set to -1. For multi-frame
+	// gifs loop should be set to 0 to loop forever, and a value > 0 to loop a specific number of times.
+	//
+	// If alphaThreshold is -1, the gif is guaranteed to be opaque.
+	// Otherwise alphaThreshold should be E [0, 255]. Any pixel with alpha <= alphaThreshold is considered transparent
+	// (gif supports binary alpha only). Pixel alpha values > alphaThreshold are considered opaque. If PAL1BIT is chosen
+	// as the pixel format (2 palette entries), alphaThreshold is forced to -1 (fully opaque image). This is because gif
+	// transparency uses a palette entry, and colour quantization on a single colour is ill-defined.
+	//
 	// OverrideframeDuration is in 1/100 seconds. Set to >= 0 to override all frames. Note that values of 0 or 1 get
-	// min-clamped to 2 during save since many viewers do not handle values below 2 properly.
-	bool Save(const tString& gifFile, int overrideFrameDuration = -1);
+	// min-clamped to 2 during save since many viewers do not handle values below 2 properly. If overrideFrameDuration
+	// is < 0, the individual frames' duration is used after being converted from seconds to 1/100th of seconds.
+	bool Save
+	(
+		const tString& gifFile, tPixelFormat format = tPixelFormat::PAL8BIT,
+		tQuantize::Method method = tQuantize::Method::Wu,
+		int loop = -1, int alphaThreshold = -1, int overrideFrameDuration = -1
+	);
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;
@@ -87,10 +110,10 @@ public:
 	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 
 private:
-	static void FrameCallbackBridge(void* imgGifRaw, struct GIF_WHDR*);
-	void FrameCallback(struct GIF_WHDR*);
+	static void FrameLoadCallbackBridge(void* imgGifRaw, struct GIF_WHDR*);
+	void FrameLoadCallback(struct GIF_WHDR*);
 
-	// Variables used during callback processing.
+	// Variables used during load callback processing.
 	int FrmLast = 0;
 	tPixel* FrmPict = nullptr;
 	tPixel* FrmPrev = nullptr;
@@ -104,10 +127,10 @@ private:
 // Implementation only below.
 
 
-inline void tImageGIF::FrameCallbackBridge(void* imgGifRaw, struct GIF_WHDR* whdr)
+inline void tImageGIF::FrameLoadCallbackBridge(void* imgGifRaw, struct GIF_WHDR* whdr)
 {
 	tImageGIF* imgGif = (tImageGIF*)imgGifRaw;
-	imgGif->FrameCallback(whdr);
+	imgGif->FrameLoadCallback(whdr);
 }
 
 

@@ -867,7 +867,7 @@ bool tQuantizeSpatial::QuantizeImage
 	for(int k=0; k<3; k++)
 		filter1_weights(0,0)(k) = 1.0;
 
-	for (int i=0; i<numColours; i++)
+	for (int i = 0; i < numColours; i++)
 	{
 		vector_fixed<double, 3> v;
 		v(0) = tMath::tRandom::tGetDouble(randGen);		// ((double)rand())/RAND_MAX;
@@ -876,9 +876,9 @@ bool tQuantizeSpatial::QuantizeImage
 		palette.push_back(v);
 	}
 
-	for (int y=0; y < height; y++)
+	for (int y = 0; y < height; y++)
 	{
-		for (int x=0; x < width; x++)
+		for (int x = 0; x < width; x++)
 		{
 			image(x,y)(0) = (pixels[x + y*width].R)/255.0;
 			image(x,y)(1) = (pixels[x + y*width].G)/255.0;
@@ -889,27 +889,27 @@ bool tQuantizeSpatial::QuantizeImage
 	array3d<double>* coarse_variables;
 	double stddev = ditherLevel;
 	double sum = 0.0;
-	for(int i=0; i<3; i++)
-		for(int j=0; j<3; j++)
-			for(int k=0; k<3; k++)
+	for(int i = 0; i < 3; i++)
+		for(int j = 0; j < 3; j++)
+			for(int k = 0; k < 3; k++)
 				sum += filter3_weights(i,j)(k) = exp(-sqrt((double)((i-1)*(i-1) + (j-1)*(j-1)))/(stddev*stddev));
 
 	sum /= 3;
-	for(int i=0; i<3; i++)
-		for(int j=0; j<3; j++)
-			for(int k=0; k<3; k++)
+	for(int i = 0; i < 3; i++)
+		for(int j = 0; j < 3; j++)
+			for(int k = 0; k < 3; k++)
 				filter3_weights(i,j)(k) /= sum;
 
 	sum = 0.0;
-	for(int i=0; i<5; i++)
-		for(int j=0; j<5; j++)
-			for(int k=0; k<3; k++)
+	for(int i = 0; i < 5; i++)
+		for(int j = 0; j < 5; j++)
+			for(int k = 0; k < 3; k++)
 				sum += filter5_weights(i,j)(k) = exp(-sqrt((double)((i-2)*(i-2) + (j-2)*(j-2)))/(stddev*stddev));
 
 	sum /= 3;
-	for(int i=0; i<5; i++)
-		for(int j=0; j<5; j++)
-			for(int k=0; k<3; k++)
+	for(int i = 0; i < 5; i++)
+		for(int j = 0; j < 5; j++)
+			for(int k = 0; k < 3; k++)
 				filter5_weights(i,j)(k) /= sum;
 
 	array2d< vector_fixed<double, 3> >* filters[] = {NULL, &filter1_weights, NULL, &filter3_weights, NULL, &filter5_weights};

@@ -1,7 +1,7 @@
 // tImageGIF.cpp
 //
-// This knows how to load gifs. It knows the details of the gif file format and loads the data into multiple tPixel
-// arrays, one for each frame (gifs may be animated). These arrays may be 'stolen' by tPictures.
+// This knows how to load and save gifs. It knows the details of the gif file format and loads the data into multiple
+// tPixel arrays, one for each frame (gifs may be animated). These arrays may be 'stolen' by tPictures.
 //
 // Copyright (c) 2020-2022 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -17,7 +17,7 @@
 #include <Foundation/tString.h>
 #include <System/tFile.h>
 #include <GifLoad/gif_load.h>
-#include <GifSave/gif.h>
+#include <gifenc/gifenc.h>
 #include "Image/tImageGIF.h"
 #include "Image/tPicture.h"
 using namespace tSystem;
@@ -26,7 +26,7 @@ namespace tImage
 
 
 // This callback is a essentially the example code from gif_load.
-void tImageGIF::FrameCallback(struct GIF_WHDR* whdr)
+void tImageGIF::FrameLoadCallback(struct GIF_WHDR* whdr)
 {
     #define RGBA(i)											\
 	(														\
@@ -133,7 +133,7 @@ bool tImageGIF::Load(const tString& gifFile)
 	// They are set to null just in case GIF_Load fails to allocate.
 	FrmPict = nullptr;
 	FrmPrev = nullptr;
-	int result = GIF_Load(gifFileInMemory, numBytes, FrameCallbackBridge, nullptr, (void*)this, 0);
+	int result = GIF_Load(gifFileInMemory, numBytes, FrameLoadCallbackBridge, nullptr, (void*)this, 0);
 	delete[] FrmPict;
 	delete[] FrmPrev;
 	delete[] gifFileInMemory;
@@ -227,28 +227,143 @@ tFrame* tImageGIF::GetFrame(bool steal)
 }
 
 
-bool tImageGIF::Save(const tString& gifFile, int overrideFrameDuration)
+bool tImageGIF::Save
+(
+	const tString& gifFile, tPixelFormat format, tQuantize::Method method,
+	int loop, int alphaThreshold, int overrideFrameDuration
+)
 {
-	if (!IsValid())
+	if (!IsValid() || !tIsPaletteFormat(format) || (tGetFileType(gifFile) != tFileType::GIF))
 		return false;
 
-	GifWriter writer;
+	if (GetNumFrames() == 1)
+		loop = -1;
+	
+	if (format == tPixelFormat::PAL1BIT)
+		alphaThreshold = -1;
 
-	// We assume here that GifBegin can handle the (const char*) being UTF-8 even though it doesn't use char8_t.
-	GifBegin(&writer, gifFile.Chr(), Width, Height, 100);
+	// Before we create a gif with gifenc's ge_new_gif we need to have created a good palette for it to use. This is a
+	// little tricky for multiframe gifs because gifenc does not support frame-local palettes. The same palette is used
+	// for all frames so it can apply size optimization. However, quantize calls work on a single image/frame.
+	//
+	// Additionally, some quantize methods dither as they go... so palette indexes are created in the same step. To
+	// solve all this we need to create an 'uber-image' with all frames in one image -- and call quantize on that to
+	// create both the palette and the indices on one go.
+	//
+	// Lastly, before we do this we need to determine if we will be generating a gif with transparency. This affects the
+	// quantization step because it has one less colour to work with. For example, an 8-bit palette would have 255
+	// colour entries and 1 transparency entry instead of 256 colour entries.
+	int gifBitDepth			= tGetBitsPerPixel(format);
+	int gifPaletteSize		= tMath::tPow2(gifBitDepth);
+	bool gifTransparency	= (alphaThreshold >= 0);
+	int quantNumColours		= gifPaletteSize - (gifTransparency ? 1 : 0);
+	int numFrames			= GetNumFrames();
 
-	for (tFrame* frame = Frames.First(); frame; frame = frame->Next())
+	tPixel* pixels			= nullptr;
+	int width				= 0;
+	int height				= 0;
+
+	if (numFrames == 1)
 	{
+		width = Width;
+		height = Height;
+		pixels = Frames.First()->Pixels;
+	}
+	else
+	{
+		// Create the uber image since numFrames > 1.
+		width = Width * numFrames;
+		height = Height;
+		pixels = new tPixel[width*height];
+		tStd::tMemset(pixels, 0, width*height*sizeof(tPixel));
+		int frameNum = 0;
+		for (tFrame* frame = Frames.First(); frame; frame = frame->Next(), frameNum++)
+		{
+			if ((frame->Width != Width) || (frame->Height != Height))
+				continue;
+			for (int y = 0; y < Height; y++)
+			{
+				for (int x = 0; x < Width; x++)
+				{
+					int srcIndex = x + y*Width;
+					int dstX = x + (frameNum*Width);
+					int dstY = y;
+					int dstIndex = dstX + dstY*width;
+					pixels[dstIndex] = frame->Pixels[srcIndex];
+				}
+			}
+		}
+	}
+
+	// Now that width, height, and pixels are correct we can quantize.
+	tColour3i* gifPalette = new tColour3i[gifPaletteSize];
+	gifPalette[gifPaletteSize-1].Set(0, 0, 0);
+	uint8* gifIndices = new uint8[width*height];
+
+	switch (method)
+	{
+		case tQuantize::Method::Fixed:
+			tQuantizeFixed::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, true);
+			break;
+
+		case tQuantize::Method::Neu:
+			tQuantizeNeu::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, true);
+			break;
+
+		case tQuantize::Method::Wu:
+			tQuantizeWu::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, true);
+			break;
+
+		case tQuantize::Method::Spatial:
+			tQuantizeSpatial::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, true);
+			break;
+	}
+	int bgIndex = -1;
+
+	// Now that the indices are worked out, we need to replace any indices that are supposed to be transparent with
+	// the reserved transparent index.
+	if (gifTransparency)
+	{
+		bgIndex = gifPaletteSize-1;
+		for (int p = 0; p < width*height; p++)
+			if (pixels[p].A <= alphaThreshold)
+				gifIndices[p] = bgIndex;
+	}
+
+    ge_GIF* gifHandle = ge_new_gif(gifFile.Chr(), Width, Height, (uint8*)gifPalette, gifBitDepth, bgIndex, loop);
+
+	// Call ge_add_frame for each frame.
+	int frameNum = 0;
+	for (tFrame* frame = Frames.First(); frame; frame = frame->Next(), frameNum++)
+	{
+		if ((frame->Width != Width) || (frame->Height != Height))
+			continue;
+
 		// There's some evidence on various websites that delays lower than 2 (2/100 second) do not
 		// animate at the proper speed in many viewers. Currently we clamp at 2.
 		int delay = tMath::tClampMin((overrideFrameDuration < 0) ? int(frame->Duration * 100.0f) : overrideFrameDuration, 2);
 
-		// This is not great, but the rows are in the wrong order.
-		tFrame frameReordered(*frame);
-		frameReordered.ReverseRows();
-		GifWriteFrame(&writer, (uint8*)frameReordered.Pixels, frame->Width, frame->Height, delay);
+		for (int y = 0; y < Height; y++)
+		{
+			for (int x = 0; x < Width; x++)
+			{
+				int dstIndex = x + y*Width;
+				int srcX = x + (frameNum*Width);
+
+				// The frames need to be given to the encoder from the top row down.
+				int srcY = Height - y - 1;
+				int srcIndex = srcX + srcY*width;
+				gifHandle->frame[dstIndex] = gifIndices[srcIndex];
+			}
+		}
+		ge_add_frame(gifHandle, delay);
 	}
-	GifEnd(&writer);
+
+	ge_close_gif(gifHandle);
+	delete[] gifPalette;
+	delete[] gifIndices;
+	if (numFrames != 1)
+		delete[] pixels;
 
 	return true;
 }

@@ -98,6 +98,35 @@ tTestUnit(ImageSave)
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImageSave)
 
+	tList<tFrame> frames;
+
+	// Test writing a non-animated gif without transparency. The basic pattern to save as a different type is to steal from one and give to the other.
+	tImageAPNG apng1("TestData/Images/TacentTestPattern.png");
+	apng1.StealFrames(frames);
+	tImageGIF agif1;
+	agif1.Set(frames, true);
+	agif1.Save("TestData/Images/WrittenGIF_SingleOpaque.gif", tImage::tPixelFormat::PAL8BIT, tQuantize::Method::Wu, 0, -1, -1);
+	tRequire(frames.IsEmpty());
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenGIF_SingleOpaque.gif"));
+
+	// Test writing a non-animated gif with transparency. The basic pattern to save as a different type is to steal from one and give to the other.
+	tImageAPNG apng2("TestData/Images/TacentTestPattern.png");
+	apng2.StealFrames(frames);
+	tImageGIF agif2;
+	agif2.Set(frames, true);
+	agif2.Save("TestData/Images/WrittenGIF_SingleTrans.gif", tImage::tPixelFormat::PAL8BIT, tQuantize::Method::Wu, 0, 127, -1);
+	tRequire(frames.IsEmpty());
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenGIF_SingleTrans.gif"));
+
+	// Test writing animated gif with transparency. The basic pattern to save as a different type is to steal from one and give to the other.
+	tImageAPNG apng3("TestData/Images/Icos4D.apng");
+	apng3.StealFrames(frames);
+	tImageGIF agif3;
+	agif3.Set(frames, true);
+	agif3.Save("TestData/Images/WrittenGIF_MultiTrans.gif", tImage::tPixelFormat::PAL8BIT, tQuantize::Method::Wu, 0, 127, -1);
+	tRequire(frames.IsEmpty());
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenGIF_MultiTrans.gif"));
+
 	tImageTGA tga("TestData/Images/TacentTestPattern32.tga");
 	int tgaW = tga.GetWidth();
 	int tgaH = tga.GetHeight();
@@ -115,8 +144,6 @@ tTestUnit(ImageSave)
 	tImagePNG pngB("TestData/Images/TextCursor.png");
 	pngB.Save("TestData/Images/WrittenNewB.png");
 	tRequire( tSystem::tFileExists("TestData/Images/WrittenNewB.png"));
-
-	tList<tFrame> frames;
 
 	// Test writing webp images. The basic pattern to save as a different type is to steal from one and give to the other.
 	tImageAPNG apng("TestData/Images/Flame.apng");
@@ -514,6 +541,18 @@ tTestUnit(ImagePalette)
 	PalettizeImage(w, h, pixels, tPixelFormat::PAL6BIT, tImage::tQuantize::Method::Neu);
 	PalettizeImage(w, h, pixels, tPixelFormat::PAL7BIT, tImage::tQuantize::Method::Neu);
 	PalettizeImage(w, h, pixels, tPixelFormat::PAL8BIT, tImage::tQuantize::Method::Neu);
+
+	//
+	// Wu quantization.
+	//
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL1BIT, tImage::tQuantize::Method::Wu);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL2BIT, tImage::tQuantize::Method::Wu);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL3BIT, tImage::tQuantize::Method::Wu);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL4BIT, tImage::tQuantize::Method::Wu);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL5BIT, tImage::tQuantize::Method::Wu);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL6BIT, tImage::tQuantize::Method::Wu);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL7BIT, tImage::tQuantize::Method::Wu);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL8BIT, tImage::tQuantize::Method::Wu);
 
 	tSystem::tSetCurrentDir(origDir);
 }
