@@ -232,7 +232,7 @@ GIF_EXTR long GIF_Load
 
 	// Begin tacent.
 	largestPaletteSize = 0;
-	int globalPalSize = 2 * 2^(ghdr->flgs & 0x07);
+	int globalPalSize = 2 << (ghdr->flgs & 0x07);
 	if (globalPalSize > largestPaletteSize)
 		largestPaletteSize = globalPalSize;
 	// End tacent.
@@ -252,7 +252,7 @@ GIF_EXTR long GIF_Load
             fhdr = (struct GIF_FHDR*)whdr.bptr;
 
 			// Begin tacent.
-			int framePalSize = 2 * 2^(fhdr->flgs & 0x07);
+			int framePalSize = 2 << (fhdr->flgs & 0x07);
 			if (framePalSize > largestPaletteSize)
 				largestPaletteSize = framePalSize;
 			// End tacent.
