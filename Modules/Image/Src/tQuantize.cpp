@@ -31,12 +31,12 @@ const char* tQuantize::GetMethodName(Method method)
 {
 	switch (method)
 	{
-		case tQuantize::Method::Fixed:		return "fixed";
-		case tQuantize::Method::Spatial:	return "scolorq";
-		case tQuantize::Method::Neu:		return "neuquant";
-		case tQuantize::Method::Wu:			return "wu";
+		case tQuantize::Method::Fixed:		return "Fixed";
+		case tQuantize::Method::Spatial:	return "Scolorq";
+		case tQuantize::Method::Neu:		return "Neuquant";
+		case tQuantize::Method::Wu:			return "Wu";
 	}
-	return "unknown";
+	return "Invalid";
 }
 
 

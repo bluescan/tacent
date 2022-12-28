@@ -24,7 +24,8 @@ namespace tQuantize
 		Fixed,					// Supports from 2 to 256 colours. Low quality because used predefined palettes.
 		Spatial,				// AKA scolorq. Supports from 2 to 256 colours. Good for 32 colours or fewer. Very slow for 64 colours or higher.
 		Neu,					// AKA NeuQuant. Supports from 64 to 256 colours. Best for 128 to 256.
-		Wu						// AKA XiaolinWu. Supports from 2 to 256 colours. Best for 128 to 256.
+		Wu,						// AKA XiaolinWu. Supports from 2 to 256 colours. Best for 128 to 256.
+		NumMethods
 	};
 	const char* GetMethodName(Method);
 
