@@ -251,20 +251,24 @@ tFrame* tImageGIF::GetFrame(bool steal)
 }
 
 
-bool tImageGIF::Save
-(
-	const tString& gifFile, tPixelFormat format, tQuantize::Method method,
-	int loop, int alphaThreshold, int overrideFrameDuration
-)
+bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams)
 {
-	if (!IsValid() || !tIsPaletteFormat(format) || (tGetFileType(gifFile) != tFileType::GIF))
+	SaveParams params = saveParams;
+	if (!IsValid() || !tIsPaletteFormat(params.Format) || (tGetFileType(gifFile) != tFileType::GIF))
 		return false;
 
-	if (GetNumFrames() == 1)
+	int numFrames = GetNumFrames();
+	
+	// The Loop int in the params is slightly different to the loop int expected by the encoder. The encoder accepts -1
+	// to mean no loop information is included in the gif file, while the params has Loop as 0 for infinite loops and
+	// >0 for a specific number of times. We do it this way because it simplifies the interface and we can check the
+	// number of frames to see if it can be set to -1. Only one frame -> set to -1.
+	int loop = params.Loop;
+	if (numFrames == 1)
 		loop = -1;
 	
-	if (format == tPixelFormat::PAL1BIT)
-		alphaThreshold = -1;
+	if (params.Format == tPixelFormat::PAL1BIT)
+		params.AlphaThreshold = -1;
 
 	// Before we create a gif with gifenc's ge_new_gif we need to have created a good palette for it to use. This is a
 	// little tricky for multiframe gifs because gifenc does not support frame-local palettes. The same palette is used
@@ -277,11 +281,10 @@ bool tImageGIF::Save
 	// Lastly, before we do this we need to determine if we will be generating a gif with transparency. This affects the
 	// quantization step because it has one less colour to work with. For example, an 8-bit palette would have 255
 	// colour entries and 1 transparency entry instead of 256 colour entries.
-	int gifBitDepth			= tGetBitsPerPixel(format);
+	int gifBitDepth			= tGetBitsPerPixel(params.Format);
 	int gifPaletteSize		= tMath::tPow2(gifBitDepth);
-	bool gifTransparency	= (alphaThreshold >= 0);
+	bool gifTransparency	= (params.AlphaThreshold >= 0);
 	int quantNumColours		= gifPaletteSize - (gifTransparency ? 1 : 0);
-	int numFrames			= GetNumFrames();
 
 	tPixel* pixels			= nullptr;
 	int width				= 0;
@@ -323,23 +326,23 @@ bool tImageGIF::Save
 	tColour3i* gifPalette = new tColour3i[gifPaletteSize];
 	gifPalette[gifPaletteSize-1].Set(0, 0, 0);
 	uint8* gifIndices = new uint8[width*height];
-
-	switch (method)
+	bool checkExact = true;
+	switch (params.Method)
 	{
 		case tQuantize::Method::Fixed:
-			tQuantizeFixed::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, true);
+			tQuantizeFixed::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, checkExact);
 			break;
 
 		case tQuantize::Method::Neu:
-			tQuantizeNeu::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, true);
+			tQuantizeNeu::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, checkExact, params.SampleFactor);
 			break;
 
 		case tQuantize::Method::Wu:
-			tQuantizeWu::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, true);
+			tQuantizeWu::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, checkExact);
 			break;
 
 		case tQuantize::Method::Spatial:
-			tQuantizeSpatial::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, true);
+			tQuantizeSpatial::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, checkExact, params.DitherLevel, params.FilterSize);
 			break;
 	}
 	int bgIndex = -1;
@@ -350,7 +353,7 @@ bool tImageGIF::Save
 	{
 		bgIndex = gifPaletteSize-1;
 		for (int p = 0; p < width*height; p++)
-			if (pixels[p].A <= alphaThreshold)
+			if (pixels[p].A <= params.AlphaThreshold)
 				gifIndices[p] = bgIndex;
 	}
 
@@ -365,7 +368,7 @@ bool tImageGIF::Save
 
 		// There's some evidence on various websites that delays lower than 2 (2/100 second) do not
 		// animate at the proper speed in many viewers. Currently we clamp at 2.
-		int delay = tMath::tClampMin((overrideFrameDuration < 0) ? int(frame->Duration * 100.0f) : overrideFrameDuration, 2);
+		int delay = tMath::tClampMin((params.OverrideFrameDuration < 0) ? int(frame->Duration * 100.0f) : params.OverrideFrameDuration, 2);
 
 		for (int y = 0; y < Height; y++)
 		{

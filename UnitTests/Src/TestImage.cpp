@@ -93,7 +93,7 @@ tTestUnit(ImageLoad)
 }
 
 
-void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method method, bool trnasparency)
+void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method method, bool transparency)
 {
 	tImageAPNG apng(pngFile);
 	tList<tFrame> frames;
@@ -109,11 +109,16 @@ void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method 
 		gifFile,
 		"WrittenGIF_%s_%s_%s_%s.gif",
 		(numFrames > 1) ? "Animat" : "Single",
-		trnasparency ? "Transp" : "Opaque",
+		transparency ? "Transp" : "Opaque",
 		tGetPixelFormatName(format),
 		tQuantize::GetMethodName(method)
 	);
-	gif.Save(gifFile, format, method, 0, trnasparency ? 127 : -1, -1);
+	tImageGIF::SaveParams params;
+	params.Format = format;
+	params.Method = method;
+	params.AlphaThreshold = transparency ? 127 : -1;
+
+	gif.Save(gifFile, params);
 	tRequire(tSystem::tFileExists(gifFile));
 }
 
