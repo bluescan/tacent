@@ -161,10 +161,15 @@ static long _GIF_LoadFrame(uint8_t **buff, long *size,
     ANIM: implementation-specific data (e.g. a structure or a pointer to it)
     SKIP: number of frames to skip before resuming
  **/
-GIF_EXTR long GIF_Load(void *data, long size,
-                       void (*gwfr)(void*, struct GIF_WHDR*),
-                       void (*eamf)(void*, struct GIF_WHDR*),
-                       void *anim, long skip) {
+GIF_EXTR long GIF_Load
+(
+	void *data, long size,
+    void (*gwfr)(void*, struct GIF_WHDR*),
+    void (*eamf)(void*, struct GIF_WHDR*),
+    void *anim, long skip,
+	int& largestPaletteSize
+)
+{
     const long    GIF_BLEN = (1 << 12) * sizeof(uint32_t);
     const uint8_t GIF_EHDM = 0x21, /** extension header mark              **/
                   GIF_FHDM = 0x2C, /** frame header mark                  **/
@@ -225,6 +230,13 @@ GIF_EXTR long GIF_Load(void *data, long size,
     || ((buff[4] != 55) && (buff[4] != 57)) || (buff[5] != 97) || !gwfr)
         return 0;
 
+	// Begin tacent.
+	largestPaletteSize = 0;
+	int globalPalSize = 2 * 2^(ghdr->flgs & 0x07);
+	if (globalPalSize > largestPaletteSize)
+		largestPaletteSize = globalPalSize;
+	// End tacent.
+
     buff = (uint8_t*)(ghdr + 1) /** skipping the global header and palette **/
          + _GIF_LoadHeader(ghdr->flgs, 0, 0, 0, 0, 0L) * 3L;
     if ((size -= long(buff - (uint8_t*)ghdr)) <= 0)
@@ -235,8 +247,16 @@ GIF_EXTR long GIF_Load(void *data, long size,
     for (whdr.bptr = buff, whdr.bkgd = ghdr->bkgd, blen = --size;
         (blen >= 0) && ((desc = *whdr.bptr++) != GIF_EOFM); /** sic: '>= 0' **/
          blen = _GIF_SkipChunk(&whdr.bptr, blen) - 1) /** count all frames **/
-        if (desc == GIF_FHDM) {
+        if (desc == GIF_FHDM)
+		{
             fhdr = (struct GIF_FHDR*)whdr.bptr;
+
+			// Begin tacent.
+			int framePalSize = 2 * 2^(fhdr->flgs & 0x07);
+			if (framePalSize > largestPaletteSize)
+				largestPaletteSize = framePalSize;
+			// End tacent.
+
             if (_GIF_LoadHeader(ghdr->flgs, &whdr.bptr, (void**)&whdr.cpal,
                                 fhdr->flgs, &blen, sizeof(*fhdr)) <= 0)
                 break;

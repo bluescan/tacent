@@ -31,6 +31,9 @@ public:
 	tImageGIF()																											{ }
 	tImageGIF(const tString& gifFile)																					{ Load(gifFile); }
 
+	// The data is copied out of gifFileInMemory. Go ahead and delete after if you want.
+	tImageGIF(const uint8* gifFileInMemory, int numBytes)																{ Load(gifFileInMemory, numBytes); }
+
 	// Creates a tImageGIF from a bunch of frames. If steal is true, the srcFrames will be empty after.
 	tImageGIF(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
 
@@ -46,8 +49,9 @@ public:
 
 	virtual ~tImageGIF()																								{ Clear(); }
 
-	// Clears the current tImageGIF before loading. If false returned object is invalid.
+	// Clears the current tImageGIF before loading. Returns success. If false returned, object is invalid.
 	bool Load(const tString& gifFile);
+	bool Load(const uint8* gifFileInMemory, int numBytes);
 
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 

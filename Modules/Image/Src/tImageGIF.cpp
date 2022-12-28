@@ -128,20 +128,42 @@ bool tImageGIF::Load(const tString& gifFile)
 
 	int numBytes = 0;
 	uint8* gifFileInMemory = tLoadFile(gifFile, nullptr, &numBytes);
+	bool success = Load(gifFileInMemory, numBytes);
+	delete[] gifFileInMemory;
+
+	return success;
+}
+
+
+bool tImageGIF::Load(const uint8* gifFileInMemory, int numBytes)
+{
+	Clear();
+	if ((numBytes <= 0) || !gifFileInMemory)
+		return false;
 
 	// This call allocated scratchpad memory pointed to by FrmPict and FrmPrev.
 	// They are set to null just in case GIF_Load fails to allocate.
 	FrmPict = nullptr;
 	FrmPrev = nullptr;
-	int result = GIF_Load(gifFileInMemory, numBytes, FrameLoadCallbackBridge, nullptr, (void*)this, 0);
+	int paletteSize = 0;
+	int result = GIF_Load((void*)gifFileInMemory, numBytes, FrameLoadCallbackBridge, nullptr, (void*)this, 0, paletteSize);
 	delete[] FrmPict;
 	delete[] FrmPrev;
-	delete[] gifFileInMemory;
 	if (result <= 0)
 		return false;
 
 	PixelFormatSrc = tPixelFormat::PAL8BIT;
-	return true;
+	switch (paletteSize)
+	{
+		case 2:		PixelFormatSrc = tPixelFormat::PAL1BIT; break;
+		case 4:		PixelFormatSrc = tPixelFormat::PAL2BIT; break;
+		case 8:		PixelFormatSrc = tPixelFormat::PAL3BIT; break;
+		case 16:	PixelFormatSrc = tPixelFormat::PAL4BIT; break;
+		case 32:	PixelFormatSrc = tPixelFormat::PAL5BIT; break;
+		case 64:	PixelFormatSrc = tPixelFormat::PAL6BIT; break;
+		case 128:	PixelFormatSrc = tPixelFormat::PAL7BIT; break;
+		case 256:	PixelFormatSrc = tPixelFormat::PAL8BIT; break;
+	}
 }
 
 
