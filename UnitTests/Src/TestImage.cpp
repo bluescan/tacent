@@ -93,73 +93,106 @@ tTestUnit(ImageLoad)
 }
 
 
+void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method method, bool trnasparency)
+{
+	tImageAPNG apng(pngFile);
+	tList<tFrame> frames;
+	apng.StealFrames(frames);
+	int numFrames = frames.Count();
+	tImageGIF gif;
+	gif.Set(frames, true);
+	tRequire(frames.IsEmpty());
+
+	tString gifFile;
+	tsPrintf
+	(
+		gifFile,
+		"WrittenGIF_%s_%s_%s_%s.gif",
+		(numFrames > 1) ? "Animat" : "Single",
+		trnasparency ? "Transp" : "Opaque",
+		tGetPixelFormatName(format),
+		tQuantize::GetMethodName(method)
+	);
+	gif.Save(gifFile, format, method, 0, trnasparency ? 127 : -1, -1);
+	tRequire(tSystem::tFileExists(gifFile));
+}
+
+
 tTestUnit(ImageSave)
 {
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImageSave)
 
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
+
 	tList<tFrame> frames;
 
-	// Test writing a non-animated gif without transparency. The basic pattern to save as a different type is to steal from one and give to the other.
-	tImageAPNG apng1("TestData/Images/TacentTestPattern.png");
-	apng1.StealFrames(frames);
-	tImageGIF agif1;
-	agif1.Set(frames, true);
-	agif1.Save("TestData/Images/WrittenGIF_SingleOpaque.gif", tImage::tPixelFormat::PAL8BIT, tQuantize::Method::Wu, 0, -1, -1);
-	tRequire(frames.IsEmpty());
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenGIF_SingleOpaque.gif"));
+	// Test writing a non-animated gif without transparency at different bit-depths.
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	false);
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL2BIT, tQuantize::Method::Spatial,	false);
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL3BIT, tQuantize::Method::Spatial,	false);
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL4BIT, tQuantize::Method::Spatial,		false);
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL5BIT, tQuantize::Method::Wu,		false);
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL6BIT, tQuantize::Method::Wu,		false);
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL7BIT, tQuantize::Method::Wu,		false);
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL8BIT, tQuantize::Method::Wu,		false);
 
-	// Test writing a non-animated gif with transparency. The basic pattern to save as a different type is to steal from one and give to the other.
-	tImageAPNG apng2("TestData/Images/TacentTestPattern.png");
-	apng2.StealFrames(frames);
-	tImageGIF agif2;
-	agif2.Set(frames, true);
-	agif2.Save("TestData/Images/WrittenGIF_SingleTrans.gif", tImage::tPixelFormat::PAL8BIT, tQuantize::Method::Wu, 0, 127, -1);
-	tRequire(frames.IsEmpty());
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenGIF_SingleTrans.gif"));
+	// Test writing a non-animated gif with transparency at different bit-depths.
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	true);
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL2BIT, tQuantize::Method::Wu,		true);
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL3BIT, tQuantize::Method::Wu,		true);
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL4BIT, tQuantize::Method::Wu,		true);
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL5BIT, tQuantize::Method::Wu,		true);
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL6BIT, tQuantize::Method::Neu,		true);
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL7BIT, tQuantize::Method::Neu,		true);
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL8BIT, tQuantize::Method::Neu,		true);
 
-	// Test writing animated gif with transparency. The basic pattern to save as a different type is to steal from one and give to the other.
-	tImageAPNG apng3("TestData/Images/Icos4D.apng");
-	apng3.StealFrames(frames);
-	tImageGIF agif3;
-	agif3.Set(frames, true);
-	agif3.Save("TestData/Images/WrittenGIF_MultiTrans.gif", tImage::tPixelFormat::PAL8BIT, tQuantize::Method::Wu, 0, 127, -1);
-	tRequire(frames.IsEmpty());
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenGIF_MultiTrans.gif"));
+	// Test writing animated gif with transparency at different bit-depths.
+	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	true);
+	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL2BIT, tQuantize::Method::Neu,		true);
+	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL3BIT, tQuantize::Method::Neu,		true);
+	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL4BIT, tQuantize::Method::Neu,		true);
+	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL5BIT, tQuantize::Method::Neu,		true);
+	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL6BIT, tQuantize::Method::Wu,		true);
+	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL7BIT, tQuantize::Method::Wu,		true);
+	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL8BIT, tQuantize::Method::Wu,		true);
 
-	tImageTGA tga("TestData/Images/TacentTestPattern32.tga");
+	tImageTGA tga("TacentTestPattern32.tga");
 	int tgaW = tga.GetWidth();
 	int tgaH = tga.GetHeight();
 	tPixel* tgaPixels = tga.StealPixels();
 	tImageQOI qoi(tgaPixels, tgaW, tgaH, true);
-	tImageQOI::tFormat result32 = qoi.Save("TestData/Images/WrittenTacentTestPattern32.qoi", tImageQOI::tFormat::Bit32);
+	tImageQOI::tFormat result32 = qoi.Save("WrittenTacentTestPattern32.qoi", tImageQOI::tFormat::Bit32);
 	tRequire(result32 == tImageQOI::tFormat::Bit32);
-	tImageQOI::tFormat result24 = qoi.Save("TestData/Images/WrittenTacentTestPattern24.qoi", tImageQOI::tFormat::Bit24);
+	tImageQOI::tFormat result24 = qoi.Save("WrittenTacentTestPattern24.qoi", tImageQOI::tFormat::Bit24);
 	tRequire(result24 == tImageQOI::tFormat::Bit24);
 
-	tImagePNG pngA("TestData/Images/Xeyes.png");
-	pngA.Save("TestData/Images/WrittenNewA.png");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenNewA.png"));
+	tImagePNG pngA("Xeyes.png");
+	pngA.Save("WrittenNewA.png");
+	tRequire( tSystem::tFileExists("WrittenNewA.png"));
 
-	tImagePNG pngB("TestData/Images/TextCursor.png");
-	pngB.Save("TestData/Images/WrittenNewB.png");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenNewB.png"));
+	tImagePNG pngB("TextCursor.png");
+	pngB.Save("WrittenNewB.png");
+	tRequire( tSystem::tFileExists("WrittenNewB.png"));
 
 	// Test writing webp images. The basic pattern to save as a different type is to steal from one and give to the other.
-	tImageAPNG apng("TestData/Images/Flame.apng");
+	tImageAPNG apng("Flame.apng");
 	apng.StealFrames(frames);
 	tImageWEBP webp;
 	webp.Set(frames, true);
-	webp.Save("TestData/Images/WrittenFlameOneFrame.webp");
+	webp.Save("WrittenFlameOneFrame.webp");
 	tRequire(frames.IsEmpty());
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenFlameOneFrame.webp"));
+	tRequire(tSystem::tFileExists("WrittenFlameOneFrame.webp"));
 
-	tImageEXR exr("TestData/Images/Desk.exr");
+	tImageEXR exr("Desk.exr");
 	exr.StealFrames(frames);
 	webp.Set(frames, true);
-	webp.Save("TestData/Images/WrittenDesk.webp");
+	webp.Save("WrittenDesk.webp");
 	tRequire(frames.IsEmpty());
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenDesk.webp"));
+	tRequire(tSystem::tFileExists("WrittenDesk.webp"));
+
+	tSystem::tSetCurrentDir(origDir);
 }
 
 

@@ -164,6 +164,8 @@ bool tImageGIF::Load(const uint8* gifFileInMemory, int numBytes)
 		case 128:	PixelFormatSrc = tPixelFormat::PAL7BIT; break;
 		case 256:	PixelFormatSrc = tPixelFormat::PAL8BIT; break;
 	}
+
+	return true;
 }
 
 
