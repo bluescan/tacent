@@ -78,7 +78,9 @@ namespace tQuantizeSpatial
 	template <typename T> class array2d
 	{
 	public:
-		array2d(int w, int h)																							{ width = w; height = h; data = new T[width * height]; }
+		// @tacent Added the () to initialize when new called.
+		array2d(int w, int h)																							{ width = w; height = h; data = new T[width * height](); }
+
 		array2d(const array2d<T>& rhs)																					{ width = rhs.width; height = rhs.height; data = new T[width * height]; for (int i=0; i<width; i++) for (int j=0; j<height; j++) (*this)(i,j) = rhs.data[j*width + i]; }
 		~array2d()																										{ delete [] data; }
 
@@ -138,7 +140,9 @@ namespace tQuantizeSpatial
 	template <typename T> class array3d
 	{
 	public:
-		array3d(int w, int h, int d)																					{ width = w; height = h; depth = d; data = new T[width * height * depth]; }
+		// @tacent Added the () to initialize when new called.
+		array3d(int w, int h, int d)																					{ width = w; height = h; depth = d; data = new T[width * height * depth](); }
+
 		array3d(const array3d<T>& rhs)																					{ width = rhs.width; height = rhs.height; depth = rhs.depth; data = new T[width * height * depth]; for (int i=0; i<width; i++) for (int j=0; j<height; j++) for (int k=0; k<depth; k++) (*this)(i,j,k) = rhs.data[j*width*depth + i*depth + k]; }
 		~array3d()																										{ delete [] data; }
 

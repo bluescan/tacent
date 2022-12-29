@@ -71,14 +71,6 @@ del_trie(Node *root, int degree)
     free(root);
 }
 
-//#define write_and_store(s, dst, fd, src, n) \
-//do { \
-//    write(fd, src, n); \
-//    if (s) { \
-//        memcpy(dst, src, n); \
-//        dst += n; \
-//    } \
-//} while (0);
 #define write_and_store(s, dst, fd, src, n) \
 do { \
     fwrite(src, 1, n, fd); \
@@ -107,18 +99,10 @@ ge_new_gif(
     gif->bgindex = bgindex;
     gif->frame = (uint8_t *) &gif[1];
     gif->back = &gif->frame[width*height];
-//#ifdef _WIN32
     gif->filep = fopen(fname, "wb");
-//#else
-//    gif->fd = creat(fname, 0666);
-//#endif
     if (gif->filep == 0)
         goto no_fd;
-//#ifdef _WIN32
-//    setmode(gif->fd, O_BINARY);
-//#endif
 	fwrite("GIF89a", 1, 6, gif->filep);
-    //write(gif->fd, "GIF89a", 6);
     write_num(gif->filep, width);
     write_num(gif->filep, height);
     store_gct = custom_gct = 0;
