@@ -946,7 +946,7 @@ bool tQuantizeSpatial::QuantizeImage
 	for (int p = 0; p < width*height; p++)
 		pixels3[p].Set( pixels[p].R, pixels[p].G, pixels[p].B );
 
-	bool success = QuantizeImage(numColours, width, height, pixels3, destPalette, destIndices, ditherLevel, checkExact);
+	bool success = QuantizeImage(numColours, width, height, pixels3, destPalette, destIndices, checkExact, ditherLevel, filterSize);
 	delete[] pixels3;
 	return success;
 }

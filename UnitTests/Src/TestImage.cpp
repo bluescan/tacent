@@ -93,7 +93,7 @@ tTestUnit(ImageLoad)
 }
 
 
-void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method method, bool transparency)
+void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method method, bool transparency, float dither = 0.0f)
 {
 	tImageAPNG apng(pngFile);
 	tList<tFrame> frames;
@@ -103,19 +103,29 @@ void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method 
 	gif.Set(frames, true);
 	tRequire(frames.IsEmpty());
 
+	tString dithStr;
+	if (method == tQuantize::Method::Spatial)
+	{
+		dithStr = "_Dith_Auto";
+		if (dither > 0.0f)
+			tsPrintf(dithStr, "_Dith_%3.2f", dither);
+	}
+
 	tString gifFile;
 	tsPrintf
 	(
 		gifFile,
-		"WrittenGIF_%s_%s_%s_%s.gif",
+		"WrittenGIF_%s_%s_%s_%s%s.gif",
 		(numFrames > 1) ? "Animat" : "Single",
 		transparency ? "Transp" : "Opaque",
 		tGetPixelFormatName(format),
-		tQuantize::GetMethodName(method)
+		tQuantize::GetMethodName(method),
+		dithStr.Chr()
 	);
 	tImageGIF::SaveParams params;
 	params.Format = format;
 	params.Method = method;
+	params.DitherLevel = double(dither);
 	params.AlphaThreshold = transparency ? 127 : -1;
 
 	gif.Save(gifFile, params);
@@ -133,17 +143,24 @@ tTestUnit(ImageSave)
 
 	tList<tFrame> frames;
 
+	// Test dither from 0.0f (auto) to 1.5f.
+	tPrintf("Testing GIF save spatial quantization dither with 2-colour palette.\n"); 
+	for (int d = 0; d < 16; d++)
+		TestSaveGif("TacentTestPattern.png",tPixelFormat::PAL1BIT, tQuantize::Method::Spatial,	false, float(d)*0.1f);
+
 	// Test writing a non-animated gif without transparency at different bit-depths.
+	tPrintf("Testing GIF save single frame opaque.\n");
 	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	false);
 	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL2BIT, tQuantize::Method::Spatial,	false);
 	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL3BIT, tQuantize::Method::Spatial,	false);
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL4BIT, tQuantize::Method::Spatial,		false);
+	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL4BIT, tQuantize::Method::Spatial,	false);
 	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL5BIT, tQuantize::Method::Wu,		false);
 	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL6BIT, tQuantize::Method::Wu,		false);
 	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL7BIT, tQuantize::Method::Wu,		false);
 	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL8BIT, tQuantize::Method::Wu,		false);
 
 	// Test writing a non-animated gif with transparency at different bit-depths.
+	tPrintf("Testing GIF save single frame transparent.\n");
 	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	true);
 	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL2BIT, tQuantize::Method::Wu,		true);
 	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL3BIT, tQuantize::Method::Wu,		true);
@@ -154,6 +171,7 @@ tTestUnit(ImageSave)
 	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL8BIT, tQuantize::Method::Neu,		true);
 
 	// Test writing animated gif with transparency at different bit-depths.
+	tPrintf("Testing GIF save animated transparent.\n");
 	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	true);
 	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL2BIT, tQuantize::Method::Neu,		true);
 	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL3BIT, tQuantize::Method::Neu,		true);
