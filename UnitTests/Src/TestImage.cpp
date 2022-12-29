@@ -143,6 +143,9 @@ tTestUnit(ImageSave)
 
 	tList<tFrame> frames;
 
+//	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL5BIT, tQuantize::Method::Spatial,		false);
+//	return;
+
 	// Test dither from 0.0f (auto) to 1.5f.
 	tPrintf("Testing GIF save spatial quantization dither with 2-colour palette.\n"); 
 	for (int d = 0; d < 16; d++)
