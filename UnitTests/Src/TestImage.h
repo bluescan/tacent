@@ -27,6 +27,7 @@ namespace tUnitTest
 	tTestUnit(ImageMetaData);
 	tTestUnit(ImageRotation);
 	tTestUnit(ImageCrop);
+	tTestUnit(ImageAdjustment);
 	tTestUnit(ImageDetection);
 	tTestUnit(ImageFilter);
 	tTestUnit(ImageMultiFrame);

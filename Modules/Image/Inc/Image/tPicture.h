@@ -9,7 +9,7 @@
 // page, and gif/webp images may be animated and have more than one frame. A tPicture can only prepresent _one_ of 
 // these frames.
 //
-// Copyright (c) 2006, 2016, 2017, 2020-2022 Tristan Grimmer.
+// Copyright (c) 2006-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -196,6 +196,24 @@ public:
 	// If this function wants to remove everything it returns false and leaves the image untouched.
 	bool Crop(const tColouri& = tColouri::transparent, uint32 channels = tComp_A);
 
+	// Ideally consecutive brighness adjustments would be done in a fragment shader and then 'committed' to the tPicture
+	// with a simple adjust-brightness call. However currently the clients of tPicture don;t have that ability so we're
+	// going with a begin/adjust/ end setup where a new 'adjusted' pixel buffer is allocated on begin, and adjustments
+	// write to the new buffer. End then either copies the adjustment buffer to the original, or cancels and does not
+	// update original pixels. In either case End deletes the adjustment buffer.
+	//
+	// BrightnessBegin returns the adjustment pixel buffer with the brightness-adjusted pixels. You don't own it.
+	// Returns nullptr on failure (invalid image). This function also precomputes the min/max colour values internally. 
+	tPixel* BrightnessBegin();
+
+	// Adjust brightness based on the tPicture pixels and write them into the adjustment pixel buffer. Param E [0.0,1.0]
+	// When param at 0.0 adjutment buffer will be completely black. When brightness at 1.0, pure white, Returs success.
+	bool BrightnessAdj(float brightness);
+
+	// When commit is false, cancels the adjustment. When true applies the adjustment buffer to the tPicture pixels.
+	// Returns success -- not whether committed or not, but rather was operation successful.
+	bool BrightnessEnd(bool commit);
+	
 	// This function scales the image by half using a box filter. Useful for generating mipmaps. This function returns
 	// false if the rescale could not be performed. For this function to succeed:
 	//  - The image needs to be valid AND
@@ -250,9 +268,14 @@ private:
 		tResampleFilter upFilter, tResampleFilter downFilter
 	);
 
-	int Width = 0;
-	int Height = 0;
-	tPixel* Pixels = nullptr;
+	int Width				= 0;
+	int Height				= 0;
+	tPixel* Pixels			= nullptr;
+	tPixel* AdjustedPixels	= nullptr;
+
+	// Brightness transient parameters (between begin/end).
+	int BrightnessRGBMin	= 0;
+	int BrightnessRGBMax	= 0;
 };
 
 
@@ -264,11 +287,98 @@ inline void tPicture::Clear()
 	Filename.Clear();
 	delete[] Pixels;
 	Pixels = nullptr;
+	delete[] AdjustedPixels;
+	AdjustedPixels = nullptr;
 	Width = 0;
 	Height = 0;
 	PixelFormatSrc = tPixelFormat::Invalid;
 }
 
+
+inline void tPicture::Set(int width, int height, const tPixel& colour)
+{
+	tAssert((width > 0) && (height > 0));
+
+	// Reuse the existing buffer if possible.
+	if (width*height != Width*Height)
+	{
+		delete[] Pixels;
+		Pixels = new tPixel[width*height];
+	}
+	Width = width;
+	Height = height;
+	for (int pixel = 0; pixel < (Width*Height); pixel++)
+		Pixels[pixel] = colour;
+
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+}
+
+
+inline void tPicture::Set(int width, int height, tPixel* pixelBuffer, bool copyPixels)
+{
+	tAssert((width > 0) && (height > 0) && pixelBuffer);
+
+	// If we're copying the pixels we may be able to reuse the existing buffer if it's the right size. If we're not
+	// copying and the buffer is being handed to us, we just need to free our current buffer.
+	if (copyPixels)
+	{
+		if ((width*height != Width*Height) || !Pixels)
+		{
+			delete[] Pixels;
+			Pixels = new tPixel[width*height];
+		}
+	}
+	else
+	{
+		delete[] Pixels;
+		Pixels = pixelBuffer;
+	}
+	Width = width;
+	Height = height;
+
+	if (copyPixels)
+		tStd::tMemcpy(Pixels, pixelBuffer, Width*Height*sizeof(tPixel));
+
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+}
+
+
+inline void tPicture::Set(tFrame* frame, bool steal)
+{
+	if (!frame || !frame->IsValid())
+		return;
+
+	Set(frame->Width, frame->Height, frame->GetPixels(steal), !steal);
+	Duration = frame->Duration;
+	if (steal)
+		delete frame;
+}
+
+
+inline void tPicture::Set(tBaseImage& image, bool steal)
+{
+	if (!image.IsValid())
+		return;
+
+	tFrame* frame = image.GetFrame(steal);
+
+	// The true here is correct. Whether steal was true or not, we now have a frame that is under our
+	// management and must be eventually deleted.
+	Set(frame, true);
+}
+
+
+inline void tPicture::Set(const tPicture& src)
+{
+	Clear();
+	if (!src.IsValid())
+		return;
+
+	Set(src.Width, src.Height, src.Pixels);
+	Filename = src.Filename;
+	PixelFormatSrc = src.PixelFormatSrc;
+	Duration = src.Duration;
+}
 
 
 inline bool tPicture::IsOpaque() const
@@ -328,19 +438,6 @@ inline void tPicture::AlphaBlendColour(const tColouri& blend, bool resetAlpha)
 
 		Pixels[p].Set(pixel);
 	}
-}
-
-
-inline void tPicture::Set(const tPicture& src)
-{
-	Clear();
-	if (!src.IsValid())
-		return;
-
-	Set(src.Width, src.Height, src.Pixels);
-	Filename = src.Filename;
-	PixelFormatSrc = src.PixelFormatSrc;
-	Duration = src.Duration;
 }
 
 

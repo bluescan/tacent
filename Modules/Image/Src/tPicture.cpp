@@ -9,7 +9,7 @@
 // layer, and gif/webp/apng images may be animated and have more than one frame. A tPicture can only prepresent _one_
 // of these frames.
 //
-// Copyright (c) 2006, 2016, 2017, 2019-2022 Tristan Grimmer.
+// Copyright (c) 2006-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -71,79 +71,6 @@ int tImage::Version_TinyEXIF_Minor			= TINYEXIF_MINOR_VERSION;
 int tImage::Version_TinyEXIF_Patch			= TINYEXIF_PATCH_VERSION;
 
 
-void tPicture::Set(int width, int height, const tPixel& colour)
-{
-	tAssert((width > 0) && (height > 0));
-
-	// Reuse the existing buffer if possible.
-	if (width*height != Width*Height)
-	{
-		delete[] Pixels;
-		Pixels = new tPixel[width*height];
-	}
-	Width = width;
-	Height = height;
-	for (int pixel = 0; pixel < (Width*Height); pixel++)
-		Pixels[pixel] = colour;
-
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
-}
-
-
-void tPicture::Set(int width, int height, tPixel* pixelBuffer, bool copyPixels)
-{
-	tAssert((width > 0) && (height > 0) && pixelBuffer);
-
-	// If we're copying the pixels we may be able to reuse the existing buffer if it's the right size. If we're not
-	// copying and the buffer is being handed to us, we just need to free our current buffer.
-	if (copyPixels)
-	{
-		if ((width*height != Width*Height) || !Pixels)
-		{
-			delete[] Pixels;
-			Pixels = new tPixel[width*height];
-		}
-	}
-	else
-	{
-		delete[] Pixels;
-		Pixels = pixelBuffer;
-	}
-	Width = width;
-	Height = height;
-
-	if (copyPixels)
-		tStd::tMemcpy(Pixels, pixelBuffer, Width*Height*sizeof(tPixel));
-
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
-}
-
-
-void tPicture::Set(tFrame* frame, bool steal)
-{
-	if (!frame || !frame->IsValid())
-		return;
-
-	Set(frame->Width, frame->Height, frame->GetPixels(steal), !steal);
-	Duration = frame->Duration;
-	if (steal)
-		delete frame;
-}
-
-
-void tPicture::Set(tBaseImage& image, bool steal)
-{
-	if (!image.IsValid())
-		return;
-
-	tFrame* frame = image.GetFrame(steal);
-
-	// The true here is correct. Whether steal was true or not, we now have a frame that is under our
-	// management and must be eventually deleted.
-	Set(frame, true);
-}
-
-
 void tPicture::Save(tChunkWriter& chunk) const
 {
 	chunk.Begin(tChunkID::Image_Picture);
@@ -192,152 +119,6 @@ void tPicture::Load(const tChunk& chunk)
 		}
 	}
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
-}
-
-
-void tPicture::Crop(int newW, int newH, Anchor anchor, const tColouri& fill)
-{
-	int originx = 0;
-	int originy = 0;
-
-	switch (anchor)
-	{
-		case Anchor::LeftTop:		originx = 0;				originy = Height-newH;		break;
-		case Anchor::MiddleTop:		originx = Width/2 - newW/2;	originy = Height-newH;		break;
-		case Anchor::RightTop:		originx = Width - newW;		originy = Height-newH;		break;
-
-		case Anchor::LeftMiddle:	originx = 0;				originy = Height/2-newH/2;	break;
-		case Anchor::MiddleMiddle:	originx = Width/2 - newW/2;	originy = Height/2-newH/2;	break;
-		case Anchor::RightMiddle:	originx = Width - newW;		originy = Height/2-newH/2;	break;
-
-		case Anchor::LeftBottom:	originx = 0;				originy = 0;				break;
-		case Anchor::MiddleBottom:	originx = Width/2 - newW/2;	originy = 0;				break;
-		case Anchor::RightBottom:	originx = Width - newW;		originy = 0;				break;
-	}
-
-	Crop(newW, newH, originx, originy, fill);
-}
-
-
-void tPicture::Crop(int newW, int newH, int originX, int originY, const tColouri& fill)
-{
-	if ((newW <= 0) || (newH <= 0))
-	{
-		Clear();
-		return;
-	}
-
-	if ((newW == Width) && (newH == Height) && (originX == 0) && (originY == 0))
-		return;
-
-	tPixel* newPixels = new tPixel[newW * newH];
-
-	// Set the new pixel colours.
-	for (int y = 0; y < newH; y++)
-	{
-		for (int x = 0; x < newW; x++)
-		{
-			// If we're in range of the old picture we just copy the colour. If the old image is invalid no problem, as
-			// we'll fall through to the else and the pixel will be set to black.
-			if (tMath::tInIntervalIE(originX + x, 0, Width) && tMath::tInIntervalIE(originY + y, 0, Height))
-				newPixels[y * newW + x] = GetPixel(originX + x, originY + y);
-			else
-				newPixels[y * newW + x] = fill;
-		}
-	}
-
-	Clear();
-	Width = newW;
-	Height = newH;
-	Pixels = newPixels;
-}
-
-
-bool tPicture::Crop(const tColouri& colour, uint32 channels)
-{
-	// Count bottom rows to crop.
-	int numBottomRows = 0;
-	for (int y = 0; y < Height; y++)
-	{
-		bool allMatch = true;
-		for (int x = 0; x < Width; x++)
-		{
-			if (!colour.Equal(Pixels[ GetIndex(x, y) ], channels))
-			{
-				allMatch = false;
-				break;
-			}
-		}
-		if (allMatch)
-			numBottomRows++;
-		else
-			break;
-	}
-
-	// Count top rows to crop.
-	int numTopRows = 0;
-	for (int y = Height-1; y >= 0; y--)
-	{
-		bool allMatch = true;
-		for (int x = 0; x < Width; x++)
-		{
-			if (!colour.Equal(Pixels[ GetIndex(x, y) ], channels))
-			{
-				allMatch = false;
-				break;
-			}
-		}
-		if (allMatch)
-			numTopRows++;
-		else
-			break;
-	}
-
-	// Count left columns to crop.
-	int numLeftCols = 0;
-	for (int x = 0; x < Width; x++)
-	{
-		bool allMatch = true;
-		for (int y = 0; y < Height; y++)
-		{
-			if (!colour.Equal(Pixels[ GetIndex(x, y) ], channels))
-			{
-				allMatch = false;
-				break;
-			}
-		}
-		if (allMatch)
-			numLeftCols++;
-		else
-			break;
-	}
-
-	// Count right columns to crop.
-	int numRightCols = 0;
-	for (int x = Width-1; x >= 0; x--)
-	{
-		bool allMatch = true;
-		for (int y = 0; y < Height; y++)
-		{
-			if (!colour.Equal(Pixels[ GetIndex(x, y) ], channels))
-			{
-				allMatch = false;
-				break;
-			}
-		}
-		if (allMatch)
-			numRightCols++;
-		else
-			break;
-	}
-
-	int newWidth = Width - numLeftCols - numRightCols;
-	int newHeight = Height - numBottomRows - numTopRows;
-	if ((newWidth <= 0) || (newHeight <= 0))
-		return false;
-
-	Crop(newWidth, newHeight, numLeftCols, numBottomRows);
-	return true;
 }
 
 
@@ -493,6 +274,220 @@ void tPicture::Flip(bool horizontal)
 	Width = newW;
 	Height = newH;
 	Pixels = newPixels;
+}
+
+
+void tPicture::Crop(int newW, int newH, Anchor anchor, const tColouri& fill)
+{
+	int originx = 0;
+	int originy = 0;
+
+	switch (anchor)
+	{
+		case Anchor::LeftTop:		originx = 0;				originy = Height-newH;		break;
+		case Anchor::MiddleTop:		originx = Width/2 - newW/2;	originy = Height-newH;		break;
+		case Anchor::RightTop:		originx = Width - newW;		originy = Height-newH;		break;
+
+		case Anchor::LeftMiddle:	originx = 0;				originy = Height/2-newH/2;	break;
+		case Anchor::MiddleMiddle:	originx = Width/2 - newW/2;	originy = Height/2-newH/2;	break;
+		case Anchor::RightMiddle:	originx = Width - newW;		originy = Height/2-newH/2;	break;
+
+		case Anchor::LeftBottom:	originx = 0;				originy = 0;				break;
+		case Anchor::MiddleBottom:	originx = Width/2 - newW/2;	originy = 0;				break;
+		case Anchor::RightBottom:	originx = Width - newW;		originy = 0;				break;
+	}
+
+	Crop(newW, newH, originx, originy, fill);
+}
+
+
+void tPicture::Crop(int newW, int newH, int originX, int originY, const tColouri& fill)
+{
+	if ((newW <= 0) || (newH <= 0))
+	{
+		Clear();
+		return;
+	}
+
+	if ((newW == Width) && (newH == Height) && (originX == 0) && (originY == 0))
+		return;
+
+	tPixel* newPixels = new tPixel[newW * newH];
+
+	// Set the new pixel colours.
+	for (int y = 0; y < newH; y++)
+	{
+		for (int x = 0; x < newW; x++)
+		{
+			// If we're in range of the old picture we just copy the colour. If the old image is invalid no problem, as
+			// we'll fall through to the else and the pixel will be set to black.
+			if (tMath::tInIntervalIE(originX + x, 0, Width) && tMath::tInIntervalIE(originY + y, 0, Height))
+				newPixels[y * newW + x] = GetPixel(originX + x, originY + y);
+			else
+				newPixels[y * newW + x] = fill;
+		}
+	}
+
+	Clear();
+	Width = newW;
+	Height = newH;
+	Pixels = newPixels;
+}
+
+
+bool tPicture::Crop(const tColouri& colour, uint32 channels)
+{
+	// Count bottom rows to crop.
+	int numBottomRows = 0;
+	for (int y = 0; y < Height; y++)
+	{
+		bool allMatch = true;
+		for (int x = 0; x < Width; x++)
+		{
+			if (!colour.Equal(Pixels[ GetIndex(x, y) ], channels))
+			{
+				allMatch = false;
+				break;
+			}
+		}
+		if (allMatch)
+			numBottomRows++;
+		else
+			break;
+	}
+
+	// Count top rows to crop.
+	int numTopRows = 0;
+	for (int y = Height-1; y >= 0; y--)
+	{
+		bool allMatch = true;
+		for (int x = 0; x < Width; x++)
+		{
+			if (!colour.Equal(Pixels[ GetIndex(x, y) ], channels))
+			{
+				allMatch = false;
+				break;
+			}
+		}
+		if (allMatch)
+			numTopRows++;
+		else
+			break;
+	}
+
+	// Count left columns to crop.
+	int numLeftCols = 0;
+	for (int x = 0; x < Width; x++)
+	{
+		bool allMatch = true;
+		for (int y = 0; y < Height; y++)
+		{
+			if (!colour.Equal(Pixels[ GetIndex(x, y) ], channels))
+			{
+				allMatch = false;
+				break;
+			}
+		}
+		if (allMatch)
+			numLeftCols++;
+		else
+			break;
+	}
+
+	// Count right columns to crop.
+	int numRightCols = 0;
+	for (int x = Width-1; x >= 0; x--)
+	{
+		bool allMatch = true;
+		for (int y = 0; y < Height; y++)
+		{
+			if (!colour.Equal(Pixels[ GetIndex(x, y) ], channels))
+			{
+				allMatch = false;
+				break;
+			}
+		}
+		if (allMatch)
+			numRightCols++;
+		else
+			break;
+	}
+
+	int newWidth = Width - numLeftCols - numRightCols;
+	int newHeight = Height - numBottomRows - numTopRows;
+	if ((newWidth <= 0) || (newHeight <= 0))
+		return false;
+
+	Crop(newWidth, newHeight, numLeftCols, numBottomRows);
+	return true;
+}
+
+
+tPixel* tPicture::BrightnessBegin()
+{
+	if (!IsValid() || AdjustedPixels)
+		return nullptr;
+
+	AdjustedPixels = new tPixel[Width*Height];
+
+	// We need to compute min and max component values so the extents of the brigtness parameter
+	// exactly match all black at 0 and full white at 1. We do this as we copy the pixel values.
+	BrightnessRGBMin = 256;
+	BrightnessRGBMax = -1;
+	for (int p = 0; p < Width*Height; p++)
+	{
+		tColour4i& colour = Pixels[p];
+		int minRGB = tMath::tMin(colour.R, colour.G, colour.B);
+		int maxRGB = tMath::tMax(colour.R, colour.G, colour.B);
+		if (minRGB < BrightnessRGBMin)
+			BrightnessRGBMin = minRGB;
+		if (maxRGB > BrightnessRGBMax)
+			BrightnessRGBMax = maxRGB;
+		AdjustedPixels[p] = Pixels[p];
+	}
+	tiClamp(BrightnessRGBMin, 0, 255);
+	tiClamp(BrightnessRGBMax, 0, 255);
+	return AdjustedPixels;
+}
+
+
+bool tPicture::BrightnessAdj(float brightness)
+{
+	if (!IsValid() || !AdjustedPixels)
+		return false;
+
+	// We want to guarantee all black at brightness level 0 (and no higher) and
+	// all white at brightness 1 (and no lower). As an example, say the min RGB
+	// for the entire image is 2 and the max is 240 -- we need 0 (black) to offset
+	// by -240 and 1 to offset by +(255-2) = +253.
+	int zeroOffset = -BrightnessRGBMax;
+	int fullOffset = 255 - BrightnessRGBMin;
+	float offsetFlt = tMath::tLinearInterp(brightness, 0.0f, 1.0f, float(zeroOffset), float(fullOffset));
+	int offset = int(offsetFlt);
+	for (int p = 0; p < Width*Height; p++)
+	{
+		tColour4i& srcColour = Pixels[p];
+		tColour4i& adjColour = AdjustedPixels[p];
+		adjColour.R = tClamp(int(srcColour.R) + offset, 0, 255);
+		adjColour.G = tClamp(int(srcColour.G) + offset, 0, 255);
+		adjColour.B = tClamp(int(srcColour.B) + offset, 0, 255);
+	}
+
+	return true;
+}
+
+
+bool tPicture::BrightnessEnd(bool commit)
+{
+	if (!IsValid() || !AdjustedPixels)
+		return false;
+
+	if (commit)
+		tStd::tMemcpy(Pixels, AdjustedPixels, Width*Height*sizeof(tPixel));
+
+	delete[] AdjustedPixels;
+	AdjustedPixels = nullptr;
+	return true;
 }
 
 

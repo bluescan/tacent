@@ -828,6 +828,32 @@ tTestUnit(ImageCrop)
 }
 
 
+tTestUnit(ImageAdjustment)
+{
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageAdjustment)
+
+	// Test brightness.
+	for (int level = 0; level <= 10; level++)
+	{
+		tImagePNG png("TestData/Images/TacentTestPattern.png");
+		tPicture pic(png);
+
+		float brightness = float(level)/10.0f;
+		pic.BrightnessBegin();
+		pic.BrightnessAdj(brightness);
+		pic.BrightnessEnd(true);
+
+		// Save it out.
+		tString file;
+		tsPrintf(file, "TestData/Images/WrittenBright%3.1f.png", brightness);
+		png.Set(pic, false);
+		bool ok = png.Save(file.Chr());
+		tRequire(ok);
+	}
+}
+
+
 tTestUnit(ImageDetection)
 {
 	if (!tSystem::tDirExists("TestData/Images/"))
