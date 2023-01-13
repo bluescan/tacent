@@ -840,13 +840,32 @@ tTestUnit(ImageAdjustment)
 		tPicture pic(png);
 
 		float brightness = float(level)/10.0f;
-		pic.BrightnessBegin();
-		pic.BrightnessAdj(brightness);
-		pic.BrightnessEnd(true);
+		pic.AdjustmentBegin();
+		pic.AdjustBrightness(brightness);
+		pic.AdjustmentEnd(true);
 
 		// Save it out.
 		tString file;
 		tsPrintf(file, "TestData/Images/WrittenBright%3.1f.png", brightness);
+		png.Set(pic, false);
+		bool ok = png.Save(file.Chr());
+		tRequire(ok);
+	}
+
+	// Test contrast.
+	for (int level = 0; level <= 10; level++)
+	{
+		tImagePNG png("TestData/Images/TacentTestPattern.png");
+		tPicture pic(png);
+
+		float contrast = float(level)/10.0f;
+		pic.AdjustmentBegin();
+		pic.AdjustContrast(contrast);
+		pic.AdjustmentEnd(true);
+
+		// Save it out.
+		tString file;
+		tsPrintf(file, "TestData/Images/WrittenContrast%3.1f.png", contrast);
 		png.Set(pic, false);
 		bool ok = png.Save(file.Chr());
 		tRequire(ok);

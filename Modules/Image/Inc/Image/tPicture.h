@@ -196,23 +196,27 @@ public:
 	// If this function wants to remove everything it returns false and leaves the image untouched.
 	bool Crop(const tColouri& = tColouri::transparent, uint32 channels = tComp_A);
 
-	// Ideally consecutive brighness adjustments would be done in a fragment shader and then 'committed' to the tPicture
-	// with a simple adjust-brightness call. However currently the clients of tPicture don;t have that ability so we're
-	// going with a begin/adjust/ end setup where a new 'adjusted' pixel buffer is allocated on begin, and adjustments
+	// Ideally adjustments (brightness, contrast etc) would be done in a fragment shader and then 'committed' to the
+	// tPicture with a simple adjust call. However currently the clients of tPicture don't have that ability so we're
+	// going with a begin/adjust/end setup where a new 'adjusted' pixel buffer is allocated on begin, and adjustments
 	// write to the new buffer. End then either copies the adjustment buffer to the original, or cancels and does not
 	// update original pixels. In either case End deletes the adjustment buffer.
 	//
-	// BrightnessBegin returns the adjustment pixel buffer with the brightness-adjusted pixels. You don't own it.
-	// Returns nullptr on failure (invalid image). This function also precomputes the min/max colour values internally. 
-	tPixel* BrightnessBegin();
+	// AdjustmentBegin returns the adjustment pixel buffer with the adjusted pixels. You don't own it. Returns nullptr
+	// on failure (invalid image). This function also precomputes the min/max colour values internally. 
+	tPixel* AdjustmentBegin();
 
-	// Adjust brightness based on the tPicture pixels and write them into the adjustment pixel buffer. Param E [0.0,1.0]
-	// When param at 0.0 adjutment buffer will be completely black. When brightness at 1.0, pure white, Returs success.
-	bool BrightnessAdj(float brightness);
+	// Adjust brightness based on the tPicture pixels and write them into the adjustment pixel buffer. Brightness E [0.0,1.0]
+	// When brightness at 0.0 adjustment buffer will be completely black. When brightness at 1.0, pure white, Returns success.
+	bool AdjustBrightness(float brightness);
+
+	// Adjust contrast based on the tPicture pixels and write them into the adjustment pixel buffer. Contrast E [0.0,1.0]
+	// When contrast at 0.0 adjustment buffer will be lowest contrast. When contrast at 1.0, highest, Returns success.
+	bool AdjustContrast(float contrast);
 
 	// When commit is false, cancels the adjustment. When true applies the adjustment buffer to the tPicture pixels.
 	// Returns success -- not whether committed or not, but rather was operation successful.
-	bool BrightnessEnd(bool commit);
+	bool AdjustmentEnd(bool commit);
 	
 	// This function scales the image by half using a box filter. Useful for generating mipmaps. This function returns
 	// false if the rescale could not be performed. For this function to succeed:

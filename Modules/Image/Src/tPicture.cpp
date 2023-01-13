@@ -423,7 +423,7 @@ bool tPicture::Crop(const tColouri& colour, uint32 channels)
 }
 
 
-tPixel* tPicture::BrightnessBegin()
+tPixel* tPicture::AdjustmentBegin()
 {
 	if (!IsValid() || AdjustedPixels)
 		return nullptr;
@@ -451,7 +451,7 @@ tPixel* tPicture::BrightnessBegin()
 }
 
 
-bool tPicture::BrightnessAdj(float brightness)
+bool tPicture::AdjustBrightness(float brightness)
 {
 	if (!IsValid() || !AdjustedPixels)
 		return false;
@@ -477,7 +477,27 @@ bool tPicture::BrightnessAdj(float brightness)
 }
 
 
-bool tPicture::BrightnessEnd(bool commit)
+bool tPicture::AdjustContrast(float contrastNorm)
+{
+	if (!IsValid() || !AdjustedPixels)
+		return false;
+
+	float contrast = tMath::tLinearInterp(contrastNorm, 0.0f, 1.0f, -255.0f, 255.0f);
+	float factor = (259.0f * (contrast + 255.0f)) / (255.0f * (259.0f - contrast));
+	for (int p = 0; p < Width*Height; p++)
+	{
+		tColour4i& srcColour = Pixels[p];
+		tColour4i& adjColour = AdjustedPixels[p];
+		adjColour.R = tClamp(int(factor * (float(srcColour.R) - 128.0f) + 128.0f), 0, 255);
+		adjColour.G = tClamp(int(factor * (float(srcColour.G) - 128.0f) + 128.0f), 0, 255);
+		adjColour.B = tClamp(int(factor * (float(srcColour.B) - 128.0f) + 128.0f), 0, 255);
+	}
+
+	return true;
+}
+
+
+bool tPicture::AdjustmentEnd(bool commit)
 {
 	if (!IsValid() || !AdjustedPixels)
 		return false;
