@@ -198,21 +198,38 @@ public:
 
 	// Ideally adjustments (brightness, contrast etc) would be done in a fragment shader and then 'committed' to the
 	// tPicture with a simple adjust call. However currently the clients of tPicture don't have that ability so we're
-	// going with a begin/adjust/end setup where a new 'adjusted' pixel buffer is allocated on begin, and adjustments
-	// write to the new buffer. End then either copies the adjustment buffer to the original, or cancels and does not
-	// update original pixels. In either case End deletes the adjustment buffer.
+	// going with a begin/adjust/end setup where a new 'adjusted' pixel buffer is allocated on begin, and an adjustment
+	// writes to the new buffer. End then either copies the adjustment buffer to the original, or cancels and does not
+	// update original pixels. In either case End deletes the adjustment buffer. After Begin, only one AdjustmentNNN
+	// will have an effect (the last one called) until you call End with commit. This is because an adjustment is
+	// always based on the source pixels. It stops the issue, for example, of setting the brightness to full and losing
+	// all the colour data when you move back down.
 	//
 	// AdjustmentBegin returns the adjustment pixel buffer with the adjusted pixels. You don't own it. Returns nullptr
 	// on failure (invalid image). This function also precomputes the min/max colour values internally. 
 	tPixel* AdjustmentBegin();
 
-	// Adjust brightness based on the tPicture pixels and write them into the adjustment pixel buffer. Brightness E [0.0,1.0]
-	// When brightness at 0.0 adjustment buffer will be completely black. When brightness at 1.0, pure white, Returns success.
+	// Adjust brightness based on the tPicture pixels and write them into the adjustment pixel buffer. Brightness is in
+	// [0.0,1.0]. When brightness at 0.0 adjustment buffer will be completely black. When brightness at 1.0, pure white,
+	// Note that the range of the brigtness is computed so that all values between [0,1] have an effect on the image.
+	// This is possible because the min and max colour values were computed by inspecting every pixel when begin was
+	// called. In other words the values the colours move up or down for a particular brightness are image dependent,
+	// Returns success.
+	//
+	// The DefaultNNN functions get the parameters needed to have zero affect on the image. For brightness in particular
+	// it is dependent on the image contents and may not be exactly 0.5. If the min/max colour values did not reach 0
+	// and full, the default brightness may be offset from 0.5.
 	bool AdjustBrightness(float brightness);
+	bool GetDefaultBrightness(float& brightness);
 
-	// Adjust contrast based on the tPicture pixels and write them into the adjustment pixel buffer. Contrast E [0.0,1.0]
-	// When contrast at 0.0 adjustment buffer will be lowest contrast. When contrast at 1.0, highest, Returns success.
+	// Adjust contrast based on the tPicture pixels and write them into the adjustment pixel buffer. Contrast is in
+	// [0.0, 1.0]. When contrast is at 0.0, adjustment buffer will be lowest contrast. When contrast at 1.0, highest,
+	// Returns success.
 	bool AdjustContrast(float contrast);
+	bool GetDefaultContrast(float& contrast);
+
+	bool AdjustLevels(float blackPoint, float midTone, float whitePoint, float outBlack, float outWhite);
+	bool GetDefaultLevels(float& blackPoint, float& midTone, float& whitePoint, float& outBlack, float& outWhite);
 
 	// When commit is false, cancels the adjustment. When true applies the adjustment buffer to the tPicture pixels.
 	// Returns success -- not whether committed or not, but rather was operation successful.

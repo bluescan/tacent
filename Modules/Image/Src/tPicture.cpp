@@ -477,12 +477,26 @@ bool tPicture::AdjustBrightness(float brightness)
 }
 
 
+bool tPicture::GetDefaultBrightness(float& brightness)
+{
+	if (!IsValid() || !AdjustedPixels)
+		return false;
+
+	int zeroOffset = -BrightnessRGBMax;
+	int fullOffset = 255 - BrightnessRGBMin;
+	brightness = tMath::tLinearInterp(0.0f, float(zeroOffset), float(fullOffset), 0.0f, 1.0f);
+	return true;	
+}
+
+
 bool tPicture::AdjustContrast(float contrastNorm)
 {
 	if (!IsValid() || !AdjustedPixels)
 		return false;
 
 	float contrast = tMath::tLinearInterp(contrastNorm, 0.0f, 1.0f, -255.0f, 255.0f);
+
+	// The 259 is correct. Not a typo.
 	float factor = (259.0f * (contrast + 255.0f)) / (255.0f * (259.0f - contrast));
 	for (int p = 0; p < Width*Height; p++)
 	{
@@ -493,6 +507,70 @@ bool tPicture::AdjustContrast(float contrastNorm)
 		adjColour.B = tClamp(int(factor * (float(srcColour.B) - 128.0f) + 128.0f), 0, 255);
 	}
 
+	return true;
+}
+
+
+bool tPicture::GetDefaultContrast(float& contrast)
+{
+	if (!IsValid() || !AdjustedPixels)
+		return false;
+
+	contrast = 0.5f;
+	return true;
+}
+
+
+bool tPicture::AdjustLevels(float blackPoint, float midTone, float whitePoint, float outBlack, float outWhite)
+{
+	if (!IsValid() || !AdjustedPixels)
+		return false;
+
+	// We do all the calculations in floating point, and only convert back to denorm and clamp at the end.
+	// Midtone gamma.
+	float gamma = 1.0f;
+	float oneMinusMid = 1.0f - midTone;
+	if (midTone < 0.5f)
+		gamma = tMin(1.0f + (9.0f * oneMinusMid), 9.99f);
+	else if (gamma > 0.5f)
+		gamma = tMax(2.0f*oneMinusMid, 0.01f);
+	float invGamma = 1.0f/gamma;
+
+	for (int p = 0; p < Width*Height; p++)
+	{
+		tColour4i& srcColour = Pixels[p];
+		tColour4i& adjColour = AdjustedPixels[p];
+
+		for (int e = 0; e < 3; e++)
+		{
+			float src = float(srcColour.E[e])/255.0f;
+
+			// Black/white levels.
+			float adj = (src - blackPoint) / (whitePoint - blackPoint);
+
+			// Midtones.
+			if (midTone != 0.5f)
+				adj = tPow(adj, invGamma);
+
+			// Output black/white levels.
+			adj = outBlack + adj*(outWhite - outBlack);
+			adjColour.E[e] = tClamp(int(adj*255.0f), 0, 255);
+		}
+	}
+	return true;
+}
+
+
+bool tPicture::GetDefaultLevels(float& blackPoint, float& midTone, float& whitePoint, float& outBlack, float& outWhite)
+{
+	if (!IsValid() || !AdjustedPixels)
+		return false;
+
+	blackPoint = 0.0f;
+	midTone = 0.5f;
+	whitePoint = 1.0f;
+	outBlack = 0.0f,
+	outWhite = 1.0f;
 	return true;
 }
 
