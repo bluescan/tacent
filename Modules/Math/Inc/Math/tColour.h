@@ -5,7 +5,7 @@
 // * A 96 bit colour. 3 32-bit float components.
 // * A 128 bit colour. 4 32-bit float components (rgb + alpha).
 //
-// Copyright (c) 2006, 2011, 2017, 2020, 2022 Tristan Grimmer.
+// Copyright (c) 2006, 2011, 2017, 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //

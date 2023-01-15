@@ -10,7 +10,7 @@
 // word 'path' is used for a composite of Bezier curves or a composite of line segments, and we reserve the word spline
 // for paths composed of multiple cubic polynomial pieces.
 //
-// Copyright (c) 2006, 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2020, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -147,10 +147,12 @@ public:
 
 	// t E [0, numSegments]. If the type is closed, the number of segments is one more than the equivalent open path.
 	void GetPoint(tVector3&, float t) const;
+	tVector3 GetPoint(float t) const																					{ tVector3 p; GetPoint(p, t); return p; }
 
 	// Does the same as GetPoint except that t is normalized to be E [0, 1] over all segments. The beginning of the curve
 	// is at t = 0 and the end at t = 1. Closed paths allow a value bigger than 1 in which case they loop.
 	void GetPointNorm(tVector3& point, float t) const																	{ GetPoint(point, t * float(NumCurveSegments)); }
+	tVector3 GetPointNorm(float t) const																				{ tVector3 p; GetPointNorm(p, t); return p; }
 
 	// Similar to GetPoint but returns the tangent at the specified point on the path. The tangent is not normalized.
 	// The longer the tangent the 'more influence' it has pulling the path in that direction.

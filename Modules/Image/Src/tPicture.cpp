@@ -9,7 +9,7 @@
 // layer, and gif/webp/apng images may be animated and have more than one frame. A tPicture can only prepresent _one_
 // of these frames.
 //
-// Copyright (c) 2006-2023 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2017, 2020-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -521,21 +521,50 @@ bool tPicture::GetDefaultContrast(float& contrast)
 }
 
 
-bool tPicture::AdjustLevels(float blackPoint, float midTone, float whitePoint, float outBlack, float outWhite)
+bool tPicture::AdjustLevels(float blackPoint, float midPoint, float whitePoint, float blackOut, float whiteOut, bool powerMidGamma)
 {
 	if (!IsValid() || !AdjustedPixels)
 		return false;
 
 	// We do all the calculations in floating point, and only convert back to denorm and clamp at the end.
+	// First step is to ensure well-formed input values.
+	tiSaturate(blackPoint);		tiSaturate(midPoint);	tiSaturate(whitePoint);		tiSaturate(blackOut);	tiSaturate(whiteOut);
+	tiClampMin(midPoint, blackPoint);
+	tiClampMin(whitePoint, midPoint);
+	tiClampMin(whiteOut, blackOut);
+
 	// Midtone gamma.
 	float gamma = 1.0f;
-	float oneMinusMid = 1.0f - midTone;
-	if (midTone < 0.5f)
-		gamma = tMin(1.0f + (9.0f * oneMinusMid), 9.99f);
-	else if (gamma > 0.5f)
-		gamma = tMax(2.0f*oneMinusMid, 0.01f);
-	float invGamma = 1.0f/gamma;
+	if (powerMidGamma)
+	{
+		// The first attempt at this was to use a quadratic bezier to interpolate the gamma points.The accepted answer at
+		// https://stackoverflow.com/questions/6711707/draw-a-quadratic-b%C3%A9zier-curve-through-three-given-points
+		// is, in fact, incorrect. There are not an infinite number of solutions, and there's only one CV that will
+		// interpolate the middle point. The equation for this is given a bit later and it is not in general at t=1/2
+		// and so is useless. This isn't surprising if you think about scaling, skewing, and translating a parabola.
+		//
+		// Instead we use a continuous pow function in base 10. The base is chosen as our max gamma value that we want
+		// at the white point and it will be when input is 1.0. The min gamma we want is 0.1 so that will be at 10^-1.
+		midPoint = tLinearInterp(midPoint, blackPoint, whitePoint, -1.0f, 1.0f);
+		gamma = tMath::tPow(10.0f, midPoint);
+	}
+	else
+	{
+		// We want the midPoint to have the full range from 0..1 for >0 blackPoints and <1 whitePoints. This is needed because
+		// we simplified the interface to have mid-point between black and white.
+		midPoint = tLinearInterp(midPoint, blackPoint, whitePoint, 0.0f, 1.0f);
+		if (midPoint < 0.5f)
+			gamma = tMin(1.0f + (9.0f*(1.0f - 2.0f*midPoint)), 9.99f);
+		else if (gamma > 0.5f)
+			// 1 - ((MidtoneNormal*2) - 1)
+			// 1 - MidtoneNormal*2 + 1
+			// 2 - MidtoneNormal*2
+			// 2*(1-MidtoneNormal)
+			gamma = tMax(2.0f*(1.0f - midPoint), 0.01f);
+		gamma = 1.0f/gamma;
+	}
 
+	// Apply for every pixel.
 	for (int p = 0; p < Width*Height; p++)
 	{
 		tColour4i& srcColour = Pixels[p];
@@ -549,11 +578,10 @@ bool tPicture::AdjustLevels(float blackPoint, float midTone, float whitePoint, f
 			float adj = (src - blackPoint) / (whitePoint - blackPoint);
 
 			// Midtones.
-			if (midTone != 0.5f)
-				adj = tPow(adj, invGamma);
+			adj = tPow(adj, gamma);
 
 			// Output black/white levels.
-			adj = outBlack + adj*(outWhite - outBlack);
+			adj = blackOut + adj*(whiteOut - blackOut);
 			adjColour.E[e] = tClamp(int(adj*255.0f), 0, 255);
 		}
 	}
@@ -561,16 +589,16 @@ bool tPicture::AdjustLevels(float blackPoint, float midTone, float whitePoint, f
 }
 
 
-bool tPicture::GetDefaultLevels(float& blackPoint, float& midTone, float& whitePoint, float& outBlack, float& outWhite)
+bool tPicture::GetDefaultLevels(float& blackPoint, float& midPoint, float& whitePoint, float& outBlack, float& outWhite)
 {
 	if (!IsValid() || !AdjustedPixels)
 		return false;
 
-	blackPoint = 0.0f;
-	midTone = 0.5f;
-	whitePoint = 1.0f;
-	outBlack = 0.0f,
-	outWhite = 1.0f;
+	blackPoint	= 0.0f;
+	midPoint	= 0.5f;
+	whitePoint	= 1.0f;
+	outBlack	= 0.0f,
+	outWhite	= 1.0f;
 	return true;
 }
 

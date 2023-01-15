@@ -2,7 +2,7 @@
 //
 // Image module tests.
 //
-// Copyright (c) 2017, 2019-2022 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -866,6 +866,64 @@ tTestUnit(ImageAdjustment)
 		// Save it out.
 		tString file;
 		tsPrintf(file, "TestData/Images/WrittenContrast%3.1f.png", contrast);
+		png.Set(pic, false);
+		bool ok = png.Save(file.Chr());
+		tRequire(ok);
+	}
+
+	// Test levels.
+	for (int level = 0; level <= 10; level++)
+	{
+		tImagePNG png("TestData/Images/TacentTestPattern.png");
+		tPicture pic(png);
+		float blackPoint = 0.0f;
+		float midPoint = float(level)/10.0f;
+		float whitePoint = 1.0f;
+		pic.AdjustmentBegin();
+		pic.AdjustLevels(blackPoint, midPoint, whitePoint, 0.0f, 1.0f, true);
+		pic.AdjustmentEnd(true);
+
+		// Save it out.
+		tString file;
+		tsPrintf(file, "TestData/Images/WrittenLevels_MidAdjPower_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
+		png.Set(pic, false);
+		bool ok = png.Save(file.Chr());
+		tRequire(ok);
+	}
+
+	for (int level = 0; level <= 10; level++)
+	{
+		tImagePNG png("TestData/Images/TacentTestPattern.png");
+		tPicture pic(png);
+		float blackPoint = 0.0f;
+		float midPoint = float(level)/10.0f;
+		float whitePoint = 1.0f;
+		pic.AdjustmentBegin();
+		pic.AdjustLevels(blackPoint, midPoint, whitePoint, 0.0f, 1.0f, false);
+		pic.AdjustmentEnd(true);
+
+		// Save it out.
+		tString file;
+		tsPrintf(file, "TestData/Images/WrittenLevels_MidAdjPhoto_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
+		png.Set(pic, false);
+		bool ok = png.Save(file.Chr());
+		tRequire(ok);
+	}
+
+	for (int level = 0; level <= 10; level++)
+	{
+		tImagePNG png("TestData/Images/TacentTestPattern.png");
+		tPicture pic(png);
+		float blackPoint = float(level)/10.0f;
+		float whitePoint = 1.0f;
+		float midPoint = (blackPoint+whitePoint)/2.0f;
+		pic.AdjustmentBegin();
+		pic.AdjustLevels(blackPoint, midPoint, whitePoint, 0.0f, 1.0f, true);
+		pic.AdjustmentEnd(true);
+
+		// Save it out.
+		tString file;
+		tsPrintf(file, "TestData/Images/WrittenLevels_BlkAdjPower_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
 		png.Set(pic, false);
 		bool ok = png.Save(file.Chr());
 		tRequire(ok);

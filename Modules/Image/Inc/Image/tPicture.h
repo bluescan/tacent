@@ -9,7 +9,7 @@
 // page, and gif/webp images may be animated and have more than one frame. A tPicture can only prepresent _one_ of 
 // these frames.
 //
-// Copyright (c) 2006-2023 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2017, 2020-2023  Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -228,8 +228,17 @@ public:
 	bool AdjustContrast(float contrast);
 	bool GetDefaultContrast(float& contrast);
 
-	bool AdjustLevels(float blackPoint, float midTone, float whitePoint, float outBlack, float outWhite);
-	bool GetDefaultLevels(float& blackPoint, float& midTone, float& whitePoint, float& outBlack, float& outWhite);
+	// Adjust levels. All values are E [0, 1]. Ensure blackPoint <= midPoint <= whitePoint and blackOut <= whiteOut.
+	// If these conditions are not met they are silently enforced starting at black (unmodified). The powerMidGamma
+	// option lets you decide between 2 algorithms to determine the curve on the gamma. If false it uses some code that
+	// tries to mimic Photoshop. See https://stackoverflow.com/questions/39510072/algorithm-for-adjustment-of-image-levels
+	// The curve for the above is C1 discontinuous at gamma 1, so I didn't like it. powerMidGamma, the default, uses
+	// a continuous base-10 power curve that smoothly goes from gamma 0.1 to gamma 10.
+	// For the power curve the gamma range is [0.1,  10.0] where 1.0 is linear. This approximates GIMP.
+	// For the photo curve the gamma range is [0.01, 9.99] where 1.0 is linear. This approximates PS.
+	// The defaults to result in no change are the same for both algorithms.
+	bool AdjustLevels(float blackPoint, float midPoint, float whitePoint, float blackOut, float whiteOut, bool powerMidGamma = true);
+	bool GetDefaultLevels(float& blackPoint, float& midPoint, float& whitePoint, float& blackOut, float& whiteOut);
 
 	// When commit is false, cancels the adjustment. When true applies the adjustment buffer to the tPicture pixels.
 	// Returns success -- not whether committed or not, but rather was operation successful.
