@@ -113,7 +113,7 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel* p
 	bool success = Set(fmt, width, height, rgbPixels, quantMethod);
 
 	delete[] rgbPixels;
-	return true;
+	return success;
 }
 
 
@@ -148,8 +148,13 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* 
 			tQuantizeNeu::QuantizeImage(numColours, width, height, pixels, Palette, indices);
 			break;
 
+		case tQuantize::Method::Wu:
+			tQuantizeWu::QuantizeImage(numColours, width, height, pixels, Palette, indices);
+			break;
+
 		default:
 			delete[] indices;
+			Clear();
 			return false;
 	}
 

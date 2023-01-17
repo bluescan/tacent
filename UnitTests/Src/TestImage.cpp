@@ -537,11 +537,14 @@ tTestUnit(ImageQuantize)
 
 void PalettizeImage(int w, int h, tPixel* pixels, tPixelFormat fmt, tImage::tQuantize::Method method)
 {
+	bool ok;
 	tPaletteImage pal;
-	pal.Set(fmt, w, h, pixels, method);					// Create a palettized image with a specific-sized palette.
+	ok = pal.Set(fmt, w, h, pixels, method);			// Create a palettized image with a specific-sized palette.
+	tRequire(ok); if (!ok) return;
 
 	tPixel* palpix = new tPixel[w*h];
-	pal.Get(palpix);									// Depalettize into a pixel buffer.
+	ok = pal.Get(palpix);								// Depalettize into a pixel buffer.
+	tRequire(ok); if (!ok) return;
 
 	tImageTGA dstimg;
 	dstimg.Set(palpix, w, h, true);						// Give the pixels to the tga.
