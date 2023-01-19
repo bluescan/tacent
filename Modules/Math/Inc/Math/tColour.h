@@ -114,8 +114,7 @@ namespace tMath
 
 	// Some colour-space component conversion functions. Gamma-space is probably more ubiquitous than the more accurate
 	// sRGB space. Unless speed is an issue, probably best to stay away from the Square functions (gamma = 2.0).
-
-
+	//
 	// Colours in textures in files may be in 'Gamma-space' and ought to be converted to linear space before lighting
 	// calculations are made. They should then be converted back to Gamma space before being displayed. SquareToLinear
 	// and LinearToSquare are identical to GammaToLinear and LinearToGamme with a gamma value of 2.0. They're a bit
@@ -204,6 +203,7 @@ public:
 	void GetDenorm(float& r, float&g, float& b, float& a) const															{ r = GetDenormR(); g = GetDenormG(); b = GetDenormB(); a = GetDenormA(); }
 
 	void Get(tColour4i& c) const																						{ c.BP = BP; }
+	int Intensity() const			/* Returns intensity (average of RGB) in range [0, 255]. */							{ return (int(R)+int(G)+int(B))/3; }
 	void MakeZero()																										{ R = 0x00; G = 0x00; B = 0x00; A = 0x00; }
 	void MakeBlack()																									{ R = 0x00; G = 0x00; B = 0x00; A = 0xFF; }
 	void MakeWhite()																									{ R = 0xFF; G = 0xFF; B = 0xFF; A = 0xFF; }
@@ -294,7 +294,7 @@ typedef tColour4i tPixel;
 class tColour3i
 {
 public:
-	tColour3i()												/* Does NOT set the colour values. */						{ }
+	tColour3i()						/* Does NOT set the colour values. */												{ }
 	tColour3i(const tColour3i& c)																						: R(c.R), G(c.G), B(c.B) { }
 	tColour3i(int r, int g, int b)																						{ R = tMath::tClamp(r, 0, 0xFF); G = tMath::tClamp(g, 0, 0xFF); B = tMath::tClamp(b, 0, 0xFF); }
 	tColour3i(uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)																: R(r), G(g), B(b) { }
@@ -310,6 +310,7 @@ public:
 	void GetDenorm(float* dest) const																					{ dest[0] = GetDenormR(); dest[1] = GetDenormG(); dest[2] = GetDenormB(); }
 	void GetDenorm(tMath::tVector3& dest) const																			{ dest.x = GetDenormR(); dest.y = GetDenormG(); dest.z = GetDenormB(); }
 	void GetDenorm(float& r, float&g, float& b) const																	{ r = GetDenormR(); g = GetDenormG(); b = GetDenormB(); }
+	int Intensity() const			/* Returns intensity (average of RGB) in range [0, 255]. */							{ return (int(R)+int(G)+int(B))/3; }
 
 	// These allow tColour4i to be keys in a tMap.
 	explicit operator uint32()																							{ return (uint32(R)<<16) | (uint32(G)<<8) | uint32(B); }
@@ -368,7 +369,9 @@ public:
 	void Get(tMath::tVector4& dest) const																				{ dest.x = R; dest.y = G; dest.z = B; dest.w = A; }
 	void Get(float& r, float&g, float& b, float& a) const																{ r = R; g = G; b = B; a = A; }
 	void Get(tColour4f& c) const																							{ c.BP0 = BP0; c.BP1 = BP1;}
+
 	void Saturate()																										{ tMath::tiSaturate(R); tMath::tiSaturate(G); tMath::tiSaturate(B); tMath::tiSaturate(A); }
+	float Intensity() const			/* Returns intensity (average of RGB) in range [0.0f, 1.0f]. */						{ return (R+G+B)/3.0f; }
 
 	void MakeBlack()																									{ R = 0.0f; G = 0.0f; B = 0.0f; A = 1.0f; }
 	void MakeWhite()																									{ R = 1.0f; G = 1.0f; B = 1.0f; A = 1.0f; }
@@ -513,6 +516,9 @@ public:
 	void Get(tMath::tVector4& dest) const																				{ dest.x = R; dest.y = G; dest.z = B; dest.w = 1.0f; }
 	void Get(float& r, float&g, float& b) const																			{ r = R; g = G; b = B; }
 	void Get(tColour3f& c) const																						{ c.R = R; c.G = G; c.B = B; }
+
+	void Saturate()																										{ tMath::tiSaturate(R); tMath::tiSaturate(G); tMath::tiSaturate(B); }
+	float Intensity() const			/* Returns intensity (average of RGB) in range [0.0f, 1.0f]. */						{ return (R+G+B)/3.0f; }
 
 	void MakeBlack()																									{ R = 0.0f; G = 0.0f; B = 0.0f; }
 	void MakeWhite()																									{ R = 1.0f; G = 1.0f; B = 1.0f; }

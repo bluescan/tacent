@@ -434,19 +434,46 @@ tPixel* tPicture::AdjustmentBegin()
 	// exactly match all black at 0 and full white at 1. We do this as we copy the pixel values.
 	BrightnessRGBMin = 256;
 	BrightnessRGBMax = -1;
+
+	tStd::tMemset(HistogramR, 0, sizeof(HistogramR));	MaxRCount = 0;
+	tStd::tMemset(HistogramG, 0, sizeof(HistogramG));	MaxGCount = 0;
+	tStd::tMemset(HistogramB, 0, sizeof(HistogramB));	MaxBCount = 0;
+	tStd::tMemset(HistogramA, 0, sizeof(HistogramA));	MaxACount = 0;
+	tStd::tMemset(HistogramI, 0, sizeof(HistogramI));	MaxICount = 0;
 	for (int p = 0; p < Width*Height; p++)
 	{
 		tColour4i& colour = Pixels[p];
+
+		// Min/max. All RGB components considered.
 		int minRGB = tMath::tMin(colour.R, colour.G, colour.B);
 		int maxRGB = tMath::tMax(colour.R, colour.G, colour.B);
 		if (minRGB < BrightnessRGBMin)
 			BrightnessRGBMin = minRGB;
 		if (maxRGB > BrightnessRGBMax)
 			BrightnessRGBMax = maxRGB;
-		AdjustedPixels[p] = Pixels[p];
+
+		// Histograms.
+		HistogramR[colour.R]++;
+		HistogramG[colour.G]++;
+		HistogramB[colour.B]++;
+		HistogramA[colour.A]++;
+		HistogramI[colour.Intensity()]++;
+
+		AdjustedPixels[p] = colour;
 	}
 	tiClamp(BrightnessRGBMin, 0, 255);
 	tiClamp(BrightnessRGBMax, 0, 255);
+
+	// Find max counts for the histograms so we can normalize if needed.
+	for (int g = 0; g < NumGroups; g++)
+	{
+		if (HistogramR[g] > MaxRCount)		MaxRCount = HistogramR[g];
+		if (HistogramG[g] > MaxGCount)		MaxGCount = HistogramG[g];
+		if (HistogramB[g] > MaxBCount)		MaxBCount = HistogramB[g];
+		if (HistogramA[g] > MaxACount)		MaxACount = HistogramA[g];
+		if (HistogramI[g] > MaxICount)		MaxICount = HistogramI[g];
+	}
+
 	return AdjustedPixels;
 }
 
