@@ -845,7 +845,7 @@ tTestUnit(ImageAdjustment)
 		float brightness = float(level)/10.0f;
 		pic.AdjustmentBegin();
 		pic.AdjustBrightness(brightness);
-		pic.AdjustmentEnd(true);
+		pic.AdjustmentEnd();
 
 		// Save it out.
 		tString file;
@@ -864,7 +864,7 @@ tTestUnit(ImageAdjustment)
 		float contrast = float(level)/10.0f;
 		pic.AdjustmentBegin();
 		pic.AdjustContrast(contrast);
-		pic.AdjustmentEnd(true);
+		pic.AdjustmentEnd();
 
 		// Save it out.
 		tString file;
@@ -884,7 +884,7 @@ tTestUnit(ImageAdjustment)
 		float whitePoint = 1.0f;
 		pic.AdjustmentBegin();
 		pic.AdjustLevels(blackPoint, midPoint, whitePoint, 0.0f, 1.0f, true);
-		pic.AdjustmentEnd(true);
+		pic.AdjustmentEnd();
 
 		// Save it out.
 		tString file;
@@ -903,7 +903,7 @@ tTestUnit(ImageAdjustment)
 		float whitePoint = 1.0f;
 		pic.AdjustmentBegin();
 		pic.AdjustLevels(blackPoint, midPoint, whitePoint, 0.0f, 1.0f, false);
-		pic.AdjustmentEnd(true);
+		pic.AdjustmentEnd();
 
 		// Save it out.
 		tString file;
@@ -922,7 +922,7 @@ tTestUnit(ImageAdjustment)
 		float midPoint = (blackPoint+whitePoint)/2.0f;
 		pic.AdjustmentBegin();
 		pic.AdjustLevels(blackPoint, midPoint, whitePoint, 0.0f, 1.0f, true);
-		pic.AdjustmentEnd(true);
+		pic.AdjustmentEnd();
 
 		// Save it out.
 		tString file;

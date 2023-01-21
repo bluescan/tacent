@@ -423,12 +423,12 @@ bool tPicture::Crop(const tColouri& colour, uint32 channels)
 }
 
 
-tPixel* tPicture::AdjustmentBegin()
+bool tPicture::AdjustmentBegin()
 {
-	if (!IsValid() || AdjustedPixels)
-		return nullptr;
+	if (!IsValid() || OriginalPixels)
+		return false;
 
-	AdjustedPixels = new tPixel[Width*Height];
+	OriginalPixels = new tPixel[Width*Height];
 
 	// We need to compute min and max component values so the extents of the brigtness parameter
 	// exactly match all black at 0 and full white at 1. We do this as we copy the pixel values.
@@ -459,7 +459,7 @@ tPixel* tPicture::AdjustmentBegin()
 		HistogramA[colour.A]++;
 		HistogramI[colour.Intensity()]++;
 
-		AdjustedPixels[p] = colour;
+		OriginalPixels[p] = colour;
 	}
 	tiClamp(BrightnessRGBMin, 0, 255);
 	tiClamp(BrightnessRGBMax, 0, 255);
@@ -474,13 +474,13 @@ tPixel* tPicture::AdjustmentBegin()
 		if (HistogramI[g] > MaxICount)		MaxICount = HistogramI[g];
 	}
 
-	return AdjustedPixels;
+	return true;
 }
 
 
 bool tPicture::AdjustBrightness(float brightness)
 {
-	if (!IsValid() || !AdjustedPixels)
+	if (!IsValid() || !OriginalPixels)
 		return false;
 
 	// We want to guarantee all black at brightness level 0 (and no higher) and
@@ -493,8 +493,8 @@ bool tPicture::AdjustBrightness(float brightness)
 	int offset = int(offsetFlt);
 	for (int p = 0; p < Width*Height; p++)
 	{
-		tColour4i& srcColour = Pixels[p];
-		tColour4i& adjColour = AdjustedPixels[p];
+		tColour4i& srcColour = OriginalPixels[p];
+		tColour4i& adjColour = Pixels[p];
 		adjColour.R = tClamp(int(srcColour.R) + offset, 0, 255);
 		adjColour.G = tClamp(int(srcColour.G) + offset, 0, 255);
 		adjColour.B = tClamp(int(srcColour.B) + offset, 0, 255);
@@ -506,7 +506,7 @@ bool tPicture::AdjustBrightness(float brightness)
 
 bool tPicture::GetDefaultBrightness(float& brightness)
 {
-	if (!IsValid() || !AdjustedPixels)
+	if (!IsValid() || !OriginalPixels)
 		return false;
 
 	int zeroOffset = -BrightnessRGBMax;
@@ -518,7 +518,7 @@ bool tPicture::GetDefaultBrightness(float& brightness)
 
 bool tPicture::AdjustContrast(float contrastNorm)
 {
-	if (!IsValid() || !AdjustedPixels)
+	if (!IsValid() || !OriginalPixels)
 		return false;
 
 	float contrast = tMath::tLinearInterp(contrastNorm, 0.0f, 1.0f, -255.0f, 255.0f);
@@ -527,8 +527,8 @@ bool tPicture::AdjustContrast(float contrastNorm)
 	float factor = (259.0f * (contrast + 255.0f)) / (255.0f * (259.0f - contrast));
 	for (int p = 0; p < Width*Height; p++)
 	{
-		tColour4i& srcColour = Pixels[p];
-		tColour4i& adjColour = AdjustedPixels[p];
+		tColour4i& srcColour = OriginalPixels[p];
+		tColour4i& adjColour = Pixels[p];
 		adjColour.R = tClamp(int(factor * (float(srcColour.R) - 128.0f) + 128.0f), 0, 255);
 		adjColour.G = tClamp(int(factor * (float(srcColour.G) - 128.0f) + 128.0f), 0, 255);
 		adjColour.B = tClamp(int(factor * (float(srcColour.B) - 128.0f) + 128.0f), 0, 255);
@@ -540,7 +540,7 @@ bool tPicture::AdjustContrast(float contrastNorm)
 
 bool tPicture::GetDefaultContrast(float& contrast)
 {
-	if (!IsValid() || !AdjustedPixels)
+	if (!IsValid() || !OriginalPixels)
 		return false;
 
 	contrast = 0.5f;
@@ -550,7 +550,7 @@ bool tPicture::GetDefaultContrast(float& contrast)
 
 bool tPicture::AdjustLevels(float blackPoint, float midPoint, float whitePoint, float blackOut, float whiteOut, bool powerMidGamma)
 {
-	if (!IsValid() || !AdjustedPixels)
+	if (!IsValid() || !OriginalPixels)
 		return false;
 
 	// We do all the calculations in floating point, and only convert back to denorm and clamp at the end.
@@ -594,8 +594,8 @@ bool tPicture::AdjustLevels(float blackPoint, float midPoint, float whitePoint, 
 	// Apply for every pixel.
 	for (int p = 0; p < Width*Height; p++)
 	{
-		tColour4i& srcColour = Pixels[p];
-		tColour4i& adjColour = AdjustedPixels[p];
+		tColour4i& srcColour = OriginalPixels[p];
+		tColour4i& dstColour = Pixels[p];
 
 		for (int e = 0; e < 3; e++)
 		{
@@ -609,7 +609,7 @@ bool tPicture::AdjustLevels(float blackPoint, float midPoint, float whitePoint, 
 
 			// Output black/white levels.
 			adj = blackOut + adj*(whiteOut - blackOut);
-			adjColour.E[e] = tClamp(int(adj*255.0f), 0, 255);
+			dstColour.E[e] = tClamp(int(adj*255.0f), 0, 255);
 		}
 	}
 	return true;
@@ -618,7 +618,7 @@ bool tPicture::AdjustLevels(float blackPoint, float midPoint, float whitePoint, 
 
 bool tPicture::GetDefaultLevels(float& blackPoint, float& midPoint, float& whitePoint, float& outBlack, float& outWhite)
 {
-	if (!IsValid() || !AdjustedPixels)
+	if (!IsValid() || !OriginalPixels)
 		return false;
 
 	blackPoint	= 0.0f;
@@ -630,16 +630,23 @@ bool tPicture::GetDefaultLevels(float& blackPoint, float& midPoint, float& white
 }
 
 
-bool tPicture::AdjustmentEnd(bool commit)
+bool tPicture::RestoreOriginal()
 {
-	if (!IsValid() || !AdjustedPixels)
+	if (!IsValid() || !OriginalPixels)
 		return false;
 
-	if (commit)
-		tStd::tMemcpy(Pixels, AdjustedPixels, Width*Height*sizeof(tPixel));
+	tStd::tMemcpy(Pixels, OriginalPixels, Width*Height*sizeof(tPixel));
+	return true;
+}
 
-	delete[] AdjustedPixels;
-	AdjustedPixels = nullptr;
+
+bool tPicture::AdjustmentEnd()
+{
+	if (!IsValid() || !OriginalPixels)
+		return false;
+
+	delete[] OriginalPixels;
+	OriginalPixels = nullptr;
 	return true;
 }
 
@@ -755,8 +762,7 @@ bool tPicture::Resample(int width, int height, tResampleFilter filter, tResample
 		return false;
 	}
 
-	if (!ExternalPixels)
-		delete[] Pixels;
+	delete[] Pixels;
 	Pixels = newPixels;
 	Width = width;
 	Height = height;
