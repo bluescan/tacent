@@ -117,6 +117,10 @@ public:
 	// pixel data is lost. Other members of the tPicture are unmodified.
 	void Set(int width, int height, tPixel* pixelBuffer, bool copyPixels = true);
 
+	// Same as above except the tPicture does NOT own the pixels. You are responsibe for keeping them valid for the
+	// lifetime of this tPicture. This object will not delete them.
+	void SetExt(int width, int height, tPixel* pixelBuffer);
+
 	// Sets from a tFrame. If steal is true the tPicture will take ownership of the tFrame. If steal is false it will
 	// copy the pixels out. The frame duration is also taken from the frame.
 	void Set(tFrame* frame, bool steal);
@@ -310,6 +314,7 @@ private:
 
 	int Width				= 0;
 	int Height				= 0;
+	bool ExternalPixels		= false;
 	tPixel* Pixels			= nullptr;
 	tPixel* AdjustedPixels	= nullptr;
 };
@@ -321,8 +326,10 @@ private:
 inline void tPicture::Clear()
 {
 	Filename.Clear();
-	delete[] Pixels;
+	if (!ExternalPixels)
+		delete[] Pixels;
 	Pixels = nullptr;
+	ExternalPixels = false;
 	delete[] AdjustedPixels;
 	AdjustedPixels = nullptr;
 	Width = 0;
@@ -334,6 +341,8 @@ inline void tPicture::Clear()
 inline void tPicture::Set(int width, int height, const tPixel& colour)
 {
 	tAssert((width > 0) && (height > 0));
+	if (ExternalPixels)
+		Clear();
 
 	// Reuse the existing buffer if possible.
 	if (width*height != Width*Height)
@@ -353,6 +362,8 @@ inline void tPicture::Set(int width, int height, const tPixel& colour)
 inline void tPicture::Set(int width, int height, tPixel* pixelBuffer, bool copyPixels)
 {
 	tAssert((width > 0) && (height > 0) && pixelBuffer);
+	if (ExternalPixels)
+		Clear();
 
 	// If we're copying the pixels we may be able to reuse the existing buffer if it's the right size. If we're not
 	// copying and the buffer is being handed to us, we just need to free our current buffer.
@@ -375,6 +386,19 @@ inline void tPicture::Set(int width, int height, tPixel* pixelBuffer, bool copyP
 	if (copyPixels)
 		tStd::tMemcpy(Pixels, pixelBuffer, Width*Height*sizeof(tPixel));
 
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+}
+
+
+inline void tPicture::SetExt(int width, int height, tPixel* pixelBuffer)
+{
+	tAssert((width > 0) && (height > 0) && pixelBuffer);
+	Clear();
+
+	ExternalPixels = true;
+	Pixels = pixelBuffer;
+	Width = width;
+	Height = height;
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 }
 

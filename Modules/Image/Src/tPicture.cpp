@@ -755,7 +755,8 @@ bool tPicture::Resample(int width, int height, tResampleFilter filter, tResample
 		return false;
 	}
 
-	delete[] Pixels;
+	if (!ExternalPixels)
+		delete[] Pixels;
 	Pixels = newPixels;
 	Width = width;
 	Height = height;
