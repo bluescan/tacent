@@ -504,7 +504,7 @@ bool tPicture::AdjustBrightness(float brightness)
 }
 
 
-bool tPicture::GetDefaultBrightness(float& brightness)
+bool tPicture::AdjustGetDefaultBrightness(float& brightness)
 {
 	if (!IsValid() || !OriginalPixels)
 		return false;
@@ -538,7 +538,7 @@ bool tPicture::AdjustContrast(float contrastNorm)
 }
 
 
-bool tPicture::GetDefaultContrast(float& contrast)
+bool tPicture::AdjustGetDefaultContrast(float& contrast)
 {
 	if (!IsValid() || !OriginalPixels)
 		return false;
@@ -616,7 +616,7 @@ bool tPicture::AdjustLevels(float blackPoint, float midPoint, float whitePoint, 
 }
 
 
-bool tPicture::GetDefaultLevels(float& blackPoint, float& midPoint, float& whitePoint, float& outBlack, float& outWhite)
+bool tPicture::AdjustGetDefaultLevels(float& blackPoint, float& midPoint, float& whitePoint, float& outBlack, float& outWhite)
 {
 	if (!IsValid() || !OriginalPixels)
 		return false;
@@ -630,7 +630,7 @@ bool tPicture::GetDefaultLevels(float& blackPoint, float& midPoint, float& white
 }
 
 
-bool tPicture::RestoreOriginal()
+bool tPicture::AdjustRestoreOriginal()
 {
 	if (!IsValid() || !OriginalPixels)
 		return false;

@@ -212,17 +212,17 @@ public:
 	// called. In other words the values the colours move up or down for a particular brightness are image dependent,
 	// Returns success.
 	//
-	// The DefaultNNN functions get the parameters needed to have zero affect on the image. For brightness in particular
-	// it is dependent on the image contents and may not be exactly 0.5. If the min/max colour values did not reach 0
-	// and full, the default brightness may be offset from 0.5.
+	// The AdjustGetDefaultNNN functions get the parameters needed to have zero affect on the image. For brightness in
+	// particular it is dependent on the image contents and may not be exactly 0.5. If the min/max colour values did not
+	// reach 0 and full, the default brightness may be offset from 0.5.
 	bool AdjustBrightness(float brightness);
-	bool GetDefaultBrightness(float& brightness);
+	bool AdjustGetDefaultBrightness(float& brightness);
 
 	// Adjust contrast based on the tPicture pixels and write them into the adjustment pixel buffer. Contrast is in
 	// [0.0, 1.0]. When contrast is at 0.0, adjustment buffer will be lowest contrast. When contrast at 1.0, highest,
 	// Returns success.
 	bool AdjustContrast(float contrast);
-	bool GetDefaultContrast(float& contrast);
+	bool AdjustGetDefaultContrast(float& contrast);
 
 	// Adjust levels. All values are E [0, 1]. Ensure blackPoint <= midPoint <= whitePoint and blackOut <= whiteOut.
 	// If these conditions are not met they are silently enforced starting at black (unmodified). The powerMidGamma
@@ -234,10 +234,10 @@ public:
 	// For the photo curve the gamma range is [0.01, 9.99] where 1.0 is linear. This approximates PS.
 	// The defaults to result in no change are the same for both algorithms.
 	bool AdjustLevels(float blackPoint, float midPoint, float whitePoint, float blackOut, float whiteOut, bool powerMidGamma = true);
-	bool GetDefaultLevels(float& blackPoint, float& midPoint, float& whitePoint, float& blackOut, float& whiteOut);
+	bool AdjustGetDefaultLevels(float& blackPoint, float& midPoint, float& whitePoint, float& blackOut, float& whiteOut);
 
 	// Keeps the adjustment session open and restores the pixels to their original values.
-	bool RestoreOriginal();
+	bool AdjustRestoreOriginal();
 
 	// Ends adjustment session and deletes the temporary original pixel buffer. Returns success.
 	bool AdjustmentEnd();
