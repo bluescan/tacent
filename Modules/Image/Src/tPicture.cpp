@@ -440,6 +440,7 @@ bool tPicture::AdjustmentBegin()
 	tStd::tMemset(HistogramG, 0, sizeof(HistogramG));	MaxGCount = 0.0f;
 	tStd::tMemset(HistogramB, 0, sizeof(HistogramB));	MaxBCount = 0.0f;
 	tStd::tMemset(HistogramA, 0, sizeof(HistogramA));	MaxACount = 0.0f;
+	tStd::tMemset(HistogramI, 0, sizeof(HistogramI));	MaxICount = 0.0f;
 	for (int p = 0; p < Width*Height; p++)
 	{
 		tColour4i& colour = Pixels[p];
@@ -458,6 +459,7 @@ bool tPicture::AdjustmentBegin()
 		HistogramG[colour.G] += alpha;
 		HistogramB[colour.B] += alpha;
 		HistogramA[colour.A] += 1.0f;
+		HistogramI[colour.Intensity()] += alpha;
 
 		OriginalPixels[p] = colour;
 	}
@@ -471,6 +473,7 @@ bool tPicture::AdjustmentBegin()
 		if (HistogramG[g] > MaxGCount)		MaxGCount = HistogramG[g];
 		if (HistogramB[g] > MaxBCount)		MaxBCount = HistogramB[g];
 		if (HistogramA[g] > MaxACount)		MaxACount = HistogramA[g];
+		if (HistogramI[g] > MaxICount)		MaxICount = HistogramI[g];
 	}
 
 	return true;

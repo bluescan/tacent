@@ -296,6 +296,7 @@ public:
 	float HistogramG[NumGroups];	float MaxGCount;		// Frequency of Green. Max G count in all groups.
 	float HistogramB[NumGroups];	float MaxBCount;		// Frequency of Blue.  Max B count in all groups.
 	float HistogramA[NumGroups];	float MaxACount;		// Frequency of Alpha. Max A count in all groups.
+	float HistogramI[NumGroups];	float MaxICount;		// Frequency of Inten. Max I count in all groups (intensity).
 
 private:
 	int GetIndex(int x, int y) const																					{ tAssert((x >= 0) && (y >= 0) && (x < Width) && (y < Height)); return y * Width + x; }
