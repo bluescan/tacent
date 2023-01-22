@@ -215,13 +215,13 @@ public:
 	// The AdjustGetDefaultNNN functions get the parameters needed to have zero affect on the image. For brightness in
 	// particular it is dependent on the image contents and may not be exactly 0.5. If the min/max colour values did not
 	// reach 0 and full, the default brightness may be offset from 0.5.
-	bool AdjustBrightness(float brightness);
+	bool AdjustBrightness(float brightness, tcomps = tComp_RGB);
 	bool AdjustGetDefaultBrightness(float& brightness);
 
 	// Adjust contrast based on the tPicture pixels and write them into the adjustment pixel buffer. Contrast is in
 	// [0.0, 1.0]. When contrast is at 0.0, adjustment buffer will be lowest contrast. When contrast at 1.0, highest,
 	// Returns success.
-	bool AdjustContrast(float contrast);
+	bool AdjustContrast(float contrast, tcomps = tComp_RGB);
 	bool AdjustGetDefaultContrast(float& contrast);
 
 	// Adjust levels. All values are E [0, 1]. Ensure blackPoint <= midPoint <= whitePoint and blackOut <= whiteOut.
@@ -233,7 +233,7 @@ public:
 	// For the power curve the gamma range is [0.1,  10.0] where 1.0 is linear. This approximates GIMP.
 	// For the photo curve the gamma range is [0.01, 9.99] where 1.0 is linear. This approximates PS.
 	// The defaults to result in no change are the same for both algorithms.
-	bool AdjustLevels(float blackPoint, float midPoint, float whitePoint, float blackOut, float whiteOut, bool powerMidGamma = true);
+	bool AdjustLevels(float blackPoint, float midPoint, float whitePoint, float blackOut, float whiteOut, bool powerMidGamma = true, tcomps = tComp_RGB);
 	bool AdjustGetDefaultLevels(float& blackPoint, float& midPoint, float& whitePoint, float& blackOut, float& whiteOut);
 
 	// Keeps the adjustment session open and restores the pixels to their original values.
@@ -296,7 +296,6 @@ public:
 	float HistogramG[NumGroups];	float MaxGCount;		// Frequency of Green. Max G count in all groups.
 	float HistogramB[NumGroups];	float MaxBCount;		// Frequency of Blue.  Max B count in all groups.
 	float HistogramA[NumGroups];	float MaxACount;		// Frequency of Alpha. Max A count in all groups.
-	float HistogramI[NumGroups];	float MaxICount;		// Frequency of Intensity (avg of RGB). Max I count in all groups.
 
 private:
 	int GetIndex(int x, int y) const																					{ tAssert((x >= 0) && (y >= 0) && (x < Width) && (y < Height)); return y * Width + x; }

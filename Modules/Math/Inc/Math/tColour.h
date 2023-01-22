@@ -203,7 +203,10 @@ public:
 	void GetDenorm(float& r, float&g, float& b, float& a) const															{ r = GetDenormR(); g = GetDenormG(); b = GetDenormB(); a = GetDenormA(); }
 
 	void Get(tColour4i& c) const																						{ c.BP = BP; }
-	int Intensity() const			/* Returns intensity (average of RGB) in range [0, 255]. */							{ return (int(R)+int(G)+int(B))/3; }
+
+	// Returns intensity (average of chosen components) in range [0, 255].
+	int Intensity(tcomps comps = tComp_RGB) const;
+
 	void MakeZero()																										{ R = 0x00; G = 0x00; B = 0x00; A = 0x00; }
 	void MakeBlack()																									{ R = 0x00; G = 0x00; B = 0x00; A = 0xFF; }
 	void MakeWhite()																									{ R = 0xFF; G = 0xFF; B = 0xFF; A = 0xFF; }
@@ -667,6 +670,18 @@ inline void tColour4i::Set(const tColour3f& c, uint8 a)
 inline void tColour4i::Set(const tColour3f& c, float a)
 {
 	Set(c.R, c.G, c.B, a);
+}
+
+
+inline int tColour4i::Intensity(tcomps comps) const
+{
+	int sum = 0; int count = 0;
+	if (comps & tComp_R) { sum += int(R); count++; }
+	if (comps & tComp_G) { sum += int(G); count++; }
+	if (comps & tComp_B) { sum += int(B); count++; }
+	if (comps & tComp_A) { sum += int(A); count++; }
+	if (!count) return -1;
+	return sum/count;
 }
 
 

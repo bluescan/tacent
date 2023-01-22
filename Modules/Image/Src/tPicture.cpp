@@ -31,6 +31,7 @@ const char* ASTCENCODER_VERSION_STRING		= VERSION_STRING;
 
 #include "Image/tPicture.h"
 #include "Math/tMatrix2.h"
+#include "Math/tLinearAlgebra.h"
 #include <OpenEXR/loadImage.h>
 #include <zlib.h>
 #include <png.h>
@@ -439,7 +440,6 @@ bool tPicture::AdjustmentBegin()
 	tStd::tMemset(HistogramG, 0, sizeof(HistogramG));	MaxGCount = 0.0f;
 	tStd::tMemset(HistogramB, 0, sizeof(HistogramB));	MaxBCount = 0.0f;
 	tStd::tMemset(HistogramA, 0, sizeof(HistogramA));	MaxACount = 0.0f;
-	tStd::tMemset(HistogramI, 0, sizeof(HistogramI));	MaxICount = 0.0f;
 	for (int p = 0; p < Width*Height; p++)
 	{
 		tColour4i& colour = Pixels[p];
@@ -458,7 +458,6 @@ bool tPicture::AdjustmentBegin()
 		HistogramG[colour.G] += alpha;
 		HistogramB[colour.B] += alpha;
 		HistogramA[colour.A] += 1.0f;
-		HistogramI[colour.Intensity()] += alpha;
 
 		OriginalPixels[p] = colour;
 	}
@@ -472,14 +471,13 @@ bool tPicture::AdjustmentBegin()
 		if (HistogramG[g] > MaxGCount)		MaxGCount = HistogramG[g];
 		if (HistogramB[g] > MaxBCount)		MaxBCount = HistogramB[g];
 		if (HistogramA[g] > MaxACount)		MaxACount = HistogramA[g];
-		if (HistogramI[g] > MaxICount)		MaxICount = HistogramI[g];
 	}
 
 	return true;
 }
 
 
-bool tPicture::AdjustBrightness(float brightness)
+bool tPicture::AdjustBrightness(float brightness, tcomps comps)
 {
 	if (!IsValid() || !OriginalPixels)
 		return false;
@@ -496,9 +494,10 @@ bool tPicture::AdjustBrightness(float brightness)
 	{
 		tColour4i& srcColour = OriginalPixels[p];
 		tColour4i& adjColour = Pixels[p];
-		adjColour.R = tClamp(int(srcColour.R) + offset, 0, 255);
-		adjColour.G = tClamp(int(srcColour.G) + offset, 0, 255);
-		adjColour.B = tClamp(int(srcColour.B) + offset, 0, 255);
+		if (comps & tComp_R)	adjColour.R = tClamp(int(srcColour.R) + offset, 0, 255);
+		if (comps & tComp_G)	adjColour.G = tClamp(int(srcColour.G) + offset, 0, 255);
+		if (comps & tComp_B)	adjColour.B = tClamp(int(srcColour.B) + offset, 0, 255);
+		if (comps & tComp_A)	adjColour.A = tClamp(int(srcColour.A) + offset, 0, 255);
 	}
 
 	return true;
@@ -517,7 +516,7 @@ bool tPicture::AdjustGetDefaultBrightness(float& brightness)
 }
 
 
-bool tPicture::AdjustContrast(float contrastNorm)
+bool tPicture::AdjustContrast(float contrastNorm, tcomps comps)
 {
 	if (!IsValid() || !OriginalPixels)
 		return false;
@@ -530,9 +529,10 @@ bool tPicture::AdjustContrast(float contrastNorm)
 	{
 		tColour4i& srcColour = OriginalPixels[p];
 		tColour4i& adjColour = Pixels[p];
-		adjColour.R = tClamp(int(factor * (float(srcColour.R) - 128.0f) + 128.0f), 0, 255);
-		adjColour.G = tClamp(int(factor * (float(srcColour.G) - 128.0f) + 128.0f), 0, 255);
-		adjColour.B = tClamp(int(factor * (float(srcColour.B) - 128.0f) + 128.0f), 0, 255);
+		if (comps & tComp_R)	adjColour.R = tClamp(int(factor * (float(srcColour.R) - 128.0f) + 128.0f), 0, 255);
+		if (comps & tComp_G)	adjColour.G = tClamp(int(factor * (float(srcColour.G) - 128.0f) + 128.0f), 0, 255);
+		if (comps & tComp_B)	adjColour.B = tClamp(int(factor * (float(srcColour.B) - 128.0f) + 128.0f), 0, 255);
+		if (comps & tComp_A)	adjColour.A = tClamp(int(factor * (float(srcColour.A) - 128.0f) + 128.0f), 0, 255);
 	}
 
 	return true;
@@ -549,7 +549,7 @@ bool tPicture::AdjustGetDefaultContrast(float& contrast)
 }
 
 
-bool tPicture::AdjustLevels(float blackPoint, float midPoint, float whitePoint, float blackOut, float whiteOut, bool powerMidGamma)
+bool tPicture::AdjustLevels(float blackPoint, float midPoint, float whitePoint, float blackOut, float whiteOut, bool powerMidGamma, tcomps comps)
 {
 	if (!IsValid() || !OriginalPixels)
 		return false;
@@ -598,19 +598,22 @@ bool tPicture::AdjustLevels(float blackPoint, float midPoint, float whitePoint, 
 		tColour4i& srcColour = OriginalPixels[p];
 		tColour4i& dstColour = Pixels[p];
 
-		for (int e = 0; e < 3; e++)
+		for (int e = 0; e < 4; e++)
 		{
-			float src = float(srcColour.E[e])/255.0f;
+			if ((1 << e) & comps)
+			{
+				float src = float(srcColour.E[e])/255.0f;
 
-			// Black/white levels.
-			float adj = (src - blackPoint) / (whitePoint - blackPoint);
+				// Black/white levels.
+				float adj = (src - blackPoint) / (whitePoint - blackPoint);
 
-			// Midtones.
-			adj = tPow(adj, gamma);
+				// Midtones.
+				adj = tPow(adj, gamma);
 
-			// Output black/white levels.
-			adj = blackOut + adj*(whiteOut - blackOut);
-			dstColour.E[e] = tClamp(int(adj*255.0f), 0, 255);
+				// Output black/white levels.
+				adj = blackOut + adj*(whiteOut - blackOut);
+				dstColour.E[e] = tClamp(int(adj*255.0f), 0, 255);
+			}
 		}
 	}
 	return true;
