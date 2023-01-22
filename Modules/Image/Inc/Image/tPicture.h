@@ -289,11 +289,14 @@ public:
 	int BrightnessRGBMin		= 0;				// Used for brightness adjustments.
 	int BrightnessRGBMax		= 0;				// Used for brightness adjustments.
 	static const int NumGroups	= 256;				// Sure makes it easy choosing 256 groups.
-	int HistogramR[NumGroups];	int MaxRCount;		// Frequency of Red.   Max R count in all groups.
-	int HistogramG[NumGroups];	int MaxGCount;		// Frequency of Green. Max G count in all groups.
-	int HistogramB[NumGroups];	int MaxBCount;		// Frequency of Blue.  Max B count in all groups.
-	int HistogramA[NumGroups];	int MaxACount;		// Frequency of Alpha. Max A count in all groups.
-	int HistogramI[NumGroups];	int MaxICount;		// Frequency of Intensity (avg of RGB). Max I count in all groups.
+
+	// We use float counts since pixels with alpha are computed by multiplying by the alphs. This means we get
+	// fractional counts -- but it makes the histogram more representive of the actual colours/intensity present.
+	float HistogramR[NumGroups];	float MaxRCount;		// Frequency of Red.   Max R count in all groups.
+	float HistogramG[NumGroups];	float MaxGCount;		// Frequency of Green. Max G count in all groups.
+	float HistogramB[NumGroups];	float MaxBCount;		// Frequency of Blue.  Max B count in all groups.
+	float HistogramA[NumGroups];	float MaxACount;		// Frequency of Alpha. Max A count in all groups.
+	float HistogramI[NumGroups];	float MaxICount;		// Frequency of Intensity (avg of RGB). Max I count in all groups.
 
 private:
 	int GetIndex(int x, int y) const																					{ tAssert((x >= 0) && (y >= 0) && (x < Width) && (y < Height)); return y * Width + x; }

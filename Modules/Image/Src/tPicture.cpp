@@ -435,11 +435,11 @@ bool tPicture::AdjustmentBegin()
 	BrightnessRGBMin = 256;
 	BrightnessRGBMax = -1;
 
-	tStd::tMemset(HistogramR, 0, sizeof(HistogramR));	MaxRCount = 0;
-	tStd::tMemset(HistogramG, 0, sizeof(HistogramG));	MaxGCount = 0;
-	tStd::tMemset(HistogramB, 0, sizeof(HistogramB));	MaxBCount = 0;
-	tStd::tMemset(HistogramA, 0, sizeof(HistogramA));	MaxACount = 0;
-	tStd::tMemset(HistogramI, 0, sizeof(HistogramI));	MaxICount = 0;
+	tStd::tMemset(HistogramR, 0, sizeof(HistogramR));	MaxRCount = 0.0f;
+	tStd::tMemset(HistogramG, 0, sizeof(HistogramG));	MaxGCount = 0.0f;
+	tStd::tMemset(HistogramB, 0, sizeof(HistogramB));	MaxBCount = 0.0f;
+	tStd::tMemset(HistogramA, 0, sizeof(HistogramA));	MaxACount = 0.0f;
+	tStd::tMemset(HistogramI, 0, sizeof(HistogramI));	MaxICount = 0.0f;
 	for (int p = 0; p < Width*Height; p++)
 	{
 		tColour4i& colour = Pixels[p];
@@ -453,11 +453,12 @@ bool tPicture::AdjustmentBegin()
 			BrightnessRGBMax = maxRGB;
 
 		// Histograms.
-		HistogramR[colour.R]++;
-		HistogramG[colour.G]++;
-		HistogramB[colour.B]++;
-		HistogramA[colour.A]++;
-		HistogramI[colour.Intensity()]++;
+		float alpha = colour.GetA();
+		HistogramR[colour.R] += alpha;
+		HistogramG[colour.G] += alpha;
+		HistogramB[colour.B] += alpha;
+		HistogramA[colour.A] += 1.0f;
+		HistogramI[colour.Intensity()] += alpha;
 
 		OriginalPixels[p] = colour;
 	}
