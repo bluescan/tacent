@@ -105,6 +105,7 @@ struct tVector4 : public tVec4
 	const static tVector4 j;								// Basis vector (0, 1, 0, 1).
 	const static tVector4 k;								// Basis vector (0, 0, 1, 1).
 	const static tVector4 origin;							// Basis vector (0, 0, 0, 1).
+	const static tVector4 one;								// One vector   (1, 1, 1, 1).
 };
 
 

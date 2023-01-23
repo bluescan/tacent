@@ -103,6 +103,7 @@ struct tVector3 : public tVec3
 	const static tVector3 i;								// Basis vector (1, 0, 0).
 	const static tVector3 j;								// Basis vector (0, 1, 0).
 	const static tVector3 k;								// Basis vector (0, 0, 1).
+	const static tVector3 one;								// One vector   (1, 1, 1).
 };
 
 

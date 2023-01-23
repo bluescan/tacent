@@ -100,6 +100,7 @@ struct tVector2 : public tVec2
 	const static tVector2 zero;								// Zero vector  (0, 0).
 	const static tVector2 i;								// Basis vector (1, 0).
 	const static tVector2 j;								// Basis vector (0, 1).
+	const static tVector2 one;								// One vector   (1, 1).
 };
 
 

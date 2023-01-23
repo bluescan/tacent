@@ -4,7 +4,7 @@
 // cross/dot products, inversion functions, projections, normalization etc. These POD types are used as superclasses
 // for the more object-oriented and complete derived types. eg. tVector3 derives from the POD type tVec2 found here.
 //
-// Copyright (c) 2004-2006, 2015, 2017 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -26,19 +26,27 @@
 const tMath::tVector2 tMath::tVector2::zero			= { 0.0f, 0.0f };
 const tMath::tVector2 tMath::tVector2::i			= { 1.0f, 0.0f };
 const tMath::tVector2 tMath::tVector2::j			= { 0.0f, 1.0f };
+const tMath::tVector2 tMath::tVector2::one			= { 1.0f, 1.0f };
+
 const tMath::tVector3 tMath::tVector3::zero			= { 0.0f, 0.0f, 0.0f };
 const tMath::tVector3 tMath::tVector3::i			= { 1.0f, 0.0f, 0.0f };
 const tMath::tVector3 tMath::tVector3::j			= { 0.0f, 1.0f, 0.0f };
 const tMath::tVector3 tMath::tVector3::k			= { 0.0f, 0.0f, 1.0f };
+const tMath::tVector3 tMath::tVector3::one			= { 1.0f, 1.0f, 1.0f };
+
 const tMath::tVector4 tMath::tVector4::zero			= { 0.0f, 0.0f, 0.0f, 0.0f };
 const tMath::tVector4 tMath::tVector4::i			= { 1.0f, 0.0f, 0.0f, 1.0f };
 const tMath::tVector4 tMath::tVector4::j			= { 0.0f, 1.0f, 0.0f, 1.0f };
 const tMath::tVector4 tMath::tVector4::k			= { 0.0f, 0.0f, 1.0f, 1.0f };
 const tMath::tVector4 tMath::tVector4::origin		= { 0.0f, 0.0f, 0.0f, 1.0f };
+const tMath::tVector4 tMath::tVector4::one			= { 1.0f, 1.0f, 1.0f, 1.0f };
+
 const tMath::tQuaternion tMath::tQuaternion::zero	= { 0.0f, 0.0f, 0.0f, 0.0f };
 const tMath::tQuaternion tMath::tQuaternion::unit	= { 0.0f, 0.0f, 0.0f, 1.0f };
+
 const tMath::tMatrix2 tMath::tMatrix2::zero			= { 0.0f, 0.0f, 0.0f, 0.0f };
 const tMath::tMatrix2 tMath::tMatrix2::identity		= { 1.0f, 0.0f, 0.0f, 1.0f };
+
 const tMath::tMatrix4 tMath::tMatrix4::zero			= { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
 const tMath::tMatrix4 tMath::tMatrix4::identity		= { 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f };
 
