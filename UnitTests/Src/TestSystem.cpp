@@ -1392,6 +1392,21 @@ tTestUnit(Time)
 
 	tPrintf("Time (heleks)    : %f\n", timer.GetTime(tUnit::tTime::Helek));
 	tRequire(tApproxEqual(timer.GetTime(tUnit::tTime::Helek), 30.0f));
+
+	// Test conversions to strings in various formats.
+	std::tm localTime = tGetTimeLocal();
+
+	tString timeStandardStr = tConvertTimeToString(localTime, tTimeFormat::Standard);
+	tPrintf("Local Time Standard Format: %s\n", timeStandardStr.Chr());
+
+	tString timeExtendedStr = tConvertTimeToString(localTime, tTimeFormat::Extended);
+	tPrintf("Local Time Extended Format: %s\n", timeExtendedStr.Chr());
+
+	tString timeShortStr    = tConvertTimeToString(localTime, tTimeFormat::Short);
+	tPrintf("Local Time    Short Format: %s\n", timeShortStr.Chr());
+
+	tString timeFilenameStr = tConvertTimeToString(localTime, tTimeFormat::Filename);
+	tPrintf("Local Time Filename Format: %s\n", timeFilenameStr.Chr());
 }
 
 

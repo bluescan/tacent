@@ -189,6 +189,7 @@ int main(int argc, char** argv)
 	// tTest(File);
 	// tTest(FindRec);
 	// tTest(Network);
+	tTest(Time);
 	// tTest(CmdLine);
 	// tTest(String);
 	// tTest(List);
@@ -212,7 +213,7 @@ int main(int argc, char** argv)
 	// tTest(ImageMetaData);
 	// tTest(ImageRotation);
 	// tTest(ImageCrop);
-	tTest(ImageAdjustment);
+	// tTest(ImageAdjustment);
 	// tTest(ImageDetection);
 	// tTest(ImageDDS);
 	// tTest(ImageKTX1);

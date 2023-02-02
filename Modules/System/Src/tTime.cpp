@@ -113,6 +113,11 @@ tString tSystem::tConvertTimeToString(std::tm timePoint, tTimeFormat format)
 			// Eg. Tue Jan 14 14:38:58 2020
 			strftime((char*)tstr.Text(), 256, "%c", &timePoint);
 			break;
+
+		case tTimeFormat::Filename:
+			// Eg. 2023-02-14-23-55-09
+			strftime((char*)tstr.Text(), 256, "%F-%H-%M-%S", &timePoint);
+			break;
 	}
 
 	return tstr;

@@ -3,7 +3,7 @@
 // Simple timer class. Like a stopwatch. Supports keeping track of time in a number of different units. Accuracy is all
 // up to you - you call the update function. This code does not access low-level timer hardware.
 //
-// Copyright (c) 2005, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2005, 2017, 2019, 2020, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -40,12 +40,14 @@ std::tm tGetTimeLocal();
 std::tm tConvertTimeToLocal(std::time_t);
 
 
-// Return a timepoint as a string.
+// Return a timepoint as a string. The Filename format uses no special characters and if friendly for filenames
+// on all filesystems: YYYY-MM-DD-HH-MM-SS.
 enum class tTimeFormat
 {
 	Standard,		// Eg. 2020-01-14 01:47:12
 	Extended,		// Eg. Tuesday January 14 2020 - 01:36:34
 	Short,			// Eg. Tue Jan 14 14:38:58 2020
+	Filename,		// Eg. 2023-02-14-23-55-09
 };
 tString tConvertTimeToString(std::tm, tTimeFormat = tTimeFormat::Standard);
 
