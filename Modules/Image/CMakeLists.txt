@@ -99,9 +99,11 @@ target_include_directories(
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib>
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TinyXML2>
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/include>
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/include>
 		$<INSTALL_INTERFACE:Contrib>
 		$<INSTALL_INTERFACE:Contrib/TinyXML2>
 		$<INSTALL_INTERFACE:Contrib/ZLib/include>
+		$<INSTALL_INTERFACE:Contrib/LibPNG/include>
 	PRIVATE
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ApngDis
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ApngAsm
@@ -110,7 +112,7 @@ target_include_directories(
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/GifLoad
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/gifenc
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/include
-		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/include
+		# ${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibTIFF/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include/OpenEXR
