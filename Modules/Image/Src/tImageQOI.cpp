@@ -154,9 +154,9 @@ tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, tFormat format) const
 	if (format == tFormat::Auto)
 	{
 		if (IsOpaque())
-			format = tFormat::Bit24;
+			format = tFormat::BPP24;
 		else
-			format = tFormat::Bit32;
+			format = tFormat::BPP32;
 	}
 
 	tFileHandle file = tSystem::tOpenFile(qoiFile.Chr(), "wb");
@@ -164,7 +164,7 @@ tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, tFormat format) const
 		return tFormat::Invalid;
 
 	qoi_desc qoiDesc;
-	qoiDesc.channels	= (format == tFormat::Bit24) ? 3 : 4;
+	qoiDesc.channels	= (format == tFormat::BPP24) ? 3 : 4;
 	qoiDesc.colorspace	= (ColourSpace == tSpace::Linear) ? QOI_LINEAR : QOI_SRGB;
 	qoiDesc.height		= Height;
 	qoiDesc.width		= Width;
@@ -172,7 +172,7 @@ tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, tFormat format) const
 	// If we're saving in 24bit we need to convert our source data to 24bit.
 	uint8* pixels		= (uint8*)Pixels;
 	bool deletePixels	= false;
-	if (format == tFormat::Bit24)
+	if (format == tFormat::BPP24)
 	{
 		int numPixels = Width*Height;
 		pixels = new uint8[numPixels*3];

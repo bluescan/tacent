@@ -78,12 +78,12 @@ public:
 	enum class tFormat
 	{
 		Invalid,	// Invalid must be 0.
-		Auto,		// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.
 		BPP24,		// RGB.  24 bit colour.
-		BPP32		// RGBA. 24 bit colour and 8 bits opacity in the alpha channel.
+		BPP32,		// RGBA. 24 bit colour and 8 bits opacity in the alpha channel.
+		Auto		// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.
 	};
 
-	// Saves the tImageBMP to the bmp file specified. The extension must be "bmp". If tFormat is Auto, this function
+	// Saves the tImageBMP to the bmp file specified. The filetype must be "bmp". If tFormat is Auto, this function
 	// will decide the format. BPP24 if all image pixels are opaque and BPP32 otherwise. Returns the format that the
 	// file was saved in, or tFormat::Invalid if there was a problem. Since Invalid is 0, you can use an 'if'.
 	tFormat Save(const tString& bmpFile, tFormat = tFormat::Auto) const;

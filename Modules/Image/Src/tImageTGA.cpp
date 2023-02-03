@@ -274,9 +274,9 @@ tImageTGA::tFormat tImageTGA::Save(const tString& tgaFile, tFormat format, tComp
 	if (format == tFormat::Auto)
 	{
 		if (IsOpaque())
-			format = tFormat::Bit24;
+			format = tFormat::BPP24;
 		else
-			format = tFormat::Bit32;
+			format = tFormat::BPP32;
 	}
 
 	bool success = false;
@@ -300,14 +300,14 @@ tImageTGA::tFormat tImageTGA::Save(const tString& tgaFile, tFormat format, tComp
 
 bool tImageTGA::SaveUncompressed(const tString& tgaFile, tFormat format) const
 {
-	if ((format != tFormat::Bit24) && (format != tFormat::Bit32))
+	if ((format != tFormat::BPP24) && (format != tFormat::BPP32))
 		return false;
 	
 	tFileHandle file = tOpenFile(tgaFile.Chr(), "wb");
 	if (!file)
 		return false;
 
-	uint8 bitDepth = (format == tFormat::Bit24) ? 24 : 32;
+	uint8 bitDepth = (format == tFormat::BPP24) ? 24 : 32;
 
 	// imageDesc has the following important fields:
 	// Bits 0-3:	Number of attribute bits associated with each pixel. For a 16bit image, this would be 0 or 1. For a
@@ -343,7 +343,7 @@ bool tImageTGA::SaveUncompressed(const tString& tgaFile, tFormat format) const
 		tPutc(pixel.G, file);
 		tPutc(pixel.R, file);
 
-		if (format == tFormat::Bit32)
+		if (format == tFormat::BPP32)
 			tPutc(pixel.A, file);
 	}
 
@@ -354,7 +354,7 @@ bool tImageTGA::SaveUncompressed(const tString& tgaFile, tFormat format) const
 
 bool tImageTGA::SaveCompressed(const tString& tgaFile, tFormat format) const
 {
-	if ((format != tFormat::Bit24) && (format != tFormat::Bit32))
+	if ((format != tFormat::BPP24) && (format != tFormat::BPP32))
 		return false;
 
 	// Open the file.
@@ -362,7 +362,7 @@ bool tImageTGA::SaveCompressed(const tString& tgaFile, tFormat format) const
 	if (!file)
 		return false;
 
-	uint8 bitDepth = (format == tFormat::Bit24) ? 24 : 32;
+	uint8 bitDepth = (format == tFormat::BPP24) ? 24 : 32;
 	int bytesPerPixel = bitDepth / 8;
 
 	// imageDesc has the following important fields:

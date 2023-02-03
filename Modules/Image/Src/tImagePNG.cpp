@@ -161,13 +161,13 @@ tFrame* tImagePNG::GetFrame(bool steal)
 }
 
 
-bool tImagePNG::Save(const tString& pngFile, tFormat format) const
+tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, tFormat format) const
 {
 	if (!IsValid())
-		return false;
+		return tFormat::Invalid;
 
 	if (tSystem::tGetFileType(pngFile) != tSystem::tFileType::PNG)
-		return false;
+		return tFormat::Invalid;
 
 	int srcBytesPerPixel = 0;
 	switch (format)
@@ -177,11 +177,11 @@ bool tImagePNG::Save(const tString& pngFile, tFormat format) const
 		case tFormat::BPP32:	srcBytesPerPixel = 4;					break;
 	}
 	if (!srcBytesPerPixel)
-		return false;
+		return tFormat::Invalid;
 
 	// Guard against integer overflow.
 	if (Height > PNG_SIZE_MAX / (Width * srcBytesPerPixel))
-		return false;
+		return tFormat::Invalid;
 
 	// If it's 3 bytes per pixel we use the alternate no-alpha buffer. This should not be necessary
 	// but I can't figure out how to get libpng reading 32bit and writing 24.
@@ -202,7 +202,7 @@ bool tImagePNG::Save(const tString& pngFile, tFormat format) const
 	if (!fp)
 	{
 		if (srcBytesPerPixel == 3) delete srcPixels;
-		return false;
+		return tFormat::Invalid;
 	}
 
 	// Create and initialize the png_struct with the desired error handler functions.
@@ -211,7 +211,7 @@ bool tImagePNG::Save(const tString& pngFile, tFormat format) const
 	{
 		fclose(fp);
 		if (srcBytesPerPixel == 3) delete srcPixels;
-		return false;
+		return tFormat::Invalid;
 	}
 
 	png_infop infoPtr = png_create_info_struct(pngPtr);
@@ -220,7 +220,7 @@ bool tImagePNG::Save(const tString& pngFile, tFormat format) const
 		fclose(fp);
 		png_destroy_write_struct(&pngPtr, 0);
 		if (srcBytesPerPixel == 3) delete srcPixels;
-		return false;
+		return tFormat::Invalid;
 	}
 
 	// Set up default error handling.
@@ -229,7 +229,7 @@ bool tImagePNG::Save(const tString& pngFile, tFormat format) const
 		fclose(fp);
 		png_destroy_write_struct(&pngPtr, &infoPtr);
 		if (srcBytesPerPixel == 3) delete srcPixels;
-		return false;
+		return tFormat::Invalid;
 	}
 
 	png_init_io(pngPtr, fp);
@@ -295,7 +295,7 @@ bool tImagePNG::Save(const tString& pngFile, tFormat format) const
 	png_destroy_write_struct(&pngPtr, &infoPtr);
 	fclose(fp);
 
-	return true;
+	return (pngColourType == PNG_COLOR_TYPE_RGB_ALPHA) ? tFormat::BPP32 : tFormat::BPP24;
 }
 
 

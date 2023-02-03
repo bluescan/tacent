@@ -67,9 +67,9 @@ public:
 	enum class tFormat
 	{
 		Invalid,	// Invalid must be 0.
-		Auto,		// Save function will decide format. Bit24 if all image pixels are opaque and Bit32 otherwise.
-		Bit24,		// 24 bit colour.
-		Bit32		// 24 bit colour with 8 bits opacity in the alpha channel.
+		BPP24,		// 24 bit colour.
+		BPP32,		// 24 bit colour with 8 bits opacity in the alpha channel.
+		Auto		// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.
 	};
 	enum class tCompression
 	{
@@ -77,8 +77,8 @@ public:
 		RLE			// Run Length Encoding.
 	};
 
-	// Saves the tImageTGA to the Targa file specified. The extension of filename must be ".tga". If tFormat is Auto,
-	// this function will decide the format. Bit24 if all image pixels are opaque and Bit32 otherwise. Returns the format
+	// Saves the tImageTGA to the Targa file specified. The type of filename must be "tga". If tFormat is Auto, this
+	// function will decide the format. BPP24 if all image pixels are opaque and BPP32 otherwise. Returns the format
 	// that the file was saved in, or tFormat::Invalid if there was a problem. Since Invalid is 0, you can use an 'if'.
 	tFormat Save(const tString& tgaFile, tFormat = tFormat::Auto, tCompression = tCompression::RLE) const;
 

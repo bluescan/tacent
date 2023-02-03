@@ -61,13 +61,16 @@ public:
 
 	enum class tFormat
 	{
-		Auto,		// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.
+		Invalid,	// Invalid must be 0.
 		BPP24,		// RGB.  24 bit colour.
-		BPP32		// RGBA. 24 bit colour and 8 bits opacity in the alpha channel.
+		BPP32,		// RGBA. 24 bit colour and 8 bits opacity in the alpha channel.
+		Auto		// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.
 	};
 
-	// Saves the tImagePNG to the PNG file specified. The type of filename must be "png". Returns true on success.
-	bool Save(const tString& pngFile, tFormat = tFormat::Auto) const;
+	// Saves the tImagePNG to the PNG file specified. The type of filename must be "png". If tFormat is Auto, this
+	// function will decide the format. BPP24 if all image pixels are opaque and BPP32 otherwise. Returns the format
+	// that the file was saved in, or tFormat::Invalid if there was a problem. Since Invalid is 0, you can use an 'if'.
+	tFormat Save(const tString& pngFile, tFormat = tFormat::Auto) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;

@@ -186,10 +186,10 @@ tTestUnit(ImageSave)
 	int tgaH = tga.GetHeight();
 	tPixel* tgaPixels = tga.StealPixels();
 	tImageQOI qoi(tgaPixels, tgaW, tgaH, true);
-	tImageQOI::tFormat result32 = qoi.Save("WrittenTacentTestPattern32.qoi", tImageQOI::tFormat::Bit32);
-	tRequire(result32 == tImageQOI::tFormat::Bit32);
-	tImageQOI::tFormat result24 = qoi.Save("WrittenTacentTestPattern24.qoi", tImageQOI::tFormat::Bit24);
-	tRequire(result24 == tImageQOI::tFormat::Bit24);
+	tImageQOI::tFormat result32 = qoi.Save("WrittenTacentTestPattern32.qoi", tImageQOI::tFormat::BPP32);
+	tRequire(result32 == tImageQOI::tFormat::BPP32);
+	tImageQOI::tFormat result24 = qoi.Save("WrittenTacentTestPattern24.qoi", tImageQOI::tFormat::BPP24);
+	tRequire(result24 == tImageQOI::tFormat::BPP24);
 
 	tImagePNG pngA("Xeyes.png");
 	pngA.Save("WrittenNewA.png");
@@ -826,8 +826,8 @@ tTestUnit(ImageCrop)
 	planePic.Crop(tColouri::black, tComp_RGB);
 	planePic.Crop(w, h, tPicture::Anchor::MiddleMiddle, tColouri::transparent);
 	png.Set(planePic);
-	bool ok = png.Save("TestData/Images/WrittenPlane.png");
-	tRequire(ok);
+	tImagePNG::tFormat fmt = png.Save("TestData/Images/WrittenPlane.png");
+	tRequire(fmt != tImagePNG::tFormat::Invalid);
 }
 
 
@@ -851,8 +851,8 @@ tTestUnit(ImageAdjustment)
 		tString file;
 		tsPrintf(file, "TestData/Images/WrittenBright%3.1f.png", brightness);
 		png.Set(pic, false);
-		bool ok = png.Save(file.Chr());
-		tRequire(ok);
+		tImagePNG::tFormat fmt = png.Save(file.Chr());
+		tRequire(fmt != tImagePNG::tFormat::Invalid);
 	}
 
 	// Test contrast.
@@ -870,8 +870,8 @@ tTestUnit(ImageAdjustment)
 		tString file;
 		tsPrintf(file, "TestData/Images/WrittenContrast%3.1f.png", contrast);
 		png.Set(pic, false);
-		bool ok = png.Save(file.Chr());
-		tRequire(ok);
+		tImagePNG::tFormat fmt = png.Save(file.Chr());
+		tRequire(fmt != tImagePNG::tFormat::Invalid);
 	}
 
 	// Test levels.
@@ -890,8 +890,8 @@ tTestUnit(ImageAdjustment)
 		tString file;
 		tsPrintf(file, "TestData/Images/WrittenLevels_MidAdjPower_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
 		png.Set(pic, false);
-		bool ok = png.Save(file.Chr());
-		tRequire(ok);
+		tImagePNG::tFormat fmt = png.Save(file.Chr());
+		tRequire(fmt != tImagePNG::tFormat::Invalid);
 	}
 
 	for (int level = 0; level <= 10; level++)
@@ -909,8 +909,8 @@ tTestUnit(ImageAdjustment)
 		tString file;
 		tsPrintf(file, "TestData/Images/WrittenLevels_MidAdjPhoto_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
 		png.Set(pic, false);
-		bool ok = png.Save(file.Chr());
-		tRequire(ok);
+		tImagePNG::tFormat fmt = png.Save(file.Chr());
+		tRequire(fmt != tImagePNG::tFormat::Invalid);
 	}
 
 	for (int level = 0; level <= 10; level++)
@@ -928,8 +928,8 @@ tTestUnit(ImageAdjustment)
 		tString file;
 		tsPrintf(file, "TestData/Images/WrittenLevels_BlkAdjPower_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
 		png.Set(pic, false);
-		bool ok = png.Save(file.Chr());
-		tRequire(ok);
+		tImagePNG::tFormat fmt = png.Save(file.Chr());
+		tRequire(fmt != tImagePNG::tFormat::Invalid);
 	}
 }
 
@@ -1113,7 +1113,7 @@ tTestUnit(ImageGradient)
 			pixels[y*width + x] = tColour(256*x / width, 256*x / width, 256*x / width, 255);
 	tImageTGA blackToWhite(pixels, width, height, true);
 	tRequire(blackToWhite.IsValid());
-	blackToWhite.Save("TestData/Images/Written_Gradient_BlackToWhite.tga", tImageTGA::tFormat::Bit24, tImageTGA::tCompression::RLE);
+	blackToWhite.Save("TestData/Images/Written_Gradient_BlackToWhite.tga", tImageTGA::tFormat::BPP24, tImageTGA::tCompression::RLE);
 
 	// Gradient black to transparent.
 	pixels = new tPixel[width*height];
@@ -1122,7 +1122,7 @@ tTestUnit(ImageGradient)
 			pixels[y*width + x] = tColour(0, 0, 0, 255 - 256*x / width);
 	tImageTGA blackToTrans(pixels, width, height, true);
 	tRequire(blackToTrans.IsValid());
-	blackToTrans.Save("TestData/Images/Written_Gradient_BlackToTrans.tga", tImageTGA::tFormat::Bit32, tImageTGA::tCompression::RLE);
+	blackToTrans.Save("TestData/Images/Written_Gradient_BlackToTrans.tga", tImageTGA::tFormat::BPP32, tImageTGA::tCompression::RLE);
 
 	// Gradient transparent to white.
 	pixels = new tPixel[width*height];
@@ -1131,7 +1131,7 @@ tTestUnit(ImageGradient)
 			pixels[y*width + x] = tColour(255, 255, 255, 256*x / width);
 	tImageTGA transToWhite(pixels, width, height, true);
 	tRequire(transToWhite.IsValid());
-	transToWhite.Save("TestData/Images/Written_Gradient_TransToWhite.tga", tImageTGA::tFormat::Bit32, tImageTGA::tCompression::RLE);
+	transToWhite.Save("TestData/Images/Written_Gradient_TransToWhite.tga", tImageTGA::tFormat::BPP32, tImageTGA::tCompression::RLE);
 
 	// Gradient red to yellow to green to cyan to blue to magenta to red.
 	const int section = width / 6;
@@ -1164,7 +1164,7 @@ tTestUnit(ImageGradient)
 	}
 	tImageTGA redToRed(pixels, width, height, true);
 	tRequire(redToRed.IsValid());
-	redToRed.Save("TestData/Images/Written_Gradient_RedToRed.tga", tImageTGA::tFormat::Bit24, tImageTGA::tCompression::RLE);	
+	redToRed.Save("TestData/Images/Written_Gradient_RedToRed.tga", tImageTGA::tFormat::BPP24, tImageTGA::tCompression::RLE);	
 }
 
 
