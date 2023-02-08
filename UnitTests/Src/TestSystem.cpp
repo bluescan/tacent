@@ -43,14 +43,6 @@ tTestUnit(CmdLine)
 {
 	tPrintf("Testing tCmdLine command line parsing.\n");
 
-	#ifdef TEST_COMMAND_PARAM_ARRAY
-	tCmdLine::tParam params[12];
-	tCmdLine::tParse("UnitTests.exe ParamA ParamB", true);
-	for (int w = 0; w < 12; w++)
-		tPrintf("Param %d is: %s\n", w+1, params[w].Param.Chr());
-	return;
-	#endif
-
 	tCmdLine::tParam fromFile(1, "fromFile");
 	tCmdLine::tParam toFile(2, "toFile");
 	tCmdLine::tOption log("Specify log file.", "log", 'l', 1);

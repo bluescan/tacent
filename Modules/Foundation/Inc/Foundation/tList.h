@@ -70,8 +70,8 @@ enum class tListMode
 // pointers to globally constructed objects for instance. If however you do want the list to delete the items, tList
 // will allow you to call Empty on a static-zero list. You can also call Reset (no deletes). Clear will be the same
 // as Reset for static-zero lists. For the implementation, the main difference between Static and External is that
-// the constructor does not clear the head tail and count members because the constructor may be called after items
-// are added.
+// with Static the constructor does not clear the head, tail, and count members because the constructor may be called
+// after items are added.
 template<typename T> class tList
 {
 public:

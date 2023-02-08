@@ -110,7 +110,8 @@ namespace tCmdLine
 		int ParamNumber;				// 1 based.
 
 		// This usually has a single item (if ParamNumber >= 1). Only if ParamNumber == -1 does this get populated with
-		// every parameter in the command line. There may be an arbitrary number of them in this case.
+		// every parameter in the command line. There may be an arbitrary number of them in this case. This list does
+		// not need to be zero
 		tList<tStringItem> Values;
 		tString Name;
 		tString Description;
