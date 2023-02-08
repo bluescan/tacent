@@ -2,7 +2,7 @@
 //
 // System module tests.
 //
-// Copyright (c) 2017, 2019-2022 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -43,6 +43,8 @@ tTestUnit(CmdLine)
 {
 	tPrintf("Testing tCmdLine command line parsing.\n");
 
+	// Although not necessarily a common use case, it's fine to have options and parameters as stack
+	// variables. As long as they are in scope when tParse is called, they will get populated.
 	tCmdLine::tParam fromFile(1, "fromFile");
 	tCmdLine::tParam toFile(2, "toFile");
 	tCmdLine::tOption log("Specify log file.", "log", 'l', 1);
@@ -51,7 +53,7 @@ tTestUnit(CmdLine)
 	tCmdLine::tOption program("Program mode.", 'p', 0);
 	tCmdLine::tOption time("Print timestamp.", "time", 't', 0);
 	tCmdLine::tOption stop("Stop early.", "stop", 's', 0);
-	tCmdLine::tParam allFiles(-1, "allFiles", "All file parameters");
+	tCmdLine::tParam inputFiles(0, "InputFiles", "Multiple file parameters");
 	tCmdLine::tParam param3(3, "param3");	// Param because unrecognized option. See command-line string.
 	tCmdLine::tParam param4(4, "param4");	// Param because in quotes. See command-line string.
 
@@ -61,6 +63,8 @@ tTestUnit(CmdLine)
 
 	// This is another way of entering a test command line. The true means the first entry is the program name.
 	tCmdLine::tParse(u8"UnitTests.exe -R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere --enj '-R'", true);
+
+	tCmdLine::tPrintSyntax();
 
 	// There are a few differnt ways of calling PrintUsage:
 	// tCmdLine::tPrintUsage();
@@ -103,10 +107,10 @@ tTestUnit(CmdLine)
 	if (param4.IsPresent())
 		tPrintf("    param4: %s\n", param4.Get().Pod());
 
-	tPrintf("Param allFiles: %s\n", allFiles.IsPresent() ? "present" : "absent");
-	if (allFiles.IsPresent())
-		for (tStringItem* item = allFiles.Values.First(); item; item = item->Next())
-			tPrintf("    allFiles: %s\n", item->Pod());
+	tPrintf("Param inputFiles: %s\n", inputFiles.IsPresent() ? "present" : "absent");
+	if (inputFiles.IsPresent())
+		for (tStringItem* item = inputFiles.Values.First(); item; item = item->Next())
+			tPrintf("    inputFiles: %s\n", item->Pod());
 }
 
 

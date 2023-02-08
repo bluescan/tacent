@@ -48,8 +48,9 @@ tCmdLine::tParam::tParam(int paramNumber, const char* name, const char* descript
 	Name(),
 	Description()
 {
+	tAssert(ParamNumber >= 0);
 	if (name)
-		Name = tString(name);
+		Name.Set(name);
 	else
 		tsPrintf(Name, "Param%d", paramNumber);
 
@@ -337,7 +338,7 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 		arg->Replace(tStd::SeparatorE, '-');
 		for (tParam* param = Params.First(); param; param = param->Next())
 		{
-			if ((param->ParamNumber == paramNumber) || (param->ParamNumber == -1))
+			if ((param->ParamNumber == paramNumber) || (param->ParamNumber == 0))
 				param->Values.Append(new tStringItem(*arg));
 		}
 	}
@@ -471,25 +472,32 @@ void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* de
 	else
 		tPrintf("USAGE: %s [options] ", exeName.Pod());
 
-	// Support 256 parameters.
-	bool printedParamNum[256];
+	// Support printing usage of up to 256 parameters. If you have more than this, your tool is too complex.
+	const int maxPrintedParams = 256;
+	bool printedParamNum[maxPrintedParams];
 	tStd::tMemset(printedParamNum, 0, sizeof(printedParamNum));
 	for (tParam* param = Params.First(); param; param = param->Next())
 	{
-		if ((param->ParamNumber < 256) && !printedParamNum[param->ParamNumber])
+		if ((param->ParamNumber < maxPrintedParams) && !printedParamNum[param->ParamNumber])
 		{
-			if (!param->Name.IsEmpty())
+			if (!param->Name.IsEmpty() && (param->ParamNumber > 0))
 				tPrintf("%s ", param->Name.Pod());
-			else
+			else if (!param->Name.IsEmpty() && (param->ParamNumber == 0))
+				tPrintf("[%s] ", param->Name.Pod());
+			else if (param->ParamNumber > 0)
 				tPrintf("param%d ", param->ParamNumber);
+			else
+				tPrintf("[params] ");
 			printedParamNum[param->ParamNumber] = true;
 		}
 	}
 
 	tPrintf("\n\n");
 	if (desc)
+	{
 		tPrintf("%s", desc);
-	tPrintf("\n\n");
+		tPrintf("\n\n");
+	}
 
 	int indent = 0;
 	if (!Options.IsEmpty())
@@ -514,10 +522,14 @@ void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* de
 		for (tParam* param = Params.First(); param; param = param->Next())
 		{
 			int numPrint = 0;
-			if (!param->Name.IsEmpty())
+			if (!param->Name.IsEmpty() && (param->ParamNumber > 0))
 				numPrint = tcPrintf("%s ", param->Name.Pod());
-			else
+			else if (!param->Name.IsEmpty() && (param->ParamNumber == 0))
+				numPrint = tcPrintf("[%s] ", param->Name.Pod());
+			else if (param->ParamNumber > 0)
 				numPrint = tcPrintf("param%d ", param->ParamNumber);
+			else
+				numPrint = tcPrintf("[params] ");
 			indent = tMath::tMax(indent, numPrint);
 		}
 	}
@@ -548,15 +560,21 @@ void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* de
 		for (tParam* param = Params.First(); param; param = param->Next())
 		{
 			int numPrinted = 0;
-			if (!param->Name.IsEmpty())
+			if (!param->Name.IsEmpty() && (param->ParamNumber > 0))
 				numPrinted = tPrintf("%s ", param->Name.Pod());
-			else
+			else if (!param->Name.IsEmpty() && (param->ParamNumber == 0))
+				numPrinted = tPrintf("[%s] ", param->Name.Pod());
+			else if (param->ParamNumber > 0)
 				numPrinted = tPrintf("param%d ", param->ParamNumber);
+			else
+				numPrinted = tPrintf("[params] ");
 
 			IndentSpaces(indent - numPrinted);
 
 			if (!param->Description.IsEmpty())
 				tPrintf(" : %s", param->Description.Pod());
+			else
+				tPrintf(" : No description");
 
 			tPrintf("\n");
 		}

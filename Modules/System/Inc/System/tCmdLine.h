@@ -98,7 +98,7 @@ namespace tCmdLine
 	{
 		// ParamNumber starts at 1. Set it to which parameter you want from the command line. For example, set to 2 if
 		// you want this object to receive the 2nd parameter. If you want ALL command-line paramters collected here,
-		// you must explicitely set paramNumber to -1. If you do this, Values gets populated with every parameter.
+		// you must explicitly set paramNumber to 0. If you do this, Values gets populated with every parameter.
 		tParam(int paramNumber, const char* name = nullptr, const char* description = nullptr);
 		tParam(const char* description, const char* paramName, int paramNumber);
 
@@ -107,11 +107,11 @@ namespace tCmdLine
 		bool IsPresent() const																							{ return !Values.IsEmpty(); }
 		operator bool() const																							{ return IsPresent(); }
 
-		int ParamNumber;				// 1 based.
+		int ParamNumber;				// 1 based. 0 means all.
 
-		// This usually has a single item (if ParamNumber >= 1). Only if ParamNumber == -1 does this get populated with
-		// every parameter in the command line. There may be an arbitrary number of them in this case. This list does
-		// not need to be zero
+		// This usually has a single item (if ParamNumber >= 1). Only if ParamNumber == 0 does this get populated with
+		// every parameter in the command line. There may be an arbitrary number of them in this case. This list is not
+		// in static-zero initialization mode because it is never populated before main (there is no init order issue).
 		tList<tStringItem> Values;
 		tString Name;
 		tString Description;
@@ -167,7 +167,6 @@ namespace tCmdLine
 	void tPrintSyntax();
 
 	tString tGetProgram();			// Returns the program name assuming you have already called tParse.
-	int tGetNumPresentParameters();	// Returns the number of present parameters assuming you have already called tParse.
 }
 
 
