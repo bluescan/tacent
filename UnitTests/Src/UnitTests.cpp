@@ -189,8 +189,8 @@ int main(int argc, char** argv)
 	// tTest(File);
 	// tTest(FindRec);
 	// tTest(Network);
-	tTest(Time);
-	// tTest(CmdLine);
+	// tTest(Time);
+	tTest(CmdLine);
 	// tTest(String);
 	// tTest(List);
 	// tTest(ListExtra);

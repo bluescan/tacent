@@ -3,49 +3,54 @@
 // Parses a command line. A command line takes the form:
 // program.exe [arg1 arg2 arg3 ...]
 //
-// Arguments are separated by spaces. An argument must be enclosed in quotes
-// (single or double) if it has a space or hyphen in it. Use escape sequences to
-// put either type of quote inside. If you need to specify paths, it is suggested
-// to use forward slashes, although backslashes will work so long as the filename
-// does not have a single or double quote next.
+// ARGUMENTS:
+// Arguments are separated by spaces. An argument must be enclosed in quotes (single or double) if it has spaces in it
+// or you want the argument to start with a hyphen literal. Hat (^) escape sequences can be used to put either type of
+// quote inside. If you need to specify file paths you may use forward or back slashes. An ARGUMENT is either an OPTION
+// or PARAMETER.
 //
-// An argument may be an 'option' or a 'parameter'.
+// OPTIONS:
+// An option is simply an argument that starts with a hyphen (-). An option has a short syntax and a long syntax.
+// Short syntax is a - followed by a single non-hyphen character. The long form is -- followed by a word. All options
+// support either long, short, or both forms. Options may have 0 or more arguments separated by spaces. Options can be
+// specified in any order. Short form options may be combined: Eg. -al expands to -a -l.
 //
-// Options:
-// An option has a short syntax and a long syntax. Short syntax is a - followed by
-// a single non-hyphen character. The long form is -- followed by a word. All
-// options support either long, short, or both forms. Options may have 0 or more
-// arguments. If an option takes zero arguments it is called a flag and you can
-// only test for its presence or lack of. Options can be specified in any order.
-// Short form options may be combined: Eg. -al expands to -a -l
+// FLAGS:
+// If an option takes zero arguments it is called a flag. You can only test for a FLAGs presence or lack thereof.
 //
-// Parameters:
-// A parameter is simply an argument that does not start with a - or --. It can be
-// read as a string and parsed arbitrarily (converted to an integer or float etc.)
-// Order is important when specifying parameters.
+// PARAMETERS:
+// A parameter is simply an argument that is not one of the available options. It can be read as a string and parsed
+// however is needed (converted to an integer, float etc.) Order is important when specifying parameters. If you need a
+// hyphen in a parameter at the start you will need put the parameter in quotes. For example, a filename _can_ start
+// with -. Note that arguments that start with a hyphen but are not recognized as a valid option just get turned into
+// parameters. This means interpreting a hyphen directly instead of as an option specifier will happen automatically if
+// there are no options matching what comes after the hyphen. Eg. 'tool.exe -.85 --add 33 -87.98 --notpresent' work just
+// fine as long as there are no options that have a short form with digits or a decimal. In this example the -.85 will be
+// the first parameter, --notpresent will be the second. The --add is assumed to take in two number arguments.
 //
-// Example:
+// ESCAPES:
+// In some cases you may need a particular character to appear inside an argument. For example you
+// may need a single or double quote to apprear inside a parameter. The hat (^) followed by the character you need is
+// used for this purpose. Eg: ^^ yields ^ | ^' yields ' | ^" yields "
+//
+// VARIABLE ARGUMENTS:
+// A variable number of space-separated parameters may be specified if the tool supports them. The parsing system will
+// collect them all up if the parameter number is unset (-1).
+// A variable number of option arguments is not directly supported due to the more complex parsing that would be needed.
+// The same result is achieved by entering the same option more than once.
+// Eg. tool.exe -I /patha/include/ -I /pathb/include
+//
+// EXAMPLE:
 // mycopy.exe -R --overwrite fileA.txt -pat fileB.txt --log log.txt
 //
-// The fileA.txt and fileB.txt in the above example are parameters (assuming
-// the overwrite option is a flag). fileA.txt is the first parameter and
-// fileB.txt is the second.
+// The fileA.txt and fileB.txt in the above example are parameters (assuming the overwrite option is a flag). fileA.txt
+// is the first parameter and fileB.txt is the second.
 //
-// The '--log log.txt' is an option with a single argument, log.txt. Flags may be
-// combined. The -pat in the example expands to -p -a -t. It is suggested only to
-// combine flag options as only the last option would get any arguments.
+// The '--log log.txt' is an option with a single argument, log.txt. Options that are Flags may be combined. The -pat
+// in the example expands to -p -a -t. It is suggested only to combine flag options as only the last option would get
+// any arguments.
 //
-// If you wish to interpret a hyphen directly instead of as an option specifier
-// this will happen automatically if there are no options matching what comes
-// after the hyphen. Eg. 'tool.exe -.85 --add 33 -87.98 -notpresent' works just
-// fine as long as there are no options that have a short form with digits or a
-// decimal. In this example the -.85 will be the first parameter, --notpresent
-// will be the second, and the --add takes in two number arguments.
-//
-// Variable argument options are not supported due to the extra syntax that would
-// be needed. The same result is achieved by entering the same option more than
-// once. Eg. tool.exe -I /patha/include/ -I /pathb/include
-//
+// DESIGN:
 // A powerful feature of the design of this parsing system is separation of concerns. In a typical system the knowledge
 // of all the different command line parameters and options is needed in a single place, often in main() where argc and
 // argv are passed in. These values need to somehow be passed all over the place in a large system. With tCmdLine you
@@ -73,7 +78,7 @@
 // command line when the tParse call is made. You may have more than one tOption that responds to the same option name.
 // You may have more than one tParam that responds to the same parameter number.
 //
-// Copyright (c) 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2017, 2020, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -82,7 +87,6 @@
 // INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
-
 #pragma once
 #include <Foundation/tList.h>
 #include <Foundation/tString.h>
@@ -92,17 +96,22 @@ namespace tCmdLine
 {
 	struct tParam : public tLink<tParam>
 	{
-		// This constructor allows you to make an array of parameters if you have a lot of them.
-		// Param number starts at 1.
-		tParam();
+		// ParamNumber starts at 1. Set it to which parameter you want from the command line. For example, set to 2 if
+		// you want this object to receive the 2nd parameter. If you want ALL command-line paramters collected here,
+		// you must explicitely set paramNumber to -1. If you do this, Values gets populated with every parameter.
 		tParam(int paramNumber, const char* name = nullptr, const char* description = nullptr);
 		tParam(const char* description, const char* paramName, int paramNumber);
-		tString Get() const																								{ return Param; }
-		bool IsPresent() const																							{ return !Param.IsEmpty(); }
+
+		tString Get() const																								{ return Values.IsEmpty() ? tString() : *Values.First(); }
+		void Set(const tString& value)																					{ if (Values.First()) Values.First()->Set(value); else Values.Append(new tStringItem(value)); }
+		bool IsPresent() const																							{ return !Values.IsEmpty(); }
 		operator bool() const																							{ return IsPresent(); }
 
 		int ParamNumber;				// 1 based.
-		tString Param;
+
+		// This usually has a single item (if ParamNumber >= 1). Only if ParamNumber == -1 does this get populated with
+		// every parameter in the command line. There may be an arbitrary number of them in this case.
+		tList<tStringItem> Values;
 		tString Name;
 		tString Description;
 	};
@@ -127,16 +136,18 @@ namespace tCmdLine
 		const tString& Arg4() const																						{ return ArgN(4); }
 		const tString& ArgN(int n) const;																				// n must be >= 1.
 		bool GetArgs(tList<tStringItem>& args) const;
-		int GetNumArgs() const																							{ return Args.Count(); }
-		int GetNumFlagArgs() const																						{ return NumFlagArgs; }
+		int GetNumTotalArgs() const																						{ return Args.Count(); }
+		int GetNumArgsPerOption() const																					{ return NumArgsPerOption; }
 
 		tString ShortName;
 		tString LongName;
 		tString Description;
 
-		// This is _not_ the number of args that necessarily gets collected in the Args list. It is the number of args
-		// for each instance of the flag in the command line.
-		int NumFlagArgs;
+		// This is _not_ the number of option args that necessarily gets collected in the Args list. It is the number
+		// of option args for each instance of the option in the command line. NumTotalArgs will be a multiple of this
+		// number. Eg. '--plus a b --plus c d' would yield '--plus a b c d' when parsed. NumTotalArgs would be 4 and
+		// NumArgsPerOption would be 2.
+		int NumArgsPerOption;
 
 		// Important note here. If you have an option that takes 1 argument and it is listed in the command line
 		// multiple times like "-i fileA -i fileB", then they will collect in the Args list in multiples

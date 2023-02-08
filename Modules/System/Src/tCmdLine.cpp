@@ -4,9 +4,10 @@
 // expansion of combined single hyphen options. Next the parameters and options are parsed out. For each registered
 // tOption and tParam object, its members are set to reflect the current command line when the tParse call is made.
 // You may have more than one tOption that responds to the same option name. You may have more than one tParam that
-// responds to the same parameter number.
+// responds to the same parameter number. You may also collect all parameters in a single tParam by setting the
+// parameter number to -1.
 //
-// Copyright (c) 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2017, 2020, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -23,7 +24,7 @@
 
 namespace tCmdLine
 {
-	// Any single-hyphen combined arguments are expanded here. Ex. -abc becomes -a -b -c.
+	// Any single-hyphen combined option arguments are expanded here. Ex. -abc becomes -a -b -c.
 	void ExpandArgs(tList<tStringItem>& args);
 	int IndentSpaces(int numSpaces);
 
@@ -32,9 +33,6 @@ namespace tCmdLine
 	tList<tOption> Options(tListMode::StaticZero);
 	tString Program;
 	tString Empty;
-
-	int GenParamNumber = 1;
-	int NumPresentParameters = 0;
 }
 
 
@@ -44,20 +42,9 @@ tString tCmdLine::tGetProgram()
 }
 
 
-tCmdLine::tParam::tParam() :
-	ParamNumber(GenParamNumber++),
-	Param(),
-	Name(),
-	Description()
-{
-	tsPrintf(Name, "Param%d", ParamNumber);
-	Params.Append(this);
-}
-
-
 tCmdLine::tParam::tParam(int paramNumber, const char* name, const char* description) :
 	ParamNumber(paramNumber),
-	Param(),
+	Values(tListMode::ListOwns),
 	Name(),
 	Description()
 {
@@ -77,7 +64,7 @@ tCmdLine::tOption::tOption(const char* description, char shortName, const char* 
 	ShortName(shortName),
 	LongName(longName),
 	Description(description),
-	NumFlagArgs(numArgs),
+	NumArgsPerOption(numArgs),
 	Args(tListMode::ListOwns),
 	Present(false)
 {
@@ -89,7 +76,7 @@ tCmdLine::tOption::tOption(const char* description, const char* longName, char s
 	ShortName(shortName),
 	LongName(longName),
 	Description(description),
-	NumFlagArgs(numArgs),
+	NumArgsPerOption(numArgs),
 	Args(tListMode::ListOwns),
 	Present(false)
 {
@@ -101,7 +88,7 @@ tCmdLine::tOption::tOption(const char* description, char shortName, int numArgs)
 	ShortName(shortName),
 	LongName(),
 	Description(description),
-	NumFlagArgs(numArgs),
+	NumArgsPerOption(numArgs),
 	Args(tListMode::ListOwns),
 	Present(false)
 {
@@ -113,7 +100,7 @@ tCmdLine::tOption::tOption(const char* description, const char* longName, int nu
 	ShortName(),
 	LongName(longName),
 	Description(description),
-	NumFlagArgs(numArgs),
+	NumArgsPerOption(numArgs),
 	Args(tListMode::ListOwns),
 	Present(false)
 {
@@ -246,8 +233,9 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 
 	// Mark both kinds of escaped quotes that may be present. These may be found when the caller
 	// wants a quote inside a string on the command line.
-	line.Replace(u8"\\'", tStd::u8SeparatorAStr);
-	line.Replace(u8"\\\"", tStd::u8SeparatorBStr);
+	line.Replace(u8"^'", tStd::u8SeparatorAStr);		// Replaces ^'
+	line.Replace(u8"^\"", tStd::u8SeparatorBStr);		// Replaces ^"
+	line.Replace(u8"^^", tStd::u8SeparatorCStr);		// Replaces ^^
 
 	// Mark the spaces and hyphens inside normal (non escaped) quotes.
 	bool inside = false;
@@ -260,10 +248,10 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 			continue;
 
 		if (*ch == ' ')
-			*ch = tStd::SeparatorC;
+			*ch = tStd::SeparatorD;
 
 		if (*ch == '-')
-			*ch = tStd::SeparatorD;
+			*ch = tStd::SeparatorE;
 	}
 
 	line.Remove('\'');
@@ -277,7 +265,8 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 	{
 		arg->Replace(tStd::SeparatorA, '\'');
 		arg->Replace(tStd::SeparatorB, '\"');
-		arg->Replace(tStd::SeparatorC, ' ');
+		arg->Replace(tStd::SeparatorC, '^');
+		arg->Replace(tStd::SeparatorD, ' ');
 	}
 
 	// Set the program name as typed in the command line.
@@ -302,11 +291,11 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 			if ( (*arg == tString("--") + option->LongName) || (*arg == tString("-") + option->ShortName) )
 			{
 				option->Present = true;
-				for (int optArgNum = 0; optArgNum < option->NumFlagArgs; optArgNum++)
+				for (int optArgNum = 0; optArgNum < option->NumArgsPerOption; optArgNum++)
 				{
 					arg = arg->Next();
 					tStringItem* argItem = new tStringItem(*arg);
-					argItem->Replace(tStd::SeparatorD, '-');
+					argItem->Replace(tStd::SeparatorE, '-');
 					option->Args.Append(argItem);
 				}
 			}
@@ -331,7 +320,7 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 				if ( (flagArg == tString("--") + option->LongName) || (flagArg == tString("-") + option->ShortName) )
 				{
 					candidate = nullptr;
-					for (int optArgNum = 0; optArgNum < option->NumFlagArgs; optArgNum++)
+					for (int optArgNum = 0; optArgNum < option->NumArgsPerOption; optArgNum++)
 						arg = arg->Next();
 				}
 			}
@@ -345,22 +334,13 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 	int paramNumber = 1;
 	for (tStringItem* arg = commandLineParams.First(); arg; arg = arg->Next(), paramNumber++)
 	{
-		arg->Replace(tStd::SeparatorD, '-');
+		arg->Replace(tStd::SeparatorE, '-');
 		for (tParam* param = Params.First(); param; param = param->Next())
 		{
-			if (param->ParamNumber == paramNumber)
-			{
-				param->Param = *arg;
-				NumPresentParameters++;
-			}
+			if ((param->ParamNumber == paramNumber) || (param->ParamNumber == -1))
+				param->Values.Append(new tStringItem(*arg));
 		}
 	}
-}
-
-
-int tCmdLine::tGetNumPresentParameters()
-{
-	return NumPresentParameters;
 }
 
 
@@ -368,30 +348,58 @@ void tCmdLine::tPrintSyntax()
 {
 	tString syntax =
 R"U5AG3(Syntax Help:
-tool.exe [arguments]
+program.exe [arg1 arg2 arg3 ...]
 
+ARGUMENTS:
 Arguments are separated by spaces. An argument must be enclosed in quotes
-(single or double) if it has a space or hyphen in it. Use escape sequences to
-put either type of quote inside. If you need to specify paths, it is suggested
-to use forward slashes, although backslashes will work so long as the filename
-does not have a single or double quote next.
+(single or double) if it has spaces in it or you want the argument to start
+with a hyphen literal. Hat (^) escape sequences can be used to put either type
+of quote inside. If you need to specify file paths you may use forward or back
+slashes. An ARGUMENT is either an OPTION or PARAMETER.
 
-An argument may be an 'option' or a 'parameter'.
+OPTIONS:
+An option is simply an argument that starts with a hyphen (-). An option has a
+short syntax and a long syntax. Short syntax is a - followed by a single
+non-hyphen character. The long form is -- followed by a word. All options
+support either long, short, or both forms. Options may have 0 or more
+arguments separated by spaces. Options can be specified in any order. Short
+form options may be combined: Eg. -al expands to -a -l.
 
-Options:
-An option has a short syntax and a long syntax. Short syntax is a - followed by
-a single non-hyphen character. The long form is -- followed by a word. All
-options support either long, short, or both forms. Options may have 0 or more
-arguments. If an option takes zero arguments it is called a flag and you can
-only test for its presence or lack of. Options can be specified in any order.
-Short form options may be combined: Eg. -al expands to -a -l
+FLAGS:
+If an option takes zero arguments it is called a flag. You can only test for a
+FLAGs presence or lack thereof.
 
-Parameters:
-A parameter is simply an argument that does not start with a - or --. It can be
-read as a string and parsed arbitrarily (converted to an integer or float etc.)
-Order is important when specifying parameters.
+PARAMETERS:
+A parameter is simply an argument that is not one of the available options. It
+can be read as a string and parsed however is needed (converted to an integer,
+float etc.) Order is important when specifying parameters. If you need a
+hyphen in a parameter at the start you will need put the parameter in quotes.
+For example, a filename _can_ start with -. Note that arguments that start
+with a hyphen but are not recognized as a valid option just get turned into
+parameters. This means interpreting a hyphen directly instead of as an option
+specifier will happen automatically if there are no options matching what
+comes after the hyphen. Eg. 'tool.exe -.85 --add 33 -87.98 --notpresent' work
+just fine as long as there are no options that have a short form with digits
+or a decimal. In this example the -.85 will be the first parameter,
+--notpresent will be the second. The --add is assumed to take in two number
+arguments.
 
-Example:
+ESCAPES:
+Sometimes you need a particular character to appear inside an argument. For
+example you may need a single or double quote to apprear inside a parameter.
+The hat (^) followed by the character you need is used for this purpose.
+Eg: ^^ yields ^ | ^' yields ' | ^" yields "
+
+VARIABLE ARGUMENTS:
+A variable number of space-separated parameters may be specified if the tool
+supports them. The parsing system will collect them all up if the parameter
+number is unset (-1).
+A variable number of option arguments is not directly supported due to the
+more complex parsing that would be needed. The same result is achieved by
+entering the same option more than once.
+Eg. tool.exe -I /patha/include/ -I /pathb/include
+
+EXAMPLE:
 mycopy.exe -R --overwrite fileA.txt -pat fileB.txt --log log.txt
 
 The fileA.txt and fileB.txt in the above example are parameters (assuming
@@ -408,10 +416,6 @@ after the hyphen. Eg. 'tool.exe -.85 --add 33 -87.98 -notpresent' works just
 fine as long as there are no options that have a short form with digits or a
 decimal. In this example the -.85 will be the first parameter, --notpresent
 will be the second, and the --add takes in two number arguments.
-
-Variable argument options are not supported due to the extra syntax that would
-be needed. The same result is achieved by entering the same option more than
-once. Eg. tool.exe -I /patha/include/ -I /pathb/include
 
 )U5AG3";
 
@@ -497,7 +501,7 @@ void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* de
 				numPrint += tcPrintf("--%s ", option->LongName.Pod());
 			if (!option->ShortName.IsEmpty())
 				numPrint += tcPrintf("-%s ", option->ShortName.Pod());
-			for (int a = 0; a < option->NumFlagArgs; a++)
+			for (int a = 0; a < option->NumArgsPerOption; a++)
 				numPrint += tcPrintf("arg%c ", '1'+a);
 
 			indent = tMath::tMax(indent, numPrint);
@@ -529,7 +533,7 @@ void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* de
 			if (!option->ShortName.IsEmpty())
 				numPrinted += tPrintf("-%s ", option->ShortName.Pod());
 
-			for (int a = 0; a < option->NumFlagArgs; a++)
+			for (int a = 0; a < option->NumArgsPerOption; a++)
 				numPrinted += tPrintf("arg%c ", '1'+a);
 
 			IndentSpaces(indent-numPrinted);

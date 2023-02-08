@@ -157,8 +157,12 @@ struct tString
 	// proper UTF-* type, or explicitly call Chr() or Txt() to get an old char-based pointer.
 	operator const char8_t*()																							{ return CodeUnits; }
 	operator const char8_t*() const																						{ return CodeUnits; }
-	char8_t& operator[](int i)		/* This may be somewhat meaningless if continuations needed at the index. */		{ return CodeUnits[i]; }
 
+	// The array index operator may be somewhat meaningless if there is a continuation at the index. It is assumed you
+	// know what you're doing. The returned type of char is meant to emphasize that the returned value should be
+	// interpreted as an ASCII char since char8_t are what is used in UTF-8 continuations. This also allows the result
+	// to be used with the char-constructor of another string if desired.
+	char& operator[](int i)																								{ return ((char*)CodeUnits)[i]; }
 	explicit operator uint32();
 	explicit operator uint32() const;
 

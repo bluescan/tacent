@@ -59,13 +59,16 @@ tTestUnit(CmdLine)
 	tCmdLine::tOption program("Program mode.", 'p', 0);
 	tCmdLine::tOption time("Print timestamp.", "time", 't', 0);
 	tCmdLine::tOption stop("Stop early.", "stop", 's', 0);
+	tCmdLine::tParam allFiles(-1, "allFiles", "All file parameters");
+	tCmdLine::tParam param3(3, "param3");	// Param because unrecognized option. See command-line string.
+	tCmdLine::tParam param4(4, "param4");	// Param because in quotes. See command-line string.
 
 	// Normally you would call tParse from main with argc and argv. The call below allows one to test command lines
 	// by entering the command line arguments directly as a string.
 	// tCmdLine::tParse("-R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere --enj");
 
 	// This is another way of entering a test command line. The true means the first entry is the program name.
-	tCmdLine::tParse(u8"UnitTests.exe -R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere --enj", true);
+	tCmdLine::tParse(u8"UnitTests.exe -R --overwrite fileA.txt -pt fileB.txt --log log.txt -l log2.txt --notthere --enj '-R'", true);
 
 	// There are a few differnt ways of calling PrintUsage:
 	// tCmdLine::tPrintUsage();
@@ -79,8 +82,10 @@ tTestUnit(CmdLine)
 	tPrintf("OptionShared: %s\n", OptionShared.IsPresent() ? "true" : "false");
 	tRequire(log.IsPresent());
 	tRequire(!stop.IsPresent());
-	tRequire(fromFile.IsPresent());
-	tRequire(toFile.IsPresent());
+	tRequire(fromFile.IsPresent() && (fromFile.Get() == "fileA.txt"));
+	tRequire(toFile.IsPresent()   && (toFile.Get()   == "fileB.txt"));
+	tRequire(param3.IsPresent()   && (param3.Get()   == "--notthere"));
+	tRequire(param4.IsPresent()   && (param4.Get()   == "-R"));
 	tRequire(OptionShared.IsPresent());
 
 	// More than one log entry simply adds to the numer option arguments. If an option took 2 args (A B) and was
@@ -92,11 +97,24 @@ tTestUnit(CmdLine)
 
 	tPrintf("Param fromFile: %s\n", fromFile.IsPresent() ? "present" : "absent");
 	if (fromFile.IsPresent())
-		tPrintf("    FromFile: %s\n", fromFile.Param.Pod());
+		tPrintf("    FromFile: %s\n", fromFile.Get().Pod());
 
 	tPrintf("Param toFile: %s\n", toFile.IsPresent() ? "present" : "absent");
 	if (toFile.IsPresent())
-		tPrintf("    toFile: %s\n", toFile.Param.Pod());
+		tPrintf("    toFile: %s\n", toFile.Get().Pod());
+
+	tPrintf("Param 3: %s\n", param3.IsPresent() ? "present" : "absent");
+	if (param3.IsPresent())
+		tPrintf("    param3: %s\n", param3.Get().Pod());
+
+	tPrintf("Param 4: %s\n", param4.IsPresent() ? "present" : "absent");
+	if (param4.IsPresent())
+		tPrintf("    param4: %s\n", param4.Get().Pod());
+
+	tPrintf("Param allFiles: %s\n", allFiles.IsPresent() ? "present" : "absent");
+	if (allFiles.IsPresent())
+		for (tStringItem* item = allFiles.Values.First(); item; item = item->Next())
+			tPrintf("    allFiles: %s\n", item->Pod());
 }
 
 
