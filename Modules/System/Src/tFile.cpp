@@ -1337,9 +1337,13 @@ tString tSystem::tGetProgramDir()
 	return result;
 
 	#elif defined(PLATFORM_LINUX)
-	tString result(PATH_MAX+1);
-	readlink("/proc/self/exe", result.Txt(), PATH_MAX);
-	
+	char resBuf[PATH_MAX+1];
+	int numWritten = readlink("/proc/self/exe", resBuf, PATH_MAX);
+	if ((numWritten == -1) || (numWritten > PATH_MAX))
+		return tString();
+	resBuf[numWritten] = '\0';
+
+	tString result(resBuf);
 	int bi = result.FindChar('/', true);
 	tAssert(bi != -1);
 	result.SetLength(bi + 1);
@@ -1373,7 +1377,10 @@ tString tSystem::tGetProgramPath()
 
 	#elif defined(PLATFORM_LINUX)
 	char resBuf[PATH_MAX+1];
-	readlink("/proc/self/exe", resBuf, PATH_MAX);
+	int numWritten = readlink("/proc/self/exe", resBuf, PATH_MAX);
+	if ((numWritten == -1) || (numWritten > PATH_MAX))
+		return tString();
+	resBuf[numWritten] = '\0';
 	tString result(resBuf);
 	return result;
 
