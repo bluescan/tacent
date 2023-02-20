@@ -18,7 +18,7 @@
 // A note on variable naming of paths in this API. If it can be a file or directory, the word 'path' is used. If the
 // path must be a directory, the word 'dir' is used. If the path must be a file, the word 'file' is used.
 //
-// Copyright (c) 2004-2006, 2017, 2020-2022 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2020-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -500,6 +500,7 @@ struct tFileTypes
 struct tFileInfo : public tLink<tFileInfo>
 {
 	tFileInfo();
+	tFileInfo(const tFileInfo& src);
 	void Clear();
 
 	tString FileName;
@@ -516,7 +517,7 @@ struct tFileInfo : public tLink<tFileInfo>
 };
 
 // Returns true if the FileInfo struct was filled out. Returns false if there was a problem like the file didn't exist.
-// In this case the struct is left unmodified. This function can be used to get for or directory information.
+// In this case the struct is left unmodified. This function can be used to get file or directory information.
 bool tGetFileInfo(tFileInfo&, const tString& path);
 
 #ifdef PLATFORM_WINDOWS
@@ -1037,6 +1038,19 @@ inline tSystem::tFileInfo::tFileInfo() :
 	ReadOnly(false),
 	Hidden(false),
 	Directory(false)
+{
+}
+
+
+inline tSystem::tFileInfo::tFileInfo(const tFileInfo& src) :
+	FileName(src.FileName),
+	FileSize(src.FileSize),
+	CreationTime(src.CreationTime),
+	ModificationTime(src.ModificationTime),
+	AccessTime(src.AccessTime),
+	ReadOnly(src.ReadOnly),
+	Hidden(src.Hidden),
+	Directory(src.Directory)
 {
 }
 
