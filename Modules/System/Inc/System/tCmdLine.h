@@ -175,17 +175,6 @@ namespace tCmdLine
 
 	// Returns the program name assuming you have already called tParse.
 	tString tGetProgram();
-
-	// These may be queried after tParse is called. The 'present' functions only return true if at least one
-	// registered tParam or tOption gets populated.
-	bool tIsAnyParamPresent();
-	bool tIsAnyOptionPresent();
-
-	// These may be queried after tParse is called. They return true if a parameter or option is present on the
-	// command line regardless of whether it was picked up by a registered tParam or tOption. That is, even typos
-	// like --heelp would be picked up (assuming you have no tOption with 'heelp' as the name).
-	bool tIsAnyParam();
-	bool tIsAnyOption();
 }
 
 

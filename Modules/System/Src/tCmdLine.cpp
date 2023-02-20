@@ -33,46 +33,12 @@ namespace tCmdLine
 	tList<tOption> Options(tListMode::StaticZero);
 	tString Program;
 	tString Empty;
-
-	// These may be checked after parsing. Sometimes it's handy to quickly know if anything at all
-	// was entered into the command line that populated a param or option.
-	bool AnyParamPresent	= false;
-	bool AnyOptionPresent	= false;
-
-	// These may be checked after parsing. Sometimes it's handy to quickly know if anything at all
-	// was entered into the command line whether it populated a param or option or not.
-	bool AnyParam			= false;
-	bool AnyOption			= false;
 }
 
 
 tString tCmdLine::tGetProgram()
 {
 	return Program;
-}
-
-
-bool tCmdLine::tIsAnyParamPresent()
-{
-	return AnyParamPresent;
-}
-
-
-bool tCmdLine::tIsAnyOptionPresent()
-{
-	return AnyOptionPresent;
-}
-
-
-bool tCmdLine::tIsAnyParam()
-{
-	return AnyParam;
-}
-
-
-bool tCmdLine::tIsAnyOption()
-{
-	return AnyOption;
 }
 
 
@@ -261,11 +227,6 @@ static bool OptionSortFnLong(const tCmdLine::tOption& a, const tCmdLine::tOption
 
 void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 {
-	AnyParamPresent		= false;
-	AnyOptionPresent	= false;
-	AnyParam			= false;
-	AnyOption			= false;
-
 	// At this point the constructors for all tOptions and tParams will have been called and both Params and Options
 	// lists are populated. Options can be specified in any order, but we're going to order them alphabetically by short
 	// flag name so they get printed nicely by tPrintUsage. Params must be printed in order based on their param num
@@ -328,17 +289,6 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 
 	ExpandArgs(args);
 
-	// Check if any options or arguments in the command line.
-	for (tStringItem* arg = args.First(); arg; arg = arg->Next())
-	{
-		if (*arg[0] == '-')
-			AnyOption = true;
-		else
-			AnyParam = true;
-		if (AnyOption && AnyParam)
-			break;
-	}
-
 	// Process all options. If there is more than one tOption that uses the same names, they all need to
 	// be populated. That's why we need to loop through all arguments for each tOption.
 	for (tOption* option = Options.First(); option; option = option->Next())
@@ -348,7 +298,6 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 			if ( (*arg == tString("--") + option->LongName) || (*arg == tString("-") + option->ShortName) )
 			{
 				option->Present = true;
-				AnyOptionPresent = true;
 				for (int optArgNum = 0; optArgNum < option->NumArgsPerOption; optArgNum++)
 				{
 					arg = arg->Next();
@@ -402,7 +351,6 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 		{
 			if ((param->ParamNumber == paramNumber) || (param->ParamNumber == 0))
 			{
-				AnyParamPresent = true;
 				param->Values.Append(new tStringItem(*arg));
 			}
 		}
