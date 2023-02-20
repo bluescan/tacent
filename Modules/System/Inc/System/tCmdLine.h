@@ -87,6 +87,7 @@
 // INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
+
 #pragma once
 #include <Foundation/tList.h>
 #include <Foundation/tString.h>
@@ -96,18 +97,20 @@ namespace tCmdLine
 {
 	struct tParam : public tLink<tParam>
 	{
-		// ParamNumber starts at 1. Set it to which parameter you want from the command line. For example, set to 2 if
-		// you want this object to receive the 2nd parameter. If you want ALL command-line paramters collected here,
-		// you must explicitly set paramNumber to 0. If you do this, Values gets populated with every parameter.
-		tParam(int paramNumber, const char* name = nullptr, const char* description = nullptr);
-		tParam(const char* description, const char* paramName, int paramNumber);
+		// Parameter number starts at 1. Set it to which parameter you want from the command line. For example, set to
+		// 2 if you want this object to receive the 2nd parameter. If you want ALL command-line paramters collected
+		// here you must explicitly set number to 0. If you do this, Values gets populated with every parameter. Name
+		// and desc are optional and are used when printing the tool usage. Exclude means exclude from the usage print. 
+		tParam(int number,			const char* name = nullptr,	const char* desc = nullptr,	bool exclude = false);
+		tParam(const char* desc,	const char* name,			int number,					bool exclude = false);
 
 		tString Get() const																								{ return Values.IsEmpty() ? tString() : *Values.First(); }
 		void Set(const tString& value)																					{ if (Values.First()) Values.First()->Set(value); else Values.Append(new tStringItem(value)); }
 		bool IsPresent() const																							{ return !Values.IsEmpty(); }
 		operator bool() const																							{ return IsPresent(); }
 
-		int ParamNumber;				// 1 based. 0 means all.
+		// 1 based. 0 means all.
+		int ParamNumber;
 
 		// This usually has a single item (if ParamNumber >= 1). Only if ParamNumber == 0 does this get populated with
 		// every parameter in the command line. There may be an arbitrary number of them in this case. This list is not
@@ -115,14 +118,17 @@ namespace tCmdLine
 		tList<tStringItem> Values;
 		tString Name;
 		tString Description;
+		bool ExcludeFromUsage;
 	};
 
 	struct tOption : public tLink<tOption>
 	{
-		tOption(const char* description, char shortName, const char* longName, int numArgs = 0);
-		tOption(const char* description, const char* longName, char shortName, int numArgs = 0);
-		tOption(const char* description, char shortName, int numArgs = 0);
-		tOption(const char* description, const char* longName, int numArgs = 0);
+		// Opt is the single-character (short name) for the option. eg. -h. Name is the full (long name) for the option.
+		// eg. --help.  If exclude is true, this option is not included in the usage print.
+		tOption(const char* desc,	char opt,			const char* name,	int numArgs = 0,	bool exclude = false);
+		tOption(const char* desc,	const char* name,	char opt,			int numArgs = 0,	bool exclude = false);
+		tOption(const char* desc,	char opt,								int numArgs = 0,	bool exclude = false);
+		tOption(const char* desc,	const char* name,						int numArgs = 0,	bool exclude = false);
 
 		// These validity checking functions only return true if the option was found in the command line and all
 		// arguments were successfully parsed.
@@ -155,6 +161,7 @@ namespace tCmdLine
 		// of 1. In general the arguments collect in multiples of NumFlagArgs.
 		tList<tStringItem> Args;
 		bool Present;
+		bool ExcludeFromUsage;
 	};
 
 	// All strings are utf-8.
@@ -166,15 +173,27 @@ namespace tCmdLine
 	void tPrintUsage(const char8_t* versionAuthor = nullptr, const char8_t* desc = nullptr);
 	void tPrintSyntax();
 
-	tString tGetProgram();			// Returns the program name assuming you have already called tParse.
+	// Returns the program name assuming you have already called tParse.
+	tString tGetProgram();
+
+	// These may be queried after tParse is called. The 'present' functions only return true if at least one
+	// registered tParam or tOption gets populated.
+	bool tIsAnyParamPresent();
+	bool tIsAnyOptionPresent();
+
+	// These may be queried after tParse is called. They return true if a parameter or option is present on the
+	// command line regardless of whether it was picked up by a registered tParam or tOption. That is, even typos
+	// like --heelp would be picked up (assuming you have no tOption with 'heelp' as the name).
+	bool tIsAnyParam();
+	bool tIsAnyOption();
 }
 
 
 // Implementation below this line.
 
 
-inline tCmdLine::tParam::tParam(const char* description, const char* paramName, int paramNumber) :
-	tParam(paramNumber, paramName, description)
+inline tCmdLine::tParam::tParam(const char* description, const char* paramName, int paramNumber, bool exclude) :
+	tParam(paramNumber, paramName, description, exclude)
 {
 }
 

@@ -33,6 +33,16 @@ namespace tCmdLine
 	tList<tOption> Options(tListMode::StaticZero);
 	tString Program;
 	tString Empty;
+
+	// These may be checked after parsing. Sometimes it's handy to quickly know if anything at all
+	// was entered into the command line that populated a param or option.
+	bool AnyParamPresent	= false;
+	bool AnyOptionPresent	= false;
+
+	// These may be checked after parsing. Sometimes it's handy to quickly know if anything at all
+	// was entered into the command line whether it populated a param or option or not.
+	bool AnyParam			= false;
+	bool AnyOption			= false;
 }
 
 
@@ -42,11 +52,36 @@ tString tCmdLine::tGetProgram()
 }
 
 
-tCmdLine::tParam::tParam(int paramNumber, const char* name, const char* description) :
+bool tCmdLine::tIsAnyParamPresent()
+{
+	return AnyParamPresent;
+}
+
+
+bool tCmdLine::tIsAnyOptionPresent()
+{
+	return AnyOptionPresent;
+}
+
+
+bool tCmdLine::tIsAnyParam()
+{
+	return AnyParam;
+}
+
+
+bool tCmdLine::tIsAnyOption()
+{
+	return AnyOption;
+}
+
+
+tCmdLine::tParam::tParam(int paramNumber, const char* name, const char* description, bool exclude) :
 	ParamNumber(paramNumber),
 	Values(tListMode::ListOwns),
 	Name(),
-	Description()
+	Description(),
+	ExcludeFromUsage(exclude)
 {
 	tAssert(ParamNumber >= 0);
 	if (name)
@@ -61,49 +96,53 @@ tCmdLine::tParam::tParam(int paramNumber, const char* name, const char* descript
 }
 
 
-tCmdLine::tOption::tOption(const char* description, char shortName, const char* longName, int numArgs) :
+tCmdLine::tOption::tOption(const char* description, char shortName, const char* longName, int numArgs, bool exclude) :
 	ShortName(shortName),
 	LongName(longName),
 	Description(description),
 	NumArgsPerOption(numArgs),
 	Args(tListMode::ListOwns),
-	Present(false)
+	Present(false),
+	ExcludeFromUsage(exclude)
 {
 	Options.Append(this);
 }
 
 
-tCmdLine::tOption::tOption(const char* description, const char* longName, char shortName, int numArgs) :
+tCmdLine::tOption::tOption(const char* description, const char* longName, char shortName, int numArgs, bool exclude) :
 	ShortName(shortName),
 	LongName(longName),
 	Description(description),
 	NumArgsPerOption(numArgs),
 	Args(tListMode::ListOwns),
-	Present(false)
+	Present(false),
+	ExcludeFromUsage(exclude)
 {
 	Options.Append(this);
 }
 
 
-tCmdLine::tOption::tOption(const char* description, char shortName, int numArgs) :
+tCmdLine::tOption::tOption(const char* description, char shortName, int numArgs, bool exclude) :
 	ShortName(shortName),
 	LongName(),
 	Description(description),
 	NumArgsPerOption(numArgs),
 	Args(tListMode::ListOwns),
-	Present(false)
+	Present(false),
+	ExcludeFromUsage(exclude)
 {
 	Options.Append(this);
 }
 
 
-tCmdLine::tOption::tOption(const char* description, const char* longName, int numArgs) :
+tCmdLine::tOption::tOption(const char* description, const char* longName, int numArgs, bool exclude) :
 	ShortName(),
 	LongName(longName),
 	Description(description),
 	NumArgsPerOption(numArgs),
 	Args(tListMode::ListOwns),
-	Present(false)
+	Present(false),
+	ExcludeFromUsage(exclude)
 {
 	Options.Append(this);
 }
@@ -222,6 +261,11 @@ static bool OptionSortFnLong(const tCmdLine::tOption& a, const tCmdLine::tOption
 
 void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 {
+	AnyParamPresent		= false;
+	AnyOptionPresent	= false;
+	AnyParam			= false;
+	AnyOption			= false;
+
 	// At this point the constructors for all tOptions and tParams will have been called and both Params and Options
 	// lists are populated. Options can be specified in any order, but we're going to order them alphabetically by short
 	// flag name so they get printed nicely by tPrintUsage. Params must be printed in order based on their param num
@@ -284,14 +328,27 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 
 	ExpandArgs(args);
 
-	// Process all options.
+	// Check if any options or arguments in the command line.
 	for (tStringItem* arg = args.First(); arg; arg = arg->Next())
 	{
-		for (tOption* option = Options.First(); option; option = option->Next())
+		if (*arg[0] == '-')
+			AnyOption = true;
+		else
+			AnyParam = true;
+		if (AnyOption && AnyParam)
+			break;
+	}
+
+	// Process all options. If there is more than one tOption that uses the same names, they all need to
+	// be populated. That's why we need to loop through all arguments for each tOption.
+	for (tOption* option = Options.First(); option; option = option->Next())
+	{
+		for (tStringItem* arg = args.First(); arg; arg = arg->Next())
 		{
 			if ( (*arg == tString("--") + option->LongName) || (*arg == tString("-") + option->ShortName) )
 			{
 				option->Present = true;
+				AnyOptionPresent = true;
 				for (int optArgNum = 0; optArgNum < option->NumArgsPerOption; optArgNum++)
 				{
 					arg = arg->Next();
@@ -315,10 +372,10 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 		{
 			if (*(arg->Text()) == '-')
 			{
-				tString flagArg = *arg;
+				tString optArg = *arg;
 
-				// We only skip flags we recognize.
-				if ( (flagArg == tString("--") + option->LongName) || (flagArg == tString("-") + option->ShortName) )
+				// We only skip options we recognize.
+				if ( (optArg == tString("--") + option->LongName) || (optArg == tString("-") + option->ShortName) )
 				{
 					candidate = nullptr;
 					for (int optArgNum = 0; optArgNum < option->NumArgsPerOption; optArgNum++)
@@ -328,18 +385,26 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 		}
 
 		if (candidate)
-			commandLineParams.Append(new tStringItem(*candidate));
+		{
+			tStringItem* cmdArg = new tStringItem(*candidate);
+			cmdArg->Replace(tStd::SeparatorE, '-');
+			commandLineParams.Append(cmdArg);
+		}
 	}
 
-	// Process all parameters.
-	int paramNumber = 1;
-	for (tStringItem* arg = commandLineParams.First(); arg; arg = arg->Next(), paramNumber++)
+	// Process all parameters. Note again that similarly to tOptions, we need to loop through all commandLineParams
+	// arguments for every tParam. This is because more than one tParam may need to collect the same arg. In fact some
+	// tParams may have their param number set to 0, in which case they (all) need to collect all parameter arguments.
+	for (tParam* param = Params.First(); param; param = param->Next())
 	{
-		arg->Replace(tStd::SeparatorE, '-');
-		for (tParam* param = Params.First(); param; param = param->Next())
+		int paramNumber = 1;
+		for (tStringItem* arg = commandLineParams.First(); arg; arg = arg->Next(), paramNumber++)
 		{
 			if ((param->ParamNumber == paramNumber) || (param->ParamNumber == 0))
+			{
+				AnyParamPresent = true;
 				param->Values.Append(new tStringItem(*arg));
+			}
 		}
 	}
 }
@@ -348,7 +413,7 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 void tCmdLine::tPrintSyntax()
 {
 	tString syntax =
-R"U5AG3(Syntax Help:
+R"SYNTAX(Syntax Help:
 program.exe [arg1 arg2 arg3 ...]
 
 ARGUMENTS:
@@ -418,7 +483,7 @@ fine as long as there are no options that have a short form with digits or a
 decimal. In this example the -.85 will be the first parameter, --notpresent
 will be the second, and the --add takes in two number arguments.
 
-)U5AG3";
+)SYNTAX";
 
 	tPrintf("%s", syntax.Pod());
 }
@@ -472,24 +537,19 @@ void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* de
 	else
 		tPrintf("USAGE: %s [options] ", exeName.Pod());
 
-	// Support printing usage of up to 256 parameters. If you have more than this, your tool is too complex.
-	const int maxPrintedParams = 256;
-	bool printedParamNum[maxPrintedParams];
-	tStd::tMemset(printedParamNum, 0, sizeof(printedParamNum));
 	for (tParam* param = Params.First(); param; param = param->Next())
 	{
-		if ((param->ParamNumber < maxPrintedParams) && !printedParamNum[param->ParamNumber])
-		{
-			if (!param->Name.IsEmpty() && (param->ParamNumber > 0))
-				tPrintf("%s ", param->Name.Pod());
-			else if (!param->Name.IsEmpty() && (param->ParamNumber == 0))
-				tPrintf("[%s] ", param->Name.Pod());
-			else if (param->ParamNumber > 0)
-				tPrintf("param%d ", param->ParamNumber);
-			else
-				tPrintf("[params] ");
-			printedParamNum[param->ParamNumber] = true;
-		}
+		if (param->ExcludeFromUsage)
+			continue;
+
+		if (!param->Name.IsEmpty() && (param->ParamNumber > 0))
+			tPrintf("%s ", param->Name.Pod());
+		else if (!param->Name.IsEmpty() && (param->ParamNumber == 0))
+			tPrintf("[%s] ", param->Name.Pod());
+		else if (param->ParamNumber > 0)
+			tPrintf("param%d ", param->ParamNumber);
+		else
+			tPrintf("[params] ");
 	}
 
 	tPrintf("\n\n");
@@ -500,45 +560,54 @@ void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* de
 	}
 
 	int indent = 0;
-	if (!Options.IsEmpty())
-	{
-		for (tOption* option = Options.First(); option; option = option->Next())
-		{
-			int numPrint = 0;
-			if (!option->LongName.IsEmpty())
-				numPrint += tcPrintf("--%s ", option->LongName.Pod());
-			if (!option->ShortName.IsEmpty())
-				numPrint += tcPrintf("-%s ", option->ShortName.Pod());
-			for (int a = 0; a < option->NumArgsPerOption; a++)
-				numPrint += tcPrintf("arg%c ", '1'+a);
+	int numUsageOptions = 0;
+	int numUsageParams = 0;
 
-			indent = tMath::tMax(indent, numPrint);
-		}
+	// Loop through both options and parameters to figure out how far to indent.
+	for (tOption* option = Options.First(); option; option = option->Next())
+	{
+		if (option->ExcludeFromUsage)
+			continue;
+
+		int numPrint = 0;
+		if (!option->LongName.IsEmpty())
+			numPrint += tcPrintf("--%s ", option->LongName.Pod());
+		if (!option->ShortName.IsEmpty())
+			numPrint += tcPrintf("-%s ", option->ShortName.Pod());
+		for (int a = 0; a < option->NumArgsPerOption; a++)
+			numPrint += tcPrintf("arg%c ", '1'+a);
+
+		indent = tMath::tMax(indent, numPrint);
+		numUsageOptions++;
 	}
 
-	if (!Params.IsEmpty())
+	for (tParam* param = Params.First(); param; param = param->Next())
 	{
-		// Loop through them all to figure out how far to indent.
-		for (tParam* param = Params.First(); param; param = param->Next())
-		{
-			int numPrint = 0;
-			if (!param->Name.IsEmpty() && (param->ParamNumber > 0))
-				numPrint = tcPrintf("%s ", param->Name.Pod());
-			else if (!param->Name.IsEmpty() && (param->ParamNumber == 0))
-				numPrint = tcPrintf("[%s] ", param->Name.Pod());
-			else if (param->ParamNumber > 0)
-				numPrint = tcPrintf("param%d ", param->ParamNumber);
-			else
-				numPrint = tcPrintf("[params] ");
-			indent = tMath::tMax(indent, numPrint);
-		}
+		if (param->ExcludeFromUsage)
+			continue;
+
+		int numPrint = 0;
+		if (!param->Name.IsEmpty() && (param->ParamNumber > 0))
+			numPrint = tcPrintf("%s ", param->Name.Pod());
+		else if (!param->Name.IsEmpty() && (param->ParamNumber == 0))
+			numPrint = tcPrintf("[%s] ", param->Name.Pod());
+		else if (param->ParamNumber > 0)
+			numPrint = tcPrintf("param%d ", param->ParamNumber);
+		else
+			numPrint = tcPrintf("[params] ");
+
+		indent = tMath::tMax(indent, numPrint);
+		numUsageParams++;
 	}
 
-	if (!Options.IsEmpty())
+	if (numUsageOptions > 0)
 	{
 		tPrintf("Options:\n");
 		for (tOption* option = Options.First(); option; option = option->Next())
 		{
+			if (option->ExcludeFromUsage)
+				continue;
+
 			int numPrinted = 0;
 			if (!option->LongName.IsEmpty())
 				numPrinted += tPrintf("--%s ", option->LongName.Pod());
@@ -554,11 +623,14 @@ void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* de
 		tPrintf("\n");
 	}
 
-	if (!Params.IsEmpty())
+	if (numUsageParams > 0)
 	{
 		tPrintf("Parameters:\n");
 		for (tParam* param = Params.First(); param; param = param->Next())
 		{
+			if (param->ExcludeFromUsage)
+				continue;
+
 			int numPrinted = 0;
 			if (!param->Name.IsEmpty() && (param->ParamNumber > 0))
 				numPrinted = tPrintf("%s ", param->Name.Pod());
