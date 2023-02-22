@@ -3,7 +3,7 @@
 // This knows how to load/save animated PNGs (APNGs). It knows the details of the apng file format and loads the data
 // into multiple tPixel arrays, one for each frame. These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2022 Tristan Grimmer.
+// Copyright (c) 2020-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -192,14 +192,34 @@ tFrame* tImageAPNG::GetFrame(bool steal)
 }
 
 
-bool tImageAPNG::Save(const tString& apngFile, int overrideFrameDuration)
+tImageAPNG::tFormat tImageAPNG::Save(const tString& apngFile, tFormat format, int overrideFrameDuration) const
+{
+	SaveParams params;
+	params.Format = format;
+	params.OverrideFrameDuration = overrideFrameDuration;
+	return Save(apngFile, params);
+}
+
+
+tImageAPNG::tFormat tImageAPNG::Save(const tString& apngFile, const SaveParams& params) const
 {
 	if (!IsValid())
-		return false;
+		return tFormat::Invalid;
 
+	if ((tSystem::tGetFileType(apngFile) != tSystem::tFileType::PNG) && (tSystem::tGetFileType(apngFile) != tSystem::tFileType::APNG))
+		return tFormat::Invalid;
+
+	int overrideFrameDuration = params.OverrideFrameDuration;
 	tMath::tiClampMax(overrideFrameDuration, 65535);
-	bool isOpaque = IsOpaque();
-	int bytesPerPixel = isOpaque ? 3 : 4;
+	int bytesPerPixel = 0;
+	switch (params.Format)
+	{
+		case tFormat::Auto:		bytesPerPixel = IsOpaque() ? 3 : 4;	break;
+		case tFormat::BPP24:	bytesPerPixel = 3;					break;
+		case tFormat::BPP32:	bytesPerPixel = 4;					break;
+	}
+	if (!bytesPerPixel)
+		return tFormat::Invalid;
 
 	std::vector<APngAsm::Image> images;
 	images.resize(Frames.GetNumItems());
@@ -256,7 +276,10 @@ bool tImageAPNG::Save(const tString& apngFile, int overrideFrameDuration)
 	}
 
 	int errCode = APngAsm::save_apng((char*)apngFile.Chr(), images, 0, 0, 0, 0);
-	return errCode ? false : true;
+	if (errCode)
+		return tFormat::Invalid;
+
+	return (bytesPerPixel == 3) ? tFormat::BPP24 : tFormat::BPP32;
 }
 
 

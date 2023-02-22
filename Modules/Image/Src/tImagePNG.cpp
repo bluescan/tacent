@@ -4,7 +4,7 @@
 // png file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor
 // if a png file is specified. After the array is stolen the tImagePNG is invalid. This is purely for performance.
 //
-// Copyright (c) 2020, 2022 Tristan Grimmer.
+// Copyright (c) 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -163,6 +163,14 @@ tFrame* tImagePNG::GetFrame(bool steal)
 
 tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, tFormat format) const
 {
+	SaveParams params;
+	params.Format = format;
+	return Save(pngFile, params);
+}
+
+
+tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& params) const
+{
 	if (!IsValid())
 		return tFormat::Invalid;
 
@@ -170,7 +178,7 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, tFormat format) const
 		return tFormat::Invalid;
 
 	int srcBytesPerPixel = 0;
-	switch (format)
+	switch (params.Format)
 	{
 		case tFormat::Auto:		srcBytesPerPixel = IsOpaque() ? 3 : 4;	break;
 		case tFormat::BPP24:	srcBytesPerPixel = 3;					break;

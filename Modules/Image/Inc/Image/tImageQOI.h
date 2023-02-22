@@ -4,7 +4,7 @@
 // by the tPicture's constructor if a qoi file is specified. After the array is stolen the tImageQOI is invalid. This
 // is purely for performance.
 //
-// Copyright (c) 2022 Tristan Grimmer.
+// Copyright (c) 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -67,10 +67,14 @@ public:
 		BPP32,		// 24 bit colour with 8 bits opacity in the alpha channel.
 		Auto		// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.
 	};
-	enum class tSpace
+
+	struct SaveParams
 	{
-		sRGB,		// sRGB (RGB in sRGB and A linear).
-		Linear		// RGB(A) all linear.
+		SaveParams()																									{ Reset(); }
+		SaveParams(const SaveParams& src)																				: Format(src.Format) { }
+		void Reset()																									{ Format = tFormat::Auto; }
+		SaveParams operator=(const SaveParams& src)																		{ Format = src.Format; }
+		tFormat Format;
 	};
 
 	// Saves the tImageQOI to the file specified. The type of filename must be "qoi". If tFormat is Auto, this
@@ -78,7 +82,8 @@ public:
 	// that the file was saved in, or tFormat::Invalid if there was a problem. Since Invalid is 0, you can use an 'if'.
 	// The colour-space is also saved with the file and can be retrieved on load. Optionally call SetColourSpace before
 	// saving if you need to (although usually the default sRGB is the correct one).
-	tFormat Save(const tString& qoiFile, tFormat = tFormat::Auto) const;
+	tFormat Save(const tString& qoiFile, tFormat) const;
+	tFormat Save(const tString& qoiFile, const SaveParams& = SaveParams()) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;
@@ -90,6 +95,11 @@ public:
 	// All pixels must be opaque (alpha = 255) for this to return true.
 	bool IsOpaque() const;
 
+	enum class tSpace
+	{
+		sRGB,		// sRGB (RGB in sRGB and A linear).
+		Linear		// RGB(A) all linear.
+	};
 	tSpace GetColourSpace() const																						{ return ColourSpace; }
 	void SetColourSpace(tSpace space)																					{ ColourSpace = space; }
 

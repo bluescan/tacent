@@ -5,7 +5,7 @@
 // tPicture's constructor if a jpg file is specified. After the array is stolen the tImageJPG is invalid. This is
 // purely for performance. The loading and saving uses libjpeg-turbo. See Licence_LibJpegTurbo.txt for more info.
 //
-// Copyright (c) 2020, 2022 Tristan Grimmer.
+// Copyright (c) 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -270,6 +270,14 @@ bool tImageJPG::PopulateMetaData(const uint8* jpgFileInMemory, int numBytes)
 
 bool tImageJPG::Save(const tString& jpgFile, int quality) const
 {
+	SaveParams params;
+	params.Quality = quality;
+	return Save(jpgFile, params);
+}
+
+
+bool tImageJPG::Save(const tString& jpgFile, const SaveParams& params) const
+{
 	if (!IsValid())
 		return false;
 
@@ -290,7 +298,7 @@ bool tImageJPG::Save(const tString& jpgFile, int quality) const
 	flags |= TJFLAG_ACCURATEDCT;
 
     int compResult = tjCompress2(tjInstance, (uint8*)Pixels, Width, 0, Height, TJPF_RGBA,
-    	&jpegBuf, &jpegSize, TJSAMP_444, quality, flags);
+    	&jpegBuf, &jpegSize, TJSAMP_444, params.Quality, flags);
 
 	tjDestroy(tjInstance);
 	if (compResult < 0)

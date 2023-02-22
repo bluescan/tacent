@@ -4,7 +4,7 @@
 // png file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor
 // if a png file is specified. After the array is stolen the tImagePNG is invalid. This is purely for performance.
 //
-// Copyright (c) 2020, 2022 Tristan Grimmer.
+// Copyright (c) 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -67,10 +67,20 @@ public:
 		Auto		// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.
 	};
 
-	// Saves the tImagePNG to the PNG file specified. The type of filename must be "png". If tFormat is Auto, this
+	struct SaveParams
+	{
+		SaveParams()																									{ Reset(); }
+		SaveParams(const SaveParams& src)																				: Format(src.Format) { }
+		void Reset()																									{ Format = tFormat::Auto; }
+		SaveParams operator=(const SaveParams& src)																		{ Format = src.Format; }
+		tFormat Format;
+	};
+
+	// Saves the tImagePNG to the PNG file specified. The type of filename must be PNG. If tFormat is Auto, this
 	// function will decide the format. BPP24 if all image pixels are opaque and BPP32 otherwise. Returns the format
 	// that the file was saved in, or tFormat::Invalid if there was a problem. Since Invalid is 0, you can use an 'if'.
-	tFormat Save(const tString& pngFile, tFormat = tFormat::Auto) const;
+	tFormat Save(const tString& pngFile, tFormat) const;
+	tFormat Save(const tString& pngFile, const SaveParams& = SaveParams()) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;

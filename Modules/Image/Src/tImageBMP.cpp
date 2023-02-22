@@ -24,7 +24,7 @@
 //
 // The modifications to use Tacent datatypes and conversion to C++ are under the ISC licence:
 //
-// Copyright (c) 2020, 2022 Tristan Grimmer.
+// Copyright (c) 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -535,6 +535,15 @@ tFrame* tImageBMP::GetFrame(bool steal)
 
 tImageBMP::tFormat tImageBMP::Save(const tString& bmpFile, tFormat format) const
 {
+	SaveParams params;
+	params.Format = format;
+	return Save(bmpFile, params);
+}
+
+
+tImageBMP::tFormat tImageBMP::Save(const tString& bmpFile, const SaveParams& params) const
+{
+	tFormat format = params.Format;
 	if (!IsValid() || (format == tFormat::Invalid))
 		return tFormat::Invalid;
 
@@ -547,8 +556,7 @@ tImageBMP::tFormat tImageBMP::Save(const tString& bmpFile, tFormat format) const
 	tFileHandle file = tOpenFile(bmpFile.Chars(), "wb");
 	if (!file)
 		return tFormat::Invalid;
-	
-	int bitsPerPixel  = (format == tFormat::BPP24) ? 24 : 32;
+
 	int bytesPerPixel = (format == tFormat::BPP24) ? 3 : 4;
 
 	Header bmpHeader;
@@ -563,7 +571,7 @@ tImageBMP::tFormat tImageBMP::Save(const tString& bmpFile, tFormat format) const
 	infoHeader.Width				= Width;
 	infoHeader.Height				= Height;
 	infoHeader.NumPlanes			= 1;
-	infoHeader.BPP					= bitsPerPixel;
+	infoHeader.BPP					= bytesPerPixel*8;
 	infoHeader.Compression			= 0;
 	infoHeader.ImageSize			= Width * Height * bytesPerPixel;
 	infoHeader.HorizontalResolution	= 0;

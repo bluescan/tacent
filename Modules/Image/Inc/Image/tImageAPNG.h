@@ -3,7 +3,7 @@
 // This knows how to load/save animated PNGs (APNGs). It knows the details of the apng file format and loads the data
 // into multiple tPixel arrays, one for each frame. These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2022 Tristan Grimmer.
+// Copyright (c) 2020-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -60,8 +60,32 @@ public:
 	// Sets from a tPicture.
 	bool Set(tPicture& picture, bool steal = true) override;
 
-	// OverrideframeDuration is in milliseconds. Set to >= 0 to override all frames.
-	bool Save(const tString& apngFile, int overrideframeDuration = -1);
+	enum class tFormat
+	{
+		Invalid,	// Invalid must be 0.
+		BPP24,		// RGB.  24 bit colour.
+		BPP32,		// RGBA. 24 bit colour and 8 bits opacity in the alpha channel.
+		Auto		// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.
+	};
+
+	struct SaveParams
+	{
+		SaveParams()																									{ Reset(); }
+		SaveParams(const SaveParams& src)																				: Format(src.Format), OverrideFrameDuration(src.OverrideFrameDuration) { }
+		void Reset()																									{ Format = tFormat::Auto; OverrideFrameDuration = -1; }
+		SaveParams operator=(const SaveParams& src)																		{ Format = src.Format; OverrideFrameDuration = src.OverrideFrameDuration; }
+
+		tFormat Format;
+		int OverrideFrameDuration;
+	};
+
+	// Saves the tImageAPNG to the APNG file specified. The type of filename must be PNG or APNG. PNG is allowed because
+	// the way apng files are specified they can have the png extension and still be read by non-apng-aware loaders.
+	// If tFormat is Auto, this function will decide the format. BPP24 if all image pixels are opaque and BPP32
+	// otherwise. Returns the format that the file was saved in, or tFormat::Invalid if there was a problem. Since
+	// Invalid is 0, you can use an 'if'. OverrideframeDuration is in milliseconds. Set to >= 0 to override all frames.
+	tFormat Save(const tString& apngFile, tFormat, int overrideframeDuration = -1) const;
+	tFormat Save(const tString& apngFile, const SaveParams& = SaveParams()) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;

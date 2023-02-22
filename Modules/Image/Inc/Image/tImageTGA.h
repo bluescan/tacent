@@ -4,7 +4,7 @@
 // tPicture's constructor if a targa file is specified. After the array is stolen the tImageTGA is invalid. This is
 // purely for performance.
 //
-// Copyright (c) 2006, 2017, 2019, 2020, 2022 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -71,16 +71,29 @@ public:
 		BPP32,		// 24 bit colour with 8 bits opacity in the alpha channel.
 		Auto		// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.
 	};
+
 	enum class tCompression
 	{
 		None,		// No compression.
 		RLE			// Run Length Encoding.
 	};
 
+	struct SaveParams
+	{
+		SaveParams()																									{ Reset(); }
+		SaveParams(const SaveParams& src)																				: Format(src.Format), Compression(src.Compression) { }
+		void Reset()																									{ Format = tFormat::Auto; Compression = tCompression::RLE; }
+		SaveParams operator=(const SaveParams& src)																		{ Format = src.Format; Compression = src.Compression; }
+
+		tFormat Format;
+		tCompression Compression;
+	};
+
 	// Saves the tImageTGA to the Targa file specified. The type of filename must be "tga". If tFormat is Auto, this
 	// function will decide the format. BPP24 if all image pixels are opaque and BPP32 otherwise. Returns the format
 	// that the file was saved in, or tFormat::Invalid if there was a problem. Since Invalid is 0, you can use an 'if'.
-	tFormat Save(const tString& tgaFile, tFormat = tFormat::Auto, tCompression = tCompression::RLE) const;
+	tFormat Save(const tString& tgaFile, tFormat, tCompression = tCompression::RLE) const;
+	tFormat Save(const tString& tgaFile, const SaveParams& = SaveParams()) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;

@@ -3,7 +3,7 @@
 // This knows how to load/save WebPs. It knows the details of the webp file format and loads the data into multiple
 // tPixel arrays, one for each frame (WebPs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2022 Tristan Grimmer.
+// Copyright (c) 2020-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -172,21 +172,34 @@ tFrame* tImageWEBP::GetFrame(bool steal)
 }
 
 
-bool tImageWEBP::Save(const tString& webpFile, bool lossy, float quality, int overrideFrameDuration)
+bool tImageWEBP::Save(const tString& webpFile, bool lossy, float qualityCompstr, int overrideFrameDuration) const
+{
+	SaveParams params;
+	params.Lossy = lossy;
+	params.QualityCompstr = qualityCompstr;
+	params.OverrideFrameDuration = overrideFrameDuration;
+	return Save(webpFile, params);
+}
+
+
+bool tImageWEBP::Save(const tString& webpFile, const SaveParams& params) const
 {
 	if (!IsValid())
 		return false;
 
+	if (tSystem::tGetFileType(webpFile) != tSystem::tFileType::WEBP)
+		return false;
+
 	WebPConfig config;
-	int success = WebPConfigPreset(&config, WEBP_PRESET_PHOTO, tMath::tClamp(quality, 0.0f, 100.0f));
+	int success = WebPConfigPreset(&config, WEBP_PRESET_PHOTO, tMath::tClamp(params.QualityCompstr, 0.0f, 100.0f));
 	if (!success)
 		return false;
 
 	// config.method is the quality/speed trade-off (0=fast, 6=slower-better).
-	config.lossless = lossy ? 0 : 1;
+	config.lossless = params.Lossy ? 0 : 1;
 
 	// Additional config parameters in lossy mode.
-	if (lossy)
+	if (params.Lossy)
 	{
 		config.sns_strength = 90;
 		config.filter_sharpness = 6;
@@ -249,7 +262,7 @@ bool tImageWEBP::Save(const tString& webpFile, bool lossy, float quality, int ov
 			tStd::tMemset(&frameInfo, 0, sizeof(WebPMuxFrameInfo));
 
 			// Frame duration is an integer in milliseconds.
-			frameInfo.duration = (overrideFrameDuration >= 0) ? overrideFrameDuration : int(frame->Duration * 1000.0f);
+			frameInfo.duration = (params.OverrideFrameDuration >= 0) ? params.OverrideFrameDuration : int(frame->Duration * 1000.0f);
 			frameInfo.bitstream = webpData;
 			frameInfo.id = WEBP_CHUNK_ANMF;
 			frameInfo.blend_method = WEBP_MUX_NO_BLEND;

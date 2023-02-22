@@ -3,7 +3,7 @@
 // This knows how to load/save TIFFs. It knows the details of the tiff file format and loads the data into multiple
 // tPixel arrays, one for each frame (in a TIFF thay are called pages). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2022 Tristan Grimmer.
+// Copyright (c) 2020-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -55,7 +55,7 @@ int tImageTIFF::ReadSoftwarePageDuration(TIFF* tiff) const
 }
 
 
-bool tImageTIFF::WriteSoftwarePageDuration(TIFF* tiff, int milliseconds)
+bool tImageTIFF::WriteSoftwarePageDuration(TIFF* tiff, int milliseconds) const
 {
 	tString softwareDesc;
 	tsPrintf(softwareDesc, "TacentLibrary V%d.%d.%d [PageDur %d]", tVersion::Major, tVersion::Minor, tVersion::Revision, milliseconds);
@@ -207,13 +207,26 @@ bool tImageTIFF::IsOpaque() const
 }
 
 
-bool tImageTIFF::Save(const tString& tiffFilename, bool useZLibComp, int overrideFrameDuration)
+bool tImageTIFF::Save(const tString& tiffFilename, tFormat format, bool useZLibComp, int overrideFrameDuration) const
 {
-	if (!IsValid())
+	SaveParams params;
+	params.Format = format;
+	params.UseZLibCompression = useZLibComp;
+	params.OverrideFrameDuration = overrideFrameDuration;
+	return Save(tiffFilename, params);
+}
+
+
+bool tImageTIFF::Save(const tString& tiffFile, const SaveParams& params) const
+{
+	if (!IsValid() || (params.Format == tFormat::Invalid))
 		return false;
 
-	TIFF* tiffFile = TIFFOpen(tiffFilename.Chr(), "wb");
-	if (!tiffFile)
+	if (tSystem::tGetFileType(tiffFile) != tSystem::tFileType::TIFF)
+		return false;
+
+	TIFF* tiff = TIFFOpen(tiffFile.Chr(), "wb");
+	if (!tiff)
 		return false;
 
 	int rowSize = 0;
@@ -222,32 +235,40 @@ bool tImageTIFF::Save(const tString& tiffFilename, bool useZLibComp, int overrid
 	{
 		// Writes image from last loop and starts a new directory.
 		if (frame != Frames.First())
-			TIFFWriteDirectory(tiffFile);
+			TIFFWriteDirectory(tiff);
 
 		bool isOpaque = frame->IsOpaque();
-		int bytesPerPixel = isOpaque ? 3 : 4;
+		int bytesPerPixel = 0;
+		switch (params.Format)
+		{
+			case tFormat::Auto:		bytesPerPixel = isOpaque ? 3 : 4;	break;
+			case tFormat::BPP24:	bytesPerPixel = 3;					break;
+			case tFormat::BPP32:	bytesPerPixel = 4;					break;
+		}
+		tAssert(bytesPerPixel);
+
 		int w = frame->Width;
 		int h = frame->Height;
 
-		TIFFSetField(tiffFile, TIFFTAG_IMAGEWIDTH, w);
-		TIFFSetField(tiffFile, TIFFTAG_IMAGELENGTH, h);
-		TIFFSetField(tiffFile, TIFFTAG_SAMPLESPERPIXEL, bytesPerPixel);
-		TIFFSetField(tiffFile, TIFFTAG_BITSPERSAMPLE, 8);
-		TIFFSetField(tiffFile, TIFFTAG_ORIENTATION, ORIENTATION_TOPLEFT);
-		TIFFSetField(tiffFile, TIFFTAG_COMPRESSION, useZLibComp ? COMPRESSION_DEFLATE : COMPRESSION_NONE);
-		TIFFSetField(tiffFile, TIFFTAG_PLANARCONFIG, PLANARCONFIG_CONTIG);
-		TIFFSetField(tiffFile, TIFFTAG_PHOTOMETRIC, PHOTOMETRIC_RGB);
+		TIFFSetField(tiff, TIFFTAG_IMAGEWIDTH, w);
+		TIFFSetField(tiff, TIFFTAG_IMAGELENGTH, h);
+		TIFFSetField(tiff, TIFFTAG_SAMPLESPERPIXEL, bytesPerPixel);
+		TIFFSetField(tiff, TIFFTAG_BITSPERSAMPLE, 8);
+		TIFFSetField(tiff, TIFFTAG_ORIENTATION, ORIENTATION_TOPLEFT);
+		TIFFSetField(tiff, TIFFTAG_COMPRESSION, params.UseZLibCompression ? COMPRESSION_DEFLATE : COMPRESSION_NONE);
+		TIFFSetField(tiff, TIFFTAG_PLANARCONFIG, PLANARCONFIG_CONTIG);
+		TIFFSetField(tiff, TIFFTAG_PHOTOMETRIC, PHOTOMETRIC_RGB);
 		if (bytesPerPixel == 4)
 		{
 			// Unassociated alpha means the extra channel is not a premultiplied alpha channel.
 			uint16 extraSampleTypes[] = { EXTRASAMPLE_UNASSALPHA };
-			TIFFSetField(tiffFile, TIFFTAG_EXTRASAMPLES, tNumElements(extraSampleTypes), extraSampleTypes);
+			TIFFSetField(tiff, TIFFTAG_EXTRASAMPLES, tNumElements(extraSampleTypes), extraSampleTypes);
 		}
 
-		int pageDurMilliSec = (overrideFrameDuration >= 0) ? overrideFrameDuration : int(frame->Duration*1000.0f);
-		WriteSoftwarePageDuration(tiffFile, pageDurMilliSec);
+		int pageDurMilliSec = (params.OverrideFrameDuration >= 0) ? params.OverrideFrameDuration : int(frame->Duration*1000.0f);
+		WriteSoftwarePageDuration(tiff, pageDurMilliSec);
 
-		int rowSizeNeeded = TIFFScanlineSize(tiffFile);
+		int rowSizeNeeded = TIFFScanlineSize(tiff);
 		tAssert(rowSizeNeeded == (w*bytesPerPixel));
 
 		// Let's not reallocate the line buffer every frame. Often all frames will be the same size.
@@ -259,7 +280,7 @@ bool tImageTIFF::Save(const tString& tiffFilename, bool useZLibComp, int overrid
 			rowSize = rowSizeNeeded;
 		}
 
-		TIFFSetField(tiffFile, TIFFTAG_ROWSPERSTRIP, TIFFDefaultStripSize(tiffFile, w*bytesPerPixel));
+		TIFFSetField(tiff, TIFFTAG_ROWSPERSTRIP, TIFFDefaultStripSize(tiff, w*bytesPerPixel));
 		for (int r = 0; r < h; r++)
 		{
 			for (int x = 0; x < w; x++)
@@ -272,7 +293,7 @@ bool tImageTIFF::Save(const tString& tiffFilename, bool useZLibComp, int overrid
 					rowBuf[x*bytesPerPixel + 3] = frame->Pixels[idx].A;
 			}
 
-			int errCode = TIFFWriteScanline(tiffFile, rowBuf, r, 0);
+			int errCode = TIFFWriteScanline(tiff, rowBuf, r, 0);
 			if (errCode < 0)
 				continue;
 		}
@@ -280,7 +301,7 @@ bool tImageTIFF::Save(const tString& tiffFilename, bool useZLibComp, int overrid
 
 	if (rowBuf)
 		_TIFFfree(rowBuf);
-	TIFFClose(tiffFile);
+	TIFFClose(tiff);
 
 	return true;
 }

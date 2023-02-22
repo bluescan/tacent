@@ -4,7 +4,7 @@
 // by the tPicture's constructor if a targa file is specified. After the array is stolen the tImageQOI is invalid. This
 // is purely for performance.
 //
-// Copyright (c) 2022 Tristan Grimmer.
+// Copyright (c) 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -145,6 +145,15 @@ tFrame* tImageQOI::GetFrame(bool steal)
 
 tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, tFormat format) const
 {
+	SaveParams params;
+	params.Format = format;
+	return Save(qoiFile, params);
+}
+
+
+tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, const SaveParams& params) const
+{
+	tFormat format = params.Format;
 	if (!IsValid() || (format == tFormat::Invalid))
 		return tFormat::Invalid;
 

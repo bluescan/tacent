@@ -5,7 +5,7 @@
 // tPicture's constructor if a jpg file is specified. After the array is stolen the tImageJPG is invalid. This is
 // purely for performance.
 //
-// Copyright (c) 2020, 2022 Tristan Grimmer.
+// Copyright (c) 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -71,10 +71,21 @@ public:
 	// Sets from a tPicture.
 	bool Set(tPicture& picture, bool steal = true) override;
 
-	// Saves the tImageJPG to the JPeg file specified. The extension of filename must be ".jpg" or ".jpeg".
-	// The quality int is should be a percent in [1,100]. Returns true on success.
 	const static int DefaultQuality = 95;
-	bool Save(const tString& jpgFile, int quality = DefaultQuality) const;
+
+	struct SaveParams
+	{
+		SaveParams()																									{ Reset(); }
+		SaveParams(const SaveParams& src)																				: Quality(src.Quality) { }
+		void Reset()																									{ Quality = DefaultQuality; }
+		SaveParams operator=(const SaveParams& src)																		{ Quality = src.Quality; }
+		int Quality;
+	};
+
+	// Saves the tImageJPG to the JPeg file specified. The type of filename must be JPG (jpg or jpeg extension).
+	// The quality int is should be a percent in [1,100]. Returns true on success.
+	bool Save(const tString& jpgFile, int quality) const;
+	bool Save(const tString& jpgFile, const SaveParams& = SaveParams()) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;
@@ -83,7 +94,7 @@ public:
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
 
-	// IsOpaque always return true for a JPeg.
+	// IsOpaque always returns true for a JPeg.
 	bool IsOpaque() const																								{ return true; }
 
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageJPG object is

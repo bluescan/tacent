@@ -3,7 +3,7 @@
 // This knows how to load/save WebPs. It knows the details of the webp file format and loads the data into multiple
 // tPixel arrays, one for each frame (WebPs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2022 Tristan Grimmer.
+// Copyright (c) 2020-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -60,13 +60,29 @@ public:
 	// Sets from a tPicture.
 	bool Set(tPicture& picture, bool steal = true) override;
 
-	bool Save
-	(
-		const tString& webpFile,
-		bool lossy = false,
-		float quality = 90.0f,					// E [0.0, 100.0]. Compression size for lossy.
-		int overrideFrameDuration = -1			// In milliseconds. Set to >= 0 to override all frames.
-	);
+	struct SaveParams
+	{
+		SaveParams()																									{ Reset(); }
+		SaveParams(const SaveParams& src)																				: Lossy(src.Lossy), QualityCompstr(src.QualityCompstr), OverrideFrameDuration(src.OverrideFrameDuration) { }
+		void Reset()																									{ Lossy = false; QualityCompstr = 90.0f; OverrideFrameDuration = -1; }
+		SaveParams operator=(const SaveParams& src)																		{ Lossy = src.Lossy; QualityCompstr = src.QualityCompstr; OverrideFrameDuration = src.OverrideFrameDuration; }
+
+		bool Lossy;
+
+		// QualityCompstr E [0.0, 100.0]. Interpret as quality for lossy images. Bigger looks better but bigger file size.
+		// Interpret as compression strength for non-lossy.	Bigger values compress more (smaller size) but takes longer.
+		float QualityCompstr;
+
+		// In milliseconds. Set to >= 0 to override all frames.
+		int OverrideFrameDuration;
+	};
+
+	// Saves the tImageWEBP to the WEBP file specified. The type of filename must be WEBP. If lossy is true it will
+	// generate smaller files (think jpg with alpha) at cost of non-exact pixel colours. If lossy is false, generates
+	// pixel-perfect images that are compressed. OverrideframeDuration is in milliseconds. Set to >= 0 to override all
+	// frames. Returns true on success.
+	bool Save(const tString& webpFile, bool lossy, float qualityCompstr = 90.0f, int overrideFrameDuration = -1) const;
+	bool Save(const tString& webpFile, const SaveParams& = SaveParams()) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;

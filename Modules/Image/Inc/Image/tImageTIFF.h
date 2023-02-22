@@ -61,8 +61,33 @@ public:
 	// Sets from a tPicture.
 	bool Set(tPicture& picture, bool steal = true) override;
 
-	// OverrideframeDuration is in milliseconds. Set to >= 0 to override all frames.
-	bool Save(const tString& tiffFile, bool useZLibComp = true, int overrideFrameDuration = -1);
+	enum class tFormat
+	{
+		Invalid,	// Invalid must be 0.
+		BPP24,		// RGB.  24 bit colour.
+		BPP32,		// RGBA. 24 bit colour and 8 bits opacity in the alpha channel.
+		Auto		// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.
+	};
+
+	struct SaveParams
+	{
+		SaveParams()																									{ Reset(); }
+		SaveParams(const SaveParams& src)																				: Format(src.Format), UseZLibCompression(src.UseZLibCompression), OverrideFrameDuration(src.OverrideFrameDuration) { }
+		void Reset()																									{ Format = tFormat::Auto; UseZLibCompression = true; OverrideFrameDuration = -1; }
+		SaveParams operator=(const SaveParams& src)																		{ Format = src.Format; UseZLibCompression = src.UseZLibCompression; OverrideFrameDuration = src.OverrideFrameDuration; }
+
+		tFormat Format;
+		bool UseZLibCompression;
+		int OverrideFrameDuration;
+	};
+
+	// Saves the tImageTIFF to the TIFF file specified. The type of filename must be TIFF (tif or tiff extension).
+	// If tFormat is Auto, this function will decide the format. BPP24 if all image pixels are opaque and BPP32
+	// otherwise. Since each frame (page in tiff parlance) may be stored in a different pixel format, we cannot return
+	// the chosen pixel format as they mey be different between frames. Returns true on success. OverrideframeDuration
+	// is in milliseconds. Set to >= 0 to override all frames.
+	bool Save(const tString& tiffFile, tFormat, bool useZLibComp = true, int overrideFrameDuration = -1) const;
+	bool Save(const tString& tiffFile, const SaveParams& = SaveParams()) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;
@@ -87,8 +112,8 @@ public:
 	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 
 private:
-	int ReadSoftwarePageDuration(TIFF* tiff) const;
-	bool WriteSoftwarePageDuration(TIFF* tiff, int milliseconds);
+	int ReadSoftwarePageDuration(TIFF*) const;
+	bool WriteSoftwarePageDuration(TIFF*, int milliseconds) const;
 
 	tList<tFrame> Frames;
 };
