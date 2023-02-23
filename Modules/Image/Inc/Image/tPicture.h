@@ -141,8 +141,8 @@ public:
 	tPixel& Pixel(int x, int y)																							{ return Pixels[ GetIndex(x, y) ]; }
 	tPixel* operator[](int i)						/* Syntax: image[y][x] = colour;  No bounds checking performed. */	{ return Pixels + GetIndex(0, i); }
 	tPixel GetPixel(int x, int y) const																					{ return Pixels[ GetIndex(x, y) ]; }
-	tPixel* GetPixelPointer(int x = 0, int y = 0)																		{ return &Pixels[ GetIndex(x, y) ]; }
-	tPixel* GetPixels()																									{ return Pixels; }
+	tPixel* GetPixelPointer(int x = 0, int y = 0) const																	{ return &Pixels[ GetIndex(x, y) ]; }
+	tPixel* GetPixels() const																							{ return Pixels; }
 	tPixel* StealPixels()																								{ tPixel* p = Pixels; Pixels = nullptr; return p; }
 
 	void SetPixel(int x, int y, const tColouri& c)																		{ Pixels[ GetIndex(x, y) ] = c; }
