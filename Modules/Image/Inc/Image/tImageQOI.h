@@ -71,8 +71,8 @@ public:
 	enum class tSpace
 	{
 		Invalid,
-		sRGBz,		// sRGB (RGB in sRGB and A linear).
-		Linearz,	// RGB(A) all linear.
+		sRGB,		// sRGB (RGB in sRGB and A linear).
+		Linear,		// RGB(A) all linear.
 		Auto		// Save function will use the currently loaded space.
 	};
 
