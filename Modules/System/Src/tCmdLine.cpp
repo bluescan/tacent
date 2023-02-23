@@ -424,13 +424,6 @@ The '--log log.txt' is an option with a single argument, log.txt. Flags may be
 combined. The -pat in the example expands to -p -a -t. It is suggested only to
 combine flag options as only the last option would get any arguments.
 
-If you wish to interpret a hyphen directly instead of as an option specifier
-this will happen automatically if there are no options matching what comes
-after the hyphen. Eg. 'tool.exe -.85 --add 33 -87.98 -notpresent' works just
-fine as long as there are no options that have a short form with digits or a
-decimal. In this example the -.85 will be the first parameter, --notpresent
-will be the second, and the --add takes in two number arguments.
-
 )SYNTAX";
 
 	tPrintf("%s", syntax.Pod());
