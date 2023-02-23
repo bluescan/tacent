@@ -59,7 +59,7 @@ bool tImageQOI::Load(const uint8* qoiFileInMemory, int numBytes)
 
 	Width			= results.width;	
 	Height			= results.height;
-	ColourSpace		= (results.colorspace == QOI_LINEAR) ? tSpace::Linear : tSpace::sRGB;
+	ColourSpace		= (results.colorspace == QOI_LINEAR) ? tSpace::Linearz : tSpace::sRGBz;
 	PixelFormatSrc	= (results.channels == 3) ? tPixelFormat::R8G8B8 : tPixelFormat::R8G8B8A8;
 
 	tAssert((Width > 0) && (Height > 0));
@@ -91,7 +91,7 @@ bool tImageQOI::Set(tPixel* pixels, int width, int height, bool steal)
 	}
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
-	ColourSpace = tSpace::sRGB;
+	ColourSpace = tSpace::sRGBz;
 	return true;
 }
 
@@ -143,10 +143,11 @@ tFrame* tImageQOI::GetFrame(bool steal)
 }
 
 
-tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, tFormat format) const
+tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, tFormat format, tSpace space) const
 {
 	SaveParams params;
 	params.Format = format;
+	params.Space = space;
 	return Save(qoiFile, params);
 }
 
@@ -154,6 +155,7 @@ tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, tFormat format) const
 tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, const SaveParams& params) const
 {
 	tFormat format = params.Format;
+	tSpace space = params.Space;
 	if (!IsValid() || (format == tFormat::Invalid))
 		return tFormat::Invalid;
 
@@ -167,6 +169,8 @@ tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, const SaveParams& par
 		else
 			format = tFormat::BPP32;
 	}
+	if (space == tSpace::Auto)
+		space = ColourSpace;
 
 	tFileHandle file = tSystem::tOpenFile(qoiFile.Chr(), "wb");
 	if (!file)
@@ -174,7 +178,9 @@ tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, const SaveParams& par
 
 	qoi_desc qoiDesc;
 	qoiDesc.channels	= (format == tFormat::BPP24) ? 3 : 4;
-	qoiDesc.colorspace	= (ColourSpace == tSpace::Linear) ? QOI_LINEAR : QOI_SRGB;
+
+	// This also catches space being set to invalid. Basically if it's not linear, it's sRGB.
+	qoiDesc.colorspace	= (space == tSpace::Linearz) ? QOI_LINEAR : QOI_SRGB;
 	qoiDesc.height		= Height;
 	qoiDesc.width		= Width;
 

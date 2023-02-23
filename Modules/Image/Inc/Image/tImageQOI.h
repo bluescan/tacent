@@ -68,21 +68,30 @@ public:
 		Auto		// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.
 	};
 
+	enum class tSpace
+	{
+		Invalid,
+		sRGBz,		// sRGB (RGB in sRGB and A linear).
+		Linearz,	// RGB(A) all linear.
+		Auto		// Save function will use the currently loaded space.
+	};
+
 	struct SaveParams
 	{
 		SaveParams()																									{ Reset(); }
-		SaveParams(const SaveParams& src)																				: Format(src.Format) { }
-		void Reset()																									{ Format = tFormat::Auto; }
-		SaveParams operator=(const SaveParams& src)																		{ Format = src.Format; }
+		SaveParams(const SaveParams& src)																				: Format(src.Format), Space(src.Space) { }
+		void Reset()																									{ Format = tFormat::Auto; Space = tSpace::Auto; }
+		SaveParams operator=(const SaveParams& src)																		{ Format = src.Format; Space = src.Space; }
 		tFormat Format;
+		tSpace Space;
 	};
 
 	// Saves the tImageQOI to the file specified. The type of filename must be "qoi". If tFormat is Auto, this
 	// function will decide the format. BPP24 if all image pixels are opaque and BPP32 otherwise. Returns the format
 	// that the file was saved in, or tFormat::Invalid if there was a problem. Since Invalid is 0, you can use an 'if'.
-	// The colour-space is also saved with the file and can be retrieved on load. Optionally call SetColourSpace before
-	// saving if you need to (although usually the default sRGB is the correct one).
-	tFormat Save(const tString& qoiFile, tFormat) const;
+	// The colour-space is also saved with the file. If space is set to auto it uses whatever the current space is in
+	// this object. If not set to auto, it overrides the space for the saved file. Setting it to invalid uses sRGB.
+	tFormat Save(const tString& qoiFile, tFormat, tSpace = tSpace::Auto) const;
 	tFormat Save(const tString& qoiFile, const SaveParams& = SaveParams()) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
@@ -95,11 +104,6 @@ public:
 	// All pixels must be opaque (alpha = 255) for this to return true.
 	bool IsOpaque() const;
 
-	enum class tSpace
-	{
-		sRGB,		// sRGB (RGB in sRGB and A linear).
-		Linear		// RGB(A) all linear.
-	};
 	tSpace GetColourSpace() const																						{ return ColourSpace; }
 	void SetColourSpace(tSpace space)																					{ ColourSpace = space; }
 
@@ -113,7 +117,7 @@ public:
 
 private:
 
-	tSpace ColourSpace		= tSpace::sRGB;
+	tSpace ColourSpace		= tSpace::Invalid;
 	int Width				= 0;
 	int Height				= 0;
 	tPixel* Pixels			= nullptr;
@@ -125,7 +129,7 @@ private:
 
 inline void tImageQOI::Clear()
 {
-	ColourSpace		= tSpace::sRGB;
+	ColourSpace		= tSpace::Invalid;
 	Width			= 0;
 	Height			= 0;
 	delete[]		Pixels;
