@@ -72,7 +72,7 @@ public:
 		SaveParams()																									{ Reset(); }
 		SaveParams(const SaveParams& src)																				: Format(src.Format) { }
 		void Reset()																									{ Format = tFormat::Auto; }
-		SaveParams operator=(const SaveParams& src)																		{ Format = src.Format; }
+		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; return *this; }
 		tFormat Format;
 	};
 

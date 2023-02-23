@@ -65,7 +65,7 @@ public:
 		SaveParams()																									{ Reset(); }
 		SaveParams(const SaveParams& src)																				: Lossy(src.Lossy), QualityCompstr(src.QualityCompstr), OverrideFrameDuration(src.OverrideFrameDuration) { }
 		void Reset()																									{ Lossy = false; QualityCompstr = 90.0f; OverrideFrameDuration = -1; }
-		SaveParams operator=(const SaveParams& src)																		{ Lossy = src.Lossy; QualityCompstr = src.QualityCompstr; OverrideFrameDuration = src.OverrideFrameDuration; }
+		SaveParams& operator=(const SaveParams& src)																	{ Lossy = src.Lossy; QualityCompstr = src.QualityCompstr; OverrideFrameDuration = src.OverrideFrameDuration; return *this; }
 
 		bool Lossy;
 

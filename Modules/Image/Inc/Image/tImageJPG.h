@@ -78,7 +78,7 @@ public:
 		SaveParams()																									{ Reset(); }
 		SaveParams(const SaveParams& src)																				: Quality(src.Quality) { }
 		void Reset()																									{ Quality = DefaultQuality; }
-		SaveParams operator=(const SaveParams& src)																		{ Quality = src.Quality; }
+		SaveParams& operator=(const SaveParams& src)																	{ Quality = src.Quality; return *this; }
 		int Quality;
 	};
 

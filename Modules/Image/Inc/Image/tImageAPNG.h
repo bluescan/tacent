@@ -73,7 +73,7 @@ public:
 		SaveParams()																									{ Reset(); }
 		SaveParams(const SaveParams& src)																				: Format(src.Format), OverrideFrameDuration(src.OverrideFrameDuration) { }
 		void Reset()																									{ Format = tFormat::Auto; OverrideFrameDuration = -1; }
-		SaveParams operator=(const SaveParams& src)																		{ Format = src.Format; OverrideFrameDuration = src.OverrideFrameDuration; }
+		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; OverrideFrameDuration = src.OverrideFrameDuration; return *this; }
 
 		tFormat Format;
 		int OverrideFrameDuration;

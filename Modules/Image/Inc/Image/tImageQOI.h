@@ -81,7 +81,7 @@ public:
 		SaveParams()																									{ Reset(); }
 		SaveParams(const SaveParams& src)																				: Format(src.Format), Space(src.Space) { }
 		void Reset()																									{ Format = tFormat::Auto; Space = tSpace::Auto; }
-		SaveParams operator=(const SaveParams& src)																		{ Format = src.Format; Space = src.Space; }
+		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Space = src.Space; return *this; }
 		tFormat Format;
 		tSpace Space;
 	};

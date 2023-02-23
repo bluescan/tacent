@@ -3,7 +3,7 @@
 // This knows how to load/save TIFFs. It knows the details of the tiff file format and loads the data into multiple
 // tPixel arrays, one for each frame (in a TIFF thay are called pages). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2022 Tristan Grimmer.
+// Copyright (c) 2020-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -74,7 +74,7 @@ public:
 		SaveParams()																									{ Reset(); }
 		SaveParams(const SaveParams& src)																				: Format(src.Format), UseZLibCompression(src.UseZLibCompression), OverrideFrameDuration(src.OverrideFrameDuration) { }
 		void Reset()																									{ Format = tFormat::Auto; UseZLibCompression = true; OverrideFrameDuration = -1; }
-		SaveParams operator=(const SaveParams& src)																		{ Format = src.Format; UseZLibCompression = src.UseZLibCompression; OverrideFrameDuration = src.OverrideFrameDuration; }
+		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; UseZLibCompression = src.UseZLibCompression; OverrideFrameDuration = src.OverrideFrameDuration; return *this; }
 
 		tFormat Format;
 		bool UseZLibCompression;
