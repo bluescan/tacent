@@ -410,7 +410,8 @@ supports them. The parsing system will collect them all up if the parameter
 number is unset (-1).
 A variable number of option arguments is not directly supported due to the
 more complex parsing that would be needed. The same result is achieved by
-entering the same option more than once.
+entering the same option more than once. Order is preserved. This can also
+be done with options that take more than one argument.
 Eg. tool.exe -I /patha/include/ -I /pathb/include
 
 EXAMPLE:
