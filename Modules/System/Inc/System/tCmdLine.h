@@ -141,6 +141,10 @@ namespace tCmdLine
 		const tString& Arg2() const																						{ return ArgN(2); }
 		const tString& Arg3() const																						{ return ArgN(3); }
 		const tString& Arg4() const																						{ return ArgN(4); }
+		const tString& Arg5() const																						{ return ArgN(5); }
+		const tString& Arg6() const																						{ return ArgN(6); }
+		const tString& Arg7() const																						{ return ArgN(7); }
+		const tString& Arg8() const																						{ return ArgN(8); }
 		const tString& ArgN(int n) const;																				// n must be >= 1.
 		bool GetArgs(tList<tStringItem>& args) const;
 		int GetNumTotalArgs() const																						{ return Args.Count(); }
