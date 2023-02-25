@@ -515,8 +515,16 @@ void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* de
 			numPrint += tcPrintf("--%s ", option->LongName.Pod());
 		if (!option->ShortName.IsEmpty())
 			numPrint += tcPrintf("-%s ", option->ShortName.Pod());
-		for (int a = 0; a < option->NumArgsPerOption; a++)
-			numPrint += tcPrintf("arg%c ", '1'+a);
+
+		if (option->NumArgsPerOption <= 2)
+		{
+			for (int a = 0; a < option->NumArgsPerOption; a++)
+				numPrint += tcPrintf("arg%c ", '1'+a);
+		}
+		else
+		{
+			numPrint += tcPrintf("[%d args] ", option->NumArgsPerOption);
+		}
 
 		indent = tMath::tMax(indent, numPrint);
 		numUsageOptions++;
@@ -555,8 +563,15 @@ void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* de
 			if (!option->ShortName.IsEmpty())
 				numPrinted += tPrintf("-%s ", option->ShortName.Pod());
 
-			for (int a = 0; a < option->NumArgsPerOption; a++)
-				numPrinted += tPrintf("arg%c ", '1'+a);
+			if (option->NumArgsPerOption <= 2)
+			{
+				for (int a = 0; a < option->NumArgsPerOption; a++)
+					numPrinted += tPrintf("arg%c ", '1'+a);
+			}
+			else
+			{
+				numPrinted += tPrintf("[%d args] ", option->NumArgsPerOption);
+			}
 
 			IndentSpaces(indent-numPrinted);
 			tPrintf(" : %s\n", option->Description.Pod());
