@@ -82,7 +82,7 @@ public:
 	{
 		SaveParams()																									{ Reset(); }
 		SaveParams(const SaveParams& src)																				: Format(src.Format), Compression(src.Compression) { }
-		void Reset()																									{ Format = tFormat::Auto; Compression = tCompression::RLE; }
+		void Reset()																									{ Format = tFormat::Auto; Compression = tCompression::None; }
 		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Compression = src.Compression; return *this; }
 
 		tFormat Format;
