@@ -99,7 +99,7 @@ public:
 		double DitherLevel;			// For Method::Spatial only. 0.0 = auto. >0.0 = manual dither amount.
 		int FilterSize;				// For Method::Spatial only. Must be 1, 3, or 5. Default is 3.
 
-		int SampleFactor;			// For Method::Neu only. 1 = whole image learning. 10 = 1/10th image used.
+		int SampleFactor;			// For Method::Neu only. 1 = whole image learning. 10 = 1/10th image used. Max is 30.
 	};
 
 	bool Save(const tString& gifFile, const SaveParams& = SaveParams()) const;
