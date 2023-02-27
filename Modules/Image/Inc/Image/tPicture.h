@@ -175,8 +175,8 @@ public:
 	(
 		float angle,
 		const tPixel& fill			= tPixel::transparent,
-		tResampleFilterr	upFilter	= tResampleFilterr::None,
-		tResampleFilterr	downFilter	= tResampleFilterr::None
+		tResampleFilter	upFilter	= tResampleFilter::None,
+		tResampleFilter	downFilter	= tResampleFilter::None
 	);
 
 	void Flip(bool horizontal);
@@ -255,12 +255,12 @@ public:
 	bool Resample
 	(
 		int width, int height,
-		tResampleFilterr = tResampleFilterr::Bilinear, tResampleEdgeMode = tResampleEdgeMode::Clamp
+		tResampleFilter = tResampleFilter::Bilinear, tResampleEdgeMode = tResampleEdgeMode::Clamp
 	);
 	bool Resize
 	(
 		int width, int height,
-		tResampleFilterr filter = tResampleFilterr::Bilinear, tResampleEdgeMode edgeMode = tResampleEdgeMode::Clamp
+		tResampleFilter filter = tResampleFilter::Bilinear, tResampleEdgeMode edgeMode = tResampleEdgeMode::Clamp
 	)																													{ return Resample(width, height, filter, edgeMode); }
 
 	// A convenience. This is sort of light tTexture functionality -- generate layers that may be passed off to HW.
@@ -273,7 +273,7 @@ public:
 	// layers.
 	int GenerateLayers
 	(
-		tList<tLayer>&, tResampleFilterr filter = tResampleFilterr::Lanczos_Narrow,
+		tList<tLayer>&, tResampleFilter filter = tResampleFilter::Lanczos_Narrow,
 		tResampleEdgeMode edgeMode = tResampleEdgeMode::Clamp,
 		bool chainGeneration = true
 	);
@@ -306,7 +306,7 @@ private:
 	void RotateCenterResampled
 	(
 		const tMath::tMatrix2& rotMat, const tMath::tMatrix2& invRot, const tPixel& fill,
-		tResampleFilterr upFilter, tResampleFilterr downFilter
+		tResampleFilter upFilter, tResampleFilter downFilter
 	);
 
 	int Width				= 0;

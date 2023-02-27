@@ -141,7 +141,7 @@ void tPicture::Rotate90(bool antiClockwise)
 }
 
 
-void tPicture::RotateCenter(float angle, const tPixel& fill, tResampleFilterr upFilter, tResampleFilterr downFilter)
+void tPicture::RotateCenter(float angle, const tPixel& fill, tResampleFilter upFilter, tResampleFilter downFilter)
 {
 	if (!IsValid())
 		return;
@@ -157,7 +157,7 @@ void tPicture::RotateCenter(float angle, const tPixel& fill, tResampleFilterr up
 	// None			NA				No up/down scaling. Preserves colours. Nearest Neighbour. Fast. Good for pixel art.
 	// Valid		Valid			Up/down scaling. Smooth. Good results with up=bilinear, down=box.
 	// Valid		None			Up/down scaling. Use alternate (sharper) downscaling scheme (pad + 2 X ScaleHalf).
-	if (upFilter == tResampleFilterr::None)
+	if (upFilter == tResampleFilter::None)
 		RotateCenterNearest(rotMat, invRot, fill);
 	else
 		RotateCenterResampled(rotMat, invRot, fill, upFilter, downFilter);
@@ -223,11 +223,11 @@ void tPicture::RotateCenterNearest(const tMatrix2& rotMat, const tMatrix2& invRo
 void tPicture::RotateCenterResampled
 (
 	const tMatrix2& rotMat, const tMatrix2& invRot, const tPixel& fill,
-	tResampleFilterr upFilter, tResampleFilterr downFilter
+	tResampleFilter upFilter, tResampleFilter downFilter
 )
 {
-	tAssert(upFilter != tResampleFilterr::None);
-	if (upFilter == tResampleFilterr::Nearest)
+	tAssert(upFilter != tResampleFilter::None);
+	if (upFilter == tResampleFilter::Nearest)
 	{
 		Resample(Width*2, Height*2, upFilter);
 		Resample(Width*2, Height*2, upFilter);
@@ -242,7 +242,7 @@ void tPicture::RotateCenterResampled
 	// After this call we are not guaranteed that the width and height are multiples of 4. If the downFilder is None
 	// we need to use the ScaleHalf procedure, in which case a padding/crop call mey need to be done in order to get
 	// the dimensions as a multiple of 4.
-	if (downFilter == tResampleFilterr::None)
+	if (downFilter == tResampleFilter::None)
 	{
 		int newW = (Width % 4)  ? Width  + (4 - (Width  % 4)) : Width;
 		int newH = (Height % 4) ? Height + (4 - (Height % 4)) : Height;
@@ -753,7 +753,7 @@ bool tPicture::ScaleHalf()
 }
 
 
-bool tPicture::Resample(int width, int height, tResampleFilterr filter, tResampleEdgeMode edgeMode)
+bool tPicture::Resample(int width, int height, tResampleFilter filter, tResampleEdgeMode edgeMode)
 {
 	if (!IsValid() || (width <= 0) || (height <= 0))
 		return false;
@@ -778,7 +778,7 @@ bool tPicture::Resample(int width, int height, tResampleFilterr filter, tResampl
 }
 
 
-int tPicture::GenerateLayers(tList<tLayer>& layers, tResampleFilterr filter, tResampleEdgeMode edgeMode, bool chain)
+int tPicture::GenerateLayers(tList<tLayer>& layers, tResampleFilter filter, tResampleEdgeMode edgeMode, bool chain)
 {
 	if (!IsValid())
 		return 0;
@@ -789,7 +789,7 @@ int tPicture::GenerateLayers(tList<tLayer>& layers, tResampleFilterr filter, tRe
 	layers.Append(new tLayer(tPixelFormat::R8G8B8A8, Width, Height, (uint8*)GetPixelPointer()));
 	numAppended++;
 
-	if (filter == tResampleFilterr::None)
+	if (filter == tResampleFilter::None)
 		return numAppended;
 
 	int srcW = Width;

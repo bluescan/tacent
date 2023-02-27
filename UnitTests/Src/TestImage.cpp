@@ -793,7 +793,7 @@ tTestUnit(ImageRotation)
 	{
 		tPicture rotPic(aroPic);
 		float angle = float(rotNum) * tMath::TwoPi / numRotations;
-		rotPic.RotateCenter(angle, tColouri::transparent, tImage::tResampleFilterr::Bilinear, tImage::tResampleFilterr::None);
+		rotPic.RotateCenter(angle, tColouri::transparent, tImage::tResampleFilter::Bilinear, tImage::tResampleFilter::None);
 
 		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
 		tString writeFile;
@@ -972,7 +972,7 @@ tTestUnit(ImageFilter)
 	tString origDir = tSystem::tGetCurrentDir();
 	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
 
-	for (int filt = 0; filt < int(tResampleFilterr::NumFilters); filt++)
+	for (int filt = 0; filt < int(tResampleFilter::NumFilters); filt++)
 		tPrintf("Filter Name %d: %s\n", filt, tResampleFilterNames[filt]);
 
 	// Resample tests of 512x256 image.
@@ -981,47 +981,47 @@ tTestUnit(ImageFilter)
 	tPicture pic;
 
 	pic.Set(png, false);
-	pic.Resample(800, 300, tResampleFilterr::Nearest);
+	pic.Resample(800, 300, tResampleFilter::Nearest);
 	tga.Set(pic); tga.Save("WrittenResampledNearest.tga");
 
 	pic.Set(png, false);
-	pic.Resample(800, 300, tResampleFilterr::Box);
+	pic.Resample(800, 300, tResampleFilter::Box);
 	tga.Set(pic); tga.Save("WrittenResampledBox.tga");
 
 	pic.Set(png, false);
-	pic.Resample(800, 300, tResampleFilterr::Bilinear);
+	pic.Resample(800, 300, tResampleFilter::Bilinear);
 	tga.Set(pic); tga.Save("WrittenResampledBilinear.tga");
 
 	pic.Set(png, false);
-	pic.Resample(800, 300, tResampleFilterr::Bicubic_Standard);
+	pic.Resample(800, 300, tResampleFilter::Bicubic_Standard);
 	tga.Set(pic); tga.Save("WrittenResampledBicubicStandard.tga");
 
 	pic.Set(png, false);
-	pic.Resample(800, 300, tResampleFilterr::Bicubic_CatmullRom);
+	pic.Resample(800, 300, tResampleFilter::Bicubic_CatmullRom);
 	tga.Set(pic); tga.Save("WrittenResampledBicubicCatmullRom.tga");
 
 	pic.Set(png, false);
-	pic.Resample(800, 300, tResampleFilterr::Bicubic_Mitchell);
+	pic.Resample(800, 300, tResampleFilter::Bicubic_Mitchell);
 	tga.Set(pic); tga.Save("WrittenResampledBicubicMitchell.tga");
 
 	pic.Set(png, false);
-	pic.Resample(800, 300, tResampleFilterr::Bicubic_Cardinal);
+	pic.Resample(800, 300, tResampleFilter::Bicubic_Cardinal);
 	tga.Set(pic); tga.Save("WrittenResampledBicubicCardinal.tga");
 
 	pic.Set(png, false);
-	pic.Resample(800, 300, tResampleFilterr::Bicubic_BSpline);
+	pic.Resample(800, 300, tResampleFilter::Bicubic_BSpline);
 	tga.Set(pic); tga.Save("WrittenResampledBicubicBSpline.tga");
 
 	pic.Set(png, false);
-	pic.Resample(800, 300, tResampleFilterr::Lanczos_Narrow);
+	pic.Resample(800, 300, tResampleFilter::Lanczos_Narrow);
 	tga.Set(pic); tga.Save("WrittenResampledLanczosNarrow.tga");
 
 	pic.Set(png, false);
-	pic.Resample(800, 300, tResampleFilterr::Lanczos_Normal);
+	pic.Resample(800, 300, tResampleFilter::Lanczos_Normal);
 	tga.Set(pic); tga.Save("WrittenResampledLanczosNormal.tga");
 
 	pic.Set(png, false);
-	pic.Resample(800, 300, tResampleFilterr::Lanczos_Wide);
+	pic.Resample(800, 300, tResampleFilter::Lanczos_Wide);
 	tga.Set(pic); tga.Save("WrittenResampledLanczosWide.tga");
 
 	tSystem::tSetCurrentDir(origDir);

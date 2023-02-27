@@ -132,7 +132,7 @@ public:
 
 private:
 	tPixelFormat DeterminePixelFormat(const tPicture&);
-	tResampleFilterr DetermineFilter(tQuality);
+	tResampleFilter DetermineFilter(tQuality);
 	int DetermineBlockEncodeQualityLevel(tQuality);
 
 	void ProcessImageTo_R8G8B8_Or_R8G8B8A8(tPicture&, tPixelFormat, bool generateMipmaps, tQuality);
@@ -171,15 +171,15 @@ inline tPixelFormat tTexture::DeterminePixelFormat(const tPicture& image)
 }
 
 
-inline tResampleFilterr tTexture::DetermineFilter(tQuality quality)
+inline tResampleFilter tTexture::DetermineFilter(tQuality quality)
 {
 	switch (quality)
 	{
-		case tQuality::Fast:		return tResampleFilterr::Bilinear;
-		case tQuality::Development:	return tResampleFilterr::Bicubic;
-		case tQuality::Production:	return tResampleFilterr::Lanczos;
+		case tQuality::Fast:		return tResampleFilter::Bilinear;
+		case tQuality::Development:	return tResampleFilter::Bicubic;
+		case tQuality::Production:	return tResampleFilter::Lanczos;
 	}
-	return tResampleFilterr::Bicubic;
+	return tResampleFilter::Bicubic;
 }
 
 
