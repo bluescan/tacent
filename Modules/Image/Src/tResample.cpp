@@ -61,10 +61,36 @@ const char* tImage::tResampleFilterNames[int(tResampleFilter::NumFilters)+1] =
 };
 
 
-const char* tImage::tResampleEdgeModeNames[int(tResampleEdgeMode::NumEdgeModes)] =
+const char* tImage::tResampleFilterNamesSimple[int(tResampleFilter::NumFilters)+1] =
+{
+	"nearest",
+	"box",
+	"bilinear",
+	"bicubic",
+	"bicubic_catmullrom",
+	"bicubic_mitchell",
+	"bicubic_cardinal",
+	"bicubic_bspline",
+	"lanczos_narrow",
+	"lanczos",
+	"lanczos_wide",
+	"none"
+};
+
+
+const char* tImage::tResampleEdgeModeNames[int(tResampleEdgeMode::NumEdgeModes)+1] =
 {
 	"Clamp",
-	"Wrap"
+	"Wrap",
+	"None"
+};
+
+
+const char* tImage::tResampleEdgeModeNamesSimple[int(tResampleEdgeMode::NumEdgeModes)+1] =
+{
+	"clamp",
+	"wrap",
+	"none"
 };
 
 

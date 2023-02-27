@@ -38,26 +38,34 @@ enum class tResampleFilter
 	Lanczos_Narrow,			// Sinc-based.				A = 2
 	Lanczos_Normal,			// Sinc-based.				A = 3
 	Lanczos_Wide,			// Sinc-based.				A = 4
-	NumFilters,
+	NumFilters,				// Number of valid filters.
 
-	// Aliaes.
+	// Aliases.
 	Invalid					= NumFilters,
 	None					= NumFilters,
 	Bicubic					= Bicubic_Standard,
 	Lanczos					= Lanczos_Normal
 };
 
-// Warning. The 'None' filter name is included in this array.
+// The 'None' filter name is included in these arrays as the last item.
 extern const char* tResampleFilterNames[int(tResampleFilter::NumFilters)+1];
+extern const char* tResampleFilterNamesSimple[int(tResampleFilter::NumFilters)+1];
 
 
 enum class tResampleEdgeMode
 {
 	Clamp,
 	Wrap,
-	NumEdgeModes
+	NumEdgeModes,			// Number of valid edge modes.
+
+	// Aliases.
+	Invalid					= NumEdgeModes,
+	None					= NumEdgeModes
 };
-extern const char* tResampleEdgeModeNames[int(tResampleEdgeMode::NumEdgeModes)];
+
+// The 'None' filter is included in these arrays as the last item.
+extern const char* tResampleEdgeModeNames[int(tResampleEdgeMode::NumEdgeModes)+1];
+extern const char* tResampleEdgeModeNamesSimple[int(tResampleEdgeMode::NumEdgeModes)+1];
 
 
 // Resample the image using the supplied filter. All channels are treated equally. With some resamplers the alpha
