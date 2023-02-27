@@ -186,7 +186,7 @@ void tTexture::ProcessImageTo_R8G8B8_Or_R8G8B8A8(tPicture& image, tPixelFormat f
 	int width = image.GetWidth();
 	int height = image.GetHeight();
 	int bytesPerPixel = (format == tPixelFormat::R8G8B8) ? 3 : 4;
-	tResampleFilter filter = DetermineFilter(quality);
+	tResampleFilterr filter = DetermineFilter(quality);
 
 	// This loop resamples (reduces) the image multiple times for mipmap generation. In general we should start with
 	// the original image every time so that we're not applying interpolations to interpolations (better quality).
@@ -235,7 +235,7 @@ void tTexture::ProcessImageTo_B5G6R5(tPicture& image, bool generateMipmaps, tQua
 	int width = image.GetWidth();
 	int height = image.GetHeight();
 	int bytesPerPixel = 2;
-	tResampleFilter filter = DetermineFilter(quality);
+	tResampleFilterr filter = DetermineFilter(quality);
 
 	// This loop resamples (reduces) the image multiple times for mipmap generation. In general we should start with
 	// the original image every time so that we're not applying interpolations to interpolations (better quality).
@@ -285,7 +285,7 @@ void tTexture::ProcessImageTo_BCTC(tPicture& image, tPixelFormat pixelFormat, bo
 {
 	int width = image.GetWidth();
 	int height = image.GetHeight();
-	tResampleFilter filter = DetermineFilter(quality);
+	tResampleFilterr filter = DetermineFilter(quality);
 	if (!tMath::tIsPower2(width) || !tMath::tIsPower2(height))
 		throw tError("Texture must be power-of-2 to be compressed to a BC format.");
 

@@ -44,8 +44,9 @@ namespace tImage
 }
 
 
-const char* tImage::tResampleFilterNames[int(tResampleFilter::NumFilters)+1] =
+const char* tImage::tResampleFilterNames[int(tResampleFilterr::NumFilters)] =
 {
+	"None",
 	"Nearest Neighbour",
 	"Box",
 	"Bilinear",
@@ -56,8 +57,7 @@ const char* tImage::tResampleFilterNames[int(tResampleFilter::NumFilters)+1] =
 	"Bicubic BSpline",
 	"Lanczos Narrow",
 	"Lanczos Normal",
-	"Lanczos Wide",
-	"None"
+	"Lanczos Wide"
 };
 
 
@@ -88,7 +88,7 @@ bool tImage::Resample
 (
 	tPixel* src, int srcW, int srcH,
 	tPixel* dst, int dstW, int dstH,
-	tResampleFilter resampleFilter,
+	tResampleFilterr resampleFilter,
 	tResampleEdgeMode edgeMode
 )
 {
@@ -112,66 +112,66 @@ bool tImage::Resample
 	KernelFilterFn kernel;
 	switch (resampleFilter)
 	{
-		case tResampleFilter::Nearest:
+		case tResampleFilterr::Nearest:
 			kernel = KernelFilterNearest;
 			break;
 
-		case tResampleFilter::Box:
+		case tResampleFilterr::Box:
 			params.RatioH = ratioH;
 			params.RatioV = ratioV;
 			kernel = KernelFilterBox;
 			break;
 
-		case tResampleFilter::Bilinear:
+		case tResampleFilterr::Bilinear:
 			kernel = KernelFilterBilinear;
 			break;
 
-		case tResampleFilter::Bicubic_Standard:		// Cardinal.				B=0		C=3/4
+		case tResampleFilterr::Bicubic_Standard:		// Cardinal.				B=0		C=3/4
 			params.CubicCoeffB = 0.0f;
 			params.CubicCoeffC = 3.0f/4.0f;
 			kernel = KernelFilterBicubic;
 			break;
 
-		case tResampleFilter::Bicubic_CatmullRom:	// Cardinal.				B=0		C=1/2
+		case tResampleFilterr::Bicubic_CatmullRom:	// Cardinal.				B=0		C=1/2
 			params.CubicCoeffB = 0.0f;
 			params.CubicCoeffC = 1.0f/2.0f;
 			kernel = KernelFilterBicubic;
 			break;
 
-		case tResampleFilter::Bicubic_Mitchell:		// Balanced.				B=1/3	C=1/3
+		case tResampleFilterr::Bicubic_Mitchell:		// Balanced.				B=1/3	C=1/3
 			params.CubicCoeffB = 1.0f/3.0f;
 			params.CubicCoeffC = 1.0f/3.0f;
 			kernel = KernelFilterBicubic;
 			break;
 
-		case tResampleFilter::Bicubic_Cardinal:		// Pure Cardinal.			B=0		C=1
+		case tResampleFilterr::Bicubic_Cardinal:		// Pure Cardinal.			B=0		C=1
 			params.CubicCoeffB = 0.0f;
 			params.CubicCoeffC = 1.0f;
 			kernel = KernelFilterBicubic;
 			break;
 
-		case tResampleFilter::Bicubic_BSpline:		// Pure BSpline. Blurry.	B=1		C=0
+		case tResampleFilterr::Bicubic_BSpline:		// Pure BSpline. Blurry.	B=1		C=0
 			params.CubicCoeffB = 1.0f;
 			params.CubicCoeffC = 0.0f;
 			kernel = KernelFilterBicubic;
 			break;
 
-		case tResampleFilter::Lanczos_Narrow:		// Lanczos. Ringy/Sharp.	A=2
+		case tResampleFilterr::Lanczos_Narrow:		// Lanczos. Ringy/Sharp.	A=2
 			params.LanczosA = 2.0f;
 			kernel = KernelFilterLanczos;
 			break;
 
-		case tResampleFilter::Lanczos_Normal:		// Lanczos. Ringy/Sharp.	A=3
+		case tResampleFilterr::Lanczos_Normal:		// Lanczos. Ringy/Sharp.	A=3
 			params.LanczosA = 3.0f;
 			kernel = KernelFilterLanczos;
 			break;
 
-		case tResampleFilter::Lanczos_Wide:			// Lanczos. Ringy/Sharp.	A=4
+		case tResampleFilterr::Lanczos_Wide:			// Lanczos. Ringy/Sharp.	A=4
 			params.LanczosA = 4.0f;
 			kernel = KernelFilterLanczos;
 			break;
 
-		case tResampleFilter::Invalid:
+		case tResampleFilterr::Invalid:
 		default:
 			return false;
 	}	

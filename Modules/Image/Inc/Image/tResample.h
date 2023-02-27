@@ -18,8 +18,9 @@ namespace tImage
 {
 
 
-enum class tResampleFilter
+enum class tResampleFilterr
 {
+	None					= 0,
 	Nearest,
 	Box,
 	Bilinear,
@@ -41,14 +42,13 @@ enum class tResampleFilter
 	NumFilters,
 
 	// Aliaes.
-	Invalid					= NumFilters,
-	None					= NumFilters,
+	Invalid					= None,
 	Bicubic					= Bicubic_Standard,
 	Lanczos					= Lanczos_Normal
 };
 
-// Warning. The 'None' filter name is included in this array.
-extern const char* tResampleFilterNames[int(tResampleFilter::NumFilters)+1];
+// The 'None' filter name is included in this array (first entry). If you want to exclude it, start at index 1.
+extern const char* tResampleFilterNames[int(tResampleFilterr::NumFilters)];
 
 
 enum class tResampleEdgeMode
@@ -72,7 +72,7 @@ bool Resample
 (
 	tPixel* src, int srcW, int srcH,
 	tPixel* dst, int dstW, int dstH,
-	tResampleFilter = tResampleFilter::Bilinear,
+	tResampleFilterr = tResampleFilterr::Bilinear,
 	tResampleEdgeMode = tResampleEdgeMode::Clamp
 );
 
