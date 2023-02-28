@@ -4,7 +4,7 @@
 // way. For solution files all it cares about are the vcxproj files that are referred to. For the project files it is
 // able to quickly extract the file dependencies inside it. Windows platform only.
 //
-// Copyright (c) 2005, 2017 Tristan Grimmer.
+// Copyright (c) 2005, 2017, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -52,7 +52,7 @@ public:
 // @todo Move into PCH when we set them up.
 struct tSolutionError : public tError
 {
-	tSolutionError(const char* format, ...)																				: tError("[tSolution] ") { va_list marker; va_start(marker, format); Message += tvsPrintf(Message, format, marker); }
+	tSolutionError(const char* format, ...)																				: tError("[tSolution] ") { va_list marker; va_start(marker, format); Message += tsvPrintf(Message, format, marker); }
 	tSolutionError(const tString& m)																					: tError("[tSolution] ") { Message += m; }
 	tSolutionError()																									: tError("[tSolution] ") { }
 };

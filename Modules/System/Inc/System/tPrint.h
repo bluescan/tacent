@@ -5,7 +5,7 @@
 // different type sizes and can print integral types in a variety of bases. Redirection via a callback as well as
 // visibility channels are also supported.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019-2022 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -231,41 +231,48 @@ int tPrintT(const char* format, ...);
 
 // In some cases, possibly before reserving buffer space, you need to know how many characters would be used in an
 // actual printf call. The next two functions work that out. They are not affected by what channels are turned on.
+int tcvPrintf(const char* format, va_list);
 int tcPrintf(const char* format, ...);
-int tvcPrintf(const char* format, va_list);
 
 // Formatted print functions that print into a character buffer. The dest buffer must be big enough. Use tcPrintf or
 // tvcPrintf to find out how big. The tString versions will do the size calc first and return a ref to the same string
 // passed in. Use Length to find out number characters printed.
-int tvsPrintf(char* dest, const char* format, va_list);
+int tsvPrintf(char* dest, const char* format, va_list);
 int tsPrintf(char* dest, const char* format, ...);
-tString& tvsPrintf(tString& dest, const char* format, va_list);
+tString& tsvPrintf(tString& dest, const char* format, va_list);
 tString& tsPrintf(tString& dest, const char* format, ...);
-inline tString tvsPrintf(const char* format, va_list args)																{ tString dest; return tvsPrintf(dest, format, args); }
-inline tString tsPrintf(const char* format, ...)																		{ va_list marker; va_start(marker, format); return tvsPrintf(format, marker); }
+
+// These variants append to the dest string instead of overwriting it.
+tString& tsavPrintf(tString& dest, const char* format, va_list);
+tString& tsaPrintf(tString& dest, const char* format, ...);
+
+// Similar to above but return a tString (sr). Useful if you want to convert formatted input to a tString directly.
+// These required different function names than above so compilers do not confuse with the first vararg being a char*.
+inline tString tsrvPrintf(const char* format, va_list args)																{ tString dest; return tsvPrintf(dest, format, args); }
+inline tString tsrPrintf(const char* format, ...)																		{ va_list marker; va_start(marker, format); return tsrvPrintf(format, marker); }
 
 // Non-formatted print. Allows simple conversion from arbitrary type to a string formatted in a reasonabe way.
-inline tString tsPrint(int8 value)					{ return tsPrintf("%d", value); }
-inline tString tsPrint(uint8 value)					{ return tsPrintf("0x%02X", value); }
-inline tString tsPrint(int16 value)					{ return tsPrintf("%d", value); }
-inline tString tsPrint(uint16 value)				{ return tsPrintf("0x%04X", value); }
-inline tString tsPrint(int32 value)					{ return tsPrintf("%d", value); }
-inline tString tsPrint(uint32 value)				{ return tsPrintf("0x%08X", value); }
-inline tString tsPrint(int64 value)					{ return tsPrintf("%|64d", value); }
-inline tString tsPrint(uint64 value)				{ return tsPrintf("0x%016|64X", value); }
-inline tString tsPrint(tint128 value)				{ return tsPrintf("%|128d", value); }
-inline tString tsPrint(tuint128 value)				{ return tsPrintf("0x%032|128X", value); }
-inline tString tsPrint(tint256 value)				{ return tsPrintf("%|256d", value); }
-inline tString tsPrint(tuint256 value)				{ return tsPrintf("0x%064|256X", value); }
-inline tString tsPrint(tint512 value)				{ return tsPrintf("%|512d", value); }
-inline tString tsPrint(tuint512 value)				{ return tsPrintf("0x%0128|512X", value); }
-inline tString tsPrint(float value)					{ return tsPrintf("%f", value); }
-inline tString tsPrint(double value)				{ return tsPrintf("%f", value); }
-inline tString tsPrint(bool value)					{ return value ? "true" : "false"; }
-inline tString tsPrint(const tMath::tVec2& value)	{ return tsPrintf("%:2v", value); }
-inline tString tsPrint(const tMath::tVec3& value)	{ return tsPrintf("%:3v", value); }
-inline tString tsPrint(const tMath::tVec4& value)	{ return tsPrintf("%:4v", value); }
-inline tString tsPrint(const tMath::tQuat& value)	{ return tsPrintf("%q", value); }
+inline tString tsrPrint(int8 value)					{ return tsrPrintf("%d", value); }
+inline tString tsrPrint(uint8 value)				{ return tsrPrintf("0x%02X", value); }
+inline tString tsrPrint(int16 value)				{ return tsrPrintf("%d", value); }
+inline tString tsrPrint(uint16 value)				{ return tsrPrintf("0x%04X", value); }
+inline tString tsrPrint(int32 value)				{ return tsrPrintf("%d", value); }
+inline tString tsrPrint(uint32 value)				{ return tsrPrintf("0x%08X", value); }
+inline tString tsrPrint(int64 value)				{ return tsrPrintf("%|64d", value); }
+inline tString tsrPrint(uint64 value)				{ return tsrPrintf("0x%016|64X", value); }
+inline tString tsrPrint(tint128 value)				{ return tsrPrintf("%|128d", value); }
+inline tString tsrPrint(tuint128 value)				{ return tsrPrintf("0x%032|128X", value); }
+inline tString tsrPrint(tint256 value)				{ return tsrPrintf("%|256d", value); }
+inline tString tsrPrint(tuint256 value)				{ return tsrPrintf("0x%064|256X", value); }
+inline tString tsrPrint(tint512 value)				{ return tsrPrintf("%|512d", value); }
+inline tString tsrPrint(tuint512 value)				{ return tsrPrintf("0x%0128|512X", value); }
+inline tString tsrPrint(float value)				{ return tsrPrintf("%f", value); }
+inline tString tsrPrint(double value)				{ return tsrPrintf("%f", value); }
+inline tString tsrPrint(bool value)					{ return value ? "true" : "false"; }
+inline tString tsrPrint(const tMath::tVec2& value)	{ return tsrPrintf("%:2v", value); }
+inline tString tsrPrint(const tMath::tVec3& value)	{ return tsrPrintf("%:3v", value); }
+inline tString tsrPrint(const tMath::tVec4& value)	{ return tsrPrintf("%:4v", value); }
+inline tString tsrPrint(const tMath::tQuat& value)	{ return tsrPrintf("%q", value); }
 
 // These overloads are 'safe' in that they guarantee no overrun of the dest buffer. You enter the full number of bytes
 // in the dest buffer. The dest buffer is guaranteed to be null terminated afterwards, and the number of characters
@@ -273,16 +280,16 @@ inline tString tsPrint(const tMath::tQuat& value)	{ return tsPrintf("%q", value)
 // dest buffer is not big enough. Returns the number of non-null characters inserted into the buffer. destSize must
 // be greater than 0, but if that's all you give it, there's only room for the terminator. Dest sizes <= 1 always
 // return zero.
-int tvsPrintf(char* dest, int destSize, const char* format, va_list);
+int tsvPrintf(char* dest, int destSize, const char* format, va_list);
 int tsPrintf(char* dest, int destSize, const char* format, ...);
 
 // Here is the file handle print
+int tfvPrintf(tFileHandle dest, const char* format, va_list);
 int tfPrintf(tFileHandle dest, const char* format, ...);
-int tvfPrintf(tFileHandle dest, const char* format, va_list);
 
 // These variants print a timestamp (ttf = tacent timestamp file) before any content is printed.
+int ttfvPrintf(tFileHandle dest, const char* format, va_list);
 int ttfPrintf(tFileHandle dest, const char* format, ...);
-int ttvfPrintf(tFileHandle dest, const char* format, va_list);
 
 // tFlush may be called with any FileHandle such as stdout or stderr as well as other file handles opened with
 // tSystem::tOpenFile.
@@ -407,7 +414,7 @@ inline int tdsPrintf(char* dest, const char* format, ...)
 	va_list marker;
 	va_start(marker, format);
 	tvPrintf(format, marker); 
-	return tvsPrintf(dest, format, marker);
+	return tsvPrintf(dest, format, marker);
 }
 
 
@@ -416,7 +423,7 @@ inline int tdsPrintf(tSystem::tChannel channels, char* dest, const char* format,
 	va_list marker;
 	va_start(marker, format);
 	tvPrintf(channels, format, marker); 
-	return tvsPrintf(dest, format, marker);
+	return tsvPrintf(dest, format, marker);
 }
 
 
@@ -425,7 +432,7 @@ inline tString& tdsPrintf(tString& dest, const char* format, ...)
 	va_list marker;
 	va_start(marker, format);
 	tvPrintf(format, marker); 
-	return tvsPrintf(dest, format, marker);
+	return tsvPrintf(dest, format, marker);
 }
 
 
@@ -434,7 +441,7 @@ inline tString& tdsPrintf(tSystem::tChannel channels, tString& dest, const char*
 	va_list marker;
 	va_start(marker, format);
 	tvPrintf(channels, format, marker); 
-	return tvsPrintf(dest, format, marker);
+	return tsvPrintf(dest, format, marker);
 }
 
 
@@ -443,7 +450,7 @@ inline int tdsPrintf(char* dest, int destSize, const char* format, ...)
 	va_list marker;
 	va_start(marker, format);
 	tvPrintf(format, marker); 
-	return tvsPrintf(dest, destSize, format, marker);
+	return tsvPrintf(dest, destSize, format, marker);
 }
 
 
@@ -452,7 +459,7 @@ inline int tdsPrintf(tSystem::tChannel channels, char* dest, int destSize, const
 	va_list marker;
 	va_start(marker, format);
 	tvPrintf(channels, format, marker); 
-	return tvsPrintf(dest, destSize, format, marker);
+	return tsvPrintf(dest, destSize, format, marker);
 }
 
 
@@ -461,7 +468,7 @@ inline int tdfPrintf(tFileHandle dest, const char* format, ...)
 	va_list marker;
 	va_start(marker, format);
 	tvPrintf(format, marker); 
-	return tvfPrintf(dest, format, marker);
+	return tfvPrintf(dest, format, marker);
 }
 
 
@@ -470,5 +477,5 @@ inline int tdfPrintf(tSystem::tChannel channels, tFileHandle dest, const char* f
 	va_list marker;
 	va_start(marker, format);
 	tvPrintf(channels, format, marker); 
-	return tvfPrintf(dest, format, marker);
+	return tfvPrintf(dest, format, marker);
 }

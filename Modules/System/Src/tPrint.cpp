@@ -5,7 +5,7 @@
 // different type sizes and can print integral types in a variety of bases. Redirection via a callback as well as
 // visibility channels are also supported.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019-2022 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -490,7 +490,7 @@ int tvPrintf(tSystem::tChannel channels, const char* format, va_list argList)
 }
 
 
-int tvsPrintf(char* dest, const char* format, va_list argList)
+int tsvPrintf(char* dest, const char* format, va_list argList)
 {
 	if (!dest || !format)
 		return 0;
@@ -505,20 +505,20 @@ int tsPrintf(char* dest, const char* format, ...)
 {
 	va_list argList;
 	va_start(argList, format);
-	int count = tvsPrintf(dest, format, argList);
+	int count = tsvPrintf(dest, format, argList);
 	va_end(argList);
 	return count;
 }
 
 
-tString& tvsPrintf(tString& dest, const char* format, va_list argList)
+tString& tsvPrintf(tString& dest, const char* format, va_list argList)
 {
 	va_list argList2;
 	va_copy(argList2, argList);
 
-	int reqChars = tvcPrintf(format, argList);
+	int reqChars = tcvPrintf(format, argList);
 	dest.SetLength(reqChars, false);
-	tvsPrintf(dest.Txt(), format, argList2);
+	tsvPrintf(dest.Txt(), format, argList2);
 	return dest;
 }
 
@@ -527,13 +527,36 @@ tString& tsPrintf(tString& dest, const char* format, ...)
 {
 	va_list argList;
 	va_start(argList, format);
-	tvsPrintf(dest, format, argList);
+	tsvPrintf(dest, format, argList);
 	va_end(argList);
 	return dest;
 }
 
 
-int tvsPrintf(char* dest, int destSize, const char* format, va_list argList)
+tString& tsavPrintf(tString& dest, const char* format, va_list argList)
+{
+	va_list argList2;
+	va_copy(argList2, argList);
+
+	int currLen = dest.Length();
+	int reqChars = currLen + tcvPrintf(format, argList);
+	dest.SetLength(reqChars, true);
+	tsvPrintf(dest.Txt()+currLen, format, argList2);
+	return dest;
+}
+
+
+tString& tsaPrintf(tString& dest, const char* format, ...)
+{
+	va_list argList;
+	va_start(argList, format);
+	tsavPrintf(dest, format, argList);
+	va_end(argList);
+	return dest;
+}
+
+
+int tsvPrintf(char* dest, int destSize, const char* format, va_list argList)
 {
 	if (!dest || !format || (destSize <= 0))
 		return 0;
@@ -560,7 +583,7 @@ int tsPrintf(char* dest, int destSize, const char* format, ...)
 {
 	va_list argList;
 	va_start(argList, format);
-	int count = tvsPrintf(dest, destSize, format, argList);
+	int count = tsvPrintf(dest, destSize, format, argList);
 	va_end(argList);
 	return count;
 }
@@ -570,13 +593,13 @@ int tcPrintf(const char* format, ...)
 {
 	va_list argList;
 	va_start(argList, format);
-	int count = tvcPrintf(format, argList);
+	int count = tcvPrintf(format, argList);
 	va_end(argList);
 	return count;
 }
 
 
-int tvcPrintf(const char* format, va_list argList)
+int tcvPrintf(const char* format, va_list argList)
 {
 	if (!format)
 		return 0;
@@ -591,13 +614,13 @@ int tfPrintf(tFileHandle dest, const char* format, ...)
 {
 	va_list argList;
 	va_start(argList, format);
-	int count = tvfPrintf(dest, format, argList);
+	int count = tfvPrintf(dest, format, argList);
 	va_end(argList);
 	return count;
 }
 
 
-int tvfPrintf(tFileHandle dest, const char* format, va_list argList)
+int tfvPrintf(tFileHandle dest, const char* format, va_list argList)
 {
 	if (!format || !dest)
 		return 0;
@@ -615,13 +638,13 @@ int ttfPrintf(tFileHandle dest, const char* format, ...)
 {
 	va_list argList;
 	va_start(argList, format);
-	int count = ttvfPrintf(dest, format, argList);
+	int count = ttfvPrintf(dest, format, argList);
 	va_end(argList);
 	return count;
 }
 
 
-int ttvfPrintf(tFileHandle dest, const char* format, va_list argList)
+int ttfvPrintf(tFileHandle dest, const char* format, va_list argList)
 {
 	if (!format || !dest)
 		return 0;

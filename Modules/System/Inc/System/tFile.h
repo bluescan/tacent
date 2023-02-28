@@ -635,7 +635,7 @@ tuint256 tHashFileSHA256(const tString& filename, const tuint256 iv = tHash::Has
 // The following file system error objects may be thrown by functions in tFile.
 struct tFileError : public tError
 {
-	tFileError(const char* format, ...)																					: tError("tFile Module. ") { va_list marker; va_start(marker, format); Message += tvsPrintf(format, marker); }
+	tFileError(const char* format, ...)																					: tError("tFile Module. ") { va_list marker; va_start(marker, format); Message += tsrvPrintf(format, marker); }
 	tFileError(const tString& m)																						: tError("tFile Module. ") { Message += m; }
 	tFileError()																										: tError("tfile Module.") { }
 };

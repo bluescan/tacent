@@ -32,7 +32,7 @@
 // the ID the same. You can now use the chunk name (tChunkID_NICENAME) elsewhere with a new ID. The obsolete chunk, of
 // course, must contain the same stuff as the original nice name chunk.
 //
-// Copyright (c) 2006, 2017 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -683,7 +683,7 @@ namespace tChunkID
 // These may be thrown by the chunk file parsing code.
 struct tChunkError : public tError
 {
-	tChunkError(const char* format, ...)																				: tError("[tChunk] ") { va_list marker; va_start(marker, format); Message += tvsPrintf(Message, format, marker); }
+	tChunkError(const char* format, ...)																				: tError("[tChunk] ") { va_list marker; va_start(marker, format); Message += tsvPrintf(Message, format, marker); }
 	tChunkError(const tString& m)																						: tError("[tChunk] ") { Message += m; }
 	tChunkError()																										: tError("[tChunk]") { }
 };

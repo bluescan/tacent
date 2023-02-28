@@ -9,7 +9,7 @@
 //
 // The second format is a functional format. ex. a(b,c) See tFunExtression.
 //
-// Copyright (c) 2006, 2017, 2019, 2022 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -404,7 +404,7 @@ struct tScriptError : public tError
 		va_list marker;
 		va_start(marker, format);
 		tString msg;
-		Message += tvsPrintf(msg, format, marker);
+		Message += tsvPrintf(msg, format, marker);
 	}
 
 	tScriptError(int lineNumber, const char* format, ...) :
@@ -413,7 +413,7 @@ struct tScriptError : public tError
 		va_list marker;
 		va_start(marker, format);
 		tString msg;
-		tvsPrintf(msg, format, marker);
+		tsvPrintf(msg, format, marker);
 		if (lineNumber > 0)
 		{
 			tString line;

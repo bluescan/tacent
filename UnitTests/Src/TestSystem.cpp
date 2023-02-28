@@ -189,7 +189,7 @@ bool PrintCompare(const char* format, ...)
 
 	char tbuf[512];
 	va_start(args, format);
-	int tcount = tvsPrintf(tbuf, format, args);
+	int tcount = tsvPrintf(tbuf, format, args);
 	va_end(args);
 
 	char nbuf[512];
@@ -226,7 +226,7 @@ void PrintTest(const char* format, ...)
 
 template<typename T> static tString ConvertToString(T value)
 {
-	tString valStr = tsPrint(value);
+	tString valStr = tsrPrint(value);
 	return valStr;
 }
 
