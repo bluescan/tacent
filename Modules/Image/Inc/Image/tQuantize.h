@@ -31,7 +31,8 @@ namespace tQuantize
 
 	// This performs an exact palettization of an image if the number of unique colours in an image is less-than-or-equal
 	// to the supplied numColours (palette size). If there are too many unique colours, this function does nothing to
-	// either destPalette or destIndices and returns false.
+	// either destPalette or destIndices and returns false. destPalette should have space for numColours colours,
+	// destIndices should have space for width*height indices.
 	bool QuantizeImageExact
 	(
 		int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices
@@ -39,16 +40,20 @@ namespace tQuantize
 
 	// Given a palette, array of indices, and the width and height of an image, this funcion converts back into a raw
 	// pixel array. You must ensure there is enough room for width*height pixels in destPixels and that all indices
-	// stay in the range of the palette you provide. Returns true on success.
+	// stay in the range of the palette you provide. srcIndices shoudd also have width*height entries.
+	// Returns true on success.
 	bool ConvertToPixels
 	(
 		tPixel3* destPixels, int width, int height,
 		const tColour3i* srcPalette, const uint8* srcIndices
 	);
+
+	// Same as above but writes to RGBA pixels. If preserveDestAlpha is true, it will not write to the alphs component
+	// of the destPixels. Whatever was there before stays. If true, it writes 255 (fully opaque).
 	bool ConvertToPixels
 	(
 		tPixel* destPixels, int width, int height,
-		const tColour3i* srcPalette, const uint8* srcIndices
+		const tColour3i* srcPalette, const uint8* srcIndices, bool preserveDestAlpha = false
 	);
 }
 
@@ -73,6 +78,8 @@ namespace tQuantizeFixed
 	// encourage use of a different method like NeuQuant, Scolorq, or Wu. Note, to figure out what palette-index a
 	// particular pixel should map to, the red-mean colour difference function is used -- a common perceptual metric.
 	//
+	// destPalette should have space for numColours colours,
+	// destIndices should have space for width*height indices.
 	// The second variant is same as first but accepts RGBA pixels ignoring alpha.
 	bool QuantizeImage
 	(
@@ -95,6 +102,8 @@ namespace tQuantizeSpatial
 	// true then the image is exactly representable given the palette size and the quantize is not needed. The operation
 	// to gather unique pixel colours is a little slow, so you are given the ability to turn this off.
 	//
+	// destPalette should have space for numColours colours,
+	// destIndices should have space for width*height indices.
 	// The second variant is same as first but accepts RGBA pixels ignoring alpha.
 	bool QuantizeImage
 	(
@@ -121,6 +130,8 @@ namespace tQuantizeNeu
 	// true then the image is exactly representable given the palette size and the quantize is not needed. The operation
 	// to gather unique pixel colours is a little slow, so you are given the ability to turn this off.
 	//
+	// destPalette should have space for numColours colours,
+	// destIndices should have space for width*height indices.
 	// The second variant is same as first but accepts RGBA pixels ignoring alpha.
 	bool QuantizeImage
 	(
@@ -141,6 +152,8 @@ namespace tQuantizeWu
 	// true then the image is exactly representable given the palette size and the quantize is not needed. The operation
 	// to gather unique pixel colours is a little slow, so you are given the ability to turn this off.
 	//
+	// destPalette should have space for numColours colours,
+	// destIndices should have space for width*height indices.
 	// The second variant is same as first but accepts RGBA pixels ignoring alpha.
 	bool QuantizeImage
 	(

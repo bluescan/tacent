@@ -30,6 +30,7 @@ const char* ASTCENCODER_VERSION_STRING		= VERSION_STRING;
 #undef VERSION_STRING
 
 #include "Image/tPicture.h"
+#include "Image/tQuantize.h"
 #include "Math/tMatrix2.h"
 #include "Math/tLinearAlgebra.h"
 #include <OpenEXR/loadImage.h>
@@ -421,6 +422,102 @@ bool tPicture::Crop(const tColouri& colour, uint32 channels)
 
 	Crop(newWidth, newHeight, numLeftCols, numBottomRows);
 	return true;
+}
+
+
+bool tPicture::QuantizeFixed(int numColours, bool checkExact)
+{
+	if (!IsValid())
+		return false;
+
+	tColour3i* destPalette = new tColour3i[numColours];
+	uint8* destIndices = new uint8[Width*Height];
+
+	bool ok = tQuantizeFixed::QuantizeImage(numColours, Width, Height, Pixels, destPalette, destIndices, checkExact);
+	if (!ok)
+	{
+		delete[] destIndices;
+		delete[] destPalette;
+		return false;
+	}
+
+	// Now that we have the palette we can convert back into the pixel array.
+	ok = tQuantize::ConvertToPixels(Pixels, Width, Height, destPalette, destIndices, true);
+	delete[] destIndices;
+	delete[] destPalette;
+	return ok;
+}
+
+
+bool tPicture::QuantizeSpatial(int numColours, bool checkExact, double ditherLevel, int filterSize)
+{
+	if (!IsValid())
+		return false;
+
+	tColour3i* destPalette = new tColour3i[numColours];
+	uint8* destIndices = new uint8[Width*Height];
+
+	bool ok = tQuantizeSpatial::QuantizeImage(numColours, Width, Height, Pixels, destPalette, destIndices, checkExact, ditherLevel, filterSize);
+	if (!ok)
+	{
+		delete[] destIndices;
+		delete[] destPalette;
+		return false;
+	}
+
+	// Now that we have the palette we can convert back into the pixel array (preserving alpha).
+	ok = tQuantize::ConvertToPixels(Pixels, Width, Height, destPalette, destIndices, checkExact);
+	delete[] destIndices;
+	delete[] destPalette;
+	return ok;
+}
+
+
+bool tPicture::QuantizeNeu(int numColours, bool checkExact, int sampleFactor)
+{
+	if (!IsValid())
+		return false;
+
+	tColour3i* destPalette = new tColour3i[numColours];
+	uint8* destIndices = new uint8[Width*Height];
+
+	bool ok = tQuantizeNeu::QuantizeImage(numColours, Width, Height, Pixels, destPalette, destIndices, checkExact, sampleFactor);
+	if (!ok)
+	{
+		delete[] destIndices;
+		delete[] destPalette;
+		return false;
+	}
+
+	// Now that we have the palette we can convert back into the pixel array (preserving alpha).
+	ok = tQuantize::ConvertToPixels(Pixels, Width, Height, destPalette, destIndices, true);
+	delete[] destIndices;
+	delete[] destPalette;
+	return ok;
+}
+
+
+bool tPicture::QuantizeWu(int numColours, bool checkExact)
+{
+	if (!IsValid())
+		return false;
+
+	tColour3i* destPalette = new tColour3i[numColours];
+	uint8* destIndices = new uint8[Width*Height];
+
+	bool ok = tQuantizeWu::QuantizeImage(numColours, Width, Height, Pixels, destPalette, destIndices, checkExact);
+	if (!ok)
+	{
+		delete[] destIndices;
+		delete[] destPalette;
+		return false;
+	}
+
+	// Now that we have the palette we can convert back into the pixel array (preserving alpha).
+	ok = tQuantize::ConvertToPixels(Pixels, Width, Height, destPalette, destIndices, true);
+	delete[] destIndices;
+	delete[] destPalette;
+	return ok;
 }
 
 

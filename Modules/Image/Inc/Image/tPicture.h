@@ -196,6 +196,23 @@ public:
 	// If this function wants to remove everything it returns false and leaves the image untouched.
 	bool Crop(const tColouri& = tColouri::transparent, uint32 channels = tComp_A);
 
+	// Quantize image colours based on a fixed palette. numColours must be 256 or less. checkExact means no change to
+	// the image will be made if it already contains fewer colours than numColours already. This may or may not be
+	// desireable as the computed or fixed palette would not be used.
+	bool QuantizeFixed(int numColours, bool checkExact = true);
+
+	// Similar to above but uses spatial quantization to generate the palette. If ditherLevel is 0.0 it will compute a
+	// good dither amount for you based on the image dimensions and number of colours. Filter size must be 1, 3, or 5.
+	bool QuantizeSpatial(int numColours, bool checkExact = true, double ditherLevel = 0.0, int filterSize = 3);
+
+	// Similar to above but uses neuquant algorighm to generate the palette. With a sampling factor of 1 the entire
+	// image is used in the learning phase. With a factor of 10, a pseudo-random subset of 1/10 of the pixels are used
+	// in the learning phase. sampleFactor must be in [1, 30]. Bigger values are faster but lower quality.
+	bool QuantizeNeu(int numColours, bool checkExact = true, int sampleFactor = 1);
+
+	// Similar to above but uses Wu algorighm to generate the palette.
+	bool QuantizeWu(int numColours, bool checkExact = true);
+
 	// Ideally adjustments (brightness, contrast etc) would be done in a fragment shader and then 'committed' to the
 	// tPicture with a simple adjust call. However currently the clients of tPicture don't have that ability so we're
 	// going with a begin/adjust/end setup where a new 'original' pixel buffer is allocated on begin, and an adjustment
@@ -241,7 +258,7 @@ public:
 
 	// Ends adjustment session and deletes the temporary original pixel buffer. Returns success.
 	bool AdjustmentEnd();
-	
+
 	// This function scales the image by half using a box filter. Useful for generating mipmaps. This function returns
 	// false if the rescale could not be performed. For this function to succeed:
 	//  - The image needs to be valid AND

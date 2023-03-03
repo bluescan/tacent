@@ -175,6 +175,10 @@ public:
 	void Set(const tColour3f& c, float a);
 	void Set(const float* src)																							{ SetR(src[0]); SetG(src[1]); SetB(src[2]); SetA(src[3]); }
 
+	// These leave alpha at whatever value it was at before.
+	void SetRGB(int r, int g, int b)																					{ R = tMath::tClamp(r, 0, 0xFF); G = tMath::tClamp(g, 0, 0xFF); B = tMath::tClamp(b, 0, 0xFF); }
+	void SetRGB(uint8 r, uint8 g, uint8 b)																				{ R = r; G = g; B = b; }
+
 	// The floating point set methods use a range of [0.0, 1.0] for each component.
 	void Set(float r, float g, float b, float a = 1.0f)																	{ SetR(r); SetG(g); SetB(b); SetA(a); }
 	void SetR(float r)																									{ R = tMath::tClamp( tMath::tFloatToInt(r*255.0f), 0, 0xFF ); }

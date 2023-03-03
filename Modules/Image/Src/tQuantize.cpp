@@ -128,7 +128,7 @@ bool tQuantize::ConvertToPixels
 bool tQuantize::ConvertToPixels
 (
 	tPixel* destPixels, int width, int height,
-	const tColour3i* srcPalette, const uint8* srcIndices
+	const tColour3i* srcPalette, const uint8* srcIndices, bool preserveDestAlpha
 )
 {
 	if (!destPixels || (width <= 0) || (height <= 0) || !srcPalette || !srcIndices)
@@ -141,7 +141,10 @@ bool tQuantize::ConvertToPixels
 			int index = x + y*width;
 			int palIndex = srcIndices[index];
 			tColour3i colour = srcPalette[palIndex];
-			destPixels[index].Set(colour.R, colour.G, colour.B);
+			if (preserveDestAlpha)
+				destPixels[index].SetRGB(colour.R, colour.G, colour.B);
+			else
+				destPixels[index].Set(colour.R, colour.G, colour.B);
 		}
 	}
 
