@@ -149,11 +149,18 @@ public:
 	void SetPixel(int x, int y, uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)												{ Pixels[ GetIndex(x, y) ] = tColouri(r, g, b, a); }
 	void SetAll(const tColouri& = tColouri(0, 0, 0), tcomps channels = tComp_RGBA);
 
-	// Blends in supplied colour according to the current alpha. If pixel alpha is 255, then none of the blend colour is
-	// used for that pixel. If alpha is 0, all of it is used. If alpha is 64, then 1/4 of the current pixel colour and
-	// 3/4 of the supplied, If resetAlpha is true, the operation essentially creates a premultiplied opaque image by
-	// setting the alphas to 255 after the blend. Note that the alpha of the supplied colour is ignored.
-	void AlphaBlendColour(const tColouri& colour, bool resetAlpha = true);
+	// Blends blendColour (background) into the RGB channels specified (usually RGB, but any combination of the 3 is
+	// allowed) using the pixel alpha to modulate. The new pixel colour is alpha*component + (1-alpha)*blend_component.
+	//
+	// Eg. If pixel alpha is 255, then none of the blend colour is used for that pixel. If alpha is 0, all of it is
+	// used. If alpha is 64, then 1/4 of the current pixel colour and 3/4 of the supplied,
+	//
+	// FinalAlpha should be in [-1, 255]. If finalAlpha is >= 0 then the alpha will be set to finalAlpha after the blend
+	// is complete. If finalAlpha is -1, the alpha is left unmodified. By default the finalAlpha is 255 (opaque) which
+	// means the operation essentially creates a premultiplied-alpha opaque image.
+	// Note that the alpha of the supplied colour is ignored (since we use finalAlpha).
+	// Note that unspecified RGB channels are keft unmodified.
+	void AlphaBlendColour(const tColouri& blendColour, tcomps = tComp_RGB, int finalAlpha = 255);
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
@@ -471,24 +478,26 @@ inline void tPicture::SetAll(const tColouri& clearColour, tcomps channels)
 }
 
 
-inline void tPicture::AlphaBlendColour(const tColouri& blend, bool resetAlpha)
+inline void tPicture::AlphaBlendColour(const tColouri& blend, tcomps channels, int finalAlpha)
 {
 	if (!Pixels)
 		return;
 
+	tMath::tiClamp(finalAlpha, -1, 255);
 	int numPixels = Width*Height;
 	for (int p = 0; p < numPixels; p++)
 	{
 		tColourf pixelCol(Pixels[p]);
 		tColourf blendCol(blend);
-		tColourf pixel;
+		tColourf pixel = pixelCol;
 		float alpha = pixelCol.A;
-		float oneMinusAlpha = 1.0f - alpha; 
-		pixel.R = pixelCol.R*alpha + blendCol.R*oneMinusAlpha;
-		pixel.G = pixelCol.G*alpha + blendCol.G*oneMinusAlpha;
-		pixel.B = pixelCol.B*alpha + blendCol.B*oneMinusAlpha;
-		if (resetAlpha)
-			pixel.A = 1.0f;
+		float oneMinusAlpha = 1.0f - alpha;
+
+		if (channels & tComp_R) pixel.R = pixelCol.R*alpha + blendCol.R*oneMinusAlpha;
+		if (channels & tComp_G) pixel.G = pixelCol.G*alpha + blendCol.G*oneMinusAlpha;
+		if (channels & tComp_B) pixel.B = pixelCol.B*alpha + blendCol.B*oneMinusAlpha;
+		if (finalAlpha >= 0)
+			pixel.SetA(finalAlpha);
 
 		Pixels[p].Set(pixel);
 	}
