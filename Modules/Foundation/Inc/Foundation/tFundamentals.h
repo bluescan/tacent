@@ -139,6 +139,11 @@ int tFindFirstClearBit(uint8 v);
 int tFindFirstClearBit(uint16 v);
 int tFindFirstClearBit(uint32 v);
 
+// Similar to above but for finding first set (1) bit.
+inline int tFindFirstSetBit(uint8 v)																					{ return tFindFirstClearBit(uint8(~v)); }
+inline int tFindFirstSetBit(uint16 v)																					{ return tFindFirstClearBit(uint16(~v)); }
+inline int tFindFirstSetBit(uint32 v)																					{ return tFindFirstClearBit(uint32(~v)); }
+
 // The following Abs function deserves a little explanation. Some linear algebra texts use the term absolute value and
 // norm interchangeably. Others suggest that the absolute value of a matrix is the matrix with each component
 // being the absolute value of the original. This is what the following template function returns -- not the L2 norm
