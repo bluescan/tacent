@@ -149,6 +149,12 @@ public:
 	void SetPixel(int x, int y, uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)												{ Pixels[ GetIndex(x, y) ] = tColouri(r, g, b, a); }
 	void SetAll(const tColouri& = tColouri(0, 0, 0), tcomps channels = tComp_RGBA);
 
+	// Spreads the specified single channel to all RGB channels.
+	void Spread(tcomps channel = tComp_R);
+
+	// Computes RGB intensity and sets specified channels to that value. Any combination of RGBA allowed.
+	void Intensity(tcomps channels = tComp_RGB);
+
 	// Blends blendColour (background) into the RGB channels specified (usually RGB, but any combination of the 3 is
 	// allowed) using the pixel alpha to modulate. The new pixel colour is alpha*component + (1-alpha)*blend_component.
 	//
@@ -474,6 +480,45 @@ inline void tPicture::SetAll(const tColouri& clearColour, tcomps channels)
 			if (channels & tComp_B) Pixels[p].B = clearColour.B;
 			if (channels & tComp_A) Pixels[p].A = clearColour.A;
 		}
+	}
+}
+
+
+inline void tPicture::Spread(tcomps channel)
+{
+	channel = tMath::tFindFirstSetBit(channel);
+	if (!channel)
+		return;
+
+	int numPixels = Width*Height;
+	for (int p = 0; p < numPixels; p++)
+	{
+		tPixel& pixel = Pixels[p];
+		switch (channel)
+		{
+			case tComp_R:	pixel.G = pixel.B = pixel.R;			break;
+			case tComp_G:	pixel.R = pixel.B = pixel.G;			break;
+			case tComp_B:	pixel.R = pixel.G = pixel.B;			break;
+			case tComp_A:	pixel.R = pixel.G = pixel.B = pixel.A;	break;
+		}
+	}
+}
+
+
+inline void tPicture::Intensity(tcomps channels)
+{
+	if (!channels)
+		return;
+
+	int numPixels = Width*Height;
+	for (int p = 0; p < numPixels; p++)
+	{
+		tPixel& pixel = Pixels[p];
+		int intensity = pixel.Intensity();
+		if (channels & tComp_R) pixel.R = intensity;
+		if (channels & tComp_G) pixel.G = intensity;
+		if (channels & tComp_B) pixel.B = intensity;
+		if (channels & tComp_A) pixel.A = intensity;
 	}
 }
 
