@@ -486,7 +486,10 @@ inline void tPicture::SetAll(const tColouri& clearColour, tcomps channels)
 
 inline void tPicture::Spread(tcomps channel)
 {
-	channel = tMath::tFindFirstSetBit(channel);
+	int setBit = tMath::tFindFirstSetBit(channel);
+	if (setBit == -1)
+		return;
+	channel = 1 << setBit;	
 	if (!channel)
 		return;
 
