@@ -490,8 +490,6 @@ inline void tPicture::Spread(tcomps channel)
 	if (setBit == -1)
 		return;
 	channel = 1 << setBit;	
-	if (!channel)
-		return;
 
 	int numPixels = Width*Height;
 	for (int p = 0; p < numPixels; p++)
