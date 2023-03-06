@@ -190,7 +190,9 @@ tString tSystem::tGetFileFullName(const tString& file)
 	#else
 	tPathStd(filename);
 	char ret[PATH_MAX + 1];
-	realpath(filename.Chr(), ret);
+	ret[0] = '\0';
+	if (!filename.IsEmpty())
+		realpath(filename.Chr(), ret);
 	tString retStr(ret);
 	#endif
 
