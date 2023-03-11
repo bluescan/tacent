@@ -45,12 +45,12 @@ bool tImageWEBP::Load(const tString& webpFile)
 	webpData.size = numBytes;
 
 	WebPDemuxer* demux = WebPDemux(&webpData);
-	uint32 width = WebPDemuxGetI(demux, WEBP_FF_CANVAS_WIDTH);
-	uint32 height = WebPDemuxGetI(demux, WEBP_FF_CANVAS_HEIGHT);
+	uint32 canvasWidth = WebPDemuxGetI(demux, WEBP_FF_CANVAS_WIDTH);
+	uint32 canvasHeight = WebPDemuxGetI(demux, WEBP_FF_CANVAS_HEIGHT);
 	uint32 flags = WebPDemuxGetI(demux, WEBP_FF_FORMAT_FLAGS);
 	uint32 numFrames = WebPDemuxGetI(demux, WEBP_FF_FRAME_COUNT);
 	
-	if ((width <= 0) || (height <= 0) || (numFrames <= 0))
+	if ((canvasWidth <= 0) || (canvasHeight <= 0) || (numFrames <= 0))
 	{
 		WebPDemuxDelete(demux);
 		delete[] webpFileInMemory;
@@ -74,16 +74,45 @@ bool tImageWEBP::Load(const tString& webpFile)
 			if (result != VP8_STATUS_OK)
 				continue;
 
+////////////////
+#if 0
+WEBP_FF_BACKGROUND_COLOR
+  uint32_t bgcolor;  // Background color of the canvas stored (in MSB order) as:
+                     // Bits 00 to 07: Alpha.
+                     // Bits 08 to 15: Red.
+                     // Bits 16 to 23: Green.
+                     // Bits 24 to 31: Blue.
+
+// Dispose method (animation only). Indicates how the area used by the current
+// frame is to be treated before rendering the next frame on the canvas.
+typedef enum WebPMuxAnimDispose {
+  WEBP_MUX_DISPOSE_NONE,       // Do not dispose.
+  WEBP_MUX_DISPOSE_BACKGROUND  // Dispose to background color.
+} WebPMuxAnimDispose;
+
+// Blend operation (animation only). Indicates how transparent pixels of the
+// current frame are blended with those of the previous canvas.
+typedef enum WebPMuxAnimBlend {
+  WEBP_MUX_BLEND,              // Blend.
+  WEBP_MUX_NO_BLEND            // Do not blend.
+} WebPMuxAnimBlend;
+#endif
+////////////////
+			int frameWidth = config.output.width;
+			int frameHeight = config.output.height;
+			if ((frameWidth <= 0) || (frameHeight <= 0))
+				continue;
+				
 			tFrame* newFrame = new tFrame;
 			newFrame->PixelFormatSrc = iter.has_alpha ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
 			if (iter.has_alpha)
 				PixelFormatSrc = tPixelFormat::R8G8B8A8;
-			newFrame->Width = width;
-			newFrame->Height = height;
-			newFrame->Pixels = new tPixel[width * height];
+			newFrame->Width = frameWidth;
+			newFrame->Height = frameHeight;
+			newFrame->Pixels = new tPixel[frameWidth * frameHeight];
 			newFrame->Duration = float(iter.duration) / 1000.0f;
 
-			tStd::tMemcpy(newFrame->Pixels, config.output.u.RGBA.rgba, width * height * sizeof(tPixel));
+			tStd::tMemcpy(newFrame->Pixels, config.output.u.RGBA.rgba, frameWidth * frameHeight * sizeof(tPixel));
 			WebPFreeDecBuffer(&config.output);
 			Frames.Append(newFrame);
 		}

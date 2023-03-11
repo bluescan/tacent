@@ -239,7 +239,7 @@ enum class tAspectRatio
 	Print_20x30,			// 0.6666666	Same as 2_3.
 	Print_20x30_L,			// 1.5			Same as 3_2.
 	Print_24x36,			// 0.6666666	Same as 2_3.
-	Print_24x36_L,			// 1.5			Same as 3_2.
+	Print_24x36_L			// 1.5			Same as 3_2.
 
 	//	{ "Free", "2:1", "16:9", "16:10", "3:2", "4:3", "1:1", "3:4", "2:3", "10:16", "9:16", "1:2", "User" };
 };
