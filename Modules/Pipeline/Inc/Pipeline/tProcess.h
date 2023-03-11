@@ -59,12 +59,12 @@ public:
 	// sent as the second param to ProcessDone, the exit code is the first.
 	tProcess
 	(
-		const tString& cmdLine, const tString& workingDir, WindowHandle parent,
+		const tString& cmdLine, const tString& workingDir, WinHwnd parent,
 		uint32 userData = 0, bool clearEnvironmentVars = false, int numEnvPairs = 0, ...
 	);
 	tProcess
 	(
-		const tString& cmdLine, const tString& workingDir, WindowHandle parent, uint32 userData,
+		const tString& cmdLine, const tString& workingDir, WinHwnd parent, uint32 userData,
 		bool clearEnvironmentVars, int numEnvPairs, va_list args
 	);
 
@@ -138,7 +138,7 @@ private:
 
 	// If Parent is valid, output gets sent via messages to that window handle. If OutputString is valid output gets
 	// appended to it.
-	WindowHandle Parent;
+	WinHwnd Parent;
 	tString* OutputString;
 	tPrintCallback PrintCallback;
 	void* PrintCallbackUserPointer;

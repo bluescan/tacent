@@ -814,7 +814,7 @@ bool tSystem::tIsFileNewer(const tString& filea, const tString& fileb)
 	if (h == INVALID_HANDLE_VALUE)
 		throw tFileError("Invalid file handle for file: " + fileA);
 
-	FileTime timeA = fd.ftLastWriteTime;
+	WinFileTime timeA = fd.ftLastWriteTime;
 	FindClose(h);
 
 	#ifdef TACENT_UTF16_API_CALLS
@@ -826,7 +826,7 @@ bool tSystem::tIsFileNewer(const tString& filea, const tString& fileb)
 	if (h == INVALID_HANDLE_VALUE)
 		throw tFileError("Invalid file handle for file: " + fileB);
 
-	FileTime timeB = fd.ftLastWriteTime;
+	WinFileTime timeB = fd.ftLastWriteTime;
 	FindClose(h);
 
 	if (CompareFileTime(&timeA, &timeB) > 0)
@@ -1302,7 +1302,7 @@ tString tSystem::tGetHomeDir()
 
 	#elif defined(PLATFORM_WINDOWS)
 	wchar_t* pathBuffer = nullptr;
-	hResult result = SHGetKnownFolderPath(FOLDERID_Profile, 0, 0, &pathBuffer);
+	WinHResult result = SHGetKnownFolderPath(FOLDERID_Profile, 0, 0, &pathBuffer);
 	if ((result != S_OK) || !pathBuffer)
 		return home;
 	home.Set((char16_t*)pathBuffer);
@@ -1509,7 +1509,7 @@ tString tSystem::tGetDesktopDir()
 {
 	tString desktop;
 	wchar_t* pathBuffer = nullptr;
-	hResult result = SHGetKnownFolderPath(FOLDERID_Desktop, 0, 0, &pathBuffer);
+	WinHResult result = SHGetKnownFolderPath(FOLDERID_Desktop, 0, 0, &pathBuffer);
 	if ((result != S_OK) || !pathBuffer)
 		return desktop;
 
@@ -2138,8 +2138,8 @@ bool tSystem::tGetFileDetails(tFileDetails& details, const tString& path)
 	}
 
 	// This interface is used for freeing up PIDLs.
-	lpMalloc mallocInterface = 0;
-	hResult result = SHGetMalloc(&mallocInterface);
+	WinLPMalloc mallocInterface = 0;
+	WinHResult result = SHGetMalloc(&mallocInterface);
 	if (!mallocInterface)
 		return false;
 
@@ -2153,11 +2153,11 @@ bool tSystem::tGetFileDetails(tFileDetails& details, const tString& path)
 	}
 
 	// IShellFolder::ParseDisplayName requires the path name in Unicode wide characters.
-	OleChar olePath[MaxPath];
-	MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, fileDir.Chr(), -1, olePath, MaxPath);
+	WinOleChar olePath[WinMaxPath];
+	MultiByteToWideChar(CP_ACP, WinMBPrecomposed, fileDir.Chr(), -1, olePath, WinMaxPath);
 
 	// Parse path for absolute PIDL, and connect to target folder.
-	lpItemIdList pidl = 0;
+	WinLPItemIdList pidl = 0;
 	result = desktopInterface->ParseDisplayName(0, 0, olePath, 0, &pidl, 0);
 	if (result != S_OK)
 	{
@@ -2183,9 +2183,9 @@ bool tSystem::tGetFileDetails(tFileDetails& details, const tString& path)
 		return false;
 	}
 
-	OleChar unicodeName[MaxPath];
-	MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, fileName.Chr(), -1, unicodeName, MaxPath);
-	lpItemIdList localPidl = 0;
+	WinOleChar unicodeName[WinMaxPath];
+	MultiByteToWideChar(CP_ACP, WinMBPrecomposed, fileName.Chr(), -1, unicodeName, WinMaxPath);
+	WinLPItemIdList localPidl = 0;
 	result = shellFolder2->ParseDisplayName(0, 0, unicodeName, 0, &localPidl, 0);
 	if (result != S_OK)
 	{
@@ -2245,7 +2245,7 @@ bool tSystem::tGetFileDetails(tFileDetails& details, const tString& path)
 	for (int c = 0; c < maxDetailColumnsToTry; c++)
 	{
 		int col = columnIndexArray[c];
-		SHELLDETAILS shellDetail;
+		WinShellDetails shellDetail;
 
 		// Get title.
 		result = shellFolder2->GetDetailsOf(0, col, &shellDetail);
@@ -2308,9 +2308,9 @@ void tSystem::tSetFileOpenAssoc(const tString& program, const tString& extension
 	HKEY key;
 	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 keyString16(keyString);
-	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString16.GetLPWSTR(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
+	if (RegCreateKeyEx(WinHKeyCurrentUser, keyString16.GetLPWSTR(), 0, 0, 0, WinKeySetValue, 0, &key, 0) == WinErrorSuccess)
 	#else
-	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString.Chr(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
+	if (RegCreateKeyEx(WinHKeyCurrentUser, keyString.Chr(), 0, 0, 0, WinKeySetValue, 0, &key, 0) == WinErrorSuccess)
 	#endif
 	{
 		// Create value string and set it.
@@ -2335,9 +2335,9 @@ void tSystem::tSetFileOpenAssoc(const tString& program, const tString& extension
 	keyString += ext;
 	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 keyString16B(keyString);
-	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString16B.GetLPWSTR(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
+	if (RegCreateKeyEx(WinHKeyCurrentUser, keyString16B.GetLPWSTR(), 0, 0, 0, WinKeySetValue, 0, &key, 0) == WinErrorSuccess)
 	#else
-	if (RegCreateKeyEx(HKEY_CURRENT_USER, keyString.Chr(), 0, 0, 0, KEY_SET_VALUE, 0, &key, 0) == ERROR_SUCCESS)
+	if (RegCreateKeyEx(WinHKeyCurrentUser, keyString.Chr(), 0, 0, 0, WinKeySetValue, 0, &key, 0) == WinErrorSuccess)
 	#endif
 	{
 		tString valString = "Tacent_";
@@ -2375,9 +2375,9 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	char appNameBuf[128];
 	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 keyString16A(keyString);
-	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString16A.GetLPWSTR(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
+	if (RegOpenKeyEx(WinHKeyCurrentUser, keyString16A.GetLPWSTR(), 0, KEY_QUERY_VALUE, &key) == WinErrorSuccess)
 	#else
-	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString.Chr(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
+	if (RegOpenKeyEx(WinHKeyCurrentUser, keyString.Chr(), 0, KEY_QUERY_VALUE, &key) == WinErrorSuccess)
 	#endif
 	{
 		ulong numBytesIO = 127;
@@ -2400,9 +2400,9 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 	char exeNameBuf[256];
 	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 keyString16B(keyString);
-	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString16B.GetLPWSTR(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
+	if (RegOpenKeyEx(WinHKeyCurrentUser, keyString16B.GetLPWSTR(), 0, KEY_QUERY_VALUE, &key) == WinErrorSuccess)
 	#else
-	if (RegOpenKeyEx(HKEY_CURRENT_USER, keyString.Chr(), 0, KEY_QUERY_VALUE, &key) == ERROR_SUCCESS)
+	if (RegOpenKeyEx(WinHKeyCurrentUser, keyString.Chr(), 0, KEY_QUERY_VALUE, &key) == WinErrorSuccess)
 	#endif
 	{
 		ulong numBytesIO = 255;

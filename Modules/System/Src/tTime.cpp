@@ -37,7 +37,7 @@ int64 tSystem::tGetHardwareTimerFrequency()
 	{
 		#if defined(PLATFORM_WINDOWS)
 		int64 freq;
-		QueryPerformanceFrequency((LargeInteger*)&freq);
+		QueryPerformanceFrequency((WinLargeInteger*)&freq);
 		HPCFrequency = freq;
 		#else
 		HPCFrequency = 1000000000ll;
@@ -52,7 +52,7 @@ int64 tSystem::tGetHardwareTimerCount()
 {
 	#if defined(PLATFORM_WINDOWS)
 	int64 count;
-	QueryPerformanceCounter((LargeInteger*)&count);
+	QueryPerformanceCounter((WinLargeInteger*)&count);
 	return count;
 
 	#else

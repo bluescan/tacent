@@ -26,7 +26,7 @@ using namespace tPipeline;
 #ifdef PLATFORM_WINDOWS
 
 
-tProcess::tProcess(const tString& cmdLine, const tString& workDir, WindowHandle parent, uint32 userData, bool clearEnvironmentVars, int numEnvPairs, ...) :
+tProcess::tProcess(const tString& cmdLine, const tString& workDir, WinHwnd parent, uint32 userData, bool clearEnvironmentVars, int numEnvPairs, ...) :
 	Parent(parent),
 	OutputString(nullptr),
 	PrintCallback(nullptr),
@@ -60,7 +60,7 @@ tProcess::tProcess(const tString& cmdLine, const tString& workDir, WindowHandle 
 }
 
 
-tProcess::tProcess(const tString& cmdLine, const tString& workDir, WindowHandle parent, uint32 userData, bool clearEnvironmentVars, int numEnvPairs, va_list args) :
+tProcess::tProcess(const tString& cmdLine, const tString& workDir, WinHwnd parent, uint32 userData, bool clearEnvironmentVars, int numEnvPairs, va_list args) :
 	Parent(parent),
 	OutputString(nullptr),
 	PrintCallback(nullptr),
@@ -350,11 +350,11 @@ void tProcess::CreateChildProcess(const tString& cmdLine, const tString& working
 		*ExitCode = 0;
 
 	// Create the pipes we'll be using. 
-	SECURITY_ATTRIBUTES secAttr;
-	secAttr.nLength = sizeof(SECURITY_ATTRIBUTES); 
+	WinSecurityAttributes secAttr;
+	secAttr.nLength = sizeof(WinSecurityAttributes); 
 
 	// Set the bInheritHandle flag so pipe handles are inherited.
-	secAttr.bInheritHandle = detached ? False : True;
+	secAttr.bInheritHandle = detached ? WinFalse : WinTrue;
 	secAttr.lpSecurityDescriptor = 0;
 
 	// By setting the pipe size to be small, we get the process output much sooner
@@ -380,8 +380,8 @@ void tProcess::CreateChildProcess(const tString& cmdLine, const tString& working
 	}
 
 	// Create the Child process.
-	STARTUPINFO startup;
-	startup.cb =					sizeof(STARTUPINFO);
+	WinStartupInfo startup;
+	startup.cb =					sizeof(WinStartupInfo);
 	startup.lpReserved =			0;
 	startup.lpDesktop =				0;
 	startup.lpTitle =				0;
@@ -392,7 +392,7 @@ void tProcess::CreateChildProcess(const tString& cmdLine, const tString& working
 	startup.dwXCountChars =			0;
 	startup.dwYCountChars =			0;
 	startup.dwFillAttribute =		0;
-	startup.dwFlags =				detached ? 0 : STARTF_USESTDHANDLES;
+	startup.dwFlags =				detached ? 0 : WinStartFUseStdHandles;
 	startup.wShowWindow =			0;
 	startup.cbReserved2 =			0;
 	startup.lpReserved2 =			0;
@@ -401,7 +401,7 @@ void tProcess::CreateChildProcess(const tString& cmdLine, const tString& working
 	startup.hStdError =				detached ? 0 : StdErrWrite;
 
 	// This struct gets filled out.
-	PROCESS_INFORMATION procInfo;
+	WinProcessInformation procInfo;
 
 	// The environment block sets the environment variables for the command. Here we make sure that there are
 	// effectively none of them if the user requested such. This ensures that the running bahaviour is identical on any
@@ -418,9 +418,9 @@ void tProcess::CreateChildProcess(const tString& cmdLine, const tString& working
 	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 cmdLineUTF16(cmdLine);
 	tStringUTF16 workingDirUTF16(workingDir);
-	int success = CreateProcess(0, cmdLineUTF16.GetLPWSTR(), 0, 0, TRUE, DETACHED_PROCESS, (char*)envBlock, workingDirUTF16.GetLPWSTR(), &startup, &procInfo);
+	int success = CreateProcess(0, cmdLineUTF16.GetLPWSTR(), 0, 0, WinTrue, WinDetachedProcess, (char*)envBlock, workingDirUTF16.GetLPWSTR(), &startup, &procInfo);
 	#else
-	int success = CreateProcess(0, (char*)cmdLine.Chr(), 0, 0, TRUE, DETACHED_PROCESS, (char*)envBlock, workingDir.Chr(), &startup, &procInfo);
+	int success = CreateProcess(0, (char*)cmdLine.Chr(), 0, 0, WinTrue, WinDetachedProcess, (char*)envBlock, workingDir.Chr(), &startup, &procInfo);
 	#endif
 	if (!success)
 	{

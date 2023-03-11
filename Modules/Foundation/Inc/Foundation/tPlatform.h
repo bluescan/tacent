@@ -4,7 +4,7 @@
 // requirements. One of PLATFORM_NNN, ARCHITECTURE_NNN, and CONFIG_NNN need to be defined. If you haven't bothered
 // to define these in the project file with a /D switch, an attempt is made to define them automatically for you.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -276,76 +276,81 @@ template<typename T> inline T tHtoN(T val)
 
 // These defines mitigate Windows all-capital naming ugliness.
 #ifdef PLATFORM_WINDOWS
-#define ApiEntry APIENTRY
+#define Win32FindData WIN32_FIND_DATA
+#define WinApi WINAPI
+#define WinApiEntry APIENTRY
 #define WinBitmap BITMAP
 #define WinBitmapInfo BITMAPINFO
 #define WinBitmapInfoHeader BITMAPINFOHEADER
-#define ColorRef COLORREF
-#define CreateStruct CREATESTRUCT
-#define dWord DWORD
-#define False FALSE
-#define FileTime FILETIME
-#define GlyphMetrics GLYPHMETRICS
-#define hBitmap HBITMAP
-#define hDc HDC
-#define hFont HFONT
-#define hGlrc HGLRC
-#define hPBufferARB HPBUFFERARB
-#define HiWord HIWORD
-#define hResult HRESULT
-#define hWinIcon HICON
-#define hWinCursor HCURSOR
-#define WindowHandle HWND
-#define IconInfo ICONINFO
-#define Infinite INFINITE
-#define ItemIdList ITEMIDLIST
-#define LargeInteger LARGE_INTEGER
-#define Long LONG
-#define LongPtr LONG_PTR
-#define LoWord LOWORD
-#define WinLParam LPARAM
-#define lpCItemIdList LPCITEMIDLIST
-#define lpCRect LPCRECT
-#define lpEnumIdList LPENUMIDLIST
-#define lpItemIdList LPITEMIDLIST
-#define lpMalloc LPMALLOC
-#define lpShellFolder LPSHELLFOLDER
-#define lpVoid LPVOID
-#define lResult LRESULT
-#define MakeWord MAKEWORD
-#define MaxPath MAX_PATH
-#define Nmhdr NMHDR
-#define OleChar OLECHAR
-#define PixelFormatDescriptor PIXELFORMATDESCRIPTOR
-#define Point POINT
-#ifndef MAX_PLUGIN
-#define Rect RECT
-#endif
-#define ShellFolder SHELLFOLDER
-#define ShFileInfo SHFILEINFO
-#define SystemTime SYSTEMTIME
-#define WinSize SIZE
-#define True TRUE
-#define tStr TSTR
-#define tChar TCHAR
-#define WaitFailed WAIT_FAILED
-#define WaitObject0 WAIT_OBJECT_0
-#define WaitTimeout WAIT_TIMEOUT
-#define Win32FindData WIN32_FIND_DATA
-#define WinApi WINAPI
 #define WinBool BOOL
-#define WinHandle HANDLE
-#define WinInstance HINSTANCE
-#define WinIntPtr INT_PTR
-#define WinMessage MSG
-#define WinProc PROC
-#define WinSocket SOCKET
-#define WinWord WORD
 #define WinCallback CALLBACK
-#define WinWParam WPARAM
-#define WsaData WSADATA
+#define WinColorRef COLORREF
+#define WinCreateStruct CREATESTRUCT
+#define WinCriticalSection CRITICAL_SECTION
+#define WinDetachedProcess DETACHED_PROCESS
+#define WinDWord DWORD
+#define WinErrorSuccess ERROR_SUCCESS
+#define WinFalse FALSE
+#define WinFileTime FILETIME
+#define WinGlyphMetrics GLYPHMETRICS
+#define WinHandle HANDLE
+#define WinHBitmap HBITMAP
+#define WinHCursor HCURSOR
+#define WinHFont HFONT
+#define WinHIcon HICON
+#define WinHInstance HINSTANCE
+#define WinHiWord HIWORD
+#define WinHKeyCurrentUser HKEY_CURRENT_USER
+#define WinKeySetValue KEY_SET_VALUE
+#define WinHPBufferARB HPBUFFERARB
+#define WinHResult HRESULT
+#define WinHwnd HWND
+#define WinIconInfo ICONINFO
+#define WinInfinite INFINITE
+#define WinIntPtr INT_PTR
+#define WinItemIdList ITEMIDLIST
+#define WinLargeInteger LARGE_INTEGER
+#define WinLong LONG
+#define WinLongPtr LONG_PTR
+#define WinLoWord LOWORD
+#define WinLParam LPARAM
+#define WinLPCItemIdList LPCITEMIDLIST
+#define WinLPCRect LPCRECT
+#define WinLPEnumIdList LPENUMIDLIST
+#define WinLPItemIdList LPITEMIDLIST
+#define WinLPMalloc LPMALLOC
+#define WinLPShellFolder LPSHELLFOLDER
+#define WinLPVoid LPVOID
+#define WinLResult LRESULT
+#define WinMakeWord MAKEWORD
+#define WinMaxPath MAX_PATH
+#define WinMBPrecomposed MB_PRECOMPOSED
+#define WinMessage MSG
+#define WinOleChar OLECHAR
+#define WinPixelFormatDescriptor PIXELFORMATDESCRIPTOR
+#define WinPoint POINT
+#define WinProc PROC
+#define WinProcessInformation PROCESS_INFORMATION
+#define WinRect RECT
+#define WinSecurityAttributes SECURITY_ATTRIBUTES
+#define WinShellDetails SHELLDETAILS
+#define WinShellFolder SHELLFOLDER
+#define WinShFileInfo SHFILEINFO
+#define WinSize SIZE
+#define WinSocket SOCKET
+#define WinStartFUseStdHandles STARTF_USESTDHANDLES
+#define WinStartupInfo STARTUPINFO
+#define WinSystemTime SYSTEMTIME
+#define WinTChar TCHAR
+#define WinTrue TRUE
+#define WinTStr TSTR
 #define WinUUID __uuidof
-#define CriticalSection CRITICAL_SECTION
+#define WinWaitFailed WAIT_FAILED
+#define WinWaitObject0 WAIT_OBJECT_0
+#define WinWaitTimeout WAIT_TIMEOUT
+#define WinWord WORD
+#define WinWParam WPARAM
+#define WinWsaData WSADATA
 #define snprintf _snprintf
 inline bool WinSucceeded(long hresult)																					{ return (hresult >= 0) ? true : false; }
 inline bool WinFailed(long hresult)																						{ return (hresult < 0) ? true : false; }
