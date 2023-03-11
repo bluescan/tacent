@@ -2,7 +2,7 @@
 //
 // This class knows how to load Direct Draw Surface (.dds) files.
 //
-// Copyright (c) 2006, 2017, 2019, 2020, 2022 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -44,6 +44,7 @@ public:
 		LoadFlag_SpreadLuminance	= 1 << 6,	// For DDS files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats. Applies only if decoding a dds is an R-only or L-only format.
 		LoadFlag_CondMultFourDim	= 1 << 7,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,
 		LoadFlag_CondPowerTwoDim	= 1 << 8,	// Produce conditional success if image dimension not a power of 2. Only checks BC formats.
+		LoadFlag_StrictLoading		= 1 << 9,	// If set even mildly ill-formed dds files will not load.
 		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance | LoadFlag_AutoGamma
 	};
 
@@ -102,9 +103,10 @@ public:
 		// Success. The tImageDDS is considered valid. May be combined with the conditionals below.
 		Success,
 
-		// Conditional success. Object is valid, but not all load flags applied.
+		// Conditional success. Object is still valid after load.
 		Conditional_CouldNotFlipRows,
-		Conditional_PitchXORLinearSize,
+		Conditional_PitchXORLinearSize,				// Possible if strict loading not set.
+		Conditional_IncorrectPixelFormatSpec,		// Possible if strict loading not set.
 		Conditional_DimNotMultFourBC,
 		Conditional_DimNotPowerTwoBC,
 
@@ -117,7 +119,8 @@ public:
 		Fatal_InvalidDimensions,
 		Fatal_VolumeTexturesNotSupported,
 		Fatal_IncorrectPixelFormatHeaderSize,
-		Fatal_IncorrectPixelFormatSpec,
+		Fatal_PitchXORLinearSize,					// Possible if strict loading set.
+		Fatal_IncorrectPixelFormatSpec,				// Possible if strict loading set.
 		Fatal_PixelFormatNotSupported,
 		Fatal_MaxNumMipmapLevelsExceeded,
 		Fatal_DX10HeaderSizeIncorrect,

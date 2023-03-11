@@ -6,7 +6,7 @@
 // same format as the source file. The layers may be 'stolen' from a tImageDDS so that excessive memcpys are avoided.
 // After they are stolen the tImageDDS is invalid.
 //
-// Copyright (c) 2006, 2017, 2019, 2020, 2022 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -1211,7 +1211,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 
 	// A strictly correct dds will have linear-size xor pitch set (one, not both).
 	// It seems ATI tools like GenCubeMap don't set the correct bits, but we still load
-	// with a conditional success.
+	// with a conditional success if strict flag unset.
 	int pitch = 0;										// Num bytes per line on main image (uncompressed images only).
 	int linearSize = 0;									// Num bytes total main image (compressed images only).
 	if (flags & tDDS::HeaderFlag_Pitch)
@@ -1220,7 +1220,17 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 		linearSize = header.PitchLinearSize;
 
 	if ((!linearSize && !pitch) || (linearSize && pitch))
-		Results |= 1 << int(ResultCode::Conditional_PitchXORLinearSize);
+	{
+		if (params.Flags & LoadFlag_StrictLoading)
+		{
+			Results |= 1 << int(ResultCode::Fatal_PitchXORLinearSize);
+			return false;
+		}
+		else
+		{
+			Results |= 1 << int(ResultCode::Conditional_PitchXORLinearSize);
+		}
+	}
 
 	// Volume textures are not supported.
 	if (flags & tDDS::HeaderFlag_Depth)
@@ -1257,8 +1267,17 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 	bool isFourCCFormat	= (format.Flags == tDDS::DDFormatFlags_FourCC);
 	if (!isRGB && !isRGBA && !isA && !isL && !isFourCCFormat)
 	{
-		Results |= 1 << int(ResultCode::Fatal_IncorrectPixelFormatSpec);
-		return false;
+		if (params.Flags & LoadFlag_StrictLoading)
+		{
+			Results |= 1 << int(ResultCode::Fatal_IncorrectPixelFormatSpec);
+			return false;
+		}
+		else
+		{
+			// If the flags completely fail to specify a format, we try to use the FourCC.
+			Results |= 1 << int(ResultCode::Conditional_IncorrectPixelFormatSpec);
+			isFourCCFormat = true;
+		}
 	}
 
 	bool useDX10Ext = isFourCCFormat && (format.FourCC == FourCC('D', 'X', '1', '0'));
@@ -1997,6 +2016,7 @@ const char* tImageDDS::ResultDescriptions[] =
 	"Success",
 	"Conditional Success. Image rows could not be flipped.",
 	"Conditional Success. One of Pitch or LinearSize should be specified. Using dimensions instead.",
+	"Conditional Success. Pixel format specification ill-formed. Assuming FourCC.",
 	"Conditional Success. Image has dimension not multiple of four.",
 	"Conditional Success. Image has dimension not power of two.",
 	"Fatal Error. File does not exist.",
@@ -2007,6 +2027,7 @@ const char* tImageDDS::ResultDescriptions[] =
 	"Fatal Error. Incorrect Dimensions.",
 	"Fatal Error. DDS volume textures not supported.",
 	"Fatal Error. Pixel format header size incorrect.",
+	"Fatal Error. One of Pitch or LinearSize must be specified when strict-loading set.",
 	"Fatal Error. Pixel format specification incorrect.",
 	"Fatal Error. Unsupported pixel format.",
 	"Fatal Error. Maximum number of mipmap levels exceeded.",
