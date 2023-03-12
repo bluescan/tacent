@@ -102,9 +102,10 @@ public:
 	tFrame* GetFrame(int frameNum);
 
 	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
+	tList<tFrame> Frames;
 
 private:
-	tList<tFrame> Frames;
+	void CopyRegion(tPixel* dst, int dstW, int dstH, tPixel* src, int srcW, int srcH, int offsetX, int offsetY, bool blend);
 };
 
 

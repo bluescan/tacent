@@ -209,6 +209,17 @@ tImageAPNG::tFormat tImageAPNG::Save(const tString& apngFile, const SaveParams& 
 	if ((tSystem::tGetFileType(apngFile) != tSystem::tFileType::PNG) && (tSystem::tGetFileType(apngFile) != tSystem::tFileType::APNG))
 		return tFormat::Invalid;
 
+	// Currently apng_save will crash if all the images don't have the same size. We check that here.
+	int frameWidth = Frames.Head()->Width;
+	int frameHeight = Frames.Head()->Height;
+	if ((frameWidth <= 0) || (frameHeight <= 0))
+		return tFormat::Invalid;
+	for (tFrame* frame = Frames.Head(); frame; frame = frame->Next())
+	{
+		if ((frame->Width != frameWidth) || (frame->Height != frameHeight))
+			return tFormat::Invalid;
+	}
+
 	int overrideFrameDuration = params.OverrideFrameDuration;
 	tMath::tiClampMax(overrideFrameDuration, 65535);
 	int bytesPerPixel = 0;

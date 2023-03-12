@@ -57,6 +57,22 @@ bool tImageWEBP::Load(const tString& webpFile)
 		return false;
 	}
 
+	tColour4i bgColour = tColour4i::white;
+	if (numFrames > 1)
+	{
+		// Bits 00 to 07: Alpha. Bits 08 to 15: Red. Bits 16 to 23: Green. Bits 24 to 31: Blue.
+		uint32 col = WebPDemuxGetI(demux, WEBP_FF_BACKGROUND_COLOR);
+		bgColour.R = (col >> 8 ) & 0xFF;
+		bgColour.G = (col >> 16) & 0xFF;
+		bgColour.B = (col >> 24) & 0xFF;
+		bgColour.A = (col >> 0 ) & 0xFF;
+	}
+
+	// We start by creatng the initial canvas in memory set to the background colour.
+	tPixel* canvas = new tPixel[canvasWidth*canvasHeight];
+	for (int p = 0; p < canvasWidth*canvasHeight; p++)
+		canvas[p] = bgColour;
+
 	// Iterate over all frames.
 	PixelFormatSrc = tPixelFormat::R8G8B8;
 	WebPIterator iter;
@@ -74,45 +90,49 @@ bool tImageWEBP::Load(const tString& webpFile)
 			if (result != VP8_STATUS_OK)
 				continue;
 
-////////////////
-#if 0
-WEBP_FF_BACKGROUND_COLOR
-  uint32_t bgcolor;  // Background color of the canvas stored (in MSB order) as:
-                     // Bits 00 to 07: Alpha.
-                     // Bits 08 to 15: Red.
-                     // Bits 16 to 23: Green.
-                     // Bits 24 to 31: Blue.
+			// What do we do with the canvas? If nt animated it's not going to matter.
+			// Dispose method (animation only). Indicates how the area used by the current
+			// frame is to be treated before rendering the next frame on the canvas.
+			switch (iter.dispose_method)
+			{
+				case WEBP_MUX_DISPOSE_BACKGROUND:
+					for (int p = 0; p < canvasWidth*canvasHeight; p++)
+						canvas[p] = bgColour;
+					break;
 
-// Dispose method (animation only). Indicates how the area used by the current
-// frame is to be treated before rendering the next frame on the canvas.
-typedef enum WebPMuxAnimDispose {
-  WEBP_MUX_DISPOSE_NONE,       // Do not dispose.
-  WEBP_MUX_DISPOSE_BACKGROUND  // Dispose to background color.
-} WebPMuxAnimDispose;
+				default:
+				case WEBP_MUX_DISPOSE_NONE:
+					break;
+			}
 
-// Blend operation (animation only). Indicates how transparent pixels of the
-// current frame are blended with those of the previous canvas.
-typedef enum WebPMuxAnimBlend {
-  WEBP_MUX_BLEND,              // Blend.
-  WEBP_MUX_NO_BLEND            // Do not blend.
-} WebPMuxAnimBlend;
-#endif
-////////////////
 			int frameWidth = config.output.width;
 			int frameHeight = config.output.height;
 			if ((frameWidth <= 0) || (frameHeight <= 0))
 				continue;
-				
+
+			// All frames in tacent are canvas-sized. We copy the current canvas into it.
 			tFrame* newFrame = new tFrame;
 			newFrame->PixelFormatSrc = iter.has_alpha ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
 			if (iter.has_alpha)
 				PixelFormatSrc = tPixelFormat::R8G8B8A8;
-			newFrame->Width = frameWidth;
-			newFrame->Height = frameHeight;
-			newFrame->Pixels = new tPixel[frameWidth * frameHeight];
+			newFrame->Width = canvasWidth;
+			newFrame->Height = canvasHeight;
+			newFrame->Pixels = new tPixel[newFrame->Width * newFrame->Height];
 			newFrame->Duration = float(iter.duration) / 1000.0f;
 
-			tStd::tMemcpy(newFrame->Pixels, config.output.u.RGBA.rgba, frameWidth * frameHeight * sizeof(tPixel));
+			// Next we need to grab the decoded pixels (which may be a sub-region of the canvas) and stick them in the canvas.
+			// How we stick the pixels in depends on the anim-blend. If not animated, force simple overwrite.
+			bool blend = false;
+			if (iter.blend_method == WEBP_MUX_BLEND)
+				blend = true;
+
+			// The flip flag doesn't fix the offsets for WebP so we need the canvasHeight - iter.y_offset - frameHeight.
+			CopyRegion(canvas, canvasWidth, canvasHeight, (tPixel*)config.output.u.RGBA.rgba, frameWidth, frameHeight, iter.x_offset, canvasHeight - iter.y_offset - frameHeight, blend);
+
+			// Now the canvas is updated. Put the canvas in the new frame.
+			tStd::tMemcpy(newFrame->Pixels, canvas, canvasWidth * canvasHeight * sizeof(tPixel));
+
+			//tStd::tMemcpy(newFrame->Pixels, config.output.u.RGBA.rgba, frameWidth * frameHeight * sizeof(tPixel));
 			WebPFreeDecBuffer(&config.output);
 			Frames.Append(newFrame);
 		}
@@ -121,9 +141,55 @@ typedef enum WebPMuxAnimBlend {
 		WebPDemuxReleaseIterator(&iter);
 	}
 
+	delete[] canvas;
 	WebPDemuxDelete(demux);
 	delete[] webpFileInMemory;
 	return true;
+}
+
+
+void tImageWEBP::CopyRegion(tPixel* dst, int dstW, int dstH, tPixel* src, int srcW, int srcH, int offsetX, int offsetY, bool blend)
+{
+	// Do nothing if anything wrong.
+	if (!dst || !src || (dstW*dstH <= 0) || (srcW*srcH <= 0))
+		return;
+
+	// Also check that the entire src region fits inside the dst canvas.
+	if ((offsetX < 0) || (offsetX >= dstW) || (offsetY < 0) || (offsetY >= dstH))
+		return;
+
+	if ((offsetX+srcW > dstW) || (offsetY+srcH > dstH))
+		return;
+
+	// for each row of the src put it in dest.
+	for (int sy = 0; sy < srcH; sy++)
+	{
+		int rowWidth = srcW;
+		tPixel* dstRow = dst + ((offsetY+sy)*dstW + offsetX);
+		tPixel* srcRow = src + (sy*srcW);
+		for (int sx = 0; sx < rowWidth; sx++)
+		{
+			if (blend)
+			{
+				tColourf scol(srcRow[sx]);
+				tColourf dcol(dstRow[sx]);
+				float alpha = scol.A;
+				float oneMinusAlpha = 1.0f - alpha;
+
+				tColourf pixelCol = scol;
+				pixelCol.R = pixelCol.R*alpha + dcol.R*oneMinusAlpha;
+				pixelCol.G = pixelCol.G*alpha + dcol.G*oneMinusAlpha;
+				pixelCol.B = pixelCol.B*alpha + dcol.B*oneMinusAlpha;
+				pixelCol.A = alpha;
+
+				dstRow[sx].Set(pixelCol);				
+			}
+			else
+			{
+				dstRow[sx] = srcRow[sx];
+			}
+		}
+	}
 }
 
 

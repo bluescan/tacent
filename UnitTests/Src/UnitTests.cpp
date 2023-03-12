@@ -190,7 +190,7 @@ int main(int argc, char** argv)
 	// tTest(FindRec);
 	// tTest(Network);
 	// tTest(Time);
-	tTest(CmdLine);
+	// tTest(CmdLine);
 	// tTest(String);
 	// tTest(List);
 	// tTest(ListExtra);
@@ -204,7 +204,7 @@ int main(int argc, char** argv)
 	// tTest(ImageLoad);
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
-	// tTest(ImageMultiFrame);
+	tTest(ImageMultiFrame);
 	// tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);
