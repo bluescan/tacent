@@ -104,8 +104,13 @@ public:
 	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 	tList<tFrame> Frames;
 
+	// The background colour of webp files defaults to white only because that is what popular browsers default to.
+	// Animated webp files can override this colour. They store a background colour in the file itself.
+	// The Load function above sets this colour every time it is called.
+	tColour4i BackgroundColour = tColour4i::white;
+
 private:
-	void CopyRegion(tPixel* dst, int dstW, int dstH, tPixel* src, int srcW, int srcH, int offsetX, int offsetY, bool blend);
+	bool CopyRegion(tPixel* dst, int dstW, int dstH, tPixel* src, int srcW, int srcH, int offsetX, int offsetY, bool blend);
 };
 
 
@@ -144,10 +149,10 @@ inline tFrame* tImage::tImageWEBP::GetFrame(int frameNum)
 
 inline void tImageWEBP::Clear()
 {
+	PixelFormatSrc = tPixelFormat::Invalid;
 	while (tFrame* frame = Frames.Remove())
 		delete frame;
-
-	PixelFormatSrc = tPixelFormat::Invalid;
+	BackgroundColour = tColour4i::white;	
 }
 
 

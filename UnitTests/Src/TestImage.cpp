@@ -1033,18 +1033,18 @@ tTestUnit(ImageMultiFrame)
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImageMultiFrame)
 
-#if 0
+	#if 0
 	tImageWEBP webpSrc0("TestData/Images/Demux_Shy.webp");
 	tImageTIFF tiffDst0(webpSrc0.Frames, true);
 	tiffDst0.Save("TestData/Images/Demux_Shy.tiff");
-	tRequire(tSystem::tFileExists("TestData/Images/Demux_Shy.tiff"));
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenDemux_Shy.tiff"));
 
 	tImageWEBP webpSrc1("TestData/Images/Demux_Confused.webp");
 	tImageTIFF tiffDst1(webpSrc1.Frames, true);
 	tiffDst1.Save("TestData/Images/Demux_Confused.tiff");
-	tRequire(tSystem::tFileExists("TestData/Images/Demux_Confused.tiff"));
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenDemux_Confused.tiff"));
 	return;
-#endif
+	#endif
 
 	tImageTIFF tif;
 	tImageTGA tga;

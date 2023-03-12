@@ -57,21 +57,22 @@ bool tImageWEBP::Load(const tString& webpFile)
 		return false;
 	}
 
-	tColour4i bgColour = tColour4i::white;
 	if (numFrames > 1)
 	{
+		// From the WebP 
 		// Bits 00 to 07: Alpha. Bits 08 to 15: Red. Bits 16 to 23: Green. Bits 24 to 31: Blue.
 		uint32 col = WebPDemuxGetI(demux, WEBP_FF_BACKGROUND_COLOR);
-		bgColour.R = (col >> 8 ) & 0xFF;
-		bgColour.G = (col >> 16) & 0xFF;
-		bgColour.B = (col >> 24) & 0xFF;
-		bgColour.A = (col >> 0 ) & 0xFF;
+		BackgroundColour.R = (col >> 8 ) & 0xFF;
+		BackgroundColour.G = (col >> 16) & 0xFF;
+		BackgroundColour.B = (col >> 24) & 0xFF;
+		BackgroundColour.A = (col >> 0 ) & 0xFF;
 	}
 
 	// We start by creatng the initial canvas in memory set to the background colour.
+	// This is our 'working area' where we copy the individual frames out if.
 	tPixel* canvas = new tPixel[canvasWidth*canvasHeight];
 	for (int p = 0; p < canvasWidth*canvasHeight; p++)
-		canvas[p] = bgColour;
+		canvas[p] = BackgroundColour;
 
 	// Iterate over all frames.
 	PixelFormatSrc = tPixelFormat::R8G8B8;
@@ -90,14 +91,14 @@ bool tImageWEBP::Load(const tString& webpFile)
 			if (result != VP8_STATUS_OK)
 				continue;
 
-			// What do we do with the canvas? If nt animated it's not going to matter.
+			// What do we do with the canvas? If not animated it's not going to matter. From WebP source:
 			// Dispose method (animation only). Indicates how the area used by the current
 			// frame is to be treated before rendering the next frame on the canvas.
 			switch (iter.dispose_method)
 			{
 				case WEBP_MUX_DISPOSE_BACKGROUND:
 					for (int p = 0; p < canvasWidth*canvasHeight; p++)
-						canvas[p] = bgColour;
+						canvas[p] = BackgroundColour;
 					break;
 
 				default:
@@ -105,9 +106,9 @@ bool tImageWEBP::Load(const tString& webpFile)
 					break;
 			}
 
-			int frameWidth = config.output.width;
-			int frameHeight = config.output.height;
-			if ((frameWidth <= 0) || (frameHeight <= 0))
+			int fragWidth = config.output.width;
+			int fragHeight = config.output.height;
+			if ((fragWidth <= 0) || (fragHeight <= 0))
 				continue;
 
 			// All frames in tacent are canvas-sized. We copy the current canvas into it.
@@ -127,12 +128,16 @@ bool tImageWEBP::Load(const tString& webpFile)
 				blend = true;
 
 			// The flip flag doesn't fix the offsets for WebP so we need the canvasHeight - iter.y_offset - frameHeight.
-			CopyRegion(canvas, canvasWidth, canvasHeight, (tPixel*)config.output.u.RGBA.rgba, frameWidth, frameHeight, iter.x_offset, canvasHeight - iter.y_offset - frameHeight, blend);
+			bool copied = CopyRegion(canvas, canvasWidth, canvasHeight, (tPixel*)config.output.u.RGBA.rgba, fragWidth, fragHeight, iter.x_offset, canvasHeight - iter.y_offset - fragHeight, blend);
+			if (!copied)
+			{
+				delete newFrame;
+				continue;
+			}
 
 			// Now the canvas is updated. Put the canvas in the new frame.
 			tStd::tMemcpy(newFrame->Pixels, canvas, canvasWidth * canvasHeight * sizeof(tPixel));
 
-			//tStd::tMemcpy(newFrame->Pixels, config.output.u.RGBA.rgba, frameWidth * frameHeight * sizeof(tPixel));
 			WebPFreeDecBuffer(&config.output);
 			Frames.Append(newFrame);
 		}
@@ -144,22 +149,22 @@ bool tImageWEBP::Load(const tString& webpFile)
 	delete[] canvas;
 	WebPDemuxDelete(demux);
 	delete[] webpFileInMemory;
-	return true;
+
+	return (Frames.GetNumItems() > 0);
 }
 
 
-void tImageWEBP::CopyRegion(tPixel* dst, int dstW, int dstH, tPixel* src, int srcW, int srcH, int offsetX, int offsetY, bool blend)
+bool tImageWEBP::CopyRegion(tPixel* dst, int dstW, int dstH, tPixel* src, int srcW, int srcH, int offsetX, int offsetY, bool blend)
 {
 	// Do nothing if anything wrong.
 	if (!dst || !src || (dstW*dstH <= 0) || (srcW*srcH <= 0))
-		return;
+		return false;
 
 	// Also check that the entire src region fits inside the dst canvas.
 	if ((offsetX < 0) || (offsetX >= dstW) || (offsetY < 0) || (offsetY >= dstH))
-		return;
-
+		return false;
 	if ((offsetX+srcW > dstW) || (offsetY+srcH > dstH))
-		return;
+		return false;
 
 	// for each row of the src put it in dest.
 	for (int sy = 0; sy < srcH; sy++)
@@ -182,7 +187,7 @@ void tImageWEBP::CopyRegion(tPixel* dst, int dstW, int dstH, tPixel* src, int sr
 				pixelCol.B = pixelCol.B*alpha + dcol.B*oneMinusAlpha;
 				pixelCol.A = alpha;
 
-				dstRow[sx].Set(pixelCol);				
+				dstRow[sx].Set(pixelCol);
 			}
 			else
 			{
@@ -190,6 +195,8 @@ void tImageWEBP::CopyRegion(tPixel* dst, int dstW, int dstH, tPixel* src, int sr
 			}
 		}
 	}
+
+	return true;
 }
 
 
