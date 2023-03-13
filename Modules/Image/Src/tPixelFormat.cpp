@@ -3,7 +3,7 @@
 // Pixel formats in Tacent. Not all formats are fully supported. Certainly BC 4, 5, and 7 may not have extensive HW
 // support at this time.
 //
-// Copyright (c) 2004-2006, 2017, 2019, 2021, 2022 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2019, 2021-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -15,6 +15,7 @@
 
 #include <Foundation/tAssert.h>
 #include <Foundation/tStandard.h>
+#include <Foundation/tFundamentals.h>
 #include "Image/tPixelFormat.h"
 
 
@@ -278,4 +279,203 @@ tImage::tPixelFormat tImage::tGetPixelFormat(const char* name)
 			return tPixelFormat(p);
 
 	return tPixelFormat::Invalid;
+}
+
+
+const char* tImage::tAspectRatioNames[int(tAspectRatio::NumRatios)+1] =
+{
+	"Free",
+
+	"3:1",
+	"2:1",
+	"16:9",
+	"5:3",
+	"16:10",
+	"8:5",
+	"3:2",
+	"16:11",
+	"7:5",
+	"4:3",
+	"22:17",
+	"14:11",
+	"5:4",
+
+	"1:1",
+
+	"4:5",
+	"11:14",
+	"17:22",
+	"3:4",
+	"5:7",
+	"11:16",
+	"2:3",
+	"5:8",
+	"10:16",
+	"3:5",
+	"9:16",
+	"1:2",
+	"1:3",
+
+	"2x3",		"2x3L",
+	"3x5",		"3x5L",
+	"4x4",
+	"4x6",		"4x6L",
+	"5x7",		"5x7L",
+	"5x15",		"5x15L",
+	"8x8",
+	"8x10",		"8x10L",
+	"8x24",		"8x24L",
+	"8.5x11",	"8.5x11L",
+	"9x16",		"9x16L",
+	"11x14",	"11x14L",
+	"11x16",	"11x16L",
+	"12x12",
+	"12x18",	"12x18L",
+	"12x36",	"12x36L",
+	"16x20",	"16x20L",
+	"18x24",	"18x24L",
+	"20x30",	"20x30L",
+	"24x36",	"24x36L",
+
+	"User"
+};
+
+
+tImage::tAspectRatio tImage::tGetReducedAspectRatio(tAspectRatio aspect)
+{
+	switch (aspect)
+	{
+		case tAspectRatio::Screen_16_10:	return tAspectRatio::Screen_8_5;
+		case tAspectRatio::Screen_10_16:	return tAspectRatio::Screen_5_8;
+
+		case tAspectRatio::Print_2x3:		return tAspectRatio::Screen_2_3;
+		case tAspectRatio::Print_2x3_L:		return tAspectRatio::Screen_3_2;
+		case tAspectRatio::Print_3x5:		return tAspectRatio::Screen_3_5;
+		case tAspectRatio::Print_3x5_L:		return tAspectRatio::Screen_5_3;
+		case tAspectRatio::Print_4x4:		return tAspectRatio::Screen_1_1;
+		case tAspectRatio::Print_4x6:		return tAspectRatio::Screen_2_3;
+		case tAspectRatio::Print_4x6_L:		return tAspectRatio::Screen_3_2;
+		case tAspectRatio::Print_5x7:		return tAspectRatio::Screen_5_7;
+		case tAspectRatio::Print_5x7_L:		return tAspectRatio::Screen_7_5;
+		case tAspectRatio::Print_5x15:		return tAspectRatio::Screen_1_3;
+		case tAspectRatio::Print_5x15_L:	return tAspectRatio::Screen_3_1;
+		case tAspectRatio::Print_8x8:		return tAspectRatio::Screen_1_1;
+		case tAspectRatio::Print_8x10:		return tAspectRatio::Screen_4_5;
+		case tAspectRatio::Print_8x10_L:	return tAspectRatio::Screen_5_4;
+		case tAspectRatio::Print_8x24:		return tAspectRatio::Screen_1_3;
+		case tAspectRatio::Print_8x24_L:	return tAspectRatio::Screen_3_1;
+		case tAspectRatio::Print_8p5x11:	return tAspectRatio::Screen_17_22;
+		case tAspectRatio::Print_8p5x11_L:	return tAspectRatio::Screen_22_17;
+		case tAspectRatio::Print_9x16:		return tAspectRatio::Screen_9_16;
+		case tAspectRatio::Print_9x16_L:	return tAspectRatio::Screen_16_9;
+		case tAspectRatio::Print_11x14:		return tAspectRatio::Screen_11_14;
+		case tAspectRatio::Print_11x14_L:	return tAspectRatio::Screen_14_11;
+		case tAspectRatio::Print_11x16:		return tAspectRatio::Screen_11_16;
+		case tAspectRatio::Print_11x16_L:	return tAspectRatio::Screen_16_11;
+		case tAspectRatio::Print_12x12:		return tAspectRatio::Screen_1_1;
+		case tAspectRatio::Print_12x18:		return tAspectRatio::Screen_2_3;
+		case tAspectRatio::Print_12x18_L:	return tAspectRatio::Screen_3_2;
+		case tAspectRatio::Print_12x36:		return tAspectRatio::Screen_1_3;
+		case tAspectRatio::Print_12x36_L:	return tAspectRatio::Screen_3_1;
+		case tAspectRatio::Print_16x20:		return tAspectRatio::Screen_4_5;
+		case tAspectRatio::Print_16x20_L:	return tAspectRatio::Screen_5_4;
+		case tAspectRatio::Print_18x24:		return tAspectRatio::Screen_3_4;
+		case tAspectRatio::Print_18x24_L:	return tAspectRatio::Screen_4_3;
+		case tAspectRatio::Print_20x30:		return tAspectRatio::Screen_2_3;
+		case tAspectRatio::Print_20x30_L:	return tAspectRatio::Screen_3_2;
+		case tAspectRatio::Print_24x36:		return tAspectRatio::Screen_2_3;
+		case tAspectRatio::Print_24x36_L:	return tAspectRatio::Screen_3_2;
+
+		// Handles no reduction, Invalid, and User.
+		default:							return aspect;
+	}
+
+	// We'll never get here.
+	return tAspectRatio::Invalid;
+}
+
+
+namespace tImage
+{
+	struct tAspectFrac { int Num; int Den; };
+	static tAspectFrac tAspectRatioTable[int(tAspectRatio::NumScreenRatios)] =
+	{
+		{  3, 1  },
+		{  2, 1  },
+		{ 16, 9  },
+		{  5, 3  },
+		{  8, 5  },		// Unused.
+		{  8, 5  },
+		{  3, 2  },
+		{ 16, 11 },
+		{  7, 5  },
+		{  4, 3  },
+		{ 22, 17 },
+		{ 14, 11 },
+		{  5, 4  },
+
+		{  1, 1  },
+
+		{  4, 5  },
+		{ 11, 14 },
+		{ 17, 22 },
+		{  3, 4  },
+		{  5, 7  },
+		{ 11, 16 },
+		{  2, 3  },
+		{  5, 8  },
+		{  5, 8  },		// Unused.
+		{  3, 5  },
+		{  9, 16 },
+		{  1, 2  },
+		{  1, 3  }
+	};
+}
+
+
+bool tImage::tGetAspectRatioFrac(int& numerator, int& denominator, tAspectRatio aspect)
+{
+	switch (aspect)
+	{
+		case tAspectRatio::Invalid:
+		case tAspectRatio::User:
+			numerator = 0;
+			denominator = 0;
+			return false;
+	}
+	tReduceAspectRatio(aspect);
+
+	tAspectFrac& frac = tAspectRatioTable[int(aspect)-1];
+	numerator = frac.Num;
+	denominator = frac.Den;
+	return true;
+}
+
+
+tImage::tAspectRatio tImage::tGetAspectRatio(int numerator, int denominator)
+{
+	if ((numerator <= 0) || (denominator <= 0))
+		return tAspectRatio::Invalid;
+
+	// Next we need to reduce the fraction.
+	int gcd = tMath::tGreatestCommonDivisor(numerator, denominator);
+	numerator /= gcd;
+	denominator /= gcd;
+
+	// Now we look for it.
+	int foundIndex = -1;
+	for (int i = 0; i < int(tAspectRatio::NumScreenRatios); i++)
+	{
+		tAspectFrac& frac = tAspectRatioTable[i];
+		if ((frac.Num == numerator) && (frac.Den == denominator))
+		{
+			foundIndex = i;
+			break;
+		}
+	}
+
+	if (foundIndex == -1)	
+		return tAspectRatio::User;
+
+	return tAspectRatio(foundIndex + 1);
 }

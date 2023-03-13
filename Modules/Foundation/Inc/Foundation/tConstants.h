@@ -2,7 +2,7 @@
 //
 // Physical and mathematical constants.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019, 2020, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -50,6 +50,7 @@ const uint32 MinUint32							= 0;
 const uint32 MaxUint32							= 0xFFFFFFFF;
 const uint32 MinUint16							= 0;
 const uint32 MaxUint16							= 0xFFFF;
-
+const int MinInt								= 1 << (sizeof(int)*8 - 1);
+const int MaxInt								= uint(MinInt) - 1;
 
 }

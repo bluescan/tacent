@@ -3,7 +3,7 @@
 // Pixel formats in Tacent. Not all formats are fully supported. Certainly BC 4, 5, and 7 may not have extensive HW
 // support at this time.
 //
-// Copyright (c) 2004-2006, 2017, 2019, 2022 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2019, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -177,29 +177,30 @@ enum class tAspectRatio
 	Screen_2_1,				// 2.0
 	Screen_16_9,			// 1.7777777
 	Screen_5_3,				// 1.6666666
-	Screen_16_10,			// 1.6
-	Screen_8_5,				// 1.6			Same as 16_10. Different name.
+	Screen_16_10,			// 1.6			Reduces to 8_5
+	Screen_8_5,				// 1.6
 	Screen_3_2,				// 1.5
 	Screen_16_11,			// 1.4545454
 	Screen_7_5,				// 1.4
 	Screen_4_3,				// 1.3333333
 	Screen_22_17,			// 1.2941176
-	Screen_14x11,			// 1.2727272
+	Screen_14_11,			// 1.2727272
 	Screen_5_4,				// 1.25
 	Screen_1_1,				// 1.0
 	Screen_4_5,				// 0.8
-	Screen_11x14,			// 0.7857142
+	Screen_11_14,			// 0.7857142
 	Screen_17_22,			// 0.7727272
 	Screen_3_4,				// 0.75
 	Screen_5_7,				// 0.7142857
 	Screen_11_16,			// 0.6875
 	Screen_2_3,				// 0.6666666
-	Screen_5_8,				// 0.625		Same as 10_16. Different name.
-	Screen_10_16,			// 0.625
+	Screen_5_8,				// 0.625
+	Screen_10_16,			// 0.625		Reduces to 5_8
 	Screen_3_5,				// 0.6
 	Screen_9_16,			// 0.5625
 	Screen_1_2,				// 0.5
 	Screen_1_3,				// 0.3333333
+	NumScreenRatios			= Screen_1_3,
 
 	// Print sizes listed by lower of the two dimensions and ordered by the lower size.
 	// L means landscape.
@@ -239,11 +240,33 @@ enum class tAspectRatio
 	Print_20x30,			// 0.6666666	Same as 2_3.
 	Print_20x30_L,			// 1.5			Same as 3_2.
 	Print_24x36,			// 0.6666666	Same as 2_3.
-	Print_24x36_L			// 1.5			Same as 3_2.
+	Print_24x36_L,			// 1.5			Same as 3_2.
+	NumRatios,				// Including Invalid.
+	User					= NumRatios
 
 	//	{ "Free", "2:1", "16:9", "16:10", "3:2", "4:3", "1:1", "3:4", "2:3", "10:16", "9:16", "1:2", "User" };
 };
 
+// The 'User' aspect ratio name is included in this array as the last item.
+extern const char* tAspectRatioNames[int(tAspectRatio::NumRatios)+1];
+
+// Returns 0.0f for Invalid/Free. Returns -1.0f for User.
+float tGetAspectRatioFloat(tAspectRatio);
+
+// If Invalid/Free/User is passed in, returns false and sets numerator and denominator to 0.
+// Otherwise returns true and fills in numerator and denominator in reduced form (16:10 -> 8:5).
+bool tGetAspectRatioFrac(int& numerator, int& denominator, tAspectRatio);
+
+// Returns the aspect ratio given numerator and denominator. Returns Invalid if either numerator or denominator
+// are <= 0. Returns User if the ratio doesn't exist in the enum. Returns the most reduced Screen_ ratio
+// otherwise. For example tGetAspectRatio(32,20) returns Screen_8_5 rather than Screen_16_10. Does not return
+// any of the Print_ enumerants.
+tAspectRatio tGetAspectRatio(int numerator, int denominator);
+
+// Gets the most reduced screen enumerant given a valid aspect ratio. Returns Invalid if Invalid passed in.
+// Returns User if User passed in. The function tReduceAspectRatio does the same thing, just different syntax/calling.
+tAspectRatio tGetReducedAspectRatio(tAspectRatio);
+void tReduceAspectRatio(tAspectRatio&);
 
 }
 
@@ -379,4 +402,28 @@ inline int tImage::tGetNumBlocks(int blockWH, int imageWH)
 {
 	tAssert(blockWH > 0);
 	return (imageWH + blockWH - 1) / blockWH;
+}
+
+
+inline void tImage::tReduceAspectRatio(tAspectRatio& aspect)
+{
+	aspect = tGetReducedAspectRatio(aspect);
+}
+
+
+inline float tImage::tGetAspectRatioFloat(tAspectRatio aspect)
+{
+	tReduceAspectRatio(aspect);
+	switch (aspect)
+	{
+		case tAspectRatio::Invalid:			return 0.0f;
+		case tAspectRatio::User:			return -1.0f;
+	}
+
+	int numerator, denominator;
+	bool ok = tGetAspectRatioFrac(numerator, denominator, aspect);
+	if (!ok)
+		return 0.0f;
+
+	return float(numerator) / float(denominator);
 }

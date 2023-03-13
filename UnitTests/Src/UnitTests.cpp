@@ -184,6 +184,7 @@ int main(int argc, char** argv)
 	#else
 
 	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
+	tTest(Fundamentals);
 	// tTest(FileTypes);
 	// tTest(Directories);
 	// tTest(File);
@@ -204,7 +205,7 @@ int main(int argc, char** argv)
 	// tTest(ImageLoad);
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
-	tTest(ImageMultiFrame);
+	// tTest(ImageMultiFrame);
 	// tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);

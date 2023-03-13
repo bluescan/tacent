@@ -3,7 +3,7 @@
 // Core math functions needed by the rest or of the module as well as for external use. Functions include trigonometric
 // functions, intervals, angle manipulation, power functions, and other analytic functions.
 //
-// Copyright (c) 2004, 2017, 2019, 2020, 2022 Tristan Grimmer.
+// Copyright (c) 2004, 2017, 2019, 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -108,6 +108,18 @@ struct tDiv64t																											{ int64 Quotient; int64 Remainder; };
 tDiv64t tDiv64(int64 numerator, int64 denominator);
 struct tDivU64t																											{ uint64 Quotient; uint64 Remainder; };
 tDivU64t tDivU64(uint64 numerator, uint64 denominator);
+
+// Finds the Greatest Common Divisor of a and b. The biggest natural number that divides into both. Note that any number
+// other than 0 will divide 0, so tGCD(0,12) == 12. Also note tGCD(0,0) returns the biggest number we can: MaxInt.
+// Negatives are well defined. Result is always positive. tGCD(-12,8), tGCD(12,-8), and tGCD(-12,-8) == 4.
+// Note that gcd(a,b,c) = gcd(gcd(a,b),c)
+int tGCD(int a, int b);
+inline int tGreatestCommonDivisor(int a, int b)																			{ return tGCD(a, b); }
+
+// Finds the Least Common Multiple of a and b. Always returns a positive result (or 0). If either a or b (or both) are
+// 0, the smallest multiple is also 0. Note that lcm(a,b,c) = lcm(lcm(a,b),c)
+int tLCM(int a, int b);
+inline int tLeastCommonMultiple(int a, int b)																			{ return tLCM(a, b); }
 
 // Use this instead of casting to int. The only difference is it rounds instead of truncating and is way faster -- The
 // FPU stays in rounding mode so pipeline not flushed.
@@ -318,6 +330,46 @@ inline tMath::tDivU64t tMath::tDivU64(uint64 numerator, uint64 denominator)
 	r.Quotient = numerator/denominator;
 	r.Remainder = numerator - r.Quotient*denominator;
 	return r;
+}
+
+
+// This helper shouldn't be in the header -- but it's small and not worth losing inline by putting it in the cpp.
+namespace tMath
+{
+	inline int tGCDRec(int a, int b)
+	{
+		// This is the Euclidean algorithm:
+		// b<a : gdc(a,b) = gdc(a-b,b).
+		// Eg. gdc(16,4) == gdc(12,4) == gdc(8,4) == gdc(4,4) (done).
+		// Instead of looping through the subracts one by one, we can just use the remainder / mod operator.
+		if (b == 0)
+			return a;
+		
+		return tGCDRec(b, a % b);
+	}
+}
+
+
+inline int tMath::tGCD(int a, int b)
+{
+	// Both zeroes is undefined. Any number divides zero, but since the other number is also zero, the
+	// most reasonable it to return the biggest number we can.
+	if ((a == 0) && (b == 0))
+		return MaxInt;
+
+	if (a < 0) a = -a;
+	if (b < 0) b = -b;
+	return tGCDRec(a, b);
+}
+
+
+inline int tMath::tLCM(int a, int b)
+{
+	// lcm(a,b) = |a| * (|b|/gcd(a,b))
+	// Since tGCD returns MaxInt for tGCD(0,0), we don't need to worry about divide by zero.
+	if (a < 0) a = -a;
+	if (b < 0) b = -b;
+	return a * ( b / tGCD(a,b) );
 }
 
 

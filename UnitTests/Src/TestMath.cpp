@@ -2,7 +2,7 @@
 //
 // Math module tests.
 //
-// Copyright (c) 2017, 2019-2021 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2021, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -88,27 +88,91 @@ tTestUnit(Fundamentals)
 	for (uint v = 0x7FFFFFF0; v != 0x80000000; v++)
 		tPrintf("Log2(%d) = %d\n", v, tMath::tLog2(v));
 
-	tPrintf("tCeiling(-2.5f) : %f.\n", tCeiling(-2.5f));
+	tPrintf("tCeiling(-2.5f) : %f\n", tCeiling(-2.5f));
 	tRequire(tCeiling(-2.5f) == -2.0f);
 
 	// Test rounding.
-	tPrintf("tRound(0.0f) : %f.\n", tRound(0.0f));
+	tPrintf("tRound(0.0f) : %f\n", tRound(0.0f));
 	tRequire(tRound(0.0f) == 0.0f);
 
-	tPrintf("tRound(2.0f) : %f.\n", tRound(2.0f));
+	tPrintf("tRound(2.0f) : %f\n", tRound(2.0f));
 	tRequire(tRound(2.0f) == 2.0f);
 
-	tPrintf("tRound(2.1f) : %f.\n", tRound(2.1f));
+	tPrintf("tRound(2.1f) : %f\n", tRound(2.1f));
 	tRequire(tRound(2.1f) == 2.0f);
 
-	tPrintf("tRound(2.5f) : %f.\n", tRound(2.5f));
+	tPrintf("tRound(2.5f) : %f\n", tRound(2.5f));
 	tRequire(tRound(2.5f) == 3.0f);
 
-	tPrintf("tRound(2.9f) : %f.\n", tRound(2.9f));
+	tPrintf("tRound(2.9f) : %f\n", tRound(2.9f));
 	tRequire(tRound(2.9f) == 3.0f);
 
-	tPrintf("tRound(-1.5f) : %f.\n", tRound(-1.5f));
+	tPrintf("tRound(-1.5f) : %f\n", tRound(-1.5f));
 	tRequire(tRound(-1.5f) == -1.0f);
+
+	// I know of these plats int is 32 bits.
+	#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_LINUX)
+	tRequire(MinInt == MinInt32);
+	tRequire(MaxInt == MaxInt32);
+	#endif
+
+	//
+	// Test Greatest Common Divisor.
+	//
+	int gcd = 0;
+	gcd = tGCD(30,12);							// 2*3*5=30 and 2*2*3=12
+	tPrintf("tGCD(30,12) : %d\n", gcd);
+	tRequire(6 == tGCD(30,12));					// Explicit value check.
+	tRequire(tGCD(30,12) == tGCD(-30,12));
+	tRequire(tGCD(-30,12) == tGCD(30,-12));
+	tRequire(tGCD(30,-12) == tGCD(-30,-12));
+	tRequire(tGCD(-30,-12) == tGCD(12,30));		// Swap.
+	tRequire(tGCD(12,30) == tGCD(-12,30));
+	tRequire(tGCD(-12,30) == tGCD(12,-30));
+	tRequire(tGCD(12,-30) == tGCD(-12,-30));
+
+	gcd = tGCD(12,8);
+	tPrintf("tGCD(12,8) : %d\n", gcd);
+	tRequire(gcd == 4);
+
+	gcd = tGCD(8,12);
+	tPrintf("tGCD(8,12) : %d\n", gcd);
+	tRequire(gcd == 4);
+
+	gcd = tGCD(-12,8);
+	tPrintf("tGCD(-12,8) : %d\n", gcd);
+	tRequire(gcd == 4);
+
+	gcd = tGCD(-8,12);
+	tPrintf("tGCD(-8,12) : %d\n", gcd);
+	tRequire(gcd == 4);
+
+	gcd = tGCD(12,0);
+	tPrintf("tGCD(12,0) : %d\n", gcd);
+	tRequire(gcd == 12);
+
+	gcd = tGCD(0,12);
+	tPrintf("tGCD(0,12) : %d\n", gcd);
+	tRequire(gcd == 12);
+
+	gcd = tGCD(0, 0);
+	tPrintf("tGCD(0,0) : %d\n", gcd);
+	tRequire(gcd == MaxInt);
+
+	//
+	// Test Least Common Multiple.
+	//
+	int lcm = 0;
+	lcm = tLCM(6,9);
+	tPrintf("tLCM(6,9) : %d\n", lcm);
+	tRequire(18 == tLCM(6,9));					// Explicit value check.
+	tRequire(tLCM(6,9) == tLCM(-6,9));
+	tRequire(tLCM(-6,9) == tLCM(6,-9));
+	tRequire(tLCM(6,-9) == tLCM(-6,-9));
+	tRequire(tLCM(-6,-9) == tLCM(9,6));			// Swap.
+	tRequire(tLCM(9,6) == tLCM(-9,6));
+	tRequire(tLCM(-9,6) == tLCM(9,-6));
+	tRequire(tLCM(9,-6) == tLCM(-9,-6));
 }
 
 
