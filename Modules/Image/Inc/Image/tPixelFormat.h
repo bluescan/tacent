@@ -171,84 +171,92 @@ tPixelFormat tGetPixelFormat(const char* name);
 // They are ordered from largest to smallest.
 enum class tAspectRatio
 {
-	Invalid,				// Must be 0.
-	Free					= Invalid,
-	Screen_3_1,				// 3.0
-	Screen_2_1,				// 2.0
-	Screen_16_9,			// 1.7777777
-	Screen_5_3,				// 1.6666666
-	Screen_16_10,			// 1.6			Reduces to 8_5
-	Screen_8_5,				// 1.6
-	Screen_3_2,				// 1.5
-	Screen_16_11,			// 1.4545454
-	Screen_7_5,				// 1.4
-	Screen_4_3,				// 1.3333333
-	Screen_22_17,			// 1.2941176
-	Screen_14_11,			// 1.2727272
-	Screen_5_4,				// 1.25
-	Screen_1_1,				// 1.0
-	Screen_4_5,				// 0.8
-	Screen_11_14,			// 0.7857142
-	Screen_17_22,			// 0.7727272
-	Screen_3_4,				// 0.75
-	Screen_5_7,				// 0.7142857
-	Screen_11_16,			// 0.6875
-	Screen_2_3,				// 0.6666666
-	Screen_5_8,				// 0.625
-	Screen_10_16,			// 0.625		Reduces to 5_8
-	Screen_3_5,				// 0.6
-	Screen_9_16,			// 0.5625
-	Screen_1_2,				// 0.5
-	Screen_1_3,				// 0.3333333
-	NumScreenRatios			= Screen_1_3,
+	Invalid,						// Must be 0.
+	Free			= Invalid,
+	First_Valid,
+	First_Screen	= First_Valid,
+	Screen_3_1		= First_Screen,	// 3.0
+	Screen_2_1,						// 2.0
+	Screen_16_9,					// 1.7777777
+	Screen_5_3,						// 1.6666666
+	Screen_16_10,					// 1.6			Reduces to 8_5
+	Screen_8_5,						// 1.6
+	Screen_3_2,						// 1.5
+	Screen_16_11,					// 1.4545454
+	Screen_7_5,						// 1.4
+	Screen_4_3,						// 1.3333333
+	Screen_22_17,					// 1.2941176
+	Screen_14_11,					// 1.2727272
+	Screen_5_4,						// 1.25
+	Screen_1_1,						// 1.0
+	Screen_4_5,						// 0.8
+	Screen_11_14,					// 0.7857142
+	Screen_17_22,					// 0.7727272
+	Screen_3_4,						// 0.75
+	Screen_5_7,						// 0.7142857
+	Screen_11_16,					// 0.6875
+	Screen_2_3,						// 0.6666666
+	Screen_5_8,						// 0.625
+	Screen_10_16,					// 0.625		Reduces to 5_8
+	Screen_3_5,						// 0.6
+	Screen_9_16,					// 0.5625
+	Screen_1_2,						// 0.5
+	Screen_1_3,						// 0.3333333
+	Last_Screen		= Screen_1_3,
+	NumScreenRatios	= Last_Screen,
 
 	// Print sizes listed by lower of the two dimensions and ordered by the lower size.
 	// L means landscape.
-	Print_2x3,				// 0.6666666	Same as 2_3. Wallet size.
-	Print_2x3_L,			// 1.5			Same as 3_2. Wallet size.
-	Print_3x5,				// 0.6			Same as 3_5.
-	Print_3x5_L,			// 1.6666666	Same as 5_3.
-	Print_4x4,				// 1.0			Same as 1_1.
-	Print_4x6,				// 0.6666666	Same as 2_3.
-	Print_4x6_L,			// 1.5			Same as 3_2.
-	Print_5x7,				// 0.7142857	Same as 5_7.
-	Print_5x7_L,			// 1.4			Same as 7_5.
-	Print_5x15,				// 0.3333333	Same as 1_3.
-	Print_5x15_L,			// 3.0			Same as 3_1.
-	Print_8x8,				// 1.0			Same as 1_1.
-	Print_8x10,				// 0.8			Same as 4_5.
-	Print_8x10_L,			// 1.25			Same as 5_4.
-	Print_8x24,				// 0.3333333	Same as 1_3.
-	Print_8x24_L,			// 3.0			Same as 3_1.
-	Print_8p5x11,			// 0.7727272	Same as 17_22.
-	Print_8p5x11_L,			// 1.2941176	Same as 22_17.
-	Print_9x16,				// 0.5625		Same as 9_16.
-	Print_9x16_L,			// 1.7777777	Same as 16_9.
-	Print_11x14,			// 0.7857142	Same as 11_14.
-	Print_11x14_L,			// 1.2727272	Same as 14_11.
-	Print_11x16,			// 0.6875		Same as 11_16.
-	Print_11x16_L,			// 1.4545454	Same as 16_11.
-	Print_12x12,			// 1.0			Same as 1_1.
-	Print_12x18,			// 0.6666666	Same as 2_3.
-	Print_12x18_L,			// 1.5			Same as 3_2.
-	Print_12x36,			// 0.3333333	Same as 1_3.
-	Print_12x36_L,			// 3.0			Same as 3_1.
-	Print_16x20,			// 0.8			Same as 4_5.
-	Print_16x20_L,			// 1.25			Same as 5_4.
-	Print_18x24,			// 0.75			Same as 3_4.
-	Print_18x24_L,			// 1.3333333	Same as 4_3.
-	Print_20x30,			// 0.6666666	Same as 2_3.
-	Print_20x30_L,			// 1.5			Same as 3_2.
-	Print_24x36,			// 0.6666666	Same as 2_3.
-	Print_24x36_L,			// 1.5			Same as 3_2.
-	NumRatios,				// Including Invalid.
-	User					= NumRatios
-
-	//	{ "Free", "2:1", "16:9", "16:10", "3:2", "4:3", "1:1", "3:4", "2:3", "10:16", "9:16", "1:2", "User" };
+	First_Print,
+	Print_2x3		= First_Print,	// 0.6666666	Same as 2_3. Wallet size.
+	Print_2x3_L,					// 1.5			Same as 3_2. Wallet size.
+	Print_3x5,						// 0.6			Same as 3_5.
+	Print_3x5_L,					// 1.6666666	Same as 5_3.
+	Print_4x4,						// 1.0			Same as 1_1.
+	Print_4x6,						// 0.6666666	Same as 2_3.
+	Print_4x6_L,					// 1.5			Same as 3_2.
+	Print_5x7,						// 0.7142857	Same as 5_7.
+	Print_5x7_L,					// 1.4			Same as 7_5.
+	Print_5x15,						// 0.3333333	Same as 1_3.
+	Print_5x15_L,					// 3.0			Same as 3_1.
+	Print_8x8,						// 1.0			Same as 1_1.
+	Print_8x10,						// 0.8			Same as 4_5.
+	Print_8x10_L,					// 1.25			Same as 5_4.
+	Print_8x24,						// 0.3333333	Same as 1_3.
+	Print_8x24_L,					// 3.0			Same as 3_1.
+	Print_8p5x11,					// 0.7727272	Same as 17_22.
+	Print_8p5x11_L,					// 1.2941176	Same as 22_17.
+	Print_9x16,						// 0.5625		Same as 9_16.
+	Print_9x16_L,					// 1.7777777	Same as 16_9.
+	Print_11x14,					// 0.7857142	Same as 11_14.
+	Print_11x14_L,					// 1.2727272	Same as 14_11.
+	Print_11x16,					// 0.6875		Same as 11_16.
+	Print_11x16_L,					// 1.4545454	Same as 16_11.
+	Print_12x12,					// 1.0			Same as 1_1.
+	Print_12x18,					// 0.6666666	Same as 2_3.
+	Print_12x18_L,					// 1.5			Same as 3_2.
+	Print_12x36,					// 0.3333333	Same as 1_3.
+	Print_12x36_L,					// 3.0			Same as 3_1.
+	Print_16x20,					// 0.8			Same as 4_5.
+	Print_16x20_L,					// 1.25			Same as 5_4.
+	Print_18x24,					// 0.75			Same as 3_4.
+	Print_18x24_L,					// 1.3333333	Same as 4_3.
+	Print_20x30,					// 0.6666666	Same as 2_3.
+	Print_20x30_L,					// 1.5			Same as 3_2.
+	Print_24x36,					// 0.6666666	Same as 2_3.
+	Print_24x36_L,					// 1.5			Same as 3_2.
+	Last_Print		= Print_24x36_L,
+	Last_Valid		= Last_Print,
+	NumRatios,						// Including Invalid.
+	User			= NumRatios
 };
 
 // The 'User' aspect ratio name is included in this array as the last item.
 extern const char* tAspectRatioNames[int(tAspectRatio::NumRatios)+1];
+
+bool tIsScreenRatio(tAspectRatio);
+bool tIsPrintRatio(tAspectRatio);
+bool tisValidRatio(tAspectRatio);
 
 // Returns 0.0f for Invalid/Free. Returns -1.0f for User.
 float tGetAspectRatioFloat(tAspectRatio);
@@ -402,6 +410,24 @@ inline int tImage::tGetNumBlocks(int blockWH, int imageWH)
 {
 	tAssert(blockWH > 0);
 	return (imageWH + blockWH - 1) / blockWH;
+}
+
+
+inline bool tImage::tIsScreenRatio(tAspectRatio ratio)
+{
+	return (int(ratio) >= int(tAspectRatio::First_Screen)) && (int(ratio) <= int(tAspectRatio::Last_Screen));
+}
+
+
+inline bool tImage::tIsPrintRatio(tAspectRatio ratio)
+{
+	return (int(ratio) >= int(tAspectRatio::First_Print)) && (int(ratio) <= int(tAspectRatio::Last_Print));
+}
+
+
+inline bool tImage::tisValidRatio(tAspectRatio ratio)
+{
+	return (int(ratio) >= int(tAspectRatio::First_Valid)) && (int(ratio) <= int(tAspectRatio::Last_Valid));
 }
 
 
