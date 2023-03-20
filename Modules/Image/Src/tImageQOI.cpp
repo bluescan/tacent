@@ -187,8 +187,14 @@ tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, const SaveParams& par
 	qoiDesc.height		= Height;
 	qoiDesc.width		= Width;
 
+	// No matter the format, we need to reverse the rows before saving.
+	tPixel* reversedRows = new tPixel[Width*Height];
+	int bytesPerRow = Width*4;
+	for (int y = Height-1; y >= 0; y--)
+		tStd::tMemcpy((uint8*)reversedRows + ((Height-1)-y)*bytesPerRow, (uint8*)Pixels + y*bytesPerRow, bytesPerRow);
+
 	// If we're saving in 24bit we need to convert our source data to 24bit.
-	uint8* pixels		= (uint8*)Pixels;
+	uint8* pixels		= (uint8*)reversedRows;
 	bool deletePixels	= false;
 	if (format == tFormat::BPP24)
 	{
@@ -196,9 +202,9 @@ tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, const SaveParams& par
 		pixels = new uint8[numPixels*3];
 		for (int p = 0; p < numPixels; p++)
 		{
-			pixels[p*3 + 0] = Pixels[p].R;
-			pixels[p*3 + 1] = Pixels[p].G;
-			pixels[p*3 + 2] = Pixels[p].B;
+			pixels[p*3 + 0] = reversedRows[p].R;
+			pixels[p*3 + 1] = reversedRows[p].G;
+			pixels[p*3 + 2] = reversedRows[p].B;
 		}
 		deletePixels = true;
 	}
@@ -210,6 +216,7 @@ tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, const SaveParams& par
 	void* memImage = qoi_encode(pixels, &qoiDesc, &outLength);
 	if (deletePixels)
 		delete[] pixels;
+	delete[] reversedRows;
 
 	if (!memImage)
 		return tFormat::Invalid;
