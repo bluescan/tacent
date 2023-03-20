@@ -53,19 +53,22 @@ bool tImageQOI::Load(const uint8* qoiFileInMemory, int numBytes)
 	// or a pointer to the decoded pixels. On success, the qoi_desc struct is filled with the description from the file
 	// header. The returned pixel data should be free()d after use.
 	qoi_desc results;
-	void* pixelData = qoi_decode(qoiFileInMemory, numBytes, &results, 4);
-	if (!pixelData)
+	void* reversedPixels = qoi_decode(qoiFileInMemory, numBytes, &results, 4);
+	if (!reversedPixels)
 		return false;
 
 	Width			= results.width;	
 	Height			= results.height;
 	ColourSpace		= (results.colorspace == QOI_LINEAR) ? tSpace::Linear : tSpace::sRGB;
 	PixelFormatSrc	= (results.channels == 3) ? tPixelFormat::R8G8B8 : tPixelFormat::R8G8B8A8;
-
 	tAssert((Width > 0) && (Height > 0));
+
+	// Reverse rows.
 	Pixels = new tPixel[Width*Height];
-	tStd::tMemcpy(Pixels, pixelData, Width*Height*sizeof(tPixel));
-	free(pixelData);
+	int bytesPerRow = Width*4;
+	for (int y = Height-1; y >= 0; y--)
+		tStd::tMemcpy((uint8*)Pixels + ((Height-1)-y)*bytesPerRow, (uint8*)reversedPixels + y*bytesPerRow, bytesPerRow);
+	free(reversedPixels);
 
 	return true;
 }
