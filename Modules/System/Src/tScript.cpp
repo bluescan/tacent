@@ -9,7 +9,7 @@
 //
 // The second format is a functional format. ex. a(b,c) See tFunExtression.
 //
-// Copyright (c) 2006, 2017, 2019, 2020, 2022 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -621,13 +621,8 @@ void tExprWriter::WriteAtom(const tString& atom)
 	if (atom.FindChar(' ') == -1)
 		hasSpace = false;
 
-	bool isTuple = true;
-	if (atom.FindChar('(') == -1)
-		isTuple = false;
-
-	// Here we determine whether to use quotes if necessary. If the atom is a tuple (a vector or matrix etc) then we do
-	// not use quotes even if spaces are present.
-	bool useQuotes = (hasSpace && !isTuple) || atom.IsEmpty();
+	// Here we determine whether to use quotes. If the atom has a space, we need them.
+	bool useQuotes = hasSpace || atom.IsEmpty();
 	int numWritten = 0;
 	if (useQuotes)
 		numWritten += tSystem::tWriteFile(ExprFile, &qu, 1);
@@ -653,13 +648,9 @@ void tExprWriter::WriteAtom(const char* atom)
 	if (tStd::tStrchr(atom, ' '))
 		hasSpace = true;
 
-	bool isTuple = false;
-	if (tStd::tStrchr(atom, '('))
-		isTuple = true;
-
 	// Here we determine whether to use quotes if necessary. If the atom is a tuple (a vector or matrix etc) then we do
 	// not use quotes even if spaces are present.
-	bool useQuotes = hasSpace && !isTuple;
+	bool useQuotes = hasSpace;
 	int numWritten = 0;
 	if (useQuotes)
 		numWritten += tSystem::tWriteFile(ExprFile, &qu, 1);
@@ -673,6 +664,36 @@ void tExprWriter::WriteAtom(const char* atom)
 	numWritten += tSystem::tWriteFile(ExprFile, &sp, 1);
 
 	if (numWritten != (1 + (useQuotes ? 2 : 0) + atomLen))
+		throw tScriptError("Cannot write atom '%s' to script file.", atom);
+}
+
+
+void tExprWriter::WriteRaw(const tString& atom)
+{
+	int numWritten = 0;
+
+	int atomLen = atom.Length();
+	numWritten += tSystem::tWriteFile(ExprFile, atom, atomLen);
+
+	char sp = ' ';
+	numWritten += tSystem::tWriteFile(ExprFile, &sp, 1);
+
+	if (numWritten != (1 + atomLen))
+		throw tScriptError("Cannot write atom [%s] to script file.", tPod(atom));
+}
+
+
+void tExprWriter::WriteRaw(const char* atom)
+{
+	int numWritten = 0;
+
+	int atomLen = tStd::tStrlen(atom);
+	numWritten += tSystem::tWriteFile(ExprFile, atom, atomLen);
+
+	char sp = ' ';
+	numWritten += tSystem::tWriteFile(ExprFile, &sp, 1);
+
+	if (numWritten != (1 + atomLen))
 		throw tScriptError("Cannot write atom '%s' to script file.", atom);
 }
 
@@ -753,7 +774,7 @@ void tExprWriter::WriteAtom(const tVector2& v, bool incBitRep)
 			str += ", ";
 	}
 	str += ")";
-	WriteAtom(str);
+	WriteRaw(str);
 }
 
 
@@ -784,7 +805,7 @@ void tExprWriter::WriteAtom(const tVector3& v, bool incBitRep)
 			str += ", ";
 	}
 	str += ")";
-	WriteAtom(str);
+	WriteRaw(str);
 }
 
 
@@ -815,7 +836,7 @@ void tExprWriter::WriteAtom(const tVector4& v, bool incBitRep)
 			str += ", ";
 	}
 	str += ")";
-	WriteAtom(str);
+	WriteRaw(str);
 }
 
 
@@ -846,7 +867,7 @@ void tExprWriter::WriteAtom(const tQuaternion& q, bool incBitRep)
 			str += ", ";
 	}
 	str += ")";
-	WriteAtom(str);
+	WriteRaw(str);
 }
 
 
@@ -877,7 +898,7 @@ void tExprWriter::WriteAtom(const tMatrix2& m, bool incBitRep)
 			str += ", ";
 	}
 	str += ")";
-	WriteAtom(str);
+	WriteRaw(str);
 }
 
 
@@ -908,7 +929,7 @@ void tExprWriter::WriteAtom(const tMatrix4& m, bool incBitRep)
 			str += ", ";
 	}
 	str += ")";
-	WriteAtom(str);
+	WriteRaw(str);
 }
 
 
@@ -925,7 +946,7 @@ void tExprWriter::WriteAtom(const tColouri& c)
 			str += ", ";
 	}
 	str += ")";
-	WriteAtom(str);
+	WriteRaw(str);
 }
 
 

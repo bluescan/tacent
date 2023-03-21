@@ -270,6 +270,13 @@ public:
 	void WriteAtom(const tMath::tMatrix4&, bool incBitRep = true);
 	void WriteAtom(const tColouri&);
 
+	// These functions write a raw string. They do not check for spaces being used and will not add quotes if there is.
+	// This can be useful for qriting tuples like (a, b) that are still atoms even though they may contain a space after
+	// the commas. These functions do still write the trailing space.
+	void WriteRaw(const tString&);
+	void WriteRaw(const char*);
+	void WriteRaw(const char8_t*);
+
 	// Writes a single line comment to the script file.
 	void WriteComment(const char* = nullptr);
 	void WriteComment(const char8_t*);
@@ -297,7 +304,8 @@ public:
 	void Begin()																										{ BeginExpression(); }
 	void End()																											{ EndExpression(); }
 	void Atom(const tString& s)																							{ WriteAtom(s); }
-	void Atom(const char* c)																							{ WriteAtom(c); }
+	void Atom(const char* s)																							{ WriteAtom(s); }
+	void Atom(const char8_t* s)																							{ WriteAtom(s); }
 	void Atom(const bool b)																								{ WriteAtom(b); }
 	void Atom(const uint32 u)																							{ WriteAtom(u); }
 	void Atom(const int i)																								{ WriteAtom(i); }
@@ -310,6 +318,10 @@ public:
 	void Atom(const tMath::tMatrix2& m, bool incBitRep = true)															{ WriteAtom(m, incBitRep); }
 	void Atom(const tMath::tMatrix4& m, bool incBitRep = true)															{ WriteAtom(m, incBitRep); }
 	void Atom(const tColouri& c)																						{ WriteAtom(c); }
+
+	void Raw(const tString& s)																							{ WriteRaw(s); }
+	void Raw(const char* s)																								{ WriteRaw(s); }
+	void Raw(const char8_t* s)																							{ WriteRaw(s); }
 
 	void Rem(const char* c = 0)																							{ WriteComment(c); }
 	void RemBegin()																										{ WriteCommentBegin(); }
@@ -432,6 +444,13 @@ inline void tExprWriter::WriteAtom(const char8_t* atom)
 {
 	// The non-UFT-8 version will write UTF-8 strings just fine.
 	WriteAtom((const char*)atom);
+}
+
+
+inline void tExprWriter::WriteRaw(const char8_t* atom)
+{
+	// The non-UFT-8 version will write UTF-8 strings just fine.
+	WriteRaw((const char*)atom);
 }
 
 

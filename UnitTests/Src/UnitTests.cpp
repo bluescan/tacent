@@ -184,7 +184,7 @@ int main(int argc, char** argv)
 	#else
 
 	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
-	tTest(Fundamentals);
+	// tTest(Fundamentals);
 	// tTest(FileTypes);
 	// tTest(Directories);
 	// tTest(File);
@@ -199,7 +199,7 @@ int main(int argc, char** argv)
 	// tTest(Print);
 	// tTest(Map);
 	// tTest(Promise);
-	// tTest(Script);
+	tTest(Script);
 	// tTest(Rule);
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
 	// tTest(ImageLoad);
