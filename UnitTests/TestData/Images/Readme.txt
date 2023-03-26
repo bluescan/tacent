@@ -88,6 +88,6 @@ my photos or generated gradients and are ISC.
 -------------------------------------------------------------------------------
 
 The TacentTestPattern.pkm file was generated from https://sisik.eu/etc
-The image itself is under ISC and was created by me.
+The image itself is under ISC and CC0 as stated above.
 
 -------------------------------------------------------------------------------
