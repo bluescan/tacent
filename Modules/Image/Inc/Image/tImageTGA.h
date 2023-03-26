@@ -44,8 +44,6 @@ public:
 	// Constructs from a tPicture.
 	tImageTGA(tPicture& picture, bool steal = true)																		{ Set(picture, steal); }
 
-	tImageTGA(const tPicture& picture) {  }
-
 	virtual ~tImageTGA()																								{ Clear(); }
 
 	// Clears the current tImageTGA before loading. 16, 24, or 32 bit targas can be loaded. The tga may be uncompressed

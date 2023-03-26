@@ -78,6 +78,8 @@ enum class tPixelFormat
 	BC6S,								// BC 6 HDR. No alpha. 3 x 16bit signed half-floats per pixel.
 	BC6U,								// BC 6 HDR. No alpha. 3 x 16bit unsigned half-floats per pixel.
 	BC7,								// BC 7. Full colour. Variable alpha 0 to 8 bits.
+
+	// ETC1,								// ETC1. Ericsson Texture Compression. Similar to BC1. No alpha.
 	LastBC				= BC7,
 
 	FirstASTC,

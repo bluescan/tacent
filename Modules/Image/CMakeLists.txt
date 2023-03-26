@@ -14,6 +14,7 @@ add_library(
 	Src/tImageICO.cpp
 	Src/tImageJPG.cpp
 	Src/tImageKTX.cpp
+	Src/tImagePKM.cpp
 	Src/tImagePNG.cpp
 	Src/tImageQOI.cpp
 	Src/tImageTGA.cpp
@@ -46,6 +47,7 @@ add_library(
 	Inc/Image/tImageICO.h
 	Inc/Image/tImageJPG.h
 	Inc/Image/tImageKTX.h
+	Inc/Image/tImagePKM.h
 	Inc/Image/tImagePNG.h
 	Inc/Image/tImageQOI.h
 	Inc/Image/tImageTGA.h
