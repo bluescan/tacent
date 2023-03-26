@@ -356,6 +356,7 @@ enum class tFileType
 	KTX,						// Image. Khronos Texture. Similar to a dds file.
 	KTX2,						// Image. Khronos Texture V2. Similar to a dds file.
 	ASTC,						// Image. ARM's Adaptive Scalable Texture Compression format.
+	PKM,						// Image. Ericsson ETC1 Image.
 	HDR,						// Image. Radiance High Dynamic Range.
 	EXR,						// Image. OpenEXR High Dynamic Range.
 	PCX,						// Image.

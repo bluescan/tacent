@@ -1854,6 +1854,7 @@ tSystem::FileTypeExts tSystem::FileTypeExtTable[] =
 	{ "ktx" },							// KTX
 	{ "ktx2" },							// KTX2
 	{ "astc", "atc" },					// ASTC
+	{ "pkm" },							// PKM
 	{ "hdr", "rgbe" },					// HDR
 	{ "exr" },							// EXR
 	{ "pcx" },							// PCX
