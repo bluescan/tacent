@@ -86,3 +86,8 @@ licensed and from user UploadMeToday at purepng.com. The other quadrants are
 my photos or generated gradients and are ISC.
 
 -------------------------------------------------------------------------------
+
+The TacentTestPattern.pkm file was generated from https://sisik.eu/etc
+The image itself is under ISC and was created by me.
+
+-------------------------------------------------------------------------------
