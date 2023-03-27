@@ -21,6 +21,7 @@
 #include <Image/tImageHDR.h>
 #include <Image/tImageICO.h>
 #include <Image/tImageJPG.h>
+#include <Image/tImagePKM.h>
 #include <Image/tImagePNG.h>
 #include <Image/tImageQOI.h>
 #include <Image/tImageAPNG.h>
@@ -294,6 +295,15 @@ tTestUnit(ImagePicture)
 	//
 	// tPicture loading/saving tests. These all save as tga and to the corresponding format if save is supported.
 	//
+	tImagePKM pkm;
+	pkm.Load("TacentTestPattern.pkm");
+	// pkm.Save("WrittenTacentTestPattern.pkm");
+	pic.Set(pkm); tga.Set(pic);
+	tga.Save("WrittenTacentTestPatternFromPKM.tga");
+	tRequire( tSystem::tFileExists("WrittenTacentTestPatternFromPKM.tga"));
+
+	return;
+
 	tImageAPNG apng;
 	apng.Load("Flame.apng");
 	apng.Save("WrittenFlame.apng");

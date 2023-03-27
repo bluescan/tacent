@@ -158,6 +158,7 @@ class tColour4i
 public:
 	tColour4i()												/* Does NOT set the colour values. */						{ }
 	tColour4i(const tColour4i& c)																						: BP(c.BP) { }
+	tColour4i(const tColour3i& c, int a = 0xFF)																			{ Set(c, a); }
 	tColour4i(int r, int g, int b, int a = 0xFF)																		{ R = tMath::tClamp(r, 0, 0xFF); G = tMath::tClamp(g, 0, 0xFF); B = tMath::tClamp(b, 0, 0xFF); A = tMath::tClamp(a, 0, 0xFF); }
 	tColour4i(uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)																: R(r), G(g), B(b), A(a) { }
 	tColour4i(uint32 bits)																								: BP(bits) { }
@@ -168,6 +169,7 @@ public:
 	tColour4i(const float* src)																							{ Set(src); }
 
 	void Set(const tColour4i& c)																						{ BP = c.BP; }
+	void Set(const tColour3i& c, int a = 0xFF);
 	void Set(int r, int g, int b, int a = 255)																			{ R = tMath::tClamp(r, 0, 0xFF); G = tMath::tClamp(g, 0, 0xFF); B = tMath::tClamp(b, 0, 0xFF); A = tMath::tClamp(a, 0, 0xFF); }
 	void Set(uint8 r, uint8 g, uint8 b, uint8 a = 255)																	{ R = r; G = g; B = b; A = a; }
 	void Set(const tColour4f& c);
@@ -656,6 +658,12 @@ inline float tMath::tTonemapExposure(float linearComponent, float exposure)
 inline float tMath::tTonemapReinhard(float linearComponent)
 {
 	return linearComponent / (linearComponent + 1.0f);
+}
+
+
+inline void tColour4i::Set(const tColour3i& c, int a)
+{
+	R = c.R; G = c.G; B = c.B; A = tMath::tClamp(a, 0, 0xFF);
 }
 
 
