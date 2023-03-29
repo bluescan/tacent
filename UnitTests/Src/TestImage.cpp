@@ -274,6 +274,22 @@ tTestUnit(ImagePicture)
 	tString origDir = tSystem::tGetCurrentDir();
 	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
 
+	tPicture pic;
+	tImageTGA tga;
+
+	//
+	// tPicture loading/saving tests. These all save as tga and to the corresponding format if save is supported.
+	//
+	/*
+	tImagePKM pkm;
+	pkm.Load("TacentTestPattern.pkm");
+	// pkm.Save("WrittenTacentTestPattern.pkm");
+	pic.Set(pkm); tga.Set(pic);
+	tga.Save("WrittenTacentTestPatternFromPKM.tga");
+	tRequire( tSystem::tFileExists("WrittenTacentTestPatternFromPKM.tga"));
+	return;
+	*/
+
 	// Test generate layers.
 	tImageBMP bmpL("UpperB.bmp");
 	tRequire(bmpL.IsValid());
@@ -289,20 +305,6 @@ tTestUnit(ImagePicture)
 	for (tLayer* lay = layers.First(); lay; lay = lay->Next(), lev++)
 		tPrintf("GenLayers Mip:%02d W=%d H=%d\n", lev, lay->Width, lay->Height);
 	tRequire(layers.GetNumItems() == 10);
-	tPicture pic;
-	tImageTGA tga;
-
-	//
-	// tPicture loading/saving tests. These all save as tga and to the corresponding format if save is supported.
-	//
-	tImagePKM pkm;
-	pkm.Load("TacentTestPattern.pkm");
-	// pkm.Save("WrittenTacentTestPattern.pkm");
-	pic.Set(pkm); tga.Set(pic);
-	tga.Save("WrittenTacentTestPatternFromPKM.tga");
-	tRequire( tSystem::tFileExists("WrittenTacentTestPatternFromPKM.tga"));
-
-	return;
 
 	tImageAPNG apng;
 	apng.Load("Flame.apng");
