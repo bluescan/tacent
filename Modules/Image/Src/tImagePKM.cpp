@@ -28,7 +28,7 @@ namespace tPKM
 	struct Header
 	{
 		char FourCCMagic[4];				// PKM files should have 'P', 'K', 'M', ' ' as the first four characters.
-		char Version[2];					// Often '1', '0' or '2', '0'.
+		char Version[2];					// Will be '1', '0' for ETC1 and '2', '0' for ETC2.
 		uint8 FormatMSB;					// The header is big endian. This is the MSB of the format.
 		uint8 FormatLSB;
 		uint8 EncodedWidthMSB;				// This is the width in terms of number of 4x4 blocks used. It is always divisible by 4.
@@ -40,6 +40,7 @@ namespace tPKM
 		uint8 HeightMSB;					// This is the 'real' image height. Any value >= 1 works.
 		uint8 HeightLSB;
 
+		int GetVersion() const				{ return (Version[0] == '1') ? 1 : 2; }
 		uint32 GetFormat() const			{ return (FormatMSB << 8) | FormatLSB; }
 		uint32 GetEncodedWidth() const		{ return (EncodedWidthMSB << 8) | EncodedWidthLSB; }
 		uint32 GetEncodedHeight() const		{ return (EncodedHeightMSB << 8) | EncodedHeightLSB; }
@@ -48,9 +49,26 @@ namespace tPKM
 	};
 	#pragma pack(pop)
 
-	// Format codes.
-	const uint32 PKMFMT_ETC1_RGB			= 0x0000;
-	const uint32 PKMFMT_ETC1_RGB8_OES		= 0x8D64;		// OES just means the format internal ID was developed by the working group (Kronos I assume).
+	// Format codes. These are what will be found in the pkm header. They match the OpenGL texture format IDs.
+	// Note1: ETC1 pkm files should assume ETC1_RGB8_OES even if the format is not set to that.
+	// Note2: The sRGB formats are decoded the same as the non-sRGB formats. It is only the interpretation
+	//        of the pixel values that changes.
+	// Note3: ETC1_RGB8 and ETC2_RGB8 and ETC2_sRGB8 are all decoded with the same RGB decode. This is
+	//        because ETC2 is backwards compatible with ETC1.
+	enum class PKMFMT
+	{
+		ETC1_RGB8		= 0x8D64,		// GL_ETC1_RGB8_OES. OES just means the format internal ID was developed by the working group (Kronos I assume).
+		ETC2_R11		= 0x9270,		// GL_COMPRESSED_R11_EAC
+		ETC2_R11s		= 0x9271,		// GL_COMPRESSED_SIGNED_R11_EAC
+		ETC2_RG11		= 0x9272,		// GL_COMPRESSED_RG11_EAC
+		ETC2_RG11s		= 0x9273,		// GL_COMPRESSED_SIGNED_RG11_EAC
+		ETC2_RGB8		= 0x9274,		// GL_COMPRESSED_RGB8_ETC2
+		ETC2_sRGB8		= 0x9275,		// GL_COMPRESSED_SRGB8_ETC2
+		ETC2_RGB8A1		= 0x9276,		// GL_COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2
+		ETC2_sRGB8A1	= 0x9277,		// GL_COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2
+		ETC2_RGBA8		= 0x9278,		// GL_COMPRESSED_RGBA8_ETC2_EAC
+		ETC2_sRGBA8		= 0x9279		// GL_COMPRESSED_SRGB8_ALPHA8_ETC2_EAC
+	};
 
 	bool IsHeaderValid(const Header&);
 }
