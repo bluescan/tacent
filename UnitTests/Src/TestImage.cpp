@@ -1958,12 +1958,12 @@ void PKMLoadDecodeSave(const tString& pkmFile)
 	tString savename = "Written_" + basename + ".tga";
 	tString formatname = basename.Left('_');
 
-//	pkm.Load(pkmFile);
+	pkm.Load(pkmFile);
 //	tRequire(pkm.IsValid());
 
 	// This is the file format from the filename.
 	tPixelFormat fileformat = tGetPixelFormat(formatname.Chr());
-	tPrintf("PKM format from name: %s\n", tGetPixelFormatName(fileformat));
+	tPrintf("PKM format from name: %s\n\n", tGetPixelFormatName(fileformat));
 //	tPixelFormat pkmformat = pkm.GetPixelFormat();
 //	tPixelFormat pkmformatsrc = pkm.GetPixelFormatSrc();
 //	tRequire(fileformat == astcformatsrc);

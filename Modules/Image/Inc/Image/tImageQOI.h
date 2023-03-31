@@ -116,7 +116,6 @@ public:
 	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 
 private:
-
 	tSpace ColourSpace		= tSpace::Invalid;
 	int Width				= 0;
 	int Height				= 0;

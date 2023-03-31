@@ -1,10 +1,10 @@
 // tImageASTC.h
 //
-// This class knows how to load and save ARM's Adaptive Scalable Texture Compression (.astc) files into tPixel arrays.
-// These tPixels may be 'stolen' by the tPicture's constructor if a targa file is specified. After the array is stolen
-// the tImageASTC is invalid. This is purely for performance.
+// This class knows how to load and save ARM's Adaptive Scalable Texture Compression (.astc) files. The pixel data is
+// stored in a tLayer. If decode was requested the layer will store raw pixel data. The layer may be 'stolen'. IF it
+// is the tImageASTC is invalid afterwards. This is purely for performance.
 //
-// Copyright (c) 2022 Tristan Grimmer.
+// Copyright (c) 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -74,7 +74,7 @@ public:
 	tImageASTC(const uint8* astcFileInMemory, int numBytes, const LoadParams& params = LoadParams())					{ Load(astcFileInMemory, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
-	// it just copies the data out. Sets the colour space to sRGB. Call SetColourSpace after if you wanted linear.
+	// it just copies the data out.
 	tImageASTC(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
 	// Sets from a single frame.
@@ -106,14 +106,14 @@ public:
 	int GetWidth() const																								{ return Layer ? Layer->Width  : 0; }
 	int GetHeight() const																								{ return Layer ? Layer->Height : 0; }
 
-	// All pixels must be opaque (alpha = 255) for this to return true. Always returns true if the object is not in the
+	// All pixels must be opaque (alpha = 255) for this to return true. Always returns false if the object is not in the
 	// R8G8B8A8 pixel-format (i.e. not decoded) since all ASTC pixel formats support alpha.
 	bool IsOpaque() const;
 
 	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the astc data is in.
 	tPixelFormat GetPixelFormat() const																					{ return PixelFormat; }
 
-	// Will return the format the astc data was in, even if you chose to decode.
+	// Will return the format the astc data was originally in, even if you chose to decode.
 	tPixelFormat GetPixelFormatSrc() const																				{ return PixelFormatSrc; }
 
 	// After the steal call you are the owner of the layer and must eventually delete it. This tImageASTC object is

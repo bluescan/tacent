@@ -1,8 +1,8 @@
 // tImagePKM.cpp
 //
-// This class knows how to load and save pkm (.pkm) files into tPixel arrays. These tPixels may be 'stolen' by the
-// tPicture's constructor if a pkm file is specified. After the array is stolen the tImagePKM is invalid. This is
-// purely for performance.
+// This class knows how to load and save Ericsson's ETC1/ETC2/EAC PKM (.pkm) files. The pixel data is stored in a
+// tLayer. If decode was requested the layer will store raw pixel data. The layer may be 'stolen'. IF it is the
+// tImagePKM is invalid afterwards. This is purely for performance.
 //
 // Copyright (c) 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -69,12 +69,47 @@ namespace tPKM
 		ETC2_RGBA8		= 0x9278,		// GL_COMPRESSED_RGBA8_ETC2_EAC
 		ETC2_sRGBA8		= 0x9279		// GL_COMPRESSED_SRGB8_ALPHA8_ETC2_EAC
 	};
-
 	bool IsHeaderValid(const Header&);
+
+	// These figure out the pixel format and the colour-space. tPixelFormat does not specify ancilllary
+	// properties of the data -- it specified the encoding of the data. The extra information, like the colour-space it
+	// was authored in, is stored in tColourSpace. In many cases this satellite information cannot be determined, in
+	// which case colour-space will be set to their 'unspecified' enumerant.
+	void GetFormatInfo_FromPKMFormat(tPixelFormat&, tColourSpace&, uint32 pkmFmt);
 }
 
 
-bool tImagePKM::Load(const tString& pkmFile)
+bool tPKM::IsHeaderValid(const Header& header)
+{
+	if ((header.FourCCMagic[0] != 'P') || (header.FourCCMagic[1] != 'K') || (header.FourCCMagic[2] != 'M') || (header.FourCCMagic[3] != ' '))
+		return false;
+
+	uint32 format = header.GetFormat();
+	tPrintf("Format %08x %d\n", format, format);
+
+	uint32 encodedWidth = header.GetEncodedWidth();
+	uint32 encodedHeight = header.GetEncodedHeight();
+	tPrintf("Encoded width, height: %d %d\n", encodedWidth, encodedHeight);
+
+	uint32 width = header.GetWidth();
+	uint32 height = header.GetHeight();
+	tPrintf("Width, height: %d %d\n", width, height);
+
+	// I'm not sure why the header stores the encrypted sizes as they can be computed from
+	// the width and height. They can, however, be used for validation.
+	int blocksW = tImage::tGetNumBlocks(4, width);
+	if (blocksW*4 != encodedWidth)
+		return false;
+
+	int blocksH = tImage::tGetNumBlocks(4, height);
+	if (blocksH*4 != encodedHeight)
+		return false;
+
+	return true;
+}
+
+
+bool tImagePKM::Load(const tString& pkmFile, const LoadParams& params)
 {
 	Clear();
 
@@ -86,14 +121,14 @@ bool tImagePKM::Load(const tString& pkmFile)
 
 	int numBytes = 0;
 	uint8* pkmFileInMemory = tLoadFile(pkmFile, nullptr, &numBytes);
-	bool success = Load(pkmFileInMemory, numBytes);
+	bool success = Load(pkmFileInMemory, numBytes, params);
 	delete[] pkmFileInMemory;
 
 	return success;
 }
 
 
-bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes)
+bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParams& params)
 {
 	Clear();
 	if ((numBytes <= 0) || !pkmFileInMemory)
@@ -106,13 +141,13 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes)
 	if (!valid)
 		return false;
 
+/*
 	PixelFormatSrc = tPixelFormat::R8G8B8;
 
 	// Now we need to get it into RGBA, and not upside down.
 	Width = header->GetWidth();
 	Height = header->GetHeight();
 
-/*
 	Pixels = new tPixel[Width*Height];
 	tColour3i* rgbPixels = new tColour3i[Width*Height];
 	int stride = Width;
@@ -145,20 +180,11 @@ bool tImagePKM::Set(tPixel* pixels, int width, int height, bool steal)
 	if (!pixels || (width <= 0) || (height <= 0))
 		return false;
 
-	Width = width;
-	Height = height;
-
-	if (steal)
-	{
-		Pixels = pixels;
-	}
-	else
-	{
-		Pixels = new tPixel[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
-	}
-
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	Layer			= new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)pixels, steal);
+	PixelFormatSrc	= tPixelFormat::R8G8B8A8;
+	PixelFormat		= tPixelFormat::R8G8B8A8;
+	ColourSpaceSrc	= tColourSpace::sRGB;
+	ColourSpace		= tColourSpace::sRGB;
 	return true;
 }
 
@@ -190,87 +216,61 @@ bool tImagePKM::Set(tPicture& picture, bool steal)
 
 tFrame* tImagePKM::GetFrame(bool steal)
 {
-	if (!IsValid())
+	// Data must be decoded for this to work.
+	if (!IsValid() || (PixelFormat != tPixelFormat::R8G8B8A8))
 		return nullptr;
 
 	tFrame* frame = new tFrame();
+	frame->Width = Layer->Width;
+	frame->Height = Layer->Height;
 	frame->PixelFormatSrc = PixelFormatSrc;
 
 	if (steal)
 	{
-		frame->StealFrom(Pixels, Width, Height);
-		Pixels = nullptr;
+		frame->Pixels = (tPixel*)Layer->StealData();
+		delete Layer;
+		Layer = nullptr;
 	}
 	else
 	{
-		frame->Set(Pixels, Width, Height);
+		frame->Pixels = new tPixel[frame->Width * frame->Height];
+		tStd::tMemcpy(frame->Pixels, (tPixel*)Layer->Data, frame->Width * frame->Height * sizeof(tPixel));
 	}
 
 	return frame;
 }
 
 
-bool tImagePKM::Save(const tString& pkmFile) const
+bool tImagePKM::IsOpaque() const
 {
 	if (!IsValid())
 		return false;
-
-	if (tSystem::tGetFileType(pkmFile) != tSystem::tFileType::PKM)
-		return false;
-
-	// @wip Implement save.
-	bool success = false;
-	return success;
-}
-
-
-bool tImagePKM::IsOpaque() const
-{
-	for (int p = 0; p < (Width*Height); p++)
+	
+	switch (Layer->PixelFormat)
 	{
-		if (Pixels[p].A < 255)
+		case tPixelFormat::R8G8B8A8:
+		{
+			tPixel* pixels = (tPixel*)Layer->Data;
+			for (int p = 0; p < (Layer->Width * Layer->Height); p++)
+			{
+				if (pixels[p].A < 255)
+					return false;
+			}
+			break;
+		}
+
+		case tPixelFormat::EACR11:
+		case tPixelFormat::EACR11S:
+		case tPixelFormat::EACRG11:
+		case tPixelFormat::EACRG11S:
+		case tPixelFormat::ETC1:
+		case tPixelFormat::ETC2RGB:
+			return true;
+
+		case tPixelFormat::ETC2RGBA1:
+		case tPixelFormat::ETC2RGBA:
 			return false;
 	}
-
-	return true;
-}
-
-
-tPixel* tImagePKM::StealPixels()
-{
-	tPixel* pixels = Pixels;
-	Pixels = nullptr;
-	Width = 0;
-	Height = 0;
-	return pixels;
-}
-
-
-bool tPKM::IsHeaderValid(const Header& header)
-{
-	if ((header.FourCCMagic[0] != 'P') || (header.FourCCMagic[1] != 'K') || (header.FourCCMagic[2] != 'M') || (header.FourCCMagic[3] != ' '))
-		return false;
-
-	uint32 format = header.GetFormat();
-	tPrintf("Format %08x %d\n", format, format);
-
-	uint32 encodedWidth = header.GetEncodedWidth();
-	uint32 encodedHeight = header.GetEncodedHeight();
-	tPrintf("Encoded width, height: %d %d\n", encodedWidth, encodedHeight);
-
-	uint32 width = header.GetWidth();
-	uint32 height = header.GetHeight();
-	tPrintf("Width, height: %d %d\n", width, height);
-
-	// I'm not sure why the header stores the encrypted sizes as they can be computed from
-	// the width and height. They can, however, be used for validation.
-	int blocksW = tImage::tGetNumBlocks(4, width);
-	if (blocksW*4 != encodedWidth)
-		return false;
-
-	int blocksH = tImage::tGetNumBlocks(4, height);
-	if (blocksH*4 != encodedHeight)
-		return false;
 
 	return true;
 }

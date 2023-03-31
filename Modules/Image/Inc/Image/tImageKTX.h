@@ -247,10 +247,10 @@ public:
 
 private:
 	// The result codes are bits in this Results member.
-	uint32 Results						= 0;
+	uint32 Results							= 0;
 
-	tPixelFormat PixelFormat			= tPixelFormat::Invalid;
-	tPixelFormat PixelFormatSrc			= tPixelFormat::Invalid;
+	tPixelFormat PixelFormat				= tPixelFormat::Invalid;
+	tPixelFormat PixelFormatSrc				= tPixelFormat::Invalid;
 
 	// The colour-space and alpha-mode are _not_ part of the pixel format in tacent.
 	tColourSpace ColourSpace				= tColourSpace::Unspecified;

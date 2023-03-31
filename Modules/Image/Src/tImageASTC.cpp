@@ -1,8 +1,8 @@
 // tImageASTC.cpp
 //
-// This class knows how to load and save ARM's Adaptive Scalable Texture Compression (.astc) files into tPixel arrays.
-// These tPixels may be 'stolen' by the tPicture's constructor if a targa file is specified. After the array is stolen
-// the tImageASTC is invalid. This is purely for performance.
+// This class knows how to load and save ARM's Adaptive Scalable Texture Compression (.astc) files. The pixel data is
+// stored in a tLayer. If decode was requested the layer will store raw pixel data. The layer may be 'stolen'. IF it
+// is the tImageASTC is invalid afterwards. This is purely for performance.
 //
 // Copyright (c) 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby

@@ -1,8 +1,8 @@
 // tImagePKM.h
 //
-// This class knows how to load and save pkm (.pkm) files into tPixel arrays. These tPixels may be 'stolen' by the
-// tPicture's constructor if a pkm file is specified. After the array is stolen the tImagePKM is invalid. This is
-// purely for performance.
+// This class knows how to load and save Ericsson's ETC1/ETC2/EAC PKM (.pkm) files. The pixel data is stored in a
+// tLayer. If decode was requested the layer will store raw pixel data. The layer may be 'stolen'. IF it is the
+// tImagePKM is invalid afterwards. This is purely for performance.
 //
 // Copyright (c) 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -18,21 +18,47 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tLayer.h>
 #include <Image/tBaseImage.h>
 namespace tImage
 {
-class tPicture;
 
 
 class tImagePKM : public tBaseImage
 {
 public:
+	enum LoadFlag
+	{
+		LoadFlag_Decode				= 1 << 0,	// Decode the pkm texture data into RGBA 32 bit. If not set, the pixel data will remain unmodified.
+
+		// The remaining flags only apply when decode flag set. ReverseRowOrder is guaranteed to work if decoding, and
+		// guaranteed to not work if not decoding.
+		LoadFlag_ReverseRowOrder	= 1 << 1,	// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.
+		LoadFlag_GammaCompression	= 1 << 2,	// Gamma-correct. Gamma compression using an encoding gamma of 1/2.2.
+		LoadFlag_SRGBCompression	= 1 << 3,	// Same as above but uses the official sRGB transformation. Linear -> sRGB. Approx encoding gamma of 1/2.4 for part of curve.
+		LoadFlag_ToneMapExposure	= 1 << 4,	// Apply exposure value when loading the pkm.
+		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder
+	};
+
+	struct LoadParams
+	{
+		LoadParams()																									{ Reset(); }
+		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Gamma(src.Gamma), Exposure(src.Exposure) { }
+
+		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::DefaultGamma; Exposure = 1.0f; }
+		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Gamma = src.Gamma; Exposure = src.Exposure; return *this; }
+
+		uint32 Flags;
+		float Gamma;				// Used iff decoding.
+		float Exposure;				// Used iff decoding.
+	};
+
 	// Creates an invalid tImagePMK. You must call Load manually.
 	tImagePKM()																											{ }
-	tImagePKM(const tString& pkmFile)																					{ Load(pkmFile); }
+	tImagePKM(const tString& pkmFile, const LoadParams& params = LoadParams())											{ Load(pkmFile, params); }
 
 	// The data is copied out of pkmFileInMemory. Go ahead and delete after if you want.
-	tImagePKM(const uint8* pkmFileInMemory, int numBytes)																{ Load(pkmFileInMemory, numBytes); }
+	tImagePKM(const uint8* pkmFileInMemory, int numBytes, const LoadParams& params = LoadParams())						{ Load(pkmFileInMemory, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -47,8 +73,8 @@ public:
 	virtual ~tImagePKM()																								{ Clear(); }
 
 	// Clears the current tImagePKM before loading. Returns success. If false returned, object is invalid.
-	bool Load(const tString& pkmFile);
-	bool Load(const uint8* pkmFileInMemory, int numBytes);
+	bool Load(const tString& pkmFile, const LoadParams& params = LoadParams());
+	bool Load(const uint8* pkmFileInMemory, int numBytes, const LoadParams& params = LoadParams());
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -60,32 +86,48 @@ public:
 	// Sets from a tPicture.
 	bool Set(tPicture& picture, bool steal = true) override;
 
-	// Saves the tImagePKM to the pkm file specified. The type of filename must be pkm. Returns false if problem.
-	bool Save(const tString& pkmFile) const;
-
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;
-	bool IsValid() const override																						{ return Pixels ? true : false; }
+	bool IsValid() const override																						{ return (Layer && Layer->IsValid()); }
 
-	int GetWidth() const																								{ return Width; }
-	int GetHeight() const																								{ return Height; }
+	int GetWidth() const																								{ return Layer ? Layer->Width  : 0; }
+	int GetHeight() const																								{ return Layer ? Layer->Height : 0; }
 
-	// PKM files are always opaque. No alpha support.
+	// If decoded all pixels must be opaque (alpha = 255) for this to return true.
+	// If not decoded it returns false if the pixel format supports transparency.
 	bool IsOpaque() const;
 
-	// After this call you are the owner of the pixels and must eventually delete[] them. This tImagePKM object is
+	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the pkm data is in.
+	tPixelFormat GetPixelFormat() const																					{ return PixelFormat; }
+
+	// Will return the format the astc data was originally in, even if you chose to decode.
+	tPixelFormat GetPixelFormatSrc() const																				{ return PixelFormatSrc; }
+
+	// Returns the current colour space.
+	tColourSpace GetColourSpace() const																					{ return ColourSpace; }
+
+	// Returns the colour space of the source file that was loaded. This may not match the current if, say, gamma
+	// correction was requested on load.
+	tColourSpace GetColourSpaceSrc() const																				{ return ColourSpaceSrc; }
+
+	// After the steal call you are the owner of the layer and must eventually delete it. This tImageASTC object is
 	// invalid afterwards.
-	tPixel* StealPixels();
+	tLayer* StealLayer()																								{ tLayer* layer = Layer; Layer = nullptr; return layer; }
+	tLayer* GetLayer() const																							{ return Layer; }
 	tFrame* GetFrame(bool steal = true) override;
 
-	tPixel* GetPixels() const																							{ return Pixels; }
-	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
-
 private:
-	// So this is a neat C++11 feature. Allows simplified constructors.
-	int Width = 0;
-	int Height = 0;
-	tPixel* Pixels = nullptr;
+	tPixelFormat PixelFormat				= tPixelFormat::Invalid;
+	tPixelFormat PixelFormatSrc				= tPixelFormat::Invalid;
+
+	// The colour-space is _not_ part of the pixel format in tacent because, well, it doesn't change the format that
+	// the pixels are stored in. It's just how the values are interpreted.
+	tColourSpace ColourSpace				= tColourSpace::Unspecified;
+	tColourSpace ColourSpaceSrc				= tColourSpace::Unspecified;
+
+	// We store the data in a tLayer because that's the container we use for pixel data than may be in any format.
+	// The user of tImagePKM is not required to decode, so we can't just use a tPixel array.
+	tLayer* Layer							= nullptr;
 };
 
 
@@ -94,11 +136,12 @@ private:
 
 inline void tImagePKM::Clear()
 {
-	Width = 0;
-	Height = 0;
-	delete[] Pixels;
-	Pixels = nullptr;
-	PixelFormatSrc = tPixelFormat::Invalid;
+	PixelFormat								= tPixelFormat::Invalid;
+	PixelFormatSrc							= tPixelFormat::Invalid;
+	ColourSpace								= tColourSpace::Unspecified;
+	ColourSpaceSrc							= tColourSpace::Unspecified;
+	delete									Layer;
+	Layer									= nullptr;
 }
 
 
