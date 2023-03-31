@@ -36,4 +36,5 @@ namespace tUnitTest
 	tTestUnit(ImageKTX2);
 	tTestUnit(ImageKTX1);
 	tTestUnit(ImageASTC);
+	tTestUnit(ImagePKM);
 }

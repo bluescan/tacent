@@ -274,21 +274,11 @@ tTestUnit(ImagePicture)
 	tString origDir = tSystem::tGetCurrentDir();
 	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
 
-	tPicture pic;
-	tImageTGA tga;
-
 	//
 	// tPicture loading/saving tests. These all save as tga and to the corresponding format if save is supported.
 	//
-	/*
-	tImagePKM pkm;
-	pkm.Load("TacentTestPattern.pkm");
-	// pkm.Save("WrittenTacentTestPattern.pkm");
-	pic.Set(pkm); tga.Set(pic);
-	tga.Save("WrittenTacentTestPatternFromPKM.tga");
-	tRequire( tSystem::tFileExists("WrittenTacentTestPatternFromPKM.tga"));
-	return;
-	*/
+	tPicture pic;
+	tImageTGA tga;
 
 	// Test generate layers.
 	tImageBMP bmpL("UpperB.bmp");
@@ -1954,6 +1944,64 @@ tTestUnit(ImageASTC)
 	ASTCLoadDecodeSave("ASTC12x12_HDR.astc", hdrParams);
 
 	tSystem::tSetCurrentDir(origDir.Chr());
+}
+
+
+// Helper for tImagePKM unit tests.
+void PKMLoadDecodeSave(const tString& pkmFile)
+{
+	tPicture pic;
+	tImageTGA tga;
+	tImagePKM pkm;
+
+	tString basename = tSystem::tGetFileBaseName(pkmFile);
+	tString savename = "Written_" + basename + ".tga";
+	tString formatname = basename.Left('_');
+
+//	pkm.Load(pkmFile);
+//	tRequire(pkm.IsValid());
+
+	// This is the file format from the filename.
+	tPixelFormat fileformat = tGetPixelFormat(formatname.Chr());
+	tPrintf("PKM format from name: %s\n", tGetPixelFormatName(fileformat));
+//	tPixelFormat pkmformat = pkm.GetPixelFormat();
+//	tPixelFormat pkmformatsrc = pkm.GetPixelFormatSrc();
+//	tRequire(fileformat == astcformatsrc);
+
+//	pic.Set(pkm); tga.Set(pic);
+//	tga.Save(savename);
+//	tRequire( tSystem::tFileExists(savename));
+}
+
+
+tTestUnit(ImagePKM)
+{
+	if (!tSystem::tDirExists("TestData/Images/PKM/"))
+		tSkipUnit(ImagePicture)
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/PKM/");
+
+	PKMLoadDecodeSave("EACR11_R.pkm");
+	PKMLoadDecodeSave("EACR11S_R.pkm");
+	PKMLoadDecodeSave("EACRG11_RG.pkm");
+	PKMLoadDecodeSave("EACRG11S_RG.pkm");
+
+	PKMLoadDecodeSave("ETC1_RGB.pkm");
+	PKMLoadDecodeSave("ETC1_RGB_1281x721.pkm");
+	PKMLoadDecodeSave("ETC1_RGB_1282x722.pkm");
+	PKMLoadDecodeSave("ETC1_RGB_1283x723.pkm");
+
+	PKMLoadDecodeSave("ETC2RGB_RGB.pkm");
+	PKMLoadDecodeSave("ETC2RGB_RGB_1281x721.pkm");
+	PKMLoadDecodeSave("ETC2RGB_RGB_1282x722.pkm");
+	PKMLoadDecodeSave("ETC2RGB_RGB_1283x723.pkm");
+	PKMLoadDecodeSave("ETC2RGB_sRGB.pkm");
+	PKMLoadDecodeSave("ETC2RGBA_RGBA.pkm");
+	PKMLoadDecodeSave("ETC2RGBA_sRGBA.pkm");
+	PKMLoadDecodeSave("ETC2RGBA1_RGBA.pkm");
+	PKMLoadDecodeSave("ETC2RGBA1_sRGBA.pkm");
+
+	tSystem::tSetCurrentDir(origDir);
 }
 
 
