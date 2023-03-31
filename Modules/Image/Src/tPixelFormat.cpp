@@ -56,6 +56,13 @@ namespace tImage
 		"BC6u",
 		"BC7",
 		"ETC1",
+		"EACR11",
+		"EACR11S",
+		"EACRG11",
+		"EACRG11S",
+		"ETC2RGB",
+		"ETC2RGBA1",
+		"ETC2RGBA",
 
 		// ASTC (Adaptive Scalable Texture Compression) formats.
 		"ASTC4X4",
@@ -123,7 +130,14 @@ namespace tImage
 		16,				// BC6s
 		16,				// BC6u
 		16,				// BC7
-		8				// ETC1
+		8,				// ETC1
+		8,				// EAC11
+		8,				// EACR11S
+		16,				// EACRG11
+		16,				// EACRG11S
+		8,				// ETC2RGB
+		8,				// ETC2RGBA1
+		16				// ETC2RGBA
 	};
 	tStaticAssert(tNumElements(BCFormat_BytesPerBlock) == int(tPixelFormat::NumBCFormats));
 

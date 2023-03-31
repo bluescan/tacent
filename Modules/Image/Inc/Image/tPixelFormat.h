@@ -78,8 +78,15 @@ enum class tPixelFormat
 	BC6S,								// BC 6 HDR. No alpha. 3 x 16bit signed half-floats per pixel.
 	BC6U,								// BC 6 HDR. No alpha. 3 x 16bit unsigned half-floats per pixel.
 	BC7,								// BC 7. Full colour. Variable alpha 0 to 8 bits.
-	ETC1,								// ETC1. Ericsson Texture Compression. Similar to BC1. No alpha.
-	LastBC				= ETC1,
+	ETC1,								// ETC1. Ericsson Texture Compression. Similar to BC1. RGB-only. No alpha.
+	EACR11,								// EAC R11. Ericsson. Single channel.
+	EACR11S,							// EAC R11. Signed.
+	EACRG11,							// EAC RG11. Ericsson. Two channels.
+	EACRG11S,							// EAC RG11. Signed.
+	ETC2RGB,							// ETC2. Backwards compatible with ETC1. The sRGB version is the same pixel format.
+	ETC2RGBA1,							// ETC2. RGB with binary alpha. sRGB uses the same pixel format.
+	ETC2RGBA,							// ETC2. RGBA. sRGB uses the same pixel format.
+	LastBC				= ETC2RGBA,
 
 	FirstASTC,
 	ASTC4X4				= FirstASTC,	// 128 bits per 16  pixels. 8    bpp. LDR UNORM.
