@@ -1708,8 +1708,10 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 					// We need extra room because the decompressor (bcdec) does not take an input for
 					// the width and height, only the pitch (bytes per row). This means a texture that is 5
 					// high will actually have row 6, 7, 8 written to.
-					int wextra = w + ((w%4) ? 4-(w%4) : 0);
-					int hextra = h + ((h%4) ? 4-(h%4) : 0);
+					int wextra = 4 * tGetNumBlocks(4, w);
+					int hextra = 4 * tGetNumBlocks(4, h);
+//					int wextra = w + ((w%4) ? 4-(w%4) : 0);
+//					int hextra = h + ((h%4) ? 4-(h%4) : 0);
 					tPixel* uncompData = new tPixel[wextra*hextra];
 					switch (layer->PixelFormat)
 					{
@@ -1850,8 +1852,28 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 					}
 
 					// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
+					// This isn't the most efficient because we don't have a stride in a tLayer, but correctness first.
+					// Basically the uncompData may be too big if we needed extra room for w and h to do the decompression.
+					// This happens when the image dimensions where not multiples of the block size. We deal with that here.
+					// This is only inefficient if the dimensions were not a mult of 4, otherwise we can use the buffer directly.
 					delete[] layer->Data;
-					layer->Data = (uint8*)uncompData;
+					if ((wextra == w) && (hextra == h))
+					{
+						layer->Data = (uint8*)uncompData;
+					}
+					else
+					{
+						layer->Data = new uint8[w*h*sizeof(tPixel)];
+						uint8* src = (uint8*)uncompData;
+						uint8* dst = layer->Data;
+						for (int row = 0; row < h; row++)
+						{
+							tStd::tMemcpy(dst, src, w*sizeof(tPixel));
+							src += wextra*sizeof(tPixel);
+							dst += w     *sizeof(tPixel);
+						}
+						delete[] uncompData;
+					}
 					layer->PixelFormat = tPixelFormat::R8G8B8A8;
 				}
 				else if (tImage::tIsASTCFormat(PixelFormat))
