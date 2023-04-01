@@ -1441,13 +1441,9 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 					(PixelFormat != tPixelFormat::A8) && (PixelFormat != tPixelFormat::A8L8) &&
 					(PixelFormat != tPixelFormat::BC4ATI1) && (PixelFormat != tPixelFormat::BC5ATI2)
 				)
+				{
 					params.Flags |= LoadFlag_SRGBCompression;
-
-				// It's very unclear whether to auto-gamma-compress the R and RG formats. For now we are only
-				// going to compress if it's the single channel (R) format and 'spread' is true -- since that
-				// would usually mean something like luminance was being stored there (which needs g-compression).
-				if (((PixelFormat == tPixelFormat::R16F) || (PixelFormat == tPixelFormat::R32F)) && spread)
-					params.Flags |= LoadFlag_SRGBCompression;	
+				}
 			}
 		}
 

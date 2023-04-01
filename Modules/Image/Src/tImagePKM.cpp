@@ -49,33 +49,79 @@ namespace tPKM
 	};
 	#pragma pack(pop)
 
-	// Format codes. These are what will be found in the pkm header. They match the OpenGL texture format IDs.
-	// Note1: ETC1 pkm files should assume ETC1_RGB8_OES even if the format is not set to that.
+	// Format codes. These are what will be found in the pkm header. The corresponding OpenGL texture format ID
+	// is listed next to each one.
+	// Note1: ETC1 pkm files should assume ETC1_RGB8 even if the format is not set to that.
 	// Note2: The sRGB formats are decoded the same as the non-sRGB formats. It is only the interpretation
 	//        of the pixel values that changes.
 	// Note3: ETC1_RGB8 and ETC2_RGB8 and ETC2_sRGB8 are all decoded with the same RGB decode. This is
 	//        because ETC2 is backwards compatible with ETC1.
 	enum class PKMFMT
 	{
-		ETC1_RGB8		= 0x8D64,		// GL_ETC1_RGB8_OES. OES just means the format internal ID was developed by the working group (Kronos I assume).
-		ETC2_R11		= 0x9270,		// GL_COMPRESSED_R11_EAC
-		ETC2_R11s		= 0x9271,		// GL_COMPRESSED_SIGNED_R11_EAC
-		ETC2_RG11		= 0x9272,		// GL_COMPRESSED_RG11_EAC
-		ETC2_RG11s		= 0x9273,		// GL_COMPRESSED_SIGNED_RG11_EAC
-		ETC2_RGB8		= 0x9274,		// GL_COMPRESSED_RGB8_ETC2
-		ETC2_sRGB8		= 0x9275,		// GL_COMPRESSED_SRGB8_ETC2
-		ETC2_RGB8A1		= 0x9276,		// GL_COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2
-		ETC2_sRGB8A1	= 0x9277,		// GL_COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2
-		ETC2_RGBA8		= 0x9278,		// GL_COMPRESSED_RGBA8_ETC2_EAC
-		ETC2_sRGBA8		= 0x9279		// GL_COMPRESSED_SRGB8_ALPHA8_ETC2_EAC
+		ETC1_RGB,				// GL_ETC1_RGB8_OES. OES just means the format internal ID was developed by the working group (Kronos I assume).
+		ETC2_RGB,				// GL_COMPRESSED_RGB8_ETC2.
+		ETC2_RGBA_OLD,			// GL_COMPRESSED_RGBA8_ETC2_EAC. Should not be encountered. Interpret as RGBA if it is.
+		ETC2_RGBA,				// GL_COMPRESSED_RGBA8_ETC2_EAC.
+		ETC2_RGBA1,				// GL_COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2.
+		ETC2_R,					// GL_COMPRESSED_R11_EAC.
+		ETC2_RG,				// GL_COMPRESSED_RG11_EAC.
+		ETC2_R_SIGNED,			// GL_COMPRESSED_SIGNED_R11_EAC.
+		ETC2_RG_SIGNED,			// GL_COMPRESSED_SIGNED_RG11_EAC.
+		ETC2_sRGB,				// GL_COMPRESSED_SRGB8_ETC2.
+		ETC2_sRGBA,				// GL_COMPRESSED_SRGB8_ALPHA8_ETC2_EAC.
+		ETC2_sRGBA1				// GL_COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2.
 	};
+
 	bool IsHeaderValid(const Header&);
 
 	// These figure out the pixel format and the colour-space. tPixelFormat does not specify ancilllary
 	// properties of the data -- it specified the encoding of the data. The extra information, like the colour-space it
 	// was authored in, is stored in tColourSpace. In many cases this satellite information cannot be determined, in
 	// which case colour-space will be set to their 'unspecified' enumerant.
-	void GetFormatInfo_FromPKMFormat(tPixelFormat&, tColourSpace&, uint32 pkmFmt);
+	void GetFormatInfo_FromPKMFormat(tPixelFormat&, tColourSpace&, uint32 pkmFmt, int version);
+	void ProcessGammaFlags(tColour4f& colour, tcomps channels, const tImagePKM::LoadParams& params);
+}
+
+
+void tPKM::GetFormatInfo_FromPKMFormat(tPixelFormat& fmt, tColourSpace& spc, uint32 pkmFmt, int version)
+{
+	fmt = tPixelFormat::Invalid;
+	spc = tColourSpace::Invalid;
+	switch (PKMFMT(pkmFmt))
+	{
+		case PKMFMT::ETC1_RGB:		fmt = tPixelFormat::ETC1;		spc = tColourSpace::Linear;		break;
+		case PKMFMT::ETC2_RGB:		fmt = tPixelFormat::ETC2RGB;	spc = tColourSpace::Linear;		break;
+		case PKMFMT::ETC2_RGBA_OLD:
+		case PKMFMT::ETC2_RGBA:		fmt = tPixelFormat::ETC2RGBA;	spc = tColourSpace::Linear;		break;
+		case PKMFMT::ETC2_RGBA1:	fmt = tPixelFormat::ETC2RGBA1;	spc = tColourSpace::Linear;		break;
+		case PKMFMT::ETC2_R:		fmt = tPixelFormat::EACR11;		spc = tColourSpace::Linear;		break;
+		case PKMFMT::ETC2_RG:		fmt = tPixelFormat::EACRG11;	spc = tColourSpace::Linear;		break;
+		case PKMFMT::ETC2_R_SIGNED:	fmt = tPixelFormat::EACR11S;	spc = tColourSpace::Linear;		break;
+		case PKMFMT::ETC2_RG_SIGNED:fmt = tPixelFormat::EACRG11S;	spc = tColourSpace::Linear;		break;
+		case PKMFMT::ETC2_sRGB:		fmt = tPixelFormat::ETC2RGB;	spc = tColourSpace::Standard;	break;
+		case PKMFMT::ETC2_sRGBA:	fmt = tPixelFormat::ETC2RGBA;	spc = tColourSpace::Standard;	break;
+		case PKMFMT::ETC2_sRGBA1:	fmt = tPixelFormat::ETC2RGBA1;	spc = tColourSpace::Standard;	break;
+	}
+
+	// If the format is still invalid we encountered an invalid format in the PKM header.
+	// In this case we base the format on the header version number only.
+	if (fmt == tPixelFormat::Invalid)
+	{
+		spc = tColourSpace::Standard;
+		if (version == 2)
+			fmt = tPixelFormat::ETC2RGB;
+		else
+			fmt = tPixelFormat::ETC1;
+	}
+}
+
+
+void tPKM::ProcessGammaFlags(tColour4f& colour, tcomps channels, const tImagePKM::LoadParams& params)
+{
+	if (params.Flags & tImagePKM::LoadFlag_SRGBCompression)
+		colour.LinearToSRGB(channels);
+	if (params.Flags & tImagePKM::LoadFlag_GammaCompression)
+		colour.LinearToGamma(params.Gamma, channels);
 }
 
 
@@ -128,36 +174,246 @@ bool tImagePKM::Load(const tString& pkmFile, const LoadParams& params)
 }
 
 
-bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParams& params)
+bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParams& paramsIn)
 {
 	Clear();
 	if ((numBytes <= 0) || !pkmFileInMemory)
 		return false;
 
 	const tPKM::Header* header = (const tPKM::Header*)pkmFileInMemory;
-	const uint8* data = pkmFileInMemory + sizeof(tPKM::Header);
-
 	bool valid = tPKM::IsHeaderValid(*header);
 	if (!valid)
 		return false;
 
-/*
-	PixelFormatSrc = tPixelFormat::R8G8B8;
-
-	// Now we need to get it into RGBA, and not upside down.
-	Width = header->GetWidth();
-	Height = header->GetHeight();
-
-	Pixels = new tPixel[Width*Height];
-	tColour3i* rgbPixels = new tColour3i[Width*Height];
-	int stride = Width;
-	bool ok = tPKM::Uncompress
-	if (!ok)
-	{
-		delete[] rgbPixels;
+	int width  = header->GetWidth();
+	int height = header->GetHeight();
+	if ((width <= 0) || (height <= 0))
 		return false;
+
+	tPixelFormat format;
+	tColourSpace space;
+	tPKM::GetFormatInfo_FromPKMFormat(format, space, header->GetFormat(), header->GetVersion());
+	if (!tIsBCFormat(format))
+		return false;
+
+	PixelFormat = format;
+	PixelFormatSrc = format;
+	ColourSpace = space;
+	ColourSpaceSrc = space;
+
+	const uint8* pkmData = pkmFileInMemory + sizeof(tPKM::Header);
+	int pkmDataSize = numBytes - sizeof(tPKM::Header);
+	tAssert(!Layer);
+	LoadParams params(paramsIn);
+
+	// If we were not asked to decode we just get the data over to the Layer and we're done.
+	if (!(params.Flags & LoadFlag_Decode))
+	{
+		Layer = new tLayer(PixelFormat, width, height, (uint8*)pkmData);
+		return true;
 	}
 
+	// Decode to 32-bit RGBA.
+	// Spread only applies to the single-channel (R-only) format.
+	bool spread = params.Flags & LoadFlag_SpreadLuminance;
+
+	// If the gamma mode is auto, we determine here whether to apply sRGB compression.
+	// If the space is linear and a format that often encodes colours, we apply it.
+	if (params.Flags & LoadFlag_AutoGamma)
+	{
+		// Clear all related flags.
+		params.Flags &= ~(LoadFlag_AutoGamma | LoadFlag_SRGBCompression | LoadFlag_GammaCompression);
+		if (ColourSpace == tColourSpace::Linear)
+			params.Flags |= LoadFlag_SRGBCompression;
+	}
+
+	bool processedSpaceFlags = false;
+
+#if 0
+	int w = layer->Width;
+	int h = layer->Height;
+	uint8* src = layer->Data;
+
+	// We need extra room because the decompressor (etcdec) does not take an input for
+	// the width and height, only the pitch (bytes per row). This means a texture that
+	// is 5 high will actually have row 6, 7, 8 written to.
+	int wextra = tGetNumBlocks(4, 
+	int wextra = w + ((w%4) ? 4-(w%4) : 0);
+	int hextra = h + ((h%4) ? 4-(h%4) : 0);
+	tPixel* uncompData = new tPixel[wextra*hextra];
+	switch (layer->PixelFormat)
+	{
+		case tPixelFormat::BC1DXT1:
+		case tPixelFormat::BC1DXT1A:
+		{
+			for (int i = 0; i < h; i += 4)
+				for (int j = 0; j < w; j += 4)
+				{
+					uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
+
+					// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be
+					// written into multiple rows of the destination... and we need to know how far to get to the
+					// next row for each pixel.
+					bcdec_bc1(src, dst, w * 4);
+					src += BCDEC_BC1_BLOCK_SIZE;
+				}
+			
+			break;
+		}
+
+		case tPixelFormat::BC2DXT2DXT3:
+		{
+			for (int i = 0; i < h; i += 4)
+				for (int j = 0; j < w; j += 4)
+				{
+					uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
+					bcdec_bc2(src, dst, w * 4);
+					src += BCDEC_BC2_BLOCK_SIZE;
+				}
+			break;
+		}
+
+		case tPixelFormat::BC3DXT4DXT5:
+		{
+			for (int i = 0; i < h; i += 4)
+				for (int j = 0; j < w; j += 4)
+				{
+					uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
+					bcdec_bc3(src, dst, w * 4);
+					src += BCDEC_BC3_BLOCK_SIZE;
+				}
+			break;
+		}
+
+		case tPixelFormat::BC4ATI1:
+		{
+			// This HDR format decompresses to R uint8s.
+			uint8* rdata = new uint8[wextra*hextra];
+
+			for (int i = 0; i < h; i += 4)
+				for (int j = 0; j < w; j += 4)
+				{
+					uint8* dst = (rdata + (i * w + j) * 1);
+					bcdec_bc4(src, dst, w * 1);
+					src += BCDEC_BC4_BLOCK_SIZE;
+				}
+
+			// Now convert to 32-bit RGBA.
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				uint8 v = rdata[ij];
+				tColour4i col(v, spread ? v : 0u, spread ? v : 0u, 255u);
+				uncompData[ij].Set(col);
+			}
+			delete[] rdata;
+			break;
+		}
+
+		case tPixelFormat::BC5ATI2:
+		{
+			struct RG { uint8 R; uint8 G; };
+			// This HDR format decompresses to RG uint8s.
+			RG* rgData = new RG[wextra*hextra];
+
+			for (int i = 0; i < h; i += 4)
+				for (int j = 0; j < w; j += 4)
+				{
+					uint8* dst = (uint8*)rgData + (i * w + j) * 2;
+					bcdec_bc5(src, dst, w * 2);
+					src += BCDEC_BC5_BLOCK_SIZE;
+				}
+
+			// Now convert to 32-bit RGBA with 0,255 for B,A.
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				tColour4i col(rgData[ij].R, rgData[ij].G, 0u, 255u);
+				uncompData[ij].Set(col);
+			}
+			delete[] rgData;
+			break;
+		}
+
+		case tPixelFormat::BC6S:
+		case tPixelFormat::BC6U:
+		{
+			// This HDR format decompresses to RGB floats.
+			tColour3f* rgbData = new tColour3f[wextra*hextra];
+
+			for (int i = 0; i < h; i += 4)
+				for (int j = 0; j < w; j += 4)
+				{
+					uint8* dst = (uint8*)((float*)rgbData + (i * w + j) * 3);
+					bool signedData = layer->PixelFormat == tPixelFormat::BC6S;
+					bcdec_bc6h_float(src, dst, w * 3, signedData);
+					src += BCDEC_BC6H_BLOCK_SIZE;
+				}
+
+			// Now convert to 32-bit RGBA with 255 alpha.
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				tColour4f col(rgbData[ij], 1.0f);
+				tDDS::ProcessHDRFlags(col, tComp_RGB, params);
+				uncompData[ij].Set(col);
+			}
+			processedHDRFlags = true;
+			delete[] rgbData;
+			break;
+		}
+
+		case tPixelFormat::BC7:
+		{
+			for (int i = 0; i < h; i += 4)
+				for (int j = 0; j < w; j += 4)
+				{
+					uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
+					bcdec_bc7(src, dst, w * 4);
+					src += BCDEC_BC7_BLOCK_SIZE;
+				}
+			break;
+		}
+
+		default:
+			delete[] uncompData;
+			Clear();
+			Results |= 1 << int(ResultCode::Fatal_BCDecodeError);
+			return false;
+	}
+
+	// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
+	delete[] layer->Data;
+	layer->Data = (uint8*)uncompData;
+	layer->PixelFormat = tPixelFormat::R8G8B8A8;
+
+	// We've got one more chance to reverse the rows here (if we still need to) because we were asked to decode.
+	if (reverseRowOrderRequested && !RowReversalOperationPerformed && (layer->PixelFormat == tPixelFormat::R8G8B8A8))
+	{
+		// This shouldn't ever fail. Too easy to reverse RGBA 32-bit.
+		uint8* reversedRowData = tImage::CreateReversedRowData(layer->Data, layer->PixelFormat, w, h);
+		tAssert(reversedRowData);
+		delete[] layer->Data;
+		layer->Data = reversedRowData;
+		didRowReversalAfterDecode = true;
+	}
+
+	if (processedHDRFlags)
+	{
+		if (params.Flags & LoadFlag_SRGBCompression)  ColourSpace = tColourSpace::sRGB;
+		if (params.Flags & LoadFlag_GammaCompression) ColourSpace = tColourSpace::Gamma;
+	}
+
+	// All images decoded. Can now set the object's pixel format. We do _not_ set the PixelFormatSrc here!
+	PixelFormat = tPixelFormat::R8G8B8A8;
+
+	if (reverseRowOrderRequested && !RowReversalOperationPerformed)
+		Results |= 1 << int(ResultCode::Conditional_CouldNotFlipRows);
+
+	tAssert(IsValid());
+	Results |= 1 << int(ResultCode::Success);
+#endif
+
+	return true;
+
+/*
 	// Reverse rows and update Pixels.
 	for (int y = 0; y < Height; y++)
 	{
@@ -168,9 +424,9 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 		}
 	}
 	delete[] rgbPixels;
-*/
 
 	return true;
+*/
 }
 
 

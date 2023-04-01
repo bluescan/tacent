@@ -36,21 +36,21 @@ public:
 		LoadFlag_ReverseRowOrder	= 1 << 1,	// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.
 		LoadFlag_GammaCompression	= 1 << 2,	// Gamma-correct. Gamma compression using an encoding gamma of 1/2.2.
 		LoadFlag_SRGBCompression	= 1 << 3,	// Same as above but uses the official sRGB transformation. Linear -> sRGB. Approx encoding gamma of 1/2.4 for part of curve.
-		LoadFlag_ToneMapExposure	= 1 << 4,	// Apply exposure value when loading the pkm.
-		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder
+		LoadFlag_AutoGamma			= 1 << 4,	// Tries to determine whether to apply sRGB compression based on pixel format. Call GetColourSpace to see if it applied.
+		LoadFlag_SpreadLuminance	= 1 << 5,	// For PKM files with a single Red, spread it to all the RGB channels (otherwise red only). Applies only if decoding a pkm that is an R-only format.
+		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_AutoGamma
 	};
 
 	struct LoadParams
 	{
 		LoadParams()																									{ Reset(); }
-		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Gamma(src.Gamma), Exposure(src.Exposure) { }
+		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Gamma(src.Gamma) { }
 
-		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::DefaultGamma; Exposure = 1.0f; }
-		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Gamma = src.Gamma; Exposure = src.Exposure; return *this; }
+		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::DefaultGamma; }
+		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Gamma = src.Gamma; return *this; }
 
 		uint32 Flags;
 		float Gamma;				// Used iff decoding.
-		float Exposure;				// Used iff decoding.
 	};
 
 	// Creates an invalid tImagePMK. You must call Load manually.

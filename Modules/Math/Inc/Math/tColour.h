@@ -44,19 +44,23 @@ enum class tColourSpace
 {
 	Unspecified,
 
+	// Linear.
 	// Colours (and alpha) represented in this space can be added and multiplied with each other. This is your basic
 	// RGB cube. Alphas are also considered linear.
 	lRGB, 		lRGBA = lRGB,
 
+	// Gamma.
 	// Colours can be multiplied with each other, but not added. This is a common approximation of sRGB-space in
 	// which a simple pow function is used with a nominal gamma value of 2.2. If the data contains alpha, the alpha
 	// is considered to be linear.
 	gRGB, 		gRGBlA = gRGB,
 
+	// Square.
 	// This is a lame approximation of gamma-space in which gamma is taken to be 2.0. This allows fast conversion
 	// between linear and gamma-square because a square and square-root function are all that's needed.
 	qRGB,		qRGBlA = qRGB,
 
+	// Standard.
 	// Standard RGB. This is the real-deal and uses the full sRGB spec (https://en.wikipedia.org/wiki/SRGB)
 	// Neither mult or add. Most common space of source art.
 	sRGB,		sRGBlA = sRGB,
@@ -66,11 +70,15 @@ enum class tColourSpace
 	// Hue, Saturation, and Value.
 	HSV,
 
+	NumSpaces,
+
 	// Synonyms.
+	Invalid		= Unspecified,
 	Linear		= lRGB,
 	Gamma		= gRGB,
 	Square		= qRGB,
-	Standard	= sRGB
+	Standard	= sRGB,
+	Auto		= NumSpaces
 };
 
 
