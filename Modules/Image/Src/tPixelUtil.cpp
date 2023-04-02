@@ -2,7 +2,7 @@
 //
 // Helper functions for manipulating and parsing pixel-data in packed and compressed block formats.
 //
-// Copyright (c) 2022 Tristan Grimmer.
+// Copyright (c) 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -21,6 +21,9 @@
 
 namespace tImage
 {
+	bool CanReverseRowData_Packed		(tPixelFormat);
+	bool CanReverseRowData_BC			(tPixelFormat, int height);
+
 	uint8* CreateReversedRowData_Packed	(const uint8* pixelData, tPixelFormat pixelDataFormat, int width, int height);
 	uint8* CreateReversedRowData_BC		(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH);
 }
@@ -109,6 +112,18 @@ bool tImage::DoBC1BlocksHaveBinaryAlpha(tImage::BC1Block* block, int numBlocks)
 }
 
 
+bool tImage::CanReverseRowData(tPixelFormat format, int height)
+{
+	if (tIsPackedFormat(format))
+		return CanReverseRowData_Packed(format);
+
+	if (tIsBCFormat(format))
+		return CanReverseRowData_BC(format, height);
+
+	return false;
+}
+
+
 uint8* tImage::CreateReversedRowData(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH)
 {
 	if (tIsPackedFormat(pixelDataFormat))
@@ -121,13 +136,22 @@ uint8* tImage::CreateReversedRowData(const uint8* pixelData, tPixelFormat pixelD
 }
 
 
+bool tImage::CanReverseRowData_Packed(tPixelFormat format)
+{
+	int bitsPerPixel = tImage::tGetBitsPerPixel(format);
+	if ((bitsPerPixel % 8) == 0)
+		return true;
+}
+
+
 uint8* tImage::CreateReversedRowData_Packed(const uint8* pixelData, tPixelFormat pixelDataFormat, int width, int height)
 {
 	// We only support pixel formats that contain a whole number of bytes per pixel.
 	// That will cover all reasonable RGB and RGBA formats, but not ASTC formats.
-	int bitsPerPixel = tImage::tGetBitsPerPixel(pixelDataFormat);
-	if (bitsPerPixel % 8)
+	if (!CanReverseRowData_Packed(pixelDataFormat))
 		return nullptr;
+
+	int bitsPerPixel = tImage::tGetBitsPerPixel(pixelDataFormat);
 	int bytesPerPixel = bitsPerPixel/8;
 	int numBytes = width*height*bytesPerPixel;
 
@@ -146,20 +170,27 @@ uint8* tImage::CreateReversedRowData_Packed(const uint8* pixelData, tPixelFormat
 }
 
 
-uint8* tImage::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH)
+bool tImage::CanReverseRowData_BC(tPixelFormat format, int height)
 {
-	// We only support the following block formats for lossless row reversal.
-	bool reversalSupported = false;
-	switch (pixelDataFormat)
+	switch (format)
 	{
 		case tPixelFormat::BC1DXT1A:
 		case tPixelFormat::BC1DXT1:
 		case tPixelFormat::BC2DXT2DXT3:
 		case tPixelFormat::BC3DXT4DXT5:
-			reversalSupported = true;
+			if ((height % tGetBlockHeight(format)) == 0)
+				return true;
 			break;
 	}
-	if (!reversalSupported)
+
+	return false;
+}
+
+
+uint8* tImage::CreateReversedRowData_BC(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH)
+{
+	// We do not support all BC formats for this..
+	if (!CanReverseRowData_BC(pixelDataFormat, numBlocksH*tGetBlockHeight(pixelDataFormat)))
 		return nullptr;
 
 	int bcBlockSize = tImage::tGetBytesPerBlock(pixelDataFormat);

@@ -2,7 +2,7 @@
 //
 // Helper functions for manipulating and parsing pixel-data in packed and compressed block formats.
 //
-// Copyright (c) 2022 Tristan Grimmer.
+// Copyright (c) 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -59,6 +59,9 @@ struct BC3Block
 
 constexpr uint32 FourCC(uint8 ch0, uint8 ch1, uint8 ch2, uint8 ch3);
 bool DoBC1BlocksHaveBinaryAlpha(BC1Block* blocks, int numBlocks);
+
+// Determine if row-reversal will succeed based on the pixel format and height.
+bool CanReverseRowData(tPixelFormat, int height);
 
 // This also works for packed formats which are considered to have a block width and height of 1.
 uint8* CreateReversedRowData(const uint8* pixelData, tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH);

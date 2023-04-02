@@ -3,7 +3,7 @@
 // This knows how to load/save KTX files. It knows the details of the ktx and ktx2 file format and loads the data into
 // multiple tPixel arrays, one for each frame (KTKs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2022 Tristan Grimmer.
+// Copyright (c) 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -908,6 +908,31 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 	bool reverseRowOrderRequested = params.Flags & LoadFlag_ReverseRowOrder;
 	RowReversalOperationPerformed = false;
 
+	// For images whose height is not a multiple of the block size it makes it tricky when deoompressing to do
+	// the more efficient row reversal here, so we defer it. Packed formats have a block height of 1. Only BC
+	// and astc have non-unity block dimensins.
+	bool doRowReversalBeforeDecode = false;
+	if (reverseRowOrderRequested)
+	{
+		bool canDo = true;
+		for (int image = 0; image < NumImages; image++)
+		{
+			int height = mainHeight;
+			for (int layer = 0; layer < NumMipmapLayers; layer++)
+			{
+				if (!CanReverseRowData(PixelFormat, height))
+				{
+					canDo = false;
+					break;
+				}
+				height /= 2; if (height < 1) height = 1;
+			}
+			if (!canDo)
+				break;
+		}
+		doRowReversalBeforeDecode = canDo;
+	}
+
 	for (int image = 0; image < NumImages; image++)
 	{
 		int width = mainWidth;
@@ -949,22 +974,19 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 				// the top to the bottom row. We also need to flip the rows within the 4x4 block by flipping the lookup
 				// tables. This should be fairly fast as there is no encoding or encoding going on. Width and height
 				// will go down to 1x1, which will still use a 4x4 DXT pixel-block.
-				if (reverseRowOrderRequested)
+				if (doRowReversalBeforeDecode)
 				{
-					uint8* reversedPixelData = CreateReversedRowData(currPixelData, PixelFormat, numBlocksW, numBlocksH);
-					if (reversedPixelData)
-					{
-						// We can simply get the layer to steal the memory (the last true arg).
-						Layers[layer][image] = new tLayer(PixelFormat, width, height, reversedPixelData, true);
+					uint8* reversedPixelData = tImage::CreateReversedRowData(currPixelData, PixelFormat, numBlocksW, numBlocksH);
+					tAssert(reversedPixelData);
 
-						// If we can do one layer, we can do them all -- in all images.
-						RowReversalOperationPerformed = true;
-					}
+					// We can simply get the layer to steal the memory (the last true arg).
+					Layers[layer][image] = new tLayer(PixelFormat, width, height, reversedPixelData, true);
 				}
-				
-				// If no luck reversing or no request to reverse in the first place, use the data directly.
-				if (!reverseRowOrderRequested || (reverseRowOrderRequested && !RowReversalOperationPerformed))
+				else
+				{
+					// Not reversing. Use the currPixelData.
 					Layers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
+				}
 
 				tAssert(Layers[layer][image]->GetDataSize() == numBytes);
 			}
@@ -976,15 +998,13 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 			}
 
 			currPixelData += numBytes;
-			width /= 2;
-			if (width < 1)
-				width = 1;
-
-			height /= 2;
-			if (height < 1)
-				height = 1;
+			width  /= 2; tMath::tiClampMin(width, 1);
+			height /= 2; tMath::tiClampMin(height, 1);
 		}
 	}
+
+	if (doRowReversalBeforeDecode)
+		RowReversalOperationPerformed = true;
 
 	// Decode to 32-bit RGBA if requested. If we're already in the correct R8G8B8A8 format, no need to do anything.	
 	if ((params.Flags & LoadFlag_Decode) && (PixelFormat != tPixelFormat::R8G8B8A8))
@@ -1277,36 +1297,35 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 					// We need extra room because the decompressor (bcdec) does not take an input for
 					// the width and height, only the pitch (bytes per row). This means a texture that is 5
 					// high will actually have row 6, 7, 8 written to.
-					int wextra = w + ((w%4) ? 4-(w%4) : 0);
-					int hextra = h + ((h%4) ? 4-(h%4) : 0);
-					tPixel* uncompData = new tPixel[wextra*hextra];
+					int wfull = 4 * tGetNumBlocks(4, w);
+					int hfull = 4 * tGetNumBlocks(4, h);
+					tPixel* uncompData = new tPixel[wfull*hfull];
 					switch (layer->PixelFormat)
 					{
 						case tPixelFormat::BC1DXT1:
 						case tPixelFormat::BC1DXT1A:
 						{
-							for (int i = 0; i < h; i += 4)
-								for (int j = 0; j < w; j += 4)
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
 								{
-									uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
+									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
 
-									// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be
-									// written into multiple rows of the destination... and we need to know how far to get to the
-									// next row for each pixel.
-									bcdec_bc1(src, dst, w * 4);
+									// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be written into
+									// multiple rows of the destination and we need to know how far to increment to the next row of 4.
+									bcdec_bc1(src, dst, wfull * 4);
 									src += BCDEC_BC1_BLOCK_SIZE;
 								}
-							
+
 							break;
 						}
 
 						case tPixelFormat::BC2DXT2DXT3:
 						{
-							for (int i = 0; i < h; i += 4)
-								for (int j = 0; j < w; j += 4)
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
 								{
-									uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
-									bcdec_bc2(src, dst, w * 4);
+									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
+									bcdec_bc2(src, dst, wfull * 4);
 									src += BCDEC_BC2_BLOCK_SIZE;
 								}
 							break;
@@ -1314,11 +1333,11 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 
 						case tPixelFormat::BC3DXT4DXT5:
 						{
-							for (int i = 0; i < h; i += 4)
-								for (int j = 0; j < w; j += 4)
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
 								{
-									uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
-									bcdec_bc3(src, dst, w * 4);
+									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
+									bcdec_bc3(src, dst, wfull * 4);
 									src += BCDEC_BC3_BLOCK_SIZE;
 								}
 							break;
@@ -1327,22 +1346,22 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 						case tPixelFormat::BC4ATI1:
 						{
 							// This HDR format decompresses to R uint8s.
-							uint8* rdata = new uint8[wextra*hextra];
+							uint8* rdata = new uint8[wfull*hfull];
 
-							for (int i = 0; i < h; i += 4)
-								for (int j = 0; j < w; j += 4)
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
 								{
-									uint8* dst = (rdata + (i * w + j) * 1);
-									bcdec_bc4(src, dst, w * 1);
+									uint8* dst = (rdata + (y*wfull + x) * 1);
+									bcdec_bc4(src, dst, wfull * 1);
 									src += BCDEC_BC4_BLOCK_SIZE;
 								}
 
 							// Now convert to 32-bit RGBA.
-							for (int ij = 0; ij < w*h; ij++)
+							for (int xy = 0; xy < wfull*hfull; xy++)
 							{
-								uint8 v = rdata[ij];
+								uint8 v = rdata[xy];
 								tColour4i col(v, spread ? v : 0u, spread ? v : 0u, 255u);
-								uncompData[ij].Set(col);
+								uncompData[xy].Set(col);
 							}
 							delete[] rdata;
 							break;
@@ -1352,21 +1371,21 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 						{
 							struct RG { uint8 R; uint8 G; };
 							// This HDR format decompresses to RG uint8s.
-							RG* rgData = new RG[wextra*hextra];
+							RG* rgData = new RG[wfull*hfull];
 
-							for (int i = 0; i < h; i += 4)
-								for (int j = 0; j < w; j += 4)
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
 								{
-									uint8* dst = (uint8*)rgData + (i * w + j) * 2;
-									bcdec_bc5(src, dst, w * 2);
+									uint8* dst = (uint8*)rgData + (y*wfull + x) * 2;
+									bcdec_bc5(src, dst, wfull * 2);
 									src += BCDEC_BC5_BLOCK_SIZE;
 								}
 
 							// Now convert to 32-bit RGBA with 0,255 for B,A.
-							for (int ij = 0; ij < w*h; ij++)
+							for (int xy = 0; xy < wfull*hfull; xy++)
 							{
-								tColour4i col(rgData[ij].R, rgData[ij].G, 0u, 255u);
-								uncompData[ij].Set(col);
+								tColour4i col(rgData[xy].R, rgData[xy].G, 0u, 255u);
+								uncompData[xy].Set(col);
 							}
 							delete[] rgData;
 							break;
@@ -1376,23 +1395,23 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 						case tPixelFormat::BC6U:
 						{
 							// This HDR format decompresses to RGB floats.
-							tColour3f* rgbData = new tColour3f[wextra*hextra];
+							tColour3f* rgbData = new tColour3f[wfull*hfull];
 
-							for (int i = 0; i < h; i += 4)
-								for (int j = 0; j < w; j += 4)
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
 								{
-									uint8* dst = (uint8*)((float*)rgbData + (i * w + j) * 3);
+									uint8* dst = (uint8*)((float*)rgbData + (y*wfull + x) * 3);
 									bool signedData = layer->PixelFormat == tPixelFormat::BC6S;
-									bcdec_bc6h_float(src, dst, w * 3, signedData);
+									bcdec_bc6h_float(src, dst, wfull * 3, signedData);
 									src += BCDEC_BC6H_BLOCK_SIZE;
 								}
 
 							// Now convert to 32-bit RGBA with 255 alpha.
-							for (int ij = 0; ij < w*h; ij++)
+							for (int xy = 0; xy < wfull*hfull; xy++)
 							{
-								tColour4f col(rgbData[ij], 1.0f);
+								tColour4f col(rgbData[xy], 1.0f);
 								tKTX::ProcessHDRFlags(col, tComp_RGB, params);
-								uncompData[ij].Set(col);
+								uncompData[xy].Set(col);
 							}
 							processedHDRFlags = true;
 							delete[] rgbData;
@@ -1401,11 +1420,11 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 
 						case tPixelFormat::BC7:
 						{
-							for (int i = 0; i < h; i += 4)
-								for (int j = 0; j < w; j += 4)
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
 								{
-									uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
-									bcdec_bc7(src, dst, w * 4);
+									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
+									bcdec_bc7(src, dst, wfull * 4);
 									src += BCDEC_BC7_BLOCK_SIZE;
 								}
 							break;
@@ -1419,8 +1438,28 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 					}
 
 					// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
+					// This isn't the most efficient because we don't have a stride in a tLayer, but correctness first.
+					// Basically the uncompData may be too big if we needed extra room for w and h to do the decompression.
+					// This happens when the image dimensions where not multiples of the block size. We deal with that here.
+					// This is only inefficient if the dimensions were not a mult of 4, otherwise we can use the buffer directly.
 					delete[] layer->Data;
-					layer->Data = (uint8*)uncompData;
+					if ((wfull == w) && (hfull == h))
+					{
+						layer->Data = (uint8*)uncompData;
+					}
+					else
+					{
+						layer->Data = new uint8[w*h*sizeof(tPixel)];
+						uint8* s = (uint8*)uncompData;
+						uint8* d = layer->Data;
+						for (int r = 0; r < h; r++)
+						{
+							tStd::tMemcpy(d, s, w*sizeof(tPixel));
+							s += wfull * sizeof(tPixel);
+							d += w     * sizeof(tPixel);
+						}
+						delete[] uncompData;
+					}
 					layer->PixelFormat = tPixelFormat::R8G8B8A8;
 				}
 				else if (tImage::tIsASTCFormat(PixelFormat))
