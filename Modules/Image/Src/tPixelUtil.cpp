@@ -17,6 +17,8 @@
 #include "Image/tPixelUtil.h"
 #define BCDEC_IMPLEMENTATION
 #include "bcdec/bcdec.h"
+#define ETCDEC_IMPLEMENTATION
+#include "etcdec/etcdec.h"
 
 
 namespace tImage

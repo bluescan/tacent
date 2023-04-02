@@ -16,7 +16,9 @@
 
 #include <System/tFile.h>
 #include "Image/tImagePKM.h"
+#include "Image/tPixelUtil.h"
 #include "Image/tPicture.h"
+#include "etcdec/etcdec.h"
 using namespace tSystem;
 namespace tImage
 {
@@ -227,206 +229,84 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 			params.Flags |= LoadFlag_SRGBCompression;
 	}
 
-	bool processedSpaceFlags = false;
+	bool processedGammaFlags = false;
 
-#if 0
-	int w = layer->Width;
-	int h = layer->Height;
-	uint8* src = layer->Data;
-
-	// We need extra room because the decompressor (etcdec) does not take an input for
-	// the width and height, only the pitch (bytes per row). This means a texture that
-	// is 5 high will actually have row 6, 7, 8 written to.
-	int wextra = tGetNumBlocks(4, 
-	int wextra = w + ((w%4) ? 4-(w%4) : 0);
-	int hextra = h + ((h%4) ? 4-(h%4) : 0);
-	tPixel* uncompData = new tPixel[wextra*hextra];
-	switch (layer->PixelFormat)
+	// We need extra room because the decompressor (bcdec) does not take an input for
+	// the width and height, only the pitch (bytes per row). This means a texture that is 5
+	// high will actually have row 6, 7, 8 written to.
+	int wfull = 4 * tGetNumBlocks(4, width);
+	int hfull = 4 * tGetNumBlocks(4, height);
+	tPixel* uncompData = new tPixel[wfull*hfull];
+	const uint8* src = pkmData;
+	switch (PixelFormatSrc)
 	{
-		case tPixelFormat::BC1DXT1:
-		case tPixelFormat::BC1DXT1A:
+		case tPixelFormat::ETC1:
 		{
-			for (int i = 0; i < h; i += 4)
-				for (int j = 0; j < w; j += 4)
+			for (int y = 0; y < hfull; y += 4)
+				for (int x = 0; x < wfull; x += 4)
 				{
-					uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
+					uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
 
-					// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be
-					// written into multiple rows of the destination... and we need to know how far to get to the
-					// next row for each pixel.
-					bcdec_bc1(src, dst, w * 4);
-					src += BCDEC_BC1_BLOCK_SIZE;
-				}
-			
-			break;
-		}
-
-		case tPixelFormat::BC2DXT2DXT3:
-		{
-			for (int i = 0; i < h; i += 4)
-				for (int j = 0; j < w; j += 4)
-				{
-					uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
-					bcdec_bc2(src, dst, w * 4);
-					src += BCDEC_BC2_BLOCK_SIZE;
-				}
-			break;
-		}
-
-		case tPixelFormat::BC3DXT4DXT5:
-		{
-			for (int i = 0; i < h; i += 4)
-				for (int j = 0; j < w; j += 4)
-				{
-					uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
-					bcdec_bc3(src, dst, w * 4);
-					src += BCDEC_BC3_BLOCK_SIZE;
-				}
-			break;
-		}
-
-		case tPixelFormat::BC4ATI1:
-		{
-			// This HDR format decompresses to R uint8s.
-			uint8* rdata = new uint8[wextra*hextra];
-
-			for (int i = 0; i < h; i += 4)
-				for (int j = 0; j < w; j += 4)
-				{
-					uint8* dst = (rdata + (i * w + j) * 1);
-					bcdec_bc4(src, dst, w * 1);
-					src += BCDEC_BC4_BLOCK_SIZE;
+					// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be written into
+					// multiple rows of the destination and we need to know how far to increment to the next row of 4.
+					etcdec_etc_rgb (src, dst, wfull * 4);
+					src += ETCDEC_ETC_RGB_BLOCK_SIZE;
 				}
 
-			// Now convert to 32-bit RGBA.
-			for (int ij = 0; ij < w*h; ij++)
-			{
-				uint8 v = rdata[ij];
-				tColour4i col(v, spread ? v : 0u, spread ? v : 0u, 255u);
-				uncompData[ij].Set(col);
-			}
-			delete[] rdata;
-			break;
-		}
-
-		case tPixelFormat::BC5ATI2:
-		{
-			struct RG { uint8 R; uint8 G; };
-			// This HDR format decompresses to RG uint8s.
-			RG* rgData = new RG[wextra*hextra];
-
-			for (int i = 0; i < h; i += 4)
-				for (int j = 0; j < w; j += 4)
-				{
-					uint8* dst = (uint8*)rgData + (i * w + j) * 2;
-					bcdec_bc5(src, dst, w * 2);
-					src += BCDEC_BC5_BLOCK_SIZE;
-				}
-
-			// Now convert to 32-bit RGBA with 0,255 for B,A.
-			for (int ij = 0; ij < w*h; ij++)
-			{
-				tColour4i col(rgData[ij].R, rgData[ij].G, 0u, 255u);
-				uncompData[ij].Set(col);
-			}
-			delete[] rgData;
-			break;
-		}
-
-		case tPixelFormat::BC6S:
-		case tPixelFormat::BC6U:
-		{
-			// This HDR format decompresses to RGB floats.
-			tColour3f* rgbData = new tColour3f[wextra*hextra];
-
-			for (int i = 0; i < h; i += 4)
-				for (int j = 0; j < w; j += 4)
-				{
-					uint8* dst = (uint8*)((float*)rgbData + (i * w + j) * 3);
-					bool signedData = layer->PixelFormat == tPixelFormat::BC6S;
-					bcdec_bc6h_float(src, dst, w * 3, signedData);
-					src += BCDEC_BC6H_BLOCK_SIZE;
-				}
-
-			// Now convert to 32-bit RGBA with 255 alpha.
-			for (int ij = 0; ij < w*h; ij++)
-			{
-				tColour4f col(rgbData[ij], 1.0f);
-				tDDS::ProcessHDRFlags(col, tComp_RGB, params);
-				uncompData[ij].Set(col);
-			}
-			processedHDRFlags = true;
-			delete[] rgbData;
-			break;
-		}
-
-		case tPixelFormat::BC7:
-		{
-			for (int i = 0; i < h; i += 4)
-				for (int j = 0; j < w; j += 4)
-				{
-					uint8* dst = (uint8*)uncompData + (i * w + j) * 4;
-					bcdec_bc7(src, dst, w * 4);
-					src += BCDEC_BC7_BLOCK_SIZE;
-				}
 			break;
 		}
 
 		default:
 			delete[] uncompData;
 			Clear();
-			Results |= 1 << int(ResultCode::Fatal_BCDecodeError);
 			return false;
 	}
 
 	// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
-	delete[] layer->Data;
-	layer->Data = (uint8*)uncompData;
-	layer->PixelFormat = tPixelFormat::R8G8B8A8;
+	// This isn't the most efficient because we don't have a stride in a tLayer, but correctness first.
+	// Basically the uncompData may be too big if we needed extra room for w and h to do the decompression.
+	// This happens when the image dimensions where not multiples of the block size. We deal with that here.
+	// This is only inefficient if the dimensions were not a mult of 4, otherwise we can use the buffer directly.
+	uint8* data = nullptr;
+	if ((wfull == width) && (hfull == height))
+	{
+		data = (uint8*)uncompData;
+	}
+	else
+	{
+		data = new uint8[width*height*sizeof(tPixel)];
+		uint8* s = (uint8*)uncompData;
+		uint8* d = data;
+		for (int r = 0; r < height; r++)
+		{
+			tStd::tMemcpy(d, s, width*sizeof(tPixel));
+			s += wfull * sizeof(tPixel);
+			d += width * sizeof(tPixel);
+		}
+		delete[] uncompData;
+	}
+	tAssert(data);
 
-	// We've got one more chance to reverse the rows here (if we still need to) because we were asked to decode.
-	if (reverseRowOrderRequested && !RowReversalOperationPerformed && (layer->PixelFormat == tPixelFormat::R8G8B8A8))
+	bool reverseRowOrderRequested = params.Flags & LoadFlag_ReverseRowOrder;
+	if (reverseRowOrderRequested)
 	{
 		// This shouldn't ever fail. Too easy to reverse RGBA 32-bit.
-		uint8* reversedRowData = tImage::CreateReversedRowData(layer->Data, layer->PixelFormat, w, h);
+		uint8* reversedRowData = tImage::CreateReversedRowData(data, tPixelFormat::R8G8B8A8, width, height);
 		tAssert(reversedRowData);
-		delete[] layer->Data;
-		layer->Data = reversedRowData;
-		didRowReversalAfterDecode = true;
+		delete[] data;
+		data = reversedRowData;
 	}
 
-	if (processedHDRFlags)
+	if (processedGammaFlags)
 	{
 		if (params.Flags & LoadFlag_SRGBCompression)  ColourSpace = tColourSpace::sRGB;
 		if (params.Flags & LoadFlag_GammaCompression) ColourSpace = tColourSpace::Gamma;
 	}
 
-	// All images decoded. Can now set the object's pixel format. We do _not_ set the PixelFormatSrc here!
 	PixelFormat = tPixelFormat::R8G8B8A8;
-
-	if (reverseRowOrderRequested && !RowReversalOperationPerformed)
-		Results |= 1 << int(ResultCode::Conditional_CouldNotFlipRows);
-
-	tAssert(IsValid());
-	Results |= 1 << int(ResultCode::Success);
-#endif
+	Layer = new tLayer(PixelFormat, width, height, data, true);
 
 	return true;
-
-/*
-	// Reverse rows and update Pixels.
-	for (int y = 0; y < Height; y++)
-	{
-		for (int x = 0; x < Width; x++)
-		{
-			int srcIdx = Width*(Height-y-1) + x;
-			Pixels[y*Width + x].Set( rgbPixels[srcIdx], 255 );
-		}
-	}
-	delete[] rgbPixels;
-
-	return true;
-*/
 }
 
 

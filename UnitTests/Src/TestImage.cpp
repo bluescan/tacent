@@ -1964,6 +1964,9 @@ void PKMLoadDecodeSave(const tString& pkmFile)
 	// This is the file format from the filename.
 	tPixelFormat fileformat = tGetPixelFormat(formatname.Chr());
 	tPrintf("PKM format from name: %s\n\n", tGetPixelFormatName(fileformat));
+	pic.Set(pkm); tga.Set(pic);
+	tga.Save(savename);
+
 //	tPixelFormat pkmformat = pkm.GetPixelFormat();
 //	tPixelFormat pkmformatsrc = pkm.GetPixelFormatSrc();
 //	tRequire(fileformat == astcformatsrc);
