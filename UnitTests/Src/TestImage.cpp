@@ -1818,7 +1818,7 @@ void ASTCLoadDecodeSave(const tString& astcfile, const tImageASTC::LoadParams& p
 	tString savename = basename + "_";
 	if (loadFlags & tImageASTC::LoadFlag_Decode)
 		savename += "D";
-	if ((loadFlags & tImageASTC::LoadFlag_GammaCompression) || (loadFlags & tImageKTX::LoadFlag_SRGBCompression))
+	if ((loadFlags & tImageASTC::LoadFlag_GammaCompression) || (loadFlags & tImageASTC::LoadFlag_SRGBCompression))
 		savename += "G";
 	if (loadFlags & tImageASTC::LoadFlag_ReverseRowOrder)
 		savename += "R";
@@ -1957,32 +1957,52 @@ tTestUnit(ImageASTC)
 
 
 // Helper for tImagePKM unit tests.
-void PKMLoadDecodeSave(const tString& pkmFile)
+void PKMLoadDecodeSave(const tString& pkmfile, uint32 loadFlags = 0)
 {
-	tPicture pic;
-	tImageTGA tga;
-	tImagePKM pkm;
+	// We're just going to turn on auto-gamma-compression for all files.
+	loadFlags |= tImagePKM::LoadFlag_AutoGamma;
 
-	tString basename = tSystem::tGetFileBaseName(pkmFile);
-	tString savename = "Written_" + basename + ".tga";
+	tString basename = tSystem::tGetFileBaseName(pkmfile);
+	tString savename = basename + "_";
+	savename += (loadFlags & tImagePKM::LoadFlag_Decode)			? "D" : "x";
+	if ((loadFlags & tImagePKM::LoadFlag_GammaCompression) || (loadFlags & tImagePKM::LoadFlag_SRGBCompression))
+		savename += "G";
+	else if (loadFlags & tImagePKM::LoadFlag_AutoGamma)
+		savename += "g";
+	else
+		savename += "x";
+	savename += (loadFlags & tImagePKM::LoadFlag_ReverseRowOrder)	? "R" : "x";
+	savename += (loadFlags & tImagePKM::LoadFlag_SpreadLuminance)	? "S" : "x";
+	tPrintf("PKM Load %s\n", savename.Chr());
 	tString formatname = basename.Left('_');
 
-	pkm.Load(pkmFile);
-//	tRequire(pkm.IsValid());
+	tImagePKM::LoadParams params;
+	params.Flags = loadFlags;
 
-	// This is the file format from the filename.
+	tImagePKM pkm(pkmfile, params);
+	tRequire(pkm.IsValid());
 	tPixelFormat fileformat = tGetPixelFormat(formatname.Chr());
-	tPrintf("PKM format from name: %s\n\n", tGetPixelFormatName(fileformat));
-	pic.Set(pkm); tga.Set(pic);
-	tga.Save(savename);
+	tPixelFormat pkmformat = pkm.GetPixelFormat();
+	tPixelFormat pkmformatsrc = pkm.GetPixelFormatSrc();
+	tRequire(fileformat == pkmformatsrc);
+	if (loadFlags & tImagePKM::LoadFlag_Decode)
+		tRequire(pkmformat == tPixelFormat::R8G8B8A8);
+	else
+		tRequire(pkmformat == fileformat);
 
-//	tPixelFormat pkmformat = pkm.GetPixelFormat();
-//	tPixelFormat pkmformatsrc = pkm.GetPixelFormatSrc();
-//	tRequire(fileformat == astcformatsrc);
-
-//	pic.Set(pkm); tga.Set(pic);
-//	tga.Save(savename);
-//	tRequire( tSystem::tFileExists(savename));
+	tLayer* layer = pkm.StealLayer();
+	tAssert(layer->OwnsData);
+	if (pkmformat == tPixelFormat::R8G8B8A8)
+	{
+		tImageTGA tga((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_" + savename + ".tga");
+	}
+	else
+	{
+		tPrintf("No decode, no tga save. Pixel format not R8G8B8A8\n");
+	}
+	delete layer;
+	tPrintf("\n");
 }
 
 
@@ -1993,25 +2013,37 @@ tTestUnit(ImagePKM)
 	tString origDir = tSystem::tGetCurrentDir();
 	tSystem::tSetCurrentDir(origDir + "TestData/Images/PKM/");
 
-	PKMLoadDecodeSave("EACR11_R.pkm");
-	PKMLoadDecodeSave("EACR11S_R.pkm");
-	PKMLoadDecodeSave("EACRG11_RG.pkm");
-	PKMLoadDecodeSave("EACRG11S_RG.pkm");
+	uint32 decode = tImageKTX::LoadFlag_Decode;
+	uint32 revrow = tImageKTX::LoadFlag_ReverseRowOrder;
+	uint32 spread = tImageKTX::LoadFlag_SpreadLuminance;
 
-	PKMLoadDecodeSave("ETC1_RGB.pkm");
-	PKMLoadDecodeSave("ETC1_RGB_1281x721.pkm");
-	PKMLoadDecodeSave("ETC1_RGB_1282x722.pkm");
-	PKMLoadDecodeSave("ETC1_RGB_1283x723.pkm");
+	tPrintf("Testing PKM Loading/Decoding\n\n");
+	tPrintf("D = Decode\n");
+	tPrintf("G = Explicit Gamma or sRGB Compression. g = auto\n");
+	tPrintf("R = Reverse Row Order\n");
+	tPrintf("S = Spread Luminance\n");
 
-	PKMLoadDecodeSave("ETC2RGB_RGB.pkm");
-	PKMLoadDecodeSave("ETC2RGB_RGB_1281x721.pkm");
-	PKMLoadDecodeSave("ETC2RGB_RGB_1282x722.pkm");
-	PKMLoadDecodeSave("ETC2RGB_RGB_1283x723.pkm");
-	PKMLoadDecodeSave("ETC2RGB_sRGB.pkm");
-	PKMLoadDecodeSave("ETC2RGBA_RGBA.pkm");
-	PKMLoadDecodeSave("ETC2RGBA_sRGBA.pkm");
-	PKMLoadDecodeSave("ETC2RGBA1_RGBA.pkm");
-	PKMLoadDecodeSave("ETC2RGBA1_sRGBA.pkm");
+	// EAC
+//	PKMLoadDecodeSave("EACR11_R.pkm");
+//	PKMLoadDecodeSave("EACR11S_R.pkm");
+//	PKMLoadDecodeSave("EACRG11_RG.pkm");
+//	PKMLoadDecodeSave("EACRG11S_RG.pkm");
+
+	// ETC1
+	PKMLoadDecodeSave("ETC1_RGB.pkm",			decode | revrow);
+	PKMLoadDecodeSave("ETC1_RGB_1281x721.pkm",	decode | revrow);
+	PKMLoadDecodeSave("ETC1_RGB_1282x722.pkm",	decode | revrow);
+	PKMLoadDecodeSave("ETC1_RGB_1283x723.pkm",	decode | revrow);
+
+//	PKMLoadDecodeSave("ETC2RGB_RGB.pkm");
+//	PKMLoadDecodeSave("ETC2RGB_RGB_1281x721.pkm");
+//	PKMLoadDecodeSave("ETC2RGB_RGB_1282x722.pkm");
+//	PKMLoadDecodeSave("ETC2RGB_RGB_1283x723.pkm");
+//	PKMLoadDecodeSave("ETC2RGB_sRGB.pkm");
+//	PKMLoadDecodeSave("ETC2RGBA_RGBA.pkm");
+//	PKMLoadDecodeSave("ETC2RGBA_sRGBA.pkm");
+//	PKMLoadDecodeSave("ETC2RGBA1_RGBA.pkm");
+//	PKMLoadDecodeSave("ETC2RGBA1_sRGBA.pkm");
 
 	tSystem::tSetCurrentDir(origDir);
 }
