@@ -21,3 +21,6 @@ Example command-line:
 astcenc-sse2.exe -ch Desk.exr ASTC4x4_HDRRGBA.ktx 4x4 -thorough
 The -ch means compress (c) and HDR (h). A lower-case h means RGB are HDR but not A. A capital H means
 all 4 channels (RGBA) are HDR.
+
+The ETC1, ETC2, and EAC encoded ktx(V1) files were generated using etcpack.exe and the bat file in the
+PKM folder.
