@@ -2043,8 +2043,10 @@ tTestUnit(ImagePKM)
 	PKMLoadDecodeSave("EACR11_R.pkm",				decode | revrow | spread);
 	PKMLoadDecodeSave("EACR11S_R.pkm",				decode | revrow);
 	PKMLoadDecodeSave("EACR11S_R.pkm",				decode | revrow | spread);
-//	PKMLoadDecodeSave("EACRG11_RG.pkm");
-//	PKMLoadDecodeSave("EACRG11S_RG.pkm");
+	PKMLoadDecodeSave("EACRG11_RG.pkm",				decode | revrow);
+	PKMLoadDecodeSave("EACRG11_RG.pkm",				decode | revrow | spread);
+	PKMLoadDecodeSave("EACRG11S_RG.pkm",			decode | revrow);
+	PKMLoadDecodeSave("EACRG11S_RG.pkm",			decode | revrow | spread);
 
 	// ETC1
 	PKMLoadDecodeSave("ETC1_RGB.pkm",				decode | revrow);
