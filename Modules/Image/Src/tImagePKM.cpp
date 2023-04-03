@@ -269,6 +269,18 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 			break;
 		}
 
+		case tPixelFormat::ETC2RGBA1:
+		{
+			for (int y = 0; y < hfull; y += 4)
+				for (int x = 0; x < wfull; x += 4)
+				{
+					uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
+					etcdec_etc_rgb_a1(src, dst, wfull * 4);
+					src += ETCDEC_ETC_RGB_A1_BLOCK_SIZE;
+				}
+			break;
+		}
+
 		default:
 			delete[] uncompData;
 			Clear();

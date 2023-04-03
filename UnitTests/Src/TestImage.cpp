@@ -2057,9 +2057,9 @@ tTestUnit(ImagePKM)
 	PKMLoadDecodeSave("ETC2RGB_RGB_1283x723.pkm",	decode | revrow);
 	PKMLoadDecodeSave("ETC2RGB_sRGB.pkm",			decode | revrow);
 	PKMLoadDecodeSave("ETC2RGBA_RGBA.pkm",			decode | revrow);
-	PKMLoadDecodeSave("ETC2RGBA_sRGBA.pkm");
-//	PKMLoadDecodeSave("ETC2RGBA1_RGBA.pkm");
-//	PKMLoadDecodeSave("ETC2RGBA1_sRGBA.pkm");
+	PKMLoadDecodeSave("ETC2RGBA_sRGBA.pkm",			decode | revrow);
+	PKMLoadDecodeSave("ETC2RGBA1_RGBA.pkm",			decode | revrow);
+	PKMLoadDecodeSave("ETC2RGBA1_sRGBA.pkm",		decode | revrow);
 
 	tSystem::tSetCurrentDir(origDir);
 }
