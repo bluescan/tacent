@@ -1998,8 +1998,13 @@ void PKMLoadDecodeSave(const tString& pkmfile, uint32 loadFlags = 0)
 	else
 		tRequire(pkmformat == fileformat);
 
+	if (pkm.GetColourSpace() == tColourSpace::sRGB)
+		tPrintf("ColourSpace sRGB\n");
+	else if (pkm.GetColourSpace() == tColourSpace::Linear)
+		tPrintf("ColourSpace Linear\n");
+
 	tLayer* layer = pkm.StealLayer();
-	tAssert(layer->OwnsData);
+	tRequire(layer && layer->OwnsData);
 	tRequire(!(loadFlags & tImagePKM::LoadFlag_Decode) || (pkmformat == tPixelFormat::R8G8B8A8));
 
 	if (pkmformat == tPixelFormat::R8G8B8A8)
@@ -2040,19 +2045,19 @@ tTestUnit(ImagePKM)
 //	PKMLoadDecodeSave("EACRG11S_RG.pkm");
 
 	// ETC1
-	PKMLoadDecodeSave("ETC1_RGB.pkm",			decode | revrow);
-	PKMLoadDecodeSave("ETC1_RGB_1281x721.pkm",	decode | revrow);
-	PKMLoadDecodeSave("ETC1_RGB_1282x722.pkm",	decode | revrow);
-	PKMLoadDecodeSave("ETC1_RGB_1283x723.pkm",	decode | revrow);
+	PKMLoadDecodeSave("ETC1_RGB.pkm",				decode | revrow);
+	PKMLoadDecodeSave("ETC1_RGB_1281x721.pkm",		decode | revrow);
+	PKMLoadDecodeSave("ETC1_RGB_1282x722.pkm",		decode | revrow);
+	PKMLoadDecodeSave("ETC1_RGB_1283x723.pkm",		decode | revrow);
 
 	// ETC2
-	PKMLoadDecodeSave("ETC2RGB_RGB.pkm",		decode | revrow);
-//	PKMLoadDecodeSave("ETC2RGB_RGB_1281x721.pkm");
-//	PKMLoadDecodeSave("ETC2RGB_RGB_1282x722.pkm");
-//	PKMLoadDecodeSave("ETC2RGB_RGB_1283x723.pkm");
-//	PKMLoadDecodeSave("ETC2RGB_sRGB.pkm");
-//	PKMLoadDecodeSave("ETC2RGBA_RGBA.pkm");
-//	PKMLoadDecodeSave("ETC2RGBA_sRGBA.pkm");
+	PKMLoadDecodeSave("ETC2RGB_RGB.pkm",			decode | revrow);
+	PKMLoadDecodeSave("ETC2RGB_RGB_1281x721.pkm",	decode | revrow);
+	PKMLoadDecodeSave("ETC2RGB_RGB_1282x722.pkm",	decode | revrow);
+	PKMLoadDecodeSave("ETC2RGB_RGB_1283x723.pkm",	decode | revrow);
+	PKMLoadDecodeSave("ETC2RGB_sRGB.pkm",			decode | revrow);
+	PKMLoadDecodeSave("ETC2RGBA_RGBA.pkm",			decode | revrow);
+	PKMLoadDecodeSave("ETC2RGBA_sRGBA.pkm");
 //	PKMLoadDecodeSave("ETC2RGBA1_RGBA.pkm");
 //	PKMLoadDecodeSave("ETC2RGBA1_sRGBA.pkm");
 
