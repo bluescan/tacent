@@ -1224,6 +1224,7 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 	tList<tImage::tLayer> layers;
 	dds.StealLayers(layers);
 
+	tRequire(!(loadFlags & tImageDDS::LoadFlag_Decode) || (ddsformat == tPixelFormat::R8G8B8A8));
 	if (ddsformat != tPixelFormat::R8G8B8A8)
 	{
 		tPrintf("No tga save. Pixel format not R8G8B8A8\n");
@@ -1489,6 +1490,7 @@ void KTXLoadDecodeSave(const tString& ktxfile, uint32 loadFlags = 0, bool saveAl
 	tList<tImage::tLayer> layers;
 	ktx.StealLayers(layers);
 
+	tRequire(!(loadFlags & tImageKTX::LoadFlag_Decode) || (ktxformat == tPixelFormat::R8G8B8A8));
 	if (ktxformat != tPixelFormat::R8G8B8A8)
 	{
 		tPrintf("No tga save. Pixel format not R8G8B8A8\n");
@@ -1847,6 +1849,7 @@ void ASTCLoadDecodeSave(const tString& astcfile, const tImageASTC::LoadParams& p
 
 	tLayer* layer = astc.StealLayer();
 	tAssert(layer->OwnsData);
+	tRequire(!(loadFlags & tImageASTC::LoadFlag_Decode) || (astcformat == tPixelFormat::R8G8B8A8));
 	if (astcformat == tPixelFormat::R8G8B8A8)
 	{
 		tImageTGA tga((tPixel*)layer->Data, layer->Width, layer->Height);
@@ -1992,6 +1995,8 @@ void PKMLoadDecodeSave(const tString& pkmfile, uint32 loadFlags = 0)
 
 	tLayer* layer = pkm.StealLayer();
 	tAssert(layer->OwnsData);
+	tRequire(!(loadFlags & tImagePKM::LoadFlag_Decode) || (pkmformat == tPixelFormat::R8G8B8A8));
+
 	if (pkmformat == tPixelFormat::R8G8B8A8)
 	{
 		tImageTGA tga((tPixel*)layer->Data, layer->Width, layer->Height);
@@ -2035,7 +2040,7 @@ tTestUnit(ImagePKM)
 	PKMLoadDecodeSave("ETC1_RGB_1282x722.pkm",	decode | revrow);
 	PKMLoadDecodeSave("ETC1_RGB_1283x723.pkm",	decode | revrow);
 
-//	PKMLoadDecodeSave("ETC2RGB_RGB.pkm");
+////	PKMLoadDecodeSave("ETC2RGB_RGB.pkm",		decode | revrow);
 //	PKMLoadDecodeSave("ETC2RGB_RGB_1281x721.pkm");
 //	PKMLoadDecodeSave("ETC2RGB_RGB_1282x722.pkm");
 //	PKMLoadDecodeSave("ETC2RGB_RGB_1283x723.pkm");
