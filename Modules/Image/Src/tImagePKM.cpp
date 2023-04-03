@@ -305,6 +305,31 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 			break;
 		}
 
+		case tPixelFormat::EACR11S:
+		{
+			// This format decompresses to R float.
+			float* rdata = new float[wfull*hfull];
+
+			for (int y = 0; y < hfull; y += 4)
+				for (int x = 0; x < wfull; x += 4)
+				{
+					float* dst = (rdata + (y*wfull + x) * 1);
+					etcdec_eac_r11_float(src, dst, wfull * sizeof(float), 1);
+					src += ETCDEC_EAC_R11_BLOCK_SIZE;
+				}
+
+			// Now convert to 32-bit RGBA.
+			for (int xy = 0; xy < wfull*hfull; xy++)
+			{
+				float vf = tMath::tSaturate((rdata[xy]+1.0f) / 2.0f);
+				uint8 v = uint8( 255.0f * vf );
+				tColour4i col(v, spread ? v : 0u, spread ? v : 0u, 255u);
+				uncompData[xy].Set(col);
+			}
+			delete[] rdata;
+			break;
+		}
+
 		default:
 			delete[] uncompData;
 			Clear();

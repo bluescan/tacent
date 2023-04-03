@@ -2041,7 +2041,8 @@ tTestUnit(ImagePKM)
 	// EAC
 	PKMLoadDecodeSave("EACR11_R.pkm",				decode | revrow);
 	PKMLoadDecodeSave("EACR11_R.pkm",				decode | revrow | spread);
-//	PKMLoadDecodeSave("EACR11S_R.pkm");
+	PKMLoadDecodeSave("EACR11S_R.pkm",				decode | revrow);
+	PKMLoadDecodeSave("EACR11S_R.pkm",				decode | revrow | spread);
 //	PKMLoadDecodeSave("EACRG11_RG.pkm");
 //	PKMLoadDecodeSave("EACRG11S_RG.pkm");
 
