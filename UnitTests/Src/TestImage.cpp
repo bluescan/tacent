@@ -1473,6 +1473,11 @@ void KTXLoadDecodeSave(const tString& ktxfile, uint32 loadFlags = 0, bool saveAl
 	params.Flags = loadFlags;
 	tImageKTX ktx(ktxfile, params);
 	tRequire(ktx.IsValid());
+
+	if (ktx.IsResultSet(tImageKTX::ResultCode::Conditional_ExtVersionMismatch))
+		tPrintf("%s Extension %s.\n", tImageKTX::GetResultDesc(tImageKTX::ResultCode::Conditional_ExtVersionMismatch), ext.Chr());
+	tRequire(!ktx.IsResultSet(tImageKTX::ResultCode::Conditional_ExtVersionMismatch));
+
 	tPixelFormat fileformat = tGetPixelFormat(formatname.Chr());
 	tPixelFormat ktxformat = ktx.GetPixelFormat();
 	tPixelFormat ktxformatsrc = ktx.GetPixelFormatSrc();
@@ -2040,7 +2045,8 @@ tTestUnit(ImagePKM)
 	PKMLoadDecodeSave("ETC1_RGB_1282x722.pkm",	decode | revrow);
 	PKMLoadDecodeSave("ETC1_RGB_1283x723.pkm",	decode | revrow);
 
-////	PKMLoadDecodeSave("ETC2RGB_RGB.pkm",		decode | revrow);
+	// ETC2
+	PKMLoadDecodeSave("ETC2RGB_RGB.pkm",		decode | revrow);
 //	PKMLoadDecodeSave("ETC2RGB_RGB_1281x721.pkm");
 //	PKMLoadDecodeSave("ETC2RGB_RGB_1282x722.pkm");
 //	PKMLoadDecodeSave("ETC2RGB_RGB_1283x723.pkm");

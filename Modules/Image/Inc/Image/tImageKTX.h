@@ -110,6 +110,7 @@ public:
 		Conditional_CouldNotFlipRows,
 		Conditional_DimNotMultFourBC,
 		Conditional_DimNotPowerTwoBC,
+		Conditional_ExtVersionMismatch,
 
 		// Fatal. Load was uncuccessful and object is invalid. The success flag will not be set.
 		Fatal_FileDoesNotExist,

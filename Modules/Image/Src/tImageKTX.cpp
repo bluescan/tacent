@@ -882,10 +882,19 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 		return false;
 	}
 
+	tSystem::tFileType fileType = tSystem::tGetFileType(Filename);
 	if (ktx1)
+	{
 		tKTX::GetFormatInfo_FromGLFormat(PixelFormat, ColourSpace, ktx1->glType, ktx1->glFormat, ktx1->glInternalformat);
+		if (fileType == tSystem::tFileType::KTX2)
+			Results |= 1 << int(ResultCode::Conditional_ExtVersionMismatch);
+	}
 	else if (ktx2)
+	{
 		tKTX::GetFormatInfo_FromVKFormat(PixelFormat, ColourSpace, ktx2->vkFormat);
+		if (fileType == tSystem::tFileType::KTX)
+			Results |= 1 << int(ResultCode::Conditional_ExtVersionMismatch);
+	}
 	PixelFormatSrc = PixelFormat;
 	ColourSpaceSrc = ColourSpace;
 
@@ -1622,6 +1631,7 @@ const char* tImageKTX::ResultDescriptions[] =
 	"Conditional Success. Image rows could not be flipped.",
 	"Conditional Success. Image has dimension not multiple of four.",
 	"Conditional Success. Image has dimension not power of two.",
+	"Conditional Success. KTX extension doesn't match file version.",
 	"Fatal Error. File does not exist.",
 	"Fatal Error. Incorrect file type. Must be a KTX or KTX2 file.",
 	"Fatal Error. LibKTX could not parse file.",

@@ -241,6 +241,7 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 	switch (PixelFormatSrc)
 	{
 		case tPixelFormat::ETC1:
+		case tPixelFormat::ETC2RGB:				// Same decoder. backwards compatible.
 		{
 			for (int y = 0; y < hfull; y += 4)
 				for (int x = 0; x < wfull; x += 4)
