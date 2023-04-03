@@ -143,6 +143,8 @@ bool tImage::CanReverseRowData_Packed(tPixelFormat format)
 	int bitsPerPixel = tImage::tGetBitsPerPixel(format);
 	if ((bitsPerPixel % 8) == 0)
 		return true;
+
+	return false;
 }
 
 
