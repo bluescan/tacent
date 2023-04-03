@@ -2028,9 +2028,9 @@ tTestUnit(ImagePKM)
 	tString origDir = tSystem::tGetCurrentDir();
 	tSystem::tSetCurrentDir(origDir + "TestData/Images/PKM/");
 
-	uint32 decode = tImageKTX::LoadFlag_Decode;
-	uint32 revrow = tImageKTX::LoadFlag_ReverseRowOrder;
-	uint32 spread = tImageKTX::LoadFlag_SpreadLuminance;
+	uint32 decode = tImagePKM::LoadFlag_Decode;
+	uint32 revrow = tImagePKM::LoadFlag_ReverseRowOrder;
+	uint32 spread = tImagePKM::LoadFlag_SpreadLuminance;
 
 	tPrintf("Testing PKM Loading/Decoding\n\n");
 	tPrintf("D = Decode\n");
@@ -2039,7 +2039,8 @@ tTestUnit(ImagePKM)
 	tPrintf("S = Spread Luminance\n");
 
 	// EAC
-//	PKMLoadDecodeSave("EACR11_R.pkm");
+	PKMLoadDecodeSave("EACR11_R.pkm",				decode | revrow);
+	PKMLoadDecodeSave("EACR11_R.pkm",				decode | revrow | spread);
 //	PKMLoadDecodeSave("EACR11S_R.pkm");
 //	PKMLoadDecodeSave("EACRG11_RG.pkm");
 //	PKMLoadDecodeSave("EACRG11S_RG.pkm");
