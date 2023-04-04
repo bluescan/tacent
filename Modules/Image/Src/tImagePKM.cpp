@@ -81,7 +81,6 @@ namespace tPKM
 	// was authored in, is stored in tColourSpace. In many cases this satellite information cannot be determined, in
 	// which case colour-space will be set to their 'unspecified' enumerant.
 	void GetFormatInfo_FromPKMFormat(tPixelFormat&, tColourSpace&, uint32 pkmFmt, int version);
-	void ProcessGammaFlags(tColour4f& colour, tcomps channels, const tImagePKM::LoadParams& params);
 }
 
 
@@ -91,7 +90,7 @@ void tPKM::GetFormatInfo_FromPKMFormat(tPixelFormat& fmt, tColourSpace& spc, uin
 	spc = tColourSpace::Invalid;
 	switch (PKMFMT(pkmFmt))
 	{
-		case PKMFMT::ETC1_RGB:		fmt = tPixelFormat::ETC1;		spc = tColourSpace::Linear;		break;
+		case PKMFMT::ETC1_RGB:		fmt = tPixelFormat::ETC1;		spc = tColourSpace::sRGB;		break;
 		case PKMFMT::ETC2_RGB:		fmt = tPixelFormat::ETC2RGB;	spc = tColourSpace::Linear;		break;
 		case PKMFMT::ETC2_RGBA_OLD:
 		case PKMFMT::ETC2_RGBA:		fmt = tPixelFormat::ETC2RGBA;	spc = tColourSpace::Linear;		break;
@@ -100,30 +99,21 @@ void tPKM::GetFormatInfo_FromPKMFormat(tPixelFormat& fmt, tColourSpace& spc, uin
 		case PKMFMT::ETC2_RG:		fmt = tPixelFormat::EACRG11;	spc = tColourSpace::Linear;		break;
 		case PKMFMT::ETC2_R_SIGNED:	fmt = tPixelFormat::EACR11S;	spc = tColourSpace::Linear;		break;
 		case PKMFMT::ETC2_RG_SIGNED:fmt = tPixelFormat::EACRG11S;	spc = tColourSpace::Linear;		break;
-		case PKMFMT::ETC2_sRGB:		fmt = tPixelFormat::ETC2RGB;	spc = tColourSpace::Standard;	break;
-		case PKMFMT::ETC2_sRGBA:	fmt = tPixelFormat::ETC2RGBA;	spc = tColourSpace::Standard;	break;
-		case PKMFMT::ETC2_sRGBA1:	fmt = tPixelFormat::ETC2RGBA1;	spc = tColourSpace::Standard;	break;
+		case PKMFMT::ETC2_sRGB:		fmt = tPixelFormat::ETC2RGB;	spc = tColourSpace::sRGB;		break;
+		case PKMFMT::ETC2_sRGBA:	fmt = tPixelFormat::ETC2RGBA;	spc = tColourSpace::sRGB;		break;
+		case PKMFMT::ETC2_sRGBA1:	fmt = tPixelFormat::ETC2RGBA1;	spc = tColourSpace::sRGB;		break;
 	}
 
 	// If the format is still invalid we encountered an invalid format in the PKM header.
 	// In this case we base the format on the header version number only.
 	if (fmt == tPixelFormat::Invalid)
 	{
-		spc = tColourSpace::Standard;
+		spc = tColourSpace::sRGB;
 		if (version == 2)
 			fmt = tPixelFormat::ETC2RGB;
 		else
 			fmt = tPixelFormat::ETC1;
 	}
-}
-
-
-void tPKM::ProcessGammaFlags(tColour4f& colour, tcomps channels, const tImagePKM::LoadParams& params)
-{
-	if (params.Flags & tImagePKM::LoadFlag_SRGBCompression)
-		colour.LinearToSRGB(channels);
-	if (params.Flags & tImagePKM::LoadFlag_GammaCompression)
-		colour.LinearToGamma(params.Gamma, channels);
 }
 
 
@@ -229,8 +219,6 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 			params.Flags |= LoadFlag_SRGBCompression;
 	}
 
-	bool processedGammaFlags = false;
-
 	// We need extra room because the decompressor (bcdec) does not take an input for
 	// the width and height, only the pitch (bytes per row). This means a texture that is 5
 	// high will actually have row 6, 7, 8 written to.
@@ -250,7 +238,7 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 
 					// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be written into
 					// multiple rows of the destination and we need to know how far to increment to the next row of 4.
-					etcdec_etc_rgb (src, dst, wfull * 4);
+					etcdec_etc_rgb(src, dst, wfull * 4);
 					src += ETCDEC_ETC_RGB_BLOCK_SIZE;
 				}
 
@@ -415,6 +403,22 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 	}
 	tAssert(data);
 
+	// Apply gamma compression if requested.
+	if ((params.Flags & LoadFlag_SRGBCompression) || (params.Flags & LoadFlag_GammaCompression))
+	{
+		tPixel* pixels = (tPixel*)data;
+		for (int xy = 0; xy < width*height; xy++)
+		{
+			tColour4f colf(pixels[xy]);
+			if (params.Flags & LoadFlag_SRGBCompression)
+				colf.LinearToSRGB();
+			else
+				colf.LinearToGamma(params.Gamma);
+			pixels[xy].SetR(colf.R); pixels[xy].SetG(colf.G); pixels[xy].SetB(colf.B);
+		}
+		ColourSpace = (params.Flags & LoadFlag_SRGBCompression) ? tColourSpace::sRGB : tColourSpace::Gamma;
+	}
+
 	bool reverseRowOrderRequested = params.Flags & LoadFlag_ReverseRowOrder;
 	if (reverseRowOrderRequested)
 	{
@@ -423,12 +427,6 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 		tAssert(reversedRowData);
 		delete[] data;
 		data = reversedRowData;
-	}
-
-	if (processedGammaFlags)
-	{
-		if (params.Flags & LoadFlag_SRGBCompression)  ColourSpace = tColourSpace::sRGB;
-		if (params.Flags & LoadFlag_GammaCompression) ColourSpace = tColourSpace::Gamma;
 	}
 
 	PixelFormat = tPixelFormat::R8G8B8A8;

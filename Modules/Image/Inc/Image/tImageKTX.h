@@ -243,7 +243,7 @@ public:
 
 	// You do not own the returned pointer.
 	tLayer* GetLayer(int layerNum, int imageNum) const																	{ return Layers[layerNum][imageNum]; }
- 
+
 	tString Filename;
 
 private:
