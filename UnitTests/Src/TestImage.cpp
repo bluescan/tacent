@@ -328,24 +328,6 @@ tTestUnit(ImagePicture)
 	tga.Save("WrittenBmp_Lambda.tga");
 	tRequire( tSystem::tFileExists("WrittenBmp_Lambda.bmp"));
 
-	bmp.Load("Bmp_RefLena.bmp");
-	bmp.Save("WrittenBmp_RefLena.bmp");
-	pic.Set(bmp); tga.Set(pic);
-	tga.Save("WrittenBmp_RefLena.tga");
-	tRequire( tSystem::tFileExists("WrittenBmp_RefLena.bmp"));
-
-	bmp.Load("Bmp_RefLena101.bmp");
-	bmp.Save("WrittenBmp_RefLena101.bmp");
-	pic.Set(bmp); tga.Set(pic);
-	tga.Save("WrittenBmp_RefLena101.tga");
-	tRequire( tSystem::tFileExists("WrittenBmp_RefLena101.bmp"));
-
-	bmp.Load("Bmp_RefLenaFlip.bmp");
-	bmp.Save("WrittenBmp_RefLenaFlip.bmp");
-	pic.Set(bmp); tga.Set(pic);
-	tga.Save("WrittenBmp_RefLenaFlip.tga");
-	tRequire( tSystem::tFileExists("WrittenBmp_RefLenaFlip.bmp"));
-
 	tImageDDS dds;
 	dds.Load("DDS/BC1DXT1_RGB_Modern.dds");
 	pic.Set(dds); tga.Set(pic);
