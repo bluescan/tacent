@@ -26,3 +26,5 @@ Note for binary alpha formats you need a -0.5 alpha-bias in NVTT to get a 0.5 al
 Warning: NVTT does not generate a BC1(no-binary-alpha) image even when set to BC1(no-binary-alpha) if the input image is 32bit and has an alpha channel. That's why there is a 24bit tga of the test pattern.
 
 All images were converted at production quality. Supercompression was used for all images except for BC7_RGBANoSuper.
+
+The ktx2 files starting with 'ETC' were generated from compressonator (COMP)
