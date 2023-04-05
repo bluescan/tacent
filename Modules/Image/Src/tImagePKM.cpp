@@ -241,7 +241,6 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 					etcdec_etc_rgb(src, dst, wfull * 4);
 					src += ETCDEC_ETC_RGB_BLOCK_SIZE;
 				}
-
 			break;
 		}
 

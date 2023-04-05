@@ -45,6 +45,7 @@ public:
 		LoadFlag_CondMultFourDim	= 1 << 7,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,
 		LoadFlag_CondPowerTwoDim	= 1 << 8,	// Produce conditional success if image dimension not a power of 2. Only checks BC formats.
 		LoadFlag_StrictLoading		= 1 << 9,	// If set even mildly ill-formed dds files will not load.
+		LoadFlag_SwizzleBGR2RGB		= 1 << 10,	// At least compressonator stores colours swizzled in their ETC exports. Only works if decoding.
 		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance | LoadFlag_AutoGamma
 	};
 
@@ -167,6 +168,10 @@ public:
 
 	bool IsMipmapped() const																							{ return (NumMipmapLayers > 1) ? true : false; }
 	bool IsCubemap() const																								{ return IsCubeMap; }
+
+	// Returns true if the loaded dds was a 'modern' dds file and contained the DX10 FourCC in the header. Essentially
+	// modern means the newer DXGI pixel formats were specified in the dds, Returns false for legacy dds files.
+	bool IsModern() const																								{ return IsModernDX10; }
 	bool RowsReversed() const																							{ return RowReversalOperationPerformed; }
 
 	// The number of mipmap levels per image is always the same if there is more than one image in the direct texture
@@ -262,6 +267,7 @@ private:
 	tAlphaMode AlphaMode					= tAlphaMode::Unspecified;
 
 	bool IsCubeMap							= false;
+	bool IsModernDX10						= false;
 	bool RowReversalOperationPerformed		= false;
 
 	// This will be 1 for textures and 6 for cubemaps.

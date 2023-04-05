@@ -23,6 +23,7 @@
 #include "Image/tPixelUtil.h"
 #include "Image/tPicture.h"
 #include "bcdec/bcdec.h"
+#include "etcdec/etcdec.h"
 #include "astcenc.h"
 namespace tImage
 {
@@ -174,7 +175,7 @@ namespace tDDS
 	};
 	#pragma pack(pop)
 
-	// D3D formats that may appear in DDS files. Would normally not uint32 them, but these are also used for FourCCs.
+	// D3D formats that may appear in DDS files. Would normally not make them uint32s, but they are also used for FourCCs.
 	enum D3DFMT : uint32
 	{
 		D3DFMT_UNKNOWN				=  0,
@@ -215,11 +216,34 @@ namespace tDDS
 		D3DFMT_R8G8_B8G8			= FourCC('R', 'G', 'B', 'G'),
 		D3DFMT_YUY2					= FourCC('Y', 'U', 'Y', '2'),
 		D3DFMT_G8R8_G8B8			= FourCC('G', 'R', 'G', 'B'),
+
 		D3DFMT_DXT1					= FourCC('D', 'X', 'T', '1'),
 		D3DFMT_DXT2					= FourCC('D', 'X', 'T', '2'),
 		D3DFMT_DXT3					= FourCC('D', 'X', 'T', '3'),
 		D3DFMT_DXT4					= FourCC('D', 'X', 'T', '4'),
 		D3DFMT_DXT5					= FourCC('D', 'X', 'T', '5'),
+
+		D3DFMT_BC4U					= FourCC('B', 'C', '4', 'U'),
+		D3DFMT_BC4S					= FourCC('B', 'C', '4', 'S'),
+		D3DFMT_BC5U					= FourCC('B', 'C', '5', 'U'),
+		D3DFMT_BC5S					= FourCC('B', 'C', '5', 'S'),
+
+		D3DFMT_ATI1					= FourCC('A', 'T', 'I', '1'),
+		D3DFMT_AT1N					= FourCC('A', 'T', '1', 'N'),
+		D3DFMT_ATI2					= FourCC('A', 'T', 'I', '2'),
+		D3DFMT_AT2N					= FourCC('A', 'T', '2', 'N'),
+
+		D3DFMT_ETC					= FourCC('E', 'T', 'C', ' '),	// ETC1 RGB.
+		D3DFMT_ETC1					= FourCC('E', 'T', 'C', '1'),	// ETC1 RGB.
+		D3DFMT_ETC2					= FourCC('E', 'T', 'C', '2'),	// This is the RGB   ETC2.
+		D3DFMT_ETCA					= FourCC('E', 'T', 'C', 'A'),	// This is the RGBA  ETC2.
+		D3DFMT_ETCP					= FourCC('E', 'T', 'C', 'P'),	// This is the RGBA1 ETC2.
+
+		D3DFMT_ATC					= FourCC('A', 'T', 'C', ' '),
+		D3DFMT_ATCA					= FourCC('A', 'T', 'C', 'A'),
+		D3DFMT_ATCI					= FourCC('A', 'T', 'C', 'I'),
+		D3DFMT_POWERVR_2BPP			= FourCC('P', 'T', 'C', '2'),
+		D3DFMT_POWERVR_4BPP			= FourCC('P', 'T', 'C', '4'),
 
 		D3DFMT_D16_LOCKABLE			= 70,
 		D3DFMT_D32					= 71,
@@ -254,9 +278,11 @@ namespace tDDS
 		D3DFMT_A32B32G32R32F		= 116,
 
 		D3DFMT_CxV8U8				= 117,
+		D3DFMT_DX10					= FourCC('D', 'X', '1', '0'),
 
 		D3DFMT_FORCE_DWORD			= 0x7fffffff
 	};
+
 
 	// More modern DX formats. Made unsigned due to the force-uint (last member).
 	enum DXGIFMT : uint32 
@@ -763,48 +789,69 @@ void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& format, tColourSpace& space, t
 	{
 		// Note that during inspecition of the individual layer data, the DXT1 pixel format might be modified
 		// to DXT1BA (binary alpha).
-		case FourCC('D','X','T','1'):
+		case tDDS::D3DFMT_DXT1:
 			format = tPixelFormat::BC1DXT1;
 			break;
 
 		// DXT2 and DXT3 are the same format. Only how you interpret the data is different. In tacent we treat them
 		// as the same pixel-format. How contents are interpreted (the data) is not part of the format. 
-		case FourCC('D','X','T','2'):
+		case tDDS::D3DFMT_DXT2:
 			alpha = tAlphaMode::Premultiplied;
 			format = tPixelFormat::BC2DXT2DXT3;
 			break;
 
-		case FourCC('D','X','T','3'):
+		case tDDS::D3DFMT_DXT3:
 			alpha = tAlphaMode::Normal;
 			format = tPixelFormat::BC2DXT2DXT3;
 			break;
 
-		case FourCC('D','X','T','4'):
+		case tDDS::D3DFMT_DXT4:
 			alpha = tAlphaMode::Premultiplied;
 			format = tPixelFormat::BC3DXT4DXT5;
 			break;
 
-		case FourCC('D','X','T','5'):
+		case tDDS::D3DFMT_DXT5:
 			alpha = tAlphaMode::Normal;
 			format = tPixelFormat::BC3DXT4DXT5;
 			break;
 
-		case FourCC('A','T','I','1'):
-		case FourCC('B','C','4','U'):
+		case tDDS::D3DFMT_ATI1:
+		case tDDS::D3DFMT_BC4U:
 			space = tColourSpace::Linear;
 			format = tPixelFormat::BC4ATI1;
 			break;
 
-		case FourCC('A','T','I','2'):
-		case FourCC('B','C','5','U'):
+		case tDDS::D3DFMT_ATI2:
+		case tDDS::D3DFMT_BC5U:
 			space = tColourSpace::Linear;
 			format = tPixelFormat::BC5ATI2;
 			break;
 
-		case FourCC('B','C','4','S'):	// We don't support signed BC4.
-		case FourCC('B','C','5','S'):	// We don't support signed BC5.
-		case FourCC('R','G','B','G'):	// We don't support DXGIFMT_R8G8_B8G8_UNORM -- That's a lot of green precision.
-		case FourCC('G','R','G','B'):	// We don't support DXGIFMT_G8R8_G8B8_UNORM -- That's a lot of green precision.
+		case tDDS::D3DFMT_BC4S:				// We don't support signed BC4S.
+		case tDDS::D3DFMT_BC5S:				// We don't support signed BC5S.
+		case tDDS::D3DFMT_R8G8_B8G8:		// We don't support DXGIFMT_R8G8_B8G8_UNORM -- That's a lot of green precision.
+		case tDDS::D3DFMT_G8R8_G8B8:		// We don't support DXGIFMT_G8R8_G8B8_UNORM -- That's a lot of green precision.
+			break;
+
+		case tDDS::D3DFMT_ETC:
+		case tDDS::D3DFMT_ETC1:
+			format = tPixelFormat::ETC1;
+			tPrintf("Detected ETC1\n");
+			break;
+
+		case tDDS::D3DFMT_ETC2:
+			format = tPixelFormat::ETC2RGB;
+			tPrintf("Detected ETC2RGB\n");
+			break;
+
+		case tDDS::D3DFMT_ETCA:
+			format = tPixelFormat::ETC2RGBA;
+			tPrintf("Detected ETC2RGBA\n");
+			break;
+
+		case tDDS::D3DFMT_ETCP:
+			format = tPixelFormat::ETC2RGBA1;
+			tPrintf("Detected ETC2RGBA1\n");
 			break;
 
 		// Sometimes these D3D formats may be stored in the FourCC slot.
@@ -985,6 +1032,7 @@ void tImageDDS::Clear()
 	ColourSpaceSrc					= tColourSpace::Unspecified;
 	AlphaMode						= tAlphaMode::Unspecified;
 	IsCubeMap						= false;
+	IsModernDX10					= false;
 	RowReversalOperationPerformed	= false;
 	NumImages						= 0;
 	NumMipmapLayers					= 0;
@@ -997,14 +1045,17 @@ bool tImageDDS::Set(tPixel* pixels, int width, int height, bool steal)
 	if (!pixels || (width <= 0) || (height <= 0))
 		return false;
 
-	Layers[0][0] = new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)pixels, steal);
-	PixelFormat = tPixelFormat::R8G8B8A8;
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
-	ColourSpace = tColourSpace::sRGB;
-	ColourSpaceSrc = tColourSpace::sRGB;
-	AlphaMode = tAlphaMode::Normal;
-	NumImages = 1;
-	NumMipmapLayers = 1;
+	Layers[0][0]					= new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)pixels, steal);
+	PixelFormat						= tPixelFormat::R8G8B8A8;
+	PixelFormatSrc					= tPixelFormat::R8G8B8A8;
+	ColourSpace						= tColourSpace::sRGB;
+	ColourSpaceSrc					= tColourSpace::sRGB;
+	AlphaMode						= tAlphaMode::Normal;
+	IsCubeMap						= false;
+	IsModernDX10					= false;
+	RowReversalOperationPerformed	= false;
+	NumImages						= 1;
+	NumMipmapLayers					= 1;
 
 	return true;
 }
@@ -1280,7 +1331,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 		}
 	}
 
-	bool useDX10Ext = isFourCCFormat && (format.FourCC == FourCC('D', 'X', '1', '0'));
+	IsModernDX10 = isFourCCFormat && (format.FourCC == FourCC('D', 'X', '1', '0'));
 
 	// Determine if this is a cubemap dds with 6 images. No need to check which images are present since they are
 	// required to be all there by the dds standard. All tools these days seem to write them all. If there are
@@ -1288,13 +1339,13 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 	// the DX10 extension header.
 	IsCubeMap = false;
 	NumImages = 1;
-	if (!useDX10Ext && (header.Capabilities.FlagsCapsExtra & tDDS::CapsExtraFlag_CubeMap))
+	if (!IsModernDX10 && (header.Capabilities.FlagsCapsExtra & tDDS::CapsExtraFlag_CubeMap))
 	{
 		IsCubeMap = true;
 		NumImages = 6;
 	}
 
-	if (useDX10Ext)
+	if (IsModernDX10)
 	{
 		tDDS::DX10Header& headerDX10 = *((tDDS::DX10Header*)ddsCurr);  ddsCurr += sizeof(tDDS::DX10Header);
 		currPixelData = ddsCurr;
@@ -1861,6 +1912,46 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 							break;
 						}
 
+						case tPixelFormat::ETC1:
+						case tPixelFormat::ETC2RGB:				// Same decoder. Backwards compatible.
+						{
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
+								{
+									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
+
+									// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be written into
+									// multiple rows of the destination and we need to know how far to increment to the next row of 4.
+									etcdec_etc_rgb(src, dst, wfull * 4);
+									src += ETCDEC_ETC_RGB_BLOCK_SIZE;
+								}
+							break;
+						}
+
+						case tPixelFormat::ETC2RGBA:
+						{
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
+								{
+									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
+									etcdec_eac_rgba(src, dst, wfull * 4);
+									src += ETCDEC_EAC_RGBA_BLOCK_SIZE;
+								}
+							break;
+						}
+
+						case tPixelFormat::ETC2RGBA1:
+						{
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
+								{
+									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
+									etcdec_etc_rgb_a1(src, dst, wfull * 4);
+									src += ETCDEC_ETC_RGB_A1_BLOCK_SIZE;
+								}
+							break;
+						}
+
 						default:
 							delete[] uncompData;
 							Clear();
@@ -2013,6 +2104,15 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 					delete[] layer->Data;
 					layer->Data = reversedRowData;
 					didRowReversalAfterDecode = true;
+				}
+
+				if ((params.Flags & LoadFlag_SwizzleBGR2RGB) && (layer->PixelFormat == tPixelFormat::R8G8B8A8))
+				{
+					for (int xy = 0; xy < w*h; xy++)
+					{
+						tColour4i& col = ((tColour4i*)layer->Data)[xy];
+						tStd::tSwap(col.R, col.B);
+					}
 				}
 			}
 		}
