@@ -78,15 +78,21 @@ enum class tPixelFormat
 	BC6S,								// BC 6 HDR. No alpha. 3 x 16bit signed half-floats per pixel.
 	BC6U,								// BC 6 HDR. No alpha. 3 x 16bit unsigned half-floats per pixel.
 	BC7,								// BC 7. Full colour. Variable alpha 0 to 8 bits.
-	ETC1,								// ETC1. Ericsson Texture Compression. Similar to BC1. RGB-only. No alpha.
-	EACR11,								// EAC R11. Ericsson. Single channel.
+
+	FirstETC,
+	ETC1				= FirstETC,		// ETC1. Ericsson Texture Compression. Similar to BC1. RGB-only. No alpha.
+	ETC2RGB,							// ETC2. Backwards compatible with ETC1. The sRGB version is the same pixel format.
+	ETC2RGBA,							// ETC2. RGBA. sRGB uses the same pixel format.
+	ETC2RGBA1,							// ETC2. RGB with binary alpha. sRGB uses the same pixel format.
+	LastETC				= ETC2RGBA1,
+
+	FirstEAC,
+	EACR11				= FirstEAC,		// EAC R11. Ericsson. Single channel.
 	EACR11S,							// EAC R11. Signed.
 	EACRG11,							// EAC RG11. Ericsson. Two channels.
 	EACRG11S,							// EAC RG11. Signed.
-	ETC2RGB,							// ETC2. Backwards compatible with ETC1. The sRGB version is the same pixel format.
-	ETC2RGBA1,							// ETC2. RGB with binary alpha. sRGB uses the same pixel format.
-	ETC2RGBA,							// ETC2. RGBA. sRGB uses the same pixel format.
-	LastBC				= ETC2RGBA,
+	LastEAC				= EACRG11S,
+	LastBC				= LastEAC,
 
 	FirstASTC,
 	ASTC4X4				= FirstASTC,	// 128 bits per 16  pixels. 8    bpp. LDR UNORM.
@@ -130,9 +136,23 @@ enum class tPixelFormat
 };
 
 
-bool tIsPackedFormat	(tPixelFormat);				// Simple RGB and RGBA formats with different numbers of bits per component and different orderings.
-bool tIsBCFormat		(tPixelFormat);				// Is the format an original 4x4 BC (Block Compression) format. These 4x4 blocks use various numbers of bits per block.
-bool tIsASTCFormat		(tPixelFormat);				// Is it one of the ASTC (Adaptive Scalable Texture Compression) block formats. Block sizes are avail from 4x4 up to 12x12.
+// Simple RGB and RGBA formats with different numbers of bits per component and different orderings.
+bool tIsPackedFormat	(tPixelFormat);
+
+// Is the format a 4x4 BC (Block Compression) format. This includes ETC and EAC formats. These 4x4
+// blocks use various numbers of bits per block.
+bool tIsBCFormat		(tPixelFormat);
+
+// Returns true if the format is an ETC BC format. EAC is not considered part of ETC for this function.
+// ETC formats are a subset of tIsBCFormat.
+bool tIsETCFormat		(tPixelFormat);
+
+// Returns true if the format is an EAC BC format. EAC formats are a subset of tIsBCFormat.
+bool tIsEACFormat		(tPixelFormat);
+
+// Is it one of the ASTC (Adaptive Scalable Texture Compression) block formats. Block sizes are avail from 4x4 up
+// to 12x12. The 4x4 ASTC variant is not considered a BC format by tIsBCFormat.
+bool tIsASTCFormat		(tPixelFormat);
 bool tIsVendorFormat	(tPixelFormat);
 bool tIsPaletteFormat	(tPixelFormat);
 bool tIsAlphaFormat		(tPixelFormat);
@@ -302,6 +322,24 @@ inline bool tImage::tIsPackedFormat(tPixelFormat format)
 inline bool tImage::tIsBCFormat(tPixelFormat format)
 {
 	if ((format >= tPixelFormat::FirstBC) && (format <= tPixelFormat::LastBC))
+		return true;
+
+	return false;
+}
+
+
+inline bool tImage::tIsETCFormat(tPixelFormat format)
+{
+	if ((format >= tPixelFormat::FirstETC) && (format <= tPixelFormat::LastETC))
+		return true;
+
+	return false;
+}
+
+
+inline bool tImage::tIsEACFormat(tPixelFormat format)
+{
+	if ((format >= tPixelFormat::FirstEAC) && (format <= tPixelFormat::LastEAC))
 		return true;
 
 	return false;

@@ -56,13 +56,13 @@ namespace tImage
 		"BC6u",
 		"BC7",
 		"ETC1",
+		"ETC2RGB",
+		"ETC2RGBA",
+		"ETC2RGBA1",
 		"EACR11",
 		"EACR11S",
 		"EACRG11",
 		"EACRG11S",
-		"ETC2RGB",
-		"ETC2RGBA1",
-		"ETC2RGBA",
 
 		// ASTC (Adaptive Scalable Texture Compression) formats.
 		"ASTC4X4",
