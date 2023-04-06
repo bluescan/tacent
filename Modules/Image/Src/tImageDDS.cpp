@@ -1222,29 +1222,29 @@ bool tImageDDS::Load(const tString& ddsFile, const LoadParams& loadParams)
 }
 
 
-bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& paramsIn)
+bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& paramsIn)
 {
 	Clear();
 	LoadParams params(paramsIn);
 
 	// This will deal with zero-sized files properly as well.
-	if (ddsSizeBytes < int(sizeof(tDDS::Header)+4))
+	if (ddsDataSize < int(sizeof(tDDS::Header)+sizeof(uint32)))
 	{
 		Results |= 1 << int(ResultCode::Fatal_IncorrectFileSize);
 		return false;
 	}
 
-	const uint8* ddsCurr = ddsData;
-	uint32& magic = *((uint32*)ddsCurr); ddsCurr += sizeof(uint32);
+	uint32& magic = *((uint32*)ddsData);
+	ddsData += sizeof(uint32); ddsDataSize -= sizeof(uint32);
 	if (magic != FourCC('D','D','S',' '))
 	{
 		Results |= 1 << int(ResultCode::Fatal_IncorrectMagicNumber);
 		return false;
 	}
 
-	tDDS::Header& header = *((tDDS::Header*)ddsCurr);  ddsCurr += sizeof(header);
-	tAssert(sizeof(tDDS::Header) == 124);
-	const uint8* currPixelData = ddsCurr;
+	tDDS::Header& header = *((tDDS::Header*)ddsData);
+	ddsData += sizeof(header); ddsDataSize -= sizeof(header);
+	tStaticAssert(sizeof(tDDS::Header) == 124);
 	if (header.Size != 124)
 	{
 		Results |= 1 << int(ResultCode::Fatal_IncorrectHeaderSize);
@@ -1331,7 +1331,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 		}
 	}
 
-	IsModernDX10 = isFourCCFormat && (format.FourCC == FourCC('D', 'X', '1', '0'));
+	IsModernDX10 = isFourCCFormat && (format.FourCC == tDDS::D3DFMT_DX10);
 
 	// Determine if this is a cubemap dds with 6 images. No need to check which images are present since they are
 	// required to be all there by the dds standard. All tools these days seem to write them all. If there are
@@ -1347,8 +1347,14 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 
 	if (IsModernDX10)
 	{
-		tDDS::DX10Header& headerDX10 = *((tDDS::DX10Header*)ddsCurr);  ddsCurr += sizeof(tDDS::DX10Header);
-		currPixelData = ddsCurr;
+		if (ddsDataSize < int(sizeof(tDDS::DX10Header)))
+		{
+			Results |= 1 << int(ResultCode::Fatal_IncorrectFileSize);
+			return false;
+		}
+
+		tDDS::DX10Header& headerDX10 = *((tDDS::DX10Header*)ddsData);
+		ddsData += sizeof(tDDS::DX10Header); ddsDataSize -= sizeof(tDDS::DX10Header);
 		if (headerDX10.ArraySize == 0)
 		{
 			Results |= 1 << int(ResultCode::Fatal_DX10HeaderSizeIncorrect);
@@ -1447,9 +1453,17 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				int numBlocks = numBlocksW*numBlocksH;
 				numBytes = numBlocks * bytesPerBlock;
 
+				// Check that the amount of data left is enough to read in numBytes.
+				if (numBytes > ddsDataSize)
+				{
+					Clear();
+					Results |= 1 << int(ResultCode::Fatal_IncorrectFileSize);
+					return false;
+				}
+
 				// Here's where we possibly modify the opaque DXT1 texture to be DXT1A if there are blocks with binary
 				// transparency. We only bother checking the main layer. If it's opaque we assume all the others are too.
-				if ((layer == 0) && (PixelFormat == tPixelFormat::BC1DXT1) && tImage::DoBC1BlocksHaveBinaryAlpha((tImage::BC1Block*)currPixelData, numBlocks))
+				if ((layer == 0) && (PixelFormat == tPixelFormat::BC1DXT1) && tImage::DoBC1BlocksHaveBinaryAlpha((tImage::BC1Block*)ddsData, numBlocks))
 					PixelFormat = PixelFormatSrc = tPixelFormat::BC1DXT1A;
 
 				// DDS files store textures upside down. In the OpenGL RH coord system, the lower left of the texture
@@ -1459,7 +1473,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				// will go down to 1x1, which will still use a 4x4 DXT pixel-block.
 				if (doRowReversalBeforeDecode)
 				{
-					uint8* reversedPixelData = tImage::CreateReversedRowData(currPixelData, PixelFormat, numBlocksW, numBlocksH);
+					uint8* reversedPixelData = tImage::CreateReversedRowData(ddsData, PixelFormat, numBlocksW, numBlocksH);
 					tAssert(reversedPixelData);
 
 					// We can simply get the layer to steal the memory (the last true arg).
@@ -1468,7 +1482,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				else
 				{
 					// Not reversing. Use the currPixelData.
-					Layers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)currPixelData);
+					Layers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)ddsData);
 				}
 
 				tAssert(Layers[layer][image]->GetDataSize() == numBytes);
@@ -1481,7 +1495,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsSizeBytes, const LoadParams& p
 				return false;
 			}
 
-			currPixelData += numBytes;
+			ddsData += numBytes; ddsDataSize -= numBytes;
 			width  /= 2; tMath::tiClampMin(width, 1);
 			height /= 2; tMath::tiClampMin(height, 1);
 		}
