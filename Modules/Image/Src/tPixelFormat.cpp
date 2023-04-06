@@ -131,13 +131,13 @@ namespace tImage
 		16,				// BC6u
 		16,				// BC7
 		8,				// ETC1
+		8,				// ETC2RGB
+		16,				// ETC2RGBA
+		8,				// ETC2RGBA1
 		8,				// EAC11
 		8,				// EACR11S
 		16,				// EACRG11
-		16,				// EACRG11S
-		8,				// ETC2RGB
-		8,				// ETC2RGBA1
-		16				// ETC2RGBA
+		16				// EACRG11S
 	};
 	tStaticAssert(tNumElements(BCFormat_BytesPerBlock) == int(tPixelFormat::NumBCFormats));
 
