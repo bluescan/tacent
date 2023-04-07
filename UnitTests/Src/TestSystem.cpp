@@ -1426,7 +1426,7 @@ tTestUnit(Time)
 
 tTestUnit(Machine)
 {
-	tString compName = tSystem::tGetCompName();
+	tString compName = tSystem::tGetComputerName();
 	tPrintf("ComputerName:%s\n", compName.Chr());
 	tRequire(!compName.IsEmpty());
 

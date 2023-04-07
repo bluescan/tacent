@@ -70,7 +70,7 @@ bool tSystem::tSupportsSSE2()
 }
 
 
-tString tSystem::tGetCompName()
+tString tSystem::tGetComputerName()
 {
 	#ifdef PLATFORM_WINDOWS
 

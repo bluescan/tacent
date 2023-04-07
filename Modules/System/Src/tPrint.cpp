@@ -194,7 +194,7 @@ namespace tSystem
 void tSystem::tRegister(uint32 machineNameHash, tSystem::tChannel channelsToSee)
 {
 	if (!ComputerNameHash)
-		ComputerNameHash = tHash::tHashStringFast32( tSystem::tGetCompName() );
+		ComputerNameHash = tHash::tHashStringFast32( tSystem::tGetComputerName() );
 
 	if (machineNameHash == ComputerNameHash)
 		tSetChannels(channelsToSee);

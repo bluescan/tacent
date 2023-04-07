@@ -26,7 +26,7 @@ bool tSupportsSSE();
 bool tSupportsSSE2();
 
 // Returns the computer's name.
-tString tGetCompName();
+tString tGetComputerName();
 
 // Returns an environment variable value.
 tString tGetEnvVar(const tString& envVarName);
