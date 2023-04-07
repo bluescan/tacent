@@ -24,20 +24,21 @@
 // The first valid component is required to have value 0 so these enumerants can be used for bit shifts.
 enum class tComp
 {
-	Invalid=-1, Auto=Invalid,
 	R,	G,	B,	A,
 	X=R,Y=G,Z=B,W=A,
 	A11,A21,A31,A41,
 	A12,A22,A32,A42,
 	A13,A23,A33,A43,
 	A14,A24,A34,A44,
-	Zero, Full
+	Zero, Full, Auto,
+	NumComps, Invalid = NumComps
 };
 
 
 inline bool tIsColourComponent(tComp comp)																				{ int c = int(comp); return ((c >= int(tComp::R)) && (c <= int(tComp::A))); }
 inline bool tIsVectorComponent(tComp comp)																				{ int c = int(comp); return ((c >= int(tComp::X)) && (c <= int(tComp::W))); }
 inline bool tIsMatrixComponent(tComp comp)																				{ int c = int(comp); return ((c >= int(tComp::A11)) && (c <= int(tComp::A44))); }
+const char* tGetComponentName(tComp);
 
 
 // These can be ORed together if necessary and are generally passed around using the comps type.

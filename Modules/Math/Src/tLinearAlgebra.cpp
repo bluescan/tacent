@@ -23,6 +23,19 @@
 #include "Math/tMatrix4.h"
 
 
+static const char* tComponenetNames[] =
+{
+	"R",	"G",	"B",	"A",
+	"A11",	"A21",	"A31",	"A41",
+	"A12",	"A22",	"A32",	"A42",
+	"A13",	"A23",	"A33",	"A43",
+	"A14",	"A24",	"A34",	"A44",
+	"0",	"1",	"*"
+};
+tStaticAssert(tNumElements(tComponenetNames) == int(tComp::NumComps));
+const char* tGetComponentName(tComp comp) { return (comp != tComp::Invalid) ? tComponenetNames[int(comp)] : nullptr; }
+
+
 const tMath::tVector2 tMath::tVector2::zero			= { 0.0f, 0.0f };
 const tMath::tVector2 tMath::tVector2::i			= { 1.0f, 0.0f };
 const tMath::tVector2 tMath::tVector2::j			= { 0.0f, 1.0f };
