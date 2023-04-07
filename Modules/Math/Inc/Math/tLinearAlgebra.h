@@ -20,7 +20,8 @@
 #include <Foundation/tFundamentals.h>
 
 
-/*
+// The tComp enum is to be used for specifying both colour channels (RGBA) and vector components (XYZW).
+// The first component is required to have value 0 so these enumerants can be used for bit shifts.
 enum class tComp
 {
 	R,	G,	B,	A,
@@ -30,7 +31,6 @@ enum class tComp
 	A13,A23,A33,A43,
 	A14,A24,A34,A44
 };
-*/
 
 
 // These can be ORed together if necessary and are generally passed around using the comps type.
@@ -39,10 +39,10 @@ typedef uint32_t comp_t;
 enum tCompBit : comp_t
 {
 	// Vector components.
-	tCompBit_X						= 0x00000001,//1 << int(tComp::R),
-	tCompBit_Y						= 0x00000002,
-	tCompBit_Z						= 0x00000004,
-	tCompBit_W						= 0x00000008,
+	tCompBit_X						= 1 << int(tComp::X),
+	tCompBit_Y						= 1 << int(tComp::Y),
+	tCompBit_Z						= 1 << int(tComp::Z),
+	tCompBit_W						= 1 << int(tComp::W),
 	tCompBit_XY						= tCompBit_X | tCompBit_Y,
 	tCompBit_YZ						= tCompBit_Y | tCompBit_Z,
 	tCompBit_ZX						= tCompBit_Z | tCompBit_X,
@@ -50,31 +50,31 @@ enum tCompBit : comp_t
 	tCompBit_XYZW					= tCompBit_X | tCompBit_Y | tCompBit_Z | tCompBit_W,
 
 	// Colour components use the same values as the vector components. Colours are also vectors.
-	tCompBit_R						= tCompBit_X,
-	tCompBit_G						= tCompBit_Y,
-	tCompBit_B						= tCompBit_Z,
-	tCompBit_A						= tCompBit_W,
+	tCompBit_R						= 1 << int(tComp::R),
+	tCompBit_G						= 1 << int(tComp::G),
+	tCompBit_B						= 1 << int(tComp::B),
+	tCompBit_A						= 1 << int(tComp::W),
 	tCompBit_RG						= tCompBit_XY,
 	tCompBit_RGB					= tCompBit_XYZ,
 	tCompBit_RGBA					= tCompBit_XYZW,
 	
 	// For matrices the notation Amn means the component at row m and column n (like in linear algebra).
-	tCompBit_A11					= 0x00000010,
-	tCompBit_A21					= 0x00000020,
-	tCompBit_A31					= 0x00000040,
-	tCompBit_A41					= 0x00000080,
-	tCompBit_A12					= 0x00000100,
-	tCompBit_A22					= 0x00000200,
-	tCompBit_A32					= 0x00000400,
-	tCompBit_A42					= 0x00000800,
-	tCompBit_A13					= 0x00001000,
-	tCompBit_A23					= 0x00002000,
-	tCompBit_A33					= 0x00004000,
-	tCompBit_A43					= 0x00008000,
-	tCompBit_A14					= 0x00010000,
-	tCompBit_A24					= 0x00020000,
-	tCompBit_A34					= 0x00040000,
-	tCompBit_A44					= 0x00080000,
+	tCompBit_A11					= 1 << int(tComp::A11),
+	tCompBit_A21					= 1 << int(tComp::A21),
+	tCompBit_A31					= 1 << int(tComp::A31),
+	tCompBit_A41					= 1 << int(tComp::A41),
+	tCompBit_A12					= 1 << int(tComp::A12),
+	tCompBit_A22					= 1 << int(tComp::A22),
+	tCompBit_A32					= 1 << int(tComp::A32),
+	tCompBit_A42					= 1 << int(tComp::A42),
+	tCompBit_A13					= 1 << int(tComp::A13),
+	tCompBit_A23					= 1 << int(tComp::A23),
+	tCompBit_A33					= 1 << int(tComp::A33),
+	tCompBit_A43					= 1 << int(tComp::A43),
+	tCompBit_A14					= 1 << int(tComp::A14),
+	tCompBit_A24					= 1 << int(tComp::A24),
+	tCompBit_A34					= 1 << int(tComp::A34),
+	tCompBit_A44					= 1 << int(tComp::A44),
 	tCompBit_C1						= tCompBit_A11 | tCompBit_A21 | tCompBit_A31 | tCompBit_A41,
 	tCompBit_C2						= tCompBit_A12 | tCompBit_A22 | tCompBit_A32 | tCompBit_A42,
 	tCompBit_C3						= tCompBit_A13 | tCompBit_A23 | tCompBit_A33 | tCompBit_A43,
