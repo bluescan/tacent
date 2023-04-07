@@ -150,7 +150,7 @@ public:
 	void SetAll(const tColouri& = tColouri(0, 0, 0), comp_t channels = tCompBit_RGBA);
 
 	// Spreads the specified single channel to all RGB channels.
-	void Spread(comp_t channel = tCompBit_R);
+	void Spread(tComp channel = tComp::R);
 
 	// Swizzle colour channels. You specify the RGBA destination channels in that order. For example, to swap R and B
 	// channels you would call Swizzle(B,G,R,A). You can also use tComp::Zero and tComp::Full to set the channel to zero
@@ -490,23 +490,18 @@ inline void tPicture::SetAll(const tColouri& clearColour, comp_t channels)
 }
 
 
-inline void tPicture::Spread(comp_t channel)
+inline void tPicture::Spread(tComp channel)
 {
-	int setBit = tMath::tFindFirstSetBit(channel);
-	if (setBit == -1)
-		return;
-	channel = 1 << setBit;	
-
 	int numPixels = Width*Height;
 	for (int p = 0; p < numPixels; p++)
 	{
 		tPixel& pixel = Pixels[p];
 		switch (channel)
 		{
-			case tCompBit_R:	pixel.G = pixel.B = pixel.R;			break;
-			case tCompBit_G:	pixel.R = pixel.B = pixel.G;			break;
-			case tCompBit_B:	pixel.R = pixel.G = pixel.B;			break;
-			case tCompBit_A:	pixel.R = pixel.G = pixel.B = pixel.A;	break;
+			case tComp::R:	pixel.G = pixel.B = pixel.R;			break;
+			case tComp::G:	pixel.R = pixel.B = pixel.G;			break;
+			case tComp::B:	pixel.R = pixel.G = pixel.B;			break;
+			case tComp::A:	pixel.R = pixel.G = pixel.B = pixel.A;	break;
 		}
 	}
 }
