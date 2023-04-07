@@ -35,6 +35,9 @@ enum class tComp
 };
 
 
+inline bool tIsColourComponent(tComp comp)																				{ int c = int(comp); return ((c >= int(tComp::R)) && (c <= int(tComp::A))); }
+
+
 // These can be ORed together if necessary and are generally passed around using the comps type.
 // It used to be inside tMath, but just found it a bit arduous to specify in headers all the time.
 typedef uint32_t comp_t;
