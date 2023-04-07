@@ -36,6 +36,8 @@ enum class tComp
 
 
 inline bool tIsColourComponent(tComp comp)																				{ int c = int(comp); return ((c >= int(tComp::R)) && (c <= int(tComp::A))); }
+inline bool tIsVectorComponent(tComp comp)																				{ int c = int(comp); return ((c >= int(tComp::X)) && (c <= int(tComp::W))); }
+inline bool tIsMatrixComponent(tComp comp)																				{ int c = int(comp); return ((c >= int(tComp::A11)) && (c <= int(tComp::A44))); }
 
 
 // These can be ORed together if necessary and are generally passed around using the comps type.
