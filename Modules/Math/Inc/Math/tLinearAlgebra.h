@@ -21,15 +21,17 @@
 
 
 // The tComp enum is to be used for specifying both colour channels (RGBA) and vector components (XYZW).
-// The first component is required to have value 0 so these enumerants can be used for bit shifts.
+// The first valid component is required to have value 0 so these enumerants can be used for bit shifts.
 enum class tComp
 {
+	Invalid=-1, Auto=Invalid,
 	R,	G,	B,	A,
 	X=R,Y=G,Z=B,W=A,
 	A11,A21,A31,A41,
 	A12,A22,A32,A42,
 	A13,A23,A33,A43,
-	A14,A24,A34,A44
+	A14,A24,A34,A44,
+	Zero, Full
 };
 
 
@@ -38,6 +40,8 @@ enum class tComp
 typedef uint32_t comp_t;
 enum tCompBit : comp_t
 {
+	tCompBit_None					= 0x00000000,
+
 	// Vector components.
 	tCompBit_X						= 1 << int(tComp::X),
 	tCompBit_Y						= 1 << int(tComp::Y),

@@ -152,6 +152,12 @@ public:
 	// Spreads the specified single channel to all RGB channels.
 	void Spread(comp_t channel = tCompBit_R);
 
+	// Swizzle colour channels. You specify the RGBA destination channels in that order. For example, to swap R and B
+	// channels you would call Swizzle(B,G,R,A). You can also use tComp::Zero and tComp::Full to set the channel to zero
+	// or full values. The default swizzle is RGBA which does nothing. If tComp::Auto is set for any channel, it just
+	// uses the default for that channel.
+	void Swizzle(tComp = tComp::R, tComp = tComp::G, tComp = tComp::B, tComp = tComp::A);
+
 	// Computes RGB intensity and sets specified channels to that value. Any combination of RGBA allowed.
 	void Intensity(comp_t channels = tCompBit_RGB);
 
@@ -503,6 +509,63 @@ inline void tPicture::Spread(comp_t channel)
 			case tCompBit_A:	pixel.R = pixel.G = pixel.B = pixel.A;	break;
 		}
 	}
+}
+
+
+inline void tPicture::Swizzle(tComp R, tComp G, tComp B, tComp A)
+{
+	if (!Pixels)
+		return;
+
+	if (R == tComp::Auto) R = tComp::R;
+	if (G == tComp::Auto) G = tComp::G;
+	if (B == tComp::Auto) B = tComp::B;
+	if (A == tComp::Auto) A = tComp::A;
+
+	if ((R == tComp::R) && (G == tComp::G) && (B == tComp::B) && (A == tComp::A))
+		return;
+
+	tPixel* newPixels = new tPixel[Width*Height];
+	for (int p = 0; p < Width*Height; p++)
+	{
+		tColour4i& src = Pixels[p];
+		tColour4i& dst = newPixels[p];
+		uint8 r =
+			(R==tComp::Zero ? 0   :
+			(R==tComp::Full ? 255 :
+			(R==tComp::R ? src.R  :
+			(R==tComp::G ? src.G  :
+			(R==tComp::B ? src.B  :
+			(R==tComp::A ? src.A  : 0
+			))))));
+		uint8 g =
+			(G==tComp::Zero ? 0  :
+			(G==tComp::Full ? 255 :
+			(G==tComp::R ? src.R  :
+			(G==tComp::G ? src.G  :
+			(G==tComp::B ? src.B  :
+			(G==tComp::A ? src.A  : 0
+			))))));
+		uint8 b =
+			(B==tComp::Zero ? 0   :
+			(B==tComp::Full ? 255 :
+			(B==tComp::R ? src.R  :
+			(B==tComp::G ? src.G  :
+			(B==tComp::B ? src.B  :
+			(B==tComp::A ? src.A  : 0
+			))))));
+		uint8 a =
+			(A==tComp::Zero ? 0   :
+			(A==tComp::Full ? 255 :
+			(A==tComp::R ? src.R  :
+			(A==tComp::G ? src.G  :
+			(A==tComp::B ? src.B  :
+			(A==tComp::A ? src.A  : 255
+			))))));
+		dst.Set(r, g, b, a);
+	}
+	delete[] Pixels;
+	Pixels = newPixels;
 }
 
 
