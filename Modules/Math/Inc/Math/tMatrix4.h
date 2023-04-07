@@ -56,11 +56,11 @@ struct tMatrix4 : public tMat4
 	tVector4& Col4()																									{ return *((tVector4*)&C4); }
 
 	void Zero()																											{ tZero(*this); }
-	void Zero(tcomps c)																									{ tZero(*this, c); }
+	void Zero(comp_t c)																									{ tZero(*this, c); }
 	bool IsZero() const																									{ return tIsZero((tMat4&)*this); }
-	bool IsZero(tcomps c) const																							{ return tIsZero(*this, c); }
+	bool IsZero(comp_t c) const																							{ return tIsZero(*this, c); }
 	bool ApproxEqual(const tMat4& m, float e = Epsilon) const															{ return tApproxEqual(*this, m, e); }
-	bool ApproxEqual(const tMat4& m, tcomps c, float e = Epsilon) const													{ return tApproxEqual(*this, m, c, e); }
+	bool ApproxEqual(const tMat4& m, comp_t c, float e = Epsilon) const													{ return tApproxEqual(*this, m, c, e); }
 
 	void Identity()																										{ tIdentity(*this); }
 	void Transpose()										/* Will invert a purely orthogonal matrix. */				{ tTranspose(*this); }

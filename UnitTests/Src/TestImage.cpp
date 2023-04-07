@@ -807,7 +807,7 @@ tTestUnit(ImageCrop)
 	tPicture planePic(png);
 	int w = planePic.GetWidth();
 	int h = planePic.GetHeight();
-	planePic.Crop(tColouri::black, tComp_RGB);
+	planePic.Crop(tColouri::black, tCompBit_RGB);
 	planePic.Crop(w, h, tPicture::Anchor::MiddleMiddle, tColouri::transparent);
 	png.Set(planePic);
 	tImagePNG::tFormat fmt = png.Save("TestData/Images/WrittenPlane.png");

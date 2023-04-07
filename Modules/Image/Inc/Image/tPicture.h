@@ -147,13 +147,13 @@ public:
 
 	void SetPixel(int x, int y, const tColouri& c)																		{ Pixels[ GetIndex(x, y) ] = c; }
 	void SetPixel(int x, int y, uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)												{ Pixels[ GetIndex(x, y) ] = tColouri(r, g, b, a); }
-	void SetAll(const tColouri& = tColouri(0, 0, 0), tcomps channels = tComp_RGBA);
+	void SetAll(const tColouri& = tColouri(0, 0, 0), comp_t channels = tCompBit_RGBA);
 
 	// Spreads the specified single channel to all RGB channels.
-	void Spread(tcomps channel = tComp_R);
+	void Spread(comp_t channel = tCompBit_R);
 
 	// Computes RGB intensity and sets specified channels to that value. Any combination of RGBA allowed.
-	void Intensity(tcomps channels = tComp_RGB);
+	void Intensity(comp_t channels = tCompBit_RGB);
 
 	// Blends blendColour (background) into the RGB channels specified (usually RGB, but any combination of the 3 is
 	// allowed) using the pixel alpha to modulate. The new pixel colour is alpha*component + (1-alpha)*blend_component.
@@ -166,7 +166,7 @@ public:
 	// means the operation essentially creates a premultiplied-alpha opaque image.
 	// Note that the alpha of the supplied colour is ignored (since we use finalAlpha).
 	// Note that unspecified RGB channels are keft unmodified.
-	void AlphaBlendColour(const tColouri& blendColour, tcomps = tComp_RGB, int finalAlpha = 255);
+	void AlphaBlendColour(const tColouri& blendColour, comp_t = tCompBit_RGB, int finalAlpha = 255);
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
@@ -207,7 +207,7 @@ public:
 
 	// Crops sides that match the specified colour. Optionally select only some channels to be considered.
 	// If this function wants to remove everything it returns false and leaves the image untouched.
-	bool Crop(const tColouri& = tColouri::transparent, uint32 channels = tComp_A);
+	bool Crop(const tColouri& = tColouri::transparent, uint32 channels = tCompBit_A);
 
 	// Quantize image colours based on a fixed palette. numColours must be 256 or less. checkExact means no change to
 	// the image will be made if it already contains fewer colours than numColours already. This may or may not be
@@ -245,13 +245,13 @@ public:
 	// The AdjustGetDefaultNNN functions get the parameters needed to have zero affect on the image. For brightness in
 	// particular it is dependent on the image contents and may not be exactly 0.5. If the min/max colour values did not
 	// reach 0 and full, the default brightness may be offset from 0.5.
-	bool AdjustBrightness(float brightness, tcomps = tComp_RGB);
+	bool AdjustBrightness(float brightness, comp_t = tCompBit_RGB);
 	bool AdjustGetDefaultBrightness(float& brightness);
 
 	// Adjust contrast based on the tPicture pixels and write them into the adjustment pixel buffer. Contrast is in
 	// [0.0, 1.0]. When contrast is at 0.0, adjustment buffer will be lowest contrast. When contrast at 1.0, highest,
 	// Returns success.
-	bool AdjustContrast(float contrast, tcomps = tComp_RGB);
+	bool AdjustContrast(float contrast, comp_t = tCompBit_RGB);
 	bool AdjustGetDefaultContrast(float& contrast);
 
 	// Adjust levels. All values are E [0, 1]. Ensure blackPoint <= midPoint <= whitePoint and blackOut <= whiteOut.
@@ -263,7 +263,7 @@ public:
 	// For the power curve the gamma range is [0.1,  10.0] where 1.0 is linear. This approximates GIMP.
 	// For the photo curve the gamma range is [0.01, 9.99] where 1.0 is linear. This approximates PS.
 	// The defaults to result in no change are the same for both algorithms.
-	bool AdjustLevels(float blackPoint, float midPoint, float whitePoint, float blackOut, float whiteOut, bool powerMidGamma = true, tcomps = tComp_RGB);
+	bool AdjustLevels(float blackPoint, float midPoint, float whitePoint, float blackOut, float whiteOut, bool powerMidGamma = true, comp_t = tCompBit_RGB);
 	bool AdjustGetDefaultLevels(float& blackPoint, float& midPoint, float& whitePoint, float& blackOut, float& whiteOut);
 
 	// Keeps the adjustment session open and restores the pixels to their original values.
@@ -460,13 +460,13 @@ inline bool tPicture::IsOpaque() const
 }
 
 
-inline void tPicture::SetAll(const tColouri& clearColour, tcomps channels)
+inline void tPicture::SetAll(const tColouri& clearColour, comp_t channels)
 {
 	if (!Pixels)
 		return;
 
 	int numPixels = Width*Height;
-	if (channels == tComp_RGBA)
+	if (channels == tCompBit_RGBA)
 	{
 		for (int p = 0; p < numPixels; p++)
 			Pixels[p] = clearColour;
@@ -475,16 +475,16 @@ inline void tPicture::SetAll(const tColouri& clearColour, tcomps channels)
 	{
 		for (int p = 0; p < numPixels; p++)
 		{
-			if (channels & tComp_R) Pixels[p].R = clearColour.R;
-			if (channels & tComp_G) Pixels[p].G = clearColour.G;
-			if (channels & tComp_B) Pixels[p].B = clearColour.B;
-			if (channels & tComp_A) Pixels[p].A = clearColour.A;
+			if (channels & tCompBit_R) Pixels[p].R = clearColour.R;
+			if (channels & tCompBit_G) Pixels[p].G = clearColour.G;
+			if (channels & tCompBit_B) Pixels[p].B = clearColour.B;
+			if (channels & tCompBit_A) Pixels[p].A = clearColour.A;
 		}
 	}
 }
 
 
-inline void tPicture::Spread(tcomps channel)
+inline void tPicture::Spread(comp_t channel)
 {
 	int setBit = tMath::tFindFirstSetBit(channel);
 	if (setBit == -1)
@@ -497,16 +497,16 @@ inline void tPicture::Spread(tcomps channel)
 		tPixel& pixel = Pixels[p];
 		switch (channel)
 		{
-			case tComp_R:	pixel.G = pixel.B = pixel.R;			break;
-			case tComp_G:	pixel.R = pixel.B = pixel.G;			break;
-			case tComp_B:	pixel.R = pixel.G = pixel.B;			break;
-			case tComp_A:	pixel.R = pixel.G = pixel.B = pixel.A;	break;
+			case tCompBit_R:	pixel.G = pixel.B = pixel.R;			break;
+			case tCompBit_G:	pixel.R = pixel.B = pixel.G;			break;
+			case tCompBit_B:	pixel.R = pixel.G = pixel.B;			break;
+			case tCompBit_A:	pixel.R = pixel.G = pixel.B = pixel.A;	break;
 		}
 	}
 }
 
 
-inline void tPicture::Intensity(tcomps channels)
+inline void tPicture::Intensity(comp_t channels)
 {
 	if (!channels)
 		return;
@@ -516,15 +516,15 @@ inline void tPicture::Intensity(tcomps channels)
 	{
 		tPixel& pixel = Pixels[p];
 		int intensity = pixel.Intensity();
-		if (channels & tComp_R) pixel.R = intensity;
-		if (channels & tComp_G) pixel.G = intensity;
-		if (channels & tComp_B) pixel.B = intensity;
-		if (channels & tComp_A) pixel.A = intensity;
+		if (channels & tCompBit_R) pixel.R = intensity;
+		if (channels & tCompBit_G) pixel.G = intensity;
+		if (channels & tCompBit_B) pixel.B = intensity;
+		if (channels & tCompBit_A) pixel.A = intensity;
 	}
 }
 
 
-inline void tPicture::AlphaBlendColour(const tColouri& blend, tcomps channels, int finalAlpha)
+inline void tPicture::AlphaBlendColour(const tColouri& blend, comp_t channels, int finalAlpha)
 {
 	if (!Pixels)
 		return;
@@ -539,9 +539,9 @@ inline void tPicture::AlphaBlendColour(const tColouri& blend, tcomps channels, i
 		float alpha = pixelCol.A;
 		float oneMinusAlpha = 1.0f - alpha;
 
-		if (channels & tComp_R) pixel.R = pixelCol.R*alpha + blendCol.R*oneMinusAlpha;
-		if (channels & tComp_G) pixel.G = pixelCol.G*alpha + blendCol.G*oneMinusAlpha;
-		if (channels & tComp_B) pixel.B = pixelCol.B*alpha + blendCol.B*oneMinusAlpha;
+		if (channels & tCompBit_R) pixel.R = pixelCol.R*alpha + blendCol.R*oneMinusAlpha;
+		if (channels & tCompBit_G) pixel.G = pixelCol.G*alpha + blendCol.G*oneMinusAlpha;
+		if (channels & tCompBit_B) pixel.B = pixelCol.B*alpha + blendCol.B*oneMinusAlpha;
 		if (finalAlpha >= 0)
 			pixel.SetA(finalAlpha);
 

@@ -44,11 +44,11 @@ struct tQuaternion : public tQuat
 	void Get(tVec3& axis, float& angle) const																			{ tGet(axis, angle, *this); }
 
 	void Zero()																											{ tZero(*this); }
-	void Zero(tcomps c)																									{ tZero(*this, c); }
+	void Zero(comp_t c)																									{ tZero(*this, c); }
 	bool IsZero() const																									{ return tIsZero((tQuat&)*this); }
-	bool IsZero(tcomps c) const																							{ return tIsZero(*this, c); }
+	bool IsZero(comp_t c) const																							{ return tIsZero(*this, c); }
 	bool ApproxEqual(const tQuat& q, float e = Epsilon) const															{ return tApproxEqual(*this, q, e); }
-	bool ApproxEqual(const tQuat& q, tcomps c, float e = Epsilon) const													{ return tApproxEqual(*this, q, c, e); }
+	bool ApproxEqual(const tQuat& q, comp_t c, float e = Epsilon) const													{ return tApproxEqual(*this, q, c, e); }
 
 	float LengthSq() const																								{ return tLengthSq(*this); }
 	float Length() const																								{ return tLength(*this); }

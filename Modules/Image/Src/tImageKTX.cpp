@@ -39,7 +39,7 @@ namespace tKTX
 	void GetFormatInfo_FromGLFormat(tPixelFormat&, tColourSpace&, uint32 glType, uint32 glFormat, uint32 glInternalFormat);
 	void GetFormatInfo_FromVKFormat(tPixelFormat&, tColourSpace&, uint32 vkFormat);
 
-	void ProcessHDRFlags(tColour4f& colour, tcomps channels, const tImageKTX::LoadParams& params);
+	void ProcessHDRFlags(tColour4f& colour, comp_t channels, const tImageKTX::LoadParams& params);
 }
 
 
@@ -595,7 +595,7 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourSpace& space,
 }
 
 
-void tKTX::ProcessHDRFlags(tColour4f& colour, tcomps channels, const tImageKTX::LoadParams& params)
+void tKTX::ProcessHDRFlags(tColour4f& colour, comp_t channels, const tImageKTX::LoadParams& params)
 {
 	if (params.Flags & tImageKTX::LoadFlag_ToneMapExposure)
 		colour.TonemapExposure(params.Exposure, channels);
@@ -1197,7 +1197,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 							{
 								float r = hdata[ij*1 + 0];
 								tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
-								tKTX::ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
+								tKTX::ProcessHDRFlags(col, spread ? tCompBit_RGB : tCompBit_R, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1213,7 +1213,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 								float r = hdata[ij*2 + 0];
 								float g = hdata[ij*2 + 1];
 								tColour4f col(r, g, 0.0f, 1.0f);
-								tKTX::ProcessHDRFlags(col, tComp_RG, params);
+								tKTX::ProcessHDRFlags(col, tCompBit_RG, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1231,7 +1231,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 								float b = hdata[ij*4 + 2];
 								float a = hdata[ij*4 + 3];
 								tColour4f col(r, g, b, a);
-								tKTX::ProcessHDRFlags(col, tComp_RGB, params);
+								tKTX::ProcessHDRFlags(col, tCompBit_RGB, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1246,7 +1246,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 							{
 								float r = fdata[ij*1 + 0];
 								tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
-								tKTX::ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
+								tKTX::ProcessHDRFlags(col, spread ? tCompBit_RGB : tCompBit_R, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1262,7 +1262,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 								float r = fdata[ij*2 + 0];
 								float g = fdata[ij*2 + 1];
 								tColour4f col(r, g, 0.0f, 1.0f);
-								tKTX::ProcessHDRFlags(col, tComp_RG, params);
+								tKTX::ProcessHDRFlags(col, tCompBit_RG, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1280,7 +1280,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 								float b = fdata[ij*4 + 2];
 								float a = fdata[ij*4 + 3];
 								tColour4f col(r, g, b, a);
-								tKTX::ProcessHDRFlags(col, tComp_RGB, params);
+								tKTX::ProcessHDRFlags(col, tCompBit_RGB, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1419,7 +1419,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 							for (int xy = 0; xy < wfull*hfull; xy++)
 							{
 								tColour4f col(rgbData[xy], 1.0f);
-								tKTX::ProcessHDRFlags(col, tComp_RGB, params);
+								tKTX::ProcessHDRFlags(col, tCompBit_RGB, params);
 								uncompData[xy].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1560,7 +1560,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 					for (int p = 0; p < w*h; p++)
 					{
 						tColour4f col(uncompData[p]);
-						tKTX::ProcessHDRFlags(col, tComp_RGB, params);
+						tKTX::ProcessHDRFlags(col, tCompBit_RGB, params);
 						pixelData[p].Set(col);
 					}
 					processedHDRFlags = true;

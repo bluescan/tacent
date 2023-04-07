@@ -149,7 +149,7 @@ void tMath::tBezierCurve::GetTangent(tVector3& v, float t) const
 }
 
 
-float tMath::tBezierCurve::GetClosestParamRec(const tVector3& p, tcomps components, float start, float end, float threshold) const
+float tMath::tBezierCurve::GetClosestParamRec(const tVector3& p, comp_t components, float start, float end, float threshold) const
 {
 	float mid = (start + end)/2.0f;
 
@@ -186,7 +186,7 @@ float tMath::tBezierCurve::GetClosestParamRec(const tVector3& p, tcomps componen
 }
 
 
-tcomps tMath::tBezierPath::tFastSectionState::CompareComponents = tComp_All;
+comp_t tMath::tBezierPath::tFastSectionState::CompareComponents = tCompBit_All;
 tMath::tVector3 tMath::tBezierPath::tFastSectionState::ComparePos = tVector3::zero;
 const tMath::tVector3* tMath::tBezierPath::tFastSectionState::CompareControlVerts = nullptr;
 
@@ -230,7 +230,7 @@ void tMath::tBezierPath::Clear()
 }
 
 
-float tMath::tBezierPath::ComputeApproxParamPerCoordinateUnit(tcomps components) const
+float tMath::tBezierPath::ComputeApproxParamPerCoordinateUnit(comp_t components) const
 {
 	if (!IsValid())
 		return 0.0f;
@@ -473,7 +473,7 @@ bool tMath::tBezierPath::tFastSectionState::CompareSections(const tSectionInfo& 
 }
 
 
-void tMath::tBezierPath::tFastSectionState::Set(const tVector3& pos, tcomps components, const tVector3* cvs, int numCVs) const
+void tMath::tBezierPath::tFastSectionState::Set(const tVector3& pos, comp_t components, const tVector3* cvs, int numCVs) const
 {
 	Clear();
 	Components = components;
@@ -497,7 +497,7 @@ void tMath::tBezierPath::tFastSectionState::Update(const tVector3& pos, const tV
 }
 
 
-float tMath::tBezierPath::GetClosestParam(const tVector3& p, tcomps components, float paramThreshold, const tBezierPath::tFastSectionState& optObj) const
+float tMath::tBezierPath::GetClosestParam(const tVector3& p, comp_t components, float paramThreshold, const tBezierPath::tFastSectionState& optObj) const
 {
 	// Can we use the supplied FastSectionState if it has the correct components, number of sections, and CVs. If
 	// anything is wrong, we simply clear the optimization object for next time.

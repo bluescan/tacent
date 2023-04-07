@@ -38,11 +38,11 @@ struct tMatrix2 : public tMat2
 	tVector2& Col2()																									{ return *((tVector2*)&C2); }
 
 	void Zero()																											{ tZero(*this); }
-	void Zero(tComponent c)																								{ tZero(*this, c); }
+	void Zero(tCompBit c)																								{ tZero(*this, c); }
 	bool IsZero() const																									{ return tIsZero((tMat2&)*this); }
-	bool IsZero(tComponent c) const																						{ return tIsZero(*this, c); }
+	bool IsZero(tCompBit c) const																						{ return tIsZero(*this, c); }
 	bool ApproxEqual(const tMat2& m, float e = Epsilon) const															{ return tApproxEqual(*this, m, e); }
-	bool ApproxEqual(const tMat2& m, tComponent c, float e = Epsilon) const												{ return tApproxEqual(*this, m, c, e); }
+	bool ApproxEqual(const tMat2& m, tCompBit c, float e = Epsilon) const												{ return tApproxEqual(*this, m, c, e); }
 
 	void Identity()																										{ tIdentity(*this); }
 	void Transpose()																									{ tTranspose(*this); }

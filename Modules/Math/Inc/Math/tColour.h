@@ -219,7 +219,7 @@ public:
 	void Get(tColour4i& c) const																						{ c.BP = BP; }
 
 	// Returns intensity (average of chosen components) in range [0, 255].
-	int Intensity(tcomps comps = tComp_RGB) const;
+	int Intensity(comp_t comps = tCompBit_RGB) const;
 
 	void MakeZero()																										{ R = 0x00; G = 0x00; B = 0x00; A = 0x00; }
 	void MakeBlack()																									{ R = 0x00; G = 0x00; B = 0x00; A = 0xFF; }
@@ -253,7 +253,7 @@ public:
 	void RGBToHSV();										// Assumes current values are RGB.
 	void HSVToRGB();										// Assumes current values are HSV.
 
-	bool Equal(const tColour4i&, tcomps channels = tComp_All) const;
+	bool Equal(const tColour4i&, comp_t channels = tCompBit_All) const;
 	bool operator==(const tColour4i& c) const																			{ return (BP == c.BP); }
 	bool operator!=(const tColour4i& c) const 																			{ return (BP != c.BP); }
 	tColour4i& operator=(const tColour4i& c)																			{ BP = c.BP; return *this; }
@@ -423,8 +423,8 @@ public:
 	//
 	// SquareToLinear will darken  the image. Gamma = 2.0 (decoding). Gamma expansion.
 	// LinearToSquare Will lighten the image. Gamma = 0.5 (encoding). Gamma compression.
-	void SquareToLinear(tcomps = tComp_RGB);
-	void LinearToSquare(tcomps = tComp_RGB);
+	void SquareToLinear(comp_t = tCompBit_RGB);
+	void LinearToSquare(comp_t = tCompBit_RGB);
 
 	// These two are more general versions of the above two functions and use the power function instead of squaring or
 	// square-rooting. They support an arbitrary gamma value (default to 2.2). For LinearToGamma you are actually
@@ -433,8 +433,8 @@ public:
 	//
 	// GammaToLinear will darken  the image. Gamma = 2.2   (default/decoding). Gamma expansion.
 	// LinearToGamma Will lighten the image. Gamma = 1/2,2 (default/encoding). Gamma compression.
-	void GammaToLinear(float gamma    = tMath::DefaultGamma, tcomps = tComp_RGB);
-	void LinearToGamma(float invGamma = tMath::DefaultGamma, tcomps = tComp_RGB);
+	void GammaToLinear(float gamma    = tMath::DefaultGamma, comp_t = tCompBit_RGB);
+	void LinearToGamma(float invGamma = tMath::DefaultGamma, comp_t = tCompBit_RGB);
 
 	// The slowest conversion but for high fidelity, the sRGB space is likely what the image was authored in. sRGB
 	// conversions do not use the pow function for the whole domain, and the amplitude is not quite 1, but generally
@@ -442,14 +442,14 @@ public:
 	//
 	// SRGBToLinear will darken  the image. Gamma = ~2.4   (decoding). Gamma expansion.
 	// LinearToSRGB Will lighten the image. Gamma = ~1/2.4 (encoding). Gamma compression.
-	void SRGBToLinear(tcomps = tComp_RGB);
-	void LinearToSRGB(tcomps = tComp_RGB);
+	void SRGBToLinear(comp_t = tCompBit_RGB);
+	void LinearToSRGB(comp_t = tCompBit_RGB);
 
 	// Simple exposure tonemapping.
-	void TonemapExposure(float exposure, tcomps = tComp_RGB);
+	void TonemapExposure(float exposure, comp_t = tCompBit_RGB);
 
 	// Evently distributes brightness.
-	void TonemapReinhard(tcomps = tComp_RGB);
+	void TonemapReinhard(comp_t = tCompBit_RGB);
 
 	// When using the HSV representation of a tColourf, the hue is in NormOne angle mode. See the tRGBToHSV and
 	// tHSVToRGB functions if you wish to use different angle units. All the components (h, s, v, r, g, b, a) are in
@@ -693,13 +693,13 @@ inline void tColour4i::Set(const tColour3f& c, float a)
 }
 
 
-inline int tColour4i::Intensity(tcomps comps) const
+inline int tColour4i::Intensity(comp_t comps) const
 {
 	int sum = 0; int count = 0;
-	if (comps & tComp_R) { sum += int(R); count++; }
-	if (comps & tComp_G) { sum += int(G); count++; }
-	if (comps & tComp_B) { sum += int(B); count++; }
-	if (comps & tComp_A) { sum += int(A); count++; }
+	if (comps & tCompBit_R) { sum += int(R); count++; }
+	if (comps & tCompBit_G) { sum += int(G); count++; }
+	if (comps & tCompBit_B) { sum += int(B); count++; }
+	if (comps & tCompBit_A) { sum += int(A); count++; }
 	if (!count) return -1;
 	return sum/count;
 }
@@ -731,18 +731,18 @@ inline void tColour4i::HSVToRGB()
 }
 
 
-inline bool tColour4i::Equal(const tColour4i& colour, tcomps channels) const
+inline bool tColour4i::Equal(const tColour4i& colour, comp_t channels) const
 {
-	if ((channels & tComp_R) && (R != colour.R))
+	if ((channels & tCompBit_R) && (R != colour.R))
 		return false;
 
-	if ((channels & tComp_G) && (G != colour.G))
+	if ((channels & tCompBit_G) && (G != colour.G))
 		return false;
 
-	if ((channels & tComp_B) && (B != colour.B))
+	if ((channels & tCompBit_B) && (B != colour.B))
 		return false;
 
-	if ((channels & tComp_A) && (A != colour.A))
+	if ((channels & tCompBit_A) && (A != colour.A))
 		return false;
 
 	return true;
@@ -755,75 +755,75 @@ inline void tColour4f::Set(const tColour3f& c, float a)
 }
 
 
-inline void tColour4f::SquareToLinear(tcomps chans)
+inline void tColour4f::SquareToLinear(comp_t chans)
 {
-	if (chans & tComp_R) R = tMath::tSquareToLinear(R);
-	if (chans & tComp_G) G = tMath::tSquareToLinear(G);
-	if (chans & tComp_B) B = tMath::tSquareToLinear(B);
-	if (chans & tComp_A) A = tMath::tSquareToLinear(A);
+	if (chans & tCompBit_R) R = tMath::tSquareToLinear(R);
+	if (chans & tCompBit_G) G = tMath::tSquareToLinear(G);
+	if (chans & tCompBit_B) B = tMath::tSquareToLinear(B);
+	if (chans & tCompBit_A) A = tMath::tSquareToLinear(A);
 }
 
 
-inline void tColour4f::LinearToSquare(tcomps chans)
+inline void tColour4f::LinearToSquare(comp_t chans)
 {
-	if (chans & tComp_R) R = tMath::tLinearToSquare(R);
-	if (chans & tComp_G) G = tMath::tLinearToSquare(G);
-	if (chans & tComp_B) B = tMath::tLinearToSquare(B);
-	if (chans & tComp_A) A = tMath::tLinearToSquare(A);
+	if (chans & tCompBit_R) R = tMath::tLinearToSquare(R);
+	if (chans & tCompBit_G) G = tMath::tLinearToSquare(G);
+	if (chans & tCompBit_B) B = tMath::tLinearToSquare(B);
+	if (chans & tCompBit_A) A = tMath::tLinearToSquare(A);
 }
 
 
-inline void tColour4f::GammaToLinear(float gamma, tcomps chans)
+inline void tColour4f::GammaToLinear(float gamma, comp_t chans)
 {
-	if (chans & tComp_R) R = tMath::tGammaToLinear(R, gamma);
-	if (chans & tComp_G) G = tMath::tGammaToLinear(G, gamma);
-	if (chans & tComp_B) B = tMath::tGammaToLinear(B, gamma);
-	if (chans & tComp_A) A = tMath::tGammaToLinear(A, gamma);
+	if (chans & tCompBit_R) R = tMath::tGammaToLinear(R, gamma);
+	if (chans & tCompBit_G) G = tMath::tGammaToLinear(G, gamma);
+	if (chans & tCompBit_B) B = tMath::tGammaToLinear(B, gamma);
+	if (chans & tCompBit_A) A = tMath::tGammaToLinear(A, gamma);
 }
 
 
-inline void tColour4f::LinearToGamma(float gamma, tcomps chans)
+inline void tColour4f::LinearToGamma(float gamma, comp_t chans)
 {
-	if (chans & tComp_R) R = tMath::tLinearToGamma(R, gamma);
-	if (chans & tComp_G) G = tMath::tLinearToGamma(G, gamma);
-	if (chans & tComp_B) B = tMath::tLinearToGamma(B, gamma);
-	if (chans & tComp_A) A = tMath::tLinearToGamma(A, gamma);
+	if (chans & tCompBit_R) R = tMath::tLinearToGamma(R, gamma);
+	if (chans & tCompBit_G) G = tMath::tLinearToGamma(G, gamma);
+	if (chans & tCompBit_B) B = tMath::tLinearToGamma(B, gamma);
+	if (chans & tCompBit_A) A = tMath::tLinearToGamma(A, gamma);
 }
 
 
-inline void tColour4f::SRGBToLinear(tcomps chans)
+inline void tColour4f::SRGBToLinear(comp_t chans)
 {
-	if (chans & tComp_R) R = tMath::tSRGBToLinear(R);
-	if (chans & tComp_G) G = tMath::tSRGBToLinear(G);
-	if (chans & tComp_B) B = tMath::tSRGBToLinear(B);
-	if (chans & tComp_A) A = tMath::tSRGBToLinear(A);
+	if (chans & tCompBit_R) R = tMath::tSRGBToLinear(R);
+	if (chans & tCompBit_G) G = tMath::tSRGBToLinear(G);
+	if (chans & tCompBit_B) B = tMath::tSRGBToLinear(B);
+	if (chans & tCompBit_A) A = tMath::tSRGBToLinear(A);
 }
 
 
-inline void tColour4f::LinearToSRGB(tcomps chans)
+inline void tColour4f::LinearToSRGB(comp_t chans)
 {
-	if (chans & tComp_R) R = tMath::tLinearToSRGB(R);
-	if (chans & tComp_G) G = tMath::tLinearToSRGB(G);
-	if (chans & tComp_B) B = tMath::tLinearToSRGB(B);
-	if (chans & tComp_A) A = tMath::tLinearToSRGB(A);
+	if (chans & tCompBit_R) R = tMath::tLinearToSRGB(R);
+	if (chans & tCompBit_G) G = tMath::tLinearToSRGB(G);
+	if (chans & tCompBit_B) B = tMath::tLinearToSRGB(B);
+	if (chans & tCompBit_A) A = tMath::tLinearToSRGB(A);
 }
 
 
-inline void tColour4f::TonemapExposure(float exposure, tcomps chans)
+inline void tColour4f::TonemapExposure(float exposure, comp_t chans)
 {
-	if (chans & tComp_R) R = tMath::tTonemapExposure(R, exposure);
-	if (chans & tComp_G) G = tMath::tTonemapExposure(G, exposure);
-	if (chans & tComp_B) B = tMath::tTonemapExposure(B, exposure);
-	if (chans & tComp_A) A = tMath::tTonemapExposure(A, exposure);
+	if (chans & tCompBit_R) R = tMath::tTonemapExposure(R, exposure);
+	if (chans & tCompBit_G) G = tMath::tTonemapExposure(G, exposure);
+	if (chans & tCompBit_B) B = tMath::tTonemapExposure(B, exposure);
+	if (chans & tCompBit_A) A = tMath::tTonemapExposure(A, exposure);
 }
 
 
-inline void tColour4f::TonemapReinhard(tcomps chans)
+inline void tColour4f::TonemapReinhard(comp_t chans)
 {
-	if (chans & tComp_R) R = tMath::tTonemapReinhard(R);
-	if (chans & tComp_G) G = tMath::tTonemapReinhard(G);
-	if (chans & tComp_B) B = tMath::tTonemapReinhard(B);
-	if (chans & tComp_A) A = tMath::tTonemapReinhard(A);
+	if (chans & tCompBit_R) R = tMath::tTonemapReinhard(R);
+	if (chans & tCompBit_G) G = tMath::tTonemapReinhard(G);
+	if (chans & tCompBit_B) B = tMath::tTonemapReinhard(B);
+	if (chans & tCompBit_A) A = tMath::tTonemapReinhard(A);
 }
 
 

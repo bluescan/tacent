@@ -577,7 +577,7 @@ bool tPicture::AdjustmentBegin()
 }
 
 
-bool tPicture::AdjustBrightness(float brightness, tcomps comps)
+bool tPicture::AdjustBrightness(float brightness, comp_t comps)
 {
 	if (!IsValid() || !OriginalPixels)
 		return false;
@@ -594,10 +594,10 @@ bool tPicture::AdjustBrightness(float brightness, tcomps comps)
 	{
 		tColour4i& srcColour = OriginalPixels[p];
 		tColour4i& adjColour = Pixels[p];
-		if (comps & tComp_R)	adjColour.R = tClamp(int(srcColour.R) + offset, 0, 255);
-		if (comps & tComp_G)	adjColour.G = tClamp(int(srcColour.G) + offset, 0, 255);
-		if (comps & tComp_B)	adjColour.B = tClamp(int(srcColour.B) + offset, 0, 255);
-		if (comps & tComp_A)	adjColour.A = tClamp(int(srcColour.A) + offset, 0, 255);
+		if (comps & tCompBit_R)	adjColour.R = tClamp(int(srcColour.R) + offset, 0, 255);
+		if (comps & tCompBit_G)	adjColour.G = tClamp(int(srcColour.G) + offset, 0, 255);
+		if (comps & tCompBit_B)	adjColour.B = tClamp(int(srcColour.B) + offset, 0, 255);
+		if (comps & tCompBit_A)	adjColour.A = tClamp(int(srcColour.A) + offset, 0, 255);
 	}
 
 	return true;
@@ -616,7 +616,7 @@ bool tPicture::AdjustGetDefaultBrightness(float& brightness)
 }
 
 
-bool tPicture::AdjustContrast(float contrastNorm, tcomps comps)
+bool tPicture::AdjustContrast(float contrastNorm, comp_t comps)
 {
 	if (!IsValid() || !OriginalPixels)
 		return false;
@@ -629,10 +629,10 @@ bool tPicture::AdjustContrast(float contrastNorm, tcomps comps)
 	{
 		tColour4i& srcColour = OriginalPixels[p];
 		tColour4i& adjColour = Pixels[p];
-		if (comps & tComp_R)	adjColour.R = tClamp(int(factor * (float(srcColour.R) - 128.0f) + 128.0f), 0, 255);
-		if (comps & tComp_G)	adjColour.G = tClamp(int(factor * (float(srcColour.G) - 128.0f) + 128.0f), 0, 255);
-		if (comps & tComp_B)	adjColour.B = tClamp(int(factor * (float(srcColour.B) - 128.0f) + 128.0f), 0, 255);
-		if (comps & tComp_A)	adjColour.A = tClamp(int(factor * (float(srcColour.A) - 128.0f) + 128.0f), 0, 255);
+		if (comps & tCompBit_R)	adjColour.R = tClamp(int(factor * (float(srcColour.R) - 128.0f) + 128.0f), 0, 255);
+		if (comps & tCompBit_G)	adjColour.G = tClamp(int(factor * (float(srcColour.G) - 128.0f) + 128.0f), 0, 255);
+		if (comps & tCompBit_B)	adjColour.B = tClamp(int(factor * (float(srcColour.B) - 128.0f) + 128.0f), 0, 255);
+		if (comps & tCompBit_A)	adjColour.A = tClamp(int(factor * (float(srcColour.A) - 128.0f) + 128.0f), 0, 255);
 	}
 
 	return true;
@@ -649,7 +649,7 @@ bool tPicture::AdjustGetDefaultContrast(float& contrast)
 }
 
 
-bool tPicture::AdjustLevels(float blackPoint, float midPoint, float whitePoint, float blackOut, float whiteOut, bool powerMidGamma, tcomps comps)
+bool tPicture::AdjustLevels(float blackPoint, float midPoint, float whitePoint, float blackOut, float whiteOut, bool powerMidGamma, comp_t comps)
 {
 	if (!IsValid() || !OriginalPixels)
 		return false;

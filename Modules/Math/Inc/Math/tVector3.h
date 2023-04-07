@@ -42,11 +42,11 @@ struct tVector3 : public tVec3
 	void Get(float* a) const																							{ tGet(a, *this); }
 
 	void Zero()																											{ tZero(*this); }
-	void Zero(tcomps c)																									{ tZero(*this, c); }
+	void Zero(comp_t c)																									{ tZero(*this, c); }
 	bool IsZero() const																									{ return tIsZero((tVec3&)*this); }
-	bool IsZero(tcomps c) const																							{ return tIsZero(*this, c); }
+	bool IsZero(comp_t c) const																							{ return tIsZero(*this, c); }
 	bool ApproxEqual(const tVec3& v, float e = Epsilon) const															{ return tApproxEqual(*this, v, e); }
-	bool ApproxEqual(const tVec3& v, tcomps c, float e = Epsilon) const													{ return tApproxEqual(*this, v, c, e); }
+	bool ApproxEqual(const tVec3& v, comp_t c, float e = Epsilon) const													{ return tApproxEqual(*this, v, c, e); }
 
 	float LengthSq() const																								{ return tLengthSq(*this); }
 	float Length() const																								{ return tLength(*this); }

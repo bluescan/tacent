@@ -39,7 +39,7 @@ namespace tASTC
 	tStaticAssert(sizeof(Header) == 16);
 
 	tPixelFormat GetFormatFromBlockDimensions(int blockW, int blockH);
-	void ProcessHDRFlags(tColour4f& colour, tcomps channels, const tImageASTC::LoadParams& params);
+	void ProcessHDRFlags(tColour4f& colour, comp_t channels, const tImageASTC::LoadParams& params);
 };
 
 
@@ -67,7 +67,7 @@ tPixelFormat tASTC::GetFormatFromBlockDimensions(int blockW, int blockH)
 }
 
 
-void tASTC::ProcessHDRFlags(tColour4f& colour, tcomps channels, const tImageASTC::LoadParams& params)
+void tASTC::ProcessHDRFlags(tColour4f& colour, comp_t channels, const tImageASTC::LoadParams& params)
 {
 	if (params.Flags & tImageASTC::LoadFlag_ToneMapExposure)
 		colour.TonemapExposure(params.Exposure, channels);
@@ -199,7 +199,7 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 	for (int p = 0; p < width*height; p++)
 	{
 		tColour4f col(uncompData[p]);
-		tASTC::ProcessHDRFlags(col, tComp_RGB, params);
+		tASTC::ProcessHDRFlags(col, tCompBit_RGB, params);
 		pixelData[p].Set(col);
 	}
 

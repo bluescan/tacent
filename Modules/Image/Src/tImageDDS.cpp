@@ -522,7 +522,7 @@ namespace tDDS
 	void GetFormatInfo_FromFourCC			(tPixelFormat&, tColourSpace&, tAlphaMode&, uint32 fourCC);
 	void GetFormatInfo_FromComponentMasks	(tPixelFormat&, tColourSpace&, tAlphaMode&, const FormatData&);
 
-	void ProcessHDRFlags(tColour4f& colour, tcomps channels, const tImageDDS::LoadParams& params);
+	void ProcessHDRFlags(tColour4f& colour, comp_t channels, const tImageDDS::LoadParams& params);
 }
 
 
@@ -982,7 +982,7 @@ void tDDS::GetFormatInfo_FromComponentMasks(tPixelFormat& format, tColourSpace& 
 }
 
 
-void tDDS::ProcessHDRFlags(tColour4f& colour, tcomps channels, const tImageDDS::LoadParams& params)
+void tDDS::ProcessHDRFlags(tColour4f& colour, comp_t channels, const tImageDDS::LoadParams& params)
 {
 	if (params.Flags & tImageDDS::LoadFlag_ToneMapExposure)
 		colour.TonemapExposure(params.Exposure, channels);
@@ -1684,7 +1684,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 							{
 								float r = hdata[ij*1 + 0];
 								tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
-								tDDS::ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
+								tDDS::ProcessHDRFlags(col, spread ? tCompBit_RGB : tCompBit_R, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1700,7 +1700,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 								float r = hdata[ij*2 + 0];
 								float g = hdata[ij*2 + 1];
 								tColour4f col(r, g, 0.0f, 1.0f);
-								tDDS::ProcessHDRFlags(col, tComp_RG, params);
+								tDDS::ProcessHDRFlags(col, tCompBit_RG, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1718,7 +1718,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 								float b = hdata[ij*4 + 2];
 								float a = hdata[ij*4 + 3];
 								tColour4f col(r, g, b, a);
-								tDDS::ProcessHDRFlags(col, tComp_RGB, params);
+								tDDS::ProcessHDRFlags(col, tCompBit_RGB, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1733,7 +1733,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 							{
 								float r = fdata[ij*1 + 0];
 								tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
-								tDDS::ProcessHDRFlags(col, spread ? tComp_RGB : tComp_R, params);
+								tDDS::ProcessHDRFlags(col, spread ? tCompBit_RGB : tCompBit_R, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1749,7 +1749,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 								float r = fdata[ij*2 + 0];
 								float g = fdata[ij*2 + 1];
 								tColour4f col(r, g, 0.0f, 1.0f);
-								tDDS::ProcessHDRFlags(col, tComp_RG, params);
+								tDDS::ProcessHDRFlags(col, tCompBit_RG, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1767,7 +1767,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 								float b = fdata[ij*4 + 2];
 								float a = fdata[ij*4 + 3];
 								tColour4f col(r, g, b, a);
-								tDDS::ProcessHDRFlags(col, tComp_RGB, params);
+								tDDS::ProcessHDRFlags(col, tCompBit_RGB, params);
 								uncompData[ij].Set(col);
 							}
 							processedHDRFlags = true;
@@ -1906,7 +1906,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 							for (int xy = 0; xy < wfull*hfull; xy++)
 							{
 								tColour4f col(rgbData[xy], 1.0f);
-								tDDS::ProcessHDRFlags(col, tComp_RGB, params);
+								tDDS::ProcessHDRFlags(col, tCompBit_RGB, params);
 								uncompData[xy].Set(col);
 							}
 							processedHDRFlags = true;
@@ -2087,7 +2087,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 					for (int p = 0; p < w*h; p++)
 					{
 						tColour4f col(uncompData[p]);
-						tDDS::ProcessHDRFlags(col, tComp_RGB, params);
+						tDDS::ProcessHDRFlags(col, tCompBit_RGB, params);
 						pixelData[p].Set(col);
 					}
 					processedHDRFlags = true;
