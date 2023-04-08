@@ -67,7 +67,10 @@ only every 2nd row will they be on multiple of 4 boundaries... otherwise they fa
 TEXC didn't have this 'bleeding' issue.
 
 Compressonator (COMP) was used for creating the legacy dds files that use the ETC encoder. There are 4 of these files.
-one for each COMP-Supported ETC format: ETC1, ETC2RGB, ETC2RGBA, and ETC2RGBA1.
+one for each COMP-Supported ETC format: ETC1, ETC2RGB, ETC2RGBA, and ETC2RGBA1. Note that COMP encodes incorrectly. It
+swaps the R and B channels. That is, they interpreted the texture-format name literally. The D3DFMT names are wrong and
+MS fixed this with their DXGI names. In the case of the 4 COMP-generated test images, the swizzle to swap R and B was
+performed before encoding for better-quality results (colour channels are not independant) and correct dds files.
 
 Summary:
 Currently using NVTT where possible for the quality, and TEXC for more obscure pixel formats and HDR BC6 unsigned.

@@ -1192,9 +1192,6 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 
 	// The ETC files exported from compressonator need their RGB components swizzled.
 	tPixelFormat fileformat = tGetPixelFormat(formatname.Chr());
-	if ((fileformat == tPixelFormat::ETC1) || (fileformat == tPixelFormat::ETC2RGB) || (fileformat == tPixelFormat::ETC2RGBA) || (fileformat == tPixelFormat::ETC2RGBA1))
-		params.Flags |= tImageDDS::LoadFlag_SwizzleBGR2RGB;
-
 	tImageDDS dds(ddsfile, params);
 	tRequire(dds.IsValid());
 	tRequire(fileSpecifiedAsModern == dds.IsModern());
