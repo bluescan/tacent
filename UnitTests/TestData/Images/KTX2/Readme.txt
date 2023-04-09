@@ -27,4 +27,6 @@ Warning: NVTT does not generate a BC1(no-binary-alpha) image even when set to BC
 
 All images were converted at production quality. Supercompression was used for all images except for BC7_RGBANoSuper.
 
-The ktx2 files starting with 'ETC' were generated from compressonator (COMP)
+The 3 ktx2 files starting with 'ETC' were generated from compressonator (COMP).
+COMP generates incorrect ETC2 images (RB are swapped). This fix this the source image was swizzled first. This results in correct ETC2 files.
+COMP allows you to set ETC1 for the format of a KTX2 file. KTX2 does not have the ability to distinguish between ETC1 and ETC2RGB (there is no separate VK pixel format). That is why there are only 3 images.
