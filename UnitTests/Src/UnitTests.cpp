@@ -217,9 +217,9 @@ int main(int argc, char** argv)
 	// tTest(ImageCrop);
 	// tTest(ImageAdjustment);
 	// tTest(ImageDetection);
-	tTest(ImageDDS);
+	// tTest(ImageDDS);
 	// tTest(ImageKTX1);
-	// tTest(ImageKTX2);
+	tTest(ImageKTX2);
 	// tTest(ImageASTC);
 	// tTest(ImagePKM);
 	#endif

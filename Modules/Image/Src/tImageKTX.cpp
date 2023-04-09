@@ -20,6 +20,7 @@
 #include "Image/tPixelUtil.h"
 #include "Image/tPicture.h"
 #include "bcdec/bcdec.h"
+#include "etcdec/etcdec.h"
 #include "astcenc.h"
 #define KHRONOS_STATIC
 #include "LibKTX/include/ktx.h"
@@ -61,6 +62,9 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 	// all we care about is the format of the actual data, and glType/glFormat can be used to determine that.
 	switch (glInternalFormat)
 	{
+		//
+		// BC formats.
+		//
 		case GL_COMPRESSED_RGB_S3TC_DXT1_EXT:
 			format = tPixelFormat::BC1DXT1;
 			break;
@@ -103,7 +107,52 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourSpace& space,
 			format = tPixelFormat::BC7;
 			break;
 
+		//
+		// ETC and EAC formats.
+		//
+		case GL_ETC1_RGB8_OES:
+			format = tPixelFormat::ETC1;
+			break;
+
+		// Since there are sRGB equivalents of these next three formats, they get set to Linear
+		// for the non-sRGB versions.
+		case GL_COMPRESSED_RGB8_ETC2:
+			space = tColourSpace::Linear;
+		case GL_COMPRESSED_SRGB8_ETC2:
+			format = tPixelFormat::ETC2RGB;
+			break;
+
+		case GL_COMPRESSED_RGBA8_ETC2_EAC:
+			space = tColourSpace::Linear;
+		case GL_COMPRESSED_SRGB8_ALPHA8_ETC2_EAC:
+			format = tPixelFormat::ETC2RGBA;
+			break;
+
+		case GL_COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2:
+			space = tColourSpace::Linear;
+		case GL_COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2:
+			format = tPixelFormat::ETC2RGBA1;
+			break;
+
+		case GL_COMPRESSED_R11_EAC:
+			format = tPixelFormat::EACR11;
+			break;
+
+		case GL_COMPRESSED_SIGNED_R11_EAC:
+			format = tPixelFormat::EACR11S;
+			break;
+
+		case GL_COMPRESSED_RG11_EAC:
+			format = tPixelFormat::EACRG11;
+			break;
+
+		case GL_COMPRESSED_SIGNED_RG11_EAC:
+			format = tPixelFormat::EACRG11S;
+			break;
+
+		//
 		// For ASTC formats we assume linear space if SRGB not specified.
+		//
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_4x4_KHR:
 			format = tPixelFormat::ASTC4X4;
 			break;
@@ -319,159 +368,11 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourSpace& space,
 	{
 		// The VK formats conflate the format with the data. The colour-space is not part of the format in tacent and is
 		// returned in a separate variable.
-		//
 		// UNORM means E [0.0, 1.0].
-		// From the Khronos description of ASTC:	
-		// "Whether floats larger than 1.0 are allowed is not a per-image property; it's a per-block property. An HDR-compressed ASTC image is simply one where blocks can return values larger than 1.0."
-		// "So the format does not specify if floating point values are greater than 1.0."
-		// "There are only two properties of an ASTC compressed image that are per-image (and therefore part of the format) rather than being per-block. These properties are block size and sRGB colorspace conversion."
+
 		//
-		// It seems to me for an HDR ASTC KTX2 image there are two possibilities for VK_FORMAT:
-		// 
-		// 1) VK_FORMAT_ASTC_4x4_UNORM_BLOCK or VK_FORMAT_ASTC_4x4_SRGB_BLOCK, in which case blocks that return
-		// component values > 1.0 are making a liar out of "UNORM" -- and
-		// 2) VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT
+		// Packed formats.
 		//
-		// Which one is correct? AMD's compressonator, after converting an EXR to ASTCif it can't guarantee blocks won't return values above 1.0 (i.e. an HDR image).
-		//
-		// For now I'm going to assume VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT is unused and unless SRGB is in the name, it's linear space (HDR).
-		case VK_FORMAT_ASTC_4x4_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_ASTC_4x4_SRGB_BLOCK:
-			format = tPixelFormat::ASTC4X4;
-			break;
-
-		case VK_FORMAT_ASTC_5x4_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_ASTC_5x4_SRGB_BLOCK:
-			format = tPixelFormat::ASTC5X4;
-			break;
-
-		case VK_FORMAT_ASTC_5x5_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_ASTC_5x5_SRGB_BLOCK:
-			format = tPixelFormat::ASTC5X5;
-			break;
-
-		case VK_FORMAT_ASTC_6x5_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_ASTC_6x5_SRGB_BLOCK:
-			format = tPixelFormat::ASTC6X5;
-			break;
-
-		case VK_FORMAT_ASTC_6x6_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_ASTC_6x6_SRGB_BLOCK:
-			format = tPixelFormat::ASTC6X6;
-			break;
-
-		case VK_FORMAT_ASTC_8x5_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_ASTC_8x5_SRGB_BLOCK:
-			format = tPixelFormat::ASTC8X5;
-			break;
-
-		case VK_FORMAT_ASTC_8x6_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_ASTC_8x6_SRGB_BLOCK:
-			format = tPixelFormat::ASTC8X6;
-			break;
-
-		case VK_FORMAT_ASTC_8x8_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_ASTC_8x8_SRGB_BLOCK:
-			format = tPixelFormat::ASTC8X8;
-			break;
-
-		case VK_FORMAT_ASTC_10x5_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_ASTC_10x5_SRGB_BLOCK:
-			format = tPixelFormat::ASTC10X5;
-			break;
-
-		case VK_FORMAT_ASTC_10x6_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_ASTC_10x6_SRGB_BLOCK:
-			format = tPixelFormat::ASTC10X6;
-			break;
-
-		case VK_FORMAT_ASTC_10x8_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_ASTC_10x8_SRGB_BLOCK:
-			format = tPixelFormat::ASTC10X8;
-			break;
-
-		case VK_FORMAT_ASTC_10x10_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_ASTC_10x10_SRGB_BLOCK:
-			format = tPixelFormat::ASTC10X10;
-			break;
-
-		case VK_FORMAT_ASTC_12x10_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_ASTC_12x10_SRGB_BLOCK:
-			format = tPixelFormat::ASTC12X10;
-			break;
-
-		case VK_FORMAT_ASTC_12x12_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_ASTC_12x12_SRGB_BLOCK:
-			format = tPixelFormat::ASTC12X12;
-			break;
-
-		case VK_FORMAT_BC1_RGB_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_BC1_RGB_SRGB_BLOCK:
-			format = tPixelFormat::BC1DXT1;
-			break;
-
-		case VK_FORMAT_BC1_RGBA_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_BC1_RGBA_SRGB_BLOCK:
-			format = tPixelFormat::BC1DXT1A;
-			break;
-
-		case VK_FORMAT_BC2_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_BC2_SRGB_BLOCK:
-			format = tPixelFormat::BC2DXT2DXT3;
-			break;
-
-		case VK_FORMAT_BC3_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_BC3_SRGB_BLOCK:
-			format = tPixelFormat::BC3DXT4DXT5;
-			break;
-
-		case VK_FORMAT_BC4_SNORM_BLOCK:				// Signed not supported yet.
-			break;
-		case VK_FORMAT_BC4_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-			format = tPixelFormat::BC4ATI1;
-			break;
-
-		case VK_FORMAT_BC5_SNORM_BLOCK:				// Signed not supported yet.
-			break;
-		case VK_FORMAT_BC5_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-			format = tPixelFormat::BC5ATI2;
-			break;
-
-		case VK_FORMAT_BC6H_SFLOAT_BLOCK:
-			space = tColourSpace::Linear;
-			format = tPixelFormat::BC6S;
-			break;
-
-		case VK_FORMAT_BC6H_UFLOAT_BLOCK:
-			space = tColourSpace::Linear;
-			format = tPixelFormat::BC6U;
-			break;
-
-		case VK_FORMAT_BC7_UNORM_BLOCK:
-			space = tColourSpace::Linear;
-		case VK_FORMAT_BC7_SRGB_BLOCK:
-			format = tPixelFormat::BC7;
-			break;
 
 		// NVTT can export ktx2 as A8. There is no A8 in VkFormat so it uses R8 instead.
 		// There is no difference in storage between UNORM (unsigned normalized) and UINT. The only difference is
@@ -587,6 +488,201 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourSpace& space,
 		case VK_FORMAT_R32G32B32A32_SFLOAT:
 			space = tColourSpace::Linear;
 			format = tPixelFormat::R32G32B32A32F;
+			break;
+
+		//
+		// BC Formats.
+		//
+		case VK_FORMAT_BC1_RGB_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_BC1_RGB_SRGB_BLOCK:
+			format = tPixelFormat::BC1DXT1;
+			break;
+
+		case VK_FORMAT_BC1_RGBA_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_BC1_RGBA_SRGB_BLOCK:
+			format = tPixelFormat::BC1DXT1A;
+			break;
+
+		case VK_FORMAT_BC2_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_BC2_SRGB_BLOCK:
+			format = tPixelFormat::BC2DXT2DXT3;
+			break;
+
+		case VK_FORMAT_BC3_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_BC3_SRGB_BLOCK:
+			format = tPixelFormat::BC3DXT4DXT5;
+			break;
+
+		case VK_FORMAT_BC4_SNORM_BLOCK:				// Signed not supported yet.
+			break;
+		case VK_FORMAT_BC4_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::BC4ATI1;
+			break;
+
+		case VK_FORMAT_BC5_SNORM_BLOCK:				// Signed not supported yet.
+			break;
+		case VK_FORMAT_BC5_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::BC5ATI2;
+			break;
+
+		case VK_FORMAT_BC6H_SFLOAT_BLOCK:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::BC6S;
+			break;
+
+		case VK_FORMAT_BC6H_UFLOAT_BLOCK:
+			space = tColourSpace::Linear;
+			format = tPixelFormat::BC6U;
+			break;
+
+		case VK_FORMAT_BC7_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_BC7_SRGB_BLOCK:
+			format = tPixelFormat::BC7;
+			break;
+
+		//
+		// ETC2 and EAC.
+		//
+		case VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ETC2_R8G8B8_SRGB_BLOCK:
+			format = tPixelFormat::ETC2RGB;
+			break;
+
+		case VK_FORMAT_ETC2_R8G8B8A8_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ETC2_R8G8B8A8_SRGB_BLOCK:
+			format = tPixelFormat::ETC2RGBA;
+			break;
+
+		case VK_FORMAT_ETC2_R8G8B8A1_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ETC2_R8G8B8A1_SRGB_BLOCK:
+			format = tPixelFormat::ETC2RGBA1;
+			break;
+
+		case VK_FORMAT_EAC_R11_UNORM_BLOCK:
+			format = tPixelFormat::EACR11;
+			break;
+
+		case VK_FORMAT_EAC_R11_SNORM_BLOCK:
+			format = tPixelFormat::EACR11S;
+			break;
+
+		case VK_FORMAT_EAC_R11G11_UNORM_BLOCK:
+			format = tPixelFormat::EACRG11;
+			break;
+
+		case VK_FORMAT_EAC_R11G11_SNORM_BLOCK:
+			format = tPixelFormat::EACRG11S;
+			break;
+
+		//
+		// ASTC
+		//
+		// From the Khronos description of ASTC:	
+		// "Whether floats larger than 1.0 are allowed is not a per-image property; it's a per-block property. An HDR-compressed ASTC image is simply one where blocks can return values larger than 1.0."
+		// "So the format does not specify if floating point values are greater than 1.0."
+		// "There are only two properties of an ASTC compressed image that are per-image (and therefore part of the format) rather than being per-block. These properties are block size and sRGB colorspace conversion."
+		//
+		// It seems to me for an HDR ASTC KTX2 image there are two possibilities for VK_FORMAT:
+		// 
+		// 1) VK_FORMAT_ASTC_4x4_UNORM_BLOCK or VK_FORMAT_ASTC_4x4_SRGB_BLOCK, in which case blocks that return
+		// component values > 1.0 are making a liar out of "UNORM" -- and
+		// 2) VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT
+		//
+		// Which one is correct? AMD's compressonator, after converting an EXR to ASTCif it can't guarantee blocks won't return values above 1.0 (i.e. an HDR image).
+		//
+		// For now I'm going to assume VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT is unused and unless SRGB is in the name, it's linear space (HDR).
+		case VK_FORMAT_ASTC_4x4_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_4x4_SRGB_BLOCK:
+			format = tPixelFormat::ASTC4X4;
+			break;
+
+		case VK_FORMAT_ASTC_5x4_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_5x4_SRGB_BLOCK:
+			format = tPixelFormat::ASTC5X4;
+			break;
+
+		case VK_FORMAT_ASTC_5x5_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_5x5_SRGB_BLOCK:
+			format = tPixelFormat::ASTC5X5;
+			break;
+
+		case VK_FORMAT_ASTC_6x5_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_6x5_SRGB_BLOCK:
+			format = tPixelFormat::ASTC6X5;
+			break;
+
+		case VK_FORMAT_ASTC_6x6_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_6x6_SRGB_BLOCK:
+			format = tPixelFormat::ASTC6X6;
+			break;
+
+		case VK_FORMAT_ASTC_8x5_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_8x5_SRGB_BLOCK:
+			format = tPixelFormat::ASTC8X5;
+			break;
+
+		case VK_FORMAT_ASTC_8x6_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_8x6_SRGB_BLOCK:
+			format = tPixelFormat::ASTC8X6;
+			break;
+
+		case VK_FORMAT_ASTC_8x8_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_8x8_SRGB_BLOCK:
+			format = tPixelFormat::ASTC8X8;
+			break;
+
+		case VK_FORMAT_ASTC_10x5_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_10x5_SRGB_BLOCK:
+			format = tPixelFormat::ASTC10X5;
+			break;
+
+		case VK_FORMAT_ASTC_10x6_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_10x6_SRGB_BLOCK:
+			format = tPixelFormat::ASTC10X6;
+			break;
+
+		case VK_FORMAT_ASTC_10x8_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_10x8_SRGB_BLOCK:
+			format = tPixelFormat::ASTC10X8;
+			break;
+
+		case VK_FORMAT_ASTC_10x10_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_10x10_SRGB_BLOCK:
+			format = tPixelFormat::ASTC10X10;
+			break;
+
+		case VK_FORMAT_ASTC_12x10_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_12x10_SRGB_BLOCK:
+			format = tPixelFormat::ASTC12X10;
+			break;
+
+		case VK_FORMAT_ASTC_12x12_UNORM_BLOCK:
+			space = tColourSpace::Linear;
+		case VK_FORMAT_ASTC_12x12_SRGB_BLOCK:
+			format = tPixelFormat::ASTC12X12;
 			break;
 	}
 
@@ -1436,6 +1532,149 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 									bcdec_bc7(src, dst, wfull * 4);
 									src += BCDEC_BC7_BLOCK_SIZE;
 								}
+							break;
+						}
+
+						case tPixelFormat::ETC1:
+						case tPixelFormat::ETC2RGB:				// Same decoder. Backwards compatible.
+						{
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
+								{
+									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
+
+									// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be written into
+									// multiple rows of the destination and we need to know how far to increment to the next row of 4.
+									etcdec_etc_rgb(src, dst, wfull * 4);
+									src += ETCDEC_ETC_RGB_BLOCK_SIZE;
+								}
+							break;
+						}
+
+						case tPixelFormat::ETC2RGBA:
+						{
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
+								{
+									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
+									etcdec_eac_rgba(src, dst, wfull * 4);
+									src += ETCDEC_EAC_RGBA_BLOCK_SIZE;
+								}
+							break;
+						}
+
+						case tPixelFormat::ETC2RGBA1:
+						{
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
+								{
+									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
+									etcdec_etc_rgb_a1(src, dst, wfull * 4);
+									src += ETCDEC_ETC_RGB_A1_BLOCK_SIZE;
+								}
+							break;
+						}
+
+						case tPixelFormat::EACR11:
+						{
+							// This format decompresses to R uint16.
+							uint16* rdata = new uint16[wfull*hfull];
+
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
+								{
+									uint16* dst = (rdata + (y*wfull + x) * 1);
+									etcdec_eac_r11_u16(src, dst, wfull * sizeof(uint16));
+									src += ETCDEC_EAC_R11_BLOCK_SIZE;
+								}
+
+							// Now convert to 32-bit RGBA.
+							for (int xy = 0; xy < wfull*hfull; xy++)
+							{
+								uint8 v = uint8( (255*rdata[xy]) / 65535 );
+								tColour4i col(v, spread ? v : 0u, spread ? v : 0u, 255u);
+								uncompData[xy].Set(col);
+							}
+							delete[] rdata;
+							break;
+						}
+
+						case tPixelFormat::EACR11S:
+						{
+							// This format decompresses to R float.
+							float* rdata = new float[wfull*hfull];
+
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
+								{
+									float* dst = (rdata + (y*wfull + x) * 1);
+									etcdec_eac_r11_float(src, dst, wfull * sizeof(float), 1);
+									src += ETCDEC_EAC_R11_BLOCK_SIZE;
+								}
+
+							// Now convert to 32-bit RGBA.
+							for (int xy = 0; xy < wfull*hfull; xy++)
+							{
+								float vf = tMath::tSaturate((rdata[xy]+1.0f) / 2.0f);
+								uint8 v = uint8( 255.0f * vf );
+								tColour4i col(v, spread ? v : 0u, spread ? v : 0u, 255u);
+								uncompData[xy].Set(col);
+							}
+							delete[] rdata;
+							break;
+						}
+
+						case tPixelFormat::EACRG11:
+						{
+							struct RG { uint16 R; uint16 G; };
+							// This format decompresses to RG uint8s.
+							RG* rdata = new RG[wfull*hfull];
+
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
+								{
+									uint16* dst = (uint16*)rdata + (y*wfull + x) * 2;
+									etcdec_eac_rg11_u16(src, dst, wfull * sizeof(RG));
+									src += ETCDEC_EAC_RG11_BLOCK_SIZE;
+								}
+
+							// Now convert to 32-bit RGBA.
+							for (int xy = 0; xy < wfull*hfull; xy++)
+							{
+								uint8 r = uint8( (255*rdata[xy].R) / 65535 );
+								uint8 g = uint8( (255*rdata[xy].G) / 65535 );
+								tColour4i col(r, g, 0u, 255u);
+								uncompData[xy].Set(col);
+							}
+							delete[] rdata;
+							break;
+						}
+
+						case tPixelFormat::EACRG11S:
+						{
+							struct RG { float R; float G; };
+							// This format decompresses to R float.
+							RG* rdata = new RG[wfull*hfull];
+
+							for (int y = 0; y < hfull; y += 4)
+								for (int x = 0; x < wfull; x += 4)
+								{
+									float* dst = (float*)rdata + (y*wfull + x) * 2;
+									etcdec_eac_rg11_float(src, dst, wfull * sizeof(RG), 1);
+									src += ETCDEC_EAC_RG11_BLOCK_SIZE;
+								}
+
+							// Now convert to 32-bit RGBA.
+							for (int xy = 0; xy < wfull*hfull; xy++)
+							{
+								float rf = tMath::tSaturate((rdata[xy].R+1.0f) / 2.0f);
+								float gf = tMath::tSaturate((rdata[xy].G+1.0f) / 2.0f);
+								uint8 r = uint8( 255.0f * rf );
+								uint8 g = uint8( 255.0f * gf );
+								tColour4i col(r, g, 0u, 255u);
+								uncompData[xy].Set(col);
+							}
+							delete[] rdata;
 							break;
 						}
 

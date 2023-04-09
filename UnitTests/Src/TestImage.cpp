@@ -1542,29 +1542,54 @@ tTestUnit(ImageKTX1)
 	// Block Compressed Formats.
 	//
 	// BC1
-	KTXLoadDecodeSave("BC1DXT1_RGB.ktx", decode | revrow);
+	KTXLoadDecodeSave("BC1DXT1_RGB.ktx",	decode | revrow);
 
 	// BC1a
-	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx",	decode | revrow);
 
 	// BC2
-	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx",	decode | revrow);
 
 	// BC3
-	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx",	decode | revrow);
 
 	// BC4
-	KTXLoadDecodeSave("BC4ATI1_R.ktx", decode | revrow);
+	KTXLoadDecodeSave("BC4ATI1_R.ktx",			decode | revrow);
 
 	// BC5
-	KTXLoadDecodeSave("BC5ATI2_RG.ktx", decode | revrow);
+	KTXLoadDecodeSave("BC5ATI2_RG.ktx",			decode | revrow);
 
 	// BC6
-	KTXLoadDecodeSave("BC6u_RGB.ktx", decode | revrow);
-	KTXLoadDecodeSave("BC6s_RGB.ktx", decode | revrow);
+	KTXLoadDecodeSave("BC6u_RGB.ktx",			decode | revrow);
+	KTXLoadDecodeSave("BC6s_RGB.ktx",			decode | revrow);
 
 	// BC7
-	KTXLoadDecodeSave("BC7_RGBA.ktx", decode | revrow);
+	KTXLoadDecodeSave("BC7_RGBA.ktx",			decode | revrow);
+
+	//
+	// ETC, ETC2, and EAC.
+	//
+	KTXLoadDecodeSave("ETC1_RGB.ktx",				decode | revrow);
+	KTXLoadDecodeSave("ETC1_RGB_1281x721.ktx",		decode | revrow);
+	KTXLoadDecodeSave("ETC1_RGB_1282x722.ktx",		decode | revrow);
+	KTXLoadDecodeSave("ETC1_RGB_1283x723.ktx",		decode | revrow);
+
+	KTXLoadDecodeSave("ETC2RGB_RGB.ktx",			decode | revrow);
+	KTXLoadDecodeSave("ETC2RGB_RGB_1281x721.ktx",	decode | revrow);
+	KTXLoadDecodeSave("ETC2RGB_RGB_1282x722.ktx",	decode | revrow);
+	KTXLoadDecodeSave("ETC2RGB_RGB_1283x723.ktx",	decode | revrow);
+	KTXLoadDecodeSave("ETC2RGB_sRGB.ktx",			decode | revrow);
+
+	KTXLoadDecodeSave("ETC2RGBA_RGBA.ktx",			decode | revrow);
+	KTXLoadDecodeSave("ETC2RGBA_sRGBA.ktx",			decode | revrow);
+
+	KTXLoadDecodeSave("ETC2RGBA1_RGBA.ktx",			decode | revrow);
+	KTXLoadDecodeSave("ETC2RGBA1_sRGBA.ktx",		decode | revrow);
+
+	KTXLoadDecodeSave("EACR11_R.ktx",				decode | revrow);
+	KTXLoadDecodeSave("EACR11S_R.ktx",				decode | revrow);
+	KTXLoadDecodeSave("EACRG11_RG.ktx",				decode | revrow);
+	KTXLoadDecodeSave("EACRG11S_RG.ktx",			decode | revrow);
 
 	//
 	// ASTC
