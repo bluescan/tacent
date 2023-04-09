@@ -1675,11 +1675,11 @@ tTestUnit(ImageKTX2)
 	// Block Compressed Formats.
 	//
 	// BC1
-	KTXLoadDecodeSave("BC1DXT1_RGB.ktx2", decode | revrow);
-	KTXLoadDecodeSave("BC1DXT1_RGB_317x177.ktx2", decode | revrow);
-	KTXLoadDecodeSave("BC1DXT1_RGB_318x178.ktx2", decode | revrow);
-	KTXLoadDecodeSave("BC1DXT1_RGB_319x179.ktx2", decode | revrow);
-	KTXLoadDecodeSave("BC1DXT1_RGB_320x180.ktx2", decode | revrow);
+	KTXLoadDecodeSave("BC1DXT1_RGB.ktx2",			decode | revrow);
+	KTXLoadDecodeSave("BC1DXT1_RGB_317x177.ktx2",	decode | revrow);
+	KTXLoadDecodeSave("BC1DXT1_RGB_318x178.ktx2",	decode | revrow);
+	KTXLoadDecodeSave("BC1DXT1_RGB_319x179.ktx2",	decode | revrow);
+	KTXLoadDecodeSave("BC1DXT1_RGB_320x180.ktx2",	decode | revrow);
 
 	// BC1a
 	KTXLoadDecodeSave("BC1DXT1a_RGBA.ktx2", decode | revrow);
@@ -1702,6 +1702,13 @@ tTestUnit(ImageKTX2)
 	// BC7
 	KTXLoadDecodeSave("BC7_RGBA.ktx2", decode | revrow, true);
 	KTXLoadDecodeSave("BC7_RGBANoSuper.ktx2", decode | revrow, true);
+
+	//
+	// ETC2
+	//
+	KTXLoadDecodeSave("ETC2RGB_RGB.ktx2",			decode | revrow);
+	KTXLoadDecodeSave("ETC2RGBA_RGBA.ktx2",			decode | revrow);
+	KTXLoadDecodeSave("ETC2RGBA1_RGBA.ktx2",		decode | revrow);
 
 	//
 	// ASTC
