@@ -48,6 +48,7 @@ public:
 		LoadFlag_SpreadLuminance	= 1 << 6,	// For KTX files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats. Applies only if decoding a ktx is an R-only or L-only format.
 		LoadFlag_CondMultFourDim	= 1 << 7,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,
 		LoadFlag_CondPowerTwoDim	= 1 << 8,	// Produce conditional success if image dimension not a power of 2. Only checks BC formats.
+		LoadFlag_SwizzleBGR2RGB		= 1 << 9,	// Compressonator stores colours swizzled in their ETC exports. This fixes those files up.
 		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance | LoadFlag_AutoGamma
 	};
 

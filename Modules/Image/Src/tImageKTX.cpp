@@ -1831,6 +1831,15 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 					layer->Data = reversedRowData;
 					didRowReversalAfterDecode = true;
 				}
+
+				if ((params.Flags & LoadFlag_SwizzleBGR2RGB) && (layer->PixelFormat == tPixelFormat::R8G8B8A8))
+				{
+					for (int xy = 0; xy < w*h; xy++)
+					{
+						tColour4i& col = ((tColour4i*)layer->Data)[xy];
+						tStd::tSwap(col.R, col.B);
+					}
+				}
 			}
 		}
 

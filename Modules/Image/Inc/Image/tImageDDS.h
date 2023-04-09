@@ -45,7 +45,7 @@ public:
 		LoadFlag_CondMultFourDim	= 1 << 7,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,
 		LoadFlag_CondPowerTwoDim	= 1 << 8,	// Produce conditional success if image dimension not a power of 2. Only checks BC formats.
 		LoadFlag_StrictLoading		= 1 << 9,	// If set even mildly ill-formed dds files will not load.
-		LoadFlag_SwizzleBGR2RGB		= 1 << 10,	// At least compressonator stores colours swizzled in their ETC exports. Only works if decoding.
+		LoadFlag_SwizzleBGR2RGB		= 1 << 10,	// Compressonator stores colours swizzled in their ETC exports. This fixes those files up.
 		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance | LoadFlag_AutoGamma
 	};
 
