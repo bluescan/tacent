@@ -14,9 +14,34 @@
 
 #pragma once
 #include <Foundation/tPlatform.h>
+#include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
 namespace tImage
 {
+
+
+// Given a pixel-format, pixel-data, and dimensions, this function decodes it into either an LDR buffer of tColour4i's
+// or an HDR buffer of tColour4f's. If Success returned, the function populates a width*height array of tColours in
+// either the dstLDR or dstHRD pointers you passed in. These decode buffers are now owned by you and you must delete[]
+// them. Depending on the pixel format, either LDR or HDR buffers will be populated, but not both. For safety, this
+// function expects dstLDR and dstHRD to be set to nullptr when you call. If they're not it returns BufferNotClear and
+// leaves the dst buffer pointers unmodified. If you know the colour-space of the pixelData, pass it in. This is used
+// by the ASTC decoder. @todo Support decode of PAL formats.
+enum class DecodeResult
+{
+	Success,		// Must be 0.
+	BuffersNotClear,
+	UnsupportedFormat,
+	InvalidInput,
+	PackedDecodeError,
+	BlockDecodeError,
+	ASTCDecodeError
+};
+DecodeResult DecodePixelData
+(
+	tPixelFormat, const uint8* pixelData, int pixelDataSize, int width, int height,
+	tColour4i*& dstLDR, tColour4f*& dstHDR, tColourSpace = tColourSpace::Invalid
+);
 
 
 // These BC blocks are needed so that the tImageDDS class can re-order the rows by messing with each block's lookup
