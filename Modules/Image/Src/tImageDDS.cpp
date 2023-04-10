@@ -521,8 +521,6 @@ namespace tDDS
 	void GetFormatInfo_FromDXGIFormat		(tPixelFormat&, tColourSpace&, tAlphaMode&, uint32 dxgiFormat);
 	void GetFormatInfo_FromFourCC			(tPixelFormat&, tColourSpace&, tAlphaMode&, uint32 fourCC);
 	void GetFormatInfo_FromComponentMasks	(tPixelFormat&, tColourSpace&, tAlphaMode&, const FormatData&);
-
-	void ProcessHDRFlags(tColour4f& colour, comp_t channels, const tImageDDS::LoadParams& params);
 }
 
 
@@ -979,17 +977,6 @@ void tDDS::GetFormatInfo_FromComponentMasks(tPixelFormat& format, tColourSpace& 
 			space = tColourSpace::Unspecified;
 			break;
 	}
-}
-
-
-void tDDS::ProcessHDRFlags(tColour4f& colour, comp_t channels, const tImageDDS::LoadParams& params)
-{
-	if (params.Flags & tImageDDS::LoadFlag_ToneMapExposure)
-		colour.TonemapExposure(params.Exposure, channels);
-	if (params.Flags & tImageDDS::LoadFlag_SRGBCompression)
-		colour.LinearToSRGB(channels);
-	if (params.Flags & tImageDDS::LoadFlag_GammaCompression)
-		colour.LinearToGamma(params.Gamma, channels);
 }
 
 
@@ -1489,7 +1476,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 			}
 			else
 			{
-				// Upsupported pixel format.
+				// Unsupported pixel format.
 				Clear();
 				Results |= 1 << int(ResultCode::Fatal_PixelFormatNotSupported);
 				return false;
@@ -1504,645 +1491,701 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 	if (doRowReversalBeforeDecode)
 		RowReversalOperationPerformed = true;
 
-	// Decode to 32-bit RGBA if requested. If we're already in the correct R8G8B8A8 format, no need to do anything.
-	// Note, gamma-correct load flag only applies when decoding HDR/floating-point formats, so never any need to do
-	// it on R8G8B8A8. Likewise for spread-flag, never applies to R8G8B8A8 (only R-only or L-only formats)..
-	if ((params.Flags & LoadFlag_Decode) && (PixelFormat != tPixelFormat::R8G8B8A8))
+	// Not asked to decode. We're basically done.
+	if (!(params.Flags & LoadFlag_Decode))
 	{
-		// Spread only applies to single-channel (R-only or L-only) formats.
-		bool spread = params.Flags & LoadFlag_SpreadLuminance;
+		if (reverseRowOrderRequested && !RowReversalOperationPerformed)
+			Results |= 1 << int(ResultCode::Conditional_CouldNotFlipRows);
 
-		// The gamma-compression load flags only apply when decoding. If the gamma mode is auto, we determine here
-		// whether to apply sRGB compression. If the space is linear and a format that often encodes colours, we apply it.
-		if (params.Flags & LoadFlag_AutoGamma)
+		tAssert(IsValid());
+		Results |= 1 << int(ResultCode::Success);
+		return true;
+	}
+
+	// Decode to 32-bit RGBA.
+	// Spread only applies to single-channel (R-only or L-only) formats.
+	bool spread = params.Flags & LoadFlag_SpreadLuminance;
+
+	// The gamma-compression load flags only apply when decoding. If the gamma mode is auto, we determine here
+	// whether to apply sRGB compression. If the space is linear and a format that often encodes colours, we apply it.
+	if (params.Flags & LoadFlag_AutoGamma)
+	{
+		// Clear all related flags.
+		params.Flags &= ~(LoadFlag_AutoGamma | LoadFlag_SRGBCompression | LoadFlag_GammaCompression);
+		if (ColourSpaceSrc == tColourSpace::Linear)
 		{
-			// Clear all related flags.
-			params.Flags &= ~(LoadFlag_AutoGamma | LoadFlag_SRGBCompression | LoadFlag_GammaCompression);
-			if (ColourSpace == tColourSpace::Linear)
+			// Just cuz it's linear doesn't mean we want to gamma transform. Some formats should be kept linear.
+			if
+			(
+				(PixelFormatSrc != tPixelFormat::A8)		&& (PixelFormatSrc != tPixelFormat::A8L8) &&
+				(PixelFormatSrc != tPixelFormat::BC4ATI1)	&& (PixelFormatSrc != tPixelFormat::BC5ATI2)
+			)
 			{
-				// Just cuz it's linear doesn't mean we want to gamma transform. Some formats should be kept linear.
-				if
-				(
-					(PixelFormat != tPixelFormat::A8) && (PixelFormat != tPixelFormat::A8L8) &&
-					(PixelFormat != tPixelFormat::BC4ATI1) && (PixelFormat != tPixelFormat::BC5ATI2)
-				)
-				{
-					params.Flags |= LoadFlag_SRGBCompression;
-				}
+				params.Flags |= LoadFlag_SRGBCompression;
 			}
 		}
+	}
 
-		bool didRowReversalAfterDecode = false;
-		bool processedHDRFlags = false;
-		for (int image = 0; image < NumImages; image++)
+	bool didRowReversalAfterDecode = false;
+	for (int image = 0; image < NumImages; image++)
+	{
+		for (int layerNum = 0; layerNum < NumMipmapLayers; layerNum++)
 		{
-			for (int layerNum = 0; layerNum < NumMipmapLayers; layerNum++)
+			tLayer* layer = Layers[layerNum][image];
+			int w = layer->Width;
+			int h = layer->Height;
+			uint8* src = layer->Data;
+
+			// At the end of decoding _either_ decoded4i _or_ decoded4f will be valid, not both.
+			// The decoded4i format used for LDR images.
+			// The decoded4f format used for HDR images.
+			tColour4i* decoded4i = nullptr;
+			tColour4f* decoded4f = nullptr;
+			if (tImage::tIsPackedFormat(PixelFormat))
 			{
-				tLayer* layer = Layers[layerNum][image];
-				int w = layer->Width;
-				int h = layer->Height;
-				uint8* src = layer->Data;
-
-				if (tImage::tIsPackedFormat(PixelFormat))
+				switch (layer->PixelFormat)
 				{
-					tPixel* uncompData = new tPixel[w*h];
-					switch (layer->PixelFormat)
+					case tPixelFormat::A8:
+						// Convert to 32-bit RGBA with alpha in A and 0s for RGB.
+						decoded4i = new tColour4i[w*h];
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							tColour4i col(0u, 0u, 0u, src[ij]);
+							decoded4i[ij].Set(col);
+						}
+						break;
+
+					case tPixelFormat::L8:
+					case tPixelFormat::R8:
 					{
-						case tPixelFormat::A8:
-							// Convert to 32-bit RGBA with alpha in A and 0s for RGB.
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								tColour4i col(0u, 0u, 0u, src[ij]);
-								uncompData[ij].Set(col);
-							}
-							break;
-
-						case tPixelFormat::L8:
-						case tPixelFormat::R8:
+						// Convert to 32-bit RGBA with red or luminance in R and 255 for A. If SpreadLuminance flag set,
+						// also set luminance or red in the GB channels, if not then GB get 0s.
+						decoded4i = new tColour4i[w*h];
+						for (int ij = 0; ij < w*h; ij++)
 						{
-							// Convert to 32-bit RGBA with red or luminance in R and 255 for A. If SpreadLuminance flag set,
-							// also set luminance or red in the GB channels, if not then GB get 0s.
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								tColour4i col(src[ij], spread ? src[ij] : 0u, spread ? src[ij] : 0u, 255u);
-								uncompData[ij].Set(col);
-							}
-							break;
+							tColour4i col(src[ij], spread ? src[ij] : 0u, spread ? src[ij] : 0u, 255u);
+							decoded4i[ij].Set(col);
 						}
-
-						case tPixelFormat::R8G8:
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								tColour4i col(src[ij*2+0], src[ij*2+1], 0u, 255u);
-								uncompData[ij].Set(col);
-							}
-							break;
-
-						case tPixelFormat::R8G8B8:
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								tColour4i col(src[ij*3+0], src[ij*3+1], src[ij*3+2], 255u);
-								uncompData[ij].Set(col);
-							}
-							break;
-						
-						case tPixelFormat::R8G8B8A8:
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								tColour4i col(src[ij*4+0], src[ij*4+1], src[ij*4+2], src[ij*4+3]);
-								uncompData[ij].Set(col);
-							}
-							break;
-
-						case tPixelFormat::B8G8R8:
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								tColour4i col(src[ij*3+2], src[ij*3+1], src[ij*3+0], 255u);
-								uncompData[ij].Set(col);
-							}
-							break;
-
-						case tPixelFormat::B8G8R8A8:
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								tColour4i col(src[ij*4+2], src[ij*4+1], src[ij*4+0], src[ij*4+3]);
-								uncompData[ij].Set(col);
-							}
-							break;
-
-						case tPixelFormat::B5G6R5:
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								// On an LE machine casting to a uint16 effectively swaps the bytes when doing bit ops.
-								// This means red will be in the most significant bits -- that's why it looks backwards.
-								uint16 u = *((uint16*)(src+ij*2));
-
-								uint8 r = (u         ) >> 11;		// 1111 1000 0000 0000 >> 11.
-								uint8 g = (u & 0x07E0) >> 5;		// 0000 0111 1110 0000 >> 5.
-								uint8 b = (u & 0x001F)     ;		// 0000 0000 0001 1111 >> 0.
-
-								// Normalize to range.
-								// Careful here, you can't just do bit ops to get the components into position.
-								// For example, a full red (11111) has to go to 255 (1.0f), and a zero red (00000) to 0(0.0f).
-								// That is, the normalize has to divide by the range. At first I just masked and shifted the bits
-								// to the right spot in an 8-bit type, but you don't know what to put in the LSBits. Putting 0s
-								// would be bad (an 4 bit alpha of 1111 would go to 11110000... suddenly image not fully opaque)
-								// and putting all 1s would add red (or alpha or whatever) when there was none. Half way won't
-								// work either. You need the endpoints to work.
-								float rf = (float(r) / 31.0f);		// Max is 2^5 - 1.
-								float gf = (float(g) / 63.0f);		// Max is 2^6 - 1.
-								float bf = (float(b) / 31.0f);		// Max is 2^5 - 1.
-								tColour4i col(rf, gf, bf, 1.0f);
-								uncompData[ij].Set(col);
-							}
-							break;
-
-						case tPixelFormat::B4G4R4A4:
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								uint16 u = *((uint16*)(src+ij*2));
-								uint8 a = (u         ) >> 12;		// 1111 0000 0000 0000 >> 12.
-								uint8 r = (u & 0x0F00) >> 8;		// 0000 1111 0000 0000 >> 8.
-								uint8 g = (u & 0x00F0) >> 4;		// 0000 0000 1111 0000 >> 4.
-								uint8 b = (u & 0x000F)     ;		// 0000 0000 0000 1111 >> 0.
-
-								// Normalize to range.
-								float af = float(a) / 15.0f;		// Max is 2^4 - 1.
-								float rf = float(r) / 15.0f;
-								float gf = float(g) / 15.0f;
-								float bf = float(b) / 15.0f;
-
-								tColour4i col(rf, gf, bf, af);
-								uncompData[ij].Set(col);
-							}
-							break;
-
-						case tPixelFormat::B5G5R5A1:
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								uint16 u = *((uint16*)(src+ij*2));
-								bool  a = (u & 0x8000);				// 1000 0000 0000 0000.
-								uint8 r = (u & 0x7C00) >> 10;		// 0111 1100 0000 0000 >> 10.
-								uint8 g = (u & 0x03E0) >> 5;		// 0000 0011 1110 0000 >> 5.
-								uint8 b = (u & 0x001F)     ;		// 0000 0000 0001 1111 >> 0.
-
-								// Normalize to range.
-								float rf = float(r) / 31.0f;		// Max is 2^5 - 1.
-								float gf = float(g) / 31.0f;
-								float bf = float(b) / 31.0f;
-
-								tColour4i col(rf, gf, bf, a ? 1.0f : 0.0f);
-								uncompData[ij].Set(col);
-							}
-							break;
-
-						case tPixelFormat::R16F:
-						{
-							// This HDR format has 1 red half-float channel.
-							tHalf* hdata = (tHalf*)src;
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								float r = hdata[ij*1 + 0];
-								tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
-								tDDS::ProcessHDRFlags(col, spread ? tCompBit_RGB : tCompBit_R, params);
-								uncompData[ij].Set(col);
-							}
-							processedHDRFlags = true;
-							break;
-						}
-
-						case tPixelFormat::R16G16F:
-						{
-							// This HDR format has 2 half-float channels. Red and green.
-							tHalf* hdata = (tHalf*)src;
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								float r = hdata[ij*2 + 0];
-								float g = hdata[ij*2 + 1];
-								tColour4f col(r, g, 0.0f, 1.0f);
-								tDDS::ProcessHDRFlags(col, tCompBit_RG, params);
-								uncompData[ij].Set(col);
-							}
-							processedHDRFlags = true;
-							break;
-						}
-
-						case tPixelFormat::R16G16B16A16F:
-						{
-							// This HDR format has 4 half-float channels. RGBA.
-							tHalf* hdata = (tHalf*)src;
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								float r = hdata[ij*4 + 0];
-								float g = hdata[ij*4 + 1];
-								float b = hdata[ij*4 + 2];
-								float a = hdata[ij*4 + 3];
-								tColour4f col(r, g, b, a);
-								tDDS::ProcessHDRFlags(col, tCompBit_RGB, params);
-								uncompData[ij].Set(col);
-							}
-							processedHDRFlags = true;
-							break;
-						}
-
-						case tPixelFormat::R32F:
-						{
-							// This HDR format has 1 red float channel.
-							float* fdata = (float*)src;
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								float r = fdata[ij*1 + 0];
-								tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
-								tDDS::ProcessHDRFlags(col, spread ? tCompBit_RGB : tCompBit_R, params);
-								uncompData[ij].Set(col);
-							}
-							processedHDRFlags = true;
-							break;
-						}
-
-						case tPixelFormat::R32G32F:
-						{
-							// This HDR format has 2 float channels. Red and green.
-							float* fdata = (float*)src;
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								float r = fdata[ij*2 + 0];
-								float g = fdata[ij*2 + 1];
-								tColour4f col(r, g, 0.0f, 1.0f);
-								tDDS::ProcessHDRFlags(col, tCompBit_RG, params);
-								uncompData[ij].Set(col);
-							}
-							processedHDRFlags = true;
-							break;
-						}
-
-						case tPixelFormat::R32G32B32A32F:
-						{
-							// This HDR format has 4 RGBA floats.
-							float* fdata = (float*)src;
-							for (int ij = 0; ij < w*h; ij++)
-							{
-								float r = fdata[ij*4 + 0];
-								float g = fdata[ij*4 + 1];
-								float b = fdata[ij*4 + 2];
-								float a = fdata[ij*4 + 3];
-								tColour4f col(r, g, b, a);
-								tDDS::ProcessHDRFlags(col, tCompBit_RGB, params);
-								uncompData[ij].Set(col);
-							}
-							processedHDRFlags = true;
-							break;
-						}
-
-						default:
-							delete[] uncompData;
-							Clear();
-							Results |= 1 << int(ResultCode::Fatal_PackedDecodeError);
-							return false;
+						break;
 					}
 
-					// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
-					delete[] layer->Data;
-					layer->Data = (uint8*)uncompData;
+					case tPixelFormat::R8G8:
+						decoded4i = new tColour4i[w*h];
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							tColour4i col(src[ij*2+0], src[ij*2+1], 0u, 255u);
+							decoded4i[ij].Set(col);
+						}
+						break;
 
-					// We are now in in RGBA. In that order in memory.
-					layer->PixelFormat = tPixelFormat::R8G8B8A8;
+					case tPixelFormat::R8G8B8:
+						decoded4i = new tColour4i[w*h];
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							tColour4i col(src[ij*3+0], src[ij*3+1], src[ij*3+2], 255u);
+							decoded4i[ij].Set(col);
+						}
+						break;
+					
+					case tPixelFormat::R8G8B8A8:
+						decoded4i = new tColour4i[w*h];
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							tColour4i col(src[ij*4+0], src[ij*4+1], src[ij*4+2], src[ij*4+3]);
+							decoded4i[ij].Set(col);
+						}
+						break;
+
+					case tPixelFormat::B8G8R8:
+						decoded4i = new tColour4i[w*h];
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							tColour4i col(src[ij*3+2], src[ij*3+1], src[ij*3+0], 255u);
+							decoded4i[ij].Set(col);
+						}
+						break;
+
+					case tPixelFormat::B8G8R8A8:
+						decoded4i = new tColour4i[w*h];
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							tColour4i col(src[ij*4+2], src[ij*4+1], src[ij*4+0], src[ij*4+3]);
+							decoded4i[ij].Set(col);
+						}
+						break;
+
+					case tPixelFormat::B5G6R5:
+						decoded4i = new tColour4i[w*h];
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							// On an LE machine casting to a uint16 effectively swaps the bytes when doing bit ops.
+							// This means red will be in the most significant bits -- that's why it looks backwards.
+							uint16 u = *((uint16*)(src+ij*2));
+
+							uint8 r = (u         ) >> 11;		// 1111 1000 0000 0000 >> 11.
+							uint8 g = (u & 0x07E0) >> 5;		// 0000 0111 1110 0000 >> 5.
+							uint8 b = (u & 0x001F)     ;		// 0000 0000 0001 1111 >> 0.
+
+							// Normalize to range.
+							// Careful here, you can't just do bit ops to get the components into position.
+							// For example, a full red (11111) has to go to 255 (1.0f), and a zero red (00000) to 0(0.0f).
+							// That is, the normalize has to divide by the range. At first I just masked and shifted the bits
+							// to the right spot in an 8-bit type, but you don't know what to put in the LSBits. Putting 0s
+							// would be bad (an 4 bit alpha of 1111 would go to 11110000... suddenly image not fully opaque)
+							// and putting all 1s would add red (or alpha or whatever) when there was none. Half way won't
+							// work either. You need the endpoints to work.
+							float rf = (float(r) / 31.0f);		// Max is 2^5 - 1.
+							float gf = (float(g) / 63.0f);		// Max is 2^6 - 1.
+							float bf = (float(b) / 31.0f);		// Max is 2^5 - 1.
+							tColour4i col(rf, gf, bf, 1.0f);
+							decoded4i[ij].Set(col);
+						}
+						break;
+
+					case tPixelFormat::B4G4R4A4:
+						decoded4i = new tColour4i[w*h];
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							uint16 u = *((uint16*)(src+ij*2));
+							uint8 a = (u         ) >> 12;		// 1111 0000 0000 0000 >> 12.
+							uint8 r = (u & 0x0F00) >> 8;		// 0000 1111 0000 0000 >> 8.
+							uint8 g = (u & 0x00F0) >> 4;		// 0000 0000 1111 0000 >> 4.
+							uint8 b = (u & 0x000F)     ;		// 0000 0000 0000 1111 >> 0.
+
+							// Normalize to range.
+							float af = float(a) / 15.0f;		// Max is 2^4 - 1.
+							float rf = float(r) / 15.0f;
+							float gf = float(g) / 15.0f;
+							float bf = float(b) / 15.0f;
+
+							tColour4i col(rf, gf, bf, af);
+							decoded4i[ij].Set(col);
+						}
+						break;
+
+					case tPixelFormat::B5G5R5A1:
+						decoded4i = new tColour4i[w*h];
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							uint16 u = *((uint16*)(src+ij*2));
+							bool  a = (u & 0x8000);				// 1000 0000 0000 0000.
+							uint8 r = (u & 0x7C00) >> 10;		// 0111 1100 0000 0000 >> 10.
+							uint8 g = (u & 0x03E0) >> 5;		// 0000 0011 1110 0000 >> 5.
+							uint8 b = (u & 0x001F)     ;		// 0000 0000 0001 1111 >> 0.
+
+							// Normalize to range.
+							float rf = float(r) / 31.0f;		// Max is 2^5 - 1.
+							float gf = float(g) / 31.0f;
+							float bf = float(b) / 31.0f;
+
+							tColour4i col(rf, gf, bf, a ? 1.0f : 0.0f);
+							decoded4i[ij].Set(col);
+						}
+						break;
+
+					case tPixelFormat::R16F:
+					{
+						// This HDR format has 1 red half-float channel.
+						decoded4f = new tColour4f[w*h];
+						tHalf* hdata = (tHalf*)src;
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							float r = hdata[ij*1 + 0];
+							tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
+							decoded4f[ij].Set(col);
+						}
+						break;
+					}
+
+					case tPixelFormat::R16G16F:
+					{
+						// This HDR format has 2 half-float channels. Red and green.
+						decoded4f = new tColour4f[w*h];
+						tHalf* hdata = (tHalf*)src;
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							float r = hdata[ij*2 + 0];
+							float g = hdata[ij*2 + 1];
+							tColour4f col(r, g, 0.0f, 1.0f);
+							decoded4f[ij].Set(col);
+						}
+						break;
+					}
+
+					case tPixelFormat::R16G16B16A16F:
+					{
+						// This HDR format has 4 half-float channels. RGBA.
+						decoded4f = new tColour4f[w*h];
+						tHalf* hdata = (tHalf*)src;
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							float r = hdata[ij*4 + 0];
+							float g = hdata[ij*4 + 1];
+							float b = hdata[ij*4 + 2];
+							float a = hdata[ij*4 + 3];
+							tColour4f col(r, g, b, a);
+							decoded4f[ij].Set(col);
+						}
+						break;
+					}
+
+					case tPixelFormat::R32F:
+					{
+						// This HDR format has 1 red float channel.
+						decoded4f = new tColour4f[w*h];
+						float* fdata = (float*)src;
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							float r = fdata[ij*1 + 0];
+							tColour4f col(r, spread ? r : 0.0f, spread ? r : 0.0f, 1.0f);
+							decoded4f[ij].Set(col);
+						}
+						break;
+					}
+
+					case tPixelFormat::R32G32F:
+					{
+						// This HDR format has 2 float channels. Red and green.
+						decoded4f = new tColour4f[w*h];
+						float* fdata = (float*)src;
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							float r = fdata[ij*2 + 0];
+							float g = fdata[ij*2 + 1];
+							tColour4f col(r, g, 0.0f, 1.0f);
+							decoded4f[ij].Set(col);
+						}
+						break;
+					}
+
+					case tPixelFormat::R32G32B32A32F:
+					{
+						// This HDR format has 4 RGBA floats.
+						decoded4f = new tColour4f[w*h];
+						float* fdata = (float*)src;
+						for (int ij = 0; ij < w*h; ij++)
+						{
+							float r = fdata[ij*4 + 0];
+							float g = fdata[ij*4 + 1];
+							float b = fdata[ij*4 + 2];
+							float a = fdata[ij*4 + 3];
+							tColour4f col(r, g, b, a);
+							decoded4f[ij].Set(col);
+						}
+						break;
+					}
+
+					default:
+						Clear();
+						Results |= 1 << int(ResultCode::Fatal_PackedDecodeError);
+						return false;
 				}
-				else if (tImage::tIsBCFormat(PixelFormat))
+			}
+			else if (tImage::tIsBCFormat(PixelFormat))
+			{
+				// We need extra room because the decompressor (bcdec) does not take an input for
+				// the width and height, only the pitch (bytes per row). This means a texture that is 5
+				// high will actually have row 6, 7, 8 written to.
+				int wfull = 4 * tGetNumBlocks(4, w);
+				int hfull = 4 * tGetNumBlocks(4, h);
+				tColour4i* decodedFull4i = nullptr;
+				tColour4f* decodedFull4f = nullptr;
+				switch (layer->PixelFormat)
 				{
-					// We need extra room because the decompressor (bcdec) does not take an input for
-					// the width and height, only the pitch (bytes per row). This means a texture that is 5
-					// high will actually have row 6, 7, 8 written to.
-					int wfull = 4 * tGetNumBlocks(4, w);
-					int hfull = 4 * tGetNumBlocks(4, h);
-					tPixel* uncompData = new tPixel[wfull*hfull];
-					switch (layer->PixelFormat)
+					case tPixelFormat::BC1DXT1:
+					case tPixelFormat::BC1DXT1A:
 					{
-						case tPixelFormat::BC1DXT1:
-						case tPixelFormat::BC1DXT1A:
-						{
-							for (int y = 0; y < hfull; y += 4)
-								for (int x = 0; x < wfull; x += 4)
-								{
-									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
-
-									// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be written into
-									// multiple rows of the destination and we need to know how far to increment to the next row of 4.
-									bcdec_bc1(src, dst, wfull * 4);
-									src += BCDEC_BC1_BLOCK_SIZE;
-								}
-
-							break;
-						}
-
-						case tPixelFormat::BC2DXT2DXT3:
-						{
-							for (int y = 0; y < hfull; y += 4)
-								for (int x = 0; x < wfull; x += 4)
-								{
-									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
-									bcdec_bc2(src, dst, wfull * 4);
-									src += BCDEC_BC2_BLOCK_SIZE;
-								}
-							break;
-						}
-
-						case tPixelFormat::BC3DXT4DXT5:
-						{
-							for (int y = 0; y < hfull; y += 4)
-								for (int x = 0; x < wfull; x += 4)
-								{
-									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
-									bcdec_bc3(src, dst, wfull * 4);
-									src += BCDEC_BC3_BLOCK_SIZE;
-								}
-							break;
-						}
-
-						case tPixelFormat::BC4ATI1:
-						{
-							// This HDR format decompresses to R uint8s.
-							uint8* rdata = new uint8[wfull*hfull];
-
-							for (int y = 0; y < hfull; y += 4)
-								for (int x = 0; x < wfull; x += 4)
-								{
-									uint8* dst = (rdata + (y*wfull + x) * 1);
-									bcdec_bc4(src, dst, wfull * 1);
-									src += BCDEC_BC4_BLOCK_SIZE;
-								}
-
-							// Now convert to 32-bit RGBA.
-							for (int xy = 0; xy < wfull*hfull; xy++)
+						decodedFull4i = new tColour4i[wfull*hfull];
+						for (int y = 0; y < hfull; y += 4)
+							for (int x = 0; x < wfull; x += 4)
 							{
-								uint8 v = rdata[xy];
-								tColour4i col(v, spread ? v : 0u, spread ? v : 0u, 255u);
-								uncompData[xy].Set(col);
+								uint8* dst = (uint8*)decodedFull4i + (y*wfull + x) * 4;
+
+								// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be written into
+								// multiple rows of the destination and we need to know how far to increment to the next row of 4.
+								bcdec_bc1(src, dst, wfull * 4);
+								src += BCDEC_BC1_BLOCK_SIZE;
 							}
-							delete[] rdata;
-							break;
-						}
 
-						case tPixelFormat::BC5ATI2:
-						{
-							struct RG { uint8 R; uint8 G; };
-							// This HDR format decompresses to RG uint8s.
-							RG* rgData = new RG[wfull*hfull];
-
-							for (int y = 0; y < hfull; y += 4)
-								for (int x = 0; x < wfull; x += 4)
-								{
-									uint8* dst = (uint8*)rgData + (y*wfull + x) * 2;
-									bcdec_bc5(src, dst, wfull * 2);
-									src += BCDEC_BC5_BLOCK_SIZE;
-								}
-
-							// Now convert to 32-bit RGBA with 0,255 for B,A.
-							for (int xy = 0; xy < wfull*hfull; xy++)
-							{
-								tColour4i col(rgData[xy].R, rgData[xy].G, 0u, 255u);
-								uncompData[xy].Set(col);
-							}
-							delete[] rgData;
-							break;
-						}
-
-						case tPixelFormat::BC6S:
-						case tPixelFormat::BC6U:
-						{
-							// This HDR format decompresses to RGB floats.
-							tColour3f* rgbData = new tColour3f[wfull*hfull];
-
-							for (int y = 0; y < hfull; y += 4)
-								for (int x = 0; x < wfull; x += 4)
-								{
-									uint8* dst = (uint8*)((float*)rgbData + (y*wfull + x) * 3);
-									bool signedData = layer->PixelFormat == tPixelFormat::BC6S;
-									bcdec_bc6h_float(src, dst, wfull * 3, signedData);
-									src += BCDEC_BC6H_BLOCK_SIZE;
-								}
-
-							// Now convert to 32-bit RGBA with 255 alpha.
-							for (int xy = 0; xy < wfull*hfull; xy++)
-							{
-								tColour4f col(rgbData[xy], 1.0f);
-								tDDS::ProcessHDRFlags(col, tCompBit_RGB, params);
-								uncompData[xy].Set(col);
-							}
-							processedHDRFlags = true;
-							delete[] rgbData;
-							break;
-						}
-
-						case tPixelFormat::BC7:
-						{
-							for (int y = 0; y < hfull; y += 4)
-								for (int x = 0; x < wfull; x += 4)
-								{
-									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
-									bcdec_bc7(src, dst, wfull * 4);
-									src += BCDEC_BC7_BLOCK_SIZE;
-								}
-							break;
-						}
-
-						case tPixelFormat::ETC1:
-						case tPixelFormat::ETC2RGB:				// Same decoder. Backwards compatible.
-						{
-							for (int y = 0; y < hfull; y += 4)
-								for (int x = 0; x < wfull; x += 4)
-								{
-									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
-
-									// At first didn't understand the pitch (3rd) argument. It's cuz the block needs to be written into
-									// multiple rows of the destination and we need to know how far to increment to the next row of 4.
-									etcdec_etc_rgb(src, dst, wfull * 4);
-									src += ETCDEC_ETC_RGB_BLOCK_SIZE;
-								}
-							break;
-						}
-
-						case tPixelFormat::ETC2RGBA:
-						{
-							for (int y = 0; y < hfull; y += 4)
-								for (int x = 0; x < wfull; x += 4)
-								{
-									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
-									etcdec_eac_rgba(src, dst, wfull * 4);
-									src += ETCDEC_EAC_RGBA_BLOCK_SIZE;
-								}
-							break;
-						}
-
-						case tPixelFormat::ETC2RGBA1:
-						{
-							for (int y = 0; y < hfull; y += 4)
-								for (int x = 0; x < wfull; x += 4)
-								{
-									uint8* dst = (uint8*)uncompData + (y*wfull + x) * 4;
-									etcdec_etc_rgb_a1(src, dst, wfull * 4);
-									src += ETCDEC_ETC_RGB_A1_BLOCK_SIZE;
-								}
-							break;
-						}
-
-						default:
-							delete[] uncompData;
-							Clear();
-							Results |= 1 << int(ResultCode::Fatal_BCDecodeError);
-							return false;
+						break;
 					}
 
-					// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
-					// This isn't the most efficient because we don't have a stride in a tLayer, but correctness first.
-					// Basically the uncompData may be too big if we needed extra room for w and h to do the decompression.
-					// This happens when the image dimensions where not multiples of the block size. We deal with that here.
-					// This is only inefficient if the dimensions were not a mult of 4, otherwise we can use the buffer directly.
-					delete[] layer->Data;
-					if ((wfull == w) && (hfull == h))
+					case tPixelFormat::BC2DXT2DXT3:
 					{
-						layer->Data = (uint8*)uncompData;
+						decodedFull4i = new tColour4i[wfull*hfull];
+						for (int y = 0; y < hfull; y += 4)
+							for (int x = 0; x < wfull; x += 4)
+							{
+								uint8* dst = (uint8*)decodedFull4i + (y*wfull + x) * 4;
+								bcdec_bc2(src, dst, wfull * 4);
+								src += BCDEC_BC2_BLOCK_SIZE;
+							}
+						break;
 					}
-					else
+
+					case tPixelFormat::BC3DXT4DXT5:
 					{
-						layer->Data = new uint8[w*h*sizeof(tPixel)];
-						uint8* s = (uint8*)uncompData;
-						uint8* d = layer->Data;
+						decodedFull4i = new tColour4i[wfull*hfull];
+						for (int y = 0; y < hfull; y += 4)
+							for (int x = 0; x < wfull; x += 4)
+							{
+								uint8* dst = (uint8*)decodedFull4i + (y*wfull + x) * 4;
+								bcdec_bc3(src, dst, wfull * 4);
+								src += BCDEC_BC3_BLOCK_SIZE;
+							}
+						break;
+					}
+
+					case tPixelFormat::BC4ATI1:
+					{
+						// This HDR format decompresses to R uint8s.
+						uint8* rdata = new uint8[wfull*hfull];
+						for (int y = 0; y < hfull; y += 4)
+							for (int x = 0; x < wfull; x += 4)
+							{
+								uint8* dst = (rdata + (y*wfull + x) * 1);
+								bcdec_bc4(src, dst, wfull * 1);
+								src += BCDEC_BC4_BLOCK_SIZE;
+							}
+
+						// Now convert to 32-bit RGBA.
+						decodedFull4i = new tColour4i[wfull*hfull];
+						for (int xy = 0; xy < wfull*hfull; xy++)
+						{
+							uint8 v = rdata[xy];
+							tColour4i col(v, spread ? v : 0u, spread ? v : 0u, 255u);
+							decodedFull4i[xy].Set(col);
+						}
+						delete[] rdata;
+						break;
+					}
+
+					case tPixelFormat::BC5ATI2:
+					{
+						// This HDR format decompresses to RG uint8s.
+						struct RG { uint8 R; uint8 G; };
+						RG* rgData = new RG[wfull*hfull];
+
+						for (int y = 0; y < hfull; y += 4)
+							for (int x = 0; x < wfull; x += 4)
+							{
+								uint8* dst = (uint8*)rgData + (y*wfull + x) * 2;
+								bcdec_bc5(src, dst, wfull * 2);
+								src += BCDEC_BC5_BLOCK_SIZE;
+							}
+
+						// Now convert to 32-bit RGBA with 0,255 for B,A.
+						decodedFull4i = new tColour4i[wfull*hfull];
+						for (int xy = 0; xy < wfull*hfull; xy++)
+						{
+							tColour4i col(rgData[xy].R, rgData[xy].G, 0u, 255u);
+							decodedFull4i[xy].Set(col);
+						}
+						delete[] rgData;
+						break;
+					}
+
+					case tPixelFormat::BC6S:
+					case tPixelFormat::BC6U:
+					{
+						// This HDR format decompresses to RGB floats.
+						tColour3f* rgbData = new tColour3f[wfull*hfull];
+
+						for (int y = 0; y < hfull; y += 4)
+							for (int x = 0; x < wfull; x += 4)
+							{
+								uint8* dst = (uint8*)((float*)rgbData + (y*wfull + x) * 3);
+								bool signedData = layer->PixelFormat == tPixelFormat::BC6S;
+								bcdec_bc6h_float(src, dst, wfull * 3, signedData);
+								src += BCDEC_BC6H_BLOCK_SIZE;
+							}
+
+						// Now convert to 4-float (128-bit) RGBA with 1.0f alpha.
+						decodedFull4f = new tColour4f[wfull*hfull];
+						for (int xy = 0; xy < wfull*hfull; xy++)
+						{
+							tColour4f col(rgbData[xy], 1.0f);
+							decodedFull4f[xy].Set(col);
+						}
+						delete[] rgbData;
+						break;
+					}
+
+					case tPixelFormat::BC7:
+					{
+						decodedFull4i = new tColour4i[wfull*hfull];
+						for (int y = 0; y < hfull; y += 4)
+							for (int x = 0; x < wfull; x += 4)
+							{
+								uint8* dst = (uint8*)decodedFull4i + (y*wfull + x) * 4;
+								bcdec_bc7(src, dst, wfull * 4);
+								src += BCDEC_BC7_BLOCK_SIZE;
+							}
+						break;
+					}
+
+					case tPixelFormat::ETC1:
+					case tPixelFormat::ETC2RGB:				// Same decoder. Backwards compatible.
+					{
+						decodedFull4i = new tColour4i[wfull*hfull];
+						for (int y = 0; y < hfull; y += 4)
+							for (int x = 0; x < wfull; x += 4)
+							{
+								uint8* dst = (uint8*)decodedFull4i + (y*wfull + x) * 4;
+								etcdec_etc_rgb(src, dst, wfull * 4);
+								src += ETCDEC_ETC_RGB_BLOCK_SIZE;
+							}
+						break;
+					}
+
+					case tPixelFormat::ETC2RGBA:
+					{
+						decodedFull4i = new tColour4i[wfull*hfull];
+						for (int y = 0; y < hfull; y += 4)
+							for (int x = 0; x < wfull; x += 4)
+							{
+								uint8* dst = (uint8*)decodedFull4i + (y*wfull + x) * 4;
+								etcdec_eac_rgba(src, dst, wfull * 4);
+								src += ETCDEC_EAC_RGBA_BLOCK_SIZE;
+							}
+						break;
+					}
+
+					case tPixelFormat::ETC2RGBA1:
+					{
+						decodedFull4i = new tColour4i[wfull*hfull];
+						for (int y = 0; y < hfull; y += 4)
+							for (int x = 0; x < wfull; x += 4)
+							{
+								uint8* dst = (uint8*)decodedFull4i + (y*wfull + x) * 4;
+								etcdec_etc_rgb_a1(src, dst, wfull * 4);
+								src += ETCDEC_ETC_RGB_A1_BLOCK_SIZE;
+							}
+						break;
+					}
+
+					default:
+						Clear();
+						Results |= 1 << int(ResultCode::Fatal_BCDecodeError);
+						return false;
+				}
+
+				// Decode worked. We are now in RGBA 32-bit or float 128-bit. Width and height are already correct.
+				// This isn't the most efficient because we don't have a stride in a tLayer, but correctness first.
+				// Basically the decodedFull data may be too big if we needed extra room for w and h to do the decompression.
+				// This happens when the image dimensions where not multiples of the block size. We deal with that here.
+				// This is only inefficient if the dimensions were not a mult of 4, otherwise we can use the buffer directly.
+				tAssert((decodedFull4i || decodedFull4f) && !(decodedFull4i && decodedFull4f));
+
+				// At this point the job is to get decoded4i or decoded4f to be valid. First check if sizes match exactly.
+				if ((wfull == w) && (hfull == h))
+				{
+					decoded4i = decodedFull4i;
+					decoded4f = decodedFull4f;
+				}
+				else
+				{
+					if (decodedFull4i)
+					{
+						decoded4i = new tColour4i[w*h];
+						tColour4i* src = decodedFull4i;
+						tColour4i* dst = decoded4i;
 						for (int r = 0; r < h; r++)
 						{
-							tStd::tMemcpy(d, s, w*sizeof(tPixel));
-							s += wfull * sizeof(tPixel);
-							d += w     * sizeof(tPixel);
+							tStd::tMemcpy(dst, src, w*sizeof(tColour4i));
+							src += wfull;
+							dst += w;
 						}
-						delete[] uncompData;
+						delete[] decodedFull4i;
 					}
-					layer->PixelFormat = tPixelFormat::R8G8B8A8;
+					else if (decodedFull4f)
+					{
+						decoded4f = new tColour4f[w*h];
+						tColour4f* src = decodedFull4f;
+						tColour4f* dst = decoded4f;
+						for (int r = 0; r < h; r++)
+						{
+							tStd::tMemcpy(dst, src, w*sizeof(tColour4f));
+							src += wfull;
+							dst += w;
+						}
+						delete[] decodedFull4f;
+					}
 				}
-				else if (tImage::tIsASTCFormat(PixelFormat))
+			}
+
+			else if (tImage::tIsASTCFormat(PixelFormat))
+			{
+				int blockW = 0;
+				int blockH = 0;
+				int blockD = 1;
+
+				// We use HDR profile if we detect a linear colour-space. Otherwise it's the LDR or LDR_SRGB profile.
+				astcenc_profile profile = ASTCENC_PRF_LDR;
+				if (ColourSpaceSrc == tColourSpace::Linear)
+					profile = ASTCENC_PRF_HDR_RGB_LDR_A;
+				else if (ColourSpaceSrc == tColourSpace::sRGB)
+					profile = ASTCENC_PRF_LDR_SRGB;
+
+				switch (PixelFormat)
 				{
-					int blockW = 0;
-					int blockH = 0;
-					int blockD = 1;
-
-					// We use HDR profile if we detect a linear colour-space. Otherwise it's the LDR or LDR_SRGB profile.
-					astcenc_profile profile = ASTCENC_PRF_LDR;
-					if (ColourSpaceSrc == tColourSpace::Linear)
-						profile = ASTCENC_PRF_HDR_RGB_LDR_A;
-					else if (ColourSpaceSrc == tColourSpace::sRGB)
-						profile = ASTCENC_PRF_LDR_SRGB;
-
-					switch (PixelFormat)
-					{
-						case tPixelFormat::ASTC4X4:		blockW = 4;		blockH = 4;		break;
-						case tPixelFormat::ASTC5X4:		blockW = 5;		blockH = 4;		break;
-						case tPixelFormat::ASTC5X5:		blockW = 5;		blockH = 5;		break;
-						case tPixelFormat::ASTC6X5:		blockW = 6;		blockH = 5;		break;
-						case tPixelFormat::ASTC6X6:		blockW = 6;		blockH = 6;		break;
-						case tPixelFormat::ASTC8X5:		blockW = 8;		blockH = 5;		break;
-						case tPixelFormat::ASTC8X6:		blockW = 8;		blockH = 6;		break;
-						case tPixelFormat::ASTC8X8:		blockW = 8;		blockH = 8;		break;
-						case tPixelFormat::ASTC10X5:	blockW = 10;	blockH = 5;		break;
-						case tPixelFormat::ASTC10X6:	blockW = 10;	blockH = 6;		break;
-						case tPixelFormat::ASTC10X8:	blockW = 10;	blockH = 8;		break;
-						case tPixelFormat::ASTC10X10:	blockW = 10;	blockH = 10;	break;
-						case tPixelFormat::ASTC12X10:	blockW = 12;	blockH = 10;	break;
-						case tPixelFormat::ASTC12X12:	blockW = 12;	blockH = 12;	break;
-						default:														break;
-					}
-
-					if (!blockW || !blockH)
-					{
-						// astcenc_get_error_string(status) can be called for details.
-						Clear();
-						Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
-						return false;
-					}
-
-					float quality = ASTCENC_PRE_MEDIUM;			// Only need for compression.
-					astcenc_error result = ASTCENC_SUCCESS;
-
-					astcenc_config config;
-					astcenc_config_init(profile, blockW, blockH, blockD, quality, ASTCENC_FLG_DECOMPRESS_ONLY, &config);
-					if (result != ASTCENC_SUCCESS)
-					{
-						// astcenc_get_error_string(status) can be called for details.
-						Clear();
-						Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
-						return false;
-					}
-
-					astcenc_context* context = nullptr;
-					int numThreads = tMath::tMax(tSystem::tGetNumCores(), 2);
-					result = astcenc_context_alloc(&config, numThreads, &context);
-					if (result != ASTCENC_SUCCESS)
-					{
-						Clear();
-						Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
-						return false;
-					}
-
-					tColour4f* uncompData = new tColour4f[w*h];
-					astcenc_image image;
-					image.dim_x = w;
-					image.dim_y = h;
-					image.dim_z = 1;
-					image.data_type = ASTCENC_TYPE_F32;
-
-					tColour4f* slices = uncompData;
-					image.data = reinterpret_cast<void**>(&slices);
-					astcenc_swizzle swizzle { ASTCENC_SWZ_R, ASTCENC_SWZ_G, ASTCENC_SWZ_B, ASTCENC_SWZ_A };
-
-					result = astcenc_decompress_image(context, src, layer->GetDataSize(), &image, &swizzle, 0);
-					if (result != ASTCENC_SUCCESS)
-					{
-						astcenc_context_free(context);
-						delete[] uncompData;
-						Clear();
-						Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
-						return false;
-					}
-
-					// Convert to 32-bit RGBA.
-					tPixel* pixelData = new tPixel[w*h];
-					for (int p = 0; p < w*h; p++)
-					{
-						tColour4f col(uncompData[p]);
-						tDDS::ProcessHDRFlags(col, tCompBit_RGB, params);
-						pixelData[p].Set(col);
-					}
-					processedHDRFlags = true;
-
-					// Decode worked. We are now in RGBA 32-bit. Other params like width and height are already correct.
-					tAssert(layer->OwnsData);
-					delete[] layer->Data;
-					layer->Data = (uint8*)pixelData;
-					layer->PixelFormat = tPixelFormat::R8G8B8A8;
-
-					astcenc_context_free(context);
-					delete[] uncompData;
+					case tPixelFormat::ASTC4X4:		blockW = 4;		blockH = 4;		break;
+					case tPixelFormat::ASTC5X4:		blockW = 5;		blockH = 4;		break;
+					case tPixelFormat::ASTC5X5:		blockW = 5;		blockH = 5;		break;
+					case tPixelFormat::ASTC6X5:		blockW = 6;		blockH = 5;		break;
+					case tPixelFormat::ASTC6X6:		blockW = 6;		blockH = 6;		break;
+					case tPixelFormat::ASTC8X5:		blockW = 8;		blockH = 5;		break;
+					case tPixelFormat::ASTC8X6:		blockW = 8;		blockH = 6;		break;
+					case tPixelFormat::ASTC8X8:		blockW = 8;		blockH = 8;		break;
+					case tPixelFormat::ASTC10X5:	blockW = 10;	blockH = 5;		break;
+					case tPixelFormat::ASTC10X6:	blockW = 10;	blockH = 6;		break;
+					case tPixelFormat::ASTC10X8:	blockW = 10;	blockH = 8;		break;
+					case tPixelFormat::ASTC10X10:	blockW = 10;	blockH = 10;	break;
+					case tPixelFormat::ASTC12X10:	blockW = 12;	blockH = 10;	break;
+					case tPixelFormat::ASTC12X12:	blockW = 12;	blockH = 12;	break;
+					default:														break;
 				}
 
-				else // Unsupported PixelFormat
+				if (!blockW || !blockH)
 				{
+					// astcenc_get_error_string(status) can be called for details.
 					Clear();
-					Results |= 1 << int(ResultCode::Fatal_PixelFormatNotSupported);
+					Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
 					return false;
 				}
 
-				// We've got one more chance to reverse the rows here (if we still need to) because we were asked to decode.
-				if (reverseRowOrderRequested && !RowReversalOperationPerformed && (layer->PixelFormat == tPixelFormat::R8G8B8A8))
+				float quality = ASTCENC_PRE_MEDIUM;			// Only need for compression.
+				astcenc_error result = ASTCENC_SUCCESS;
+
+				astcenc_config config;
+				astcenc_config_init(profile, blockW, blockH, blockD, quality, ASTCENC_FLG_DECOMPRESS_ONLY, &config);
+				if (result != ASTCENC_SUCCESS)
 				{
-					// This shouldn't ever fail. Too easy to reverse RGBA 32-bit.
-					uint8* reversedRowData = tImage::CreateReversedRowData(layer->Data, layer->PixelFormat, w, h);
-					tAssert(reversedRowData);
-					delete[] layer->Data;
-					layer->Data = reversedRowData;
-					didRowReversalAfterDecode = true;
+					// astcenc_get_error_string(status) can be called for details.
+					Clear();
+					Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
+					return false;
 				}
 
-				if ((params.Flags & LoadFlag_SwizzleBGR2RGB) && (layer->PixelFormat == tPixelFormat::R8G8B8A8))
+				astcenc_context* context = nullptr;
+				int numThreads = tMath::tMax(tSystem::tGetNumCores(), 2);
+				result = astcenc_context_alloc(&config, numThreads, &context);
+				if (result != ASTCENC_SUCCESS)
 				{
-					for (int xy = 0; xy < w*h; xy++)
-					{
-						tColour4i& col = ((tColour4i*)layer->Data)[xy];
-						tStd::tSwap(col.R, col.B);
-					}
+					Clear();
+					Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
+					return false;
+				}
+
+				decoded4f = new tColour4f[w*h];
+				astcenc_image image;
+				image.dim_x = w;
+				image.dim_y = h;
+				image.dim_z = 1;
+				image.data_type = ASTCENC_TYPE_F32;
+
+				tColour4f* slices = decoded4f;
+				image.data = reinterpret_cast<void**>(&slices);
+				astcenc_swizzle swizzle { ASTCENC_SWZ_R, ASTCENC_SWZ_G, ASTCENC_SWZ_B, ASTCENC_SWZ_A };
+
+				result = astcenc_decompress_image(context, src, layer->GetDataSize(), &image, &swizzle, 0);
+				if (result != ASTCENC_SUCCESS)
+				{
+					astcenc_context_free(context);
+					delete[] decoded4f;
+					Clear();
+					Results |= 1 << int(ResultCode::Fatal_ASTCDecodeError);
+					return false;
+				}
+				astcenc_context_free(context);
+			}
+
+			else // Unsupported PixelFormat
+			{
+				Clear();
+				Results |= 1 << int(ResultCode::Fatal_PixelFormatNotSupported);
+				return false;
+			}
+
+			// Apply any decode flags.
+			bool flagTone = (params.Flags & tImageDDS::LoadFlag_ToneMapExposure) ? true : false;
+			bool flagSRGB = (params.Flags & tImageDDS::LoadFlag_SRGBCompression) ? true : false;
+			bool flagGama = (params.Flags & tImageDDS::LoadFlag_GammaCompression)? true : false;
+			if (decoded4f && (flagTone || flagSRGB || flagGama))
+			{
+				for (int p = 0; p < w*h; p++)
+				{
+					tColour4f& colour = decoded4f[p];
+					if (flagTone)
+						colour.TonemapExposure(params.Exposure, tCompBit_RGB);
+					if (flagSRGB)
+						colour.LinearToSRGB(tCompBit_RGB);
+					if (flagGama)
+						colour.LinearToGamma(params.Gamma, tCompBit_RGB);
+				}
+			}
+			if (decoded4i && (flagSRGB || flagGama))
+			{
+				for (int p = 0; p < w*h; p++)
+				{
+					tColour4f colour(decoded4i[p]);
+					if (flagSRGB)
+						colour.LinearToSRGB(tCompBit_RGB);
+					if (flagGama)
+						colour.LinearToGamma(params.Gamma, tCompBit_RGB);
+					decoded4i[p].SetR(colour.R);
+					decoded4i[p].SetG(colour.G);
+					decoded4i[p].SetB(colour.B);
+				}
+			}
+
+			// Update the layer with the 32-bit RGBA decoded data. If the data was HDR (float)
+			// convert it to 32 bit. Start by getting ride of the existing layer pixel data.
+			delete[] layer->Data;
+			if (decoded4i)
+			{
+				layer->Data = (uint8*)decoded4i;
+			}
+			else if (decoded4f)
+			{
+				tPixel* pixelData = new tPixel[w*h];
+				for (int p = 0; p < w*h; p++)
+					pixelData[p].Set(decoded4f[p]);
+				layer->Data = (uint8*)pixelData;
+				delete[] decoded4f;
+			}
+			layer->PixelFormat = tPixelFormat::R8G8B8A8;
+
+			// We've got one more chance to reverse the rows here (if we still need to) because we were asked to decode.
+			if (reverseRowOrderRequested && !RowReversalOperationPerformed && (layer->PixelFormat == tPixelFormat::R8G8B8A8))
+			{
+				// This shouldn't ever fail. Too easy to reverse RGBA 32-bit.
+				uint8* reversedRowData = tImage::CreateReversedRowData(layer->Data, layer->PixelFormat, w, h);
+				tAssert(reversedRowData);
+				delete[] layer->Data;
+				layer->Data = reversedRowData;
+				didRowReversalAfterDecode = true;
+			}
+
+			if ((params.Flags & LoadFlag_SwizzleBGR2RGB) && (layer->PixelFormat == tPixelFormat::R8G8B8A8))
+			{
+				for (int xy = 0; xy < w*h; xy++)
+				{
+					tColour4i& col = ((tColour4i*)layer->Data)[xy];
+					tStd::tSwap(col.R, col.B);
 				}
 			}
 		}
-
-		if (reverseRowOrderRequested && !RowReversalOperationPerformed && didRowReversalAfterDecode)
-			RowReversalOperationPerformed = true;
-
-		if (processedHDRFlags)
-		{
-			if (params.Flags & LoadFlag_SRGBCompression)  ColourSpace = tColourSpace::sRGB;
-			if (params.Flags & LoadFlag_GammaCompression) ColourSpace = tColourSpace::Gamma;
-		}
-
-		// All images decoded. Can now set the object's pixel format. We do _not_ set the PixelFormatSrc here!
-		PixelFormat = tPixelFormat::R8G8B8A8;
 	}
+
+	if (reverseRowOrderRequested && !RowReversalOperationPerformed && didRowReversalAfterDecode)
+		RowReversalOperationPerformed = true;
+
+	if (params.Flags & LoadFlag_SRGBCompression)  ColourSpace = tColourSpace::sRGB;
+	if (params.Flags & LoadFlag_GammaCompression) ColourSpace = tColourSpace::Gamma;
+
+	// All images decoded. Can now set the object's pixel format. We do _not_ set the PixelFormatSrc here!
+	PixelFormat = tPixelFormat::R8G8B8A8;
 
 	if (reverseRowOrderRequested && !RowReversalOperationPerformed)
 		Results |= 1 << int(ResultCode::Conditional_CouldNotFlipRows);

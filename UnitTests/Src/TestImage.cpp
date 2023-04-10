@@ -1168,15 +1168,12 @@ tTestUnit(ImageGradient)
 // Helper for tImageDDS unit tests.
 void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAllMips = false)
 {
-	// We're just going to turn on auto-gamma-compression for all files.
-	loadFlags |= tImageKTX::LoadFlag_AutoGamma;
-
 	tString basename = tSystem::tGetFileBaseName(ddsfile);
 	tString savename = basename + "_";
 	savename += (loadFlags & tImageDDS::LoadFlag_Decode)			? "D" : "x";
-	if ((loadFlags & tImageKTX::LoadFlag_GammaCompression) || (loadFlags & tImageKTX::LoadFlag_SRGBCompression))
+	if ((loadFlags & tImageDDS::LoadFlag_GammaCompression) || (loadFlags & tImageKTX::LoadFlag_SRGBCompression))
 		savename += "G";
-	else if (loadFlags & tImageKTX::LoadFlag_AutoGamma)
+	else if (loadFlags & tImageDDS::LoadFlag_AutoGamma)
 		savename += "g";
 	else
 		savename += "x";
@@ -1252,6 +1249,7 @@ tTestUnit(ImageDDS)
 	uint32 decode = tImageDDS::LoadFlag_Decode;
 	uint32 revrow = tImageDDS::LoadFlag_ReverseRowOrder;
 	uint32 spread = tImageDDS::LoadFlag_SpreadLuminance;
+	uint32 autoga = tImageDDS::LoadFlag_AutoGamma;
 
 	tPrintf("Testing DDS Loading/Decoding. Legacy = No DX10 Header.\n\n");
 	tPrintf("D = Decode\n");
@@ -1263,129 +1261,129 @@ tTestUnit(ImageDDS)
 	// Block Compressed Formats.
 	//
 	// BC1
-	DDSLoadDecodeSave("BC1DXT1_RGB_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("BC1DXT1_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("BC1DXT1_RGB_Modern_317x177.dds", decode | revrow);
-	DDSLoadDecodeSave("BC1DXT1_RGB_Modern_318x178.dds", decode | revrow);
-	DDSLoadDecodeSave("BC1DXT1_RGB_Modern_319x179.dds", decode | revrow);
-	DDSLoadDecodeSave("BC1DXT1_RGB_Modern_320x180.dds", decode | revrow);
+	DDSLoadDecodeSave("BC1DXT1_RGB_Legacy.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("BC1DXT1_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("BC1DXT1_RGB_Modern_317x177.dds",	decode | revrow | autoga);
+	DDSLoadDecodeSave("BC1DXT1_RGB_Modern_318x178.dds",	decode | revrow | autoga);
+	DDSLoadDecodeSave("BC1DXT1_RGB_Modern_319x179.dds",	decode | revrow | autoga);
+	DDSLoadDecodeSave("BC1DXT1_RGB_Modern_320x180.dds",	decode | revrow | autoga);
 
 	// BC1a
-	DDSLoadDecodeSave("BC1DXT1a_RGBA_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("BC1DXT1a_RGBA_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("BC1DXT1a_RGBA_Legacy.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("BC1DXT1a_RGBA_Modern.dds",		decode | revrow | autoga);
 
 	// BC2
-	DDSLoadDecodeSave("BC2DXT2DXT3_RGBA_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("BC2DXT2DXT3_RGBA_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("BC2DXT2DXT3_RGBA_Legacy.dds",	decode | revrow | autoga);
+	DDSLoadDecodeSave("BC2DXT2DXT3_RGBA_Modern.dds",	decode | revrow | autoga);
 
 	// BC3
-	DDSLoadDecodeSave("BC3DXT4DXT5_RGBA_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("BC3DXT4DXT5_RGBA_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("BC3DXT4DXT5_RGBA_Legacy.dds",	decode | revrow | autoga);
+	DDSLoadDecodeSave("BC3DXT4DXT5_RGBA_Modern.dds",	decode | revrow | autoga);
 
 	// BC4
-	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds", decode | revrow | spread);
+	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds",			decode | revrow | autoga | spread);
 
 	// BC5
-	DDSLoadDecodeSave("BC5ATI2_RG_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("BC5ATI2_RG_Modern.dds",			decode | revrow | autoga);
 
 	// BC6
-	DDSLoadDecodeSave("BC6s_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("BC6u_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("BC6s_HDRRGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("BC6s_RGB_Modern.dds",			decode | revrow);
+	DDSLoadDecodeSave("BC6u_RGB_Modern.dds",			decode | revrow);
+	DDSLoadDecodeSave("BC6s_HDRRGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds",			decode | revrow | autoga);
 
 	// BC7
-	DDSLoadDecodeSave("BC7_RGBA_Modern.dds", decode | revrow, true);
+	DDSLoadDecodeSave("BC7_RGBA_Modern.dds",			decode | revrow | autoga, true);
 
 	//
 	// ETC
 	//
-	DDSLoadDecodeSave("ETC1_RGB_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("ETC2RGB_RGB_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("ETC2RGBA_RGBA_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("ETC2RGBA1_RGBA_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("ETC1_RGB_Legacy.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ETC2RGB_RGB_Legacy.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ETC2RGBA_RGBA_Legacy.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("ETC2RGBA1_RGBA_Legacy.dds",		decode | revrow | autoga);
 
 	//
 	// ASTC
 	//
-	DDSLoadDecodeSave("ASTC4x4_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("ASTC5x4_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("ASTC5x5_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("ASTC6x5_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("ASTC6x6_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("ASTC8x5_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("ASTC8x6_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("ASTC8x8_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("ASTC10x5_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("ASTC10x6_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("ASTC10x8_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("ASTC10x10_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("ASTC12x10_RGB_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("ASTC12x12_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("ASTC4x4_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC5x4_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC5x5_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC6x5_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC6x6_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC8x5_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC8x6_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC8x8_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC10x5_RGB_Modern.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC10x6_RGB_Modern.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC10x8_RGB_Modern.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC10x10_RGB_Modern.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC12x10_RGB_Modern.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC12x12_RGB_Modern.dds",		decode | revrow | autoga);
 
 	//
 	// Uncompressed Integer Formats.
 	//
 	// A8
-	DDSLoadDecodeSave("A8_A_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("A8_A_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("A8_A_Legacy.dds",				decode | revrow | autoga);
+	DDSLoadDecodeSave("A8_A_Modern.dds",				decode | revrow);
 
 	// L8
-	DDSLoadDecodeSave("L8_L_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("L8_L_Legacy.dds", decode | revrow | spread);
-	DDSLoadDecodeSave("R8_L_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("R8_L_Modern.dds", decode | revrow | spread);
+	DDSLoadDecodeSave("L8_L_Legacy.dds",				decode | revrow);
+	DDSLoadDecodeSave("L8_L_Legacy.dds",				decode | revrow | spread);
+	DDSLoadDecodeSave("R8_L_Modern.dds",				decode | revrow);
+	DDSLoadDecodeSave("R8_L_Modern.dds",				decode | revrow | spread);
 
 	// B8G8R8
-	DDSLoadDecodeSave("B8G8R8_RGB_Legacy.dds", decode | revrow);
+	DDSLoadDecodeSave("B8G8R8_RGB_Legacy.dds",			decode | revrow | autoga);
 
 	// B8G8R8A8
-	DDSLoadDecodeSave("B8G8R8A8_RGBA_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("B8G8R8A8_RGBA_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("B8G8R8A8_RGBA_Legacy.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("B8G8R8A8_RGBA_Modern.dds",		decode | revrow | autoga);
 
 	// B5G6R5
-	DDSLoadDecodeSave("B5G6R5_RGB_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("B5G6R5_RGB_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("B5G6R5_RGB_Legacy.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("B5G6R5_RGB_Modern.dds",			decode | revrow | autoga);
 
 	// B4G4R4A4
-	DDSLoadDecodeSave("B4G4R4A4_RGBA_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("B4G4R4A4_RGBA_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("B4G4R4A4_RGBA_Legacy.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("B4G4R4A4_RGBA_Modern.dds",		decode | revrow | autoga);
 
 	// B5G5R5A1
-	DDSLoadDecodeSave("B5G5R5A1_RGBA_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("B5G5R5A1_RGBA_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("B5G5R5A1_RGBA_Legacy.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("B5G5R5A1_RGBA_Modern.dds",		decode | revrow | autoga);
 
 	//
 	// Uncompressed Floating-Point (HDR) Formats.
 	//
 	// R16F
-	DDSLoadDecodeSave("R16f_R_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("R16f_R_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("R16f_R_Legacy.dds", decode | revrow | spread);
-	DDSLoadDecodeSave("R16f_R_Modern.dds", decode | revrow | spread);
+	DDSLoadDecodeSave("R16f_R_Legacy.dds",				decode | revrow | autoga);
+	DDSLoadDecodeSave("R16f_R_Modern.dds",				decode | revrow | autoga);
+	DDSLoadDecodeSave("R16f_R_Legacy.dds",				decode | revrow | autoga | spread);
+	DDSLoadDecodeSave("R16f_R_Modern.dds",				decode | revrow | autoga | spread);
 
 	// R16G16F
-	DDSLoadDecodeSave("R16G16f_RG_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("R16G16f_RG_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("R16G16f_RG_Legacy.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("R16G16f_RG_Modern.dds",			decode | revrow | autoga);
 
 	// R16G16B16A16F
-	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Legacy.dds",	decode | revrow | autoga);
+	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Modern.dds",	decode | revrow | autoga);
 
 	// R32F
-	DDSLoadDecodeSave("R32f_R_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("R32f_R_Modern.dds", decode | revrow);
-	DDSLoadDecodeSave("R32f_R_Legacy.dds", decode | revrow | spread);
-	DDSLoadDecodeSave("R32f_R_Modern.dds", decode | revrow | spread);
+	DDSLoadDecodeSave("R32f_R_Legacy.dds",				decode | revrow | autoga);
+	DDSLoadDecodeSave("R32f_R_Modern.dds",				decode | revrow | autoga);
+	DDSLoadDecodeSave("R32f_R_Legacy.dds",				decode | revrow | autoga | spread);
+	DDSLoadDecodeSave("R32f_R_Modern.dds",				decode | revrow | autoga | spread);
 
 	// R32G32F
-	DDSLoadDecodeSave("R32G32f_RG_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("R32G32f_RG_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("R32G32f_RG_Legacy.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("R32G32f_RG_Modern.dds",			decode | revrow | autoga);
 
 	// R32G32B32A32F
-	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Legacy.dds", decode | revrow);
-	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Modern.dds", decode | revrow);
+	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Legacy.dds",	decode | revrow | autoga);
+	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Modern.dds",	decode | revrow | autoga);
 
 	// Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
 	// This time, since not decoding, it may be impossible to reverse the rows, so we can also expect
@@ -1393,19 +1391,19 @@ tTestUnit(ImageDDS)
 	// to bother with the modern-style dds files (for the most part) this time through.
 	tPrintf("Testing DDS Loading/No-decoding.\n\n");
 
-	DDSLoadDecodeSave("BC1DXT1_RGB_Modern.dds",		revrow);	// Revrow should work for BC1.
+	DDSLoadDecodeSave("BC1DXT1_RGB_Modern.dds",			revrow);	// Revrow should work for BC1.
 	DDSLoadDecodeSave("BC1DXT1a_RGBA_Modern.dds");
-	DDSLoadDecodeSave("BC2DXT2DXT3_RGBA_Modern.dds", revrow);
-	DDSLoadDecodeSave("BC3DXT4DXT5_RGBA_Modern.dds", revrow);
-	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds",		revrow);	// Should print warning and be unable to flip rows. May be able to implement.
-	DDSLoadDecodeSave("BC5ATI2_RG_Modern.dds",		revrow);	// No reverse.
-	DDSLoadDecodeSave("BC6s_RGB_Modern.dds",		revrow);	// No reverse.
+	DDSLoadDecodeSave("BC2DXT2DXT3_RGBA_Modern.dds",	revrow);
+	DDSLoadDecodeSave("BC3DXT4DXT5_RGBA_Modern.dds",	revrow);
+	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds",			revrow);	// Should print warning and be unable to flip rows. May be able to implement.
+	DDSLoadDecodeSave("BC5ATI2_RG_Modern.dds",			revrow);	// No reverse.
+	DDSLoadDecodeSave("BC6s_RGB_Modern.dds",			revrow);	// No reverse.
 	DDSLoadDecodeSave("BC6u_RGB_Modern.dds");
 	DDSLoadDecodeSave("BC6s_HDRRGB_Modern.dds");
-	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds",		revrow);	// No reverse.
-	DDSLoadDecodeSave("BC7_RGBA_Modern.dds",		revrow);	// No reverse.
+	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds",			revrow);	// No reverse.
+	DDSLoadDecodeSave("BC7_RGBA_Modern.dds",			revrow);	// No reverse.
 
-	DDSLoadDecodeSave("ASTC4x4_RGB_Modern.dds",		revrow);	// No reverse.
+	DDSLoadDecodeSave("ASTC4x4_RGB_Modern.dds",			revrow);	// No reverse.
 	DDSLoadDecodeSave("ASTC5x4_RGB_Modern.dds");
 	DDSLoadDecodeSave("ASTC5x5_RGB_Modern.dds");
 	DDSLoadDecodeSave("ASTC6x5_RGB_Modern.dds");
@@ -1421,23 +1419,23 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("ASTC12x12_RGB_Modern.dds");
 
 	DDSLoadDecodeSave("A8_A_Modern.dds");
-	DDSLoadDecodeSave("R8_L_Modern.dds",			revrow);
-	DDSLoadDecodeSave("L8_L_Legacy.dds",			revrow);
-	DDSLoadDecodeSave("B8G8R8_RGB_Legacy.dds");					// Only legacy supports this format.
+	DDSLoadDecodeSave("R8_L_Modern.dds",				revrow);
+	DDSLoadDecodeSave("L8_L_Legacy.dds",				revrow);
+	DDSLoadDecodeSave("B8G8R8_RGB_Legacy.dds");						// Only legacy supports this format.
 	DDSLoadDecodeSave("B8G8R8A8_RGBA_Modern.dds");
-	DDSLoadDecodeSave("B5G6R5_RGB_Modern.dds",		revrow);
-	DDSLoadDecodeSave("B4G4R4A4_RGBA_Modern.dds",	revrow);
+	DDSLoadDecodeSave("B5G6R5_RGB_Modern.dds",			revrow);
+	DDSLoadDecodeSave("B4G4R4A4_RGBA_Modern.dds",		revrow);
 	DDSLoadDecodeSave("B5G5R5A1_RGBA_Modern.dds");
 
-	DDSLoadDecodeSave("R16f_R_Modern.dds",			revrow);
+	DDSLoadDecodeSave("R16f_R_Modern.dds",				revrow);
 	DDSLoadDecodeSave("R16f_R_Modern.dds");
-	DDSLoadDecodeSave("R16G16f_RG_Modern.dds",		revrow);
+	DDSLoadDecodeSave("R16G16f_RG_Modern.dds",			revrow);
 	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Modern.dds");
 
-	DDSLoadDecodeSave("R32f_R_Modern.dds",			revrow);
+	DDSLoadDecodeSave("R32f_R_Modern.dds",				revrow);
 	DDSLoadDecodeSave("R32f_R_Modern.dds");
 	DDSLoadDecodeSave("R32G32f_RG_Modern.dds");
-	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Modern.dds", revrow);
+	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Modern.dds",	revrow);
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }
