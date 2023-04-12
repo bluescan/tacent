@@ -1602,19 +1602,8 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 				delete[] decoded4f;
 			}
 
-			// Possibly spread the red channel.
-			// @todo Add a tIsSingleChannelFormat helper.
-			if
-			(
-				spread &&
-				(
-					(layer->PixelFormat == tPixelFormat::L8) ||
-					(layer->PixelFormat == tPixelFormat::R8) ||
-					(layer->PixelFormat == tPixelFormat::R16F) ||
-					(layer->PixelFormat == tPixelFormat::R32F) ||
-					(layer->PixelFormat == tPixelFormat::BC4ATI1)
-				)
-			)
+			// Possibly spread the L/Red channel.
+			if (spread && tIsLuminanceFormat(layer->PixelFormat))
 			{
 				for (int p = 0; p < w*h; p++)
 				{

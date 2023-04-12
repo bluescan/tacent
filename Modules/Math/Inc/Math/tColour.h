@@ -40,6 +40,17 @@ class tColour3f;	//			tColour3;
 // g = gamma
 // q = square
 // s = standard
+////////////////////////////
+		// UNORM (unsigned normalized integer) means n-bit int.. all 0s -> 0.0 and all 1s -> 1.0.
+		// HDR is a slightly better term as it means 0.0 to 1.0 refardless of pixel encoding (whether it be float, half, or integral).
+		// LDR menas no value above 1.0. HDR means there are.
+		// RGBA values are either in linear (lin) or sRGB (srgb) space.
+//		LDRsrgbRGB_LDRlinA,			LDR			= LDRsrgbRGB_LDRlinA,
+//		LDRlinRGBA,					LDR_FULL	= LDRlinRGBA,
+//		HDRlinRGB_LDRlinA,			HDR			= HDRlinRGB_LDRlinA,
+//		HDRlinRGBA,					HDR_FULL	= HDRlinRGBA
+// ColourProfile.
+
 enum class tColourSpace
 {
 	Unspecified,

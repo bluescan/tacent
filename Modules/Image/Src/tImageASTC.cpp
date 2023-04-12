@@ -146,6 +146,12 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 		return true;
 	}
 
+	/////////////////////////
+
+	// Call DecodePixelData_ASTC
+
+	/////////////////////////
+
 	//
 	// We were asked to decode. Decode to RGBA data and then populate a new layer.
 	//
@@ -153,10 +159,10 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 	astcenc_profile profile = ASTCENC_PRF_LDR_SRGB;
 	switch (params.Profile)
 	{
-		case ColourProfile::LDR:		profile = ASTCENC_PRF_LDR_SRGB;			break;
-		case ColourProfile::LDR_FULL:	profile = ASTCENC_PRF_LDR;				break;
-		case ColourProfile::HDR:		profile = ASTCENC_PRF_HDR_RGB_LDR_A;	break;
-		case ColourProfile::HDR_FULL:	profile = ASTCENC_PRF_HDR;				break;
+		case ColourProfile::LDR:		profile = ASTCENC_PRF_LDR_SRGB;			break;		// sRGB RGB LIN A
+		case ColourProfile::LDR_FULL:	profile = ASTCENC_PRF_LDR;				break;		// LIN RGBA
+		case ColourProfile::HDR:		profile = ASTCENC_PRF_HDR_RGB_LDR_A;	break;		// LIN RGB LIN A
+		case ColourProfile::HDR_FULL:	profile = ASTCENC_PRF_HDR;				break;		// LIN RGBA
 	}
 
 	// ASTC Config.

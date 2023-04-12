@@ -443,8 +443,12 @@ inline bool tImage::tIsLuminanceFormat(tPixelFormat format)
 	switch (format)
 	{
 		case tPixelFormat::L8:
+		case tPixelFormat::R8:
 		case tPixelFormat::R16F:
 		case tPixelFormat::R32F:
+		case tPixelFormat::BC4ATI1:
+		case tPixelFormat::EACR11:
+		case tPixelFormat::EACR11S:
 			return true;
 	}
 
