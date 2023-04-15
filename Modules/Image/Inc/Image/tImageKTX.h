@@ -43,7 +43,7 @@ public:
 		// gamma-space (brighter) for diaplay on a monitor.
 		LoadFlag_GammaCompression	= 1 << 2,
 		LoadFlag_SRGBCompression	= 1 << 3,	// Same as above but uses the official sRGB transformation. Linear -> sRGB. Approx encoding gamma of 1/2.4 for part of curve.
-		LoadFlag_AutoGamma			= 1 << 4,	// Tries to determine whether to apply sRGB compression based on pixel format. Call GetColourSpace to see if it applied.
+		LoadFlag_AutoGamma			= 1 << 4,	// Tries to determine whether to apply sRGB compression based on pixel format. Call GetColourProfile to see if it applied.
 		LoadFlag_ToneMapExposure	= 1 << 5,	// Apply exposure value when loading the ktx. Only affects HDR (linear-colour) formats.
 		LoadFlag_SpreadLuminance	= 1 << 6,	// For KTX files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats. Applies only if decoding a ktx is an R-only or L-only format.
 		LoadFlag_CondMultFourDim	= 1 << 7,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,

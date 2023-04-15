@@ -97,7 +97,7 @@ bool tImageASTC::Load(const tString& astcFile, const LoadParams& params)
 }
 
 
-bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams& params)
+bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams& paramsIn)
 {
 	Clear();
 
@@ -106,6 +106,7 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 	if (!astcInMemory || (numBytes < (sizeof(tASTC::Header)+16)))
 		return false;
 
+	LoadParams params(paramsIn);
 	const uint8* astcCurr = astcInMemory;
 	tASTC::Header& header = *((tASTC::Header*)astcInMemory);
 
@@ -144,6 +145,16 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 	{
 		Layer = new tLayer(PixelFormat, width, height, (uint8*)astcData);
 		return true;
+	}
+
+	// The gamma-compression load flags only apply when decoding. If the gamma mode is auto, we determine here
+	// whether to apply sRGB compression. If the space is linear and a format that often encodes colours, we apply it.
+	if (params.Flags & LoadFlag_AutoGamma)
+	{
+		// Clear all related flags.
+		params.Flags &= ~(LoadFlag_AutoGamma | LoadFlag_SRGBCompression | LoadFlag_GammaCompression);
+		if (tMath::tIsProfileLinearInRGB(params.Profile))
+			params.Flags |= LoadFlag_SRGBCompression;
 	}
 
 	/////////////////////////
