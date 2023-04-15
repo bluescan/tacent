@@ -542,7 +542,6 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 		// BC Formats.
 		//
 		case tDDS::DXGIFMT_BC1_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_BC1_TYPELESS:
 		case tDDS::DXGIFMT_BC1_UNORM_SRGB:
 			format = tPixelFormat::BC1DXT1;
@@ -550,7 +549,6 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 
 		// DXGI formats do not specify premultiplied alpha mode like DXT2/3 so we leave it unspecified.
 		case tDDS::DXGIFMT_BC2_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_BC2_TYPELESS:
 		case tDDS::DXGIFMT_BC2_UNORM_SRGB:
 			format = tPixelFormat::BC2DXT2DXT3;
@@ -562,7 +560,6 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 		// treat it as being sRGB data in general. Of course it could just be a recipe for apple pie, and if it is, it is
 		// a recipe the authors wanted interpreted as sRGB data, otherwise they wouldn't have chosen the _SRGB pixel format.
 		case tDDS::DXGIFMT_BC3_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_BC3_TYPELESS:
 		case tDDS::DXGIFMT_BC3_UNORM_SRGB:
 			format = tPixelFormat::BC3DXT4DXT5;
@@ -594,7 +591,6 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 			break;
 
 		case tDDS::DXGIFMT_BC7_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_BC7_TYPELESS:				// Interpret typeless as sRGB.
 		case tDDS::DXGIFMT_BC7_UNORM_SRGB:
 			format = tPixelFormat::BC7;
@@ -628,7 +624,6 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 
 		case tDDS::DXGIFMT_R8G8B8A8_UNORM:
 		case tDDS::DXGIFMT_R8G8B8A8_UINT:			// Stored same as UNORM. Only diff is that UNORM ends up as a 'float' from 0.0 to 1.0.
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_R8G8B8A8_TYPELESS:
 		case tDDS::DXGIFMT_R8G8B8A8_UNORM_SRGB:
 		// DXGIFMT_R8G8B8A8_SNORM not implemented yet.
@@ -637,7 +632,6 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 			break;
 
 		case tDDS::DXGIFMT_B8G8R8A8_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_B8G8R8A8_TYPELESS:
 		case tDDS::DXGIFMT_B8G8R8A8_UNORM_SRGB:
 			format = tPixelFormat::B8G8R8A8;
@@ -693,98 +687,84 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 		//
 		case tDDS::DXGIFMT_EXT_ASTC_4X4_UNORM:
 		case tDDS::DXGIFMT_EXT_ASTC_4X4_TYPELESS:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_4X4_UNORM_SRGB:
 			format = tPixelFormat::ASTC4X4;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_5X4_UNORM:
 		case tDDS::DXGIFMT_EXT_ASTC_5X4_TYPELESS:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_5X4_UNORM_SRGB:
 			format = tPixelFormat::ASTC5X4;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_5X5_UNORM:
 		case tDDS::DXGIFMT_EXT_ASTC_5X5_TYPELESS:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_5X5_UNORM_SRGB:
 			format = tPixelFormat::ASTC5X5;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_6X5_UNORM:
 		case tDDS::DXGIFMT_EXT_ASTC_6X5_TYPELESS:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_6X5_UNORM_SRGB:
 			format = tPixelFormat::ASTC6X5;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_6X6_UNORM:
 		case tDDS::DXGIFMT_EXT_ASTC_6X6_TYPELESS:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_6X6_UNORM_SRGB:
 			format = tPixelFormat::ASTC6X6;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_8X5_UNORM:
 		case tDDS::DXGIFMT_EXT_ASTC_8X5_TYPELESS:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_8X5_UNORM_SRGB:
 			format = tPixelFormat::ASTC8X5;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_8X6_UNORM:
 		case tDDS::DXGIFMT_EXT_ASTC_8X6_TYPELESS:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_8X6_UNORM_SRGB:
 			format = tPixelFormat::ASTC8X6;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_8X8_UNORM:
 		case tDDS::DXGIFMT_EXT_ASTC_8X8_TYPELESS:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_8X8_UNORM_SRGB:
 			format = tPixelFormat::ASTC8X8;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_10X5_UNORM:
 		case tDDS::DXGIFMT_EXT_ASTC_10X5_TYPELESS:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_10X5_UNORM_SRGB:
 			format = tPixelFormat::ASTC10X5;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_10X6_UNORM:
 		case tDDS::DXGIFMT_EXT_ASTC_10X6_TYPELESS:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_10X6_UNORM_SRGB:
 			format = tPixelFormat::ASTC10X6;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_10X8_UNORM:
 		case tDDS::DXGIFMT_EXT_ASTC_10X8_TYPELESS:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_10X8_UNORM_SRGB:
 			format = tPixelFormat::ASTC10X8;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_10X10_UNORM:
 		case tDDS::DXGIFMT_EXT_ASTC_10X10_TYPELESS:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_10X10_UNORM_SRGB:
 			format = tPixelFormat::ASTC10X10;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_12X10_UNORM:
 		case tDDS::DXGIFMT_EXT_ASTC_12X10_TYPELESS:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_12X10_UNORM_SRGB:
 			format = tPixelFormat::ASTC12X10;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_12X12_UNORM:
 		case tDDS::DXGIFMT_EXT_ASTC_12X12_TYPELESS:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_12X12_UNORM_SRGB:
 			format = tPixelFormat::ASTC12X12;
 			break;
@@ -871,7 +851,7 @@ void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& format, tColourProfile& profil
 		case tDDS::D3DFMT_A16B16G16R16:	// We don't support DXGIFMT_R16G16B16A16_UNORM.
 		case tDDS::D3DFMT_Q16W16V16U16:	// We don't support DXGIFMT_R16G16B16A16_SNORM.
 			break;
-		
+
 		case tDDS::D3DFMT_A8:
 			profile = tColourProfile::LDRlRGBA;
 			format = tPixelFormat::A8;
@@ -1558,7 +1538,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 			DecodeResult result = DecodePixelData
 			(
 				layer->PixelFormat, layer->Data, layer->GetDataSize(),
-				w, h, decoded4i, decoded4f, ColourProfileSrc
+				w, h, decoded4i, decoded4f
 			);
 
 			if (result != DecodeResult::Success)

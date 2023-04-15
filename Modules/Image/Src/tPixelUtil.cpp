@@ -603,6 +603,7 @@ tImage::DecodeResult tImage::DecodePixelData_ASTC(tPixelFormat fmt, const uint8*
 	astcenc_profile profileastc = ASTCENC_PRF_LDR_SRGB;
 	switch (profile)
 	{
+		case tColourProfile::Auto:			profileastc = ASTCENC_PRF_HDR_RGB_LDR_A;break;	// Works for LDR also.
 		case tColourProfile::LDRsRGB_LDRlA:	profileastc = ASTCENC_PRF_LDR_SRGB;		break;
 		case tColourProfile::LDRgRGB_LDRlA:	profileastc = ASTCENC_PRF_LDR_SRGB;		break;	// Best approximation.
 		case tColourProfile::LDRlRGBA:		profileastc = ASTCENC_PRF_LDR;			break;
