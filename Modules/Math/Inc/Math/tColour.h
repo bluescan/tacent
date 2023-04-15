@@ -39,8 +39,9 @@ class tColour3f;	//			tColour3;
 // g = gamma
 // q = square
 // s = standard
-// WIP This should be for the space only... not separating the different channels.
-enum class tColourSpacee
+// See tColourProfile for an enum that describes which spaces are used for which channels, and whether they are LDR or
+// HDR, in image files.
+enum class tColourSpace
 {
 	Unspecified,
 
