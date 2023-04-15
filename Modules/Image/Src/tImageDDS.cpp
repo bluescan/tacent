@@ -688,102 +688,103 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 		//
 		// ASTC Formats.
 		//
-		// For these we're assuming they are in sRGB-space even if the format is NOT the sRGB one.
-		// This is because I know some popular exporters (NVTT) always use the UNORM (no sRGB) enumerant.
+		// We chose HDR as the default profile because it can load LDR blocks. The other way around doesn't work with
+		// with the tests images -- the LDR profile doesn't appear capable of loading HDR blocks (they become magenta).
+		//
 		case tDDS::DXGIFMT_EXT_ASTC_4X4_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_EXT_ASTC_4X4_TYPELESS:
+			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_4X4_UNORM_SRGB:
 			format = tPixelFormat::ASTC4X4;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_5X4_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_EXT_ASTC_5X4_TYPELESS:
+			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_5X4_UNORM_SRGB:
 			format = tPixelFormat::ASTC5X4;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_5X5_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_EXT_ASTC_5X5_TYPELESS:
+			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_5X5_UNORM_SRGB:
 			format = tPixelFormat::ASTC5X5;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_6X5_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_EXT_ASTC_6X5_TYPELESS:
+			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_6X5_UNORM_SRGB:
 			format = tPixelFormat::ASTC6X5;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_6X6_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_EXT_ASTC_6X6_TYPELESS:
+			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_6X6_UNORM_SRGB:
 			format = tPixelFormat::ASTC6X6;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_8X5_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_EXT_ASTC_8X5_TYPELESS:
+			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_8X5_UNORM_SRGB:
 			format = tPixelFormat::ASTC8X5;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_8X6_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_EXT_ASTC_8X6_TYPELESS:
+			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_8X6_UNORM_SRGB:
 			format = tPixelFormat::ASTC8X6;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_8X8_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_EXT_ASTC_8X8_TYPELESS:
+			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_8X8_UNORM_SRGB:
 			format = tPixelFormat::ASTC8X8;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_10X5_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_EXT_ASTC_10X5_TYPELESS:
+			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_10X5_UNORM_SRGB:
 			format = tPixelFormat::ASTC10X5;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_10X6_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_EXT_ASTC_10X6_TYPELESS:
+			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_10X6_UNORM_SRGB:
 			format = tPixelFormat::ASTC10X6;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_10X8_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_EXT_ASTC_10X8_TYPELESS:
+			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_10X8_UNORM_SRGB:
 			format = tPixelFormat::ASTC10X8;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_10X10_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_EXT_ASTC_10X10_TYPELESS:
+			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_10X10_UNORM_SRGB:
 			format = tPixelFormat::ASTC10X10;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_12X10_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_EXT_ASTC_12X10_TYPELESS:
+			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_12X10_UNORM_SRGB:
 			format = tPixelFormat::ASTC12X10;
 			break;
 
 		case tDDS::DXGIFMT_EXT_ASTC_12X12_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case tDDS::DXGIFMT_EXT_ASTC_12X12_TYPELESS:
+			profile = tColourProfile::HDRlRGB_LDRlA;
 		case tDDS::DXGIFMT_EXT_ASTC_12X12_UNORM_SRGB:
 			format = tPixelFormat::ASTC12X12;
 			break;

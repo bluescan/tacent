@@ -1857,10 +1857,11 @@ void ASTCLoadDecodeSave(const tString& astcfile, const tImageASTC::LoadParams& p
 
 	switch (params.Profile)
 	{
-		case tImageASTC::ColourProfile::LDR:		savename += "l";	break;	// RGB in sRGB space. Linear alpha.
-		case tImageASTC::ColourProfile::LDR_FULL:	savename += "L";	break;	// RGBA all linear.
-		case tImageASTC::ColourProfile::HDR:		savename += "h";	break;	// RGB in linear HDR space. Linear LDR alpha.
-		case tImageASTC::ColourProfile::HDR_FULL:	savename += "H";	break;	// RGBA all in linear HDR.
+		case tColourProfile::sRGB:	savename += "l";	break;	// RGB in sRGB or gRGB space. Linear alpha.
+		case tColourProfile::gRGB:	savename += "l";	break;	// RGB in sRGB or gRGB space. Linear alpha.
+		case tColourProfile::lRGB:	savename += "L";	break;	// RGBA all linear.
+		case tColourProfile::HDRa:	savename += "h";	break;	// RGB in linear HDR space. Linear LDR alpha.
+		case tColourProfile::HDRA:	savename += "H";	break;	// RGBA all in linear HDR.
 	}
 
 	tPrintf("ASTC Load %s\n", savename.Chr());
@@ -1904,7 +1905,7 @@ tTestUnit(ImageASTC)
 	tPrintf("Testing ASTC Loading/Decoding using astcenc V %s\n\n", tImage::Version_ASTCEncoder);
 	tPrintf("D = Decode\n");
 	tPrintf("G = Explicit Gamma or sRGB Compression.\n");
-	tPrintf("l = LDR Profile.      RGB in sRGB space. Linear alpha. All in [0,1]\n");
+	tPrintf("l = LDR Profile.      RGB in sRGB/gRGB space. Linear alpha. All in [0,1]\n");
 	tPrintf("L = LDR FULL Profile. RGBA all linear. All in [0, 1]\n");
 	tPrintf("h = HDR Profile.      RGB linear space in [0, inf]. LDR [0, 1] A in linear space.\n");
 	tPrintf("H = HDR FULL Profile. RGBA linear space in [0, inf].\n");
@@ -1913,7 +1914,7 @@ tTestUnit(ImageASTC)
 	// LDR.
 	//
 	tImageASTC::LoadParams ldrParams;
-	ldrParams.Profile = tImageASTC::ColourProfile::LDR;
+	ldrParams.Profile = tColourProfile::sRGB;
 	ldrParams.Flags = tImageASTC::LoadFlag_Decode | tImageASTC::LoadFlag_ReverseRowOrder;
 	ASTCLoadDecodeSave("ASTC4x4_LDR.astc", ldrParams);
 	ASTCLoadDecodeSave("ASTC5x4_LDR.astc", ldrParams);
@@ -1934,7 +1935,7 @@ tTestUnit(ImageASTC)
 	// LDR.
 	//
 	tImageASTC::LoadParams hdrParams;
-	hdrParams.Profile = tImageASTC::ColourProfile::HDR;
+	hdrParams.Profile = tColourProfile::HDRa;
 	hdrParams.Flags = tImageASTC::LoadFlag_Decode | tImageASTC::LoadFlag_SRGBCompression | tImageASTC::LoadFlag_ReverseRowOrder;
 	ASTCLoadDecodeSave("ASTC4x4_HDR.astc", hdrParams);
 	ASTCLoadDecodeSave("ASTC5x4_HDR.astc", hdrParams);

@@ -155,21 +155,23 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 	//
 	// We were asked to decode. Decode to RGBA data and then populate a new layer.
 	//
-	// ASTC Colour Profile.
-	astcenc_profile profile = ASTCENC_PRF_LDR_SRGB;
+
+	// Convert source colour profile to astc colour profile.
+	astcenc_profile profileastc = ASTCENC_PRF_LDR_SRGB;
 	switch (params.Profile)
 	{
-		case ColourProfile::LDR:		profile = ASTCENC_PRF_LDR_SRGB;			break;		// sRGB RGB LIN A
-		case ColourProfile::LDR_FULL:	profile = ASTCENC_PRF_LDR;				break;		// LIN RGBA
-		case ColourProfile::HDR:		profile = ASTCENC_PRF_HDR_RGB_LDR_A;	break;		// LIN RGB LIN A
-		case ColourProfile::HDR_FULL:	profile = ASTCENC_PRF_HDR;				break;		// LIN RGBA
+		case tColourProfile::LDRsRGB_LDRlA:	profileastc = ASTCENC_PRF_LDR_SRGB;		break;
+		case tColourProfile::LDRgRGB_LDRlA:	profileastc = ASTCENC_PRF_LDR_SRGB;		break;	// Best approximation.
+		case tColourProfile::LDRlRGBA:		profileastc = ASTCENC_PRF_LDR;			break;
+		case tColourProfile::HDRlRGB_LDRlA:	profileastc = ASTCENC_PRF_HDR_RGB_LDR_A;break;
+		case tColourProfile::HDRlRGBA:		profileastc = ASTCENC_PRF_HDR;			break;
 	}
 
 	// ASTC Config.
 	float quality = ASTCENC_PRE_MEDIUM;			// Only need for compression.
 	astcenc_error result = ASTCENC_SUCCESS;
 	astcenc_config config;
-	astcenc_config_init(profile, blockW, blockH, blockD, quality, ASTCENC_FLG_DECOMPRESS_ONLY, &config);
+	astcenc_config_init(profileastc, blockW, blockH, blockD, quality, ASTCENC_FLG_DECOMPRESS_ONLY, &config);
 	if (result != ASTCENC_SUCCESS)
 		return false;
 

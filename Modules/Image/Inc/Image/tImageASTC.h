@@ -40,16 +40,6 @@ public:
 		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder
 	};
 
-	enum class ColourProfile
-	{
-		// LDR menas no value above 1.0. HDR means there are.
-		// RGBA values are either in linear (lin) or sRGB (srgb) space.
-		LDRsrgbRGB_LDRlinA,			LDR			= LDRsrgbRGB_LDRlinA,
-		LDRlinRGBA,					LDR_FULL	= LDRlinRGBA,
-		HDRlinRGB_LDRlinA,			HDR			= HDRlinRGB_LDRlinA,
-		HDRlinRGBA,					HDR_FULL	= HDRlinRGBA
-	};
-
 	struct LoadParams
 	{
 		LoadParams()																									{ Reset(); }
@@ -57,11 +47,11 @@ public:
 
 		// We chose HDR as the default profile because it can load LDR blocks. The other way around doesn't work with
 		// with the tests images -- the LDR profile doesn't appear capable of loading HDR blocks (they become magenta).
-		void Reset()																									{ Flags = LoadFlags_Default; Profile = ColourProfile::HDR; Gamma = tMath::DefaultGamma; Exposure = 1.0f; }
+		void Reset()																									{ Flags = LoadFlags_Default; Profile = tColourProfile::HDRlRGB_LDRlA; Gamma = tMath::DefaultGamma; Exposure = 1.0f; }
 		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Profile = src.Profile; Gamma = src.Gamma; Exposure = src.Exposure; return *this; }
 
 		uint32 Flags;
-		ColourProfile Profile;		// Used iff decoding.
+		tColourProfile Profile;		// Used iff decoding.
 		float Gamma;				// Used iff decoding.
 		float Exposure;				// Used iff decoding.
 	};
