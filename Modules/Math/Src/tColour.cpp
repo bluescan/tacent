@@ -3,7 +3,7 @@
 // Colour and pixel classes. Both a 32 bit integral representation as well as a 4 component floating point one can be
 // found in this file.
 //
-// Copyright (c) 2006, 2011, 2017, 2020, 2022 Tristan Grimmer.
+// Copyright (c) 2006, 2011, 2017, 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -17,6 +17,48 @@
 #include <Foundation/tHash.h>
 #include <Math/tColour.h>
 using namespace tMath;
+
+
+const char* tColourProfileNames[] =
+{
+	"LDRsRGB_LDRlA",	// RGB is sRGB space. Alpha in linear. LDR (0.0 to 1.0) for both.
+	"LDRgRGB_LDRlA",
+	"LDRlRGBA",
+	"HDRlRGB_LDRlA",
+	"HDRlRGBA",
+	"Auto"
+};
+tStaticAssert(tNumElements(tColourProfileNames) == int(tColourProfile::NumProfiles));
+
+
+const char* tColourProfileShortNames[] =
+{
+	"sRGB",
+	"gRGB",
+	"lRGB",
+	"HDRa",
+	"HDRA",
+	"Auto"
+};
+tStaticAssert(tNumElements(tColourProfileShortNames) == int(tColourProfile::NumProfiles));
+
+
+const char* tGetColourProfileName(tColourProfile profile)
+{
+	if (profile == tColourProfile::Invalid)
+		return nullptr;
+
+	return tColourProfileNames[int(profile)];
+}
+
+
+const char* tGetColourProfileShortName(tColourProfile profile)
+{
+	if (profile == tColourProfile::Invalid)
+		return nullptr;
+
+	return tColourProfileShortNames[int(profile)];
+}
 
 
 // Uses C++11 aggregate initialization syntax.

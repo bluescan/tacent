@@ -103,12 +103,12 @@ public:
 	// Will return the format the astc data was originally in, even if you chose to decode.
 	tPixelFormat GetPixelFormatSrc() const																				{ return PixelFormatSrc; }
 
-	// Returns the current colour space.
-	tColourSpace GetColourSpace() const																					{ return ColourSpace; }
+	// Returns the current colour profile.
+	tColourProfile GetColourProfile() const																				{ return ColourProfile; }
 
-	// Returns the colour space of the source file that was loaded. This may not match the current if, say, gamma
+	// Returns the colour profile of the source file that was loaded. This may not match the current if, say, gamma
 	// correction was requested on load.
-	tColourSpace GetColourSpaceSrc() const																				{ return ColourSpaceSrc; }
+	tColourProfile GetColourProfileSrc() const																			{ return ColourProfileSrc; }
 
 	// After the steal call you are the owner of the layer and must eventually delete it. This tImageASTC object is
 	// invalid afterwards.
@@ -120,10 +120,10 @@ private:
 	tPixelFormat PixelFormat				= tPixelFormat::Invalid;
 	tPixelFormat PixelFormatSrc				= tPixelFormat::Invalid;
 
-	// The colour-space is _not_ part of the pixel format in tacent because, well, it doesn't change the format that
+	// The colour-profile is _not_ part of the pixel format in tacent because, well, it doesn't change the format that
 	// the pixels are stored in. It's just how the values are interpreted.
-	tColourSpace ColourSpace				= tColourSpace::Unspecified;
-	tColourSpace ColourSpaceSrc				= tColourSpace::Unspecified;
+	tColourProfile ColourProfile			= tColourProfile::Unspecified;
+	tColourProfile ColourProfileSrc			= tColourProfile::Unspecified;
 
 	// We store the data in a tLayer because that's the container we use for pixel data than may be in any format.
 	// The user of tImagePKM is not required to decode, so we can't just use a tPixel array.
@@ -138,8 +138,8 @@ inline void tImagePKM::Clear()
 {
 	PixelFormat								= tPixelFormat::Invalid;
 	PixelFormatSrc							= tPixelFormat::Invalid;
-	ColourSpace								= tColourSpace::Unspecified;
-	ColourSpaceSrc							= tColourSpace::Unspecified;
+	ColourProfile							= tColourProfile::Unspecified;
+	ColourProfileSrc						= tColourProfile::Unspecified;
 	delete									Layer;
 	Layer									= nullptr;
 }

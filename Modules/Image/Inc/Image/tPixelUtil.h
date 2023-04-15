@@ -40,14 +40,14 @@ enum class DecodeResult
 DecodeResult DecodePixelData
 (
 	tPixelFormat, const uint8* data, int dataSize, int width, int height,
-	tColour4i*& dstLDR, tColour4f*& dstHDR, tColourSpace = tColourSpace::Invalid
+	tColour4i*& dstLDR, tColour4f*& dstHDR, tColourProfile = tColourProfile::Invalid
 );
 
 
 // These do the same as above except for a subset of pixel formats. The above function ends up calling one of these.
 DecodeResult DecodePixelData_Packed	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4i*&, tColour4f*&);
 DecodeResult DecodePixelData_Block	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4i*&, tColour4f*&);
-DecodeResult DecodePixelData_ASTC	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4i*&, tColour4f*&, tColourSpace = tColourSpace::Invalid);
+DecodeResult DecodePixelData_ASTC	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4i*&, tColour4f*&, tColourProfile = tColourProfile::Invalid);
 
 
 constexpr uint32 FourCC(uint8 ch0, uint8 ch1, uint8 ch2, uint8 ch3);

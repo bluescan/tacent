@@ -188,11 +188,11 @@ public:
 	tPixelFormat GetPixelFormatSrc() const																				{ return PixelFormatSrc; }
 
 	// Returns the current colour space.
-	tColourSpace GetColourSpace() const																					{ return ColourSpace; }
+	tColourProfile GetColourProfile() const																				{ return ColourProfile; }
 
 	// Returns the colour space of the source file that was loaded. This may not match the current if, say, gamma
 	// correction was requested on load.
-	tColourSpace GetColourSpaceSrc() const																				{ return ColourSpaceSrc; }
+	tColourProfile GetColourProfileSrc() const																			{ return ColourProfileSrc; }
 
 	tAlphaMode GetAlphaMode() const																						{ return AlphaMode; }
 
@@ -262,8 +262,8 @@ private:
 	tPixelFormat PixelFormatSrc				= tPixelFormat::Invalid;
 
 	// These two _not_ part of the pixel format in tacent.
-	tColourSpace ColourSpace				= tColourSpace::Unspecified;
-	tColourSpace ColourSpaceSrc				= tColourSpace::Unspecified;
+	tColourProfile ColourProfile			= tColourProfile::Unspecified;
+	tColourProfile ColourProfileSrc			= tColourProfile::Unspecified;
 	tAlphaMode AlphaMode					= tAlphaMode::Unspecified;
 
 	bool IsCubeMap							= false;

@@ -76,39 +76,39 @@ namespace tPKM
 
 	bool IsHeaderValid(const Header&);
 
-	// These figure out the pixel format and the colour-space. tPixelFormat does not specify ancilllary
+	// These figure out the pixel format and the colour-profile. tPixelFormat does not specify ancilllary
 	// properties of the data -- it specified the encoding of the data. The extra information, like the colour-space it
-	// was authored in, is stored in tColourSpace. In many cases this satellite information cannot be determined, in
-	// which case colour-space will be set to their 'unspecified' enumerant.
-	void GetFormatInfo_FromPKMFormat(tPixelFormat&, tColourSpace&, uint32 pkmFmt, int version);
+	// was authored in, is stored in tColourProfile. In many cases this satellite information cannot be determined, in
+	// which case colour-profile will be set to their 'unspecified' enumerant.
+	void GetFormatInfo_FromPKMFormat(tPixelFormat&, tColourProfile&, uint32 pkmFmt, int version);
 }
 
 
-void tPKM::GetFormatInfo_FromPKMFormat(tPixelFormat& fmt, tColourSpace& spc, uint32 pkmFmt, int version)
+void tPKM::GetFormatInfo_FromPKMFormat(tPixelFormat& fmt, tColourProfile& spc, uint32 pkmFmt, int version)
 {
 	fmt = tPixelFormat::Invalid;
-	spc = tColourSpace::Invalid;
+	spc = tColourProfile::Invalid;
 	switch (PKMFMT(pkmFmt))
 	{
-		case PKMFMT::ETC1_RGB:		fmt = tPixelFormat::ETC1;		spc = tColourSpace::sRGB;		break;
-		case PKMFMT::ETC2_RGB:		fmt = tPixelFormat::ETC2RGB;	spc = tColourSpace::Linear;		break;
+		case PKMFMT::ETC1_RGB:		fmt = tPixelFormat::ETC1;		spc = tColourProfile::sRGB;		break;
+		case PKMFMT::ETC2_RGB:		fmt = tPixelFormat::ETC2RGB;	spc = tColourProfile::lRGB;		break;
 		case PKMFMT::ETC2_RGBA_OLD:
-		case PKMFMT::ETC2_RGBA:		fmt = tPixelFormat::ETC2RGBA;	spc = tColourSpace::Linear;		break;
-		case PKMFMT::ETC2_RGBA1:	fmt = tPixelFormat::ETC2RGBA1;	spc = tColourSpace::Linear;		break;
-		case PKMFMT::ETC2_R:		fmt = tPixelFormat::EACR11;		spc = tColourSpace::Linear;		break;
-		case PKMFMT::ETC2_RG:		fmt = tPixelFormat::EACRG11;	spc = tColourSpace::Linear;		break;
-		case PKMFMT::ETC2_R_SIGNED:	fmt = tPixelFormat::EACR11S;	spc = tColourSpace::Linear;		break;
-		case PKMFMT::ETC2_RG_SIGNED:fmt = tPixelFormat::EACRG11S;	spc = tColourSpace::Linear;		break;
-		case PKMFMT::ETC2_sRGB:		fmt = tPixelFormat::ETC2RGB;	spc = tColourSpace::sRGB;		break;
-		case PKMFMT::ETC2_sRGBA:	fmt = tPixelFormat::ETC2RGBA;	spc = tColourSpace::sRGB;		break;
-		case PKMFMT::ETC2_sRGBA1:	fmt = tPixelFormat::ETC2RGBA1;	spc = tColourSpace::sRGB;		break;
+		case PKMFMT::ETC2_RGBA:		fmt = tPixelFormat::ETC2RGBA;	spc = tColourProfile::lRGB;		break;
+		case PKMFMT::ETC2_RGBA1:	fmt = tPixelFormat::ETC2RGBA1;	spc = tColourProfile::lRGB;		break;
+		case PKMFMT::ETC2_R:		fmt = tPixelFormat::EACR11;		spc = tColourProfile::lRGB;		break;
+		case PKMFMT::ETC2_RG:		fmt = tPixelFormat::EACRG11;	spc = tColourProfile::lRGB;		break;
+		case PKMFMT::ETC2_R_SIGNED:	fmt = tPixelFormat::EACR11S;	spc = tColourProfile::lRGB;		break;
+		case PKMFMT::ETC2_RG_SIGNED:fmt = tPixelFormat::EACRG11S;	spc = tColourProfile::lRGB;		break;
+		case PKMFMT::ETC2_sRGB:		fmt = tPixelFormat::ETC2RGB;	spc = tColourProfile::sRGB;		break;
+		case PKMFMT::ETC2_sRGBA:	fmt = tPixelFormat::ETC2RGBA;	spc = tColourProfile::sRGB;		break;
+		case PKMFMT::ETC2_sRGBA1:	fmt = tPixelFormat::ETC2RGBA1;	spc = tColourProfile::sRGB;		break;
 	}
 
 	// If the format is still invalid we encountered an invalid format in the PKM header.
 	// In this case we base the format on the header version number only.
 	if (fmt == tPixelFormat::Invalid)
 	{
-		spc = tColourSpace::sRGB;
+		spc = tColourProfile::sRGB;
 		if (version == 2)
 			fmt = tPixelFormat::ETC2RGB;
 		else
@@ -183,15 +183,15 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 		return false;
 
 	tPixelFormat format;
-	tColourSpace space;
-	tPKM::GetFormatInfo_FromPKMFormat(format, space, header->GetFormat(), header->GetVersion());
+	tColourProfile profile;
+	tPKM::GetFormatInfo_FromPKMFormat(format, profile, header->GetFormat(), header->GetVersion());
 	if (!tIsBCFormat(format))
 		return false;
 
 	PixelFormat = format;
 	PixelFormatSrc = format;
-	ColourSpace = space;
-	ColourSpaceSrc = space;
+	ColourProfile = profile;
+	ColourProfileSrc = profile;
 
 	const uint8* pkmData = pkmFileInMemory + sizeof(tPKM::Header);
 	int pkmDataSize = numBytes - sizeof(tPKM::Header);
@@ -215,7 +215,7 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 	{
 		// Clear all related flags.
 		params.Flags &= ~(LoadFlag_AutoGamma | LoadFlag_SRGBCompression | LoadFlag_GammaCompression);
-		if (ColourSpace == tColourSpace::Linear)
+		if (ColourProfile == tColourProfile::LDRlRGBA)
 			params.Flags |= LoadFlag_SRGBCompression;
 	}
 
@@ -415,7 +415,7 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 				colf.LinearToGamma(params.Gamma);
 			pixels[xy].SetR(colf.R); pixels[xy].SetG(colf.G); pixels[xy].SetB(colf.B);
 		}
-		ColourSpace = (params.Flags & LoadFlag_SRGBCompression) ? tColourSpace::sRGB : tColourSpace::Gamma;
+		ColourProfile = (params.Flags & LoadFlag_SRGBCompression) ? tColourProfile::LDRsRGB_LDRlA : tColourProfile::LDRgRGB_LDRlA;
 	}
 
 	bool reverseRowOrderRequested = params.Flags & LoadFlag_ReverseRowOrder;
@@ -441,11 +441,11 @@ bool tImagePKM::Set(tPixel* pixels, int width, int height, bool steal)
 	if (!pixels || (width <= 0) || (height <= 0))
 		return false;
 
-	Layer			= new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)pixels, steal);
-	PixelFormatSrc	= tPixelFormat::R8G8B8A8;
-	PixelFormat		= tPixelFormat::R8G8B8A8;
-	ColourSpaceSrc	= tColourSpace::sRGB;
-	ColourSpace		= tColourSpace::sRGB;
+	Layer				= new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)pixels, steal);
+	PixelFormatSrc		= tPixelFormat::R8G8B8A8;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::LDRsRGB_LDRlA;
+	ColourProfile		= tColourProfile::LDRsRGB_LDRlA;
 	return true;
 }
 

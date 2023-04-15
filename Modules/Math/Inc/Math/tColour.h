@@ -31,8 +31,7 @@ class tColour3f;	//			tColour3;
 
 // Generally floating point colour representations are considered to be in linear colour-space. Linear is where you
 // want to do all the work. sRGB (gamma corrected) is probably the space of most textures, especially diffuse textures
-// as they were authored on monitors that had a non-linear (gamma) response. The sucky thing is, this is all leftover
-// cruft from CRTs. LCD TVs have circuitry to mimic the old response of phosphor. Anyway, use this enum to indicate
+// as they were authored on monitors that had a non-linear (gamma) response. Use this enum to indicate
 // the colour-space of pixel data you have... if you know it. Unfortunatly you can't in general determine the space
 // from, say, the pixel format -- a non sRGB format may contain sRGB data (but an sRGB format should be assumed to
 // actually contain sRGB data). In the below enumerants:
@@ -40,18 +39,8 @@ class tColour3f;	//			tColour3;
 // g = gamma
 // q = square
 // s = standard
-////////////////////////////
-		// UNORM (unsigned normalized integer) means n-bit int.. all 0s -> 0.0 and all 1s -> 1.0.
-		// HDR is a slightly better term as it means 0.0 to 1.0 refardless of pixel encoding (whether it be float, half, or integral).
-		// LDR menas no value above 1.0. HDR means there are.
-		// RGBA values are either in linear (lin) or sRGB (srgb) space.
-//		LDRsrgbRGB_LDRlinA,			LDR			= LDRsrgbRGB_LDRlinA,
-//		LDRlinRGBA,					LDR_FULL	= LDRlinRGBA,
-//		HDRlinRGB_LDRlinA,			HDR			= HDRlinRGB_LDRlinA,
-//		HDRlinRGBA,					HDR_FULL	= HDRlinRGBA
-// ColourProfile.
-
-enum class tColourSpace
+// WIP This should be for the space only... not separating the different channels.
+enum class tColourSpacee
 {
 	Unspecified,
 
@@ -93,6 +82,56 @@ enum class tColourSpace
 };
 
 
+// The colour profile specifies the possible variants of how pixel data may be stored. In Tacent the colour profile is
+// stored separately to the pixel-format. It specifies how the RGBA components should be intyerpreted, not how they're
+// encoded. This includes both what space each component is in as well as range information: LDR (low-dynamic-range) or
+// HDR (high-dynamic-range).
+//
+// For example, many RGBA images have the RGB components in sRGB-space, but the A component in linear. We use the term
+// LDR rather than the UNORM term you see in many pixel-formats because UNORM also implies that the data is stored as
+// an integer: UNORM -> unsigned normalized integer where all bits 0 represents 0.0 and all bits 1 represents 1.0.
+// There's nothing stopping a pure float/half-float encoding being limited to the range 0.0 to 1.0.
+// The profile enumerants use the following mnemonics:
+//
+// LDR		: Low dynamic range. Values restricted to [0.0, 1.0].
+// HDR		: High dynamic range. Values are in [0.0, infinity].
+// s		: Standard colour space. AKA sRGB.
+// g		: Similar to Standard colour space but uses a simple pow function with gamma.
+// l		: That's an 'L'. Linear colour space. In practice HDR only ever uses linear.
+// RGBA		: These letters are used for the various compenents that may be present.
+//
+// For cases where a pixel format does not encode all 4 components, the first profile that fits should be used.
+// For example a .rgb (Radiance) file does not store alpha, but does store RGB as linear HDR. The profile would be
+// HDRlRGB_LDRlA rather than HDRlRGBA. Note also that not all tColourSpaces are represented in the profiles. This is
+// because the profiles are used for what is commonly found in image pixel data, which does not include all the spaces
+// mentioned in the tColourSpace enum.
+enum class tColourProfile
+{
+	Unspecified			= -1,
+	LDRsRGB_LDRlA,		// Equiv ASTC profile: ASTCENC_PRF_LDR_SRGB.      The LDR sRGB colour profile.
+	LDRgRGB_LDRlA,		// No ASTC profile equivalent.				      The LDR gRGB colour profile.
+	LDRlRGBA,			// Equiv ASTC profile: ASTCENC_PRF_LDR.           The LDR linear colour profile.
+	HDRlRGB_LDRlA,		// Equiv ASTC profile: ASTCENC_PRF_HDR_RGB_LDR_A. The HDR RGB with LDR alpha colour profile.
+	HDRlRGBA,			// Equiv ASTC profile: ASTCENC_PRF_HDR.           The HDR RGBA colour profile.
+	Auto,
+	NumProfiles,
+
+	// Shorter synonyms.
+	Invalid				= Unspecified,
+	sRGB				= LDRsRGB_LDRlA,
+	gRGB				= LDRgRGB_LDRlA,			// Currently not found in files, but may be converted to.
+	lRGB				= LDRlRGBA,
+	HDRa				= HDRlRGB_LDRlA,
+	HDRA				= HDRlRGBA,
+};
+
+
+extern const char* tColourProfileNames[int(tColourProfile::NumProfiles)];
+extern const char* tColourProfileShortNames[int(tColourProfile::NumProfiles)];
+const char* tGetColourProfileName(tColourProfile);
+const char* tGetColourProfileShortName(tColourProfile);
+
+
 // It's the same sort of deal with premultiplied alpha. The data encoded/represented using any particular pixel format
 // could be anything. If you have 32-bit RGBA for example, you don't know if the alpha was premultiplied or not. Some
 // file formats will tell you, and some legacy DXT formats will tell you (dxt2 dxt4 simply mean you know the alpha was
@@ -108,6 +147,9 @@ enum class tAlphaMode
 
 namespace tMath
 {
+	bool tIsProfileLinearInRGB(tColourProfile);		// If RGB not linear it's either sRGB or gRGB.
+	bool tIsProfileHDRInRGB(tColourProfile);		// If RGB not HDR it's LDR.
+
 	// Colour space conversions. The integer versions accept angle modes of Degrees and Norm256 only. The angle mode
 	// determines the range of the hue. Degrees means angles are in [0, 360). Norm256 means angles are in [0, 256).
 	// Saturation and value are both in [0, 256) for the integer conversion functions.
@@ -618,6 +660,31 @@ typedef tColour3f tColour3;
 
 
 // Implementation below this line.
+
+
+inline bool tMath::tIsProfileLinearInRGB(tColourProfile profile)
+{
+	switch (profile)
+	{
+		case tColourProfile::LDRlRGBA:
+		case tColourProfile::HDRlRGB_LDRlA:
+		case tColourProfile::HDRlRGBA:
+			return true;
+	}
+	return false;
+}
+
+
+inline bool tMath::tIsProfileHDRInRGB(tColourProfile profile)
+{
+	switch (profile)
+	{
+		case tColourProfile::HDRlRGB_LDRlA:
+		case tColourProfile::HDRlRGBA:
+			return true;
+	}
+	return false;
+}
 
 
 inline float tMath::tSquareToLinear(float squareComponent)

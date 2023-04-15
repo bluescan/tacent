@@ -2023,10 +2023,9 @@ void PKMLoadDecodeSave(const tString& pkmfile, uint32 loadFlags = 0)
 	else
 		tRequire(pkmformat == fileformat);
 
-	if (pkm.GetColourSpace() == tColourSpace::sRGB)
-		tPrintf("ColourSpace sRGB\n");
-	else if (pkm.GetColourSpace() == tColourSpace::Linear)
-		tPrintf("ColourSpace Linear\n");
+	const char* profileName = tGetColourProfileName(pkm.GetColourProfile());
+	if (profileName)
+		tPrintf("ColourProfile: %s\n", profileName);
 
 	tLayer* layer = pkm.StealLayer();
 	tRequire(layer && layer->OwnsData);

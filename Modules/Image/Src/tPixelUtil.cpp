@@ -58,7 +58,7 @@ namespace tImage
 }
 
 
-tImage::DecodeResult tImage::DecodePixelData(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4i*& decoded4i, tColour4f*& decoded4f, tColourSpace space)
+tImage::DecodeResult tImage::DecodePixelData(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4i*& decoded4i, tColour4f*& decoded4f, tColourProfile profile)
 {
 	if (decoded4i || decoded4f)
 		return DecodeResult::BuffersNotClear;
@@ -79,7 +79,7 @@ tImage::DecodeResult tImage::DecodePixelData(tPixelFormat fmt, const uint8* src,
 	}
 	else if (tImage::tIsASTCFormat(fmt))
 	{
-		return DecodePixelData_ASTC(fmt, src, srcSize, w, h, decoded4i, decoded4f, space);
+		return DecodePixelData_ASTC(fmt, src, srcSize, w, h, decoded4i, decoded4f, profile);
 	}
 	else // Unsupported PixelFormat
 	{
@@ -584,7 +584,7 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 }
 
 
-tImage::DecodeResult tImage::DecodePixelData_ASTC(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4i*& decoded4i, tColour4f*& decoded4f, tColourSpace space)
+tImage::DecodeResult tImage::DecodePixelData_ASTC(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4i*& decoded4i, tColour4f*& decoded4f, tColourProfile profile)
 {
 	if (decoded4i || decoded4f)
 		return DecodeResult::BuffersNotClear;
@@ -599,18 +599,15 @@ tImage::DecodeResult tImage::DecodePixelData_ASTC(tPixelFormat fmt, const uint8*
 	int blockH = 0;
 	int blockD = 1;
 
-	astcenc_profile profile = ASTCENC_PRF_LDR;
-//	switch (space)
-//	{
-//		case tColourSpace::sRGB:	profile = ASTCENC_PRF_LDR;
-//		case tColourSpace::sRGBlA:	profile = ASTCENC_PRF_LDR;
-//	}
-/////////////////////
-	// We use HDR profile if we detect a linear colour-space. Otherwise it's the LDR or LDR_SRGB profile.
-	if (space == tColourSpace::Linear)
-		profile = ASTCENC_PRF_HDR_RGB_LDR_A;
-	else if (space == tColourSpace::sRGB)
-		profile = ASTCENC_PRF_LDR_SRGB;
+	// Convert source colour profile to astc colour profile.
+	astcenc_profile profileastc = ASTCENC_PRF_LDR_SRGB;
+	switch (profile)
+	{
+		case tColourProfile::LDRsRGB_LDRlA:	profileastc = ASTCENC_PRF_LDR_SRGB;		break;
+		case tColourProfile::LDRlRGBA:		profileastc = ASTCENC_PRF_LDR;			break;
+		case tColourProfile::HDRlRGB_LDRlA:	profileastc = ASTCENC_PRF_HDR_RGB_LDR_A;break;
+		case tColourProfile::HDRlRGBA:		profileastc = ASTCENC_PRF_HDR;			break;
+	}
 
 	switch (fmt)
 	{
@@ -637,8 +634,8 @@ tImage::DecodeResult tImage::DecodePixelData_ASTC(tPixelFormat fmt, const uint8*
 	float quality = ASTCENC_PRE_MEDIUM;			// Only need for compression.
 	astcenc_error result = ASTCENC_SUCCESS;
 	astcenc_config config;
-	astcenc_config_init(profile, blockW, blockH, blockD, quality, ASTCENC_FLG_DECOMPRESS_ONLY, &config);
-	
+	astcenc_config_init(profileastc, blockW, blockH, blockD, quality, ASTCENC_FLG_DECOMPRESS_ONLY, &config);
+
 	// astcenc_get_error_string(status) can be called for details.
 	if (result != ASTCENC_SUCCESS)
 		return DecodeResult::ASTCDecodeError;
