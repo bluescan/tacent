@@ -39,7 +39,6 @@ namespace tASTC
 	tStaticAssert(sizeof(Header) == 16);
 
 	tPixelFormat GetFormatFromBlockDimensions(int blockW, int blockH);
-	void ProcessHDRFlags(tColour4f& colour, comp_t channels, const tImageASTC::LoadParams& params);
 };
 
 
@@ -64,17 +63,6 @@ tPixelFormat tASTC::GetFormatFromBlockDimensions(int blockW, int blockH)
 		case 144:	return tPixelFormat::ASTC12X12;
 	}
 	return tPixelFormat::Invalid;
-}
-
-
-void tASTC::ProcessHDRFlags(tColour4f& colour, comp_t channels, const tImageASTC::LoadParams& params)
-{
-	if (params.Flags & tImageASTC::LoadFlag_ToneMapExposure)
-		colour.TonemapExposure(params.Exposure, channels);
-	if (params.Flags & tImageASTC::LoadFlag_SRGBCompression)
-		colour.LinearToSRGB(channels);
-	if (params.Flags & tImageASTC::LoadFlag_GammaCompression)
-		colour.LinearToGamma(params.Gamma, channels);
 }
 
 
@@ -159,15 +147,18 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 
 	tColour4f* decoded4f = nullptr;
 	tColour4i* decoded4i = nullptr;
+
+	// ASTC data is always decoded into a float buffer.
 	DecodeResult result = tImage::DecodePixelData_ASTC(format, astcData, astcDataSize, width, height, decoded4f);
 	if (result != DecodeResult::Success)
 		return false;
 
 	// Apply any decode flags.
+	tAssert(decoded4f);
 	bool flagTone = (params.Flags & tImageASTC::LoadFlag_ToneMapExposure) ? true : false;
 	bool flagSRGB = (params.Flags & tImageASTC::LoadFlag_SRGBCompression) ? true : false;
 	bool flagGama = (params.Flags & tImageASTC::LoadFlag_GammaCompression)? true : false;
-	if (decoded4f && (flagTone || flagSRGB || flagGama))
+	if (flagTone || flagSRGB || flagGama)
 	{
 		for (int p = 0; p < width*height; p++)
 		{
@@ -181,17 +172,14 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 		}
 	}
 
-	// Converts to RGBA32 into the decoded4i array.
-	if (decoded4f)
-	{
-		tAssert(!decoded4i);
-		decoded4i = new tColour4i[width*height];
-		for (int p = 0; p < width*height; p++)
-			decoded4i[p].Set(decoded4f[p]);
-		delete[] decoded4f;
-	}
+	// Converts to RGBA32 into the decoded4i array. Cleans up the float buffer.
+	tAssert(!decoded4i);
+	decoded4i = new tColour4i[width*height];
+	for (int p = 0; p < width*height; p++)
+		decoded4i[p].Set(decoded4f[p]);
+	delete[] decoded4f;
 
-	// Give decoded pixelData to layer.
+	// Give decoded4i to layer.
 	tAssert(!Layer);
 	Layer = new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)decoded4i, true);
 	tAssert(Layer->OwnsData);

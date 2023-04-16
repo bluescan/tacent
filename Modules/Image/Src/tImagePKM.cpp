@@ -221,6 +221,7 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 		return false;
 
 	// Apply any decode flags.
+	tAssert(decoded4f || decoded4i);
 	bool flagSRGB = (params.Flags & tImagePKM::LoadFlag_SRGBCompression) ? true : false;
 	bool flagGama = (params.Flags & tImagePKM::LoadFlag_GammaCompression)? true : false;
 	if (decoded4f && (flagSRGB || flagGama))

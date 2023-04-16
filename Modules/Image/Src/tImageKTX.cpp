@@ -1187,6 +1187,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 			}
 
 			// Apply any decode flags.
+			tAssert(decoded4i || decoded4f);
 			bool flagTone = (params.Flags & tImageKTX::LoadFlag_ToneMapExposure) ? true : false;
 			bool flagSRGB = (params.Flags & tImageKTX::LoadFlag_SRGBCompression) ? true : false;
 			bool flagGama = (params.Flags & tImageKTX::LoadFlag_GammaCompression)? true : false;
@@ -1279,7 +1280,6 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 
 	ktxTexture_Destroy(texture);
 	tAssert(IsValid());
-
 	Results |= 1 << int(ResultCode::Success);
 	return true;
 }

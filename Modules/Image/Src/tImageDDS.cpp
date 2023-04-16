@@ -1558,6 +1558,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 			}
 
 			// Apply any decode flags.
+			tAssert(decoded4f || decoded4i);
 			bool flagTone = (params.Flags & tImageDDS::LoadFlag_ToneMapExposure) ? true : false;
 			bool flagSRGB = (params.Flags & tImageDDS::LoadFlag_SRGBCompression) ? true : false;
 			bool flagGama = (params.Flags & tImageDDS::LoadFlag_GammaCompression)? true : false;
@@ -1649,7 +1650,6 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 		Results |= 1 << int(ResultCode::Conditional_CouldNotFlipRows);
 
 	tAssert(IsValid());
-
 	Results |= 1 << int(ResultCode::Success);
 	return true;
 }
