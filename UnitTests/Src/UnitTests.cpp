@@ -218,10 +218,10 @@ int main(int argc, char** argv)
 	// tTest(ImageAdjustment);
 	// tTest(ImageDetection);
 	tTest(ImageDDS);
-	// tTest(ImageKTX1);
-	// tTest(ImageKTX2);
-	// tTest(ImageASTC);
-	// tTest(ImagePKM);
+	tTest(ImageKTX1);
+	tTest(ImageKTX2);
+	tTest(ImageASTC);
+	tTest(ImagePKM);
 	#endif
 	// tTest(UTF);
 	// tTest(Hash);

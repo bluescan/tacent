@@ -157,70 +157,20 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 			params.Flags |= LoadFlag_SRGBCompression;
 	}
 
-	/////////////////////////
-
-	// Call DecodePixelData_ASTC
-
-	/////////////////////////
-
-	//
-	// We were asked to decode. Decode to RGBA data and then populate a new layer.
-	//
-
-	// Convert source colour profile to astc colour profile.
-	astcenc_profile profileastc = ASTCENC_PRF_LDR_SRGB;
-	switch (params.Profile)
-	{
-		case tColourProfile::LDRsRGB_LDRlA:	profileastc = ASTCENC_PRF_LDR_SRGB;		break;
-		case tColourProfile::LDRgRGB_LDRlA:	profileastc = ASTCENC_PRF_LDR_SRGB;		break;	// Best approximation.
-		case tColourProfile::LDRlRGBA:		profileastc = ASTCENC_PRF_LDR;			break;
-		case tColourProfile::HDRlRGB_LDRlA:	profileastc = ASTCENC_PRF_HDR_RGB_LDR_A;break;
-		case tColourProfile::HDRlRGBA:		profileastc = ASTCENC_PRF_HDR;			break;
-	}
-
-	// ASTC Config.
-	float quality = ASTCENC_PRE_MEDIUM;			// Only need for compression.
-	astcenc_error result = ASTCENC_SUCCESS;
-	astcenc_config config;
-	astcenc_config_init(profileastc, blockW, blockH, blockD, quality, ASTCENC_FLG_DECOMPRESS_ONLY, &config);
-	if (result != ASTCENC_SUCCESS)
+	tColour4f* decoded4f = nullptr;
+	DecodeResult result = tImage::DecodePixelData_ASTC(format, astcData, astcDataSize, width, height, decoded4f);
+	if (result != DecodeResult::Success)
 		return false;
-
-	// ASTC Context.
-	astcenc_context* context = nullptr;
-	int numThreads = tMath::tMax(tSystem::tGetNumCores(), 2);
-	result = astcenc_context_alloc(&config, numThreads, &context);
-	if (result != ASTCENC_SUCCESS)
-		return false;
-
-	// ASTC Image.
-	tColour4f* uncompData = new tColour4f[width*height];
-	astcenc_image image;
-	image.dim_x = width;
-	image.dim_y = height;
-	image.dim_z = depth;
-	image.data_type = ASTCENC_TYPE_F32;
-
-	// ASTC Decode.
-	tColour4f* slices = uncompData;
-	image.data = reinterpret_cast<void**>(&slices);
-	astcenc_swizzle swizzle { ASTCENC_SWZ_R, ASTCENC_SWZ_G, ASTCENC_SWZ_B, ASTCENC_SWZ_A };
-	result = astcenc_decompress_image(context, astcData, astcDataSize, &image, &swizzle, 0);
-	if (result != ASTCENC_SUCCESS)
-	{
-		astcenc_context_free(context);
-		delete[] uncompData;
-		return false;
-	}
 
 	// Convert to 32-bit RGBA and apply any HDR flags.
 	tPixel* pixelData = new tPixel[width*height];
 	for (int p = 0; p < width*height; p++)
 	{
-		tColour4f col(uncompData[p]);
+		tColour4f col(decoded4f[p]);
 		tASTC::ProcessHDRFlags(col, tCompBit_RGB, params);
 		pixelData[p].Set(col);
 	}
+	delete[] decoded4f;
 
 	// If requested, reverse the row order of the decoded data.
 	if (params.Flags & LoadFlag_ReverseRowOrder)
@@ -235,10 +185,6 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 	tAssert(!Layer);
 	Layer = new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)pixelData, true);
 	tAssert(Layer->OwnsData);
-
-	// ASTC Cleanup.
-	astcenc_context_free(context);
-	delete[] uncompData;
 
 	// Finally update the current pixel format -- but not the source format.
 	PixelFormat = tPixelFormat::R8G8B8A8;

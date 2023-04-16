@@ -79,7 +79,7 @@ tImage::DecodeResult tImage::DecodePixelData(tPixelFormat fmt, const uint8* src,
 	}
 	else if (tImage::tIsASTCFormat(fmt))
 	{
-		return DecodePixelData_ASTC(fmt, src, srcSize, w, h, decoded4i, decoded4f, profile);
+		return DecodePixelData_ASTC(fmt, src, srcSize, w, h, decoded4f, profile);
 	}
 	else // Unsupported PixelFormat
 	{
@@ -584,9 +584,9 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 }
 
 
-tImage::DecodeResult tImage::DecodePixelData_ASTC(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4i*& decoded4i, tColour4f*& decoded4f, tColourProfile profile)
+tImage::DecodeResult tImage::DecodePixelData_ASTC(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4f*& decoded4f, tColourProfile profile)
 {
-	if (decoded4i || decoded4f)
+	if (decoded4f)
 		return DecodeResult::BuffersNotClear;
 
 	if (!tIsASTCFormat(fmt))

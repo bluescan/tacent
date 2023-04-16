@@ -48,7 +48,7 @@ public:
 
 		// We chose HDR as the default profile because it can load LDR blocks. The other way around doesn't work with
 		// with the tests images -- the LDR profile doesn't appear capable of loading HDR blocks (they become magenta).
-		void Reset()																									{ Flags = LoadFlags_Default; Profile = tColourProfile::HDRlRGB_LDRlA; Gamma = tMath::DefaultGamma; Exposure = 1.0f; }
+		void Reset()																									{ Flags = LoadFlags_Default; Profile = tColourProfile::LDRsRGB_LDRlA; Gamma = tMath::DefaultGamma; Exposure = 1.0f; }
 		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Profile = src.Profile; Gamma = src.Gamma; Exposure = src.Exposure; return *this; }
 
 		uint32 Flags;
