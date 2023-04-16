@@ -84,31 +84,31 @@ namespace tPKM
 }
 
 
-void tPKM::GetFormatInfo_FromPKMFormat(tPixelFormat& fmt, tColourProfile& spc, uint32 pkmFmt, int version)
+void tPKM::GetFormatInfo_FromPKMFormat(tPixelFormat& fmt, tColourProfile& pro, uint32 pkmFmt, int version)
 {
 	fmt = tPixelFormat::Invalid;
-	spc = tColourProfile::Invalid;
+	pro = tColourProfile::sRGB;
 	switch (PKMFMT(pkmFmt))
 	{
-		case PKMFMT::ETC1_RGB:		fmt = tPixelFormat::ETC1;		spc = tColourProfile::sRGB;		break;
-		case PKMFMT::ETC2_RGB:		fmt = tPixelFormat::ETC2RGB;	spc = tColourProfile::lRGB;		break;
-		case PKMFMT::ETC2_sRGB:		fmt = tPixelFormat::ETC2RGB;	spc = tColourProfile::sRGB;		break;
+		case PKMFMT::ETC1_RGB:		fmt = tPixelFormat::ETC1;		pro = tColourProfile::sRGB;		break;
+		case PKMFMT::ETC2_RGB:		fmt = tPixelFormat::ETC2RGB;	pro = tColourProfile::lRGB;		break;
+		case PKMFMT::ETC2_sRGB:		fmt = tPixelFormat::ETC2RGB;	pro = tColourProfile::sRGB;		break;
 		case PKMFMT::ETC2_RGBA_OLD:
-		case PKMFMT::ETC2_RGBA:		fmt = tPixelFormat::ETC2RGBA;	spc = tColourProfile::lRGB;		break;
-		case PKMFMT::ETC2_sRGBA:	fmt = tPixelFormat::ETC2RGBA;	spc = tColourProfile::sRGB;		break;
-		case PKMFMT::ETC2_RGBA1:	fmt = tPixelFormat::ETC2RGBA1;	spc = tColourProfile::lRGB;		break;
-		case PKMFMT::ETC2_sRGBA1:	fmt = tPixelFormat::ETC2RGBA1;	spc = tColourProfile::sRGB;		break;
-		case PKMFMT::ETC2_R:		fmt = tPixelFormat::EACR11;		spc = tColourProfile::lRGB;		break;
-		case PKMFMT::ETC2_RG:		fmt = tPixelFormat::EACRG11;	spc = tColourProfile::lRGB;		break;
-		case PKMFMT::ETC2_R_SIGNED:	fmt = tPixelFormat::EACR11S;	spc = tColourProfile::lRGB;		break;
-		case PKMFMT::ETC2_RG_SIGNED:fmt = tPixelFormat::EACRG11S;	spc = tColourProfile::lRGB;		break;
+		case PKMFMT::ETC2_RGBA:		fmt = tPixelFormat::ETC2RGBA;	pro = tColourProfile::lRGB;		break;
+		case PKMFMT::ETC2_sRGBA:	fmt = tPixelFormat::ETC2RGBA;	pro = tColourProfile::sRGB;		break;
+		case PKMFMT::ETC2_RGBA1:	fmt = tPixelFormat::ETC2RGBA1;	pro = tColourProfile::lRGB;		break;
+		case PKMFMT::ETC2_sRGBA1:	fmt = tPixelFormat::ETC2RGBA1;	pro = tColourProfile::sRGB;		break;
+		case PKMFMT::ETC2_R:		fmt = tPixelFormat::EACR11;		pro = tColourProfile::sRGB;		break;
+		case PKMFMT::ETC2_RG:		fmt = tPixelFormat::EACRG11;	pro = tColourProfile::sRGB;		break;
+		case PKMFMT::ETC2_R_SIGNED:	fmt = tPixelFormat::EACR11S;	pro = tColourProfile::sRGB;		break;
+		case PKMFMT::ETC2_RG_SIGNED:fmt = tPixelFormat::EACRG11S;	pro = tColourProfile::sRGB;		break;
 	}
 
 	// If the format is still invalid we encountered an invalid format in the PKM header.
 	// In this case we base the format on the header version number only.
 	if (fmt == tPixelFormat::Invalid)
 	{
-		spc = tColourProfile::sRGB;
+		pro = tColourProfile::sRGB;
 		if (version == 2)
 			fmt = tPixelFormat::ETC2RGB;
 		else
