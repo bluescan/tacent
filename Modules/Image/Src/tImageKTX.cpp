@@ -39,8 +39,6 @@ namespace tKTX
 	// which case colour-profile will be set to the 'unspecified' enumerant.
 	void GetFormatInfo_FromGLFormat(tPixelFormat&, tColourProfile&, uint32 glType, uint32 glFormat, uint32 glInternalFormat);
 	void GetFormatInfo_FromVKFormat(tPixelFormat&, tColourProfile&, uint32 vkFormat);
-
-	void ProcessHDRFlags(tColour4f& colour, comp_t channels, const tImageKTX::LoadParams& params);
 }
 
 
@@ -704,17 +702,6 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 
 	if (format == tPixelFormat::Invalid)
 		profile = tColourProfile::Unspecified;
-}
-
-
-void tKTX::ProcessHDRFlags(tColour4f& colour, comp_t channels, const tImageKTX::LoadParams& params)
-{
-	if (params.Flags & tImageKTX::LoadFlag_ToneMapExposure)
-		colour.TonemapExposure(params.Exposure, channels);
-	if (params.Flags & tImageKTX::LoadFlag_SRGBCompression)
-		colour.LinearToSRGB(channels);
-	if (params.Flags & tImageKTX::LoadFlag_GammaCompression)
-		colour.LinearToGamma(params.Gamma, channels);
 }
 
 

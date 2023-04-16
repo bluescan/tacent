@@ -158,36 +158,57 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 	}
 
 	tColour4f* decoded4f = nullptr;
+	tColour4i* decoded4i = nullptr;
 	DecodeResult result = tImage::DecodePixelData_ASTC(format, astcData, astcDataSize, width, height, decoded4f);
 	if (result != DecodeResult::Success)
 		return false;
 
-	// Convert to 32-bit RGBA and apply any HDR flags.
-	tPixel* pixelData = new tPixel[width*height];
-	for (int p = 0; p < width*height; p++)
+	// Apply any decode flags.
+	bool flagTone = (params.Flags & tImageASTC::LoadFlag_ToneMapExposure) ? true : false;
+	bool flagSRGB = (params.Flags & tImageASTC::LoadFlag_SRGBCompression) ? true : false;
+	bool flagGama = (params.Flags & tImageASTC::LoadFlag_GammaCompression)? true : false;
+	if (decoded4f && (flagTone || flagSRGB || flagGama))
 	{
-		tColour4f col(decoded4f[p]);
-		tASTC::ProcessHDRFlags(col, tCompBit_RGB, params);
-		pixelData[p].Set(col);
+		for (int p = 0; p < width*height; p++)
+		{
+			tColour4f& colour = decoded4f[p];
+			if (flagTone)
+				colour.TonemapExposure(params.Exposure, tCompBit_RGB);
+			if (flagSRGB)
+				colour.LinearToSRGB(tCompBit_RGB);
+			if (flagGama)
+				colour.LinearToGamma(params.Gamma, tCompBit_RGB);
+		}
 	}
-	delete[] decoded4f;
 
-	// If requested, reverse the row order of the decoded data.
-	if (params.Flags & LoadFlag_ReverseRowOrder)
+	// Converts to RGBA32 into the decoded4i array.
+	if (decoded4f)
 	{
-		uint8* reversedRowData = tImage::CreateReversedRowData((uint8*)pixelData, tPixelFormat::R8G8B8A8, width, height);
-		tAssert(reversedRowData);
-		delete[] pixelData;
-		pixelData = (tPixel*)reversedRowData;
+		tAssert(!decoded4i);
+		decoded4i = new tColour4i[width*height];
+		for (int p = 0; p < width*height; p++)
+			decoded4i[p].Set(decoded4f[p]);
+		delete[] decoded4f;
 	}
 
 	// Give decoded pixelData to layer.
 	tAssert(!Layer);
-	Layer = new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)pixelData, true);
+	Layer = new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)decoded4i, true);
 	tAssert(Layer->OwnsData);
+
+	// We've got one more chance to reverse the rows here (if we still need to) because we were asked to decode.
+	if (params.Flags & tImageASTC::LoadFlag_ReverseRowOrder)
+	{
+		// This shouldn't ever fail. Too easy to reverse RGBA 32-bit.
+		uint8* reversedRowData = tImage::CreateReversedRowData(Layer->Data, Layer->PixelFormat, width, height);
+		tAssert(reversedRowData);
+		delete[] Layer->Data;
+		Layer->Data = reversedRowData;
+	}
 
 	// Finally update the current pixel format -- but not the source format.
 	PixelFormat = tPixelFormat::R8G8B8A8;
+	tAssert(IsValid());
 	return true;
 }
 

@@ -38,7 +38,7 @@ public:
 		LoadFlag_SRGBCompression	= 1 << 3,	// Same as above but uses the official sRGB transformation. Linear -> sRGB. Approx encoding gamma of 1/2.4 for part of curve.
 		LoadFlag_AutoGamma			= 1 << 4,	// Tries to determine whether to apply sRGB compression based on pixel format. Call GetColourSpace to see if it applied.
 		LoadFlag_SpreadLuminance	= 1 << 5,	// For PKM files with a single Red, spread it to all the RGB channels (otherwise red only). Applies only if decoding a pkm that is an R-only format.
-		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder
+		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_AutoGamma
 	};
 
 	struct LoadParams
