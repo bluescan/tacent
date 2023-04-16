@@ -40,7 +40,7 @@ enum class DecodeResult
 DecodeResult DecodePixelData
 (
 	tPixelFormat, const uint8* data, int dataSize, int width, int height,
-	tColour4i*& dstLDR, tColour4f*& dstHDR, tColourProfile = tColourProfile::Invalid
+	tColour4i*& dstLDR, tColour4f*& dstHDR, tColourProfile = tColourProfile::Auto
 );
 
 
