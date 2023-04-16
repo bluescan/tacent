@@ -65,25 +65,21 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 		// BC formats.
 		//
 		case GL_COMPRESSED_RGB_S3TC_DXT1_EXT:
-			profile = tColourProfile::LDRlRGBA;
 		case GL_COMPRESSED_SRGB_S3TC_DXT1_EXT:
 			format = tPixelFormat::BC1DXT1;
 			break;
 
 		case GL_COMPRESSED_RGBA_S3TC_DXT1_EXT:
-			profile = tColourProfile::LDRlRGBA;
 		case GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT:
 			format = tPixelFormat::BC1DXT1A;
 			break;
 
 		case GL_COMPRESSED_RGBA_S3TC_DXT3_EXT:
-			profile = tColourProfile::LDRlRGBA;
 		case GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT3_EXT:
 			format = tPixelFormat::BC2DXT2DXT3;
 			break;
 
 		case GL_COMPRESSED_RGBA_S3TC_DXT5_EXT:
-			profile = tColourProfile::LDRlRGBA;
 		case GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT:
 			format = tPixelFormat::BC3DXT4DXT5;
 			break;
@@ -109,7 +105,6 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 			break;
 
 		case GL_COMPRESSED_RGBA_BPTC_UNORM:
-			profile = tColourProfile::LDRlRGBA;
 		case GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM:
 			format = tPixelFormat::BC7;
 			break;
@@ -124,19 +119,16 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 		// Since there are sRGB equivalents of these next three formats, they get set to Linear
 		// for the non-sRGB versions.
 		case GL_COMPRESSED_RGB8_ETC2:
-			profile = tColourProfile::LDRlRGBA;
 		case GL_COMPRESSED_SRGB8_ETC2:
 			format = tPixelFormat::ETC2RGB;
 			break;
 
 		case GL_COMPRESSED_RGBA8_ETC2_EAC:
-			profile = tColourProfile::LDRlRGBA;
 		case GL_COMPRESSED_SRGB8_ALPHA8_ETC2_EAC:
 			format = tPixelFormat::ETC2RGBA;
 			break;
 
 		case GL_COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2:
-			profile = tColourProfile::LDRlRGBA;
 		case GL_COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2:
 			format = tPixelFormat::ETC2RGBA1;
 			break;
@@ -422,7 +414,6 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		// VK_FORMAT_R8_SINT
 		case VK_FORMAT_R8_UNORM:
 		case VK_FORMAT_R8_UINT:
-			profile = tColourProfile::LDRlRGBA;
 		case VK_FORMAT_R8_SRGB:
 			format = tPixelFormat::R8;
 			break;
@@ -434,7 +425,6 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		// VK_FORMAT_R8G8_SINT
 		case VK_FORMAT_R8G8_UNORM:
 		case VK_FORMAT_R8G8_UINT:
-			profile = tColourProfile::LDRlRGBA;
 		case VK_FORMAT_R8G8_SRGB:
 			format = tPixelFormat::R8G8;
 			break;
@@ -446,7 +436,6 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		// VK_FORMAT_R8G8B8_SINT
 		case VK_FORMAT_R8G8B8_UNORM:
 		case VK_FORMAT_R8G8B8_UINT:
-			profile = tColourProfile::LDRlRGBA;
 		case VK_FORMAT_R8G8B8_SRGB:
 			format = tPixelFormat::R8G8B8;
 			break;
@@ -458,7 +447,6 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		// VK_FORMAT_R8G8B8A8_SINT
 		case VK_FORMAT_R8G8B8A8_UNORM:
 		case VK_FORMAT_R8G8B8A8_UINT:
-			profile = tColourProfile::LDRlRGBA;
 		case VK_FORMAT_R8G8B8A8_SRGB:
 			format = tPixelFormat::R8G8B8A8;
 			break;
@@ -469,7 +457,6 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		// VK_FORMAT_B8G8R8_SINT
 		case VK_FORMAT_B8G8R8_UNORM:
 		case VK_FORMAT_B8G8R8_UINT:
-			profile = tColourProfile::LDRlRGBA;
 		case VK_FORMAT_B8G8R8_SRGB:
 			format = tPixelFormat::B8G8R8;
 			break;
@@ -480,7 +467,6 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		// VK_FORMAT_B8G8R8A8_SINT
 		case VK_FORMAT_B8G8R8A8_UNORM:
 		case VK_FORMAT_B8G8R8A8_UINT:
-			profile = tColourProfile::LDRlRGBA;
 		case VK_FORMAT_B8G8R8A8_SRGB:
 			format = tPixelFormat::B8G8R8A8;
 			break;
@@ -531,25 +517,21 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		// BC Formats.
 		//
 		case VK_FORMAT_BC1_RGB_UNORM_BLOCK:
-			profile = tColourProfile::LDRlRGBA;
 		case VK_FORMAT_BC1_RGB_SRGB_BLOCK:
 			format = tPixelFormat::BC1DXT1;
 			break;
 
 		case VK_FORMAT_BC1_RGBA_UNORM_BLOCK:
-			profile = tColourProfile::LDRlRGBA;
 		case VK_FORMAT_BC1_RGBA_SRGB_BLOCK:
 			format = tPixelFormat::BC1DXT1A;
 			break;
 
 		case VK_FORMAT_BC2_UNORM_BLOCK:
-			profile = tColourProfile::LDRlRGBA;
 		case VK_FORMAT_BC2_SRGB_BLOCK:
 			format = tPixelFormat::BC2DXT2DXT3;
 			break;
 
 		case VK_FORMAT_BC3_UNORM_BLOCK:
-			profile = tColourProfile::LDRlRGBA;
 		case VK_FORMAT_BC3_SRGB_BLOCK:
 			format = tPixelFormat::BC3DXT4DXT5;
 			break;
@@ -557,14 +539,12 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		case VK_FORMAT_BC4_SNORM_BLOCK:				// Signed not supported yet.
 			break;
 		case VK_FORMAT_BC4_UNORM_BLOCK:
-			profile = tColourProfile::LDRlRGBA;
 			format = tPixelFormat::BC4ATI1;
 			break;
 
 		case VK_FORMAT_BC5_SNORM_BLOCK:				// Signed not supported yet.
 			break;
 		case VK_FORMAT_BC5_UNORM_BLOCK:
-			profile = tColourProfile::LDRlRGBA;
 			format = tPixelFormat::BC5ATI2;
 			break;
 
@@ -579,7 +559,6 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 			break;
 
 		case VK_FORMAT_BC7_UNORM_BLOCK:
-			profile = tColourProfile::LDRlRGBA;
 		case VK_FORMAT_BC7_SRGB_BLOCK:
 			format = tPixelFormat::BC7;
 			break;
@@ -588,19 +567,16 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		// ETC2 and EAC.
 		//
 		case VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK:
-			profile = tColourProfile::LDRlRGBA;
 		case VK_FORMAT_ETC2_R8G8B8_SRGB_BLOCK:
 			format = tPixelFormat::ETC2RGB;
 			break;
 
 		case VK_FORMAT_ETC2_R8G8B8A8_UNORM_BLOCK:
-			profile = tColourProfile::LDRlRGBA;
 		case VK_FORMAT_ETC2_R8G8B8A8_SRGB_BLOCK:
 			format = tPixelFormat::ETC2RGBA;
 			break;
 
 		case VK_FORMAT_ETC2_R8G8B8A1_UNORM_BLOCK:
-			profile = tColourProfile::LDRlRGBA;
 		case VK_FORMAT_ETC2_R8G8B8A1_SRGB_BLOCK:
 			format = tPixelFormat::ETC2RGBA1;
 			break;
@@ -642,85 +618,71 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		// with the tests images -- the LDR profile doesn't appear capable of loading HDR blocks (they become magenta).
 		//
 		case VK_FORMAT_ASTC_4x4_UNORM_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case VK_FORMAT_ASTC_4x4_SRGB_BLOCK:
 			format = tPixelFormat::ASTC4X4;
 			break;
 
 		case VK_FORMAT_ASTC_5x4_UNORM_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case VK_FORMAT_ASTC_5x4_SRGB_BLOCK:
 			format = tPixelFormat::ASTC5X4;
 			break;
 
 		case VK_FORMAT_ASTC_5x5_UNORM_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case VK_FORMAT_ASTC_5x5_SRGB_BLOCK:
 			format = tPixelFormat::ASTC5X5;
 			break;
 
 		case VK_FORMAT_ASTC_6x5_UNORM_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case VK_FORMAT_ASTC_6x5_SRGB_BLOCK:
 			format = tPixelFormat::ASTC6X5;
 			break;
 
 		case VK_FORMAT_ASTC_6x6_UNORM_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case VK_FORMAT_ASTC_6x6_SRGB_BLOCK:
 			format = tPixelFormat::ASTC6X6;
 			break;
 
 		case VK_FORMAT_ASTC_8x5_UNORM_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case VK_FORMAT_ASTC_8x5_SRGB_BLOCK:
 			format = tPixelFormat::ASTC8X5;
 			break;
 
 		case VK_FORMAT_ASTC_8x6_UNORM_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case VK_FORMAT_ASTC_8x6_SRGB_BLOCK:
 			format = tPixelFormat::ASTC8X6;
 			break;
 
 		case VK_FORMAT_ASTC_8x8_UNORM_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case VK_FORMAT_ASTC_8x8_SRGB_BLOCK:
 			format = tPixelFormat::ASTC8X8;
 			break;
 
 		case VK_FORMAT_ASTC_10x5_UNORM_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case VK_FORMAT_ASTC_10x5_SRGB_BLOCK:
 			format = tPixelFormat::ASTC10X5;
 			break;
 
 		case VK_FORMAT_ASTC_10x6_UNORM_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case VK_FORMAT_ASTC_10x6_SRGB_BLOCK:
 			format = tPixelFormat::ASTC10X6;
 			break;
 
 		case VK_FORMAT_ASTC_10x8_UNORM_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case VK_FORMAT_ASTC_10x8_SRGB_BLOCK:
 			format = tPixelFormat::ASTC10X8;
 			break;
 
 		case VK_FORMAT_ASTC_10x10_UNORM_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case VK_FORMAT_ASTC_10x10_SRGB_BLOCK:
 			format = tPixelFormat::ASTC10X10;
 			break;
 
 		case VK_FORMAT_ASTC_12x10_UNORM_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case VK_FORMAT_ASTC_12x10_SRGB_BLOCK:
 			format = tPixelFormat::ASTC12X10;
 			break;
 
 		case VK_FORMAT_ASTC_12x12_UNORM_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
 		case VK_FORMAT_ASTC_12x12_SRGB_BLOCK:
 			format = tPixelFormat::ASTC12X12;
 			break;
