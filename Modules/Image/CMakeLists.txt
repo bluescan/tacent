@@ -69,6 +69,7 @@ add_library(
 	Contrib/ApngDis/apngdis.h
 	Contrib/ApngDis/apngdis.cpp
 	Contrib/bcdec/bcdec.h
+	Contrib/etcdec/etcdec.h
 	Contrib/ASTCEncoder/include/astcenc.h
 	Contrib/gifenc/gifenc.h
 	Contrib/gifenc/gifenc.c
@@ -110,6 +111,7 @@ target_include_directories(
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ApngDis
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ApngAsm
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/bcdec
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/etcdec
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/GifLoad
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/gifenc

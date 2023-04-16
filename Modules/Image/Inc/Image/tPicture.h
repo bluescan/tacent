@@ -47,6 +47,8 @@ extern int Version_WEBP_Major;
 extern int Version_WEBP_Minor;
 extern int Version_BCDec_Major;
 extern int Version_BCDec_Minor;
+extern int Version_ETCDec_Major;
+extern int Version_ETCDec_Minor;
 extern int Version_TinyXML2_Major;
 extern int Version_TinyXML2_Minor;
 extern int Version_TinyXML2_Patch;

@@ -39,6 +39,7 @@ const char* ASTCENCODER_VERSION_STRING		= VERSION_STRING;
 #include <apngdis.h>
 #include <apngasm.h>
 #include <bcdec.h>
+#include <etcdec.h>
 #include <tiffvers.h>
 #include <jconfig.h>						// JpegTurbo
 #include <demux.h>							// WebP
@@ -65,6 +66,8 @@ int tImage::Version_WEBP_Major				= WEBP_DECODER_ABI_VERSION >> 8;
 int tImage::Version_WEBP_Minor				= WEBP_DECODER_ABI_VERSION & 0xFF;
 int tImage::Version_BCDec_Major				= BCDEC_VERSION_MAJOR;
 int tImage::Version_BCDec_Minor				= BCDEC_VERSION_MINOR;
+int tImage::Version_ETCDec_Major			= ETCDEC_VERSION_MAJOR;
+int tImage::Version_ETCDec_Minor			= ETCDEC_VERSION_MINOR;
 int tImage::Version_TinyXML2_Major			= TINYXML2_MAJOR_VERSION;
 int tImage::Version_TinyXML2_Minor			= TINYXML2_MINOR_VERSION;
 int tImage::Version_TinyXML2_Patch			= TINYXML2_PATCH_VERSION;

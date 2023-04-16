@@ -26,6 +26,8 @@
 
 #ifndef ETCDEC_HEADER_INCLUDED
 #define ETCDEC_HEADER_INCLUDED
+#define ETCDEC_VERSION_MAJOR 0
+#define ETCDEC_VERSION_MINOR 9
 
 /* if ETCDEC_STATIC causes problems, try defining ETCDECDEF to 'inline' or 'static inline' */
 #ifndef ETCDECDEF
