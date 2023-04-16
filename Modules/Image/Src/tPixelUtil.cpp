@@ -533,6 +533,113 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 			break;
 		}
 
+		case tPixelFormat::EACR11:
+		{
+			// This format decompresses to R uint16.
+			uint16* rdata = new uint16[wfull*hfull];
+
+			for (int y = 0; y < hfull; y += 4)
+				for (int x = 0; x < wfull; x += 4)
+				{
+					uint16* dst = (rdata + (y*wfull + x) * 1);
+					etcdec_eac_r11_u16(src, dst, wfull * sizeof(uint16));
+					src += ETCDEC_EAC_R11_BLOCK_SIZE;
+				}
+
+			// Now convert to 32-bit RGBA.
+			decodedFull4i = new tColour4i[wfull*hfull];
+			for (int xy = 0; xy < wfull*hfull; xy++)
+			{
+				uint8 v = uint8( (255*rdata[xy]) / 65535 );
+				tColour4i col(v, 0u, 0u, 255u);
+				decodedFull4i[xy].Set(col);
+			}
+			delete[] rdata;
+			break;
+		}
+
+		case tPixelFormat::EACR11S:
+		{
+			// This format decompresses to R float.
+			float* rdata = new float[wfull*hfull];
+
+			for (int y = 0; y < hfull; y += 4)
+				for (int x = 0; x < wfull; x += 4)
+				{
+					float* dst = (rdata + (y*wfull + x) * 1);
+					etcdec_eac_r11_float(src, dst, wfull * sizeof(float), 1);
+					src += ETCDEC_EAC_R11_BLOCK_SIZE;
+				}
+
+			// Now convert to 32-bit RGBA.
+			decodedFull4i = new tColour4i[wfull*hfull];
+			for (int xy = 0; xy < wfull*hfull; xy++)
+			{
+				float vf = tMath::tSaturate((rdata[xy]+1.0f) / 2.0f);
+				uint8 v = uint8( 255.0f * vf );
+				tColour4i col(v, 0u, 0u, 255u);
+				decodedFull4i[xy].Set(col);
+			}
+			delete[] rdata;
+			break;
+		}
+
+		case tPixelFormat::EACRG11:
+		{
+			struct RG { uint16 R; uint16 G; };
+			// This format decompresses to RG uint8s.
+			RG* rdata = new RG[wfull*hfull];
+
+			for (int y = 0; y < hfull; y += 4)
+				for (int x = 0; x < wfull; x += 4)
+				{
+					uint16* dst = (uint16*)rdata + (y*wfull + x) * 2;
+					etcdec_eac_rg11_u16(src, dst, wfull * sizeof(RG));
+					src += ETCDEC_EAC_RG11_BLOCK_SIZE;
+				}
+
+			// Now convert to 32-bit RGBA.
+			decodedFull4i = new tColour4i[wfull*hfull];
+			for (int xy = 0; xy < wfull*hfull; xy++)
+			{
+				uint8 r = uint8( (255*rdata[xy].R) / 65535 );
+				uint8 g = uint8( (255*rdata[xy].G) / 65535 );
+				tColour4i col(r, g, 0u, 255u);
+				decodedFull4i[xy].Set(col);
+			}
+			delete[] rdata;
+			break;
+		}
+
+		case tPixelFormat::EACRG11S:
+		{
+			struct RG { float R; float G; };
+			// This format decompresses to R float.
+			RG* rdata = new RG[wfull*hfull];
+
+			for (int y = 0; y < hfull; y += 4)
+				for (int x = 0; x < wfull; x += 4)
+				{
+					float* dst = (float*)rdata + (y*wfull + x) * 2;
+					etcdec_eac_rg11_float(src, dst, wfull * sizeof(RG), 1);
+					src += ETCDEC_EAC_RG11_BLOCK_SIZE;
+				}
+
+			// Now convert to 32-bit RGBA.
+			decodedFull4i = new tColour4i[wfull*hfull];
+			for (int xy = 0; xy < wfull*hfull; xy++)
+			{
+				float rf = tMath::tSaturate((rdata[xy].R+1.0f) / 2.0f);
+				float gf = tMath::tSaturate((rdata[xy].G+1.0f) / 2.0f);
+				uint8 r = uint8( 255.0f * rf );
+				uint8 g = uint8( 255.0f * gf );
+				tColour4i col(r, g, 0u, 255u);
+				decodedFull4i[xy].Set(col);
+			}
+			delete[] rdata;
+			break;
+		}
+
 		default:
 			return DecodeResult::BlockDecodeError;
 	}
