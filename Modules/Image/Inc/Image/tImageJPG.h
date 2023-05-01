@@ -30,10 +30,11 @@ class tImageJPG : public tBaseImage
 public:
 	enum LoadFlags
 	{
-		LoadFlag_None		= 0,
-		LoadFlag_Strict		= 1 << 0,	// If the file is ill-formed even in a non-fatal way, the image will be invalid.
-		LoadFlag_ExifOrient	= 1 << 1,	// Undo orientation transformations in jpg image as indicated by Exif meta-data.
-		LoadFlags_Default	= LoadFlag_ExifOrient
+		LoadFlag_None			= 0,
+		LoadFlag_Strict			= 1 << 0,	// If the file is ill-formed even in a non-fatal way, the image will be invalid.
+		LoadFlag_ExifOrient		= 1 << 1,	// Undo orientation transformations in jpg image as indicated by Exif meta-data.
+		LoadFlag_NoDecompress	= 1 << 2,	// Do not decompress image. Loads as a memory image only. Flip and rotate functions can only be called if NoDecompress is set.
+		LoadFlags_Default		= LoadFlag_ExifOrient
 	};
 
 	// Creates an invalid tImageJPG. You must call Load or Set manually.
@@ -83,19 +84,24 @@ public:
 	};
 
 	// Saves the tImageJPG to the JPeg file specified. The type of filename must be JPG (jpg or jpeg extension).
-	// The quality int is should be a percent in [1,100]. Returns true on success.
+	// The quality int is should be a percent in [1,100]. If the tImageJPG was loaded with LoadFlag_NoDecompress,
+	// the quality setting is ignored. Returns true on success.
 	bool Save(const tString& jpgFile, int quality) const;
 	bool Save(const tString& jpgFile, const SaveParams& = SaveParams()) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;
-	bool IsValid() const override																						{ return Pixels ? true : false; }
+	bool IsValid() const override																						{ return Pixels || MemImage ? true : false; }
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
 
 	// IsOpaque always returns true for a JPeg.
 	bool IsOpaque() const																								{ return true; }
+
+	// These 'lossless' flip and rotate calls will only succeed if the NoDecompress load-flag was used.
+	bool LosslessRotate90(bool antiClockWise);
+	bool LosslessFlip(bool horizontal);
 
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageJPG object is
 	// invalid afterwards.
@@ -105,7 +111,8 @@ public:
 	tPixel* GetPixels() const																							{ return Pixels; }
 	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 
-	// A place to store EXIF and XMP metadata. JPeg file often contain this metadata.
+	// A place to store EXIF and XMP metadata. JPeg files often contain this metadata. This field is not populated if
+	// NoDecompress flag was used during load.
 	tMetaData MetaData;
 
 private:
@@ -117,23 +124,15 @@ private:
 	void Rotate90(bool antiClockWise);
 	void Flip(bool horizontal);
 
-	int Width = 0;
-	int Height = 0;
-	tPixel* Pixels = nullptr;
+	int Width			= 0;
+	int Height			= 0;
+	tPixel* Pixels		= nullptr;
+	uint8* MemImage		= nullptr;
+	int MemImageSize	= 0;
 };
 
 
 // Implementation below this line.
-
-
-inline void tImageJPG::Clear()
-{
-	Width = 0;
-	Height = 0;
-	delete[] Pixels;
-	Pixels = nullptr;
-	PixelFormatSrc = tPixelFormat::Invalid;
-}
 
 
 inline void tImageJPG::ClearPixelData()

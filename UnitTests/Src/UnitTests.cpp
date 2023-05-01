@@ -168,6 +168,7 @@ int main(int argc, char** argv)
 	tTest(ImageQuantize);
 	tTest(ImagePalette);
 	tTest(ImageMetaData);
+	tTest(ImageLosslessTransform);
 	tTest(ImageRotation);
 	tTest(ImageCrop);
 	tTest(ImageAdjustment);
@@ -213,15 +214,16 @@ int main(int argc, char** argv)
 	// tTest(ImageFilter);
 	// tTest(ImageGradient);
 	// tTest(ImageMetaData);
+	tTest(ImageLosslessTransform);
 	// tTest(ImageRotation);
 	// tTest(ImageCrop);
 	// tTest(ImageAdjustment);
 	// tTest(ImageDetection);
-	tTest(ImageDDS);
-	tTest(ImageKTX1);
-	tTest(ImageKTX2);
-	tTest(ImageASTC);
-	tTest(ImagePKM);
+	// tTest(ImageDDS);
+	// tTest(ImageKTX1);
+	// tTest(ImageKTX2);
+	// tTest(ImageASTC);
+	// tTest(ImagePKM);
 	#endif
 	// tTest(UTF);
 	// tTest(Hash);

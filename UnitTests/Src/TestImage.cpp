@@ -743,6 +743,37 @@ tTestUnit(ImageMetaData)
 }
 
 
+tTestUnit(ImageLosslessTransform)
+{
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageRotation)
+
+	tImageJPG imgJPG_CW("TestData/Images/TacentTestPattern.jpg", tImageJPG::LoadFlag_NoDecompress);
+	tRequire(imgJPG_CW.IsValid());
+	imgJPG_CW.LosslessRotate90(false);
+	imgJPG_CW.Save("TestData/Images/WrittenLosslessCW90.jpg");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenLosslessCW90.jpg"));
+
+	tImageJPG imgJPG_ACW("TestData/Images/TacentTestPattern.jpg", tImageJPG::LoadFlag_NoDecompress);
+	tRequire(imgJPG_ACW.IsValid());
+	imgJPG_ACW.LosslessRotate90(true);
+	imgJPG_ACW.Save("TestData/Images/WrittenLosslessACW90.jpg");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenLosslessACW90.jpg"));
+
+	tImageJPG imgJPG_FV("TestData/Images/TacentTestPattern.jpg", tImageJPG::LoadFlag_NoDecompress);
+	tRequire(imgJPG_FV.IsValid());
+	imgJPG_FV.LosslessFlip(false);
+	imgJPG_FV.Save("TestData/Images/WrittenLosslessFlipV.jpg");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenLosslessFlipV.jpg"));
+
+	tImageJPG imgJPG_FH("TestData/Images/TacentTestPattern.jpg", tImageJPG::LoadFlag_NoDecompress);
+	tRequire(imgJPG_FH.IsValid());
+	imgJPG_FH.LosslessFlip(true);
+	imgJPG_FH.Save("TestData/Images/WrittenLosslessFlipH.jpg");
+	tRequire( tSystem::tFileExists("TestData/Images/WrittenLosslessFlipH.jpg"));
+}
+
+
 tTestUnit(ImageRotation)
 {
 	if (!tSystem::tDirExists("TestData/Images/"))

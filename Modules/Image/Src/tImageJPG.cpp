@@ -26,6 +26,19 @@ namespace tImage
 {
 
 
+void tImageJPG::Clear()
+{
+	PixelFormatSrc = tPixelFormat::Invalid;
+	Width = 0;
+	Height = 0;
+	delete[] Pixels;
+	Pixels = nullptr;
+	if (MemImage) tjFree(MemImage);
+	MemImage = nullptr;
+	MemImageSize = 0;
+}
+
+
 bool tImageJPG::Load(const tString& jpgFile, uint32 loadFlags)
 {
 	Clear();
@@ -36,8 +49,12 @@ bool tImageJPG::Load(const tString& jpgFile, uint32 loadFlags)
 	if (!tFileExists(jpgFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* jpgFileInMemory = tLoadFile(jpgFile, nullptr, &numBytes);
+	int numBytes = tGetFileSize(jpgFile);
+	if (numBytes <= 0)
+		return false;
+
+	uint8* jpgFileInMemory = tjAlloc(numBytes);
+	tLoadFile(jpgFile, jpgFileInMemory);
 	bool success = Load(jpgFileInMemory, numBytes, loadFlags);
 	delete[] jpgFileInMemory;
 
@@ -50,6 +67,15 @@ bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlag
 	Clear();
 	if ((numBytes <= 0) || !jpgFileInMemory)
 		return false;
+
+	// If no decompress we simply set the MemImage members and we're done.
+	if ((loadFlags & LoadFlag_NoDecompress))
+	{
+		MemImage = tjAlloc(numBytes);
+		tStd::tMemcpy(MemImage, jpgFileInMemory, numBytes);
+		MemImageSize = numBytes;
+		return true;
+	}
 
 	PopulateMetaData(jpgFileInMemory, numBytes);
 
@@ -204,7 +230,7 @@ bool tImageJPG::Set(tPicture& picture, bool steal)
 
 tFrame* tImageJPG::GetFrame(bool steal)
 {
-	if (!IsValid())
+	if (!Pixels)
 		return nullptr;
 
 	tFrame* frame = new tFrame();
@@ -260,6 +286,98 @@ void tImageJPG::Flip(bool horizontal)
 }
 
 
+bool tImageJPG::LosslessRotate90(bool antiClockwise)
+{
+	if (!MemImage || (MemImageSize <= 0))
+		return false;
+
+	tjhandle handle = tjInitTransform();
+	if (!handle)
+		return false;
+
+	uint8* dstBufs[1];
+	dstBufs[0] = nullptr;
+	ulong dstSizes[1];
+	dstSizes[0] = 0;
+	tjtransform transforms[1];
+	transforms[0].r.x = 0;
+	transforms[0].r.y = 0;
+	transforms[0].r.w = 0;
+	transforms[0].r.h = 0;
+	transforms[0].op = antiClockwise ? TJXOP_ROT270 : TJXOP_ROT90;
+	transforms[0].options = 0;
+	transforms[0].data = nullptr;
+	transforms[0].customFilter = nullptr;
+	int flags = TJXOPT_TRIM;
+
+	int errorCode = tjTransform
+	(
+		handle, MemImage, MemImageSize, 1,
+		dstBufs, dstSizes, transforms, flags
+	);
+	if ((errorCode != 0) || (dstBufs[0] == nullptr) || (dstSizes[0] <= 0))
+	{
+		tjDestroy(handle);
+		return false;
+	}
+
+	// Success. Simply hand the buffer over to the MemImage.
+	if (MemImage)
+		tjFree(MemImage);
+	MemImage = dstBufs[0];
+	MemImageSize = dstSizes[0];
+
+	tjDestroy(handle);
+	return true;
+}
+
+
+bool tImageJPG::LosslessFlip(bool horizontal)
+{
+	if (!MemImage || (MemImageSize <= 0))
+		return false;
+
+	tjhandle handle = tjInitTransform();
+	if (!handle)
+		return false;
+
+	uint8* dstBufs[1];
+	dstBufs[0] = nullptr;
+	ulong dstSizes[1];
+	dstSizes[0] = 0;
+	tjtransform transforms[1];
+	transforms[0].r.x = 0;
+	transforms[0].r.y = 0;
+	transforms[0].r.w = 0;
+	transforms[0].r.h = 0;
+	transforms[0].op = horizontal ? TJXOP_HFLIP : TJXOP_VFLIP;
+	transforms[0].options = 0;
+	transforms[0].data = nullptr;
+	transforms[0].customFilter = nullptr;
+	int flags = TJXOPT_TRIM;
+
+	int errorCode = tjTransform
+	(
+		handle, MemImage, MemImageSize, 1,
+		dstBufs, dstSizes, transforms, flags
+	);
+	if ((errorCode != 0) || (dstBufs[0] == nullptr) || (dstSizes[0] <= 0))
+	{
+		tjDestroy(handle);
+		return false;
+	}
+
+	// Success. Simply hand the buffer over to the MemImage.
+	if (MemImage)
+		tjFree(MemImage);
+	MemImage = dstBufs[0];
+	MemImageSize = dstSizes[0];
+
+	tjDestroy(handle);
+	return true;
+}
+
+
 bool tImageJPG::PopulateMetaData(const uint8* jpgFileInMemory, int numBytes)
 {
 	tAssert(jpgFileInMemory && (numBytes > 0));
@@ -283,6 +401,17 @@ bool tImageJPG::Save(const tString& jpgFile, const SaveParams& params) const
 
 	if (tSystem::tGetFileType(jpgFile) != tSystem::tFileType::JPG)
 		return false;
+
+	// If we're a simple memory image, just save the bytes to disk and we're done.
+	if (MemImage && (MemImageSize > 0))
+	{
+		tFileHandle fileHandle = tOpenFile(jpgFile, "wb");
+		if (!fileHandle)
+			return false;
+		int numWritten = tWriteFile(fileHandle, MemImage, MemImageSize);
+		tCloseFile(fileHandle);
+		return (numWritten == MemImageSize);
+	}
 
 	tjhandle tjInstance = tjInitCompress();
 	if (!tjInstance)
