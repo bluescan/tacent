@@ -739,14 +739,14 @@ bool tExtractRotationEulerXYZ
 (
 	tVec3& sol1, tVec3& sol2,
 	const tMat4& rot,
-	float gimbalZValue = 0.0f, tIntervalBias = tIntervalBias::Low
+	float gimbalZValue = 0.0f, tBias = tBias::Low
 );
 
 bool tExtractAffineEulerXYZ
 (
 	tVec3& sol1, tVec3& sol2,
 	const tMat4& aff,
-	float gimbalZValue = 0.0f, tIntervalBias = tIntervalBias::Low
+	float gimbalZValue = 0.0f, tBias = tBias::Low
 );
 
 // Linearly interpolate value towards dest at rate. t is delta time. Value is updated. Returns if got to dest.

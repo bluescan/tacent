@@ -36,24 +36,18 @@ enum class tAngleMode
 // mean exclude. See http://www.coolmath.com/algebra/07-solving-inequalities/03-interval-notation-01. When a function
 // takes a bias argument, a Low bias will cause the return value to include the lower extent of the interval and exclude
 // the high extent. A High bias will exclude the low end and include the high end. As a notational convenience When a
-// function takes a bias argument, we'll write the interval as [(a,b)] and the table below shows how to interpret it:
-//
-//		Bias			Interval
-//		Full/Outer		[a,b]
-//		Low/Left		[a,b)
-//		High/Right		(a,b]
-//		Center/Inner	(a,b)
-enum class tIntervalBias
+// function takes a bias argument, we'll write the interval as [(a,b)] and the enum below shows how to interpret it:
+enum class tBias
 {
-	Full,				Outer = Full,
-	Low,				Left = Low,
-	High,				Right = High,
-	Center,				Inner = Center
+	Full,		Outer = Full,		// [a,b]
+	Low,		Left = Low,			// [a,b)
+	High,		Right = High,		// (a,b]
+	Center,		Inner = Center		// (a,b)
 };
 
 // These are handy functions that return appropriate comparison operators when computing biased intervals.
-std::function<bool(float,float)> tBiasLess(tIntervalBias);
-std::function<bool(float,float)> tBiasGreater(tIntervalBias);
+std::function<bool(float,float)> tBiasLess(tBias);
+std::function<bool(float,float)> tBiasGreater(tBias);
 
 // For functions below there may be variants starting with 'ti'. The 'i' means 'in-place' (ref var). Supports chaining.
 inline int tAbs(int val)																								{ return (val < 0) ? -val : val; }
@@ -76,27 +70,30 @@ template<typename T> inline T tMin(const T& a, const T& b, const T& c)										
 template<typename T> inline T tMax(const T& a, const T& b, const T& c)													{ T ab = a > b ? a : b; return ab > c ? ab : c; }
 template<typename T> inline T tMin(const T& a, const T& b, const T& c, const T& d)										{ T ab = a < b ? a : b; T cd = c < d ? c : d; return ab < cd ? ab : cd; }
 template<typename T> inline T tMax(const T& a, const T& b, const T& c, const T& d)										{ T ab = a > b ? a : b; T cd = c > d ? c : d; return ab > cd ? ab : cd; }
+
 template<typename T> inline T tClamp(T val, T min, T max)																{ return (val < min) ? min : ((val > max) ? max : val); }
 template<typename T> inline T tClampMin(T val, T min)																	{ return (val < min) ? min : val; }
 template<typename T> inline T tClampMax(T val, T max)																	{ return (val > max) ? max : val; }
 template<typename T> inline T tSaturate(T val)																			{ return (val < T(0)) ? T(0) : ((val > T(1)) ? T(1) : val); }
-template<typename T> inline bool tInIntervalII(const T val, const T min, const T max)									{ if ((val >= min) && (val <= max)) return true; return false; }	// Implements val E [min, max]
-template<typename T> inline bool tInIntervalIE(const T val, const T min, const T max)									{ if ((val >= min) && (val < max)) return true; return false; }		// Implements val E [min, max)
-template<typename T> inline bool tInIntervalEI(const T val, const T min, const T max)									{ if ((val > min) && (val <= max)) return true; return false; }		// Implements val E (min, max]
-template<typename T> inline bool tInIntervalEE(const T val, const T min, const T max)									{ if ((val > min) && (val < max)) return true; return false; }		// Implements val E (min, max)
+template<typename T> inline T& tiClamp(T& val, T min, T max)															{ val = (val < min) ? min : ((val > max) ? max : val); return val; }
+template<typename T> inline T& tiClampMin(T& val, T min)																{ val = (val < min) ? min : val; return val; }
+template<typename T> inline T& tiClampMax(T& val, T max)																{ val = (val > max) ? max : val; return val; }
+template<typename T> inline T& tiSaturate(T& val)																		{ val = (val < T(0)) ? T(0) : ((val > T(1)) ? T(1) : val); return val; }
+
+template<typename T> inline bool tInIntervalII(const T val, const T min, const T max)	/* Returns val E [min, max]	*/	{ if ((val >= min) && (val <= max)) return true; return false; }	// Implements val E [min, max]
+template<typename T> inline bool tInIntervalIE(const T val, const T min, const T max)	/* Returns val E [min, max)	*/	{ if ((val >= min) && (val < max)) return true; return false; }		// Implements val E [min, max)
+template<typename T> inline bool tInIntervalEI(const T val, const T min, const T max)	/* Returns val E (min, max]	*/	{ if ((val > min) && (val <= max)) return true; return false; }		// Implements val E (min, max]
+template<typename T> inline bool tInIntervalEE(const T val, const T min, const T max)	/* Returns val E (min, max)	*/	{ if ((val > min) && (val < max)) return true; return false; }		// Implements val E (min, max)
 template<typename T> inline bool tInInterval(const T val, const T min, const T max)		/* Returns val E [min, max]	*/	{ return tInIntervalII(val, min, max); }
-template<typename T> inline bool tInRange(const T val, const T min, const T max)		/* Returns val E [min, max]	*/	{ return tInIntervalII(val, min, max); }
+template<typename T> inline bool tInInterval(const T val, const T min, const T max, tBias bias)							{ switch (bias) { case tBias::Left:	return tInIntervalIE(val, min, max); case tBias::Right:	return tInIntervalEI(val, min, max); case tBias::Inner:	return tInIntervalEE(val, min, max); } return tInIntervalII(val, min, max); }
+template<typename T> inline bool tInRange(const T val, const T min, const T max)		/* Returns val E [min, max]	*/	{ return tInInterval(val, min, max); }
+template<typename T> inline bool tInRange(const T val, const T min, const T max, tBias bias)							{ return tInInterval(val, min, max, bias); }
 template<typename T> inline T tSign(T val)																				{ return val < T(0) ? T(-1) : val > T(0) ? T(1) : T(0); }
 template<typename T> inline T tBinarySign(T val)																		{ return val < T(0) ? T(-1) : T(1); }	// Same as Sign but does not return 0 ever.  Two return values only.
 template<typename T> inline bool tIsZero(T a)																			{ return a == T(0); }
 template<typename T> inline bool tApproxEqual(T a, T b, float e = Epsilon)												{ return (tAbs(a-b) < e); }
 template<typename T> inline bool tEquals(T a, T b)																		{ return a == b; }
 template<typename T> inline bool tNotEqual(T a, T b)																	{ return a != b; }
-
-template<typename T> inline T& tiClamp(T& val, T min, T max)															{ val = (val < min) ? min : ((val > max) ? max : val); return val; }
-template<typename T> inline T& tiClampMin(T& val, T min)																{ val = (val < min) ? min : val; return val; }
-template<typename T> inline T& tiClampMax(T& val, T max)																{ val = (val > max) ? max : val; return val; }
-template<typename T> inline T& tiSaturate(T& val)																		{ val = (val < T(0)) ? T(0) : ((val > T(1)) ? T(1) : val); return val; }
 
 struct tDivt																											{ int Quotient; int Remainder; };
 tDivt tDiv(int numerator, int denominator);
@@ -211,10 +208,10 @@ inline uint& tiNextHigherPower2(uint& v)																				{ uint pow2 = 1; whi
 inline uint tNextHigherPower2(uint v)																					{ uint pow2 = 1; while (pow2 <= v) pow2 <<= 1; return pow2; }
 inline uint& tiClosestPower2(uint& v)																					{ if (tIsPower2(v)) return v; int h = tNextHigherPower2(v); int l = tNextLowerPower2(v); v = ((h - v) < (v - l)) ? h : l; return v; }
 inline uint tClosestPower2(uint v)																						{ if (tIsPower2(v)) return v; int h = tNextHigherPower2(v); int l = tNextLowerPower2(v); return ((h - v) < (v - l)) ? h : l; }
-float& tiNormalizeAngle(float& angle, tIntervalBias = tIntervalBias::Low);			// Results in angle E [(-Pi,Pi)].
-inline float tNormalizedAngle(float angle, tIntervalBias bias = tIntervalBias::Low)										{ tiNormalizeAngle(angle, bias); return angle; }
-float& tiNormalizeAngle2Pi(float& angle, tIntervalBias = tIntervalBias::Low);		// Results in angle E [(0,2Pi)].
-inline float tNormalizedAngle2Pi(float angle, tIntervalBias bias = tIntervalBias::Low)									{ tiNormalizeAngle2Pi(angle, bias); return angle; }
+float& tiNormalizeAngle(float& angle, tBias = tBias::Low);				// Results in angle E [(-Pi,Pi)].
+inline float tNormalizedAngle(float angle, tBias bias = tBias::Low)														{ tiNormalizeAngle(angle, bias); return angle; }
+float& tiNormalizeAngle2Pi(float& angle, tBias = tBias::Low);			// Results in angle E [(0,2Pi)].
+inline float tNormalizedAngle2Pi(float angle, tBias bias = tBias::Low)													{ tiNormalizeAngle2Pi(angle, bias); return angle; }
 
 // Gets the range (y) value of a normal distribution with mean = 0, and given variance. Pass in the domain (x) value.
 inline float tNormalDist(float variance, float x)																		{ return tPow(2*Pi*variance, -0.5f) * tExp(-tPow(x, 2.0f) / (2.0f*variance)); }
@@ -253,32 +250,32 @@ float tUnitArc(float x, uint32 = tUnitFlip_None);
 // Implementation below this line.
 
 
-inline std::function<bool(float,float)> tMath::tBiasLess(tIntervalBias bias)
+inline std::function<bool(float,float)> tMath::tBiasLess(tBias bias)
 {
 	switch (bias)
 	{
-		case tIntervalBias::Right:
-		case tIntervalBias::Outer:
+		case tBias::Right:
+		case tBias::Outer:
 			return [](float a, float b) { return a <= b; };
 
-		case tIntervalBias::Left:
-		case tIntervalBias::Inner:
+		case tBias::Left:
+		case tBias::Inner:
 		default:
 			return [](float a, float b) { return a < b; };
 	}
 }
 
 
-inline std::function<bool(float,float)> tMath::tBiasGreater(tIntervalBias bias)
+inline std::function<bool(float,float)> tMath::tBiasGreater(tBias bias)
 {
 	switch (bias)
 	{
-		case tIntervalBias::Left:
-		case tIntervalBias::Outer:
+		case tBias::Left:
+		case tBias::Outer:
 			return [](float a, float b) { return a >= b; };
 
-		case tIntervalBias::Right:
-		case tIntervalBias::Inner:
+		case tBias::Right:
+		case tBias::Inner:
 		default:
 			return [](float a, float b) { return a > b; };
 	}
@@ -536,7 +533,7 @@ inline void tMath::tCosSinFast(float& c, float& s, float x)
 }
 
 
-inline float& tMath::tiNormalizeAngle(float& a, tIntervalBias bias)
+inline float& tMath::tiNormalizeAngle(float& a, tBias bias)
 {
 	std::function<bool(float,float)> less = tBiasLess(bias);
 	std::function<bool(float,float)> greater = tBiasGreater(bias);
@@ -546,7 +543,7 @@ inline float& tMath::tiNormalizeAngle(float& a, tIntervalBias bias)
 }
 
 
-inline float& tMath::tiNormalizeAngle2Pi(float& a, tIntervalBias bias)
+inline float& tMath::tiNormalizeAngle2Pi(float& a, tBias bias)
 {
 	std::function<bool(float,float)> less = tBiasLess(bias);
 	std::function<bool(float,float)> greater = tBiasGreater(bias);

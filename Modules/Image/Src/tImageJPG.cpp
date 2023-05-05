@@ -286,7 +286,7 @@ void tImageJPG::Flip(bool horizontal)
 }
 
 
-bool tImageJPG::LosslessRotate90(bool antiClockwise)
+bool tImageJPG::CanDoPerfectLosslessTransform(Transform trans) const
 {
 	if (!MemImage || (MemImageSize <= 0))
 		return false;
@@ -295,44 +295,42 @@ bool tImageJPG::LosslessRotate90(bool antiClockwise)
 	if (!handle)
 		return false;
 
-	uint8* dstBufs[1];
-	dstBufs[0] = nullptr;
-	ulong dstSizes[1];
-	dstSizes[0] = 0;
-	tjtransform transforms[1];
-	transforms[0].r.x = 0;
-	transforms[0].r.y = 0;
-	transforms[0].r.w = 0;
-	transforms[0].r.h = 0;
-	transforms[0].op = antiClockwise ? TJXOP_ROT270 : TJXOP_ROT90;
-	transforms[0].options = 0;
-	transforms[0].data = nullptr;
-	transforms[0].customFilter = nullptr;
-	int flags = TJXOPT_TRIM;
+	int width = 0;
+	int height = 0;
+	int subsamp = 0;
+	tjDecompressHeader2(handle, MemImage, MemImageSize, &width, &height, &subsamp);
+	tjDestroy(handle);
 
-	int errorCode = tjTransform
-	(
-		handle, MemImage, MemImageSize, 1,
-		dstBufs, dstSizes, transforms, flags
-	);
-	if ((errorCode != 0) || (dstBufs[0] == nullptr) || (dstSizes[0] <= 0))
+	tMath::tiClamp(subsamp, 0, TJ_NUMSAMP-1);
+	int mcuWidth	= tjMCUWidth[subsamp];
+	int mcuHeight	= tjMCUHeight[subsamp];
+	bool widthOK	= (width % mcuWidth) == 0;
+	bool heightOK	= (height % mcuHeight) == 0;
+
+	// Regardless of the transform, if both width and height are multiples of mcu size, we're ok.
+	if (widthOK && heightOK)
+		return true;
+
+	switch (trans)
 	{
-		tjDestroy(handle);
-		return false;
+		case Transform::Rotate90ACW:
+		case Transform::FlipH:
+			if (!widthOK)
+				return false;
+			break;
+
+		case Transform::Rotate90CW:
+		case Transform::FlipV:
+			if (!heightOK)
+				return false;
+			break;
 	}
 
-	// Success. Simply hand the buffer over to the MemImage.
-	if (MemImage)
-		tjFree(MemImage);
-	MemImage = dstBufs[0];
-	MemImageSize = dstSizes[0];
-
-	tjDestroy(handle);
 	return true;
 }
 
 
-bool tImageJPG::LosslessFlip(bool horizontal)
+bool tImageJPG::LosslessTransform(Transform trans, bool allowImperfect)
 {
 	if (!MemImage || (MemImageSize <= 0))
 		return false;
@@ -340,6 +338,16 @@ bool tImageJPG::LosslessFlip(bool horizontal)
 	tjhandle handle = tjInitTransform();
 	if (!handle)
 		return false;
+
+	TJXOP oper = TJXOP_NONE;
+	switch (trans)
+	{
+		case Transform::Rotate90ACW:	oper = TJXOP_ROT270;	break;
+		case Transform::Rotate90CW:		oper = TJXOP_ROT90;		break;
+		case Transform::FlipH:			oper = TJXOP_HFLIP;		break;
+		case Transform::FlipV:			oper = TJXOP_VFLIP;		break;
+	}
+	int options = allowImperfect ? TJXOPT_TRIM : TJXOPT_PERFECT;
 
 	uint8* dstBufs[1];
 	dstBufs[0] = nullptr;
@@ -350,11 +358,11 @@ bool tImageJPG::LosslessFlip(bool horizontal)
 	transforms[0].r.y = 0;
 	transforms[0].r.w = 0;
 	transforms[0].r.h = 0;
-	transforms[0].op = horizontal ? TJXOP_HFLIP : TJXOP_VFLIP;
-	transforms[0].options = 0;
+	transforms[0].op = oper;
+	transforms[0].options = options;
 	transforms[0].data = nullptr;
 	transforms[0].customFilter = nullptr;
-	int flags = TJXOPT_TRIM;
+	int flags = 0;
 
 	int errorCode = tjTransform
 	(

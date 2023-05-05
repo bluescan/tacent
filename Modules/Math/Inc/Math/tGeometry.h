@@ -166,8 +166,8 @@ struct tARect2
 	bool IsPointInsideBias
 	(
 		const tVector2& point,
-		tIntervalBias biasX = tIntervalBias::Low,
-		tIntervalBias biasY = tIntervalBias::Low
+		tBias biasX = tBias::Low,
+		tBias biasY = tBias::Low
 	) const;
 
 	// Transforms Min and Max vectors and builds the new box from them.
@@ -306,9 +306,9 @@ struct tABox
 	bool IsPointInsideBias
 	(
 		const tVector3& point,
-		tIntervalBias biasX = tIntervalBias::Low,
-		tIntervalBias biasY = tIntervalBias::Low,
-		tIntervalBias biasZ = tIntervalBias::Low
+		tBias biasX = tBias::Low,
+		tBias biasY = tBias::Low,
+		tBias biasZ = tBias::Low
 	) const;
 
 	tVector3 ComputeCenter() const																						{ return (Min + Max)/2.0f; }
@@ -544,7 +544,7 @@ inline bool tMath::tARect2::Overlaps(const tARect2& rect) const
 }
 
 
-inline bool tMath::tARect2::IsPointInsideBias(const tVector2& point, tIntervalBias biasX, tIntervalBias biasY) const
+inline bool tMath::tARect2::IsPointInsideBias(const tVector2& point, tBias biasX, tBias biasY) const
 {
 	std::function<bool(float,float)> lessX = tBiasLess(biasX);
 	std::function<bool(float,float)> grtrX = tBiasGreater(biasX);
@@ -570,7 +570,7 @@ inline void tMath::tABox::AddPoint(const tVector3& p)
 }
 
 
-inline bool tMath::tABox::IsPointInsideBias(const tVector3& point, tIntervalBias biasX, tIntervalBias biasY, tIntervalBias biasZ) const
+inline bool tMath::tABox::IsPointInsideBias(const tVector3& point, tBias biasX, tBias biasY, tBias biasZ) const
 {
 	std::function<bool(float,float)> lessX = tBiasLess(biasX);
 	std::function<bool(float,float)> grtrX = tBiasGreater(biasX);

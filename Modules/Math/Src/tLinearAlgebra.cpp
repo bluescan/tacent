@@ -941,7 +941,7 @@ void tMath::tExtractProjectionPlanes(tVec4 planes[6], const tMat4& m, bool outwa
 bool tMath::tExtractRotationEulerXYZ
 (
 	tVec3& sol1, tVec3& sol2, const tMat4& rot,
-	float gimbalZ, tIntervalBias bias
+	float gimbalZ, tBias bias
 )
 {
 	// Extraction based on http://staff.city.ac.uk/~sbbh653/publications/euler.pdf
@@ -981,7 +981,7 @@ bool tMath::tExtractRotationEulerXYZ
 }
 
 
-bool tMath::tExtractAffineEulerXYZ(tVec3& sol1, tVec3& sol2, const tMat4& affine, float gimbalZ, tIntervalBias bias)
+bool tMath::tExtractAffineEulerXYZ(tVec3& sol1, tVec3& sol2, const tMat4& affine, float gimbalZ, tBias bias)
 {
 	tMat4 r; tSet(r, affine);
 	tNormalize(r.C1);

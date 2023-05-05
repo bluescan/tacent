@@ -99,9 +99,30 @@ public:
 	// IsOpaque always returns true for a JPeg.
 	bool IsOpaque() const																								{ return true; }
 
-	// These 'lossless' flip and rotate calls will only succeed if the NoDecompress load-flag was used.
-	bool LosslessRotate90(bool antiClockWise);
-	bool LosslessFlip(bool horizontal);
+	enum class Transform
+	{
+		Rotate90ACW,
+		Rotate90CW,
+		FlipH,
+		FlipV
+	};
+
+	// A perfect lossless transfrom is one where the area of the image is the same before and after the transform.
+	// An imperfect lossless transform is still lossless, but some edges of the image need to be culled. For all
+	// lossless transforms (flips/rotates) to be perfect two things must be true:
+	//
+	// a) The NoDecompress load-flag must have been used.
+	// b) The image's width and height must be evenly divisible by the MCU block size.
+	//
+	// For b) if both width and height are divisible, all transforms are possible. If one is divisible then the
+	// transform may be possible or it may not be (depending on the transform). This is why the specific transform must
+	// be supplied. If false you can still perform a LosslessTransform, but one or two outer edges will be culled.
+	bool CanDoPerfectLosslessTransform(Transform) const;
+
+	// If allowImperfect is true you may end up with a slightly cropped image. This cropping will happen if
+	// CanDoPerfectLosslessTransform returned false. If allowImperfect is false, this function will return false and do
+	// nothing unless it can guarantee no cropping.
+	bool LosslessTransform(Transform, bool allowImperfect = true);
 
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageJPG object is
 	// invalid afterwards.

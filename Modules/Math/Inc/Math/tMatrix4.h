@@ -120,13 +120,13 @@ struct tMatrix4 : public tMat4
 	bool ExtractRotationEulerXYZ
 	(
 		tVec3& sol1, tVec3& sol2,
-		float gimbalZValue = 0.0f, tIntervalBias bias = tIntervalBias::Low
+		float gimbalZValue = 0.0f, tBias bias = tBias::Low
 	) const																												{ return tExtractRotationEulerXYZ(sol1, sol2, *this, gimbalZValue, bias); }
 
 	bool ExtractAffineEulerXYZ
 	(
 		tVec3& sol1, tVec3& sol2,
-		float gimbalZValue = 0.0f, tIntervalBias bias = tIntervalBias::Low
+		float gimbalZValue = 0.0f, tBias bias = tBias::Low
 	) const																												{ return tExtractAffineEulerXYZ(sol1, sol2, *this, gimbalZValue, bias); } 
 
 	tMatrix4& operator=(const tMat4& m)																					{ tSet(*this, m); return *this; }
