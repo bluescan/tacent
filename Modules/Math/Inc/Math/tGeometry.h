@@ -5,7 +5,7 @@
 // shape is in, not the dimensionality of the shape itself. eg. A tCircle3 is a (2D) circle in R3 while a tCircle2 is a
 // 2D circle in R2. For shapes that are in R3 we drop the 3 because the R3 primitives are more general.
 //
-// Copyright (c) 2006, 2016, 2019 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2019, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -547,11 +547,11 @@ inline bool tMath::tARect2::Overlaps(const tARect2& rect) const
 inline bool tMath::tARect2::IsPointInsideBias(const tVector2& point, tBias biasX, tBias biasY) const
 {
 	std::function<bool(float,float)> lessX = tBiasLess(biasX);
-	std::function<bool(float,float)> grtrX = tBiasGreater(biasX);
+	std::function<bool(float,float)> grtrX = tBiasGrtr(biasX);
 	bool inX = grtrX(point.x, Min.x) && lessX(point.x, Max.x);
 
 	std::function<bool(float,float)> lessY = tBiasLess(biasY);
-	std::function<bool(float,float)> grtrY = tBiasGreater(biasY);
+	std::function<bool(float,float)> grtrY = tBiasGrtr(biasY);
 	bool inY = grtrY(point.y, Min.y) && lessY(point.y, Max.y);
 
 	return inX && inY;
@@ -573,15 +573,15 @@ inline void tMath::tABox::AddPoint(const tVector3& p)
 inline bool tMath::tABox::IsPointInsideBias(const tVector3& point, tBias biasX, tBias biasY, tBias biasZ) const
 {
 	std::function<bool(float,float)> lessX = tBiasLess(biasX);
-	std::function<bool(float,float)> grtrX = tBiasGreater(biasX);
+	std::function<bool(float,float)> grtrX = tBiasGrtr(biasX);
 	bool inX = grtrX(point.x, Min.x) && lessX(point.x, Max.x);
 
 	std::function<bool(float,float)> lessY = tBiasLess(biasY);
-	std::function<bool(float,float)> grtrY = tBiasGreater(biasY);
+	std::function<bool(float,float)> grtrY = tBiasGrtr(biasY);
 	bool inY = grtrY(point.y, Min.y) && lessY(point.y, Max.y);
 
 	std::function<bool(float,float)> lessZ = tBiasLess(biasZ);
-	std::function<bool(float,float)> grtrZ = tBiasGreater(biasZ);
+	std::function<bool(float,float)> grtrZ = tBiasGrtr(biasZ);
 	bool inZ = grtrZ(point.z, Min.z) && lessZ(point.z, Max.z);
 
 	return inX && inY && inZ;

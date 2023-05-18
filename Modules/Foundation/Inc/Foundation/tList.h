@@ -10,7 +10,7 @@
 // iterator syntax similar to the STL containers. Supports the new C++11 range-based for loop syntax.
 // tItList disadvantages: More memory allocs. Not quite as fast.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020, 2022 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -283,10 +283,15 @@ public:
 	};
 
 	// Insert before head and append after tail.
-	T* Insert(const T* obj)																								{ tAssert(obj); Nodes.Insert(new IterNode(obj)); return obj; }
-	T* Insert(const T* obj, const Iter& here)																			{ tAssert(obj); tAssert(this == here.List); Nodes.Insert(new IterNode(obj), here.Node); return obj; }
+	T* Insert(T* obj)																									{ tAssert(obj); Nodes.Insert(new IterNode(obj)); return obj; }
+	T* Insert(T* obj, const Iter& here)																					{ tAssert(obj); tAssert(this == here.List); Nodes.Insert(new IterNode(obj), here.Node); return obj; }
 	T* Append(T* obj)																									{ tAssert(obj); Nodes.Append(new IterNode(obj)); return obj; }
-	T* Append(const T* obj, const Iter& here)																			{ tAssert(obj); tAssert(this == here.List); Nodes.Append(new IterNode(obj), here.Node); return obj; }
+	T* Append(T* obj, const Iter& here)																					{ tAssert(obj); tAssert(this == here.List); Nodes.Append(new IterNode(obj), here.Node); return obj; }
+
+	const T* Insert(const T* obj)																						{ tAssert(obj); Nodes.Insert(new IterNode(obj)); return obj; }
+	const T* Insert(const T* obj, const Iter& here)																		{ tAssert(obj); tAssert(this == here.List); Nodes.Insert(new IterNode(obj), here.Node); return obj; }
+	const T* Append(const T* obj)																						{ tAssert(obj); Nodes.Append(new IterNode(obj)); return obj; }
+	const T* Append(const T* obj, const Iter& here)																		{ tAssert(obj); tAssert(this == here.List); Nodes.Append(new IterNode(obj), here.Node); return obj; }
 
 	T* Remove()												/* Removes and returns head. */								{ Iter head = Head(); return Remove(head); }
 	T* Remove(Iter&);										// Removed object referred to by Iter. Invalidates Iter.
