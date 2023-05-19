@@ -131,6 +131,7 @@ int main(int argc, char** argv)
 
 	// Math tests.
 	tTest(Fundamentals);
+	tTest(Interval);
 	tTest(Spline);
 	tTest(Random);
 	tTest(Matrix);
@@ -187,6 +188,7 @@ int main(int argc, char** argv)
 
 	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
 	// tTest(Fundamentals);
+	tTest(Interval);
 	// tTest(FileTypes);
 	// tTest(Directories);
 	// tTest(File);
@@ -214,7 +216,7 @@ int main(int argc, char** argv)
 	// tTest(ImageFilter);
 	// tTest(ImageGradient);
 	// tTest(ImageMetaData);
-	tTest(ImageLosslessTransform);
+	// tTest(ImageLosslessTransform);
 	// tTest(ImageRotation);
 	// tTest(ImageCrop);
 	// tTest(ImageAdjustment);

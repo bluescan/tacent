@@ -176,6 +176,64 @@ tTestUnit(Fundamentals)
 }
 
 
+tTestUnit(Interval)
+{
+	tString intstr;
+	tString recstr;
+	tInterval inter;
+
+	intstr = "(4,6)";
+	inter.Set(intstr);
+	tPrintf("A:%d B:%d Bias:%d\n", inter.A, inter.B, int(inter.Bias));
+	tRequire(inter.IsValid());
+	tRequire(!inter.Contains(4));
+	tRequire( inter.Contains(5));
+	tRequire(!inter.Contains(6));
+	recstr = inter.Get();
+	tRequire(recstr == intstr);
+
+	// The interval [0,5) -> { 0 1 2 3 4 }
+	intstr = "[0,5)";
+	inter.Set(intstr);
+	tPrintf("A:%d B:%d Bias:%d\n", inter.A, inter.B, int(inter.Bias));
+	tRequire(inter.Contains(0) && inter.Contains(1) && inter.Contains(2) && inter.Contains(3) && inter.Contains(4));
+	tRequire(!inter.Contains(-1) && !inter.Contains(5));
+	recstr = inter.Get();
+	tRequire(recstr == intstr);
+
+	// The interval (5,5) -> empty
+	inter.Set("(5,5)");
+	tRequire(inter.IsEmpty());
+
+	// The interval [5,5) -> empty
+	inter.Set("[5,5)");
+	tRequire(inter.IsEmpty());
+
+	// The interval (5,5] -> empty
+	inter.Set("(5,5]");
+	tRequire(inter.IsEmpty());
+
+	// The interval [5,5] -> { 5 }
+	inter.Set("[5,5]");
+	tRequire(!inter.IsEmpty());
+	tRequire(!inter.Contains(4) && inter.Contains(5) && !inter.Contains(6));
+
+	// The interval (4,5] -> { 5 }
+	intstr = "(4,5]";
+	inter.Set(intstr);
+	tRequire(!inter.IsEmpty());
+	tRequire(!inter.Contains(4) && inter.Contains(5) && !inter.Contains(6));
+	tRequire(!inter.Contains(4));
+	recstr = inter.Get();
+	tPrintf("Recstr:%s Expect:%s\n", recstr.Chr(), intstr.Chr());
+	tRequire(recstr == intstr);
+
+	// The interval (4,5) -> empty
+	inter.Set("(4,5)");
+	tRequire(inter.IsEmpty());
+}
+
+
 tTestUnit(Spline)
 {
 	tVector3 CVs[4];

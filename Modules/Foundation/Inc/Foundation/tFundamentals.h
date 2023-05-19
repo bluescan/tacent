@@ -33,25 +33,6 @@ enum class tAngleMode
 	Default		= Radians,
 };
 
-// Interval Notation. When you see [a,b] or (a,b) the square bracket means include the endpoint and the rounded brackets
-// mean exclude. See http://www.coolmath.com/algebra/07-solving-inequalities/03-interval-notation-01. When a function
-// takes a bias argument, a Low bias will cause the return value to include the lower extent of the interval and exclude
-// the high extent. A High bias will exclude the low end and include the high end. As a notational convenience When a
-// function takes a bias argument, we'll write the interval as [(a,b)] and the enum below shows how to interpret it:
-enum class tBias
-{
-	Full,		Outer = Full,		// [a,b]
-	Low,		Left = Low,			// [a,b)
-	High,		Right = High,		// (a,b]
-	Center,		Inner = Center		// (a,b)
-};
-
-// These are handy functions that return appropriate comparison operators when computing biased intervals.
-// For tBiasLess we care about the RHS. If the RHS is inclusive we get <=. If the RHS is exclusive we get <.
-// For tBiasGrtr we care about the LHS. If the LHS is inclusive we get >=. If the LHS is exclusive we get >.
-std::function<bool(float,float)> tBiasLess(tBias);
-std::function<bool(float,float)> tBiasGrtr(tBias);
-
 // For functions below there may be variants starting with 'ti'. The 'i' means 'in-place' (ref var). Supports chaining.
 inline int tAbs(int val)																								{ return (val < 0) ? -val : val; }
 inline float tAbs(float val)																							{ return (val < 0.0f) ? -val : val; }
@@ -83,6 +64,25 @@ template<typename T> inline T& tiClampMin(T& val, T min)																{ val = 
 template<typename T> inline T& tiClampMax(T& val, T max)																{ val = (val > max) ? max : val; return val; }
 template<typename T> inline T& tiSaturate(T& val)																		{ val = (val < T(0)) ? T(0) : ((val > T(1)) ? T(1) : val); return val; }
 
+// Interval Notation. When you see [a,b] or (a,b) the square bracket means include the endpoint and the rounded brackets
+// mean exclude. See http://www.coolmath.com/algebra/07-solving-inequalities/03-interval-notation-01. When a function
+// takes a bias argument, a Low bias will cause the return value to include the lower extent of the interval and exclude
+// the high extent. A High bias will exclude the low end and include the high end. As a notational convenience When a
+// function takes a bias argument, we'll write the interval as [(a,b)] and the enum below shows how to interpret it:
+enum class tBias
+{
+	Full,		Outer = Full,		// [a,b]
+	Low,		Left = Low,			// [a,b)
+	High,		Right = High,		// (a,b]
+	Center,		Inner = Center		// (a,b)
+};
+
+// These are handy functions that return appropriate comparison operators when computing biased intervals.
+// For tBiasLess we care about the RHS. If the RHS is inclusive we get <=. If the RHS is exclusive we get <.
+// For tBiasGrtr we care about the LHS. If the LHS is inclusive we get >=. If the LHS is exclusive we get >.
+std::function<bool(float,float)> tBiasLess(tBias);
+std::function<bool(float,float)> tBiasGrtr(tBias);
+
 template<typename T> inline bool tInIntervalII(const T val, const T min, const T max)	/* Returns val E [min, max]	*/	{ if ((val >= min) && (val <= max)) return true; return false; }	// Implements val E [min, max]
 template<typename T> inline bool tInIntervalIE(const T val, const T min, const T max)	/* Returns val E [min, max)	*/	{ if ((val >= min) && (val < max)) return true; return false; }		// Implements val E [min, max)
 template<typename T> inline bool tInIntervalEI(const T val, const T min, const T max)	/* Returns val E (min, max]	*/	{ if ((val > min) && (val <= max)) return true; return false; }		// Implements val E (min, max]
@@ -103,7 +103,7 @@ template<typename T> inline bool tInRange(const T val, const T min, const T max,
 // The interval (4,5] -> { 5 }
 // The interval (4,5) -> empty
 //
-// Over reals represnted loosly by float or double:
+// Over reals represented loosly by float or double:
 // The interval [0.0,5.0) -> x ε R | 0.0 <= x <= 5.0
 // The interval (5.0,5.0) -> empty
 // The interval [5.0,5.0) -> empty
@@ -113,40 +113,44 @@ template<typename T> inline bool tInRange(const T val, const T min, const T max,
 // The interval (4.0,5.0) -> x ε R | 4.0 < x <  5.0
 struct tInterval
 {
-	// Creates an empty interval. we use (0,0) as the default empty set.
-	tInterval() { Set(0,0, tBias::Inner); }
-	tInterval(const tInterval& src) { Set(src); }
-	tInterval(int a, int b, tBias bias = tBias::Full) { Set(a, b, bias); }
-	tInterval(const tString& s) { Set(s); }
+	// Creates an empty interval. We use (0,0) with inner bias as the default empty set.
+	tInterval()																											{ Set(0, 0, tBias::Inner); }
+	tInterval(const tInterval& src)																						{ Set(src); }
+	tInterval(int a, int b, tBias bias = tBias::Full)																	{ Set(a, b, bias); }
+	tInterval(const tString& s)																							{ Set(s); }
+
+	void Clear()																										{ Set(0, 0, tBias::Inner); }
+
+	// Returns true if the interval is not the empty set (contains nothing). Note that (4,5) is invalid for ints but
+	// valid for floats/doubles.
+	bool IsValid() const;
 
 	// Returns true if the interval is the empty set.
-	// (a,a] is valid. [a,a] is valid.
-	// (a,a) is invalid. [a,a) is invalid.
-	// [(a,b)] is valid if a < b.
-	// [(a,b)] is invalid if a > b.
-	bool IsEmpty() const
-	{
-		// WIP. Use the BiasLess and BiasGrtr functions. Check if the two endpoints overlap at all.
-		return true;
-	}
-	void Set(const tInterval& i)					{ A = i.A; B = i.B; Bias = i.Bias; }
-	void Set(int a, int b, tBias bias = tBias::Full){ A = a; B = b; Bias = bias; }
-	void Set(const tString& s);
-	void Get(tString& s) const;
-	tString Get() const { tString s; Get(s); return s; }
+	bool IsEmpty() const																								{ return !IsValid(); }
+	void Set(const tInterval& i)																						{ A = i.A; B = i.B; Bias = i.Bias; }
+	void Set(int a, int b, tBias bias = tBias::Full)																	{ A = a; B = b; Bias = bias; }
 
-	bool Contains(int v) const 				{ return tInInterval(v, A, B, Bias); }
-	bool Contains(const tInterval& v) const	{ return tInInterval(v.A, A, B, Bias) && tInInterval(v.B, A, B, Bias); }
-	bool Overlaps(const tInterval& v) const { return tInInterval(v.A, A, B, Bias) || tInInterval(v.B, A, B, Bias); }
+	// Returns true on success. If string not well-formed interval will be empty and false returned.
+	bool Set(const tString& s);
+	void Get(tString& s) const;
+	tString Get() const																									{ tString s; Get(s); return s; }
+
+	bool Contains(int v) const																							{ return tInInterval(v, A, B, Bias); }
+	bool Contains(const tInterval& v) const																				{ return tInInterval(v.A, A, B, Bias) && tInInterval(v.B, A, B, Bias); }
+	bool Overlaps(const tInterval& v) const																				{ return tInInterval(v.A, A, B, Bias) || tInInterval(v.B, A, B, Bias); }
 
 	// Extend only increases the interval if there was an overlap. Returns true if the interval was updated.
+	// WIP Not Implemented.
 	bool Extend(const tInterval& v);
 
 	// Encapsulate increases the interval even if they don't overlap. Returns true if the interval was updated.
+	// WIP Not Implemented.
 	bool Encapsulate(const tInterval& v);
 
-	tInterval& operator=(const tInterval& i)	{ Set(i); }
-	bool operator==(const tInterval& i) const	{ return (A == i.A) && (B == i.B) && (Bias == i.Bias); }
+	tInterval& operator=(const tInterval& i)																			{ Set(i); }
+
+	// A, B, and Bias must match exactly. For integral intervals, no conversion to inclusive and subsequent compare.
+	bool operator==(const tInterval& i) const																			{ return (A == i.A) && (B == i.B) && (Bias == i.Bias); }
 
 	tBias Bias	= tBias::Inner;
 	int A		= 0;
@@ -154,100 +158,17 @@ struct tInterval
 };
 
 
-inline void tInterval::Set(const tString& s)
-{
-	// The string should be in the format "[2,4]" where [ may be ( and 2 <= 4.
-	// The string (a,a) will result in 
-}
-
-
-inline void tInterval::Get(tString& s) const
-{
-}
-
-
 // This class represents a collection of multiple intervals. The intervals may not overlap, but if they do this class
 // knows how to simplify the collection to the fewest number of intervals possible.
 struct tIntervals
 {
 	// WIP.
-	bool Add(const tInterval& interval);		// Returns true if Intervals modified.
+	// Need copy cons, conversion to/from string, etc.
+
+	// Returns true if Intervals modified.
+	bool Add(const tInterval& interval);
 	tItList<tInterval> Intervals;
 };
-
-
-inline bool tIntervals::Add(const tInterval& interval)
-{
-	bool modified = false;
-
-	// This first step either exits early if the interval we're adding is completely contained in an existing one,
-	// or it removes existing intervals that are completely inside what we're adding.
-	tItList<tInterval>::Iter i = Intervals.First();
-	while (i.IsValid())
-	{
-		tItList<tInterval>::Iter next = i;
-		++next;
-
-		if (i->Contains(interval))
-			return false;
-		else if (interval.Contains(i))
-			Intervals.Remove(i);
-
-		i = next;
-	}
-
-	// Next we find the first and last overlapping intervals.
-	tItList<tInterval>::Iter frst;
-	for (auto it = Intervals.First(); it; ++it)
-	{
-		if (it->Overlaps(interval))
-		{
-			frst = it;
-			break;
-		}
-	}
-
-	tItList<tInterval>::Iter last;
-	for (auto it = Intervals.Last(); it; --it)
-	{
-		if (it->Overlaps(interval))
-		{
-			last = it;
-			break;
-		}
-	}
-
-	// Now we are in 1 of 4 situations:
-	// 1. We are not overlapping the first or last. (even if first == last or they don't exist).
-	// 2. We are overlapping the first and last. (works even if first == last).
-	// 3. We are overlapping the first and not the last. (works even if first == last).
-	// 4. We are overlapping the last and not the first. (works even if first == last).
-
-	// Case 1. Add the interval and we are done.
-	if (!frst && !last)
-	{
-		Intervals.Insert(new tInterval(interval));
-		return true;
-	}
-
-	// Case 2.
-	else if (frst && last)
-	{
-		if (frst != last)
-			Intervals.Remove(last);
-		frst->Encapsulate(interval);
-	}
-
-	// Case 3 and 4.
-	else
-	{
-		if (frst != last)
-			last->Extend(interval);
-		frst->Extend(interval);
-	}
-
-	return true;
-}
 
 
 template<typename T> inline T tSign(T val)																				{ return val < T(0) ? T(-1) : val > T(0) ? T(1) : T(0); }
@@ -441,6 +362,162 @@ inline std::function<bool(float,float)> tMath::tBiasGrtr(tBias bias)
 		default:
 			return [](float a, float b) { return a > b; };
 	}
+}
+
+
+inline bool tMath::tInterval::IsValid() const
+{
+	// For integers any exclusive endpoints can be converted to inclusive.
+	int a = A;
+	int b = B;
+	tBias bias = Bias;
+
+	bool exclusiveLeft  = (bias == tBias::Right) || (bias == tBias::Inner);
+	if (exclusiveLeft)
+	{
+		a++;
+		bias = (bias == tBias::Right) ? tBias::Outer : tBias::Left;
+	}
+
+	bool exclusiveRight = (bias == tBias::Left);
+	if (exclusiveRight)
+	{
+		b--;
+		bias = tBias::Outer;
+	}
+	tAssert(bias == tBias::Outer);
+
+	return (b >= a);
+	// For float we check if a == b. If so, we must have outer bias. If not same, b must be > a for it to be valid.
+	// return ((a == b) && (Bias == tBias::Outer)) || (b > a);
+}
+
+
+inline bool tMath::tInterval::Set(const tString& s)
+{
+	// The string should be in the form "[(a,b)]"
+	tString str(s);
+	str.RemoveAnyNot("[(.,0123456789)]");
+	Clear();
+	if ((str[0] != '[') && (str[0] != '('))
+		return false;
+	bool inclusiveA = (str[0] == '[');
+
+	if ((str[str.Length()-1] != ']') && (str[str.Length()-1] != ')'))
+		return false;
+	bool inclusiveB = (str[str.Length()-1] == ']');
+
+	str.RemoveAny("[()]");
+	if (str.CountChar(',') != 1)
+		return false;
+
+	tString a = str.ExtractLeft(',');		// b is left in str.
+	A = a.AsInt(10);
+	B = str.AsInt(10);
+
+	if (inclusiveA && inclusiveB)
+		Bias = tBias::Outer;
+	else if (!inclusiveA && !inclusiveB)
+		Bias = tBias::Inner;
+	else if (inclusiveA)
+		Bias = tBias::Left;
+	else
+		Bias = tBias::Right;
+
+	return true;
+}
+
+
+inline void tMath::tInterval::Get(tString& s) const
+{
+	s.Clear();
+
+	bool inclusiveLeft  = (Bias == tBias::Left)  || (Bias == tBias::Full);
+	bool inclusiveRight = (Bias == tBias::Right) || (Bias == tBias::Full);
+	char buf[64];
+	sprintf
+	(
+		buf, "%c%d,%d%c",
+		inclusiveLeft ? '[' : '(',
+		A, B,
+		inclusiveRight ? ']' : ')'
+	);
+
+	s.Set(buf);
+}
+
+
+inline bool tMath::tIntervals::Add(const tInterval& interval)
+{
+	bool modified = false;
+
+	// This first step either exits early if the interval we're adding is completely contained in an existing one,
+	// or it removes existing intervals that are completely inside what we're adding.
+	tItList<tInterval>::Iter i = Intervals.First();
+	while (i.IsValid())
+	{
+		tItList<tInterval>::Iter next = i;
+		++next;
+
+		if (i->Contains(interval))
+			return false;
+		else if (interval.Contains(i))
+			Intervals.Remove(i);
+
+		i = next;
+	}
+
+	// Next we find the first and last overlapping intervals.
+	tItList<tInterval>::Iter frst;
+	for (auto it = Intervals.First(); it; ++it)
+	{
+		if (it->Overlaps(interval))
+		{
+			frst = it;
+			break;
+		}
+	}
+
+	tItList<tInterval>::Iter last;
+	for (auto it = Intervals.Last(); it; --it)
+	{
+		if (it->Overlaps(interval))
+		{
+			last = it;
+			break;
+		}
+	}
+
+	// Now we are in 1 of 4 situations:
+	// 1. We are not overlapping the first or last. (even if first == last or they don't exist).
+	// 2. We are overlapping the first and last. (works even if first == last).
+	// 3. We are overlapping the first and not the last. (works even if first == last).
+	// 4. We are overlapping the last and not the first. (works even if first == last).
+
+	// Case 1. Add the interval and we are done.
+	if (!frst && !last)
+	{
+		Intervals.Insert(new tInterval(interval));
+		return true;
+	}
+
+	// Case 2.
+	else if (frst && last)
+	{
+		if (frst != last)
+			Intervals.Remove(last);
+		frst->Encapsulate(interval);
+	}
+
+	// Case 3 and 4.
+	else
+	{
+		if (frst != last)
+			last->Extend(interval);
+		frst->Extend(interval);
+	}
+
+	return true;
 }
 
 

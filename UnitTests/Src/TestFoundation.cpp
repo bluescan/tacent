@@ -1331,6 +1331,16 @@ tTestUnit(String)
 	numRemoved = remove.RemoveLast();
 	tPrintf("Remove Last After: %s\n", remove.Chr());
 	tRequire((numRemoved == 1) && (remove.Length() == 5) && (remove == "abc12"));
+
+	// Testing remove-not function.
+	tPrintf("\nTesting Remove Not\n");
+	tString remnot;
+
+	remnot = "cbbabZINGabc";
+	tPrintf("\nRemove Not Before: %s\n", remnot.Chr());
+	numRemoved = remnot.RemoveAnyNot("abc");
+	tPrintf("Remove Not After: %s\n", remnot.Chr());
+	tRequire((numRemoved == 4) && (remnot.Length() == 8));	
 }
 
 

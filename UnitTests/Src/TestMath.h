@@ -19,6 +19,7 @@
 namespace tUnitTest
 {
 	tTestUnit(Fundamentals);
+	tTestUnit(Interval);
 	tTestUnit(Spline);
 	tTestUnit(Random);
 	tTestUnit(Matrix);
