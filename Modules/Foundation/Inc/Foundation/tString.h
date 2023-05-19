@@ -300,6 +300,11 @@ struct tString
 	// Note that theseChars are ASCII.
 	int RemoveAny(const char* theseChars);
 
+	// Removes any characters that are _not_ occurrences of characters specified in the null-terminated theseChars.
+	// eg. Calling RemoveAnyNot on "abcZaIbNcGabcaab" with "abc" yields "abcabcabcaab". Returns the number of
+	// characters removed. Note that theseChars are ASCII.
+	int RemoveAnyNot(const char* theseChars);
+
 	// ToUpper and ToLower both modify the object as well as return a reference to it. Returning a reference makes it
 	// easy to string together expressions such as: if (name.ToLower() == "ah")
 	tString& ToUpper()																									{ for (int n = 0; n < StringLength; n++) CodeUnits[n] = tStd::tToUpper(CodeUnits[n]); return *this; }

@@ -537,9 +537,9 @@ int tString::RemoveLast()
 }
 
 
-int tString::RemoveAny(const char* removeThese)
+int tString::RemoveAny(const char* theseChars)
 {
-	if (IsEmpty() || !removeThese || !removeThese[0])
+	if (IsEmpty() || !theseChars || !theseChars[0])
 		return 0;
 
 	// Since the StringLength can't get bigger, no need to do any memory management. We can do it in one pass.
@@ -550,12 +550,54 @@ int tString::RemoveAny(const char* removeThese)
 		char8_t readChar = CodeUnits[readIndex];
 
 		// Is readChar present in theseChars?
-		bool present = false; int j = 0;
-		while (removeThese[j] && !present)
-			if (removeThese[j++] == readChar)
-				present = true;
+		bool removed = false;
+		int j = 0;
+		while (theseChars[j] && !removed)
+			if (theseChars[j++] == readChar)
+				removed = true;
 
-		if (present)
+		if (removed)
+		{
+			numRemoved++;
+			continue;
+		}
+
+		CodeUnits[writeIndex++] = readChar;
+	}
+
+	StringLength -= numRemoved;
+	CodeUnits[StringLength] = '\0';
+	return numRemoved;
+}
+
+
+int tString::RemoveAnyNot(const char* theseChars)
+{
+	if (IsEmpty())
+		return 0;
+
+	if (!theseChars || !theseChars[0])
+	{
+		int numChars = Length();
+		Clear();
+		return numChars;
+	}
+
+	// Since the StringLength can't get bigger, no need to do any memory management. We can do it in one pass.
+	int writeIndex = 0;
+	int numRemoved = 0;
+	for (int readIndex = 0; readIndex < StringLength; readIndex++)
+	{
+		char8_t readChar = CodeUnits[readIndex];
+
+		// Is readChar present in theseChars?
+		bool removed = true;
+		int j = 0;
+		while (theseChars[j] && removed)
+			if (theseChars[j++] == readChar)
+				removed = false;
+
+		if (removed)
 		{
 			numRemoved++;
 			continue;
