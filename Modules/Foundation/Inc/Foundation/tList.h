@@ -282,7 +282,7 @@ public:
 		const tItList<T>* List;
 	};
 
-	// Insert before head and append after tail.
+	// Insert before head and append after tail. If 'here' is supplied, inserts before here or appends after here.
 	T* Insert(T* obj)																									{ tAssert(obj); Nodes.Insert(new IterNode(obj)); return obj; }
 	T* Insert(T* obj, const Iter& here)																					{ tAssert(obj); tAssert(this == here.List); Nodes.Insert(new IterNode(obj), here.Node); return obj; }
 	T* Append(T* obj)																									{ tAssert(obj); Nodes.Append(new IterNode(obj)); return obj; }

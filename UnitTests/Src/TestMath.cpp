@@ -254,18 +254,80 @@ tTestUnit(Interval)
 	tRequire(!inter.Contains(test));
 
 	// Test overlaps.
-	// WIP
+	// Testing if contender overlaps with (3,10]
+	test.Set("[0,3]");
+	tRequire(!inter.Overlaps(test));
 
-	// Now test collections of intervals inside tIntervals objects.
+	test.Set("[0,4)");
+	tRequire(!inter.Overlaps(test));
+
+	test.Set("[0,5)");
+	tRequire(inter.Overlaps(test));
+
+	test.Set("[0,4]");
+	tRequire(inter.Overlaps(test));
+
+	test.Set("[5,5]");
+	tRequire(inter.Overlaps(test));
+
+	test.Set("[5,8]");
+	tRequire(inter.Overlaps(test));
+
+	test.Set("[0,12]");
+	tRequire(inter.Overlaps(test));
+
+	test.Set("(10,12]");
+	tRequire(!inter.Overlaps(test));
+
+	test.Set("[10,12]");
+	tRequire(inter.Overlaps(test));
+
+	test.Set("(9,14]");
+	tRequire(inter.Overlaps(test));
+
+	test.Set("(10,14]");
+	tRequire(!inter.Overlaps(test));
+
+	test.Set("(12,14]");
+	tRequire(!inter.Overlaps(test));
+
+	// Now test collections of intervals inside a tIntervals object.
 	tIntervals intervals;
 
-	// [4,6)|[5,8] -> [4,8]
-	tPrintf("Setting intervals to [4,6)U[5,8]\n");
+	tPrintf("Set intervals: [4,6)U[5,8]\n");
 	intervals.Set("[4,6)U[5,8]");
+	tPrintf("Get intervals: %s\n", intervals.Get().Chr());
+	tRequire(intervals.Get() == "[4,8]");
 
-	tString resultIntervals = intervals.Get();
-	tPrintf("Result intervals: %s\n", resultIntervals.Chr());
-	tRequire(resultIntervals == "[4,8]");
+	tPrintf("Set intervals: (4,6]|[6,8]\n");
+	intervals.Set("(4,6]|[6,8]");
+	tPrintf("Get intervals: %s\n", intervals.Get().Chr());
+	tRequire(intervals.Get() == "[5,8]");
+
+	tPrintf("Set intervals: [0,3]|[4,8]\n");
+	intervals.Set("[0,3]|[4,8]");
+	tPrintf("Get intervals: %s\n", intervals.Get().Chr());
+	tRequire(intervals.Get() == "[0,8]");
+
+	tPrintf("Set intervals: [5,8]U[4,6)\n");
+	intervals.Set("[5,8]U[4,6)");
+	tPrintf("Get intervals: %s\n", intervals.Get().Chr());
+	tRequire(intervals.Get() == "[4,8]");
+
+	tPrintf("Set intervals: [0,2]U[4,8]\n");
+	intervals.Set("[0,2]U[4,8]");
+	tPrintf("Get intervals: %s\n", intervals.Get().Chr());
+	tRequire(intervals.Get() == "[0,2]|[4,8]");
+
+	tPrintf("Set intervals: [4,8]U[0,2]\n");
+	intervals.Set("[4,8]U[0,2]");
+	tPrintf("Get intervals: %s\n", intervals.Get(true).Chr());
+	tRequire(intervals.Get(true) == "[0,2]U[4,8]");
+
+	tPrintf("Set intervals: [10,12]U[0,2]U[6,8]\n");
+	intervals.Set("[10,12]U[0,2]U[6,8]");
+	tPrintf("Get intervals: %s\n", intervals.Get(true).Chr());
+	tRequire(intervals.Get(true) == "[0,2]U[6,8]U[10,12]");
 }
 
 

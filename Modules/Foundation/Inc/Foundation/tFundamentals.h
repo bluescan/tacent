@@ -158,7 +158,10 @@ struct tInterval
 	bool ExclusiveLeft() const	{ return ExclusiveLeft(Bias); }
 	bool ExclusiveRight() const		{ return ExclusiveRight(Bias); }
 
-	bool Contains(int v) const																							{ return tInInterval(v, A, B, Bias); }
+	bool Contains(int v) const																							
+	{
+		return tInInterval(v, A, B, Bias);
+	}
 	bool Contains(const tInterval& v) const
 	{
 		if (IsEmpty() || v.IsEmpty()) return false;
@@ -182,7 +185,7 @@ struct tInterval
 		return (leftcon && rghtcon);
 	}
 
-	bool Overlaps(const tInterval& v) const
+	bool Overlaps(const tInterval& v, bool checkForJoins = false) const
 	{
 		if (IsEmpty() || v.IsEmpty()) return false;
 
@@ -191,18 +194,25 @@ struct tInterval
 		tInterval incA(*this);	incA.MakeInclusive();
 		tInterval incB(v);		incB.MakeInclusive();
 
-		return
+		bool overlap =
 			tInIntervalII(incA.A, incB.A, incB.B) ||
 			tInIntervalII(incA.B, incB.A, incB.B) ||
 			tInIntervalII(incB.A, incA.A, incA.B) ||
 			tInIntervalII(incB.B, incA.A, incA.B);
+
+		if (!overlap && checkForJoins)
+		{
+			if ((incA.A == incB.B+1) || (incA.B == incB.A-1))
+				overlap = true;
+		}
+		return overlap;
 		#endif
 	}
 
 	// Extend only increases the interval if there was an overlap. Returns true on success.
-	bool Extend(const tInterval& v)
+	bool Extend(const tInterval& v, bool allowJoins = false)
 	{
-		if (IsEmpty() || v.IsEmpty() || !Overlaps(v)) return false;
+		if (IsEmpty() || v.IsEmpty() || !Overlaps(v, allowJoins)) return false;
 		tInterval incA(*this);	incA.MakeInclusive();
 		tInterval incB(v);		incB.MakeInclusive();
 		A = tMin(incA.A, incB.B);
@@ -217,7 +227,7 @@ struct tInterval
 		if (IsEmpty() || v.IsEmpty()) return false;
 		tInterval incA(*this);	incA.MakeInclusive();
 		tInterval incB(v);		incB.MakeInclusive();
-		A = tMin(incA.A, incB.B);
+		A = tMin(incA.A, incB.A);
 		B = tMax(incA.B, incB.B);
 		Bias = tBias::Outer;
 		return true;
@@ -276,18 +286,19 @@ struct tIntervals
 			Add( tInterval(*interval) );
 	}
 
-	void Get(tString& s) const
+	// If useSetNotation is true, unions are represented with the U character instead of |.
+	void Get(tString& s, bool useSetNotation = false) const
 	{
 		s.Clear();
 		for (tItList<tInterval>::Iter i = Intervals.First(); i; ++i)
 		{
 			s += i->Get();
 			if (i != Intervals.Last())
-				s += "|";
+				s += useSetNotation ? "U" : "|";
 		}
 	}
 
-	tString Get() const																									{ tString s; Get(s); return s; }
+	tString Get(bool useSetNotation = false) const																									{ tString s; Get(s, useSetNotation); return s; }
 
 	// Returns true if Intervals modified.
 	bool Add(const tInterval& interval);
@@ -565,7 +576,7 @@ inline bool tMath::tIntervals::Add(const tInterval& interval)
 
 		if (i->Contains(interval))
 			return false;
-		else if (interval.Contains(i))
+		else if (interval.Contains(*i))
 			Intervals.Remove(i);
 
 		i = next;
@@ -575,7 +586,8 @@ inline bool tMath::tIntervals::Add(const tInterval& interval)
 	tItList<tInterval>::Iter frst;
 	for (auto it = Intervals.First(); it; ++it)
 	{
-		if (it->Overlaps(interval))
+		// Over integers there is another possibility. The intervals may join even if there is no strict overlap.
+		if (it->Overlaps(interval, true))
 		{
 			frst = it;
 			break;
@@ -585,7 +597,7 @@ inline bool tMath::tIntervals::Add(const tInterval& interval)
 	tItList<tInterval>::Iter last;
 	for (auto it = Intervals.Last(); it; --it)
 	{
-		if (it->Overlaps(interval))
+		if (it->Overlaps(interval, true))
 		{
 			last = it;
 			break;
@@ -601,7 +613,25 @@ inline bool tMath::tIntervals::Add(const tInterval& interval)
 	// Case 1. Add the interval and we are done.
 	if (!frst && !last)
 	{
-		Intervals.Insert(new tInterval(interval));
+		// We could just append the interval and it would work. However, to keep things organized we can aslo
+		// decide to insert the new interval at the ordered position ascending from left to right. Since they
+		// are all disjoint (no overlaps or joins) we only need to check the starting position, A.
+		tItList<tInterval>::Iter where;
+		tInterval incInt = interval; incInt.MakeInclusive();
+		for (auto i = Intervals.First(); i; ++i)
+		{
+			tInterval incI = *i; incI.MakeInclusive();
+			if (incInt.A < incI.A)
+			{
+				where = i;
+				break;
+			}
+		}
+		if (where)
+			Intervals.Insert(new tInterval(interval), where);
+		else
+			Intervals.Append(new tInterval(interval));
+
 		return true;
 	}
 
@@ -613,12 +643,16 @@ inline bool tMath::tIntervals::Add(const tInterval& interval)
 		frst->Encapsulate(interval);
 	}
 
-	// Case 3 and 4.
-	else
+	// Case 3.
+	else if (frst && !last)
 	{
-		if (frst != last)
-			last->Extend(interval);
-		frst->Extend(interval);
+		frst->Extend(interval, true);
+	}
+
+	// Case 3.
+	else if (last && !frst)
+	{
+		last->Extend(interval, true);
 	}
 
 	return true;
