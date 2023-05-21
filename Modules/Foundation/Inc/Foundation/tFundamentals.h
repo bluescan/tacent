@@ -135,17 +135,93 @@ struct tInterval
 	void Get(tString& s) const;
 	tString Get() const																									{ tString s; Get(s); return s; }
 
+	// Integral intervals can always be converted to inclusive endpoints only. Returns success. False will be returned
+	// for non-integral intervals or if the interval is empty.
+	bool MakeInclusive()
+	{
+		if (ExclusiveLeft())
+		{
+			A += 1;
+			Bias = (Bias == tBias::Right) ? tBias::Outer : tBias::Left;
+		}
+
+		if (ExclusiveRight())
+		{
+			B -= 1;
+			Bias = tBias::Outer;
+		}
+		return (Bias == tBias::Outer);
+	}
+
+	bool InclusiveLeft() const	{ return InclusiveLeft(Bias); }
+	bool InclusiveRight() const		{ return InclusiveRight(Bias); }
+	bool ExclusiveLeft() const	{ return ExclusiveLeft(Bias); }
+	bool ExclusiveRight() const		{ return ExclusiveRight(Bias); }
+
 	bool Contains(int v) const																							{ return tInInterval(v, A, B, Bias); }
-	bool Contains(const tInterval& v) const																				{ return tInInterval(v.A, A, B, Bias) && tInInterval(v.B, A, B, Bias); }
-	bool Overlaps(const tInterval& v) const																				{ return tInInterval(v.A, A, B, Bias) || tInInterval(v.B, A, B, Bias); }
+	bool Contains(const tInterval& v) const
+	{
+		if (IsEmpty() || v.IsEmpty()) return false;
 
-	// Extend only increases the interval if there was an overlap. Returns true if the interval was updated.
-	// WIP Not Implemented.
-	bool Extend(const tInterval& v);
+		#ifdef INTERVAL_FLOAT
+		// We need to be careful here when the endpoints are equal. It will depend on endpoint exclusivness.
+		bool leftcon = (A == v.A) ?
+			((InclusiveLeft() == v.InclusiveLeft()) ? true : InclusiveLeft()) :
+			(v.A > A);
 
-	// Encapsulate increases the interval even if they don't overlap. Returns true if the interval was updated.
-	// WIP Not Implemented.
-	bool Encapsulate(const tInterval& v);
+		bool rghtcon = (B == v.B) ?
+			((InclusiveRight() == v.InclusiveRight()) ? true : InclusiveRight()) :
+			(v.B < B);
+		#else
+		tInterval incThis(*this);	incThis.MakeInclusive();
+		tInterval incTest(v);		incTest.MakeInclusive();
+		bool leftcon = (incTest.A >= incThis.A);
+		bool rghtcon = (incTest.B <= incThis.B);
+		#endif
+
+		return (leftcon && rghtcon);
+	}
+
+	bool Overlaps(const tInterval& v) const
+	{
+		if (IsEmpty() || v.IsEmpty()) return false;
+
+		#ifdef INTERVAL_FLOAT
+		#else
+		tInterval incA(*this);	incA.MakeInclusive();
+		tInterval incB(v);		incB.MakeInclusive();
+
+		return
+			tInIntervalII(incA.A, incB.A, incB.B) ||
+			tInIntervalII(incA.B, incB.A, incB.B) ||
+			tInIntervalII(incB.A, incA.A, incA.B) ||
+			tInIntervalII(incB.B, incA.A, incA.B);
+		#endif
+	}
+
+	// Extend only increases the interval if there was an overlap. Returns true on success.
+	bool Extend(const tInterval& v)
+	{
+		if (IsEmpty() || v.IsEmpty() || !Overlaps(v)) return false;
+		tInterval incA(*this);	incA.MakeInclusive();
+		tInterval incB(v);		incB.MakeInclusive();
+		A = tMin(incA.A, incB.B);
+		B = tMax(incA.B, incB.B);
+		Bias = tBias::Outer;
+		return true;
+	}
+
+	// Encapsulate increases the interval even if they don't overlap. Returns true on success.
+	bool Encapsulate(const tInterval& v)
+	{
+		if (IsEmpty() || v.IsEmpty()) return false;
+		tInterval incA(*this);	incA.MakeInclusive();
+		tInterval incB(v);		incB.MakeInclusive();
+		A = tMin(incA.A, incB.B);
+		B = tMax(incA.B, incB.B);
+		Bias = tBias::Outer;
+		return true;
+	}
 
 	tInterval& operator=(const tInterval& i)																			{ Set(i); }
 
@@ -155,6 +231,11 @@ struct tInterval
 	tBias Bias	= tBias::Inner;
 	int A		= 0;
 	int B		= 0;
+
+	inline static bool InclusiveLeft(tBias bias)	{ return (bias == tBias::Left)  || (bias == tBias::Full); }
+	inline static bool InclusiveRight(tBias bias)	{ return (bias == tBias::Right) || (bias == tBias::Full); }
+	inline static bool ExclusiveLeft(tBias bias)	{ return (bias == tBias::Right) || (bias == tBias::Inner); }
+	inline static bool ExclusiveRight(tBias bias)	{ return (bias == tBias::Left)  || (bias == tBias::Inner); }
 };
 
 
@@ -162,8 +243,51 @@ struct tInterval
 // knows how to simplify the collection to the fewest number of intervals possible.
 struct tIntervals
 {
-	// WIP.
-	// Need copy cons, conversion to/from string, etc.
+	tIntervals()																										{ Clear(); }
+	tIntervals(const tIntervals& src)																					{ Set(src); }
+	tIntervals(const tString& s)																						{ Set(s); }
+
+	void Clear()		{ Intervals.Empty(); }
+
+	// If this class has any intervals, they are valid non-empty ones.
+	bool IsValid() const	{ return !Intervals.IsEmpty(); }
+	void Set(const tIntervals& src)
+	{
+		Clear();
+		for (tItList<tInterval>::Iter i = src.Intervals.First(); i; ++i)
+			Intervals.Append(new tInterval(*i));
+	}
+
+	// String should be in form "[4,6)U[5,8]" or "[4,6)|[5,8]". Think of the | as an 'or' (or U for union). It means a
+	// value is in the set of intervals if it is in the first interval, _or_ the second, _or) the third etc. This set
+	// call is 'smart' and will deal with overlaps between intervals. In the example above:
+	// [4,6)|[5,8] -> [4,8]
+	void Set(const tString& src)
+	{
+		Clear();
+		if (src.IsEmpty())
+			return;
+		tString s(src);
+		s.RemoveAnyNot("[(.,0123456789)]|U");
+		s.Replace('U', '|');
+		tList<tStringItem> intervals;
+		tStd::tExplode(intervals, s, '|');
+		for (tStringItem* interval = intervals.First(); interval; interval = interval->Next())
+			Add( tInterval(*interval) );
+	}
+
+	void Get(tString& s) const
+	{
+		s.Clear();
+		for (tItList<tInterval>::Iter i = Intervals.First(); i; ++i)
+		{
+			s += i->Get();
+			if (i != Intervals.Last())
+				s += "|";
+		}
+	}
+
+	tString Get() const																									{ tString s; Get(s); return s; }
 
 	// Returns true if Intervals modified.
 	bool Add(const tInterval& interval);
@@ -368,26 +492,9 @@ inline std::function<bool(float,float)> tMath::tBiasGrtr(tBias bias)
 inline bool tMath::tInterval::IsValid() const
 {
 	// For integers any exclusive endpoints can be converted to inclusive.
-	int a = A;
-	int b = B;
-	tBias bias = Bias;
-
-	bool exclusiveLeft  = (bias == tBias::Right) || (bias == tBias::Inner);
-	if (exclusiveLeft)
-	{
-		a++;
-		bias = (bias == tBias::Right) ? tBias::Outer : tBias::Left;
-	}
-
-	bool exclusiveRight = (bias == tBias::Left);
-	if (exclusiveRight)
-	{
-		b--;
-		bias = tBias::Outer;
-	}
-	tAssert(bias == tBias::Outer);
-
-	return (b >= a);
+	tInterval incForm(*this);
+	incForm.MakeInclusive();
+	return (incForm.B >= incForm.A);
 	// For float we check if a == b. If so, we must have outer bias. If not same, b must be > a for it to be valid.
 	// return ((a == b) && (Bias == tBias::Outer)) || (b > a);
 }
@@ -431,16 +538,13 @@ inline bool tMath::tInterval::Set(const tString& s)
 inline void tMath::tInterval::Get(tString& s) const
 {
 	s.Clear();
-
-	bool inclusiveLeft  = (Bias == tBias::Left)  || (Bias == tBias::Full);
-	bool inclusiveRight = (Bias == tBias::Right) || (Bias == tBias::Full);
 	char buf[64];
 	sprintf
 	(
 		buf, "%c%d,%d%c",
-		inclusiveLeft ? '[' : '(',
+		InclusiveLeft() ? '[' : '(',
 		A, B,
-		inclusiveRight ? ']' : ')'
+		InclusiveRight() ? ']' : ')'
 	);
 
 	s.Set(buf);

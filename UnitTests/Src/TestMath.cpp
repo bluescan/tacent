@@ -231,6 +231,41 @@ tTestUnit(Interval)
 	// The interval (4,5) -> empty
 	inter.Set("(4,5)");
 	tRequire(inter.IsEmpty());
+
+	// Tests for an interval containing another.
+	tInterval test;
+	inter.Set(3, 10, tBias::Right);	// (3,10]
+	test.Set("[3,9]");
+	tRequire(!inter.Contains(test));
+
+	test.Set("(3,9]");
+	tRequire(inter.Contains(test));
+
+	test.Set("(3,10]");
+	tRequire(inter.Contains(test));
+
+	test.Set("(3,10)");
+	tRequire(inter.Contains(test));
+
+	test.Set("(3,11)");
+	tRequire(inter.Contains(test));
+
+	test.Set("(3,11]");
+	tRequire(!inter.Contains(test));
+
+	// Test overlaps.
+	// WIP
+
+	// Now test collections of intervals inside tIntervals objects.
+	tIntervals intervals;
+
+	// [4,6)|[5,8] -> [4,8]
+	tPrintf("Setting intervals to [4,6)U[5,8]\n");
+	intervals.Set("[4,6)U[5,8]");
+
+	tString resultIntervals = intervals.Get();
+	tPrintf("Result intervals: %s\n", resultIntervals.Chr());
+	tRequire(resultIntervals == "[4,8]");
 }
 
 
