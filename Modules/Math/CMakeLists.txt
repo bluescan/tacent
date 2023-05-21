@@ -10,6 +10,7 @@ add_library(
 	Src/tSpline.cpp
 	Inc/Math/tColour.h
 	Inc/Math/tGeometry.h
+	Inc/Math/tInterval.h
 	Inc/Math/tLinearAlgebra.h
 	Inc/Math/tMatrix2.h
 	Inc/Math/tMatrix4.h

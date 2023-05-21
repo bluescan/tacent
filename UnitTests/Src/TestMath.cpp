@@ -17,6 +17,7 @@
 #include <Math/tRandom.h>
 #include <Math/tQuaternion.h>
 #include <Math/tColour.h>
+#include <Math/tInterval.h>
 #include "UnitTests.h"
 using namespace tMath;
 namespace tUnitTest
@@ -292,7 +293,7 @@ tTestUnit(Interval)
 	tRequire(!inter.Overlaps(test));
 
 	// Now test collections of intervals inside a tIntervals object.
-	tIntervals intervals;
+	tIntervalSet intervals;
 
 	tPrintf("Set intervals: [4,6)U[5,8]\n");
 	intervals.Set("[4,6)U[5,8]");
