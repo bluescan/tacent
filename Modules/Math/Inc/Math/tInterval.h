@@ -25,9 +25,19 @@ namespace tMath
 {
 
 
-// The tInterval type represents a single interval. The string form follows the mathematical notation
+// Specifies how intervals and interval-sets are to be represented when stored as strings.
+enum class tIntervalRep
+{
+	Bar,		// { 1, 2, 4, 5 } represented as string "[1,2]|[4,6)" or some variation. | means set OR (same as union).
+	Set,		// { 1, 2, 4, 5 } represented as string "[1,2]U[4,6)" or some variation. U means set theory union.
+	Range		// { 1, 2, 4, 5 } represented as string "1-2:!3-6!" or some variation.   : means union. ! means exclusive.
+};
+
+
+// The tInterval type represents a single interval over integral types. The string form follows the mathematical notation
 // (a,b), (a,b], [a,b), or [a,b]. In this representation the square brackets mean inclusive and normal brackets
-// (US parens) are exclusive. Over integers:
+// (US parens) are exclusive.
+// The interval 5     -> [5,5] -> { 5 }
 // The interval [0,5) -> { 0 1 2 3 4 }
 // The interval (5,5) -> empty
 // The interval [5,5) -> empty
@@ -35,21 +45,16 @@ namespace tMath
 // The interval [5,5] -> { 5 }
 // The interval (4,5] -> { 5 }
 // The interval (4,5) -> empty
-//
-// Over reals represented loosly by float or double:
-// The interval [0.0,5.0) -> x ε R | 0.0 <= x <= 5.0
-// The interval (5.0,5.0) -> empty
-// The interval [5.0,5.0) -> empty
-// The interval (5,0,5.0] -> empty
-// The interval [5.0,5.0] -> { 5.0 }
-// The interval (4.0,5.0] -> x ε R | 4.0 < x <= 5.0
-// The interval (4.0,5.0) -> x ε R | 4.0 < x <  5.0
+// @todo In the future we will rename tInterval to tIntervalDiscrete and tunn it into a template that supports any
+// integral type: int, uint, int64, etc.
 struct tInterval
 {
 	// Creates an empty interval. We use (0,0) with inner bias as the default empty set.
 	tInterval()																											{ Set(0, 0, tBias::Inner); }
 	tInterval(const tInterval& src)																						{ Set(src); }
 	tInterval(int a, int b, tBias bias = tBias::Full)																	{ Set(a, b, bias); }
+
+	// String representation is auto-detected.
 	tInterval(const tString& s)																							{ Set(s); }
 
 	void Clear()																										{ Set(0, 0, tBias::Inner); }
@@ -63,10 +68,11 @@ struct tInterval
 	void Set(const tInterval& i)																						{ A = i.A; B = i.B; Bias = i.Bias; }
 	void Set(int a, int b, tBias bias = tBias::Full)																	{ A = a; B = b; Bias = bias; }
 
-	// Returns true on success. If string not well-formed interval will be empty and false returned.
+	// Returns true on success. If string not well-formed interval will be empty and false returned. The input
+	// representation is auto-detected.
 	bool Set(const tString& s);
-	void Get(tString& s) const;
-	tString Get() const																									{ tString s; Get(s); return s; }
+	void Get(tString& s, tIntervalRep = tIntervalRep::Bar) const;
+	tString Get(tIntervalRep rep = tIntervalRep::Bar) const																{ tString s; Get(s, rep); return s; }
 
 	// Integral intervals can always be converted to inclusive endpoints only. Returns success. False will be returned
 	// for non-integral intervals or if the interval is empty.
@@ -105,6 +111,7 @@ struct tInterval
 
 // This class represents a collection of multiple intervals. The intervals may not overlap, but if they do this class
 // knows how to simplify the collection to the fewest number of intervals possible.
+// @todo In future this will be renamed to tIntervalSetDiscrete and templatized to accept any integral type.
 struct tIntervalSet
 {
 	tIntervalSet()																										{ Clear(); }
@@ -120,13 +127,12 @@ struct tIntervalSet
 	// String should be in form "[4,6)U[5,8]" or "[4,6)|[5,8]". Think of the | as an 'or' (or U for union). It means a
 	// value is in the set of intervals if it is in the first interval, _or_ the second, _or) the third etc. This set
 	// call is 'smart' and will deal with overlaps between intervals. In the example above:
-	// [4,6)|[5,8] -> [4,8]
+	// [4,6)|[5,8] -> [4,8]. You may also pass in a string using the 'Range' notation. See tIntervalRep enum.
 	void Set(const tString& src);
 
 	// If useSetNotation is true, unions are represented with the U character instead of |.
-	void Get(tString& s, bool useSetNotation = false) const;
-
-	tString Get(bool useSetNotation = false) const																		{ tString s; Get(s, useSetNotation); return s; }
+	void Get(tString& s, tIntervalRep = tIntervalRep::Bar) const;
+	tString Get(tIntervalRep rep = tIntervalRep::Bar) const																{ tString s; Get(s, rep); return s; }
 
 	// Returns true if added successfully. This function can detect overlaps and joins when adding the new interval. It
 	// is the workhorse of this class allowing the interval-set to be built up consistently and in the simplest form.
@@ -134,6 +140,26 @@ struct tIntervalSet
 
 	tItList<tInterval> Intervals;
 };
+
+
+// @todo Implement tIntervalContinuous and tIntervalSetContinuous that are both templates that will support
+// 'continuous' types like float and double. Although float and double are only approximations of continuous real
+// numbers, they are much closer than the descrete integral types. See comments in the tInterval implementatons for
+// an indication of where things will be different. In particular there will be no MakeInclusive ability and joining
+// will not be necessary -- only properly overlapping intervals may be extended. This is because with a discrete number
+// there is a well-defined next and previous value. With continuous numbers there is no 'next' number, as no matter
+// what you choose, there are an infinite set of numbers in between. Basically intervals in the real number domain are
+// quite different than intervals in the integer domain.
+//
+// The tIntervalContinuous classes (over float or double) will support the following example intervals:
+// The interval 5.0       -> [5.0,5.0] -> { 5.0 }
+// The interval [0.0,5.0) -> x ε R | 0.0 <= x <= 5.0
+// The interval (5.0,5.0) -> empty
+// The interval [5.0,5.0) -> empty
+// The interval (5,0,5.0] -> empty
+// The interval [5.0,5.0] -> { 5.0 }
+// The interval (4.0,5.0] -> x ε R | 4.0 < x <= 5.0
+// The interval (4.0,5.0) -> x ε R | 4.0 < x <  5.0
 
 
 }
@@ -155,23 +181,47 @@ inline bool tMath::tInterval::IsValid() const
 
 inline bool tMath::tInterval::Set(const tString& s)
 {
-	// The string should be in the form "[(a,b)]"
+	Clear();
+
+	// The string should be in the form "[(a,b)]". For convenience, if the string is simply of form "a" it will be
+	// converted to [a,a].
 	tString str(s);
 	str.RemoveAnyNot("[(.,0123456789)]");
-	Clear();
-	if ((str[0] != '[') && (str[0] != '('))
-		return false;
-	bool inclusiveA = (str[0] == '[');
 
-	if ((str[str.Length()-1] != ']') && (str[str.Length()-1] != ')'))
-		return false;
-	bool inclusiveB = (str[str.Length()-1] == ']');
+	if (str.IsNumeric())
+		str = tString("[") + str + "," + str + "]";
 
-	str.RemoveAny("[()]");
-	if (str.CountChar(',') != 1)
+	tIntervalRep rep = tIntervalRep::Bar;
+	if (str.FindChar('-') != -1)
+		rep = tIntervalRep::Range;
+
+	bool inclusiveA = true;
+	bool inclusiveB = true;
+	char separator = ',';
+	if (rep == tIntervalRep::Bar)
+	{
+		if ((str[0] != '[') && (str[0] != '('))
+			return false;
+		inclusiveA = (str[0] == '[');
+
+		if ((str[str.Length()-1] != ']') && (str[str.Length()-1] != ')'))
+			return false;
+		inclusiveB = (str[str.Length()-1] == ']');
+	}
+	else
+	{
+		if (str[0] == '!')
+			inclusiveA = false;
+		if (str[str.Length()-1] == '!')
+			inclusiveB = false;
+		separator = '-';
+	}
+
+	str.RemoveAny("[()]!");
+	if (str.CountChar(separator) != 1)
 		return false;
 
-	tString a = str.ExtractLeft(',');		// b is left in str.
+	tString a = str.ExtractLeft(separator);		// b is left in str.
 	A = a.AsInt(10);
 	B = str.AsInt(10);
 
@@ -188,17 +238,26 @@ inline bool tMath::tInterval::Set(const tString& s)
 }
 
 
-inline void tMath::tInterval::Get(tString& s) const
+inline void tMath::tInterval::Get(tString& s, tIntervalRep rep) const
 {
 	s.Clear();
 	char buf[64];
-	sprintf
-	(
-		buf, "%c%d,%d%c",
-		InclusiveLeft() ? '[' : '(',
-		A, B,
-		InclusiveRight() ? ']' : ')'
-	);
+	if (rep == tIntervalRep::Range)
+		sprintf
+		(
+			buf, "%s%d-%d%s",
+			InclusiveLeft() ? "" : "!",
+			A, B,
+			InclusiveRight() ? "" : "!"
+		);
+	else
+		sprintf
+		(
+			buf, "%c%d,%d%c",
+			InclusiveLeft() ? '[' : '(',
+			A, B,
+			InclusiveRight() ? ']' : ')'
+		);
 
 	s.Set(buf);
 }
@@ -304,8 +363,9 @@ inline void tMath::tIntervalSet::Set(const tString& src)
 	if (src.IsEmpty())
 		return;
 	tString s(src);
-	s.RemoveAnyNot("[(.,0123456789)]|U");
+	s.RemoveAnyNot("[(.,0123456789)]|U:");
 	s.Replace('U', '|');
+	s.Replace(':', '|');
 	tList<tStringItem> intervals;
 	tStd::tExplode(intervals, s, '|');
 	for (tStringItem* interval = intervals.First(); interval; interval = interval->Next())
@@ -313,14 +373,21 @@ inline void tMath::tIntervalSet::Set(const tString& src)
 }
 
 
-inline void tMath::tIntervalSet::Get(tString& s, bool useSetNotation) const
+inline void tMath::tIntervalSet::Get(tString& s, tIntervalRep rep) const
 {
 	s.Clear();
+
+	const char* sep = "|";
+	if (rep == tIntervalRep::Set)
+		sep = "U";
+	else if (rep == tIntervalRep::Range)
+		sep = ":";
 	for (tItList<tInterval>::Iter i = Intervals.First(); i; ++i)
 	{
-		s += i->Get();
+		s += i->Get(rep);
+
 		if (i != Intervals.Last())
-			s += useSetNotation ? "U" : "|";
+			s += sep;
 	}
 }
 

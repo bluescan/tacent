@@ -219,6 +219,11 @@ tTestUnit(Interval)
 	tRequire(!inter.IsEmpty());
 	tRequire(!inter.Contains(4) && inter.Contains(5) && !inter.Contains(6));
 
+	// The interval 5 -> [5,5] -> { 5 }
+	inter.Set("5");
+	tRequire(!inter.IsEmpty());
+	tRequire(!inter.Contains(4) && inter.Contains(5) && !inter.Contains(6));
+
 	// The interval (4,5] -> { 5 }
 	intstr = "(4,5]";
 	inter.Set(intstr);
@@ -322,13 +327,18 @@ tTestUnit(Interval)
 
 	tPrintf("Set intervals: [4,8]U[0,2]\n");
 	intervals.Set("[4,8]U[0,2]");
-	tPrintf("Get intervals: %s\n", intervals.Get(true).Chr());
-	tRequire(intervals.Get(true) == "[0,2]U[4,8]");
+	tPrintf("Get intervals: %s\n", intervals.Get(tIntervalRep::Set).Chr());
+	tRequire(intervals.Get(tIntervalRep::Set) == "[0,2]U[4,8]");
 
 	tPrintf("Set intervals: [10,12]U[0,2]U[6,8]\n");
 	intervals.Set("[10,12]U[0,2]U[6,8]");
-	tPrintf("Get intervals: %s\n", intervals.Get(true).Chr());
-	tRequire(intervals.Get(true) == "[0,2]U[6,8]U[10,12]");
+	tPrintf("Get intervals: %s\n", intervals.Get(tIntervalRep::Set).Chr());
+	tRequire(intervals.Get(tIntervalRep::Set) == "[0,2]U[6,8]U[10,12]");
+
+	tPrintf("Set intervals: [10,12]U[0,2]U[6,8]\n");
+	intervals.Set("[10,12]U[0,2]U[6,8]");
+	tPrintf("Get intervals: %s\n", intervals.Get(tIntervalRep::Range).Chr());
+	tRequire(intervals.Get(tIntervalRep::Range) == "0-2:6-8:10-12");
 }
 
 
