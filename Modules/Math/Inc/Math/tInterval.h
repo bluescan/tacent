@@ -146,6 +146,10 @@ struct tIntervalSet
 	// @note This function will not be present for continuous domain (float, double) implementation.
 	bool MakeInclusive();
 
+	// If any interval in the set contains v, true is returned.
+	bool Contains(int v) const;
+	bool Contains(const tInterval& v) const;
+
 	tItList<tInterval> Intervals;
 };
 
@@ -513,4 +517,24 @@ inline bool tMath::tIntervalSet::MakeInclusive()
 	}
 
 	return success;
+}
+
+
+inline bool tMath::tIntervalSet::Contains(int v) const
+{
+	for (auto it = Intervals.First(); it; ++it)
+		if (it->Contains(v))
+			return true;
+
+	return false;
+}
+
+
+inline bool tMath::tIntervalSet::Contains(const tInterval& v) const
+{
+	for (auto it = Intervals.First(); it; ++it)
+		if (it->Contains(v))
+			return true;
+
+	return false;
 }
