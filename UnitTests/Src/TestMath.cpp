@@ -345,6 +345,13 @@ tTestUnit(Interval)
 	intervals.MakeInclusive();
 	tPrintf("Inc intervals: %s\n", intervals.Get(tIntervalRep::Range).Chr());
 	tRequire(intervals.Get(tIntervalRep::Range) == "0-2:6-8:10-12");
+
+	// Test count.
+	tInterval interval("[6,8)");
+	tRequire(interval.Count() == 2);
+
+	intervals.Set("[0,2]U[6,8)");
+	tRequire(intervals.Count() == 5);
 }
 
 

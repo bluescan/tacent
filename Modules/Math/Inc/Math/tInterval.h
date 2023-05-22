@@ -387,7 +387,7 @@ inline int tMath::tInterval::Count() const
 		return 0;
 	tInterval inc(*this);
 	inc.MakeInclusive();
-	return B-A+1;
+	return inc.B-inc.A+1;
 }
 
 
