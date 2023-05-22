@@ -74,10 +74,10 @@ struct tInterval
 	void Get(tString& s, tIntervalRep = tIntervalRep::Bar) const;
 	tString Get(tIntervalRep rep = tIntervalRep::Bar) const																{ tString s; Get(s, rep); return s; }
 
-	// Integral intervals can always be converted to inclusive endpoints only. Returns success. False will be returned
-	// if the interval is empty. Returns true even if the interval was inclusive to begin with.
+	// Integral intervals can always be converted to inclusive endpoints only. If the interval was empty to begin with,
+	// it will be empty after. Returns a reference to self.
 	// @note This function will not be present for continuous domain (float, double) implementation.
-	bool MakeInclusive();
+	tInterval& MakeInclusive();
 
 	bool InclusiveLeft() const																							{ return InclusiveLeft(Bias); }
 	bool InclusiveRight() const																							{ return InclusiveRight(Bias); }
@@ -145,12 +145,11 @@ struct tIntervalSet
 	// is the workhorse of this class allowing the interval-set to be built up consistently and in the simplest form.
 	bool Add(const tInterval& interval);
 
-	// Non empty integral intervals can always be converted to inclusive endpoints only. This function converts all the
-	// intervals in the set to inclusive form. It still represents the same set afterwards. Returns success. False will
-	// be returned if any interval in the set could not be converted -- in particular if any interval was empty.
-	// Returns true even if all the intervals were inclusive to begin with.
+	// Non-empty integral intervals can always be converted to inclusive endpoints only. This function converts all the
+	// intervals in the set to inclusive form. It still represents the same set afterwards. If the interval set was
+	// empty to begin with, it will be empty after. Returns reference to self.
 	// @note This function will not be present for continuous domain (float, double) implementation.
-	bool MakeInclusive();
+	tIntervalSet& MakeInclusive();
 
 	// If any interval in the set contains v, true is returned.
 	bool Contains(int v) const;
@@ -287,7 +286,7 @@ inline void tMath::tInterval::Get(tString& s, tIntervalRep rep) const
 }
 
 
-inline bool tMath::tInterval::MakeInclusive()
+inline tMath::tInterval& tMath::tInterval::MakeInclusive()
 {
 	if (ExclusiveLeft())
 	{
@@ -300,7 +299,8 @@ inline bool tMath::tInterval::MakeInclusive()
 		B -= 1;
 		Bias = tBias::Outer;
 	}
-	return (Bias == tBias::Outer);
+
+	return *this;
 }
 
 
@@ -529,17 +529,12 @@ inline bool tMath::tIntervalSet::Add(const tInterval& interval)
 }
 
 
-inline bool tMath::tIntervalSet::MakeInclusive()
+inline tMath::tIntervalSet& tMath::tIntervalSet::MakeInclusive()
 {
-	bool success = true;
 	for (auto it = Intervals.First(); it; ++it)
-	{
-		bool ok = it->MakeInclusive();
-		if (!ok)
-			success = false;
-	}
+		it->MakeInclusive();
 
-	return success;
+	return *this;
 }
 
 
