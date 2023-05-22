@@ -182,6 +182,7 @@ tTestUnit(Interval)
 	tString intstr;
 	tString recstr;
 	tInterval inter;
+	tIntervalSet intervals;
 
 	intstr = "(4,6)";
 	inter.Set(intstr);
@@ -298,8 +299,6 @@ tTestUnit(Interval)
 	tRequire(!inter.Overlaps(test));
 
 	// Now test collections of intervals inside a tIntervals object.
-	tIntervalSet intervals;
-
 	tPrintf("Set intervals: [4,6)U[5,8]\n");
 	intervals.Set("[4,6)U[5,8]");
 	tPrintf("Get intervals: %s\n", intervals.Get().Chr());
@@ -338,6 +337,13 @@ tTestUnit(Interval)
 	tPrintf("Set intervals: [10,12]U[0,2]U[6,8]\n");
 	intervals.Set("[10,12]U[0,2]U[6,8]");
 	tPrintf("Get intervals: %s\n", intervals.Get(tIntervalRep::Range).Chr());
+	tRequire(intervals.Get(tIntervalRep::Range) == "0-2:6-8:10-12");
+
+	tPrintf("Set intervals: !9-13!:0-2:6-8\n");
+	intervals.Set("!9-13!:0-2:6-8");
+	tPrintf("Get intervals: %s\n", intervals.Get(tIntervalRep::Range).Chr());
+	intervals.MakeInclusive();
+	tPrintf("Inc intervals: %s\n", intervals.Get(tIntervalRep::Range).Chr());
 	tRequire(intervals.Get(tIntervalRep::Range) == "0-2:6-8:10-12");
 }
 

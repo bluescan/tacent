@@ -75,7 +75,8 @@ struct tInterval
 	tString Get(tIntervalRep rep = tIntervalRep::Bar) const																{ tString s; Get(s, rep); return s; }
 
 	// Integral intervals can always be converted to inclusive endpoints only. Returns success. False will be returned
-	// for non-integral intervals or if the interval is empty.
+	// if the interval is empty. Returns true even if the interval was inclusive to begin with.
+	// @note This function will not be present for continuous domain (float, double) implementation.
 	bool MakeInclusive();
 
 	bool InclusiveLeft() const																							{ return InclusiveLeft(Bias); }
@@ -138,6 +139,13 @@ struct tIntervalSet
 	// is the workhorse of this class allowing the interval-set to be built up consistently and in the simplest form.
 	bool Add(const tInterval& interval);
 
+	// Non empty integral intervals can always be converted to inclusive endpoints only. This function converts all the
+	// intervals in the set to inclusive form. It still represents the same set afterwards. Returns success. False will
+	// be returned if any interval in the set could not be converted -- in particular if any interval was empty.
+	// Returns true even if all the intervals were inclusive to begin with.
+	// @note This function will not be present for continuous domain (float, double) implementation.
+	bool MakeInclusive();
+
 	tItList<tInterval> Intervals;
 };
 
@@ -186,7 +194,9 @@ inline bool tMath::tInterval::Set(const tString& s)
 	// The string should be in the form "[(a,b)]". For convenience, if the string is simply of form "a" it will be
 	// converted to [a,a].
 	tString str(s);
-	str.RemoveAnyNot("[(.,0123456789)]");
+
+	// @note We will need '.' here for continuous domain implementation.
+	str.RemoveAnyNot("[(,0123456789)]!-");
 
 	if (str.IsNumeric())
 		str = tString("[") + str + "," + str + "]";
@@ -363,7 +373,10 @@ inline void tMath::tIntervalSet::Set(const tString& src)
 	if (src.IsEmpty())
 		return;
 	tString s(src);
-	s.RemoveAnyNot("[(.,0123456789)]|U:");
+
+	// @note We will need '.' here for continuous domain implementation.
+	s.RemoveAnyNot("[(,0123456789)]|U:-!");
+
 	s.Replace('U', '|');
 	s.Replace(':', '|');
 	tList<tStringItem> intervals;
@@ -486,4 +499,18 @@ inline bool tMath::tIntervalSet::Add(const tInterval& interval)
 	}
 
 	return true;
+}
+
+
+inline bool tMath::tIntervalSet::MakeInclusive()
+{
+	bool success = true;
+	for (auto it = Intervals.First(); it; ++it)
+	{
+		bool ok = it->MakeInclusive();
+		if (!ok)
+			success = false;
+	}
+
+	return success;
 }
