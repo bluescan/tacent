@@ -94,6 +94,10 @@ struct tInterval
 	// Encapsulate increases the interval even if they don't overlap. Returns true on success.
 	bool Encapsulate(const tInterval& v);
 
+	// Returns the number of integers in this interval, or 0 for empty intervals.
+	// @note Will not be possible for continuous domain (float,double) intervals.
+	int Count() const;
+
 	tInterval& operator=(const tInterval& i)																			{ Set(i); }
 
 	// A, B, and Bias must match exactly. For integral intervals, no conversion to inclusive and subsequent compare.
@@ -123,6 +127,8 @@ struct tIntervalSet
 
 	// Returns true if this object has any intervals. They are guaranteed to be valid non-empty ones if it does.
 	bool IsValid() const																								{ return !Intervals.IsEmpty(); }
+	bool IsEmpty() const																								{ return Intervals.IsEmpty(); }
+
 	void Set(const tIntervalSet& src)																					{ Clear(); for (tItList<tInterval>::Iter i = src.Intervals.First(); i; ++i) Intervals.Append(new tInterval(*i)); }
 
 	// String should be in form "[4,6)U[5,8]" or "[4,6)|[5,8]". Think of the | as an 'or' (or U for union). It means a
@@ -149,6 +155,10 @@ struct tIntervalSet
 	// If any interval in the set contains v, true is returned.
 	bool Contains(int v) const;
 	bool Contains(const tInterval& v) const;
+
+	// Returns the number of integers in this interval set, or 0 for an empty interval set.
+	// @note Will not be possible for continuous domain (float,double) intervals.
+	int Count() const;
 
 	tItList<tInterval> Intervals;
 };
@@ -371,6 +381,19 @@ inline bool tMath::tInterval::Encapsulate(const tInterval& v)
 }
 
 
+inline int tMath::tInterval::Count() const
+{
+	if (IsEmpty())
+		return 0;
+	tInterval inc(*this);
+	inc.MakeInclusive();
+	return B-A+1;
+}
+
+
+// tIntervalSet below.
+
+
 inline void tMath::tIntervalSet::Set(const tString& src)
 {
 	Clear();
@@ -537,4 +560,14 @@ inline bool tMath::tIntervalSet::Contains(const tInterval& v) const
 			return true;
 
 	return false;
+}
+
+
+inline int tMath::tIntervalSet::Count() const
+{
+	int total = 0;
+	for (auto it = Intervals.First(); it; ++it)
+		total += it->Count();
+
+	return total;
 }
