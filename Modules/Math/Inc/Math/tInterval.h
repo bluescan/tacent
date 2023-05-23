@@ -98,7 +98,7 @@ struct tInterval
 	// @note Will not be possible for continuous domain (float,double) intervals.
 	int Count() const;
 
-	tInterval& operator=(const tInterval& i)																			{ Set(i); }
+	tInterval& operator=(const tInterval& i)																			{ Set(i);  return *this; }
 
 	// A, B, and Bias must match exactly. For integral intervals, no conversion to inclusive and subsequent compare.
 	bool operator==(const tInterval& i) const																			{ return (A == i.A) && (B == i.B) && (Bias == i.Bias); }
