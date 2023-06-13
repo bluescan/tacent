@@ -943,22 +943,26 @@ void tDDS::GetFormatInfo_FromComponentMasks(tPixelFormat& format, tColourProfile
 			break;
 
 		case 16:		// Supports B5G6R5, B4G4R4A4, and B5G5R5A1.
-			if (isRGBA && (mskA == 0x8000) && (mskR == 0x7C00) && (mskG == 0x03E0) && (mskB == 0x001F))
+			if (isRGBA && (mskB == 0x001F) && (mskG == 0x03E0) && (mskR == 0x7C00) && (mskA == 0x8000))
 				format = tPixelFormat::B5G5R5A1;
-			else if (isRGBA && (mskA == 0xF000) && (mskR == 0x0F00) && (mskG == 0x00F0) && (mskB == 0x000F))
+			else if (isRGBA && (mskB == 0x000F) && (mskG == 0x00F0) && (mskR == 0x0F00) && (mskA == 0xF000))
 				format = tPixelFormat::B4G4R4A4;
-			else if (isRGB && (mskR == 0xF800) && (mskG == 0x07E0) && (mskB == 0x001F))
+			else if (isRGB && (mskB == 0x001F) && (mskG == 0x07E0) && (mskR == 0xF800))
 				format = tPixelFormat::B5G6R5;
 			break;
 
-		case 24:		// Supports B8G8R8.
-			if (isRGB && (mskR == 0xFF0000) && (mskG == 0x00FF00) && (mskB == 0x0000FF))
+		case 24:		// Supports B8G8R8 and R8G8B8.
+			if (isRGB && (mskB == 0x0000FF) && (mskG == 0x00FF00) && (mskR == 0xFF0000))
 				format = tPixelFormat::B8G8R8;
+			else if (isRGB && (mskR == 0x0000FF) && (mskG == 0x00FF00) && (mskB == 0xFF0000))
+				format = tPixelFormat::R8G8B8;
 			break;
 
-		case 32:		// Supports B8G8R8A8. Alpha really is last (even though ABGR may seem more consistent).
-			if (isRGBA && (mskA == 0xFF000000) && (mskR == 0x00FF0000) && (mskG == 0x0000FF00) && (mskB == 0x000000FF))
+		case 32:		// Supports B8G8R8A8 and R8G8B8A8.
+			if (isRGBA && (mskB == 0x000000FF) && (mskG == 0x0000FF00) && (mskR == 0x00FF0000) && (mskA == 0xFF000000))
 				format = tPixelFormat::B8G8R8A8;
+			else if (isRGBA && (mskR == 0x000000FF) && (mskG == 0x0000FF00) && (mskB == 0x00FF0000) && (mskA == 0xFF000000))
+				format = tPixelFormat::R8G8B8A8;
 			break;
 	}
 
