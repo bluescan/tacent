@@ -366,10 +366,6 @@ bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams) const
 		if ((frame->Width != Width) || (frame->Height != Height))
 			continue;
 
-		// There's some evidence on various websites that delays lower than 2 (2/100 second) do not
-		// animate at the proper speed in many viewers. Currently we clamp at 2.
-		int delay = tMath::tClampMin((params.OverrideFrameDuration < 0) ? int(frame->Duration * 100.0f) : params.OverrideFrameDuration, 2);
-
 		for (int y = 0; y < Height; y++)
 		{
 			for (int x = 0; x < Width; x++)
@@ -383,6 +379,12 @@ bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams) const
 				gifHandle->frame[dstIndex] = gifIndices[srcIndex];
 			}
 		}
+		// There's some evidence on various websites that delays lower than 2 (2/100 second) do not
+		// animate at the proper speed in many viewers. Currently we clamp at 2.
+		int delay = tMath::tClampMin((params.OverrideFrameDuration < 0) ? int(frame->Duration * 100.0f) : params.OverrideFrameDuration, 2);
+		if (numFrames == 1)
+			delay = 0;
+			
 		ge_add_frame(gifHandle, delay);
 	}
 

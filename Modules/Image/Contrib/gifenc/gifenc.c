@@ -277,7 +277,13 @@ get_bbox(ge_GIF *gif, uint16_t *w, uint16_t *h, uint16_t *x, uint16_t *y)
 static void
 add_graphics_control_extension(ge_GIF *gif, uint16_t d)
 {
-    uint8_t flags = ((gif->bgindex >= 0 ? 2 : 1) << 2) + 1;
+	// @tacent Modified flags to only assume transparency (the + 1) if we are using a bgindex.
+	// Without this, saving an opaque image results in a gif with some transparent pixels.
+    uint8_t flags = 
+		((gif->bgindex >= 0 ? 2 : 1) << 2) +
+		((gif->bgindex >= 0) ? 1 : 0);
+    // Original: uint8_t flags = ((gif->bgindex >= 0 ? 2 : 1) << 2) + 1;
+
     fwrite((uint8_t []) {'!', 0xF9, 0x04, flags}, 1, 4, gif->filep);
     write_num(gif->filep, d);
     fwrite((uint8_t []) {(uint8_t) gif->bgindex, 0x00}, 1, 2, gif->filep);
