@@ -300,51 +300,51 @@ tTestUnit(Interval)
 
 	// Now test collections of intervals inside a tIntervals object.
 	tPrintf("Set intervals: [4,6)U[5,8]\n");
-	intervals.Set("[4,6)U[5,8]");
-	tPrintf("Get intervals: %s\n", intervals.Get().Chr());
-	tRequire(intervals.Get() == "[4,8]");
+	intervals.Set("[4,6)U[5,8]"); intstr = intervals.Get();
+	tPrintf("Get intervals: %s\n", intstr.Chr());
+	tRequire(intstr == "[4,8]");
 
 	tPrintf("Set intervals: (4,6]|[6,8]\n");
-	intervals.Set("(4,6]|[6,8]");
-	tPrintf("Get intervals: %s\n", intervals.Get().Chr());
-	tRequire(intervals.Get() == "[5,8]");
+	intervals.Set("(4,6]|[6,8]"); intstr = intervals.Get();
+	tPrintf("Get intervals: %s\n", intstr.Chr());
+	tRequire(intstr == "[5,8]");
 
 	tPrintf("Set intervals: [0,3]|[4,8]\n");
-	intervals.Set("[0,3]|[4,8]");
-	tPrintf("Get intervals: %s\n", intervals.Get().Chr());
-	tRequire(intervals.Get() == "[0,8]");
+	intervals.Set("[0,3]|[4,8]"); intstr = intervals.Get();
+	tPrintf("Get intervals: %s\n", intstr.Chr());
+	tRequire(intstr == "[0,8]");
 
 	tPrintf("Set intervals: [5,8]U[4,6)\n");
-	intervals.Set("[5,8]U[4,6)");
-	tPrintf("Get intervals: %s\n", intervals.Get().Chr());
-	tRequire(intervals.Get() == "[4,8]");
+	intervals.Set("[5,8]U[4,6)"); intstr = intervals.Get();
+	tPrintf("Get intervals: %s\n", intstr.Chr());
+	tRequire(intstr == "[4,8]");
 
 	tPrintf("Set intervals: [0,2]U[4,8]\n");
-	intervals.Set("[0,2]U[4,8]");
-	tPrintf("Get intervals: %s\n", intervals.Get().Chr());
-	tRequire(intervals.Get() == "[0,2]|[4,8]");
+	intervals.Set("[0,2]U[4,8]"); intstr = intervals.Get();
+	tPrintf("Get intervals: %s\n", intstr.Chr());
+	tRequire(intstr == "[0,2]|[4,8]");
 
 	tPrintf("Set intervals: [4,8]U[0,2]\n");
-	intervals.Set("[4,8]U[0,2]");
-	tPrintf("Get intervals: %s\n", intervals.Get(tIntervalRep::Set).Chr());
-	tRequire(intervals.Get(tIntervalRep::Set) == "[0,2]U[4,8]");
+	intervals.Set("[4,8]U[0,2]"); intstr = intervals.Get(tIntervalRep::Normal, tIntervalSetRep::Union);
+	tPrintf("Get intervals: %s\n", intstr.Chr());
+	tRequire(intstr == "[0,2]U[4,8]");
 
 	tPrintf("Set intervals: [10,12]U[0,2]U[6,8]\n");
-	intervals.Set("[10,12]U[0,2]U[6,8]");
-	tPrintf("Get intervals: %s\n", intervals.Get(tIntervalRep::Set).Chr());
-	tRequire(intervals.Get(tIntervalRep::Set) == "[0,2]U[6,8]U[10,12]");
+	intervals.Set("[10,12]U[0,2]U[6,8]"); intstr = intervals.Get(tIntervalRep::Normal, tIntervalSetRep::Union);
+	tPrintf("Get intervals: %s\n", intstr.Chr());
+	tRequire(intstr == "[0,2]U[6,8]U[10,12]");
 
 	tPrintf("Set intervals: [10,12]U[0,2]U[6,8]\n");
-	intervals.Set("[10,12]U[0,2]U[6,8]");
-	tPrintf("Get intervals: %s\n", intervals.Get(tIntervalRep::Range).Chr());
-	tRequire(intervals.Get(tIntervalRep::Range) == "0-2:6-8:10-12");
+	intervals.Set("[10,12]U[0,2]U[6,8]"); intstr = intervals.Get(tIntervalRep::Range, tIntervalSetRep::Bar);
+	tPrintf("Get intervals: %s\n", intstr.Chr());
+	tRequire(intstr == "0-2|6-8|10-12");
 
-	tPrintf("Set intervals: !9-13!:0-2:6-8\n");
-	intervals.Set("!9-13!:0-2:6-8");
-	tPrintf("Get intervals: %s\n", intervals.Get(tIntervalRep::Range).Chr());
-	intervals.MakeInclusive();
-	tPrintf("Inc intervals: %s\n", intervals.Get(tIntervalRep::Range).Chr());
-	tRequire(intervals.Get(tIntervalRep::Range) == "0-2:6-8:10-12");
+	tPrintf("Set intervals: !9-13!+0-2+6-8\n");
+	intervals.Set("!9-13!+0-2+6-8"); intstr = intervals.Get(tIntervalRep::Range, tIntervalSetRep::Cross);
+	tPrintf("Get intervals: %s\n", intstr.Chr());
+	intervals.MakeInclusive(); intstr = intervals.Get(tIntervalRep::Range, tIntervalSetRep::Cross);
+	tPrintf("Inc intervals: %s\n", intstr.Chr());
+	tRequire(intstr == "0-2+6-8+10-12");
 
 	// Test count.
 	tInterval interval("[6,8)");
