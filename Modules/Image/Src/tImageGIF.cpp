@@ -267,9 +267,9 @@ bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams) const
 	if (numFrames == 1)
 		loop = -1;
 	
-//	int alphaThreshold = params.AlphaThresholdd;
+	// 2-colour GIFs are not allowed alpha. They would only be allowed to have 1 colour which doesn't make sense.
 	if (params.Format == tPixelFormat::PAL1BIT)
-		params.AlphaThresholdd = 255;
+		params.AlphaThreshold = 255;
 
 	// Before we create a gif with gifenc's ge_new_gif we need to have created a good palette for it to use. This is a
 	// little tricky for multiframe gifs because gifenc does not support frame-local palettes. The same palette is used
@@ -321,9 +321,11 @@ bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams) const
 		}
 	}
 
-	bool gifTransparency = false; // (alphaThreshold >= 0) && (alphaThreshold < 255);
-	int alphaThreshold = params.AlphaThresholdd;
-	if (params.AlphaThresholdd < 0)
+	bool gifTransparency = false;
+	int alphaThreshold = params.AlphaThreshold;
+
+	// An alpha threshold of -1 means auto-determine if the GIF gets 1-bit transparency.
+	if (params.AlphaThreshold < 0)
 	{
 		for (int p = 0; p < width*height; p++)
 		{
@@ -335,7 +337,7 @@ bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams) const
 			}
 		}
 	}
-	else if (params.AlphaThresholdd < 255)
+	else if (params.AlphaThreshold < 255)
 	{
 		gifTransparency = true;
 	}

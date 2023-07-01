@@ -90,14 +90,14 @@ public:
 	struct SaveParams
 	{
 		SaveParams()																									{ Reset(); }
-		SaveParams(const SaveParams& src)																				: Format(src.Format), Method(src.Method), Loop(src.Loop), AlphaThresholdd(src.AlphaThresholdd), OverrideFrameDuration(src.OverrideFrameDuration), DitherLevel(src.DitherLevel), FilterSize(src.FilterSize), SampleFactor(src.SampleFactor) { }
-		void Reset()																									{ Format = tPixelFormat::PAL8BIT; Method = tQuantize::Method::Wu; Loop = 0; AlphaThresholdd = -1; OverrideFrameDuration = -1; DitherLevel = 0.0; FilterSize = 3; SampleFactor = 1; }
-		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Method = src.Method; Loop = src.Loop; AlphaThresholdd = src.AlphaThresholdd; OverrideFrameDuration = src.OverrideFrameDuration; DitherLevel = src.DitherLevel; FilterSize = src.FilterSize; SampleFactor = src.SampleFactor; return *this; }
+		SaveParams(const SaveParams& src)																				: Format(src.Format), Method(src.Method), Loop(src.Loop), AlphaThreshold(src.AlphaThreshold), OverrideFrameDuration(src.OverrideFrameDuration), DitherLevel(src.DitherLevel), FilterSize(src.FilterSize), SampleFactor(src.SampleFactor) { }
+		void Reset()																									{ Format = tPixelFormat::PAL8BIT; Method = tQuantize::Method::Wu; Loop = 0; AlphaThreshold = -1; OverrideFrameDuration = -1; DitherLevel = 0.0; FilterSize = 3; SampleFactor = 1; }
+		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Method = src.Method; Loop = src.Loop; AlphaThreshold = src.AlphaThreshold; OverrideFrameDuration = src.OverrideFrameDuration; DitherLevel = src.DitherLevel; FilterSize = src.FilterSize; SampleFactor = src.SampleFactor; return *this; }
 
 		tPixelFormat Format;		// See comment above. Must be one of the PALNBIT formats wher N is E [1, 8].
 		tQuantize::Method Method;	// See comment above. Choose one of the 4 available colour quantization methods.
 		int Loop;					// See comment above. Animated only. 0 = infinite (default). >0 = that many times.
-		int AlphaThresholdd;			// See comment above. -1 = auto. 255 = opaque. else A<=threshold = transp pixel.
+		int AlphaThreshold;			// See comment above. -1 = auto. 255 = opaque. else A<=threshold = transp pixel.
 		int OverrideFrameDuration;	// See comment above. -1 = use frame duration. >=0 = Set all to this many 1/100 sec.
 
 		double DitherLevel;			// For Method::Spatial only. 0.0 = auto. >0.0 = manual dither amount.
