@@ -127,7 +127,7 @@ void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method 
 	params.Format = format;
 	params.Method = method;
 	params.DitherLevel = double(dither);
-	params.AlphaThreshold = transparency ? 127 : -1;
+	params.AlphaThresholdd = transparency ? 127 : 255;
 
 	gif.Save(gifFile, params);
 	tRequire(tSystem::tFileExists(gifFile));

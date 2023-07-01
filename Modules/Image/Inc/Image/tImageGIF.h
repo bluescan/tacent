@@ -68,17 +68,21 @@ public:
 	// This function returns true on success. If any required condition is not met false is returned. gifFile is the
 	// file to save to. It must end with a .gif extension.
 	//
-	// Format must be one of the PALNBIT formats where N E [1,8]. i.e. Palette size 2, 4, 8, 16, 32, 64, 128, or 256.
+	// Format must be one of the PALNBIT formats where N E [1,8]. i.e. Palette sizes 2, 4, 8, 16, 32, 64, 128, or 256.
 	//
 	// Method should be set to one of the 4 available quantization methods: fixed, neuquant, wu, or scolorq.
 	//
 	// Loop only applies to multi-frame/animated gifs. 0 to loop forever. >0 to loop a specific number of times.
 	//
-	// If AlphaThreshold is -1, the saved gif will be be opaque even if not all pixel alphas are maxed out.
-	// Otherwise AlphaThreshold should be E [0, 255]. Any pixel with alpha <= AlphaThreshold is considered transparent
-	// (gif supports binary alpha only). Pixel alpha values > AlphaThreshold are considered opaque. If PAL1BIT is chosen
-	// as the pixel format (2 palette entries), AlphaThreshold is forced to -1 (fully opaque image). This is because gif
-	// transparency uses a palette entry, and colour quantization on a single colour is ill-defined.
+	// Gif files support binary alpha only.
+	// If AlphaThreshold is 255 (special case), the saved gif will be be opaque even if not all pixel alphas are max.
+	// If AlphaThreshold is E [0, 255), any pixel with alpha <= AlphaThreshold is considered transparent. Pixel alpha
+	// values > AlphaThreshold are considered opaque. If PAL1BIT is chosen as the pixel format (2 palette entries),
+	// AlphaThreshold is forced to 255 (fully opaque). This is because gif transparency uses a palette entry, and colour
+	// quantization on a single colour is not useful.
+	// If AlphaThreshold is -1 (auto), then the frame pixels are inspected for transparency. If all frames are fully
+	// opaque, an opaque gif will be saved (AlphaThreshold at 255). If any frame has a non-max pixel alpha, an
+	// AlphaThreshold of 127 is used.
 	//
 	// OverrideframeDuration is in 1/100 seconds. Set to >= 0 to override all frames. Note that values of 0 or 1 get
 	// min-clamped to 2 during save since many viewers do not handle values below 2 properly. If OverrideFrameDuration
@@ -86,14 +90,14 @@ public:
 	struct SaveParams
 	{
 		SaveParams()																									{ Reset(); }
-		SaveParams(const SaveParams& src)																				: Format(src.Format), Method(src.Method), Loop(src.Loop), AlphaThreshold(src.AlphaThreshold), OverrideFrameDuration(src.OverrideFrameDuration), DitherLevel(src.DitherLevel), FilterSize(src.FilterSize), SampleFactor(src.SampleFactor) { }
-		void Reset()																									{ Format = tPixelFormat::PAL8BIT; Method = tQuantize::Method::Wu; Loop = 0; AlphaThreshold = -1; OverrideFrameDuration = -1; DitherLevel = 0.0; FilterSize = 3; SampleFactor = 1; }
-		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Method = src.Method; Loop = src.Loop; AlphaThreshold = src.AlphaThreshold; OverrideFrameDuration = src.OverrideFrameDuration; DitherLevel = src.DitherLevel; FilterSize = src.FilterSize; SampleFactor = src.SampleFactor; return *this; }
+		SaveParams(const SaveParams& src)																				: Format(src.Format), Method(src.Method), Loop(src.Loop), AlphaThresholdd(src.AlphaThresholdd), OverrideFrameDuration(src.OverrideFrameDuration), DitherLevel(src.DitherLevel), FilterSize(src.FilterSize), SampleFactor(src.SampleFactor) { }
+		void Reset()																									{ Format = tPixelFormat::PAL8BIT; Method = tQuantize::Method::Wu; Loop = 0; AlphaThresholdd = -1; OverrideFrameDuration = -1; DitherLevel = 0.0; FilterSize = 3; SampleFactor = 1; }
+		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Method = src.Method; Loop = src.Loop; AlphaThresholdd = src.AlphaThresholdd; OverrideFrameDuration = src.OverrideFrameDuration; DitherLevel = src.DitherLevel; FilterSize = src.FilterSize; SampleFactor = src.SampleFactor; return *this; }
 
 		tPixelFormat Format;		// See comment above. Must be one of the PALNBIT formats wher N is E [1, 8].
 		tQuantize::Method Method;	// See comment above. Choose one of the 4 available colour quantization methods.
 		int Loop;					// See comment above. Animated only. 0 = infinite (default). >0 = that many times.
-		int AlphaThreshold;			// See comment above. -1 = opaque. Otherwise A <= threshold meant transparent pixel.
+		int AlphaThresholdd;			// See comment above. -1 = auto. 255 = opaque. else A<=threshold = transp pixel.
 		int OverrideFrameDuration;	// See comment above. -1 = use frame duration. >=0 = Set all to this many 1/100 sec.
 
 		double DitherLevel;			// For Method::Spatial only. 0.0 = auto. >0.0 = manual dither amount.

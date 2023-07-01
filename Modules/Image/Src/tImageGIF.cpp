@@ -267,8 +267,9 @@ bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams) const
 	if (numFrames == 1)
 		loop = -1;
 	
+//	int alphaThreshold = params.AlphaThresholdd;
 	if (params.Format == tPixelFormat::PAL1BIT)
-		params.AlphaThreshold = -1;
+		params.AlphaThresholdd = 255;
 
 	// Before we create a gif with gifenc's ge_new_gif we need to have created a good palette for it to use. This is a
 	// little tricky for multiframe gifs because gifenc does not support frame-local palettes. The same palette is used
@@ -283,8 +284,6 @@ bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams) const
 	// colour entries and 1 transparency entry instead of 256 colour entries.
 	int gifBitDepth			= tGetBitsPerPixel(params.Format);
 	int gifPaletteSize		= tMath::tPow2(gifBitDepth);
-	bool gifTransparency	= (params.AlphaThreshold >= 0);
-	int quantNumColours		= gifPaletteSize - (gifTransparency ? 1 : 0);
 
 	tPixel* pixels			= nullptr;
 	int width				= 0;
@@ -322,6 +321,26 @@ bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams) const
 		}
 	}
 
+	bool gifTransparency = false; // (alphaThreshold >= 0) && (alphaThreshold < 255);
+	int alphaThreshold = params.AlphaThresholdd;
+	if (params.AlphaThresholdd < 0)
+	{
+		for (int p = 0; p < width*height; p++)
+		{
+			if (pixels[p].A < 255)
+			{
+				gifTransparency = true;
+				alphaThreshold = 127;
+				break;
+			}
+		}
+	}
+	else if (params.AlphaThresholdd < 255)
+	{
+		gifTransparency = true;
+	}
+	int quantNumColours		= gifPaletteSize - (gifTransparency ? 1 : 0);
+
 	// Now that width, height, and pixels are correct we can quantize.
 	tColour3i* gifPalette = new tColour3i[gifPaletteSize];
 	gifPalette[gifPaletteSize-1].Set(0, 0, 0);
@@ -353,7 +372,7 @@ bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams) const
 	{
 		bgIndex = gifPaletteSize-1;
 		for (int p = 0; p < width*height; p++)
-			if (pixels[p].A <= params.AlphaThreshold)
+			if (pixels[p].A <= alphaThreshold)
 				gifIndices[p] = bgIndex;
 	}
 
