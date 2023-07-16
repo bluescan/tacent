@@ -4,7 +4,7 @@
 // image. For example, jpg files may contain EXIF or XMP meta-data. This class is basically a map of key/value strings
 // that may be a member of some tImageXXX types, It currently knows how to parse EXIF and XMP meta-data.
 //
-// Copyright (c) 2022 Tristan Grimmer.
+// Copyright (c) 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -16,6 +16,7 @@
 
 #pragma once
 #include <Foundation/tString.h>
+#include <System/tChunk.h>
 namespace TinyEXIF { class EXIFInfo; }
 
 
@@ -181,6 +182,10 @@ public:
 	bool IsValid() const																								{ return NumTagsValid > 0; }
 	int GetNumValidTags() const																							{ return NumTagsValid; }
 
+	// Save and Load to tChunk format.
+	void Save(tChunkWriter&) const;
+	void Load(const tChunk&);
+
 	tMetaData& operator=(const tMetaData& src)																			{ Set(src); return *this; }
 	tMetaDatum& operator[](tMetaTag tag)																				{ return Data[int(tag)]; }
 	const tMetaDatum& operator[](tMetaTag tag) const																	{ return Data[int(tag)]; }
@@ -193,6 +198,7 @@ public:
 	tString GetPrettyValue(tMetaTag) const;
 
 private:
+	const int ChunkVersion																								= 1;
 	int NumTagsValid;
 	tMetaDatum Data[int(tMetaTag::NumTags)];
 

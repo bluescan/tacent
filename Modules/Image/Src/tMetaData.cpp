@@ -4,7 +4,7 @@
 // image. For example, jpg files may contain EXIF or XMP meta-data. This class is basically a map of key/value strings
 // that may be a member of some tImageXXX types, It currently knows how to parse EXIF and XMP meta-data.
 //
-// Copyright (c) 2022 Tristan Grimmer.
+// Copyright (c) 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -217,7 +217,6 @@ bool tMetaData::Set(const uint8* rawJpgImageData, int numBytes)
 	SetTags_CamSettings(exifInfo);
 	SetTags_AuthorNotes(exifInfo);
 
-	// @todo This function will get quite large.
 	return IsValid();
 }
 
@@ -861,4 +860,92 @@ tString tMetaData::GetPrettyValue(tMetaTag tag) const
 			break;
 	}
 	return value;
+}
+
+
+void tMetaData::Save(tChunkWriter& chunk) const
+{
+	chunk.Begin(tChunkID::Image_MetaData);
+	{
+		chunk.Begin(tChunkID::Image_MetaDataVersion);
+		{
+			chunk.Write(ChunkVersion);
+		}
+		chunk.End();
+
+		for (int d = 0; d < int(tMetaTag::NumTags); d++)
+		{
+			if (!Data[d].IsValid())
+				continue;
+
+			const tMetaDatum& datum = Data[d];
+			chunk.Begin(tChunkID::Image_MetaDatum);
+			{
+				chunk.Write(d);
+				chunk.Write(datum.Type);
+				switch (datum.Type)
+				{
+					case tMetaDatum::DatumType::Uint32:
+						chunk.Write(datum.Uint32);
+						break;
+
+					case tMetaDatum::DatumType::Float:
+						chunk.Write(datum.Float);
+						break;
+
+					case tMetaDatum::DatumType::String:
+						chunk.Write(datum.String);
+						break;
+				}
+			}
+			chunk.End();
+		}
+	}
+	chunk.End();
+}
+
+
+void tMetaData::Load(const tChunk& chunk)
+{
+	Clear();
+	if (chunk.ID() != tChunkID::Image_MetaData)
+		return;
+
+	for (tChunk ch = chunk.First(); ch.IsValid(); ch = ch.Next())
+	{
+		switch (ch.ID())
+		{
+			case tChunkID::Image_MetaDataVersion:
+			{
+				int version;
+				ch.GetItem(version);
+				break;
+			}
+
+			case tChunkID::Image_MetaDatum:
+			{
+				int id = 0;
+				ch.GetItem(id);
+				tMetaDatum& datum = Data[id];
+
+				ch.GetItem(*((int*)&datum.Type));
+				switch (datum.Type)
+				{
+					case tMetaDatum::DatumType::Uint32:
+						ch.GetItem(datum.Uint32);
+						break;
+
+					case tMetaDatum::DatumType::Float:
+						ch.GetItem(datum.Float);
+						break;
+
+					case tMetaDatum::DatumType::String:
+						ch.GetItem(datum.String);
+						break;
+				}
+				NumTagsValid++;
+				break;
+			}
+		}
+	}
 }

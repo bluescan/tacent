@@ -575,6 +575,10 @@ namespace tChunkID
 				Image_CubemapSide																= 0x01040220,
 					Image_CubemapSideProperties													= 0x01040230,			// tSide.
 					Previous(Image_Texture)
+
+		Image_MetaData																			= 0x81040300,
+			Image_MetaDataVersion																= 0x01040310,			// Version (4 bytes).
+			Image_MetaDatum																		= 0x01040320,			// ID (4 bytes), Type (4 bytes), Value (remainder).
 	};
 
 	// Rendering chunk IDs.
