@@ -188,7 +188,7 @@ int main(int argc, char** argv)
 
 	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
 	// tTest(Fundamentals);
-	tTest(Interval);
+	// tTest(Interval);
 	// tTest(FileTypes);
 	// tTest(Directories);
 	// tTest(File);
@@ -215,7 +215,7 @@ int main(int argc, char** argv)
 	// tTest(ImagePalette);
 	// tTest(ImageFilter);
 	// tTest(ImageGradient);
-	// tTest(ImageMetaData);
+	tTest(ImageMetaData);
 	// tTest(ImageLosslessTransform);
 	// tTest(ImageRotation);
 	// tTest(ImageCrop);

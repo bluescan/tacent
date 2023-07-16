@@ -160,6 +160,10 @@ struct tMetaDatum
 	void Set(const tString& v)																							{ Type = DatumType::String; String = v; }
 	bool IsValid() const																								{ return (Type != DatumType::Invalid); }
 	bool IsSet() const																									{ return (Type != DatumType::Invalid); }
+
+	// Two invalid datums are always considered equal. If both are valid, only then are values compared.
+	bool operator==(const tMetaDatum& src) const;
+	bool operator!=(const tMetaDatum& src) const																		{ return !(*this == src); }
 	tMetaDatum& operator=(const tMetaDatum& src)																		{ Set(src); return *this; }
 
 	DatumType Type;
@@ -185,6 +189,11 @@ public:
 	// Save and Load to tChunk format.
 	void Save(tChunkWriter&) const;
 	void Load(const tChunk&);
+
+	// Two invalid meta-data objects are always considered equal. Otherwise the number of datums must match and they
+	// must all be equal for true to be returned.
+	bool operator==(const tMetaData& src) const;
+	bool operator!=(const tMetaData& src) const																			{ return !(*this == src); }
 
 	tMetaData& operator=(const tMetaData& src)																			{ Set(src); return *this; }
 	tMetaDatum& operator[](tMetaTag tag)																				{ return Data[int(tag)]; }
@@ -227,6 +236,26 @@ inline void tImage::tMetaDatum::Set(const tMetaDatum& src)
 }
 
 
+inline bool tImage::tMetaDatum::operator==(const tMetaDatum& src) const
+{
+	if ((Type == DatumType::Invalid) && (src.Type == DatumType::Invalid))
+		return true;
+
+	if (Type != src.Type)
+		return false;
+
+	tAssert(Type == src.Type);
+	switch (Type)
+	{
+		case DatumType::Uint32:		return Uint32 == src.Uint32;
+		case DatumType::Float:		return Float == src.Float;
+		case DatumType::String:		return String == src.String;
+	}
+	return false;
+}
+
+
+
 inline void tImage::tMetaData::Clear()
 {
 	NumTagsValid = 0;
@@ -242,4 +271,20 @@ inline bool tImage::tMetaData::Set(const tMetaData& src)
 		Data[d] = src.Data[d];
 
 	return IsValid();
+}
+
+
+inline bool tImage::tMetaData::operator==(const tMetaData& src) const
+{
+	if (!IsValid() && !src.IsValid())
+		return true;
+
+	if (NumTagsValid != src.NumTagsValid)
+		return false;
+
+	for (int d = 0; d < int(tMetaTag::NumTags); d++)
+		if (Data[d] != src.Data[d])
+			return false;
+
+	return true;
 }

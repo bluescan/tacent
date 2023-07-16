@@ -659,6 +659,15 @@ tTestUnit(ImageMetaData)
 	tRequire(jpgWithMeta.MetaData.IsValid());
 	tMetaData& metaData = jpgWithMeta.MetaData;
 
+	// Test saving meta-data to a file and then reloading.
+	tChunkWriter writer("TestData/Images/EXIF_XMP/WrittenMetaData.bin");
+	metaData.Save(writer);
+
+	tMetaData metaDataLoaded;
+	tChunkReader reader("TestData/Images/EXIF_XMP/WrittenMetaData.bin");
+	metaDataLoaded.Load(reader.Chunk());
+	tRequire(metaDataLoaded == metaData);
+
 	PrintMetaDataTag(metaData, tMetaTag::Make);
 	PrintMetaDataTag(metaData, tMetaTag::Model);
 	PrintMetaDataTag(metaData, tMetaTag::SerialNumber);
