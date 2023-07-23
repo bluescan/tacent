@@ -157,7 +157,7 @@ const char* tMetaTagDescs[] =
 	"Flash red-eye reduction. Possible values:\n"
 		"\"No Red-Eye Reduction or Unknown\"\n"
 		"\"Red-Eye Reduction\"",
-	"Focal length in pixels.",
+	"Focal length in mm. Always > 0.",
 	"Information on camera orientation when photo taken. The following\n"
 		"transformations may be present in the image data:\n"
 		"\"Unspecified\": Not orientation info provided.\n"
@@ -797,7 +797,7 @@ tString tMetaData::GetPrettyValue(tMetaTag tag) const
 			break;
 
 		case tMetaTag::FocalLength:
-			tsPrintf(value, "%d pixels", int(datum.Float));
+			tsPrintf(value, "%d mm", tClampMin(int(datum.Float), 1));
 			break;
 
 		case tMetaTag::Orientation:

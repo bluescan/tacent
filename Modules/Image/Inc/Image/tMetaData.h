@@ -105,7 +105,7 @@ enum class tMetaTag
 	FlashRedEye,	//	uint32	Red eye reduction.
 					//			0: No Red-Eye Reduction or Unknown.
 					//			1: Red-Eye Reduction.
-	FocalLength,	//	float	Focal length in pixels.
+	FocalLength,	//	float	Lens focal length in mm. Always > 0 if set.
 	Orientation,	//	uint32	Orientation.
 					//			Note the descriptions below describe the transformations that are present in the data in the current file.
 					//			Reverse ops in reverse order to obtain an untransformed image.
