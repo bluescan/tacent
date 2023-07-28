@@ -219,6 +219,9 @@ public:
 	// If this function wants to remove nothing it returns false and leaves the image untouched.
 	bool Deborder(const tColouri& = tColouri::transparent, uint32 channels = tCompBit_A);
 
+	// Same as above but only check if borders exist. Does not modify picture.
+	bool HasBorders(const tColouri& = tColouri::transparent, uint32 channels = tCompBit_A) const;
+
 	// Quantize image colours based on a fixed palette. numColours must be 256 or less. checkExact means no change to
 	// the image will be made if it already contains fewer colours than numColours already. This may or may not be
 	// desireable as the computed or fixed palette would not be used.
@@ -348,6 +351,13 @@ private:
 		const tMath::tMatrix2& rotMat, const tMath::tMatrix2& invRot, const tPixel& fill,
 		tResampleFilter upFilter, tResampleFilter downFilter
 	);
+
+	// Returns false if either no borders or the borders overlap because the image in homogenous in the channels.
+	bool GetBordersSizes
+	(
+		const tColouri&, uint32 channels,
+		int& numBottomRows, int& numTopRows, int& numLeftCols, int& numRightCols
+	) const;
 
 	int Width				= 0;
 	int Height				= 0;

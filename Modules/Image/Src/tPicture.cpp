@@ -340,10 +340,14 @@ void tPicture::Crop(int newW, int newH, int originX, int originY, const tColouri
 }
 
 
-bool tPicture::Deborder(const tColouri& colour, uint32 channels)
+bool tPicture::GetBordersSizes
+(
+	const tColouri& colour, uint32 channels,
+	int& numBottomRows, int& numTopRows, int& numLeftCols, int& numRightCols
+) const
 {
 	// Count bottom rows to crop.
-	int numBottomRows = 0;
+	numBottomRows = 0;
 	for (int y = 0; y < Height; y++)
 	{
 		bool allMatch = true;
@@ -362,7 +366,7 @@ bool tPicture::Deborder(const tColouri& colour, uint32 channels)
 	}
 
 	// Count top rows to crop.
-	int numTopRows = 0;
+	numTopRows = 0;
 	for (int y = Height-1; y >= 0; y--)
 	{
 		bool allMatch = true;
@@ -381,7 +385,7 @@ bool tPicture::Deborder(const tColouri& colour, uint32 channels)
 	}
 
 	// Count left columns to crop.
-	int numLeftCols = 0;
+	numLeftCols = 0;
 	for (int x = 0; x < Width; x++)
 	{
 		bool allMatch = true;
@@ -400,7 +404,7 @@ bool tPicture::Deborder(const tColouri& colour, uint32 channels)
 	}
 
 	// Count right columns to crop.
-	int numRightCols = 0;
+	numRightCols = 0;
 	for (int x = Width-1; x >= 0; x--)
 	{
 		bool allMatch = true;
@@ -426,8 +430,35 @@ bool tPicture::Deborder(const tColouri& colour, uint32 channels)
 	if ((newWidth <= 0) || (newHeight <= 0))
 		return false;
 
+	return true;
+}
+
+
+bool tPicture::Deborder(const tColouri& colour, uint32 channels)
+{
+	int numBottomRows = 0;
+	int numTopRows = 0;
+	int numLeftCols = 0;
+	int numRightCols = 0;
+	bool hasBorders = GetBordersSizes(colour, channels, numBottomRows, numTopRows, numLeftCols, numRightCols);
+	if (!hasBorders)
+		return false;
+
+	int newWidth = Width - numLeftCols - numRightCols;
+	int newHeight = Height - numBottomRows - numTopRows;
+
 	Crop(newWidth, newHeight, numLeftCols, numBottomRows);
 	return true;
+}
+
+
+bool tPicture::HasBorders(const tColouri& colour, uint32 channels) const
+{
+	int numBottomRows = 0;
+	int numTopRows = 0;
+	int numLeftCols = 0;
+	int numRightCols = 0;
+	return GetBordersSizes(colour, channels, numBottomRows, numTopRows, numLeftCols, numRightCols);
 }
 
 
