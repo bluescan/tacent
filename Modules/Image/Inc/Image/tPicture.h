@@ -151,7 +151,8 @@ public:
 	void SetPixel(int x, int y, uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)												{ Pixels[ GetIndex(x, y) ] = tColouri(r, g, b, a); }
 	void SetAll(const tColouri& = tColouri(0, 0, 0), comp_t channels = tCompBit_RGBA);
 
-	// Spreads the specified single channel to all RGB channels.
+	// Spreads the specified single channel to all RGB channels. If channel is R, G, or B, it spreads to the remainder
+	// of RGB (e.g. R will spread to GB). If channel is alpha, spreads to RGB.
 	void Spread(tComp channel = tComp::R);
 
 	// Swizzle colour channels. You specify the RGBA destination channels in that order. For example, to swap R and B
@@ -215,7 +216,8 @@ public:
 
 	// Crops sides that match the specified colour. Optionally select only some channels to be considered.
 	// If this function wants to remove everything it returns false and leaves the image untouched.
-	bool Crop(const tColouri& = tColouri::transparent, uint32 channels = tCompBit_A);
+	// If this function wants to remove nothing it returns false and leaves the image untouched.
+	bool Deborder(const tColouri& = tColouri::transparent, uint32 channels = tCompBit_A);
 
 	// Quantize image colours based on a fixed palette. numColours must be 256 or less. checkExact means no change to
 	// the image will be made if it already contains fewer colours than numColours already. This may or may not be

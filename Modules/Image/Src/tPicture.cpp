@@ -340,7 +340,7 @@ void tPicture::Crop(int newW, int newH, int originX, int originY, const tColouri
 }
 
 
-bool tPicture::Crop(const tColouri& colour, uint32 channels)
+bool tPicture::Deborder(const tColouri& colour, uint32 channels)
 {
 	// Count bottom rows to crop.
 	int numBottomRows = 0;
@@ -417,6 +417,9 @@ bool tPicture::Crop(const tColouri& colour, uint32 channels)
 		else
 			break;
 	}
+
+	if ((numLeftCols == 0) && (numRightCols == 0) && (numBottomRows == 0) && (numTopRows == 0))
+		return false;
 
 	int newWidth = Width - numLeftCols - numRightCols;
 	int newHeight = Height - numBottomRows - numTopRows;
