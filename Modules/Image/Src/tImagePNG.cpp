@@ -21,13 +21,14 @@
 #include <System/tFile.h>
 #include "png.h"
 #include "Image/tImagePNG.h"
+#include "Image/tImageJPG.h"		// Because some jpg/jfif files have a png extension in the wild. Scary but true.
 #include "Image/tPicture.h"
 using namespace tSystem;
 namespace tImage
 {
 
 
-bool tImagePNG::Load(const tString& pngFile)
+bool tImagePNG::Load(const tString& pngFile, uint32 loadFlags)
 {
 	Clear();
 
@@ -39,14 +40,14 @@ bool tImagePNG::Load(const tString& pngFile)
 
 	int numBytes = 0;
 	uint8* pngFileInMemory = tLoadFile(pngFile, nullptr, &numBytes);
-	bool success = Load(pngFileInMemory, numBytes);
+	bool success = Load(pngFileInMemory, numBytes, loadFlags);
 	delete[] pngFileInMemory;
 
 	return success;
 }
 
 
-bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes)
+bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, uint32 loadFlags)
 {
 	Clear();
 	if ((numBytes <= 0) || !pngFileInMemory)
@@ -59,6 +60,20 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes)
 	if (!successCode)
 	{
 		png_image_free(&pngImage);
+		if ((loadFlags & LoadFlag_AllowJPG))
+		{
+			tImageJPG jpg;
+			bool success = jpg.Load(pngFileInMemory, numBytes);
+			if (!success)
+				return false;
+
+			PixelFormatSrc = tPixelFormat::R8G8B8;
+			Width = jpg.GetWidth();
+			Height = jpg.GetHeight();
+			Pixels = jpg.StealPixels();
+			return true;
+		}
+
 		return false;
 	}
 

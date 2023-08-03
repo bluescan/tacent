@@ -26,12 +26,25 @@ namespace tImage
 class tImagePNG : public tBaseImage
 {
 public:
+	enum LoadFlags
+	{
+		LoadFlag_None			= 0,
+
+		// Crazily some PNG files are actually JPG/JFIF files inside. I don't much like supporting this, but some
+		// software (ms-paint for example), will happily load such an invalid png. The world would be better if app
+		// developers wouldn't save things with the wrong extension, but they get away with it because other software
+		// loads this junk... and now this library is yet another.
+		LoadFlag_AllowJPG		= 1 << 0,
+		LoadFlags_Default		= LoadFlag_AllowJPG
+	};
+
 	// Creates an invalid tImagePNG. You must call Load manually.
 	tImagePNG()																											{ }
-	tImagePNG(const tString& pngFile)																					{ Load(pngFile); }
+	tImagePNG(const tString& pngFile)																					{ Load(pngFile, LoadFlags_Default); }
+	tImagePNG(const tString& pngFile, int32 loadFlags)																	{ Load(pngFile, loadFlags); }
 
 	// The data is copied out of pngFileInMemory. Go ahead and delete after if you want.
-	tImagePNG(const uint8* pngFileInMemory, int numBytes)																{ Load(pngFileInMemory, numBytes); }
+	tImagePNG(const uint8* pngFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default)							{ Load(pngFileInMemory, numBytes, loadFlags); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -46,8 +59,8 @@ public:
 	virtual ~tImagePNG()																								{ Clear(); }
 
 	// Clears the current tImagePNG before loading. Returns success. If false returned, object is invalid.
-	bool Load(const tString& pngFile);
-	bool Load(const uint8* pngFileInMemory, int numBytes);
+	bool Load(const tString& pngFile, uint32 loadFlags = LoadFlags_Default);
+	bool Load(const uint8* pngFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default);
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
