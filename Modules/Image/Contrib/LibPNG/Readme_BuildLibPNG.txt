@@ -10,6 +10,7 @@ You may need to disable one of the switch warnings.
 Turn off /GL (whole prog opt in compiler settings)
 Turn off /LTCG (link time code gen, in librarian)
 Add ;5045 in advanced compiler warnings to disable.
+ZLIB: Get from sorceforge and put in folder 'zlib' sibling to the main libpng folder.
 
 Look for the .lib files in vstudio/x64/Release Library
 
@@ -17,6 +18,10 @@ Linux:
 ------
 Download one of the compressed tar file. Something like libpng-1.6.37.tar.gz
 Configure in Linux does not like windows line endings.
+
+	ZLIB:
+	   apt install zlib1g
+	   apt install zlib1g-dev
 
     ./configure --prefix=/mnt/c/libpngdest
     make check

@@ -206,7 +206,7 @@ int main(int argc, char** argv)
 	// tTest(Script);
 	// tTest(Rule);
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
-	// tTest(ImageLoad);
+	tTest(ImageLoad);
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
 	// tTest(ImageMultiFrame);
@@ -215,7 +215,7 @@ int main(int argc, char** argv)
 	// tTest(ImagePalette);
 	// tTest(ImageFilter);
 	// tTest(ImageGradient);
-	tTest(ImageMetaData);
+	// tTest(ImageMetaData);
 	// tTest(ImageLosslessTransform);
 	// tTest(ImageRotation);
 	// tTest(ImageCrop);

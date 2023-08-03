@@ -43,6 +43,12 @@ tTestUnit(ImageLoad)
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImageLoad)
 
+	///////////////////////// WIP
+	//tImagePNG noload("TestData/Images/NoLoad.png");
+	//tRequire(noload.IsValid());
+	//return;
+	/////////////////////////
+
 	// Test direct loading classes.
 	tImageAPNG imgAPNG("TestData/Images/Flame.apng");
 	tRequire(imgAPNG.IsValid());
