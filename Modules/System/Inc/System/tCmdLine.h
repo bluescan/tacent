@@ -1,7 +1,7 @@
 // tCmdLine.h
 //
 // Parses a command line. A command line takes the form:
-// program.exe [arg1 arg2 arg3 ...]
+// program [arg1 arg2 arg3 ...]
 //
 // ARGUMENTS:
 // Arguments are separated by spaces. An argument must be enclosed in quotes (single or double) if it has spaces in it
@@ -24,7 +24,7 @@
 // hyphen in a parameter at the start you will need put the parameter in quotes. For example, a filename _can_ start
 // with -. Note that arguments that start with a hyphen but are not recognized as a valid option just get turned into
 // parameters. This means interpreting a hyphen directly instead of as an option specifier will happen automatically if
-// there are no options matching what comes after the hyphen. Eg. 'tool.exe -.85 --add 33 -87.98 --notpresent' work just
+// there are no options matching what comes after the hyphen. Eg. 'tool -.85 --add 33 -87.98 --notpresent' work just
 // fine as long as there are no options that have a short form with digits or a decimal. In this example the -.85 will be
 // the first parameter, --notpresent will be the second. The --add is assumed to take in two number arguments.
 //
@@ -38,10 +38,10 @@
 // collect them all up if the parameter number is unset (-1).
 // A variable number of option arguments is not directly supported due to the more complex parsing that would be needed.
 // The same result is achieved by entering the same option more than once.
-// Eg. tool.exe -I /patha/include/ -I /pathb/include
+// Eg. tool -I /patha/include/ -I /pathb/include
 //
 // EXAMPLE:
-// mycopy.exe -R --overwrite fileA.txt -pat fileB.txt --log log.txt
+// mycopy -R --overwrite fileA.txt -pat fileB.txt --log log.txt
 //
 // The fileA.txt and fileB.txt in the above example are parameters (assuming the overwrite option is a flag). fileA.txt
 // is the first parameter and fileB.txt is the second.
