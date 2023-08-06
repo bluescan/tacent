@@ -34,7 +34,7 @@ public:
 		// The remaining flags only apply when decode flag set. ReverseRowOrder is guaranteed to work if decoding, and
 		// guaranteed to not work if not decoding.
 		LoadFlag_ReverseRowOrder	= 1 << 1,	// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.
-		LoadFlag_GammaCompression	= 1 << 2,	// Gamma-correct. Gamma compression using an encoding gamma of 1/2.2.
+		LoadFlag_GammaCompression	= 1 << 2,	// Gamma-correct. Gamma compression using an encoding gamma of 1/2.2. You may override the 2.2 default.
 		LoadFlag_SRGBCompression	= 1 << 3,	// Same as above but uses the official sRGB transformation. Linear -> sRGB. Approx encoding gamma of 1/2.4 for part of curve.
 		LoadFlag_AutoGamma			= 1 << 4,	// Determines whether to apply sRGB compression based on colour profile. Call GetColourProfile to see if it applied.
 		LoadFlag_ToneMapExposure	= 1 << 5,	// Apply exposure value when loading the astc.
@@ -52,9 +52,9 @@ public:
 		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Profile = src.Profile; Gamma = src.Gamma; Exposure = src.Exposure; return *this; }
 
 		uint32 Flags;
-		tColourProfile Profile;		// Used iff decoding.
-		float Gamma;				// Used iff decoding.
-		float Exposure;				// Used iff decoding.
+		tColourProfile Profile;		// Used if decoding and LoadFlag_AutoGamma is set.
+		float Gamma;				// Used if decoding and LoadFlag_GammaCompression is set.
+		float Exposure;				// Used if decoding and LoadFlag_ToneMapExposure is set.
 	};
 
 	// Creates an invalid tImageASTC. You must call Load manually.
