@@ -1866,6 +1866,7 @@ tSystem::FileTypeExts tSystem::FileTypeExtTable[] =
 	{ "tac" },							// TAC
 	{ "cfg" },							// CFG
 	{ "ini" },							// INI
+	{ "txt" },							// TXT
 };
 tStaticAssert(tNumElements(tSystem::FileTypeExtTable) == int(tSystem::tFileType::NumFileTypes));
 
