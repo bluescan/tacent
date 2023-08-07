@@ -38,13 +38,21 @@ public:
 		LoadFlags_Default		= LoadFlag_AllowJPG
 	};
 
+	struct LoadParams
+	{
+		LoadParams()																									{ Reset(); }
+		LoadParams(const LoadParams& src)																				: Flags(src.Flags) { }
+		void Reset()																									{ Flags = LoadFlags_Default; }
+		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; return *this; }
+		uint32 Flags;
+	};
+
 	// Creates an invalid tImagePNG. You must call Load manually.
 	tImagePNG()																											{ }
-	tImagePNG(const tString& pngFile)																					{ Load(pngFile, LoadFlags_Default); }
-	tImagePNG(const tString& pngFile, int32 loadFlags)																	{ Load(pngFile, loadFlags); }
+	tImagePNG(const tString& pngFile, const LoadParams& params = LoadParams())											{ Load(pngFile, params); }
 
 	// The data is copied out of pngFileInMemory. Go ahead and delete after if you want.
-	tImagePNG(const uint8* pngFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default)							{ Load(pngFileInMemory, numBytes, loadFlags); }
+	tImagePNG(const uint8* pngFileInMemory, int numBytes, const LoadParams& params = LoadParams())						{ Load(pngFileInMemory, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -59,8 +67,8 @@ public:
 	virtual ~tImagePNG()																								{ Clear(); }
 
 	// Clears the current tImagePNG before loading. Returns success. If false returned, object is invalid.
-	bool Load(const tString& pngFile, uint32 loadFlags = LoadFlags_Default);
-	bool Load(const uint8* pngFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default);
+	bool Load(const tString& pngFile, const LoadParams& params = LoadParams());
+	bool Load(const uint8* pngFileInMemory, int numBytes, const LoadParams& params = LoadParams());
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.

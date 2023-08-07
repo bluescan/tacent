@@ -37,14 +37,21 @@ public:
 		LoadFlags_Default		= LoadFlag_ExifOrient
 	};
 
+	struct LoadParams
+	{
+		LoadParams()																									{ Reset(); }
+		LoadParams(const LoadParams& src)																				: Flags(src.Flags) { }
+		void Reset()																									{ Flags = LoadFlags_Default; }
+		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; return *this; }
+		uint32 Flags;
+	};
+
 	// Creates an invalid tImageJPG. You must call Load or Set manually.
 	tImageJPG()																											{ }
-	
-	tImageJPG(const tString& jpgFile)																					{ Load(jpgFile, LoadFlags_Default); }
-	tImageJPG(const tString& jpgFile, uint32 loadFlags)																	{ Load(jpgFile, loadFlags); }
+	tImageJPG(const tString& jpgFile, const LoadParams& params = LoadParams())											{ Load(jpgFile, params); }
 
 	// The data is copied out of jpgFileInMemory. Go ahead and delete after if you want.
-	tImageJPG(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default)							{ Load(jpgFileInMemory, numBytes, loadFlags); }
+	tImageJPG(const uint8* jpgFileInMemory, int numBytes, const LoadParams& params = LoadParams())						{ Load(jpgFileInMemory, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -59,8 +66,8 @@ public:
 	virtual ~tImageJPG()																								{ Clear(); }
 
 	// Clears the current tImageJPG before loading. Returns success. If false returned, object is invalid.
-	bool Load(const tString& jpgFile, uint32 loadFlags = LoadFlags_Default);
-	bool Load(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags = LoadFlags_Default);
+	bool Load(const tString& jpgFile, const LoadParams& params = LoadParams());
+	bool Load(const uint8* jpgFileInMemory, int numBytes, const LoadParams& params = LoadParams());
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.

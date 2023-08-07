@@ -28,7 +28,7 @@ namespace tImage
 {
 
 
-bool tImagePNG::Load(const tString& pngFile, uint32 loadFlags)
+bool tImagePNG::Load(const tString& pngFile, const LoadParams& params)
 {
 	Clear();
 
@@ -40,14 +40,14 @@ bool tImagePNG::Load(const tString& pngFile, uint32 loadFlags)
 
 	int numBytes = 0;
 	uint8* pngFileInMemory = tLoadFile(pngFile, nullptr, &numBytes);
-	bool success = Load(pngFileInMemory, numBytes, loadFlags);
+	bool success = Load(pngFileInMemory, numBytes, params);
 	delete[] pngFileInMemory;
 
 	return success;
 }
 
 
-bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, uint32 loadFlags)
+bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParams& params)
 {
 	Clear();
 	if ((numBytes <= 0) || !pngFileInMemory)
@@ -60,7 +60,7 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, uint32 loadFlag
 	if (!successCode)
 	{
 		png_image_free(&pngImage);
-		if ((loadFlags & LoadFlag_AllowJPG))
+		if ((params.Flags & LoadFlag_AllowJPG))
 		{
 			tImageJPG jpg;
 			bool success = jpg.Load(pngFileInMemory, numBytes);

@@ -4,7 +4,7 @@
 // file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if
 // an EXR file is specified. After the array is stolen the tImageEXR is invalid. This is purely for performance.
 //
-// Copyright (c) 2020-2022 Tristan Grimmer.
+// Copyright (c) 2020-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //

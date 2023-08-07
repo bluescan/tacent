@@ -39,7 +39,7 @@ void tImageJPG::Clear()
 }
 
 
-bool tImageJPG::Load(const tString& jpgFile, uint32 loadFlags)
+bool tImageJPG::Load(const tString& jpgFile, const LoadParams& params)
 {
 	Clear();
 
@@ -55,21 +55,21 @@ bool tImageJPG::Load(const tString& jpgFile, uint32 loadFlags)
 
 	uint8* jpgFileInMemory = tjAlloc(numBytes);
 	tLoadFile(jpgFile, jpgFileInMemory);
-	bool success = Load(jpgFileInMemory, numBytes, loadFlags);
+	bool success = Load(jpgFileInMemory, numBytes, params);
 	delete[] jpgFileInMemory;
 
 	return success;
 }
 
 
-bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlags)
+bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, const LoadParams& params)
 {
 	Clear();
 	if ((numBytes <= 0) || !jpgFileInMemory)
 		return false;
 
 	// If no decompress we simply set the MemImage members and we're done.
-	if ((loadFlags & LoadFlag_NoDecompress))
+	if ((params.Flags & LoadFlag_NoDecompress))
 	{
 		MemImage = tjAlloc(numBytes);
 		tStd::tMemcpy(MemImage, jpgFileInMemory, numBytes);
@@ -112,7 +112,7 @@ bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlag
 		switch (errorSeverity)
 		{
 			case TJERR_WARNING:
-				if (loadFlags & tImageJPG::LoadFlag_Strict)
+				if (params.Flags & tImageJPG::LoadFlag_Strict)
 					abortLoad = true;
 				break;
 
@@ -131,7 +131,7 @@ bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, uint32 loadFlag
 	PixelFormatSrc = tPixelFormat::R8G8B8;
 
 	// The flips and rotates below do not clear the pixel format.
-	if ((loadFlags & LoadFlag_ExifOrient))
+	if ((params.Flags & LoadFlag_ExifOrient))
 	{
 		const tMetaDatum& datum = MetaData[tMetaTag::Orientation];
 		if (datum.IsSet())
