@@ -83,6 +83,10 @@ tTestUnit(ImageLoad)
 	tImageQOI imgQOI32("TestData/Images/TacentTestPattern32.qoi");
 	tRequire(imgQOI32.IsValid());
 
+	// Test loading a corrupt tga.
+	tImageTGA imgTGACorrupt("TestData/Images/Corrupt.tga");
+	tRequire(!imgTGACorrupt.IsValid());
+
 	tImageTGA imgTGA("TestData/Images/WhiteBorderRLE.tga");
 	tRequire(imgTGA.IsValid());
 

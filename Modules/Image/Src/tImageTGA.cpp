@@ -69,6 +69,11 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 	#pragma pack(pop, r1)
 	tStaticAssert(sizeof(TGAHeader) == 18);
 
+	// Safety for corrupt files that aren't even as big as the tga header.
+	// Checks later on will ensure data size is sufficient.
+	if (numBytes < sizeof(TGAHeader))
+		return false;
+
 	TGAHeader* header = (TGAHeader*)tgaFileInMemory;
 	Width = header->Width;
 	Height = header->Height;
@@ -92,12 +97,15 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 		PixelFormatSrc = tPixelFormat::B5G5R5A1;
 	else if (bitDepth == 24)
 		PixelFormatSrc = tPixelFormat::R8G8B8;
+
+	// The +1 adds sizeof header bytes.
 	uint8* srcData = (uint8*)(header + 1);
 
 	// These usually are zero. In most cases the pixel data will follow directly after the header. iColourMapType is a
 	// boolean 0 or 1.
 	srcData += header->IDLength;
 	srcData += header->ColourMapType * header->ColourMapLength;
+	const uint8* endData = tgaFileInMemory + numBytes;
 
 	int numPixels = Width * Height;
 	Pixels = new tPixel[numPixels];
@@ -112,15 +120,24 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 		{
 			case 10:
 			{
+				// Safety for corrupt tga files that don't have enough data.
+				int available = endData - srcData;
+				if (available < bytesPerPixel+1)
+				{
+					Clear();
+					return false;
+				}
+
 				// Image data is compressed.
 				int j = srcData[0] & 0x7f;
 				uint8 rleChunk = srcData[0] & 0x80;
+				srcData += 1;
 
 				tColouri firstColour;
-				ReadColourBytes(firstColour, srcData+1, bytesPerPixel);
-				ReadColourBytes(Pixels[pixel], srcData+1, bytesPerPixel);
+				ReadColourBytes(firstColour, srcData, bytesPerPixel);
+				Pixels[pixel] = firstColour;
 				pixel++;
-				srcData += bytesPerPixel+1;
+				srcData += bytesPerPixel;
 
 				if (rleChunk)
 				{
@@ -133,6 +150,14 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 				}
 				else
 				{
+					// Safety for corrupt tga files that don't have enough data.
+					available = endData - srcData;
+					if (available < bytesPerPixel*j)
+					{
+						Clear();
+						return false;
+					}
+
 					// Chunk is normal.
 					for (int i = 0; i < j; i++)
 					{
@@ -147,6 +172,14 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 			case 2:
 			default:
 			{
+				// Safety for corrupt tga files that don't have enough data.
+				int available = endData - srcData;
+				if (available < bytesPerPixel)
+				{
+					Clear();
+					return false;
+				}
+
 				// Not compressed.
 				ReadColourBytes(Pixels[pixel], srcData, bytesPerPixel);
 				pixel++;
