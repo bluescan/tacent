@@ -145,7 +145,7 @@ struct tString;
 tPlatform tGetPlatform();									// Based on required platform defines.
 tPlatform tGetPlatform(const tString&);
 const char* tGetPlatformName(tPlatform);
-const char* tGetPlatformNameLong(tPlatform);
+const char* tGetPlatformNameShort(tPlatform);				// Three letter abbreviations.
 
 enum class tArchitecture
 {

@@ -67,17 +67,17 @@ const char* tGetPlatformName(tPlatform plat)
 }
 
 
-const char* tGetPlatformNameLong(tPlatform plat)
+const char* tGetPlatformNameShort(tPlatform plat)
 {
 	const static char* platNames[] =
 	{
-		"Windows",
-		"Linux",
+		"Win",
+		"Lin",
 		"OSX",
-		"Android",
+		"And",
 		"iOS",
-		"All Platforms",
-		"Invalid",
+		"All",
+		"N/A",
 	};
 	tStaticAssert( ((sizeof(platNames)/sizeof(*platNames)) - 2) == int(tPlatform::NumPlatforms) );
 
