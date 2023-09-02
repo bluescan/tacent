@@ -65,14 +65,14 @@ namespace tImage
 		"EACRG11S",
 
 		// PVR (Power VR by Imagination) formats.
-		"PVRTC4BPP",
-		"PVRTC2BPP",
-		"PVRTCHDR8BPP",
-		"PVRTCHDR6BPP",
-		"PVRTCII4BPP",
-		"PVRTCII2BPP",
-		"PVRTCIIHDR8BPP",
-		"PVRTCIIHDR6BPP",
+		"PVRBPP4",
+		"PVRBPP2",
+		"PVRHDRBPP8",
+		"PVRHDRBPP6",
+		"PVR2BPP4",
+		"PVR2BPP2",
+		"PVR2HDRBPP8",
+		"PVR2HDRBPP6",
 
 		// ASTC (Adaptive Scalable Texture Compression) formats.
 		"ASTC4X4",
@@ -151,6 +151,32 @@ namespace tImage
 	};
 	tStaticAssert(tNumElements(BCFormat_BytesPerBlock) == int(tPixelFormat::NumBCFormats));
 
+	int PVRFormat_BlockWidth[] =
+	{
+		4,				// PVRBPP4
+		8,				// PVRBPP2
+		0,				// PVRHDRBPP8. Unknown block size.
+		0,				// PVRHDRBPP6. Unknown block size.
+		4,				// PVRBPP4
+		8,				// PVRBPP2
+		0,				// PVRHDRBPP8. Unknown block size.
+		0				// PVRHDRBPP6. Unknown block size.
+	};
+	tStaticAssert(tNumElements(PVRFormat_BlockWidth) == int(tPixelFormat::NumPVRFormats));
+
+	int PVRFormat_BlockHeight[] =
+	{
+		4,				// PVRBPP4
+		4,				// PVRBPP2
+		0,				// PVRHDRBPP8. Unknown block size.
+		0,				// PVRHDRBPP6. Unknown block size.
+		4,				// PVRBPP4
+		4,				// PVRBPP2
+		0,				// PVRHDRBPP8. Unknown block size.
+		0				// PVRHDRBPP6. Unknown block size.
+	};
+	tStaticAssert(tNumElements(PVRFormat_BlockHeight) == int(tPixelFormat::NumPVRFormats));
+
 	int ASTCFormat_BlockWidth[] =
 	{
 		4,				// ASTC4X4
@@ -191,14 +217,14 @@ namespace tImage
 
 	int PVRFormat_BitsPerPixel[] =
 	{
-		4,				// PVRTC4BPP
-		2,				// PVRTC2BPP
-		8,				// PVRTCHDR8BPP
-		6,				// PVRTCHDR6BPP
-		4,				// PVRTC4BPP
-		2,				// PVRTC2BPP
-		8,				// PVRTCHDR8BPP
-		6,				// PVRTCHDR6BPP
+		4,				// PVRBPP4
+		2,				// PVRBPP2
+		8,				// PVRHDRBPP8
+		6,				// PVRHDRBPP6
+		4,				// PVR2BPP4
+		2,				// PVR2BPP2
+		8,				// PVR2HDRBPP8
+		6,				// PVR2HDRBPP6
 	};
 	tStaticAssert(tNumElements(PVRFormat_BitsPerPixel) == int(tPixelFormat::NumPVRFormats));
 
@@ -232,7 +258,10 @@ int tImage::tGetBlockWidth(tPixelFormat format)
 	if (tIsBCFormat(format))
 		return 4;
 
-	// ASTC formats have different widths depending on format.
+	// ASTC and PVR formats have different widths depending on format.
+	if (tIsPVRFormat(format))
+		return PVRFormat_BlockWidth[int(format) - int(tPixelFormat::FirstPVR)];
+
 	if (tIsASTCFormat(format))
 		return ASTCFormat_BlockWidth[int(format) - int(tPixelFormat::FirstASTC)];
 
@@ -248,7 +277,10 @@ int tImage::tGetBlockHeight(tPixelFormat format)
 	if (tIsBCFormat(format))
 		return 4;
 
-	// ASTC formats have different heights depending on format.
+	// ASTC and PVR formats have different heights depending on format.
+	if (tIsPVRFormat(format))
+		return PVRFormat_BlockHeight[int(format) - int(tPixelFormat::FirstPVR)];
+
 	if (tIsASTCFormat(format))
 		return ASTCFormat_BlockHeight[int(format) - int(tPixelFormat::FirstASTC)];
 
@@ -294,8 +326,8 @@ int tImage::tGetBytesPerBlock(tPixelFormat format)
 	if (tIsBCFormat(format))
 		return BCFormat_BytesPerBlock[int(format) - int(tPixelFormat::FirstBC)];
 
-	if (tIsPVRFormat(format) && !tIsHDRFormat(format))
-		return 16;
+	if (tIsPVRFormat(format) && tIsLDRFormat(format))
+		return 8;
 
 	if (tIsASTCFormat(format))
 		return 16;

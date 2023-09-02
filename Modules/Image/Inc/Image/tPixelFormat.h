@@ -94,16 +94,16 @@ enum class tPixelFormat
 	LastEAC				= EACRG11S,
 	LastBC				= LastEAC,
 
-	FirstPVR,							// PowerVR. Imagination. 8-byte blocks. We do not consider the PVR TC formats to be BC (block) formats because 4 blocks need to be accessed. i.e. The pixels are not 'confined' to the block they are in.
-	PVRTC4BPP			= FirstPVR,		// PVRTC Version 1. 4BPP representing RGB or RGBA channels. One block can encode 4x4 pixels (but needs access to adjacent blocks during decompress).
-	PVRTC2BPP,							// PVRTC Version 1. 2BPP representing RGB or RGBA channels. One block can encode 8x4 pixels.
-	PVRTCHDR8BPP,						// PVRTC Version 1. 8BPP representing HDR RGB.
-	PVRTCHDR6BPP,						// PVRTC Version 1. 6BPP representing HDR RGB.
-	PVRTCII4BPP,						// PVRTC Version 2. 4BPP representing RGB or RGBA channels.
-	PVRTCII2BPP,						// PVRTC Version 2. 2BPP representing RGB or RGBA channels.
-	PVRTCIIHDR8BPP,						// PVRTC Version 2. 8BPP representing HDR RGB.
-	PVRTCIIHDR6BPP,						// PVRTC Version 2. 6BPP representing HDR RGB.
-	LastPVR				= PVRTCIIHDR6BPP,
+	FirstPVR,							// PowerVR. Imagination. 8-byte blocks. We do not consider the PVRTC formats to be BC formats because 4 blocks need to be accessed. i.e. The pixels are not 'confined' to the block they are in.
+	PVRBPP4				= FirstPVR,		// PVRTC Version 1. 4BPP representing RGB or RGBA channels. One block can encode 4x4 pixels (but needs access to adjacent blocks during decompress).
+	PVRBPP2,							// PVRTC Version 1. 2BPP representing RGB or RGBA channels. One block can encode 8x4 pixels.
+	PVRHDRBPP8,							// PVRTC Version 1. 8BPP representing HDR RGB.
+	PVRHDRBPP6,							// PVRTC Version 1. 6BPP representing HDR RGB.
+	PVR2BPP4,							// PVRTC Version 2. 4BPP representing RGB or RGBA channels.
+	PVR2BPP2,							// PVRTC Version 2. 2BPP representing RGB or RGBA channels.
+	PVR2HDRBPP8,						// PVRTC Version 2. 8BPP representing HDR RGB.
+	PVR2HDRBPP6,						// PVRTC Version 2. 6BPP representing HDR RGB.
+	LastPVR				= PVR2HDRBPP6,
 
 	FirstASTC,
 	ASTC4X4				= FirstASTC,	// 128 bits per 16  pixels. 8    bpp. LDR UNORM.
@@ -174,11 +174,12 @@ bool tIsPaletteFormat	(tPixelFormat);
 bool tIsAlphaFormat		(tPixelFormat);
 bool tIsOpaqueFormat	(tPixelFormat);
 bool tIsHDRFormat		(tPixelFormat);
+bool tIsLDRFormat		(tPixelFormat);
 bool tIsLuminanceFormat	(tPixelFormat);				// Single-channel luminance formats. Includes red-only formats. Does not include alpha only.
 
-// Gets the pixel width/height of the block size specified by the pixel-format. BC blocks are all 4x4. ASTC blocks have
-// varying width/height depending on specific ASTC format. Packed, Vendor, and Palette formats return 1 for width and
-// height. Invalid pixel-formats return 0.
+// Gets the width/height in pixels of a block in the specified pixel-format. BC blocks are all 4x4. PVR blocks are
+// either 4x4 or 8x4. ASTC blocks have varying width/height depending on specific ASTC format -- they vary from 4x4 to
+// 12x12. Packed, Vendor, and Palette formats return 1 for width and height. Invalid pixel-formats return 0.
 int tGetBlockWidth		(tPixelFormat);
 int tGetBlockHeight		(tPixelFormat);
 
@@ -197,8 +198,9 @@ int tGetBitsPerPixel(tPixelFormat);
 // formats. Returns 0.0f if pixel format is invalid.
 float tGetBitsPerPixelFloat(tPixelFormat);
 
-// This function must be given a BC format, an ASTC format, or a packed format.
+// This function must be given a BC format, a PVR format, an ASTC format, or a packed format.
 // BC formats		: 4x4 with different number of bytes per block.
+// PVR formats		: 4x4 or 8x4 for the LDR PVR formats but always 8 bytes. Unknown for the HDR variants.
 // ASTC formats		: Varying MxN but always 16 bytes.
 // Packed Formats	: Considered 1x1 with varying number of bytes per pixel.
 // Returns 0 otherwise.
@@ -431,8 +433,8 @@ inline bool tImage::tIsAlphaFormat(tPixelFormat format)
 	if (tIsASTCFormat(format))
 		return true;
 
-	// PVR non HDR formats all support alpha.
-	if (tIsPVRFormat(format) && !tIsHDRFormat(format))
+	// PVR non-HDR formats all support alpha.
+	if (tIsPVRFormat(format) && tIsLDRFormat(format))
 		return true;
 
 	return false;
@@ -459,15 +461,21 @@ inline bool tImage::tIsHDRFormat(tPixelFormat format)
 		case tPixelFormat::BC6U:
 		case tPixelFormat::RADIANCE:
 		case tPixelFormat::OPENEXR:
-		case tPixelFormat::PVRTCHDR8BPP:
-		case tPixelFormat::PVRTCHDR6BPP:
-		case tPixelFormat::PVRTCIIHDR8BPP:
-		case tPixelFormat::PVRTCIIHDR6BPP:
+		case tPixelFormat::PVRHDRBPP8:
+		case tPixelFormat::PVRHDRBPP6:
+		case tPixelFormat::PVR2HDRBPP8:
+		case tPixelFormat::PVR2HDRBPP6:
 			return true;
 	}
 
 	// ASTCNxM can be LDR or HDR, but since they are not guaranteed to be HDR we return false for them.
 	return false;
+}
+
+
+inline bool tImage::tIsLDRFormat(tPixelFormat format)
+{
+	return !tImage::tIsHDRFormat(format);
 }
 
 
