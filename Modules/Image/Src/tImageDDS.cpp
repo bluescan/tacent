@@ -1,10 +1,8 @@
 // tImageDDS.cpp
 //
-// This class knows how to load Direct Draw Surface (.dds) files. Saving is not implemented yet.
-// It does zero processing of image data. It knows the details of the dds file format and loads the data into tLayers.
-// Currently it does not compress or decompress the image data if it is compressed (DXTn), it simply keeps it in the
-// same format as the source file. The layers may be 'stolen' from a tImageDDS so that excessive memcpys are avoided.
-// After they are stolen the tImageDDS is invalid.
+// This class knows how to load Direct Draw Surface (.dds) files. It knows the details of the dds file format and loads
+// the data into tLayers, optionally decompressing them. Saving is not implemented yet. The layers may be 'stolen' from
+// a tImageDDS so that excessive memcpys are avoided. After they are stolen the tImageDDS is invalid.
 //
 // Copyright (c) 2006, 2017, 2019, 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby

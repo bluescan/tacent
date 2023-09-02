@@ -15,6 +15,7 @@
 #include <Image/tTexture.h>
 #include <Image/tImageDDS.h>
 #include <Image/tImageKTX.h>
+#include <Image/tImagePVR.h>
 #include <Image/tImageASTC.h>
 #include <Image/tImageEXR.h>
 #include <Image/tImageGIF.h>
@@ -76,6 +77,9 @@ tTestUnit(ImageLoad)
 
 	tImagePNG imgPNG("TestData/Images/TacentTestPattern.png");
 	tRequire(imgPNG.IsValid());
+
+	tImagePVR imgPVR("TestData/Images/PVR_V3/PVRBPP4_UNORM_SRGB_RGBA_T.png");
+	tRequire(!imgPVR.IsValid());
 
 	tImageQOI imgQOI24("TestData/Images/TacentTestPattern24.qoi");
 	tRequire(imgQOI24.IsValid());

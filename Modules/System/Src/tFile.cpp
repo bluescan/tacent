@@ -1853,6 +1853,7 @@ tSystem::FileTypeExts tSystem::FileTypeExtTable[] =
 	{ "dds" },							// DDS
 	{ "ktx" },							// KTX
 	{ "ktx2" },							// KTX2
+	{ "pvr" },							// PVR
 	{ "astc", "atc" },					// ASTC
 	{ "pkm" },							// PKM
 	{ "hdr", "rgbe" },					// HDR
