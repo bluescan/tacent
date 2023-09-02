@@ -64,6 +64,16 @@ namespace tImage
 		"EACRG11",
 		"EACRG11S",
 
+		// PVR (Power VR by Imagination) formats.
+		"PVRTC4BPP",
+		"PVRTC2BPP",
+		"PVRTCHDR8BPP",
+		"PVRTCHDR6BPP",
+		"PVRTCII4BPP",
+		"PVRTCII2BPP",
+		"PVRTCIIHDR8BPP",
+		"PVRTCIIHDR6BPP",
+
 		// ASTC (Adaptive Scalable Texture Compression) formats.
 		"ASTC4X4",
 		"ASTC5X4",
@@ -179,6 +189,19 @@ namespace tImage
 	};
 	tStaticAssert(tNumElements(ASTCFormat_BlockHeight) == int(tPixelFormat::NumASTCFormats));
 
+	int PVRFormat_BitsPerPixel[] =
+	{
+		4,				// PVRTC4BPP
+		2,				// PVRTC2BPP
+		8,				// PVRTCHDR8BPP
+		6,				// PVRTCHDR6BPP
+		4,				// PVRTC4BPP
+		2,				// PVRTC2BPP
+		8,				// PVRTCHDR8BPP
+		6,				// PVRTCHDR6BPP
+	};
+	tStaticAssert(tNumElements(PVRFormat_BitsPerPixel) == int(tPixelFormat::NumPVRFormats));
+
 	int VendorFormat_BitsPerPixel[] =
 	{
 		32,				// Radiance. 3 bytes for each RGB. 1 byte shared exponent.
@@ -241,12 +264,15 @@ int tImage::tGetBitsPerPixel(tPixelFormat format)
 	if (tIsBCFormat(format))
 		return (8*tGetBytesPerBlock(format)) >> 4;
 
+	if (tIsPVRFormat(format))
+		return PVRFormat_BitsPerPixel[int(format) - int(tPixelFormat::FirstPVR)];
+
 	if (tIsVendorFormat(format))
 		return VendorFormat_BitsPerPixel[int(format) - int(tPixelFormat::FirstVendor)];
 
 	if (tIsPaletteFormat(format))
 		return PaletteFormat_BitsPerPixel[int(format) - int(tPixelFormat::FirstPalette)];
-
+		
 	return 0;
 }
 
@@ -267,6 +293,9 @@ int tImage::tGetBytesPerBlock(tPixelFormat format)
 {
 	if (tIsBCFormat(format))
 		return BCFormat_BytesPerBlock[int(format) - int(tPixelFormat::FirstBC)];
+
+	if (tIsPVRFormat(format) && !tIsHDRFormat(format))
+		return 16;
 
 	if (tIsASTCFormat(format))
 		return 16;

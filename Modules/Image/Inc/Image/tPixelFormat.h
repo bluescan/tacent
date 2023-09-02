@@ -94,6 +94,17 @@ enum class tPixelFormat
 	LastEAC				= EACRG11S,
 	LastBC				= LastEAC,
 
+	FirstPVR,							// PowerVR. Imagination. 8-byte blocks. We do not consider the PVR TC formats to be BC (block) formats because 4 blocks need to be accessed. i.e. The pixels are not 'confined' to the block they are in.
+	PVRTC4BPP			= FirstPVR,		// PVRTC Version 1. 4BPP representing RGB or RGBA channels. One block can encode 4x4 pixels (but needs access to adjacent blocks during decompress).
+	PVRTC2BPP,							// PVRTC Version 1. 2BPP representing RGB or RGBA channels. One block can encode 8x4 pixels.
+	PVRTCHDR8BPP,						// PVRTC Version 1. 8BPP representing HDR RGB.
+	PVRTCHDR6BPP,						// PVRTC Version 1. 6BPP representing HDR RGB.
+	PVRTCII4BPP,						// PVRTC Version 2. 4BPP representing RGB or RGBA channels.
+	PVRTCII2BPP,						// PVRTC Version 2. 2BPP representing RGB or RGBA channels.
+	PVRTCIIHDR8BPP,						// PVRTC Version 2. 8BPP representing HDR RGB.
+	PVRTCIIHDR6BPP,						// PVRTC Version 2. 6BPP representing HDR RGB.
+	LastPVR				= PVRTCIIHDR6BPP,
+
 	FirstASTC,
 	ASTC4X4				= FirstASTC,	// 128 bits per 16  pixels. 8    bpp. LDR UNORM.
 	ASTC5X4,							// 128 bits per 20  pixels. 6.4  bpp. LDR UNORM.
@@ -130,6 +141,7 @@ enum class tPixelFormat
 	NumPixelFormats,
 	NumPackedFormats	= LastPacked	- FirstPacked	+ 1,
 	NumBCFormats		= LastBC		- FirstBC		+ 1,
+	NumPVRFormats		= LastPVR		- FirstPVR		+ 1,
 	NumASTCFormats		= LastASTC		- FirstASTC		+ 1,
 	NumVendorFormats	= LastVendor	- FirstVendor	+ 1,
 	NumPaletteFormats	= LastPalette	- FirstPalette	+ 1
@@ -150,9 +162,13 @@ bool tIsETCFormat		(tPixelFormat);
 // Returns true if the format is an EAC BC format. EAC formats are a subset of tIsBCFormat.
 bool tIsEACFormat		(tPixelFormat);
 
+// Is it one of the PVR formats.
+bool tIsPVRFormat		(tPixelFormat);
+
 // Is it one of the ASTC (Adaptive Scalable Texture Compression) block formats. Block sizes are avail from 4x4 up
 // to 12x12. The 4x4 ASTC variant is not considered a BC format by tIsBCFormat.
 bool tIsASTCFormat		(tPixelFormat);
+
 bool tIsVendorFormat	(tPixelFormat);
 bool tIsPaletteFormat	(tPixelFormat);
 bool tIsAlphaFormat		(tPixelFormat);
@@ -346,6 +362,15 @@ inline bool tImage::tIsEACFormat(tPixelFormat format)
 }
 
 
+inline bool tImage::tIsPVRFormat(tPixelFormat format)
+{
+	if ((format >= tPixelFormat::FirstPVR) && (format <= tPixelFormat::LastPVR))
+		return true;
+
+	return false;
+}
+
+
 inline bool tImage::tIsASTCFormat(tPixelFormat format)
 {
 	if ((format >= tPixelFormat::FirstASTC) && (format <= tPixelFormat::LastASTC))
@@ -406,6 +431,10 @@ inline bool tImage::tIsAlphaFormat(tPixelFormat format)
 	if (tIsASTCFormat(format))
 		return true;
 
+	// PVR non HDR formats all support alpha.
+	if (tIsPVRFormat(format) && !tIsHDRFormat(format))
+		return true;
+
 	return false;
 }
 
@@ -430,6 +459,10 @@ inline bool tImage::tIsHDRFormat(tPixelFormat format)
 		case tPixelFormat::BC6U:
 		case tPixelFormat::RADIANCE:
 		case tPixelFormat::OPENEXR:
+		case tPixelFormat::PVRTCHDR8BPP:
+		case tPixelFormat::PVRTCHDR6BPP:
+		case tPixelFormat::PVRTCIIHDR8BPP:
+		case tPixelFormat::PVRTCIIHDR6BPP:
 			return true;
 	}
 
