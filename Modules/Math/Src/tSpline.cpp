@@ -77,9 +77,9 @@ tMath::tVector3 tMath::tPiecewiseLinearPath::GetPoint(float t) const
 	tVector3& first = Points[firstIndex];
 	tVector3& last = Points[lastIndex];
 
-	float x = tLisc(t, first.x, last.x);
-	float y = tLisc(t, first.y, last.y);
-	float z = tLisc(t, first.z, last.z);
+	float x = tLilo(t, first.x, last.x);
+	float y = tLilo(t, first.y, last.y);
+	float z = tLilo(t, first.z, last.z);
 
 	return tVector3(x, y, z);
 }
@@ -110,9 +110,9 @@ tMath::tVector3 tMath::tPiecewiseLinearPath::GetPercentPoint(float t) const
 	tAssert(a && b);
 
 	t = (t-pa) / (pb-pa);
-	float x = tLisc(t, a->x, b->x);
-	float y = tLisc(t, a->y, b->y);
-	float z = tLisc(t, a->z, b->z);
+	float x = tLilo(t, a->x, b->x);
+	float y = tLilo(t, a->y, b->y);
+	float z = tLilo(t, a->z, b->z);
 
 	return tVector3(x, y, z);
 }

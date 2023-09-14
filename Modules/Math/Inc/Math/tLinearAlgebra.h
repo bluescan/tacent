@@ -756,23 +756,43 @@ bool tApproach(float& value, float dest, float rate, float dt);
 bool tApproachAngle(float& angle, float dest, float rate, float dt);
 bool tApproachOrientation(tQuat& orientation, const tQuat& dest, float rate, float dt);
 
-// Linear scale. t = 0 returns min. t = 1 returns max. No clamping. Works for non-pod vector and matrix types, but not
-// the pod-types as they don't have the necessary operator overloading.
-template <typename T> inline T tLinearScale(float t, T min, T max)														{ return min + (max - min)*t; }
-template <typename T> inline T tLisc(float t, T min, T max)																{ return min + (max - min)*t; }
+// Extrapolation, Interpolation, and Lookup.
+// Interpolation	-	Interpolation is finding a value _between_ other values. If you have A and B, interpolation can
+//						find a value between A and B somewhere in (A,B).
+// Extrapolation	-	Extrapolation is finding a value _before_ or _after_. If you have A and B, extrapolation can
+//						find a value before A or after B.
+// Lookup			-	We're using the word 'Lookup' to mean both interpolation and extrapolation.
+//
+// It is not useful to have only extrapolation functions as a lookup function can be used instead. It is however useful
+// to have functions that only interpolate and are restricted to the [A,B] output range -- further APIs that use the
+// result may expect the range to be respected, or otherwise behave undesireably. Here are the interpolation and lookup
+// functions you have access to. Essentially they do the same thing except interpolate clamps and lookup doesn't. These
+// functions work for buult-in types and non-pod vector and matrix types, but not the pod-types as they don't have the
+// necessary operator overloading. i.e. Works for tVectorN, tMatrixN, float, etc. The four-letter versions are just synonyms.
 
-// Many libraries have a, perhaps badly-named, Lerp (linear interpolation) function that does a linear scale. It's a bit
-// of a misnomer because in general it also extrapolates. In any case, the synonym is included here. Does same as tLisc.
-template <typename T> inline T tLerp(float t, T min, T max)																{ return min + (max - min)*t; }
+// Linear lookup. This variant takes in a single domain input parameter 'p' where p = 0 returns A and p = 1 returns B.
+// Parameter 'p' is not clamped to the [0,1] range and the output is not restricted to [A,B]. 
+template <typename T> inline T tLinearLookup(float p, T A, T B)															{ return A + (B - A)*p; }
+template <typename T> inline T tLilo(float p, T A, T B)																	{ return tLinearLookup(p, A, B); }
 
-// Linear interpolation and extrapolation. Requires 2 points on the line. Input the domain values (d) and it'll give you
-// the looked-up range value (r). No clamping.
-template <typename T> inline T tLinearLookup(float d, float d0, float d1, T r0, T r1)									{ return tLinearScale((d-d0)/(d1-d0), r0, r1); }
-template <typename T> inline T tLilo(float d, float d0, float d1, T r0, T r1)											{ return tLisc((d-d0)/(d1-d0), r0, r1); }
+// Linear loopup. Requires 2 N-dimensional range points (A and B). As the domain value d goes from dA to dB, the return
+// value (r) goes from A to B. No clamping so extrapolates as well as interpolates.
+template <typename T> inline T tLinearLookup(float d, float dA, float dB, T A, T B)										{ return tLinearLookup((d-dA)/(dB-dA), A, B); }
+template <typename T> inline T tLilo(float d, float dA, float dB, T A, T B)												{ return tLinearLookup(d, dA, dB, A, B); }
 
-// Linear interpolate. Same as tLinearLookup except that it clamps d to [d0, d1].
-template <typename T> inline T tLinearInterp(float d, float d0, float d1, T r0, T r1)									{ return tLinearScale(tSaturate((d-d0)/(d1-d0)), r0, r1); }
-template <typename T> inline T tLiin(float d, float d0, float d1, T r0, T r1)											{ return tLisc(tSaturate((d-d0)/(d1-d0)), r0, r1); }
+// Linear interpolate. Same as tLinearLookup except that it clamps p to [0, 1].
+template <typename T> inline T tLinearInterp(float p, T A, T B)															{ return A + (B - A)*tSaturate(p); }
+template <typename T> inline T tLini(float p, T A, T B)																	{ return tLinearInterp(p, A, B); }
+
+// Linear interpolate. Same as tLinearLookup except that it clamps d to [dA, dB].
+template <typename T> inline T tLinearInterp(float d, float dA, float dB, T A, T B)										{ return tLinearInterp((d-dA)/(dB-dA), A, B); }
+template <typename T> inline T tLini(float d, float dA, float dB, T A, T B)												{ return tLinearInterp(d, dA, dB, A, B); }
+
+// Other libraries have a, perhaps badly-named, Lerp (linear interpolation) function that does a linear lookup. It's a
+// bit of a misnomer because in general it also extrapolates. In any case, this synonym is included here. Does same as
+// the tLinearLoopup that takes the p parameter. Perhaps a better name is LIER: Linear Interpolation and ExtRapolation,
+// or perhaps just interpret LERP as Linear Extrapolation and inteRPolation.
+template <typename T> inline T tLerp(float p, T A, T B)																	{ return tLinearLookup(p, A, B); }
 
 
 }
