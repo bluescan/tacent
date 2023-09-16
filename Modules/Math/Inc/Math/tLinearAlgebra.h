@@ -772,7 +772,7 @@ bool tApproachOrientation(tQuat& orientation, const tQuat& dest, float rate, flo
 
 // Linear lookup. This variant takes in a single domain input parameter 'p' where p = 0 returns A and p = 1 returns B.
 // Parameter 'p' is not clamped to the [0,1] range and the output is not restricted to [A,B]. 
-template <typename T> inline T tLinearLookup(float p, T A, T B)															{ return A + (B - A)*p; }
+template <typename T> inline T tLinearLookup(float p, T A, T B)															{ return A + T((B - A)*p); }
 template <typename T> inline T tLilo(float p, T A, T B)																	{ return tLinearLookup(p, A, B); }
 
 // Linear loopup. Requires 2 N-dimensional range points (A and B). As the domain value d goes from dA to dB, the return
@@ -781,7 +781,7 @@ template <typename T> inline T tLinearLookup(float d, float dA, float dB, T A, T
 template <typename T> inline T tLilo(float d, float dA, float dB, T A, T B)												{ return tLinearLookup(d, dA, dB, A, B); }
 
 // Linear interpolate. Same as tLinearLookup except that it clamps p to [0, 1].
-template <typename T> inline T tLinearInterp(float p, T A, T B)															{ return A + (B - A)*tSaturate(p); }
+template <typename T> inline T tLinearInterp(float p, T A, T B)															{ return A + T((B - A)*tSaturate(p)); }
 template <typename T> inline T tLini(float p, T A, T B)																	{ return tLinearInterp(p, A, B); }
 
 // Linear interpolate. Same as tLinearLookup except that it clamps d to [dA, dB].
