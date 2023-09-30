@@ -1541,24 +1541,27 @@ void tSystem::tGetDrives(tList<tStringItem>& drives)
 }
 
 
-bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool getDisplayName, bool getStateVolumeSerial)
+bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drv, bool getDisplayName, bool getStateVolumeSerial)
 {
-	tString driveRoot = drive;
-	driveRoot.ToUpper();
+	tString drive = drv;
+	drive.ToUpper();
 	driveInfo.Clear();
 
-	if (driveRoot.Length() == 1)							// Assume string was of form "C"
-		driveRoot += ":\\";
-	else if (driveRoot.Length() == 2)						// Assume string was of form "C:"
-		driveRoot += "\\";
-	else													// Assume string was of form "C:/" or "C:\"
-		tPathWin(driveRoot);
+	if (drive.Length() == 1)							// Assume string was of form "C"
+		drive += ":\\";
+	else if (drive.Length() == 2)						// Assume string was of form "C:"
+		drive += "\\";
+	else												// Assume string was of form "C:/" or "C:\"
+		tPathWin(drive);
+
+	// At this point drive if of form "C:\".
+	driveInfo.Letter = drive.Left(2);
 
 	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 driveRoot16(driveRoot);
-	uint driveType = GetDriveType(driveRoot16.GetLPWSTR());
+	tStringUTF16 drive16(drive);
+	uint driveType = GetDriveType(drive16.GetLPWSTR());
 	#else
-	uint driveType = GetDriveType(driveRoot.Chr());
+	uint driveType = GetDriveType(drive.Chr());
 	#endif
 	switch (driveType)
 	{
@@ -1566,7 +1569,7 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 			return false;
 
 		case DRIVE_REMOVABLE:
-			if ((driveRoot == "A:\\") || (driveRoot == "B:\\"))
+			if ((drive == "A:\\") || (drive == "B:\\"))
 				driveInfo.DriveType = tDriveType::Floppy;
 			else
 				driveInfo.DriveType = tDriveType::Removable;
@@ -1603,9 +1606,9 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 		SHGetFileInfo
 		(
 			#ifdef TACENT_UTF16_API_CALLS
-			driveRoot16.GetLPWSTR(),
+			drive16.GetLPWSTR(),
 			#else
-			driveRoot.Chr(),
+			drive.Chr(),
 			#endif
 			0,
 			&fileInfo,
@@ -1632,10 +1635,10 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 		int success = GetVolumeInformation
 		(
 			#ifdef TACENT_UTF16_API_CALLS
-			driveRoot16.GetLPWSTR(),
+			drive16.GetLPWSTR(),
 			volumeInfoName.GetLPWSTR(),
 			#else
-			driveRoot.Chr(),
+			drive.Chr(),
 			volumeInfoName.Txt(),
 			#endif
 			256,
@@ -1668,24 +1671,24 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 }
 
 
-bool tSystem::tSetVolumeName(const tString& drive, const tString& newVolumeName)
+bool tSystem::tSetVolumeName(const tString& drv, const tString& newVolumeName)
 {
-	tString driveRoot = drive;
-	driveRoot.ToUpper();
+	tString drive = drv;
+	drive.ToUpper();
 
-	if (driveRoot.Length() == 1)			// Assume string was of form "C"
-		driveRoot += ":\\";
-	else if (driveRoot.Length() == 2)		// Assume string was of form "C:"
-		driveRoot += "\\";
-	else									// Assume string was of form "C:/" or "C:\"
-		tPathWin(driveRoot);
+	if (drive.Length() == 1)			// Assume string was of form "C"
+		drive += ":\\";
+	else if (drive.Length() == 2)		// Assume string was of form "C:"
+		drive += "\\";
+	else								// Assume string was of form "C:/" or "C:\"
+		tPathWin(drive);
 
 	#ifdef TACENT_UTF16_API_CALLS
-	tStringUTF16 driveRoot16(driveRoot);
+	tStringUTF16 drive16(drive);
 	tStringUTF16 newVolumeName16(newVolumeName);
-	int success = SetVolumeLabel(driveRoot16.GetLPWSTR(), newVolumeName16.GetLPWSTR());
+	int success = SetVolumeLabel(drive16.GetLPWSTR(), newVolumeName16.GetLPWSTR());
 	#else
-	int success = SetVolumeLabel(driveRoot.Chr(), newVolumeName.Chr());
+	int success = SetVolumeLabel(drive.Chr(), newVolumeName.Chr());
 	#endif
 
 	return success ? true : false;
