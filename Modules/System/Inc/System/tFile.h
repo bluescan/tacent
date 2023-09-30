@@ -262,8 +262,10 @@ tString tGetWindowsDir();
 tString tGetSystemDir();
 tString tGetDesktopDir();
 
-// Gets a list of the drive letters available on a system. The strings returned are in the form "C:". For more
-// information on a particular drive, use the DriveInfo functions below.
+// Gets a list of the drive letters present on the system. The strings returned are in the form "C:". For more
+// information on a particular drive, use the DriveInfo functions below. Note that this function may return drive
+// letters for drives that are not ready (removable media sometimes acts this way). If you need to determine
+// whether a drive is 'ready', the DriveInfo function can do that. It is not done here for efficiency.
 void tGetDrives(tList<tStringItem>& drives);
 
 enum class tDriveType
@@ -277,6 +279,13 @@ enum class tDriveType
 	RamDisk
 };
 
+enum class tDriveState
+{
+	Unknown,
+	Ready,
+	NotReady
+};
+
 struct tDriveInfo
 {
 	tDriveInfo();
@@ -287,14 +296,17 @@ struct tDriveInfo
 	tString VolumeName;
 	uint32 SerialNumber;				// Seems to more or less uniquely identify a disc. Handy.
 	tDriveType DriveType;
+	tDriveState DriveState;
 };
 
 // Gets info about a logical drive. Asking for the display name causes a shell call and takes a bit longer, so only
 // ask for the info you need. DriveInfo is always filled out if the function succeeds. Returns true if the DriveInfo
 // struct was filled out. Returns false if there was a problem like the drive didn't exist. Drive should be in the form
 // "C", or "C:", or "C:/", or C:\". It is possible that the name strings end up empty and the function succeeds, so
-// check for that. This will happen if the drive exists, but the name is empty or could not be determined.
-bool tGetDriveInfo(tDriveInfo&, const tString& drive, bool getDisplayName = false, bool getVolumeAndSerial = false);
+// check for that. This will happen if the drive exists, but the name is empty or could not be determined. If
+// getDisplayName is false, returned DisplayName will be empty. If getStateVolumeSerial is false, VolumeName will be
+// empty, SerialNumber will be 0, and DriveState will be Unknown.
+bool tGetDriveInfo(tDriveInfo&, const tString& drive, bool getDisplayName = false, bool getStateVolumeSerial = false);
 
 // Sets the volume name of the specified drive. The drive string may take the format "C", "C:", "C:/", or "C:\". In
 // some cases the name cannot be set. Read-only volumes or strange volume names will cause this function to return
@@ -788,6 +800,7 @@ inline void tSystem::tDriveInfo::Clear()
 	VolumeName.Clear();
 	SerialNumber = 0;
 	DriveType = tDriveType::Unknown;
+	DriveState = tDriveState::Unknown;
 }
 #endif
 

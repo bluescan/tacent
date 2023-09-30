@@ -1541,10 +1541,11 @@ void tSystem::tGetDrives(tList<tStringItem>& drives)
 }
 
 
-bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool getDisplayName, bool getVolumeAndSerial)
+bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool getDisplayName, bool getStateVolumeSerial)
 {
 	tString driveRoot = drive;
 	driveRoot.ToUpper();
+	driveInfo.Clear();
 
 	if (driveRoot.Length() == 1)							// Assume string was of form "C"
 		driveRoot += ":\\";
@@ -1618,7 +1619,7 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 		#endif
 	}
 
-	if (getVolumeAndSerial)
+	if (getStateVolumeSerial)
 	{
 		#ifdef TACENT_UTF16_API_CALLS
 		tStringUTF16 volumeInfoName(256);
@@ -1645,12 +1646,22 @@ bool tSystem::tGetDriveInfo(tDriveInfo& driveInfo, const tString& drive, bool ge
 			0							// Buffer for system name is 0 long.
 		);
 
-		#ifdef TACENT_UTF16_API_CALLS
-		driveInfo.VolumeName.SetUTF16(volumeInfoName.Units());
-		#else
-		driveInfo.VolumeName.Set(volumeInfoName.Units());
-		#endif
-		driveInfo.SerialNumber = serial;
+		if (success)
+		{
+			#ifdef TACENT_UTF16_API_CALLS
+			driveInfo.VolumeName.SetUTF16(volumeInfoName.Units());
+			#else
+			driveInfo.VolumeName.Set(volumeInfoName.Units());
+			#endif
+			driveInfo.SerialNumber = serial;
+			driveInfo.DriveState = tDriveState::Ready;
+		}
+		else
+		{
+			driveInfo.VolumeName.Clear();
+			driveInfo.SerialNumber = 0;
+			driveInfo.DriveState = tDriveState::NotReady;
+		}
 	}
 
 	return true;
