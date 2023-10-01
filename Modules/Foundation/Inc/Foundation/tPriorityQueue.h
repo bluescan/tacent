@@ -3,7 +3,7 @@
 // A priority queue implemented using the heap data structure. Priority queues support retrieval of min or max item
 // in the collection in O(1) time. Removal of the min or max in O(lg(n)) time, and insertion in O(lg(n)) time.
 //
-// Copyright (c) 2004-2006, 2017 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //

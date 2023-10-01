@@ -4,7 +4,7 @@
 // of data, but needs to be emptied eventually. The read rate must on average be >= to the write rate if you want to
 // avoid a stall. Fortunately, unlike real capacitors, they do not leak information over time.
 // 
-// Copyright (c) 2016, 2017 Tristan Grimmer.
+// Copyright (c) 2016, 2017, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //

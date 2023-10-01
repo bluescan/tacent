@@ -3,7 +3,7 @@
 // A simple array implementation that can grow its memory as needed. Adding elements or to an array or adding two
 // arrays together are the sorts if things that may cause an internal grow of the memory.
 //
-// Copyright (c) 2004-2005, 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2004-2005, 2017, 2020, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //

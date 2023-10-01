@@ -6,7 +6,7 @@
 // supplying a compare function. The default compare function will call '<' for you. If compare implements
 // less-than, the array will be sorted in ascending order. Greater-than will reverse the order.
 //
-// Copyright (c) 2004-2006, 2015 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //

@@ -35,7 +35,7 @@
 //
 // For conversions of arbitrary types to tStrings, see tsPrint in the higher level System module.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019-2022 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019-2023 Tristan Grimmer.
 // Copyright (c) 2020 Stefan Wessels.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
