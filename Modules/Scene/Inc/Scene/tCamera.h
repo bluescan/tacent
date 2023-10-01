@@ -3,7 +3,7 @@
 // The camera tScene object. The primary members are a 4x4 homogeneous projection matrix and a type member that
 // indicates the type of projection matrix being stored. We could add depth-of-field members at a later time.
 //
-// Copyright (c) 2006, 2017 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //

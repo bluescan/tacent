@@ -10,7 +10,7 @@
 // colours. The official name of this algorith is 'scolorq'. Running on colours more than 32 takes a LONG time.
 // See https://github.com/samhocevar/scolorq/blob/master/spatial_color_quant.cpp
 //
-// Modifications Copyright (c) 2022 Tristan Grimmer.
+// Modifications Copyright (c) 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //

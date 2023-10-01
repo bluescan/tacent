@@ -4,7 +4,7 @@
 // matches the fixed function pipeline of OpenGL. More advanced materials/shader-models are handled by explicitly
 // setting the ShaderFile member to point to a shader, in which case the Blinn-Phong parameters are ignored.
 //
-// Copyright (c) 2006, 2017 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //

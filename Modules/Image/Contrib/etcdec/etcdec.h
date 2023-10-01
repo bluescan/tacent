@@ -1,4 +1,4 @@
-﻿/* etcdec.h - v0.9
+/* etcdec.h - v0.9
    provides functions to decompress blocks of ETC/EAC compressed images
    written by Sergii "iOrange" Kudlai in 2022
 

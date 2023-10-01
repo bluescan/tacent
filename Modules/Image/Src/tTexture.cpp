@@ -12,7 +12,7 @@
 // useful at both pipeline and for runtime loading. To save to a tChunk file format a tTexture will call the Save
 // method of all the tLayers.
 //
-// Copyright (c) 2006, 2016, 2017, 2020 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2017, 2020, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //

@@ -3,7 +3,7 @@
 // A 4x4 matrix class with the expected member functions and overloads. Backs off of the tMat4 POD type and the
 // tLinearAlgebra library functions.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2022 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //

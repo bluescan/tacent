@@ -5,7 +5,7 @@
 // that can optionally be run on different threads. Sharing a generator between threads is not supported. One of the
 // generators implements the Mersenne Twistor algorithm by M. Matsumoto & T. Nishimura.
 //
-// Copyright (c) 2005, 2017 Tristan Grimmer.
+// Copyright (c) 2005, 2017, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //

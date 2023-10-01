@@ -11,7 +11,7 @@
 // minor version should be reset to 0 when the major number is incremented. Any tools, by looking at the major number,
 // can maintain backwards compatibility.
 //
-// Copyright (c) 2006, 2017 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //

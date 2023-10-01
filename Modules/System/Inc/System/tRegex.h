@@ -22,7 +22,7 @@
 // To be absolutely clear, the tRegex class found here is an 'altered source' version of the original. The alterations
 // are under the following license:
 //
-// Copyright (c) 2006, 2017 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
