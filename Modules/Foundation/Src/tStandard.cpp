@@ -481,7 +481,7 @@ char32_t tStd::tUTF32c(const char8_t* srcPoint)
 	char32_t codepoint = cCodepoint_Replacement;
 	if (!srcPoint)
 		return codepoint;
-	
+
 	tUTF::DecodeUtf8(codepoint, srcPoint);
 	return codepoint;
 }
@@ -492,7 +492,7 @@ char32_t tStd::tUTF32c(const char16_t* srcPoint)
 	char32_t codepoint = cCodepoint_Replacement;
 	if (!srcPoint)
 		return codepoint;
-	
+
 	tUTF::DecodeUtf16(codepoint, srcPoint);
 	return codepoint;
 }
@@ -510,6 +510,51 @@ char32_t tStd::tUTF32c(const char32_t* srcPoint)
 		codepoint = *srcPoint;
 
 	return codepoint;
+}
+
+
+int tStd::tUTF32c(char32_t dst[1], char8_t* srcPoint)
+{
+	char32_t codepoint = cCodepoint_Replacement;
+	if (!srcPoint)
+	{
+		if (dst) dst[0] = codepoint;
+		return 0;
+	}
+
+	// Decode is a low-level function. It expects srcPoint to be valid.
+	int unitCount = tUTF::DecodeUtf8(codepoint, srcPoint);
+	if (dst) dst[0] = codepoint;
+	return unitCount;
+}
+
+
+int tStd::tUTF32c(char32_t dst[1], char16_t* srcPoint)
+{
+	char32_t codepoint = cCodepoint_Replacement;
+	if (!srcPoint)
+	{
+		if (dst) dst[0] = codepoint;
+		return 0;
+	}
+
+	// Decode is a low-level function. It expects srcPoint to be valid.
+	int unitCount = tUTF::DecodeUtf16(codepoint, srcPoint);
+	if (dst) dst[0] = codepoint;
+	return unitCount;
+}
+
+
+int tStd::tUTF32c(char32_t dst[1], char32_t* srcPoint)
+{
+	if (!srcPoint)
+	{
+		if (dst) dst[0] = cCodepoint_Replacement;
+		return 0;
+	}
+
+	if (dst) dst[0] = *srcPoint;
+	return 1;
 }
 
 

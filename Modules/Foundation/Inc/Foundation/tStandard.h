@@ -44,12 +44,15 @@ inline int tMemcmp(const void* a, const void* b, int numBytes)															{ r
 void* tMemsrch(void* haystack, int haystackNumBytes, void* needle, int needleNumBytes);
 inline const void* tMemsrch(const void* haystack, int haystackNumBytes, const void* needle, int needleNumBytes)			{ return tMemsrch((void*)haystack, haystackNumBytes, (void*)needle, needleNumBytes); }
 
-// For character strings we support ASCII and full unicode via UTF-8. We do not support either USC2 or UTF-16 except
-// for providing conversion functions. The CT (Compile-Time) strlen variant below can compute the string length at
-// compile-time for constant string literals.
-// @todo Apparently in C++23 we will be getting char8_t variants for a lot of the string functions. Until then the
-// ASCII versions work quite well in most cases for UTF-8 strings.
-// For all these functions, char* represents an ASCII string while char8_t* a UTF-8 string. 
+// For character strings we support ASCII and full unicode via UTF-8. The CT (Compile-Time) strlen variant below can
+// compute the string length at compile-time for constant string literals. @todo Apparently in C++23 we will be getting
+// char8_t variants for a lot of the string functions. Until then the ASCII versions work quite well in most cases for
+// UTF-8 strings. For all these functions, char* represents an ASCII string while char8_t* a UTF-8 string. 
+// Note: Later on in this header are functions to convert strings between UTF-8, UTF-16, and UTF-32. When we talk about
+// UTF-16, we mean UTF-16 and not UCS2 -- it's the real deal. Look at the tUTF8, tUTF16, and tUTF32 functions for
+// straight UTF conversions (not null-terminated). String termination is not part of UTF, but it's common to support it.
+// Null-terminated versions of the functions have an 's' appended. The 'c' versions are for dealing with individual
+// codepoints.
 const int tCharInvalid																									= 0xFF;
 inline int tStrcmp(const char* a, const char* b)																		{ tAssert(a && b); return strcmp(a, b); }
 inline int tStrncmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); return strncmp(a, b, n); }
@@ -75,6 +78,7 @@ inline char* tStrchr(const char* s, int c)																				{ tAssert(s && c >
 inline char* tStrstr(const char* s, const char* r)				/* Search s for r. */									{ tAssert(s && r); return (char*)strstr(s, r); }
 inline char* tStrcat(char* s, const char* r)																			{ tAssert(s && r); return strcat(s, r); }
 
+// These return the number of code-units if UFT-8, UTF-16, or UTF-32 null-terminated strings are passed in.
 inline int tStrlen(const char8_t* s)																					{ tAssert(s); return int(strlen((const char*)s)); }
 inline int tStrlen(const char16_t* s)																					{ tAssert(s); int c = 0; while (*s++) c++; return c; }
 inline int tStrlen(const char32_t* s)																					{ tAssert(s); int c = 0; while (*s++) c++; return c; }
@@ -284,6 +288,13 @@ int tUTF32s(char32_t* dst, const char16_t* src);				// UTF-16 to UTF-32.
 char32_t tUTF32c(const char8_t*  srcPoint);			// Reads 1 to 4 char8 codeunits from srcPoint.
 char32_t tUTF32c(const char16_t* srcPoint);			// Reads 1 or 2(surrogtate) char16 codeunits from srcPoint.
 char32_t tUTF32c(const char32_t* srcPoint);			// Reads 1 char32 codeunit from srcPoint.
+
+// These are similar to above but return the number of codeunits read. This can be handy for string parsing functions.
+// Note that you may pass nullptr into dst if you just want to count the number of codeunits that would be read. If
+// srcPoint is nullptr these all return 0 and dst (if present) is filled with cCodepoint_Replacement.
+int tUTF32c(char32_t dst[1], char8_t* srcPoint);	// Returns number of read codeunits. Will be E [1,4] for UTF-8.
+int tUTF32c(char32_t dst[1], char16_t* srcPoint);	// Returns number of read codeunits. Will be E [1,2] for UTF-16.
+int tUTF32c(char32_t dst[1], char32_t* srcPoint);	// Returns number of read codeunits. Will be E [1,1] for UTF-32.
 
 // These take a codepoint in UTF-32 (src) and write to the dst array without adding a null-terminator. If dst is nullptr
 // returns 0. If src is invalid, dst receives the special replacement. Returns num charNs written. The size hints in the
