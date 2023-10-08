@@ -115,6 +115,13 @@ struct tString
 	// The length in char8_t's (code-units), not the display length (which is not that useful).
 	// This length has nothing to do with how many null characters are in the string or where the are.
 	int Length() const																									{ return StringLength; }
+
+	// Treats the tString as a null-terminated (C++) string and returns the length. Generally a tString would not treat
+	// '\0' any differently that other characters. This circumvents this if you know you are dealing with a NT string.
+	int LengthNullTerminated() const																					{ return tStd::tStrlen(CodeUnits); }
+
+	// This is the internal capacity of the string. Appending more characters than this will cause more memory to be
+	// needed.
 	int Capacity() const																								{ return CurrCapacity; }
 
 	// This function is for efficiency only. It does not modify the string contents. It simply makes sure the capacity
@@ -127,6 +134,10 @@ struct tString
 	// Shrink releases as much memory as possible. It returns the new capacity after shrinking. Note that the new
 	// capacity will be at least MinCapacity big. This basically calls Reserve(Length());
 	int Shrink();
+
+	// If you know you are dealing with a null-terminated string, this function will reduce the length to the number of
+	// characters before the null terminator and can reduce the memory used. Returns the new length.
+	int ShrinkNullTerminated()																							{ SetLength(LengthNullTerminated()); Shrink(); return Length(); }
 
 	// This is like Reserve except it takes in the number of _extra_ code-units you want. It will attempt to add or
 	// subtract from the current capacity. Putting in a negative to shrink is supported. Again, it cannot shrink below
