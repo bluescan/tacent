@@ -285,24 +285,24 @@ int tUTF32s(char32_t* dst, const char16_t* src);				// UTF-16 to UTF-32.
 //
 // These read codeunit arrays and return a single codepoint in UTF-32. Special replacement returned on error. An error
 // is either an invalid encoding OR when src is nullptr. Length is not needed as it's implicit in the encoding.
-char32_t tUTF32c(const char8_t*  srcPoint);			// Reads 1 to 4 char8 codeunits from srcPoint.
-char32_t tUTF32c(const char16_t* srcPoint);			// Reads 1 or 2(surrogtate) char16 codeunits from srcPoint.
-char32_t tUTF32c(const char32_t* srcPoint);			// Reads 1 char32 codeunit from srcPoint.
+char32_t tUTF32c(const char8_t*  srcPoint);				// Reads 1 to 4 char8 codeunits from srcPoint.
+char32_t tUTF32c(const char16_t* srcPoint);				// Reads 1 or 2(surrogtate) char16 codeunits from srcPoint.
+char32_t tUTF32c(const char32_t* srcPoint);				// Reads 1 char32 codeunit from srcPoint.
 
 // These are similar to above but return the number of codeunits read. This can be handy for string parsing functions.
 // Note that you may pass nullptr into dst if you just want to count the number of codeunits that would be read. If
 // srcPoint is nullptr these all return 0 and dst (if present) is filled with cCodepoint_Replacement.
-int tUTF32c(char32_t dst[1], char8_t* srcPoint);	// Returns number of read codeunits. Will be E [1,4] for UTF-8.
-int tUTF32c(char32_t dst[1], char16_t* srcPoint);	// Returns number of read codeunits. Will be E [1,2] for UTF-16.
-int tUTF32c(char32_t dst[1], char32_t* srcPoint);	// Returns number of read codeunits. Will be E [1,1] for UTF-32.
+int tUTF32c(char32_t dst[1], const char8_t* srcPoint);	// Returns number of read codeunits. Will be E [1,4] for UTF-8.
+int tUTF32c(char32_t dst[1], const char16_t* srcPoint);	// Returns number of read codeunits. Will be E [1,2] for UTF-16.
+int tUTF32c(char32_t dst[1], const char32_t* srcPoint);	// Returns number of read codeunits. Will be E [1,1] for UTF-32.
 
 // These take a codepoint in UTF-32 (src) and write to the dst array without adding a null-terminator. If dst is nullptr
 // returns 0. If src is invalid, dst receives the special replacement. Returns num charNs written. The size hints in the
 // arrays are worst case amounts of room you may need. If you want a null terminated string after conversion (with the
 // single codepoint in it), make dst 1 bigger than suggested and set the Nth charN to 0, where N is the value returned.
-int tUTF8c (char8_t  dst[4], char32_t srcPoint);	// Reads srcPoint and returns [0,4].
-int tUTF16c(char16_t dst[2], char32_t srcPoint);	// Reads srcPoint and returns [0,2].
-int tUTF32c(char32_t dst[1], char32_t srcPoint);	// Reads srcPoint and returns [0,1].
+int tUTF8c (char8_t  dst[4], char32_t srcPoint);		// Reads srcPoint and returns [0,4].
+int tUTF16c(char16_t dst[2], char32_t srcPoint);		// Reads srcPoint and returns [0,2].
+int tUTF32c(char32_t dst[1], char32_t srcPoint);		// Reads srcPoint and returns [0,1].
 
 
 // These are non UTF-8 functions that work on individual ASCII characters or ASCII strings. tStrrev, for example,

@@ -513,7 +513,7 @@ char32_t tStd::tUTF32c(const char32_t* srcPoint)
 }
 
 
-int tStd::tUTF32c(char32_t dst[1], char8_t* srcPoint)
+int tStd::tUTF32c(char32_t dst[1], const char8_t* srcPoint)
 {
 	char32_t codepoint = cCodepoint_Replacement;
 	if (!srcPoint)
@@ -529,7 +529,7 @@ int tStd::tUTF32c(char32_t dst[1], char8_t* srcPoint)
 }
 
 
-int tStd::tUTF32c(char32_t dst[1], char16_t* srcPoint)
+int tStd::tUTF32c(char32_t dst[1], const char16_t* srcPoint)
 {
 	char32_t codepoint = cCodepoint_Replacement;
 	if (!srcPoint)
@@ -545,7 +545,7 @@ int tStd::tUTF32c(char32_t dst[1], char16_t* srcPoint)
 }
 
 
-int tStd::tUTF32c(char32_t dst[1], char32_t* srcPoint)
+int tStd::tUTF32c(char32_t dst[1], const char32_t* srcPoint)
 {
 	if (!srcPoint)
 	{
