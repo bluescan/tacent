@@ -227,7 +227,8 @@ inline bool tItoa(char8_t* str, int strSize, uint64 value, int base = 10)							
 const char32_t cCodepoint_Replacement		= 0x0000FFFD;	// U+FFFD Used for unknown or invalid encodings.
 const char32_t cCodepoint_SpecialNonCharA	= 0x0000FFFE;	// U+FFFE Guaranteed not a valid character.
 const char32_t cCodepoint_SpecialNonCharB	= 0x0000FFFF;	// U+FFFF Guaranteed not a valid character.
-const char32_t cCodepoint_BOM				= 0x0000FEFF;	// U+FEFF Bute order marker. If bytes reversed in file it's little endian and value will be cCodepoint_SpecialNonCharA.
+const char32_t cCodepoint_BOM				= 0x0000FEFF;	// U+FEFF Byte order marker. If bytes reversed in file it's little endian and value will be cCodepoint_SpecialNonCharA.
+const char32_t cCodepoint_Ellipsis			= 0x00002026;	// U+2026 Ellipsis. "…".
 
 // These functions convert to/from the 3 main unicode encodings. Note that most text in Tacent is
 // assumed to be UTF-8. These are provided so external or OS-specific calls can be made when they expect non-UTF-8
