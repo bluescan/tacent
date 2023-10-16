@@ -166,8 +166,10 @@ public:
 	bool IsMipmapped() const;
 	bool IsCubemap() const;
 
-	// Returns the pvr container format version V1, V2, or V3.
-	int GetVersion() const;
+	// Returns the pvr container format version. If the tImagePVR is not valid -1 is returned. If the tImagePVR is valid
+	// but was not loaded from a .pvr file, 0 is returned. Otherwise 1 is returned for V1, 2 is returned for V2, and 3
+	// is returned for V3.
+	int GetVersion() const																								{ return IsValid() ? PVRVersion : -1; }
 	bool RowsReversed() const																							{ return RowReversalOperationPerformed; }
 
 	int GetNumMipmapLevels() const;
@@ -214,6 +216,10 @@ public:
 	tString Filename;
 
 private:
+	int DetermineVersionFromFirstFourBytes(const uint8 bytes[4]);
+
+	int PVRVersion							= 0;
+
 	// The result codes are bits in this Results member.
 	uint32 Results							= 0;
 

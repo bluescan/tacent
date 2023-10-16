@@ -22,6 +22,68 @@ namespace tImage
 {
 
 
+namespace tPVR
+{
+	// There are 3 possible headers for V1, V2, and V3 PVR files. V1 and V2 are very similar, but just for clarity we
+	// explicitly define the 3 different headers as their own struct.
+	#pragma pack(push, 1)
+	struct HeaderV1
+	{
+		uint32 HeaderSize;
+		uint32 Height;
+		uint32 Width;
+		uint32 MipMapCount;
+		uint8  PixelFormat;
+		uint8  Flags1;
+		uint8  Flags2;
+		uint8  Flags3;
+		uint32 SurfaceSize;
+		uint32 BitsPerPixel;
+		uint32 RedMask;
+		uint32 GreenMask;
+		uint32 BlueMask;
+		uint32 AlphaMask;
+	};
+
+	struct HeaderV2
+	{
+		uint32 HeaderSize;		// 44 For V1, 52 for V2.
+		uint32 Height;
+		uint32 Width;
+		uint32 MipMapCount;
+		uint8  PixelFormat;
+		uint8  Flags1;
+		uint8  Flags2;
+		uint8  Flags3;
+		uint32 SurfaceSize;
+		uint32 BitsPerPixel;
+		uint32 RedMask;
+		uint32 GreenMask;
+		uint32 BlueMask;
+		uint32 AlphaMask;
+		uint32 FourCC;
+		uint32 NumSurfaces;
+	};
+
+	struct HeaderV3
+	{
+		uint32 FourCCVersion;	// 'PVR3' for V3. LE = 0x03525650.
+		uint32 Flags;
+		uint64 PixelFormat;
+		uint32 ColourSpace;
+		uint32 ChannelType;
+		uint32 Height;
+		uint32 Width;
+		uint32 Depth;
+		uint32 NumSurfaces;
+		uint32 NumFaces;
+		uint32 NumMipmaps;
+		uint32 MetaDataSize;
+	};
+	#pragma pack(pop)
+}
+
+
 tImagePVR::tImagePVR()
 {
 }
@@ -126,8 +188,31 @@ bool tImagePVR::Load(const tString& pvrFile, const LoadParams& loadParams)
 }
 
 
+int tImagePVR::DetermineVersionFromFirstFourBytes(const uint8 bytes[4])
+{
+	if (!bytes)
+		return 0;
+
+	uint32 value = *((uint32*)bytes);
+	if (value == 44)
+		return 1;
+	
+	if (value == 52)
+		return 2;
+	
+	if (value == 0x03525650)
+		return 3;
+
+	return 0;
+}
+
+
 bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& paramsIn)
 {
+	PVRVersion = DetermineVersionFromFirstFourBytes(pvrData);
+	if (PVRVersion == 0)
+		return false;
+
 	Clear();
 	return false;
 }
