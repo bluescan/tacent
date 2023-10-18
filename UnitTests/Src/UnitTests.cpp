@@ -182,6 +182,7 @@ int main(int argc, char** argv)
 	tTest(ImageKTX2);
 	tTest(ImageASTC);
 	tTest(ImagePKM);
+	tTest(ImagePVR2);
 	#endif
 
 	#else
@@ -206,7 +207,7 @@ int main(int argc, char** argv)
 	// tTest(Script);
 	// tTest(Rule);
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
-	tTest(ImageLoad);
+	// tTest(ImageLoad);
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
 	// tTest(ImageMultiFrame);
@@ -226,6 +227,7 @@ int main(int argc, char** argv)
 	// tTest(ImageKTX2);
 	// tTest(ImageASTC);
 	// tTest(ImagePKM);
+	tTest(ImagePVR2);
 	#endif
 	// tTest(UTF);
 	// tTest(Hash);

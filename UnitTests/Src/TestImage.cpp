@@ -31,6 +31,7 @@
 #include <Image/tImageXPM.h>
 #include <Image/tImageBMP.h>
 #include <Image/tImageTIFF.h>
+#include <Image/tImagePVR.h>
 #include <Image/tPaletteImage.h>
 #include <System/tFile.h>
 #include "UnitTests.h"
@@ -1270,7 +1271,7 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 	tString basename = tSystem::tGetFileBaseName(ddsfile);
 	tString savename = basename + "_";
 	savename += (loadFlags & tImageDDS::LoadFlag_Decode)			? "D" : "x";
-	if ((loadFlags & tImageDDS::LoadFlag_GammaCompression) || (loadFlags & tImageKTX::LoadFlag_SRGBCompression))
+	if ((loadFlags & tImageDDS::LoadFlag_GammaCompression) || (loadFlags & tImageDDS::LoadFlag_SRGBCompression))
 		savename += "G";
 	else if (loadFlags & tImageDDS::LoadFlag_AutoGamma)
 		savename += "g";
@@ -2188,6 +2189,91 @@ tTestUnit(ImagePKM)
 	PKMLoadDecodeSave("ETC2RGBA_sRGBA.pkm",			decode | revrow);
 	PKMLoadDecodeSave("ETC2RGBA1_RGBA.pkm",			decode | revrow);
 	PKMLoadDecodeSave("ETC2RGBA1_sRGBA.pkm",		decode | revrow);
+
+	tSystem::tSetCurrentDir(origDir);
+}
+
+
+// Helper for tImagePKM unit tests.
+void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0)
+{
+	// We're just going to turn on auto-gamma-compression for all files.
+	loadFlags |= tImagePKM::LoadFlag_AutoGamma;
+
+	tString basename = tSystem::tGetFileBaseName(pvrFile);
+
+	tString savename = basename + "_";
+	savename += (loadFlags & tImagePVR::LoadFlag_Decode)			? "D" : "x";
+	if ((loadFlags & tImagePVR::LoadFlag_GammaCompression) || (loadFlags & tImagePVR::LoadFlag_SRGBCompression))
+		savename += "G";
+	else if (loadFlags & tImagePVR::LoadFlag_AutoGamma)
+		savename += "g";
+	else
+		savename += "x";
+	savename += (loadFlags & tImagePVR::LoadFlag_ReverseRowOrder)	? "R" : "x";
+	savename += (loadFlags & tImagePVR::LoadFlag_SpreadLuminance)	? "S" : "x";
+	tPrintf("PVR Load %s\n", savename.Chr());
+	// "PVRBPP4_UNORM_SRGB_RGBA_TM"
+	tString formatname = basename.Left('_');
+
+	tImagePVR::LoadParams params;
+	params.Flags = loadFlags;
+
+	tImagePVR pvr(pvrFile, params);
+	tRequire(pvr.IsValid());
+	tPixelFormat fileformat = tGetPixelFormat(formatname.Chr());
+	tPixelFormat pvrformat = pvr.GetPixelFormat();
+	tPixelFormat pvrformatsrc = pvr.GetPixelFormatSrc();
+
+	// WIP
+	// tRequire(fileformat == pvrformatsrc);
+
+	// WIP
+	//if (loadFlags & tImagePVR::LoadFlag_Decode)
+	//	tRequire(pvrformat == tPixelFormat::R8G8B8A8);
+	//else
+	//	tRequire(pkmformat == fileformat);
+
+	const char* profileName = tGetColourProfileName(pvr.GetColourProfile());
+	if (profileName)
+		tPrintf("ColourProfile: %s\n", profileName);
+
+	// WIP
+	#if 0
+	tLayer* layer = pkm.StealLayer();
+	tRequire(layer && layer->OwnsData);
+	tRequire(!(loadFlags & tImagePKM::LoadFlag_Decode) || (pkmformat == tPixelFormat::R8G8B8A8));
+
+	if (pkmformat == tPixelFormat::R8G8B8A8)
+	{
+		tImageTGA tga((tPixel*)layer->Data, layer->Width, layer->Height);
+		tga.Save("Written_" + savename + ".tga");
+	}
+	else
+	{
+		tPrintf("No decode, no tga save. Pixel format not R8G8B8A8\n");
+	}
+	delete layer;
+	#endif
+
+	tPrintf("\n");
+}
+
+
+tTestUnit(ImagePVR2)
+{
+	if (!tSystem::tDirExists("TestData/Images/PVR_V2/"))
+		tSkipUnit(ImagePicture)
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/PVR_V2/");
+
+	uint32 decode = tImagePVR::LoadFlag_Decode;
+	uint32 revrow = tImagePVR::LoadFlag_ReverseRowOrder;
+	uint32 spread = tImagePVR::LoadFlag_SpreadLuminance;
+
+	tPrintf("Testing PVR V2 Loading/Decoding\n\n");
+
+	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_TM.pvr",			decode | revrow);
 
 	tSystem::tSetCurrentDir(origDir);
 }

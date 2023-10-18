@@ -81,6 +81,8 @@ namespace tPVR
 		uint32 MetaDataSize;
 	};
 	#pragma pack(pop)
+
+	bool DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, uint8 headerFmt);
 }
 
 
@@ -207,15 +209,127 @@ int tImagePVR::DetermineVersionFromFirstFourBytes(const uint8 bytes[4])
 }
 
 
+bool tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, uint8 headerFmt)
+{
+	fmt = tPixelFormat::Invalid;
+	switch (headerFmt)
+	{
+
+		case 0x04:	fmt = tPixelFormat::R8G8B8;		break; 		// RGB 888.
+		case 0x05:	fmt = tPixelFormat::B8G8R8A8;	break;		// ARGB 8888.
+
+		case 0x00:		// ARGB 4444.
+		case 0x01:		// ARGB 1555.
+		case 0x02:		// RGB 565.
+		case 0x03:		// RGB 555.
+		case 0x06:		// ARGB 8332.
+		default:
+			return false;
+	}
+
+	return false;
+}
+#if 0
+0x7 I 8
+0x8 AI 88
+0x9 1BPP
+0xA (V,Y1,U,Y0)
+0xB (Y1,V,Y0,U)
+0xC PVRTC2
+0xD PVRTC4
+0x10 ARGB 4444
+0x11 ARGB 1555
+0x12 ARGB 8888
+0x13 RGB 565
+0x14 RGB 555
+0x15 RGB 888
+0x16 I 8
+0x17 AI 88
+0x18 PVRTC2
+0x19 PVRTC4
+0x1A BGRA 8888
+0x20 DXT1
+0x21 DXT2
+0x22 DXT3
+0x23 DXT4
+0x24 DXT5
+0x25 RGB 332
+0x26 AL 44
+0x27 LVU 655
+#endif
+
+
 bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& paramsIn)
 {
+	Clear();
 	PVRVersion = DetermineVersionFromFirstFourBytes(pvrData);
 	if (PVRVersion == 0)
 		return false;
 
-	Clear();
+	tPrintf("PVR Version: %d\n", PVRVersion);
+	switch (PVRVersion)
+	{
+		case 1:
+		{
+			tPVR::HeaderV1* header = (tPVR::HeaderV1*)pvrData;
+			tPrintf("PVR Header pixel format: %d\n", header->PixelFormat);
+			break;
+		}
+
+		case 2:
+		{
+			tPVR::HeaderV2* header = (tPVR::HeaderV2*)pvrData;
+			tPrintf("PVR Header pixel format: %d\n", header->PixelFormat);
+			break;
+		}
+
+		case 3:
+		{
+			tPVR::HeaderV3* header = (tPVR::HeaderV3*)pvrData;
+			tPrintf("PVR Header pixel format: %d\n", header->PixelFormat);
+			break;
+		}
+
+		default:
+			Results |= uint32(ResultCode::Fatal_UnsupportedPVRFileVersion);
+			return false;
+	}
+
 	return false;
 }
+
+
+const char* tImagePVR::GetResultDesc(ResultCode code)
+{
+	return ResultDescriptions[int(code)];
+}
+
+
+const char* tImagePVR::ResultDescriptions[] =
+{
+	"Success",
+	"Conditional Success. Image rows could not be flipped.",
+	"Conditional Success. Pixel format specification ill-formed.",
+	"Conditional Success. Image has dimension not multiple of four.",
+	"Conditional Success. Image has dimension not power of two.",
+	"Fatal Error. File does not exist.",
+	"Fatal Error. Incorrect file type. Must be a PVR file.",
+	"Fatal Error. Filesize incorrect.",
+	"Fatal Error. Magic FourCC Incorrect.",
+	"Fatal Error. Incorrect PVR header size.",
+	"Fatal Error. Unsupported PVR file version.",
+	"Fatal Error. Incorrect Dimensions.",
+	"Fatal Error. Pixel format header size incorrect.",
+	"Fatal Error. Pixel format specification incorrect.",
+	"Fatal Error. Unsupported pixel format.",
+	"Fatal Error. Maximum number of mipmap levels exceeded.",
+	"Fatal Error. Unable to decode packed pixels.",
+	"Fatal Error. Unable to decode BC pixels.",
+	"Fatal Error. Unable to decode PVR pixels.",
+	"Fatal Error. Unable to decode ASTC pixels."
+};
+tStaticAssert(tNumElements(tImagePVR::ResultDescriptions) == int(tImagePVR::ResultCode::NumCodes));
+tStaticAssert(int(tImagePVR::ResultCode::NumCodes) <= int(tImagePVR::ResultCode::MaxCodes));
 
 
 }

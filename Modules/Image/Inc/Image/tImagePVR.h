@@ -117,6 +117,7 @@ public:
 		Fatal_IncorrectFileSize,
 		Fatal_IncorrectMagicNumber,
 		Fatal_IncorrectHeaderSize,
+		Fatal_UnsupportedPVRFileVersion,
 		Fatal_InvalidDimensions,
 		Fatal_IncorrectPixelFormatHeaderSize,
 		Fatal_IncorrectPixelFormatSpec,				// Possible if strict loading set.
