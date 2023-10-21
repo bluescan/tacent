@@ -215,6 +215,10 @@ bool tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alp
 	alpha = tAlphaMode::Normal;
 	switch (headerFmt)
 	{
+		case 0x00:	fmt = tPixelFormat::B4G4R4A4;		break;	// ARGB 4444.
+		case 0x01:	fmt = tPixelFormat::B5G5R5A1;		break;	// ARGB 1555.
+		case 0x02:	fmt = tPixelFormat::B5G6R5;			break;	// RGB 565.
+
 		case 0x04:	fmt = tPixelFormat::R8G8B8;			break; 	// RGB 888.
 		case 0x05:	fmt = tPixelFormat::B8G8R8A8;		break;	// ARGB 8888.
 		case 0x07:	fmt = tPixelFormat::L8;				break;	// I 8.
@@ -238,9 +242,6 @@ bool tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alp
 		case 0x23:	fmt = tPixelFormat::BC3DXT4DXT5;	alpha = tAlphaMode::Premultiplied;	break;	// DXT4.
 		case 0x24:	fmt = tPixelFormat::BC3DXT4DXT5;	break;	// DXT5.
 
-		case 0x00:		// ARGB 4444.
-		case 0x01:		// ARGB 1555.
-		case 0x02:		// RGB 565.
 		case 0x03:		// RGB 555.
 		case 0x06:		// ARGB 8332.
 		case 0x09:		// 1BPP.
@@ -250,6 +251,28 @@ bool tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alp
 		case 0x25:		// RGB 332.
 		case 0x26:		// AL 44.
 		case 0x27:		// LVU 655.
+		case 0x28:		// XLVU 8888.
+		case 0x29:		// QWVU 8888.
+		case 0x2A:		// ABGR 2101010	02 10 10 10 (32 total).
+		case 0x2B:		// ARGB 2101010	02 10 10 10 (32 total).
+		case 0x2C:		// AWVU 2101010	02 10 10 10 (32 total).
+		case 0x2D:		// GR 1616.
+		case 0x2E:		// VU 1616.
+		case 0x2F:		// ABGR 16161616.
+		case 0x30:		// R 16F.
+		case 0x31:		// GR 1616F.
+		case 0x32:		// ABGR 16161616F.
+		case 0x33:		// R 32F.
+		case 0x34:		// GR 3232F.
+		case 0x35:		// ABGR 32323232F.
+		case 0x36:		// ETC.
+		case 0x40:		// A 8.
+		case 0x41:		// VU 88.
+		case 0x42:		// L16.
+		case 0x43:		// L8.
+		case 0x44:		// AL 88.
+		case 0x45:		// UYVY.
+		case 0x46:		// YUY2.
 		default:
 			alpha = tAlphaMode::Unspecified;
 			return false;
@@ -267,6 +290,22 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		return false;
 
 	tPrintf("PVR Version: %d\n", PVRVersion);
+
+	int height = 0;
+	int width = 0;
+	int mipmapCount = 0;
+	uint8 flags1 = 0;
+	uint8 flags2 = 0;
+	uint8 flags3 = 0;
+	int bytesPerSurface = 0;
+	int bitsPerPixel = 0;
+	uint32 redMask = 0;
+	uint32 grnMask = 0;
+	uint32 bluMask = 0;
+	uint32 alpMask = 0;
+	uint32 fourCC = 0;
+	int numSurfaces = 0;
+
 	switch (PVRVersion)
 	{
 		case 1:
@@ -275,6 +314,19 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			tPrintf("PVR Header pixel format: %d\n", header->PixelFormat);
 			tPVR::DeterminePixelFormatFromV1V2Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
 			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
+
+			height = header->Height;
+			width = header->Width;
+			mipmapCount = header->MipMapCount;
+			flags1 = header->Flags1;
+			flags2 = header->Flags2;
+			flags3 = header->Flags3;
+			bytesPerSurface = header->SurfaceSize;
+			bitsPerPixel = header->BitsPerPixel;
+			redMask = header->RedMask;
+			grnMask = header->GreenMask;
+			bluMask = header->BlueMask;
+			alpMask = header->AlphaMask;
 			break;
 		}
 
@@ -284,6 +336,21 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			tPrintf("PVR Header pixel format: %d\n", header->PixelFormat);
 			tPVR::DeterminePixelFormatFromV1V2Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
 			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
+
+			height = header->Height;
+			width = header->Width;
+			mipmapCount = header->MipMapCount;
+			flags1 = header->Flags1;
+			flags2 = header->Flags2;
+			flags3 = header->Flags3;
+			bytesPerSurface = header->SurfaceSize;
+			bitsPerPixel = header->BitsPerPixel;
+			redMask = header->RedMask;
+			grnMask = header->GreenMask;
+			bluMask = header->BlueMask;
+			alpMask = header->AlphaMask;
+			fourCC = header->FourCC;
+			numSurfaces = header->NumSurfaces;
 			break;
 		}
 
@@ -298,6 +365,21 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			Results |= uint32(ResultCode::Fatal_UnsupportedPVRFileVersion);
 			return false;
 	}
+
+	tPrintf("PVR height: %d\n", height);
+	tPrintf("PVR width: %d\n", width);
+	tPrintf("PVR mipmapCount: %d\n", mipmapCount);
+	tPrintf("PVR flags1: %08!1b\n", flags1);
+	tPrintf("PVR flags2: %08!1b\n", flags2);
+	tPrintf("PVR flags3: %08!1b\n", flags3);
+	tPrintf("PVR bytesPerSurface: %d\n", bytesPerSurface);
+	tPrintf("PVR bitsPerPixel: %d\n", bitsPerPixel);
+	tPrintf("PVR redMask: %08!4b\n", redMask);
+	tPrintf("PVR grnMask: %08!4b\n", grnMask);
+	tPrintf("PVR bluMask: %08!4b\n", bluMask);
+	tPrintf("PVR alpMask: %08!4b\n", alpMask);
+	tPrintf("PVR fourCC: %08X (%c %c %c %c)\n", fourCC, (fourCC>>0)&0xFF, (fourCC>>8)&0xFF, (fourCC>>16)&0xFF, (fourCC>>24)&0xFF);
+	tPrintf("PVR numSurfaces: %d\n", numSurfaces);
 
 	return false;
 }

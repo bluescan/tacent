@@ -820,6 +820,10 @@ void tSystem::Process(Receiver& receiver, const char* format, va_list argList)
 			if (!spec.TypeSizeBytes)
 				spec.TypeSizeBytes = handler->DefaultByteSize;
 
+			// Chars and shorts will be promoted to int.
+			else if ((spec.TypeSizeBytes == 1) || (spec.TypeSizeBytes == 2))
+				spec.TypeSizeBytes = sizeof(int);
+
 			// Note the type promotions caused by the variadic calling convention,
 			// float -> double. char, short, int -> int.
 			//
@@ -854,7 +858,7 @@ void tSystem::Process(Receiver& receiver, const char* format, va_list argList)
 			BaseType bt = handler->TypeBase;
 			switch (spec.TypeSizeBytes)
 			{
-				case 0:												pval = nullptr;		break;
+				case 0:		pval = nullptr;		break;
 				case 4:
 					switch (bt)
 					{
@@ -893,7 +897,7 @@ void tSystem::Process(Receiver& receiver, const char* format, va_list argList)
 						case BaseType::Flt:		val64f = va_arg(argList, Val64F);	pval = &val64f;		break;
 					} break;
 			}
-			tAssertMsg(pval, "Cannot deal with this size print vararg.");
+			tAssertMsg(pval, "Cannot print vararg of specified size.");
 			
 			// Here's where the work is done... call the handler.
 			(handler->Handler)(receiver, spec, pval);
