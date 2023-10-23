@@ -83,6 +83,7 @@ namespace tPVR
 	#pragma pack(pop)
 
 	bool DeterminePixelFormatFromV1V2Header(tPixelFormat&, tAlphaMode&, uint8 headerFmt);
+	bool DeterminePixelFormatFromV3Header(tPixelFormat&, tAlphaMode&, uint64 headerFmt);
 }
 
 
@@ -278,7 +279,79 @@ bool tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alp
 			return false;
 	}
 
-	return false;
+	return true;
+}
+
+
+bool tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha, uint64 headerFmt64)
+{
+	fmt = tPixelFormat::Invalid;
+	alpha = tAlphaMode::Normal;
+
+	// For V3 files the MS 32 bits are always 0.
+	uint32 headerFmt = headerFmt64 & 0x00000000FFFFFFFF;
+
+	switch (headerFmt)
+	{
+		// PVR stores alpha on a per-block basis, not the entire image. Images without alpha just happen
+		// to have all opaque blocks. In either case, the pixel format is the same -- PVRBPP2 or PVRBPP4.
+		case 0x00000000:	fmt = tPixelFormat::PVRBPP2;		break;	// PVRTC 2bpp RGB.
+		case 0x00000001:	fmt = tPixelFormat::PVRBPP2;		break;	// PVRTC 2bpp RGBA.
+		case 0x00000002:	fmt = tPixelFormat::PVRBPP4;		break;	// PVRTC 4bpp RGB.
+		case 0x00000003:	fmt = tPixelFormat::PVRBPP4;		break;	// PVRTC 4bpp RGBA.
+		case 0x00000004:	fmt = tPixelFormat::PVR2BPP2;		break;	// PVRTC-II 2bpp.
+		case 0x00000005:	fmt = tPixelFormat::PVR2BPP4;		break;	// PVRTC-II 4bpp.
+		case 0x00000006:	fmt = tPixelFormat::ETC1;			break;	// ETC1.
+
+		case 0x00000007:	fmt = tPixelFormat::BC1DXT1;		break;	// DXT1. BC1.
+		case 0x00000008:	fmt = tPixelFormat::BC2DXT2DXT3;	alpha = tAlphaMode::Premultiplied;	break;	// DXT2.
+		case 0x00000009:	fmt = tPixelFormat::BC2DXT2DXT3;	break;	// DXT3. BC2.
+		case 0x0000000A:	fmt = tPixelFormat::BC3DXT4DXT5;	alpha = tAlphaMode::Premultiplied;	break;	// DXT4.
+		case 0x0000000B:	fmt = tPixelFormat::BC3DXT4DXT5;	break;	// DXT5. BC3.
+
+	}
+#if 0
+BC4 12
+BC5 13
+BC6 14
+BC7 15
+UYVY 16
+YUY2 17
+BW1bpp 18
+R9G9B9E5 Shared Exponent 19
+RGBG8888 20
+GRGB8888 21
+ETC2 RGB 22
+ETC2 RGBA 23
+ETC2 RGB A1 24
+EAC R11 25
+EAC RG11 26
+ASTC_4x4 27
+ASTC_5x4 28
+ASTC_5x5 29
+ASTC_6x5 30
+ASTC_6x6 31
+ASTC_8x5 32
+ASTC_8x6 33
+ASTC_8x8 34
+ASTC_10x5 35
+ASTC_10x6 36
+ASTC_10x8 37
+ASTC_10x10 38
+ASTC_12x10 39
+ASTC_12x12 40
+ASTC_3x3x3 41
+ASTC_4x3x3 42
+ASTC_4x4x3 43
+ASTC_4x4x4 44
+ASTC_5x4x4 45
+ASTC_5x5x4 46
+ASTC_5x5x5 47
+ASTC_6x5x5 48
+ASTC_6x6x5 49
+ASTC_6x6x6 50
+#endif
+	return true;
 }
 
 
@@ -294,9 +367,10 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	int height = 0;
 	int width = 0;
 	int mipmapCount = 0;
-	uint8 flags1 = 0;
-	uint8 flags2 = 0;
-	uint8 flags3 = 0;
+	uint8 flagsV12A = 0;
+	uint8 flagsV12B = 0;
+	uint8 flagsV12C = 0;
+	uint32 flagsV3 = 0;
 	int bytesPerSurface = 0;
 	int bitsPerPixel = 0;
 	uint32 redMask = 0;
@@ -304,7 +378,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	uint32 bluMask = 0;
 	uint32 alpMask = 0;
 	uint32 fourCC = 0;
-	int numSurfaces = 0;
+	int numSurfaces = 1;
 
 	switch (PVRVersion)
 	{
@@ -318,9 +392,9 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			height = header->Height;
 			width = header->Width;
 			mipmapCount = header->MipMapCount;
-			flags1 = header->Flags1;
-			flags2 = header->Flags2;
-			flags3 = header->Flags3;
+			flagsV12A = header->Flags1;
+			flagsV12B = header->Flags2;
+			flagsV12C = header->Flags3;
 			bytesPerSurface = header->SurfaceSize;
 			bitsPerPixel = header->BitsPerPixel;
 			redMask = header->RedMask;
@@ -340,9 +414,9 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			height = header->Height;
 			width = header->Width;
 			mipmapCount = header->MipMapCount;
-			flags1 = header->Flags1;
-			flags2 = header->Flags2;
-			flags3 = header->Flags3;
+			flagsV12A = header->Flags1;
+			flagsV12B = header->Flags2;
+			flagsV12C = header->Flags3;
 			bytesPerSurface = header->SurfaceSize;
 			bitsPerPixel = header->BitsPerPixel;
 			redMask = header->RedMask;
@@ -358,6 +432,10 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		{
 			tPVR::HeaderV3* header = (tPVR::HeaderV3*)pvrData;
 			tPrintf("PVR Header pixel format: %d\n", header->PixelFormat);
+			tPVR::DeterminePixelFormatFromV3Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
+			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
+
+			flagsV3 = header->Flags;
 			break;
 		}
 
@@ -369,9 +447,10 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	tPrintf("PVR height: %d\n", height);
 	tPrintf("PVR width: %d\n", width);
 	tPrintf("PVR mipmapCount: %d\n", mipmapCount);
-	tPrintf("PVR flags1: %08!1b\n", flags1);
-	tPrintf("PVR flags2: %08!1b\n", flags2);
-	tPrintf("PVR flags3: %08!1b\n", flags3);
+	tPrintf("PVR flagsV12A: %08!1b\n", flagsV12A);
+	tPrintf("PVR flagsV12B: %08!1b\n", flagsV12B);
+	tPrintf("PVR flagsV12C: %08!1b\n", flagsV12C);
+	tPrintf("PVR flagsV3: %08!4b\n", flagsV3);	
 	tPrintf("PVR bytesPerSurface: %d\n", bytesPerSurface);
 	tPrintf("PVR bitsPerPixel: %d\n", bitsPerPixel);
 	tPrintf("PVR redMask: %08!4b\n", redMask);
