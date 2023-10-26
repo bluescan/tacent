@@ -308,49 +308,55 @@ bool tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 		case 0x00000009:	fmt = tPixelFormat::BC2DXT2DXT3;	break;	// DXT3. BC2.
 		case 0x0000000A:	fmt = tPixelFormat::BC3DXT4DXT5;	alpha = tAlphaMode::Premultiplied;	break;	// DXT4.
 		case 0x0000000B:	fmt = tPixelFormat::BC3DXT4DXT5;	break;	// DXT5. BC3.
+		case 0x0000000C:	fmt = tPixelFormat::BC4ATI1;		break;	// BC4.
+		case 0x0000000D:	fmt = tPixelFormat::BC5ATI2;		break;	// BC5.
+		case 0x0000000E:	fmt = tPixelFormat::BC6U;			break;	// BC6. Not sure whether signed or unsigned. Assuming unsigned.
+		case 0x0000000F:	fmt = tPixelFormat::BC7;			break;	// BC7.
 
+		case 0x00000016:	fmt = tPixelFormat::ETC2RGB;		break;	// ETC2 RGB.
+		case 0x00000017:	fmt = tPixelFormat::ETC2RGBA;		break;	// ETC2 RGBA.
+		case 0x00000018:	fmt = tPixelFormat::ETC2RGBA1;		break;	// ETC2 RGB A1.
+		case 0x00000019:	fmt = tPixelFormat::EACR11;			break;	// EAC R11.
+		case 0x0000001A:	fmt = tPixelFormat::EACRG11;		break;	// EAC RG11.
+
+		case 0x0000001B:	fmt = tPixelFormat::ASTC4X4;		break;	// ASTC_4x4.
+		case 0x0000001C:	fmt = tPixelFormat::ASTC5X4;		break;	// ASTC_5x4.
+		case 0x0000001D:	fmt = tPixelFormat::ASTC5X5;		break;	// ASTC_5x5.
+		case 0x0000001E:	fmt = tPixelFormat::ASTC6X5;		break;	// ASTC_6x5.
+		case 0x0000001F:	fmt = tPixelFormat::ASTC6X6;		break;	// ASTC_6x6.
+		case 0x00000020:	fmt = tPixelFormat::ASTC8X5;		break;	// ASTC_8x5.
+		case 0x00000021:	fmt = tPixelFormat::ASTC8X6;		break;	// ASTC_8x6.
+		case 0x00000022:	fmt = tPixelFormat::ASTC8X8;		break;	// ASTC_8x8.
+		case 0x00000023:	fmt = tPixelFormat::ASTC10X5;		break;	// ASTC_10x5.
+		case 0x00000024:	fmt = tPixelFormat::ASTC10X6;		break;	// ASTC_10x6.
+		case 0x00000025:	fmt = tPixelFormat::ASTC10X8;		break;	// ASTC_10x8.
+		case 0x00000026:	fmt = tPixelFormat::ASTC10X10;		break;	// ASTC_10x10.
+		case 0x00000027:	fmt = tPixelFormat::ASTC12X10;		break;	// ASTC_12x10.
+		case 0x00000028:	fmt = tPixelFormat::ASTC12X12;		break;	// ASTC_12x12.
+
+		case 0x00000010:	// UYVY.
+		case 0x00000011:	// YUY2.
+		case 0x00000012:	// BW1bpp.
+		case 0x00000013:	// R9G9B9E5 Shared Exponent.
+		case 0x00000014:	// RGBG8888.
+		case 0x00000015:	// GRGB8888.
+
+		case 0x00000029:	// ASTC_3x3x3.
+		case 0x0000002A:	// ASTC_4x3x3.
+		case 0x0000002B:	// ASTC_4x4x3.
+		case 0x0000002C:	// ASTC_4x4x4.
+		case 0x0000002D:	// ASTC_5x4x4.
+		case 0x0000002E:	// ASTC_5x5x4.
+		case 0x0000002F:	// ASTC_5x5x5.
+		case 0x00000030:	// ASTC_6x5x5.
+		case 0x00000031:	// ASTC_6x6x5.
+		case 0x00000032:	// ASTC_6x6x6.
+
+		default:
+			alpha = tAlphaMode::Unspecified;
+			return false;
 	}
-#if 0
-BC4 12
-BC5 13
-BC6 14
-BC7 15
-UYVY 16
-YUY2 17
-BW1bpp 18
-R9G9B9E5 Shared Exponent 19
-RGBG8888 20
-GRGB8888 21
-ETC2 RGB 22
-ETC2 RGBA 23
-ETC2 RGB A1 24
-EAC R11 25
-EAC RG11 26
-ASTC_4x4 27
-ASTC_5x4 28
-ASTC_5x5 29
-ASTC_6x5 30
-ASTC_6x6 31
-ASTC_8x5 32
-ASTC_8x6 33
-ASTC_8x8 34
-ASTC_10x5 35
-ASTC_10x6 36
-ASTC_10x8 37
-ASTC_10x10 38
-ASTC_12x10 39
-ASTC_12x12 40
-ASTC_3x3x3 41
-ASTC_4x3x3 42
-ASTC_4x4x3 43
-ASTC_4x4x4 44
-ASTC_5x4x4 45
-ASTC_5x5x4 46
-ASTC_5x5x5 47
-ASTC_6x5x5 48
-ASTC_6x6x5 49
-ASTC_6x6x6 50
-#endif
+
 	return true;
 }
 
