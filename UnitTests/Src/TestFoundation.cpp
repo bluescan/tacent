@@ -13,7 +13,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <thread>
-#include <chrono>
 #include <future>
 #include <Foundation/tVersion.cmake.h>
 #include <Foundation/tStandard.h>
