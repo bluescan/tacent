@@ -45,8 +45,8 @@ tStaticAssert(tNumElements(tColourProfileShortNames) == int(tColourProfile::NumP
 
 const char* tGetColourProfileName(tColourProfile profile)
 {
-	if (profile == tColourProfile::Invalid)
-		return nullptr;
+	if (profile == tColourProfile::Unspecified)
+		return "Unspecified";
 
 	return tColourProfileNames[int(profile)];
 }
@@ -54,8 +54,8 @@ const char* tGetColourProfileName(tColourProfile profile)
 
 const char* tGetColourProfileShortName(tColourProfile profile)
 {
-	if (profile == tColourProfile::Invalid)
-		return nullptr;
+	if (profile == tColourProfile::None)
+		return "None";
 
 	return tColourProfileShortNames[int(profile)];
 }

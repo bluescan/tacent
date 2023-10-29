@@ -115,10 +115,11 @@ enum class tColourProfile
 	HDRlRGB_LDRlA,		// Equiv ASTC profile: ASTCENC_PRF_HDR_RGB_LDR_A. The HDR RGB with LDR alpha colour profile.
 	HDRlRGBA,			// Equiv ASTC profile: ASTCENC_PRF_HDR.           The HDR RGBA colour profile.
 	Auto,
-	NumProfiles,
+	NumProfiles,		// Includes Auto but not Unspecified.
 
 	// Shorter synonyms.
 	Invalid				= Unspecified,
+	None				= Unspecified,
 	sRGB				= LDRsRGB_LDRlA,
 	gRGB				= LDRgRGB_LDRlA,			// Currently not found in files, but may be converted to.
 	lRGB				= LDRlRGBA,
