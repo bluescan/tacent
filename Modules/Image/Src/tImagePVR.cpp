@@ -70,7 +70,7 @@ namespace tPVR
 		uint32 FourCCVersion;	// 'PVR3' for V3. LE = 0x03525650.
 		uint32 Flags;
 		uint64 PixelFormat;
-		uint32 ColourSpace;
+		uint32 ColourSpace;		// 0 = Linear RGB. 1 = sRGB (I assume linear alpha for both).
 		uint32 ChannelType;
 		uint32 Height;
 		uint32 Width;
@@ -288,73 +288,82 @@ bool tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 	fmt = tPixelFormat::Invalid;
 	alpha = tAlphaMode::Normal;
 
-	// For V3 files the MS 32 bits are always 0.
-	uint32 headerFmt = headerFmt64 & 0x00000000FFFFFFFF;
-
-	switch (headerFmt)
+	// For V3 files if the MS 32 bits are 0, the format is determined by the LS 32 bits.
+	// If the MS 32 do bits are non zero, the MS 32 bits contain the number of bits for
+	// each channel and the present channels are specified by the LS 32 bits.
+	uint32 fmtMS32 = headerFmt64 >> 32;
+	uint32 fmtLS32 = headerFmt64 & 0x00000000FFFFFFFF;
+	if (fmtMS32 == 0)
 	{
-		// PVR stores alpha on a per-block basis, not the entire image. Images without alpha just happen
-		// to have all opaque blocks. In either case, the pixel format is the same -- PVRBPP2 or PVRBPP4.
-		case 0x00000000:	fmt = tPixelFormat::PVRBPP2;		break;	// PVRTC 2bpp RGB.
-		case 0x00000001:	fmt = tPixelFormat::PVRBPP2;		break;	// PVRTC 2bpp RGBA.
-		case 0x00000002:	fmt = tPixelFormat::PVRBPP4;		break;	// PVRTC 4bpp RGB.
-		case 0x00000003:	fmt = tPixelFormat::PVRBPP4;		break;	// PVRTC 4bpp RGBA.
-		case 0x00000004:	fmt = tPixelFormat::PVR2BPP2;		break;	// PVRTC-II 2bpp.
-		case 0x00000005:	fmt = tPixelFormat::PVR2BPP4;		break;	// PVRTC-II 4bpp.
-		case 0x00000006:	fmt = tPixelFormat::ETC1;			break;	// ETC1.
+		switch (fmtLS32)
+		{
+			// PVR stores alpha on a per-block basis, not the entire image. Images without alpha just happen
+			// to have all opaque blocks. In either case, the pixel format is the same -- PVRBPP2 or PVRBPP4.
+			case 0x00000000:	fmt = tPixelFormat::PVRBPP2;		break;	// PVRTC 2bpp RGB.
+			case 0x00000001:	fmt = tPixelFormat::PVRBPP2;		break;	// PVRTC 2bpp RGBA.
+			case 0x00000002:	fmt = tPixelFormat::PVRBPP4;		break;	// PVRTC 4bpp RGB.
+			case 0x00000003:	fmt = tPixelFormat::PVRBPP4;		break;	// PVRTC 4bpp RGBA.
+			case 0x00000004:	fmt = tPixelFormat::PVR2BPP2;		break;	// PVRTC-II 2bpp.
+			case 0x00000005:	fmt = tPixelFormat::PVR2BPP4;		break;	// PVRTC-II 4bpp.
+			case 0x00000006:	fmt = tPixelFormat::ETC1;			break;	// ETC1.
 
-		case 0x00000007:	fmt = tPixelFormat::BC1DXT1;		break;	// DXT1. BC1.
-		case 0x00000008:	fmt = tPixelFormat::BC2DXT2DXT3;	alpha = tAlphaMode::Premultiplied;	break;	// DXT2.
-		case 0x00000009:	fmt = tPixelFormat::BC2DXT2DXT3;	break;	// DXT3. BC2.
-		case 0x0000000A:	fmt = tPixelFormat::BC3DXT4DXT5;	alpha = tAlphaMode::Premultiplied;	break;	// DXT4.
-		case 0x0000000B:	fmt = tPixelFormat::BC3DXT4DXT5;	break;	// DXT5. BC3.
-		case 0x0000000C:	fmt = tPixelFormat::BC4ATI1;		break;	// BC4.
-		case 0x0000000D:	fmt = tPixelFormat::BC5ATI2;		break;	// BC5.
-		case 0x0000000E:	fmt = tPixelFormat::BC6U;			break;	// BC6. Not sure whether signed or unsigned. Assuming unsigned.
-		case 0x0000000F:	fmt = tPixelFormat::BC7;			break;	// BC7.
+			case 0x00000007:	fmt = tPixelFormat::BC1DXT1;		break;	// DXT1. BC1.
+			case 0x00000008:	fmt = tPixelFormat::BC2DXT2DXT3;	alpha = tAlphaMode::Premultiplied;	break;	// DXT2.
+			case 0x00000009:	fmt = tPixelFormat::BC2DXT2DXT3;	break;	// DXT3. BC2.
+			case 0x0000000A:	fmt = tPixelFormat::BC3DXT4DXT5;	alpha = tAlphaMode::Premultiplied;	break;	// DXT4.
+			case 0x0000000B:	fmt = tPixelFormat::BC3DXT4DXT5;	break;	// DXT5. BC3.
+			case 0x0000000C:	fmt = tPixelFormat::BC4ATI1;		break;	// BC4.
+			case 0x0000000D:	fmt = tPixelFormat::BC5ATI2;		break;	// BC5.
+			case 0x0000000E:	fmt = tPixelFormat::BC6U;			break;	// BC6. Not sure whether signed or unsigned. Assuming unsigned.
+			case 0x0000000F:	fmt = tPixelFormat::BC7;			break;	// BC7.
 
-		case 0x00000016:	fmt = tPixelFormat::ETC2RGB;		break;	// ETC2 RGB.
-		case 0x00000017:	fmt = tPixelFormat::ETC2RGBA;		break;	// ETC2 RGBA.
-		case 0x00000018:	fmt = tPixelFormat::ETC2RGBA1;		break;	// ETC2 RGB A1.
-		case 0x00000019:	fmt = tPixelFormat::EACR11;			break;	// EAC R11.
-		case 0x0000001A:	fmt = tPixelFormat::EACRG11;		break;	// EAC RG11.
+			case 0x00000016:	fmt = tPixelFormat::ETC2RGB;		break;	// ETC2 RGB.
+			case 0x00000017:	fmt = tPixelFormat::ETC2RGBA;		break;	// ETC2 RGBA.
+			case 0x00000018:	fmt = tPixelFormat::ETC2RGBA1;		break;	// ETC2 RGB A1.
+			case 0x00000019:	fmt = tPixelFormat::EACR11;			break;	// EAC R11.
+			case 0x0000001A:	fmt = tPixelFormat::EACRG11;		break;	// EAC RG11.
 
-		case 0x0000001B:	fmt = tPixelFormat::ASTC4X4;		break;	// ASTC_4x4.
-		case 0x0000001C:	fmt = tPixelFormat::ASTC5X4;		break;	// ASTC_5x4.
-		case 0x0000001D:	fmt = tPixelFormat::ASTC5X5;		break;	// ASTC_5x5.
-		case 0x0000001E:	fmt = tPixelFormat::ASTC6X5;		break;	// ASTC_6x5.
-		case 0x0000001F:	fmt = tPixelFormat::ASTC6X6;		break;	// ASTC_6x6.
-		case 0x00000020:	fmt = tPixelFormat::ASTC8X5;		break;	// ASTC_8x5.
-		case 0x00000021:	fmt = tPixelFormat::ASTC8X6;		break;	// ASTC_8x6.
-		case 0x00000022:	fmt = tPixelFormat::ASTC8X8;		break;	// ASTC_8x8.
-		case 0x00000023:	fmt = tPixelFormat::ASTC10X5;		break;	// ASTC_10x5.
-		case 0x00000024:	fmt = tPixelFormat::ASTC10X6;		break;	// ASTC_10x6.
-		case 0x00000025:	fmt = tPixelFormat::ASTC10X8;		break;	// ASTC_10x8.
-		case 0x00000026:	fmt = tPixelFormat::ASTC10X10;		break;	// ASTC_10x10.
-		case 0x00000027:	fmt = tPixelFormat::ASTC12X10;		break;	// ASTC_12x10.
-		case 0x00000028:	fmt = tPixelFormat::ASTC12X12;		break;	// ASTC_12x12.
+			case 0x0000001B:	fmt = tPixelFormat::ASTC4X4;		break;	// ASTC_4x4.
+			case 0x0000001C:	fmt = tPixelFormat::ASTC5X4;		break;	// ASTC_5x4.
+			case 0x0000001D:	fmt = tPixelFormat::ASTC5X5;		break;	// ASTC_5x5.
+			case 0x0000001E:	fmt = tPixelFormat::ASTC6X5;		break;	// ASTC_6x5.
+			case 0x0000001F:	fmt = tPixelFormat::ASTC6X6;		break;	// ASTC_6x6.
+			case 0x00000020:	fmt = tPixelFormat::ASTC8X5;		break;	// ASTC_8x5.
+			case 0x00000021:	fmt = tPixelFormat::ASTC8X6;		break;	// ASTC_8x6.
+			case 0x00000022:	fmt = tPixelFormat::ASTC8X8;		break;	// ASTC_8x8.
+			case 0x00000023:	fmt = tPixelFormat::ASTC10X5;		break;	// ASTC_10x5.
+			case 0x00000024:	fmt = tPixelFormat::ASTC10X6;		break;	// ASTC_10x6.
+			case 0x00000025:	fmt = tPixelFormat::ASTC10X8;		break;	// ASTC_10x8.
+			case 0x00000026:	fmt = tPixelFormat::ASTC10X10;		break;	// ASTC_10x10.
+			case 0x00000027:	fmt = tPixelFormat::ASTC12X10;		break;	// ASTC_12x10.
+			case 0x00000028:	fmt = tPixelFormat::ASTC12X12;		break;	// ASTC_12x12.
 
-		case 0x00000010:	// UYVY.
-		case 0x00000011:	// YUY2.
-		case 0x00000012:	// BW1bpp.
-		case 0x00000013:	// R9G9B9E5 Shared Exponent.
-		case 0x00000014:	// RGBG8888.
-		case 0x00000015:	// GRGB8888.
+			case 0x00000010:	// UYVY.
+			case 0x00000011:	// YUY2.
+			case 0x00000012:	// BW1bpp.
+			case 0x00000013:	// R9G9B9E5 Shared Exponent.
+			case 0x00000014:	// RGBG8888.
+			case 0x00000015:	// GRGB8888.
 
-		case 0x00000029:	// ASTC_3x3x3.
-		case 0x0000002A:	// ASTC_4x3x3.
-		case 0x0000002B:	// ASTC_4x4x3.
-		case 0x0000002C:	// ASTC_4x4x4.
-		case 0x0000002D:	// ASTC_5x4x4.
-		case 0x0000002E:	// ASTC_5x5x4.
-		case 0x0000002F:	// ASTC_5x5x5.
-		case 0x00000030:	// ASTC_6x5x5.
-		case 0x00000031:	// ASTC_6x6x5.
-		case 0x00000032:	// ASTC_6x6x6.
+			case 0x00000029:	// ASTC_3x3x3.
+			case 0x0000002A:	// ASTC_4x3x3.
+			case 0x0000002B:	// ASTC_4x4x3.
+			case 0x0000002C:	// ASTC_4x4x4.
+			case 0x0000002D:	// ASTC_5x4x4.
+			case 0x0000002E:	// ASTC_5x5x4.
+			case 0x0000002F:	// ASTC_5x5x5.
+			case 0x00000030:	// ASTC_6x5x5.
+			case 0x00000031:	// ASTC_6x6x5.
+			case 0x00000032:	// ASTC_6x6x6.
 
-		default:
-			alpha = tAlphaMode::Unspecified;
-			return false;
+			default:
+				alpha = tAlphaMode::Unspecified;
+				return false;
+		}
+	}
+	else
+	{
+		// WIP.
 	}
 
 	return true;
@@ -372,6 +381,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 
 	int height = 0;
 	int width = 0;
+	int depth = 1;
 	int mipmapCount = 0;
 	uint8 flagsV12A = 0;
 	uint8 flagsV12B = 0;
@@ -383,15 +393,19 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	uint32 grnMask = 0;
 	uint32 bluMask = 0;
 	uint32 alpMask = 0;
-	uint32 fourCC = 0;
+	uint32 fourCC = 'ENON';
 	int numSurfaces = 1;
+	int numFaces = 1;
+	tColourProfile colourProfile = tColourProfile::Unspecified;
+	int channelType = 0;		// 0 = UNORM Byte.
+	int metaDataSize = 0;
 
 	switch (PVRVersion)
 	{
 		case 1:
 		{
 			tPVR::HeaderV1* header = (tPVR::HeaderV1*)pvrData;
-			tPrintf("PVR Header pixel format: %d\n", header->PixelFormat);
+			tPrintf("PVR Header pixel format: 0x%08X\n", header->PixelFormat);
 			tPVR::DeterminePixelFormatFromV1V2Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
 			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
 
@@ -413,7 +427,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		case 2:
 		{
 			tPVR::HeaderV2* header = (tPVR::HeaderV2*)pvrData;
-			tPrintf("PVR Header pixel format: %d\n", header->PixelFormat);
+			tPrintf("PVR Header pixel format: 0x%08X\n", header->PixelFormat);
 			tPVR::DeterminePixelFormatFromV1V2Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
 			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
 
@@ -437,11 +451,32 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		case 3:
 		{
 			tPVR::HeaderV3* header = (tPVR::HeaderV3*)pvrData;
-			tPrintf("PVR Header pixel format: %d\n", header->PixelFormat);
+			tPrintf("PVR Header pixel format: 0x%08X\n", header->PixelFormat);
+			tPrintf
+			(
+				"PVR Header pixel format: %c %c %c %c\n",
+				(header->PixelFormat >> 24) & 0x000000FF,
+				(header->PixelFormat >> 16) & 0x000000FF,
+				(header->PixelFormat >> 8)  & 0x000000FF,
+				(header->PixelFormat >> 0)  & 0x000000FF
+			);
+
 			tPVR::DeterminePixelFormatFromV3Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
 			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
 
 			flagsV3 = header->Flags;
+			if (header->ColourSpace == 0)
+				colourProfile = tColourProfile::lRGB;
+			else if (header->ColourSpace == 1)
+				colourProfile = tColourProfile::sRGB;
+			channelType = header->ChannelType;
+			height = header->Height;
+			width = header->Width;
+			depth = header->Depth;
+			numSurfaces = header->NumSurfaces;
+			numFaces = header->NumFaces;
+			mipmapCount = header->NumMipmaps;
+			metaDataSize = header->MetaDataSize;
 			break;
 		}
 
@@ -452,6 +487,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 
 	tPrintf("PVR height: %d\n", height);
 	tPrintf("PVR width: %d\n", width);
+	tPrintf("PVR depth: %d\n", depth);
 	tPrintf("PVR mipmapCount: %d\n", mipmapCount);
 	tPrintf("PVR flagsV12A: %08!1b\n", flagsV12A);
 	tPrintf("PVR flagsV12B: %08!1b\n", flagsV12B);
@@ -465,6 +501,10 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	tPrintf("PVR alpMask: %08!4b\n", alpMask);
 	tPrintf("PVR fourCC: %08X (%c %c %c %c)\n", fourCC, (fourCC>>0)&0xFF, (fourCC>>8)&0xFF, (fourCC>>16)&0xFF, (fourCC>>24)&0xFF);
 	tPrintf("PVR numSurfaces: %d\n", numSurfaces);
+	tPrintf("PVR numFaces: %d\n", numFaces);
+	tPrintf("PVR colourProfile: %s\n", tGetColourProfileShortName(colourProfile));
+	tPrintf("PVR channelType: %d\n", channelType);
+	tPrintf("PVR metaDataSize: %d\n", metaDataSize);
 
 	return false;
 }

@@ -2279,4 +2279,26 @@ tTestUnit(ImagePVR2)
 }
 
 
+tTestUnit(ImagePVR3)
+{
+	if (!tSystem::tDirExists("TestData/Images/PVR_V3/"))
+		tSkipUnit(ImagePicture)
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/PVR_V3/");
+
+	uint32 decode = tImagePVR::LoadFlag_Decode;
+	uint32 revrow = tImagePVR::LoadFlag_ReverseRowOrder;
+	uint32 spread = tImagePVR::LoadFlag_SpreadLuminance;
+
+	tPrintf("Testing PVR V3 Loading/Decoding\n\n");
+
+	PVRLoadDecodeSave("R5G6B5_UNORM_LIN_RGB_T.pvr",				decode | revrow);
+	PVRLoadDecodeSave("A4R4G4B4_UNORM_LIN_RGBA_T.pvr",			decode | revrow);
+	PVRLoadDecodeSave("A1R5G5B5_UNORM_LIN_RGBA_T.pvr",			decode | revrow);
+	PVRLoadDecodeSave("R5G5B5A1_UNORM_LIN_RGBA_T.pvr",			decode | revrow);
+
+	tSystem::tSetCurrentDir(origDir);
+}
+
+
 }

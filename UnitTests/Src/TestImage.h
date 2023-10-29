@@ -39,4 +39,5 @@ namespace tUnitTest
 	tTestUnit(ImageASTC);
 	tTestUnit(ImagePKM);
 	tTestUnit(ImagePVR2);
+	tTestUnit(ImagePVR3);
 }
