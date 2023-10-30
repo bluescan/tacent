@@ -1442,17 +1442,17 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("B8G8R8A8_RGBA_Legacy.dds",		decode | revrow | autoga);
 	DDSLoadDecodeSave("B8G8R8A8_RGBA_Modern.dds",		decode | revrow | autoga);
 
-	// B5G6R5
-	DDSLoadDecodeSave("B5G6R5_RGB_Legacy.dds",			decode | revrow | autoga);
-	DDSLoadDecodeSave("B5G6R5_RGB_Modern.dds",			decode | revrow | autoga);
+	// G3B5R5G3
+	DDSLoadDecodeSave("G3B5R5G3_RGB_Legacy.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("G3B5R5G3_RGB_Modern.dds",		decode | revrow | autoga);
 
-	// B4G4R4A4
-	DDSLoadDecodeSave("B4G4R4A4_RGBA_Legacy.dds",		decode | revrow | autoga);
-	DDSLoadDecodeSave("B4G4R4A4_RGBA_Modern.dds",		decode | revrow | autoga);
+	// G4B4A4R4
+	DDSLoadDecodeSave("G4B4A4R4_RGBA_Legacy.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("G4B4A4R4_RGBA_Modern.dds",		decode | revrow | autoga);
 
-	// B5G5R5A1
-	DDSLoadDecodeSave("B5G5R5A1_RGBA_Legacy.dds",		decode | revrow | autoga);
-	DDSLoadDecodeSave("B5G5R5A1_RGBA_Modern.dds",		decode | revrow | autoga);
+	// G3B5A1R5G2
+	DDSLoadDecodeSave("G3B5A1R5G2_RGBA_Legacy.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("G3B5A1R5G2_RGBA_Modern.dds",		decode | revrow | autoga);
 
 	//
 	// Uncompressed Floating-Point (HDR) Formats.
@@ -1523,9 +1523,9 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("L8_L_Legacy.dds",				revrow);
 	DDSLoadDecodeSave("B8G8R8_RGB_Legacy.dds");						// Only legacy supports this format.
 	DDSLoadDecodeSave("B8G8R8A8_RGBA_Modern.dds");
-	DDSLoadDecodeSave("B5G6R5_RGB_Modern.dds",			revrow);
-	DDSLoadDecodeSave("B4G4R4A4_RGBA_Modern.dds",		revrow);
-	DDSLoadDecodeSave("B5G5R5A1_RGBA_Modern.dds");
+	DDSLoadDecodeSave("G3B5R5G3_RGB_Modern.dds",		revrow);
+	DDSLoadDecodeSave("G4B4A4R4_RGBA_Modern.dds",		revrow);
+	DDSLoadDecodeSave("G3B5A1R5G2_RGBA_Modern.dds");
 
 	DDSLoadDecodeSave("R16f_R_Modern.dds",				revrow);
 	DDSLoadDecodeSave("R16f_R_Modern.dds");
