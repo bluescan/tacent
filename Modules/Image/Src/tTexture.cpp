@@ -159,8 +159,8 @@ bool tTexture::Set(tPicture& image, bool generateMipmaps, tPixelFormat pixelForm
 			ProcessImageTo_R8G8B8_Or_R8G8B8A8(image, pixelFormat, generateMipmaps, quality);
 			break;
 
-		case tPixelFormat::B5G6R5:
-			ProcessImageTo_B5G6R5(image, generateMipmaps, quality);
+		case tPixelFormat::G3B5R5G3:
+			ProcessImageTo_G3B5R5G3(image, generateMipmaps, quality);
 			break;
 
 		case tPixelFormat::BC1DXT1A:
@@ -230,7 +230,7 @@ void tTexture::ProcessImageTo_R8G8B8_Or_R8G8B8A8(tPicture& image, tPixelFormat f
 }
 
 
-void tTexture::ProcessImageTo_B5G6R5(tPicture& image, bool generateMipmaps, tQuality quality)
+void tTexture::ProcessImageTo_G3B5R5G3(tPicture& image, bool generateMipmaps, tQuality quality)
 {
 	int width = image.GetWidth();
 	int height = image.GetHeight();
@@ -260,7 +260,7 @@ void tTexture::ProcessImageTo_B5G6R5(tPicture& image, bool generateMipmaps, tQua
 			dstPixel += bytesPerPixel;
 		}
 
-		tLayer* layer = new tLayer(tPixelFormat::B5G6R5, width, height, layerData, true);
+		tLayer* layer = new tLayer(tPixelFormat::G3B5R5G3, width, height, layerData, true);
 		tAssert(numDataBytes == layer->GetDataSize());
 		Layers.Append(layer);
 

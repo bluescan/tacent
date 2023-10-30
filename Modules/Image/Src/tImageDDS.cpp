@@ -636,15 +636,15 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 			break;
 
 		case tDDS::DXGIFMT_B5G6R5_UNORM:			// Formats without explicit sRGB variants are considered sRGB.
-			format = tPixelFormat::B5G6R5;
+			format = tPixelFormat::G3B5R5G3;
 			break;
 
 		case tDDS::DXGIFMT_B4G4R4A4_UNORM:
-			format = tPixelFormat::B4G4R4A4;
+			format = tPixelFormat::G4B4A4R4;
 			break;
 
 		case tDDS::DXGIFMT_B5G5R5A1_UNORM:
-			format = tPixelFormat::B5G5R5A1;
+			format = tPixelFormat::G3B5A1R5G2;
 			break;
 
 		case tDDS::DXGIFMT_R16_FLOAT:
@@ -940,13 +940,13 @@ void tDDS::GetFormatInfo_FromComponentMasks(tPixelFormat& format, tColourProfile
 				format = tPixelFormat::L8;
 			break;
 
-		case 16:		// Supports B5G6R5, B4G4R4A4, and B5G5R5A1.
+		case 16:		// Supports G3B5R5G3, G4B4A4R4, and G3B5A1R5G2.
 			if (isRGBA && (mskB == 0x001F) && (mskG == 0x03E0) && (mskR == 0x7C00) && (mskA == 0x8000))
-				format = tPixelFormat::B5G5R5A1;
+				format = tPixelFormat::G3B5A1R5G2;
 			else if (isRGBA && (mskB == 0x000F) && (mskG == 0x00F0) && (mskR == 0x0F00) && (mskA == 0xF000))
-				format = tPixelFormat::B4G4R4A4;
+				format = tPixelFormat::G4B4A4R4;
 			else if (isRGB && (mskB == 0x001F) && (mskG == 0x07E0) && (mskR == 0xF800))
-				format = tPixelFormat::B5G6R5;
+				format = tPixelFormat::G3B5R5G3;
 			break;
 
 		case 24:		// Supports B8G8R8 and R8G8B8.

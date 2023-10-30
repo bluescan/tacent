@@ -136,7 +136,7 @@ private:
 	int DetermineBlockEncodeQualityLevel(tQuality);
 
 	void ProcessImageTo_R8G8B8_Or_R8G8B8A8(tPicture&, tPixelFormat, bool generateMipmaps, tQuality);
-	void ProcessImageTo_B5G6R5(tPicture&, bool generateMipmaps, tQuality);
+	void ProcessImageTo_G3B5R5G3(tPicture&, bool generateMipmaps, tQuality);
 	void ProcessImageTo_BCTC(tPicture&, tPixelFormat, bool generateMipmaps, tQuality);
 
 	bool Opaque = true;										// Only true if the texture is completely opaque.

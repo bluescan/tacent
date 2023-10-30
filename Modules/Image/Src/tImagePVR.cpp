@@ -216,9 +216,9 @@ bool tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alp
 	alpha = tAlphaMode::Normal;
 	switch (headerFmt)
 	{
-		case 0x00:	fmt = tPixelFormat::B4G4R4A4;		break;	// ARGB 4444.
-		case 0x01:	fmt = tPixelFormat::B5G5R5A1;		break;	// ARGB 1555.
-		case 0x02:	fmt = tPixelFormat::B5G6R5;			break;	// RGB 565.
+		case 0x00:	fmt = tPixelFormat::G4B4A4R4;		break;	// ARGB 4444 (LE Naming).
+		case 0x01:	fmt = tPixelFormat::G3B5A1R5G2;		break;	// ARGB 1555 (LE Naming).
+		case 0x02:	fmt = tPixelFormat::G3B5R5G3;		break;	// RGB 565 (LE Naming). This is a slightly better name than B5G56R because at least it matches the memory order if you swap the two bytes.
 
 		case 0x04:	fmt = tPixelFormat::R8G8B8;			break; 	// RGB 888.
 		case 0x05:	fmt = tPixelFormat::B8G8R8A8;		break;	// ARGB 8888.
@@ -227,10 +227,10 @@ bool tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alp
 
 		case 0x0C:	fmt = tPixelFormat::PVRBPP2;		break;	// PVRTC2.
 		case 0x0D:	fmt = tPixelFormat::PVRBPP4;		break;	// PVRTC4.
-		case 0x10:	fmt = tPixelFormat::B4G4R4A4;		break;	// ARGB 4444.
-		case 0x11:	fmt = tPixelFormat::B5G5R5A1;		break;	// ARGB 1555.
+		case 0x10:	fmt = tPixelFormat::G4B4A4R4;		break;	// ARGB 4444 (LE Naming).
+		case 0x11:	fmt = tPixelFormat::G3B5A1R5G2;		break;	// ARGB 1555 (LE Naming).
 		case 0x12:	fmt = tPixelFormat::B8G8R8A8;		break;	// ARGB 8888.
-		case 0x13:	fmt = tPixelFormat::B5G6R5;			break;	// RGB 565.
+		case 0x13:	fmt = tPixelFormat::G3B5R5G3;		break;	// RGB 565.
 		case 0x15:	fmt = tPixelFormat::R8G8B8;			break;	// RGB 888.
 		case 0x16:  fmt = tPixelFormat::L8;				break;	// I 8.
 		case 0x17:  fmt = tPixelFormat::A8L8;			break;	// AI 88.
@@ -364,6 +364,28 @@ bool tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 	else
 	{
 		// WIP.
+		tPrintf("PVR Header pixel format 64  : 0x%08|64X\n", headerFmt64);
+		tPrintf("PVR Header pixel format 32MS: 0x%08|32X\n", fmtMS32);
+		tPrintf("PVR Header pixel format 32LS: 0x%08|32X\n", fmtLS32);
+		tPrintf
+		(
+			"PVR Header pixel format LS32: %c %c %c %c\n",
+			(fmtLS32 >> 24) & 0x000000FF,
+			(fmtLS32 >> 16) & 0x000000FF,
+			(fmtLS32 >> 8)  & 0x000000FF,
+			(fmtLS32 >> 0)  & 0x000000FF
+		);
+
+		tPrintf
+		(
+			"PVR Header pixel format MS32: %d %d %d %d\n",
+			(fmtMS32 >> 24) & 0x000000FF,
+			(fmtMS32 >> 16) & 0x000000FF,
+			(fmtMS32 >> 8)  & 0x000000FF,
+			(fmtMS32 >> 0)  & 0x000000FF
+		);
+
+		fmt = tPixelFormat::G3B5A1R5G2;
 	}
 
 	return true;
@@ -452,14 +474,14 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		{
 			tPVR::HeaderV3* header = (tPVR::HeaderV3*)pvrData;
 			tPrintf("PVR Header pixel format: 0x%08X\n", header->PixelFormat);
-			tPrintf
-			(
-				"PVR Header pixel format: %c %c %c %c\n",
-				(header->PixelFormat >> 24) & 0x000000FF,
-				(header->PixelFormat >> 16) & 0x000000FF,
-				(header->PixelFormat >> 8)  & 0x000000FF,
-				(header->PixelFormat >> 0)  & 0x000000FF
-			);
+//			tPrintf
+//			(
+//				"PVR Header pixel format: %c %c %c %c\n",
+//				(header->PixelFormat >> 24) & 0x000000FF,
+//				(header->PixelFormat >> 16) & 0x000000FF,
+//				(header->PixelFormat >> 8)  & 0x000000FF,
+//				(header->PixelFormat >> 0)  & 0x000000FF
+//			);
 
 			tPVR::DeterminePixelFormatFromV3Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
 			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));

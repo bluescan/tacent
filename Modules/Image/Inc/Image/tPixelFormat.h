@@ -19,8 +19,10 @@ namespace tImage
 
 
 // Unlike DirectX, which assumes all machines are little-endian, the enumeration below specifies the components in the
-// order they appear in memory. To make matters worse, Microsoft's R8G8B8 format is B8R8G8 in memory, but their R5G6B5
-// format is correctly the same order in memory. So a little inconsistent there. BC stands for Block Compression.
+// order they appear _in memory_. This means formats commonly called things like B5G6R5 are actually G3R5B5G3. The
+// latter is what they are referred to in Tacent, This inconsistent naming gets worse since when things are byte-aligned
+// most vendor pixel formats are actually correct for the mempry representation. In any case, in Tacent, it's always the
+// in-memory representation that gets named. BC stands for Block Compression.
 //
 // A note regarding sRGB. We are _not_ indicating via the pixel format what space the colour encoded by the format is
 // in. Tacent separates the encoding (the pixel format) from how the encoded data is to be interpreted. This is in
@@ -53,9 +55,9 @@ enum class tPixelFormat
 	R8G8B8A8,							// 32  bit. Full alpha. Matches GL_RGBA source ordering. Not efficient. Most drivers will swizzle to ABGR.
 	B8G8R8,								// 24  bit. Full colour. No alpha. Matches GL_BGR source ordering. Efficient. Most drivers do not need to swizzle.
 	B8G8R8A8,							// 32  bit. Full alpha. Matches GL_BGRA source ordering. Most drivers do not need to swizzle.
-	B5G6R5,								// 16  bit. No alpha. The truth is in memory this is actually G3B5R5G3, but no-one calls it that.
-	B4G4R4A4,							// 16  bit. 12 colour bits. 4 bit alpha.
-	B5G5R5A1,							// 16  bit. 15 colour bits. Binary alpha.
+	G3B5R5G3,							// 16  bit. No alpha. Incorrectly AKA B5G6R5. The truth is in memory it is GGGBBBBB RRRRRGGG -> this is G3B5R5G3.
+	G4B4A4R4,							// 16  bit. 12 colour bits. 4 bit alpha. Incorrectly AKA B4G4R4A4.
+	G3B5A1R5G2,							// 16  bit. 15 colour bits. Binary alpha. Incorrectly AKA B5G5R5A1.
 	A8L8,								// 16  bit. Alpha and Luminance.
 	A8,									// 8   bit. Alpha only.
 	L8,									// 8   bit. Luminance only.
@@ -406,8 +408,8 @@ inline bool tImage::tIsAlphaFormat(tPixelFormat format)
 	{
 		case tPixelFormat::R8G8B8A8:
 		case tPixelFormat::B8G8R8A8:
-		case tPixelFormat::B4G4R4A4:
-		case tPixelFormat::B5G5R5A1:
+		case tPixelFormat::G4B4A4R4:
+		case tPixelFormat::G3B5A1R5G2:
 		case tPixelFormat::A8L8:
 		case tPixelFormat::R16G16B16A16F:
 		case tPixelFormat::R32G32B32A32F:

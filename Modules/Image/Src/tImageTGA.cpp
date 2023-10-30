@@ -94,7 +94,7 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 	}
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 	if (bitDepth == 16)
-		PixelFormatSrc = tPixelFormat::B5G5R5A1;
+		PixelFormatSrc = tPixelFormat::G3B5A1R5G2;
 	else if (bitDepth == 24)
 		PixelFormatSrc = tPixelFormat::R8G8B8;
 

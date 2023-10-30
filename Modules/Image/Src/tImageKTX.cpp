@@ -316,7 +316,7 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 					break;
 
 				case GL_UNSIGNED_SHORT_5_6_5_REV:
-					format = tPixelFormat::B5G6R5;
+					format = tPixelFormat::G3B5R5G3;
 					break;
 			}
 			break;
@@ -350,7 +350,7 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 					break;
 
 				case GL_UNSIGNED_SHORT_5_6_5:
-					format = tPixelFormat::B5G6R5;
+					format = tPixelFormat::G3B5R5G3;
 					break;
 			}
 			break;
@@ -364,11 +364,11 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 					break;
 
 				case GL_UNSIGNED_SHORT_4_4_4_4:
-					format = tPixelFormat::B4G4R4A4;
+					format = tPixelFormat::G4B4A4R4;
 					break;
 
 				case GL_UNSIGNED_SHORT_5_5_5_1:
-					format = tPixelFormat::B5G5R5A1;
+					format = tPixelFormat::G3B5A1R5G2;
 					break;
 			}
 			break;
@@ -470,15 +470,15 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 			break;
 
 		case VK_FORMAT_B5G6R5_UNORM_PACK16:
-			format = tPixelFormat::B5G6R5;
+			format = tPixelFormat::G3B5R5G3;
 			break;
 
 		case VK_FORMAT_B4G4R4A4_UNORM_PACK16:
-			format = tPixelFormat::B4G4R4A4;
+			format = tPixelFormat::G4B4A4R4;
 			break;
 
 		case VK_FORMAT_B5G5R5A1_UNORM_PACK16:
-			format = tPixelFormat::B5G5R5A1;
+			format = tPixelFormat::G3B5A1R5G2;
 			break;
 
 		case VK_FORMAT_R16_SFLOAT:

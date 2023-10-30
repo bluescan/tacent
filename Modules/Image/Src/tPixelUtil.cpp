@@ -172,12 +172,13 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 			}
 			break;
 
-		case tPixelFormat::B5G6R5:
+		case tPixelFormat::G3B5R5G3:
 			decoded4i = new tColour4i[w*h];
 			for (int ij = 0; ij < w*h; ij++)
 			{
 				// On an LE machine casting to a uint16 effectively swaps the bytes when doing bit ops.
 				// This means red will be in the most significant bits -- that's why it looks backwards.
+				// GGGBBBBB RRRRRGGG in memory is RRRRRGGG GGGBBBBB as a uint16.
 				uint16 u = *((uint16*)(src+ij*2));
 
 				uint8 r = (u         ) >> 11;		// 1111 1000 0000 0000 >> 11.
@@ -200,17 +201,18 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 			}
 			break;
 
-		case tPixelFormat::B4G4R4A4:
+		case tPixelFormat::G4B4A4R4:
 			decoded4i = new tColour4i[w*h];
 			for (int ij = 0; ij < w*h; ij++)
 			{
+				// GGGGBBBB AAAARRRR in memory is AAAARRRR GGGGBBBB as a uint16.
 				uint16 u = *((uint16*)(src+ij*2));
 				uint8 a = (u         ) >> 12;		// 1111 0000 0000 0000 >> 12.
 				uint8 r = (u & 0x0F00) >> 8;		// 0000 1111 0000 0000 >> 8.
 				uint8 g = (u & 0x00F0) >> 4;		// 0000 0000 1111 0000 >> 4.
 				uint8 b = (u & 0x000F)     ;		// 0000 0000 0000 1111 >> 0.
 
-				// Normalize to range.
+				// Normalize to range. See note above.
 				float af = float(a) / 15.0f;		// Max is 2^4 - 1.
 				float rf = float(r) / 15.0f;
 				float gf = float(g) / 15.0f;
@@ -221,17 +223,18 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 			}
 			break;
 
-		case tPixelFormat::B5G5R5A1:
+		case tPixelFormat::G3B5A1R5G2:
 			decoded4i = new tColour4i[w*h];
 			for (int ij = 0; ij < w*h; ij++)
 			{
+				// GGGBBBBB ARRRRRGG in memory is ARRRRRGG GGGBBBBB as a uint16.
 				uint16 u = *((uint16*)(src+ij*2));
 				bool  a = (u & 0x8000);				// 1000 0000 0000 0000.
 				uint8 r = (u & 0x7C00) >> 10;		// 0111 1100 0000 0000 >> 10.
 				uint8 g = (u & 0x03E0) >> 5;		// 0000 0011 1110 0000 >> 5.
 				uint8 b = (u & 0x001F)     ;		// 0000 0000 0001 1111 >> 0.
 
-				// Normalize to range.
+				// Normalize to range. See note above.
 				float rf = float(r) / 31.0f;		// Max is 2^5 - 1.
 				float gf = float(g) / 31.0f;
 				float bf = float(b) / 31.0f;
