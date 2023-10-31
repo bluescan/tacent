@@ -82,8 +82,10 @@ namespace tPVR
 	};
 	#pragma pack(pop)
 
-	bool DeterminePixelFormatFromV1V2Header(tPixelFormat&, tAlphaMode&, uint8 headerFmt);
-	bool DeterminePixelFormatFromV3Header(tPixelFormat&, tAlphaMode&, uint64 headerFmt);
+	// If the pixel format is returned unspecified the headerFmt is not supported or was invalid.
+	// In this case the returned alpha-mode is meaningless and has no specified value.
+	void DeterminePixelFormatFromV1V2Header(tPixelFormat&, tAlphaMode&, uint8 headerFmt);
+	void DeterminePixelFormatFromV3Header(tPixelFormat&, tAlphaMode&, uint64 headerFmt);
 }
 
 
@@ -210,7 +212,7 @@ int tImagePVR::DetermineVersionFromFirstFourBytes(const uint8 bytes[4])
 }
 
 
-bool tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alpha, uint8 headerFmt)
+void tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alpha, uint8 headerFmt)
 {
 	fmt = tPixelFormat::Invalid;
 	alpha = tAlphaMode::Normal;
@@ -275,15 +277,12 @@ bool tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alp
 		case 0x45:		// UYVY.
 		case 0x46:		// YUY2.
 		default:
-			alpha = tAlphaMode::Unspecified;
-			return false;
+			break;
 	}
-
-	return true;
 }
 
 
-bool tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha, uint64 headerFmt64)
+void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha, uint64 headerFmt64)
 {
 	fmt = tPixelFormat::Invalid;
 	alpha = tAlphaMode::Normal;
@@ -344,7 +343,6 @@ bool tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 			case 0x00000013:	// R9G9B9E5 Shared Exponent.
 			case 0x00000014:	// RGBG8888.
 			case 0x00000015:	// GRGB8888.
-
 			case 0x00000029:	// ASTC_3x3x3.
 			case 0x0000002A:	// ASTC_4x3x3.
 			case 0x0000002B:	// ASTC_4x4x3.
@@ -355,40 +353,51 @@ bool tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 			case 0x00000030:	// ASTC_6x5x5.
 			case 0x00000031:	// ASTC_6x6x5.
 			case 0x00000032:	// ASTC_6x6x6.
-
 			default:
-				alpha = tAlphaMode::Unspecified;
-				return false;
+				break;
 		}
 	}
 	else
 	{
+		switch (fmtLS32)
+		{
+			case 'abgr':
+			{
+				switch (fmtMS32)
+				{
+					case 0x01050505:	fmt = tPixelFormat::G3B5A1R5G2;	break;	// 1 5 5 5.
+					case 0x04040404:	fmt = tPixelFormat::G4B4A4R4;	break;	// 4 4 4 4.
+				}
+				break;
+			}
+
+			case '\0bgr':
+			{
+				switch (fmtMS32)
+				{
+					case 0x00050605:	fmt = tPixelFormat::G3B5R5G3;	break;	// 5 6 5.
+				}
+				break;
+			}
+		}
+
 		// WIP.
 		tPrintf("PVR Header pixel format 64  : 0x%08|64X\n", headerFmt64);
 		tPrintf("PVR Header pixel format 32MS: 0x%08|32X\n", fmtMS32);
 		tPrintf("PVR Header pixel format 32LS: 0x%08|32X\n", fmtLS32);
-		tPrintf
-		(
-			"PVR Header pixel format LS32: %c %c %c %c\n",
-			(fmtLS32 >> 24) & 0x000000FF,
-			(fmtLS32 >> 16) & 0x000000FF,
-			(fmtLS32 >> 8)  & 0x000000FF,
-			(fmtLS32 >> 0)  & 0x000000FF
-		);
 
-		tPrintf
-		(
-			"PVR Header pixel format MS32: %d %d %d %d\n",
-			(fmtMS32 >> 24) & 0x000000FF,
-			(fmtMS32 >> 16) & 0x000000FF,
-			(fmtMS32 >> 8)  & 0x000000FF,
-			(fmtMS32 >> 0)  & 0x000000FF
-		);
+		char c3 = ((fmtLS32 >> 24) & 0x000000FF) ? ((fmtLS32 >> 24) & 0x000000FF) : '0';
+		char c2 = ((fmtLS32 >> 16) & 0x000000FF) ? ((fmtLS32 >> 16) & 0x000000FF) : '0';
+		char c1 = ((fmtLS32 >>  8) & 0x000000FF) ? ((fmtLS32 >>  8) & 0x000000FF) : '0';
+		char c0 = ((fmtLS32 >>  0) & 0x000000FF) ? ((fmtLS32 >>  0) & 0x000000FF) : '0';
+		tPrintf("PVR Header pixel format LS32: %c %c %c %c\n", c3, c2, c1, c0);
 
-		fmt = tPixelFormat::G3B5A1R5G2;
+		char b3 = (fmtMS32 >> 24) & 0x000000FF;
+		char b2 = (fmtMS32 >> 16) & 0x000000FF;
+		char b1 = (fmtMS32 >>  8) & 0x000000FF;
+		char b0 = (fmtMS32 >>  0) & 0x000000FF;
+		tPrintf("PVR Header pixel format MS32: %d %d %d %d\n", b3, b2, b1, b0);
 	}
-
-	return true;
 }
 
 

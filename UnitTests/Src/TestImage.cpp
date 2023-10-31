@@ -2224,9 +2224,7 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0)
 	tPixelFormat fileformat = tGetPixelFormat(formatname.Chr());
 	tPixelFormat pvrformat = pvr.GetPixelFormat();
 	tPixelFormat pvrformatsrc = pvr.GetPixelFormatSrc();
-
-	// WIP
-	// tRequire(fileformat == pvrformatsrc);
+	tRequire(fileformat == pvrformatsrc);
 
 	// WIP
 	//if (loadFlags & tImagePVR::LoadFlag_Decode)
@@ -2292,10 +2290,9 @@ tTestUnit(ImagePVR3)
 
 	tPrintf("Testing PVR V3 Loading/Decoding\n\n");
 
-//	PVRLoadDecodeSave("R5G6B5_UNORM_LIN_RGB_T.pvr",				decode | revrow);
-//	PVRLoadDecodeSave("A4R4G4B4_UNORM_LIN_RGBA_T.pvr",			decode | revrow);
-//	PVRLoadDecodeSave("A1R5G5B5_UNORM_LIN_RGBA_T.pvr",			decode | revrow);
-	PVRLoadDecodeSave("R5G5B5A1_UNORM_LIN_RGBA_T.pvr",			decode | revrow);
+	PVRLoadDecodeSave("G3B5R5G3_UNORM_LIN_RGB_T.pvr",			decode | revrow);
+	PVRLoadDecodeSave("G4B4A4R4_UNORM_LIN_RGBA_TM.pvr",			decode | revrow);
+	PVRLoadDecodeSave("G3B5A1R5G2_UNORM_LIN_RGBA_T.pvr",		decode | revrow);
 
 	tSystem::tSetCurrentDir(origDir);
 }
