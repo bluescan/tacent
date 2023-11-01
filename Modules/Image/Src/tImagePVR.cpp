@@ -361,17 +361,26 @@ void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 	{
 		switch (fmtLS32)
 		{
-			case 'abgr':
+			case 'bgra':	// LE PVR: argb
 			{
 				switch (fmtMS32)
 				{
-					case 0x01050505:	fmt = tPixelFormat::G3B5A1R5G2;	break;	// LE PVR: A1 R5 G5 B5.
+					case 0x05050501:	fmt = tPixelFormat::G3B5A1R5G2;	break;	// LE PVR: A1 R5 G5 B5.
 					case 0x04040404:	fmt = tPixelFormat::G4B4A4R4;	break;	// LE PVR: A4 R4 G4 B4.
 				}
 				break;
 			}
 
-			case '\0bgr':	// rgb0
+			case 'argb':	// LE PVR: bgra
+			{
+				switch (fmtMS32)
+				{
+					case 0x08080808:	fmt = tPixelFormat::B8G8R8A8;	break;	// LE PVR: A1 R5 G5 B5.
+				}
+				break;
+			}
+
+			case '\0bgr':	// LE PVR: rgb0
 			{
 				switch (fmtMS32)
 				{

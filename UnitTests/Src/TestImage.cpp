@@ -2293,16 +2293,10 @@ tTestUnit(ImagePVR3)
 
 	tPrintf("Testing PVR V3 Loading/Decoding\n\n");
 
-//	PVRLoadDecodeSave("R8G8B8A8_UNORM_SRGB_RGBA_T.pvr",	decode | revrow);
-
-//	PVRLoadDecodeSave("R5G6B5+G3B5R5G3_UNORM_LIN_RGB_T.pvr",		decode | revrow);
-//	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_TM.pvr",	decode | revrow);
-//	PVRLoadDecodeSave("A1R5G5B5+G3B5A1R5G2_UNORM_LIN_RGBA_T.pvr",	decode | revrow);
-
-	
-//	PVRLoadDecodeSave("565dx9.pvr",		decode | revrow);
-//	PVRLoadDecodeSave("565ogl.pvr",		decode | revrow);
-//	PVRLoadDecodeSave("565vul.pvr",		decode | revrow);
+	PVRLoadDecodeSave("B8G8R8A8_UNORM_SRGB_RGBA_T.pvr",			decode | revrow);
+	PVRLoadDecodeSave("R5G6B5+G3B5R5G3_UNORM_LIN_RGB_T.pvr",		decode | revrow);
+	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_TM.pvr",	decode | revrow);
+	PVRLoadDecodeSave("A1R5G5B5+G3B5A1R5G2_UNORM_LIN_RGBA_T.pvr",	decode | revrow);
 
 	tSystem::tSetCurrentDir(origDir);
 }
