@@ -1,3 +1,6 @@
+If PVRFMT == TACFMT the filename will be just
+FMT_TYPE_SPC_CHANS_FLAGS.pvr
+
 Flags:
 T = Regular 2D texture.
 V = Volume 3D texture.

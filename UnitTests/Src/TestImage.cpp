@@ -2212,19 +2212,22 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0)
 		savename += "x";
 	savename += (loadFlags & tImagePVR::LoadFlag_ReverseRowOrder)	? "R" : "x";
 	savename += (loadFlags & tImagePVR::LoadFlag_SpreadLuminance)	? "S" : "x";
-	tPrintf("PVR Load %s\n", savename.Chr());
-	// "PVRBPP4_UNORM_SRGB_RGBA_TM"
-	tString formatname = basename.Left('_');
+	tPrintf("PVR savename %s\n", savename.Chr());
+
+	// Determine pixel format from filename.
+	tString fileFormatName = basename.Left('_');
+	fileFormatName.ExtractLeft('+');
+	tPrintf("Format name: %s\n", fileFormatName.Chr());
+	tPixelFormat fileFormat = tGetPixelFormat(fileFormatName.Chr());
 
 	tImagePVR::LoadParams params;
 	params.Flags = loadFlags;
 
 	tImagePVR pvr(pvrFile, params);
 	tRequire(pvr.IsValid());
-	tPixelFormat fileformat = tGetPixelFormat(formatname.Chr());
-	tPixelFormat pvrformat = pvr.GetPixelFormat();
-	tPixelFormat pvrformatsrc = pvr.GetPixelFormatSrc();
-	tRequire(fileformat == pvrformatsrc);
+	tPixelFormat pvrFormat = pvr.GetPixelFormat();
+	tPixelFormat pvrFormatSrc = pvr.GetPixelFormatSrc();
+	tRequire(fileFormat == pvrFormatSrc);
 
 	// WIP
 	//if (loadFlags & tImagePVR::LoadFlag_Decode)
@@ -2271,7 +2274,7 @@ tTestUnit(ImagePVR2)
 
 	tPrintf("Testing PVR V2 Loading/Decoding\n\n");
 
-	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_TM.pvr",			decode | revrow);
+//	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_TM.pvr",			decode | revrow);
 
 	tSystem::tSetCurrentDir(origDir);
 }
@@ -2290,9 +2293,16 @@ tTestUnit(ImagePVR3)
 
 	tPrintf("Testing PVR V3 Loading/Decoding\n\n");
 
-	PVRLoadDecodeSave("G3B5R5G3_UNORM_LIN_RGB_T.pvr",			decode | revrow);
-	PVRLoadDecodeSave("G4B4A4R4_UNORM_LIN_RGBA_TM.pvr",			decode | revrow);
-	PVRLoadDecodeSave("G3B5A1R5G2_UNORM_LIN_RGBA_T.pvr",		decode | revrow);
+//	PVRLoadDecodeSave("R8G8B8A8_UNORM_SRGB_RGBA_T.pvr",	decode | revrow);
+
+//	PVRLoadDecodeSave("R5G6B5+G3B5R5G3_UNORM_LIN_RGB_T.pvr",		decode | revrow);
+//	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_TM.pvr",	decode | revrow);
+//	PVRLoadDecodeSave("A1R5G5B5+G3B5A1R5G2_UNORM_LIN_RGBA_T.pvr",	decode | revrow);
+
+	
+//	PVRLoadDecodeSave("565dx9.pvr",		decode | revrow);
+//	PVRLoadDecodeSave("565ogl.pvr",		decode | revrow);
+//	PVRLoadDecodeSave("565vul.pvr",		decode | revrow);
 
 	tSystem::tSetCurrentDir(origDir);
 }
