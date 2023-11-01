@@ -256,7 +256,7 @@ inline bool tMath::tInterval::Set(const tString& s)
 	if (str.CountChar(separator) != 1)
 		return false;
 
-	tString a = str.ExtractLeftC(separator);		// b is left in str.
+	tString a = str.ExtractLeft(separator);		// b is left in str.
 	A = a.AsInt(10);
 	B = str.AsInt(10);
 

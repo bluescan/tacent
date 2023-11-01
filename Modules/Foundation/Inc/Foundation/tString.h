@@ -200,15 +200,15 @@ struct tString
 
 	// Extracts first word up to and not including first divider encountered. The tString is left with the remainder,
 	// not including the divider. If divider isn't found an empty string is returned and the tString is left unmodified.
-	tString ExtractLeftC(const char divider = ' ');
+	tString ExtractLeft(const char divider = ' ');
 
 	// Extracts last word after and not including last divider encountered. The tString is left with the remainder,
 	// not including the divider. If divider isn't found an empty string is returned and the tString is left unmodified.
-	tString ExtractRightC(const char divider = ' ');
+	tString ExtractRight(const char divider = ' ');
 
 	// Returns a tString of the first count chars. Removes these from the current string. If count > length then what's
 	// available is extracted.
-	tString ExtractLeftN(int count);
+	tString ExtractLeft(int count);
 
 	// Returns chars from start to count, but also removes that from the tString.  If start + count > length then what's
 	// available is extracted.
@@ -216,7 +216,7 @@ struct tString
 
 	// Returns a tString of the last count chars. Removes these from the current string. If count > length then what's
 	// available is extracted.
-	tString ExtractRightN(int count);
+	tString ExtractRight(int count);
 
 	// If this string starts with prefix, removes and returns it. If not, returns empty string and no modification.
 	// Prefix is assumed to be null-terminated.

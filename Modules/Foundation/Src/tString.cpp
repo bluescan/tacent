@@ -142,7 +142,7 @@ tString tString::Right(int count) const
 }
 
 
-tString tString::ExtractLeftC(const char divider)
+tString tString::ExtractLeft(const char divider)
 {
 	int pos = FindChar(divider);
 	if (pos == -1)
@@ -163,7 +163,7 @@ tString tString::ExtractLeftC(const char divider)
 }
 
 
-tString tString::ExtractRightC(const char divider)
+tString tString::ExtractRight(const char divider)
 {
 	int pos = FindChar(divider, true);
 	if (pos == -1)
@@ -182,7 +182,7 @@ tString tString::ExtractRightC(const char divider)
 }
 
 
-tString tString::ExtractLeftN(int count)
+tString tString::ExtractLeft(int count)
 {
 	if (count >= StringLength)
 	{
@@ -232,7 +232,7 @@ tString tString::ExtractMid(int start, int count)
 }
 
 
-tString tString::ExtractRightN(int count)
+tString tString::ExtractRight(int count)
 {
 	if (count >= StringLength)
 	{
@@ -744,7 +744,7 @@ int tStd::tExplode(tList<tStringItem>& components, const tString& src, char divi
 	int startCount = components.GetNumItems();
 	while (source.FindChar(divider) != -1)
 	{
-		tString component = source.ExtractLeftC(divider);
+		tString component = source.ExtractLeft(divider);
 		components.Append(new tStringItem(component));
 	}
 

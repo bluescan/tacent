@@ -2216,7 +2216,7 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0)
 
 	// Determine pixel format from filename.
 	tString fileFormatName = basename.Left('_');
-	fileFormatName.ExtractLeftC('+');
+	fileFormatName.ExtractLeft('+');
 	tPrintf("Format name: %s\n", fileFormatName.Chr());
 	tPixelFormat fileFormat = tGetPixelFormat(fileFormatName.Chr());
 

@@ -252,7 +252,7 @@ tString tSystem::tGetSimplifiedPath(const tString& path, bool forceTreatAsDir)
 	tString simp;
 	for (int i = 0; i < numUps; i++)
 	{
-		simp += pth.ExtractLeftC('|');
+		simp += pth.ExtractLeft('|');
 		simp = tGetUpDir(simp);
 	}
 
@@ -303,8 +303,8 @@ tString tSystem::tGetRelativePath(const tString& basePath, const tString& path)
 		last++;
 
 	// It's ok to call extract with 0 if nothing was the same. It just extracts nothing.
-	base.ExtractLeftN(last);
-	full.ExtractLeftN(last);
+	base.ExtractLeft(last);
+	full.ExtractLeft(last);
 
 	// Now we count how many times we need to go up from base.
 	tString rel;
@@ -328,7 +328,7 @@ tString tSystem::tGetLinuxPath(const tString& path, const tString& mountPoint)
 		tPathStdDir(mnt);
 
 		char drive = tStd::tChrlwr(pth[0]);
-		pth.ExtractLeftN(2);
+		pth.ExtractLeft(2);
 		pth = mnt + tString(drive) + pth;
 	}
 	return pth;
