@@ -292,7 +292,7 @@ tVector2 tExpression::GetAtomVector2() const
 	tString str = GetAtomTupleString();
 	tVector2 v;
 
-	tString component = str.ExtractLeft(',');
+	tString component = str.ExtractLeftC(',');
 	v.x = component.GetAsFloat();
 
 	v.y = str.GetAsFloat();
@@ -306,10 +306,10 @@ tVector3 tExpression::GetAtomVector3() const
 	tString str = GetAtomTupleString();
 	tVector3 v;
 
-	tString component = str.ExtractLeft(',');
+	tString component = str.ExtractLeftC(',');
 	v.x = component.GetAsFloat();
 
-	component = str.ExtractLeft(',');
+	component = str.ExtractLeftC(',');
 	v.y = component.GetAsFloat();
 
 	v.z = str.GetAsFloat();
@@ -323,13 +323,13 @@ tVector4 tExpression::GetAtomVector4() const
 	tString str = GetAtomTupleString();
 	tVector4 v;
 
-	tString component = str.ExtractLeft(',');
+	tString component = str.ExtractLeftC(',');
 	v.x = component.GetAsFloat();
 
-	component = str.ExtractLeft(',');
+	component = str.ExtractLeftC(',');
 	v.y = component.GetAsFloat();
 
-	component = str.ExtractLeft(',');
+	component = str.ExtractLeftC(',');
 	v.z = component.GetAsFloat();
 
 	v.w = str.GetAsFloat();
@@ -343,13 +343,13 @@ tQuaternion tExpression::GetAtomQuaternion() const
 	tString str = GetAtomTupleString();
 	tQuaternion q;
 
-	tString component = str.ExtractLeft(',');
+	tString component = str.ExtractLeftC(',');
 	q.x = component.GetAsFloat();
 
-	component = str.ExtractLeft(',');
+	component = str.ExtractLeftC(',');
 	q.y = component.GetAsFloat();
 
-	component = str.ExtractLeft(',');
+	component = str.ExtractLeftC(',');
 	q.z = component.GetAsFloat();
 
 	q.w = str.GetAsFloat();
@@ -363,13 +363,13 @@ tMatrix2 tExpression::GetAtomMatrix2() const
 	tString str = GetAtomTupleString();
 	tMatrix2 m;
 
-	tString component = str.ExtractLeft(',');
+	tString component = str.ExtractLeftC(',');
 	m.C1.x = component.GetAsFloat();
 
-	component = str.ExtractLeft(',');
+	component = str.ExtractLeftC(',');
 	m.C1.y = component.GetAsFloat();
 
-	component = str.ExtractLeft(',');
+	component = str.ExtractLeftC(',');
 	m.C2.x = component.GetAsFloat();
 
 	m.C2.y = str.GetAsFloat();
@@ -384,12 +384,12 @@ tMatrix4 tExpression::GetAtomMatrix4() const
 	tString str = GetAtomTupleString();
 	tMatrix4 m;
 
-	tString component = str.ExtractLeft(',');
+	tString component = str.ExtractLeftC(',');
 	m.E[0] = component.GetAsFloat();
 
 	for (int e = 1; e < 15; e++)
 	{
-		component = str.ExtractLeft(',');
+		component = str.ExtractLeftC(',');
 		m.E[e] = component.GetAsFloat();
 	}
 
@@ -404,13 +404,13 @@ tColouri tExpression::GetAtomColour() const
 	tString str = GetAtomTupleString();
 	tColouri c;
 
-	tString component = str.ExtractLeft(',');
+	tString component = str.ExtractLeftC(',');
 	c.R = component.GetAsInt();
 
-	component = str.ExtractLeft(',');
+	component = str.ExtractLeftC(',');
 	c.G = component.GetAsInt();
 
-	component = str.ExtractLeft(',');
+	component = str.ExtractLeftC(',');
 	c.B = component.GetAsInt();
 
 	c.A = str.GetAsInt();

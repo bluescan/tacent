@@ -1598,10 +1598,10 @@ int tWorld::GenerateLodGroupsFromModelNamingConvention()
 		// Look at the model's name and decide if it needs to be added to an LOD group. If it does, it sets the model's
 		// bIsLodGroupMember to true and adds it to the correctly named group. The following name manipulation works
 		// fine for non-lod names. We check if the end of the name contains "LOD_n", where n is a percent. If it isn't
-		// then it's a normal model and we have nothing to do here.
+		// then it's a normal model and we have nothing to do here. Code should work with strings like "Name_LOD_n".
 		tString baseName = model->Name;
-		tString lodThreshold = baseName.ExtractRight('_');
-		tString lodTag = baseName.ExtractRight('_');
+		tString lodThreshold = baseName.ExtractRightC('_');
+		tString lodTag = baseName.ExtractRightC('_');
 
 		lodTag.ToLower();
 		if (lodTag != "lod")

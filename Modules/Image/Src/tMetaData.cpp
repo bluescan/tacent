@@ -371,7 +371,7 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 		utcDate.Replace(':', '-');
 	if (utcTime.IsValid())
 	{
-		utcTime.ExtractRight('.');
+		utcTime.ExtractRightC('.');
 		utcTime.Replace(' ', ':');
 	}
 	tString dateTime;
@@ -581,7 +581,7 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 	tString dateTimeChange(exifInfo.DateTime.c_str());
 	if (dateTimeChange.IsValid())
 	{
-		tString yyyymmdd = dateTimeChange.ExtractLeft(' ');
+		tString yyyymmdd = dateTimeChange.ExtractLeftC(' ');
 		yyyymmdd.Replace(':', '-');
 		dateTimeChange = yyyymmdd + " " + dateTimeChange;
 
@@ -592,7 +592,7 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 	tString dateTimeOrig(exifInfo.DateTimeOriginal.c_str());
 	if (dateTimeOrig.IsValid())
 	{
-		tString yyyymmdd = dateTimeOrig.ExtractLeft(' ');
+		tString yyyymmdd = dateTimeOrig.ExtractLeftC(' ');
 		yyyymmdd.Replace(':', '-');
 		dateTimeOrig = yyyymmdd + " " + dateTimeOrig;
 
@@ -603,7 +603,7 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 	tString dateTimeDig(exifInfo.DateTimeDigitized.c_str());
 	if (dateTimeDig.IsValid())
 	{
-		tString yyyymmdd = dateTimeDig.ExtractLeft(' ');
+		tString yyyymmdd = dateTimeDig.ExtractLeftC(' ');
 		yyyymmdd.Replace(':', '-');
 		dateTimeDig = yyyymmdd + " " + dateTimeDig;
 
