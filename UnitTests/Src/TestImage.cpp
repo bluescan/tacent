@@ -2274,7 +2274,7 @@ tTestUnit(ImagePVR2)
 
 	tPrintf("Testing PVR V2 Loading/Decoding\n\n");
 
-//	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_TM.pvr",			decode | revrow);
+	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_TM.pvr",			decode | revrow);
 
 	tSystem::tSetCurrentDir(origDir);
 }

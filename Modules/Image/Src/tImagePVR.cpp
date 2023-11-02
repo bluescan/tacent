@@ -359,6 +359,7 @@ void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 	}
 	else
 	{
+		// Both the cases and the hex values below are reversed because we are on a LE platform.
 		switch (fmtLS32)
 		{
 			case 'bgra':	// LE PVR: argb
@@ -439,6 +440,8 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	tColourProfile colourProfile = tColourProfile::Unspecified;
 	int channelType = 0;		// 0 = UNORM Byte.
 	int metaDataSize = 0;
+	const uint8* metaData = nullptr;
+	const uint8* textureData = nullptr;
 
 	switch (PVRVersion)
 	{
@@ -461,6 +464,8 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			grnMask = header->GreenMask;
 			bluMask = header->BlueMask;
 			alpMask = header->AlphaMask;
+
+			textureData = pvrData + header->HeaderSize;
 			break;
 		}
 
@@ -485,6 +490,8 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			alpMask = header->AlphaMask;
 			fourCC = header->FourCC;
 			numSurfaces = header->NumSurfaces;
+
+			textureData = pvrData + header->HeaderSize;
 			break;
 		}
 
@@ -517,6 +524,10 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			numFaces = header->NumFaces;
 			mipmapCount = header->NumMipmaps;
 			metaDataSize = header->MetaDataSize;
+
+			tAssert(sizeof(tPVR::HeaderV3) == 52);
+			metaData = pvrData + sizeof(tPVR::HeaderV3);
+			textureData = metaData + metaDataSize;
 			break;
 		}
 

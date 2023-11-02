@@ -234,8 +234,16 @@ private:
 
 	bool RowReversalOperationPerformed		= false;
 
+	// If this is 1, you can consider the texture(s) to NOT be mipmapped.
+	int NumMipmapLayers						= 0;
+	const static int MaxMipmapLayers		= 16;		// Max dimension 32768.
+
+	// Cubemaps are always specified using a left-handed coord system even when using the OpenGL functions.
+	const static int MaxImages				= 6;
+	tLayer* Layers[MaxMipmapLayers][MaxImages];
+
 	// @todo This will be one of the first things to work out.
-	tLayer* Layer;
+	// tLayer* Layer;
 
 public:
 	static const char* ResultDescriptions[];
