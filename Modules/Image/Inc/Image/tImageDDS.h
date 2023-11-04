@@ -100,20 +100,25 @@ public:
 
 	virtual ~tImageDDS()																								{ Clear(); }
 
-	enum class ResultCode
+	// The state of the tImageDDS is a combination of one or more of the following enumerants.
+	// The values of the enum are used as bit indices into a bitfield.
+	enum class StateBit
 	{
-		// Success. The tImageDDS is considered valid. May be combined with the conditionals below.
-		Success,
+		// The tImageDDS is considered valid. May be combined with the conditionals below.
+		Valid,
 
-		// Conditional success. Object is still valid after load.
-		Conditional_CouldNotFlipRows,
-		Conditional_PitchXORLinearSize,				// Possible if strict loading not set.
-		Conditional_IncorrectPixelFormatSpec,		// Possible if strict loading not set.
+		// Conditional valid. Valid bit still set.
+		FirstConditional,
+		Conditional_CouldNotFlipRows			= FirstConditional,
+		Conditional_PitchXORLinearSize,			// Possible if strict loading not set.
+		Conditional_IncorrectPixelFormatSpec,	// Possible if strict loading not set.
 		Conditional_DimNotMultFourBC,
 		Conditional_DimNotPowerTwoBC,
+		LastConditional							= Conditional_DimNotPowerTwoBC,
 
-		// Fatal. Load was uncuccessful and object is invalid. The success flag will not be set.
-		Fatal_FileDoesNotExist,
+		// Fatal. Load was uncuccessful and object is invalid. The valid flag will not be set.
+		FirstFatal,
+		Fatal_FileDoesNotExist					= FirstFatal,
 		Fatal_IncorrectFileType,
 		Fatal_IncorrectFileSize,
 		Fatal_IncorrectMagicNumber,
@@ -121,8 +126,8 @@ public:
 		Fatal_InvalidDimensions,
 		Fatal_VolumeTexturesNotSupported,
 		Fatal_IncorrectPixelFormatHeaderSize,
-		Fatal_PitchXORLinearSize,					// Possible if strict loading set.
-		Fatal_IncorrectPixelFormatSpec,				// Possible if strict loading set.
+		Fatal_PitchXORLinearSize,				// Possible if strict loading set.
+		Fatal_IncorrectPixelFormatSpec,			// Possible if strict loading set.
 		Fatal_PixelFormatNotSupported,
 		Fatal_MaxNumMipmapLevelsExceeded,
 		Fatal_DX10HeaderSizeIncorrect,
@@ -130,14 +135,11 @@ public:
 		Fatal_PackedDecodeError,
 		Fatal_BCDecodeError,
 		Fatal_ASTCDecodeError,
-		NumCodes,
+		LastFatal								= Fatal_ASTCDecodeError,
 
-		// Since we store result codes as bits in a 32-bit uint, we need to make sure we don't have too many codes.
-		MaxCodes							= 32,
-		FirstValid							= Success,
-		LastValid							= Conditional_DimNotPowerTwoBC,
-		FirstFatal							= Fatal_FileDoesNotExist,
-		LastFatal							= Fatal_DX10DimensionNotSupported
+		// Since we store states as bits in a 32-bit uint, we need to make sure we don't have too many.
+		NumStateBits,
+		MaxStateBits							= 32
 	};
 
 	// Clears the current tImageDDS before loading. If the dds file failed to load for any reason it will result in an
@@ -160,12 +162,12 @@ public:
 	void Clear() override;
 
 	// Will return true if a dds file has been successfully loaded. This includes conditional success results.
-	bool IsValid() const override																						{ return (Results < (1 << int(ResultCode::FirstFatal))); }
+	bool IsValid() const override																						{ return IsStateSet(StateBit::Valid); }
 
-	// After a load you can call GetResults() to find out what, if anything, went wrong.
-	uint32 GetResults() const																							{ return Results; }
-	bool IsResultSet(ResultCode code) const																				{ return (Results & (1<<int(code))); }
-	static const char* GetResultDesc(ResultCode);
+	// After a load you can call GetStates() to find out what, if anything, went wrong.
+	uint32 GetStates() const																							{ return States; }
+	bool IsStateSet(StateBit state) const																				{ return (States & (1<<int(state))); }
+	static const char* GetStateDesc(StateBit);
 
 	bool IsMipmapped() const																							{ return (NumMipmapLayers > 1) ? true : false; }
 	bool IsCubemap() const																								{ return IsCubeMap; }
@@ -256,8 +258,10 @@ public:
 	tString Filename;
 
 private:
-	// The result codes are bits in this Results member.
-	uint32 Results							= 0;
+	void SetStateBit(StateBit state)		{ States |= 1 << int(state); }
+
+	// The states are bits in this States member.
+	uint32 States							= 0;
 
 	tPixelFormat PixelFormat				= tPixelFormat::Invalid;
 	tPixelFormat PixelFormatSrc				= tPixelFormat::Invalid;
@@ -284,7 +288,7 @@ private:
 	tLayer* Layers[MaxMipmapLayers][MaxImages];
 
 public:
-	static const char* ResultDescriptions[];
+	static const char* StateDescriptions[];
 };
 
 

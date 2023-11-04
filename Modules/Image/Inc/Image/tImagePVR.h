@@ -234,13 +234,50 @@ private:
 
 	bool RowReversalOperationPerformed		= false;
 
+	// This is lifted from the PVR3 spec. It is a superset of the PVR1 and PVR2 structure.
+	//
+	// for each MIP-Map Level in MIP-Map Count
+	//  for each Surface in Num. Surfaces
+	//   for each Face in Num. Faces
+	//    for each Slice in Depth
+	//     for each Row in Height
+	//      for each Pixel in Width
+	//       Byte data[Size_Based_On_PixelFormat]
+	//
+	// The data ordering is different for PVR1/2 files but will fit info PVR3 structure
+	// as listed above.
+	//
+	// for each Surface in Num. Surfaces
+	//  for each Face in 6
+	//   for each MIP-Map Level in MIP-Map Count
+	//    for each Row in Height
+	//     for each Pixel in Width
+	//      Byte data[Size_Based_On_PixelFormat]
+	//
+	// In this loader we'll leverage tLayers which deal with the Width, Height, and Byte data.
+	// We'll simply create enough tLayer slots for NumSurfaces*NumFaces*NumMipmaps*Depth.
+	// Rather than either the V1/2 or V3 ordering we'll be using:
+	//
+	// Surfaces
+	//  Faces
+	//   Mipmaps
+	//    Slices
+	//     Layers
+	int Width								= 0;
+	int Height								= 0;
+
+	int NumSurfaces							= 0;		// For storing arrays of image data.
+	int NumFaces							= 0;		// For cubemaps.
+	int NumMipmaps							= 0;
+	int Depth								= 0;
+
 	// If this is 1, you can consider the texture(s) to NOT be mipmapped.
-	int NumMipmapLayers						= 0;
-	const static int MaxMipmapLayers		= 16;		// Max dimension 32768.
+//	int NumMipmapLayers						= 0;
+//	const static int MaxMipmapLayers		= 16;		// Max dimension 32768.
 
 	// Cubemaps are always specified using a left-handed coord system even when using the OpenGL functions.
-	const static int MaxImages				= 6;
-	tLayer* Layers[MaxMipmapLayers][MaxImages];
+//	const static int MaxImages				= 6;
+	tLayer* Layers = nullptr;//[MaxMipmapLayers][MaxImages];
 
 	// @todo This will be one of the first things to work out.
 	// tLayer* Layer;

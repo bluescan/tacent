@@ -1302,7 +1302,7 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 
 	// If we asked to flip rows but it couldn't, print a message. The conditional is
 	// only set if we requested and it couldn't be done.
-	if (dds.IsResultSet(tImageDDS::ResultCode::Conditional_CouldNotFlipRows))
+	if (dds.IsStateSet(tImageDDS::StateBit::Conditional_CouldNotFlipRows))
 		tPrintf("Could not flip rows for %s\n", savename.Chr());
 
 	tList<tImage::tLayer> layers;

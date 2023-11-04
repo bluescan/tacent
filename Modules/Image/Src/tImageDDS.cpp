@@ -1009,7 +1009,7 @@ void tImageDDS::Clear()
 		}
 	}
 
-	Results							= 0;							// This means no results.
+	States							= 0;							// Image will be invalid now since Valid state not set.
 	PixelFormat						= tPixelFormat::Invalid;
 	PixelFormatSrc					= tPixelFormat::Invalid;
 	ColourProfile					= tColourProfile::Unspecified;
@@ -1041,6 +1041,7 @@ bool tImageDDS::Set(tPixel* pixels, int width, int height, bool steal)
 	NumImages						= 1;
 	NumMipmapLayers					= 1;
 
+	SetStateBit(StateBit::Valid);
 	return true;
 }
 
@@ -1056,6 +1057,7 @@ bool tImageDDS::Set(tFrame* frame, bool steal)
 	if (steal)
 		delete frame;
 
+	SetStateBit(StateBit::Valid);
 	return true;
 }
 
@@ -1187,13 +1189,13 @@ bool tImageDDS::Load(const tString& ddsFile, const LoadParams& loadParams)
 	Filename = ddsFile;
 	if (tSystem::tGetFileType(ddsFile) != tSystem::tFileType::DDS)
 	{
-		Results |= 1 << int(ResultCode::Fatal_IncorrectFileType);
+		SetStateBit(StateBit::Fatal_IncorrectFileType);
 		return false;
 	}
 
 	if (!tSystem::tFileExists(ddsFile))
 	{
-		Results |= 1 << int(ResultCode::Fatal_FileDoesNotExist);
+		SetStateBit(StateBit::Fatal_FileDoesNotExist);
 		return false;
 	}
 
@@ -1214,7 +1216,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 	// This will deal with zero-sized files properly as well.
 	if (ddsDataSize < int(sizeof(tDDS::Header)+sizeof(uint32)))
 	{
-		Results |= 1 << int(ResultCode::Fatal_IncorrectFileSize);
+		SetStateBit(StateBit::Fatal_IncorrectFileSize);
 		return false;
 	}
 
@@ -1222,7 +1224,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 	ddsData += sizeof(uint32); ddsDataSize -= sizeof(uint32);
 	if (magic != FourCC('D','D','S',' '))
 	{
-		Results |= 1 << int(ResultCode::Fatal_IncorrectMagicNumber);
+		SetStateBit(StateBit::Fatal_IncorrectMagicNumber);
 		return false;
 	}
 
@@ -1231,7 +1233,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 	tStaticAssert(sizeof(tDDS::Header) == 124);
 	if (header.Size != 124)
 	{
-		Results |= 1 << int(ResultCode::Fatal_IncorrectHeaderSize);
+		SetStateBit(StateBit::Fatal_IncorrectHeaderSize);
 		return false;
 	}
 
@@ -1240,7 +1242,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 	int mainHeight = header.Height;						// Main image.
 	if ((mainWidth <= 0) || (mainHeight <= 0))
 	{
-		Results |= 1 << int(ResultCode::Fatal_InvalidDimensions);
+		SetStateBit(StateBit::Fatal_InvalidDimensions);
 		return false;
 	}
 
@@ -1258,19 +1260,19 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 	{
 		if (params.Flags & LoadFlag_StrictLoading)
 		{
-			Results |= 1 << int(ResultCode::Fatal_PitchXORLinearSize);
+			SetStateBit(StateBit::Fatal_PitchXORLinearSize);
 			return false;
 		}
 		else
 		{
-			Results |= 1 << int(ResultCode::Conditional_PitchXORLinearSize);
+			SetStateBit(StateBit::Conditional_PitchXORLinearSize);
 		}
 	}
 
 	// Volume textures are not supported.
 	if (flags & tDDS::HeaderFlag_Depth)
 	{
-		Results |= 1 << int(ResultCode::Fatal_VolumeTexturesNotSupported);
+		SetStateBit(StateBit::Fatal_VolumeTexturesNotSupported);
 		return false;
 	}
 
@@ -1283,14 +1285,14 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 
 	if (NumMipmapLayers > MaxMipmapLayers)
 	{
-		Results |= 1 << int(ResultCode::Fatal_MaxNumMipmapLevelsExceeded);
+		SetStateBit(StateBit::Fatal_MaxNumMipmapLevelsExceeded);
 		return false;
 	}
 
 	tDDS::FormatData& format = header.Format;
 	if (format.Size != 32)
 	{
-		Results |= 1 << int(ResultCode::Fatal_IncorrectPixelFormatHeaderSize);
+		SetStateBit(StateBit::Fatal_IncorrectPixelFormatHeaderSize);
 		return false;
 	}
 
@@ -1304,13 +1306,13 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 	{
 		if (params.Flags & LoadFlag_StrictLoading)
 		{
-			Results |= 1 << int(ResultCode::Fatal_IncorrectPixelFormatSpec);
+			SetStateBit(StateBit::Fatal_IncorrectPixelFormatSpec);
 			return false;
 		}
 		else
 		{
 			// If the flags completely fail to specify a format, we try to use the FourCC.
-			Results |= 1 << int(ResultCode::Conditional_IncorrectPixelFormatSpec);
+			SetStateBit(StateBit::Conditional_IncorrectPixelFormatSpec);
 			isFourCCFormat = true;
 		}
 	}
@@ -1333,7 +1335,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 	{
 		if (ddsDataSize < int(sizeof(tDDS::DX10Header)))
 		{
-			Results |= 1 << int(ResultCode::Fatal_IncorrectFileSize);
+			SetStateBit(StateBit::Fatal_IncorrectFileSize);
 			return false;
 		}
 
@@ -1341,14 +1343,14 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 		ddsData += sizeof(tDDS::DX10Header); ddsDataSize -= sizeof(tDDS::DX10Header);
 		if (headerDX10.ArraySize == 0)
 		{
-			Results |= 1 << int(ResultCode::Fatal_DX10HeaderSizeIncorrect);
+			SetStateBit(StateBit::Fatal_DX10HeaderSizeIncorrect);
 			return false;
 		}
 
 		// We only handle 2D textures for now.
 		if (headerDX10.Dimension != tDDS::D3D10_DIMENSION_TEXTURE2D)
 		{
-			Results |= 1 << int(ResultCode::Fatal_DX10DimensionNotSupported);
+			SetStateBit(StateBit::Fatal_DX10DimensionNotSupported);
 			return false;
 		}
 
@@ -1376,16 +1378,16 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 	// From now on we should just be using the PixelFormat to decide what to do next.
 	if (PixelFormat == tPixelFormat::Invalid)
 	{
-		Results |= 1 << int(ResultCode::Fatal_PixelFormatNotSupported);
+		SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
 		return false;
 	}
 
 	if (tIsBCFormat(PixelFormat))
 	{
 		if ((params.Flags & LoadFlag_CondMultFourDim) && ((mainWidth%4) || (mainHeight%4)))
-			Results |= 1 << int(ResultCode::Conditional_DimNotMultFourBC);
+			SetStateBit(StateBit::Conditional_DimNotMultFourBC);
 		if ((params.Flags & LoadFlag_CondPowerTwoDim) && (!tMath::tIsPower2(mainWidth) || !tMath::tIsPower2(mainHeight)))
-			Results |= 1 << int(ResultCode::Conditional_DimNotMultFourBC);
+			SetStateBit(StateBit::Conditional_DimNotMultFourBC);
 	}
 
 	bool reverseRowOrderRequested = params.Flags & LoadFlag_ReverseRowOrder;
@@ -1441,7 +1443,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 				if (numBytes > ddsDataSize)
 				{
 					Clear();
-					Results |= 1 << int(ResultCode::Fatal_IncorrectFileSize);
+					SetStateBit(StateBit::Fatal_IncorrectFileSize);
 					return false;
 				}
 
@@ -1475,7 +1477,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 			{
 				// Unsupported pixel format.
 				Clear();
-				Results |= 1 << int(ResultCode::Fatal_PixelFormatNotSupported);
+				SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
 				return false;
 			}
 
@@ -1492,10 +1494,10 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 	if (!(params.Flags & LoadFlag_Decode))
 	{
 		if (reverseRowOrderRequested && !RowReversalOperationPerformed)
-			Results |= 1 << int(ResultCode::Conditional_CouldNotFlipRows);
+			SetStateBit(StateBit::Conditional_CouldNotFlipRows);
 
+		SetStateBit(StateBit::Valid);
 		tAssert(IsValid());
-		Results |= 1 << int(ResultCode::Success);
 		return true;
 	}
 
@@ -1545,17 +1547,14 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 
 			if (result != DecodeResult::Success)
 			{
-				ResultCode ddsResult = ResultCode::Success;
+				Clear();
 				switch (result)
 				{
-					case DecodeResult::PackedDecodeError:	ddsResult = ResultCode::Fatal_PackedDecodeError;		break;
-					case DecodeResult::BlockDecodeError:	ddsResult = ResultCode::Fatal_BCDecodeError;			break;
-					case DecodeResult::ASTCDecodeError:		ddsResult = ResultCode::Fatal_ASTCDecodeError;			break;
-					default:								ddsResult = ResultCode::Fatal_PixelFormatNotSupported;	break;
+					case DecodeResult::PackedDecodeError:	SetStateBit(StateBit::Fatal_PackedDecodeError);			break;
+					case DecodeResult::BlockDecodeError:	SetStateBit(StateBit::Fatal_BCDecodeError);				break;
+					case DecodeResult::ASTCDecodeError:		SetStateBit(StateBit::Fatal_ASTCDecodeError);			break;
+					default:								SetStateBit(StateBit::Fatal_PixelFormatNotSupported);	break;
 				}
-
-				Clear();
-				Results |= 1 << int(ddsResult);
 				return false;
 			}
 
@@ -1649,28 +1648,28 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 	PixelFormat = tPixelFormat::R8G8B8A8;
 
 	if (reverseRowOrderRequested && !RowReversalOperationPerformed)
-		Results |= 1 << int(ResultCode::Conditional_CouldNotFlipRows);
+		SetStateBit(StateBit::Conditional_CouldNotFlipRows);
 
+	SetStateBit(StateBit::Valid);
 	tAssert(IsValid());
-	Results |= 1 << int(ResultCode::Success);
 	return true;
 }
 
 
-const char* tImageDDS::GetResultDesc(ResultCode code)
+const char* tImageDDS::GetStateDesc(StateBit code)
 {
-	return ResultDescriptions[int(code)];
+	return StateDescriptions[int(code)];
 }
 
 
-const char* tImageDDS::ResultDescriptions[] =
+const char* tImageDDS::StateDescriptions[] =
 {
-	"Success",
-	"Conditional Success. Image rows could not be flipped.",
-	"Conditional Success. One of Pitch or LinearSize should be specified. Using dimensions instead.",
-	"Conditional Success. Pixel format specification ill-formed. Assuming FourCC.",
-	"Conditional Success. Image has dimension not multiple of four.",
-	"Conditional Success. Image has dimension not power of two.",
+	"Valid",
+	"Conditional Valid. Image rows could not be flipped.",
+	"Conditional Valid. One of Pitch or LinearSize should be specified. Using dimensions instead.",
+	"Conditional Valid. Pixel format specification ill-formed. Assuming FourCC.",
+	"Conditional Valid. Image has dimension not multiple of four.",
+	"Conditional Valid. Image has dimension not power of two.",
 	"Fatal Error. File does not exist.",
 	"Fatal Error. Incorrect file type. Must be a DDS file.",
 	"Fatal Error. Filesize incorrect.",
@@ -1689,8 +1688,8 @@ const char* tImageDDS::ResultDescriptions[] =
 	"Fatal Error. Unable to decode BC pixels.",
 	"Fatal Error. Unable to decode ASTC pixels."
 };
-tStaticAssert(tNumElements(tImageDDS::ResultDescriptions) == int(tImageDDS::ResultCode::NumCodes));
-tStaticAssert(int(tImageDDS::ResultCode::NumCodes) <= int(tImageDDS::ResultCode::MaxCodes));
+tStaticAssert(tNumElements(tImageDDS::StateDescriptions) == int(tImageDDS::StateBit::NumStateBits));
+tStaticAssert(int(tImageDDS::StateBit::NumStateBits) <= int(tImageDDS::StateBit::MaxStateBits));
 
 
 }

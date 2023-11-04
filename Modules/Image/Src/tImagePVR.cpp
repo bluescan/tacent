@@ -109,6 +109,17 @@ tImagePVR::tImagePVR(const uint8* pvrFileInMemory, int numBytes, const LoadParam
 
 void tImagePVR::Clear()
 {
+	/*
+	for (int image = 0; image < NumImages; image++)
+	{
+		for (int layer = 0; layer < NumMipmapLayers; layer++)
+		{
+			delete Layers[layer][image];
+			Layers[layer][image] = nullptr;
+		}
+	}
+	*/
+
 	Results							= 0;							// This means no results.
 	PixelFormat						= tPixelFormat::Invalid;
 	PixelFormatSrc					= tPixelFormat::Invalid;
@@ -116,6 +127,8 @@ void tImagePVR::Clear()
 	ColourProfileSrc				= tColourProfile::Unspecified;
 	AlphaMode						= tAlphaMode::Unspecified;
 	RowReversalOperationPerformed	= false;
+
+
 }
 
 
