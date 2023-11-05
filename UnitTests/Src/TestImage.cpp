@@ -1567,9 +1567,9 @@ void KTXLoadDecodeSave(const tString& ktxfile, uint32 loadFlags = 0, bool saveAl
 	tImageKTX ktx(ktxfile, params);
 	tRequire(ktx.IsValid());
 
-	if (ktx.IsResultSet(tImageKTX::ResultCode::Conditional_ExtVersionMismatch))
-		tPrintf("%s Extension %s.\n", tImageKTX::GetResultDesc(tImageKTX::ResultCode::Conditional_ExtVersionMismatch), ext.Chr());
-	tRequire(!ktx.IsResultSet(tImageKTX::ResultCode::Conditional_ExtVersionMismatch));
+	if (ktx.IsStateSet(tImageKTX::StateBit::Conditional_ExtVersionMismatch))
+		tPrintf("%s Extension %s.\n", tImageKTX::GetStateDesc(tImageKTX::StateBit::Conditional_ExtVersionMismatch), ext.Chr());
+	tRequire(!ktx.IsStateSet(tImageKTX::StateBit::Conditional_ExtVersionMismatch));
 
 	tPixelFormat fileformat = tGetPixelFormat(formatname.Chr());
 	tPixelFormat ktxformat = ktx.GetPixelFormat();
@@ -1582,7 +1582,7 @@ void KTXLoadDecodeSave(const tString& ktxfile, uint32 loadFlags = 0, bool saveAl
 
 	// If we asked to flip rows but it couldn't, print a message. The conditional is
 	// only set if we requested and it couldn't be done.
-	if (ktx.IsResultSet(tImageKTX::ResultCode::Conditional_CouldNotFlipRows))
+	if (ktx.IsStateSet(tImageKTX::StateBit::Conditional_CouldNotFlipRows))
 		tPrintf("Could not flip rows for %s\n", savename.Chr());
 
 	tList<tImage::tLayer> layers;

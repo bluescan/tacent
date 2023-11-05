@@ -64,7 +64,7 @@ public:
 	// lossy. In these cases the row-reversal is done _after_ decoding. Unfortunalely decoding may not always be
 	// requested (for example if you want to pass the image data directly to the GPU memory in OpenGL). In these cases
 	// tImageKTX will be unable to reverse the rows. You will still get a valid object, but it will be a conditional
-	// success (GetResults() will have Conditional_CouldNotFlipRows flag set). You can call also call RowsReversed() to
+	// valid (GetStates() will have Conditional_CouldNotFlipRows flag set). You can call also call RowsReversed() to
 	// see if row-reversal was performed. The conditional is only set if reversal was requested.
 	//
 	// Additional parameters may be processed during ktx-loading. Gamma is only used if GammaCompression flag is set.
@@ -102,19 +102,24 @@ public:
 
 	virtual ~tImageKTX()																								{ Clear(); }
 
-	enum class ResultCode
+	// The state of the tImage is a combination of one or more of the following enumerants.
+	// The values of the enum are used as bit indices into a bitfield.
+	enum class StateBit
 	{
-		// Success. The tImageKTX is considered valid. May be combined with the conditionals below.
-		Success,
+		// The tImageKTX is considered valid. May be combined with the conditionals below.
+		Valid,
 
-		// Conditional success. Object is valid, but not all load flags applied.
-		Conditional_CouldNotFlipRows,
+		// Conditional valid. Valid bit still set.
+		FirstConditional,
+		Conditional_CouldNotFlipRows			= FirstConditional,
 		Conditional_DimNotMultFourBC,
 		Conditional_DimNotPowerTwoBC,
 		Conditional_ExtVersionMismatch,
+		LastConditional							= Conditional_ExtVersionMismatch,
 
-		// Fatal. Load was uncuccessful and object is invalid. The success flag will not be set.
-		Fatal_FileDoesNotExist,
+		// Fatal. Load was uncuccessful and object is invalid. The valid flag will not be set.
+		FirstFatal,
+		Fatal_FileDoesNotExist					= FirstFatal,
 		Fatal_IncorrectFileType,
 		Fatal_CouldNotParseFile,
 		Fatal_CorruptedFile,
@@ -126,15 +131,11 @@ public:
 		Fatal_PackedDecodeError,
 		Fatal_BCDecodeError,
 		Fatal_ASTCDecodeError,
-		NumCodes,
+		LastFatal								= Fatal_ASTCDecodeError,
 
-		// Since we store result codes as bits in a 32-bit uint, we need to make sure we don't have too many codes. 32
-		// codes in [0, 31] is the max.
-		MaxCodes							= 32,
-		FirstValid							= Success,
-		LastValid							= Conditional_DimNotPowerTwoBC,
-		FirstFatal							= Fatal_FileDoesNotExist,
-		LastFatal							= Fatal_PackedDecodeError
+		// Since we store states as bits in a 32-bit uint, we need to make sure we don't have too many.
+		NumStateBits,
+		MaxStateBits							= 32
 	};
 
 	// Clears the current tImageKTX before loading. If the ktx file failed to load for any reason it will result in an
@@ -153,16 +154,18 @@ public:
 	// Sets from a tPicture.
 	bool Set(tPicture& picture, bool steal = true) override;
 
-	// After a load you can call GetResults() to find out what, if anything, went wrong.
-	uint32 GetResults() const																							{ return Results; }
-	bool IsResultSet(ResultCode code) const																				{ return (Results & (1<<int(code))); }
-	static const char* GetResultDesc(ResultCode);
-
-	// Will return true if a ktx file has been successfully loaded. This includes conditional success results.
-	bool IsValid() const override																						{ return (Results < (1 << int(ResultCode::FirstFatal))); }
-
 	// After this call no memory will be consumed by the object and it will be invalid. Does not clear filename.
 	void Clear() override;
+
+	// Will return true if a ktx/ktx2 file has been successfully loaded or otherwise populated.
+	// This includes conditional valid results.
+	bool IsValid() const override																						{ return IsStateSet(StateBit::Valid); }
+
+	// After a load you can call GetStates() to find out what, if anything, went wrong.
+	uint32 GetStates() const																							{ return States; }
+	bool IsStateSet(StateBit state) const																				{ return (States & (1<<int(state))); }
+	static const char* GetStateDesc(StateBit);
+
 	bool IsMipmapped() const																							{ return (NumMipmapLayers > 1) ? true : false; }
 	bool IsCubemap() const																								{ return IsCubeMap; }
 	bool RowsReversed() const																							{ return RowReversalOperationPerformed; }
@@ -248,8 +251,10 @@ public:
 	tString Filename;
 
 private:
-	// The result codes are bits in this Results member.
-	uint32 Results							= 0;
+	void SetStateBit(StateBit state)		{ States |= 1 << int(state); }
+
+	// The states are bits in this States member.
+	uint32 States							= 0;
 
 	tPixelFormat PixelFormat				= tPixelFormat::Invalid;
 	tPixelFormat PixelFormatSrc				= tPixelFormat::Invalid;
@@ -275,7 +280,7 @@ private:
 	tLayer* Layers[MaxMipmapLayers][MaxImages];
 
 public:
-	static const char* ResultDescriptions[];
+	static const char* StateDescriptions[];
 };
 
 

@@ -62,7 +62,7 @@ public:
 	// lossy. In these cases the row-reversal is done _after_ decoding. Unfortunalely decoding may not always be
 	// requested (for example if you want to pass the image data directly to the GPU memory in OpenGL). In these cases
 	// tImageDDS will be unable to reverse the rows. You will still get a valid object, but it will be a conditional
-	// success (GetResults() will have Conditional_CouldNotFlipRows flag set). You can call also call RowsReversed() to
+	// valid (GetStates() will have Conditional_CouldNotFlipRows flag set). You can call also call RowsReversed() to
 	// see if row-reversal was performed. The conditional is only set if reversal was requested.
 	//
 	// Additional parameters may be processed during dds-loading. Gamma is only used if GammaCompression flag is set.
@@ -100,7 +100,7 @@ public:
 
 	virtual ~tImageDDS()																								{ Clear(); }
 
-	// The state of the tImageDDS is a combination of one or more of the following enumerants.
+	// The state of the tImage is a combination of one or more of the following enumerants.
 	// The values of the enum are used as bit indices into a bitfield.
 	enum class StateBit
 	{
@@ -161,7 +161,8 @@ public:
 	// After this call no memory will be consumed by the object and it will be invalid. Does not clear filename.
 	void Clear() override;
 
-	// Will return true if a dds file has been successfully loaded. This includes conditional success results.
+	// Will return true if a dds file has been successfully loaded or otherwise populated.
+	// This includes conditional valid results.
 	bool IsValid() const override																						{ return IsStateSet(StateBit::Valid); }
 
 	// After a load you can call GetStates() to find out what, if anything, went wrong.

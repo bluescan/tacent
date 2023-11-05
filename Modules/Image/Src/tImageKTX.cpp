@@ -737,7 +737,7 @@ void tImageKTX::Clear()
 		}
 	}
 
-	Results							= 0;							// This means no results.
+	States							= 0;	// Image will be invalid now since Valid state not set.
 	PixelFormat						= tPixelFormat::Invalid;
 	PixelFormatSrc					= tPixelFormat::Invalid;
 	ColourProfile					= tColourProfile::Unspecified;
@@ -765,6 +765,7 @@ bool tImageKTX::Set(tPixel* pixels, int width, int height, bool steal)
 	NumImages = 1;
 	NumMipmapLayers = 1;
 
+	SetStateBit(StateBit::Valid);
 	return true;
 }
 
@@ -780,6 +781,7 @@ bool tImageKTX::Set(tFrame* frame, bool steal)
 	if (steal)
 		delete frame;
 
+	SetStateBit(StateBit::Valid);
 	return true;
 }
 
@@ -912,13 +914,13 @@ bool tImageKTX::Load(const tString& ktxFile, const LoadParams& loadParams)
 	tSystem::tFileType fileType = tSystem::tGetFileType(ktxFile);
 	if ((fileType != tSystem::tFileType::KTX) && (fileType != tSystem::tFileType::KTX2))
 	{
-		Results |= 1 << int(ResultCode::Fatal_IncorrectFileType);
+		SetStateBit(StateBit::Fatal_IncorrectFileType);
 		return false;
 	}
 
 	if (!tSystem::tFileExists(ktxFile))
 	{
-		Results |= 1 << int(ResultCode::Fatal_FileDoesNotExist);
+		SetStateBit(StateBit::Fatal_FileDoesNotExist);
 		return false;
 	}
 
@@ -941,7 +943,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 	result = ktxTexture_CreateFromMemory(ktxData, ktxSizeBytes, KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &texture);
 	if (!texture || (result != KTX_SUCCESS))
 	{
-		Results |= 1 << int(ResultCode::Fatal_CouldNotParseFile);
+		SetStateBit(StateBit::Fatal_CouldNotParseFile);
 		return false;
 	}
 
@@ -957,14 +959,14 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 	if ((NumMipmapLayers <= 0) || (numDims != 2) || (mainWidth <= 0) || (mainHeight <= 0))
 	{
 		ktxTexture_Destroy(texture);
-		Results |= 1 << int(ResultCode::Fatal_InvalidDimensions);
+		SetStateBit(StateBit::Fatal_InvalidDimensions);
 		return false;
 	}
 
 	if (NumMipmapLayers > MaxMipmapLayers)
 	{
 		ktxTexture_Destroy(texture);
-		Results |= 1 << int(ResultCode::Fatal_MaxNumMipmapLevelsExceeded);
+		SetStateBit(StateBit::Fatal_MaxNumMipmapLevelsExceeded);
 		return false;
 	}
 
@@ -977,7 +979,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 	if (!ktx1 && !ktx2)
 	{
 		ktxTexture_Destroy(texture);
-		Results |= 1 << int(ResultCode::Fatal_CorruptedFile);
+		SetStateBit(StateBit::Fatal_CorruptedFile);
 		return false;
 	}
 
@@ -986,13 +988,13 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 	{
 		tKTX::GetFormatInfo_FromGLFormat(PixelFormat, ColourProfile, ktx1->glType, ktx1->glFormat, ktx1->glInternalformat);
 		if (fileType == tSystem::tFileType::KTX2)
-			Results |= 1 << int(ResultCode::Conditional_ExtVersionMismatch);
+			SetStateBit(StateBit::Conditional_ExtVersionMismatch);
 	}
 	else if (ktx2)
 	{
 		tKTX::GetFormatInfo_FromVKFormat(PixelFormat, ColourProfile, ktx2->vkFormat);
 		if (fileType == tSystem::tFileType::KTX)
-			Results |= 1 << int(ResultCode::Conditional_ExtVersionMismatch);
+			SetStateBit(StateBit::Conditional_ExtVersionMismatch);
 	}
 	PixelFormatSrc = PixelFormat;
 	ColourProfileSrc = ColourProfile;
@@ -1001,16 +1003,16 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 	if (PixelFormat == tPixelFormat::Invalid)
 	{
 		ktxTexture_Destroy(texture);
-		Results |= 1 << int(ResultCode::Fatal_PixelFormatNotSupported);
+		SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
 		return false;
 	}
 
 	if (tIsBCFormat(PixelFormat))
 	{
 		if ((params.Flags & LoadFlag_CondMultFourDim) && ((mainWidth%4) || (mainHeight%4)))
-			Results |= 1 << int(ResultCode::Conditional_DimNotMultFourBC);
+			SetStateBit(StateBit::Conditional_DimNotMultFourBC);
 		if ((params.Flags & LoadFlag_CondPowerTwoDim) && (!tMath::tIsPower2(mainWidth) || !tMath::tIsPower2(mainHeight)))
-			Results |= 1 << int(ResultCode::Conditional_DimNotMultFourBC);
+			SetStateBit(StateBit::Conditional_DimNotMultFourBC);
 	}
 
 	bool reverseRowOrderRequested = params.Flags & LoadFlag_ReverseRowOrder;
@@ -1052,7 +1054,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 			if (result != KTX_SUCCESS)
 			{
 				ktxTexture_Destroy(texture);
-				Results |= 1 << int(ResultCode::Fatal_InvalidDataOffset);
+				SetStateBit(StateBit::Fatal_InvalidDataOffset);
 				return false;
 			}
 
@@ -1102,7 +1104,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 			{
 				// Unsupported pixel format.
 				Clear();
-				Results |= 1 << int(ResultCode::Fatal_PixelFormatNotSupported);
+				SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
 				return false;
 			}
 
@@ -1119,10 +1121,10 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 	if (!(params.Flags & LoadFlag_Decode))
 	{
 		if (reverseRowOrderRequested && !RowReversalOperationPerformed)
-			Results |= 1 << int(ResultCode::Conditional_CouldNotFlipRows);
+			SetStateBit(StateBit::Conditional_CouldNotFlipRows);
 
+		SetStateBit(StateBit::Valid);
 		tAssert(IsValid());
-		Results |= 1 << int(ResultCode::Success);
 		return true;
 	}
 
@@ -1172,17 +1174,14 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 
 			if (result != DecodeResult::Success)
 			{
-				ResultCode ktxResult = ResultCode::Success;
+				Clear();
 				switch (result)
 				{
-					case DecodeResult::PackedDecodeError:	ktxResult = ResultCode::Fatal_PackedDecodeError;		break;
-					case DecodeResult::BlockDecodeError:	ktxResult = ResultCode::Fatal_BCDecodeError;			break;
-					case DecodeResult::ASTCDecodeError:		ktxResult = ResultCode::Fatal_ASTCDecodeError;			break;
-					default:								ktxResult = ResultCode::Fatal_PixelFormatNotSupported;	break;
+					case DecodeResult::PackedDecodeError:	SetStateBit(StateBit::Fatal_PackedDecodeError);			break;
+					case DecodeResult::BlockDecodeError:	SetStateBit(StateBit::Fatal_BCDecodeError);				break;
+					case DecodeResult::ASTCDecodeError:		SetStateBit(StateBit::Fatal_ASTCDecodeError);			break;
+					default:								SetStateBit(StateBit::Fatal_PixelFormatNotSupported);	break;
 				}
-
-				Clear();
-				Results |= 1 << int(ktxResult);
 				return false;
 			}
 
@@ -1276,28 +1275,28 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 	PixelFormat = tPixelFormat::R8G8B8A8;
 
 	if (reverseRowOrderRequested && !RowReversalOperationPerformed)
-		Results |= 1 << int(ResultCode::Conditional_CouldNotFlipRows);
+		SetStateBit(StateBit::Conditional_CouldNotFlipRows);
 
 	ktxTexture_Destroy(texture);
+	SetStateBit(StateBit::Valid);
 	tAssert(IsValid());
-	Results |= 1 << int(ResultCode::Success);
 	return true;
 }
 
 
-const char* tImageKTX::GetResultDesc(ResultCode code)
+const char* tImageKTX::GetStateDesc(StateBit state)
 {
-	return ResultDescriptions[int(code)];
+	return StateDescriptions[int(state)];
 }
 
 
-const char* tImageKTX::ResultDescriptions[] =
+const char* tImageKTX::StateDescriptions[] =
 {
-	"Success",
-	"Conditional Success. Image rows could not be flipped.",
-	"Conditional Success. Image has dimension not multiple of four.",
-	"Conditional Success. Image has dimension not power of two.",
-	"Conditional Success. KTX extension doesn't match file version.",
+	"Valid",
+	"Conditional Valid. Image rows could not be flipped.",
+	"Conditional Valid. Image has dimension not multiple of four.",
+	"Conditional Valid. Image has dimension not power of two.",
+	"Conditional Valid. KTX extension doesn't match file version.",
 	"Fatal Error. File does not exist.",
 	"Fatal Error. Incorrect file type. Must be a KTX or KTX2 file.",
 	"Fatal Error. LibKTX could not parse file.",
@@ -1311,8 +1310,8 @@ const char* tImageKTX::ResultDescriptions[] =
 	"Fatal Error. Unable to decode BC pixels.",
 	"Fatal Error. Unable to decode ASTC pixels."
 };
-tStaticAssert(tNumElements(tImageKTX::ResultDescriptions) == int(tImageKTX::ResultCode::NumCodes));
-tStaticAssert(int(tImageKTX::ResultCode::NumCodes) <= int(tImageKTX::ResultCode::MaxCodes));
+tStaticAssert(tNumElements(tImageKTX::StateDescriptions) == int(tImageKTX::StateBit::NumStateBits));
+tStaticAssert(int(tImageKTX::StateBit::NumStateBits) <= int(tImageKTX::StateBit::MaxStateBits));
 
 
 }

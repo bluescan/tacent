@@ -1009,7 +1009,7 @@ void tImageDDS::Clear()
 		}
 	}
 
-	States							= 0;							// Image will be invalid now since Valid state not set.
+	States							= 0;	// Image will be invalid now since Valid state not set.
 	PixelFormat						= tPixelFormat::Invalid;
 	PixelFormatSrc					= tPixelFormat::Invalid;
 	ColourProfile					= tColourProfile::Unspecified;
@@ -1656,9 +1656,9 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 }
 
 
-const char* tImageDDS::GetStateDesc(StateBit code)
+const char* tImageDDS::GetStateDesc(StateBit state)
 {
-	return StateDescriptions[int(code)];
+	return StateDescriptions[int(state)];
 }
 
 

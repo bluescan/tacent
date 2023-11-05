@@ -120,15 +120,14 @@ void tImagePVR::Clear()
 	}
 	*/
 
-	Results							= 0;							// This means no results.
+	States							= 0;	// Image will be invalid now since Valid state not set.
 	PixelFormat						= tPixelFormat::Invalid;
 	PixelFormatSrc					= tPixelFormat::Invalid;
 	ColourProfile					= tColourProfile::Unspecified;
 	ColourProfileSrc				= tColourProfile::Unspecified;
 	AlphaMode						= tAlphaMode::Unspecified;
 	RowReversalOperationPerformed	= false;
-
-
+	// WIP
 }
 
 
@@ -145,6 +144,7 @@ bool tImagePVR::Set(tPixel* pixels, int width, int height, bool steal)
 	AlphaMode						= tAlphaMode::Normal;
 	RowReversalOperationPerformed	= false;
 
+	SetStateBit(StateBit::Valid);
 	return true;
 }
 
@@ -160,6 +160,7 @@ bool tImagePVR::Set(tFrame* frame, bool steal)
 	if (steal)
 		delete frame;
 
+	SetStateBit(StateBit::Valid);
 	return true;
 }
 
@@ -187,13 +188,13 @@ bool tImagePVR::Load(const tString& pvrFile, const LoadParams& loadParams)
 	Filename = pvrFile;
 	if (tSystem::tGetFileType(pvrFile) != tSystem::tFileType::PVR)
 	{
-		Results |= 1 << int(ResultCode::Fatal_IncorrectFileType);
+		SetStateBit(StateBit::Fatal_IncorrectFileType);
 		return false;
 	}
 
 	if (!tSystem::tFileExists(pvrFile))
 	{
-		Results |= 1 << int(ResultCode::Fatal_FileDoesNotExist);
+		SetStateBit(StateBit::Fatal_FileDoesNotExist);
 		return false;
 	}
 
@@ -429,7 +430,10 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	Clear();
 	PVRVersion = DetermineVersionFromFirstFourBytes(pvrData);
 	if (PVRVersion == 0)
+	{
+		SetStateBit(StateBit::Fatal_UnsupportedPVRFileVersion);
 		return false;
+	}
 
 	tPrintf("PVR Version: %d\n", PVRVersion);
 
@@ -545,7 +549,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		}
 
 		default:
-			Results |= uint32(ResultCode::Fatal_UnsupportedPVRFileVersion);
+			SetStateBit(StateBit::Fatal_UnsupportedPVRFileVersion);
 			return false;
 	}
 
@@ -570,23 +574,25 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	tPrintf("PVR channelType: %d\n", channelType);
 	tPrintf("PVR metaDataSize: %d\n", metaDataSize);
 
-	return false;
+	SetStateBit(StateBit::Valid);
+	tAssert(IsValid());
+	return true;
 }
 
 
-const char* tImagePVR::GetResultDesc(ResultCode code)
+const char* tImagePVR::GetStateDesc(StateBit state)
 {
-	return ResultDescriptions[int(code)];
+	return StateDescriptions[int(state)];
 }
 
 
-const char* tImagePVR::ResultDescriptions[] =
+const char* tImagePVR::StateDescriptions[] =
 {
-	"Success",
-	"Conditional Success. Image rows could not be flipped.",
-	"Conditional Success. Pixel format specification ill-formed.",
-	"Conditional Success. Image has dimension not multiple of four.",
-	"Conditional Success. Image has dimension not power of two.",
+	"Valid",
+	"Conditional Valid. Image rows could not be flipped.",
+	"Conditional Valid. Pixel format specification ill-formed.",
+	"Conditional Valid. Image has dimension not multiple of four.",
+	"Conditional Valid. Image has dimension not power of two.",
 	"Fatal Error. File does not exist.",
 	"Fatal Error. Incorrect file type. Must be a PVR file.",
 	"Fatal Error. Filesize incorrect.",
@@ -603,8 +609,8 @@ const char* tImagePVR::ResultDescriptions[] =
 	"Fatal Error. Unable to decode PVR pixels.",
 	"Fatal Error. Unable to decode ASTC pixels."
 };
-tStaticAssert(tNumElements(tImagePVR::ResultDescriptions) == int(tImagePVR::ResultCode::NumCodes));
-tStaticAssert(int(tImagePVR::ResultCode::NumCodes) <= int(tImagePVR::ResultCode::MaxCodes));
+tStaticAssert(tNumElements(tImagePVR::StateDescriptions) == int(tImagePVR::StateBit::NumStateBits));
+tStaticAssert(int(tImagePVR::StateBit::NumStateBits) <= int(tImagePVR::StateBit::MaxStateBits));
 
 
 }
