@@ -265,24 +265,16 @@ private:
 	//   Mipmaps
 	//    Slices
 	//     Layers
+	int NumSurfaces							= 0;		// For storing arrays of image data.
+	int NumFaces							= 0;		// For cubemaps. Cubemaps are always specified using a left-handed coord system even when using the OpenGL functions.
+	int NumMipmaps							= 0;
+
+	int Depth								= 0;		// Number of slices.
 	int Width								= 0;
 	int Height								= 0;
 
-	int NumSurfaces							= 0;		// For storing arrays of image data.
-	int NumFaces							= 0;		// For cubemaps.
-	int NumMipmaps							= 0;
-	int Depth								= 0;
-
-	// If this is 1, you can consider the texture(s) to NOT be mipmapped.
-//	int NumMipmapLayers						= 0;
-//	const static int MaxMipmapLayers		= 16;		// Max dimension 32768.
-
-	// Cubemaps are always specified using a left-handed coord system even when using the OpenGL functions.
-//	const static int MaxImages				= 6;
-	tLayer* Layers = nullptr;//[MaxMipmapLayers][MaxImages];
-
-	// @todo This will be one of the first things to work out.
-	// tLayer* Layer;
+	int NumLayers							= 0;
+	tLayer** Layers							= nullptr;	// Always nullptr if NumLayers is 0.
 
 public:
 	static const char* StateDescriptions[];
