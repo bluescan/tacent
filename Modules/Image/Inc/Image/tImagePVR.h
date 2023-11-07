@@ -137,11 +137,12 @@ public:
 		MaxStateBits							= 32
 	};
 
-	// Clears the current tImagePVR before loading. If the pvr file failed to load for any reason it will result in an
-	// invalid object. A pvr may fail to load for a number of reasons: Some pixel-formats may not yet be supported, or
-	// inconsistent flags. Returns true on success or conditional-success.
-	bool Load(const tString& pvrFile, const LoadParams& = LoadParams());
-	bool Load(const uint8* pvrMem, int numBytes, const LoadParams& = LoadParams());
+	// After this call no memory will be consumed by the object and it will be invalid. Does not clear filename.
+	void Clear() override;
+
+	// Will return true if a dds file has been successfully loaded or otherwise populated.
+	// This includes conditional valid results.
+	bool IsValid() const override																						{ return IsStateSet(StateBit::Valid); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -153,19 +154,18 @@ public:
 	// Sets from a tPicture.
 	bool Set(tPicture& picture, bool steal = true) override;
 
-	// After this call no memory will be consumed by the object and it will be invalid. Does not clear filename.
-	void Clear() override;
-
-	// Will return true if a dds file has been successfully loaded or otherwise populated.
-	// This includes conditional valid results.
-	bool IsValid() const override																						{ return IsStateSet(StateBit::Valid); }
+	// Clears the current tImagePVR before loading. If the pvr file failed to load for any reason it will result in an
+	// invalid object. A pvr may fail to load for a number of reasons: Some pixel-formats may not yet be supported, or
+	// inconsistent flags. Returns true on success or conditional-success.
+	bool Load(const tString& pvrFile, const LoadParams& = LoadParams());
+	bool Load(const uint8* pvrMem, int numBytes, const LoadParams& = LoadParams());
 
 	// After a load you can call GetStates() to find out what, if anything, went wrong.
 	uint32 GetStates() const																							{ return States; }
 	bool IsStateSet(StateBit state) const																				{ return (States & (1<<int(state))); }
 	static const char* GetStateDesc(StateBit);
 
-	bool IsMipmapped() const;
+	bool IsMipmapped() const																							{ return (NumMipmaps > 1) ? true : false; }
 	bool IsCubemap() const;
 
 	// Returns the pvr container format version. If the tImagePVR is not valid -1 is returned. If the tImagePVR is valid
@@ -223,7 +223,6 @@ private:
 	// The states are bits in this States member.
 	uint32 States							= 0;
 
-	int DetermineVersionFromFirstFourBytes(const uint8 bytes[4]);
 	int PVRVersion							= 0;
 
 	tPixelFormat PixelFormat				= tPixelFormat::Invalid;

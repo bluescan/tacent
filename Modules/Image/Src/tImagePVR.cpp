@@ -82,6 +82,8 @@ namespace tPVR
 	};
 	#pragma pack(pop)
 
+	int DetermineVersionFromFirstFourBytes(const uint8 bytes[4]);
+
 	// If the pixel format is returned unspecified the headerFmt is not supported or was invalid.
 	// In this case the returned alpha-mode is meaningless and has no specified value.
 	void DeterminePixelFormatFromV1V2Header(tPixelFormat&, tAlphaMode&, uint8 headerFmt);
@@ -89,159 +91,7 @@ namespace tPVR
 }
 
 
-tImagePVR::tImagePVR()
-{
-}
-
-
-tImagePVR::tImagePVR(const tString& pvrFile, const LoadParams& loadParams) :
-	Filename(pvrFile)
-{
-	Load(pvrFile, loadParams);
-}
-
-
-tImagePVR::tImagePVR(const uint8* pvrFileInMemory, int numBytes, const LoadParams& loadParams)
-{
-	Load(pvrFileInMemory, numBytes, loadParams);
-}
-
-
-void tImagePVR::Clear()
-{
-	// Clear all layers no matter what they're used for.
-	for (int layer = 0; layer < NumLayers; layer++)
-		delete Layers[layer];
-
-	// Now delete the layers array.
-	delete[] Layers;
-	Layers = nullptr;
-	NumLayers = 0;
-
-/*
-	for (int surface = 0; surface < NumSurfaces; surface++)
-	{
-		for (int face = 0; face < NumFaces; face++)
-		{
-			for (int mipmap = 0; mipmap < NumMipmaps; mipmap++)
-			{
-				for (int slice = 0; slice < Depth; slice++)
-				{
-
-				}
-			}
-		}
-	}
-*/
-	States							= 0;		// Image will be invalid now since Valid state not set.
-	PVRVersion						= 0;
-	PixelFormat						= tPixelFormat::Invalid;
-	PixelFormatSrc					= tPixelFormat::Invalid;
-	ColourProfile					= tColourProfile::Unspecified;
-	ColourProfileSrc				= tColourProfile::Unspecified;
-	AlphaMode						= tAlphaMode::Unspecified;
-	RowReversalOperationPerformed	= false;
-
-	NumSurfaces						= 0;		// For storing arrays of image data.
-	NumFaces						= 0;		// For cubemaps.
-	NumMipmaps						= 0;
-
-	Depth							= 0;		// Number of slices.
-	Width							= 0;
-	Height							= 0;
-}
-
-
-bool tImagePVR::Set(tPixel* pixels, int width, int height, bool steal)
-{
-	Clear();
-	if (!pixels || (width <= 0) || (height <= 0))
-		return false;
-
-	PixelFormat						= tPixelFormat::R8G8B8A8;
-	PixelFormatSrc					= tPixelFormat::R8G8B8A8;
-	ColourProfile					= tColourProfile::LDRsRGB_LDRlA;
-	ColourProfileSrc				= tColourProfile::LDRsRGB_LDRlA;
-	AlphaMode						= tAlphaMode::Normal;
-	RowReversalOperationPerformed	= false;
-
-	NumSurfaces						= 1;
-	NumFaces						= 1;
-	NumMipmaps						= 1;
-	Depth							= 1;
-	Width							= width;
-	Height							= height;
-
-	NumLayers						= 1;
-	Layers = new tLayer*[1];
-
-	// Order is surface, face, mipmap, slice.
-	Layers[0]						= new tLayer(tPixelFormat::R8G8B8A8, Width, Height, (uint8*)pixels, steal);
-
-	SetStateBit(StateBit::Valid);
-	return true;
-}
-
-
-bool tImagePVR::Set(tFrame* frame, bool steal)
-{
-	Clear();
-	if (!frame || !frame->IsValid())
-		return false;
-
-	tPixel* pixels = frame->GetPixels(steal);
-	Set(pixels, frame->Width, frame->Height, steal);
-	if (steal)
-		delete frame;
-
-	return IsValid();
-}
-
-
-bool tImagePVR::Set(tPicture& picture, bool steal)
-{
-	Clear();
-	if (!picture.IsValid())
-		return false;
-
-	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
-	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
-}
-
-
-tFrame* tImagePVR::GetFrame(bool steal)
-{
-	////////////WIP
-	return nullptr;
-}
-
-
-bool tImagePVR::Load(const tString& pvrFile, const LoadParams& loadParams)
-{
-	Clear();
-	Filename = pvrFile;
-	if (tSystem::tGetFileType(pvrFile) != tSystem::tFileType::PVR)
-	{
-		SetStateBit(StateBit::Fatal_IncorrectFileType);
-		return false;
-	}
-
-	if (!tSystem::tFileExists(pvrFile))
-	{
-		SetStateBit(StateBit::Fatal_FileDoesNotExist);
-		return false;
-	}
-
-	int pvrSizeBytes = 0;
-	uint8* pvrData = (uint8*)tSystem::tLoadFile(pvrFile, 0, &pvrSizeBytes);
-	bool success = Load(pvrData, pvrSizeBytes, loadParams);
-	delete[] pvrData;
-
-	return success;
-}
-
-
-int tImagePVR::DetermineVersionFromFirstFourBytes(const uint8 bytes[4])
+int tPVR::DetermineVersionFromFirstFourBytes(const uint8 bytes[4])
 {
 	if (!bytes)
 		return 0;
@@ -459,10 +309,155 @@ void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 }
 
 
+tImagePVR::tImagePVR()
+{
+}
+
+
+tImagePVR::tImagePVR(const tString& pvrFile, const LoadParams& loadParams) :
+	Filename(pvrFile)
+{
+	Load(pvrFile, loadParams);
+}
+
+
+tImagePVR::tImagePVR(const uint8* pvrFileInMemory, int numBytes, const LoadParams& loadParams)
+{
+	Load(pvrFileInMemory, numBytes, loadParams);
+}
+
+
+void tImagePVR::Clear()
+{
+	// Clear all layers no matter what they're used for.
+	for (int layer = 0; layer < NumLayers; layer++)
+		delete Layers[layer];
+
+	// Now delete the layers array.
+	delete[] Layers;
+	Layers = nullptr;
+	NumLayers = 0;
+
+/*
+	for (int surface = 0; surface < NumSurfaces; surface++)
+	{
+		for (int face = 0; face < NumFaces; face++)
+		{
+			for (int mipmap = 0; mipmap < NumMipmaps; mipmap++)
+			{
+				for (int slice = 0; slice < Depth; slice++)
+				{
+
+				}
+			}
+		}
+	}
+*/
+	States							= 0;		// Image will be invalid now since Valid state not set.
+	PVRVersion						= 0;
+	PixelFormat						= tPixelFormat::Invalid;
+	PixelFormatSrc					= tPixelFormat::Invalid;
+	ColourProfile					= tColourProfile::Unspecified;
+	ColourProfileSrc				= tColourProfile::Unspecified;
+	AlphaMode						= tAlphaMode::Unspecified;
+	RowReversalOperationPerformed	= false;
+
+	NumSurfaces						= 0;		// For storing arrays of image data.
+	NumFaces						= 0;		// For cubemaps.
+	NumMipmaps						= 0;
+
+	Depth							= 0;		// Number of slices.
+	Width							= 0;
+	Height							= 0;
+}
+
+
+bool tImagePVR::Set(tPixel* pixels, int width, int height, bool steal)
+{
+	Clear();
+	if (!pixels || (width <= 0) || (height <= 0))
+		return false;
+
+	PixelFormat						= tPixelFormat::R8G8B8A8;
+	PixelFormatSrc					= tPixelFormat::R8G8B8A8;
+	ColourProfile					= tColourProfile::LDRsRGB_LDRlA;
+	ColourProfileSrc				= tColourProfile::LDRsRGB_LDRlA;
+	AlphaMode						= tAlphaMode::Normal;
+	RowReversalOperationPerformed	= false;
+
+	NumSurfaces						= 1;
+	NumFaces						= 1;
+	NumMipmaps						= 1;
+	Depth							= 1;
+	Width							= width;
+	Height							= height;
+
+	NumLayers						= 1;
+	Layers = new tLayer*[1];
+
+	// Order is surface, face, mipmap, slice.
+	Layers[0]						= new tLayer(tPixelFormat::R8G8B8A8, Width, Height, (uint8*)pixels, steal);
+
+	SetStateBit(StateBit::Valid);
+	return true;
+}
+
+
+bool tImagePVR::Set(tFrame* frame, bool steal)
+{
+	Clear();
+	if (!frame || !frame->IsValid())
+		return false;
+
+	tPixel* pixels = frame->GetPixels(steal);
+	Set(pixels, frame->Width, frame->Height, steal);
+	if (steal)
+		delete frame;
+
+	return IsValid();
+}
+
+
+bool tImagePVR::Set(tPicture& picture, bool steal)
+{
+	Clear();
+	if (!picture.IsValid())
+		return false;
+
+	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+}
+
+
+bool tImagePVR::Load(const tString& pvrFile, const LoadParams& loadParams)
+{
+	Clear();
+	Filename = pvrFile;
+	if (tSystem::tGetFileType(pvrFile) != tSystem::tFileType::PVR)
+	{
+		SetStateBit(StateBit::Fatal_IncorrectFileType);
+		return false;
+	}
+
+	if (!tSystem::tFileExists(pvrFile))
+	{
+		SetStateBit(StateBit::Fatal_FileDoesNotExist);
+		return false;
+	}
+
+	int pvrSizeBytes = 0;
+	uint8* pvrData = (uint8*)tSystem::tLoadFile(pvrFile, 0, &pvrSizeBytes);
+	bool success = Load(pvrData, pvrSizeBytes, loadParams);
+	delete[] pvrData;
+
+	return success;
+}
+
+
 bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& paramsIn)
 {
 	Clear();
-	PVRVersion = DetermineVersionFromFirstFourBytes(pvrData);
+	PVRVersion = tPVR::DetermineVersionFromFirstFourBytes(pvrData);
 	if (PVRVersion == 0)
 	{
 		SetStateBit(StateBit::Fatal_UnsupportedPVRFileVersion);
@@ -471,23 +466,13 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 
 	tPrintf("PVR Version: %d\n", PVRVersion);
 
-	int height = 0;
-	int width = 0;
-	int depth = 1;
-	int mipmapCount = 0;
 	uint8 flagsV12A = 0;
 	uint8 flagsV12B = 0;
 	uint8 flagsV12C = 0;
 	uint32 flagsV3 = 0;
 	int bytesPerSurface = 0;
 	int bitsPerPixel = 0;
-	uint32 redMask = 0;
-	uint32 grnMask = 0;
-	uint32 bluMask = 0;
-	uint32 alpMask = 0;
 	uint32 fourCC = 'ENON';
-	int numSurfaces = 1;
-	int numFaces = 1;
 	tColourProfile colourProfile = tColourProfile::Unspecified;
 	int channelType = 0;		// 0 = UNORM Byte.
 	int metaDataSize = 0;
@@ -503,18 +488,18 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			tPVR::DeterminePixelFormatFromV1V2Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
 			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
 
-			height = header->Height;
-			width = header->Width;
-			mipmapCount = header->MipMapCount;
+			NumSurfaces = 1;
+			NumFaces = 1;
+			NumMipmaps = header->MipMapCount;
+			Depth = 1;
+			Width = header->Width;
+			Height = header->Height;
+
 			flagsV12A = header->Flags1;
 			flagsV12B = header->Flags2;
 			flagsV12C = header->Flags3;
 			bytesPerSurface = header->SurfaceSize;
 			bitsPerPixel = header->BitsPerPixel;
-			redMask = header->RedMask;
-			grnMask = header->GreenMask;
-			bluMask = header->BlueMask;
-			alpMask = header->AlphaMask;
 
 			textureData = pvrData + header->HeaderSize;
 			break;
@@ -527,20 +512,19 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			tPVR::DeterminePixelFormatFromV1V2Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
 			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
 
-			height = header->Height;
-			width = header->Width;
-			mipmapCount = header->MipMapCount;
+			NumSurfaces = header->NumSurfaces;
+			NumFaces = 1;
+			NumMipmaps = header->MipMapCount;
+			Depth = 1;
+			Width = header->Width;
+			Height = header->Height;
+
 			flagsV12A = header->Flags1;
 			flagsV12B = header->Flags2;
 			flagsV12C = header->Flags3;
 			bytesPerSurface = header->SurfaceSize;
 			bitsPerPixel = header->BitsPerPixel;
-			redMask = header->RedMask;
-			grnMask = header->GreenMask;
-			bluMask = header->BlueMask;
-			alpMask = header->AlphaMask;
 			fourCC = header->FourCC;
-			numSurfaces = header->NumSurfaces;
 
 			textureData = pvrData + header->HeaderSize;
 			break;
@@ -562,18 +546,19 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			tPVR::DeterminePixelFormatFromV3Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
 			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
 
+			NumSurfaces = header->NumSurfaces;
+			NumFaces = header->NumFaces;
+			NumMipmaps = header->NumMipmaps;
+			Depth = header->Depth;
+			Width = header->Width;
+			Height = header->Height;
+
 			flagsV3 = header->Flags;
 			if (header->ColourSpace == 0)
 				colourProfile = tColourProfile::lRGB;
 			else if (header->ColourSpace == 1)
 				colourProfile = tColourProfile::sRGB;
 			channelType = header->ChannelType;
-			height = header->Height;
-			width = header->Width;
-			depth = header->Depth;
-			numSurfaces = header->NumSurfaces;
-			numFaces = header->NumFaces;
-			mipmapCount = header->NumMipmaps;
 			metaDataSize = header->MetaDataSize;
 
 			tAssert(sizeof(tPVR::HeaderV3) == 52);
@@ -593,10 +578,6 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	tPrintf("PVR flagsV3: %08!4b\n", flagsV3);	
 	tPrintf("PVR bytesPerSurface: %d\n", bytesPerSurface);
 	tPrintf("PVR bitsPerPixel: %d\n", bitsPerPixel);
-	tPrintf("PVR redMask: %08!4b\n", redMask);
-	tPrintf("PVR grnMask: %08!4b\n", grnMask);
-	tPrintf("PVR bluMask: %08!4b\n", bluMask);
-	tPrintf("PVR alpMask: %08!4b\n", alpMask);
 	tPrintf("PVR fourCC: %08X (%c %c %c %c)\n", fourCC, (fourCC>>0)&0xFF, (fourCC>>8)&0xFF, (fourCC>>16)&0xFF, (fourCC>>24)&0xFF);
 	tPrintf("PVR colourProfile: %s\n", tGetColourProfileShortName(colourProfile));
 	tPrintf("PVR channelType: %d\n", channelType);
@@ -604,16 +585,14 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 
 	// We need NumSurfaces*NumFaces*NumMipmaps*Depth tLayers.
 	tPrintf("PVR For tLayers:\n");
-	tPrintf("PVR numSurfaces: %d\n", numSurfaces);
-	tPrintf("PVR numFaces: %d\n", numFaces);
-	tPrintf("PVR mipmapCount: %d\n", mipmapCount);
-	tPrintf("PVR depth: %d\n", depth);
-	tPrintf("PVR Layer width: %d\n", width);
-	tPrintf("PVR Layer height: %d\n", height);
-	int numLayers = numSurfaces * numFaces * mipmapCount * depth;
-	tPrintf("PVR numLayers: %d\n", numLayers);
-
-
+	tPrintf("PVR NumSurfaces: %d\n", NumSurfaces);
+	tPrintf("PVR NumFaces: %d\n", NumFaces);
+	tPrintf("PVR NumMipmaps: %d\n", NumMipmaps);
+	tPrintf("PVR Depth: %d\n", Depth);
+	tPrintf("PVR Width: %d\n", Width);
+	tPrintf("PVR Height: %d\n", Height);
+	NumLayers = NumSurfaces * NumFaces * NumMipmaps * Depth;
+	tPrintf("PVR numLayers: %d\n", NumLayers);
 
 	SetStateBit(StateBit::Valid);
 	tAssert(IsValid());
@@ -624,6 +603,13 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 const char* tImagePVR::GetStateDesc(StateBit state)
 {
 	return StateDescriptions[int(state)];
+}
+
+
+tFrame* tImagePVR::GetFrame(bool steal)
+{
+	////////////WIP
+	return nullptr;
 }
 
 
