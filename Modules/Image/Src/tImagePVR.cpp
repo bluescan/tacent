@@ -519,6 +519,30 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			Width = header->Width;
 			Height = header->Height;
 
+
+//
+#if 0
+MIP-Maps are present 0x00000100
+Data is twiddled 0x00000200
+Contains normal data 0x00000400
+Has a border 0x00000800
+Is a cube map
+(Every 6 surfaces make up one cube map)
+0x00001000
+MIP-Maps have debug colouring 0x00002000
+Is a volume (3D) texture
+(numSurfaces is interpreted as a depth value)
+0x00004000
+Alpha channel data is present (PVRTC only) 0x00008000
+#endif
+			// Flags are LE order on disk.
+			uint32 flags = (header->Flags1 << 24) | (header->Flags2 << 16) | (header->Flags1 << 8);
+			if (flags & 0x00000100)
+				tPrintf("PVR FLAG MIPMAPS\n");
+
+			if (flags & 0x00008000)
+				tPrintf("PVR FLAG PVRTC ALPHA DATA\n");
+
 			flagsV12A = header->Flags1;
 			flagsV12B = header->Flags2;
 			flagsV12C = header->Flags3;
@@ -554,6 +578,11 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			Height = header->Height;
 
 			flagsV3 = header->Flags;
+
+			// Pre-multiplied 0x02
+			if (flagsV3 & 0x00000002)
+				tPrintf("PVR FLAG PREMULTIPLIED\n");
+
 			if (header->ColourSpace == 0)
 				colourProfile = tColourProfile::lRGB;
 			else if (header->ColourSpace == 1)
@@ -575,7 +604,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	tPrintf("PVR flagsV12A: %08!1b\n", flagsV12A);
 	tPrintf("PVR flagsV12B: %08!1b\n", flagsV12B);
 	tPrintf("PVR flagsV12C: %08!1b\n", flagsV12C);
-	tPrintf("PVR flagsV3: %08!4b\n", flagsV3);	
+	tPrintf("PVR flagsV3: %032!4b\n", flagsV3);	
 	tPrintf("PVR bytesPerSurface: %d\n", bytesPerSurface);
 	tPrintf("PVR bitsPerPixel: %d\n", bitsPerPixel);
 	tPrintf("PVR fourCC: %08X (%c %c %c %c)\n", fourCC, (fourCC>>0)&0xFF, (fourCC>>8)&0xFF, (fourCC>>16)&0xFF, (fourCC>>24)&0xFF);
@@ -592,7 +621,16 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	tPrintf("PVR Width: %d\n", Width);
 	tPrintf("PVR Height: %d\n", Height);
 	NumLayers = NumSurfaces * NumFaces * NumMipmaps * Depth;
+	if (NumLayers <= 0)
+	{
+		SetStateBit(StateBit::Fatal_BadHeaderData);
+		return false;
+	}
+
 	tPrintf("PVR numLayers: %d\n", NumLayers);
+	Layers = new tLayer*[NumLayers];
+	for (int l = 0; l < NumLayers; l++)
+		Layers[l] = nullptr;
 
 	SetStateBit(StateBit::Valid);
 	tAssert(IsValid());
@@ -625,6 +663,7 @@ const char* tImagePVR::StateDescriptions[] =
 	"Fatal Error. Filesize incorrect.",
 	"Fatal Error. Magic FourCC Incorrect.",
 	"Fatal Error. Incorrect PVR header size.",
+	"Fatal Error. Bad PVR header data.",
 	"Fatal Error. Unsupported PVR file version.",
 	"Fatal Error. Incorrect Dimensions.",
 	"Fatal Error. Pixel format header size incorrect.",

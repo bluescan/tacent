@@ -120,6 +120,7 @@ public:
 		Fatal_IncorrectFileSize,
 		Fatal_IncorrectMagicNumber,
 		Fatal_IncorrectHeaderSize,
+		Fatal_BadHeaderData,
 		Fatal_UnsupportedPVRFileVersion,
 		Fatal_InvalidDimensions,
 		Fatal_IncorrectPixelFormatHeaderSize,
