@@ -472,8 +472,6 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 
 	tPrintf("PVR Version: %d\n", PVRVersion);
 
-	int bytesPerSurface = 0;
-	int bitsPerPixel = 0;
 	uint32 fourCC = 'ENON';
 	tColourProfile colourProfile = tColourProfile::Unspecified;
 	int channelType = 0;		// 0 = UNORM Byte.
@@ -486,9 +484,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		case 1:
 		{
 			tPVR::HeaderV1* header = (tPVR::HeaderV1*)pvrData;
-			tPrintf("PVR Header pixel format: 0x%08X\n", header->PixelFormat);
 			tPVR::DeterminePixelFormatFromV1V2Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
-			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
 
 			NumSurfaces					= 1;		// Not supported by V1 files. Default to 1 surface.
 			NumFaces					= 1;
@@ -497,8 +493,36 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			Width						= header->Width;
 			Height						= header->Height;
 
-			bytesPerSurface				= header->SurfaceSize;
-			bitsPerPixel				= header->BitsPerPixel;
+			// Flags are LE order on disk.
+			uint32 flags = (header->Flags1 << 24) | (header->Flags2 << 16) | (header->Flags1 << 8);
+			
+			bool hasMipmaps				= (flags & 0x00000100) ? true : false;
+			bool dataTwiddled			= (flags & 0x00000200) ? true : false;
+			bool containsNormalData		= (flags & 0x00000400) ? true : false;
+			bool hasABorder				= (flags & 0x00000800) ? true : false;
+			bool isACubemap				= (flags & 0x00001000) ? true : false;		// Every 6 surfaces is one cubemap.
+			bool mipmapsDebugColour		= (flags & 0x00002000) ? true : false;
+			bool isAVolumeTexture		= (flags & 0x00004000) ? true : false;		// NumSurfaces is the number of slices (depth).
+			bool alphaPresentInPVRTC	= (flags & 0x00008000) ? true : false;
+
+			if ((!hasMipmaps && (NumMipmaps != 1)) || (hasMipmaps && (NumMipmaps <= 1)))
+			{
+				if (params.Flags & LoadFlag_StrictLoading)
+				{
+					SetStateBit(StateBit::Fatal_V1V2MipmapFlagInconsistent);
+					return false;
+				}
+				SetStateBit(StateBit::Conditional_V1V2MipmapFlagInconsistent);
+			}
+
+			if (dataTwiddled)
+			{
+				SetStateBit(StateBit::Fatal_V1V2TwiddlingUnsupported);
+				return false;
+			}
+
+			int bytesPerSurface			= header->SurfaceSize;
+			int bitsPerPixel			= header->BitsPerPixel;
 
 			textureData					= pvrData + header->HeaderSize;
 			break;
@@ -507,9 +531,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		case 2:
 		{
 			tPVR::HeaderV2* header = (tPVR::HeaderV2*)pvrData;
-			tPrintf("PVR Header pixel format: 0x%08X\n", header->PixelFormat);
 			tPVR::DeterminePixelFormatFromV1V2Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
-			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
 
 			NumSurfaces					= header->NumSurfaces;
 			NumFaces					= 1;
@@ -540,8 +562,31 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 				SetStateBit(StateBit::Conditional_V1V2MipmapFlagInconsistent);
 			}
 
-			bytesPerSurface = header->SurfaceSize;
-			bitsPerPixel = header->BitsPerPixel;
+			if (dataTwiddled)
+			{
+				SetStateBit(StateBit::Fatal_V1V2TwiddlingUnsupported);
+				return false;
+			}
+
+			if (isACubemap && (NumSurfaces != 6))
+			{
+				SetStateBit(StateBit::Fatal_V1V2CubemapFlagInconsistent);
+				return false;
+			}
+
+			if (isACubemap)
+			{
+				NumFaces = NumSurfaces;
+				NumSurfaces = 1;
+			}
+			else if (isAVolumeTexture)
+			{
+				Depth = NumSurfaces;
+				NumSurfaces = 1;
+			}
+
+			int bytesPerSurface = header->SurfaceSize;
+			int bitsPerPixel = header->BitsPerPixel;
 			fourCC = header->FourCC;
 
 			textureData = pvrData + header->HeaderSize;
@@ -551,9 +596,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		case 3:
 		{
 			tPVR::HeaderV3* header = (tPVR::HeaderV3*)pvrData;
-			tPrintf("PVR Header pixel format: 0x%08X\n", header->PixelFormat);
 			tPVR::DeterminePixelFormatFromV3Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
-			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
 
 			NumSurfaces					= header->NumSurfaces;
 			NumFaces					= header->NumFaces;
@@ -582,8 +625,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			return false;
 	}
 
-	tPrintf("PVR bytesPerSurface: %d\n", bytesPerSurface);
-	tPrintf("PVR bitsPerPixel: %d\n", bitsPerPixel);
+	tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
 	tPrintf("PVR fourCC: %08X (%c %c %c %c)\n", fourCC, (fourCC>>0)&0xFF, (fourCC>>8)&0xFF, (fourCC>>16)&0xFF, (fourCC>>24)&0xFF);
 	tPrintf("PVR colourProfile: %s\n", tGetColourProfileShortName(colourProfile));
 	tPrintf("PVR channelType: %d\n", channelType);
@@ -609,9 +651,20 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	for (int l = 0; l < NumLayers; l++)
 		Layers[l] = nullptr;
 
+	// @wip The ordering is different depending on V1V2 or V3.
+	// Start with a V1V2
+
 	SetStateBit(StateBit::Valid);
 	tAssert(IsValid());
 	return true;
+}
+
+
+int tImagePVR::LayerIdx(int surf, int face, int mip, int depth)
+{
+	int index = depth + mip*(Depth) + face*(NumMipmaps*Depth) + surf*(NumFaces*NumMipmaps*Depth);
+	tAssert(index < NumLayers);
+	return index;
 }
 
 
@@ -648,6 +701,8 @@ const char* tImagePVR::StateDescriptions[] =
 	"Fatal Error. Pixel format specification incorrect.",
 	"Fatal Error. Unsupported pixel format.",
 	"Fatal Error. V1 V2 Mipmap flag doesn't match mipmap count.",
+	"Fatal Error. V1 V2 Cubemap flag doesn't match map count.",
+	"Fatal Error. V1 V2 Twiddled data not supported.",
 	"Fatal Error. Unable to decode packed pixels.",
 	"Fatal Error. Unable to decode BC pixels.",
 	"Fatal Error. Unable to decode PVR pixels.",

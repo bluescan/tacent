@@ -129,6 +129,8 @@ public:
 		Fatal_IncorrectPixelFormatSpec,			// Possible if strict loading set.
 		Fatal_PixelFormatNotSupported,
 		Fatal_V1V2MipmapFlagInconsistent,		// Same as conditional but fatal for strict loading.
+		Fatal_V1V2CubemapFlagInconsistent,		// If flag set there must be a mutiple of 6 surfaces.
+		Fatal_V1V2TwiddlingUnsupported,			// We do not yet support V1V2 data twiddling.
 		Fatal_PackedDecodeError,
 		Fatal_BCDecodeError,
 		Fatal_PVRDecodeError,
@@ -277,6 +279,7 @@ private:
 
 	int NumLayers							= 0;
 	tLayer** Layers							= nullptr;	// Always nullptr if NumLayers is 0.
+	int LayerIdx(int surf, int face = 0, int mip = 0, int depth = 0);
 
 public:
 	static const char* StateDescriptions[];
