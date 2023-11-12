@@ -1467,7 +1467,8 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 				}
 				else
 				{
-					// Not reversing. Use the currPixelData.
+					// Not reversing. Use the current ddsData. Note that steal is false here so the data
+					// is both copied and owned by the new tLayer.
 					Layers[layer][image] = new tLayer(PixelFormat, width, height, (uint8*)ddsData);
 				}
 

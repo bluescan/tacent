@@ -1,8 +1,9 @@
 // tImagePVR.h
 //
-// This class knows how to load PowerVR (.pvr) files. It knows the details of the pvr file format and loads
-// the data into tLayers, optionally decompressing them. Saving is not implemented yet. The layers may be 'stolen' from
-// a tImagePVR so that excessive memcpys are avoided. After they are stolen the tImagePVR is invalid.
+// This class knows how to load PowerVR (.pvr) files. It knows the details of the pvr file format and loads the data
+// into tLayers, optionally decompressing them. Saving is not implemented yet. The layers may be 'stolen' from a
+// tImagePVR so that excessive memcpys are avoided. After they are stolen the tImagePVR is invalid. The tImagePVR
+// class supports V1, V2, and V3 pvr files.
 //
 // Copyright (c) 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -111,7 +112,8 @@ public:
 		Conditional_IncorrectPixelFormatSpec,	// Possible if strict loading not set.
 		Conditional_DimNotMultFourBC,
 		Conditional_DimNotPowerTwoBC,
-		LastConditional							= Conditional_DimNotPowerTwoBC,
+		Conditional_V1V2MipmapFlagInconsistent,	// V1 V2 files have a mipmaps present flag. If set there should be more than one mipmap. If not set there should be one.
+		LastConditional							= Conditional_V1V2MipmapFlagInconsistent,
 
 		// Fatal. Load was uncuccessful and object is invalid. The valid flag will not be set.
 		FirstFatal,
@@ -126,7 +128,7 @@ public:
 		Fatal_IncorrectPixelFormatHeaderSize,
 		Fatal_IncorrectPixelFormatSpec,			// Possible if strict loading set.
 		Fatal_PixelFormatNotSupported,
-		Fatal_MaxNumMipmapLevelsExceeded,
+		Fatal_V1V2MipmapFlagInconsistent,		// Same as conditional but fatal for strict loading.
 		Fatal_PackedDecodeError,
 		Fatal_BCDecodeError,
 		Fatal_PVRDecodeError,

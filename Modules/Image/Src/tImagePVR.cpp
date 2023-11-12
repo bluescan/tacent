@@ -1,8 +1,9 @@
 // tImagePVR.cpp
 //
-// This class knows how to load PowerVR (.pvr) files. It knows the details of the pvr file format and loads
-// the data into tLayers, optionally decompressing them. Saving is not implemented yet. The layers may be 'stolen' from
-// a tImagePVR so that excessive memcpys are avoided. After they are stolen the tImagePVR is invalid.
+// This class knows how to load PowerVR (.pvr) files. It knows the details of the pvr file format and loads the data
+// into tLayers, optionally decompressing them. Saving is not implemented yet. The layers may be 'stolen' from a
+// tImagePVR so that excessive memcpys are avoided. After they are stolen the tImagePVR is invalid. The tImagePVR
+// class supports V1, V2, and V3 pvr files.
 //
 // Copyright (c) 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -44,10 +45,11 @@ namespace tPVR
 		uint32 BlueMask;
 		uint32 AlphaMask;
 	};
+	tStaticAssert(sizeof(HeaderV1) == 44);
 
 	struct HeaderV2
 	{
-		uint32 HeaderSize;		// 44 For V1, 52 for V2.
+		uint32 HeaderSize;
 		uint32 Height;
 		uint32 Width;
 		uint32 MipMapCount;
@@ -64,6 +66,7 @@ namespace tPVR
 		uint32 FourCC;
 		uint32 NumSurfaces;
 	};
+	tStaticAssert(sizeof(HeaderV2) == 52);
 
 	struct HeaderV3
 	{
@@ -80,6 +83,7 @@ namespace tPVR
 		uint32 NumMipmaps;
 		uint32 MetaDataSize;
 	};
+	tStaticAssert(sizeof(HeaderV3) == 52);
 	#pragma pack(pop)
 
 	int DetermineVersionFromFirstFourBytes(const uint8 bytes[4]);
@@ -457,6 +461,8 @@ bool tImagePVR::Load(const tString& pvrFile, const LoadParams& loadParams)
 bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& paramsIn)
 {
 	Clear();
+	LoadParams params(paramsIn);
+
 	PVRVersion = tPVR::DetermineVersionFromFirstFourBytes(pvrData);
 	if (PVRVersion == 0)
 	{
@@ -466,10 +472,6 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 
 	tPrintf("PVR Version: %d\n", PVRVersion);
 
-	uint8 flagsV12A = 0;
-	uint8 flagsV12B = 0;
-	uint8 flagsV12C = 0;
-	uint32 flagsV3 = 0;
 	int bytesPerSurface = 0;
 	int bitsPerPixel = 0;
 	uint32 fourCC = 'ENON';
@@ -488,20 +490,17 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			tPVR::DeterminePixelFormatFromV1V2Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
 			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
 
-			NumSurfaces = 1;
-			NumFaces = 1;
-			NumMipmaps = header->MipMapCount;
-			Depth = 1;
-			Width = header->Width;
-			Height = header->Height;
+			NumSurfaces					= 1;		// Not supported by V1 files. Default to 1 surface.
+			NumFaces					= 1;
+			NumMipmaps					= header->MipMapCount;
+			Depth						= 1;
+			Width						= header->Width;
+			Height						= header->Height;
 
-			flagsV12A = header->Flags1;
-			flagsV12B = header->Flags2;
-			flagsV12C = header->Flags3;
-			bytesPerSurface = header->SurfaceSize;
-			bitsPerPixel = header->BitsPerPixel;
+			bytesPerSurface				= header->SurfaceSize;
+			bitsPerPixel				= header->BitsPerPixel;
 
-			textureData = pvrData + header->HeaderSize;
+			textureData					= pvrData + header->HeaderSize;
 			break;
 		}
 
@@ -512,40 +511,35 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			tPVR::DeterminePixelFormatFromV1V2Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
 			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
 
-			NumSurfaces = header->NumSurfaces;
-			NumFaces = 1;
-			NumMipmaps = header->MipMapCount;
-			Depth = 1;
-			Width = header->Width;
-			Height = header->Height;
+			NumSurfaces					= header->NumSurfaces;
+			NumFaces					= 1;
+			NumMipmaps					= header->MipMapCount;
+			Depth						= 1;
+			Width						= header->Width;
+			Height						= header->Height;
 
-
-//
-#if 0
-MIP-Maps are present 0x00000100
-Data is twiddled 0x00000200
-Contains normal data 0x00000400
-Has a border 0x00000800
-Is a cube map
-(Every 6 surfaces make up one cube map)
-0x00001000
-MIP-Maps have debug colouring 0x00002000
-Is a volume (3D) texture
-(numSurfaces is interpreted as a depth value)
-0x00004000
-Alpha channel data is present (PVRTC only) 0x00008000
-#endif
 			// Flags are LE order on disk.
 			uint32 flags = (header->Flags1 << 24) | (header->Flags2 << 16) | (header->Flags1 << 8);
-			if (flags & 0x00000100)
-				tPrintf("PVR FLAG MIPMAPS\n");
+			
+			bool hasMipmaps				= (flags & 0x00000100) ? true : false;
+			bool dataTwiddled			= (flags & 0x00000200) ? true : false;
+			bool containsNormalData		= (flags & 0x00000400) ? true : false;
+			bool hasABorder				= (flags & 0x00000800) ? true : false;
+			bool isACubemap				= (flags & 0x00001000) ? true : false;		// Every 6 surfaces is one cubemap.
+			bool mipmapsDebugColour		= (flags & 0x00002000) ? true : false;
+			bool isAVolumeTexture		= (flags & 0x00004000) ? true : false;		// NumSurfaces is the number of slices (depth).
+			bool alphaPresentInPVRTC	= (flags & 0x00008000) ? true : false;
 
-			if (flags & 0x00008000)
-				tPrintf("PVR FLAG PVRTC ALPHA DATA\n");
+			if ((!hasMipmaps && (NumMipmaps != 1)) || (hasMipmaps && (NumMipmaps <= 1)))
+			{
+				if (params.Flags & LoadFlag_StrictLoading)
+				{
+					SetStateBit(StateBit::Fatal_V1V2MipmapFlagInconsistent);
+					return false;
+				}
+				SetStateBit(StateBit::Conditional_V1V2MipmapFlagInconsistent);
+			}
 
-			flagsV12A = header->Flags1;
-			flagsV12B = header->Flags2;
-			flagsV12C = header->Flags3;
 			bytesPerSurface = header->SurfaceSize;
 			bitsPerPixel = header->BitsPerPixel;
 			fourCC = header->FourCC;
@@ -558,30 +552,18 @@ Alpha channel data is present (PVRTC only) 0x00008000
 		{
 			tPVR::HeaderV3* header = (tPVR::HeaderV3*)pvrData;
 			tPrintf("PVR Header pixel format: 0x%08X\n", header->PixelFormat);
-//			tPrintf
-//			(
-//				"PVR Header pixel format: %c %c %c %c\n",
-//				(header->PixelFormat >> 24) & 0x000000FF,
-//				(header->PixelFormat >> 16) & 0x000000FF,
-//				(header->PixelFormat >> 8)  & 0x000000FF,
-//				(header->PixelFormat >> 0)  & 0x000000FF
-//			);
-
 			tPVR::DeterminePixelFormatFromV3Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
 			tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
 
-			NumSurfaces = header->NumSurfaces;
-			NumFaces = header->NumFaces;
-			NumMipmaps = header->NumMipmaps;
-			Depth = header->Depth;
-			Width = header->Width;
-			Height = header->Height;
+			NumSurfaces					= header->NumSurfaces;
+			NumFaces					= header->NumFaces;
+			NumMipmaps					= header->NumMipmaps;
+			Depth						= header->Depth;
+			Width						= header->Width;
+			Height						= header->Height;
 
-			flagsV3 = header->Flags;
-
-			// Pre-multiplied 0x02
-			if (flagsV3 & 0x00000002)
-				tPrintf("PVR FLAG PREMULTIPLIED\n");
+			uint32 flags = header->Flags;
+			bool premultipliedAlpha		= (flags & 0x00000002) ? true : false;
 
 			if (header->ColourSpace == 0)
 				colourProfile = tColourProfile::lRGB;
@@ -590,7 +572,6 @@ Alpha channel data is present (PVRTC only) 0x00008000
 			channelType = header->ChannelType;
 			metaDataSize = header->MetaDataSize;
 
-			tAssert(sizeof(tPVR::HeaderV3) == 52);
 			metaData = pvrData + sizeof(tPVR::HeaderV3);
 			textureData = metaData + metaDataSize;
 			break;
@@ -601,10 +582,6 @@ Alpha channel data is present (PVRTC only) 0x00008000
 			return false;
 	}
 
-	tPrintf("PVR flagsV12A: %08!1b\n", flagsV12A);
-	tPrintf("PVR flagsV12B: %08!1b\n", flagsV12B);
-	tPrintf("PVR flagsV12C: %08!1b\n", flagsV12C);
-	tPrintf("PVR flagsV3: %032!4b\n", flagsV3);	
 	tPrintf("PVR bytesPerSurface: %d\n", bytesPerSurface);
 	tPrintf("PVR bitsPerPixel: %d\n", bitsPerPixel);
 	tPrintf("PVR fourCC: %08X (%c %c %c %c)\n", fourCC, (fourCC>>0)&0xFF, (fourCC>>8)&0xFF, (fourCC>>16)&0xFF, (fourCC>>24)&0xFF);
@@ -658,6 +635,7 @@ const char* tImagePVR::StateDescriptions[] =
 	"Conditional Valid. Pixel format specification ill-formed.",
 	"Conditional Valid. Image has dimension not multiple of four.",
 	"Conditional Valid. Image has dimension not power of two.",
+	"Conditional Valid. V1 V2 Mipmap flag doesn't match mipmap count.",
 	"Fatal Error. File does not exist.",
 	"Fatal Error. Incorrect file type. Must be a PVR file.",
 	"Fatal Error. Filesize incorrect.",
@@ -669,7 +647,7 @@ const char* tImagePVR::StateDescriptions[] =
 	"Fatal Error. Pixel format header size incorrect.",
 	"Fatal Error. Pixel format specification incorrect.",
 	"Fatal Error. Unsupported pixel format.",
-	"Fatal Error. Maximum number of mipmap levels exceeded.",
+	"Fatal Error. V1 V2 Mipmap flag doesn't match mipmap count.",
 	"Fatal Error. Unable to decode packed pixels.",
 	"Fatal Error. Unable to decode BC pixels.",
 	"Fatal Error. Unable to decode PVR pixels.",
