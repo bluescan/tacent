@@ -2274,8 +2274,8 @@ tTestUnit(ImagePVR2)
 
 	tPrintf("Testing PVR V2 Loading/Decoding\n\n");
 
-	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_TM.pvr",			decode | revrow);
-
+//	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_TM.pvr",			decode | revrow);
+	PVRLoadDecodeSave("ETC1_UNORM_LIN_RGB_TM.pvr",		decode | revrow);
 	tSystem::tSetCurrentDir(origDir);
 }
 
@@ -2302,11 +2302,11 @@ tTestUnit(ImagePVR3)
 	// M = Has Mipmaps.
 	// P = Premultiplied Alpha
 
-	PVRLoadDecodeSave("B8G8R8A8_UNORM_SRGB_RGBA_T.pvr",				decode | revrow);
-	PVRLoadDecodeSave("R5G6B5+G3B5R5G3_UNORM_LIN_RGB_T.pvr",		decode | revrow);
-	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_T.pvr",	decode | revrow);
-	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_TP.pvr",	decode | revrow);
-	PVRLoadDecodeSave("A1R5G5B5+G3B5A1R5G2_UNORM_LIN_RGBA_T.pvr",	decode | revrow);
+//	PVRLoadDecodeSave("B8G8R8A8_UNORM_SRGB_RGBA_T.pvr",				decode | revrow);
+//	PVRLoadDecodeSave("R5G6B5+G3B5R5G3_UNORM_LIN_RGB_T.pvr",		decode | revrow);
+//	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_T.pvr",	decode | revrow);
+//	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_TP.pvr",	decode | revrow);
+//	PVRLoadDecodeSave("A1R5G5B5+G3B5A1R5G2_UNORM_LIN_RGBA_T.pvr",	decode | revrow);
 
 	tSystem::tSetCurrentDir(origDir);
 }

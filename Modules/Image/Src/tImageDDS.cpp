@@ -1593,7 +1593,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 			}
 
 			// Update the layer with the 32-bit RGBA decoded data. If the data was HDR (float)
-			// convert it to 32 bit. Start by getting ride of the existing layer pixel data.
+			// convert it to 32 bit. Start by getting rid of the existing layer pixel data.
 			delete[] layer->Data;
 			if (decoded4f)
 			{

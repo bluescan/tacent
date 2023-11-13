@@ -146,6 +146,7 @@ void tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alp
 		case 0x22:	fmt = tPixelFormat::BC2DXT2DXT3;	break;	// DXT3.
 		case 0x23:	fmt = tPixelFormat::BC3DXT4DXT5;	alpha = tAlphaMode::Premultiplied;	break;	// DXT4.
 		case 0x24:	fmt = tPixelFormat::BC3DXT4DXT5;	break;	// DXT5.
+		case 0x36:	fmt = tPixelFormat::ETC1;			break;	// ETC1.
 
 		case 0x03:		// RGB 555.
 		case 0x06:		// ARGB 8332.
@@ -170,7 +171,6 @@ void tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alp
 		case 0x33:		// R 32F.
 		case 0x34:		// GR 3232F.
 		case 0x35:		// ABGR 32323232F.
-		case 0x36:		// ETC.
 		case 0x40:		// A 8.
 		case 0x41:		// VU 88.
 		case 0x42:		// L16.
@@ -342,21 +342,6 @@ void tImagePVR::Clear()
 	Layers = nullptr;
 	NumLayers = 0;
 
-/*
-	for (int surface = 0; surface < NumSurfaces; surface++)
-	{
-		for (int face = 0; face < NumFaces; face++)
-		{
-			for (int mipmap = 0; mipmap < NumMipmaps; mipmap++)
-			{
-				for (int slice = 0; slice < Depth; slice++)
-				{
-
-				}
-			}
-		}
-	}
-*/
 	States							= 0;		// Image will be invalid now since Valid state not set.
 	PVRVersion						= 0;
 	PixelFormat						= tPixelFormat::Invalid;
@@ -651,8 +636,82 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	for (int l = 0; l < NumLayers; l++)
 		Layers[l] = nullptr;
 
-	// @wip The ordering is different depending on V1V2 or V3.
-	// Start with a V1V2
+	// These return 1 for packed formats.
+	int blockW = tGetBlockWidth(PixelFormatSrc);
+	int blockH = tGetBlockWidth(PixelFormatSrc);
+	int bytesPerBlock = tImage::tGetBytesPerBlock(PixelFormatSrc);
+
+	// The ordering is different depending on V1V2 or V3. We have already checked for unsupported versions.
+	// Start with a V1V2. NumFaces and Depth have already been adjusted.
+	if ((PVRVersion == 1) || (PVRVersion == 2))
+	{
+		for (int surf = 0; surf < NumSurfaces; surf++)
+		{
+			for (int face = 0; face < NumFaces; face++)
+			{
+				int width = Width;
+				int height = Height;
+
+				for (int mip = 0; mip < NumMipmaps; mip++)
+				{
+					int numBlocksW = tGetNumBlocks(blockW, width);
+					int numBlocksH = tGetNumBlocks(blockH, height);
+					int numBlocks = numBlocksW*numBlocksH;
+					int numBytes = numBlocks * bytesPerBlock;
+					for (int slice = 0; slice < Depth; slice++)
+					{
+						int index = LayerIdx(surf, face, mip, slice);
+						tAssert(Layers[index] == nullptr);
+						Layers[index] = new tLayer();
+
+						// At the end of decoding _either_ decoded4i _or_ decoded4f will be valid, not both.
+						// The decoded4i format used for LDR images.
+						// The decoded4f format used for HDR images.
+						tColour4i* decoded4i = nullptr;
+						tColour4f* decoded4f = nullptr;
+						DecodeResult result = DecodePixelData
+						(
+							PixelFormatSrc, pvrData, numBytes,
+							width, height, decoded4i, decoded4f
+						);
+
+						if (result != DecodeResult::Success)
+						{
+							Clear();
+							switch (result)
+							{
+								case DecodeResult::PackedDecodeError:	SetStateBit(StateBit::Fatal_PackedDecodeError);			break;
+								case DecodeResult::BlockDecodeError:	SetStateBit(StateBit::Fatal_BCDecodeError);				break;
+								case DecodeResult::ASTCDecodeError:		SetStateBit(StateBit::Fatal_ASTCDecodeError);			break;
+								default:								SetStateBit(StateBit::Fatal_PixelFormatNotSupported);	break;
+							}
+							return false;
+						}
+
+						tAssert(decoded4f || decoded4i);
+
+						// Lets just start with LDR.
+						delete[] decoded4f; decoded4f = nullptr;
+						if (decoded4i)
+						{
+							Layers[index]->Data = (uint8*)decoded4i;
+							Layers[index]->PixelFormat = tPixelFormat::R8G8B8A8;
+							Layers[index]->Width = width;
+							Layers[index]->Height = height;
+						}
+						pvrData += numBytes;
+					}
+					width  /= 2; tMath::tiClampMin(width, 1);
+					height /= 2; tMath::tiClampMin(height, 1);
+				}
+			}
+		}
+	}
+	else
+	{
+		tAssert(PVRVersion == 3);
+	}
+	PixelFormat = tPixelFormat::R8G8B8A8;
 
 	SetStateBit(StateBit::Valid);
 	tAssert(IsValid());
