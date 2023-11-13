@@ -2195,7 +2195,7 @@ tTestUnit(ImagePKM)
 
 
 // Helper for tImagePKM unit tests.
-void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0)
+void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAllMips = false)
 {
 	// We're just going to turn on auto-gamma-compression for all files.
 	loadFlags |= tImagePKM::LoadFlag_AutoGamma;
@@ -2230,8 +2230,8 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0)
 	tRequire(fileFormat == pvrFormatSrc);
 
 	// WIP
-	//if (loadFlags & tImagePVR::LoadFlag_Decode)
-	//	tRequire(pvrformat == tPixelFormat::R8G8B8A8);
+	if (loadFlags & tImagePVR::LoadFlag_Decode)
+		tRequire(pvrFormat == tPixelFormat::R8G8B8A8);
 	//else
 	//	tRequire(pkmformat == fileformat);
 
@@ -2239,24 +2239,36 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0)
 	if (profileName)
 		tPrintf("ColourProfile: %s\n", profileName);
 
-	// WIP
-	#if 0
-	tLayer* layer = pkm.StealLayer();
-	tRequire(layer && layer->OwnsData);
-	tRequire(!(loadFlags & tImagePKM::LoadFlag_Decode) || (pkmformat == tPixelFormat::R8G8B8A8));
+	tList<tImage::tLayer> layers;
+	pvr.StealLayers(layers);
 
-	if (pkmformat == tPixelFormat::R8G8B8A8)
+	tRequire(!(loadFlags & tImagePVR::LoadFlag_Decode) || (pvrFormat == tPixelFormat::R8G8B8A8));
+	if (pvrFormat != tPixelFormat::R8G8B8A8)
 	{
-		tImageTGA tga((tPixel*)layer->Data, layer->Width, layer->Height);
-		tga.Save("Written_" + savename + ".tga");
+		tPrintf("No tga save. Pixel format not R8G8B8A8\n");
 	}
 	else
 	{
-		tPrintf("No decode, no tga save. Pixel format not R8G8B8A8\n");
+		if (saveAllMips)
+		{
+			int mipNum = 0;
+			for (tLayer* layer = layers.First(); layer; layer = layer->Next(), mipNum++)
+			{
+				tImageTGA tga((tPixel*)layer->Data, layer->Width, layer->Height);
+				tString mipName;
+				tsPrintf(mipName, "Written_%s_Mip%02d.tga", savename.Chr(), mipNum);
+				tga.Save(mipName);
+			}
+		}
+		else
+		{
+			if (tLayer* layer = layers.First())
+			{
+				tImageTGA tga((tPixel*)layer->Data, layer->Width, layer->Height);
+				tga.Save("Written_" + savename + ".tga");
+			}
+		}
 	}
-	delete layer;
-	#endif
-
 	tPrintf("\n");
 }
 
@@ -2275,7 +2287,7 @@ tTestUnit(ImagePVR2)
 	tPrintf("Testing PVR V2 Loading/Decoding\n\n");
 
 //	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_TM.pvr",			decode | revrow);
-	PVRLoadDecodeSave("ETC1_UNORM_LIN_RGB_TM.pvr",		decode | revrow);
+	PVRLoadDecodeSave("ETC1_UNORM_LIN_RGB_TM.pvr",		decode | revrow,	true);
 	tSystem::tSetCurrentDir(origDir);
 }
 
