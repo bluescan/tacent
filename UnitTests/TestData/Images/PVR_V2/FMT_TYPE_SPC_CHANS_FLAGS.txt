@@ -1,6 +1,0 @@
-Flags:
-T = Regular 2D texture.
-V = Volume 3D texture.
-C = Cubemap. Has up to 6 2D textures.
-A = Texture array. Has an arbitrary number of textures.
-M = Has Mipmaps.

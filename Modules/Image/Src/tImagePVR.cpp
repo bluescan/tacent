@@ -636,10 +636,11 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	for (int l = 0; l < NumLayers; l++)
 		Layers[l] = nullptr;
 
-	// These return 1 for packed formats.
+	// These return 1 for packed formats. This allows us to treat BC, ASTC, Packed, etc all the same way.
 	int blockW = tGetBlockWidth(PixelFormatSrc);
 	int blockH = tGetBlockWidth(PixelFormatSrc);
 	int bytesPerBlock = tImage::tGetBytesPerBlock(PixelFormatSrc);
+	const uint8* srcPixelData = textureData;
 
 	// The ordering is different depending on V1V2 or V3. We have already checked for unsupported versions.
 	// Start with a V1V2. NumFaces and Depth have already been adjusted.
@@ -671,7 +672,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 						tColour4f* decoded4f = nullptr;
 						DecodeResult result = DecodePixelData
 						(
-							PixelFormatSrc, pvrData, numBytes,
+							PixelFormatSrc, srcPixelData, numBytes,
 							width, height, decoded4i, decoded4f
 						);
 
@@ -699,7 +700,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 							Layers[index]->Width = width;
 							Layers[index]->Height = height;
 						}
-						pvrData += numBytes;
+						srcPixelData += numBytes;
 					}
 					width  /= 2; tMath::tiClampMin(width, 1);
 					height /= 2; tMath::tiClampMin(height, 1);

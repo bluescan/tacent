@@ -2286,8 +2286,12 @@ tTestUnit(ImagePVR2)
 
 	tPrintf("Testing PVR V2 Loading/Decoding\n\n");
 
-//	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_TM.pvr",			decode | revrow);
-	PVRLoadDecodeSave("ETC1_UNORM_LIN_RGB_TM.pvr",		decode | revrow,	true);
+//	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_TM.pvr",		decode | revrow);
+//	PVRLoadDecodeSave("B8G8R8A8_UNORM_LIN_RGBA_T.pvr",		decode | revrow,	true);
+//	PVRLoadDecodeSave("B8G8R8A8_UNORM_SRGB_RGBA_TM.pvr",	decode | revrow,	true);
+
+//	PVRLoadDecodeSave("R8G8B8A8_UNORM_LIN_RGBA_TM.pvr",		decode | revrow,	true);
+	PVRLoadDecodeSave("ETC1_UNORM_LIN_RGB_TM.pvr",			decode | revrow,	true);
 	tSystem::tSetCurrentDir(origDir);
 }
 
