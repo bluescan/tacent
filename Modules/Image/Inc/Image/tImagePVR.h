@@ -181,8 +181,8 @@ public:
 
 	int GetNumMipmapLevels() const;
 	int GetNumImages() const;
-	int GetWidth() const;
-	int GetHeight() const;
+	int GetWidth() const																								{ return IsValid() ? Width : 0; }
+	int GetHeight() const																								{ return IsValid() ? Height : 0; }
 
 	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the pvr data was in.
 	tPixelFormat GetPixelFormat() const																					{ return PixelFormat; }
