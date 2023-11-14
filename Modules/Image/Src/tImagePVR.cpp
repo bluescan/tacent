@@ -120,6 +120,7 @@ void tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alp
 	alpha = tAlphaMode::Normal;
 	switch (headerFmt)
 	{
+		//			Real in memory format.						   Naming in PVR1/2 spec document. [Naming in PVRTexToolUI]
 		case 0x00:	fmt = tPixelFormat::G4B4A4R4;		break;	// ARGB 4444 (LE Naming).
 		case 0x01:	fmt = tPixelFormat::G3B5A1R5G2;		break;	// ARGB 1555 (LE Naming).
 		case 0x02:	fmt = tPixelFormat::G3B5R5G3;		break;	// RGB 565 (LE Naming). This is a slightly better name than B5G56R because at least it matches the memory order if you swap the two bytes.
@@ -133,14 +134,15 @@ void tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alp
 		case 0x0D:	fmt = tPixelFormat::PVRBPP4;		break;	// PVRTC4.
 		case 0x10:	fmt = tPixelFormat::G4B4A4R4;		break;	// ARGB 4444 (LE Naming).
 		case 0x11:	fmt = tPixelFormat::G3B5A1R5G2;		break;	// ARGB 1555 (LE Naming).
-		case 0x12:	fmt = tPixelFormat::B8G8R8A8;		break;	// ARGB 8888.
+		case 0x12:	fmt = tPixelFormat::R8G8B8A8;		break;	// ARGB 8888 [R8G8B8A8].
 		case 0x13:	fmt = tPixelFormat::G3B5R5G3;		break;	// RGB 565.
 		case 0x15:	fmt = tPixelFormat::R8G8B8;			break;	// RGB 888.
 		case 0x16:  fmt = tPixelFormat::L8;				break;	// I 8.
 		case 0x17:  fmt = tPixelFormat::A8L8;			break;	// AI 88.
 		case 0x18:	fmt = tPixelFormat::PVRBPP2;		break;	// PVRTC2.
 		case 0x19:  fmt = tPixelFormat::PVRBPP4;		break;	// PVRTC4.
-		case 0x1A:  fmt = tPixelFormat::R8G8B8A8;		break;	// BGRA 8888.
+//		case 0x1A:  fmt = tPixelFormat::R8G8B8A8;		break;	// BGRA 8888 [B8G8R8A8].
+		case 0x1A:  fmt = tPixelFormat::B8G8R8A8;		break;	// BGRA 8888 [B8G8R8A8].
 		case 0x20:	fmt = tPixelFormat::BC1DXT1;		break;	// DXT1.
 		case 0x21:	fmt = tPixelFormat::BC2DXT2DXT3;	alpha = tAlphaMode::Premultiplied;	break;	// DXT2.
 		case 0x22:	fmt = tPixelFormat::BC2DXT2DXT3;	break;	// DXT3.
@@ -490,7 +492,12 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			bool isAVolumeTexture		= (flags & 0x00004000) ? true : false;		// NumSurfaces is the number of slices (depth).
 			bool alphaPresentInPVRTC	= (flags & 0x00008000) ? true : false;
 
-			if ((!hasMipmaps && (NumMipmaps != 1)) || (hasMipmaps && (NumMipmaps <= 1)))
+			// This is a bit odd, but if a PVR V1 V2 does not have mipmaps it does not set
+			// the number of mipmaps to 1. It would be cleaner if it did, so we do it here.
+			if (!hasMipmaps && (NumMipmaps == 0))
+				NumMipmaps = 1;
+
+			if ((!hasMipmaps && (NumMipmaps > 1)) || (hasMipmaps && (NumMipmaps <= 1)))
 			{
 				if (params.Flags & LoadFlag_StrictLoading)
 				{
@@ -537,7 +544,12 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			bool isAVolumeTexture		= (flags & 0x00004000) ? true : false;		// NumSurfaces is the number of slices (depth).
 			bool alphaPresentInPVRTC	= (flags & 0x00008000) ? true : false;
 
-			if ((!hasMipmaps && (NumMipmaps != 1)) || (hasMipmaps && (NumMipmaps <= 1)))
+			// This is a bit odd, but if a PVR V1 V2 does not have mipmaps it does not set
+			// the number of mipmaps to 1. It would be cleaner if it did, so we do it here.
+			if (!hasMipmaps && (NumMipmaps == 0))
+				NumMipmaps = 1;
+
+			if ((!hasMipmaps && (NumMipmaps > 1)) || (hasMipmaps && (NumMipmaps <= 1)))
 			{
 				if (params.Flags & LoadFlag_StrictLoading)
 				{
@@ -545,7 +557,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 					return false;
 				}
 				SetStateBit(StateBit::Conditional_V1V2MipmapFlagInconsistent);
-			}
+			}			
 
 			if (dataTwiddled)
 			{
