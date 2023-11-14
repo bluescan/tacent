@@ -814,6 +814,18 @@ bool tImagePVR::StealLayers(tList<tLayer>& layers)
 }
 
 
+bool tImagePVR::GetLayers(tList<tLayer>& layers) const
+{
+	if (!IsValid())// || IsCubemap() || (NumImages <= 0))
+		return false;
+
+	for (int layer = 0; layer < NumLayers; layer++)
+		layers.Append(Layers[layer]);
+
+	return true;
+}
+
+
 const char* tImagePVR::StateDescriptions[] =
 {
 	"Valid",
