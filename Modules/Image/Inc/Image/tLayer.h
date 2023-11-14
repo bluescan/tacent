@@ -33,22 +33,25 @@ namespace tImage
 class tLayer : public tLink<tLayer>
 {
 public:
-	tLayer()																											: PixelFormat(tPixelFormat::Invalid), Width(0), Height(0), Data(nullptr), OwnsData(true) { }
+	tLayer()																											{ }
 
 	// Constructs the layer from the chunk. Normally it copies the layer data from the chunk. However, if ownData is
 	// false no mem-copy is performed and the layer just points into the chunk data. In this case it is vital that the
 	// chunk object exists for the entire lifespan of the layer.
-	tLayer(const tChunk& chunk, bool ownsData = true)																	: PixelFormat(tPixelFormat::Invalid), Width(0), Height(0), Data(nullptr), OwnsData(ownsData) { Load(chunk, ownsData); }
+	tLayer(const tChunk& chunk, bool ownsData = true)																	{ Load(chunk, ownsData); }
 
 	// Constructs a layer having the supplied width, height, and number of bytes. If steal memory is true, the data
 	// array is passed off to this class and it will manage the array deleting it when necessary. If steal is false,
 	// the data gets mem-copied into this object.
-	tLayer(tPixelFormat, int width, int height, uint8* data, bool steal = false);
+	tLayer(tPixelFormat fmt, int width, int height, uint8* data, bool steal = false)									{ Set(fmt, width, height, data, steal); }
 
-	tLayer(const tLayer&);
+	tLayer(const tLayer& src)																							{ Set(src); }
 	virtual ~tLayer()																									{ Clear(); }
 
 	bool IsValid() const																								{ return Data ? true : false; }
+
+	void Set(tPixelFormat format, int width, int height, uint8* data, bool steal = false);
+	void Set(const tLayer& layer);
 
 	// Returns the size of the data in bytes by reading the Width, Height, and PixelFormat. For block-compressed format
 	// the data size will be a multiple of the block size in bytes. BC 4x4 blocks may be different sizes, whereas ASTC
@@ -75,10 +78,11 @@ public:
 	bool operator==(const tLayer&) const;
 	bool operator!=(const tLayer& src) const																			{ return !(*this == src); }
 
-	tPixelFormat PixelFormat;
-	int Width, Height;
-	uint8* Data;
-	bool OwnsData;
+	tPixelFormat PixelFormat	= tPixelFormat::Invalid;
+	int Width					= 0;
+	int Height					= 0;
+	uint8* Data					= nullptr;
+	bool OwnsData				= true;
 
 	// 4096 x 4096 is pretty much a minimum requirement these days. 16Kx16k has good support. 32kx32k exists.
 	const static int MaxLayerDimension = 32768;
@@ -89,15 +93,17 @@ public:
 // Implementation below this line.
 
 
-inline tLayer::tLayer(tPixelFormat format, int width, int height, uint8* data, bool steal) :
-	PixelFormat(format),
-	Width(width),
-	Height(height),
-	Data(nullptr),
-	OwnsData(true)
+inline void tLayer::Set(tPixelFormat format, int width, int height, uint8* data, bool steal)
 {
+	Clear();
 	if (!width || !height || !data)
 		return;
+
+	PixelFormat		= format;
+	Width			= width;
+	Height			= height;
+	Data			= nullptr;
+	OwnsData		= true;
 
 	if (steal)
 	{
@@ -112,21 +118,25 @@ inline tLayer::tLayer(tPixelFormat format, int width, int height, uint8* data, b
 }
 
 
-inline tLayer::tLayer(const tLayer& src) :
-	PixelFormat(src.PixelFormat),
-	Width(src.Width),
-	Height(src.Height),
-	OwnsData(src.OwnsData)
+inline void tLayer::Set(const tLayer& layer)
 {
+	if (&layer == this)
+		return;
+
+	PixelFormat		= layer.PixelFormat;
+	Width			= layer.Width;
+	Height			= layer.Height;
+	OwnsData		= layer.OwnsData;
+
 	if (OwnsData)
 	{
-		int dataSize = src.GetDataSize();
+		int dataSize = layer.GetDataSize();
 		Data = new uint8[dataSize];
-		tStd::tMemcpy(Data, src.Data, dataSize);
+		tStd::tMemcpy(Data, layer.Data, dataSize);
 	}
 	else
 	{
-		Data = src.Data;
+		Data = layer.Data;
 	}
 }
 

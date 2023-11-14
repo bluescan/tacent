@@ -622,6 +622,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			return false;
 	}
 
+	#if 0
 	tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
 	tPrintf("PVR fourCC: %08X (%c %c %c %c)\n", fourCC, (fourCC>>0)&0xFF, (fourCC>>8)&0xFF, (fourCC>>16)&0xFF, (fourCC>>24)&0xFF);
 	tPrintf("PVR colourProfile: %s\n", tGetColourProfileShortName(colourProfile));
@@ -636,6 +637,8 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	tPrintf("PVR Depth: %d\n", Depth);
 	tPrintf("PVR Width: %d\n", Width);
 	tPrintf("PVR Height: %d\n", Height);
+	#endif
+
 	NumLayers = NumSurfaces * NumFaces * NumMipmaps * Depth;
 	if (NumLayers <= 0)
 	{
@@ -643,7 +646,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		return false;
 	}
 
-	tPrintf("PVR numLayers: %d\n", NumLayers);
+	// tPrintf("PVR numLayers: %d\n", NumLayers);
 	Layers = new tLayer*[NumLayers];
 	for (int l = 0; l < NumLayers; l++)
 		Layers[l] = nullptr;
@@ -677,41 +680,47 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 						tAssert(Layers[index] == nullptr);
 						Layers[index] = new tLayer();
 
-						// At the end of decoding _either_ decoded4i _or_ decoded4f will be valid, not both.
-						// The decoded4i format used for LDR images.
-						// The decoded4f format used for HDR images.
-						tColour4i* decoded4i = nullptr;
-						tColour4f* decoded4f = nullptr;
-						DecodeResult result = DecodePixelData
-						(
-							PixelFormatSrc, srcPixelData, numBytes,
-							width, height, decoded4i, decoded4f
-						);
-
-						if (result != DecodeResult::Success)
+						// If we were asked to decode, do so.
+						if (params.Flags & LoadFlag_Decode)
 						{
-							Clear();
-							switch (result)
+							// At the end of decoding _either_ decoded4i _or_ decoded4f will be valid, not both.
+							// The decoded4i format used for LDR images.
+							// The decoded4f format used for HDR images.
+							tColour4i* decoded4i = nullptr;
+							tColour4f* decoded4f = nullptr;
+							DecodeResult result = DecodePixelData
+							(
+								PixelFormatSrc, srcPixelData, numBytes,
+								width, height, decoded4i, decoded4f
+							);
+
+							if (result != DecodeResult::Success)
 							{
-								case DecodeResult::PackedDecodeError:	SetStateBit(StateBit::Fatal_PackedDecodeError);			break;
-								case DecodeResult::BlockDecodeError:	SetStateBit(StateBit::Fatal_BCDecodeError);				break;
-								case DecodeResult::ASTCDecodeError:		SetStateBit(StateBit::Fatal_ASTCDecodeError);			break;
-								default:								SetStateBit(StateBit::Fatal_PixelFormatNotSupported);	break;
+								Clear();
+								switch (result)
+								{
+									case DecodeResult::PackedDecodeError:	SetStateBit(StateBit::Fatal_PackedDecodeError);			break;
+									case DecodeResult::BlockDecodeError:	SetStateBit(StateBit::Fatal_BCDecodeError);				break;
+									case DecodeResult::ASTCDecodeError:		SetStateBit(StateBit::Fatal_ASTCDecodeError);			break;
+									default:								SetStateBit(StateBit::Fatal_PixelFormatNotSupported);	break;
+								}
+								return false;
 							}
-							return false;
+
+							tAssert(decoded4f || decoded4i);
+
+							// Lets just start with LDR.
+							delete[] decoded4f; decoded4f = nullptr;
+							if (decoded4i)
+								Layers[index]->Set(tPixelFormat::R8G8B8A8, width, height, (uint8*)decoded4i, true);
 						}
 
-						tAssert(decoded4f || decoded4i);
-
-						// Lets just start with LDR.
-						delete[] decoded4f; decoded4f = nullptr;
-						if (decoded4i)
+						// Otherwise no decode. Just create the layers using the same pixel format that already exists.
+						else
 						{
-							Layers[index]->Data = (uint8*)decoded4i;
-							Layers[index]->PixelFormat = tPixelFormat::R8G8B8A8;
-							Layers[index]->Width = width;
-							Layers[index]->Height = height;
+							Layers[index]->Set(PixelFormatSrc, width, height, (uint8*)srcPixelData, numBytes);
 						}
+
 						srcPixelData += numBytes;
 					}
 					width  /= 2; tMath::tiClampMin(width, 1);
@@ -724,7 +733,43 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	{
 		tAssert(PVRVersion == 3);
 	}
-	PixelFormat = tPixelFormat::R8G8B8A8;
+
+	// If we were asked to decode, set the current PixelFormat to the decoded format.
+	// Otherwise set the current PixelFormat to be the same as the original PixelFormatSrc.
+	PixelFormat = (params.Flags & LoadFlag_Decode) ? tPixelFormat::R8G8B8A8 : PixelFormatSrc;
+
+	// We only try to reverse rows after possible decode. If no decode it may be impossible
+	// to reverse rows depending on the pixel format (unless we decode and re-encode which is lossy).
+	// Since the ability to reverse rows MAY be a function of the image height (when not decoding), we
+	// only reverse rows if all layers may be reversed.
+	if (params.Flags & LoadFlag_ReverseRowOrder)
+	{
+		bool canReverseAll = true;
+		for (int l = 0; l < NumLayers; l++)
+		{
+			if (!CanReverseRowData(Layers[l]->PixelFormat, Layers[l]->Height))
+			{
+				canReverseAll = false;
+				break;
+			}
+		}
+
+		if (canReverseAll)
+		{
+			// This shouldn't ever fail -- we checked first.
+			for (int l = 0; l < NumLayers; l++)
+			{
+				uint8* reversedRowData = CreateReversedRowData(Layers[l]->Data, Layers[l]->PixelFormat, Layers[l]->Width, Layers[l]->Height);
+				tAssert(reversedRowData);
+				delete[] Layers[l]->Data;
+				Layers[l]->Data = reversedRowData;
+			}
+		}
+		else
+		{
+			SetStateBit(StateBit::Conditional_CouldNotFlipRows);
+		}
+	}
 
 	SetStateBit(StateBit::Valid);
 	tAssert(IsValid());
