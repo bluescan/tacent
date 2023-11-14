@@ -2220,6 +2220,7 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAl
 	tPrintf("Format name: %s\n", fileFormatName.Chr());
 	tPixelFormat fileFormat = tGetPixelFormat(fileFormatName.Chr());
 
+	// If necessary the underscores can be counted to determine PVR1/2 vs PVR3.
 	tImagePVR::LoadParams params;
 	params.Flags = loadFlags;
 
@@ -2229,11 +2230,10 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAl
 	tPixelFormat pvrFormatSrc = pvr.GetPixelFormatSrc();
 	tRequire(fileFormat == pvrFormatSrc);
 
-	// WIP
 	if (loadFlags & tImagePVR::LoadFlag_Decode)
 		tRequire(pvrFormat == tPixelFormat::R8G8B8A8);
-	//else
-	//	tRequire(pkmformat == fileformat);
+	else
+		tRequire(pvrFormat == fileFormat);
 
 	const char* profileName = tGetColourProfileName(pvr.GetColourProfile());
 	if (profileName)
@@ -2289,9 +2289,15 @@ tTestUnit(ImagePVR2)
 //	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_TM.pvr",		decode | revrow);
 //	PVRLoadDecodeSave("B8G8R8A8_UNORM_SRGB_RGBA_TM.pvr",	decode | revrow,	true);
 
-	PVRLoadDecodeSave("B8G8R8A8_UNORM_LIN_RGBA_T.pvr",		decode | revrow,	true);
-	PVRLoadDecodeSave("R8G8B8A8_UNORM_LIN_RGBA_TM.pvr",		decode | revrow,	true);
-	PVRLoadDecodeSave("ETC1_UNORM_LIN_RGB_TM.pvr",			decode | revrow,	true);
+	PVRLoadDecodeSave("B8G8R8A8_RGBA_T.pvr",		decode | revrow,	true);
+	PVRLoadDecodeSave("R8G8B8A8_RGBA_TM.pvr",		decode | revrow,	true);
+	PVRLoadDecodeSave("ETC1_RGB_TM.pvr",			decode | revrow,	true);
+
+	// And again without decoding.
+	PVRLoadDecodeSave("B8G8R8A8_RGBA_T.pvr",		revrow);
+	PVRLoadDecodeSave("R8G8B8A8_RGBA_TM.pvr",		revrow);
+	PVRLoadDecodeSave("ETC1_RGB_TM.pvr",			revrow);
+
 	tSystem::tSetCurrentDir(origDir);
 }
 

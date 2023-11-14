@@ -718,7 +718,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 						// Otherwise no decode. Just create the layers using the same pixel format that already exists.
 						else
 						{
-							Layers[index]->Set(PixelFormatSrc, width, height, (uint8*)srcPixelData, numBytes);
+							Layers[index]->Set(PixelFormatSrc, width, height, (uint8*)srcPixelData);
 						}
 
 						srcPixelData += numBytes;
