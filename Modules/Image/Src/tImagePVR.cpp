@@ -667,7 +667,6 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			{
 				int width = Width;
 				int height = Height;
-
 				for (int mip = 0; mip < NumMipmaps; mip++)
 				{
 					int numBlocksW = tGetNumBlocks(blockW, width);
@@ -678,49 +677,13 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 					{
 						int index = LayerIdx(surf, face, mip, slice);
 						tAssert(Layers[index] == nullptr);
-						Layers[index] = new tLayer();
-
-						// If we were asked to decode, do so.
-						if (params.Flags & LoadFlag_Decode)
+						tLayer* newLayer = CreateNewLayer(params, srcPixelData, numBytes, width, height);
+						if (!newLayer)
 						{
-							// At the end of decoding _either_ decoded4i _or_ decoded4f will be valid, not both.
-							// The decoded4i format used for LDR images.
-							// The decoded4f format used for HDR images.
-							tColour4i* decoded4i = nullptr;
-							tColour4f* decoded4f = nullptr;
-							DecodeResult result = DecodePixelData
-							(
-								PixelFormatSrc, srcPixelData, numBytes,
-								width, height, decoded4i, decoded4f
-							);
-
-							if (result != DecodeResult::Success)
-							{
-								Clear();
-								switch (result)
-								{
-									case DecodeResult::PackedDecodeError:	SetStateBit(StateBit::Fatal_PackedDecodeError);			break;
-									case DecodeResult::BlockDecodeError:	SetStateBit(StateBit::Fatal_BCDecodeError);				break;
-									case DecodeResult::ASTCDecodeError:		SetStateBit(StateBit::Fatal_ASTCDecodeError);			break;
-									default:								SetStateBit(StateBit::Fatal_PixelFormatNotSupported);	break;
-								}
-								return false;
-							}
-
-							tAssert(decoded4f || decoded4i);
-
-							// Lets just start with LDR.
-							delete[] decoded4f; decoded4f = nullptr;
-							if (decoded4i)
-								Layers[index]->Set(tPixelFormat::R8G8B8A8, width, height, (uint8*)decoded4i, true);
+							Clear();
+							return false;
 						}
-
-						// Otherwise no decode. Just create the layers using the same pixel format that already exists.
-						else
-						{
-							Layers[index]->Set(PixelFormatSrc, width, height, (uint8*)srcPixelData);
-						}
-
+						Layers[index] = newLayer;
 						srcPixelData += numBytes;
 					}
 					width  /= 2; tMath::tiClampMin(width, 1);
@@ -732,6 +695,36 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	else
 	{
 		tAssert(PVRVersion == 3);
+		int width = Width;
+		int height = Height;
+		for (int mip = 0; mip < NumMipmaps; mip++)
+		{
+			int numBlocksW = tGetNumBlocks(blockW, width);
+			int numBlocksH = tGetNumBlocks(blockH, height);
+			int numBlocks = numBlocksW*numBlocksH;
+			int numBytes = numBlocks * bytesPerBlock;
+			for (int surf = 0; surf < NumSurfaces; surf++)
+			{
+				for (int face = 0; face < NumFaces; face++)
+				{
+					for (int slice = 0; slice < Depth; slice++)
+					{
+						int index = LayerIdx(surf, face, mip, slice);
+						tAssert(Layers[index] == nullptr);
+						tLayer* newLayer = CreateNewLayer(params, srcPixelData, numBytes, width, height);
+						if (!newLayer)
+						{
+							Clear();
+							return false;
+						}
+						Layers[index] = newLayer;
+						srcPixelData += numBytes;
+					}
+				}
+			}
+			width  /= 2; tMath::tiClampMin(width, 1);
+			height /= 2; tMath::tiClampMin(height, 1);
+		}
 	}
 
 	// If we were asked to decode, set the current PixelFormat to the decoded format.
@@ -782,6 +775,55 @@ int tImagePVR::LayerIdx(int surf, int face, int mip, int depth)
 	int index = depth + mip*(Depth) + face*(NumMipmaps*Depth) + surf*(NumFaces*NumMipmaps*Depth);
 	tAssert(index < NumLayers);
 	return index;
+}
+
+
+tLayer* tImagePVR::CreateNewLayer(const LoadParams& params, const uint8* srcPixelData, int numBytes, int width, int height)
+{
+	tLayer* newLayer = new tLayer();
+
+	// If we were asked to decode, do so.
+	if (params.Flags & LoadFlag_Decode)
+	{
+		// At the end of decoding _either_ decoded4i _or_ decoded4f will be valid, not both.
+		// The decoded4i format used for LDR images.
+		// The decoded4f format used for HDR images.
+		tColour4i* decoded4i = nullptr;
+		tColour4f* decoded4f = nullptr;
+		DecodeResult result = DecodePixelData
+		(
+			PixelFormatSrc, srcPixelData, numBytes,
+			width, height, decoded4i, decoded4f
+		);
+
+		if (result != DecodeResult::Success)
+		{
+			switch (result)
+			{
+				case DecodeResult::PackedDecodeError:	SetStateBit(StateBit::Fatal_PackedDecodeError);			break;
+				case DecodeResult::BlockDecodeError:	SetStateBit(StateBit::Fatal_BCDecodeError);				break;
+				case DecodeResult::ASTCDecodeError:		SetStateBit(StateBit::Fatal_ASTCDecodeError);			break;
+				default:								SetStateBit(StateBit::Fatal_PixelFormatNotSupported);	break;
+			}
+			delete newLayer;
+			return nullptr;
+		}
+
+		tAssert(decoded4f || decoded4i);
+
+		// Lets just start with LDR.
+		delete[] decoded4f; decoded4f = nullptr;
+		if (decoded4i)
+			newLayer->Set(tPixelFormat::R8G8B8A8, width, height, (uint8*)decoded4i, true);
+	}
+
+	// Otherwise no decode. Just create the layers using the same pixel format that already exists.
+	else
+	{
+		newLayer->Set(PixelFormatSrc, width, height, (uint8*)srcPixelData);
+	}
+
+	return newLayer;
 }
 
 

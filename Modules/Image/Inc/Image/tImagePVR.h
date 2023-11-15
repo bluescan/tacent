@@ -280,6 +280,7 @@ private:
 	int NumLayers							= 0;
 	tLayer** Layers							= nullptr;	// Always nullptr if NumLayers is 0.
 	int LayerIdx(int surf, int face = 0, int mip = 0, int depth = 0);
+	tLayer* CreateNewLayer(const LoadParams&, const uint8* srcPixelData, int numBytes, int width, int height);
 
 public:
 	static const char* StateDescriptions[];
