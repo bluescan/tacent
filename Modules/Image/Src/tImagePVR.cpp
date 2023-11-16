@@ -263,33 +263,43 @@ void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 	}
 	else
 	{
-		// Both the cases and the hex values below are reversed because we are on a LE platform.
+		// The FourCC and the tSwapEndian32 calls below deal with endianness. The values
+		// of the literals in the fourCC match the values of the masks in fmtMS32 member.
 		switch (fmtLS32)
 		{
-			case 'bgra':	// LE PVR: argb
+			case tImage::FourCC('r', 'g', 'b', 'a'):
 			{
 				switch (fmtMS32)
 				{
-					case 0x05050501:	fmt = tPixelFormat::G3B5A1R5G2;	break;	// LE PVR: A1 R5 G5 B5.
-					case 0x04040404:	fmt = tPixelFormat::G4B4A4R4;	break;	// LE PVR: A4 R4 G4 B4.
+					case tSwapEndian32(0x08080808):	fmt = tPixelFormat::R8G8B8A8;		break;
 				}
 				break;
 			}
 
-			case 'argb':	// LE PVR: bgra
+			case tImage::FourCC('a', 'r', 'g', 'b'):
 			{
 				switch (fmtMS32)
 				{
-					case 0x08080808:	fmt = tPixelFormat::B8G8R8A8;	break;	// LE PVR: A1 R5 G5 B5.
+					case tSwapEndian32(0x01050505):	fmt = tPixelFormat::G3B5A1R5G2;		break;	// LE PVR: A1 R5 G5 B5.
+					case tSwapEndian32(0x04040404):	fmt = tPixelFormat::G4B4A4R4;		break;	// LE PVR: A4 R4 G4 B4.
 				}
 				break;
 			}
 
-			case '\0bgr':	// LE PVR: rgb0
+			case tImage::FourCC('b', 'g', 'r', 'a'):
 			{
 				switch (fmtMS32)
 				{
-					case 0x00050605:	fmt = tPixelFormat::G3B5R5G3;	break;	// LE PVR: R5 G6 B5.
+					case tSwapEndian32(0x08080808):	fmt = tPixelFormat::B8G8R8A8;		break;	// LE PVR: A1 R5 G5 B5.
+				}
+				break;
+			}
+
+			case tImage::FourCC('r', 'g', 'b', '\0'):
+			{
+				switch (fmtMS32)
+				{
+					case tSwapEndian32(0x05060500):	fmt = tPixelFormat::G3B5R5G3;		break;	// LE PVR: R5 G6 B5.
 				}
 				break;
 			}
@@ -459,7 +469,6 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 
 	tPrintf("PVR Version: %d\n", PVRVersion);
 
-	uint32 fourCC = 'ENON';
 	tColourProfile colourProfile = tColourProfile::Unspecified;
 	int channelType = 0;		// 0 = UNORM Byte.
 	int metaDataSize = 0;
@@ -472,6 +481,11 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		{
 			tPVR::HeaderV1* header = (tPVR::HeaderV1*)pvrData;
 			tPVR::DeterminePixelFormatFromV1V2Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
+			if (PixelFormatSrc == tPixelFormat::Invalid)
+			{
+				SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
+				return false;
+			}
 
 			NumSurfaces					= 1;		// Not supported by V1 files. Default to 1 surface.
 			NumFaces					= 1;
@@ -481,7 +495,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			Height						= header->Height;
 
 			// Flags are LE order on disk.
-			uint32 flags = (header->Flags1 << 24) | (header->Flags2 << 16) | (header->Flags1 << 8);
+			uint32 flags				= (header->Flags1 << 24) | (header->Flags2 << 16) | (header->Flags1 << 8);
 			
 			bool hasMipmaps				= (flags & 0x00000100) ? true : false;
 			bool dataTwiddled			= (flags & 0x00000200) ? true : false;
@@ -524,6 +538,11 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		{
 			tPVR::HeaderV2* header = (tPVR::HeaderV2*)pvrData;
 			tPVR::DeterminePixelFormatFromV1V2Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
+			if (PixelFormatSrc == tPixelFormat::Invalid)
+			{
+				SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
+				return false;
+			}
 
 			NumSurfaces					= header->NumSurfaces;
 			NumFaces					= 1;
@@ -533,7 +552,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			Height						= header->Height;
 
 			// Flags are LE order on disk.
-			uint32 flags = (header->Flags1 << 24) | (header->Flags2 << 16) | (header->Flags1 << 8);
+			uint32 flags				= (header->Flags1 << 24) | (header->Flags2 << 16) | (header->Flags1 << 8);
 			
 			bool hasMipmaps				= (flags & 0x00000100) ? true : false;
 			bool dataTwiddled			= (flags & 0x00000200) ? true : false;
@@ -582,11 +601,11 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 				NumSurfaces = 1;
 			}
 
-			int bytesPerSurface = header->SurfaceSize;
-			int bitsPerPixel = header->BitsPerPixel;
-			fourCC = header->FourCC;
+			int bytesPerSurface			= header->SurfaceSize;
+			int bitsPerPixel			= header->BitsPerPixel;
+			uint32 fourCC				= header->FourCC;
 
-			textureData = pvrData + header->HeaderSize;
+			textureData					= pvrData + header->HeaderSize;
 			break;
 		}
 
@@ -594,6 +613,11 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		{
 			tPVR::HeaderV3* header = (tPVR::HeaderV3*)pvrData;
 			tPVR::DeterminePixelFormatFromV3Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
+			if (PixelFormatSrc == tPixelFormat::Invalid)
+			{
+				SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
+				return false;
+			}
 
 			NumSurfaces					= header->NumSurfaces;
 			NumFaces					= header->NumFaces;
@@ -602,18 +626,18 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			Width						= header->Width;
 			Height						= header->Height;
 
-			uint32 flags = header->Flags;
+			uint32 flags				= header->Flags;
 			bool premultipliedAlpha		= (flags & 0x00000002) ? true : false;
 
 			if (header->ColourSpace == 0)
 				colourProfile = tColourProfile::lRGB;
 			else if (header->ColourSpace == 1)
 				colourProfile = tColourProfile::sRGB;
-			channelType = header->ChannelType;
-			metaDataSize = header->MetaDataSize;
+			channelType					= header->ChannelType;
+			metaDataSize				= header->MetaDataSize;
 
-			metaData = pvrData + sizeof(tPVR::HeaderV3);
-			textureData = metaData + metaDataSize;
+			metaData					= pvrData + sizeof(tPVR::HeaderV3);
+			textureData					= metaData + metaDataSize;
 			break;
 		}
 

@@ -188,6 +188,9 @@ tEndianness tGetEndianness();								// Performs a test on the current architect
 template<typename T> inline T tGetSwapEndian(const T&);
 template<typename T> inline void tSwapEndian(T&);
 template<typename T> inline void tSwapEndian(T*, int numItems);
+constexpr uint16 tSwapEndian16(uint16);
+constexpr uint32 tSwapEndian32(uint32);
+
 
 // Converts to and from external data representation (XDR/Network) which is big-endian. Does not rely on the
 // PLATFORM define by performing an endianness test.
@@ -238,6 +241,24 @@ template<typename T> inline void tSwapEndian(T* a, int numItems)
 {
 	for (int i = 0; i < numItems; i++)
 		tSwapEndian(a[i]);
+}
+
+
+inline constexpr uint16 tSwapEndian16(uint16 val)
+{
+	uint16 u0 =  val        & 0x00FF;
+	uint16 u1 = (val >> 8)  & 0x00FF;
+	return (uint16(u1) | (uint16(u0) << 8));
+}
+
+
+inline constexpr uint32 tSwapEndian32(uint32 val)
+{
+	uint32 u0 =  val        & 0x000000FF;
+	uint32 u1 = (val >> 8)  & 0x000000FF;
+	uint32 u2 = (val >> 16) & 0x000000FF;
+	uint32 u3 = (val >> 24) & 0x000000FF;
+	return (uint32(u3) | (uint32(u2) << 8) | (uint32(u1) << 16) | (uint32(u0) << 24));
 }
 
 
