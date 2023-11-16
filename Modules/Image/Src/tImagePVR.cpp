@@ -838,7 +838,15 @@ tLayer* tImagePVR::CreateNewLayer(const LoadParams& params, const uint8* srcPixe
 		// Lets just start with LDR.
 		delete[] decoded4f; decoded4f = nullptr;
 		if (decoded4i)
+		{
 			newLayer->Set(tPixelFormat::R8G8B8A8, width, height, (uint8*)decoded4i, true);
+		}
+		else
+		{
+			// WIP.
+			delete newLayer;
+			return nullptr;
+		}
 	}
 
 	// Otherwise no decode. Just create the layers using the same pixel format that already exists.
