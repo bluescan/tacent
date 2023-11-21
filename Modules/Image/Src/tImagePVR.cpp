@@ -141,7 +141,6 @@ void tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alp
 		case 0x17:  fmt = tPixelFormat::A8L8;			break;	// AI 88.
 		case 0x18:	fmt = tPixelFormat::PVRBPP2;		break;	// PVRTC2.
 		case 0x19:  fmt = tPixelFormat::PVRBPP4;		break;	// PVRTC4.
-//		case 0x1A:  fmt = tPixelFormat::R8G8B8A8;		break;	// BGRA 8888 [B8G8R8A8].
 		case 0x1A:  fmt = tPixelFormat::B8G8R8A8;		break;	// BGRA 8888 [B8G8R8A8].
 		case 0x20:	fmt = tPixelFormat::BC1DXT1;		break;	// DXT1.
 		case 0x21:	fmt = tPixelFormat::BC2DXT2DXT3;	alpha = tAlphaMode::Premultiplied;	break;	// DXT2.
@@ -272,6 +271,7 @@ void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 				switch (fmtMS32)
 				{
 					case tSwapEndian32(0x08080808):	fmt = tPixelFormat::R8G8B8A8;		break;
+					case tSwapEndian32(0x04040404):	fmt = tPixelFormat::B4A4R4G4;		break;
 				}
 				break;
 			}

@@ -34,6 +34,7 @@ namespace tImage
 		"B8G8R8A8",
 		"G3B5R5G3",
 		"G4B4A4R4",
+		"B4A4R4G4",
 		"G3B5A1R5G2",
 		"L8A8",
 		"A8",
@@ -116,6 +117,7 @@ namespace tImage
 		32,				// B8G8R8A8
 		16,				// B5G6R5
 		16,				// B4G4R4A4
+		16,				// B4A4R4G4
 		16,				// B5G5R5A1
 		16,				// L8A8
 		8,				// A8
