@@ -55,10 +55,12 @@ enum class tPixelFormat
 	R8G8B8A8,							// 32  bit. Full alpha. Matches GL_RGBA source ordering. Not efficient. Most drivers will swizzle to ABGR.
 	B8G8R8,								// 24  bit. Full colour. No alpha. Matches GL_BGR source ordering. Efficient. Most drivers do not need to swizzle.
 	B8G8R8A8,							// 32  bit. Full alpha. Matches GL_BGRA source ordering. Most drivers do not need to swizzle.
+	
 	G3B5R5G3,							// 16  bit. No alpha. Incorrectly AKA B5G6R5. The truth is in memory it is GGGBBBBB RRRRRGGG -> this is G3B5R5G3.
 	G4B4A4R4,							// 16  bit. 12 colour bits. 4 bit alpha. Incorrectly AKA B4G4R4A4.
 	B4A4R4G4,							// 16  bit. 12 colour bits. 4 bit alpha. Incorrectly AKA R4G4B4A4.
 	G3B5A1R5G2,							// 16  bit. 15 colour bits. Binary alpha. Incorrectly AKA B5G5R5A1.
+	G2B5A1R5G3,							// 16  bit. 15 colour bits. Binary alpha. Incorrectly AKA R5G5B5A1.
 	A8L8,								// 16  bit. Alpha and Luminance.
 	A8,									// 8   bit. Alpha only.
 	L8,									// 8   bit. Luminance only.
@@ -412,6 +414,7 @@ inline bool tImage::tIsAlphaFormat(tPixelFormat format)
 		case tPixelFormat::G4B4A4R4:
 		case tPixelFormat::B4A4R4G4:
 		case tPixelFormat::G3B5A1R5G2:
+		case tPixelFormat::G2B5A1R5G3:
 		case tPixelFormat::A8L8:
 		case tPixelFormat::R16G16B16A16F:
 		case tPixelFormat::R32G32B32A32F:

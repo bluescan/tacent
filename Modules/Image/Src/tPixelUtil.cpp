@@ -266,6 +266,27 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 			}
 			break;
 
+		case tPixelFormat::G2B5A1R5G3:
+			decoded4i = new tColour4i[w*h];
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				// GGBBBBBA RRRRRGGG in memory is RRRRRGGG GGBBBBBA as a uint16.
+				uint16 u = *((uint16*)(src+ij*2));
+				uint8 r = (u & 0xF800) >> 11;		// 1111 1000 0000 0000 >> 11.
+				uint8 g = (u & 0x07C0) >> 6;		// 0000 0111 1100 0000 >> 6.
+				uint8 b = (u & 0x003E) >> 1;		// 0000 0000 0011 1110 >> 1.
+				bool  a = (u & 0x0001);				// 0000 0000 0000 0001.
+
+				// Normalize to range. See note above.
+				float rf = float(r) / 31.0f;		// Max is 2^5 - 1.
+				float gf = float(g) / 31.0f;
+				float bf = float(b) / 31.0f;
+
+				tColour4i col(rf, gf, bf, a ? 1.0f : 0.0f);
+				decoded4i[ij].Set(col);
+			}
+			break;
+
 		case tPixelFormat::R16F:
 		{
 			// This HDR format has 1 red half-float channel.

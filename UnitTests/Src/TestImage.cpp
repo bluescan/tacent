@@ -2323,16 +2323,19 @@ tTestUnit(ImagePVR3)
 	// A = Texture array. Has an arbitrary number of textures.
 	// M = Has Mipmaps.
 	// P = Premultiplied Alpha
-//	PVRLoadDecodeSave("R8G8B8A8_UNORM_SRGB_RGBA_TM.pvr",		decode | revrow,	true);
+	PVRLoadDecodeSave("A1R5G5B5+G3B5A1R5G2_UNORM_LIN_RGBA_T.pvr",	decode | revrow,	true);
+	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_T.pvr",		decode | revrow,	true);
+	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_TM.pvr",	decode | revrow,	true);
+	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_TP.pvr",	decode | revrow,	true);
+	PVRLoadDecodeSave("B8G8R8A8_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	true);
+	PVRLoadDecodeSave("R4G4B4A4+B4A4R4G4_UNORM_LIN_RGBA_T.pvr",		decode | revrow,	true);
+	PVRLoadDecodeSave("R4G4B4A4+B4A4R4G4_UNORM_LIN_RGBA_TP.pvr",	decode | revrow,	true);
 
-	PVRLoadDecodeSave("R4G4B4A4+B4A4R4G4_UNORM_LIN_RGBA_T.pvr",	decode | revrow,	true);
+	PVRLoadDecodeSave("R5G5B5A1+G2B5A1R5G3_UNORM_LIN_RGBA_T.pvr",	decode | revrow,	true);
+	PVRLoadDecodeSave("R5G6B5+G3B5R5G3_UNORM_LIN_RGB_T.pvr",		decode | revrow,	true);
+	PVRLoadDecodeSave("R8G8B8A8_UNORM_SRGB_RGBA_TM.pvr",			decode | revrow,	true);
 
-//	PVRLoadDecodeSave("B8G8R8A8_UNORM_SRGB_RGBA_T.pvr",				decode | revrow);
-//	PVRLoadDecodeSave("R5G6B5+G3B5R5G3_UNORM_LIN_RGB_T.pvr",		decode | revrow,	true);
-//	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_T.pvr",	decode | revrow);
-//	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_TP.pvr",	decode | revrow);
-//	PVRLoadDecodeSave("A1R5G5B5+G3B5A1R5G2_UNORM_LIN_RGBA_T.pvr",	decode | revrow);
-//	PVRLoadDecodeSave("R32G32B32A32_FLOAT_SRGB_RGBA_C.pvr",	decode | revrow);
+	PVRLoadDecodeSave("R32G32B32A32f_FLOAT_SRGB_RGBA_C.pvr",		decode | revrow,	true);
 
 	tSystem::tSetCurrentDir(origDir);
 }

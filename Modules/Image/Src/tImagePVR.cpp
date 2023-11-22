@@ -272,6 +272,8 @@ void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 				{
 					case tSwapEndian32(0x08080808):	fmt = tPixelFormat::R8G8B8A8;		break;
 					case tSwapEndian32(0x04040404):	fmt = tPixelFormat::B4A4R4G4;		break;
+					case tSwapEndian32(0x05050501):	fmt = tPixelFormat::G2B5A1R5G3;		break;
+					case tSwapEndian32(0x20202020):	fmt = tPixelFormat::R32G32B32A32F;	break;
 				}
 				break;
 			}
@@ -835,18 +837,18 @@ tLayer* tImagePVR::CreateNewLayer(const LoadParams& params, const uint8* srcPixe
 
 		tAssert(decoded4f || decoded4i);
 
-		// Lets just start with LDR.
-		delete[] decoded4f; decoded4f = nullptr;
-		if (decoded4i)
+		// Update the layer with the 32-bit RGBA decoded data. If the data was HDR (float)
+		// convert it to 32 bit.
+		if (decoded4f)
 		{
-			newLayer->Set(tPixelFormat::R8G8B8A8, width, height, (uint8*)decoded4i, true);
+			tAssert(!decoded4i);
+			decoded4i = new tColour4i[width*height];
+			for (int p = 0; p < width*height; p++)
+				decoded4i[p].Set(decoded4f[p]);
+			delete[] decoded4f;
 		}
-		else
-		{
-			// WIP.
-			delete newLayer;
-			return nullptr;
-		}
+
+		newLayer->Set(tPixelFormat::R8G8B8A8, width, height, (uint8*)decoded4i, true);
 	}
 
 	// Otherwise no decode. Just create the layers using the same pixel format that already exists.
