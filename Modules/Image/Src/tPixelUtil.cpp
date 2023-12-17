@@ -14,7 +14,7 @@
 
 #include <Foundation/tAssert.h>
 #include <Foundation/tStandard.h>
-#include <Foundation/tHalf.h>
+#include <Foundation/tSmallFloat.h>
 #include <System/tMachine.h>
 #include "Image/tPixelUtil.h"
 #define BCDEC_IMPLEMENTATION

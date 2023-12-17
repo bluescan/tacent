@@ -14,7 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <Foundation/tString.h>
-#include <Foundation/tHalf.h>
+#include <Foundation/tSmallFloat.h>
 #include <System/tMachine.h>
 #include "Image/tImageKTX.h"
 #include "Image/tPixelUtil.h"

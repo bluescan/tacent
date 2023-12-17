@@ -27,7 +27,7 @@
 #include <Foundation/tSort.h>
 #include <Foundation/tPriorityQueue.h>
 #include <Foundation/tPool.h>
-#include <Foundation/tHalf.h>
+#include <Foundation/tSmallFloat.h>
 #include <System/tFile.h>
 #include "UnitTests.h"
 using namespace tStd;
@@ -1725,7 +1725,7 @@ tTestUnit(Hash)
 
 tTestUnit(Half)
 {
-	tPrintf("Testing tHalf (half-precision float).\n");
+	tPrintf("Testing tHalf (halffloat -- half-precision float).\n");
 
 	tHalf v1(uint16(0x3c00));
 	tHalf v2(uint16(0x3c01));
@@ -1733,12 +1733,20 @@ tTestUnit(Half)
 	float val2 = v2;
 	float sum = val1 + val2;
 
-	tPrintf("Sum: 0x%04x\n", tHalf(sum).Raw());
-	tRequire(tHalf(sum).Raw() == 0x4000);
+	tPrintf("Sum: 0x%04x\n", tHalf(sum).Raw);
+	#ifdef TACENT_HALF_FLOAT_RTNE	
+	tRequire(tHalf(sum).Raw == 0x4000);
+	#else
+	tRequire(tHalf(sum).Raw == 0x4001);
+	#endif
         
 	float tiny = 0.5f*5.9604644775390625e-08f;
-	tPrintf("Tiny: 0x%04x\n", tHalf(tiny).Raw());
-	tRequire(tHalf(tiny).Raw() == 0x0000);
+	tPrintf("Tiny: 0x%04x\n", tHalf(tiny).Raw);
+	#ifdef TACENT_HALF_FLOAT_RTNE	
+	tRequire(tHalf(tiny).Raw == 0x0000);
+	#else
+	tRequire(tHalf(tiny).Raw == 0x0001);
+	#endif
 
 	for (int i = 0; i <= 20; i++)
 	{
@@ -1746,6 +1754,7 @@ tTestUnit(Half)
 		tHalf half(orig);
 		float conv = half.Float();
 		tPrintf("Orig Float: %f  Conv Float: %f\n", orig, conv);
+		tRequire(tMath::tApproxEqual(orig, conv, 0.001f));
 	}
 
 	float orig = 1.23456789f;
@@ -1753,6 +1762,13 @@ tTestUnit(Half)
 	float conv = half.Float();
 	tPrintf("Orig Float: %.8f  Conv Float: %.8f\n", orig, conv);
 	tRequire(tMath::tApproxEqual(orig, conv, 0.001f));
+}
+
+
+tTestUnit(SmallFloat)
+{
+	tPrintf("Testing 10, 11, 14 bit packed floats.\n");
+
 }
 
 

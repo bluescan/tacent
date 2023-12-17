@@ -24,18 +24,18 @@ namespace tImage
 // most vendor pixel formats are actually correct for the mempry representation. In any case, in Tacent, it's always the
 // in-memory representation that gets named. BC stands for Block Compression.
 //
-// A note regarding sRGB. We are _not_ indicating via the pixel format what space the colour encoded by the format is
-// in. Tacent separates the encoding (the pixel format) from how the encoded data is to be interpreted. This is in
-// contrast to all the MS DXGI formats where they effectively at least double the number of formats unnecessarily.
-// See tColourSpace enum in tColour.h.
+// A note regarding sRGB. We are _not_ indicating via the pixel format what space/profilr the colour encoded by the
+// format is in. Tacent separates the encoding (the pixel format) from how the encoded data is to be interpreted. This
+// is in contrast to all the MS DXGI formats where they effectively at least double the number of formats unnecessarily.
 //
 // A way to think of it is as follows -- You have some input data (Din) that gets encoded using a pixel format (Epf)
 // resulting in some output data (Dout). Din -> Epf -> Dout. Without changing Din, if changing Epf would result in
 // different Dout, it is correct to have separate formats (eg. BCH6_S vs BCH6_U. DXT1 vs DXT1BA). If changing Epf would
 // not result in different Dout then the formats are not different and satellite info should be used if what's stored in
 // Din (and Dout) has certain properties (eg. sRGB space vs Linear, premultiplied vs not, DXT2 and DXT3 are the same).
+//
 // This is also why we don't distinguish between UNORM and UINT for example, as this is just a runtime distinction, not
-// an encoding difference (UNORM gets converted to a float in [0.0, 1.0] in shaders, UINT doesn't).
+// an encoding difference (For example, UNORM gets converted to a float in [0.0, 1.0] in shaders, UINT doesn't).
 //
 // The only exception to this rule is the Tacent pixel format _does_ make distinctions between formats based on the
 // colour components being represented. It's not ideal, but pixel formats do generally specify R, G, B, A, L etc and
@@ -43,6 +43,24 @@ namespace tImage
 // satellite info would describe what the data represented (RGB in this case). Anyway, that's too much of a divergence.
 // This exception is why there is a tPixelFormat R8 (Vulkan has one of these), A8, and L8, all 3 with the same internal
 // representation.
+//
+// Summary of Satellite and Pixel Format Information:
+//
+// Colour Profile
+//    A colour profile basically specifies the colour space for the various components. Sometimes
+//    the same space is not used for all components. It is common for RGB to be sRGB but alpha to be linear -- there is
+//    a profile for that. See tColourProfile and tColourSpace enum in tColour.h.
+//
+// Component Type
+//    The encoding is different for uints, ints (signed), unsigned float, and float. Since the encoding is differnt,
+//    this information IS specified by the pixel format. In particular a suffix is used for the pixel-format:
+//    u No Suffix		-> unsigned int.
+//    s S				-> signed int.
+//    uf F				-> Unsigned Float (always >= 0.0)
+//    sf
+//    
+// WIP WIP
+// 
 enum class tPixelFormat
 {
 	Invalid				= -1,
@@ -55,7 +73,7 @@ enum class tPixelFormat
 	R8G8B8A8,							// 32  bit. Full alpha. Matches GL_RGBA source ordering. Not efficient. Most drivers will swizzle to ABGR.
 	B8G8R8,								// 24  bit. Full colour. No alpha. Matches GL_BGR source ordering. Efficient. Most drivers do not need to swizzle.
 	B8G8R8A8,							// 32  bit. Full alpha. Matches GL_BGRA source ordering. Most drivers do not need to swizzle.
-	
+
 	G3B5R5G3,							// 16  bit. No alpha. Incorrectly AKA B5G6R5. The truth is in memory it is GGGBBBBB RRRRRGGG -> this is G3B5R5G3.
 	G4B4A4R4,							// 16  bit. 12 colour bits. 4 bit alpha. Incorrectly AKA B4G4R4A4.
 	B4A4R4G4,							// 16  bit. 12 colour bits. 4 bit alpha. Incorrectly AKA R4G4B4A4.

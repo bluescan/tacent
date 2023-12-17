@@ -30,7 +30,6 @@ add_library(
 	Inc/Foundation/tConstants.h
 	Inc/Foundation/tFixInt.h
 	Inc/Foundation/tFundamentals.h
-	Inc/Foundation/tHalf.h
 	Inc/Foundation/tHash.h
 	Inc/Foundation/tList.h
 	Inc/Foundation/tMap.h
@@ -39,6 +38,7 @@ add_library(
 	Inc/Foundation/tPool.h
 	Inc/Foundation/tPriorityQueue.h
 	Inc/Foundation/tRingBuffer.h
+	Inc/Foundation/tSmallFloat.h
 	Inc/Foundation/tSort.h
 	Inc/Foundation/tStandard.h
 	Inc/Foundation/tString.h

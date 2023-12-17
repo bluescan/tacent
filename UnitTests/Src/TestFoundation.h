@@ -35,4 +35,5 @@ namespace tUnitTest
 	tTestUnit(MemoryPool);
 	tTestUnit(Hash);
 	tTestUnit(Half);
+	tTestUnit(SmallFloat);
 }

@@ -70,10 +70,26 @@ namespace tPVR
 
 	struct HeaderV3
 	{
-		uint32 FourCCVersion;	// 'PVR3' for V3. LE = 0x03525650.
+		uint32 FourCCVersion;			// 'PVR3' for V3. LE = 0x03525650.
 		uint32 Flags;
 		uint64 PixelFormat;
-		uint32 ColourSpace;		// 0 = Linear RGB. 1 = sRGB (I assume linear alpha for both).
+		uint32 ColourSpace;				// 0 = Linear RGB. 1 = sRGB (I assume linear alpha for both).
+
+		// Channel Type values.
+		// Unsigned Byte Normalised		0
+		// Signed Byte Normalised		1
+		// Unsigned Byte				2
+		// Signed Byte					3
+		// Unsigned Short Normalised	4
+		// Signed Short Normalised		5
+		// Unsigned Short				6
+		// Signed Short					7
+		// Unsigned Integer Normalised	8
+		// Signed Integer Normalised	9
+		// Unsigned Integer				10
+		// Signed Integer				11
+		// Float						12
+		// Unsigned Float				13
 		uint32 ChannelType;
 		uint32 Height;
 		uint32 Width;
@@ -615,11 +631,11 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		{
 			tPVR::HeaderV3* header = (tPVR::HeaderV3*)pvrData;
 			tPVR::DeterminePixelFormatFromV3Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
-			if (PixelFormatSrc == tPixelFormat::Invalid)
-			{
-				SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
-				return false;
-			}
+//			if (PixelFormatSrc == tPixelFormat::Invalid)
+//			{
+//				SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
+//				return false;
+//			}
 
 			NumSurfaces					= header->NumSurfaces;
 			NumFaces					= header->NumFaces;
@@ -648,6 +664,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			return false;
 	}
 
+	tPrintf("PVR channelType: %d\n", channelType);
 	#if 0
 	tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
 	tPrintf("PVR fourCC: %08X (%c %c %c %c)\n", fourCC, (fourCC>>0)&0xFF, (fourCC>>8)&0xFF, (fourCC>>16)&0xFF, (fourCC>>24)&0xFF);

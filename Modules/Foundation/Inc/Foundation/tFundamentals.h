@@ -127,10 +127,14 @@ inline int tLeastCommonMultiple(int a, int b)																			{ return tLCM(a,
 inline int tFloatToInt(float val)																						{ return int(val + 0.5f); }
 
 // tCeiling and tFloor both need to change the FPU from round mode to truncate. Could have performance hit.
-inline float tCeiling(float v)																							{ return ceilf(v); }
-inline float& tiCeiling(float& v)																						{ v = ceilf(v); return v; }
-inline float tFloor(float v)																							{ return floorf(v); }
-inline float& tiFloor(float& v)																							{ v = floorf(v); return v; }
+inline float   tCeiling(float v)																						{ return ceilf(v); }
+inline double  tCeiling(double v)																						{ return ceil(v); }
+inline float&  tiCeiling(float& v)																						{ v = ceilf(v); return v; }
+inline double& tiCeiling(double& v)																						{ v = ceil(v); return v; }
+inline float   tFloor(float v)																							{ return floorf(v); }
+inline double  tFloor(double v)																							{ return floor(v); }
+inline float&  tiFloor(float& v)																						{ v = floorf(v); return v; }
+inline double& tiFloor(double& v)																						{ v = floor(v); return v; }
 
 // The 'nearest' round variants let you round to the nearest [value]. For example, tRound(5.17f, 0.2f) = 5.2f
 inline float tRound(float v)																							{ return floorf(v + 0.5f); }
