@@ -238,8 +238,8 @@ void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 			case 0x00000016:	fmt = tPixelFormat::ETC2RGB;		break;	// ETC2 RGB.
 			case 0x00000017:	fmt = tPixelFormat::ETC2RGBA;		break;	// ETC2 RGBA.
 			case 0x00000018:	fmt = tPixelFormat::ETC2RGBA1;		break;	// ETC2 RGB A1.
-			case 0x00000019:	fmt = tPixelFormat::EACR11;			break;	// EAC R11.
-			case 0x0000001A:	fmt = tPixelFormat::EACRG11;		break;	// EAC RG11.
+			case 0x00000019:	fmt = tPixelFormat::EACR11U;		break;	// EAC R11.
+			case 0x0000001A:	fmt = tPixelFormat::EACRG11U;		break;	// EAC RG11.
 
 			case 0x0000001B:	fmt = tPixelFormat::ASTC4X4;		break;	// ASTC_4x4.
 			case 0x0000001C:	fmt = tPixelFormat::ASTC5X4;		break;	// ASTC_5x4.
@@ -289,7 +289,7 @@ void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 					case tSwapEndian32(0x08080808):	fmt = tPixelFormat::R8G8B8A8;		break;
 					case tSwapEndian32(0x04040404):	fmt = tPixelFormat::B4A4R4G4;		break;
 					case tSwapEndian32(0x05050501):	fmt = tPixelFormat::G2B5A1R5G3;		break;
-					case tSwapEndian32(0x20202020):	fmt = tPixelFormat::R32G32B32A32F;	break;
+					case tSwapEndian32(0x20202020):	fmt = tPixelFormat::R32G32B32A32f;	break;
 				}
 				break;
 			}

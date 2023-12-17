@@ -287,7 +287,7 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 			}
 			break;
 
-		case tPixelFormat::R16F:
+		case tPixelFormat::R16f:
 		{
 			// This HDR format has 1 red half-float channel.
 			decoded4f = new tColour4f[w*h];
@@ -301,7 +301,7 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 			break;
 		}
 
-		case tPixelFormat::R16G16F:
+		case tPixelFormat::R16G16f:
 		{
 			// This HDR format has 2 half-float channels. Red and green.
 			decoded4f = new tColour4f[w*h];
@@ -316,7 +316,7 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 			break;
 		}
 
-		case tPixelFormat::R16G16B16A16F:
+		case tPixelFormat::R16G16B16A16f:
 		{
 			// This HDR format has 4 half-float channels. RGBA.
 			decoded4f = new tColour4f[w*h];
@@ -333,7 +333,7 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 			break;
 		}
 
-		case tPixelFormat::R32F:
+		case tPixelFormat::R32f:
 		{
 			// This HDR format has 1 red float channel.
 			decoded4f = new tColour4f[w*h];
@@ -347,7 +347,7 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 			break;
 		}
 
-		case tPixelFormat::R32G32F:
+		case tPixelFormat::R32G32f:
 		{
 			// This HDR format has 2 float channels. Red and green.
 			decoded4f = new tColour4f[w*h];
@@ -362,7 +362,7 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 			break;
 		}
 
-		case tPixelFormat::R32G32B32A32F:
+		case tPixelFormat::R32G32B32A32f:
 		{
 			// This HDR format has 4 RGBA floats.
 			decoded4f = new tColour4f[w*h];
@@ -374,6 +374,38 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 				float b = fdata[ij*4 + 2];
 				float a = fdata[ij*4 + 3];
 				tColour4f col(r, g, b, a);
+				decoded4f[ij].Set(col);
+			}
+			break;
+		}
+
+		case tPixelFormat::R11G11B10uf:
+		{
+			// This HDR format has 3 RGB floats packed into 32-bits.
+			decoded4f = new tColour4f[w*h];
+			uint32* fdata = (uint32*)src;
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				tPackedF11F11F10 packed(fdata[ij]);
+				float r, g, b;
+				packed.Get(r, g, b);
+				tColour4f col(r, g, b, 1.0f);
+				decoded4f[ij].Set(col);
+			}
+			break;
+		}
+
+		case tPixelFormat::R9G9B9E5uf:
+		{
+			// This HDR format has 3 RGB floats packed into 32-bits.
+			decoded4f = new tColour4f[w*h];
+			uint32* fdata = (uint32*)src;
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				tPackedM9M9M9E5 packed(fdata[ij]);
+				float r, g, b;
+				packed.Get(r, g, b);
+				tColour4f col(r, g, b, 1.0f);
 				decoded4f[ij].Set(col);
 			}
 			break;
@@ -500,8 +532,8 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 			break;
 		}
 
-		case tPixelFormat::BC6S:
 		case tPixelFormat::BC6U:
+		case tPixelFormat::BC6S:
 		{
 			// This HDR format decompresses to RGB floats.
 			tColour3f* rgbData = new tColour3f[wfull*hfull];
@@ -579,7 +611,7 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 			break;
 		}
 
-		case tPixelFormat::EACR11:
+		case tPixelFormat::EACR11U:
 		{
 			// This format decompresses to R uint16.
 			uint16* rdata = new uint16[wfull*hfull];
@@ -630,7 +662,7 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 			break;
 		}
 
-		case tPixelFormat::EACRG11:
+		case tPixelFormat::EACRG11U:
 		{
 			struct RG { uint16 R; uint16 G; };
 			// This format decompresses to RG uint8s.

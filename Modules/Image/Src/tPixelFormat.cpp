@@ -46,6 +46,8 @@ namespace tImage
 		"R32f",
 		"R32G32f",
 		"R32G32B32A32f",
+		"R11G11B10uf",
+		"R9G9B9E5uf",
 
 		// Original BC (4x4 Block Compression) formats.
 		"BC1DXT1",
@@ -54,16 +56,16 @@ namespace tImage
 		"BC3DXT4DXT5",
 		"BC4ATI1",
 		"BC5ATI2",
-		"BC6s",
-		"BC6u",
+		"BC6U",
+		"BC6S",
 		"BC7",
 		"ETC1",
 		"ETC2RGB",
 		"ETC2RGBA",
 		"ETC2RGBA1",
-		"EACR11",
+		"EACR11U",
 		"EACR11S",
-		"EACRG11",
+		"EACRG11U",
 		"EACRG11S",
 
 		// PVR (Power VR by Imagination) formats.
@@ -126,12 +128,14 @@ namespace tImage
 		8,				// A8
 		8,				// L8
 
-		16,				// R16F
-		32,				// R16G16F
-		64,				// R16G16B16A16F
-		32,				// R32F
-		64,				// R32G32F
-		128,			// R32G32B32A32F
+		16,				// R16f
+		32,				// R16G16f
+		64,				// R16G16B16A16f
+		32,				// R32f
+		64,				// R32G32f
+		128,			// R32G32B32A32f
+		32,				// R11G11B10uf
+		32				// R9G9B9E5uf
 	};
 	tStaticAssert(tNumElements(PackedFormat_BitsPerPixel) == int(tPixelFormat::NumPackedFormats));
 
@@ -143,16 +147,16 @@ namespace tImage
 		16,				// BC3DXT4DXT5
 		8,				// BC4ATI1
 		16,				// BC5ATI2
-		16,				// BC6s
-		16,				// BC6u
+		16,				// BC6U
+		16,				// BC6S
 		16,				// BC7
 		8,				// ETC1
 		8,				// ETC2RGB
 		16,				// ETC2RGBA
 		8,				// ETC2RGBA1
-		8,				// EAC11
+		8,				// EACR11U
 		8,				// EACR11S
-		16,				// EACRG11
+		16,				// EACRG11U
 		16				// EACRG11S
 	};
 	tStaticAssert(tNumElements(BCFormat_BytesPerBlock) == int(tPixelFormat::NumBCFormats));
@@ -358,7 +362,7 @@ tImage::tPixelFormat tImage::tGetPixelFormat(const char* name)
 		return tPixelFormat::Invalid;
 
 	for (int p = 0; p < int(tPixelFormat::NumPixelFormats); p++)
-		if (tStd::tStricmp(PixelFormatNames[p+1], name) == 0)
+		if (tStd::tStrcmp(PixelFormatNames[p+1], name) == 0)
 			return tPixelFormat(p);
 
 	return tPixelFormat::Invalid;

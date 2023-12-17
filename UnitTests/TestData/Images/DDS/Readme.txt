@@ -9,7 +9,7 @@ Three tools were used when generating the dds test images (versions as of Sept 2
 2) Microsoft's texconv.exe (TEXC) from their DirectXTex tool suite.
 3) AMD's Compressonator (COMP).
 
-The BC6s_RGB_Modern.dds and BC6u_RGB_Modern.dds test images were generated from TacentTestPattern.tga. The test pattern
+The BC6U_RGB_Modern.dds and BC6S_RGB_Modern.dds test images were generated from TacentTestPattern.tga. The test pattern
 image is _not_ an HDR image, so there will no HDR data to leverage -- the 32bit RGBs were just be converted to floats,
 so you won't get good exposure control for example. These two images were generated with TEXC converter and are in sRGB
 (artist-authoring) space. TEXC did not convert them to linear-space, so there is no need to gamma-correct them when
@@ -22,9 +22,9 @@ float-to-float conversion. They were all created by NVTT.
 The way NVTT works is it looks at the input file-type and assumes that non-floating-point files are in sRGB. When
 saving NVTT puts any floating-point output in linear-space.
 
-NVTT does not support BC6u (unsigned). Unfortunately TEXC was unable to load the (perfectly valid) Desk.exr file.
-So... to create the BC6u_HDRRGB_Modern.dds, TEXC was used with the R32G32B32 linear-space file and converted it
-to the BC6u_HDRRGB_Modern.dds unsigned format. The BC6 is the only HDR format that supports unsigned floats.
+NVTT does not support BC6U (unsigned). Unfortunately TEXC was unable to load the (perfectly valid) Desk.exr file.
+So... to create the BC6U_HDRRGB_Modern.dds, TEXC was used with the R32G32B32 linear-space file and converted it
+to the BC6U_HDRRGB_Modern.dds unsigned format. The BC6 is the only HDR format that supports unsigned floats.
 
 Encoding Tools
 --------------

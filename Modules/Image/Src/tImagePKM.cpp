@@ -98,8 +98,8 @@ void tPKM::GetFormatInfo_FromPKMFormat(tPixelFormat& fmt, tColourProfile& pro, u
 		case PKMFMT::ETC2_sRGBA:	fmt = tPixelFormat::ETC2RGBA;	pro = tColourProfile::sRGB;		break;
 		case PKMFMT::ETC2_RGBA1:	fmt = tPixelFormat::ETC2RGBA1;	pro = tColourProfile::lRGB;		break;
 		case PKMFMT::ETC2_sRGBA1:	fmt = tPixelFormat::ETC2RGBA1;	pro = tColourProfile::sRGB;		break;
-		case PKMFMT::ETC2_R:		fmt = tPixelFormat::EACR11;		pro = tColourProfile::sRGB;		break;
-		case PKMFMT::ETC2_RG:		fmt = tPixelFormat::EACRG11;	pro = tColourProfile::sRGB;		break;
+		case PKMFMT::ETC2_R:		fmt = tPixelFormat::EACR11U;	pro = tColourProfile::sRGB;		break;
+		case PKMFMT::ETC2_RG:		fmt = tPixelFormat::EACRG11U;	pro = tColourProfile::sRGB;		break;
 		case PKMFMT::ETC2_R_SIGNED:	fmt = tPixelFormat::EACR11S;	pro = tColourProfile::sRGB;		break;
 		case PKMFMT::ETC2_RG_SIGNED:fmt = tPixelFormat::EACRG11S;	pro = tColourProfile::sRGB;		break;
 	}
@@ -377,9 +377,9 @@ bool tImagePKM::IsOpaque() const
 			break;
 		}
 
-		case tPixelFormat::EACR11:
+		case tPixelFormat::EACR11U:
 		case tPixelFormat::EACR11S:
-		case tPixelFormat::EACRG11:
+		case tPixelFormat::EACRG11U:
 		case tPixelFormat::EACRG11S:
 		case tPixelFormat::ETC1:
 		case tPixelFormat::ETC2RGB:

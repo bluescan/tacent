@@ -1368,9 +1368,9 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("BC1DXT1_RGB_Modern_319x179.dds",	decode | revrow | autoga);
 	DDSLoadDecodeSave("BC1DXT1_RGB_Modern_320x180.dds",	decode | revrow | autoga);
 
-	// BC1a
-	DDSLoadDecodeSave("BC1DXT1a_RGBA_Legacy.dds",		decode | revrow | autoga);
-	DDSLoadDecodeSave("BC1DXT1a_RGBA_Modern.dds",		decode | revrow | autoga);
+	// BC1A
+	DDSLoadDecodeSave("BC1DXT1A_RGBA_Legacy.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("BC1DXT1A_RGBA_Modern.dds",		decode | revrow | autoga);
 
 	// BC2
 	DDSLoadDecodeSave("BC2DXT2DXT3_RGBA_Legacy.dds",	decode | revrow | autoga);
@@ -1388,10 +1388,10 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("BC5ATI2_RG_Modern.dds",			decode | revrow | autoga);
 
 	// BC6
-	DDSLoadDecodeSave("BC6s_RGB_Modern.dds",			decode | revrow);
-	DDSLoadDecodeSave("BC6u_RGB_Modern.dds",			decode | revrow);
-	DDSLoadDecodeSave("BC6s_HDRRGB_Modern.dds",			decode | revrow | autoga);
-	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("BC6U_RGB_Modern.dds",			decode | revrow);
+	DDSLoadDecodeSave("BC6S_RGB_Modern.dds",			decode | revrow);
+	DDSLoadDecodeSave("BC6U_HDRRGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("BC6S_HDRRGB_Modern.dds",			decode | revrow | autoga);
 
 	// BC7
 	DDSLoadDecodeSave("BC7_RGBA_Modern.dds",			decode | revrow | autoga, true);
@@ -1407,20 +1407,20 @@ tTestUnit(ImageDDS)
 	//
 	// ASTC
 	//
-	DDSLoadDecodeSave("ASTC4x4_RGB_Modern.dds",			decode | revrow | autoga);
-	DDSLoadDecodeSave("ASTC5x4_RGB_Modern.dds",			decode | revrow | autoga);
-	DDSLoadDecodeSave("ASTC5x5_RGB_Modern.dds",			decode | revrow | autoga);
-	DDSLoadDecodeSave("ASTC6x5_RGB_Modern.dds",			decode | revrow | autoga);
-	DDSLoadDecodeSave("ASTC6x6_RGB_Modern.dds",			decode | revrow | autoga);
-	DDSLoadDecodeSave("ASTC8x5_RGB_Modern.dds",			decode | revrow | autoga);
-	DDSLoadDecodeSave("ASTC8x6_RGB_Modern.dds",			decode | revrow | autoga);
-	DDSLoadDecodeSave("ASTC8x8_RGB_Modern.dds",			decode | revrow | autoga);
-	DDSLoadDecodeSave("ASTC10x5_RGB_Modern.dds",		decode | revrow | autoga);
-	DDSLoadDecodeSave("ASTC10x6_RGB_Modern.dds",		decode | revrow | autoga);
-	DDSLoadDecodeSave("ASTC10x8_RGB_Modern.dds",		decode | revrow | autoga);
-	DDSLoadDecodeSave("ASTC10x10_RGB_Modern.dds",		decode | revrow | autoga);
-	DDSLoadDecodeSave("ASTC12x10_RGB_Modern.dds",		decode | revrow | autoga);
-	DDSLoadDecodeSave("ASTC12x12_RGB_Modern.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC4X4_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC5X4_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC5X5_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC6X5_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC6X6_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC8X5_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC8X6_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC8X8_RGB_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC10X5_RGB_Modern.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC10X6_RGB_Modern.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC10X8_RGB_Modern.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC10X10_RGB_Modern.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC12X10_RGB_Modern.dds",		decode | revrow | autoga);
+	DDSLoadDecodeSave("ASTC12X12_RGB_Modern.dds",		decode | revrow | autoga);
 
 	//
 	// Uncompressed Integer Formats.
@@ -1492,31 +1492,31 @@ tTestUnit(ImageDDS)
 	tPrintf("Testing DDS Loading/No-decoding.\n\n");
 
 	DDSLoadDecodeSave("BC1DXT1_RGB_Modern.dds",			revrow);	// Revrow should work for BC1.
-	DDSLoadDecodeSave("BC1DXT1a_RGBA_Modern.dds");
+	DDSLoadDecodeSave("BC1DXT1A_RGBA_Modern.dds");
 	DDSLoadDecodeSave("BC2DXT2DXT3_RGBA_Modern.dds",	revrow);
 	DDSLoadDecodeSave("BC3DXT4DXT5_RGBA_Modern.dds",	revrow);
 	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds",			revrow);	// Should print warning and be unable to flip rows. May be able to implement.
 	DDSLoadDecodeSave("BC5ATI2_RG_Modern.dds",			revrow);	// No reverse.
-	DDSLoadDecodeSave("BC6s_RGB_Modern.dds",			revrow);	// No reverse.
-	DDSLoadDecodeSave("BC6u_RGB_Modern.dds");
-	DDSLoadDecodeSave("BC6s_HDRRGB_Modern.dds");
-	DDSLoadDecodeSave("BC6u_HDRRGB_Modern.dds",			revrow);	// No reverse.
+	DDSLoadDecodeSave("BC6U_RGB_Modern.dds");
+	DDSLoadDecodeSave("BC6S_RGB_Modern.dds",			revrow);	// No reverse.
+	DDSLoadDecodeSave("BC6U_HDRRGB_Modern.dds",			revrow);	// No reverse.
+	DDSLoadDecodeSave("BC6S_HDRRGB_Modern.dds");
 	DDSLoadDecodeSave("BC7_RGBA_Modern.dds",			revrow);	// No reverse.
 
-	DDSLoadDecodeSave("ASTC4x4_RGB_Modern.dds",			revrow);	// No reverse.
-	DDSLoadDecodeSave("ASTC5x4_RGB_Modern.dds");
-	DDSLoadDecodeSave("ASTC5x5_RGB_Modern.dds");
-	DDSLoadDecodeSave("ASTC6x5_RGB_Modern.dds");
-	DDSLoadDecodeSave("ASTC6x6_RGB_Modern.dds");
-	DDSLoadDecodeSave("ASTC8x5_RGB_Modern.dds");
-	DDSLoadDecodeSave("ASTC8x6_RGB_Modern.dds");
-	DDSLoadDecodeSave("ASTC8x8_RGB_Modern.dds");
-	DDSLoadDecodeSave("ASTC10x5_RGB_Modern.dds");
-	DDSLoadDecodeSave("ASTC10x6_RGB_Modern.dds");
-	DDSLoadDecodeSave("ASTC10x8_RGB_Modern.dds");
-	DDSLoadDecodeSave("ASTC10x10_RGB_Modern.dds");
-	DDSLoadDecodeSave("ASTC12x10_RGB_Modern.dds");
-	DDSLoadDecodeSave("ASTC12x12_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC4X4_RGB_Modern.dds",			revrow);	// No reverse.
+	DDSLoadDecodeSave("ASTC5X4_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC5X5_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC6X5_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC6X6_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC8X5_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC8X6_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC8X8_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC10X5_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC10X6_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC10X8_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC10X10_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC12X10_RGB_Modern.dds");
+	DDSLoadDecodeSave("ASTC12X12_RGB_Modern.dds");
 
 	DDSLoadDecodeSave("A8_A_Modern.dds");
 	DDSLoadDecodeSave("R8_L_Modern.dds",				revrow);
@@ -1727,8 +1727,8 @@ tTestUnit(ImageKTX1)
 	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx", revrow);
 	KTXLoadDecodeSave("BC4ATI1_R.ktx", revrow);					// Should print warning and be unable to flip rows. May be able to implement.
 	KTXLoadDecodeSave("BC5ATI2_RG.ktx", revrow);				// No reverse.
-	KTXLoadDecodeSave("BC6u_RGB.ktx", revrow);					// No reverse.
-	KTXLoadDecodeSave("BC6s_RGB.ktx", revrow);					// No reverse.
+	KTXLoadDecodeSave("BC6U_RGB.ktx", revrow);					// No reverse.
+	KTXLoadDecodeSave("BC6S_RGB.ktx", revrow);					// No reverse.
 	KTXLoadDecodeSave("BC7_RGBA.ktx", revrow);					// No reverse.
 	KTXLoadDecodeSave("ASTC4x4_HDRRGBA.ktx", revrow);			// No reverse.
 	KTXLoadDecodeSave("ASTC5x4_HDRRGBA.ktx", revrow);			// No reverse.

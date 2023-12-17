@@ -57,6 +57,7 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 	// In cases where it's not a compressed format, the internal-format should not be queried to determine the format
 	// of the ktx file data because it represents the desired format the data should be converted to when binding --
 	// all we care about is the format of the actual data, and glType/glFormat can be used to determine that.
+	// Exception: The internal format is used to determine some non-compressed formats
 	switch (glInternalFormat)
 	{
 		//
@@ -133,7 +134,7 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 
 		// Leaving the R and RG formats in sRGB space.
 		case GL_COMPRESSED_R11_EAC:
-			format = tPixelFormat::EACR11;
+			format = tPixelFormat::EACR11U;
 			break;
 
 		case GL_COMPRESSED_SIGNED_R11_EAC:
@@ -141,7 +142,7 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 			break;
 
 		case GL_COMPRESSED_RG11_EAC:
-			format = tPixelFormat::EACRG11;
+			format = tPixelFormat::EACRG11U;
 			break;
 
 		case GL_COMPRESSED_SIGNED_RG11_EAC:
@@ -237,6 +238,16 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR:
 			format = tPixelFormat::ASTC12X12;
 			break;
+
+		case GL_R11F_G11F_B10F:
+			profile = tColourProfile::HDRlRGB_LDRlA;
+			format = tPixelFormat::R11G11B10uf;
+			break;
+
+		case GL_RGB9_E5:
+			profile = tColourProfile::HDRlRGB_LDRlA;
+			format = tPixelFormat::R9G9B9E5uf;
+			break;
 	}
 
 	if (format != tPixelFormat::Invalid)
@@ -276,12 +287,12 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 					break;
 
 				case GL_HALF_FLOAT:
-					format = tPixelFormat::R16F;
+					format = tPixelFormat::R16f;
 					profile = tColourProfile::HDRlRGB_LDRlA;
 					break;
 
 				case GL_FLOAT:
-					format = tPixelFormat::R32F;
+					format = tPixelFormat::R32f;
 					profile = tColourProfile::HDRlRGB_LDRlA;
 					break;
 			}
@@ -296,12 +307,12 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 					break;
 
 				case GL_HALF_FLOAT:
-					format = tPixelFormat::R16G16F;
+					format = tPixelFormat::R16G16f;
 					profile = tColourProfile::HDRlRGB_LDRlA;
 					break;
 
 				case GL_FLOAT:
-					format = tPixelFormat::R32G32F;
+					format = tPixelFormat::R32G32f;
 					profile = tColourProfile::HDRlRGB_LDRlA;
 					break;
 			}
@@ -330,12 +341,12 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 					break;
 
 				case GL_HALF_FLOAT:
-					format = tPixelFormat::R16G16B16A16F;
+					format = tPixelFormat::R16G16B16A16f;
 					profile = tColourProfile::HDRlRGB_LDRlA;
 					break;
 
 				case GL_FLOAT:
-					format = tPixelFormat::R32G32B32A32F;
+					format = tPixelFormat::R32G32B32A32f;
 					profile = tColourProfile::HDRlRGB_LDRlA;
 					break;
 			}
@@ -483,32 +494,42 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 
 		case VK_FORMAT_R16_SFLOAT:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R16F;
+			format = tPixelFormat::R16f;
 			break;
 
 		case VK_FORMAT_R16G16_SFLOAT:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R16G16F;
+			format = tPixelFormat::R16G16f;
 			break;
 
 		case VK_FORMAT_R16G16B16A16_SFLOAT:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R16G16B16A16F;
+			format = tPixelFormat::R16G16B16A16f;
 			break;
 
 		case VK_FORMAT_R32_SFLOAT:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R32F;
+			format = tPixelFormat::R32f;
 			break;
 
 		case VK_FORMAT_R32G32_SFLOAT:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R32G32F;
+			format = tPixelFormat::R32G32f;
 			break;
 
 		case VK_FORMAT_R32G32B32A32_SFLOAT:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R32G32B32A32F;
+			format = tPixelFormat::R32G32B32A32f;
+			break;
+
+		case VK_FORMAT_B10G11R11_UFLOAT_PACK32:
+			profile = tColourProfile::HDRlRGB_LDRlA;
+			format = tPixelFormat::R11G11B10uf;
+			break;
+		
+		case VK_FORMAT_E5B9G9R9_UFLOAT_PACK32:
+			profile = tColourProfile::HDRlRGB_LDRlA;
+			format = tPixelFormat::R9G9B9E5uf;
 			break;
 
 		//
@@ -546,14 +567,14 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 			format = tPixelFormat::BC5ATI2;
 			break;
 
-		case VK_FORMAT_BC6H_SFLOAT_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::BC6S;
-			break;
-
 		case VK_FORMAT_BC6H_UFLOAT_BLOCK:
 			profile = tColourProfile::HDRlRGB_LDRlA;
 			format = tPixelFormat::BC6U;
+			break;
+
+		case VK_FORMAT_BC6H_SFLOAT_BLOCK:
+			profile = tColourProfile::HDRlRGB_LDRlA;
+			format = tPixelFormat::BC6S;
 			break;
 
 		case VK_FORMAT_BC7_UNORM_BLOCK:
@@ -580,7 +601,7 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 			break;
 
 		case VK_FORMAT_EAC_R11_UNORM_BLOCK:
-			format = tPixelFormat::EACR11;
+			format = tPixelFormat::EACR11U;
 			break;
 
 		case VK_FORMAT_EAC_R11_SNORM_BLOCK:
@@ -588,7 +609,7 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 			break;
 
 		case VK_FORMAT_EAC_R11G11_UNORM_BLOCK:
-			format = tPixelFormat::EACRG11;
+			format = tPixelFormat::EACRG11U;
 			break;
 
 		case VK_FORMAT_EAC_R11G11_SNORM_BLOCK:

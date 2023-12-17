@@ -577,15 +577,15 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 			format = tPixelFormat::BC5ATI2;
 			break;
 
+		case tDDS::DXGIFMT_BC6H_UF16:
+			profile = tColourProfile::HDRlRGB_LDRlA;	// Alpha not used by BC6.
+			format = tPixelFormat::BC6U;
+			break;
+
 		case tDDS::DXGIFMT_BC6H_TYPELESS:				// Interpret typeless as BC6H_S16... we gotta choose something.
 		case tDDS::DXGIFMT_BC6H_SF16:
 			profile = tColourProfile::HDRlRGB_LDRlA;	// Alpha not used by BC6.
 			format = tPixelFormat::BC6S;
-			break;
-
-		case tDDS::DXGIFMT_BC6H_UF16:
-			profile = tColourProfile::HDRlRGB_LDRlA;	// Alpha not used by BC6.
-			format = tPixelFormat::BC6U;
 			break;
 
 		case tDDS::DXGIFMT_BC7_UNORM:
@@ -649,32 +649,42 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 
 		case tDDS::DXGIFMT_R16_FLOAT:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R16F;
+			format = tPixelFormat::R16f;
 			break;
 
 		case tDDS::DXGIFMT_R16G16_FLOAT:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R16G16F;
+			format = tPixelFormat::R16G16f;
 			break;
 
 		case tDDS::DXGIFMT_R16G16B16A16_FLOAT:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R16G16B16A16F;
+			format = tPixelFormat::R16G16B16A16f;
 			break;
 
 		case tDDS::DXGIFMT_R32_FLOAT:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R32F;
+			format = tPixelFormat::R32f;
 			break;
 
 		case tDDS::DXGIFMT_R32G32_FLOAT:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R32G32F;
+			format = tPixelFormat::R32G32f;
 			break;
 
 		case tDDS::DXGIFMT_R32G32B32A32_FLOAT:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R32G32B32A32F;
+			format = tPixelFormat::R32G32B32A32f;
+			break;
+
+		case tDDS::DXGIFMT_R11G11B10_FLOAT:
+			profile = tColourProfile::HDRlRGB_LDRlA;
+			format = tPixelFormat::R11G11B10uf;
+			break;
+
+		case tDDS::DXGIFMT_R9G9B9E5_SHAREDEXP:
+			profile = tColourProfile::HDRlRGB_LDRlA;
+			format = tPixelFormat::R9G9B9E5uf;
 			break;
 
 		//
@@ -867,33 +877,33 @@ void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& format, tColourProfile& profil
 
 		case tDDS::D3DFMT_R16F:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R16F;
+			format = tPixelFormat::R16f;
 			break;
 
 		case tDDS::D3DFMT_G16R16F:
 			// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
 			// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R16G16F;
+			format = tPixelFormat::R16G16f;
 			break;
 
 		case tDDS::D3DFMT_A16B16G16R16F:
 			// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
 			// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R16G16B16A16F;
+			format = tPixelFormat::R16G16B16A16f;
 			break;
 
 		case tDDS::D3DFMT_R32F:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R32F;
+			format = tPixelFormat::R32f;
 			break;
 
 		case tDDS::D3DFMT_G32R32F:
 			// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
 			// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R32G32F;
+			format = tPixelFormat::R32G32f;
 			break;
 
 		case tDDS::D3DFMT_A32B32G32R32F:
@@ -902,7 +912,7 @@ void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& format, tColourProfile& profil
 			// the format-name was fixed in the DX10 header format type names.
 			// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R32G32B32A32F;
+			format = tPixelFormat::R32G32B32A32f;
 			break;
 
 		default:
@@ -1360,7 +1370,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 			NumImages = 6;
 		}
 
-		// If we found a dx10 chunk. It must be used to determine the pixel format and possibly any known colour-space info.
+		// If we found a dx10 chunk. It must be used to determine the pixel format and possibly any known colour-profile info.
 		tDDS::GetFormatInfo_FromDXGIFormat(PixelFormat, ColourProfile, AlphaMode, headerDX10.DxgiFormat);
 	}
 	else if (isFourCCFormat)

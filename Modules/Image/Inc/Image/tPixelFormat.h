@@ -44,23 +44,27 @@ namespace tImage
 // This exception is why there is a tPixelFormat R8 (Vulkan has one of these), A8, and L8, all 3 with the same internal
 // representation.
 //
-// Summary of Satellite and Pixel Format Information:
+// Summary of Satellite and Pixel-Format information:
 //
-// Colour Profile
+// Colour Profile (Satellite)
 //    A colour profile basically specifies the colour space for the various components. Sometimes
 //    the same space is not used for all components. It is common for RGB to be sRGB but alpha to be linear -- there is
 //    a profile for that. See tColourProfile and tColourSpace enum in tColour.h.
 //
-// Component Type
-//    The encoding is different for uints, ints (signed), unsigned float, and float. Since the encoding is differnt,
-//    this information IS specified by the pixel format. In particular a suffix is used for the pixel-format:
-//    u No Suffix		-> unsigned int.
-//    s S				-> signed int.
-//    uf F				-> Unsigned Float (always >= 0.0)
-//    sf
-//    
-// WIP WIP
-// 
+// Component Type (Pixel-Format)
+//    The encoding is different for unsigned int, int, unsigned float, and float. Since the encoding is differnt,
+//    this information IS specified by the pixel format. In particular a lower-case suffix is used for the packed
+//    pixel-formats if it is not unsigned int:
+//    no suffix	-> unsigned int.
+//    s			-> signed int (2's complimemt).
+//    uf		-> unsigned float (always >= 0.0). No sign bit.
+//    f			-> signed float.
+//
+//    Some non-packed pixel-formats like BC and EAC distinguich between the encoding of signed vs unsigned data. In
+//    these cases we use a single capital letter suffix. If a non-packed encoding does not distinguish, no suffix.
+//    No Suffix	-> Format does not distinguish.
+//    S			-> Signed Variant.
+//    U			-> Unsigned Variant.
 enum class tPixelFormat
 {
 	Invalid				= -1,
@@ -83,13 +87,15 @@ enum class tPixelFormat
 	A8,									// 8   bit. Alpha only.
 	L8,									// 8   bit. Luminance only.
 
-	R16F,								// 16  bit. Half-float red/luminance channel only.
-	R16G16F,							// 32  bit. Two half-floats per pixel. Red and green.
-	R16G16B16A16F,						// 64  bit. Four half-floats per pixel. RGBA.
-	R32F,								// 32  bit. Float red/luminance channel only.
-	R32G32F,							// 64  bit. Two floats per pixel. Red and green.
-	R32G32B32A32F,						// 128 bit. HDR format (linear-space), RGBA in 4 floats.
-	LastPacked			= R32G32B32A32F,
+	R16f,								// 16  bit. Half-float red/luminance channel only.
+	R16G16f,							// 32  bit. Two half-floats per pixel. Red and green.
+	R16G16B16A16f,						// 64  bit. Four half-floats per pixel. RGBA.
+	R32f,								// 32  bit. Float red/luminance channel only.
+	R32G32f,							// 64  bit. Two floats per pixel. Red and green.
+	R32G32B32A32f,						// 128 bit. HDR format (linear-space), RGBA in 4 floats.
+	R11G11B10uf,						// 32  bit. Unsigned 11-bit floats for RG, and a 10-bit float for B. All use a 5-bit exponent.
+	R9G9B9E5uf,							// 32  bit. Unsigned 14-bit floats for RGB. Always denorm and each share the same 5-bit exponent.
+	LastPacked			= R9G9B9E5uf,
 
 	FirstBC,
 	BC1DXT1				= FirstBC,		// BC 1, DXT1. No alpha.
@@ -98,8 +104,8 @@ enum class tPixelFormat
 	BC3DXT4DXT5,						// BC 3, DXT4 (premult-alpha) and DXT5 share the same format. Variable alpha (smooth).
 	BC4ATI1,							// BC 4. One colour channel only. May not be HW supported.
 	BC5ATI2,							// BC 5. Two colour channels only. May not be HW supported.
-	BC6S,								// BC 6 HDR. No alpha. 3 x 16bit signed half-floats per pixel.
 	BC6U,								// BC 6 HDR. No alpha. 3 x 16bit unsigned half-floats per pixel.
+	BC6S,								// BC 6 HDR. No alpha. 3 x 16bit signed half-floats per pixel.
 	BC7,								// BC 7. Full colour. Variable alpha 0 to 8 bits.
 
 	FirstETC,
@@ -110,9 +116,9 @@ enum class tPixelFormat
 	LastETC				= ETC2RGBA1,
 
 	FirstEAC,
-	EACR11				= FirstEAC,		// EAC R11. Ericsson. Single channel.
+	EACR11U				= FirstEAC,		// EAC R11. Ericsson. Single channel.
 	EACR11S,							// EAC R11. Signed.
-	EACRG11,							// EAC RG11. Ericsson. Two channels.
+	EACRG11U,							// EAC RG11. Ericsson. Two channels.
 	EACRG11S,							// EAC RG11. Signed.
 	LastEAC				= EACRG11S,
 	LastBC				= LastEAC,
@@ -231,7 +237,7 @@ int tGetBytesPerBlock(tPixelFormat);
 
 const char* tGetPixelFormatName(tPixelFormat);
 
-// Gets the pixel format from its name. Case insensitive. Slow. Use for testing/unit-tests only.
+// Gets the pixel format from its name. Case sensitive. Slow. Use for testing/unit-tests only.
 tPixelFormat tGetPixelFormat(const char* name);
 
 
@@ -434,8 +440,8 @@ inline bool tImage::tIsAlphaFormat(tPixelFormat format)
 		case tPixelFormat::G3B5A1R5G2:
 		case tPixelFormat::G2B5A1R5G3:
 		case tPixelFormat::A8L8:
-		case tPixelFormat::R16G16B16A16F:
-		case tPixelFormat::R32G32B32A32F:
+		case tPixelFormat::R16G16B16A16f:
+		case tPixelFormat::R32G32B32A32f:
 		case tPixelFormat::BC1DXT1A:
 		case tPixelFormat::BC2DXT2DXT3:
 		case tPixelFormat::BC3DXT4DXT5:
@@ -476,14 +482,16 @@ inline bool tImage::tIsHDRFormat(tPixelFormat format)
 {
 	switch (format)
 	{
-		case tPixelFormat::R16F:
-		case tPixelFormat::R16G16F:
-		case tPixelFormat::R16G16B16A16F:
-		case tPixelFormat::R32F:
-		case tPixelFormat::R32G32F:
-		case tPixelFormat::R32G32B32A32F:
-		case tPixelFormat::BC6S:
+		case tPixelFormat::R16f:
+		case tPixelFormat::R16G16f:
+		case tPixelFormat::R16G16B16A16f:
+		case tPixelFormat::R32f:
+		case tPixelFormat::R32G32f:
+		case tPixelFormat::R32G32B32A32f:
+		case tPixelFormat::R11G11B10uf:
+		case tPixelFormat::R9G9B9E5uf:
 		case tPixelFormat::BC6U:
+		case tPixelFormat::BC6S:
 		case tPixelFormat::RADIANCE:
 		case tPixelFormat::OPENEXR:
 		case tPixelFormat::PVRHDRBPP8:
@@ -510,10 +518,10 @@ inline bool tImage::tIsLuminanceFormat(tPixelFormat format)
 	{
 		case tPixelFormat::L8:
 		case tPixelFormat::R8:
-		case tPixelFormat::R16F:
-		case tPixelFormat::R32F:
+		case tPixelFormat::R16f:
+		case tPixelFormat::R32f:
 		case tPixelFormat::BC4ATI1:
-		case tPixelFormat::EACR11:
+		case tPixelFormat::EACR11U:
 		case tPixelFormat::EACR11S:
 			return true;
 	}
