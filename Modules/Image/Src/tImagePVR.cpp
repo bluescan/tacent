@@ -321,6 +321,16 @@ void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 				}
 				break;
 			}
+
+			case tImage::FourCC('b', 'g', 'r', '\0'):
+			{
+				// @todo We should be checking the data-type here most likely.
+				switch (fmtMS32)
+				{
+					case tSwapEndian32(0x0a0b0b00):	fmt = tPixelFormat::R11G11B10uf;	break;
+				}
+				break;
+			}
 		}
 
 		// WIP.

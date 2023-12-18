@@ -389,6 +389,7 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 				tPackedF11F11F10 packed(fdata[ij]);
 				float r, g, b;
 				packed.Get(r, g, b);
+//				tColour4f col(b, b, b, 1.0f);
 				tColour4f col(r, g, b, 1.0f);
 				decoded4f[ij].Set(col);
 			}
