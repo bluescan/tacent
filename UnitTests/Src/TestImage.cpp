@@ -2338,7 +2338,7 @@ tTestUnit(ImagePVR3)
 	PVRLoadDecodeSave("R32G32B32A32f_FLOAT_SRGB_RGBA_C.pvr",		decode | revrow,	true);
 
 	PVRLoadDecodeSave("R32G32B32A32f_FLOAT_LIN_RGBA_TM.pvr",		decode | revrow,	true);
-	PVRLoadDecodeSave("B10G11R11+R11G11B10uf_UFLOAT_LIN_RGB_TM.pvr",decode | revrow,	true);
+	PVRLoadDecodeSave("B10G11R11uf_UFLOAT_LIN_RGB_TM.pvr",			decode | revrow,	true);
 
 	tSystem::tSetCurrentDir(origDir);
 }

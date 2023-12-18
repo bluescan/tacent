@@ -94,6 +94,7 @@ enum class tPixelFormat
 	R32G32f,							// 64  bit. Two floats per pixel. Red and green.
 	R32G32B32A32f,						// 128 bit. HDR format (linear-space), RGBA in 4 floats.
 	R11G11B10uf,						// 32  bit. Unsigned 11-bit floats for RG, and a 10-bit float for B. All use a 5-bit exponent.
+	B10G11R11uf,						// 32  bit. Unsigned 10-bit floats for B, and 11-bit floats for GR. All use a 5-bit exponent.
 	R9G9B9E5uf,							// 32  bit. Unsigned 14-bit floats for RGB. Always denorm and each share the same 5-bit exponent.
 	LastPacked			= R9G9B9E5uf,
 
@@ -489,6 +490,7 @@ inline bool tImage::tIsHDRFormat(tPixelFormat format)
 		case tPixelFormat::R32G32f:
 		case tPixelFormat::R32G32B32A32f:
 		case tPixelFormat::R11G11B10uf:
+		case tPixelFormat::B10G11R11uf:
 		case tPixelFormat::R9G9B9E5uf:
 		case tPixelFormat::BC6U:
 		case tPixelFormat::BC6S:

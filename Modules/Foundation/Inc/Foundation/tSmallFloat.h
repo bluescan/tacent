@@ -91,31 +91,55 @@ struct tHalf
 tStaticAssert(sizeof(tHalf) == 2);
 
 
-// This is a packed format that stores 3 unsigned floats in 32 bits. The first two floats are 11 bits each and the third
-// is 10 bits. They all have no sign bit and the exponent bitdepth is 5 for all three. Denorm numbers are supported.
-// This class is primarily for decoding and encoding the packed format into 3 regular 32-bit floats. tPackedF11F11F10
-// must remain pod. No virtual function table etc. C++ defaults are used for op=, copy cons, etc. That is, memory copy
-// works fine.
+// This is a packed format that stores 3 unsigned floats in 32 bits. The first two floats (MSBs) are 11 bits each and
+// the third (LSBs) is 10 bits. They all have no sign bit and the exponent bitdepth is 5 for all three. Denorm numbers
+// are supported. This class is primarily for decoding and encoding the packed format into 3 regular 32-bit floats.
+// tPackedF11F11F10 must remain pod. No virtual function table etc. C++ defaults are used for op=, copy cons, etc. That
+// is, memory copy works fine.
 struct tPackedF11F11F10
 {
-	tPackedF11F11F10(float flt)					/* All 3 values get set to flt. */									{ Set(flt); }
-	tPackedF11F11F10(float flt[3])				/* Sets the 3 floats from an array. */								{ Set(flt); }
-	tPackedF11F11F10(float x, float y, float z)	/* Sets all 3 floats. */											{ Set(x, y, z); }
-	tPackedF11F11F10(uint32 raw)				/* The raw constructor creates the pack from raw bits. */			{ Set(raw); }
-	tPackedF11F11F10(uint8 raw[4])				/* The raw array should be supplied in LE order. */					{ Set(raw); }
+	tPackedF11F11F10(float flt)					/* All 3 values get set to flt. */										{ Set(flt); }
+	tPackedF11F11F10(float flt[3])				/* Sets the 3 floats from an array. */									{ Set(flt); }
+	tPackedF11F11F10(float x, float y, float z)	/* Sets all 3 floats. */												{ Set(x, y, z); }
+	tPackedF11F11F10(uint32 raw)				/* The raw constructor creates the pack from raw bits. */				{ Set(raw); }
+	tPackedF11F11F10(uint8 raw[4])				/* The raw array should be supplied in LE order. */						{ Set(raw); }
 
-	inline void Set(float flt)																						{ Set(flt, flt, flt); }
-	inline void Set(float flt[3])																					{ Set(flt[0], flt[1], flt[2]); }
+	inline void Set(float flt)																							{ Set(flt, flt, flt); }
+	inline void Set(float flt[3])																						{ Set(flt[0], flt[1], flt[2]); }
 	inline void Set(float x, float y, float z);
-	inline void Set(uint32 raw)																						{ Raw = raw; }
-    inline void Set(uint8 raw[4])																					{ Raw = (raw[0]<<24) | (raw[1]<<16) | (raw[2]<<8) | raw[3]; }
+	inline void Set(uint32 raw)																							{ Raw = raw; }
+    inline void Set(uint8 raw[4])																						{ Raw = (raw[0]<<24) | (raw[1]<<16) | (raw[2]<<8) | raw[3]; }
 
-	inline void Get(float flt[3]) const																				{ Get(flt[0], flt[1], flt[2]); }
+	inline void Get(float flt[3]) const																					{ Get(flt[0], flt[1], flt[2]); }
 	inline void Get(float& x, float& y, float& z) const;
 
 	uint32 Raw;	// 6M5E 6M5E 5M5E
 };
 tStaticAssert(sizeof(tPackedF11F11F10) == 4);
+
+
+// This is a packed is exactly the same as the above except the the first (MSBs) float is the 10-bit one and the two
+// 11-bit floats go in the LSBs. All other comments apply.
+struct tPackedF10F11F11
+{
+	tPackedF10F11F11(float flt)					/* All 3 values get set to flt. */										{ Set(flt); }
+	tPackedF10F11F11(float flt[3])				/* Sets the 3 floats from an array. */									{ Set(flt); }
+	tPackedF10F11F11(float x, float y, float z)	/* Sets all 3 floats. */												{ Set(x, y, z); }
+	tPackedF10F11F11(uint32 raw)				/* The raw constructor creates the pack from raw bits. */				{ Set(raw); }
+	tPackedF10F11F11(uint8 raw[4])				/* The raw array should be supplied in LE order. */						{ Set(raw); }
+
+	inline void Set(float flt)																							{ Set(flt, flt, flt); }
+	inline void Set(float flt[3])																						{ Set(flt[0], flt[1], flt[2]); }
+	inline void Set(float x, float y, float z);
+	inline void Set(uint32 raw)																							{ Raw = raw; }
+    inline void Set(uint8 raw[4])																						{ Raw = (raw[0]<<24) | (raw[1]<<16) | (raw[2]<<8) | raw[3]; }
+
+	inline void Get(float flt[3]) const																					{ Get(flt[0], flt[1], flt[2]); }
+	inline void Get(float& x, float& y, float& z) const;
+
+	uint32 Raw;	// 5M5E 6M5E 6M5E
+};
+tStaticAssert(sizeof(tPackedF10F11F11) == 4);
 
 
 // This is a packed format that stores three 14-bit unsigned floats that each share a 5-bit exponent in 32 bits. The
@@ -125,19 +149,19 @@ tStaticAssert(sizeof(tPackedF11F11F10) == 4);
 // function table etc.
 struct tPackedM9M9M9E5
 {
-	tPackedM9M9M9E5(float flt)					/* All 3 values get set to flt. */									{ Set(flt); }
-	tPackedM9M9M9E5(float flt[3])				/* Sets the 3 floats from an array. */								{ Set(flt); }
-	tPackedM9M9M9E5(float x, float y, float z)	/* Sets all 3 floats. */											{ Set(x, y, z); }
-	tPackedM9M9M9E5(uint32 raw)					/* The raw constructor creates the pack from raw bits. */			{ Set(raw); }
-	tPackedM9M9M9E5(uint8 raw[4])				/* The raw array should be supplied in LE order. */					{ Set(raw); }
+	tPackedM9M9M9E5(float flt)					/* All 3 values get set to flt. */										{ Set(flt); }
+	tPackedM9M9M9E5(float flt[3])				/* Sets the 3 floats from an array. */									{ Set(flt); }
+	tPackedM9M9M9E5(float x, float y, float z)	/* Sets all 3 floats. */												{ Set(x, y, z); }
+	tPackedM9M9M9E5(uint32 raw)					/* The raw constructor creates the pack from raw bits. */				{ Set(raw); }
+	tPackedM9M9M9E5(uint8 raw[4])				/* The raw array should be supplied in LE order. */						{ Set(raw); }
 
-	inline void Set(float flt)																						{ Set(flt, flt, flt); }
-	inline void Set(float flt[3])																					{ Set(flt[0], flt[1], flt[2]); }
+	inline void Set(float flt)																							{ Set(flt, flt, flt); }
+	inline void Set(float flt[3])																						{ Set(flt[0], flt[1], flt[2]); }
 	inline void Set(float x, float y, float z);
-	inline void Set(uint32 raw)																						{ Raw = raw; }
-    inline void Set(uint8 raw[4])																					{ Raw = (raw[0]<<24) | (raw[1]<<16) | (raw[2]<<8) | raw[3]; }
+	inline void Set(uint32 raw)																							{ Raw = raw; }
+    inline void Set(uint8 raw[4])																						{ Raw = (raw[0]<<24) | (raw[1]<<16) | (raw[2]<<8) | raw[3]; }
 
-	inline void Get(float flt[3]) const																				{ Get(flt[0], flt[1], flt[2]); }
+	inline void Get(float flt[3]) const																					{ Get(flt[0], flt[1], flt[2]); }
 	inline void Get(float& x, float& y, float& z) const;
 
 	uint32 Raw;		// 9M 9M 9M 5E
@@ -275,13 +299,13 @@ inline void tPackedF11F11F10::Set(float x, float y, float z)
 
 	// The masks and shifts below remove the sign bit. No sign for F11F11F10. Negatives become positive.
 	// The mantissa for each float gets truncated.
-	// EEEEEMMMMMMMMMM00000000000000000 & 11111111111000000000000000000000
-	// 0000000000SEEEEEMMMMMMMMMM000000 & 00000000000111111111110000000000
-	// 000000000000000000000SEEEEEMMMMM & 00000000000000000000001111111111
-	uint32 a = (xhalf << 17) & 0xFFE00000;
-	uint32 b = (yhalf << 6 ) & 0x001FFC00;
-	uint32 c = (zhalf >> 5 ) & 0x000003FF;
-	Raw = a | b | c;
+	// EEEE EMMM MMMM MMM0 0000 0000 0000 0000 & 1111 1111 1110 0000 0000 0000 0000 0000
+	// 0000 0000 00SE EEEE MMMM MMMM MM00 0000 & 0000 0000 0001 1111 1111 1100 0000 0000
+	// 0000 0000 0000 0000 0000 0SEE EEEM MMMM & 0000 0000 0000 0000 0000 0011 1111 1111
+	uint32 rx = (xhalf << 17) & 0xFFE00000;
+	uint32 ry = (yhalf << 6 ) & 0x001FFC00;
+	uint32 rz = (zhalf >> 5 ) & 0x000003FF;
+	Raw = rx | ry | rz;
 }
 
 
@@ -292,6 +316,38 @@ inline void tPackedF11F11F10::Get(float& x, float& y, float& z) const
 	uint16 xhalf = (Raw >> 17) & 0x7FF0;		// 0EEEEEMMMMMMEEEE & 0111111111110000
 	uint16 yhalf = (Raw >> 6 ) & 0x7FF0;		// MEEEEEMMMMMMEEEE & 0111111111110000
 	uint16 zhalf = (Raw << 5 ) & 0x7FE0;		// MEEEEEMMMMM00000 & 0111111111100000
+	x = HalfRawToFloat(xhalf);
+	y = HalfRawToFloat(yhalf);
+	z = HalfRawToFloat(zhalf);
+}
+
+
+inline void tPackedF10F11F11::Set(float x, float y, float z)
+{
+	// SEEEEEMMMMMMMMMM
+	uint16 xhalf = FloatToHalfRaw(x);
+	uint16 yhalf = FloatToHalfRaw(y);
+	uint16 zhalf = FloatToHalfRaw(z);
+
+	// The masks and shifts below remove the sign bit. No sign for F10F11F11. Negatives become positive.
+	// The mantissa for each float gets truncated.
+	// EEEE EMMM MMMM MMM0 0000 0000 0000 0000 & 1111 1111 1100 0000 0000 0000 0000 0000
+	// 0000 0000 0SEE EEEM MMMM MMMM M000 0000 & 0000 0000 0011 1111 1111 1000 0000 0000
+	// 0000 0000 0000 0000 0000 SEEE EEMM MMMM & 0000 0000 0000 0000 0000 0111 1111 1111
+	uint32 rx = (xhalf << 17) & 0xFFC00000;
+	uint32 ry = (yhalf << 7 ) & 0x003FF800;
+	uint32 rz = (zhalf >> 4 ) & 0x000007FF;
+	Raw = rx | ry | rz;
+}
+
+
+inline void tPackedF10F11F11::Get(float& x, float& y, float& z) const
+{
+	// Raw: EEEEEMMMMMEEEEEMMMMMMEEEEEMMMMMM
+	//      XXXXXXXXXXYYYYYYYYYYYZZZZZZZZZZZ
+	uint16 xhalf = (Raw >> 17) & 0x7FE0;		// 0EEEEEMMMMMEEEEE & 0111111111100000
+	uint16 yhalf = (Raw >> 7 ) & 0x7FF0;		// MEEEEEMMMMMMEEEE & 0111111111110000
+	uint16 zhalf = (Raw << 4 ) & 0x7FF0;		// MEEEEEMMMMMM0000 & 0111111111110000
 	x = HalfRawToFloat(xhalf);
 	y = HalfRawToFloat(yhalf);
 	z = HalfRawToFloat(zhalf);
@@ -356,11 +412,13 @@ inline void tPackedM9M9M9E5::Set(float x, float y, float z)
 
 inline void tPackedM9M9M9E5::Get(float& x, float& y, float& z) const
 {
+	uint32 raw = Raw; // tSwapEndian32(Raw);
+
 	// XXXXXXXX XYYYYYYY YYZZZZZZ ZZZEEEEE
-	int exponent = (Raw & 0x0000001F) - M999E5_EXP_BIAS - 9;
+	int exponent = (raw & 0x0000001F) - M999E5_EXP_BIAS - 9;
 	float scale = float(tMath::tPow(2.0, exponent));
 
-	x = float((Raw >> 23) & 0x000001FF) * scale;
-	y = float((Raw >> 14) & 0x000001FF) * scale;
-	z = float((Raw >> 5)  & 0x000001FF) * scale;
+	x = float((raw >> 23) & 0x000001FF) * scale;
+	y = float((raw >> 14) & 0x000001FF) * scale;
+	z = float((raw >> 5)  & 0x000001FF) * scale;
 }

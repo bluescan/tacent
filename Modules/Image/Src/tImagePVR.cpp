@@ -327,7 +327,7 @@ void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 				// @todo We should be checking the data-type here most likely.
 				switch (fmtMS32)
 				{
-					case tSwapEndian32(0x0a0b0b00):	fmt = tPixelFormat::R11G11B10uf;	break;
+					case tSwapEndian32(0x0a0b0b00):	fmt = tPixelFormat::B10G11R11uf;	break;	// PVR: B10 G11 R11.
 				}
 				break;
 			}

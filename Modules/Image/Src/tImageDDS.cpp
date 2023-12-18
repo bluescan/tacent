@@ -679,7 +679,7 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 
 		case tDDS::DXGIFMT_R11G11B10_FLOAT:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R11G11B10uf;
+			format = tPixelFormat::B10G11R11uf;
 			break;
 
 		case tDDS::DXGIFMT_R9G9B9E5_SHAREDEXP:

@@ -241,7 +241,7 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 
 		case GL_R11F_G11F_B10F:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R11G11B10uf;
+			format = tPixelFormat::B10G11R11uf;
 			break;
 
 		case GL_RGB9_E5:
@@ -524,7 +524,7 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 
 		case VK_FORMAT_B10G11R11_UFLOAT_PACK32:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R11G11B10uf;
+			format = tPixelFormat::B10G11R11uf;
 			break;
 		
 		case VK_FORMAT_E5B9G9R9_UFLOAT_PACK32:
