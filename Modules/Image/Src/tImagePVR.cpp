@@ -334,21 +334,21 @@ void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 		}
 
 		// WIP.
-		tPrintf("PVR Header pixel format 64  : 0x%08|64X\n", headerFmt64);
-		tPrintf("PVR Header pixel format 32MS: 0x%08|32X\n", fmtMS32);
-		tPrintf("PVR Header pixel format 32LS: 0x%08|32X\n", fmtLS32);
+		// tPrintf("PVR Header pixel format 64  : 0x%08|64X\n", headerFmt64);
+		// tPrintf("PVR Header pixel format 32MS: 0x%08|32X\n", fmtMS32);
+		// tPrintf("PVR Header pixel format 32LS: 0x%08|32X\n", fmtLS32);
 
 		char c3 = ((fmtLS32 >> 24) & 0x000000FF) ? ((fmtLS32 >> 24) & 0x000000FF) : '0';
 		char c2 = ((fmtLS32 >> 16) & 0x000000FF) ? ((fmtLS32 >> 16) & 0x000000FF) : '0';
 		char c1 = ((fmtLS32 >>  8) & 0x000000FF) ? ((fmtLS32 >>  8) & 0x000000FF) : '0';
 		char c0 = ((fmtLS32 >>  0) & 0x000000FF) ? ((fmtLS32 >>  0) & 0x000000FF) : '0';
-		tPrintf("PVR Header pixel format LS32: %c %c %c %c\n", c3, c2, c1, c0);
+		// tPrintf("PVR Header pixel format LS32: %c %c %c %c\n", c3, c2, c1, c0);
 
 		char b3 = (fmtMS32 >> 24) & 0x000000FF;
 		char b2 = (fmtMS32 >> 16) & 0x000000FF;
 		char b1 = (fmtMS32 >>  8) & 0x000000FF;
 		char b0 = (fmtMS32 >>  0) & 0x000000FF;
-		tPrintf("PVR Header pixel format MS32: %d %d %d %d\n", b3, b2, b1, b0);
+		// tPrintf("PVR Header pixel format MS32: %d %d %d %d\n", b3, b2, b1, b0);
 	}
 }
 
@@ -495,7 +495,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		return false;
 	}
 
-	tPrintf("PVR Version: %d\n", PVRVersion);
+	// tPrintf("PVR Version: %d\n", PVRVersion);
 
 	tColourProfile colourProfile = tColourProfile::Unspecified;
 	int channelType = 0;		// 0 = UNORM Byte.
@@ -641,11 +641,11 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		{
 			tPVR::HeaderV3* header = (tPVR::HeaderV3*)pvrData;
 			tPVR::DeterminePixelFormatFromV3Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
-//			if (PixelFormatSrc == tPixelFormat::Invalid)
-//			{
-//				SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
-//				return false;
-//			}
+			if (PixelFormatSrc == tPixelFormat::Invalid)
+			{
+				SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
+				return false;
+			}
 
 			NumSurfaces					= header->NumSurfaces;
 			NumFaces					= header->NumFaces;
