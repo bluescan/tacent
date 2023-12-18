@@ -246,7 +246,7 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 
 		case GL_RGB9_E5:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R9G9B9E5uf;
+			format = tPixelFormat::E5B9G9R9uf;
 			break;
 	}
 

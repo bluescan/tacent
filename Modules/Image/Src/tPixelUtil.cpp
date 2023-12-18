@@ -427,6 +427,22 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 			break;
 		}
 
+		case tPixelFormat::E5B9G9R9uf:
+		{
+			// This HDR format has 3 RGB floats packed into 32-bits.
+			decoded4f = new tColour4f[w*h];
+			uint32* fdata = (uint32*)src;
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				tPackedE5M9M9M9 packed(fdata[ij]);
+				float r, g, b;
+				packed.Get(b, g, r);
+				tColour4f col(r, g, b, 1.0f);
+				decoded4f[ij].Set(col);
+			}
+			break;
+		}
+
 		default:
 			return DecodeResult::PackedDecodeError;
 	}

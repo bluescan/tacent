@@ -184,6 +184,46 @@ private:
 tStaticAssert(sizeof(tPackedM9M9M9E5) == 4);
 
 
+// This is a packed is exactly the same as the above except the the first 5 MS bits represent the exponent rather than
+// it going at the end. All other comments apply.
+struct tPackedE5M9M9M9
+{
+	tPackedE5M9M9M9(float flt)					/* All 3 values get set to flt. */										{ Set(flt); }
+	tPackedE5M9M9M9(float flt[3])				/* Sets the 3 floats from an array. */									{ Set(flt); }
+	tPackedE5M9M9M9(float x, float y, float z)	/* Sets all 3 floats. */												{ Set(x, y, z); }
+	tPackedE5M9M9M9(uint32 raw)					/* The raw constructor creates the pack from raw bits. */				{ Set(raw); }
+	tPackedE5M9M9M9(uint8 raw[4])				/* The raw array should be supplied in LE order. */						{ Set(raw); }
+
+	inline void Set(float flt)																							{ Set(flt, flt, flt); }
+	inline void Set(float flt[3])																						{ Set(flt[0], flt[1], flt[2]); }
+	inline void Set(float x, float y, float z);
+	inline void Set(uint32 raw)																							{ Raw = raw; }
+    inline void Set(uint8 raw[4])																						{ Raw = (raw[0]<<24) | (raw[1]<<16) | (raw[2]<<8) | raw[3]; }
+
+	inline void Get(float flt[3]) const																					{ Get(flt[0], flt[1], flt[2]); }
+	inline void Get(float& x, float& y, float& z) const;
+
+	uint32 Raw;		// 5E 9M 9M 9M
+
+	// WIP Share this stuff in a separate namespace with above.
+private:
+	const static int M999E5_EXP_BIAS				= 15;
+	const static int M999E5_MAX_VALID_BIASED_EXP	= 31;
+	const static int MAX_M999E5_EXP					= M999E5_MAX_VALID_BIASED_EXP - M999E5_EXP_BIAS;
+	const static int M999E5_MANTISSA_VALUES			= 1 << 9;
+	const static int MAX_M999E5_MANTISSA			= M999E5_MANTISSA_VALUES-1;
+	inline const static float MAX_M999E5			= float(MAX_M999E5_MANTISSA)/float(M999E5_MANTISSA_VALUES) * float(1<<MAX_M999E5_EXP);
+	inline const static float EPSILON_M999E5		= (1.0f/M999E5_MANTISSA_VALUES) / (1<<M999E5_EXP_BIAS);
+
+	inline float ClampRange(float f);
+
+	// Original note: "Ok, FloorLog2 is not correct for the denorm and zero values, but we are going to do a max of
+	// this value with the minimum rgb9e5 exponent that will hide these problem cases."
+	inline int FloorLog2(float f);
+};
+tStaticAssert(sizeof(tPackedE5M9M9M9) == 4);
+
+
 #pragma pack(pop)
 
 
@@ -412,13 +452,79 @@ inline void tPackedM9M9M9E5::Set(float x, float y, float z)
 
 inline void tPackedM9M9M9E5::Get(float& x, float& y, float& z) const
 {
-	uint32 raw = Raw; // tSwapEndian32(Raw);
-
 	// XXXXXXXX XYYYYYYY YYZZZZZZ ZZZEEEEE
-	int exponent = (raw & 0x0000001F) - M999E5_EXP_BIAS - 9;
+	int exponent = (Raw & 0x0000001F) - M999E5_EXP_BIAS - 9;
 	float scale = float(tMath::tPow(2.0, exponent));
 
-	x = float((raw >> 23) & 0x000001FF) * scale;
-	y = float((raw >> 14) & 0x000001FF) * scale;
-	z = float((raw >> 5)  & 0x000001FF) * scale;
+	x = float((Raw >> 23) & 0x000001FF) * scale;
+	y = float((Raw >> 14) & 0x000001FF) * scale;
+	z = float((Raw >> 5)  & 0x000001FF) * scale;
+}
+
+
+inline float tPackedE5M9M9M9::ClampRange(float f)
+{
+	if (f > 0.0f)
+		return (f >= MAX_M999E5) ? MAX_M999E5 : f;
+	else	// NaN gets here too since comparisons with NaN always fail!
+		return 0.0f;
+}
+
+
+inline int tPackedE5M9M9M9::FloorLog2(float f)
+{
+	tFP32U f32(f);
+
+	// SEEEEEEE EMMMMMMM MMMMMMMM MMMMMMMM
+	int exp = (f32.Raw >> 23) & 0x000000FF;
+
+	return (exp - 127);
+}
+
+
+inline void tPackedE5M9M9M9::Set(float x, float y, float z)
+{
+	// WIP. Mostly duped from above.
+	float xc = ClampRange(x);
+	float yc = ClampRange(y);
+	float zc = ClampRange(z);
+	float maxxyz = tMath::tMax(xc, yc, zc);
+	int expShared = tMath::tMax(-M999E5_EXP_BIAS-1, FloorLog2(maxxyz)) + 1 + M999E5_EXP_BIAS;
+	tAssert((expShared <= M999E5_MAX_VALID_BIASED_EXP) && (expShared >= 0));
+
+	// This pow function could be replaced by a table.
+	double denom = tMath::tPow(2.0, expShared - M999E5_EXP_BIAS - 9);
+	int maxm = int(tMath::tFloor(maxxyz / denom + 0.5));
+	if (maxm == MAX_M999E5_MANTISSA+1)
+	{
+		denom *= 2.0;
+		expShared += 1;
+	    tAssert(expShared <= M999E5_MAX_VALID_BIASED_EXP);
+	}
+	else
+	{
+		tAssert(maxm <= MAX_M999E5_MANTISSA);
+	}
+
+	int xm = int(tMath::tFloor(xc/denom + 0.5));
+	int ym = int(tMath::tFloor(yc/denom + 0.5));
+	int zm = int(tMath::tFloor(zc/denom + 0.5));
+	tAssert((xm <= MAX_M999E5_MANTISSA) && (xm >= 0));
+	tAssert((ym <= MAX_M999E5_MANTISSA) && (ym >= 0));
+	tAssert((zm <= MAX_M999E5_MANTISSA) && (zm >= 0));
+
+	// EEEEEXXX XXXXXXYY YYYYYYYZ ZZZZZZZZ
+	Raw = ((expShared & 0x0000001F) << 27) | (xm << 18) | (ym << 9) | zm;
+}
+
+
+inline void tPackedE5M9M9M9::Get(float& x, float& y, float& z) const
+{
+	// EEEEEXXX XXXXXXYY YYYYYYYZ ZZZZZZZZ
+	int exponent = ((Raw & 0xF8000000)>>27) - M999E5_EXP_BIAS - 9;
+	float scale = float(tMath::tPow(2.0, exponent));
+
+	x = float((Raw >> 18) & 0x000001FF) * scale;
+	y = float((Raw >> 9)  & 0x000001FF) * scale;
+	z = float((Raw >> 0)  & 0x000001FF) * scale;
 }

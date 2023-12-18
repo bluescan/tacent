@@ -49,6 +49,7 @@ namespace tImage
 		"R11G11B10uf",
 		"B10G11R11uf",
 		"R9G9B9E5uf",
+		"E5B9G9R9uf",
 
 		// Original BC (4x4 Block Compression) formats.
 		"BC1DXT1",
@@ -137,7 +138,8 @@ namespace tImage
 		128,			// R32G32B32A32f
 		32,				// R11G11B10uf
 		32,				// B10G11R11uf
-		32				// R9G9B9E5uf
+		32,				// R9G9B9E5uf
+		32				// E5B9G9R9uf
 	};
 	tStaticAssert(tNumElements(PackedFormat_BitsPerPixel) == int(tPixelFormat::NumPackedFormats));
 

@@ -96,7 +96,8 @@ enum class tPixelFormat
 	R11G11B10uf,						// 32  bit. Unsigned 11-bit floats for RG, and a 10-bit float for B. All use a 5-bit exponent.
 	B10G11R11uf,						// 32  bit. Unsigned 10-bit floats for B, and 11-bit floats for GR. All use a 5-bit exponent.
 	R9G9B9E5uf,							// 32  bit. Unsigned 14-bit floats for RGB. Always denorm and each share the same 5-bit exponent.
-	LastPacked			= R9G9B9E5uf,
+	E5B9G9R9uf,							// 32  bit. Unsigned 14-bit floats for RGB. Always denorm and each share the same 5-bit exponent.
+	LastPacked			= E5B9G9R9uf,
 
 	FirstBC,
 	BC1DXT1				= FirstBC,		// BC 1, DXT1. No alpha.
@@ -492,6 +493,7 @@ inline bool tImage::tIsHDRFormat(tPixelFormat format)
 		case tPixelFormat::R11G11B10uf:
 		case tPixelFormat::B10G11R11uf:
 		case tPixelFormat::R9G9B9E5uf:
+		case tPixelFormat::E5B9G9R9uf:
 		case tPixelFormat::BC6U:
 		case tPixelFormat::BC6S:
 		case tPixelFormat::RADIANCE:

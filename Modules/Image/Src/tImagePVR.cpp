@@ -255,11 +255,11 @@ void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 			case 0x00000026:	fmt = tPixelFormat::ASTC10X10;		break;	// ASTC_10x10.
 			case 0x00000027:	fmt = tPixelFormat::ASTC12X10;		break;	// ASTC_12x10.
 			case 0x00000028:	fmt = tPixelFormat::ASTC12X12;		break;	// ASTC_12x12.
+			case 0x00000013:	fmt = tPixelFormat::E5B9G9R9uf;		break;	// R9G9B9E5 Shared Exponent.
 
 			case 0x00000010:	// UYVY.
 			case 0x00000011:	// YUY2.
 			case 0x00000012:	// BW1bpp.
-			case 0x00000013:	// R9G9B9E5 Shared Exponent.
 			case 0x00000014:	// RGBG8888.
 			case 0x00000015:	// GRGB8888.
 			case 0x00000029:	// ASTC_3x3x3.

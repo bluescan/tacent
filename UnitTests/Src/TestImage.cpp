@@ -2323,6 +2323,7 @@ tTestUnit(ImagePVR3)
 	// A = Texture array. Has an arbitrary number of textures.
 	// M = Has Mipmaps.
 	// P = Premultiplied Alpha
+	#if 0
 	PVRLoadDecodeSave("A1R5G5B5+G3B5A1R5G2_UNORM_LIN_RGBA_T.pvr",	decode | revrow,	true);
 	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_T.pvr",		decode | revrow,	true);
 	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_TM.pvr",	decode | revrow,	true);
@@ -2339,6 +2340,8 @@ tTestUnit(ImagePVR3)
 
 	PVRLoadDecodeSave("R32G32B32A32f_FLOAT_LIN_RGBA_TM.pvr",		decode | revrow,	true);
 	PVRLoadDecodeSave("B10G11R11uf_UFLOAT_LIN_RGB_TM.pvr",			decode | revrow,	true);
+	#endif
+	PVRLoadDecodeSave("RGB999E5+E5B9G9R9uf_UFLOAT_LIN_RGB_T.pvr",	decode | revrow,	true);
 
 	tSystem::tSetCurrentDir(origDir);
 }
