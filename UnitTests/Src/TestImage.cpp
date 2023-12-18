@@ -49,7 +49,7 @@ tTestUnit(ImageLoad)
 	tImageAPNG imgAPNG("TestData/Images/Flame.apng");
 	tRequire(imgAPNG.IsValid());
 
-	tImageASTC imgASTC("TestData/Images/ASTC/ASTC10x10_LDR.astc");
+	tImageASTC imgASTC("TestData/Images/ASTC/ASTC10X10_LDR.astc");
 	tRequire(imgASTC.IsValid());
 
 	tImageBMP imgBMP("TestData/Images/UpperB.bmp");
@@ -313,10 +313,10 @@ tTestUnit(ImagePicture)
 	tRequire( tSystem::tFileExists("WrittenFlame.apng"));
 
 	tImageASTC astc;
-	astc.Load("ASTC/ASTC10x10_LDR.astc");
+	astc.Load("ASTC/ASTC10X10_LDR.astc");
 	pic.Set(astc); tga.Set(pic);
-	tga.Save("WrittenASTC10x10_LDR.tga");
-	tRequire(tSystem::tFileExists("WrittenASTC10x10_LDR.tga"));
+	tga.Save("WrittenASTC10X10_LDR.tga");
+	tRequire(tSystem::tFileExists("WrittenASTC10X10_LDR.tga"));
 
 	tImageBMP bmp;
 	bmp.Load("UpperB.bmp");
