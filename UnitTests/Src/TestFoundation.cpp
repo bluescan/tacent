@@ -1723,10 +1723,11 @@ tTestUnit(Hash)
 }
 
 
-tTestUnit(Half)
+tTestUnit(SmallFloat)
 {
-	tPrintf("Testing tHalf (halffloat -- half-precision float).\n");
-
+	// Test tHalf.
+	tPrintf("Testing tHalf (Half-Precision Float).\n");
+	float epsilon = 0.001f;
 	tHalf v1(uint16(0x3c00));
 	tHalf v2(uint16(0x3c01));
 	float val1 = float(v1);
@@ -1754,21 +1755,70 @@ tTestUnit(Half)
 		tHalf half(orig);
 		float conv = half.Float();
 		tPrintf("Orig Float: %f  Conv Float: %f\n", orig, conv);
-		tRequire(tMath::tApproxEqual(orig, conv, 0.001f));
+		tRequire(tMath::tApproxEqual(orig, conv, epsilon));
 	}
 
 	float orig = 1.23456789f;
 	tHalf half(orig);
 	float conv = half.Float();
 	tPrintf("Orig Float: %.8f  Conv Float: %.8f\n", orig, conv);
-	tRequire(tMath::tApproxEqual(orig, conv, 0.001f));
-}
+	tRequire(tMath::tApproxEqual(orig, conv, epsilon));
 
+	// Test Packed F11F11F10.
+	tPrintf("Testing Packed Float F11F11F10.\n");
+	float epsilon11 = 0.02f;
+	float epsilon10 = 0.05f;
+	float x = 2.3f;
+	float y = 1.0f;
+	float z = -3.0f;
+	tPrintf("F11F11F10 Before: %f %f %f\n", x, y, z);
+	tPackedF11F11F10 p111110(x, y, z);
+	float ax, ay, az;
+	p111110.Get(ax, ay, az);
+	tPrintf("F11F11F10 After : %f %f %f\n", ax, ay, az);
+	tRequire(tMath::tApproxEqual(ax, x, epsilon11));
+	tRequire(tMath::tApproxEqual(ay, y, epsilon11));
+	tRequire(tMath::tApproxEqual(az, 0.0f, epsilon10));
 
-tTestUnit(SmallFloat)
-{
-	tPrintf("Testing 10, 11, 14 bit packed floats.\n");
+	// Test Packed F10F11F11.
+	tPrintf("Testing Packed Float F10F11F11.\n");
+	x = 2.3f;
+	y = 1.0f;
+	z = -3.0f;
+	tPrintf("F10F11F11 Before: %f %f %f\n", x, y, z);
+	tPackedF10F11F11 p101111(x, y, z);
+	p101111.Get(ax, ay, az);
+	tPrintf("F11F11F10 After : %f %f %f\n", ax, ay, az);
+	tRequire(tMath::tApproxEqual(ax, x, epsilon10));
+	tRequire(tMath::tApproxEqual(ay, y, epsilon11));
+	tRequire(tMath::tApproxEqual(az, 0.0f, epsilon11));
 
+	// Test Packed M9M9M9E5.
+	tPrintf("Testing Packed Float M9M9M9E5.\n");
+	float epsilon14 = 0.01f;
+	x = 2.3f;
+	y = 1.0f;
+	z = -3.0f;
+	tPrintf("M9M9M9E5 Before: %f %f %f\n", x, y, z);
+	tPackedM9M9M9E5 m999e5(x, y, z);
+	m999e5.Get(ax, ay, az);
+	tPrintf("M9M9M9E5 After : %f %f %f\n", ax, ay, az);
+	tRequire(tMath::tApproxEqual(ax, x, epsilon14));
+	tRequire(tMath::tApproxEqual(ay, y, epsilon14));
+	tRequire(tMath::tApproxEqual(az, 0.0f, epsilon14));
+
+	// Test Packed E5M9M9M9.
+	tPrintf("Testing Packed Float E5M9M9M9.\n");
+	x = 2.3f;
+	y = 1.0f;
+	z = -3.0f;
+	tPrintf("E5M9M9M9 Before: %f %f %f\n", x, y, z);
+	tPackedE5M9M9M9 e5m999(x, y, z);
+	e5m999.Get(ax, ay, az);
+	tPrintf("E5M9M9M9 After : %f %f %f\n", ax, ay, az);
+	tRequire(tMath::tApproxEqual(ax, x, epsilon14));
+	tRequire(tMath::tApproxEqual(ay, y, epsilon14));
+	tRequire(tMath::tApproxEqual(az, 0.0f, epsilon14));
 }
 
 

@@ -95,7 +95,7 @@ tStaticAssert(sizeof(tHalf) == 2);
 // the third (LSBs) is 10 bits. They all have no sign bit and the exponent bitdepth is 5 for all three. Denorm numbers
 // are supported. This class is primarily for decoding and encoding the packed format into 3 regular 32-bit floats.
 // tPackedF11F11F10 must remain pod. No virtual function table etc. C++ defaults are used for op=, copy cons, etc. That
-// is, memory copy works fine.
+// is, memory copy works fine. Negative input floats get clamped to min 0.0f.
 struct tPackedF11F11F10
 {
 	tPackedF11F11F10(float flt)					/* All 3 values get set to flt. */										{ Set(flt); }
@@ -301,13 +301,17 @@ inline float HalfRawToFloat(uint16 raw)
 
 inline void tPackedF11F11F10::Set(float x, float y, float z)
 {
+	tMath::tiClampMin(x, 0.0f);
+	tMath::tiClampMin(y, 0.0f);
+	tMath::tiClampMin(z, 0.0f);
+
 	// SEEEEEMMMMMMMMMM
 	uint16 xhalf = FloatToHalfRaw(x);
 	uint16 yhalf = FloatToHalfRaw(y);
 	uint16 zhalf = FloatToHalfRaw(z);
 
-	// The masks and shifts below remove the sign bit. No sign for F11F11F10. Negatives become positive.
-	// The mantissa for each float gets truncated.
+	// The masks and shifts below remove the sign bit. No sign for F11F11F10. The mantissa for each float gets
+	// truncated. Negatives would become positive except we clamped above.
 	// EEEE EMMM MMMM MMM0 0000 0000 0000 0000 & 1111 1111 1110 0000 0000 0000 0000 0000
 	// 0000 0000 00SE EEEE MMMM MMMM MM00 0000 & 0000 0000 0001 1111 1111 1100 0000 0000
 	// 0000 0000 0000 0000 0000 0SEE EEEM MMMM & 0000 0000 0000 0000 0000 0011 1111 1111
@@ -333,13 +337,17 @@ inline void tPackedF11F11F10::Get(float& x, float& y, float& z) const
 
 inline void tPackedF10F11F11::Set(float x, float y, float z)
 {
+	tMath::tiClampMin(x, 0.0f);
+	tMath::tiClampMin(y, 0.0f);
+	tMath::tiClampMin(z, 0.0f);
+
 	// SEEEEEMMMMMMMMMM
 	uint16 xhalf = FloatToHalfRaw(x);
 	uint16 yhalf = FloatToHalfRaw(y);
 	uint16 zhalf = FloatToHalfRaw(z);
 
-	// The masks and shifts below remove the sign bit. No sign for F10F11F11. Negatives become positive.
-	// The mantissa for each float gets truncated.
+	// The masks and shifts below remove the sign bit. No sign for F10F11F11. The mantissa for each float gets
+	// truncated. Negatives would become positive except we clamped above.
 	// EEEE EMMM MMMM MMM0 0000 0000 0000 0000 & 1111 1111 1100 0000 0000 0000 0000 0000
 	// 0000 0000 0SEE EEEM MMMM MMMM M000 0000 & 0000 0000 0011 1111 1111 1000 0000 0000
 	// 0000 0000 0000 0000 0000 SEEE EEMM MMMM & 0000 0000 0000 0000 0000 0111 1111 1111
@@ -376,28 +384,34 @@ namespace M999E5
 
 	// Original note: "Ok, FloorLog2 is not correct for the denorm and zero values, but we are going to do a max of
 	// this value with the minimum rgb9e5 exponent that will hide these problem cases."
-	inline int FloorLog2(float f)
-	{
-		// SEEEEEEE EMMMMMMM MMMMMMMM MMMMMMMM
-		tFP32U f32(f);
-		int exp = (f32.Raw >> 23) & 0x000000FF;
-		return (exp - 127);
-	}
+	inline int FloorLog2(float f);
+
+	// Converts 3 floats to 3 raw mantissas and a shared exponent.
+	inline void FloatToComponents(int32& xm, int32& ym, int32& zm, int32& exp, float x, float y, float z);
 }
 
 
-inline void tPackedM9M9M9E5::Set(float x, float y, float z)
+inline int M999E5::FloorLog2(float f)
+{
+	// SEEEEEEE EMMMMMMM MMMMMMMM MMMMMMMM
+	tFP32U f32(f);
+	int exp = (f32.Raw >> 23) & 0x000000FF;
+	return (exp - 127);
+}
+
+
+inline void M999E5::FloatToComponents(int32& xm, int32& ym, int32& zm, int32& expShared, float x, float y, float z)
 {
 	float xc = tMath::tClamp(x, 0.0f, M999E5::MAX);
 	float yc = tMath::tClamp(y, 0.0f, M999E5::MAX);
 	float zc = tMath::tClamp(z, 0.0f, M999E5::MAX);
 	float maxxyz = tMath::tMax(xc, yc, zc);
-	int expShared = tMath::tMax(-M999E5::EXP_BIAS-1, M999E5::FloorLog2(maxxyz)) + 1 + M999E5::EXP_BIAS;
+	expShared = tMath::tMax(-M999E5::EXP_BIAS-1, M999E5::FloorLog2(maxxyz)) + 1 + M999E5::EXP_BIAS;
 	tAssert((expShared <= M999E5::MAX_VALID_BIASED_EXP) && (expShared >= 0));
 
 	// This pow function could be replaced by a table.
 	double denom = tMath::tPow(2.0, expShared - M999E5::EXP_BIAS - 9);
-	int maxm = int(tMath::tFloor(maxxyz / denom + 0.5));
+	int32 maxm = int(tMath::tFloor(maxxyz / denom + 0.5));
 	tAssert(maxm <= M999E5::MAX_MANTISSA+1);
 	if (maxm == M999E5::MAX_MANTISSA+1)
 	{
@@ -406,12 +420,19 @@ inline void tPackedM9M9M9E5::Set(float x, float y, float z)
 	    tAssert(expShared <= M999E5::MAX_VALID_BIASED_EXP);
 	}
 
-	int xm = int(tMath::tFloor(xc/denom + 0.5));
-	int ym = int(tMath::tFloor(yc/denom + 0.5));
-	int zm = int(tMath::tFloor(zc/denom + 0.5));
+	xm = int32(tMath::tFloor(xc/denom + 0.5));
+	ym = int32(tMath::tFloor(yc/denom + 0.5));
+	zm = int32(tMath::tFloor(zc/denom + 0.5));
 	tAssert((xm <= M999E5::MAX_MANTISSA) && (xm >= 0));
 	tAssert((ym <= M999E5::MAX_MANTISSA) && (ym >= 0));
 	tAssert((zm <= M999E5::MAX_MANTISSA) && (zm >= 0));
+}
+
+
+inline void tPackedM9M9M9E5::Set(float x, float y, float z)
+{
+	int32 xm, ym, zm, expShared;
+	M999E5::FloatToComponents(xm, ym, zm, expShared, x, y, z);
 
 	// XXXXXXXX XYYYYYYY YYZZZZZZ ZZZEEEEE
 	Raw = (xm << 23) | (ym << 14) | (zm << 5) | (expShared & 0x0000001F);
@@ -420,10 +441,10 @@ inline void tPackedM9M9M9E5::Set(float x, float y, float z)
 
 inline void tPackedM9M9M9E5::Get(float& x, float& y, float& z) const
 {
-	// XXXXXXXX XYYYYYYY YYZZZZZZ ZZZEEEEE
 	int exponent = (Raw & 0x0000001F) - M999E5::EXP_BIAS - 9;
 	float scale = float(tMath::tPow(2.0, exponent));
 
+	// XXXXXXXX XYYYYYYY YYZZZZZZ ZZZEEEEE
 	x = float((Raw >> 23) & 0x000001FF) * scale;
 	y = float((Raw >> 14) & 0x000001FF) * scale;
 	z = float((Raw >> 5)  & 0x000001FF) * scale;
@@ -432,30 +453,8 @@ inline void tPackedM9M9M9E5::Get(float& x, float& y, float& z) const
 
 inline void tPackedE5M9M9M9::Set(float x, float y, float z)
 {
-	float xc = tMath::tClamp(x, 0.0f, M999E5::MAX);
-	float yc = tMath::tClamp(y, 0.0f, M999E5::MAX);
-	float zc = tMath::tClamp(z, 0.0f, M999E5::MAX);
-	float maxxyz = tMath::tMax(xc, yc, zc);
-	int expShared = tMath::tMax(-M999E5::EXP_BIAS-1, M999E5::FloorLog2(maxxyz)) + 1 + M999E5::EXP_BIAS;
-	tAssert((expShared <= M999E5::MAX_VALID_BIASED_EXP) && (expShared >= 0));
-
-	// This pow function could be replaced by a table.
-	double denom = tMath::tPow(2.0, expShared - M999E5::EXP_BIAS - 9);
-	int maxm = int(tMath::tFloor(maxxyz / denom + 0.5));
-	tAssert(maxm <= M999E5::MAX_MANTISSA+1);
-	if (maxm == M999E5::MAX_MANTISSA+1)
-	{
-		denom *= 2.0;
-		expShared += 1;
-	    tAssert(expShared <= M999E5::MAX_VALID_BIASED_EXP);
-	}
-
-	int xm = int(tMath::tFloor(xc/denom + 0.5));
-	int ym = int(tMath::tFloor(yc/denom + 0.5));
-	int zm = int(tMath::tFloor(zc/denom + 0.5));
-	tAssert((xm <= M999E5::MAX_MANTISSA) && (xm >= 0));
-	tAssert((ym <= M999E5::MAX_MANTISSA) && (ym >= 0));
-	tAssert((zm <= M999E5::MAX_MANTISSA) && (zm >= 0));
+	int32 xm, ym, zm, expShared;
+	M999E5::FloatToComponents(xm, ym, zm, expShared, x, y, z);
 
 	// EEEEEXXX XXXXXXYY YYYYYYYZ ZZZZZZZZ
 	Raw = ((expShared & 0x0000001F) << 27) | (xm << 18) | (ym << 9) | zm;
@@ -464,10 +463,10 @@ inline void tPackedE5M9M9M9::Set(float x, float y, float z)
 
 inline void tPackedE5M9M9M9::Get(float& x, float& y, float& z) const
 {
-	// EEEEEXXX XXXXXXYY YYYYYYYZ ZZZZZZZZ
 	int exponent = ((Raw & 0xF8000000)>>27) - M999E5::EXP_BIAS - 9;
 	float scale = float(tMath::tPow(2.0, exponent));
 
+	// EEEEEXXX XXXXXXYY YYYYYYYZ ZZZZZZZZ
 	x = float((Raw >> 18) & 0x000001FF) * scale;
 	y = float((Raw >> 9)  & 0x000001FF) * scale;
 	z = float((Raw >> 0)  & 0x000001FF) * scale;

@@ -127,7 +127,6 @@ int main(int argc, char** argv)
 	tTest(MemoryPool);
 	tTest(Hash);
 	tTest(UTF);
-	tTest(Half);
 	tTest(SmallFloat);
 
 	// Math tests.
@@ -237,7 +236,6 @@ int main(int argc, char** argv)
 	// tTest(BitArray);
 	// tTest(BitField);
 	// tTest(FixInt);
-	// tTest(Half);
 	tTest(SmallFloat);
 
 	#endif
