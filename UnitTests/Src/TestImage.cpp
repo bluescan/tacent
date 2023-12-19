@@ -1457,33 +1457,39 @@ tTestUnit(ImageDDS)
 	//
 	// Uncompressed Floating-Point (HDR) Formats.
 	//
-	// R16F
+	// R16f
 	DDSLoadDecodeSave("R16f_R_Legacy.dds",				decode | revrow | autoga);
 	DDSLoadDecodeSave("R16f_R_Modern.dds",				decode | revrow | autoga);
 	DDSLoadDecodeSave("R16f_R_Legacy.dds",				decode | revrow | autoga | spread);
 	DDSLoadDecodeSave("R16f_R_Modern.dds",				decode | revrow | autoga | spread);
 
-	// R16G16F
+	// R16G16f
 	DDSLoadDecodeSave("R16G16f_RG_Legacy.dds",			decode | revrow | autoga);
 	DDSLoadDecodeSave("R16G16f_RG_Modern.dds",			decode | revrow | autoga);
 
-	// R16G16B16A16F
+	// R16G16B16A16f
 	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Legacy.dds",	decode | revrow | autoga);
 	DDSLoadDecodeSave("R16G16B16A16f_RGBA_Modern.dds",	decode | revrow | autoga);
 
-	// R32F
+	// R32f
 	DDSLoadDecodeSave("R32f_R_Legacy.dds",				decode | revrow | autoga);
 	DDSLoadDecodeSave("R32f_R_Modern.dds",				decode | revrow | autoga);
 	DDSLoadDecodeSave("R32f_R_Legacy.dds",				decode | revrow | autoga | spread);
 	DDSLoadDecodeSave("R32f_R_Modern.dds",				decode | revrow | autoga | spread);
 
-	// R32G32F
+	// R32G32f
 	DDSLoadDecodeSave("R32G32f_RG_Legacy.dds",			decode | revrow | autoga);
 	DDSLoadDecodeSave("R32G32f_RG_Modern.dds",			decode | revrow | autoga);
 
-	// R32G32B32A32F
+	// R32G32B32A32f
 	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Legacy.dds",	decode | revrow | autoga);
 	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Modern.dds",	decode | revrow | autoga);
+
+	// B10G11R11uf
+	DDSLoadDecodeSave("B10G11R11uf_RGB_Modern.dds",		decode | revrow | autoga);
+
+	// E5B9G9R9uf
+	DDSLoadDecodeSave("E5B9G9R9uf_RGB_Modern.dds",		decode | revrow | autoga);
 
 	// Do this all over again, but without decoding and tRequire the pixel-format to be as expected.
 	// This time, since not decoding, it may be impossible to reverse the rows, so we can also expect
@@ -1536,6 +1542,8 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("R32f_R_Modern.dds");
 	DDSLoadDecodeSave("R32G32f_RG_Modern.dds");
 	DDSLoadDecodeSave("R32G32B32A32f_RGBA_Modern.dds",	revrow);
+	DDSLoadDecodeSave("B10G11R11uf_RGB_Modern.dds",		revrow);
+	DDSLoadDecodeSave("E5B9G9R9uf_RGB_Modern.dds",		revrow);
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }
@@ -2323,7 +2331,6 @@ tTestUnit(ImagePVR3)
 	// A = Texture array. Has an arbitrary number of textures.
 	// M = Has Mipmaps.
 	// P = Premultiplied Alpha
-	#if 0
 	PVRLoadDecodeSave("A1R5G5B5+G3B5A1R5G2_UNORM_LIN_RGBA_T.pvr",	decode | revrow,	true);
 	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_T.pvr",		decode | revrow,	true);
 	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_TM.pvr",	decode | revrow,	true);
@@ -2340,7 +2347,6 @@ tTestUnit(ImagePVR3)
 
 	PVRLoadDecodeSave("R32G32B32A32f_FLOAT_LIN_RGBA_TM.pvr",		decode | revrow,	true);
 	PVRLoadDecodeSave("B10G11R11uf_UFLOAT_LIN_RGB_TM.pvr",			decode | revrow,	true);
-	#endif
 	PVRLoadDecodeSave("RGB999E5+E5B9G9R9uf_UFLOAT_LIN_RGB_T.pvr",	decode | revrow,	true);
 
 	tSystem::tSetCurrentDir(origDir);

@@ -37,3 +37,19 @@ del B5G5R5A1_RGBA_Legacy.dds
 ren TacentTestPattern.dds B5G5R5A1_RGBA_Legacy.dds
 
 :lastimg
+
+rem R11G11B10_FLOAT
+copy R32G32B32A32f_RGBA_Modern.dds TacentTestPattern.dds
+texconv.exe -f R11G11B10_FLOAT -dx10 -y TacentTestPattern.dds
+del B10G11R11uf_RGB_Modern.dds
+ren TacentTestPattern.dds B10G11R11uf_RGB_Modern.dds
+
+rem R9G9B9E5_SHAREDEXP
+copy R32G32B32A32f_RGBA_Modern.dds TacentTestPattern.dds
+texconv.exe -f R9G9B9E5_SHAREDEXP -dx10 -y TacentTestPattern.dds
+del E5B9G9R9uf_RGB_Modern.dds
+ren TacentTestPattern.dds E5B9G9R9uf_RGB_Modern.dds
+
+goto done
+
+:done
