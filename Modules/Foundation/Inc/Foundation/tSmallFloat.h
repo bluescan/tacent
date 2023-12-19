@@ -165,21 +165,6 @@ struct tPackedM9M9M9E5
 	inline void Get(float& x, float& y, float& z) const;
 
 	uint32 Raw;		// 9M 9M 9M 5E
-
-private:
-	const static int M999E5_EXP_BIAS				= 15;
-	const static int M999E5_MAX_VALID_BIASED_EXP	= 31;
-	const static int MAX_M999E5_EXP					= M999E5_MAX_VALID_BIASED_EXP - M999E5_EXP_BIAS;
-	const static int M999E5_MANTISSA_VALUES			= 1 << 9;
-	const static int MAX_M999E5_MANTISSA			= M999E5_MANTISSA_VALUES-1;
-	inline const static float MAX_M999E5			= float(MAX_M999E5_MANTISSA)/float(M999E5_MANTISSA_VALUES) * float(1<<MAX_M999E5_EXP);
-	inline const static float EPSILON_M999E5		= (1.0f/M999E5_MANTISSA_VALUES) / (1<<M999E5_EXP_BIAS);
-
-	inline float ClampRange(float f);
-
-	// Original note: "Ok, FloorLog2 is not correct for the denorm and zero values, but we are going to do a max of
-	// this value with the minimum rgb9e5 exponent that will hide these problem cases."
-	inline int FloorLog2(float f);
 };
 tStaticAssert(sizeof(tPackedM9M9M9E5) == 4);
 
@@ -204,22 +189,6 @@ struct tPackedE5M9M9M9
 	inline void Get(float& x, float& y, float& z) const;
 
 	uint32 Raw;		// 5E 9M 9M 9M
-
-	// WIP Share this stuff in a separate namespace with above.
-private:
-	const static int M999E5_EXP_BIAS				= 15;
-	const static int M999E5_MAX_VALID_BIASED_EXP	= 31;
-	const static int MAX_M999E5_EXP					= M999E5_MAX_VALID_BIASED_EXP - M999E5_EXP_BIAS;
-	const static int M999E5_MANTISSA_VALUES			= 1 << 9;
-	const static int MAX_M999E5_MANTISSA			= M999E5_MANTISSA_VALUES-1;
-	inline const static float MAX_M999E5			= float(MAX_M999E5_MANTISSA)/float(M999E5_MANTISSA_VALUES) * float(1<<MAX_M999E5_EXP);
-	inline const static float EPSILON_M999E5		= (1.0f/M999E5_MANTISSA_VALUES) / (1<<M999E5_EXP_BIAS);
-
-	inline float ClampRange(float f);
-
-	// Original note: "Ok, FloorLog2 is not correct for the denorm and zero values, but we are going to do a max of
-	// this value with the minimum rgb9e5 exponent that will hide these problem cases."
-	inline int FloorLog2(float f);
 };
 tStaticAssert(sizeof(tPackedE5M9M9M9) == 4);
 
@@ -394,56 +363,55 @@ inline void tPackedF10F11F11::Get(float& x, float& y, float& z) const
 }
 
 
-inline float tPackedM9M9M9E5::ClampRange(float f)
+// Shared-exponent common constants and functions.
+namespace M999E5
 {
-	if (f > 0.0f)
-		return (f >= MAX_M999E5) ? MAX_M999E5 : f;
-	else	// NaN gets here too since comparisons with NaN always fail!
-		return 0.0f;
-}
+	const int EXP_BIAS				= 15;
+	const int MAX_VALID_BIASED_EXP	= 31;
+	const int MAX_EXP				= MAX_VALID_BIASED_EXP - EXP_BIAS;
+	const int MANTISSA_VALUES		= 1 << 9;
+	const int MAX_MANTISSA			= MANTISSA_VALUES-1;
+	const float MAX					= float(MAX_MANTISSA)/float(MANTISSA_VALUES) * float(1<<MAX_EXP);
+	const float EPSILON				= (1.0f/MANTISSA_VALUES) / (1<<EXP_BIAS);
 
-
-inline int tPackedM9M9M9E5::FloorLog2(float f)
-{
-	tFP32U f32(f);
-
-	// SEEEEEEE EMMMMMMM MMMMMMMM MMMMMMMM
-	int exp = (f32.Raw >> 23) & 0x000000FF;
-
-	// return (f.field.biasedexponent - 127);
-	return (exp - 127);
+	// Original note: "Ok, FloorLog2 is not correct for the denorm and zero values, but we are going to do a max of
+	// this value with the minimum rgb9e5 exponent that will hide these problem cases."
+	inline int FloorLog2(float f)
+	{
+		// SEEEEEEE EMMMMMMM MMMMMMMM MMMMMMMM
+		tFP32U f32(f);
+		int exp = (f32.Raw >> 23) & 0x000000FF;
+		return (exp - 127);
+	}
 }
 
 
 inline void tPackedM9M9M9E5::Set(float x, float y, float z)
 {
-	float xc = ClampRange(x);
-	float yc = ClampRange(y);
-	float zc = ClampRange(z);
+	float xc = tMath::tClamp(x, 0.0f, M999E5::MAX);
+	float yc = tMath::tClamp(y, 0.0f, M999E5::MAX);
+	float zc = tMath::tClamp(z, 0.0f, M999E5::MAX);
 	float maxxyz = tMath::tMax(xc, yc, zc);
-	int expShared = tMath::tMax(-M999E5_EXP_BIAS-1, FloorLog2(maxxyz)) + 1 + M999E5_EXP_BIAS;
-	tAssert((expShared <= M999E5_MAX_VALID_BIASED_EXP) && (expShared >= 0));
+	int expShared = tMath::tMax(-M999E5::EXP_BIAS-1, M999E5::FloorLog2(maxxyz)) + 1 + M999E5::EXP_BIAS;
+	tAssert((expShared <= M999E5::MAX_VALID_BIASED_EXP) && (expShared >= 0));
 
 	// This pow function could be replaced by a table.
-	double denom = tMath::tPow(2.0, expShared - M999E5_EXP_BIAS - 9);
+	double denom = tMath::tPow(2.0, expShared - M999E5::EXP_BIAS - 9);
 	int maxm = int(tMath::tFloor(maxxyz / denom + 0.5));
-	if (maxm == MAX_M999E5_MANTISSA+1)
+	tAssert(maxm <= M999E5::MAX_MANTISSA+1);
+	if (maxm == M999E5::MAX_MANTISSA+1)
 	{
 		denom *= 2.0;
 		expShared += 1;
-	    tAssert(expShared <= M999E5_MAX_VALID_BIASED_EXP);
-	}
-	else
-	{
-		tAssert(maxm <= MAX_M999E5_MANTISSA);
+	    tAssert(expShared <= M999E5::MAX_VALID_BIASED_EXP);
 	}
 
 	int xm = int(tMath::tFloor(xc/denom + 0.5));
 	int ym = int(tMath::tFloor(yc/denom + 0.5));
 	int zm = int(tMath::tFloor(zc/denom + 0.5));
-	tAssert((xm <= MAX_M999E5_MANTISSA) && (xm >= 0));
-	tAssert((ym <= MAX_M999E5_MANTISSA) && (ym >= 0));
-	tAssert((zm <= MAX_M999E5_MANTISSA) && (zm >= 0));
+	tAssert((xm <= M999E5::MAX_MANTISSA) && (xm >= 0));
+	tAssert((ym <= M999E5::MAX_MANTISSA) && (ym >= 0));
+	tAssert((zm <= M999E5::MAX_MANTISSA) && (zm >= 0));
 
 	// XXXXXXXX XYYYYYYY YYZZZZZZ ZZZEEEEE
 	Raw = (xm << 23) | (ym << 14) | (zm << 5) | (expShared & 0x0000001F);
@@ -453,7 +421,7 @@ inline void tPackedM9M9M9E5::Set(float x, float y, float z)
 inline void tPackedM9M9M9E5::Get(float& x, float& y, float& z) const
 {
 	// XXXXXXXX XYYYYYYY YYZZZZZZ ZZZEEEEE
-	int exponent = (Raw & 0x0000001F) - M999E5_EXP_BIAS - 9;
+	int exponent = (Raw & 0x0000001F) - M999E5::EXP_BIAS - 9;
 	float scale = float(tMath::tPow(2.0, exponent));
 
 	x = float((Raw >> 23) & 0x000001FF) * scale;
@@ -462,56 +430,32 @@ inline void tPackedM9M9M9E5::Get(float& x, float& y, float& z) const
 }
 
 
-inline float tPackedE5M9M9M9::ClampRange(float f)
-{
-	if (f > 0.0f)
-		return (f >= MAX_M999E5) ? MAX_M999E5 : f;
-	else	// NaN gets here too since comparisons with NaN always fail!
-		return 0.0f;
-}
-
-
-inline int tPackedE5M9M9M9::FloorLog2(float f)
-{
-	tFP32U f32(f);
-
-	// SEEEEEEE EMMMMMMM MMMMMMMM MMMMMMMM
-	int exp = (f32.Raw >> 23) & 0x000000FF;
-
-	return (exp - 127);
-}
-
-
 inline void tPackedE5M9M9M9::Set(float x, float y, float z)
 {
-	// WIP. Mostly duped from above.
-	float xc = ClampRange(x);
-	float yc = ClampRange(y);
-	float zc = ClampRange(z);
+	float xc = tMath::tClamp(x, 0.0f, M999E5::MAX);
+	float yc = tMath::tClamp(y, 0.0f, M999E5::MAX);
+	float zc = tMath::tClamp(z, 0.0f, M999E5::MAX);
 	float maxxyz = tMath::tMax(xc, yc, zc);
-	int expShared = tMath::tMax(-M999E5_EXP_BIAS-1, FloorLog2(maxxyz)) + 1 + M999E5_EXP_BIAS;
-	tAssert((expShared <= M999E5_MAX_VALID_BIASED_EXP) && (expShared >= 0));
+	int expShared = tMath::tMax(-M999E5::EXP_BIAS-1, M999E5::FloorLog2(maxxyz)) + 1 + M999E5::EXP_BIAS;
+	tAssert((expShared <= M999E5::MAX_VALID_BIASED_EXP) && (expShared >= 0));
 
 	// This pow function could be replaced by a table.
-	double denom = tMath::tPow(2.0, expShared - M999E5_EXP_BIAS - 9);
+	double denom = tMath::tPow(2.0, expShared - M999E5::EXP_BIAS - 9);
 	int maxm = int(tMath::tFloor(maxxyz / denom + 0.5));
-	if (maxm == MAX_M999E5_MANTISSA+1)
+	tAssert(maxm <= M999E5::MAX_MANTISSA+1);
+	if (maxm == M999E5::MAX_MANTISSA+1)
 	{
 		denom *= 2.0;
 		expShared += 1;
-	    tAssert(expShared <= M999E5_MAX_VALID_BIASED_EXP);
-	}
-	else
-	{
-		tAssert(maxm <= MAX_M999E5_MANTISSA);
+	    tAssert(expShared <= M999E5::MAX_VALID_BIASED_EXP);
 	}
 
 	int xm = int(tMath::tFloor(xc/denom + 0.5));
 	int ym = int(tMath::tFloor(yc/denom + 0.5));
 	int zm = int(tMath::tFloor(zc/denom + 0.5));
-	tAssert((xm <= MAX_M999E5_MANTISSA) && (xm >= 0));
-	tAssert((ym <= MAX_M999E5_MANTISSA) && (ym >= 0));
-	tAssert((zm <= MAX_M999E5_MANTISSA) && (zm >= 0));
+	tAssert((xm <= M999E5::MAX_MANTISSA) && (xm >= 0));
+	tAssert((ym <= M999E5::MAX_MANTISSA) && (ym >= 0));
+	tAssert((zm <= M999E5::MAX_MANTISSA) && (zm >= 0));
 
 	// EEEEEXXX XXXXXXYY YYYYYYYZ ZZZZZZZZ
 	Raw = ((expShared & 0x0000001F) << 27) | (xm << 18) | (ym << 9) | zm;
@@ -521,7 +465,7 @@ inline void tPackedE5M9M9M9::Set(float x, float y, float z)
 inline void tPackedE5M9M9M9::Get(float& x, float& y, float& z) const
 {
 	// EEEEEXXX XXXXXXYY YYYYYYYZ ZZZZZZZZ
-	int exponent = ((Raw & 0xF8000000)>>27) - M999E5_EXP_BIAS - 9;
+	int exponent = ((Raw & 0xF8000000)>>27) - M999E5::EXP_BIAS - 9;
 	float scale = float(tMath::tPow(2.0, exponent));
 
 	x = float((Raw >> 18) & 0x000001FF) * scale;
