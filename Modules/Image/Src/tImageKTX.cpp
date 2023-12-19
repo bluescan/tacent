@@ -529,7 +529,7 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		
 		case VK_FORMAT_E5B9G9R9_UFLOAT_PACK32:
 			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R9G9B9E5uf;
+			format = tPixelFormat::E5B9G9R9uf;
 			break;
 
 		//
