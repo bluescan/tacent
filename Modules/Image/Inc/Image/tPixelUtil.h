@@ -35,7 +35,8 @@ enum class DecodeResult
 	InvalidInput,
 	PackedDecodeError,
 	BlockDecodeError,
-	ASTCDecodeError
+	ASTCDecodeError,
+	PVRDecodeError
 };
 DecodeResult DecodePixelData
 (
@@ -48,6 +49,7 @@ DecodeResult DecodePixelData
 DecodeResult DecodePixelData_Packed	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4i*&, tColour4f*&);
 DecodeResult DecodePixelData_Block	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4i*&, tColour4f*&);
 DecodeResult DecodePixelData_ASTC	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4f*&, tColourProfile = tColourProfile::Auto);
+DecodeResult DecodePixelData_PVR	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4i*&, tColour4f*&);
 
 
 constexpr uint32 FourCC(uint8 ch0, uint8 ch1, uint8 ch2, uint8 ch3);

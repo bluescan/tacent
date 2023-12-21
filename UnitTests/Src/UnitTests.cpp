@@ -229,14 +229,14 @@ int main(int argc, char** argv)
 	// tTest(ImageASTC);
 	// tTest(ImagePKM);
 	// tTest(ImagePVR2);
-	// tTest(ImagePVR3);
+	tTest(ImagePVR3);
 	#endif
 	// tTest(UTF);
 	// tTest(Hash);
 	// tTest(BitArray);
 	// tTest(BitField);
 	// tTest(FixInt);
-	tTest(SmallFloat);
+	// tTest(SmallFloat);
 
 	#endif
 

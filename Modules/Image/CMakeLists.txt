@@ -81,6 +81,8 @@ add_library(
 	Contrib/LibTIFF/include/tiff.h
 	Contrib/OpenEXR/loadImage.h
 	Contrib/OpenEXR/loadImage.cpp
+	Contrib/PVRTDecompress/PVRTDecompress.h
+	Contrib/PVRTDecompress/PVRTDecompress.cpp
 	Contrib/QOI/qoi.h
 	Contrib/TinyEXIF/TinyEXIF.h
 	Contrib/TinyEXIF/TinyEXIF.cpp

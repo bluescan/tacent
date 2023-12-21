@@ -133,9 +133,9 @@ public:
 		Fatal_V1V2TwiddlingUnsupported,			// We do not yet support V1V2 data twiddling.
 		Fatal_PackedDecodeError,
 		Fatal_BCDecodeError,
-		Fatal_PVRDecodeError,
 		Fatal_ASTCDecodeError,
-		LastFatal								= Fatal_ASTCDecodeError,
+		Fatal_PVRDecodeError,
+		LastFatal								= Fatal_PVRDecodeError,
 
 		// Since we store states as bits in a 32-bit uint, we need to make sure we don't too many.
 		NumStateBits,

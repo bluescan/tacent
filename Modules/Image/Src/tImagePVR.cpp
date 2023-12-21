@@ -706,7 +706,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 
 	// These return 1 for packed formats. This allows us to treat BC, ASTC, Packed, etc all the same way.
 	int blockW = tGetBlockWidth(PixelFormatSrc);
-	int blockH = tGetBlockWidth(PixelFormatSrc);
+	int blockH = tGetBlockHeight(PixelFormatSrc);
 	int bytesPerBlock = tImage::tGetBytesPerBlock(PixelFormatSrc);
 	const uint8* srcPixelData = textureData;
 
@@ -856,6 +856,7 @@ tLayer* tImagePVR::CreateNewLayer(const LoadParams& params, const uint8* srcPixe
 				case DecodeResult::PackedDecodeError:	SetStateBit(StateBit::Fatal_PackedDecodeError);			break;
 				case DecodeResult::BlockDecodeError:	SetStateBit(StateBit::Fatal_BCDecodeError);				break;
 				case DecodeResult::ASTCDecodeError:		SetStateBit(StateBit::Fatal_ASTCDecodeError);			break;
+				case DecodeResult::PVRDecodeError:		SetStateBit(StateBit::Fatal_PVRDecodeError);			break;
 				default:								SetStateBit(StateBit::Fatal_PixelFormatNotSupported);	break;
 			}
 			delete newLayer;
@@ -953,8 +954,8 @@ const char* tImagePVR::StateDescriptions[] =
 	"Fatal Error. V1 V2 Twiddled data not supported.",
 	"Fatal Error. Unable to decode packed pixels.",
 	"Fatal Error. Unable to decode BC pixels.",
-	"Fatal Error. Unable to decode PVR pixels.",
-	"Fatal Error. Unable to decode ASTC pixels."
+	"Fatal Error. Unable to decode ASTC pixels.",
+	"Fatal Error. Unable to decode PVR pixels."
 };
 tStaticAssert(tNumElements(tImagePVR::StateDescriptions) == int(tImagePVR::StateBit::NumStateBits));
 tStaticAssert(int(tImagePVR::StateBit::NumStateBits) <= int(tImagePVR::StateBit::MaxStateBits));

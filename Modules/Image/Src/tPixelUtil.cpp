@@ -17,6 +17,7 @@
 #include <Foundation/tSmallFloat.h>
 #include <System/tMachine.h>
 #include "Image/tPixelUtil.h"
+#include "PVRTDecompress/PVRTDecompress.h"
 #define BCDEC_IMPLEMENTATION
 #include "bcdec/bcdec.h"
 #define ETCDEC_IMPLEMENTATION
@@ -63,7 +64,7 @@ tImage::DecodeResult tImage::DecodePixelData(tPixelFormat fmt, const uint8* src,
 	if (decoded4i || decoded4f)
 		return DecodeResult::BuffersNotClear;
 
-	if (!tIsPackedFormat(fmt) && !tIsBCFormat(fmt) && !tIsASTCFormat(fmt))
+	if (!tIsPackedFormat(fmt) && !tIsBCFormat(fmt) && !tIsASTCFormat(fmt) && !tIsPVRFormat(fmt))
 		return DecodeResult::UnsupportedFormat;
 
 	if ((w <= 0) || (h <= 0) || !src)
@@ -80,6 +81,10 @@ tImage::DecodeResult tImage::DecodePixelData(tPixelFormat fmt, const uint8* src,
 	else if (tImage::tIsASTCFormat(fmt))
 	{
 		return DecodePixelData_ASTC(fmt, src, srcSize, w, h, decoded4f, profile);
+	}
+	else if (tImage::tIsPVRFormat(fmt))
+	{
+		return DecodePixelData_PVR(fmt, src, srcSize, w, h, decoded4i, decoded4f);
 	}
 	else // Unsupported PixelFormat
 	{
@@ -885,6 +890,69 @@ tImage::DecodeResult tImage::DecodePixelData_ASTC(tPixelFormat fmt, const uint8*
 		return DecodeResult::ASTCDecodeError;
 	}
 	astcenc_context_free(context);
+
+	return DecodeResult::Success;
+}
+
+
+tImage::DecodeResult tImage::DecodePixelData_PVR(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4i*& decoded4i, tColour4f*& decoded4f)
+{
+	if (decoded4i || decoded4f)
+		return DecodeResult::BuffersNotClear;
+
+	if (!tIsPVRFormat(fmt))
+		return DecodeResult::UnsupportedFormat;
+
+	if ((w <= 0) || (h <= 0) || !src)
+		return DecodeResult::InvalidInput;
+
+	// The PVRTDecompress calls expect the decoded destination array to be bug enough to handle w*h tColour4i pixels.
+	// The function handles cases where the min width and height are too small, so even a 1x1 image can be handed off.
+	switch (fmt)
+	{
+		case tPixelFormat::PVRBPP4:
+		{
+			decoded4i = new tColour4i[w*h];
+			uint32_t do2bitMode = 0;
+			uint32_t numSrcBytesDecompressed = pvr::PVRTDecompressPVRTC(src, do2bitMode, w, h, (uint8_t*)decoded4i);
+			if (numSrcBytesDecompressed == 0)
+			{
+				delete[] decoded4i;
+				decoded4i = nullptr;
+				return DecodeResult::PVRDecodeError;
+			}
+			break;
+		}
+
+		case tPixelFormat::PVRBPP2:
+		{
+			decoded4i = new tColour4i[w*h];
+			uint32_t do2bitMode = 1;
+			uint32_t numSrcBytesDecompressed = pvr::PVRTDecompressPVRTC(src, do2bitMode, w, h, (uint8_t*)decoded4i);
+			if (numSrcBytesDecompressed == 0)
+			{
+				delete[] decoded4i;
+				decoded4i = nullptr;
+				return DecodeResult::PVRDecodeError;
+			}
+			break;
+		}
+
+		case tPixelFormat::PVR2BPP4:
+		case tPixelFormat::PVR2BPP2:
+			return DecodeResult::UnsupportedFormat;
+
+		case tPixelFormat::PVRHDRBPP8:
+		case tPixelFormat::PVRHDRBPP6:
+			return DecodeResult::UnsupportedFormat;
+
+		case tPixelFormat::PVR2HDRBPP8:
+		case tPixelFormat::PVR2HDRBPP6:
+			return DecodeResult::UnsupportedFormat;
+
+		default:
+			return DecodeResult::PVRDecodeError;
+	}
 
 	return DecodeResult::Success;
 }

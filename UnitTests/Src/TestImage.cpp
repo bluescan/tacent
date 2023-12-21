@@ -2306,9 +2306,12 @@ tTestUnit(ImagePVR2)
 
 	tPrintf("Testing PVR V2 Loading/Decoding\n\n");
 
-	// PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_TM.pvr",		decode | revrow);
-	// PVRLoadDecodeSave("B8G8R8A8_UNORM_SRGB_RGBA_TM.pvr",	decode | revrow,	true);
+	PVRLoadDecodeSave("PVRBPP4_RGB_TM.pvr",				decode | revrow,	true);
+	PVRLoadDecodeSave("PVRBPP4_RGBA_TM.pvr",			decode | revrow,	true);
+	PVRLoadDecodeSave("PVRBPP2_RGB_TM.pvr",				decode | revrow,	true);
+	PVRLoadDecodeSave("PVRBPP2_RGBA_TM.pvr",			decode | revrow,	true);
 
+	// PVRLoadDecodeSave("B8G8R8A8_UNORM_SRGB_RGBA_TM.pvr",	decode | revrow,	true);
 	PVRLoadDecodeSave("B8G8R8A8_RGBA_T.pvr",			decode | revrow,	true);
 	PVRLoadDecodeSave("R8G8B8A8_RGBA_TM.pvr",			decode | revrow,	true);
 	PVRLoadDecodeSave("ETC1_RGB_TM.pvr",				decode | revrow,	true);
@@ -2343,6 +2346,12 @@ tTestUnit(ImagePVR3)
 	// A = Texture array. Has an arbitrary number of textures.
 	// M = Has Mipmaps.
 	// P = Premultiplied Alpha
+
+	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGB_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("PVRBPP2_UNORM_SRGB_RGB_TM.pvr",				decode | revrow,	true);
+	PVRLoadDecodeSave("PVRBPP2_UNORM_SRGB_RGBA_TM.pvr",				decode | revrow,	true);
+
 	PVRLoadDecodeSave("A1R5G5B5+G3B5A1R5G2_UNORM_LIN_RGBA_T.pvr",	decode | revrow,	true);
 	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_T.pvr",		decode | revrow,	true);
 	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_TM.pvr",	decode | revrow,	true);
