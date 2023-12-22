@@ -108,26 +108,24 @@ enum class tColourSpace
 // mentioned in the tColourSpace enum.
 enum class tColourProfile
 {
-	Unspecified			= -1,
-	LDRsRGB_LDRlA,		// Equiv ASTC profile: ASTCENC_PRF_LDR_SRGB.      The LDR sRGB colour profile.
-	LDRgRGB_LDRlA,		// No ASTC profile equivalent.				      The LDR gRGB colour profile.
-	LDRlRGBA,			// Equiv ASTC profile: ASTCENC_PRF_LDR.           The LDR linear colour profile.
-	HDRlRGB_LDRlA,		// Equiv ASTC profile: ASTCENC_PRF_HDR_RGB_LDR_A. The HDR RGB with LDR alpha colour profile.
-	HDRlRGBA,			// Equiv ASTC profile: ASTCENC_PRF_HDR.           The HDR RGBA colour profile.
+	Unspecified				= -1,
+	LDRsRGB_LDRlA,			// Equiv ASTC profile: ASTCENC_PRF_LDR_SRGB.      The LDR sRGB colour profile.
+	LDRgRGB_LDRlA,			// No ASTC profile equivalent.				      The LDR gRGB colour profile.
+	LDRlRGBA,				// Equiv ASTC profile: ASTCENC_PRF_LDR.           The LDR linear colour profile.
+	HDRlRGB_LDRlA,			// Equiv ASTC profile: ASTCENC_PRF_HDR_RGB_LDR_A. The HDR RGB with LDR alpha colour profile.
+	HDRlRGBA,				// Equiv ASTC profile: ASTCENC_PRF_HDR.           The HDR RGBA colour profile.
 	Auto,
-	NumProfiles,		// Includes Auto but not Unspecified.
+	NumProfiles,			// Includes Auto but not Unspecified.
 
 	// Shorter synonyms.
-	Invalid				= Unspecified,
-	None				= Unspecified,
-	sRGB				= LDRsRGB_LDRlA,
-	gRGB				= LDRgRGB_LDRlA,			// Currently not found in files, but may be converted to.
-	lRGB				= LDRlRGBA,
-	HDRa				= HDRlRGB_LDRlA,
-	HDRA				= HDRlRGBA,
+	Invalid					= Unspecified,
+	None					= Unspecified,
+	sRGB					= LDRsRGB_LDRlA,
+	gRGB					= LDRgRGB_LDRlA,			// Currently not found in files, but may be converted to.
+	lRGB					= LDRlRGBA,
+	HDRa					= HDRlRGB_LDRlA,
+	HDRA					= HDRlRGBA,
 };
-
-
 extern const char* tColourProfileNames[int(tColourProfile::NumProfiles)];
 extern const char* tColourProfileShortNames[int(tColourProfile::NumProfiles)];
 const char* tGetColourProfileName(tColourProfile);
@@ -141,10 +139,69 @@ const char* tGetColourProfileShortName(tColourProfile);
 // is stored outside of the pixel format -- with the data itself.
 enum class tAlphaMode
 {
-	Unspecified,
-	Normal,				// Not premultiplied. Independent alpha channel.
-	Premultiplied
+	Unspecified				= -1,
+	Normal,					// Not premultiplied. Independent alpha channel.
+	Premultiplied,
+	NumModes,
+
+	// Shorter synonyms.
+	Invalid					= Unspecified,
+	None					= Unspecified,
+	Norm					= Normal,
+	Mult					= Premultiplied
 };
+extern const char* tAlphaModeNames[int(tAlphaMode::NumModes)];
+extern const char* tAlphaModeShortNames[int(tAlphaMode::NumModes)];
+const char* tGetAlphaModeName(tAlphaMode);
+const char* tGetAlphaModeShortName(tAlphaMode);
+
+
+// ChannelType is additional colour satellite information that is also not encoded by the pixel format so it belongs
+// here. It describes how the colour information was intended to be interpreted by a shader: as an integer or a float,
+// signed or unsigned, normalized to [0.0,1.0] or not. The reason it is not part of the pixel format is it is quite
+// common for the data to be encoded as, say, an unsigned 8-bit integer, but 'converted' to a float when it is passed
+// off the video memory by the graphics API so it is available as a float in the fragment/pixel shader.
+enum class tChannelType
+{
+	Unspecified				= -1,
+	UnsignedInt8Normalized,
+	SignedInt8Normalized,
+	UnsignedInt8,
+	SignedInt8,
+	UnsignedInt16Normalized,
+	SignedInt16Normalized,
+	UnsignedInt16,
+	SignedInt16,
+	UnsignedInt32Normalized,
+	SignedInt32Normalized,
+	UnsignedInt32,
+	SignedInt32,
+	SignedFloat,
+	UnsignedFloat,
+	NumTypes,
+
+	// Shorter synonyms.
+	Invalid					= Unspecified,
+	None					= Unspecified,
+	UINT8N					= UnsignedInt8Normalized,
+	SINT8N					= SignedInt8Normalized,
+	UINT8					= UnsignedInt8,
+	SINT8					= SignedInt8,
+	UINT16N					= UnsignedInt16Normalized,
+	SINT16N					= SignedInt16Normalized,
+	UINT16					= UnsignedInt16,
+	SINT16					= SignedInt16,
+	UINT32N					= UnsignedInt32Normalized,
+	SINT32N					= SignedInt32Normalized,
+	UINT32					= UnsignedInt32,
+	SINT32					= SignedInt32,
+	SFLOAT					= SignedFloat,
+	UFLOAT					= UnsignedFloat
+};
+extern const char* tChannelTypeNames[int(tChannelType::NumTypes)];
+extern const char* tChannelTypeShortNames[int(tChannelType::NumTypes)];
+const char* tGetChannelTypeName(tChannelType);
+const char* tGetChannelTypeShortName(tChannelType);
 
 
 namespace tMath

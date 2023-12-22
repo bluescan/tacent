@@ -81,13 +81,12 @@ public:
 	};
 
 	// Creates an invalid tImagePVR. You must call Load manually.
-	tImagePVR();
-
-	tImagePVR(const tString& pvrFile, const LoadParams& = LoadParams());
+	tImagePVR()																											{ }
+	tImagePVR(const tString& pvrFile, const LoadParams& params = LoadParams())											: Filename(pvrFile) { Load(pvrFile, params); }
 
 	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is read from
 	// and the caller may delete it immediately after if desired.
-	tImagePVR(const uint8* pvrMem, int numBytes, const LoadParams& = LoadParams());
+	tImagePVR(const uint8* pvrMem, int numBytes, const LoadParams& params = LoadParams())								{ Load(pvrMem, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out. Sets the colour space to sRGB.
@@ -191,13 +190,14 @@ public:
 	tPixelFormat GetPixelFormatSrc() const																				{ return PixelFormatSrc; }
 
 	// Returns the current colour profile.
-	tColourProfile GetColourProfile() const																				{ return ColourProfile; }
+	tColourProfile GetColourProfile() const																				{ return ColourProfileCur; }
 
 	// Returns the colour profile of the source file that was loaded. This may not match the current if, say, gamma
 	// correction was requested on load.
 	tColourProfile GetColourProfileSrc() const																			{ return ColourProfileSrc; }
 
 	tAlphaMode GetAlphaMode() const																						{ return AlphaMode; }
+	tChannelType GetChannelType() const																					{ return ChannelType; }
 
 	// The texture is considered to have alphas if it is in a pixel format that supports them. For BC1, the data is
 	// checked to see if any BC1 blocks have a binary alpha index. We could check the data for the RGBA formats, but
@@ -234,9 +234,10 @@ private:
 	tPixelFormat PixelFormatSrc				= tPixelFormat::Invalid;
 
 	// These two _not_ part of the pixel format in tacent.
-	tColourProfile ColourProfile			= tColourProfile::Unspecified;
+	tColourProfile ColourProfileCur			= tColourProfile::Unspecified;
 	tColourProfile ColourProfileSrc			= tColourProfile::Unspecified;
 	tAlphaMode AlphaMode					= tAlphaMode::Unspecified;
+	tChannelType ChannelType				= tChannelType::Unspecified;
 
 	bool RowReversalOperationPerformed		= false;
 

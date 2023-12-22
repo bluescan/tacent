@@ -45,19 +45,99 @@ tStaticAssert(tNumElements(tColourProfileShortNames) == int(tColourProfile::NumP
 
 const char* tGetColourProfileName(tColourProfile profile)
 {
-	if (profile == tColourProfile::Unspecified)
-		return "Unspecified";
-
+	if (profile == tColourProfile::Unspecified)		return "Unspecified";
 	return tColourProfileNames[int(profile)];
 }
 
 
 const char* tGetColourProfileShortName(tColourProfile profile)
 {
-	if (profile == tColourProfile::None)
-		return "None";
-
+	if (profile == tColourProfile::None)			return "None";
 	return tColourProfileShortNames[int(profile)];
+}
+
+
+const char* tAlphaModeNames[] =
+{
+	"Normal",
+	"Premultiplied"
+};
+tStaticAssert(tNumElements(tAlphaModeNames) == int(tAlphaMode::NumModes));
+
+
+const char* tAlphaModeShortNames[] =
+{
+	"Norm",
+	"Mult"
+};
+tStaticAssert(tNumElements(tAlphaModeShortNames) == int(tAlphaMode::NumModes));
+
+
+const char* tGetAlphaModeName(tAlphaMode mode)
+{
+	if (mode == tAlphaMode::Unspecified)		return "Unspecified";
+	return tAlphaModeNames[int(mode)];
+}
+
+
+const char* tGetAlphaModeShortName(tAlphaMode mode)
+{
+	if (mode == tAlphaMode::None)				return "None";
+	return tAlphaModeShortNames[int(mode)];
+}
+
+
+const char* tChannelTypeNames[] =
+{
+	"UnsignedInt8Normalized",
+	"SignedInt8Normalized",
+	"UnsignedInt8",
+	"SignedInt8",
+	"UnsignedInt16Normalized",
+	"SignedInt16Normalized",
+	"UnsignedInt16",
+	"SignedInt16",
+	"UnsignedInt32Normalized",
+	"SignedInt32Normalized",
+	"UnsignedInt32",
+	"SignedInt32",
+	"UnsignedFloat",
+	"SignedFloat"
+};
+tStaticAssert(tNumElements(tChannelTypeNames) == int(tChannelType::NumTypes));
+
+
+const char* tChannelTypeShortNames[] =
+{
+	"UINT8N",
+	"SINT8N",
+	"UINT8",
+	"SINT8",
+	"UINT16N",
+	"SINT16N",
+	"UINT16",
+	"SINT16",
+	"UINT32N",
+	"SINT32N",
+	"UINT32",
+	"SINT32",
+	"UFLOAT",
+	"SFLOAT"
+};
+tStaticAssert(tNumElements(tChannelTypeShortNames) == int(tChannelType::NumTypes));
+
+
+const char* tGetChannelTypeName(tChannelType type)
+{
+	if (type == tChannelType::Unspecified)		return "Unspecified";
+	return tChannelTypeNames[int(type)];
+}
+
+
+const char* tGetChannelTypeShortName(tChannelType type)
+{
+	if (type == tChannelType::None)				return "None";
+	return tChannelTypeShortNames[int(type)];
 }
 
 
