@@ -98,7 +98,6 @@ public:
 	// Different frames of an ICO file may have different pixel formats. This function uses bpp as the metric to find
 	// the 'best' one used in all frames.
 	tPixelFormat GetBestSrcPixelFormat() const;
-
 	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? GetBestSrcPixelFormat() : tPixelFormat::Invalid; }
 	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 

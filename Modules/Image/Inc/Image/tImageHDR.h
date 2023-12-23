@@ -105,8 +105,6 @@ public:
 	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 
 private:
-	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
-
 	bool LegacyReadRadianceColours(tPixel* scanline, int length);	// Older hdr files use this scanline format.
 	bool ReadRadianceColours(tPixel* scanline, int length);			// Most hdr files use the new scanline format. This will call the old as necessary.
 	bool ConvertRadianceToGammaCorrected(tPixel* scan, int len);
@@ -116,13 +114,14 @@ private:
 	uint8 GetB()													{ return *ReadP++; }
 	void UngetB(int v)												{ *(--ReadP) = v; }
 
-	int Width				= 0;
-	int Height				= 0;
-	tPixel* Pixels			= nullptr;
+	tPixelFormat PixelFormatSrc	= tPixelFormat::Invalid;
+	int Width					= 0;
+	int Height					= 0;
+	tPixel* Pixels				= nullptr;
 
 	// Read and write pointers used during processing.
-	uint8* ReadP			= nullptr;
-	uint8* WriteP			= nullptr;
+	uint8* ReadP				= nullptr;
+	uint8* WriteP				= nullptr;
 
 	// While it would be more efficient to share these tables between instances, we need thread safety.
 	void SetupGammaTables(float gamma);

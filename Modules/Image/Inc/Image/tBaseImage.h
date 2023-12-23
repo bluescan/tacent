@@ -59,14 +59,17 @@ public:
 	// Returns the original (src) pixel format of the image.
 	virtual tPixelFormat GetPixelFormatSrc() const									= 0;
 
-	// Returns the currant pixel format of the image. Load paramters may have modified it from the original.
+	// Returns the current pixel format of the image. Load paramters may have modified it from the original.
 	virtual tPixelFormat GetPixelFormat() const										= 0;
 
-	// WIP Accessors for:
-	// ColourProfileSrc
-	// ColourProfile
-	// AlphaMode
-	// ChannelType
+	// Returns the original (src) colour profile of the image.
+	virtual tColourProfile GetColourProfileSrc() const								{ return tColourProfile::Unspecified; }
+
+	// Returns the current colour profile of the image. Load paramters may have modified it from the original.
+	virtual tColourProfile GetColourProfile() const									{ return tColourProfile::Unspecified; }
+
+	virtual tAlphaMode GetAlphaMode() const											{ return tAlphaMode::Unspecified; }
+	virtual tChannelType GetChannelType() const										{ return tChannelType::Unspecified; }
 };
 
 

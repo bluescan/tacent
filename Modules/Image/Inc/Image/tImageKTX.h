@@ -256,13 +256,14 @@ private:
 	// The states are bits in this States member.
 	uint32 States							= 0;
 
-	tPixelFormat PixelFormat				= tPixelFormat::Invalid;
 	tPixelFormat PixelFormatSrc				= tPixelFormat::Invalid;
+	tPixelFormat PixelFormat				= tPixelFormat::Invalid;
 
-	// The colour-space and alpha-mode are _not_ part of the pixel format in tacent.
-	tColourProfile ColourProfile			= tColourProfile::Unspecified;
+	// The colour-space, alpha-mode, and channel-type are _not_ part of the pixel format in tacent.
 	tColourProfile ColourProfileSrc			= tColourProfile::Unspecified;
+	tColourProfile ColourProfile			= tColourProfile::Unspecified;
 	tAlphaMode AlphaMode					= tAlphaMode::Unspecified;
+	tChannelType ChannelType				= tChannelType::Unspecified;
 
 	bool IsCubeMap							= false;
 	bool RowReversalOperationPerformed		= false;

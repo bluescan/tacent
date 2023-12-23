@@ -101,17 +101,17 @@ public:
 	// R8G8B8A8 pixel-format (i.e. not decoded) since all ASTC pixel formats support alpha.
 	bool IsOpaque() const;
 
-	// Will return the format the astc data was originally in, even if you chose to decode.
-	tPixelFormat GetPixelFormatSrc() const override																		{ return PixelFormatSrc; }
-
-	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the astc data is in.
-	tPixelFormat GetPixelFormat() const override																		{ return PixelFormat; }
-
 	// After the steal call you are the owner of the layer and must eventually delete it. This tImageASTC object is
 	// invalid afterwards.
 	tLayer* StealLayer()																								{ tLayer* layer = Layer; Layer = nullptr; return layer; }
 	tLayer* GetLayer() const																							{ return Layer; }
 	tFrame* GetFrame(bool steal = true) override;
+
+	// Will return the format the astc data was originally in, even if you chose to decode.
+	tPixelFormat GetPixelFormatSrc() const override																		{ return PixelFormatSrc; }
+
+	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the astc data is in.
+	tPixelFormat GetPixelFormat() const override																		{ return PixelFormat; }
 
 private:
 	tPixelFormat PixelFormatSrc	= tPixelFormat::Invalid;

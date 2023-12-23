@@ -132,17 +132,17 @@ public:
 	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 
 private:
-	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 	static void FrameLoadCallbackBridge(void* imgGifRaw, struct GIF_WHDR*);
 	void FrameLoadCallback(struct GIF_WHDR*);
 
 	// Variables used during load callback processing.
-	int FrmLast = 0;
-	tPixel* FrmPict = nullptr;
-	tPixel* FrmPrev = nullptr;
+	int FrmLast					= 0;
+	tPixel* FrmPict				= nullptr;
+	tPixel* FrmPrev				= nullptr;
 
-	int Width				= 0;
-	int Height				= 0;
+	tPixelFormat PixelFormatSrc	= tPixelFormat::Invalid;
+	int Width					= 0;
+	int Height					= 0;
 	tList<tFrame> Frames;
 };
 
