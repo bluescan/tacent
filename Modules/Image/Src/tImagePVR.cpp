@@ -25,31 +25,13 @@ namespace tImage
 
 namespace tPVR
 {
-	// There are 3 possible headers for V1, V2, and V3 PVR files. V1 and V2 are very similar, but just for clarity we
-	// explicitly define the 3 different headers as their own struct.
+	// There are 3 possible headers for V1, V2, and V3 PVR files. V1 and V2 are very similar with V2 having two more
+	// 4-byte fields than the V1 header.
 	#pragma pack(push, 1)
-	struct HeaderV1
-	{
-		uint32 HeaderSize;
-		uint32 Height;
-		uint32 Width;
-		uint32 MipMapCount;
-		uint8  PixelFormat;
-		uint8  Flags1;
-		uint8  Flags2;
-		uint8  Flags3;
-		uint32 SurfaceSize;
-		uint32 BitsPerPixel;
-		uint32 RedMask;
-		uint32 GreenMask;
-		uint32 BlueMask;
-		uint32 AlphaMask;
-	};
-	tStaticAssert(sizeof(HeaderV1) == 44);
 
-	struct HeaderV2
+	struct HeaderV1V2
 	{
-		uint32 HeaderSize;
+		uint32 HeaderSize;			// 44 for V1. 52 for V2.
 		uint32 Height;
 		uint32 Width;
 		uint32 MipMapCount;
@@ -63,18 +45,18 @@ namespace tPVR
 		uint32 GreenMask;
 		uint32 BlueMask;
 		uint32 AlphaMask;
-		uint32 FourCC;
-		uint32 NumSurfaces;
+		uint32 FourCC;				// Only read for V2 headers.
+		uint32 NumSurfaces;			// Only read for V2 headers. Set to 1 for V1 files.
 	};
-	tStaticAssert(sizeof(HeaderV2) == 52);
+	tStaticAssert(sizeof(HeaderV1V2) == 52);
 
 	struct HeaderV3
 	{
-		uint32 FourCCVersion;			// 'PVR3' for V3. LE = 0x03525650.
+		uint32 FourCCVersion;		// 'PVR3' for V3. LE = 0x03525650.
 		uint32 Flags;
 		uint64 PixelFormat;
-		uint32 ColourSpace;				// 0 = Linear RGB. 1 = sRGB (I assume linear alpha for both).
-		uint32 ChannelType;				// 0=UINT8N, 1=SINT8N, 2=UINT8, 3=SINT8, 4=UINT16N, 5=SINT16N, 6=UINT16, 7=SINT16, 8=UINT32N, 9=SINT32N, 10=UINT32, 11=SINT32, 12=SFLOAT, 13=UFLOAT.
+		uint32 ColourSpace;			// 0 = Linear RGB. 1 = sRGB (I assume linear alpha for both).
+		uint32 ChannelType;			// 0=UINT8N, 1=SINT8N, 2=UINT8, 3=SINT8, 4=UINT16N, 5=SINT16N, 6=UINT16, 7=SINT16, 8=UINT32N, 9=SINT32N, 10=UINT32, 11=SINT32, 12=SFLOAT, 13=UFLOAT.
 		uint32 Height;
 		uint32 Width;
 		uint32 Depth;
@@ -88,10 +70,16 @@ namespace tPVR
 
 	int DetermineVersionFromFirstFourBytes(const uint8 bytes[4]);
 
-	// If the pixel format is returned unspecified the headerFmt is not supported or was invalid.
-	// In this case the returned alpha-mode is meaningless and has no specified value.
-	void DeterminePixelFormatFromV1V2Header(tPixelFormat&, tAlphaMode&, uint8 headerFmt);
-	void DeterminePixelFormatFromV3Header(tPixelFormat&, tAlphaMode&, uint64 headerFmt, tChannelType);
+	// Determine the pixel-format and, if possible, the alpha-mode and channel-type. There is no possibility of
+	// determining the colour-profile for V1V2 file headers but we pass it in anyways so it behaves similarly to the V3
+	// GetFormatInfo. If the pixel format is returned unspecified the headerFmt is not supported or was invalid. In
+	// this case the returned colour-profile, alpha-mode, and channel-type will be unspecified.
+	void GetFormatInfo_FromV1V2Header(tPixelFormat&, tColourProfile&, tAlphaMode&, tChannelType&, const HeaderV1V2&);
+
+	// For V3 file headers the channel-type, alpha-mode, and colour-space can always be determined. In addition some
+	// V3 pixel-formats imply a particular colour space and alpha-mode. In cases where these do not match the required
+	// type, mode, or space of the pixel-format, the pixel-format's required setting is chosen.
+	void GetFormatInfo_FromV3Header(tPixelFormat&, tColourProfile&, tAlphaMode&, tChannelType&, const HeaderV3&);
 }
 
 
@@ -114,13 +102,16 @@ int tPVR::DetermineVersionFromFirstFourBytes(const uint8 bytes[4])
 }
 
 
-void tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alpha, uint8 headerFmt)
+void tPVR::GetFormatInfo_FromV1V2Header(tPixelFormat& fmt, tColourProfile& profile, tAlphaMode& alphaMode, tChannelType& chanType, const HeaderV1V2& header)
 {
 	fmt = tPixelFormat::Invalid;
-	alpha = tAlphaMode::Normal;
-	switch (headerFmt)
+	profile = tColourProfile::Unspecified;
+	alphaMode = tAlphaMode::Unspecified;
+	chanType = tChannelType::Unspecified;
+
+	switch (header.PixelFormat)
 	{
-		//			Real in memory format.						   Naming in PVR1/2 spec document. [Naming in PVRTexToolUI]
+		//			Real in-memory format.						   Naming in PVR1/2 spec document. [Naming in PVRTexToolUI]
 		case 0x00:	fmt = tPixelFormat::G4B4A4R4;		break;	// ARGB 4444 (LE Naming).
 		case 0x01:	fmt = tPixelFormat::G3B5A1R5G2;		break;	// ARGB 1555 (LE Naming).
 		case 0x02:	fmt = tPixelFormat::G3B5R5G3;		break;	// RGB 565 (LE Naming). This is a slightly better name than B5G56R because at least it matches the memory order if you swap the two bytes.
@@ -143,9 +134,9 @@ void tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alp
 		case 0x19:  fmt = tPixelFormat::PVRBPP4;		break;	// PVRTC4.
 		case 0x1A:  fmt = tPixelFormat::B8G8R8A8;		break;	// BGRA 8888 [B8G8R8A8].
 		case 0x20:	fmt = tPixelFormat::BC1DXT1;		break;	// DXT1.
-		case 0x21:	fmt = tPixelFormat::BC2DXT2DXT3;	alpha = tAlphaMode::Premultiplied;	break;	// DXT2.
+		case 0x21:	fmt = tPixelFormat::BC2DXT2DXT3;	alphaMode = tAlphaMode::Premultiplied;	break;	// DXT2.
 		case 0x22:	fmt = tPixelFormat::BC2DXT2DXT3;	break;	// DXT3.
-		case 0x23:	fmt = tPixelFormat::BC3DXT4DXT5;	alpha = tAlphaMode::Premultiplied;	break;	// DXT4.
+		case 0x23:	fmt = tPixelFormat::BC3DXT4DXT5;	alphaMode = tAlphaMode::Premultiplied;	break;	// DXT4.
 		case 0x24:	fmt = tPixelFormat::BC3DXT4DXT5;	break;	// DXT5.
 		case 0x36:	fmt = tPixelFormat::ETC1;			break;	// ETC1.
 
@@ -185,15 +176,39 @@ void tPVR::DeterminePixelFormatFromV1V2Header(tPixelFormat& fmt, tAlphaMode& alp
 }
 
 
-void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha, uint64 headerFmt64, tChannelType channelType)
+void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& fmt, tColourProfile& profile, tAlphaMode& alphaMode, tChannelType& chanType, const HeaderV3& header)
 {
-	fmt = tPixelFormat::Invalid;
+	fmt			= tPixelFormat::Invalid;
+	profile		= (header.ColourSpace == 0) ? tColourProfile::lRGB : tColourProfile::sRGB;
+	alphaMode	= (header.Flags & 0x00000002) ? tAlphaMode::Premultiplied : tAlphaMode::Normal;
+
+	chanType	= tChannelType::Unspecified;
+	switch (header.ChannelType)
+	{
+		case 0:		chanType = tChannelType::UINT8N;	break;
+		case 1:		chanType = tChannelType::SINT8N;	break;
+		case 2:		chanType = tChannelType::UINT8;		break;
+		case 3:		chanType = tChannelType::SINT8;		break;
+
+		case 4:		chanType = tChannelType::UINT16N;	break;
+		case 5:		chanType = tChannelType::SINT16N;	break;
+		case 6:		chanType = tChannelType::UINT16;	break;
+		case 7:		chanType = tChannelType::SINT16;	break;
+		
+		case 8:		chanType = tChannelType::UINT32N;	break;
+		case 9:		chanType = tChannelType::SINT32N;	break;
+		case 10:	chanType = tChannelType::UINT32;	break;
+		case 11:	chanType = tChannelType::SINT32;	break;
+
+		case 12:	chanType = tChannelType::SFLOAT;	break;
+		case 13:	chanType = tChannelType::UFLOAT;	break;
+	}
 
 	// For V3 files if the MS 32 bits are 0, the format is determined by the LS 32 bits.
 	// If the MS 32 do bits are non zero, the MS 32 bits contain the number of bits for
 	// each channel and the present channels are specified by the LS 32 bits.
-	uint32 fmtMS32 = headerFmt64 >> 32;
-	uint32 fmtLS32 = headerFmt64 & 0x00000000FFFFFFFF;
+	uint32 fmtMS32 = header.PixelFormat >> 32;
+	uint32 fmtLS32 = header.PixelFormat & 0x00000000FFFFFFFF;
 	if (fmtMS32 == 0)
 	{
 		switch (fmtLS32)
@@ -209,9 +224,9 @@ void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 			case 0x00000006:	fmt = tPixelFormat::ETC1;			break;	// ETC1.
 
 			case 0x00000007:	fmt = tPixelFormat::BC1DXT1;		break;	// DXT1. BC1.
-			case 0x00000008:	fmt = tPixelFormat::BC2DXT2DXT3;	alpha = tAlphaMode::Premultiplied;	break;	// DXT2.
+			case 0x00000008:	fmt = tPixelFormat::BC2DXT2DXT3;	alphaMode = tAlphaMode::Premultiplied;	break;	// DXT2.
 			case 0x00000009:	fmt = tPixelFormat::BC2DXT2DXT3;	break;	// DXT3. BC2.
-			case 0x0000000A:	fmt = tPixelFormat::BC3DXT4DXT5;	alpha = tAlphaMode::Premultiplied;	break;	// DXT4.
+			case 0x0000000A:	fmt = tPixelFormat::BC3DXT4DXT5;	alphaMode = tAlphaMode::Premultiplied; chanType = tChannelType::UFLOAT; break;	// DXT4.
 			case 0x0000000B:	fmt = tPixelFormat::BC3DXT4DXT5;	break;	// DXT5. BC3.
 			case 0x0000000C:	fmt = tPixelFormat::BC4ATI1;		break;	// BC4.
 			case 0x0000000D:	fmt = tPixelFormat::BC5ATI2;		break;	// BC5.
@@ -310,7 +325,7 @@ void tPVR::DeterminePixelFormatFromV3Header(tPixelFormat& fmt, tAlphaMode& alpha
 				switch (fmtMS32)
 				{
 					case tSwapEndian32(0x0a0b0b00):
-						if (channelType == tChannelType::UFLOAT)
+						if (chanType == tChannelType::UFLOAT)
 							fmt = tPixelFormat::B10G11R11uf;			// PVR: B10 G11 R11 UFLOAT.
 					break;
 				}
@@ -354,7 +369,7 @@ void tImagePVR::Clear()
 	PVRVersion						= 0;
 	PixelFormat						= tPixelFormat::Invalid;
 	PixelFormatSrc					= tPixelFormat::Invalid;
-	ColourProfileCur				= tColourProfile::Unspecified;
+	ColourProfile					= tColourProfile::Unspecified;
 	ColourProfileSrc				= tColourProfile::Unspecified;
 	AlphaMode						= tAlphaMode::Unspecified;
 	ChannelType						= tChannelType::Unspecified;
@@ -378,7 +393,7 @@ bool tImagePVR::Set(tPixel* pixels, int width, int height, bool steal)
 
 	PixelFormat						= tPixelFormat::R8G8B8A8;
 	PixelFormatSrc					= tPixelFormat::R8G8B8A8;
-	ColourProfileCur				= tColourProfile::LDRsRGB_LDRlA;
+	ColourProfile					= tColourProfile::LDRsRGB_LDRlA;
 	ColourProfileSrc				= tColourProfile::LDRsRGB_LDRlA;
 	AlphaMode						= tAlphaMode::Normal;
 	ChannelType						= tChannelType::UINT8N;
@@ -465,10 +480,10 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		return false;
 	}
 
-	ColourProfileCur = tColourProfile::Unspecified;
-	ColourProfileSrc = tColourProfile::Unspecified;
-	AlphaMode = tAlphaMode::Unspecified;
-	ChannelType = tChannelType::Unspecified;
+	ColourProfile		= tColourProfile::Unspecified;
+	ColourProfileSrc	= tColourProfile::Unspecified;
+	AlphaMode			= tAlphaMode::Unspecified;
+	ChannelType			= tChannelType::Unspecified;
 
 	int metaDataSize = 0;
 	const uint8* metaData = nullptr;
@@ -477,78 +492,36 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	switch (PVRVersion)
 	{
 		case 1:
+		case 2:
 		{
-			tPVR::HeaderV1* header = (tPVR::HeaderV1*)pvrData;
-			tPVR::DeterminePixelFormatFromV1V2Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
+			tPVR::HeaderV1V2* header = (tPVR::HeaderV1V2*)pvrData;
+			tPVR::GetFormatInfo_FromV1V2Header(PixelFormatSrc, ColourProfileSrc, AlphaMode, ChannelType,  *header);
 			if (PixelFormatSrc == tPixelFormat::Invalid)
 			{
 				SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
 				return false;
 			}
-
-			NumSurfaces					= 1;		// Not supported by V1 files. Default to 1 surface.
+			PixelFormat					= PixelFormatSrc;
+			ColourProfile				= ColourProfileSrc;
+			NumSurfaces					= (PVRVersion == 2) ? header->NumSurfaces : 1;		// NumSurfaces not supported by V1 files.
 			NumFaces					= 1;
 			NumMipmaps					= header->MipMapCount;
 			Depth						= 1;
 			Width						= header->Width;
 			Height						= header->Height;
-
-			// Flags are LE order on disk.
-			uint32 flags				= (header->Flags1 << 24) | (header->Flags2 << 16) | (header->Flags1 << 8);
-			
-			bool hasMipmaps				= (flags & 0x00000100) ? true : false;
-			bool dataTwiddled			= (flags & 0x00000200) ? true : false;
-			bool containsNormalData		= (flags & 0x00000400) ? true : false;
-			bool hasABorder				= (flags & 0x00000800) ? true : false;
-			bool isACubemap				= (flags & 0x00001000) ? true : false;		// Every 6 surfaces is one cubemap.
-			bool mipmapsDebugColour		= (flags & 0x00002000) ? true : false;
-			bool isAVolumeTexture		= (flags & 0x00004000) ? true : false;		// NumSurfaces is the number of slices (depth).
-			bool alphaPresentInPVRTC	= (flags & 0x00008000) ? true : false;
-
-			// This is a bit odd, but if a PVR V1 V2 does not have mipmaps it does not set
-			// the number of mipmaps to 1. It would be cleaner if it did, so we do it here.
-			if (!hasMipmaps && (NumMipmaps == 0))
-				NumMipmaps = 1;
-
-			if ((!hasMipmaps && (NumMipmaps > 1)) || (hasMipmaps && (NumMipmaps <= 1)))
+			if
+			(
+				((PixelFormat == tPixelFormat::PVRBPP2) || (PixelFormat == tPixelFormat::PVRBPP4)) &&
+				((Width < 4) || (Height < 4) || !tMath::tIsPower2(Width) || !tMath::tIsPower2(Height))
+			)
 			{
 				if (params.Flags & LoadFlag_StrictLoading)
 				{
-					SetStateBit(StateBit::Fatal_V1V2MipmapFlagInconsistent);
+					SetStateBit(StateBit::Fatal_V1V2InvalidDimensionsPVRTC1);
 					return false;
 				}
-				SetStateBit(StateBit::Conditional_V1V2MipmapFlagInconsistent);
+				SetStateBit(StateBit::Conditional_V1V2InvalidDimensionsPVRTC1);
 			}
-
-			if (dataTwiddled)
-			{
-				SetStateBit(StateBit::Fatal_V1V2TwiddlingUnsupported);
-				return false;
-			}
-
-			int bytesPerSurface			= header->SurfaceSize;
-			int bitsPerPixel			= header->BitsPerPixel;
-
-			textureData					= pvrData + header->HeaderSize;
-			break;
-		}
-
-		case 2:
-		{
-			tPVR::HeaderV2* header = (tPVR::HeaderV2*)pvrData;
-			tPVR::DeterminePixelFormatFromV1V2Header(PixelFormatSrc, AlphaMode, header->PixelFormat);
-			if (PixelFormatSrc == tPixelFormat::Invalid)
-			{
-				SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
-				return false;
-			}
-
-			NumSurfaces					= header->NumSurfaces;
-			NumFaces					= 1;
-			NumMipmaps					= header->MipMapCount;
-			Depth						= 1;
-			Width						= header->Width;
-			Height						= header->Height;
 
 			// Flags are LE order on disk.
 			uint32 flags				= (header->Flags1 << 24) | (header->Flags2 << 16) | (header->Flags1 << 8);
@@ -602,7 +575,20 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 
 			int bytesPerSurface			= header->SurfaceSize;
 			int bitsPerPixel			= header->BitsPerPixel;
-			uint32 fourCC				= header->FourCC;
+
+			// Only check the FourCC magic for V2 files.
+			if ((PVRVersion == 2) && (header->FourCC != tImage::FourCC('P', 'V', 'R', '!')))		// LE 0x21525650.
+			{
+				if (params.Flags & LoadFlag_StrictLoading)
+				{
+					SetStateBit(StateBit::Fatal_V2IncorrectFourCC);
+					return false;
+				}
+				else
+				{
+					SetStateBit(StateBit::Conditional_V2IncorrectFourCC);
+				}
+			}
 
 			textureData					= pvrData + header->HeaderSize;
 			break;
@@ -611,62 +597,20 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		case 3:
 		{
 			tPVR::HeaderV3* header = (tPVR::HeaderV3*)pvrData;
-
-			switch (header->ChannelType)
-			{
-				case 0:		ChannelType = tChannelType::UINT8N;		break;
-				case 1:		ChannelType = tChannelType::SINT8N;		break;
-				case 2:		ChannelType = tChannelType::UINT8;		break;
-				case 3:		ChannelType = tChannelType::SINT8;		break;
-
-				case 4:		ChannelType = tChannelType::UINT16N;	break;
-				case 5:		ChannelType = tChannelType::SINT16N;	break;
-				case 6:		ChannelType = tChannelType::UINT16;		break;
-				case 7:		ChannelType = tChannelType::SINT16;		break;
-				
-				case 8:		ChannelType = tChannelType::UINT32N;	break;
-				case 9:		ChannelType = tChannelType::SINT32N;	break;
-				case 10:	ChannelType = tChannelType::UINT32;		break;
-				case 11:	ChannelType = tChannelType::SINT32;		break;
-
-				case 12:	ChannelType = tChannelType::SFLOAT;		break;
-				case 13:	ChannelType = tChannelType::UFLOAT;		break;
-
-				default:	ChannelType = tChannelType::Invalid;	break;
-			}
-			uint32 flags	= header->Flags;
-			AlphaMode		= (flags & 0x00000002) ? tAlphaMode::Premultiplied : tAlphaMode::Normal;
-
-			// Some pixel formats (in particular some BC formats) actually specify that they store pre-mult alpha.
-			// In these cases we don't care what the AlphaMode was set to due to the flags, because it MUST match the
-			// pixel format pre-mult mode. By passing AlphaMode into DeterminePixelFormatFromV3Header we give it the
-			// opportunity to overwrite it if it knows this setting with certainty.
-			tPVR::DeterminePixelFormatFromV3Header(PixelFormatSrc, AlphaMode, header->PixelFormat, ChannelType);
+			tPVR::GetFormatInfo_FromV3Header(PixelFormatSrc, ColourProfileSrc, AlphaMode, ChannelType, *header);
 			if (PixelFormatSrc == tPixelFormat::Invalid)
 			{
 				SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
 				return false;
 			}
-
+			PixelFormat					= PixelFormatSrc;
+			ColourProfile				= ColourProfileSrc;
 			NumSurfaces					= header->NumSurfaces;
 			NumFaces					= header->NumFaces;
 			NumMipmaps					= header->NumMipmaps;
 			Depth						= header->Depth;
 			Width						= header->Width;
 			Height						= header->Height;
-
-
-			if (header->ColourSpace == 0)
-			{
-				ColourProfileCur = tColourProfile::lRGB;
-				ColourProfileSrc = tColourProfile::lRGB;
-			}
-			else if (header->ColourSpace == 1)
-			{
-				ColourProfileCur = tColourProfile::sRGB;
-				ColourProfileSrc = tColourProfile::sRGB;
-			}
-
 			metaDataSize				= header->MetaDataSize;
 			metaData					= pvrData + sizeof(tPVR::HeaderV3);
 			textureData					= metaData + metaDataSize;
@@ -939,17 +883,17 @@ const char* tImagePVR::StateDescriptions[] =
 	"Valid",
 	"Conditional Valid. Image rows could not be flipped.",
 	"Conditional Valid. Pixel format specification ill-formed.",
-	"Conditional Valid. Image has dimension not multiple of four.",
-	"Conditional Valid. Image has dimension not power of two.",
+	"Conditional Valid. V2 Magic FourCC Incorrect.",
+	"Conditional Valid. V1 V2 PVRTC1 non-POT dimension or less than 4.",
 	"Conditional Valid. V1 V2 Mipmap flag doesn't match mipmap count.",
 	"Fatal Error. File does not exist.",
 	"Fatal Error. Incorrect file type. Must be a PVR file.",
 	"Fatal Error. Filesize incorrect.",
-	"Fatal Error. Magic FourCC Incorrect.",
+	"Fatal Error. V2 Magic FourCC Incorrect.",
 	"Fatal Error. Incorrect PVR header size.",
 	"Fatal Error. Bad PVR header data.",
 	"Fatal Error. Unsupported PVR file version.",
-	"Fatal Error. Incorrect Dimensions.",
+	"Fatal Error. V1 V2 PVRTC1 non-POT dimension or less than 4.",
 	"Fatal Error. Pixel format header size incorrect.",
 	"Fatal Error. Pixel format specification incorrect.",
 	"Fatal Error. Unsupported pixel format.",

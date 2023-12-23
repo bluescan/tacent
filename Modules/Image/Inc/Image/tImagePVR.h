@@ -47,7 +47,7 @@ public:
 		LoadFlag_ToneMapExposure	= 1 << 5,	// Apply exposure value when loading. Only affects HDR (linear-colour) formats.
 		LoadFlag_SpreadLuminance	= 1 << 6,	// For files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats. Applies only if decoding an R-only or L-only format.
 		LoadFlag_CondMultFourDim	= 1 << 7,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,
-		LoadFlag_StrictLoading		= 1 << 8,	// If set ill-formed files will not load. Specifically, if format is PVRTC (not PVRTC2) the texture must be POT if this flag set.
+		LoadFlag_StrictLoading		= 1 << 8,	// If set ill-formed files will not load. Specifically if format is PVRTC (not PVRTC2) the texture must be POT if this flag set.
 		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance | LoadFlag_AutoGamma | LoadFlag_StrictLoading
 	};
 
@@ -109,8 +109,8 @@ public:
 		FirstConditional,
 		Conditional_CouldNotFlipRows			= FirstConditional,
 		Conditional_IncorrectPixelFormatSpec,	// Possible if strict loading not set.
-		Conditional_DimNotMultFourBC,
-		Conditional_DimNotPowerTwoBC,
+		Conditional_V2IncorrectFourCC,
+		Conditional_V1V2InvalidDimensionsPVRTC1,
 		Conditional_V1V2MipmapFlagInconsistent,	// V1 V2 files have a mipmaps present flag. If set there should be more than one mipmap. If not set there should be one.
 		LastConditional							= Conditional_V1V2MipmapFlagInconsistent,
 
@@ -119,11 +119,11 @@ public:
 		Fatal_FileDoesNotExist					= FirstFatal,
 		Fatal_IncorrectFileType,
 		Fatal_IncorrectFileSize,
-		Fatal_IncorrectMagicNumber,
+		Fatal_V2IncorrectFourCC,
 		Fatal_IncorrectHeaderSize,
 		Fatal_BadHeaderData,
 		Fatal_UnsupportedPVRFileVersion,
-		Fatal_InvalidDimensions,
+		Fatal_V1V2InvalidDimensionsPVRTC1,
 		Fatal_IncorrectPixelFormatHeaderSize,
 		Fatal_IncorrectPixelFormatSpec,			// Possible if strict loading set.
 		Fatal_PixelFormatNotSupported,
@@ -190,7 +190,7 @@ public:
 	tPixelFormat GetPixelFormatSrc() const																				{ return PixelFormatSrc; }
 
 	// Returns the current colour profile.
-	tColourProfile GetColourProfile() const																				{ return ColourProfileCur; }
+	tColourProfile GetColourProfile() const																				{ return ColourProfile; }
 
 	// Returns the colour profile of the source file that was loaded. This may not match the current if, say, gamma
 	// correction was requested on load.
@@ -233,8 +233,8 @@ private:
 	tPixelFormat PixelFormat				= tPixelFormat::Invalid;
 	tPixelFormat PixelFormatSrc				= tPixelFormat::Invalid;
 
-	// These two _not_ part of the pixel format in tacent.
-	tColourProfile ColourProfileCur			= tColourProfile::Unspecified;
+	// These four are _not_ part of the pixel format in tacent.
+	tColourProfile ColourProfile			= tColourProfile::Unspecified;
 	tColourProfile ColourProfileSrc			= tColourProfile::Unspecified;
 	tAlphaMode AlphaMode					= tAlphaMode::Unspecified;
 	tChannelType ChannelType				= tChannelType::Unspecified;

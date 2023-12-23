@@ -199,6 +199,7 @@ public:
 	tColourProfile GetColourProfileSrc() const																			{ return ColourProfileSrc; }
 
 	tAlphaMode GetAlphaMode() const																						{ return AlphaMode; }
+	tChannelType GetChannelType() const																					{ return ChannelType; }
 
 	// The texture is considered to have alphas if it is in a pixel format that supports them. For BC1, the data is
 	// checked to see if any BC1 blocks have a binary alpha index. We could check the data for the RGBA formats, but
@@ -271,6 +272,7 @@ private:
 	tColourProfile ColourProfile			= tColourProfile::Unspecified;
 	tColourProfile ColourProfileSrc			= tColourProfile::Unspecified;
 	tAlphaMode AlphaMode					= tAlphaMode::Unspecified;
+	tChannelType ChannelType				= tChannelType::Unspecified;
 
 	bool IsCubeMap							= false;
 	bool IsModernDX10						= false;

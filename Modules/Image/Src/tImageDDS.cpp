@@ -1025,6 +1025,7 @@ void tImageDDS::Clear()
 	ColourProfile					= tColourProfile::Unspecified;
 	ColourProfileSrc				= tColourProfile::Unspecified;
 	AlphaMode						= tAlphaMode::Unspecified;
+	ChannelType						= tChannelType::Unspecified;
 	IsCubeMap						= false;
 	IsModernDX10					= false;
 	RowReversalOperationPerformed	= false;
@@ -1045,6 +1046,7 @@ bool tImageDDS::Set(tPixel* pixels, int width, int height, bool steal)
 	ColourProfile					= tColourProfile::LDRsRGB_LDRlA;
 	ColourProfileSrc				= tColourProfile::LDRsRGB_LDRlA;
 	AlphaMode						= tAlphaMode::Normal;
+	ChannelType						= tChannelType::UINT8N;
 	IsCubeMap						= false;
 	IsModernDX10					= false;
 	RowReversalOperationPerformed	= false;
