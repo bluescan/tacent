@@ -59,7 +59,7 @@ bool tImageXPM::Load(const uint8* xpmFileInMemory, int numBytes)
 	{
 		Pixels[p] = tPixel::blue;
 	}
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 
 	return true;
 }
@@ -83,7 +83,7 @@ bool tImageXPM::Set(tPixel* pixels, int width, int height, bool steal)
 		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
 	}
 
-	SrcPixelFormat = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 	return true;
 }
 

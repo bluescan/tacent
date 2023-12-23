@@ -135,9 +135,9 @@ public:
 	// invalid afterwards.
 	tPixel* StealPixels();
 	tFrame* GetFrame(bool steal = true) override;
-
 	tPixel* GetPixels() const																							{ return Pixels; }
-	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
+	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
+	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 
 	// A place to store EXIF and XMP metadata. JPeg files often contain this metadata. This field is not populated if
 	// NoDecompress flag was used during load.
@@ -152,11 +152,12 @@ private:
 	void Rotate90(bool antiClockWise);
 	void Flip(bool horizontal);
 
-	int Width			= 0;
-	int Height			= 0;
-	tPixel* Pixels		= nullptr;
-	uint8* MemImage		= nullptr;
-	int MemImageSize	= 0;
+	tPixelFormat PixelFormatSrc		= tPixelFormat::Invalid;
+	int Width						= 0;
+	int Height						= 0;
+	tPixel* Pixels					= nullptr;
+	uint8* MemImage					= nullptr;
+	int MemImageSize				= 0;
 };
 
 

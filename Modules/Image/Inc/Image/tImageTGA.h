@@ -107,19 +107,20 @@ public:
 	// invalid afterwards.
 	tPixel* StealPixels();
 	tFrame* GetFrame(bool steal = true) override;
-
 	tPixel* GetPixels() const																							{ return Pixels; }
-	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
+
+	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
+	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 
 private:
 	bool SaveUncompressed(const tString& tgaFile, tFormat) const;
 	bool SaveCompressed(const tString& tgaFile, tFormat) const;
 	void ReadColourBytes(tColouri& dest, const uint8* src, int bitDepth);
 
-	// So this is a neat C++11 feature. Allows simplified constructors.
-	int Width = 0;
-	int Height = 0;
-	tPixel* Pixels = nullptr;
+	tPixelFormat PixelFormatSrc	= tPixelFormat::Invalid;
+	int Width					= 0;
+	int Height					= 0;
+	tPixel* Pixels				= nullptr;
 };
 
 

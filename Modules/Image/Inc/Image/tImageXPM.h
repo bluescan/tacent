@@ -4,7 +4,7 @@
 // and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if a xpm file is
 // specified. After the array is stolen the tImageXPM is invalid. This is purely for performance.
 //
-// Copyright (c) 2020, 2022 Tristan Grimmer.
+// Copyright (c) 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -73,14 +73,16 @@ public:
 	// invalid afterwards.
 	tPixel* StealPixels();
 	tFrame* GetFrame(bool steal = true) override;
-
 	tPixel* GetPixels() const																							{ return Pixels; }
-	tPixelFormat SrcPixelFormat = tPixelFormat::Invalid;
+
+	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
+	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 
 private:
-	int Width = 0;
-	int Height = 0;
-	tPixel* Pixels = nullptr;
+	tPixelFormat PixelFormatSrc	= tPixelFormat::Invalid;
+	int Width					= 0;
+	int Height					= 0;
+	tPixel* Pixels				= nullptr;
 };
 
 
@@ -89,11 +91,11 @@ private:
 
 inline void tImageXPM::Clear()
 {
-	Width = 0;
-	Height = 0;
+	PixelFormatSrc	= tPixelFormat::Invalid;
+	Width			= 0;
+	Height			= 0;
 	delete[] Pixels;
 	Pixels = nullptr;
-	SrcPixelFormat = tPixelFormat::Invalid;
 }
 
 

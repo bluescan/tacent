@@ -177,12 +177,6 @@ public:
 	int GetWidth() const																								{ return IsValid() ? Layers[0][0]->Width : 0; }
 	int GetHeight() const																								{ return IsValid() ? Layers[0][0]->Height : 0; }
 
-	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the ktx data was in.
-	tPixelFormat GetPixelFormat() const																					{ return PixelFormat; }
-
-	// Will return the format the ktx data was in, even if you chose to decode.
-	tPixelFormat GetPixelFormatSrc() const																				{ return PixelFormatSrc; }
-
 	// Returns the current colour space.
 	tColourProfile GetColourProfile() const																				{ return ColourProfile; }
 
@@ -247,6 +241,12 @@ public:
 
 	// You do not own the returned pointer.
 	tLayer* GetLayer(int layerNum, int imageNum) const																	{ return Layers[layerNum][imageNum]; }
+
+	// Will return the format the ktx data was in, even if you chose to decode.
+	tPixelFormat GetPixelFormatSrc() const override																		{ return PixelFormatSrc; }
+
+	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the ktx data was in.
+	tPixelFormat GetPixelFormat() const override																		{ return PixelFormat; }
 
 	tString Filename;
 

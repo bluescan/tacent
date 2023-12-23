@@ -113,10 +113,12 @@ public:
 	tPixel* StealPixels();
 	tFrame* GetFrame(bool steal = true) override;
 	tPixel* GetPixels() const																							{ return Pixels; }
-	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
+	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
+	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 
 private:
-	const uint16 FourCC = 0x4D42;
+	tPixelFormat PixelFormatSrc		= tPixelFormat::Invalid;
+	const uint16 FourCC				= 0x4D42;
 
 	#pragma pack(push, r1, 1)
 	struct Header

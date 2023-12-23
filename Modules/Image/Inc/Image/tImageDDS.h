@@ -185,12 +185,6 @@ public:
 	int GetWidth() const																								{ return IsValid() ? Layers[0][0]->Width : 0; }
 	int GetHeight() const																								{ return IsValid() ? Layers[0][0]->Height : 0; }
 
-	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the dds data was in.
-	tPixelFormat GetPixelFormat() const																					{ return PixelFormat; }
-
-	// Will return the format the dds data was in, even if you chose to decode.
-	tPixelFormat GetPixelFormatSrc() const																				{ return PixelFormatSrc; }
-
 	// Returns the current colour space.
 	tColourProfile GetColourProfile() const																				{ return ColourProfile; }
 
@@ -257,6 +251,12 @@ public:
 	// You do not own the returned pointer.
 	tLayer* GetLayer(int layerNum, int imageNum) const																	{ return Layers[layerNum][imageNum]; }
 
+	// Will return the format the dds data was in, even if you chose to decode.
+	tPixelFormat GetPixelFormatSrc() const override																		{ return PixelFormatSrc; }
+
+	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the dds data was in.
+	tPixelFormat GetPixelFormat() const override																		{ return PixelFormat; }
+
 	tString Filename;
 
 private:
@@ -265,8 +265,8 @@ private:
 	// The states are bits in this States member.
 	uint32 States							= 0;
 
-	tPixelFormat PixelFormat				= tPixelFormat::Invalid;
 	tPixelFormat PixelFormatSrc				= tPixelFormat::Invalid;
+	tPixelFormat PixelFormat				= tPixelFormat::Invalid;
 
 	// These two _not_ part of the pixel format in tacent.
 	tColourProfile ColourProfile			= tColourProfile::Unspecified;

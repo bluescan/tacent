@@ -101,7 +101,9 @@ public:
 	// Returns a pointer to the frame, but it's not yours to delete. This object still owns it.
 	tFrame* GetFrame(int frameNum);
 
-	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
+	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
+	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
+
 	tList<tFrame> Frames;
 
 	// The background colour of webp files defaults to white only because that is what popular browsers default to.
@@ -111,6 +113,8 @@ public:
 
 private:
 	bool CopyRegion(tPixel* dst, int dstW, int dstH, tPixel* src, int srcW, int srcH, int offsetX, int offsetY, bool blend);
+
+	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 };
 
 

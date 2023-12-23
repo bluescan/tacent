@@ -115,11 +115,13 @@ public:
 	// invalid afterwards.
 	tPixel* StealPixels();
 	tFrame* GetFrame(bool steal = true) override;
-
 	tPixel* GetPixels() const																							{ return Pixels; }
-	tPixelFormat PixelFormatSrc		= tPixelFormat::Invalid;
+
+	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
+	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 
 private:
+	tPixelFormat PixelFormatSrc		= tPixelFormat::Invalid;
 
 	// @todo We could just use a single tFrame here instead of the 3 members below. Might simplify it a bit.
 	int Width						= 0;

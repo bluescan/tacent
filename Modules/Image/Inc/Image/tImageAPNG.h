@@ -109,8 +109,6 @@ public:
 	// Returns a pointer to the frame, but it's not yours to delete. This object still owns it.
 	tFrame* GetFrame(int frameNum);
 
-	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
-
 	// Since some apng files may have a .png extension, it is hand to quickly be able to tell if a particular .png
 	// file is an apng. Probably no one will ever read this comment, but the Mozilla apng people should probably not
 	// have insisted that apngs be encoded in pngs. In any case, this slightly crappy code cannot guarantee that a
@@ -121,7 +119,13 @@ public:
 	// better than APngDis, which could be further modified but is unfamiliar code.
 	static bool IsAnimatedPNG(const tString& pngFile);
 
+	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
+	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
+
 	tList<tFrame> Frames;
+
+private:
+	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 };
 
 

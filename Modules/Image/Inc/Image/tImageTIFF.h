@@ -109,12 +109,14 @@ public:
 	// Returns a pointer to the frame, but it's not yours to delete. This object still owns it.
 	tFrame* GetFrame(int frameNum);
 
-	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
+	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
+	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 
 private:
 	int ReadSoftwarePageDuration(TIFF*) const;
 	bool WriteSoftwarePageDuration(TIFF*, int milliseconds) const;
 
+	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 	tList<tFrame> Frames;
 };
 

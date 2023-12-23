@@ -97,12 +97,6 @@ public:
 	// If not decoded it returns false if the pixel format supports transparency.
 	bool IsOpaque() const;
 
-	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the pkm data is in.
-	tPixelFormat GetPixelFormat() const																					{ return PixelFormat; }
-
-	// Will return the format the astc data was originally in, even if you chose to decode.
-	tPixelFormat GetPixelFormatSrc() const																				{ return PixelFormatSrc; }
-
 	// Returns the current colour profile.
 	tColourProfile GetColourProfile() const																				{ return ColourProfile; }
 
@@ -115,6 +109,12 @@ public:
 	tLayer* StealLayer()																								{ tLayer* layer = Layer; Layer = nullptr; return layer; }
 	tLayer* GetLayer() const																							{ return Layer; }
 	tFrame* GetFrame(bool steal = true) override;
+
+	// Will return the format the astc data was originally in, even if you chose to decode.
+	tPixelFormat GetPixelFormatSrc() const override																		{ return PixelFormatSrc; }
+
+	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the pkm data is in.
+	tPixelFormat GetPixelFormat() const override																		{ return PixelFormat; }
 
 private:
 	tPixelFormat PixelFormat				= tPixelFormat::Invalid;

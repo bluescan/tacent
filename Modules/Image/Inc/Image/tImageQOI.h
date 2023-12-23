@@ -111,15 +111,17 @@ public:
 	// invalid afterwards.
 	tPixel* StealPixels();
 	tFrame* GetFrame(bool steal = true) override;
-
 	tPixel* GetPixels() const																							{ return Pixels; }
-	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
+
+	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
+	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 
 private:
-	tSpace ColourSpace		= tSpace::Invalid;
-	int Width				= 0;
-	int Height				= 0;
-	tPixel* Pixels			= nullptr;
+	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
+	tSpace ColourSpace			= tSpace::Invalid;
+	int Width					= 0;
+	int Height					= 0;
+	tPixel* Pixels				= nullptr;
 };
 
 

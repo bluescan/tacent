@@ -8,7 +8,7 @@
 // c) Supports widths and heights of 256.
 // Victor Laskin's header/licence in the original ico.cpp is shown below.
 //
-// Copyright (c) 2020-2022 Tristan Grimmer.
+// Copyright (c) 2020-2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -82,7 +82,6 @@ public:
 	void Clear() override;
 	bool IsValid() const override																						{ return (GetNumFrames() >= 1); }
 	int GetNumFrames() const																							{ return Frames.GetNumItems(); }
-	tPixelFormat GetBestSrcPixelFormat() const;
 
 	// After this call you are the owner of the frame and must eventually delete it. The frame you stole will no longer
 	// be part of the tImageICO, but the remaining ones will still be there. GetNumFrames will be one fewer.
@@ -95,6 +94,13 @@ public:
 
 	// Returns a pointer to the frame, but it's not yours to delete. This object still owns it.
 	tFrame* GetFrame(int frameNum);
+
+	// Different frames of an ICO file may have different pixel formats. This function uses bpp as the metric to find
+	// the 'best' one used in all frames.
+	tPixelFormat GetBestSrcPixelFormat() const;
+
+	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? GetBestSrcPixelFormat() : tPixelFormat::Invalid; }
+	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 
 private:
 	bool PopulateFrames(const uint8* buffer, int numBytes);	
@@ -151,9 +157,13 @@ inline tPixelFormat tImageICO::GetBestSrcPixelFormat() const
 	{
 		if (frame->PixelFormatSrc == tPixelFormat::Invalid)
 			continue;
+
+		// Early exit as can't do better than 32-bit for an ico file.
 		if (frame->PixelFormatSrc == tPixelFormat::R8G8B8A8)
 			return tPixelFormat::R8G8B8A8;
-		else if (frame->PixelFormatSrc < bestFormat)
+
+		// Otherwise use the bpp metric to determine the 'best'.
+		else if (tGetBitsPerPixelFloat(frame->PixelFormatSrc) > tGetBitsPerPixelFloat(bestFormat))
 			bestFormat = frame->PixelFormatSrc;
 	}
 	
