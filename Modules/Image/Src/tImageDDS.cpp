@@ -534,11 +534,11 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 	alphaMode	= tAlphaMode::None;
 	chanType	= tChannelType::NONE;
 
-	#define C(c) case tDDS::##c
-	#define F(f) format = tPixelFormat::##f;
-	#define P(p) profile = tColourProfile::##p;
-	#define M(m) alphaMode = tAlphaMode::##m;
-	#define T(t) chanType = tChannelType::##t;
+	#define C(c) case tDDS::c
+	#define F(f) format = tPixelFormat::f;
+	#define P(p) profile = tColourProfile::p;
+	#define M(m) alphaMode = tAlphaMode::m;
+	#define T(t) chanType = tChannelType::t;
 
 	// DXGI formats do not specify premultiplied alpha mode like DXT4/5 so we leave it unspecified. As for sRGB,
 	// if it says UNORM_SRGB, sure, it may not contain sRGB data, but it's as good as you can get in terms of knowing.
@@ -717,11 +717,11 @@ void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& format, tColourProfile& profil
 	alphaMode	= tAlphaMode::None;
 	chanType	= tChannelType::NONE;
 
-	#define C(c) case tDDS::##c
-	#define F(f) format = tPixelFormat::##f;
-	#define P(p) profile = tColourProfile::##p;
-	#define M(m) alphaMode = tAlphaMode::##m;
-	#define T(t) chanType = tChannelType::##t;
+	#define C(c) case tDDS::c
+	#define F(f) format = tPixelFormat::f;
+	#define P(p) profile = tColourProfile::p;
+	#define M(m) alphaMode = tAlphaMode::m;
+	#define T(t) chanType = tChannelType::t;
 	switch (fourCC)
 	{
 		// Note that during inspecition of the individual layer data, the DXT1 pixel format might be modified
