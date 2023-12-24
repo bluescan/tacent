@@ -539,27 +539,32 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 	#define P(p) profile = tColourProfile::##p;
 	#define M(m) alphaMode = tAlphaMode::##m;
 	#define T(t) chanType = tChannelType::##t;
+
+	// DXGI formats do not specify premultiplied alpha mode like DXT4/5 so we leave it unspecified. As for sRGB,
+	// if it says UNORM_SRGB, sure, it may not contain sRGB data, but it's as good as you can get in terms of knowing.
+	// I mean if the DirectX loader 'treats' it as being sRGB (in that it will convert it to linear), then we should
+	// treat it as being sRGB data in general. Of course it could just be a recipe for apple pie, and if it is, it is
+	// a recipe the authors wanted interpreted as sRGB data, otherwise they wouldn't have chosen the _SRGB pixel format.
+	// Additionally real files in the wild are mostly still sRGB even with the non _SRGB DXGIFMT. For these cases the
+	// switch below still chooses sRGB, but to make it clear, we explicity tag it with a commented out lRGB. That is,
+	// when there is a non-sRGB variant and an sRGB variant, it _should_ be that the non-sRGB is linear, but real files
+	// are still sRGB, so we explicitly put a commented out lRGB tag. eg. DXGIFMT_BC1_UNORM.
 	switch (dxgiFormat)
 	{
 		//
 		// BC Formats.
 		//
 		C(DXGIFMT_BC1_TYPELESS):				F(BC1DXT1)			P(sRGB)		M(None)		T(NONE)		break;
-		C(DXGIFMT_BC1_UNORM):					F(BC1DXT1)									T(UINT8N)	break;
+		C(DXGIFMT_BC1_UNORM):					F(BC1DXT1)			/*P(lRGB)*/				T(UINT8N)	break;
 		C(DXGIFMT_BC1_UNORM_SRGB):				F(BC1DXT1)									T(UINT8N)	break;
 
 		// DXGI formats do not specify premultiplied alpha mode like DXT2/3 so we leave it unspecified.
 		C(DXGIFMT_BC2_TYPELESS):				F(BC2DXT2DXT3)											break;
-		C(DXGIFMT_BC2_UNORM):					F(BC2DXT2DXT3)								T(UINT8N)	break;
+		C(DXGIFMT_BC2_UNORM):					F(BC2DXT2DXT3)		/*P(lRGB)*/				T(UINT8N)	break;
 		C(DXGIFMT_BC2_UNORM_SRGB):				F(BC2DXT2DXT3)								T(UINT8N)	break;
 
-		// DXGI formats do not specify premultiplied alpha mode like DXT4/5 so we leave it unspecified. As for sRGB,
-		// if it says UNORM_SRGB, sure, it may not contain sRGB data, but it's as good as you can get in terms of knowing.
-		// I mean if the DirectX loader 'treats' it as being sRGB (in that it will convert it to linear), then we should
-		// treat it as being sRGB data in general. Of course it could just be a recipe for apple pie, and if it is, it is
-		// a recipe the authors wanted interpreted as sRGB data, otherwise they wouldn't have chosen the _SRGB pixel format.
 		C(DXGIFMT_BC3_TYPELESS):				F(BC3DXT4DXT5)											break;
-		C(DXGIFMT_BC3_UNORM):					F(BC3DXT4DXT5)								T(UINT8N)	break;
+		C(DXGIFMT_BC3_UNORM):					F(BC3DXT4DXT5)		/*P(lRGB)*/				T(UINT8N)	break;
 		C(DXGIFMT_BC3_UNORM_SRGB):				F(BC3DXT4DXT5)								T(UINT8N)	break;
 
 		// We don't decode signed properly yet.
@@ -578,10 +583,8 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 		C(DXGIFMT_BC6H_SF16):					F(BC6S)				P(HDRa)					T(SHALF)	break;
 
 		// Interpret typeless as sRGB. UNORM without the SRGB must be linear.
-		// Apparently real files in the wild are mostly still sRGB even with the non _SRGB DXGIFMT.
 		C(DXGIFMT_BC7_TYPELESS):				F(BC7)													break;
-		//C(DXGIFMT_BC7_UNORM):					F(BC7)				P(lRGB)					T(UINT8N)	break;
-		C(DXGIFMT_BC7_UNORM):					F(BC7)										T(UINT8N)	break;
+		C(DXGIFMT_BC7_UNORM):					F(BC7)				/*P(lRGB)*/				T(UINT8N)	break;
 		C(DXGIFMT_BC7_UNORM_SRGB):				F(BC7)										T(UINT8N)	break;
 
 		//
@@ -608,16 +611,14 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 		// the UNORM one is linear (otherwise why have sRGB variant).
 		// Apparently real files in the wild are mostly still sRGB even with the non _SRGB DXGIFMT.
 		C(DXGIFMT_R8G8B8A8_TYPELESS):			F(R8G8B8A8)												break;
-		//C(DXGIFMT_R8G8B8A8_UNORM):			F(R8G8B8A8)			P(lRGB)					T(UINT8N)	break;
-		C(DXGIFMT_R8G8B8A8_UNORM):				F(R8G8B8A8)									T(UINT8N)	break;
+		C(DXGIFMT_R8G8B8A8_UNORM):				F(R8G8B8A8)			/*P(lRGB)*/				T(UINT8N)	break;
 		C(DXGIFMT_R8G8B8A8_UINT):				F(R8G8B8A8)									T(UINT8)	break;
 		C(DXGIFMT_R8G8B8A8_UNORM_SRGB):			F(R8G8B8A8)									T(UINT8N)	break;
 		//C(DXGIFMT_R8G8B8A8_SNORM):			F(R8G8B8A8)									T(SINT8N)	break;
 		//C(DXGIFMT_R8G8B8A8_SINT):				F(R8G8B8A8)									T(SINT8)	break;
 
 		C(DXGIFMT_B8G8R8A8_TYPELESS):			F(B8G8R8A8)												break;
-		//C(DXGIFMT_B8G8R8A8_UNORM):			F(B8G8R8A8)			P(lRGB)					T(UINT8N)	break;
-		C(DXGIFMT_B8G8R8A8_UNORM):				F(B8G8R8A8)									T(UINT8N)	break;
+		C(DXGIFMT_B8G8R8A8_UNORM):				F(B8G8R8A8)			/*P(lRGB)*/				T(UINT8N)	break;
 		C(DXGIFMT_B8G8R8A8_UNORM_SRGB):			F(B8G8R8A8)									T(UINT8N)	break;
 
 		// Formats without explicit sRGB variants are considered sRGB.
@@ -709,149 +710,99 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 }
 
 
-void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& frmt, tColourProfile& prof, tAlphaMode& mode, tChannelType& chan, uint32 fourCC)
+void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& format, tColourProfile& profile, tAlphaMode& alphaMode, tChannelType& chanType, uint32 fourCC)
 {
-	frmt = tPixelFormat::Invalid;
-	prof = tColourProfile::sRGB;
-	mode = tAlphaMode::Unspecified;
+	format		= tPixelFormat::Invalid;
+	profile		= tColourProfile::sRGB;
+	alphaMode	= tAlphaMode::None;
+	chanType	= tChannelType::NONE;
 
+	#define C(c) case tDDS::##c
+	#define F(f) format = tPixelFormat::##f;
+	#define P(p) profile = tColourProfile::##p;
+	#define M(m) alphaMode = tAlphaMode::##m;
+	#define T(t) chanType = tChannelType::##t;
 	switch (fourCC)
 	{
 		// Note that during inspecition of the individual layer data, the DXT1 pixel format might be modified
 		// to DXT1BA (binary alpha).
-		case tDDS::D3DFMT_DXT1:
-			frmt = tPixelFormat::BC1DXT1;
-			break;
+		C(D3DFMT_DXT1):							F(BC1DXT1)			P(sRGB)		M(None)		T(NONE)		break;
 
 		// DXT2 and DXT3 are the same format. Only how you interpret the data is different. In tacent we treat them
 		// as the same pixel-format. How contents are interpreted (the data) is not part of the format. 
-		case tDDS::D3DFMT_DXT2:
-			mode = tAlphaMode::Premultiplied;
-			frmt = tPixelFormat::BC2DXT2DXT3;
-			break;
+		C(D3DFMT_DXT2):							F(BC2DXT2DXT3)					M(Mult)					break;
+		C(D3DFMT_DXT3):							F(BC2DXT2DXT3)					M(Norm)					break;
+		C(D3DFMT_DXT4):							F(BC3DXT4DXT5)					M(Mult)					break;
+		C(D3DFMT_DXT5):							F(BC3DXT4DXT5)					M(Norm)					break;
 
-		case tDDS::D3DFMT_DXT3:
-			mode = tAlphaMode::Normal;
-			frmt = tPixelFormat::BC2DXT2DXT3;
-			break;
+		C(D3DFMT_ATI1):							F(BC4ATI1)			P(lRGB)								break;
+		C(D3DFMT_BC4U):							F(BC4ATI1)			P(lRGB)								break;
 
-		case tDDS::D3DFMT_DXT4:
-			mode = tAlphaMode::Premultiplied;
-			frmt = tPixelFormat::BC3DXT4DXT5;
-			break;
+		C(D3DFMT_ATI2):							F(BC5ATI2)			P(lRGB)								break;
+		C(D3DFMT_BC5U):							F(BC5ATI2)			P(lRGB)								break;
 
-		case tDDS::D3DFMT_DXT5:
-			mode = tAlphaMode::Normal;
-			frmt = tPixelFormat::BC3DXT4DXT5;
-			break;
+		// We don't yet support signed BC4S or BC5S.
+		//C(D3DFMT_BC4S):																				break;
+		//C(D3DFMT_BC5S):																				break;
 
-		case tDDS::D3DFMT_ATI1:
-		case tDDS::D3DFMT_BC4U:
-			prof = tColourProfile::lRGB;
-			frmt = tPixelFormat::BC4ATI1;
-			break;
+		// We don't yet support D3DFMT_R8G8_B8G8 or D3DFMT_G8R8_G8B8 -- That's a lot of green precision.
+		//C(D3DFMT_R8G8_B8G8):																			break;
+		//C(D3DFMT_G8R8_G8B8):																			break;
 
-		case tDDS::D3DFMT_ATI2:
-		case tDDS::D3DFMT_BC5U:
-			prof = tColourProfile::lRGB;
-			frmt = tPixelFormat::BC5ATI2;
-			break;
-
-		case tDDS::D3DFMT_BC4S:				// We don't support signed BC4S.
-		case tDDS::D3DFMT_BC5S:				// We don't support signed BC5S.
-		case tDDS::D3DFMT_R8G8_B8G8:		// We don't support DXGIFMT_R8G8_B8G8_UNORM -- That's a lot of green precision.
-		case tDDS::D3DFMT_G8R8_G8B8:		// We don't support DXGIFMT_G8R8_G8B8_UNORM -- That's a lot of green precision.
-			break;
-
-		case tDDS::D3DFMT_ETC:
-		case tDDS::D3DFMT_ETC1:
-			frmt = tPixelFormat::ETC1;
-			break;
-
-		case tDDS::D3DFMT_ETC2:
-			frmt = tPixelFormat::ETC2RGB;
-			break;
-
-		case tDDS::D3DFMT_ETCA:
-			frmt = tPixelFormat::ETC2RGBA;
-			break;
-
-		case tDDS::D3DFMT_ETCP:
-			frmt = tPixelFormat::ETC2RGBA1;
-			break;
+		C(D3DFMT_ETC):							F(ETC1)													break;
+		C(D3DFMT_ETC1):							F(ETC1)													break;
+		C(D3DFMT_ETC2):							F(ETC2RGB)												break;
+		C(D3DFMT_ETCA):							F(ETC2RGBA)												break;
+		C(D3DFMT_ETCP):							F(ETC2RGBA1)											break;
 
 		// Sometimes these D3D formats may be stored in the FourCC slot.
-		case tDDS::D3DFMT_A16B16G16R16:	// We don't support DXGIFMT_R16G16B16A16_UNORM.
-		case tDDS::D3DFMT_Q16W16V16U16:	// We don't support DXGIFMT_R16G16B16A16_SNORM.
-			break;
+		// We don't yet support D3DFMT_A16B16G16R16 or D3DFMT_Q16W16V16U16.
+		//C(D3DFMT_A16B16G16R16):																		break;
+		//C(D3DFMT_Q16W16V16U16):																		break;
 
-		case tDDS::D3DFMT_A8:
-			prof = tColourProfile::lRGB;
-			frmt = tPixelFormat::A8;
-			break;
+		C(D3DFMT_A8):							F(A8)				P(lRGB)								break;
+		C(D3DFMT_L8):							F(L8)													break;
 
-		case tDDS::D3DFMT_L8:
-			frmt = tPixelFormat::L8;
-			break;
+		// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
+		// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
+		C(D3DFMT_A8B8G8R8):						F(R8G8B8A8)												break;
+		C(D3DFMT_R16F):							F(R16f)				P(HDRa)								break;
 
-		case tDDS::D3DFMT_A8B8G8R8:
-			// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
-			// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
-			frmt = tPixelFormat::R8G8B8A8;
-			break;
+		// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
+		// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
+		C(D3DFMT_G16R16F):						F(R16G16f)			P(HDRa)								break;
 
-		case tDDS::D3DFMT_R16F:
-			prof = tColourProfile::HDRa;
-			frmt = tPixelFormat::R16f;
-			break;
+		// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
+		// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
+		C(D3DFMT_A16B16G16R16F):				F(R16G16B16A16f)	P(HDRa)								break;
+		C(D3DFMT_R32F):							F(R32f)				P(HDRa)								break;
 
-		case tDDS::D3DFMT_G16R16F:
-			// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
-			// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
-			prof = tColourProfile::HDRa;
-			frmt = tPixelFormat::R16G16f;
-			break;
+		// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
+		// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
+		C(D3DFMT_G32R32F):						F(R32G32f)			P(HDRa)								break;
 
-		case tDDS::D3DFMT_A16B16G16R16F:
-			// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
-			// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
-			prof = tColourProfile::HDRa;
-			frmt = tPixelFormat::R16G16B16A16f;
-			break;
+		// It's inconsistent calling the D3D format A32B32G32R32F. The floats in this case are clearly in RGBA
+		// order, not ABGR. Anyway, I only have control over the tPixelFormat names. In fairness, it looks like
+		// the format-name was fixed in the DX10 header format type names.
+		// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
+		C(D3DFMT_A32B32G32R32F):				F(R32G32B32A32f)	P(HDRa)								break;
 
-		case tDDS::D3DFMT_R32F:
-			prof = tColourProfile::HDRa;
-			frmt = tPixelFormat::R32f;
-			break;
-
-		case tDDS::D3DFMT_G32R32F:
-			// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
-			// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
-			prof = tColourProfile::HDRa;
-			frmt = tPixelFormat::R32G32f;
-			break;
-
-		case tDDS::D3DFMT_A32B32G32R32F:
-			// It's inconsistent calling the D3D format A32B32G32R32F. The floats in this case are clearly in RGBA
-			// order, not ABGR. Anyway, I only have control over the tPixelFormat names. In fairness, it looks like
-			// the format-name was fixed in the DX10 header format type names.
-			// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
-			prof = tColourProfile::HDRa;
-			frmt = tPixelFormat::R32G32B32A32f;
-			break;
-
-		default:
-			prof = tColourProfile::Unspecified;
-			break;
+		default:													P(None)								break;
 	}
+	#undef C
+	#undef F
+	#undef P
+	#undef M
+	#undef T
 }
 
 
 void tDDS::GetFormatInfo_FromComponentMasks(tPixelFormat& format, tColourProfile& profile, tAlphaMode& alpha, tChannelType& chanType, const FormatData& fmtData)
 {
-	format = tPixelFormat::Invalid;
-	profile = tColourProfile::sRGB;
-	alpha = tAlphaMode::Unspecified;
+	format		= tPixelFormat::Invalid;
+	profile		= tColourProfile::sRGB;
+	alpha		= tAlphaMode::Unspecified;
+	chanType	= tChannelType::Unspecified;
 
 	uint32 bitCount	= fmtData.RGBBitCount;
 	bool anyRGB		= (fmtData.Flags &  tDDS::DDFormatFlag_RGB);
@@ -906,7 +857,7 @@ void tDDS::GetFormatInfo_FromComponentMasks(tPixelFormat& format, tColourProfile
 			break;
 
 		case tPixelFormat::Invalid:
-			profile = tColourProfile::Unspecified;
+			profile = tColourProfile::None;
 			break;
 	}
 }
