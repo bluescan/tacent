@@ -578,8 +578,10 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 		C(DXGIFMT_BC6H_SF16):					F(BC6S)				P(HDRa)					T(SHALF)	break;
 
 		// Interpret typeless as sRGB. UNORM without the SRGB must be linear.
+		// Apparently real files in the wild are mostly still sRGB even with the non _SRGB DXGIFMT.
 		C(DXGIFMT_BC7_TYPELESS):				F(BC7)													break;
-		C(DXGIFMT_BC7_UNORM):					F(BC7)				P(lRGB)					T(UINT8N)	break;
+		//C(DXGIFMT_BC7_UNORM):					F(BC7)				P(lRGB)					T(UINT8N)	break;
+		C(DXGIFMT_BC7_UNORM):					F(BC7)										T(UINT8N)	break;
 		C(DXGIFMT_BC7_UNORM_SRGB):				F(BC7)										T(UINT8N)	break;
 
 		//
@@ -604,15 +606,18 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 		// UINT is stored same as UNORM. Only diff is that UNORM ends up as a 'float' from 0.0 to 1.0.
 		// We don't decode signed properly yet. Since there is UNORM and UNORM_SRGB, need to assume
 		// the UNORM one is linear (otherwise why have sRGB variant).
+		// Apparently real files in the wild are mostly still sRGB even with the non _SRGB DXGIFMT.
 		C(DXGIFMT_R8G8B8A8_TYPELESS):			F(R8G8B8A8)												break;
-		C(DXGIFMT_R8G8B8A8_UNORM):				F(R8G8B8A8)			P(lRGB)					T(UINT8N)	break;
+		//C(DXGIFMT_R8G8B8A8_UNORM):			F(R8G8B8A8)			P(lRGB)					T(UINT8N)	break;
+		C(DXGIFMT_R8G8B8A8_UNORM):				F(R8G8B8A8)									T(UINT8N)	break;
 		C(DXGIFMT_R8G8B8A8_UINT):				F(R8G8B8A8)									T(UINT8)	break;
 		C(DXGIFMT_R8G8B8A8_UNORM_SRGB):			F(R8G8B8A8)									T(UINT8N)	break;
 		//C(DXGIFMT_R8G8B8A8_SNORM):			F(R8G8B8A8)									T(SINT8N)	break;
 		//C(DXGIFMT_R8G8B8A8_SINT):				F(R8G8B8A8)									T(SINT8)	break;
 
 		C(DXGIFMT_B8G8R8A8_TYPELESS):			F(B8G8R8A8)												break;
-		C(DXGIFMT_B8G8R8A8_UNORM):				F(B8G8R8A8)			P(lRGB)					T(UINT8N)	break;
+		//C(DXGIFMT_B8G8R8A8_UNORM):			F(B8G8R8A8)			P(lRGB)					T(UINT8N)	break;
+		C(DXGIFMT_B8G8R8A8_UNORM):				F(B8G8R8A8)									T(UINT8N)	break;
 		C(DXGIFMT_B8G8R8A8_UNORM_SRGB):			F(B8G8R8A8)									T(UINT8N)	break;
 
 		// Formats without explicit sRGB variants are considered sRGB.
