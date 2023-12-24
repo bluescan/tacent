@@ -641,61 +641,62 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 		//
 		// We chose HDR as the default profile because it can load LDR blocks. The other way around doesn't work with
 		// with the tests images -- the LDR profile doesn't appear capable of loading HDR blocks (they become magenta).
+		// Apparently real files in the wild are mostly still sRGB even with the non _SRGB DXGIFMT.
 		//
-		C(DXGIFMT_EXT_ASTC_4X4_TYPELESS):		F(ASTC4X4)			P(HDRa)								break;
-		C(DXGIFMT_EXT_ASTC_4X4_UNORM):			F(ASTC4X4)			P(HDRa)					T(UINT8N)	break;
+		C(DXGIFMT_EXT_ASTC_4X4_TYPELESS):		F(ASTC4X4)			/*P(HDRa)*/							break;
+		C(DXGIFMT_EXT_ASTC_4X4_UNORM):			F(ASTC4X4)			/*P(HDRa)*/				T(UINT8N)	break;
 		C(DXGIFMT_EXT_ASTC_4X4_UNORM_SRGB):		F(ASTC4X4)									T(UINT8N)	break;
 
-		C(DXGIFMT_EXT_ASTC_5X4_TYPELESS):		F(ASTC5X4)			P(HDRa)								break;
-		C(DXGIFMT_EXT_ASTC_5X4_UNORM):			F(ASTC5X4)			P(HDRa)					T(UINT8N)	break;
+		C(DXGIFMT_EXT_ASTC_5X4_TYPELESS):		F(ASTC5X4)			/*P(HDRa)*/							break;
+		C(DXGIFMT_EXT_ASTC_5X4_UNORM):			F(ASTC5X4)			/*P(HDRa)*/				T(UINT8N)	break;
 		C(DXGIFMT_EXT_ASTC_5X4_UNORM_SRGB):		F(ASTC5X4)									T(UINT8N)	break;
 
-		C(DXGIFMT_EXT_ASTC_5X5_TYPELESS):		F(ASTC5X5)			P(HDRa)								break;
-		C(DXGIFMT_EXT_ASTC_5X5_UNORM):			F(ASTC5X5)			P(HDRa)					T(UINT8N)	break;
+		C(DXGIFMT_EXT_ASTC_5X5_TYPELESS):		F(ASTC5X5)			/*P(HDRa)*/							break;
+		C(DXGIFMT_EXT_ASTC_5X5_UNORM):			F(ASTC5X5)			/*P(HDRa)*/				T(UINT8N)	break;
 		C(DXGIFMT_EXT_ASTC_5X5_UNORM_SRGB):		F(ASTC5X5)									T(UINT8N)	break;
 
-		C(DXGIFMT_EXT_ASTC_6X5_TYPELESS):		F(ASTC6X5)			P(HDRa)								break;
-		C(DXGIFMT_EXT_ASTC_6X5_UNORM):			F(ASTC6X5)			P(HDRa)					T(UINT8N)	break;
+		C(DXGIFMT_EXT_ASTC_6X5_TYPELESS):		F(ASTC6X5)			/*P(HDRa)*/							break;
+		C(DXGIFMT_EXT_ASTC_6X5_UNORM):			F(ASTC6X5)			/*P(HDRa)*/				T(UINT8N)	break;
 		C(DXGIFMT_EXT_ASTC_6X5_UNORM_SRGB):		F(ASTC6X5)									T(UINT8N)	break;
 
-		C(DXGIFMT_EXT_ASTC_6X6_TYPELESS):		F(ASTC6X6)			P(HDRa)								break;
-		C(DXGIFMT_EXT_ASTC_6X6_UNORM):			F(ASTC6X6)			P(HDRa)					T(UINT8N)	break;
+		C(DXGIFMT_EXT_ASTC_6X6_TYPELESS):		F(ASTC6X6)			/*P(HDRa)*/							break;
+		C(DXGIFMT_EXT_ASTC_6X6_UNORM):			F(ASTC6X6)			/*P(HDRa)*/				T(UINT8N)	break;
 		C(DXGIFMT_EXT_ASTC_6X6_UNORM_SRGB):		F(ASTC6X6)									T(UINT8N)	break;
 
-		C(DXGIFMT_EXT_ASTC_8X5_TYPELESS):		F(ASTC8X5)			P(HDRa)								break;
-		C(DXGIFMT_EXT_ASTC_8X5_UNORM):			F(ASTC8X5)			P(HDRa)					T(UINT8N)	break;
+		C(DXGIFMT_EXT_ASTC_8X5_TYPELESS):		F(ASTC8X5)			/*P(HDRa)*/							break;
+		C(DXGIFMT_EXT_ASTC_8X5_UNORM):			F(ASTC8X5)			/*P(HDRa)*/				T(UINT8N)	break;
 		C(DXGIFMT_EXT_ASTC_8X5_UNORM_SRGB):		F(ASTC8X5)									T(UINT8N)	break;
 
-		C(DXGIFMT_EXT_ASTC_8X6_TYPELESS):		F(ASTC8X6)			P(HDRa)								break;
-		C(DXGIFMT_EXT_ASTC_8X6_UNORM):			F(ASTC8X6)			P(HDRa)					T(UINT8N)	break;
+		C(DXGIFMT_EXT_ASTC_8X6_TYPELESS):		F(ASTC8X6)			/*P(HDRa)*/							break;
+		C(DXGIFMT_EXT_ASTC_8X6_UNORM):			F(ASTC8X6)			/*P(HDRa)*/				T(UINT8N)	break;
 		C(DXGIFMT_EXT_ASTC_8X6_UNORM_SRGB):		F(ASTC8X6)									T(UINT8N)	break;
 
-		C(DXGIFMT_EXT_ASTC_8X8_TYPELESS):		F(ASTC8X8)			P(HDRa)								break;
-		C(DXGIFMT_EXT_ASTC_8X8_UNORM):			F(ASTC8X8)			P(HDRa)					T(UINT8N)	break;
+		C(DXGIFMT_EXT_ASTC_8X8_TYPELESS):		F(ASTC8X8)			/*P(HDRa)*/							break;
+		C(DXGIFMT_EXT_ASTC_8X8_UNORM):			F(ASTC8X8)			/*P(HDRa)*/				T(UINT8N)	break;
 		C(DXGIFMT_EXT_ASTC_8X8_UNORM_SRGB):		F(ASTC8X8)									T(UINT8N)	break;
 
-		C(DXGIFMT_EXT_ASTC_10X5_TYPELESS):		F(ASTC10X5)			P(HDRa)								break;
-		C(DXGIFMT_EXT_ASTC_10X5_UNORM):			F(ASTC10X5)			P(HDRa)					T(UINT8N)	break;
+		C(DXGIFMT_EXT_ASTC_10X5_TYPELESS):		F(ASTC10X5)			/*P(HDRa)*/							break;
+		C(DXGIFMT_EXT_ASTC_10X5_UNORM):			F(ASTC10X5)			/*P(HDRa)*/				T(UINT8N)	break;
 		C(DXGIFMT_EXT_ASTC_10X5_UNORM_SRGB):	F(ASTC10X5)									T(UINT8N)	break;
 
-		C(DXGIFMT_EXT_ASTC_10X6_TYPELESS):		F(ASTC10X6)			P(HDRa)								break;
-		C(DXGIFMT_EXT_ASTC_10X6_UNORM):			F(ASTC10X6)			P(HDRa)					T(UINT8N)	break;
+		C(DXGIFMT_EXT_ASTC_10X6_TYPELESS):		F(ASTC10X6)			/*P(HDRa)*/							break;
+		C(DXGIFMT_EXT_ASTC_10X6_UNORM):			F(ASTC10X6)			/*P(HDRa)*/				T(UINT8N)	break;
 		C(DXGIFMT_EXT_ASTC_10X6_UNORM_SRGB):	F(ASTC10X6)									T(UINT8N)	break;
 
-		C(DXGIFMT_EXT_ASTC_10X8_TYPELESS):		F(ASTC10X8)			P(HDRa)								break;
-		C(DXGIFMT_EXT_ASTC_10X8_UNORM):			F(ASTC10X8)			P(HDRa)					T(UINT8N)	break;
+		C(DXGIFMT_EXT_ASTC_10X8_TYPELESS):		F(ASTC10X8)			/*P(HDRa)*/							break;
+		C(DXGIFMT_EXT_ASTC_10X8_UNORM):			F(ASTC10X8)			/*P(HDRa)*/				T(UINT8N)	break;
 		C(DXGIFMT_EXT_ASTC_10X8_UNORM_SRGB):	F(ASTC10X8)									T(UINT8N)	break;
 
-		C(DXGIFMT_EXT_ASTC_10X10_TYPELESS):		F(ASTC10X10)		P(HDRa)								break;
-		C(DXGIFMT_EXT_ASTC_10X10_UNORM):		F(ASTC10X10)		P(HDRa)					T(UINT8N)	break;
+		C(DXGIFMT_EXT_ASTC_10X10_TYPELESS):		F(ASTC10X10)		/*P(HDRa)*/							break;
+		C(DXGIFMT_EXT_ASTC_10X10_UNORM):		F(ASTC10X10)		/*P(HDRa)*/				T(UINT8N)	break;
 		C(DXGIFMT_EXT_ASTC_10X10_UNORM_SRGB):	F(ASTC10X10)								T(UINT8N)	break;
 
-		C(DXGIFMT_EXT_ASTC_12X10_TYPELESS):		F(ASTC12X10)		P(HDRa)								break;
-		C(DXGIFMT_EXT_ASTC_12X10_UNORM):		F(ASTC12X10)		P(HDRa)					T(UINT8N)	break;
+		C(DXGIFMT_EXT_ASTC_12X10_TYPELESS):		F(ASTC12X10)		/*P(HDRa)*/							break;
+		C(DXGIFMT_EXT_ASTC_12X10_UNORM):		F(ASTC12X10)		/*P(HDRa)*/				T(UINT8N)	break;
 		C(DXGIFMT_EXT_ASTC_12X10_UNORM_SRGB):	F(ASTC12X10)								T(UINT8N)	break;
 
-		C(DXGIFMT_EXT_ASTC_12X12_TYPELESS):		F(ASTC12X12)		P(HDRa)								break;
-		C(DXGIFMT_EXT_ASTC_12X12_UNORM):		F(ASTC12X12)		P(HDRa)					T(UINT8N)	break;
+		C(DXGIFMT_EXT_ASTC_12X12_TYPELESS):		F(ASTC12X12)		/*P(HDRa)*/							break;
+		C(DXGIFMT_EXT_ASTC_12X12_UNORM):		F(ASTC12X12)		/*P(HDRa)*/				T(UINT8N)	break;
 		C(DXGIFMT_EXT_ASTC_12X12_UNORM_SRGB):	F(ASTC12X12)								T(UINT8N)	break;
 
 		default:													P(None)								break;
