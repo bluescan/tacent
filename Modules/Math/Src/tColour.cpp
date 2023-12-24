@@ -102,7 +102,9 @@ const char* tChannelTypeNames[] =
 	"UnsignedInt32",
 	"SignedInt32",
 	"UnsignedFloat",
-	"SignedFloat"
+	"SignedFloat",
+	"UnsignedHalf",
+	"SignedHalf"
 };
 tStaticAssert(tNumElements(tChannelTypeNames) == int(tChannelType::NumTypes));
 
@@ -122,7 +124,9 @@ const char* tChannelTypeShortNames[] =
 	"UINT32",
 	"SINT32",
 	"UFLOAT",
-	"SFLOAT"
+	"SFLOAT",
+	"UHALF",
+	"SHALF"
 };
 tStaticAssert(tNumElements(tChannelTypeShortNames) == int(tChannelType::NumTypes));
 
@@ -136,7 +140,7 @@ const char* tGetChannelTypeName(tChannelType type)
 
 const char* tGetChannelTypeShortName(tChannelType type)
 {
-	if (type == tChannelType::None)				return "None";
+	if (type == tChannelType::NONE)				return "NONE";
 	return tChannelTypeShortNames[int(type)];
 }
 

@@ -160,7 +160,8 @@ const char* tGetAlphaModeShortName(tAlphaMode);
 // here. It describes how the colour information was intended to be interpreted by a shader: as an integer or a float,
 // signed or unsigned, normalized to [0.0,1.0] or not. The reason it is not part of the pixel format is it is quite
 // common for the data to be encoded as, say, an unsigned 8-bit integer, but 'converted' to a float when it is passed
-// off the video memory by the graphics API so it is available as a float in the fragment/pixel shader.
+// off the video memory by the graphics API so it is available as a float in the fragment/pixel shader. The types here
+// do not rep the ay the data is encoded, but rather the type you may expect the sampler to use in an HLSL program.
 enum class tChannelType
 {
 	Unspecified				= -1,
@@ -176,13 +177,15 @@ enum class tChannelType
 	SignedInt32Normalized,
 	UnsignedInt32,
 	SignedInt32,
-	SignedFloat,
 	UnsignedFloat,
+	SignedFloat,
+	UnsignedHalf,
+	SignedHalf,
 	NumTypes,
 
 	// Shorter synonyms.
 	Invalid					= Unspecified,
-	None					= Unspecified,
+	NONE					= Unspecified,
 	UINT8N					= UnsignedInt8Normalized,
 	SINT8N					= SignedInt8Normalized,
 	UINT8					= UnsignedInt8,
@@ -195,8 +198,10 @@ enum class tChannelType
 	SINT32N					= SignedInt32Normalized,
 	UINT32					= UnsignedInt32,
 	SINT32					= SignedInt32,
+	UFLOAT					= UnsignedFloat,
 	SFLOAT					= SignedFloat,
-	UFLOAT					= UnsignedFloat
+	UHALF					= UnsignedHalf,
+	SHALF					= SignedHalf
 };
 extern const char* tChannelTypeNames[int(tChannelType::NumTypes)];
 extern const char* tChannelTypeShortNames[int(tChannelType::NumTypes)];
