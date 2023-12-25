@@ -224,12 +224,12 @@ int main(int argc, char** argv)
 	// tTest(ImageAdjustment);
 	// tTest(ImageDetection);
 	// tTest(ImageDDS);
-	// tTest(ImageKTX1);
+	tTest(ImageKTX1);
 	// tTest(ImageKTX2);
 	// tTest(ImageASTC);
 	// tTest(ImagePKM);
-	tTest(ImagePVR2);
-	tTest(ImagePVR3);
+	// tTest(ImagePVR2);
+	// tTest(ImagePVR3);
 	#endif
 	// tTest(UTF);
 	// tTest(Hash);

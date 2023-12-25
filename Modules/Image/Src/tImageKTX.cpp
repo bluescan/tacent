@@ -78,7 +78,8 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 		//
 		// BC formats.
 		//
-		CC(SRGB_S3TC_DXT1_EXT):					F(BC1DXT1)			P(sRGB)		M(None)		T(NONE)		break;
+		CC(RGB_S3TC_DXT1_EXT):					F(BC1DXT1)			/*P(lRGB)*/	M(None)		T(NONE)		break;
+		CC(SRGB_S3TC_DXT1_EXT):					F(BC1DXT1)												break;
 		CC(RGBA_S3TC_DXT1_EXT):					F(BC1DXT1A)			/*P(lRGB)*/							break;
 		CC(SRGB_ALPHA_S3TC_DXT1_EXT):			F(BC1DXT1A)												break;
 		CC(RGBA_S3TC_DXT3_EXT):					F(BC2DXT2DXT3)		/*P(lRGB)*/							break;
@@ -834,13 +835,13 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 	tSystem::tFileType fileType = tSystem::tGetFileType(Filename);
 	if (ktx1)
 	{
-		tKTX::GetFormatInfo_FromGLFormat(PixelFormat, ColourProfileSrc, AlphaMode, ChannelType, ktx1->glType, ktx1->glFormat, ktx1->glInternalformat);
+		tKTX::GetFormatInfo_FromGLFormat(PixelFormatSrc, ColourProfileSrc, AlphaMode, ChannelType, ktx1->glType, ktx1->glFormat, ktx1->glInternalformat);
 		if (fileType == tSystem::tFileType::KTX2)
 			SetStateBit(StateBit::Conditional_ExtVersionMismatch);
 	}
 	else if (ktx2)
 	{
-		tKTX::GetFormatInfo_FromVKFormat(PixelFormat, ColourProfileSrc, AlphaMode, ChannelType, ktx2->vkFormat);
+		tKTX::GetFormatInfo_FromVKFormat(PixelFormatSrc, ColourProfileSrc, AlphaMode, ChannelType, ktx2->vkFormat);
 		if (fileType == tSystem::tFileType::KTX)
 			SetStateBit(StateBit::Conditional_ExtVersionMismatch);
 	}
