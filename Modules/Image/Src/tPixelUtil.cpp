@@ -702,7 +702,7 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 		case tPixelFormat::EACRG11U:
 		{
 			struct RG { uint16 R; uint16 G; };
-			// This format decompresses to RG uint8s.
+			// This format decompresses to RG uint16s.
 			RG* rdata = new RG[wfull*hfull];
 
 			for (int y = 0; y < hfull; y += 4)
@@ -729,7 +729,7 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 		case tPixelFormat::EACRG11S:
 		{
 			struct RG { float R; float G; };
-			// This format decompresses to R float.
+			// This format decompresses to RG floats.
 			RG* rdata = new RG[wfull*hfull];
 
 			for (int y = 0; y < hfull; y += 4)

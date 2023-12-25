@@ -107,16 +107,16 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 		CC(SRGB8_PUNCHTHROUGH_ALPHA1_ETC2):		F(ETC2RGBA1)											break;
 
 		// Leaving the R and RG formats in sRGB space.
-		CC(R11_EAC):							F(EACR11U)									T(UINT8N)	break;
-		CC(SIGNED_R11_EAC):						F(EACR11S)									T(SINT8N)	break;
-		CC(RG11_EAC):							F(EACRG11U)									T(UINT8N)	break;
-		CC(SIGNED_RG11_EAC):					F(EACRG11S)									T(SINT8N)	break;
+		CC(R11_EAC):							F(EACR11U)									T(UINT16)	break;
+		CC(SIGNED_R11_EAC):						F(EACR11S)									T(SFLOAT)	break;
+		CC(RG11_EAC):							F(EACRG11U)									T(UINT16)	break;
+		CC(SIGNED_RG11_EAC):					F(EACRG11S)									T(SFLOAT)	break;
 
 		//
 		// For ASTC formats we assume HDR-linear space if SRGB not specified.
 		//
 		// We chose HDR as the default profile because it can load LDR blocks. The other way around doesn't work with
-		// with the tests images -- the LDR profile doesn't appear capable of loading HDR blocks (they become magenta).
+		// with the test images -- the LDR profile doesn't appear capable of loading HDR blocks (they become magenta).
 		//
 		CC(RGBA_ASTC_4x4_KHR):					F(ASTC4X4)			P(HDRa)								break;
 		CC(SRGB8_ALPHA8_ASTC_4x4_KHR):			F(ASTC4X4)												break;
@@ -353,86 +353,41 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		//
 		// BC Formats.
 		//
-		C(BC1_RGB_UNORM_BLOCK):
-		C(BC1_RGB_SRGB_BLOCK):
-			F(BC1DXT1)
-			break;
+		C(BC1_RGB_UNORM_BLOCK):					F(BC1DXT1)			/*P(lRGB)*/				T(UINT8N)	break;
+		C(BC1_RGB_SRGB_BLOCK):					F(BC1DXT1)												break;
+		C(BC1_RGBA_UNORM_BLOCK):				F(BC1DXT1A)			/*P(lRGB)*/				T(UINT8N)	break;
+		C(BC1_RGBA_SRGB_BLOCK):					F(BC1DXT1A)												break;
+		C(BC2_UNORM_BLOCK):						F(BC2DXT2DXT3)		/*P(lRGB)*/				T(UINT8N)	break;
+		C(BC2_SRGB_BLOCK):						F(BC2DXT2DXT3)											break;
+		C(BC3_UNORM_BLOCK):						F(BC3DXT4DXT5)		/*P(lRGB)*/				T(UINT8N)	break;
+		C(BC3_SRGB_BLOCK):						F(BC3DXT4DXT5)											break;
 
-		C(BC1_RGBA_UNORM_BLOCK):
-		C(BC1_RGBA_SRGB_BLOCK):
-			F(BC1DXT1A)
-			break;
+		// Signed not supported yet for BC4 and BC5.
+		//C(BC4_SNORM_BLOCK):																			break;
+		C(BC4_UNORM_BLOCK):						F(BC4ATI1)									T(UINT8N)	break;
+		//C(BC5_SNORM_BLOCK):																			break;
+		C(BC5_UNORM_BLOCK):						F(BC5ATI2)									T(UINT8N)	break;
 
-		C(BC2_UNORM_BLOCK):
-		C(BC2_SRGB_BLOCK):
-			F(BC2DXT2DXT3)
-			break;
+		C(BC6H_UFLOAT_BLOCK):					F(BC6U)				P(HDRa)					T(UFLOAT)	break;
+		C(BC6H_SFLOAT_BLOCK):					F(BC6S)				P(HDRa)					T(SFLOAT)	break;
 
-		C(BC3_UNORM_BLOCK):
-		C(BC3_SRGB_BLOCK):
-			F(BC3DXT4DXT5)
-			break;
-
-		C(BC4_SNORM_BLOCK):				// Signed not supported yet.
-			break;
-		C(BC4_UNORM_BLOCK):
-			F(BC4ATI1)
-			break;
-
-		C(BC5_SNORM_BLOCK):				// Signed not supported yet.
-			break;
-		C(BC5_UNORM_BLOCK):
-			F(BC5ATI2)
-			break;
-
-		C(BC6H_UFLOAT_BLOCK):
-			P(HDRa)
-			F(BC6U)
-			break;
-
-		C(BC6H_SFLOAT_BLOCK):
-			P(HDRa)
-			F(BC6S)
-			break;
-
-		C(BC7_UNORM_BLOCK):
-		C(BC7_SRGB_BLOCK):
-			F(BC7)
-			break;
+		C(BC7_UNORM_BLOCK):						F(BC7)				/*P(lRGB)*/				T(UINT8N)	break;
+		C(BC7_SRGB_BLOCK):						F(BC7)													break;
 
 		//
 		// ETC2 and EAC.
 		//
-		C(ETC2_R8G8B8_UNORM_BLOCK):
-		C(ETC2_R8G8B8_SRGB_BLOCK):
-			F(ETC2RGB)
-			break;
+		C(ETC2_R8G8B8_UNORM_BLOCK):				F(ETC2RGB)			/*P(lRGB)*/				T(UINT8N)	break;
+		C(ETC2_R8G8B8_SRGB_BLOCK):				F(ETC2RGB)												break;
+		C(ETC2_R8G8B8A8_UNORM_BLOCK):			F(ETC2RGBA)			/*P(lRGB)*/				T(UINT8N)	break;
+		C(ETC2_R8G8B8A8_SRGB_BLOCK):			F(ETC2RGBA)												break;
+		C(ETC2_R8G8B8A1_UNORM_BLOCK):			F(ETC2RGBA1)		/*P(lRGB)*/				T(UINT8N)	break;
+		C(ETC2_R8G8B8A1_SRGB_BLOCK):			F(ETC2RGBA1)											break;
 
-		C(ETC2_R8G8B8A8_UNORM_BLOCK):
-		C(ETC2_R8G8B8A8_SRGB_BLOCK):
-			F(ETC2RGBA)
-			break;
-
-		C(ETC2_R8G8B8A1_UNORM_BLOCK):
-		C(ETC2_R8G8B8A1_SRGB_BLOCK):
-			F(ETC2RGBA1)
-			break;
-
-		C(EAC_R11_UNORM_BLOCK):
-			F(EACR11U)
-			break;
-
-		C(EAC_R11_SNORM_BLOCK):
-			F(EACR11S)
-			break;
-
-		C(EAC_R11G11_UNORM_BLOCK):
-			F(EACRG11U)
-			break;
-
-		C(EAC_R11G11_SNORM_BLOCK):
-			F(EACRG11S)
-			break;
+		C(EAC_R11_UNORM_BLOCK):					F(EACR11U)									T(UINT16N)	break;
+		C(EAC_R11_SNORM_BLOCK):					F(EACR11S)									T(SFLOAT)	break;
+		C(EAC_R11G11_UNORM_BLOCK):				F(EACRG11U)									T(UINT16N)	break;
+		C(EAC_R11G11_SNORM_BLOCK):				F(EACRG11S)									T(SFLOAT)	break;
 
 		//
 		// ASTC
@@ -450,95 +405,68 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		// component values > 1.0 are making a liar out of "UNORM" -- and
 		// 2) VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT
 		//
-		// Which one is correct? AMD's compressonator, after converting an EXR to ASTCif it can't guarantee blocks won't return values above 1.0 (i.e. an HDR image).
+		// Which one is correct? AMD's compressonator, after converting an EXR to ASTC, it can't guarantee blocks won't
+		// return values above 1.0 (i.e. an HDR image). It does not generate SFLOAT_BLOCK_EXT. I suspect compressionator
+		// is incorrect.
 		//
-		// For now I'm going to assume VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT is unused and unless SRGB is in the name, it's linear space (HDR).
 		// We chose HDR as the default profile because it can load LDR blocks. The other way around doesn't work with
 		// with the tests images -- the LDR profile doesn't appear capable of loading HDR blocks (they become magenta).
 		//
-		C(ASTC_4x4_UNORM_BLOCK):
-			P(lRGB)
-		C(ASTC_4x4_SRGB_BLOCK):
-			F(ASTC4X4)
-			break;
+		C(ASTC_4x4_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
+		C(ASTC_4x4_UNORM_BLOCK):				F(ASTC4X4)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_4x4_SRGB_BLOCK):					F(ASTC4X4)												break;
 
-		C(ASTC_5x4_UNORM_BLOCK):
-			P(lRGB)
-		C(ASTC_5x4_SRGB_BLOCK):
-			F(ASTC5X4)
-			break;
+		C(ASTC_5x4_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
+		C(ASTC_5x4_UNORM_BLOCK):				F(ASTC5X4)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_5x4_SRGB_BLOCK):					F(ASTC5X4)												break;
 
-		C(ASTC_5x5_UNORM_BLOCK):
-			P(lRGB)
-		C(ASTC_5x5_SRGB_BLOCK):
-			F(ASTC5X5)
-			break;
+		C(ASTC_5x5_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
+		C(ASTC_5x5_UNORM_BLOCK):				F(ASTC5X5)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_5x5_SRGB_BLOCK):					F(ASTC5X5)												break;
 
-		C(ASTC_6x5_UNORM_BLOCK):
-			P(lRGB)
-		C(ASTC_6x5_SRGB_BLOCK):
-			F(ASTC6X5)
-			break;
+		C(ASTC_6x5_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
+		C(ASTC_6x5_UNORM_BLOCK):				F(ASTC6X5)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_6x5_SRGB_BLOCK):					F(ASTC6X5)												break;
 
-		C(ASTC_6x6_UNORM_BLOCK):
-			P(lRGB)
-		C(ASTC_6x6_SRGB_BLOCK):
-			F(ASTC6X6)
-			break;
+		C(ASTC_6x6_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
+		C(ASTC_6x6_UNORM_BLOCK):				F(ASTC6X6)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_6x6_SRGB_BLOCK):					F(ASTC6X6)												break;
 
-		C(ASTC_8x5_UNORM_BLOCK):
-			P(lRGB)
-		C(ASTC_8x5_SRGB_BLOCK):
-			F(ASTC8X5)
-			break;
+		C(ASTC_8x5_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
+		C(ASTC_8x5_UNORM_BLOCK):				F(ASTC8X5)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_8x5_SRGB_BLOCK):					F(ASTC8X5)												break;
 
-		C(ASTC_8x6_UNORM_BLOCK):
-			P(lRGB)
-		C(ASTC_8x6_SRGB_BLOCK):
-			F(ASTC8X6)
-			break;
+		C(ASTC_8x6_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
+		C(ASTC_8x6_UNORM_BLOCK):				F(ASTC8X6)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_8x6_SRGB_BLOCK):					F(ASTC8X6)												break;
 
-		C(ASTC_8x8_UNORM_BLOCK):
-			P(lRGB)
-		C(ASTC_8x8_SRGB_BLOCK):
-			F(ASTC8X8)
-			break;
+		C(ASTC_8x8_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
+		C(ASTC_8x8_UNORM_BLOCK):				F(ASTC8X8)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_8x8_SRGB_BLOCK):					F(ASTC8X8)												break;
 
-		C(ASTC_10x5_UNORM_BLOCK):
-			P(lRGB)
-		C(ASTC_10x5_SRGB_BLOCK):
-			F(ASTC10X5)
-			break;
+		C(ASTC_10x5_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
+		C(ASTC_10x5_UNORM_BLOCK):				F(ASTC10X5)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_10x5_SRGB_BLOCK):				F(ASTC10X5)												break;
 
-		C(ASTC_10x6_UNORM_BLOCK):
-			P(lRGB)
-		C(ASTC_10x6_SRGB_BLOCK):
-			F(ASTC10X6)
-			break;
+		C(ASTC_10x6_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
+		C(ASTC_10x6_UNORM_BLOCK):				F(ASTC10X6)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_10x6_SRGB_BLOCK):				F(ASTC10X6)												break;
 
-		C(ASTC_10x8_UNORM_BLOCK):
-			P(lRGB)
-		C(ASTC_10x8_SRGB_BLOCK):
-			F(ASTC10X8)
-			break;
+		C(ASTC_10x8_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
+		C(ASTC_10x8_UNORM_BLOCK):				F(ASTC10X8)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_10x8_SRGB_BLOCK):				F(ASTC10X8)												break;
 
-		C(ASTC_10x10_UNORM_BLOCK):
-			P(lRGB)
-		C(ASTC_10x10_SRGB_BLOCK):
-			F(ASTC10X10)
-			break;
+		C(ASTC_10x10_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
+		C(ASTC_10x10_UNORM_BLOCK):				F(ASTC10X10)		P(HDRa)					T(UINT8N)	break;
+		C(ASTC_10x10_SRGB_BLOCK):				F(ASTC10X10)											break;
 
-		C(ASTC_12x10_UNORM_BLOCK):
-			P(lRGB)
-		C(ASTC_12x10_SRGB_BLOCK):
-			F(ASTC12X10)
-			break;
+		C(ASTC_12x10_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
+		C(ASTC_12x10_UNORM_BLOCK):				F(ASTC12X10)		P(HDRa)					T(UINT8N)	break;
+		C(ASTC_12x10_SRGB_BLOCK):				F(ASTC12X10)											break;
 
-		C(ASTC_12x12_UNORM_BLOCK):
-			P(lRGB)
-		C(ASTC_12x12_SRGB_BLOCK):
-			F(ASTC12X12)
-			break;
+		C(ASTC_12x12_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
+		C(ASTC_12x12_UNORM_BLOCK):				F(ASTC12X12)		P(HDRa)					T(UINT8N)	break;
+		C(ASTC_12x12_SRGB_BLOCK):				F(ASTC12X12)											break;
 	}
 
 	if (format == tPixelFormat::Invalid)
