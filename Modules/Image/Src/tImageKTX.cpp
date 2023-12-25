@@ -33,121 +33,83 @@ namespace tImage
 // Helper functions, enums, and types for parsing KTX files.
 namespace tKTX
 {
-	// These figure out the pixel format, the colour-profile, and the alpha mode. tPixelFormat does not specify ancilllary
-	// properties of the data -- it specified the encoding of the data. The extra information, like the colour-profile it
-	// was authored in, is stored in tColourProfile. In many cases this satellite information cannot be determined, in
-	// which case colour-profile will be set to the 'unspecified' enumerant.
-	void GetFormatInfo_FromGLFormat(tPixelFormat&, tColourProfile&, uint32 glType, uint32 glFormat, uint32 glInternalFormat);
-	void GetFormatInfo_FromVKFormat(tPixelFormat&, tColourProfile&, uint32 vkFormat);
+	// These figure out the pixel-format, colour-profile, alpha-mode, and channe-type. tPixelFormat does not specify
+	// ancilllary properties of the data -- it specified the encoding of the data. The extra information, like the
+	// colour-profile itcwas authored in, is stored in tColourProfile, tAlphaMode, and tChannelType. In many cases this
+	// satellite information cannot be determined, in which case they get set the their 'unspecified' enumerants.
+	void GetFormatInfo_FromGLFormat(tPixelFormat&, tColourProfile&, tAlphaMode&, tChannelType&, uint32 glType, uint32 glFormat, uint32 glInternalFormat);
+	void GetFormatInfo_FromVKFormat(tPixelFormat&, tColourProfile&, tAlphaMode&, tChannelType&, uint32 vkFormat);
 }
 
 
-void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& profile, uint32 glType, uint32 glFormat, uint32 glInternalFormat)
+void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& profile, tAlphaMode& alphaMode, tChannelType& chanType, uint32 glType, uint32 glFormat, uint32 glInternalFormat)
 {
-	format = tPixelFormat::Invalid;
-
 	// For colour profile (the space of the data) we try to make an educated guess. In general only the asset author
 	// knows the colour space/profile. For most (non-HDR) pixel formats for colours, we assume the data is sRGB.
 	// Floating-point formats are likewise assumed to be in linear-space (and are usually used for HDR images). In
 	// addition when the data is probably not colour data (like ATI1/2) we assume it's in linear.
-	profile = tColourProfile::LDRsRGB_LDRlA;
+	format		= tPixelFormat::Invalid;
+	profile		= tColourProfile::sRGB;
+	alphaMode	= tAlphaMode::None;
+	chanType	= tChannelType::NONE;
 
-	// First deal with compressed formats. For these the internal-format must be specified and can be used
-	// to determine the format of the data in the ktx file. See https://registry.khronos.org/KTX/specs/1.0/ktxspec_v1.html
+	// First deal with compressed formats. For these the internal-format must be specified and can be used to determine
+	// the format of the data in the ktx file. See https://registry.khronos.org/KTX/specs/1.0/ktxspec_v1.html
 	// In cases where it's not a compressed format, the internal-format should not be queried to determine the format
 	// of the ktx file data because it represents the desired format the data should be converted to when binding --
 	// all we care about is the format of the actual data, and glType/glFormat can be used to determine that.
-	// Exception: The internal format is used to determine some non-compressed formats
+	// Exception: The internal format is used to determine some non-compressed formats.
+	//
+	// Regardiing colour profiles. In many cases there are two similar GL pixel formats that differ only in that one of
+	// them specifies using sRGB for the RGB channels. For example:
+	// SRGB_ALPHA_S3TC_DXT3_EXT	: sRGB for RGB, linear for A.
+	// RGBA_S3TC_DXT3_EXT		: No-sRGB variant.
+	// The implication is that RGBA_S3TC_DXT3_EXT should therefore be in linear RGBA space. Unfortunately most files in
+	// the wild that have these non-sRGB variants are usually still authored in sRGB-space. Tacent keeps them by default
+	// in sRGB-space but you will see a commented-out lRGB tag in the switch below (indicating how it 'should' be).
+	#define C(c) case GL_##c
+	#define CC(c) case GL_COMPRESSED_##c
+	#define F(f) format = tPixelFormat::f;
+	#define P(p) profile = tColourProfile::p;
+	#define M(m) alphaMode = tAlphaMode::m;
+	#define T(t) chanType = tChannelType::t;
 	switch (glInternalFormat)
 	{
 		//
 		// BC formats.
 		//
-		case GL_COMPRESSED_RGB_S3TC_DXT1_EXT:
-		case GL_COMPRESSED_SRGB_S3TC_DXT1_EXT:
-			format = tPixelFormat::BC1DXT1;
-			break;
+		CC(SRGB_S3TC_DXT1_EXT):					F(BC1DXT1)			P(sRGB)		M(None)		T(NONE)		break;
+		CC(RGBA_S3TC_DXT1_EXT):					F(BC1DXT1A)			/*P(lRGB)*/							break;
+		CC(SRGB_ALPHA_S3TC_DXT1_EXT):			F(BC1DXT1A)												break;
+		CC(RGBA_S3TC_DXT3_EXT):					F(BC2DXT2DXT3)		/*P(lRGB)*/							break;
+		CC(SRGB_ALPHA_S3TC_DXT3_EXT):			F(BC2DXT2DXT3)											break;
+		CC(RGBA_S3TC_DXT5_EXT):					F(BC3DXT4DXT5)		/*P(lRGB)*/							break;
+		CC(SRGB_ALPHA_S3TC_DXT5_EXT):			F(BC3DXT4DXT5)											break;
+		CC(RED_RGTC1):							F(BC4ATI1)			P(lRGB)								break;
+		CC(RG_RGTC2):							F(BC5ATI2)			P(lRGB)								break;
+		CC(RGB_BPTC_UNSIGNED_FLOAT):			F(BC6U)				P(HDRa)					T(UFLOAT)	break;
+		CC(RGB_BPTC_SIGNED_FLOAT):				F(BC6S)				P(HDRa)					T(SFLOAT)	break;
 
-		case GL_COMPRESSED_RGBA_S3TC_DXT1_EXT:
-		case GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT:
-			format = tPixelFormat::BC1DXT1A;
-			break;
-
-		case GL_COMPRESSED_RGBA_S3TC_DXT3_EXT:
-		case GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT3_EXT:
-			format = tPixelFormat::BC2DXT2DXT3;
-			break;
-
-		case GL_COMPRESSED_RGBA_S3TC_DXT5_EXT:
-		case GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT:
-			format = tPixelFormat::BC3DXT4DXT5;
-			break;
-
-		case GL_COMPRESSED_RED_RGTC1:
-			profile = tColourProfile::LDRlRGBA;
-			format = tPixelFormat::BC4ATI1;
-			break;
-
-		case GL_COMPRESSED_RG_RGTC2:
-			profile = tColourProfile::LDRlRGBA;
-			format = tPixelFormat::BC5ATI2;
-			break;
-
-		case GL_COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::BC6U;
-			break;
-
-		case GL_COMPRESSED_RGB_BPTC_SIGNED_FLOAT:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::BC6S;
-			break;
-
-		case GL_COMPRESSED_RGBA_BPTC_UNORM:
-		case GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM:
-			format = tPixelFormat::BC7;
-			break;
+		// BPTC AKA BC7 is designed for UNORM data.
+		CC(RGBA_BPTC_UNORM):					F(BC7)				/*P(lRGB)*/				T(UINT8N)	break;
+		CC(SRGB_ALPHA_BPTC_UNORM):				F(BC7)										T(UINT8N)	break;
 
 		//
 		// ETC and EAC formats.
 		//
-		case GL_ETC1_RGB8_OES:
-			format = tPixelFormat::ETC1;
-			break;
-
-		// Since there are sRGB equivalents of these next three formats, they get set to Linear
-		// for the non-sRGB versions.
-		case GL_COMPRESSED_RGB8_ETC2:
-		case GL_COMPRESSED_SRGB8_ETC2:
-			format = tPixelFormat::ETC2RGB;
-			break;
-
-		case GL_COMPRESSED_RGBA8_ETC2_EAC:
-		case GL_COMPRESSED_SRGB8_ALPHA8_ETC2_EAC:
-			format = tPixelFormat::ETC2RGBA;
-			break;
-
-		case GL_COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2:
-		case GL_COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2:
-			format = tPixelFormat::ETC2RGBA1;
-			break;
+		C(ETC1_RGB8_OES):						F(ETC1)													break;
+		CC(RGB8_ETC2):							F(ETC2RGB)			/*P(lRGB)*/							break;
+		CC(SRGB8_ETC2):							F(ETC2RGB)												break;
+		CC(RGBA8_ETC2_EAC):						F(ETC2RGBA)			/*P(lRGB)*/							break;
+		CC(SRGB8_ALPHA8_ETC2_EAC):				F(ETC2RGBA)												break;
+		CC(RGB8_PUNCHTHROUGH_ALPHA1_ETC2):		F(ETC2RGBA1)		/*P(lRGB)*/							break;
+		CC(SRGB8_PUNCHTHROUGH_ALPHA1_ETC2):		F(ETC2RGBA1)											break;
 
 		// Leaving the R and RG formats in sRGB space.
-		case GL_COMPRESSED_R11_EAC:
-			format = tPixelFormat::EACR11U;
-			break;
-
-		case GL_COMPRESSED_SIGNED_R11_EAC:
-			format = tPixelFormat::EACR11S;
-			break;
-
-		case GL_COMPRESSED_RG11_EAC:
-			format = tPixelFormat::EACRG11U;
-			break;
-
-		case GL_COMPRESSED_SIGNED_RG11_EAC:
-			format = tPixelFormat::EACRG11S;
-			break;
+		CC(R11_EAC):							F(EACR11U)									T(UINT8N)	break;
+		CC(SIGNED_R11_EAC):						F(EACR11S)									T(SINT8N)	break;
+		CC(RG11_EAC):							F(EACRG11U)									T(UINT8N)	break;
+		CC(SIGNED_RG11_EAC):					F(EACRG11S)									T(SINT8N)	break;
 
 		//
 		// For ASTC formats we assume HDR-linear space if SRGB not specified.
@@ -155,99 +117,39 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 		// We chose HDR as the default profile because it can load LDR blocks. The other way around doesn't work with
 		// with the tests images -- the LDR profile doesn't appear capable of loading HDR blocks (they become magenta).
 		//
-		case GL_COMPRESSED_RGBA_ASTC_4x4_KHR:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_4x4_KHR:
-			format = tPixelFormat::ASTC4X4;
-			break;
+		CC(RGBA_ASTC_4x4_KHR):					F(ASTC4X4)			P(HDRa)								break;
+		CC(SRGB8_ALPHA8_ASTC_4x4_KHR):			F(ASTC4X4)												break;
+		CC(RGBA_ASTC_5x4_KHR):					F(ASTC5X4)			P(HDRa)								break;
+		CC(SRGB8_ALPHA8_ASTC_5x4_KHR):			F(ASTC5X4)												break;
+		CC(RGBA_ASTC_5x5_KHR):					F(ASTC5X5)			P(HDRa)								break;
+		CC(SRGB8_ALPHA8_ASTC_5x5_KHR):			F(ASTC5X5)												break;
+		CC(RGBA_ASTC_6x5_KHR):					F(ASTC6X5)			P(HDRa)								break;
+		CC(SRGB8_ALPHA8_ASTC_6x5_KHR):			F(ASTC6X5)												break;
+		CC(RGBA_ASTC_6x6_KHR):					F(ASTC6X6)			P(HDRa)								break;
+		CC(SRGB8_ALPHA8_ASTC_6x6_KHR):			F(ASTC6X6)												break;
+		CC(RGBA_ASTC_8x5_KHR):					F(ASTC8X5)			P(HDRa)								break;
+		CC(SRGB8_ALPHA8_ASTC_8x5_KHR):			F(ASTC8X5)												break;
+		CC(RGBA_ASTC_8x6_KHR):					F(ASTC8X6)			P(HDRa)								break;
+		CC(SRGB8_ALPHA8_ASTC_8x6_KHR):			F(ASTC8X6)												break;
+		CC(RGBA_ASTC_8x8_KHR):					F(ASTC8X8)			P(HDRa)								break;
+		CC(SRGB8_ALPHA8_ASTC_8x8_KHR):			F(ASTC8X8)												break;
+		CC(RGBA_ASTC_10x5_KHR):					F(ASTC10X5)			P(HDRa)								break;
+		CC(SRGB8_ALPHA8_ASTC_10x5_KHR):			F(ASTC10X5)												break;
+		CC(RGBA_ASTC_10x6_KHR):					F(ASTC10X6)			P(HDRa)								break;
+		CC(SRGB8_ALPHA8_ASTC_10x6_KHR):			F(ASTC10X6)												break;
+		CC(RGBA_ASTC_10x8_KHR):					F(ASTC10X8)			P(HDRa)								break;
+		CC(SRGB8_ALPHA8_ASTC_10x8_KHR):			F(ASTC10X8)												break;
+		CC(RGBA_ASTC_10x10_KHR):				F(ASTC10X10)		P(HDRa)								break;
+		CC(SRGB8_ALPHA8_ASTC_10x10_KHR):		F(ASTC10X10)											break;
+		CC(RGBA_ASTC_12x10_KHR):				F(ASTC12X10)		P(HDRa)								break;
+		CC(SRGB8_ALPHA8_ASTC_12x10_KHR):		F(ASTC12X10)											break;
+		CC(RGBA_ASTC_12x12_KHR):				F(ASTC12X12)		P(HDRa)								break;
+		CC(SRGB8_ALPHA8_ASTC_12x12_KHR):		F(ASTC12X12)											break;
 
-		case GL_COMPRESSED_RGBA_ASTC_5x4_KHR:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_5x4_KHR:
-			format = tPixelFormat::ASTC5X4;
-			break;
-
-		case GL_COMPRESSED_RGBA_ASTC_5x5_KHR:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_5x5_KHR:
-			format = tPixelFormat::ASTC5X5;
-			break;
-
-		case GL_COMPRESSED_RGBA_ASTC_6x5_KHR:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_6x5_KHR:
-			format = tPixelFormat::ASTC6X5;
-			break;
-
-		case GL_COMPRESSED_RGBA_ASTC_6x6_KHR:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_6x6_KHR:
-			format = tPixelFormat::ASTC6X6;
-			break;
-
-		case GL_COMPRESSED_RGBA_ASTC_8x5_KHR:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_8x5_KHR:
-			format = tPixelFormat::ASTC8X5;
-			break;
-
-		case GL_COMPRESSED_RGBA_ASTC_8x6_KHR:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_8x6_KHR:
-			format = tPixelFormat::ASTC8X6;
-			break;
-
-		case GL_COMPRESSED_RGBA_ASTC_8x8_KHR:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_8x8_KHR:
-			format = tPixelFormat::ASTC8X8;
-			break;
-
-		case GL_COMPRESSED_RGBA_ASTC_10x5_KHR:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_10x5_KHR:
-			format = tPixelFormat::ASTC10X5;
-			break;
-
-		case GL_COMPRESSED_RGBA_ASTC_10x6_KHR:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_10x6_KHR:
-			format = tPixelFormat::ASTC10X6;
-			break;
-
-		case GL_COMPRESSED_RGBA_ASTC_10x8_KHR:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_10x8_KHR:
-			format = tPixelFormat::ASTC10X8;
-			break;
-
-		case GL_COMPRESSED_RGBA_ASTC_10x10_KHR:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_10x10_KHR:
-			format = tPixelFormat::ASTC10X10;
-			break;
-
-		case GL_COMPRESSED_RGBA_ASTC_12x10_KHR:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_12x10_KHR:
-			format = tPixelFormat::ASTC12X10;
-			break;
-
-		case GL_COMPRESSED_RGBA_ASTC_12x12_KHR:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-		case GL_COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR:
-			format = tPixelFormat::ASTC12X12;
-			break;
-
-		case GL_R11F_G11F_B10F:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::B10G11R11uf;
-			break;
-
-		case GL_RGB9_E5:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::E5B9G9R9uf;
-			break;
+		// Decided to specify the channel-type as full floats rather than half. Ref implementations of
+		// B10G11R11uf and E5B9G9R9uf all convert to float rather than half. They are both unsigned.
+		C(R11F_G11F_B10F):						F(B10G11R11uf)		P(HDRa)					T(UFLOAT)	break;
+		C(RGB9_E5):								F(E5B9G9R9uf)		P(HDRa)					T(UFLOAT)	break;
 	}
 
 	if (format != tPixelFormat::Invalid)
@@ -256,373 +158,341 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 	// Not a compressed format. Look at glFormat.
 	switch (glFormat)
 	{
-		case GL_LUMINANCE:
+		C(LUMINANCE):
 			switch (glType)
 			{
-				case GL_UNSIGNED_BYTE:
-					format = tPixelFormat::L8;
-					break;
+				C(UNSIGNED_BYTE):				F(L8)										T(UINT8)	break;
 			}
 			break;
 
-		case GL_ALPHA:
+		C(ALPHA):
 			switch (glType)
 			{
-				case GL_UNSIGNED_BYTE:
-					format = tPixelFormat::A8;
-					profile = tColourProfile::LDRlRGBA;
-					break;
+				C(UNSIGNED_BYTE):				F(A8)				P(lRGB)					T(UINT8)	break;
 			}
 			break;
 
 		// It's ok to also include the 'INTEGER' versions here as it just restricts what the glType
 		// may be. For example R32f would still be GL_RED with type GL_FLOAT, and R8 could be either
 		// GL_RED/GL_UNSIGNED_BYTE or GL_RED_INTEGER/GL_UNSIGNED_BYTE.
-		case GL_RED:
-		case GL_RED_INTEGER:
+		C(RED):
+		C(RED_INTEGER):
 			switch (glType)
 			{
-				case GL_UNSIGNED_BYTE:
-					format = tPixelFormat::R8;
-					break;
-
-				case GL_HALF_FLOAT:
-					format = tPixelFormat::R16f;
-					profile = tColourProfile::HDRlRGB_LDRlA;
-					break;
-
-				case GL_FLOAT:
-					format = tPixelFormat::R32f;
-					profile = tColourProfile::HDRlRGB_LDRlA;
-					break;
+				C(UNSIGNED_BYTE):				F(R8)										T(UINT8)	break;
+				C(HALF_FLOAT):					F(R16f)				P(HDRa)					T(SHALF)	break;
+				C(FLOAT):						F(R32f)				P(HDRa)					T(SFLOAT)	break;
 			}
 			break;
 		
-		case GL_RG:
-		case GL_RG_INTEGER:
+		C(RG):
+		C(RG_INTEGER):
 			switch (glType)
 			{
-				case GL_UNSIGNED_BYTE:
-					format = tPixelFormat::R8G8;
-					break;
-
-				case GL_HALF_FLOAT:
-					format = tPixelFormat::R16G16f;
-					profile = tColourProfile::HDRlRGB_LDRlA;
-					break;
-
-				case GL_FLOAT:
-					format = tPixelFormat::R32G32f;
-					profile = tColourProfile::HDRlRGB_LDRlA;
-					break;
+				C(UNSIGNED_BYTE):				F(R8G8)										T(UINT8)	break;
+				C(HALF_FLOAT):					F(R16G16f)			P(HDRa)					T(SHALF)	break;
+				C(FLOAT):						F(R32G32f)			P(HDRa)					T(SFLOAT)	break;
 			}
 			break;
 
-		case GL_RGB:
-		case GL_RGB_INTEGER:
+		C(RGB):
+		C(RGB_INTEGER):
 			switch (glType)
 			{
-				case GL_UNSIGNED_BYTE:
-					format = tPixelFormat::R8G8B8;
-					break;
-
-				case GL_UNSIGNED_SHORT_5_6_5_REV:
-					format = tPixelFormat::G3B5R5G3;
-					break;
+				// They are all T(UINT8). The short refers to total pixel size but each component would still
+				// be accessed as a uint8 in a shader program. GL is a bit inconsistent here as the BYTE type
+				// does not refer to the total pixel size like SHORT does.
+				C(UNSIGNED_BYTE):				F(R8G8B8)									T(UINT8)	break;
+				C(UNSIGNED_SHORT_5_6_5_REV):	F(G3B5R5G3)									T(UINT8)	break;
 			}
 			break;
 
-		case GL_RGBA:
-		case GL_RGBA_INTEGER:
+		C(RGBA):
+		C(RGBA_INTEGER):
 			switch (glType)
 			{
-				case GL_UNSIGNED_BYTE:
-					format = tPixelFormat::R8G8B8A8;
-					break;
-
-				case GL_HALF_FLOAT:
-					format = tPixelFormat::R16G16B16A16f;
-					profile = tColourProfile::HDRlRGB_LDRlA;
-					break;
-
-				case GL_FLOAT:
-					format = tPixelFormat::R32G32B32A32f;
-					profile = tColourProfile::HDRlRGB_LDRlA;
-					break;
+				C(UNSIGNED_BYTE):				F(R8G8B8A8)									T(UINT8)	break;
+				C(HALF_FLOAT):					F(R16G16B16A16f)	P(HDRa)					T(SHALF)	break;
+				C(FLOAT):						F(R32G32B32A32f)	P(HDRa)					T(SFLOAT)	break;
 			}
 			break;
 
-		case GL_BGR:
-		case GL_BGR_INTEGER:
+		C(BGR):
+		C(BGR_INTEGER):
 			switch (glType)
 			{
-				case GL_UNSIGNED_BYTE:
-					format = tPixelFormat::B8G8R8;
-					break;
-
-				case GL_UNSIGNED_SHORT_5_6_5:
-					format = tPixelFormat::G3B5R5G3;
-					break;
+				// See comment above.
+				C(UNSIGNED_BYTE):				F(B8G8R8)									T(UINT8)	break;
+				C(UNSIGNED_SHORT_5_6_5):		F(G3B5R5G3)									T(UINT8)	break;
 			}
 			break;
 
-		case GL_BGRA:
-		case GL_BGRA_INTEGER:
+		C(BGRA):
+		C(BGRA_INTEGER):
 			switch (glType)
 			{
-				case GL_UNSIGNED_BYTE:
-					format = tPixelFormat::B8G8R8A8;
-					break;
-
-				case GL_UNSIGNED_SHORT_4_4_4_4:
-					format = tPixelFormat::G4B4A4R4;
-					break;
-
-				case GL_UNSIGNED_SHORT_5_5_5_1:
-					format = tPixelFormat::G3B5A1R5G2;
-					break;
+				// See comment above.
+				C(UNSIGNED_BYTE):				F(B8G8R8A8)									T(UINT8)	break;
+				C(UNSIGNED_SHORT_4_4_4_4):		F(G4B4A4R4)									T(UINT8)	break;
+				C(UNSIGNED_SHORT_5_5_5_1):		F(G3B5A1R5G2)								T(UINT8)	break;
 			}
 			break;
 	}
 
 	if (format == tPixelFormat::Invalid)
-		profile = tColourProfile::Unspecified;
+		P(Unspecified)
+
+	#undef C
+	#undef CC
+	#undef F
+	#undef P
+	#undef M
+	#undef T
 }
 
 
-void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& profile, uint32 vkFormat)
+void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& profile, tAlphaMode& alphaMode, tChannelType& chanType, uint32 vkFormat)
 {
-	format = tPixelFormat::Invalid;
+	// For colour profile (the space of the data) we try to make an educated guess. In general only the asset author
+	// knows the colour space/profile. For most (non-HDR) pixel formats for colours, we assume the data is sRGB.
+	// Floating-point formats are likewise assumed to be in linear-space (and are usually used for HDR images). In
+	// addition when the data is probably not colour data (like ATI1/2) we assume it's in linear.
+	//
+	// Regardiing colour profiles. In many cases there are two similar VK pixel formats that differ only in that one of
+	// them specifies using sRGB for the RGB channels. For example:
+	// VK_FORMAT_R8G8B8A8_SRGB		: sRGB for RGB, linear for A.
+	// VK_FORMAT_R8G8B8A8_UNORM		: No-sRGB variant.
+	// The implication is that VK_FORMAT_R8G8B8A8_UNORM should therefore be in linear RGBA space. Unfortunately most
+	// files in the wild that have these non-sRGB variants are usually still authored in sRGB-space. Tacent keeps them
+	// by default in sRGB-space but you will see a commented-out lRGB tag below (indicating how it 'should' be).
+	format		= tPixelFormat::Invalid;
+	profile		= tColourProfile::sRGB;
+	alphaMode	= tAlphaMode::None;
+	chanType	= tChannelType::NONE;
 
-	// For colour space (the space of the data) we try to make an educated guess. In general only the asset author knows the
-	// colour space. For most (non-HDR) pixel formats for colours, we assume the data is sRGB. If the pixel format has a specific
-	// sRGB alternative, we assume if it's not the alternative, that the space is linear. Floating-point formats are likewise
-	// assumed to be in linear-space (and are usually used for HDR images). In addition when the data is probably not colour data
-	// (like ATI1/2) we assume it's in linear.
-	profile = tColourProfile::LDRsRGB_LDRlA;
-
+	// The VK formats conflate the format with the data. The colour-space is not part of the format in tacent and is
+	// returned in a separate variable. UNORM means E [0.0, 1.0].
+	#define C(c) case VK_FORMAT_##c
+	#define F(f) format = tPixelFormat::f;
+	#define P(p) profile = tColourProfile::p;
+	#define M(m) alphaMode = tAlphaMode::m;
+	#define T(t) chanType = tChannelType::t;
 	switch (vkFormat)
 	{
-		// The VK formats conflate the format with the data. The colour-space is not part of the format in tacent and is
-		// returned in a separate variable.
-		// UNORM means E [0.0, 1.0].
-
 		//
 		// Packed formats.
 		//
-
 		// NVTT can export ktx2 as A8. There is no A8 in VkFormat so it uses R8 instead.
 		// There is no difference in storage between UNORM (unsigned normalized) and UINT. The only difference is
 		// when the texture is bound, the UNORM textures get their component values converted to floats in [0.0, 1.0],
-		// whereas the UINT textures would just have the int returned by a shader texture sampler.
+		// whereas the UINT textures would just have the int returned by a shader texture sampler. Commented-out
+		// case statements are simply not implemented yet.
 		//
-		// Not implemented yet.
-		// VK_FORMAT_R8_SNORM
-		// VK_FORMAT_R8_USCALED
-		// VK_FORMAT_R8_SSCALED
-		// VK_FORMAT_R8_SINT
-		case VK_FORMAT_R8_UNORM:
-		case VK_FORMAT_R8_UINT:
-		case VK_FORMAT_R8_SRGB:
-			format = tPixelFormat::R8;
+		//C(R8_SNORM):
+		//C(R8_USCALED):
+		//C(R8_SSCALED):
+		//C(R8_SINT):
+		C(R8_UNORM):
+		C(R8_UINT):
+		C(R8_SRGB):
+			F(R8)
 			break;
 
-		// Not implemented yet.
-		// VK_FORMAT_R8G8_SNORM
-		// VK_FORMAT_R8G8_USCALED
-		// VK_FORMAT_R8G8_SSCALED
-		// VK_FORMAT_R8G8_SINT
-		case VK_FORMAT_R8G8_UNORM:
-		case VK_FORMAT_R8G8_UINT:
-		case VK_FORMAT_R8G8_SRGB:
-			format = tPixelFormat::R8G8;
+		//C(R8G8_SNORM):
+		//C(R8G8_USCALED):
+		//C(R8G8_SSCALED):
+		//C(R8G8_SINT):
+		C(R8G8_UNORM):
+		C(R8G8_UINT):
+		C(R8G8_SRGB):
+			F(R8G8)
 			break;
 
-		// Not implemented yet.
-		// VK_FORMAT_R8G8B8_SNORM
-		// VK_FORMAT_R8G8B8_USCALED
-		// VK_FORMAT_R8G8B8_SSCALED
-		// VK_FORMAT_R8G8B8_SINT
-		case VK_FORMAT_R8G8B8_UNORM:
-		case VK_FORMAT_R8G8B8_UINT:
-		case VK_FORMAT_R8G8B8_SRGB:
-			format = tPixelFormat::R8G8B8;
+		//C(R8G8B8_SNORM):
+		//C(R8G8B8_USCALED):
+		//C(R8G8B8_SSCALED):
+		//C(R8G8B8_SINT):
+		C(R8G8B8_UNORM):
+		C(R8G8B8_UINT):
+		C(R8G8B8_SRGB):
+			F(R8G8B8)
 			break;
 		
-		// Not implemented yet.
-		// VK_FORMAT_R8G8B8A8_SNORM
-		// VK_FORMAT_R8G8B8A8_USCALED
-		// VK_FORMAT_R8G8B8A8_SSCALED
-		// VK_FORMAT_R8G8B8A8_SINT
-		case VK_FORMAT_R8G8B8A8_UNORM:
-		case VK_FORMAT_R8G8B8A8_UINT:
-		case VK_FORMAT_R8G8B8A8_SRGB:
-			format = tPixelFormat::R8G8B8A8;
+		//C(R8G8B8A8_SNORM):
+		//C(R8G8B8A8_USCALED):
+		//C(R8G8B8A8_SSCALED):
+		//C(R8G8B8A8_SINT):
+		C(R8G8B8A8_UNORM):
+		C(R8G8B8A8_UINT):
+		C(R8G8B8A8_SRGB):
+			F(R8G8B8A8)
 			break;
 
-		// VK_FORMAT_B8G8R8_SNORM
-		// VK_FORMAT_B8G8R8_USCALED
-		// VK_FORMAT_B8G8R8_SSCALED
-		// VK_FORMAT_B8G8R8_SINT
-		case VK_FORMAT_B8G8R8_UNORM:
-		case VK_FORMAT_B8G8R8_UINT:
-		case VK_FORMAT_B8G8R8_SRGB:
-			format = tPixelFormat::B8G8R8;
+		//C(B8G8R8_SNORM):
+		//C(B8G8R8_USCALED):
+		//C(B8G8R8_SSCALED):
+		//C(B8G8R8_SINT):
+		C(B8G8R8_UNORM):
+		C(B8G8R8_UINT):
+		C(B8G8R8_SRGB):
+			F(B8G8R8)
 			break;
 
-		// VK_FORMAT_B8G8R8A8_SNORM
-		// VK_FORMAT_B8G8R8A8_USCALED
-		// VK_FORMAT_B8G8R8A8_SSCALED
-		// VK_FORMAT_B8G8R8A8_SINT
-		case VK_FORMAT_B8G8R8A8_UNORM:
-		case VK_FORMAT_B8G8R8A8_UINT:
-		case VK_FORMAT_B8G8R8A8_SRGB:
-			format = tPixelFormat::B8G8R8A8;
+		//C(B8G8R8A8_SNORM):
+		//C(B8G8R8A8_USCALED):
+		//C(B8G8R8A8_SSCALED):
+		//C(B8G8R8A8_SINT):
+		C(B8G8R8A8_UNORM):
+		C(B8G8R8A8_UINT):
+		C(B8G8R8A8_SRGB):
+			F(B8G8R8A8)
 			break;
 
-		case VK_FORMAT_B5G6R5_UNORM_PACK16:
-			format = tPixelFormat::G3B5R5G3;
+		C(B5G6R5_UNORM_PACK16):
+			F(G3B5R5G3)
 			break;
 
-		case VK_FORMAT_B4G4R4A4_UNORM_PACK16:
-			format = tPixelFormat::G4B4A4R4;
+		C(B4G4R4A4_UNORM_PACK16):
+			F(G4B4A4R4)
 			break;
 
-		case VK_FORMAT_B5G5R5A1_UNORM_PACK16:
-			format = tPixelFormat::G3B5A1R5G2;
+		C(B5G5R5A1_UNORM_PACK16):
+			F(G3B5A1R5G2)
 			break;
 
-		case VK_FORMAT_R16_SFLOAT:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R16f;
+		C(R16_SFLOAT):
+			P(HDRlRGB_LDRlA)
+			F(R16f)
 			break;
 
-		case VK_FORMAT_R16G16_SFLOAT:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R16G16f;
+		C(R16G16_SFLOAT):
+			P(HDRlRGB_LDRlA)
+			F(R16G16f)
 			break;
 
-		case VK_FORMAT_R16G16B16A16_SFLOAT:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R16G16B16A16f;
+		C(R16G16B16A16_SFLOAT):
+			P(HDRlRGB_LDRlA)
+			F(R16G16B16A16f)
 			break;
 
-		case VK_FORMAT_R32_SFLOAT:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R32f;
+		C(R32_SFLOAT):
+			P(HDRlRGB_LDRlA)
+			F(R32f)
 			break;
 
-		case VK_FORMAT_R32G32_SFLOAT:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R32G32f;
+		C(R32G32_SFLOAT):
+			P(HDRlRGB_LDRlA)
+			F(R32G32f)
 			break;
 
-		case VK_FORMAT_R32G32B32A32_SFLOAT:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::R32G32B32A32f;
+		C(R32G32B32A32_SFLOAT):
+			P(HDRlRGB_LDRlA)
+			F(R32G32B32A32f)
 			break;
 
-		case VK_FORMAT_B10G11R11_UFLOAT_PACK32:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::B10G11R11uf;
+		C(B10G11R11_UFLOAT_PACK32):
+			P(HDRlRGB_LDRlA)
+			F(B10G11R11uf)
 			break;
 		
-		case VK_FORMAT_E5B9G9R9_UFLOAT_PACK32:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::E5B9G9R9uf;
+		C(E5B9G9R9_UFLOAT_PACK32):
+			P(HDRlRGB_LDRlA)
+			F(E5B9G9R9uf)
 			break;
 
 		//
 		// BC Formats.
 		//
-		case VK_FORMAT_BC1_RGB_UNORM_BLOCK:
-		case VK_FORMAT_BC1_RGB_SRGB_BLOCK:
-			format = tPixelFormat::BC1DXT1;
+		C(BC1_RGB_UNORM_BLOCK):
+		C(BC1_RGB_SRGB_BLOCK):
+			F(BC1DXT1)
 			break;
 
-		case VK_FORMAT_BC1_RGBA_UNORM_BLOCK:
-		case VK_FORMAT_BC1_RGBA_SRGB_BLOCK:
-			format = tPixelFormat::BC1DXT1A;
+		C(BC1_RGBA_UNORM_BLOCK):
+		C(BC1_RGBA_SRGB_BLOCK):
+			F(BC1DXT1A)
 			break;
 
-		case VK_FORMAT_BC2_UNORM_BLOCK:
-		case VK_FORMAT_BC2_SRGB_BLOCK:
-			format = tPixelFormat::BC2DXT2DXT3;
+		C(BC2_UNORM_BLOCK):
+		C(BC2_SRGB_BLOCK):
+			F(BC2DXT2DXT3)
 			break;
 
-		case VK_FORMAT_BC3_UNORM_BLOCK:
-		case VK_FORMAT_BC3_SRGB_BLOCK:
-			format = tPixelFormat::BC3DXT4DXT5;
+		C(BC3_UNORM_BLOCK):
+		C(BC3_SRGB_BLOCK):
+			F(BC3DXT4DXT5)
 			break;
 
-		case VK_FORMAT_BC4_SNORM_BLOCK:				// Signed not supported yet.
+		C(BC4_SNORM_BLOCK):				// Signed not supported yet.
 			break;
-		case VK_FORMAT_BC4_UNORM_BLOCK:
-			format = tPixelFormat::BC4ATI1;
-			break;
-
-		case VK_FORMAT_BC5_SNORM_BLOCK:				// Signed not supported yet.
-			break;
-		case VK_FORMAT_BC5_UNORM_BLOCK:
-			format = tPixelFormat::BC5ATI2;
+		C(BC4_UNORM_BLOCK):
+			F(BC4ATI1)
 			break;
 
-		case VK_FORMAT_BC6H_UFLOAT_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::BC6U;
+		C(BC5_SNORM_BLOCK):				// Signed not supported yet.
+			break;
+		C(BC5_UNORM_BLOCK):
+			F(BC5ATI2)
 			break;
 
-		case VK_FORMAT_BC6H_SFLOAT_BLOCK:
-			profile = tColourProfile::HDRlRGB_LDRlA;
-			format = tPixelFormat::BC6S;
+		C(BC6H_UFLOAT_BLOCK):
+			P(HDRlRGB_LDRlA)
+			F(BC6U)
 			break;
 
-		case VK_FORMAT_BC7_UNORM_BLOCK:
-		case VK_FORMAT_BC7_SRGB_BLOCK:
-			format = tPixelFormat::BC7;
+		C(BC6H_SFLOAT_BLOCK):
+			P(HDRlRGB_LDRlA)
+			F(BC6S)
+			break;
+
+		C(BC7_UNORM_BLOCK):
+		C(BC7_SRGB_BLOCK):
+			F(BC7)
 			break;
 
 		//
 		// ETC2 and EAC.
 		//
-		case VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK:
-		case VK_FORMAT_ETC2_R8G8B8_SRGB_BLOCK:
-			format = tPixelFormat::ETC2RGB;
+		C(ETC2_R8G8B8_UNORM_BLOCK):
+		C(ETC2_R8G8B8_SRGB_BLOCK):
+			F(ETC2RGB)
 			break;
 
-		case VK_FORMAT_ETC2_R8G8B8A8_UNORM_BLOCK:
-		case VK_FORMAT_ETC2_R8G8B8A8_SRGB_BLOCK:
-			format = tPixelFormat::ETC2RGBA;
+		C(ETC2_R8G8B8A8_UNORM_BLOCK):
+		C(ETC2_R8G8B8A8_SRGB_BLOCK):
+			F(ETC2RGBA)
 			break;
 
-		case VK_FORMAT_ETC2_R8G8B8A1_UNORM_BLOCK:
-		case VK_FORMAT_ETC2_R8G8B8A1_SRGB_BLOCK:
-			format = tPixelFormat::ETC2RGBA1;
+		C(ETC2_R8G8B8A1_UNORM_BLOCK):
+		C(ETC2_R8G8B8A1_SRGB_BLOCK):
+			F(ETC2RGBA1)
 			break;
 
-		case VK_FORMAT_EAC_R11_UNORM_BLOCK:
-			format = tPixelFormat::EACR11U;
+		C(EAC_R11_UNORM_BLOCK):
+			F(EACR11U)
 			break;
 
-		case VK_FORMAT_EAC_R11_SNORM_BLOCK:
-			format = tPixelFormat::EACR11S;
+		C(EAC_R11_SNORM_BLOCK):
+			F(EACR11S)
 			break;
 
-		case VK_FORMAT_EAC_R11G11_UNORM_BLOCK:
-			format = tPixelFormat::EACRG11U;
+		C(EAC_R11G11_UNORM_BLOCK):
+			F(EACRG11U)
 			break;
 
-		case VK_FORMAT_EAC_R11G11_SNORM_BLOCK:
-			format = tPixelFormat::EACRG11S;
+		C(EAC_R11G11_SNORM_BLOCK):
+			F(EACRG11S)
 			break;
 
 		//
 		// ASTC
 		//
 		// From the Khronos description of ASTC:	
-		// "Whether floats larger than 1.0 are allowed is not a per-image property; it's a per-block property. An HDR-compressed ASTC image is simply one where blocks can return values larger than 1.0."
-		// "So the format does not specify if floating point values are greater than 1.0."
-		// "There are only two properties of an ASTC compressed image that are per-image (and therefore part of the format) rather than being per-block. These properties are block size and sRGB colorspace conversion."
+		// "Whether floats larger than 1.0 are allowed is not a per-image property; it's a per-block property. An
+		// HDR-compressed ASTC image is simply one where blocks can return values larger than 1.0." and "So the format
+		// does not specify if floating point values are greater than 1.0." and "There are only two properties of an
+		// ASTC compressed image that are per-image (and therefore part of the format) rather than being per-block.
+		// These properties are block size and sRGB colorspace conversion."
 		//
 		// It seems to me for an HDR ASTC KTX2 image there are two possibilities for VK_FORMAT:
 		// 
@@ -636,93 +506,99 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		// We chose HDR as the default profile because it can load LDR blocks. The other way around doesn't work with
 		// with the tests images -- the LDR profile doesn't appear capable of loading HDR blocks (they become magenta).
 		//
-		case VK_FORMAT_ASTC_4x4_UNORM_BLOCK:
-			profile = tColourProfile::lRGB;
-		case VK_FORMAT_ASTC_4x4_SRGB_BLOCK:
-			format = tPixelFormat::ASTC4X4;
+		C(ASTC_4x4_UNORM_BLOCK):
+			P(lRGB)
+		C(ASTC_4x4_SRGB_BLOCK):
+			F(ASTC4X4)
 			break;
 
-		case VK_FORMAT_ASTC_5x4_UNORM_BLOCK:
-			profile = tColourProfile::lRGB;
-		case VK_FORMAT_ASTC_5x4_SRGB_BLOCK:
-			format = tPixelFormat::ASTC5X4;
+		C(ASTC_5x4_UNORM_BLOCK):
+			P(lRGB)
+		C(ASTC_5x4_SRGB_BLOCK):
+			F(ASTC5X4)
 			break;
 
-		case VK_FORMAT_ASTC_5x5_UNORM_BLOCK:
-			profile = tColourProfile::lRGB;
-		case VK_FORMAT_ASTC_5x5_SRGB_BLOCK:
-			format = tPixelFormat::ASTC5X5;
+		C(ASTC_5x5_UNORM_BLOCK):
+			P(lRGB)
+		C(ASTC_5x5_SRGB_BLOCK):
+			F(ASTC5X5)
 			break;
 
-		case VK_FORMAT_ASTC_6x5_UNORM_BLOCK:
-			profile = tColourProfile::lRGB;
-		case VK_FORMAT_ASTC_6x5_SRGB_BLOCK:
-			format = tPixelFormat::ASTC6X5;
+		C(ASTC_6x5_UNORM_BLOCK):
+			P(lRGB)
+		C(ASTC_6x5_SRGB_BLOCK):
+			F(ASTC6X5)
 			break;
 
-		case VK_FORMAT_ASTC_6x6_UNORM_BLOCK:
-			profile = tColourProfile::lRGB;
-		case VK_FORMAT_ASTC_6x6_SRGB_BLOCK:
-			format = tPixelFormat::ASTC6X6;
+		C(ASTC_6x6_UNORM_BLOCK):
+			P(lRGB)
+		C(ASTC_6x6_SRGB_BLOCK):
+			F(ASTC6X6)
 			break;
 
-		case VK_FORMAT_ASTC_8x5_UNORM_BLOCK:
-			profile = tColourProfile::lRGB;
-		case VK_FORMAT_ASTC_8x5_SRGB_BLOCK:
-			format = tPixelFormat::ASTC8X5;
+		C(ASTC_8x5_UNORM_BLOCK):
+			P(lRGB)
+		C(ASTC_8x5_SRGB_BLOCK):
+			F(ASTC8X5)
 			break;
 
-		case VK_FORMAT_ASTC_8x6_UNORM_BLOCK:
-			profile = tColourProfile::lRGB;
-		case VK_FORMAT_ASTC_8x6_SRGB_BLOCK:
-			format = tPixelFormat::ASTC8X6;
+		C(ASTC_8x6_UNORM_BLOCK):
+			P(lRGB)
+		C(ASTC_8x6_SRGB_BLOCK):
+			F(ASTC8X6)
 			break;
 
-		case VK_FORMAT_ASTC_8x8_UNORM_BLOCK:
-			profile = tColourProfile::lRGB;
-		case VK_FORMAT_ASTC_8x8_SRGB_BLOCK:
-			format = tPixelFormat::ASTC8X8;
+		C(ASTC_8x8_UNORM_BLOCK):
+			P(lRGB)
+		C(ASTC_8x8_SRGB_BLOCK):
+			F(ASTC8X8)
 			break;
 
-		case VK_FORMAT_ASTC_10x5_UNORM_BLOCK:
-			profile = tColourProfile::lRGB;
-		case VK_FORMAT_ASTC_10x5_SRGB_BLOCK:
-			format = tPixelFormat::ASTC10X5;
+		C(ASTC_10x5_UNORM_BLOCK):
+			P(lRGB)
+		C(ASTC_10x5_SRGB_BLOCK):
+			F(ASTC10X5)
 			break;
 
-		case VK_FORMAT_ASTC_10x6_UNORM_BLOCK:
-			profile = tColourProfile::lRGB;
-		case VK_FORMAT_ASTC_10x6_SRGB_BLOCK:
-			format = tPixelFormat::ASTC10X6;
+		C(ASTC_10x6_UNORM_BLOCK):
+			P(lRGB)
+		C(ASTC_10x6_SRGB_BLOCK):
+			F(ASTC10X6)
 			break;
 
-		case VK_FORMAT_ASTC_10x8_UNORM_BLOCK:
-			profile = tColourProfile::lRGB;
-		case VK_FORMAT_ASTC_10x8_SRGB_BLOCK:
-			format = tPixelFormat::ASTC10X8;
+		C(ASTC_10x8_UNORM_BLOCK):
+			P(lRGB)
+		C(ASTC_10x8_SRGB_BLOCK):
+			F(ASTC10X8)
 			break;
 
-		case VK_FORMAT_ASTC_10x10_UNORM_BLOCK:
-			profile = tColourProfile::lRGB;
-		case VK_FORMAT_ASTC_10x10_SRGB_BLOCK:
-			format = tPixelFormat::ASTC10X10;
+		C(ASTC_10x10_UNORM_BLOCK):
+			P(lRGB)
+		C(ASTC_10x10_SRGB_BLOCK):
+			F(ASTC10X10)
 			break;
 
-		case VK_FORMAT_ASTC_12x10_UNORM_BLOCK:
-			profile = tColourProfile::lRGB;
-		case VK_FORMAT_ASTC_12x10_SRGB_BLOCK:
-			format = tPixelFormat::ASTC12X10;
+		C(ASTC_12x10_UNORM_BLOCK):
+			P(lRGB)
+		C(ASTC_12x10_SRGB_BLOCK):
+			F(ASTC12X10)
 			break;
 
-		case VK_FORMAT_ASTC_12x12_UNORM_BLOCK:
-			profile = tColourProfile::lRGB;
-		case VK_FORMAT_ASTC_12x12_SRGB_BLOCK:
-			format = tPixelFormat::ASTC12X12;
+		C(ASTC_12x12_UNORM_BLOCK):
+			P(lRGB)
+		C(ASTC_12x12_SRGB_BLOCK):
+			F(ASTC12X12)
 			break;
 	}
 
 	if (format == tPixelFormat::Invalid)
-		profile = tColourProfile::Unspecified;
+		P(Unspecified);
+
+	#undef C
+	#undef F
+	#undef P
+	#undef M
+	#undef T
 }
 
 
@@ -764,6 +640,7 @@ void tImageKTX::Clear()
 	ColourProfile					= tColourProfile::Unspecified;
 	ColourProfileSrc				= tColourProfile::Unspecified;
 	AlphaMode						= tAlphaMode::Unspecified;
+	ChannelType						= tChannelType::Unspecified;
 	IsCubeMap						= false;
 	RowReversalOperationPerformed	= false;
 	NumImages						= 0;
@@ -783,6 +660,7 @@ bool tImageKTX::Set(tPixel* pixels, int width, int height, bool steal)
 	ColourProfile = tColourProfile::LDRsRGB_LDRlA;
 	ColourProfileSrc = tColourProfile::LDRsRGB_LDRlA;
 	AlphaMode = tAlphaMode::Normal;
+	ChannelType = tChannelType::UINT8N;
 	NumImages = 1;
 	NumMipmapLayers = 1;
 
@@ -1007,18 +885,18 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 	tSystem::tFileType fileType = tSystem::tGetFileType(Filename);
 	if (ktx1)
 	{
-		tKTX::GetFormatInfo_FromGLFormat(PixelFormat, ColourProfile, ktx1->glType, ktx1->glFormat, ktx1->glInternalformat);
+		tKTX::GetFormatInfo_FromGLFormat(PixelFormat, ColourProfileSrc, AlphaMode, ChannelType, ktx1->glType, ktx1->glFormat, ktx1->glInternalformat);
 		if (fileType == tSystem::tFileType::KTX2)
 			SetStateBit(StateBit::Conditional_ExtVersionMismatch);
 	}
 	else if (ktx2)
 	{
-		tKTX::GetFormatInfo_FromVKFormat(PixelFormat, ColourProfile, ktx2->vkFormat);
+		tKTX::GetFormatInfo_FromVKFormat(PixelFormat, ColourProfileSrc, AlphaMode, ChannelType, ktx2->vkFormat);
 		if (fileType == tSystem::tFileType::KTX)
 			SetStateBit(StateBit::Conditional_ExtVersionMismatch);
 	}
-	PixelFormatSrc = PixelFormat;
-	ColourProfileSrc = ColourProfile;
+	PixelFormat = PixelFormatSrc;
+	ColourProfile = ColourProfileSrc;
 
 	// From now on we should just be using the PixelFormat to decide what to do next.
 	if (PixelFormat == tPixelFormat::Invalid)
