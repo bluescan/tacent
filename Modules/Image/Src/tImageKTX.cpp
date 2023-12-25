@@ -257,6 +257,13 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 	// knows the colour space/profile. For most (non-HDR) pixel formats for colours, we assume the data is sRGB.
 	// Floating-point formats are likewise assumed to be in linear-space (and are usually used for HDR images). In
 	// addition when the data is probably not colour data (like ATI1/2) we assume it's in linear.
+	format		= tPixelFormat::Invalid;
+	profile		= tColourProfile::sRGB;
+	alphaMode	= tAlphaMode::None;
+	chanType	= tChannelType::NONE;
+
+	// The VK formats conflate the format with the data. The colour-space is not part of the format in tacent and is
+	// returned in a separate variable. UNORM means E [0.0, 1.0].
 	//
 	// Regardiing colour profiles. In many cases there are two similar VK pixel formats that differ only in that one of
 	// them specifies using sRGB for the RGB channels. For example:
@@ -265,13 +272,6 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 	// The implication is that VK_FORMAT_R8G8B8A8_UNORM should therefore be in linear RGBA space. Unfortunately most
 	// files in the wild that have these non-sRGB variants are usually still authored in sRGB-space. Tacent keeps them
 	// by default in sRGB-space but you will see a commented-out lRGB tag below (indicating how it 'should' be).
-	format		= tPixelFormat::Invalid;
-	profile		= tColourProfile::sRGB;
-	alphaMode	= tAlphaMode::None;
-	chanType	= tChannelType::NONE;
-
-	// The VK formats conflate the format with the data. The colour-space is not part of the format in tacent and is
-	// returned in a separate variable. UNORM means E [0.0, 1.0].
 	#define C(c) case VK_FORMAT_##c
 	#define F(f) format = tPixelFormat::f;
 	#define P(p) profile = tColourProfile::p;
@@ -292,113 +292,62 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		//C(R8_USCALED):
 		//C(R8_SSCALED):
 		//C(R8_SINT):
-		C(R8_UNORM):
-		C(R8_UINT):
-		C(R8_SRGB):
-			F(R8)
-			break;
+		C(R8_UNORM):							F(R8)				/*P(lRGB)*/	M(None)		T(UINT8N)	break;
+		C(R8_UINT):								F(R8)				/*P(lRGB)*/				T(UINT8)	break;
+		C(R8_SRGB):								F(R8)													break;
 
 		//C(R8G8_SNORM):
 		//C(R8G8_USCALED):
 		//C(R8G8_SSCALED):
 		//C(R8G8_SINT):
-		C(R8G8_UNORM):
-		C(R8G8_UINT):
-		C(R8G8_SRGB):
-			F(R8G8)
-			break;
+		C(R8G8_UNORM):							F(R8G8)				/*P(lRGB)*/				T(UINT8N)	break;
+		C(R8G8_UINT):							F(R8G8)				/*P(lRGB)*/				T(UINT8)	break;
+		C(R8G8_SRGB):							F(R8G8)													break;
 
 		//C(R8G8B8_SNORM):
 		//C(R8G8B8_USCALED):
 		//C(R8G8B8_SSCALED):
 		//C(R8G8B8_SINT):
-		C(R8G8B8_UNORM):
-		C(R8G8B8_UINT):
-		C(R8G8B8_SRGB):
-			F(R8G8B8)
-			break;
+		C(R8G8B8_UNORM):						F(R8G8B8)			/*P(lRGB)*/				T(UINT8N)	break;
+		C(R8G8B8_UINT):							F(R8G8B8)			/*P(lRGB)*/				T(UINT8)	break;
+		C(R8G8B8_SRGB):							F(R8G8B8)												break;
 		
 		//C(R8G8B8A8_SNORM):
 		//C(R8G8B8A8_USCALED):
 		//C(R8G8B8A8_SSCALED):
 		//C(R8G8B8A8_SINT):
-		C(R8G8B8A8_UNORM):
-		C(R8G8B8A8_UINT):
-		C(R8G8B8A8_SRGB):
-			F(R8G8B8A8)
-			break;
+		C(R8G8B8A8_UNORM):						F(R8G8B8A8)			/*P(lRGB)*/				T(UINT8N)	break;
+		C(R8G8B8A8_UINT):						F(R8G8B8A8)			/*P(lRGB)*/				T(UINT8)	break;
+		C(R8G8B8A8_SRGB):						F(R8G8B8A8)												break;
 
 		//C(B8G8R8_SNORM):
 		//C(B8G8R8_USCALED):
 		//C(B8G8R8_SSCALED):
 		//C(B8G8R8_SINT):
-		C(B8G8R8_UNORM):
-		C(B8G8R8_UINT):
-		C(B8G8R8_SRGB):
-			F(B8G8R8)
-			break;
+		C(B8G8R8_UNORM):						F(B8G8R8)			/*P(lRGB)*/				T(UINT8N)	break;
+		C(B8G8R8_UINT):							F(B8G8R8)			/*P(lRGB)*/				T(UINT8)	break;
+		C(B8G8R8_SRGB):							F(B8G8R8)												break;
 
 		//C(B8G8R8A8_SNORM):
 		//C(B8G8R8A8_USCALED):
 		//C(B8G8R8A8_SSCALED):
 		//C(B8G8R8A8_SINT):
-		C(B8G8R8A8_UNORM):
-		C(B8G8R8A8_UINT):
-		C(B8G8R8A8_SRGB):
-			F(B8G8R8A8)
-			break;
+		C(B8G8R8A8_UNORM):						F(B8G8R8A8)			/*P(lRGB)*/				T(UINT8N)	break;
+		C(B8G8R8A8_UINT):						F(B8G8R8A8)			/*P(lRGB)*/				T(UINT8)	break;
+		C(B8G8R8A8_SRGB):						F(B8G8R8A8)												break;
 
-		C(B5G6R5_UNORM_PACK16):
-			F(G3B5R5G3)
-			break;
+		C(B5G6R5_UNORM_PACK16):					F(G3B5R5G3)									T(UINT8N)	break;
+		C(B4G4R4A4_UNORM_PACK16):				F(G4B4A4R4)									T(UINT8N)	break;
+		C(B5G5R5A1_UNORM_PACK16):				F(G3B5A1R5G2)								T(UINT8N)	break;
 
-		C(B4G4R4A4_UNORM_PACK16):
-			F(G4B4A4R4)
-			break;
-
-		C(B5G5R5A1_UNORM_PACK16):
-			F(G3B5A1R5G2)
-			break;
-
-		C(R16_SFLOAT):
-			P(HDRlRGB_LDRlA)
-			F(R16f)
-			break;
-
-		C(R16G16_SFLOAT):
-			P(HDRlRGB_LDRlA)
-			F(R16G16f)
-			break;
-
-		C(R16G16B16A16_SFLOAT):
-			P(HDRlRGB_LDRlA)
-			F(R16G16B16A16f)
-			break;
-
-		C(R32_SFLOAT):
-			P(HDRlRGB_LDRlA)
-			F(R32f)
-			break;
-
-		C(R32G32_SFLOAT):
-			P(HDRlRGB_LDRlA)
-			F(R32G32f)
-			break;
-
-		C(R32G32B32A32_SFLOAT):
-			P(HDRlRGB_LDRlA)
-			F(R32G32B32A32f)
-			break;
-
-		C(B10G11R11_UFLOAT_PACK32):
-			P(HDRlRGB_LDRlA)
-			F(B10G11R11uf)
-			break;
-		
-		C(E5B9G9R9_UFLOAT_PACK32):
-			P(HDRlRGB_LDRlA)
-			F(E5B9G9R9uf)
-			break;
+		C(R16_SFLOAT):							F(R16f)				P(HDRa)					T(SHALF)	break;
+		C(R16G16_SFLOAT):						F(R16G16f)			P(HDRa)					T(SHALF)	break;
+		C(R16G16B16A16_SFLOAT):					F(R16G16B16A16f)	P(HDRa)					T(SHALF)	break;
+		C(R32_SFLOAT):							F(R32f)				P(HDRa)					T(SFLOAT)	break;
+		C(R32G32_SFLOAT):						F(R32G32f)			P(HDRa)					T(SFLOAT)	break;
+		C(R32G32B32A32_SFLOAT):					F(R32G32B32A32f)	P(HDRa)					T(SFLOAT)	break;
+		C(B10G11R11_UFLOAT_PACK32):				F(B10G11R11uf)		P(HDRa)					T(UFLOAT)	break;		
+		C(E5B9G9R9_UFLOAT_PACK32):				F(E5B9G9R9uf)		P(HDRa)					T(UFLOAT)	break;
 
 		//
 		// BC Formats.
@@ -436,12 +385,12 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 			break;
 
 		C(BC6H_UFLOAT_BLOCK):
-			P(HDRlRGB_LDRlA)
+			P(HDRa)
 			F(BC6U)
 			break;
 
 		C(BC6H_SFLOAT_BLOCK):
-			P(HDRlRGB_LDRlA)
+			P(HDRa)
 			F(BC6S)
 			break;
 
