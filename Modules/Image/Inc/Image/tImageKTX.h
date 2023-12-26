@@ -177,15 +177,6 @@ public:
 	int GetWidth() const																								{ return IsValid() ? Layers[0][0]->Width : 0; }
 	int GetHeight() const																								{ return IsValid() ? Layers[0][0]->Height : 0; }
 
-	// Returns the current colour space.
-	tColourProfile GetColourProfile() const																				{ return ColourProfile; }
-
-	// Returns the colour space of the source file that was loaded. This may not match the current if, say, gamma
-	// correction was requested on load.
-	tColourProfile GetColourProfileSrc() const																			{ return ColourProfileSrc; }
-
-	tAlphaMode GetAlphaMode() const																						{ return AlphaMode; }
-
 	// The texture is considered to have alphas if it is in a pixel format that supports them. For BC1, the data is
 	// checked to see if any BC1 blocks have a binary alpha index. We could check the data for the RGBA formats, but
 	// we don't as it shouldn't have been saved in an alpha supporting format if an all opaque texture was desired.
@@ -247,6 +238,15 @@ public:
 
 	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the ktx data was in.
 	tPixelFormat GetPixelFormat() const override																		{ return PixelFormat; }
+
+	// Returns the current colour space.
+	tColourProfile GetColourProfile() const override																	{ return ColourProfile; }
+
+	// Returns the colour space of the source file that was loaded. This may not match the current if, say, gamma
+	// correction was requested on load.
+	tColourProfile GetColourProfileSrc() const override																	{ return ColourProfileSrc; }
+
+	tAlphaMode GetAlphaMode() const override																			{ return AlphaMode; }
 
 	tString Filename;
 
