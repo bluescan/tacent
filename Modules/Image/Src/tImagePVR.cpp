@@ -68,6 +68,70 @@ namespace tPVR
 	tStaticAssert(sizeof(HeaderV3) == 52);
 	#pragma pack(pop)
 
+	// These are the PVR legacy (V1 and V2 pvr files) format IDs from the specification document at:
+	// https://powervr-graphics.github.io/WebGL_SDK/WebGL_SDK/Documentation/Specifications/PVR%20File%20Format.Specification.Legacy.pdf
+	// The names match the names in the document.
+	enum PVRLFMT : uint8
+	{
+		PVRLFMT_ARGB_4444			= 0x00,
+		PVRLFMT_ARGB_1555			= 0x01,
+		PVRLFMT_RGB_565				= 0x02,
+		PVRLFMT_RGB_555				= 0x03,
+		PVRLFMT_RGB_888				= 0x04,
+		PVRLFMT_ARGB_8888			= 0x05,
+		PVRLFMT_ARGB_8332			= 0x06,
+		PVRLFMT_I_8					= 0x07,
+		PVRLFMT_AI_88				= 0x08,
+		PVRLFMT_1BPP				= 0x09,
+		PVRLFMT_V_Y1_U_Y0			= 0x0A,
+		PVRLFMT_Y1_V_Y0_U			= 0x0B,
+		PVRLFMT_PVRTC2				= 0x0C,		// Better name would be PVRTCIBPP2 but want to match docs.
+		PVRLFMT_PVRTC4				= 0x0D,		// Better name would be PVRTCIBPP4 but want to match docs.
+
+		PVRLFMT_ARGB_4444_ALT		= 0x10,
+		PVRLFMT_ARGB_1555_ALT		= 0x11,
+		PVRLFMT_ARGB_8888_ALT		= 0x12,
+		PVRLFMT_RGB_565_ALT			= 0x13,
+		PVRLFMT_RGB_555_ALT			= 0x14,
+		PVRLFMT_RGB_888_ALT			= 0x15,
+		PVRLFMT_I_8_ALT				= 0x16,
+		PVRLFMT_AI_88_ALT			= 0x17,
+		PVRLFMT_PVRTC2_ALT			= 0x18,		// Better name would be PVRTCIBPP2 but want to match docs.
+		PVRLFMT_PVRTC4_ALT			= 0x19,		// Better name would be PVRTCIBPP4 but want to match docs.
+
+		PVRLFMT_BGRA_8888			= 0x1A,
+		PVRLFMT_DXT1				= 0x20,
+		PVRLFMT_DXT2				= 0x21,
+		PVRLFMT_DXT3				= 0x22,
+		PVRLFMT_DXT4				= 0x23,
+		PVRLFMT_DXT5				= 0x24,
+		PVRLFMT_RGB_332				= 0x25,
+		PVRLFMT_AL_44				= 0x26,
+		PVRLFMT_LVU_655				= 0x27,
+		PVRLFMT_XLVU_8888			= 0x28,
+		PVRLFMT_QWVU_8888			= 0x29,
+		PVRLFMT_ABGR_2101010		= 0x2A,
+		PVRLFMT_ARGB_2101010		= 0x2B,
+		PVRLFMT_AWVU_2101010		= 0x2C,
+		PVRLFMT_GR_1616				= 0x2D,
+		PVRLFMT_VU_1616				= 0x2E,
+		PVRLFMT_ABGR_16161616		= 0x2F,
+		PVRLFMT_R_16F				= 0x30,
+		PVRLFMT_GR_1616F			= 0x31,
+		PVRLFMT_ABGR_16161616F		= 0x32,
+		PVRLFMT_R_32F				= 0x33,
+		PVRLFMT_GR_3232F			= 0x34,
+		PVRLFMT_ABGR_32323232F		= 0x35,
+		PVRLFMT_ETC					= 0x36,
+		PVRLFMT_A_8					= 0x40,
+		PVRLFMT_VU_88				= 0x41,
+		PVRLFMT_L16					= 0x42,
+		PVRLFMT_L8					= 0x43,
+		PVRLFMT_AL_88				= 0x44,
+		PVRLFMT_UYVY				= 0x45,
+		PVRLFMT_YUY2				= 0x46
+	};
+
 	int DetermineVersionFromFirstFourBytes(const uint8 bytes[4]);
 
 	// Determine the pixel-format and, if possible, the alpha-mode and channel-type. There is no possibility of
@@ -102,50 +166,56 @@ int tPVR::DetermineVersionFromFirstFourBytes(const uint8 bytes[4])
 }
 
 
-void tPVR::GetFormatInfo_FromV1V2Header(tPixelFormat& fmt, tColourProfile& profile, tAlphaMode& alphaMode, tChannelType& chanType, const HeaderV1V2& header)
+void tPVR::GetFormatInfo_FromV1V2Header(tPixelFormat& format, tColourProfile& profile, tAlphaMode& alphaMode, tChannelType& chanType, const HeaderV1V2& header)
 {
-	fmt = tPixelFormat::Invalid;
-	profile = tColourProfile::Unspecified;
-	alphaMode = tAlphaMode::Unspecified;
-	chanType = tChannelType::Unspecified;
+	format		= tPixelFormat::Invalid;
+	profile		= tColourProfile::sRGB;
+	alphaMode	= tAlphaMode::Unspecified;
+	chanType	= tChannelType::Unspecified;
 
+	#define C(c) case PVRLFMT_##c
+	#define F(f) format = tPixelFormat::f;
+	#define P(p) profile = tColourProfile::p;
+	#define M(m) alphaMode = tAlphaMode::m;
+	#define T(t) chanType = tChannelType::t;
 	switch (header.PixelFormat)
 	{
-		//			Real in-memory format.						   Naming in PVR1/2 spec document. [Naming in PVRTexToolUI]
-		case 0x00:	fmt = tPixelFormat::G4B4A4R4;		break;	// ARGB 4444 (LE Naming).
-		case 0x01:	fmt = tPixelFormat::G3B5A1R5G2;		break;	// ARGB 1555 (LE Naming).
-		case 0x02:	fmt = tPixelFormat::G3B5R5G3;		break;	// RGB 565 (LE Naming). This is a slightly better name than B5G56R because at least it matches the memory order if you swap the two bytes.
+		//						//
+		C(ARGB_4444):			format = tPixelFormat::G4B4A4R4;		break;
+		C(ARGB_1555):			format = tPixelFormat::G3B5A1R5G2;		break;
+		C(RGB_565):				format = tPixelFormat::G3B5R5G3;		break;
+		//C(RGB_555):
+		C(RGB_888):				format = tPixelFormat::R8G8B8;			break;
+		C(ARGB_8888):			format = tPixelFormat::B8G8R8A8;		break;
+		//C(ARGB_8332):
+		C(I_8):					format = tPixelFormat::L8;				break;
+		C(AI_88):				format = tPixelFormat::A8L8;			break;
+		//C(1BPP):
+		//C(V_Y1_U_Y0):
+		//C(Y1_V_Y0_U):
+		C(PVRTC2):				format = tPixelFormat::PVRBPP2;			break;
+		C(PVRTC4):				format = tPixelFormat::PVRBPP4;			break;
 
-		case 0x04:	fmt = tPixelFormat::R8G8B8;			break; 	// RGB 888.
-		case 0x05:	fmt = tPixelFormat::B8G8R8A8;		break;	// ARGB 8888.
-		case 0x07:	fmt = tPixelFormat::L8;				break;	// I 8.
-		case 0x08:	fmt = tPixelFormat::A8L8;			break;	// AI 88.
+		C(ARGB_4444_ALT):		format = tPixelFormat::G4B4A4R4;		break;
+		C(ARGB_1555_ALT):		format = tPixelFormat::G3B5A1R5G2;		break;
+		C(ARGB_8888_ALT):		format = tPixelFormat::R8G8B8A8;		break;
+		C(RGB_565_ALT):			format = tPixelFormat::G3B5R5G3;		break;
+		//C(RGB_555_ALT):
+		C(RGB_888_ALT):			format = tPixelFormat::R8G8B8;			break;
 
-		case 0x0C:	fmt = tPixelFormat::PVRBPP2;		break;	// PVRTC2.
-		case 0x0D:	fmt = tPixelFormat::PVRBPP4;		break;	// PVRTC4.
-		case 0x10:	fmt = tPixelFormat::G4B4A4R4;		break;	// ARGB 4444 (LE Naming).
-		case 0x11:	fmt = tPixelFormat::G3B5A1R5G2;		break;	// ARGB 1555 (LE Naming).
-		case 0x12:	fmt = tPixelFormat::R8G8B8A8;		break;	// ARGB 8888 [R8G8B8A8].
-		case 0x13:	fmt = tPixelFormat::G3B5R5G3;		break;	// RGB 565.
-		case 0x15:	fmt = tPixelFormat::R8G8B8;			break;	// RGB 888.
-		case 0x16:  fmt = tPixelFormat::L8;				break;	// I 8.
-		case 0x17:  fmt = tPixelFormat::A8L8;			break;	// AI 88.
-		case 0x18:	fmt = tPixelFormat::PVRBPP2;		break;	// PVRTC2.
-		case 0x19:  fmt = tPixelFormat::PVRBPP4;		break;	// PVRTC4.
-		case 0x1A:  fmt = tPixelFormat::B8G8R8A8;		break;	// BGRA 8888 [B8G8R8A8].
-		case 0x20:	fmt = tPixelFormat::BC1DXT1;		break;	// DXT1.
-		case 0x21:	fmt = tPixelFormat::BC2DXT2DXT3;	alphaMode = tAlphaMode::Premultiplied;	break;	// DXT2.
-		case 0x22:	fmt = tPixelFormat::BC2DXT2DXT3;	break;	// DXT3.
-		case 0x23:	fmt = tPixelFormat::BC3DXT4DXT5;	alphaMode = tAlphaMode::Premultiplied;	break;	// DXT4.
-		case 0x24:	fmt = tPixelFormat::BC3DXT4DXT5;	break;	// DXT5.
-		case 0x36:	fmt = tPixelFormat::ETC1;			break;	// ETC1.
+		// @wip Make this switch look like the DDS switch.
+		case 0x16:  format = tPixelFormat::L8;				break;	// I 8.
+		case 0x17:  format = tPixelFormat::A8L8;			break;	// AI 88.
+		case 0x18:	format = tPixelFormat::PVRBPP2;		break;	// PVRTC2.
+		case 0x19:  format = tPixelFormat::PVRBPP4;		break;	// PVRTC4.
+		case 0x1A:  format = tPixelFormat::B8G8R8A8;		break;	// BGRA 8888 [B8G8R8A8].
+		case 0x20:	format = tPixelFormat::BC1DXT1;		break;	// DXT1.
+		case 0x21:	format = tPixelFormat::BC2DXT2DXT3;	alphaMode = tAlphaMode::Premultiplied;	break;	// DXT2.
+		case 0x22:	format = tPixelFormat::BC2DXT2DXT3;	break;	// DXT3.
+		case 0x23:	format = tPixelFormat::BC3DXT4DXT5;	alphaMode = tAlphaMode::Premultiplied;	break;	// DXT4.
+		case 0x24:	format = tPixelFormat::BC3DXT4DXT5;	break;	// DXT5.
+		case 0x36:	format = tPixelFormat::ETC1;			break;	// ETC1.
 
-		case 0x03:		// RGB 555.
-		case 0x06:		// ARGB 8332.
-		case 0x09:		// 1BPP.
-		case 0x0A:		// (V,Y1,U,Y0).
-		case 0x0B:		// (Y1,V,Y0,U).
-		case 0x14:		// RGB 555.
 		case 0x25:		// RGB 332.
 		case 0x26:		// AL 44.
 		case 0x27:		// LVU 655.
@@ -171,8 +241,13 @@ void tPVR::GetFormatInfo_FromV1V2Header(tPixelFormat& fmt, tColourProfile& profi
 		case 0x45:		// UYVY.
 		case 0x46:		// YUY2.
 		default:
-			break;
+			profile = tColourProfile::Unspecified;		break;
 	}
+	#undef C
+	#undef F
+	#undef P
+	#undef M
+	#undef T
 }
 
 
