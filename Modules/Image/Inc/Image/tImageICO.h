@@ -100,6 +100,8 @@ public:
 	tPixelFormat GetBestSrcPixelFormat() const;
 	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? GetBestSrcPixelFormat() : tPixelFormat::Invalid; }
 	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
+	tColourProfile GetColourProfileSrc() const override																	{ return IsValid() ? tColourProfile::sRGB : tColourProfile::Unspecified; }
+	tColourProfile GetColourProfile() const override																	{ return GetColourProfileSrc(); }
 
 private:
 	bool PopulateFrames(const uint8* buffer, int numBytes);	
