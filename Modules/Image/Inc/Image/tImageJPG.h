@@ -138,6 +138,8 @@ public:
 	tPixel* GetPixels() const																							{ return Pixels; }
 	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
 	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
+	tColourProfile GetColourProfileSrc() const override																	{ return IsValid() ? tColourProfile::sRGB : tColourProfile::Unspecified; }
+	tColourProfile GetColourProfile() const override																	{ return GetColourProfileSrc(); }
 
 	// A place to store EXIF and XMP metadata. JPeg files often contain this metadata. This field is not populated if
 	// NoDecompress flag was used during load.

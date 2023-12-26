@@ -845,8 +845,29 @@ const char* tImagePVR::GetStateDesc(StateBit state)
 
 tFrame* tImagePVR::GetFrame(bool steal)
 {
-	////////////WIP
-	return nullptr;
+	// Data must be decoded for this to work.
+	tLayer* layer = Layers ? Layers[ LayerIdx(0) ] : nullptr;
+	if (!IsValid() || (PixelFormat != tPixelFormat::R8G8B8A8) || (layer == nullptr))
+		return nullptr;
+
+	tFrame* frame = new tFrame();
+	frame->Width = layer->Width;
+	frame->Height = layer->Height;
+	frame->PixelFormatSrc = PixelFormatSrc;
+
+	if (steal)
+	{
+		frame->Pixels = (tPixel*)layer->StealData();
+		delete layer;
+		Layers[ LayerIdx(0) ] = nullptr;
+	}
+	else
+	{
+		frame->Pixels = new tPixel[frame->Width * frame->Height];
+		tStd::tMemcpy(frame->Pixels, (tPixel*)layer->Data, frame->Width * frame->Height * sizeof(tPixel));
+	}
+
+	return frame;
 }
 
 

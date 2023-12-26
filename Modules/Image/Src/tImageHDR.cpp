@@ -4,7 +4,7 @@
 // file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if
 // an HDR file is specified. After the array is stolen the tImageHDR is invalid. This is purely for performance.
 //
-// Copyright (c) 2020, 2022 Tristan Grimmer.
+// Copyright (c) 2020, 2022, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -383,6 +383,7 @@ bool tImageHDR::Load(uint8* hdrFileInMemory, int numBytes, const LoadParams& loa
 	}
 
 	PixelFormatSrc = tPixelFormat::RADIANCE;
+	ColourProfileSrc = tColourProfile::HDRa;
 	return true;
 }
 
@@ -406,6 +407,7 @@ bool tImageHDR::Set(tPixel* pixels, int width, int height, bool steal)
 	}
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	ColourProfileSrc = tColourProfile::Unspecified;
 	return true;
 }
 
