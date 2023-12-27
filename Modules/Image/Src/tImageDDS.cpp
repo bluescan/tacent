@@ -555,37 +555,37 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 		// BC Formats.
 		//
 		C(BC1_TYPELESS):				F(BC1DXT1)			P(sRGB)		M(None)		T(NONE)		break;
-		C(BC1_UNORM):					F(BC1DXT1)			/*P(lRGB)*/				T(UINT8N)	break;
-		C(BC1_UNORM_SRGB):				F(BC1DXT1)									T(UINT8N)	break;
+		C(BC1_UNORM):					F(BC1DXT1)			/*P(lRGB)*/				T(UNORM)	break;
+		C(BC1_UNORM_SRGB):				F(BC1DXT1)									T(UNORM)	break;
 
 		// DXGI formats do not specify premultiplied alpha mode like DXT2/3 so we leave it unspecified.
 		C(BC2_TYPELESS):				F(BC2DXT2DXT3)											break;
-		C(BC2_UNORM):					F(BC2DXT2DXT3)		/*P(lRGB)*/				T(UINT8N)	break;
-		C(BC2_UNORM_SRGB):				F(BC2DXT2DXT3)								T(UINT8N)	break;
+		C(BC2_UNORM):					F(BC2DXT2DXT3)		/*P(lRGB)*/				T(UNORM)	break;
+		C(BC2_UNORM_SRGB):				F(BC2DXT2DXT3)								T(UNORM)	break;
 
 		C(BC3_TYPELESS):				F(BC3DXT4DXT5)											break;
-		C(BC3_UNORM):					F(BC3DXT4DXT5)		/*P(lRGB)*/				T(UINT8N)	break;
-		C(BC3_UNORM_SRGB):				F(BC3DXT4DXT5)								T(UINT8N)	break;
+		C(BC3_UNORM):					F(BC3DXT4DXT5)		/*P(lRGB)*/				T(UNORM)	break;
+		C(BC3_UNORM_SRGB):				F(BC3DXT4DXT5)								T(UNORM)	break;
 
 		// We don't decode signed properly yet.
 		C(BC4_TYPELESS):				F(BC4ATI1)			P(lRGB)								break;
-		//C(BC4_SNORM):					F(BC4ATI1)			P(lRGB)					T(SINT8)	break;
-		C(BC4_UNORM):					F(BC4ATI1)			P(lRGB)					T(UINT8N)	break;
+		//C(BC4_SNORM):					F(BC4ATI1)			P(lRGB)					T(SINT)		break;
+		C(BC4_UNORM):					F(BC4ATI1)			P(lRGB)					T(UNORM)	break;
 
 		// We don't decode signed properly yet.
 		C(BC5_TYPELESS):				F(BC5ATI2)			P(lRGB) 							break;
-		//C(BC5_SNORM):					F(BC5ATI2)			P(lRGB) 				T(SINT8)	break;
-		C(BC5_UNORM):					F(BC5ATI2)			P(lRGB)					T(UINT8N)	break;
+		//C(BC5_SNORM):					F(BC5ATI2)			P(lRGB) 				T(SINT)		break;
+		C(BC5_UNORM):					F(BC5ATI2)			P(lRGB)					T(UNORM)	break;
 
 		// Alpha not used by BC6. Interpret typeless as BC6H_U16... we gotta choose something.
 		C(BC6H_TYPELESS):				F(BC6U)				P(HDRa)								break;
-		C(BC6H_UF16):					F(BC6U)				P(HDRa)					T(UHALF)	break;
-		C(BC6H_SF16):					F(BC6S)				P(HDRa)					T(SHALF)	break;
+		C(BC6H_UF16):					F(BC6U)				P(HDRa)					T(UFLOAT)	break;
+		C(BC6H_SF16):					F(BC6S)				P(HDRa)					T(SFLOAT)	break;
 
 		// Interpret typeless as sRGB. UNORM without the SRGB must be linear.
 		C(BC7_TYPELESS):				F(BC7)													break;
-		C(BC7_UNORM):					F(BC7)				/*P(lRGB)*/				T(UINT8N)	break;
-		C(BC7_UNORM_SRGB):				F(BC7)										T(UINT8N)	break;
+		C(BC7_UNORM):					F(BC7)				/*P(lRGB)*/				T(UNORM)	break;
+		C(BC7_UNORM_SRGB):				F(BC7)										T(UNORM)	break;
 
 		//
 		// Packed Formats.
@@ -594,41 +594,41 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 
 		// We don't decode signed properly yet. We treat single R channel as if it's in sRGB.
 		C(R8_TYPELESS):					F(R8)													break;
-		C(R8_UNORM):					F(R8)										T(UINT8N)	break;
-		C(R8_UINT):						F(R8)										T(UINT8)	break;
-		//C(R8_SNORM):					F(R8)										T(SINT8N)	break;
-		//C(R8_SINT):					F(R8)										T(SINT8)	break;
+		C(R8_UNORM):					F(R8)										T(UNORM)	break;
+		C(R8_UINT):						F(R8)										T(UINT)		break;
+		//C(R8_SNORM):					F(R8)										T(SNORM)	break;
+		//C(R8_SINT):					F(R8)										T(SINT)		break;
 
 		// We don't decode signed properly yet.
 		C(R8G8_TYPELESS):				F(R8G8)													break;
-		C(R8G8_UNORM):					F(R8G8)										T(UINT8N)	break;
-		C(R8G8_UINT):					F(R8G8)										T(UINT8)	break;
-		//C(R8G8_SNORM):				F(R8G8)										T(SINT8N)	break;
-		//C(R8G8_SINT):					F(R8G8)										T(SINT8)	break;
+		C(R8G8_UNORM):					F(R8G8)										T(UNORM)	break;
+		C(R8G8_UINT):					F(R8G8)										T(UINT)		break;
+		//C(R8G8_SNORM):				F(R8G8)										T(SNORM)	break;
+		//C(R8G8_SINT):					F(R8G8)										T(SINT)		break;
 
 		// UINT is stored same as UNORM. Only diff is that UNORM ends up as a 'float' from 0.0 to 1.0.
 		// We don't decode signed properly yet. Since there is UNORM and UNORM_SRGB, need to assume
 		// the UNORM one is linear (otherwise why have sRGB variant).
 		// Apparently real files in the wild are mostly still sRGB even with the non _SRGB DXGIFMT.
 		C(R8G8B8A8_TYPELESS):			F(R8G8B8A8)												break;
-		C(R8G8B8A8_UNORM):				F(R8G8B8A8)			/*P(lRGB)*/				T(UINT8N)	break;
-		C(R8G8B8A8_UINT):				F(R8G8B8A8)									T(UINT8)	break;
-		C(R8G8B8A8_UNORM_SRGB):			F(R8G8B8A8)									T(UINT8N)	break;
-		//C(R8G8B8A8_SNORM):			F(R8G8B8A8)									T(SINT8N)	break;
-		//C(R8G8B8A8_SINT):				F(R8G8B8A8)									T(SINT8)	break;
+		C(R8G8B8A8_UNORM):				F(R8G8B8A8)			/*P(lRGB)*/				T(UNORM)	break;
+		C(R8G8B8A8_UINT):				F(R8G8B8A8)									T(UINT)		break;
+		C(R8G8B8A8_UNORM_SRGB):			F(R8G8B8A8)									T(UNORM)	break;
+		//C(R8G8B8A8_SNORM):			F(R8G8B8A8)									T(SNORM)	break;
+		//C(R8G8B8A8_SINT):				F(R8G8B8A8)									T(SINT)		break;
 
 		C(B8G8R8A8_TYPELESS):			F(B8G8R8A8)												break;
-		C(B8G8R8A8_UNORM):				F(B8G8R8A8)			/*P(lRGB)*/				T(UINT8N)	break;
-		C(B8G8R8A8_UNORM_SRGB):			F(B8G8R8A8)									T(UINT8N)	break;
+		C(B8G8R8A8_UNORM):				F(B8G8R8A8)			/*P(lRGB)*/				T(UNORM)	break;
+		C(B8G8R8A8_UNORM_SRGB):			F(B8G8R8A8)									T(UNORM)	break;
 
 		// Formats without explicit sRGB variants are considered sRGB.
-		C(B5G6R5_UNORM):				F(G3B5R5G3)									T(UINT8N)	break;
-		C(B4G4R4A4_UNORM):				F(G4B4A4R4)									T(UINT8N)	break;
-		C(B5G5R5A1_UNORM):				F(G3B5A1R5G2)								T(UINT8N)	break;
+		C(B5G6R5_UNORM):				F(G3B5R5G3)									T(UNORM)	break;
+		C(B4G4R4A4_UNORM):				F(G4B4A4R4)									T(UNORM)	break;
+		C(B5G5R5A1_UNORM):				F(G3B5A1R5G2)								T(UNORM)	break;
 
-		C(R16_FLOAT):					F(R16f)				P(HDRa)					T(SHALF)	break;
-		C(R16G16_FLOAT):				F(R16G16f)			P(HDRa)					T(SHALF)	break;
-		C(R16G16B16A16_FLOAT):			F(R16G16B16A16f)	P(HDRa)					T(SHALF)	break;
+		C(R16_FLOAT):					F(R16f)				P(HDRa)					T(SFLOAT)	break;
+		C(R16G16_FLOAT):				F(R16G16f)			P(HDRa)					T(SFLOAT)	break;
+		C(R16G16B16A16_FLOAT):			F(R16G16B16A16f)	P(HDRa)					T(SFLOAT)	break;
 
 		C(R32_FLOAT):					F(R32f)				P(HDRa)					T(SFLOAT)	break;
 		C(R32G32_FLOAT):				F(R32G32f)			P(HDRa)					T(SFLOAT)	break;
@@ -645,60 +645,60 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 		// Apparently real files in the wild are mostly still sRGB even with the non _SRGB DXGIFMT.
 		//
 		C(EXT_ASTC_4X4_TYPELESS):		F(ASTC4X4)			/*P(HDRa)*/							break;
-		C(EXT_ASTC_4X4_UNORM):			F(ASTC4X4)			/*P(HDRa)*/				T(UINT8N)	break;
-		C(EXT_ASTC_4X4_UNORM_SRGB):		F(ASTC4X4)									T(UINT8N)	break;
+		C(EXT_ASTC_4X4_UNORM):			F(ASTC4X4)			/*P(HDRa)*/				T(UNORM)	break;
+		C(EXT_ASTC_4X4_UNORM_SRGB):		F(ASTC4X4)									T(UNORM)	break;
 
 		C(EXT_ASTC_5X4_TYPELESS):		F(ASTC5X4)			/*P(HDRa)*/							break;
-		C(EXT_ASTC_5X4_UNORM):			F(ASTC5X4)			/*P(HDRa)*/				T(UINT8N)	break;
-		C(EXT_ASTC_5X4_UNORM_SRGB):		F(ASTC5X4)									T(UINT8N)	break;
+		C(EXT_ASTC_5X4_UNORM):			F(ASTC5X4)			/*P(HDRa)*/				T(UNORM)	break;
+		C(EXT_ASTC_5X4_UNORM_SRGB):		F(ASTC5X4)									T(UNORM)	break;
 
 		C(EXT_ASTC_5X5_TYPELESS):		F(ASTC5X5)			/*P(HDRa)*/							break;
-		C(EXT_ASTC_5X5_UNORM):			F(ASTC5X5)			/*P(HDRa)*/				T(UINT8N)	break;
-		C(EXT_ASTC_5X5_UNORM_SRGB):		F(ASTC5X5)									T(UINT8N)	break;
+		C(EXT_ASTC_5X5_UNORM):			F(ASTC5X5)			/*P(HDRa)*/				T(UNORM)	break;
+		C(EXT_ASTC_5X5_UNORM_SRGB):		F(ASTC5X5)									T(UNORM)	break;
 
 		C(EXT_ASTC_6X5_TYPELESS):		F(ASTC6X5)			/*P(HDRa)*/							break;
-		C(EXT_ASTC_6X5_UNORM):			F(ASTC6X5)			/*P(HDRa)*/				T(UINT8N)	break;
-		C(EXT_ASTC_6X5_UNORM_SRGB):		F(ASTC6X5)									T(UINT8N)	break;
+		C(EXT_ASTC_6X5_UNORM):			F(ASTC6X5)			/*P(HDRa)*/				T(UNORM)	break;
+		C(EXT_ASTC_6X5_UNORM_SRGB):		F(ASTC6X5)									T(UNORM)	break;
 
 		C(EXT_ASTC_6X6_TYPELESS):		F(ASTC6X6)			/*P(HDRa)*/							break;
-		C(EXT_ASTC_6X6_UNORM):			F(ASTC6X6)			/*P(HDRa)*/				T(UINT8N)	break;
-		C(EXT_ASTC_6X6_UNORM_SRGB):		F(ASTC6X6)									T(UINT8N)	break;
+		C(EXT_ASTC_6X6_UNORM):			F(ASTC6X6)			/*P(HDRa)*/				T(UNORM)	break;
+		C(EXT_ASTC_6X6_UNORM_SRGB):		F(ASTC6X6)									T(UNORM)	break;
 
 		C(EXT_ASTC_8X5_TYPELESS):		F(ASTC8X5)			/*P(HDRa)*/							break;
-		C(EXT_ASTC_8X5_UNORM):			F(ASTC8X5)			/*P(HDRa)*/				T(UINT8N)	break;
-		C(EXT_ASTC_8X5_UNORM_SRGB):		F(ASTC8X5)									T(UINT8N)	break;
+		C(EXT_ASTC_8X5_UNORM):			F(ASTC8X5)			/*P(HDRa)*/				T(UNORM)	break;
+		C(EXT_ASTC_8X5_UNORM_SRGB):		F(ASTC8X5)									T(UNORM)	break;
 
 		C(EXT_ASTC_8X6_TYPELESS):		F(ASTC8X6)			/*P(HDRa)*/							break;
-		C(EXT_ASTC_8X6_UNORM):			F(ASTC8X6)			/*P(HDRa)*/				T(UINT8N)	break;
-		C(EXT_ASTC_8X6_UNORM_SRGB):		F(ASTC8X6)									T(UINT8N)	break;
+		C(EXT_ASTC_8X6_UNORM):			F(ASTC8X6)			/*P(HDRa)*/				T(UNORM)	break;
+		C(EXT_ASTC_8X6_UNORM_SRGB):		F(ASTC8X6)									T(UNORM)	break;
 
 		C(EXT_ASTC_8X8_TYPELESS):		F(ASTC8X8)			/*P(HDRa)*/							break;
-		C(EXT_ASTC_8X8_UNORM):			F(ASTC8X8)			/*P(HDRa)*/				T(UINT8N)	break;
-		C(EXT_ASTC_8X8_UNORM_SRGB):		F(ASTC8X8)									T(UINT8N)	break;
+		C(EXT_ASTC_8X8_UNORM):			F(ASTC8X8)			/*P(HDRa)*/				T(UNORM)	break;
+		C(EXT_ASTC_8X8_UNORM_SRGB):		F(ASTC8X8)									T(UNORM)	break;
 
 		C(EXT_ASTC_10X5_TYPELESS):		F(ASTC10X5)			/*P(HDRa)*/							break;
-		C(EXT_ASTC_10X5_UNORM):			F(ASTC10X5)			/*P(HDRa)*/				T(UINT8N)	break;
-		C(EXT_ASTC_10X5_UNORM_SRGB):	F(ASTC10X5)									T(UINT8N)	break;
+		C(EXT_ASTC_10X5_UNORM):			F(ASTC10X5)			/*P(HDRa)*/				T(UNORM)	break;
+		C(EXT_ASTC_10X5_UNORM_SRGB):	F(ASTC10X5)									T(UNORM)	break;
 
 		C(EXT_ASTC_10X6_TYPELESS):		F(ASTC10X6)			/*P(HDRa)*/							break;
-		C(EXT_ASTC_10X6_UNORM):			F(ASTC10X6)			/*P(HDRa)*/				T(UINT8N)	break;
-		C(EXT_ASTC_10X6_UNORM_SRGB):	F(ASTC10X6)									T(UINT8N)	break;
+		C(EXT_ASTC_10X6_UNORM):			F(ASTC10X6)			/*P(HDRa)*/				T(UNORM)	break;
+		C(EXT_ASTC_10X6_UNORM_SRGB):	F(ASTC10X6)									T(UNORM)	break;
 
 		C(EXT_ASTC_10X8_TYPELESS):		F(ASTC10X8)			/*P(HDRa)*/							break;
-		C(EXT_ASTC_10X8_UNORM):			F(ASTC10X8)			/*P(HDRa)*/				T(UINT8N)	break;
-		C(EXT_ASTC_10X8_UNORM_SRGB):	F(ASTC10X8)									T(UINT8N)	break;
+		C(EXT_ASTC_10X8_UNORM):			F(ASTC10X8)			/*P(HDRa)*/				T(UNORM)	break;
+		C(EXT_ASTC_10X8_UNORM_SRGB):	F(ASTC10X8)									T(UNORM)	break;
 
 		C(EXT_ASTC_10X10_TYPELESS):		F(ASTC10X10)		/*P(HDRa)*/							break;
-		C(EXT_ASTC_10X10_UNORM):		F(ASTC10X10)		/*P(HDRa)*/				T(UINT8N)	break;
-		C(EXT_ASTC_10X10_UNORM_SRGB):	F(ASTC10X10)								T(UINT8N)	break;
+		C(EXT_ASTC_10X10_UNORM):		F(ASTC10X10)		/*P(HDRa)*/				T(UNORM)	break;
+		C(EXT_ASTC_10X10_UNORM_SRGB):	F(ASTC10X10)								T(UNORM)	break;
 
 		C(EXT_ASTC_12X10_TYPELESS):		F(ASTC12X10)		/*P(HDRa)*/							break;
-		C(EXT_ASTC_12X10_UNORM):		F(ASTC12X10)		/*P(HDRa)*/				T(UINT8N)	break;
-		C(EXT_ASTC_12X10_UNORM_SRGB):	F(ASTC12X10)								T(UINT8N)	break;
+		C(EXT_ASTC_12X10_UNORM):		F(ASTC12X10)		/*P(HDRa)*/				T(UNORM)	break;
+		C(EXT_ASTC_12X10_UNORM_SRGB):	F(ASTC12X10)								T(UNORM)	break;
 
 		C(EXT_ASTC_12X12_TYPELESS):		F(ASTC12X12)		/*P(HDRa)*/							break;
-		C(EXT_ASTC_12X12_UNORM):		F(ASTC12X12)		/*P(HDRa)*/				T(UINT8N)	break;
-		C(EXT_ASTC_12X12_UNORM_SRGB):	F(ASTC12X12)								T(UINT8N)	break;
+		C(EXT_ASTC_12X12_UNORM):		F(ASTC12X12)		/*P(HDRa)*/				T(UNORM)	break;
+		C(EXT_ASTC_12X12_UNORM_SRGB):	F(ASTC12X12)								T(UNORM)	break;
 
 		default:													P(None)								break;
 	}
@@ -922,7 +922,7 @@ bool tImageDDS::Set(tPixel* pixels, int width, int height, bool steal)
 	ColourProfile					= tColourProfile::sRGB;
 	ColourProfileSrc				= tColourProfile::sRGB;
 	AlphaMode						= tAlphaMode::Normal;
-	ChannelType						= tChannelType::UINT8N;
+	ChannelType						= tChannelType::UNORM;
 	IsCubeMap						= false;
 	IsModernDX10					= false;
 	RowReversalOperationPerformed	= false;

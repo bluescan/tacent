@@ -92,8 +92,8 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 		CC(RGB_BPTC_SIGNED_FLOAT):				F(BC6S)				P(HDRa)					T(SFLOAT)	break;
 
 		// BPTC AKA BC7 is designed for UNORM data.
-		CC(RGBA_BPTC_UNORM):					F(BC7)				/*P(lRGB)*/				T(UINT8N)	break;
-		CC(SRGB_ALPHA_BPTC_UNORM):				F(BC7)										T(UINT8N)	break;
+		CC(RGBA_BPTC_UNORM):					F(BC7)				/*P(lRGB)*/				T(UNORM)	break;
+		CC(SRGB_ALPHA_BPTC_UNORM):				F(BC7)										T(UNORM)	break;
 
 		//
 		// ETC and EAC formats.
@@ -107,9 +107,9 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 		CC(SRGB8_PUNCHTHROUGH_ALPHA1_ETC2):		F(ETC2RGBA1)											break;
 
 		// Leaving the R and RG formats in sRGB space.
-		CC(R11_EAC):							F(EACR11U)									T(UINT16)	break;
+		CC(R11_EAC):							F(EACR11U)									T(UINT)		break;
 		CC(SIGNED_R11_EAC):						F(EACR11S)									T(SFLOAT)	break;
-		CC(RG11_EAC):							F(EACRG11U)									T(UINT16)	break;
+		CC(RG11_EAC):							F(EACRG11U)									T(UINT)		break;
 		CC(SIGNED_RG11_EAC):					F(EACRG11S)									T(SFLOAT)	break;
 
 		//
@@ -162,14 +162,14 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 		C(LUMINANCE):
 			switch (glType)
 			{
-				C(UNSIGNED_BYTE):				F(L8)										T(UINT8)	break;
+				C(UNSIGNED_BYTE):				F(L8)										T(UINT)		break;
 			}
 			break;
 
 		C(ALPHA):
 			switch (glType)
 			{
-				C(UNSIGNED_BYTE):				F(A8)				P(lRGB)					T(UINT8)	break;
+				C(UNSIGNED_BYTE):				F(A8)				P(lRGB)					T(UINT)		break;
 			}
 			break;
 
@@ -180,8 +180,8 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 		C(RED_INTEGER):
 			switch (glType)
 			{
-				C(UNSIGNED_BYTE):				F(R8)										T(UINT8)	break;
-				C(HALF_FLOAT):					F(R16f)				P(HDRa)					T(SHALF)	break;
+				C(UNSIGNED_BYTE):				F(R8)										T(UINT)		break;
+				C(HALF_FLOAT):					F(R16f)				P(HDRa)					T(SFLOAT)	break;
 				C(FLOAT):						F(R32f)				P(HDRa)					T(SFLOAT)	break;
 			}
 			break;
@@ -190,8 +190,8 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 		C(RG_INTEGER):
 			switch (glType)
 			{
-				C(UNSIGNED_BYTE):				F(R8G8)										T(UINT8)	break;
-				C(HALF_FLOAT):					F(R16G16f)			P(HDRa)					T(SHALF)	break;
+				C(UNSIGNED_BYTE):				F(R8G8)										T(UINT)		break;
+				C(HALF_FLOAT):					F(R16G16f)			P(HDRa)					T(SFLOAT)	break;
 				C(FLOAT):						F(R32G32f)			P(HDRa)					T(SFLOAT)	break;
 			}
 			break;
@@ -203,8 +203,8 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 				// They are all T(UINT8). The short refers to total pixel size but each component would still
 				// be accessed as a uint8 in a shader program. GL is a bit inconsistent here as the BYTE type
 				// does not refer to the total pixel size like SHORT does.
-				C(UNSIGNED_BYTE):				F(R8G8B8)									T(UINT8)	break;
-				C(UNSIGNED_SHORT_5_6_5_REV):	F(G3B5R5G3)									T(UINT8)	break;
+				C(UNSIGNED_BYTE):				F(R8G8B8)									T(UINT)		break;
+				C(UNSIGNED_SHORT_5_6_5_REV):	F(G3B5R5G3)									T(UINT)		break;
 			}
 			break;
 
@@ -212,8 +212,8 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 		C(RGBA_INTEGER):
 			switch (glType)
 			{
-				C(UNSIGNED_BYTE):				F(R8G8B8A8)									T(UINT8)	break;
-				C(HALF_FLOAT):					F(R16G16B16A16f)	P(HDRa)					T(SHALF)	break;
+				C(UNSIGNED_BYTE):				F(R8G8B8A8)									T(UINT)		break;
+				C(HALF_FLOAT):					F(R16G16B16A16f)	P(HDRa)					T(SFLOAT)	break;
 				C(FLOAT):						F(R32G32B32A32f)	P(HDRa)					T(SFLOAT)	break;
 			}
 			break;
@@ -223,8 +223,8 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 			switch (glType)
 			{
 				// See comment above.
-				C(UNSIGNED_BYTE):				F(B8G8R8)									T(UINT8)	break;
-				C(UNSIGNED_SHORT_5_6_5):		F(G3B5R5G3)									T(UINT8)	break;
+				C(UNSIGNED_BYTE):				F(B8G8R8)									T(UINT)		break;
+				C(UNSIGNED_SHORT_5_6_5):		F(G3B5R5G3)									T(UINT)		break;
 			}
 			break;
 
@@ -233,9 +233,9 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 			switch (glType)
 			{
 				// See comment above.
-				C(UNSIGNED_BYTE):				F(B8G8R8A8)									T(UINT8)	break;
-				C(UNSIGNED_SHORT_4_4_4_4):		F(G4B4A4R4)									T(UINT8)	break;
-				C(UNSIGNED_SHORT_5_5_5_1):		F(G3B5A1R5G2)								T(UINT8)	break;
+				C(UNSIGNED_BYTE):				F(B8G8R8A8)									T(UINT)		break;
+				C(UNSIGNED_SHORT_4_4_4_4):		F(G4B4A4R4)									T(UINT)		break;
+				C(UNSIGNED_SHORT_5_5_5_1):		F(G3B5A1R5G2)								T(UINT)		break;
 			}
 			break;
 	}
@@ -293,57 +293,57 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		//C(R8_USCALED):
 		//C(R8_SSCALED):
 		//C(R8_SINT):
-		C(R8_UNORM):							F(R8)				/*P(lRGB)*/	M(None)		T(UINT8N)	break;
-		C(R8_UINT):								F(R8)				/*P(lRGB)*/				T(UINT8)	break;
+		C(R8_UNORM):							F(R8)				/*P(lRGB)*/	M(None)		T(UNORM)	break;
+		C(R8_UINT):								F(R8)				/*P(lRGB)*/				T(UINT)		break;
 		C(R8_SRGB):								F(R8)													break;
 
 		//C(R8G8_SNORM):
 		//C(R8G8_USCALED):
 		//C(R8G8_SSCALED):
 		//C(R8G8_SINT):
-		C(R8G8_UNORM):							F(R8G8)				/*P(lRGB)*/				T(UINT8N)	break;
-		C(R8G8_UINT):							F(R8G8)				/*P(lRGB)*/				T(UINT8)	break;
+		C(R8G8_UNORM):							F(R8G8)				/*P(lRGB)*/				T(UNORM)	break;
+		C(R8G8_UINT):							F(R8G8)				/*P(lRGB)*/				T(UINT)		break;
 		C(R8G8_SRGB):							F(R8G8)													break;
 
 		//C(R8G8B8_SNORM):
 		//C(R8G8B8_USCALED):
 		//C(R8G8B8_SSCALED):
 		//C(R8G8B8_SINT):
-		C(R8G8B8_UNORM):						F(R8G8B8)			/*P(lRGB)*/				T(UINT8N)	break;
-		C(R8G8B8_UINT):							F(R8G8B8)			/*P(lRGB)*/				T(UINT8)	break;
+		C(R8G8B8_UNORM):						F(R8G8B8)			/*P(lRGB)*/				T(UNORM)	break;
+		C(R8G8B8_UINT):							F(R8G8B8)			/*P(lRGB)*/				T(UINT)		break;
 		C(R8G8B8_SRGB):							F(R8G8B8)												break;
 		
 		//C(R8G8B8A8_SNORM):
 		//C(R8G8B8A8_USCALED):
 		//C(R8G8B8A8_SSCALED):
 		//C(R8G8B8A8_SINT):
-		C(R8G8B8A8_UNORM):						F(R8G8B8A8)			/*P(lRGB)*/				T(UINT8N)	break;
-		C(R8G8B8A8_UINT):						F(R8G8B8A8)			/*P(lRGB)*/				T(UINT8)	break;
+		C(R8G8B8A8_UNORM):						F(R8G8B8A8)			/*P(lRGB)*/				T(UNORM)	break;
+		C(R8G8B8A8_UINT):						F(R8G8B8A8)			/*P(lRGB)*/				T(UINT)		break;
 		C(R8G8B8A8_SRGB):						F(R8G8B8A8)												break;
 
 		//C(B8G8R8_SNORM):
 		//C(B8G8R8_USCALED):
 		//C(B8G8R8_SSCALED):
 		//C(B8G8R8_SINT):
-		C(B8G8R8_UNORM):						F(B8G8R8)			/*P(lRGB)*/				T(UINT8N)	break;
-		C(B8G8R8_UINT):							F(B8G8R8)			/*P(lRGB)*/				T(UINT8)	break;
+		C(B8G8R8_UNORM):						F(B8G8R8)			/*P(lRGB)*/				T(UNORM)	break;
+		C(B8G8R8_UINT):							F(B8G8R8)			/*P(lRGB)*/				T(UINT)		break;
 		C(B8G8R8_SRGB):							F(B8G8R8)												break;
 
 		//C(B8G8R8A8_SNORM):
 		//C(B8G8R8A8_USCALED):
 		//C(B8G8R8A8_SSCALED):
 		//C(B8G8R8A8_SINT):
-		C(B8G8R8A8_UNORM):						F(B8G8R8A8)			/*P(lRGB)*/				T(UINT8N)	break;
-		C(B8G8R8A8_UINT):						F(B8G8R8A8)			/*P(lRGB)*/				T(UINT8)	break;
+		C(B8G8R8A8_UNORM):						F(B8G8R8A8)			/*P(lRGB)*/				T(UNORM)	break;
+		C(B8G8R8A8_UINT):						F(B8G8R8A8)			/*P(lRGB)*/				T(UINT)		break;
 		C(B8G8R8A8_SRGB):						F(B8G8R8A8)												break;
 
-		C(B5G6R5_UNORM_PACK16):					F(G3B5R5G3)									T(UINT8N)	break;
-		C(B4G4R4A4_UNORM_PACK16):				F(G4B4A4R4)									T(UINT8N)	break;
-		C(B5G5R5A1_UNORM_PACK16):				F(G3B5A1R5G2)								T(UINT8N)	break;
+		C(B5G6R5_UNORM_PACK16):					F(G3B5R5G3)									T(UNORM)	break;
+		C(B4G4R4A4_UNORM_PACK16):				F(G4B4A4R4)									T(UNORM)	break;
+		C(B5G5R5A1_UNORM_PACK16):				F(G3B5A1R5G2)								T(UNORM)	break;
 
-		C(R16_SFLOAT):							F(R16f)				P(HDRa)					T(SHALF)	break;
-		C(R16G16_SFLOAT):						F(R16G16f)			P(HDRa)					T(SHALF)	break;
-		C(R16G16B16A16_SFLOAT):					F(R16G16B16A16f)	P(HDRa)					T(SHALF)	break;
+		C(R16_SFLOAT):							F(R16f)				P(HDRa)					T(SFLOAT)	break;
+		C(R16G16_SFLOAT):						F(R16G16f)			P(HDRa)					T(SFLOAT)	break;
+		C(R16G16B16A16_SFLOAT):					F(R16G16B16A16f)	P(HDRa)					T(SFLOAT)	break;
 		C(R32_SFLOAT):							F(R32f)				P(HDRa)					T(SFLOAT)	break;
 		C(R32G32_SFLOAT):						F(R32G32f)			P(HDRa)					T(SFLOAT)	break;
 		C(R32G32B32A32_SFLOAT):					F(R32G32B32A32f)	P(HDRa)					T(SFLOAT)	break;
@@ -353,40 +353,40 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		//
 		// BC Formats.
 		//
-		C(BC1_RGB_UNORM_BLOCK):					F(BC1DXT1)			/*P(lRGB)*/				T(UINT8N)	break;
+		C(BC1_RGB_UNORM_BLOCK):					F(BC1DXT1)			/*P(lRGB)*/				T(UNORM)	break;
 		C(BC1_RGB_SRGB_BLOCK):					F(BC1DXT1)												break;
-		C(BC1_RGBA_UNORM_BLOCK):				F(BC1DXT1A)			/*P(lRGB)*/				T(UINT8N)	break;
+		C(BC1_RGBA_UNORM_BLOCK):				F(BC1DXT1A)			/*P(lRGB)*/				T(UNORM)	break;
 		C(BC1_RGBA_SRGB_BLOCK):					F(BC1DXT1A)												break;
-		C(BC2_UNORM_BLOCK):						F(BC2DXT2DXT3)		/*P(lRGB)*/				T(UINT8N)	break;
+		C(BC2_UNORM_BLOCK):						F(BC2DXT2DXT3)		/*P(lRGB)*/				T(UNORM)	break;
 		C(BC2_SRGB_BLOCK):						F(BC2DXT2DXT3)											break;
-		C(BC3_UNORM_BLOCK):						F(BC3DXT4DXT5)		/*P(lRGB)*/				T(UINT8N)	break;
+		C(BC3_UNORM_BLOCK):						F(BC3DXT4DXT5)		/*P(lRGB)*/				T(UNORM)	break;
 		C(BC3_SRGB_BLOCK):						F(BC3DXT4DXT5)											break;
 
 		// Signed not supported yet for BC4 and BC5.
 		//C(BC4_SNORM_BLOCK):																			break;
-		C(BC4_UNORM_BLOCK):						F(BC4ATI1)									T(UINT8N)	break;
+		C(BC4_UNORM_BLOCK):						F(BC4ATI1)									T(UNORM)	break;
 		//C(BC5_SNORM_BLOCK):																			break;
-		C(BC5_UNORM_BLOCK):						F(BC5ATI2)									T(UINT8N)	break;
+		C(BC5_UNORM_BLOCK):						F(BC5ATI2)									T(UNORM)	break;
 
 		C(BC6H_UFLOAT_BLOCK):					F(BC6U)				P(HDRa)					T(UFLOAT)	break;
 		C(BC6H_SFLOAT_BLOCK):					F(BC6S)				P(HDRa)					T(SFLOAT)	break;
 
-		C(BC7_UNORM_BLOCK):						F(BC7)				/*P(lRGB)*/				T(UINT8N)	break;
+		C(BC7_UNORM_BLOCK):						F(BC7)				/*P(lRGB)*/				T(UNORM)	break;
 		C(BC7_SRGB_BLOCK):						F(BC7)													break;
 
 		//
 		// ETC2 and EAC.
 		//
-		C(ETC2_R8G8B8_UNORM_BLOCK):				F(ETC2RGB)			/*P(lRGB)*/				T(UINT8N)	break;
+		C(ETC2_R8G8B8_UNORM_BLOCK):				F(ETC2RGB)			/*P(lRGB)*/				T(UNORM)	break;
 		C(ETC2_R8G8B8_SRGB_BLOCK):				F(ETC2RGB)												break;
-		C(ETC2_R8G8B8A8_UNORM_BLOCK):			F(ETC2RGBA)			/*P(lRGB)*/				T(UINT8N)	break;
+		C(ETC2_R8G8B8A8_UNORM_BLOCK):			F(ETC2RGBA)			/*P(lRGB)*/				T(UNORM)	break;
 		C(ETC2_R8G8B8A8_SRGB_BLOCK):			F(ETC2RGBA)												break;
-		C(ETC2_R8G8B8A1_UNORM_BLOCK):			F(ETC2RGBA1)		/*P(lRGB)*/				T(UINT8N)	break;
+		C(ETC2_R8G8B8A1_UNORM_BLOCK):			F(ETC2RGBA1)		/*P(lRGB)*/				T(UNORM)	break;
 		C(ETC2_R8G8B8A1_SRGB_BLOCK):			F(ETC2RGBA1)											break;
 
-		C(EAC_R11_UNORM_BLOCK):					F(EACR11U)									T(UINT16N)	break;
+		C(EAC_R11_UNORM_BLOCK):					F(EACR11U)									T(UNORM)	break;
 		C(EAC_R11_SNORM_BLOCK):					F(EACR11S)									T(SFLOAT)	break;
-		C(EAC_R11G11_UNORM_BLOCK):				F(EACRG11U)									T(UINT16N)	break;
+		C(EAC_R11G11_UNORM_BLOCK):				F(EACRG11U)									T(UNORM)	break;
 		C(EAC_R11G11_SNORM_BLOCK):				F(EACRG11S)									T(SFLOAT)	break;
 
 		//
@@ -413,59 +413,59 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		// with the tests images -- the LDR profile doesn't appear capable of loading HDR blocks (they become magenta).
 		//
 		C(ASTC_4x4_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
-		C(ASTC_4x4_UNORM_BLOCK):				F(ASTC4X4)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_4x4_UNORM_BLOCK):				F(ASTC4X4)			P(HDRa)					T(UNORM)	break;
 		C(ASTC_4x4_SRGB_BLOCK):					F(ASTC4X4)												break;
 
 		C(ASTC_5x4_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
-		C(ASTC_5x4_UNORM_BLOCK):				F(ASTC5X4)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_5x4_UNORM_BLOCK):				F(ASTC5X4)			P(HDRa)					T(UNORM)	break;
 		C(ASTC_5x4_SRGB_BLOCK):					F(ASTC5X4)												break;
 
 		C(ASTC_5x5_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
-		C(ASTC_5x5_UNORM_BLOCK):				F(ASTC5X5)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_5x5_UNORM_BLOCK):				F(ASTC5X5)			P(HDRa)					T(UNORM)	break;
 		C(ASTC_5x5_SRGB_BLOCK):					F(ASTC5X5)												break;
 
 		C(ASTC_6x5_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
-		C(ASTC_6x5_UNORM_BLOCK):				F(ASTC6X5)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_6x5_UNORM_BLOCK):				F(ASTC6X5)			P(HDRa)					T(UNORM)	break;
 		C(ASTC_6x5_SRGB_BLOCK):					F(ASTC6X5)												break;
 
 		C(ASTC_6x6_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
-		C(ASTC_6x6_UNORM_BLOCK):				F(ASTC6X6)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_6x6_UNORM_BLOCK):				F(ASTC6X6)			P(HDRa)					T(UNORM)	break;
 		C(ASTC_6x6_SRGB_BLOCK):					F(ASTC6X6)												break;
 
 		C(ASTC_8x5_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
-		C(ASTC_8x5_UNORM_BLOCK):				F(ASTC8X5)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_8x5_UNORM_BLOCK):				F(ASTC8X5)			P(HDRa)					T(UNORM)	break;
 		C(ASTC_8x5_SRGB_BLOCK):					F(ASTC8X5)												break;
 
 		C(ASTC_8x6_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
-		C(ASTC_8x6_UNORM_BLOCK):				F(ASTC8X6)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_8x6_UNORM_BLOCK):				F(ASTC8X6)			P(HDRa)					T(UNORM)	break;
 		C(ASTC_8x6_SRGB_BLOCK):					F(ASTC8X6)												break;
 
 		C(ASTC_8x8_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
-		C(ASTC_8x8_UNORM_BLOCK):				F(ASTC8X8)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_8x8_UNORM_BLOCK):				F(ASTC8X8)			P(HDRa)					T(UNORM)	break;
 		C(ASTC_8x8_SRGB_BLOCK):					F(ASTC8X8)												break;
 
 		C(ASTC_10x5_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
-		C(ASTC_10x5_UNORM_BLOCK):				F(ASTC10X5)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_10x5_UNORM_BLOCK):				F(ASTC10X5)			P(HDRa)					T(UNORM)	break;
 		C(ASTC_10x5_SRGB_BLOCK):				F(ASTC10X5)												break;
 
 		C(ASTC_10x6_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
-		C(ASTC_10x6_UNORM_BLOCK):				F(ASTC10X6)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_10x6_UNORM_BLOCK):				F(ASTC10X6)			P(HDRa)					T(UNORM)	break;
 		C(ASTC_10x6_SRGB_BLOCK):				F(ASTC10X6)												break;
 
 		C(ASTC_10x8_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
-		C(ASTC_10x8_UNORM_BLOCK):				F(ASTC10X8)			P(HDRa)					T(UINT8N)	break;
+		C(ASTC_10x8_UNORM_BLOCK):				F(ASTC10X8)			P(HDRa)					T(UNORM)	break;
 		C(ASTC_10x8_SRGB_BLOCK):				F(ASTC10X8)												break;
 
 		C(ASTC_10x10_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
-		C(ASTC_10x10_UNORM_BLOCK):				F(ASTC10X10)		P(HDRa)					T(UINT8N)	break;
+		C(ASTC_10x10_UNORM_BLOCK):				F(ASTC10X10)		P(HDRa)					T(UNORM)	break;
 		C(ASTC_10x10_SRGB_BLOCK):				F(ASTC10X10)											break;
 
 		C(ASTC_12x10_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
-		C(ASTC_12x10_UNORM_BLOCK):				F(ASTC12X10)		P(HDRa)					T(UINT8N)	break;
+		C(ASTC_12x10_UNORM_BLOCK):				F(ASTC12X10)		P(HDRa)					T(UNORM)	break;
 		C(ASTC_12x10_SRGB_BLOCK):				F(ASTC12X10)											break;
 
 		C(ASTC_12x12_SFLOAT_BLOCK_EXT):			F(ASTC4X4)			P(HDRa)					T(SFLOAT)	break;
-		C(ASTC_12x12_UNORM_BLOCK):				F(ASTC12X12)		P(HDRa)					T(UINT8N)	break;
+		C(ASTC_12x12_UNORM_BLOCK):				F(ASTC12X12)		P(HDRa)					T(UNORM)	break;
 		C(ASTC_12x12_SRGB_BLOCK):				F(ASTC12X12)											break;
 	}
 
@@ -538,7 +538,7 @@ bool tImageKTX::Set(tPixel* pixels, int width, int height, bool steal)
 	ColourProfile = tColourProfile::LDRsRGB_LDRlA;
 	ColourProfileSrc = tColourProfile::LDRsRGB_LDRlA;
 	AlphaMode = tAlphaMode::Normal;
-	ChannelType = tChannelType::UINT8N;
+	ChannelType = tChannelType::UNORM;
 	NumImages = 1;
 	NumMipmapLayers = 1;
 

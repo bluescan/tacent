@@ -2235,10 +2235,14 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAl
 	tPrintf("PVR savename %s\n", savename.Chr());
 
 	// Determine pixel format from filename.
-	tString fileFormatName = basename.Left('_');
+	tString fileFormatName = basename.ExtractLeft('_');
 	fileFormatName.ExtractLeft('+');
 	tPrintf("Format name: %s\n", fileFormatName.Chr());
 	tPixelFormat fileFormat = tGetPixelFormat(fileFormatName.Chr());
+
+	// Determine the channel type from the filename.
+	tString fileChanTypeName = basename.ExtractLeft('_');
+	tChannelType fileChanType = tGetChannelType(fileChanTypeName.Chr());
 
 	// If necessary the underscores can be counted to determine PVR1/2 vs PVR3.
 	tImagePVR::LoadParams params;
@@ -2249,6 +2253,12 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAl
 	tPixelFormat pvrFormat = pvr.GetPixelFormat();
 	tPixelFormat pvrFormatSrc = pvr.GetPixelFormatSrc();
 	tRequire(fileFormat == pvrFormatSrc);
+
+	tChannelType chanType = pvr.GetChannelType();
+	const char* chanTypeName = tGetChannelTypeShortName(chanType);
+	if (chanTypeName)
+		tPrintf("ChannelType: %s\n", chanTypeName);
+	tRequire(fileChanType == chanType);
 
 	if (loadFlags & tImagePVR::LoadFlag_Decode)
 		tRequire(pvrFormat == tPixelFormat::R8G8B8A8);
@@ -2364,9 +2374,9 @@ tTestUnit(ImagePVR3)
 	PVRLoadDecodeSave("R5G6B5+G3B5R5G3_UNORM_LIN_RGB_T.pvr",		decode | revrow,	true);
 	PVRLoadDecodeSave("R8G8B8A8_UNORM_SRGB_RGBA_TM.pvr",			decode | revrow,	true);
 
-	PVRLoadDecodeSave("R32G32B32A32f_FLOAT_SRGB_RGBA_C.pvr",		decode | revrow,	true);
+	PVRLoadDecodeSave("R32G32B32A32f_SFLOAT_SRGB_RGBA_C.pvr",		decode | revrow,	true);
 
-	PVRLoadDecodeSave("R32G32B32A32f_FLOAT_LIN_RGBA_TM.pvr",		decode | revrow,	true);
+	PVRLoadDecodeSave("R32G32B32A32f_SFLOAT_LIN_RGBA_TM.pvr",		decode | revrow,	true);
 	PVRLoadDecodeSave("B10G11R11uf_UFLOAT_LIN_RGB_TM.pvr",			decode | revrow,	true);
 	PVRLoadDecodeSave("RGB999E5+E5B9G9R9uf_UFLOAT_LIN_RGB_T.pvr",	decode | revrow,	true);
 

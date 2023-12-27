@@ -89,44 +89,24 @@ const char* tGetAlphaModeShortName(tAlphaMode mode)
 
 const char* tChannelTypeNames[] =
 {
-	"UnsignedInt8Normalized",
-	"SignedInt8Normalized",
-	"UnsignedInt8",
-	"SignedInt8",
-	"UnsignedInt16Normalized",
-	"SignedInt16Normalized",
-	"UnsignedInt16",
-	"SignedInt16",
-	"UnsignedInt32Normalized",
-	"SignedInt32Normalized",
-	"UnsignedInt32",
-	"SignedInt32",
+	"UnsignedIntNormalized",
+	"SignedIntNormalized",
+	"UnsignedInt",
+	"SignedInt",
 	"UnsignedFloat",
-	"SignedFloat",
-	"UnsignedHalf",
-	"SignedHalf"
+	"SignedFloat"
 };
 tStaticAssert(tNumElements(tChannelTypeNames) == int(tChannelType::NumTypes));
 
 
 const char* tChannelTypeShortNames[] =
 {
-	"UINT8N",
-	"SINT8N",
-	"UINT8",
-	"SINT8",
-	"UINT16N",
-	"SINT16N",
-	"UINT16",
-	"SINT16",
-	"UINT32N",
-	"SINT32N",
-	"UINT32",
-	"SINT32",
+	"UNORM",
+	"SNORM",
+	"UINT",
+	"SINT",
 	"UFLOAT",
-	"SFLOAT",
-	"UHALF",
-	"SHALF"
+	"SFLOAT"
 };
 tStaticAssert(tNumElements(tChannelTypeShortNames) == int(tChannelType::NumTypes));
 
@@ -142,6 +122,23 @@ const char* tGetChannelTypeShortName(tChannelType type)
 {
 	if (type == tChannelType::NONE)				return "NONE";
 	return tChannelTypeShortNames[int(type)];
+}
+
+
+tChannelType tGetChannelType(const char* name)
+{
+	if (!name || (name[0] == '\0'))
+		return tChannelType::Invalid;
+
+	for (int t = 0; t < int(tChannelType::NumTypes); t++)
+		if (tStd::tStrcmp(tChannelTypeShortNames[t], name) == 0)
+			return tChannelType(t);
+
+	for (int t = 0; t < int(tChannelType::NumTypes); t++)
+		if (tStd::tStrcmp(tChannelTypeNames[t], name) == 0)
+			return tChannelType(t);
+
+	return tChannelType::Invalid;
 }
 
 

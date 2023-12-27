@@ -56,7 +56,7 @@ namespace tPVR
 		uint32 Flags;
 		uint64 PixelFormat;
 		uint32 ColourSpace;			// 0 = Linear RGB. 1 = sRGB (I assume linear alpha for both).
-		uint32 ChannelType;			// 0=UINT8N, 1=SINT8N, 2=UINT8, 3=SINT8, 4=UINT16N, 5=SINT16N, 6=UINT16, 7=SINT16, 8=UINT32N, 9=SINT32N, 10=UINT32, 11=SINT32, 12=SFLOAT, 13=UFLOAT.
+		uint32 ChannelType;			// Matches PVR3CHANTYPE.
 		uint32 Height;
 		uint32 Width;
 		uint32 Depth;
@@ -337,20 +337,20 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 	#define T(t) chanType = tChannelType::t;
 	switch (header.ChannelType)
 	{
-		C(UnsignedByteNormalised):		T(UINT8N)		break;
-		C(SignedByteNormalised):		T(SINT8N)		break;
-		C(UnsignedByte):				T(UINT8)		break;
-		C(SignedByte):					T(SINT8)		break;
+		C(UnsignedByteNormalised):		T(UNORM)		break;
+		C(SignedByteNormalised):		T(SNORM)		break;
+		C(UnsignedByte):				T(UINT)			break;
+		C(SignedByte):					T(SINT)			break;
 
-		C(UnsignedShortNormalised):		T(UINT16N)		break;
-		C(SignedShortNormalised):		T(SINT16N)		break;
-		C(UnsignedShort):				T(UINT16)		break;
-		C(SignedShort):					T(SINT16)		break;
+		C(UnsignedShortNormalised):		T(UNORM)		break;
+		C(SignedShortNormalised):		T(SNORM)		break;
+		C(UnsignedShort):				T(UINT)			break;
+		C(SignedShort):					T(SINT)			break;
 
-		C(UnsignedIntegerNormalised):	T(UINT32N)		break;
-		C(SignedIntegerNormalised):		T(SINT32N)		break;
-		C(UnsignedInteger):				T(UINT32)		break;
-		C(SignedInteger):				T(SINT32)		break;
+		C(UnsignedIntegerNormalised):	T(UNORM)		break;
+		C(SignedIntegerNormalised):		T(SNORM)		break;
+		C(UnsignedInteger):				T(UINT)			break;
+		C(SignedInteger):				T(SINT)			break;
 
 		C(Float):						T(SFLOAT)		break;
 		C(UnsignedFloat):				T(UFLOAT)		break;
@@ -392,7 +392,7 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 			C(DXT5_BC3):					F(BC3DXT4DXT5)											break;
 			C(BC4):							F(BC4ATI1)			P(lRGB)								break;
 			C(BC5):							F(BC5ATI2)			P(lRGB)								break;
-			C(BC6):							F(BC6U)				P(HDRa)					T(UHALF)	break;	// Not sure whether signed or unsigned. Assuming unsigned.
+			C(BC6):							F(BC6U)				P(HDRa)					T(UFLOAT)	break;	// Not sure whether signed or unsigned. Assuming unsigned.
 			C(BC7):							F(BC7)													break;
 			//C(UYVY):
 			//C(YUY2):
@@ -562,7 +562,7 @@ bool tImagePVR::Set(tPixel* pixels, int width, int height, bool steal)
 	ColourProfile					= tColourProfile::LDRsRGB_LDRlA;
 	ColourProfileSrc				= tColourProfile::LDRsRGB_LDRlA;
 	AlphaMode						= tAlphaMode::Normal;
-	ChannelType						= tChannelType::UINT8N;
+	ChannelType						= tChannelType::UNORM;
 	RowReversalOperationPerformed	= false;
 
 	NumSurfaces						= 1;

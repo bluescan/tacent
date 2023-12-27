@@ -156,57 +156,64 @@ const char* tGetAlphaModeName(tAlphaMode);
 const char* tGetAlphaModeShortName(tAlphaMode);
 
 
-// ChannelType is additional colour satellite information that is also not encoded by the pixel format so it belongs
-// here. It describes how the colour information was intended to be interpreted by a shader: as an integer or a float,
-// signed or unsigned, normalized to [0.0,1.0] or not. The reason it is not part of the pixel format is it is quite
-// common for the data to be encoded as, say, an unsigned 8-bit integer, but 'converted' to a float when it is passed
-// off the video memory by the graphics API so it is available as a float in the fragment/pixel shader. The types here
-// do not rep the ay the data is encoded, but rather the type you may expect the sampler to use in an HLSL program.
+// ChannelType is additional satellite information that is not entirely specified by the pixel format so it belongs as
+// satellite information here. In particular the part that isn't specified is whether the component data of each colour
+// channel should be normalized or not afterwards. It gets a little tricky here because Vulkan, OpenGL, and DirectX
+// have all decided on variant pixel-format names with channel-type information like UNORM, SNORM, UINT, SINT, and
+// FLOAT. This naming _includes_ both information about how the data is encoded (integer or float, signed or unsigned)
+// as well as whether to normalize after decoding or not. We have a choice here, either ONLY make this satellite info
+// contain whether to normalize of not afterwards, or have a litte redundant information in order to keep the naming
+// as close as possible to UNORM, UINT, etc. I have decided on the latter.
+//
+// The reason it is not part of the pixel format is it is quite common for the data to be encoded as, say, an unsigned
+// integer, but 'converted' to a float when it is passed off the video memory by the graphics API so it is available as
+// a float in the fragment/pixel shader. In short the ChannelType indicates intent for what should happen to the
+// value AFTER decoding. For example, UNORM means the data is stored (or decoded for compressed formats) as an unsigned
+// integer (which is already known by looking at the pixel-format) -- it is then converted to a normalized value in
+// [0.0, 1.0]. SNORM means it's stored as a signed integer and then normalized to the [0.0, 1.0] range. The actual
+// number of bits used is NOT specified here -- that is also specified by the pixel-format itself (either explicitly or
+// implicitly by inspecting the compression method used). I bring this up because, for example, the PVR3 filetype
+// 'channel type' field does contain size information, but it doesn't need to (and probably shouldn't).
+//
+// Example 1. PixelFormat: G3B5R5G3  ChanelType: UNORM
+// We know the R and B are stored as 5-bit unsigned ints and the G with six bits. We know this from the PixelFormat
+// alone because it does not contain a 's', 'f', or 'uf'. We further know the intent is to 'normalize' it after
+// decoding. R would be in [0, 31] and converted to [0.0, 1.0]. The 'U' part of 'UNORM' is redundant because the
+// pixel-format already told us it was an unsigned integer.
+//
+// Example 2. PixelFormat: R11G11B10uf  ChanelType: UFLOAT
+// RG stored as 11-bit unsigned floats (5 exponent, 6 mantissa, no sign bit). B stored as a 10-bit (5,5) float. In this
+// case the ChannelType is completely redundant because we already know we're using unsigned floats from the 'uf'.
+//
+// Example 3. PixelFormat: R8G8  ChanelType: UINT
+// RG stored as 8-bit unsigned ints (from pixel-format). In this case the ChannelType indicates not to normalize so
+// each component should be read as an unsigned integer in [0, 255].
 enum class tChannelType
 {
 	Unspecified				= -1,
-	UnsignedInt8Normalized,
-	SignedInt8Normalized,
-	UnsignedInt8,
-	SignedInt8,
-	UnsignedInt16Normalized,
-	SignedInt16Normalized,
-	UnsignedInt16,
-	SignedInt16,
-	UnsignedInt32Normalized,
-	SignedInt32Normalized,
-	UnsignedInt32,
-	SignedInt32,
+	UnsignedIntNormalized,
+	SignedIntNormalized,
+	UnsignedInt,
+	SignedInt,
 	UnsignedFloat,
 	SignedFloat,
-	UnsignedHalf,
-	SignedHalf,
 	NumTypes,
 
 	// Shorter synonyms.
 	Invalid					= Unspecified,
 	NONE					= Unspecified,
-	UINT8N					= UnsignedInt8Normalized,
-	SINT8N					= SignedInt8Normalized,
-	UINT8					= UnsignedInt8,
-	SINT8					= SignedInt8,
-	UINT16N					= UnsignedInt16Normalized,
-	SINT16N					= SignedInt16Normalized,
-	UINT16					= UnsignedInt16,
-	SINT16					= SignedInt16,
-	UINT32N					= UnsignedInt32Normalized,
-	SINT32N					= SignedInt32Normalized,
-	UINT32					= UnsignedInt32,
-	SINT32					= SignedInt32,
+	UNORM					= UnsignedIntNormalized,
+	SNORM					= SignedIntNormalized,
+	UINT					= UnsignedInt,
+	SINT					= SignedInt,
 	UFLOAT					= UnsignedFloat,
-	SFLOAT					= SignedFloat,
-	UHALF					= UnsignedHalf,
-	SHALF					= SignedHalf
+	SFLOAT					= SignedFloat
 };
 extern const char* tChannelTypeNames[int(tChannelType::NumTypes)];
 extern const char* tChannelTypeShortNames[int(tChannelType::NumTypes)];
 const char* tGetChannelTypeName(tChannelType);
 const char* tGetChannelTypeShortName(tChannelType);
+tChannelType tGetChannelType(const char* nameOrShortName);
 
 
 namespace tMath
