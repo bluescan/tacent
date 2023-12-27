@@ -257,39 +257,40 @@ void tPVR::GetFormatInfo_FromV1V2Header(tPixelFormat& format, tColourProfile& pr
 	#define T(t) chanType = tChannelType::t;
 	switch (header.PixelFormat)
 	{
-		// @wip Make this switch look like the DDS switch.
-		C(ARGB_4444):			format = tPixelFormat::G4B4A4R4;		break;
-		C(ARGB_1555):			format = tPixelFormat::G3B5A1R5G2;		break;
-		C(RGB_565):				format = tPixelFormat::G3B5R5G3;		break;
+		// Commented out PVRLFMT formats are not implemented yet.
+		//						Format				Profile		AlphaMode	ChanType	Break
+		C(ARGB_4444):			F(G4B4A4R4)												break;
+		C(ARGB_1555):			F(G3B5A1R5G2)											break;
+		C(RGB_565):				F(G3B5R5G3)												break;
 		//C(RGB_555):
-		C(RGB_888):				format = tPixelFormat::R8G8B8;			break;
-		C(ARGB_8888):			format = tPixelFormat::B8G8R8A8;		break;
+		C(RGB_888):				F(R8G8B8)												break;
+		C(ARGB_8888):			F(B8G8R8A8)												break;
 		//C(ARGB_8332):
-		C(I_8):					format = tPixelFormat::L8;				break;
-		C(AI_88):				format = tPixelFormat::A8L8;			break;
+		C(I_8):					F(L8)													break;
+		C(AI_88):				F(A8L8)													break;
 		//C(1BPP):
 		//C(V_Y1_U_Y0):
 		//C(Y1_V_Y0_U):
-		C(PVRTC2):				format = tPixelFormat::PVRBPP2;			break;
-		C(PVRTC4):				format = tPixelFormat::PVRBPP4;			break;
+		C(PVRTC2):				F(PVRBPP2)												break;
+		C(PVRTC4):				F(PVRBPP4)												break;
 
-		C(ARGB_4444_ALT):		format = tPixelFormat::G4B4A4R4;		break;
-		C(ARGB_1555_ALT):		format = tPixelFormat::G3B5A1R5G2;		break;
-		C(ARGB_8888_ALT):		format = tPixelFormat::R8G8B8A8;		break;
-		C(RGB_565_ALT):			format = tPixelFormat::G3B5R5G3;		break;
+		C(ARGB_4444_ALT):		F(G4B4A4R4)												break;
+		C(ARGB_1555_ALT):		F(G3B5A1R5G2)											break;
+		C(ARGB_8888_ALT):		F(R8G8B8A8)												break;
+		C(RGB_565_ALT):			F(G3B5R5G3)												break;
 		//C(RGB_555_ALT):
-		C(RGB_888_ALT):			format = tPixelFormat::R8G8B8;			break;
-		C(I_8_ALT):				format = tPixelFormat::L8;				break;
-		C(AI_88_ALT):			format = tPixelFormat::A8L8;			break;
-		C(PVRTC2_ALT):			format = tPixelFormat::PVRBPP2;			break;
-		C(PVRTC4_ALT):			format = tPixelFormat::PVRBPP4;			break;
+		C(RGB_888_ALT):			F(R8G8B8)												break;
+		C(I_8_ALT):				F(L8)													break;
+		C(AI_88_ALT):			F(A8L8)													break;
+		C(PVRTC2_ALT):			F(PVRBPP2)												break;
+		C(PVRTC4_ALT):			F(PVRBPP4)												break;
 
-		C(BGRA_8888):			format = tPixelFormat::B8G8R8A8;		break;
-		C(DXT1):				format = tPixelFormat::BC1DXT1;			break;
-		C(DXT2):				format = tPixelFormat::BC2DXT2DXT3;		alphaMode = tAlphaMode::Premultiplied;	break;
-		C(DXT3):				format = tPixelFormat::BC2DXT2DXT3;		break;
-		C(DXT4):				format = tPixelFormat::BC3DXT4DXT5;		alphaMode = tAlphaMode::Premultiplied;	break;
-		C(DXT5):				format = tPixelFormat::BC3DXT4DXT5;		break;
+		C(BGRA_8888):			F(B8G8R8A8)												break;
+		C(DXT1):				F(BC1DXT1)												break;
+		C(DXT2):				F(BC2DXT2DXT3)					M(Mult)					break;
+		C(DXT3):				F(BC2DXT2DXT3)											break;
+		C(DXT4):				F(BC3DXT4DXT5)					M(Mult)					break;
+		C(DXT5):				F(BC3DXT4DXT5)											break;
 		//C(RGB_332):
 		//C(AL_44):
 		//C(LVU_655):
@@ -307,15 +308,15 @@ void tPVR::GetFormatInfo_FromV1V2Header(tPixelFormat& format, tColourProfile& pr
 		//C(R_32F):
 		//C(GR_3232F):
 		//C(ABGR_32323232F):
-		C(ETC):					format = tPixelFormat::ETC1;			break;
-		C(A_8):					format = tPixelFormat::A8;				break;
+		C(ETC):					F(ETC1)													break;
+		C(A_8):					F(A8)													break;
 		//C(VU_88):
 		//C(L16):
 		//C(L8):
 		//C(AL_88):
 		//C(UYVY):
 		//C(YUY2):
-		default:				P(Unspecified);							break;
+		default:									P(None)								break;
 	}
 	#undef C
 	#undef F
@@ -325,9 +326,9 @@ void tPVR::GetFormatInfo_FromV1V2Header(tPixelFormat& format, tColourProfile& pr
 }
 
 
-void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& fmt, tColourProfile& profile, tAlphaMode& alphaMode, tChannelType& chanType, const HeaderV3& header)
+void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& profile, tAlphaMode& alphaMode, tChannelType& chanType, const HeaderV3& header)
 {
-	fmt			= tPixelFormat::Invalid;
+	format		= tPixelFormat::Invalid;
 	profile		= (header.ColourSpace == 0) ? tColourProfile::lRGB : tColourProfile::sRGB;
 	alphaMode	= (header.Flags & 0x00000002) ? tAlphaMode::Premultiplied : tAlphaMode::Normal;
 	chanType	= tChannelType::Unspecified;
@@ -371,51 +372,54 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& fmt, tColourProfile& profile
 		#define T(t) chanType = tChannelType::t;
 		switch (fmtLS32)
 		{
+			// Commented out PVRLFMT formats are not implemented yet. Some formats require specific profiles and/or
+			// alpha-modes. When these are required they override the settings from the header.
 			// PVR stores alpha on a per-block basis, not the entire image. Images without alpha just happen
 			// to have all opaque blocks. In either case, the pixel format is the same -- PVRBPP2 or PVRBPP4.
-			C(PVRTC_2BPP_RGB):				fmt = tPixelFormat::PVRBPP2;		break;
-			C(PVRTC_2BPP_RGBA):				fmt = tPixelFormat::PVRBPP2;		break;
-			C(PVRTC_4BPP_RGB):				fmt = tPixelFormat::PVRBPP4;		break;
-			C(PVRTC_4BPP_RGBA):				fmt = tPixelFormat::PVRBPP4;		break;
-			C(PVRTC_II_2BPP):				fmt = tPixelFormat::PVR2BPP2;		break;
-			C(PVRTC_II_4BPP):				fmt = tPixelFormat::PVR2BPP4;		break;
-			C(ETC1):						fmt = tPixelFormat::ETC1;			break;
+			//								Format				Profile		AlphaMode	ChanType	Break
+			C(PVRTC_2BPP_RGB):				F(PVRBPP2)												break;
+			C(PVRTC_2BPP_RGBA):				F(PVRBPP2)												break;
+			C(PVRTC_4BPP_RGB):				F(PVRBPP4)												break;
+			C(PVRTC_4BPP_RGBA):				F(PVRBPP4)												break;
+			C(PVRTC_II_2BPP):				F(PVR2BPP2)												break;
+			C(PVRTC_II_4BPP):				F(PVR2BPP4)												break;
+			C(ETC1):						F(ETC1)													break;
 
-			C(DXT1_BC1):					fmt = tPixelFormat::BC1DXT1;		break;
-			C(DXT2):						fmt = tPixelFormat::BC2DXT2DXT3;	alphaMode = tAlphaMode::Premultiplied;	break;
-			C(DXT3_BC2):					fmt = tPixelFormat::BC2DXT2DXT3;	break;
-			C(DXT4):						fmt = tPixelFormat::BC3DXT4DXT5;	alphaMode = tAlphaMode::Premultiplied; chanType = tChannelType::UFLOAT; break;
-			C(DXT5_BC3):					fmt = tPixelFormat::BC3DXT4DXT5;	break;
-			C(BC4):							fmt = tPixelFormat::BC4ATI1;		break;
-			C(BC5):							fmt = tPixelFormat::BC5ATI2;		break;
-			C(BC6):							fmt = tPixelFormat::BC6U;			break;	// Not sure whether signed or unsigned. Assuming unsigned.
-			C(BC7):							fmt = tPixelFormat::BC7;			break;
+			C(DXT1_BC1):					F(BC1DXT1)												break;
+			C(DXT2):						F(BC2DXT2DXT3)					M(Mult)					break;
+			C(DXT3_BC2):					F(BC2DXT2DXT3)											break;
+			C(DXT4):						F(BC3DXT4DXT5)					M(Mult)					break;
+			C(DXT5_BC3):					F(BC3DXT4DXT5)											break;
+			C(BC4):							F(BC4ATI1)			P(lRGB)								break;
+			C(BC5):							F(BC5ATI2)			P(lRGB)								break;
+			C(BC6):							F(BC6U)				P(HDRa)					T(UHALF)	break;	// Not sure whether signed or unsigned. Assuming unsigned.
+			C(BC7):							F(BC7)													break;
 			//C(UYVY):
 			//C(YUY2):
 			//C(BW1BPP):
-			C(R9G9B9E5_Shared_Exponent):	fmt = tPixelFormat::E5B9G9R9uf;		break;
+			C(R9G9B9E5_Shared_Exponent):	F(E5B9G9R9uf)		P(HDRa)					T(UFLOAT)	break;
 			//C(RGBG8888):
 			//C(GRGB8888):
-			C(ETC2_RGB):					fmt = tPixelFormat::ETC2RGB;		break;
-			C(ETC2_RGBA):					fmt = tPixelFormat::ETC2RGBA;		break;
-			C(ETC2_RGB_A1):					fmt = tPixelFormat::ETC2RGBA1;		break;
-			C(EAC_R11):						fmt = tPixelFormat::EACR11U;		break;
-			C(EAC_RG11):					fmt = tPixelFormat::EACRG11U;		break;
+			C(ETC2_RGB):					F(ETC2RGB)												break;
+			C(ETC2_RGBA):					F(ETC2RGBA)												break;
+			C(ETC2_RGB_A1):					F(ETC2RGBA1)											break;
+			C(EAC_R11):						F(EACR11U)												break;
+			C(EAC_RG11):					F(EACRG11U)												break;
 
-			C(ASTC_4X4):					fmt = tPixelFormat::ASTC4X4;		break;
-			C(ASTC_5X4):					fmt = tPixelFormat::ASTC5X4;		break;
-			C(ASTC_5X5):					fmt = tPixelFormat::ASTC5X5;		break;
-			C(ASTC_6X5):					fmt = tPixelFormat::ASTC6X5;		break;
-			C(ASTC_6X6):					fmt = tPixelFormat::ASTC6X6;		break;
-			C(ASTC_8X5):					fmt = tPixelFormat::ASTC8X5;		break;
-			C(ASTC_8X6):					fmt = tPixelFormat::ASTC8X6;		break;
-			C(ASTC_8X8):					fmt = tPixelFormat::ASTC8X8;		break;
-			C(ASTC_10X5):					fmt = tPixelFormat::ASTC10X5;		break;
-			C(ASTC_10X6):					fmt = tPixelFormat::ASTC10X6;		break;
-			C(ASTC_10X8):					fmt = tPixelFormat::ASTC10X8;		break;
-			C(ASTC_10X10):					fmt = tPixelFormat::ASTC10X10;		break;
-			C(ASTC_12X10):					fmt = tPixelFormat::ASTC12X10;		break;
-			C(ASTC_12X12):					fmt = tPixelFormat::ASTC12X12;		break;
+			C(ASTC_4X4):					F(ASTC4X4)												break;
+			C(ASTC_5X4):					F(ASTC5X4)												break;
+			C(ASTC_5X5):					F(ASTC5X5)												break;
+			C(ASTC_6X5):					F(ASTC6X5)												break;
+			C(ASTC_6X6):					F(ASTC6X6)												break;
+			C(ASTC_8X5):					F(ASTC8X5)												break;
+			C(ASTC_8X6):					F(ASTC8X6)												break;
+			C(ASTC_8X8):					F(ASTC8X8)												break;
+			C(ASTC_10X5):					F(ASTC10X5)												break;
+			C(ASTC_10X6):					F(ASTC10X6)												break;
+			C(ASTC_10X8):					F(ASTC10X8)												break;
+			C(ASTC_10X10):					F(ASTC10X10)											break;
+			C(ASTC_12X10):					F(ASTC12X10)											break;
+			C(ASTC_12X12):					F(ASTC12X12)											break;
 			//C(ASTC_3X3X3):
 			//C(ASTC_4X3X3):
 			//C(ASTC_4X4X3):
@@ -426,7 +430,7 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& fmt, tColourProfile& profile
 			//C(ASTC_6X5X5):
 			//C(ASTC_6X6X5):
 			//C(ASTC_6X6X6):
-			default:	P(None)		M(None)								break;
+			default:											P(None)		M(None)	 	T(NONE)		break;
 		}
 		#undef C
 		#undef F
@@ -438,16 +442,17 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& fmt, tColourProfile& profile
 	{
 		// The FourCC and the tSwapEndian32 calls below deal with endianness. The values
 		// of the literals in the fourCC match the values of the masks in fmtMS32 member.
+		#define F(f) format = tPixelFormat::f;
 		switch (fmtLS32)
 		{
 			case tImage::FourCC('r', 'g', 'b', 'a'):
 			{
 				switch (fmtMS32)
 				{
-					case tSwapEndian32(0x08080808):	fmt = tPixelFormat::R8G8B8A8;		break;
-					case tSwapEndian32(0x04040404):	fmt = tPixelFormat::B4A4R4G4;		break;
-					case tSwapEndian32(0x05050501):	fmt = tPixelFormat::G2B5A1R5G3;		break;
-					case tSwapEndian32(0x20202020):	fmt = tPixelFormat::R32G32B32A32f;	break;
+					case tSwapEndian32(0x08080808):	F(R8G8B8A8)			break;
+					case tSwapEndian32(0x04040404):	F(B4A4R4G4)			break;
+					case tSwapEndian32(0x05050501):	F(G2B5A1R5G3)		break;
+					case tSwapEndian32(0x20202020):	F(R32G32B32A32f)	break;
 				}
 				break;
 			}
@@ -456,8 +461,8 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& fmt, tColourProfile& profile
 			{
 				switch (fmtMS32)
 				{
-					case tSwapEndian32(0x01050505):	fmt = tPixelFormat::G3B5A1R5G2;		break;	// LE PVR: A1 R5 G5 B5.
-					case tSwapEndian32(0x04040404):	fmt = tPixelFormat::G4B4A4R4;		break;	// LE PVR: A4 R4 G4 B4.
+					case tSwapEndian32(0x01050505):	F(G3B5A1R5G2)		break;	// LE PVR: A1 R5 G5 B5.
+					case tSwapEndian32(0x04040404):	F(G4B4A4R4)			break;	// LE PVR: A4 R4 G4 B4.
 				}
 				break;
 			}
@@ -466,7 +471,7 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& fmt, tColourProfile& profile
 			{
 				switch (fmtMS32)
 				{
-					case tSwapEndian32(0x08080808):	fmt = tPixelFormat::B8G8R8A8;		break;	// LE PVR: A1 R5 G5 B5.
+					case tSwapEndian32(0x08080808):	F(B8G8R8A8)			break;	// LE PVR: A1 R5 G5 B5.
 				}
 				break;
 			}
@@ -475,7 +480,7 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& fmt, tColourProfile& profile
 			{
 				switch (fmtMS32)
 				{
-					case tSwapEndian32(0x05060500):	fmt = tPixelFormat::G3B5R5G3;		break;	// LE PVR: R5 G6 B5.
+					case tSwapEndian32(0x05060500):	F(G3B5R5G3)			break;	// LE PVR: R5 G6 B5.
 				}
 				break;
 			}
@@ -486,12 +491,13 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& fmt, tColourProfile& profile
 				{
 					case tSwapEndian32(0x0a0b0b00):
 						if (chanType == tChannelType::UFLOAT)
-							fmt = tPixelFormat::B10G11R11uf;			// PVR: B10 G11 R11 UFLOAT.
+							F(B10G11R11uf)			// PVR: B10 G11 R11 UFLOAT.
 					break;
 				}
 				break;
 			}
 		}
+		#undef F
 
 		#if 0
 		tPrintf("PVR Header pixel format 64  : 0x%08|64X\n", headerFmt64);
@@ -807,7 +813,6 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 		return false;
 	}
 
-	// tPrintf("PVR numLayers: %d\n", NumLayers);
 	Layers = new tLayer*[NumLayers];
 	for (int l = 0; l < NumLayers; l++)
 		Layers[l] = nullptr;
