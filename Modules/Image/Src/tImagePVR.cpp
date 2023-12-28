@@ -519,6 +519,12 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 		tPrintf("PVR Header pixel format MS32: %d %d %d %d\n", b3, b2, b1, b0);
 		#endif
 	}
+
+	// PVR V3 files do not distinguish between lRGB and HDRa profiles -- it only supports lRGB. While they
+	// both are linear, Tacent follows the ASTC convention of distinguishing between them by supporting > 1.0
+	// for HDR profiles. Here, if the type is float and the profile is linear, we switch to HDR.
+	if ((profile == tColourProfile::lRGB) && ((chanType == tChannelType::UFLOAT) || (chanType == tChannelType::SFLOAT)))
+		profile = tColourProfile::HDRa;
 }
 
 
