@@ -308,7 +308,9 @@ void tPVR::GetFormatInfo_FromV1V2Header(tPixelFormat& format, tColourProfile& pr
 		//C(R_32F):
 		//C(GR_3232F):
 		//C(ABGR_32323232F):
-		C(ETC):					F(ETC1)													break;
+
+		// V2 ETC1 files generated from PVRTexTool are always in linear space. There is no sRGB option.
+		C(ETC):					F(ETC1)				P(lRGB)								break;
 		C(A_8):					F(A8)													break;
 		//C(VU_88):
 		//C(L16):
