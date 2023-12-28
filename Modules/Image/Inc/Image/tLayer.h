@@ -153,10 +153,24 @@ inline int tLayer::GetDataSize() const
 
 	int numBlocks = tGetNumBlocks(blockW, Width) * tGetNumBlocks(blockH, Height);
 	int bytesPerBlock = 0;
-	if (tIsBCFormat(PixelFormat) || tIsASTCFormat(PixelFormat))
+
+	// tGetBytesPerBlock _could_ also handle packed formats but for palettized formats
+	// I think we still need to use tGetBitsPerPixel.
+	if (tIsBCFormat(PixelFormat) || tIsASTCFormat(PixelFormat) || tIsPVRFormat(PixelFormat))
 		bytesPerBlock = tGetBytesPerBlock(PixelFormat);
 	else
 		bytesPerBlock = tGetBitsPerPixel(PixelFormat) >> 3;
+
+	// @todo I think we're currently in trouble here if we call tGetBitsPerPixel with palettized that
+	// returns a non multiple of 8. The code below attempts to deal with this... but should be revisited.
+	// It basically works out the total bits, and makes sure we have enough bytes to store them all even
+	// if that total is not divisible by 8.
+	if (bytesPerBlock == 0)
+	{
+		int totalBits = tGetBitsPerPixel(PixelFormat) * numBlocks;
+		int totalBytesCeil = (totalBits/8) + ((totalBits%8) ? 1 : 0);
+		return totalBytesCeil;
+	}
 
 	return numBlocks * bytesPerBlock;
 }

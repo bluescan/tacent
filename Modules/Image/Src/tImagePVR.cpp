@@ -406,7 +406,7 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 			C(EAC_R11):						F(EACR11U)												break;
 			C(EAC_RG11):					F(EACRG11U)												break;
 
-			C(ASTC_4X4):					F(ASTC4X4)												break;
+			C(ASTC_4X4):					F(ASTC4X4)			P(HDRa)								break;
 			C(ASTC_5X4):					F(ASTC5X4)												break;
 			C(ASTC_5X5):					F(ASTC5X5)												break;
 			C(ASTC_6X5):					F(ASTC6X5)												break;
@@ -691,7 +691,6 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 
 			// Flags are LE order on disk.
 			uint32 flags				= (header->Flags1 << 24) | (header->Flags2 << 16) | (header->Flags1 << 8);
-			
 			bool hasMipmaps				= (flags & 0x00000100) ? true : false;
 			bool dataTwiddled			= (flags & 0x00000200) ? true : false;
 			bool containsNormalData		= (flags & 0x00000400) ? true : false;
@@ -823,6 +822,26 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	int bytesPerBlock = tImage::tGetBytesPerBlock(PixelFormatSrc);
 	const uint8* srcPixelData = textureData;
 
+	// The gamma-compression load flags only apply when decoding. If the gamma mode is auto, we determine here
+	// whether to apply sRGB compression. If the space is linear and a format that often encodes colours, we apply it.
+	if (params.Flags & LoadFlag_AutoGamma)
+	{
+		// Clear all related flags.
+		params.Flags &= ~(LoadFlag_AutoGamma | LoadFlag_SRGBCompression | LoadFlag_GammaCompression);
+		if (tMath::tIsProfileLinearInRGB(ColourProfileSrc))
+		{
+			// Just cuz it's linear doesn't mean we want to gamma transform. Some formats should be kept linear.
+			if
+			(
+				(PixelFormatSrc != tPixelFormat::A8)		&& (PixelFormatSrc != tPixelFormat::A8L8) &&
+				(PixelFormatSrc != tPixelFormat::BC4ATI1)	&& (PixelFormatSrc != tPixelFormat::BC5ATI2)
+			)
+			{
+				params.Flags |= LoadFlag_SRGBCompression;
+			}
+		}
+	}
+
 	// The ordering is different depending on V1V2 or V3. We have already checked for unsupported versions.
 	// Start with a V1V2. NumFaces and Depth have already been adjusted.
 	if ((PVRVersion == 1) || (PVRVersion == 2))
@@ -897,38 +916,8 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 	// Otherwise set the current PixelFormat to be the same as the original PixelFormatSrc.
 	PixelFormat = (params.Flags & LoadFlag_Decode) ? tPixelFormat::R8G8B8A8 : PixelFormatSrc;
 
-	// We only try to reverse rows after possible decode. If no decode it may be impossible
-	// to reverse rows depending on the pixel format (unless we decode and re-encode which is lossy).
-	// Since the ability to reverse rows MAY be a function of the image height (when not decoding), we
-	// only reverse rows if all layers may be reversed.
-	if (params.Flags & LoadFlag_ReverseRowOrder)
-	{
-		bool canReverseAll = true;
-		for (int l = 0; l < NumLayers; l++)
-		{
-			if (!CanReverseRowData(Layers[l]->PixelFormat, Layers[l]->Height))
-			{
-				canReverseAll = false;
-				break;
-			}
-		}
-
-		if (canReverseAll)
-		{
-			// This shouldn't ever fail -- we checked first.
-			for (int l = 0; l < NumLayers; l++)
-			{
-				uint8* reversedRowData = CreateReversedRowData(Layers[l]->Data, Layers[l]->PixelFormat, Layers[l]->Width, Layers[l]->Height);
-				tAssert(reversedRowData);
-				delete[] Layers[l]->Data;
-				Layers[l]->Data = reversedRowData;
-			}
-		}
-		else
-		{
-			SetStateBit(StateBit::Conditional_CouldNotFlipRows);
-		}
-	}
+	if (params.Flags & LoadFlag_SRGBCompression)  ColourProfile = tColourProfile::sRGB;
+	if (params.Flags & LoadFlag_GammaCompression) ColourProfile = tColourProfile::gRGB;
 
 	SetStateBit(StateBit::Valid);
 	tAssert(IsValid());
@@ -946,59 +935,164 @@ int tImagePVR::LayerIdx(int surf, int face, int mip, int depth)
 
 tLayer* tImagePVR::CreateNewLayer(const LoadParams& params, const uint8* srcPixelData, int numBytes, int width, int height)
 {
-	tLayer* newLayer = new tLayer();
+	//LoadParams params(inParams);
+	tLayer* layer = new tLayer();
 
-	// If we were asked to decode, do so.
-	if (params.Flags & LoadFlag_Decode)
+	bool reverseRowOrderRequested = params.Flags & LoadFlag_ReverseRowOrder;
+	RowReversalOperationPerformed = false;
+
+	// For images whose height is not a multiple of the block size it makes it tricky when deoompressing to do
+	// the more efficient row reversal here, so we defer it. Packed formats have a block height of 1. Only BC
+	// and astc have non-unity block dimensins.
+	bool doRowReversalBeforeDecode = false;
+	if (reverseRowOrderRequested)
 	{
-		// At the end of decoding _either_ decoded4i _or_ decoded4f will be valid, not both.
-		// The decoded4i format used for LDR images.
-		// The decoded4f format used for HDR images.
-		tColour4i* decoded4i = nullptr;
-		tColour4f* decoded4f = nullptr;
-		DecodeResult result = DecodePixelData
-		(
-			PixelFormatSrc, srcPixelData, numBytes,
-			width, height, decoded4i, decoded4f
-		);
-
-		if (result != DecodeResult::Success)
-		{
-			switch (result)
-			{
-				case DecodeResult::PackedDecodeError:	SetStateBit(StateBit::Fatal_PackedDecodeError);			break;
-				case DecodeResult::BlockDecodeError:	SetStateBit(StateBit::Fatal_BCDecodeError);				break;
-				case DecodeResult::ASTCDecodeError:		SetStateBit(StateBit::Fatal_ASTCDecodeError);			break;
-				case DecodeResult::PVRDecodeError:		SetStateBit(StateBit::Fatal_PVRDecodeError);			break;
-				default:								SetStateBit(StateBit::Fatal_PixelFormatNotSupported);	break;
-			}
-			delete newLayer;
-			return nullptr;
-		}
-
-		tAssert(decoded4f || decoded4i);
-
-		// Update the layer with the 32-bit RGBA decoded data. If the data was HDR (float)
-		// convert it to 32 bit.
-		if (decoded4f)
-		{
-			tAssert(!decoded4i);
-			decoded4i = new tColour4i[width*height];
-			for (int p = 0; p < width*height; p++)
-				decoded4i[p].Set(decoded4f[p]);
-			delete[] decoded4f;
-		}
-
-		newLayer->Set(tPixelFormat::R8G8B8A8, width, height, (uint8*)decoded4i, true);
+		bool canDo = true;
+		if (!CanReverseRowData(PixelFormatSrc, height))
+			canDo = false;
+		doRowReversalBeforeDecode = canDo;
 	}
 
-	// Otherwise no decode. Just create the layers using the same pixel format that already exists.
+	if (doRowReversalBeforeDecode)
+	{
+		int blockW = tGetBlockWidth(PixelFormatSrc);
+		int blockH = tGetBlockHeight(PixelFormatSrc);
+		int numBlocksW = tGetNumBlocks(blockW, width);
+		int numBlocksH = tGetNumBlocks(blockH, height);
+
+		uint8* reversedPixelData = tImage::CreateReversedRowData(srcPixelData, PixelFormat, numBlocksW, numBlocksH);
+		tAssert(reversedPixelData);
+
+		// We can simply get the layer to steal the memory (the last true arg).
+		layer->Set(PixelFormatSrc, width, height, reversedPixelData, true);
+	}
 	else
 	{
-		newLayer->Set(PixelFormatSrc, width, height, (uint8*)srcPixelData);
+		// Not reversing. Use the current srcPixelData. Note that steal is false here so the data
+		// is both copied and owned by the new tLayer. The srcPixelData gets deleted later.
+		layer->Set(PixelFormatSrc, width, height, (uint8*)srcPixelData, false);
+	}
+	if (doRowReversalBeforeDecode)
+		RowReversalOperationPerformed = true;
+
+	// Not asked to decode. We're basically done.
+	if (!(params.Flags & LoadFlag_Decode))
+	{
+		if (reverseRowOrderRequested && !RowReversalOperationPerformed)
+			SetStateBit(StateBit::Conditional_CouldNotFlipRows);
+
+		return layer;
 	}
 
-	return newLayer;
+	// We were asked to decode if we made it here.
+	// Spread only applies to single-channel (R-only or L-only) formats.
+	bool spread = params.Flags & LoadFlag_SpreadLuminance;
+
+	// Decode to 32-bit RGBA.
+	bool didRowReversalAfterDecode = false;
+
+	// At the end of decoding _either_ decoded4i _or_ decoded4f will be valid, not both.
+	// The decoded4i format used for LDR images.
+	// The decoded4f format used for HDR images.
+	tColour4i* decoded4i = nullptr;
+	tColour4f* decoded4f = nullptr;
+	tAssert(layer->GetDataSize() == numBytes);
+	DecodeResult result = DecodePixelData
+	(
+		layer->PixelFormat, layer->Data, numBytes,
+		width, height, decoded4i, decoded4f
+	);
+
+	if (result != DecodeResult::Success)
+	{
+		switch (result)
+		{
+			case DecodeResult::PackedDecodeError:	SetStateBit(StateBit::Fatal_PackedDecodeError);			break;
+			case DecodeResult::BlockDecodeError:	SetStateBit(StateBit::Fatal_BCDecodeError);				break;
+			case DecodeResult::ASTCDecodeError:		SetStateBit(StateBit::Fatal_ASTCDecodeError);			break;
+			case DecodeResult::PVRDecodeError:		SetStateBit(StateBit::Fatal_PVRDecodeError);			break;
+			default:								SetStateBit(StateBit::Fatal_PixelFormatNotSupported);	break;
+		}
+		delete layer;
+		return nullptr;
+	}
+
+	// Apply any decode flags.
+	tAssert(decoded4f || decoded4i);
+	bool flagTone = (params.Flags & tImagePVR::LoadFlag_ToneMapExposure) ? true : false;
+	bool flagSRGB = (params.Flags & tImagePVR::LoadFlag_SRGBCompression) ? true : false;
+	bool flagGama = (params.Flags & tImagePVR::LoadFlag_GammaCompression)? true : false;
+	if (decoded4f && (flagTone || flagSRGB || flagGama))
+	{
+		for (int p = 0; p < width*height; p++)
+		{
+			tColour4f& colour = decoded4f[p];
+			if (flagTone)
+				colour.TonemapExposure(params.Exposure, tCompBit_RGB);
+			if (flagSRGB)
+				colour.LinearToSRGB(tCompBit_RGB);
+			if (flagGama)
+				colour.LinearToGamma(params.Gamma, tCompBit_RGB);
+		}
+	}
+	if (decoded4i && (flagSRGB || flagGama))
+	{
+		for (int p = 0; p < width*height; p++)
+		{
+			tColour4f colour(decoded4i[p]);
+			if (flagSRGB)
+				colour.LinearToSRGB(tCompBit_RGB);
+			if (flagGama)
+				colour.LinearToGamma(params.Gamma, tCompBit_RGB);
+			decoded4i[p].SetR(colour.R);
+			decoded4i[p].SetG(colour.G);
+			decoded4i[p].SetB(colour.B);
+		}
+	}
+
+	// Update the layer with the 32-bit RGBA decoded data. If the data was HDR (float)
+	// convert it to 32 bit. Start by getting rid of the existing layer pixel data.
+	delete[] layer->Data;
+	if (decoded4f)
+	{
+		tAssert(!decoded4i);
+		decoded4i = new tColour4i[width*height];
+		for (int p = 0; p < width*height; p++)
+			decoded4i[p].Set(decoded4f[p]);
+		delete[] decoded4f;
+	}
+
+	// Possibly spread the L/Red channel.
+	if (spread && tIsLuminanceFormat(layer->PixelFormat))
+	{
+		for (int p = 0; p < width*height; p++)
+		{
+			decoded4i[p].G = decoded4i[p].R;
+			decoded4i[p].B = decoded4i[p].R;
+		}
+	}
+
+	layer->Data = (uint8*)decoded4i;
+	layer->PixelFormat = tPixelFormat::R8G8B8A8;
+
+	// We've got one more chance to reverse the rows here (if we still need to) because we were asked to decode.
+	if (reverseRowOrderRequested && !RowReversalOperationPerformed && (layer->PixelFormat == tPixelFormat::R8G8B8A8))
+	{
+		// This shouldn't ever fail. Too easy to reverse RGBA 32-bit.
+		uint8* reversedRowData = tImage::CreateReversedRowData(layer->Data, layer->PixelFormat, width, height);
+		tAssert(reversedRowData);
+		delete[] layer->Data;
+		layer->Data = reversedRowData;
+		didRowReversalAfterDecode = true;
+	}
+
+	if (reverseRowOrderRequested && !RowReversalOperationPerformed && didRowReversalAfterDecode)
+		RowReversalOperationPerformed = true;
+
+	if (reverseRowOrderRequested && !RowReversalOperationPerformed)
+		SetStateBit(StateBit::Conditional_CouldNotFlipRows);
+
+	return layer;
 }
 
 

@@ -1390,7 +1390,6 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 		return true;
 	}
 
-	// Decode to 32-bit RGBA.
 	// Spread only applies to single-channel (R-only or L-only) formats.
 	bool spread = params.Flags & LoadFlag_SpreadLuminance;
 
@@ -1414,6 +1413,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 		}
 	}
 
+	// Decode to 32-bit RGBA.
 	bool didRowReversalAfterDecode = false;
 	for (int image = 0; image < NumImages; image++)
 	{

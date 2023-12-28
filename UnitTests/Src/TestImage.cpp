@@ -2240,7 +2240,8 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAl
 	tPrintf("Format name: %s\n", fileFormatName.Chr());
 	tPixelFormat fileFormat = tGetPixelFormat(fileFormatName.Chr());
 
-	// Determine the channel type from the filename.
+	// Determine the channel type from the filename. It will be left as Unspecified if wasn't
+	// present in the filename.
 	tString fileChanTypeName = basename.ExtractLeft('_');
 	tChannelType fileChanType = tGetChannelType(fileChanTypeName.Chr());
 
@@ -2258,7 +2259,8 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAl
 	const char* chanTypeName = tGetChannelTypeShortName(chanType);
 	if (chanTypeName)
 		tPrintf("ChannelType: %s\n", chanTypeName);
-	tRequire(fileChanType == chanType);
+	if (fileChanType != tChannelType::Unspecified)
+		tRequire(fileChanType == chanType);
 
 	if (loadFlags & tImagePVR::LoadFlag_Decode)
 		tRequire(pvrFormat == tPixelFormat::R8G8B8A8);
@@ -2356,7 +2358,6 @@ tTestUnit(ImagePVR3)
 	// A = Texture array. Has an arbitrary number of textures.
 	// M = Has Mipmaps.
 	// P = Premultiplied Alpha
-
 	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGB_T.pvr",				decode | revrow,	false);
 	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
 	PVRLoadDecodeSave("PVRBPP2_UNORM_SRGB_RGB_TM.pvr",				decode | revrow,	true);
@@ -2379,6 +2380,13 @@ tTestUnit(ImagePVR3)
 	PVRLoadDecodeSave("R32G32B32A32f_SFLOAT_LIN_RGBA_TM.pvr",		decode | revrow,	true);
 	PVRLoadDecodeSave("B10G11R11uf_UFLOAT_LIN_RGB_TM.pvr",			decode | revrow,	true);
 	PVRLoadDecodeSave("RGB999E5+E5B9G9R9uf_UFLOAT_LIN_RGB_T.pvr",	decode | revrow,	true);
+
+	PVRLoadDecodeSave("ASTC4X4_UNORM_lRGB_RGB_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC4X4_SFLOAT_lRGB_RGB_T.pvr",				decode | revrow,	false);
+
+	// Do them again without decoding.
+	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGB_T.pvr",				0,					false);
+	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_T.pvr",				revrow,				false);
 
 	tSystem::tSetCurrentDir(origDir);
 }
