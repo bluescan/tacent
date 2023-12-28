@@ -408,7 +408,7 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 			C(EAC_R11):						F(EACR11U)												break;
 			C(EAC_RG11):					F(EACRG11U)												break;
 
-			C(ASTC_4X4):					F(ASTC4X4)			P(HDRa)								break;
+			C(ASTC_4X4):					F(ASTC4X4)												break;
 			C(ASTC_5X4):					F(ASTC5X4)												break;
 			C(ASTC_5X5):					F(ASTC5X5)												break;
 			C(ASTC_6X5):					F(ASTC6X5)												break;
