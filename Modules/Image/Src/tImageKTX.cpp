@@ -86,8 +86,10 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 		CC(SRGB_ALPHA_S3TC_DXT3_EXT):			F(BC2DXT2DXT3)											break;
 		CC(RGBA_S3TC_DXT5_EXT):					F(BC3DXT4DXT5)		/*P(lRGB)*/							break;
 		CC(SRGB_ALPHA_S3TC_DXT5_EXT):			F(BC3DXT4DXT5)											break;
-		CC(RED_RGTC1):							F(BC4ATI1)			P(lRGB)								break;
-		CC(RG_RGTC2):							F(BC5ATI2)			P(lRGB)								break;
+		CC(RED_RGTC1):							F(BC4ATI1U)			P(lRGB)					T(UNORM)	break;
+		CC(SIGNED_RED_RGTC1):					F(BC4ATI1S)			P(lRGB)					T(SNORM)	break;
+		CC(RG_RGTC2):							F(BC5ATI2U)			P(lRGB)					T(UNORM)	break;
+		CC(SIGNED_RG_RGTC2):					F(BC5ATI2S)			P(lRGB)					T(SNORM)	break;
 		CC(RGB_BPTC_UNSIGNED_FLOAT):			F(BC6U)				P(HDRa)					T(UFLOAT)	break;
 		CC(RGB_BPTC_SIGNED_FLOAT):				F(BC6S)				P(HDRa)					T(SFLOAT)	break;
 
@@ -363,10 +365,10 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		C(BC3_SRGB_BLOCK):						F(BC3DXT4DXT5)											break;
 
 		// Signed not supported yet for BC4 and BC5.
-		//C(BC4_SNORM_BLOCK):																			break;
-		C(BC4_UNORM_BLOCK):						F(BC4ATI1)									T(UNORM)	break;
-		//C(BC5_SNORM_BLOCK):																			break;
-		C(BC5_UNORM_BLOCK):						F(BC5ATI2)									T(UNORM)	break;
+		C(BC4_UNORM_BLOCK):						F(BC4ATI1U)			/*P(lRGB)*/				T(UNORM)	break;
+		C(BC4_SNORM_BLOCK):						F(BC4ATI1S)			/*P(lRGB)*/				T(SNORM)	break;
+		C(BC5_UNORM_BLOCK):						F(BC5ATI2U)			/*P(lRGB)*/				T(UNORM)	break;
+		C(BC5_SNORM_BLOCK):						F(BC5ATI2S)			/*P(lRGB)*/				T(SNORM)	break;
 
 		C(BC6H_UFLOAT_BLOCK):					F(BC6U)				P(HDRa)					T(UFLOAT)	break;
 		C(BC6H_SFLOAT_BLOCK):					F(BC6S)				P(HDRa)					T(SFLOAT)	break;
@@ -921,7 +923,8 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 			if
 			(
 				(PixelFormatSrc != tPixelFormat::A8)		&& (PixelFormatSrc != tPixelFormat::A8L8) &&
-				(PixelFormatSrc != tPixelFormat::BC4ATI1)	&& (PixelFormatSrc != tPixelFormat::BC5ATI2)
+				(PixelFormatSrc != tPixelFormat::BC4ATI1U)	&& (PixelFormatSrc != tPixelFormat::BC4ATI1S) &&
+				(PixelFormatSrc != tPixelFormat::BC5ATI2U)	&& (PixelFormatSrc != tPixelFormat::BC5ATI2S)
 			)
 			{
 				params.Flags |= LoadFlag_SRGBCompression;

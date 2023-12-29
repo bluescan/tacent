@@ -144,8 +144,10 @@ enum class tPixelFormat
 	BC1DXT1A,							// BC 1, DXT1. Binary alpha.
 	BC2DXT2DXT3,						// BC 2, DXT2 (premult-alpha) and DXT3 share the same format. Large alpha gradients (alpha banding).
 	BC3DXT4DXT5,						// BC 3, DXT4 (premult-alpha) and DXT5 share the same format. Variable alpha (smooth).
-	BC4ATI1,							// BC 4. One colour channel only. May not be HW supported.
-	BC5ATI2,							// BC 5. Two colour channels only. May not be HW supported.
+	BC4ATI1U,							// BC 4. Unsigned. One colour channel only. May not be HW supported.
+	BC4ATI1S,							// BC 4. Signed. One colour channel only. May not be HW supported.
+	BC5ATI2U,							// BC 5. Unsigned. Two colour channels only. May not be HW supported.
+	BC5ATI2S,							// BC 5. Signed. Two colour channels only. May not be HW supported.
 	BC6U,								// BC 6 HDR. No alpha. 3 x 16bit unsigned half-floats per pixel.
 	BC6S,								// BC 6 HDR. No alpha. 3 x 16bit signed half-floats per pixel.
 	BC7,								// BC 7. Full colour. Variable alpha 0 to 8 bits.
@@ -564,7 +566,8 @@ inline bool tImage::tIsLuminanceFormat(tPixelFormat format)
 		case tPixelFormat::R8:
 		case tPixelFormat::R16f:
 		case tPixelFormat::R32f:
-		case tPixelFormat::BC4ATI1:
+		case tPixelFormat::BC4ATI1U:
+		case tPixelFormat::BC4ATI1S:
 		case tPixelFormat::EACR11U:
 		case tPixelFormat::EACR11S:
 			return true;

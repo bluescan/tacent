@@ -1381,11 +1381,11 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("BC3DXT4DXT5_RGBA_Modern.dds",	decode | revrow | autoga);
 
 	// BC4
-	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds",			decode | revrow | autoga);
-	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds",			decode | revrow | autoga | spread);
+	DDSLoadDecodeSave("BC4ATI1U_R_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("BC4ATI1U_R_Modern.dds",			decode | revrow | autoga | spread);
 
 	// BC5
-	DDSLoadDecodeSave("BC5ATI2_RG_Modern.dds",			decode | revrow | autoga);
+	DDSLoadDecodeSave("BC5ATI2U_RG_Modern.dds",			decode | revrow | autoga);
 
 	// BC6
 	DDSLoadDecodeSave("BC6U_RGB_Modern.dds",			decode | revrow);
@@ -1501,8 +1501,8 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("BC1DXT1A_RGBA_Modern.dds");
 	DDSLoadDecodeSave("BC2DXT2DXT3_RGBA_Modern.dds",	revrow);
 	DDSLoadDecodeSave("BC3DXT4DXT5_RGBA_Modern.dds",	revrow);
-	DDSLoadDecodeSave("BC4ATI1_R_Modern.dds",			revrow);	// Should print warning and be unable to flip rows. May be able to implement.
-	DDSLoadDecodeSave("BC5ATI2_RG_Modern.dds",			revrow);	// No reverse.
+	DDSLoadDecodeSave("BC4ATI1U_R_Modern.dds",			revrow);	// Should print warning and be unable to flip rows. May be able to implement.
+	DDSLoadDecodeSave("BC5ATI2U_RG_Modern.dds",			revrow);	// No reverse.
 	DDSLoadDecodeSave("BC6U_RGB_Modern.dds");
 	DDSLoadDecodeSave("BC6S_RGB_Modern.dds",			revrow);	// No reverse.
 	DDSLoadDecodeSave("BC6U_HDRRGB_Modern.dds",			revrow);	// No reverse.
@@ -1660,10 +1660,10 @@ tTestUnit(ImageKTX1)
 	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx",			decode | revrow);
 
 	// BC4
-	KTXLoadDecodeSave("BC4ATI1_R.ktx",					decode | revrow);
+	KTXLoadDecodeSave("BC4ATI1U_R.ktx",					decode | revrow);
 
 	// BC5
-	KTXLoadDecodeSave("BC5ATI2_RG.ktx",					decode | revrow);
+	KTXLoadDecodeSave("BC5ATI2U_RG.ktx",				decode | revrow);
 
 	// BC6
 	KTXLoadDecodeSave("BC6U_RGB.ktx",					decode | revrow);
@@ -1735,8 +1735,8 @@ tTestUnit(ImageKTX1)
 	KTXLoadDecodeSave("BC1DXT1A_RGBA.ktx");
 	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx",			revrow);
 	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx",			revrow);
-	KTXLoadDecodeSave("BC4ATI1_R.ktx",					revrow);	// Should print warning and be unable to flip rows. May be able to implement.
-	KTXLoadDecodeSave("BC5ATI2_RG.ktx",					revrow);	// No reverse.
+	KTXLoadDecodeSave("BC4ATI1U_R.ktx",					revrow);	// Should print warning and be unable to flip rows. May be able to implement.
+	KTXLoadDecodeSave("BC5ATI2U_RG.ktx",				revrow);	// No reverse.
 	KTXLoadDecodeSave("BC6U_RGB.ktx",					revrow);	// No reverse.
 	KTXLoadDecodeSave("BC6S_RGB.ktx",					revrow);	// No reverse.
 	KTXLoadDecodeSave("BC7_RGBA.ktx",					revrow);	// No reverse.
@@ -1801,10 +1801,10 @@ tTestUnit(ImageKTX2)
 	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx2",			decode | revrow);
 
 	// BC4
-	KTXLoadDecodeSave("BC4ATI1_R.ktx2",					decode | revrow);
+	KTXLoadDecodeSave("BC4ATI1U_R.ktx2",				decode | revrow);
 
 	// BC5
-	KTXLoadDecodeSave("BC5ATI2_RG.ktx2",				decode | revrow);
+	KTXLoadDecodeSave("BC5ATI2U_RG.ktx2",				decode | revrow);
 
 	// BC6
 	KTXLoadDecodeSave("BC6S_RGB.ktx2",					decode | revrow);
@@ -1908,8 +1908,8 @@ tTestUnit(ImageKTX2)
 	KTXLoadDecodeSave("BC1DXT1A_RGBA.ktx2");
 	KTXLoadDecodeSave("BC2DXT2DXT3_RGBA.ktx2",			revrow);
 	KTXLoadDecodeSave("BC3DXT4DXT5_RGBA.ktx2",			revrow);
-	KTXLoadDecodeSave("BC4ATI1_R.ktx2",					revrow);	// Should print warning and be unable to reverse rows. May be able to implement.
-	KTXLoadDecodeSave("BC5ATI2_RG.ktx2",				revrow);	// No reverse.
+	KTXLoadDecodeSave("BC4ATI1U_R.ktx2",				revrow);	// Should print warning and be unable to reverse rows. May be able to implement.
+	KTXLoadDecodeSave("BC5ATI2U_RG.ktx2",				revrow);	// No reverse.
 	KTXLoadDecodeSave("BC6S_RGB.ktx2",					revrow);	// No reverse.
 	KTXLoadDecodeSave("BC7_RGBA.ktx2",					revrow);	// No reverse.
 	KTXLoadDecodeSave("BC7_RGBANoSuper.ktx2",			revrow);	// No reverse.
@@ -2381,8 +2381,33 @@ tTestUnit(ImagePVR3)
 	PVRLoadDecodeSave("B10G11R11uf_UFLOAT_LIN_RGB_TM.pvr",			decode | revrow,	true);
 	PVRLoadDecodeSave("RGB999E5+E5B9G9R9uf_UFLOAT_LIN_RGB_T.pvr",	decode | revrow,	true);
 
-	PVRLoadDecodeSave("ASTC4X4_UNORM_lRGB_RGB_T.pvr",				decode | revrow,	false);
 	PVRLoadDecodeSave("ASTC4X4_SFLOAT_lRGB_RGB_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC4X4_UNORM_lRGB_RGB_T.pvr",				decode | revrow,	false);
+
+	PVRLoadDecodeSave("ASTC4X4_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC5X4_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC5X5_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC6X5_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC6X6_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC8X5_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC8X6_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC8X8_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC10X5_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC10X6_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC10X8_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC10X10_UNORM_SRGB_RGBA_T.pvr",			decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC12X10_UNORM_SRGB_RGBA_T.pvr",			decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC12X12_UNORM_SRGB_RGBA_T.pvr",			decode | revrow,	false);
+
+	PVRLoadDecodeSave("BC1DXT1_UNORM_SRGB_RGB_TM.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("BC1DXT1_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("BC2DXT2DXT3_UNORM_SRGB_RGBA_T.pvr",			decode | revrow,	false);
+	PVRLoadDecodeSave("BC3DXT4DXT5_UNORM_SRGB_RGBA_T.pvr",			decode | revrow,	false);
+	PVRLoadDecodeSave("BC3DXT4DXT5_UNORM_SRGB_RGBA_TM.pvr",			decode | revrow,	false);
+	PVRLoadDecodeSave("BC4ATI1U_UNORM_LIN_R_T.pvr",					decode | revrow,	false);
+	PVRLoadDecodeSave("BC4ATI1S_SNORM_LIN_R_T.pvr",					decode | revrow,	false);
+	PVRLoadDecodeSave("BC5ATI2U_UNORM_LIN_RG_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("BC5ATI2S_SNORM_LIN_RG_T.pvr",				decode | revrow,	false);
 
 	// Do them again without decoding.
 	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGB_T.pvr",				0,					false);

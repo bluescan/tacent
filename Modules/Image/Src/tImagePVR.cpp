@@ -392,8 +392,8 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 			C(DXT3_BC2):					F(BC2DXT2DXT3)											break;
 			C(DXT4):						F(BC3DXT4DXT5)					M(Mult)					break;
 			C(DXT5_BC3):					F(BC3DXT4DXT5)											break;
-			C(BC4):							F(BC4ATI1)			P(lRGB)								break;
-			C(BC5):							F(BC5ATI2)			P(lRGB)								break;
+			C(BC4):	P(lRGB) if (chanType == tChannelType::SNORM)	F(BC4ATI1S) else	F(BC4ATI1U)	break;
+			C(BC5):	P(lRGB) if (chanType == tChannelType::SNORM)	F(BC5ATI2S) else	F(BC5ATI2U)	break;
 			C(BC6):							F(BC6U)				P(HDRa)					T(UFLOAT)	break;	// Not sure whether signed or unsigned. Assuming unsigned.
 			C(BC7):							F(BC7)													break;
 			//C(UYVY):
@@ -541,10 +541,10 @@ void tImagePVR::Clear()
 
 	States							= 0;		// Image will be invalid now since Valid state not set.
 	PVRVersion						= 0;
-	PixelFormat						= tPixelFormat::Invalid;
 	PixelFormatSrc					= tPixelFormat::Invalid;
-	ColourProfile					= tColourProfile::Unspecified;
+	PixelFormat						= tPixelFormat::Invalid;
 	ColourProfileSrc				= tColourProfile::Unspecified;
+	ColourProfile					= tColourProfile::Unspecified;
 	AlphaMode						= tAlphaMode::Unspecified;
 	ChannelType						= tChannelType::Unspecified;
 	RowReversalOperationPerformed	= false;
@@ -565,10 +565,10 @@ bool tImagePVR::Set(tPixel* pixels, int width, int height, bool steal)
 	if (!pixels || (width <= 0) || (height <= 0))
 		return false;
 
-	PixelFormat						= tPixelFormat::R8G8B8A8;
 	PixelFormatSrc					= tPixelFormat::R8G8B8A8;
-	ColourProfile					= tColourProfile::LDRsRGB_LDRlA;
+	PixelFormat						= tPixelFormat::R8G8B8A8;
 	ColourProfileSrc				= tColourProfile::LDRsRGB_LDRlA;
+	ColourProfile					= tColourProfile::LDRsRGB_LDRlA;
 	AlphaMode						= tAlphaMode::Normal;
 	ChannelType						= tChannelType::UNORM;
 	RowReversalOperationPerformed	= false;
@@ -842,7 +842,8 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			if
 			(
 				(PixelFormatSrc != tPixelFormat::A8)		&& (PixelFormatSrc != tPixelFormat::A8L8) &&
-				(PixelFormatSrc != tPixelFormat::BC4ATI1)	&& (PixelFormatSrc != tPixelFormat::BC5ATI2)
+				(PixelFormatSrc != tPixelFormat::BC4ATI1U)	&& (PixelFormatSrc != tPixelFormat::BC4ATI1S) &&
+				(PixelFormatSrc != tPixelFormat::BC5ATI2U)	&& (PixelFormatSrc != tPixelFormat::BC5ATI2S)
 			)
 			{
 				params.Flags |= LoadFlag_SRGBCompression;

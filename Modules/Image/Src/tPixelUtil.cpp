@@ -520,7 +520,7 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 			break;
 		}
 
-		case tPixelFormat::BC4ATI1:
+		case tPixelFormat::BC4ATI1U:
 		{
 			// This HDR format decompresses to R uint8s.
 			uint8* rdata = new uint8[wfull*hfull];
@@ -544,7 +544,33 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 			break;
 		}
 
-		case tPixelFormat::BC5ATI2:
+		case tPixelFormat::BC4ATI1S:
+		{
+			// This HDR format decompresses to R uint8s.
+			uint8* rdata = new uint8[wfull*hfull];
+			for (int y = 0; y < hfull; y += 4)
+				for (int x = 0; x < wfull; x += 4)
+				{
+					uint8* dst = (rdata + (y*wfull + x) * 1);
+					bcdec_bc4(src, dst, wfull * 1);
+					src += BCDEC_BC4_BLOCK_SIZE;
+				}
+
+			// Now convert to 32-bit RGBA.
+			decodedFull4i = new tColour4i[wfull*hfull];
+			for (int xy = 0; xy < wfull*hfull; xy++)
+			{
+				int vi = *((int8*)&rdata[xy]);
+				vi += 128;
+				uint8 v = uint8(vi);
+				tColour4i col(v, 0u, 0u, 255u);
+				decodedFull4i[xy].Set(col);
+			}
+			delete[] rdata;
+			break;
+		}
+
+		case tPixelFormat::BC5ATI2U:
 		{
 			// This HDR format decompresses to RG uint8s.
 			struct RG { uint8 R; uint8 G; };
@@ -563,6 +589,35 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 			for (int xy = 0; xy < wfull*hfull; xy++)
 			{
 				tColour4i col(rgData[xy].R, rgData[xy].G, 0u, 255u);
+				decodedFull4i[xy].Set(col);
+			}
+			delete[] rgData;
+			break;
+		}
+
+		case tPixelFormat::BC5ATI2S:
+		{
+			// This HDR format decompresses to RG uint8s.
+			struct RG { uint8 R; uint8 G; };
+			RG* rgData = new RG[wfull*hfull];
+
+			for (int y = 0; y < hfull; y += 4)
+				for (int x = 0; x < wfull; x += 4)
+				{
+					uint8* dst = (uint8*)rgData + (y*wfull + x) * 2;
+					bcdec_bc5(src, dst, wfull * 2);
+					src += BCDEC_BC5_BLOCK_SIZE;
+				}
+
+			// Now convert to 32-bit RGBA with 0,255 for B,A.
+			decodedFull4i = new tColour4i[wfull*hfull];
+			for (int xy = 0; xy < wfull*hfull; xy++)
+			{
+				int iR = *((int8*)&rgData[xy].R);
+				int iG = *((int8*)&rgData[xy].G);
+				iR += 128;
+				iG += 128;
+				tColour4i col(uint8(iR), uint8(iG), 0u, 255u);
 				decodedFull4i[xy].Set(col);
 			}
 			delete[] rgData;

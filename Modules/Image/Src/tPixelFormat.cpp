@@ -56,8 +56,10 @@ namespace tImage
 		"BC1DXT1A",
 		"BC2DXT2DXT3",
 		"BC3DXT4DXT5",
-		"BC4ATI1",
-		"BC5ATI2",
+		"BC4ATI1U",
+		"BC4ATI1S",
+		"BC5ATI2U",
+		"BC5ATI2S",
 		"BC6U",
 		"BC6S",
 		"BC7",
@@ -149,8 +151,10 @@ namespace tImage
 		8,				// BC1DXT1A
 		16,				// BC2DXT2DXT3
 		16,				// BC3DXT4DXT5
-		8,				// BC4ATI1
-		16,				// BC5ATI2
+		8,				// BC4ATI1U
+		8,				// BC4ATI1S
+		16,				// BC5ATI2U
+		16,				// BC5ATI2S
 		16,				// BC6U
 		16,				// BC6S
 		16,				// BC7

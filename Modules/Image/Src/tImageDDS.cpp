@@ -568,14 +568,14 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 		C(BC3_UNORM_SRGB):				F(BC3DXT4DXT5)								T(UNORM)	break;
 
 		// We don't decode signed properly yet.
-		C(BC4_TYPELESS):				F(BC4ATI1)			P(lRGB)								break;
-		//C(BC4_SNORM):					F(BC4ATI1)			P(lRGB)					T(SINT)		break;
-		C(BC4_UNORM):					F(BC4ATI1)			P(lRGB)					T(UNORM)	break;
+		C(BC4_TYPELESS):				F(BC4ATI1U)			P(lRGB)								break;
+		C(BC4_UNORM):					F(BC4ATI1U)			P(lRGB)					T(UNORM)	break;
+		C(BC4_SNORM):					F(BC4ATI1S)			P(lRGB)					T(SNORM)	break;
 
 		// We don't decode signed properly yet.
-		C(BC5_TYPELESS):				F(BC5ATI2)			P(lRGB) 							break;
-		//C(BC5_SNORM):					F(BC5ATI2)			P(lRGB) 				T(SINT)		break;
-		C(BC5_UNORM):					F(BC5ATI2)			P(lRGB)					T(UNORM)	break;
+		C(BC5_TYPELESS):				F(BC5ATI2U)			P(lRGB) 							break;
+		C(BC5_UNORM):					F(BC5ATI2U)			P(lRGB)					T(UNORM)	break;
+		C(BC5_SNORM):					F(BC5ATI2S)			P(lRGB) 				T(SNORM)	break;
 
 		// Alpha not used by BC6. Interpret typeless as BC6H_U16... we gotta choose something.
 		C(BC6H_TYPELESS):				F(BC6U)				P(HDRa)								break;
@@ -735,11 +735,13 @@ void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& format, tColourProfile& profil
 		C(DXT4):						F(BC3DXT4DXT5)					M(Mult)					break;
 		C(DXT5):						F(BC3DXT4DXT5)					M(Norm)					break;
 
-		C(ATI1):						F(BC4ATI1)			P(lRGB)								break;
-		C(BC4U):						F(BC4ATI1)			P(lRGB)								break;
+		C(ATI1):						F(BC4ATI1U)			P(lRGB)					T(UNORM)	break;
+		C(BC4U):						F(BC4ATI1U)			P(lRGB)					T(UNORM)	break;
+		C(BC4S):						F(BC4ATI1S)			P(lRGB)					T(SNORM)	break;
 
-		C(ATI2):						F(BC5ATI2)			P(lRGB)								break;
-		C(BC5U):						F(BC5ATI2)			P(lRGB)								break;
+		C(ATI2):						F(BC5ATI2U)			P(lRGB)					T(UNORM)	break;
+		C(BC5U):						F(BC5ATI2U)			P(lRGB)					T(UNORM)	break;
+		C(BC5S):						F(BC5ATI2S)			P(lRGB)					T(SNORM)	break;
 
 		// We don't yet support signed BC4S or BC5S.
 		//C(BC4S):																				break;
@@ -1405,7 +1407,8 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 			if
 			(
 				(PixelFormatSrc != tPixelFormat::A8)		&& (PixelFormatSrc != tPixelFormat::A8L8) &&
-				(PixelFormatSrc != tPixelFormat::BC4ATI1)	&& (PixelFormatSrc != tPixelFormat::BC5ATI2)
+				(PixelFormatSrc != tPixelFormat::BC4ATI1U)	&& (PixelFormatSrc != tPixelFormat::BC4ATI1S) &&
+				(PixelFormatSrc != tPixelFormat::BC5ATI2U)	&& (PixelFormatSrc != tPixelFormat::BC5ATI2S)
 			)
 			{
 				params.Flags |= LoadFlag_SRGBCompression;
