@@ -419,9 +419,8 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 			C(ETC2_RGB):					F(ETC2RGB)												break;
 			C(ETC2_RGBA):					F(ETC2RGBA)												break;
 			C(ETC2_RGB_A1):					F(ETC2RGBA1)											break;
-			C(EAC_R11):						F(EACR11U)												break;
-			C(EAC_RG11):					F(EACRG11U)												break;
-
+			C(EAC_R11):  if (chanType == tChannelType::SNORM)		F(EACR11S)  else	F(EACR11U)	break;
+			C(EAC_RG11): if (chanType == tChannelType::SNORM)		F(EACRG11S) else	F(EACRG11U)	break;
 			C(ASTC_4X4):					F(ASTC4X4)												break;
 			C(ASTC_5X4):					F(ASTC5X4)												break;
 			C(ASTC_5X5):					F(ASTC5X5)												break;

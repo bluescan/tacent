@@ -1,4 +1,4 @@
-/* etcdec.h - v0.9
+/* etcdec.h - v0.91
    provides functions to decompress blocks of ETC/EAC compressed images
    written by Sergii "iOrange" Kudlai in 2022
 
@@ -21,13 +21,16 @@
 
    For more info, issues and suggestions please visit https://github.com/iOrange/etcdec
 
+   CREDITS:
+      Vladimir Vondrus (@mosra)      - fixes for platforms that define char as unsigned type
+
    LICENSE: See end of file for license information.
 */
 
 #ifndef ETCDEC_HEADER_INCLUDED
 #define ETCDEC_HEADER_INCLUDED
 #define ETCDEC_VERSION_MAJOR 0
-#define ETCDEC_VERSION_MINOR 9
+#define ETCDEC_VERSION_MINOR 91
 
 /* if ETCDEC_STATIC causes problems, try defining ETCDECDEF to 'inline' or 'static inline' */
 #ifndef ETCDECDEF
@@ -408,9 +411,9 @@ static void etcdec__decompress_eac_block(const void* compressedBlock, void* deco
     unsigned char* decompressed;
     int baseCodeword, multiplier, modifier, idx;
     int i, j, k;
-    const char* modifiersPtr;
+    const signed char* modifiersPtr;
 
-    static char modifierTable[16][8] = {
+    static signed char modifierTable[16][8] = {
             { -3, -6,  -9, -15, 2, 5, 8, 14 },
             { -3, -7, -10, -13, 2, 6, 9, 12 },
             { -2, -5,  -8, -13, 1, 4, 7, 12 },
