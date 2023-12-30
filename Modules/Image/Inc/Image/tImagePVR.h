@@ -48,7 +48,9 @@ public:
 		LoadFlag_SpreadLuminance	= 1 << 6,	// For files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats. Applies only if decoding an R-only or L-only format.
 		LoadFlag_CondMultFourDim	= 1 << 7,	// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,
 		LoadFlag_StrictLoading		= 1 << 8,	// If set ill-formed files will not load. Specifically if format is PVRTC (not PVRTC2) the texture must be POT if this flag set.
-		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance | LoadFlag_AutoGamma | LoadFlag_StrictLoading
+		LoadFlag_MetaDataOrient		= 1 << 9,	// Undo orientation transformations in pvr3 image as indicated by pvr3 meta-data. Works iff decoding or already in RGBA.
+
+		LoadFlags_Default			= LoadFlag_Decode | LoadFlag_ReverseRowOrder | LoadFlag_SpreadLuminance | LoadFlag_AutoGamma | LoadFlag_StrictLoading | LoadFlag_MetaDataOrient
 	};
 
 	// If an error is encountered loading the resultant object will return false for IsValid. You can call GetLastResult
@@ -223,6 +225,9 @@ public:
 	tString Filename;
 
 private:
+	bool ParseMetaData(const uint8* metaData, int metaDataSize);
+	int LayerIdx(int surf, int face = 0, int mip = 0, int depth = 0);
+	tLayer* CreateNewLayer(const LoadParams&, const uint8* srcPixelData, int numBytes, int width, int height);
 	void SetStateBit(StateBit state)		{ States |= 1 << int(state); }
 
 	// The states are bits in this States member.
@@ -280,8 +285,10 @@ private:
 
 	int NumLayers							= 0;
 	tLayer** Layers							= nullptr;	// Always nullptr if NumLayers is 0.
-	int LayerIdx(int surf, int face = 0, int mip = 0, int depth = 0);
-	tLayer* CreateNewLayer(const LoadParams&, const uint8* srcPixelData, int numBytes, int width, int height);
+
+	// Parsed from MetaData.
+	bool MetaData_Orientation_Flip_X		= false;
+	bool MetaData_Orientation_Flip_Y		= false;
 
 public:
 	static const char* StateDescriptions[];

@@ -209,6 +209,17 @@ namespace tPVR
 		PVR3FMT_ASTC_6X6X6					= 0x00000032
 	};
 
+	enum PVR3KEY : uint32
+	{
+		PVR3KEY_ATLAS						= 0x00000000,
+		PVR3KEY_NORMALMAP					= 0x00000001,
+		PVR3KEY_CUBEMAP						= 0x00000002,
+		PVR3KEY_ORIENTATION					= 0x00000003,
+		PVR3KEY_BORDER						= 0x00000004,
+		PVR3KEY_PADDING						= 0x00000005,
+		PVR3KEY_UNKNOWN						= 0x00000006
+	};
+
 	int DetermineVersionFromFirstFourBytes(const uint8 bytes[4]);
 
 	// Determine the pixel-format and, if possible, the alpha-mode and channel-type. There is no possibility of
@@ -221,6 +232,9 @@ namespace tPVR
 	// V3 pixel-formats imply a particular colour space and alpha-mode. In cases where these do not match the required
 	// type, mode, or space of the pixel-format, the pixel-format's required setting is chosen.
 	void GetFormatInfo_FromV3Header(tPixelFormat&, tColourProfile&, tAlphaMode&, tChannelType&, const HeaderV3&);
+
+	void Flip(tLayer*, bool horizontal);
+	inline int GetIndex(int x, int y, int w, int h)																		{ tAssert((x >= 0) && (y >= 0) && (x < w) && (y < h)); return y * w + x; }
 }
 
 
@@ -528,6 +542,26 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 }
 
 
+void tPVR::Flip(tLayer* layer, bool horizontal)
+{
+	if (!layer->IsValid() || (layer->PixelFormat != tPixelFormat::R8G8B8A8))
+		return;
+
+	int w = layer->Width;
+	int h = layer->Height;
+	tPixel* srcPixels = (tPixel*)layer->Data;
+	tPixel* newPixels = new tPixel[w*h];
+
+	for (int y = 0; y < h; y++)
+		for (int x = 0; x < w; x++)
+			newPixels[ GetIndex(x, y, w, h) ] = srcPixels[ GetIndex(horizontal ? w-1-x : x, horizontal ? y : h-1-y, w, h) ];
+
+	// We modify the existing data just in case layer doesn't own it.
+	tStd::tMemcpy(layer->Data, newPixels, w*h*sizeof(tPixel));
+	delete[] newPixels;
+}
+
+
 void tImagePVR::Clear()
 {
 	// Clear all layers no matter what they're used for.
@@ -556,6 +590,9 @@ void tImagePVR::Clear()
 	Depth							= 0;		// Number of slices.
 	Width							= 0;
 	Height							= 0;
+
+	MetaData_Orientation_Flip_X		= false;
+	MetaData_Orientation_Flip_Y		= false;
 }
 
 
@@ -795,6 +832,8 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			return false;
 	}
 
+	ParseMetaData(metaData, metaDataSize);
+
 	#if 0
 	tPrintf("PVR channelType: %d\n", channelType);
 	tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
@@ -918,6 +957,31 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 			}
 			width  /= 2; tMath::tiClampMin(width, 1);
 			height /= 2; tMath::tiClampMin(height, 1);
+		}
+	}
+
+	// The flips and rotates below do not clear the pixel format.
+	if ((params.Flags & LoadFlag_MetaDataOrient) && (MetaData_Orientation_Flip_X || MetaData_Orientation_Flip_Y))
+	{
+		// The order of the loops doesn't matter here. We just need to hit every layer.
+		for (int surf = 0; surf < NumSurfaces; surf++)
+		{
+			for (int face = 0; face < NumFaces; face++)
+			{
+				for (int mip = 0; mip < NumMipmaps; mip++)
+				{
+					for (int slice = 0; slice < Depth; slice++)
+					{
+						int index = LayerIdx(surf, face, mip, slice);
+						tLayer* layer = Layers[index];
+						tAssert(layer != nullptr);
+						if (MetaData_Orientation_Flip_X)
+							tPVR::Flip(layer, true);
+						if (MetaData_Orientation_Flip_Y)
+							tPVR::Flip(layer, false);
+					}
+				}
+			}
 		}
 	}
 
@@ -1102,6 +1166,61 @@ tLayer* tImagePVR::CreateNewLayer(const LoadParams& params, const uint8* srcPixe
 		SetStateBit(StateBit::Conditional_CouldNotFlipRows);
 
 	return layer;
+}
+
+
+bool tImagePVR::ParseMetaData(const uint8* metaData, int metaDataSize)
+{
+	if (!metaData || (metaDataSize <= 0))
+		return false;
+
+	while (metaDataSize >= 12)
+	{
+		uint32 fourCC	= *((uint32*)metaData);		metaData += 4;	metaDataSize -= 4;
+		uint32 key		= *((uint32*)metaData);		metaData += 4;	metaDataSize -= 4;
+		uint32 dataSize	= *((uint32*)metaData);		metaData += 4;	metaDataSize -= 4;
+
+		switch (fourCC)
+		{
+			case tImage::FourCC('P', 'V', 'R', 3):
+			{
+				// Most of the built-in meta-data does not affect display of image. Indeed nearly all
+				// of the built-in meta-data is not even supported by the official PVRTexTool as of 2023_12_30.
+				switch (key)
+				{
+					case tPVR::PVR3KEY_ATLAS:		break;
+					case tPVR::PVR3KEY_NORMALMAP:	break;
+					case tPVR::PVR3KEY_CUBEMAP:		break;
+
+					case tPVR::PVR3KEY_ORIENTATION:
+						// Three bytes, one for each axis in the order X, Y, Z.						
+						// X == 0: Increases right.  X != 0: Increases left.
+						// Y == 0: Increases down.   Y != 0: Increases up.
+						// X == 0: Increases inward. Z != 0: Increases outward.
+						if (dataSize != 3)
+							break;
+						MetaData_Orientation_Flip_X = metaData[0] ? true : false;
+						MetaData_Orientation_Flip_Y = metaData[1] ? true : false;
+						break;
+
+					case tPVR::PVR3KEY_BORDER:		break;
+					case tPVR::PVR3KEY_PADDING:		break;
+					case tPVR::PVR3KEY_UNKNOWN:		break;
+				}
+				break;
+			}
+		}
+
+		#if 0
+		tPrintf("MetaData fourCC   : %08X (%c %c %c %d)\n", fourCC, (fourCC>>0)&0xFF, (fourCC>>8)&0xFF, (fourCC>>16)&0xFF, (fourCC>>24)&0xFF);
+		tPrintf("MetaData key      : %d\n", key);
+		tPrintf("MetaData dataSize : %d\n", dataSize);
+		#endif
+
+		metaData += dataSize;	metaDataSize -= dataSize;
+	}
+
+	return true;
 }
 
 

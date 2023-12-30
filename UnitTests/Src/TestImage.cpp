@@ -2347,6 +2347,7 @@ tTestUnit(ImagePVR3)
 	uint32 decode = tImagePVR::LoadFlag_Decode;
 	uint32 revrow = tImagePVR::LoadFlag_ReverseRowOrder;
 	uint32 spread = tImagePVR::LoadFlag_SpreadLuminance;
+	uint32 orient = tImagePVR::LoadFlag_MetaDataOrient;
 
 	tPrintf("Testing PVR V3 Loading/Decoding\n\n");
 
@@ -2398,6 +2399,9 @@ tTestUnit(ImagePVR3)
 	PVRLoadDecodeSave("ASTC10X10_UNORM_SRGB_RGBA_T.pvr",			decode | revrow,	false);
 	PVRLoadDecodeSave("ASTC12X10_UNORM_SRGB_RGBA_T.pvr",			decode | revrow,	false);
 	PVRLoadDecodeSave("ASTC12X12_UNORM_SRGB_RGBA_T.pvr",			decode | revrow,	false);
+
+	PVRLoadDecodeSave("ASTC4X4_UNORM_SRGB_RGBA_TM_FlipVert.pvr",	decode | revrow | orient,	true);
+	PVRLoadDecodeSave("ASTC4X4_UNORM_SRGB_RGBA_TM_FlipHoriz.pvr",	decode | revrow | orient,	true);
 
 	PVRLoadDecodeSave("BC1DXT1_UNORM_SRGB_RGB_TM.pvr",				decode | revrow,	false);
 	PVRLoadDecodeSave("BC1DXT1_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
