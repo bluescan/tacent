@@ -42,9 +42,11 @@ namespace tImage
 		"L8",
 		"R16f",
 		"R16G16f",
+		"R16G16B16f",
 		"R16G16B16A16f",
 		"R32f",
 		"R32G32f",
+		"R32G32B32f",
 		"R32G32B32A32f",
 		"R11G11B10uf",
 		"B10G11R11uf",
@@ -134,9 +136,11 @@ namespace tImage
 
 		16,				// R16f
 		32,				// R16G16f
+		48,				// R16G16B16f
 		64,				// R16G16B16A16f
 		32,				// R32f
 		64,				// R32G32f
+		96,				// R32G32B32f
 		128,			// R32G32B32A32f
 		32,				// R11G11B10uf
 		32,				// B10G11R11uf

@@ -632,6 +632,7 @@ void tDDS::GetFormatInfo_FromDXGIFormat(tPixelFormat& format, tColourProfile& pr
 
 		C(R32_FLOAT):					F(R32f)				P(HDRa)					T(SFLOAT)	break;
 		C(R32G32_FLOAT):				F(R32G32f)			P(HDRa)					T(SFLOAT)	break;
+		C(R32G32B32_FLOAT):				F(R32G32B32f)		P(HDRa)					T(SFLOAT)	break;
 		C(R32G32B32A32_FLOAT):			F(R32G32B32A32f)	P(HDRa)					T(SFLOAT)	break;
 
 		C(R11G11B10_FLOAT):				F(B10G11R11uf)		P(HDRa)					T(UFLOAT)	break;
@@ -765,28 +766,18 @@ void tDDS::GetFormatInfo_FromFourCC(tPixelFormat& format, tColourProfile& profil
 		C(A8):							F(A8)				P(lRGB)								break;
 		C(L8):							F(L8)													break;
 
-		// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
-		// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
+		// It's inconsistent calling the D3D format ABGR. The components are clearly in RGBA order, not ABGR.
+		// Anyway, I only have control over the tPixelFormat names. In fairness, it looks like the format-name
+		// was fixed in the DX10 header format type names. See
+		// https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
 		C(A8B8G8R8):					F(R8G8B8A8)												break;
+
 		C(R16F):						F(R16f)				P(HDRa)								break;
-
-		// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
-		// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
 		C(G16R16F):						F(R16G16f)			P(HDRa)								break;
-
-		// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
-		// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
 		C(A16B16G16R16F):				F(R16G16B16A16f)	P(HDRa)								break;
+
 		C(R32F):						F(R32f)				P(HDRa)								break;
-
-		// D3DFMT format name has incorrect component order. DXGI_FORMAT is correct.
-		// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
 		C(G32R32F):						F(R32G32f)			P(HDRa)								break;
-
-		// It's inconsistent calling the D3D format A32B32G32R32F. The floats in this case are clearly in RGBA
-		// order, not ABGR. Anyway, I only have control over the tPixelFormat names. In fairness, it looks like
-		// the format-name was fixed in the DX10 header format type names.
-		// See https://learn.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-legacy-formats
 		C(A32B32G32R32F):				F(R32G32B32A32f)	P(HDRa)								break;
 
 		default:											P(None)								break;

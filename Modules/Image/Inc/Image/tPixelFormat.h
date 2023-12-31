@@ -127,12 +127,14 @@ enum class tPixelFormat
 	A8,									// 8   bit. Alpha only.
 	L8,									// 8   bit. Luminance only.
 
-	R16f,								// 16  bit. Half-float red/luminance channel only.
-	R16G16f,							// 32  bit. Two half-floats per pixel. Red and green.
-	R16G16B16A16f,						// 64  bit. Four half-floats per pixel. RGBA.
-	R32f,								// 32  bit. Float red/luminance channel only.
-	R32G32f,							// 64  bit. Two floats per pixel. Red and green.
-	R32G32B32A32f,						// 128 bit. HDR format (linear-space), RGBA in 4 floats.
+	R16f,								// 16  bit. Half-float red/luminance channel only. HDR linear space.
+	R16G16f,							// 32  bit. Two half-floats per pixel. RG. HDR linear space.
+	R16G16B16f,							// 48  bit. Three half-floats per pixel. RGB. HDR linear space.
+	R16G16B16A16f,						// 64  bit. Four half-floats per pixel. RGBA. HDR linear space.
+	R32f,								// 32  bit. Float red/luminance channel only. HDR linear space.
+	R32G32f,							// 64  bit. Two floats per pixel. RG. HDR linear space.
+	R32G32B32f,							// 96  bit. Three floats per pixel. RGB. HDR linear space.
+	R32G32B32A32f,						// 128 bit. Four floats per pixel. RGBA. HDR linear space.
 	R11G11B10uf,						// 32  bit. Unsigned 11-bit floats for RG, and a 10-bit float for B. All use a 5-bit exponent.
 	B10G11R11uf,						// 32  bit. Unsigned 10-bit floats for B, and 11-bit floats for GR. All use a 5-bit exponent.
 	R9G9B9E5uf,							// 32  bit. Unsigned 14-bit floats for RGB. Always denorm and each share the same 5-bit exponent.
@@ -528,9 +530,11 @@ inline bool tImage::tIsHDRFormat(tPixelFormat format)
 	{
 		case tPixelFormat::R16f:
 		case tPixelFormat::R16G16f:
+		case tPixelFormat::R16G16B16f:
 		case tPixelFormat::R16G16B16A16f:
 		case tPixelFormat::R32f:
 		case tPixelFormat::R32G32f:
+		case tPixelFormat::R32G32B32f:
 		case tPixelFormat::R32G32B32A32f:
 		case tPixelFormat::R11G11B10uf:
 		case tPixelFormat::B10G11R11uf:

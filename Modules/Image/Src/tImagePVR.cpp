@@ -316,12 +316,12 @@ void tPVR::GetFormatInfo_FromV1V2Header(tPixelFormat& format, tColourProfile& pr
 		//C(GR_1616):
 		//C(VU_1616):
 		//C(ABGR_16161616):
-		//C(R_16F):
-		//C(GR_1616F):
-		//C(ABGR_16161616F):
-		//C(R_32F):
-		//C(GR_3232F):
-		//C(ABGR_32323232F):
+		C(R_16F):				F(R16f)				P(lRGB)					T(SFLOAT)	break;
+		C(GR_1616F):			F(R16G16f)			P(lRGB)					T(SFLOAT)	break;
+		C(ABGR_16161616F):		F(R16G16B16A16f)	P(lRGB)					T(SFLOAT)	break;
+		C(R_32F):				F(R32f)				P(lRGB)					T(SFLOAT)	break;
+		C(GR_3232F):			F(R32G32f)			P(lRGB)					T(SFLOAT)	break;
+		C(ABGR_32323232F):		F(R32G32B32A32f)	P(lRGB)					T(SFLOAT)	break;
 
 		// V2 ETC1 files generated from PVRTexTool are always in linear space. There is no sRGB option.
 		C(ETC):					F(ETC1)				P(lRGB)								break;
@@ -458,16 +458,86 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 		// The FourCC and the tSwapEndian32 calls below deal with endianness. The values
 		// of the literals in the fourCC match the values of the masks in fmtMS32 member.
 		#define F(f) format = tPixelFormat::f;
+		#define P(p) profile = tColourProfile::p;
 		switch (fmtLS32)
 		{
+			case tImage::FourCC('r', '\0', '\0', '\0'):
+			{
+				if (chanType == tChannelType::SFLOAT)
+				{
+					switch (fmtMS32)
+					{
+						case tSwapEndian32(0x10000000):	F(R16f) P(HDRa)	break;
+						case tSwapEndian32(0x20000000):	F(R32f) P(HDRa)	break;
+					}
+				}
+				break;
+			}
+
+			case tImage::FourCC('r', 'g', '\0', '\0'):
+			{
+				if (chanType == tChannelType::SFLOAT)
+				{
+					switch (fmtMS32)
+					{
+						case tSwapEndian32(0x10100000):	F(R16G16f) P(HDRa)	break;
+						case tSwapEndian32(0x20200000):	F(R32G32f) P(HDRa)	break;
+					}
+				}
+				break;
+			}
+
+			case tImage::FourCC('r', 'g', 'b', '\0'):
+			{
+				if (chanType == tChannelType::SFLOAT)
+				{
+					switch (fmtMS32)
+					{
+						case tSwapEndian32(0x10101000):	F(R16G16B16f) P(HDRa)	break;
+						case tSwapEndian32(0x20202000):	F(R32G32B32f) P(HDRa)	break;
+					}
+				}
+				else
+				{
+					switch (fmtMS32)
+					{
+						case tSwapEndian32(0x05060500):	F(G3B5R5G3)			break;	// LE PVR: R5 G6 B5.
+					}
+				}
+				break;
+			}
+
+			case tImage::FourCC('b', 'g', 'r', '\0'):
+			{
+				if (chanType == tChannelType::UFLOAT)
+				{
+					switch (fmtMS32)
+					{
+						case tSwapEndian32(0x0a0b0b00):	F(B10G11R11uf)		break;	// PVR: B10 G11 R11 UFLOAT.
+					}
+					break;
+				}
+				break;
+			}
+
 			case tImage::FourCC('r', 'g', 'b', 'a'):
 			{
-				switch (fmtMS32)
+				if (chanType == tChannelType::SFLOAT)
 				{
-					case tSwapEndian32(0x08080808):	F(R8G8B8A8)			break;
-					case tSwapEndian32(0x04040404):	F(B4A4R4G4)			break;
-					case tSwapEndian32(0x05050501):	F(G2B5A1R5G3)		break;
-					case tSwapEndian32(0x20202020):	F(R32G32B32A32f)	break;
+					switch (fmtMS32)
+					{
+						case tSwapEndian32(0x10101010):	F(R16G16B16A16f)	break;
+						case tSwapEndian32(0x20202020):	F(R32G32B32A32f)	break;
+					}
+				}
+				else
+				{
+					switch (fmtMS32)
+					{
+						case tSwapEndian32(0x08080808):	F(R8G8B8A8)			break;
+						case tSwapEndian32(0x04040404):	F(B4A4R4G4)			break;
+						case tSwapEndian32(0x05050501):	F(G2B5A1R5G3)		break;
+					}
 				}
 				break;
 			}
@@ -490,29 +560,9 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 				}
 				break;
 			}
-
-			case tImage::FourCC('r', 'g', 'b', '\0'):
-			{
-				switch (fmtMS32)
-				{
-					case tSwapEndian32(0x05060500):	F(G3B5R5G3)			break;	// LE PVR: R5 G6 B5.
-				}
-				break;
-			}
-
-			case tImage::FourCC('b', 'g', 'r', '\0'):
-			{
-				switch (fmtMS32)
-				{
-					case tSwapEndian32(0x0a0b0b00):
-						if (chanType == tChannelType::UFLOAT)
-							F(B10G11R11uf)			// PVR: B10 G11 R11 UFLOAT.
-					break;
-				}
-				break;
-			}
 		}
 		#undef F
+		#undef P
 
 		#if 0
 		tPrintf("PVR Header pixel format 64  : 0x%08|64X\n", headerFmt64);

@@ -225,6 +225,8 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 				// does not refer to the total pixel size like SHORT does.
 				C(UNSIGNED_BYTE):				F(R8G8B8)									T(UINT)		break;
 				C(UNSIGNED_SHORT_5_6_5_REV):	F(G3B5R5G3)									T(UINT)		break;
+				C(HALF_FLOAT):					F(R16G16B16f)		P(HDRa)					T(SFLOAT)	break;
+				C(FLOAT):						F(R32G32B32f)		P(HDRa)					T(SFLOAT)	break;
 			}
 			break;
 
@@ -363,9 +365,11 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 
 		C(R16_SFLOAT):							F(R16f)				P(HDRa)					T(SFLOAT)	break;
 		C(R16G16_SFLOAT):						F(R16G16f)			P(HDRa)					T(SFLOAT)	break;
+		C(R16G16B16_SFLOAT):					F(R16G16B16f)		P(HDRa)					T(SFLOAT)	break;
 		C(R16G16B16A16_SFLOAT):					F(R16G16B16A16f)	P(HDRa)					T(SFLOAT)	break;
 		C(R32_SFLOAT):							F(R32f)				P(HDRa)					T(SFLOAT)	break;
 		C(R32G32_SFLOAT):						F(R32G32f)			P(HDRa)					T(SFLOAT)	break;
+		C(R32G32B32_SFLOAT):					F(R32G32B32f)		P(HDRa)					T(SFLOAT)	break;
 		C(R32G32B32A32_SFLOAT):					F(R32G32B32A32f)	P(HDRa)					T(SFLOAT)	break;
 		C(B10G11R11_UFLOAT_PACK32):				F(B10G11R11uf)		P(HDRa)					T(UFLOAT)	break;		
 		C(E5B9G9R9_UFLOAT_PACK32):				F(E5B9G9R9uf)		P(HDRa)					T(UFLOAT)	break;
