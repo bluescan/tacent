@@ -41,12 +41,14 @@ enum class DecodeResult
 DecodeResult DecodePixelData
 (
 	tPixelFormat, const uint8* data, int dataSize, int width, int height,
-	tColour4i*& dstLDR, tColour4f*& dstHDR, tColourProfile = tColourProfile::Auto
+	tColour4i*& dstLDR, tColour4f*& dstHDR,
+	tColourProfile = tColourProfile::Auto,		// Only used for ASTC decodes.
+	float RGBM_RGBD_MaxRange = 8.0f				// Only used or RGBM and RGBD decodes.
 );
 
 
 // These do the same as above except for a subset of pixel formats. The above function ends up calling one of these.
-DecodeResult DecodePixelData_Packed	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4i*&, tColour4f*&);
+DecodeResult DecodePixelData_Packed	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4i*&, tColour4f*&, float RGBM_RGBD_MaxRange = 8.0f);
 DecodeResult DecodePixelData_Block	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4i*&, tColour4f*&);
 DecodeResult DecodePixelData_ASTC	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4f*&, tColourProfile = tColourProfile::Auto);
 DecodeResult DecodePixelData_PVR	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4i*&, tColour4f*&);

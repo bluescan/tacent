@@ -146,7 +146,9 @@ enum class tPixelFormat
 	B10G11R11uf,						// 32  bit. Unsigned 10-bit floats for B, and 11-bit floats for GR. All use a 5-bit exponent.
 	R9G9B9E5uf,							// 32  bit. Unsigned 14-bit floats for RGB. Always denorm and each share the same 5-bit exponent.
 	E5B9G9R9uf,							// 32  bit. Unsigned 14-bit floats for RGB. Always denorm and each share the same 5-bit exponent.
-	LastPacked			= E5B9G9R9uf,
+	R8G8B8M8,							// 32  bit. Poor-man's HDR. RGB plus shared 8-bit multiplier. Must supply MaxRange when decoding.
+	R8G8B8D8,							// 32  bit. Poor-man's HDR. RGB plus shared 8-bit divisor. Must supply MaxRange when decoding.
+	LastPacked			= R8G8B8D8,
 
 	FirstBC,
 	BC1DXT1				= FirstBC,		// BC 1, DXT1. No alpha.

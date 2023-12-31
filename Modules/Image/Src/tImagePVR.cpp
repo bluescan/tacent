@@ -206,7 +206,10 @@ namespace tPVR
 		PVR3FMT_ASTC_5X5X5					= 0x0000002F,
 		PVR3FMT_ASTC_6X5X5					= 0x00000030,
 		PVR3FMT_ASTC_6X6X5					= 0x00000031,
-		PVR3FMT_ASTC_6X6X6					= 0x00000032
+		PVR3FMT_ASTC_6X6X6					= 0x00000032,
+
+		PVR3FMT_RGBM						= 0x00000035,
+		PVR3FMT_RGBD						= 0x00000036,
 	};
 
 	enum PVR3KEY : uint32
@@ -445,6 +448,8 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 			//C(ASTC_6X5X5):
 			//C(ASTC_6X6X5):
 			//C(ASTC_6X6X6):
+			C(RGBM):						F(R8G8B8M8)			P(HDRa)								break;
+			C(RGBD):						F(R8G8B8D8)			P(HDRa)								break;
 			default:											P(None)		M(None)	 	T(NONE)		break;
 		}
 		#undef C
@@ -1142,7 +1147,7 @@ tLayer* tImagePVR::CreateNewLayer(const LoadParams& params, const uint8* srcPixe
 	DecodeResult result = DecodePixelData
 	(
 		layer->PixelFormat, layer->Data, numBytes,
-		width, height, decoded4i, decoded4f
+		width, height, decoded4i, decoded4f, tColourProfile::Auto, params.MaxRange
 	);
 
 	if (result != DecodeResult::Success)

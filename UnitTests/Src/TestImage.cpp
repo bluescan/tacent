@@ -2398,6 +2398,8 @@ tTestUnit(ImagePVR3)
 	PVRLoadDecodeSave("R32G32B32A32f_SFLOAT_LIN_RGBA_TM.pvr",		decode | revrow,	true);
 	PVRLoadDecodeSave("B10G11R11uf_UFLOAT_LIN_RGB_TM.pvr",			decode | revrow,	true);
 	PVRLoadDecodeSave("RGB999E5+E5B9G9R9uf_UFLOAT_LIN_RGB_T.pvr",	decode | revrow,	true);
+	PVRLoadDecodeSave("RGBM+R8G8B8M8_UNORM_LIN_RGB_RANGE8_T.pvr",	decode | revrow,	false);
+	PVRLoadDecodeSave("RGBD+R8G8B8D8_UNORM_LIN_RGB_RANGE8_T.pvr",	decode | revrow,	false);
 
 	PVRLoadDecodeSave("BC1DXT1_UNORM_SRGB_RGB_TM.pvr",				decode | revrow,	false);
 	PVRLoadDecodeSave("BC1DXT1_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);

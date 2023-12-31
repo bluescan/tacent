@@ -59,7 +59,7 @@ namespace tImage
 }
 
 
-tImage::DecodeResult tImage::DecodePixelData(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4i*& decoded4i, tColour4f*& decoded4f, tColourProfile profile)
+tImage::DecodeResult tImage::DecodePixelData(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4i*& decoded4i, tColour4f*& decoded4f, tColourProfile profile, float RGBM_RGBD_MaxRange)
 {
 	if (decoded4i || decoded4f)
 		return DecodeResult::BuffersNotClear;
@@ -72,7 +72,7 @@ tImage::DecodeResult tImage::DecodePixelData(tPixelFormat fmt, const uint8* src,
 
 	if (tImage::tIsPackedFormat(fmt))
 	{
-		return DecodePixelData_Packed(fmt, src, srcSize, w, h, decoded4i, decoded4f);
+		return DecodePixelData_Packed(fmt, src, srcSize, w, h, decoded4i, decoded4f, RGBM_RGBD_MaxRange);
 	}
 	else if (tImage::tIsBCFormat(fmt))
 	{
@@ -95,7 +95,7 @@ tImage::DecodeResult tImage::DecodePixelData(tPixelFormat fmt, const uint8* src,
 }
 
 
-tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4i*& decoded4i, tColour4f*& decoded4f)
+tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4i*& decoded4i, tColour4f*& decoded4f, float RGBM_RGBD_MaxRange)
 {
 	if (decoded4i || decoded4f)
 		return DecodeResult::BuffersNotClear;
@@ -590,6 +590,53 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 				tPackedE5M9M9M9 packed(fdata[ij]);
 				float r, g, b;
 				packed.Get(b, g, r);
+				tColour4f col(r, g, b, 1.0f);
+				decoded4f[ij].Set(col);
+			}
+			break;
+		}
+
+		case tPixelFormat::R8G8B8M8:
+		{
+			// This HDR format has 8-bit RGB components and a shared 8-bit multiplier.
+			decoded4f = new tColour4f[w*h];
+			uint8* udata = (uint8*)src;
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				float r = float(src[ij*4+0]) / 255.0f;
+				float g = float(src[ij*4+1]) / 255.0f;
+				float b = float(src[ij*4+2]) / 255.0f;
+				float m = float(src[ij*4+3]) / 255.0f;
+				r *= m * RGBM_RGBD_MaxRange;
+				g *= m * RGBM_RGBD_MaxRange;
+				b *= m * RGBM_RGBD_MaxRange;
+				tColour4f col(r, g, b, 1.0f);
+				decoded4f[ij].Set(col);
+			}
+			break;
+		}
+
+		case tPixelFormat::R8G8B8D8:
+		{
+			// This HDR format has 8-bit RGB components and a shared 8-bit divisor.
+			decoded4f = new tColour4f[w*h];
+			uint8* udata = (uint8*)src;
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				float r = float(src[ij*4+0]) / 255.0f;
+				float g = float(src[ij*4+1]) / 255.0f;
+				float b = float(src[ij*4+2]) / 255.0f;
+				float d = float(src[ij*4+3]) / 255.0f;
+				if (d == 0.0f)
+				{
+					r = 0.0f;
+					g = 0.0f;
+					b = 0.0f;
+					d = 1.0f;
+				}
+				r *= (RGBM_RGBD_MaxRange/255.0f) / d;
+				g *= (RGBM_RGBD_MaxRange/255.0f) / d;
+				b *= (RGBM_RGBD_MaxRange/255.0f) / d;
 				tColour4f col(r, g, b, 1.0f);
 				decoded4f[ij].Set(col);
 			}

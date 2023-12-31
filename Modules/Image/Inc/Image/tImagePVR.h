@@ -73,13 +73,14 @@ public:
 	struct LoadParams
 	{
 		LoadParams()																									{ Reset(); }
-		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Gamma(src.Gamma), Exposure(src.Exposure) { }
-		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::DefaultGamma; Exposure = 1.0f; }
-		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Gamma = src.Gamma; Exposure = src.Exposure; return *this; }
+		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Gamma(src.Gamma), Exposure(src.Exposure), MaxRange(src.MaxRange) { }
+		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::DefaultGamma; Exposure = 1.0f; MaxRange = 8.0f; }
+		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Gamma = src.Gamma; Exposure = src.Exposure; MaxRange = src.MaxRange; return *this; }
 
 		uint32 Flags;
 		float Gamma;
 		float Exposure;
+		float MaxRange;		// Used for RGBM and RGBD only.
 	};
 
 	// Creates an invalid tImagePVR. You must call Load manually.
