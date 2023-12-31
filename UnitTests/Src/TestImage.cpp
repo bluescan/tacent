@@ -1698,6 +1698,14 @@ tTestUnit(ImageKTX1)
 	KTXLoadDecodeSave("EACRG11S_RG.ktx",				decode | revrow);
 
 	//
+	// PVR
+	//
+	KTXLoadDecodeSave("PVRBPP4_sRGB_RGBA.ktx",			decode | revrow);
+	KTXLoadDecodeSave("PVRBPP2_sRGB_RGBA_M.ktx",		decode | revrow);
+	KTXLoadDecodeSave("PVRBPP4_sRGB_RGB.ktx",			decode | revrow);
+	KTXLoadDecodeSave("PVRBPP2_sRGB_RGB.ktx",			decode | revrow);
+
+	//
 	// ASTC
 	//
 	KTXLoadDecodeSave("ASTC4X4_HDRRGBA.ktx",			decode | revrow);
@@ -1819,6 +1827,14 @@ tTestUnit(ImageKTX2)
 	KTXLoadDecodeSave("ETC2RGB_RGB.ktx2",				decode | revrow);
 	KTXLoadDecodeSave("ETC2RGBA_RGBA.ktx2",				decode | revrow);
 	KTXLoadDecodeSave("ETC2RGBA1_RGBA.ktx2",			decode | revrow);
+
+	//
+	// PVR
+	//
+	KTXLoadDecodeSave("PVRBPP4_sRGB_RGBA.ktx2",			decode | revrow);
+	KTXLoadDecodeSave("PVRBPP2_sRGB_RGBA_M.ktx2",		decode | revrow);
+	KTXLoadDecodeSave("PVRBPP4_sRGB_RGB.ktx2",			decode | revrow);
+	KTXLoadDecodeSave("PVRBPP2_sRGB_RGB.ktx2",			decode | revrow);
 
 	//
 	// ASTC

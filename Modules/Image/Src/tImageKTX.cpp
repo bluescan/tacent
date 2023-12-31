@@ -110,9 +110,27 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 
 		// Leaving the R and RG formats in sRGB space.
 		CC(R11_EAC):							F(EACR11U)									T(UINT)		break;
-		CC(SIGNED_R11_EAC):						F(EACR11S)									T(SFLOAT)	break;
+		CC(SIGNED_R11_EAC):						F(EACR11S)									T(SINT)		break;
 		CC(RG11_EAC):							F(EACRG11U)									T(UINT)		break;
-		CC(SIGNED_RG11_EAC):					F(EACRG11S)									T(SFLOAT)	break;
+		CC(SIGNED_RG11_EAC):					F(EACRG11S)									T(SINT)		break;
+
+		//
+		// PVR formats.
+		//
+		// These are a bit badly named by OpenGL as there is no distinction between 3 and 4 component overall. It is a per-block
+		// quantity that determines if it has alpha or not.
+		CC(RGBA_PVRTC_4BPPV1_IMG):				F(PVRBPP4)			P(lRGB)					T(UNORM)	break;	// 4-component PVRTC, 8x8 blocks, unsigned normalized.
+		CC(SRGB_ALPHA_PVRTC_4BPPV1_EXT):		F(PVRBPP4)			P(sRGB)					T(UINT)		break;	// 4-component PVRTC, 8x8 blocks, sRGB.
+		CC(RGB_PVRTC_4BPPV1_IMG):				F(PVRBPP4)			P(lRGB)					T(UNORM)	break;	// 3-component PVRTC, 8x8 blocks, unsigned normalized.
+		CC(SRGB_PVRTC_4BPPV1_EXT):				F(PVRBPP4)			P(sRGB)					T(UINT)		break;	// 3-component PVRTC, 8x8 blocks, sRGB.
+		CC(RGBA_PVRTC_2BPPV1_IMG):				F(PVRBPP2)			P(lRGB)					T(UNORM)	break;	// 4-component PVRTC, 16x8 blocks, unsigned normalized.
+		CC(SRGB_ALPHA_PVRTC_2BPPV1_EXT):		F(PVRBPP2)			P(sRGB)					T(UINT)		break;	// 4-component PVRTC, 16x8 blocks, sRGB.
+		CC(RGB_PVRTC_2BPPV1_IMG):				F(PVRBPP2)			P(lRGB)					T(UNORM)	break;	// 3-component PVRTC, 16x8 blocks, unsigned normalized.
+		CC(SRGB_PVRTC_2BPPV1_EXT):				F(PVRBPP2)			P(sRGB)					T(UINT)		break;	// 3-component PVRTC, 16x8 blocks, sRGB.
+		//CC(RGBA_PVRTC_2BPPV2_IMG):
+		//CC(SRGB_ALPHA_PVRTC_2BPPV2_IMG):
+		//CC(RGBA_PVRTC_4BPPV2_IMG):
+		//CC(SRGB_ALPHA_PVRTC_4BPPV2_IMG):
 
 		//
 		// For ASTC formats we assume HDR-linear space if SRGB not specified.
@@ -377,7 +395,7 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		C(BC7_SRGB_BLOCK):						F(BC7)													break;
 
 		//
-		// ETC2 and EAC.
+		// ETC2 and EAC Formats.
 		//
 		C(ETC2_R8G8B8_UNORM_BLOCK):				F(ETC2RGB)			/*P(lRGB)*/				T(UNORM)	break;
 		C(ETC2_R8G8B8_SRGB_BLOCK):				F(ETC2RGB)												break;
@@ -390,6 +408,18 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 		C(EAC_R11_SNORM_BLOCK):					F(EACR11S)									T(SFLOAT)	break;
 		C(EAC_R11G11_UNORM_BLOCK):				F(EACRG11U)									T(UNORM)	break;
 		C(EAC_R11G11_SNORM_BLOCK):				F(EACRG11S)									T(SFLOAT)	break;
+
+		//
+		// PVR Formats.
+		//
+		C(PVRTC1_4BPP_UNORM_BLOCK_IMG):			F(PVRBPP4)			P(lRGB)					T(UNORM)	break;
+		C(PVRTC1_4BPP_SRGB_BLOCK_IMG):			F(PVRBPP4)			P(sRGB)					T(UINT)		break;
+		C(PVRTC1_2BPP_UNORM_BLOCK_IMG):			F(PVRBPP2)			P(lRGB)					T(UNORM)	break;
+		C(PVRTC1_2BPP_SRGB_BLOCK_IMG):			F(PVRBPP2)			P(sRGB)					T(UINT)		break;
+		//C(PVRTC2_4BPP_UNORM_BLOCK_IMG):
+		//C(PVRTC2_4BPP_SRGB_BLOCK_IMG):
+		//C(PVRTC2_2BPP_UNORM_BLOCK_IMG):
+		//C(PVRTC2_2BPP_SRGB_BLOCK_IMG):
 
 		//
 		// ASTC
@@ -839,7 +869,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 
 			uint8* currPixelData = ktxTexture_GetData(texture) + offset;
 			int numBytes = 0;
-			if (tImage::tIsBCFormat(PixelFormat) || tImage::tIsASTCFormat(PixelFormat) || tImage::tIsPackedFormat(PixelFormat))
+			if (tImage::tIsBCFormat(PixelFormat) || tImage::tIsASTCFormat(PixelFormat) || tImage::tIsPackedFormat(PixelFormat) || tImage::tIsPVRFormat(PixelFormat))
 			{
 				// It's a block format (BC/DXTn or ASTC). Each block encodes a 4x4 up to 12x12 square of pixels. DXT2,3,4,5 and BC 6,7 use 128
 				// bits per block.  DXT1 and DXT1A (BC1) use 64bits per block. ASTC always uses 128 bits per block but it's not always 4x4.
