@@ -292,6 +292,122 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 			}
 			break;
 
+		case tPixelFormat::R16:
+		{
+			decoded4i = new tColour4i[w*h];
+			uint16* udata = (uint16*)src;
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				uint8 r = udata[ij*1 + 0] >> 8;
+				tColour4i col(r, 0u, 0u, 255u);
+				decoded4i[ij].Set(col);
+			}
+			break;
+		}
+
+		case tPixelFormat::R16G16:
+		{
+			decoded4i = new tColour4i[w*h];
+			uint16* udata = (uint16*)src;
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				uint8 r = udata[ij*2 + 0] >> 8;
+				uint8 g = udata[ij*2 + 1] >> 8;
+				tColour4i col(r, g, 0u, 255u);
+				decoded4i[ij].Set(col);
+			}
+			break;
+		}
+
+		case tPixelFormat::R16G16B16:
+		{
+			decoded4i = new tColour4i[w*h];
+			uint16* udata = (uint16*)src;
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				uint8 r = udata[ij*3 + 0] >> 8;
+				uint8 g = udata[ij*3 + 1] >> 8;
+				uint8 b = udata[ij*3 + 2] >> 8;
+				tColour4i col(r, g, b, 255u);
+				decoded4i[ij].Set(col);
+			}
+			break;
+		}
+
+		case tPixelFormat::R16G16B16A16:
+		{
+			decoded4i = new tColour4i[w*h];
+			uint16* udata = (uint16*)src;
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				uint8 r = udata[ij*4 + 0] >> 8;
+				uint8 g = udata[ij*4 + 1] >> 8;
+				uint8 b = udata[ij*4 + 2] >> 8;
+				uint8 a = udata[ij*4 + 3] >> 8;
+				tColour4i col(r, g, b, a);
+				decoded4i[ij].Set(col);
+			}
+			break;
+		}
+
+		case tPixelFormat::R32:
+		{
+			decoded4i = new tColour4i[w*h];
+			uint32* udata = (uint32*)src;
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				uint8 r = udata[ij*1 + 0] >> 24;
+				tColour4i col(r, 0u, 0u, 255u);
+				decoded4i[ij].Set(col);
+			}
+			break;
+		}
+
+		case tPixelFormat::R32G32:
+		{
+			decoded4i = new tColour4i[w*h];
+			uint32* udata = (uint32*)src;
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				uint8 r = udata[ij*2 + 0] >> 24;
+				uint8 g = udata[ij*2 + 1] >> 24;
+				tColour4i col(r, g, 0u, 255u);
+				decoded4i[ij].Set(col);
+			}
+			break;
+		}
+
+		case tPixelFormat::R32G32B32:
+		{
+			decoded4i = new tColour4i[w*h];
+			uint32* udata = (uint32*)src;
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				uint8 r = udata[ij*3 + 0] >> 24;
+				uint8 g = udata[ij*3 + 1] >> 24;
+				uint8 b = udata[ij*3 + 2] >> 24;
+				tColour4i col(r, g, b, 255u);
+				decoded4i[ij].Set(col);
+			}
+			break;
+		}
+
+		case tPixelFormat::R32G32B32A32:
+		{
+			decoded4i = new tColour4i[w*h];
+			uint32* udata = (uint32*)src;
+			for (int ij = 0; ij < w*h; ij++)
+			{
+				uint8 r = udata[ij*4 + 0] >> 24;
+				uint8 g = udata[ij*4 + 1] >> 24;
+				uint8 b = udata[ij*4 + 2] >> 24;
+				uint8 a = udata[ij*4 + 3] >> 24;
+				tColour4i col(r, g, b, a);
+				decoded4i[ij].Set(col);
+			}
+			break;
+		}
+
 		case tPixelFormat::R16f:
 		{
 			// This HDR format has 1 red half-float channel.

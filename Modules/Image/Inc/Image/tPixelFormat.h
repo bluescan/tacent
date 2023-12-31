@@ -126,7 +126,14 @@ enum class tPixelFormat
 	A8L8,								// 16  bit. Alpha and Luminance.
 	A8,									// 8   bit. Alpha only.
 	L8,									// 8   bit. Luminance only.
-
+	R16,								// 16  bit. 16 bit Red.
+	R16G16,								// 32  bit. 16 bit R. 16 bit G.
+	R16G16B16,							// 48  bit. 16 bit each RGB.
+	R16G16B16A16,						// 64  bit. 16 bit each RGBA.
+	R32,								// 32  bit. Red.
+	R32G32,								// 64  bit. Red Green.
+	R32G32B32,							// 96  bit. 32 bit each RGB.
+	R32G32B32A32,						// 128 bit. 32 bit each RGBA.
 	R16f,								// 16  bit. Half-float red/luminance channel only. HDR linear space.
 	R16G16f,							// 32  bit. Two half-floats per pixel. RG. HDR linear space.
 	R16G16B16f,							// 48  bit. Three half-floats per pixel. RGB. HDR linear space.

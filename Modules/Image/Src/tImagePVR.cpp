@@ -328,7 +328,7 @@ void tPVR::GetFormatInfo_FromV1V2Header(tPixelFormat& format, tColourProfile& pr
 		C(A_8):					F(A8)													break;
 		//C(VU_88):
 		//C(L16):
-		//C(L8):
+		C(L8):					F(L8)				P(lRGB)					T(UINT)		break;
 		//C(AL_88):
 		//C(UYVY):
 		//C(YUY2):
@@ -467,8 +467,16 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 				{
 					switch (fmtMS32)
 					{
-						case tSwapEndian32(0x10000000):	F(R16f) P(HDRa)	break;
-						case tSwapEndian32(0x20000000):	F(R32f) P(HDRa)	break;
+						case tSwapEndian32(0x10000000):	F(R16f)	P(HDRa)	break;
+						case tSwapEndian32(0x20000000):	F(R32f)	P(HDRa)	break;
+					}
+				}
+				else
+				{
+					switch (fmtMS32)
+					{
+						case tSwapEndian32(0x10000000):	F(R16)	P(lRGB)	break;
+						case tSwapEndian32(0x20000000):	F(R32)	P(lRGB)	break;
 					}
 				}
 				break;
@@ -484,6 +492,14 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 						case tSwapEndian32(0x20200000):	F(R32G32f) P(HDRa)	break;
 					}
 				}
+				else
+				{
+					switch (fmtMS32)
+					{
+						case tSwapEndian32(0x10100000):	F(R16G16)	P(lRGB)	break;
+						case tSwapEndian32(0x20200000):	F(R32G32)	P(lRGB)	break;
+					}
+				}
 				break;
 			}
 
@@ -493,15 +509,17 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 				{
 					switch (fmtMS32)
 					{
-						case tSwapEndian32(0x10101000):	F(R16G16B16f) P(HDRa)	break;
-						case tSwapEndian32(0x20202000):	F(R32G32B32f) P(HDRa)	break;
+						case tSwapEndian32(0x10101000):	F(R16G16B16f)	P(HDRa)	break;
+						case tSwapEndian32(0x20202000):	F(R32G32B32f)	P(HDRa)	break;
 					}
 				}
 				else
 				{
 					switch (fmtMS32)
 					{
-						case tSwapEndian32(0x05060500):	F(G3B5R5G3)			break;	// LE PVR: R5 G6 B5.
+						case tSwapEndian32(0x05060500):	F(G3B5R5G3)				break;	// LE PVR: R5 G6 B5.
+						case tSwapEndian32(0x10101000):	F(R16G16B16)	P(lRGB)	break;
+						case tSwapEndian32(0x20202000):	F(R32G32B32)	P(lRGB)	break;
 					}
 				}
 				break;
@@ -537,6 +555,8 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 						case tSwapEndian32(0x08080808):	F(R8G8B8A8)			break;
 						case tSwapEndian32(0x04040404):	F(B4A4R4G4)			break;
 						case tSwapEndian32(0x05050501):	F(G2B5A1R5G3)		break;
+						case tSwapEndian32(0x10101010):	F(R16G16B16A16)		P(lRGB)	break;
+						case tSwapEndian32(0x20202020):	F(R32G32B32A32)		P(lRGB)	break;
 					}
 				}
 				break;
