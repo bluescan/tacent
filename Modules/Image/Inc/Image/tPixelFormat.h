@@ -497,6 +497,8 @@ inline bool tImage::tIsAlphaFormat(tPixelFormat format)
 		case tPixelFormat::A8L8:
 		case tPixelFormat::R16G16B16A16f:
 		case tPixelFormat::R32G32B32A32f:
+		case tPixelFormat::R16G16B16A16:
+		case tPixelFormat::R32G32B32A32:
 		case tPixelFormat::BC1DXT1A:
 		case tPixelFormat::BC2DXT2DXT3:
 		case tPixelFormat::BC3DXT4DXT5:
@@ -557,6 +559,8 @@ inline bool tImage::tIsHDRFormat(tPixelFormat format)
 		case tPixelFormat::PVRHDRBPP6:
 		case tPixelFormat::PVR2HDRBPP8:
 		case tPixelFormat::PVR2HDRBPP6:
+		case tPixelFormat::R8G8B8M8:
+		case tPixelFormat::R8G8B8D8:
 			return true;
 	}
 
@@ -577,6 +581,8 @@ inline bool tImage::tIsLuminanceFormat(tPixelFormat format)
 	{
 		case tPixelFormat::L8:
 		case tPixelFormat::R8:
+		case tPixelFormat::R16:
+		case tPixelFormat::R32:
 		case tPixelFormat::R16f:
 		case tPixelFormat::R32f:
 		case tPixelFormat::BC4ATI1U:
