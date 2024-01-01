@@ -2,7 +2,7 @@
 //
 // Image module tests.
 //
-// Copyright (c) 2017, 2019-2023 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -2375,9 +2375,6 @@ tTestUnit(ImagePVR3)
 	// A = Texture array. Has an arbitrary number of textures.
 	// M = Has Mipmaps.
 	// P = Premultiplied Alpha
-	PVRLoadDecodeSave("R32G32B32A32f_SFLOAT_SRGB_RGBA_C.pvr",		decode | revrow,	true);
-	return;
-
 	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGB_T.pvr",				decode | revrow,	false);
 	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
 	PVRLoadDecodeSave("PVRBPP2_UNORM_SRGB_RGB_TM.pvr",				decode | revrow,	true);
@@ -2425,6 +2422,8 @@ tTestUnit(ImagePVR3)
 
 	PVRLoadDecodeSave("ASTC4X4_SFLOAT_lRGB_RGB_T.pvr",				decode | revrow,	false);
 	PVRLoadDecodeSave("ASTC4X4_UNORM_lRGB_RGB_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC4X4_UNORM_sRGB_RGB_C.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC4X4_UNORM_sRGB_RGB_MC.pvr",				decode | revrow,	false);
 
 	PVRLoadDecodeSave("ASTC4X4_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
 	PVRLoadDecodeSave("ASTC5X4_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
