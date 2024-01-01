@@ -2,7 +2,7 @@
 //
 // Tacent unit tests.
 //
-// Copyright (c) 2017, 2019-2023 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -228,8 +228,8 @@ int main(int argc, char** argv)
 	// tTest(ImageKTX2);
 	// tTest(ImageASTC);
 	// tTest(ImagePKM);
-	// tTest(ImagePVR2);
-	tTest(ImagePVR3);
+	tTest(ImagePVR2);
+	// tTest(ImagePVR3);
 	#endif
 	// tTest(UTF);
 	// tTest(Hash);
