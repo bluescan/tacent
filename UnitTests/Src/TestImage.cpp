@@ -2375,40 +2375,40 @@ tTestUnit(ImagePVR3)
 	// A = Texture array. Has an arbitrary number of textures.
 	// M = Has Mipmaps.
 	// P = Premultiplied Alpha
-	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGB_T.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("PVRBPP2_UNORM_SRGB_RGB_TM.pvr",				decode | revrow,	true);
-	PVRLoadDecodeSave("PVRBPP2_UNORM_SRGB_RGBA_TM.pvr",				decode | revrow,	true);
+	PVRLoadDecodeSave("PVRBPP4_UNORM_sRGB_RGB_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("PVRBPP4_UNORM_sRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("PVRBPP2_UNORM_sRGB_RGB_TM.pvr",				decode | revrow,	true);
+	PVRLoadDecodeSave("PVRBPP2_UNORM_sRGB_RGBA_TM.pvr",				decode | revrow,	true);
 
-	PVRLoadDecodeSave("A1R5G5B5+G3B5A1R5G2_UNORM_LIN_RGBA_T.pvr",	decode | revrow,	true);
-	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_T.pvr",		decode | revrow,	true);
-	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_TM.pvr",	decode | revrow,	true);
-	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_LIN_RGBA_TP.pvr",	decode | revrow,	true);
-	PVRLoadDecodeSave("B8G8R8A8_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	true);
-	PVRLoadDecodeSave("R4G4B4A4+B4A4R4G4_UNORM_LIN_RGBA_T.pvr",		decode | revrow,	true);
-	PVRLoadDecodeSave("R4G4B4A4+B4A4R4G4_UNORM_LIN_RGBA_TP.pvr",	decode | revrow,	true);
+	PVRLoadDecodeSave("A1R5G5B5+G3B5A1R5G2_UNORM_lRGB_RGBA_T.pvr",	decode | revrow,	true);
+	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_lRGB_RGBA_T.pvr",	decode | revrow,	true);
+	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_lRGB_RGBA_TM.pvr",	decode | revrow,	true);
+	PVRLoadDecodeSave("A4R4G4B4+G4B4A4R4_UNORM_lRGB_RGBA_TP.pvr",	decode | revrow,	true);
+	PVRLoadDecodeSave("B8G8R8A8_UNORM_sRGB_RGBA_T.pvr",				decode | revrow,	true);
+	PVRLoadDecodeSave("R4G4B4A4+B4A4R4G4_UNORM_lRGB_RGBA_T.pvr",	decode | revrow,	true);
+	PVRLoadDecodeSave("R4G4B4A4+B4A4R4G4_UNORM_lRGB_RGBA_TP.pvr",	decode | revrow,	true);
 
-	PVRLoadDecodeSave("R5G5B5A1+G2B5A1R5G3_UNORM_LIN_RGBA_T.pvr",	decode | revrow,	true);
-	PVRLoadDecodeSave("R5G6B5+G3B5R5G3_UNORM_LIN_RGB_T.pvr",		decode | revrow,	true);
-	PVRLoadDecodeSave("R8G8B8A8_UNORM_SRGB_RGBA_TM.pvr",			decode | revrow,	true);
-	PVRLoadDecodeSave("R16G16_UINT_LIN_RG_T.pvr",					decode | revrow,	false);
-	PVRLoadDecodeSave("R32G32_UINT_LIN_RG_T.pvr",					decode | revrow,	false);
+	PVRLoadDecodeSave("R5G5B5A1+G2B5A1R5G3_UNORM_lRGB_RGBA_T.pvr",	decode | revrow,	true);
+	PVRLoadDecodeSave("R5G6B5+G3B5R5G3_UNORM_lRGB_RGB_T.pvr",		decode | revrow,	true);
+	PVRLoadDecodeSave("R8G8B8A8_UNORM_sRGB_RGBA_TM.pvr",			decode | revrow,	true);
+	PVRLoadDecodeSave("R16G16_UINT_lRGB_RG_T.pvr",					decode | revrow,	false);
+	PVRLoadDecodeSave("R32G32_UINT_lRGB_RG_T.pvr",					decode | revrow,	false);
 
-	PVRLoadDecodeSave("R32G32B32A32f_SFLOAT_LIN_RGBA_TM.pvr",		decode | revrow,	true);
-	PVRLoadDecodeSave("B10G11R11uf_UFLOAT_LIN_RGB_TM.pvr",			decode | revrow,	true);
-	PVRLoadDecodeSave("RGB999E5+E5B9G9R9uf_UFLOAT_LIN_RGB_T.pvr",	decode | revrow,	true);
-	PVRLoadDecodeSave("RGBM+R8G8B8M8_UNORM_LIN_RGB_RANGE8_T.pvr",	decode | revrow,	false);
-	PVRLoadDecodeSave("RGBD+R8G8B8D8_UNORM_LIN_RGB_RANGE8_T.pvr",	decode | revrow,	false);
+	PVRLoadDecodeSave("R32G32B32A32f_SFLOAT_HDRa_RGBA_TM.pvr",		decode | revrow,	true);
+	PVRLoadDecodeSave("B10G11R11uf_UFLOAT_HDRa_RGB_TM.pvr",			decode | revrow,	true);
+	PVRLoadDecodeSave("RGB999E5+E5B9G9R9uf_UFLOAT_HDRa_RGB_T.pvr",	decode | revrow,	true);
+	PVRLoadDecodeSave("RGBM+R8G8B8M8_UNORM_HDRa_RGB_RANGE8_T.pvr",	decode | revrow,	false);
+	PVRLoadDecodeSave("RGBD+R8G8B8D8_UNORM_HDRa_RGB_RANGE8_T.pvr",	decode | revrow,	false);
 
-	PVRLoadDecodeSave("BC1DXT1_UNORM_SRGB_RGB_TM.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("BC1DXT1_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("BC2DXT2DXT3_UNORM_SRGB_RGBA_T.pvr",			decode | revrow,	false);
-	PVRLoadDecodeSave("BC3DXT4DXT5_UNORM_SRGB_RGBA_T.pvr",			decode | revrow,	false);
-	PVRLoadDecodeSave("BC3DXT4DXT5_UNORM_SRGB_RGBA_TM.pvr",			decode | revrow,	false);
-	PVRLoadDecodeSave("BC4ATI1U_UNORM_LIN_R_T.pvr",					decode | revrow,	false);
-	PVRLoadDecodeSave("BC4ATI1S_SNORM_LIN_R_T.pvr",					decode | revrow,	false);
-	PVRLoadDecodeSave("BC5ATI2U_UNORM_LIN_RG_T.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("BC5ATI2S_SNORM_LIN_RG_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("BC1DXT1_UNORM_sRGB_RGB_TM.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("BC1DXT1_UNORM_sRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("BC2DXT2DXT3_UNORM_sRGB_RGBA_T.pvr",			decode | revrow,	false);
+	PVRLoadDecodeSave("BC3DXT4DXT5_UNORM_sRGB_RGBA_T.pvr",			decode | revrow,	false);
+	PVRLoadDecodeSave("BC3DXT4DXT5_UNORM_sRGB_RGBA_TM.pvr",			decode | revrow,	false);
+	PVRLoadDecodeSave("BC4ATI1U_UNORM_lRGB_R_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("BC4ATI1S_SNORM_lRGB_R_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("BC5ATI2U_UNORM_lRGB_RG_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("BC5ATI2S_SNORM_lRGB_RG_T.pvr",				decode | revrow,	false);
 
 	PVRLoadDecodeSave("ETC1_UNORM_lRGB_RGB_TM.pvr",					decode | revrow,	false);
 	PVRLoadDecodeSave("ETC2RGB_UNORM_sRGB_RGB_T.pvr",				decode | revrow,	false);
@@ -2424,27 +2424,27 @@ tTestUnit(ImagePVR3)
 	PVRLoadDecodeSave("ASTC4X4_UNORM_sRGB_RGB_C.pvr",				decode | revrow,	false);
 	PVRLoadDecodeSave("ASTC4X4_UNORM_sRGB_RGB_MC.pvr",				decode | revrow,	false);
 
-	PVRLoadDecodeSave("ASTC4X4_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("ASTC5X4_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("ASTC5X5_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("ASTC6X5_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("ASTC6X6_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("ASTC8X5_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("ASTC8X6_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("ASTC8X8_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("ASTC10X5_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("ASTC10X6_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("ASTC10X8_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
-	PVRLoadDecodeSave("ASTC10X10_UNORM_SRGB_RGBA_T.pvr",			decode | revrow,	false);
-	PVRLoadDecodeSave("ASTC12X10_UNORM_SRGB_RGBA_T.pvr",			decode | revrow,	false);
-	PVRLoadDecodeSave("ASTC12X12_UNORM_SRGB_RGBA_T.pvr",			decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC4X4_UNORM_sRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC5X4_UNORM_sRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC5X5_UNORM_sRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC6X5_UNORM_sRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC6X6_UNORM_sRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC8X5_UNORM_sRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC8X6_UNORM_sRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC8X8_UNORM_sRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC10X5_UNORM_sRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC10X6_UNORM_sRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC10X8_UNORM_sRGB_RGBA_T.pvr",				decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC10X10_UNORM_sRGB_RGBA_T.pvr",			decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC12X10_UNORM_sRGB_RGBA_T.pvr",			decode | revrow,	false);
+	PVRLoadDecodeSave("ASTC12X12_UNORM_sRGB_RGBA_T.pvr",			decode | revrow,	false);
 
-	PVRLoadDecodeSave("ASTC4X4_UNORM_SRGB_RGBA_TM_FlipVert.pvr",	decode | revrow | orient,	true);
-	PVRLoadDecodeSave("ASTC4X4_UNORM_SRGB_RGBA_TM_FlipHoriz.pvr",	decode | revrow | orient,	true);
+	PVRLoadDecodeSave("ASTC4X4_UNORM_sRGB_RGBA_TM_FlipVert.pvr",	decode | revrow | orient,	true);
+	PVRLoadDecodeSave("ASTC4X4_UNORM_sRGB_RGBA_TM_FlipHoriz.pvr",	decode | revrow | orient,	true);
 
 	// Do them again without decoding.
-	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGB_T.pvr",				0,					false);
-	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_T.pvr",				revrow,				false);
+	PVRLoadDecodeSave("PVRBPP4_UNORM_sRGB_RGB_T.pvr",				0,					false);
+	PVRLoadDecodeSave("PVRBPP4_UNORM_sRGB_RGBA_T.pvr",				revrow,				false);
 
 	tSystem::tSetCurrentDir(origDir);
 }
