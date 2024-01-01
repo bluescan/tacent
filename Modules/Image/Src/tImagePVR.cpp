@@ -156,71 +156,71 @@ namespace tPVR
 	// https://imagination-technologies-cloudfront-assets.s3.eu-west-1.amazonaws.com/website-files/documents/PVR+File+Format.Specification.pdf
 	enum PVR3FMT : uint32
 	{
-		PVR3FMT_PVRTC_2BPP_RGB				= 0x00000000,
-		PVR3FMT_PVRTC_2BPP_RGBA				= 0x00000001,
-		PVR3FMT_PVRTC_4BPP_RGB				= 0x00000002,
-		PVR3FMT_PVRTC_4BPP_RGBA				= 0x00000003,
-		PVR3FMT_PVRTC_II_2BPP				= 0x00000004,
-		PVR3FMT_PVRTC_II_4BPP				= 0x00000005,
-		PVR3FMT_ETC1						= 0x00000006,
-		PVR3FMT_DXT1_BC1					= 0x00000007,
-		PVR3FMT_DXT2						= 0x00000008,
-		PVR3FMT_DXT3_BC2					= 0x00000009,
-		PVR3FMT_DXT4						= 0x0000000A,
-		PVR3FMT_DXT5_BC3					= 0x0000000B,
-		PVR3FMT_BC4							= 0x0000000C,
-		PVR3FMT_BC5							= 0x0000000D,
-		PVR3FMT_BC6							= 0x0000000E,
-		PVR3FMT_BC7							= 0x0000000F,
-		PVR3FMT_UYVY						= 0x00000010,
-		PVR3FMT_YUY2						= 0x00000011,
-		PVR3FMT_BW1BPP						= 0x00000012,
-		PVR3FMT_R9G9B9E5_Shared_Exponent	= 0x00000013,
-		PVR3FMT_RGBG8888					= 0x00000014,
-		PVR3FMT_GRGB8888					= 0x00000015,
-		PVR3FMT_ETC2_RGB					= 0x00000016,
-		PVR3FMT_ETC2_RGBA					= 0x00000017,
-		PVR3FMT_ETC2_RGB_A1					= 0x00000018,
-		PVR3FMT_EAC_R11						= 0x00000019,
-		PVR3FMT_EAC_RG11					= 0x0000001A,
-		PVR3FMT_ASTC_4X4					= 0x0000001B,
-		PVR3FMT_ASTC_5X4					= 0x0000001C,
-		PVR3FMT_ASTC_5X5					= 0x0000001D,
-		PVR3FMT_ASTC_6X5					= 0x0000001E,
-		PVR3FMT_ASTC_6X6					= 0x0000001F,
-		PVR3FMT_ASTC_8X5					= 0x00000020,
-		PVR3FMT_ASTC_8X6					= 0x00000021,
-		PVR3FMT_ASTC_8X8					= 0x00000022,
-		PVR3FMT_ASTC_10X5					= 0x00000023,
-		PVR3FMT_ASTC_10X6					= 0x00000024,
-		PVR3FMT_ASTC_10X8					= 0x00000025,
-		PVR3FMT_ASTC_10X10					= 0x00000026,
-		PVR3FMT_ASTC_12X10					= 0x00000027,
-		PVR3FMT_ASTC_12X12					= 0x00000028,
-		PVR3FMT_ASTC_3X3X3					= 0x00000029,
-		PVR3FMT_ASTC_4X3X3					= 0x0000002A,
-		PVR3FMT_ASTC_4X4X3					= 0x0000002B,
-		PVR3FMT_ASTC_4X4X4					= 0x0000002C,
-		PVR3FMT_ASTC_5X4X4					= 0x0000002D,
-		PVR3FMT_ASTC_5X5X4					= 0x0000002E,
-		PVR3FMT_ASTC_5X5X5					= 0x0000002F,
-		PVR3FMT_ASTC_6X5X5					= 0x00000030,
-		PVR3FMT_ASTC_6X6X5					= 0x00000031,
-		PVR3FMT_ASTC_6X6X6					= 0x00000032,
+		PVR3FMT_PVRTC_2BPP_RGB					= 0x00000000,
+		PVR3FMT_PVRTC_2BPP_RGBA					= 0x00000001,
+		PVR3FMT_PVRTC_4BPP_RGB					= 0x00000002,
+		PVR3FMT_PVRTC_4BPP_RGBA					= 0x00000003,
+		PVR3FMT_PVRTC_II_2BPP					= 0x00000004,
+		PVR3FMT_PVRTC_II_4BPP					= 0x00000005,
+		PVR3FMT_ETC1							= 0x00000006,
+		PVR3FMT_DXT1_BC1						= 0x00000007,
+		PVR3FMT_DXT2							= 0x00000008,
+		PVR3FMT_DXT3_BC2						= 0x00000009,
+		PVR3FMT_DXT4							= 0x0000000A,
+		PVR3FMT_DXT5_BC3						= 0x0000000B,
+		PVR3FMT_BC4								= 0x0000000C,
+		PVR3FMT_BC5								= 0x0000000D,
+		PVR3FMT_BC6								= 0x0000000E,
+		PVR3FMT_BC7								= 0x0000000F,
+		PVR3FMT_UYVY							= 0x00000010,
+		PVR3FMT_YUY2							= 0x00000011,
+		PVR3FMT_BW1BPP							= 0x00000012,
+		PVR3FMT_R9G9B9E5_Shared_Exponent		= 0x00000013,
+		PVR3FMT_RGBG8888						= 0x00000014,
+		PVR3FMT_GRGB8888						= 0x00000015,
+		PVR3FMT_ETC2_RGB						= 0x00000016,
+		PVR3FMT_ETC2_RGBA						= 0x00000017,
+		PVR3FMT_ETC2_RGB_A1						= 0x00000018,
+		PVR3FMT_EAC_R11							= 0x00000019,
+		PVR3FMT_EAC_RG11						= 0x0000001A,
+		PVR3FMT_ASTC_4X4						= 0x0000001B,
+		PVR3FMT_ASTC_5X4						= 0x0000001C,
+		PVR3FMT_ASTC_5X5						= 0x0000001D,
+		PVR3FMT_ASTC_6X5						= 0x0000001E,
+		PVR3FMT_ASTC_6X6						= 0x0000001F,
+		PVR3FMT_ASTC_8X5						= 0x00000020,
+		PVR3FMT_ASTC_8X6						= 0x00000021,
+		PVR3FMT_ASTC_8X8						= 0x00000022,
+		PVR3FMT_ASTC_10X5						= 0x00000023,
+		PVR3FMT_ASTC_10X6						= 0x00000024,
+		PVR3FMT_ASTC_10X8						= 0x00000025,
+		PVR3FMT_ASTC_10X10						= 0x00000026,
+		PVR3FMT_ASTC_12X10						= 0x00000027,
+		PVR3FMT_ASTC_12X12						= 0x00000028,
+		PVR3FMT_ASTC_3X3X3						= 0x00000029,
+		PVR3FMT_ASTC_4X3X3						= 0x0000002A,
+		PVR3FMT_ASTC_4X4X3						= 0x0000002B,
+		PVR3FMT_ASTC_4X4X4						= 0x0000002C,
+		PVR3FMT_ASTC_5X4X4						= 0x0000002D,
+		PVR3FMT_ASTC_5X5X4						= 0x0000002E,
+		PVR3FMT_ASTC_5X5X5						= 0x0000002F,
+		PVR3FMT_ASTC_6X5X5						= 0x00000030,
+		PVR3FMT_ASTC_6X6X5						= 0x00000031,
+		PVR3FMT_ASTC_6X6X6						= 0x00000032,
 
-		PVR3FMT_RGBM						= 0x00000035,
-		PVR3FMT_RGBD						= 0x00000036,
+		PVR3FMT_RGBM							= 0x00000035,
+		PVR3FMT_RGBD							= 0x00000036,
 	};
 
 	enum PVR3KEY : uint32
 	{
-		PVR3KEY_ATLAS						= 0x00000000,
-		PVR3KEY_NORMALMAP					= 0x00000001,
-		PVR3KEY_CUBEMAP						= 0x00000002,
-		PVR3KEY_ORIENTATION					= 0x00000003,
-		PVR3KEY_BORDER						= 0x00000004,
-		PVR3KEY_PADDING						= 0x00000005,
-		PVR3KEY_UNKNOWN						= 0x00000006
+		PVR3KEY_ATLAS							= 0x00000000,
+		PVR3KEY_NORMALMAP						= 0x00000001,
+		PVR3KEY_CUBEMAP							= 0x00000002,
+		PVR3KEY_ORIENTATION						= 0x00000003,
+		PVR3KEY_BORDER							= 0x00000004,
+		PVR3KEY_PADDING							= 0x00000005,
+		PVR3KEY_UNKNOWN							= 0x00000006
 	};
 
 	int DetermineVersionFromFirstFourBytes(const uint8 bytes[4]);
@@ -588,24 +588,6 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 		}
 		#undef F
 		#undef P
-
-		#if 0
-		tPrintf("PVR Header pixel format 64  : 0x%08|64X\n", headerFmt64);
-		tPrintf("PVR Header pixel format 32MS: 0x%08|32X\n", fmtMS32);
-		tPrintf("PVR Header pixel format 32LS: 0x%08|32X\n", fmtLS32);
-
-		char c3 = ((fmtLS32 >> 24) & 0x000000FF) ? ((fmtLS32 >> 24) & 0x000000FF) : '0';
-		char c2 = ((fmtLS32 >> 16) & 0x000000FF) ? ((fmtLS32 >> 16) & 0x000000FF) : '0';
-		char c1 = ((fmtLS32 >>  8) & 0x000000FF) ? ((fmtLS32 >>  8) & 0x000000FF) : '0';
-		char c0 = ((fmtLS32 >>  0) & 0x000000FF) ? ((fmtLS32 >>  0) & 0x000000FF) : '0';
-		tPrintf("PVR Header pixel format LS32: %c %c %c %c\n", c3, c2, c1, c0);
-
-		char b3 = (fmtMS32 >> 24) & 0x000000FF;
-		char b2 = (fmtMS32 >> 16) & 0x000000FF;
-		char b1 = (fmtMS32 >>  8) & 0x000000FF;
-		char b0 = (fmtMS32 >>  0) & 0x000000FF;
-		tPrintf("PVR Header pixel format MS32: %d %d %d %d\n", b3, b2, b1, b0);
-		#endif
 	}
 
 	// PVR V3 files do not distinguish between lRGB and HDRa profiles -- it only supports lRGB. While they
@@ -908,24 +890,6 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 
 	ParseMetaData(metaData, metaDataSize);
 
-	#if 0
-	tPrintf("PVR channelType: %d\n", channelType);
-	tPrintf("PVR Pixel Format: %s\n", tGetPixelFormatName(PixelFormatSrc));
-	tPrintf("PVR fourCC: %08X (%c %c %c %c)\n", fourCC, (fourCC>>0)&0xFF, (fourCC>>8)&0xFF, (fourCC>>16)&0xFF, (fourCC>>24)&0xFF);
-	tPrintf("PVR colourProfile: %s\n", tGetColourProfileShortName(colourProfile));
-	tPrintf("PVR channelType: %d\n", channelType);
-	tPrintf("PVR metaDataSize: %d\n", metaDataSize);
-
-	// We need NumSurfaces*NumFaces*NumMipmaps*Depth tLayers.
-	tPrintf("PVR For tLayers:\n");
-	tPrintf("PVR NumSurfaces: %d\n", NumSurfaces);
-	tPrintf("PVR NumFaces: %d\n", NumFaces);
-	tPrintf("PVR NumMipmaps: %d\n", NumMipmaps);
-	tPrintf("PVR Depth: %d\n", Depth);
-	tPrintf("PVR Width: %d\n", Width);
-	tPrintf("PVR Height: %d\n", Height);
-	#endif
-
 	NumLayers = NumSurfaces * NumFaces * NumMipmaps * Depth;
 	if (NumLayers <= 0)
 	{
@@ -1082,7 +1046,6 @@ int tImagePVR::LayerIdx(int surf, int face, int mip, int depth) const
 
 tLayer* tImagePVR::CreateNewLayer(const LoadParams& params, const uint8* srcPixelData, int numBytes, int width, int height)
 {
-	//LoadParams params(inParams);
 	tLayer* layer = new tLayer();
 
 	bool reverseRowOrderRequested = params.Flags & LoadFlag_ReverseRowOrder;
@@ -1284,12 +1247,6 @@ bool tImagePVR::ParseMetaData(const uint8* metaData, int metaDataSize)
 				break;
 			}
 		}
-
-		#if 0
-		tPrintf("MetaData fourCC   : %08X (%c %c %c %d)\n", fourCC, (fourCC>>0)&0xFF, (fourCC>>8)&0xFF, (fourCC>>16)&0xFF, (fourCC>>24)&0xFF);
-		tPrintf("MetaData key      : %d\n", key);
-		tPrintf("MetaData dataSize : %d\n", dataSize);
-		#endif
 
 		metaData += dataSize;	metaDataSize -= dataSize;
 	}
