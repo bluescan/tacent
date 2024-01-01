@@ -3,7 +3,7 @@
 // Colour and pixel classes. Both a 32 bit integral representation as well as a 4 component floating point one can be
 // found in this file.
 //
-// Copyright (c) 2006, 2011, 2017, 2020, 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2006, 2011, 2017, 2020, 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -60,7 +60,7 @@ const char* tGetColourProfileShortName(tColourProfile profile)
 const char* tAlphaModeNames[] =
 {
 	"Normal",
-	"Premultiplied"
+	"PreMult"
 };
 tStaticAssert(tNumElements(tAlphaModeNames) == int(tAlphaMode::NumModes));
 
