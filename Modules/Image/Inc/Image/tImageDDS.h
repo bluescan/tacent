@@ -203,40 +203,16 @@ public:
 	// sure the list you supply doesn't delete them when it's destructed.
 	bool GetLayers(tList<tLayer>&) const;
 
-	enum tSurfIndex
-	{
-		tSurfIndex_Default,
-		tSurfIndex_PosX					= tSurfIndex_Default,
-		tSurfIndex_NegX,
-		tSurfIndex_PosY,
-		tSurfIndex_NegY,
-		tSurfIndex_PosZ,
-		tSurfIndex_NegZ,
-		tSurfIndex_NumSurfaces
-	};
-
-	// Cubemaps are always specified using a left-handed coord system even when using the OpenGL functions.
-	enum tSurfFlag
-	{
-		tSurfFlag_PosX					= 1 << tSurfIndex_PosX,
-		tSurfFlag_NegX					= 1 << tSurfIndex_NegX,
-		tSurfFlag_PosY					= 1 << tSurfIndex_PosY,
-		tSurfFlag_NegY					= 1 << tSurfIndex_NegY,
-		tSurfFlag_PosZ					= 1 << tSurfIndex_PosZ,
-		tSurfFlag_NegZ					= 1 << tSurfIndex_NegZ,
-		tSurfFlag_All					= 0xFFFFFFFF
-	};
-
 	// Similar to StealLayers except it steals up to 6 layer-lists if the object is a cubemap. If the tImageDDS
 	// is not a cubemap this function returns 0 and leaves the object (and list) unmodified. If you only steal a single
 	// cubemap side, the object becomes completely invalid afterwards. The six passed in list pointers must all be
 	// non-zero otherwise this function does nothing. The lists are appended to. Returns the number of layer-lists that
 	// were populated.
-	int StealCubemapLayers(tList<tLayer> layers[tSurfIndex_NumSurfaces], uint32 sideFlags = tSurfFlag_All);
+	int StealCubemapLayers(tList<tLayer> layers[tFaceIndex_NumFaces], uint32 faceFlags = tFaceFlag_All);
 
 	// Alternative to StealCubemapLayers. Gets the layers but you're not allowed to delete them, they're not yours. Make
 	// sure the list you supply doesn't delete them when it's destructed.
-	int GetCubemapLayers(tList<tLayer> layers[tSurfIndex_NumSurfaces], uint32 sideFlags = tSurfFlag_All) const;
+	int GetCubemapLayers(tList<tLayer> layers[tFaceIndex_NumFaces], uint32 faceFlags = tFaceFlag_All) const;
 
 	// You do not own the returned pointer.
 	tLayer* GetLayer(int layerNum, int imageNum) const																	{ return Layers[layerNum][imageNum]; }

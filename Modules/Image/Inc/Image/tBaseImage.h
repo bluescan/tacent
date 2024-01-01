@@ -73,4 +73,30 @@ public:
 };
 
 
+// These are hany for all image types that may contain cubemaps.
+enum tFaceIndex				: uint32
+{
+	tFaceIndex_Default,
+	tFaceIndex_PosX			= tFaceIndex_Default,
+	tFaceIndex_NegX,
+	tFaceIndex_PosY,
+	tFaceIndex_NegY,
+	tFaceIndex_PosZ,
+	tFaceIndex_NegZ,
+	tFaceIndex_NumFaces
+};
+
+// Faces are always specified using a left-handed coord system even when using the OpenGL functions.
+enum tFaceFlag				: uint32
+{
+	tFaceFlag_PosX			= 1 << tFaceIndex_PosX,
+	tFaceFlag_NegX			= 1 << tFaceIndex_NegX,
+	tFaceFlag_PosY			= 1 << tFaceIndex_PosY,
+	tFaceFlag_NegY			= 1 << tFaceIndex_NegY,
+	tFaceFlag_PosZ			= 1 << tFaceIndex_PosZ,
+	tFaceFlag_NegZ			= 1 << tFaceIndex_NegZ,
+	tFaceFlag_All			= 0xFFFFFFFF
+};
+
+
 }

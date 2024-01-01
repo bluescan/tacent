@@ -173,7 +173,7 @@ public:
 	static const char* GetStateDesc(StateBit);
 
 	bool IsMipmapped() const																							{ return (NumMipmaps > 1) ? true : false; }
-	bool IsCubemap() const;
+	bool IsCubemap() const																								{ return (NumFaces == 6); }
 
 	// Returns the pvr container format version. If the tImagePVR is not valid -1 is returned. If the tImagePVR is valid
 	// but was not loaded from a .pvr file, 0 is returned. Otherwise 1 is returned for V1, 2 is returned for V2, and 3
@@ -181,8 +181,11 @@ public:
 	int GetVersion() const																								{ return IsValid() ? PVRVersion : -1; }
 	bool RowsReversed() const																							{ return RowReversalOperationPerformed; }
 
-	int GetNumMipmapLevels() const;
-	int GetNumImages() const;
+	int GetNumSurfaces() const																							{ return NumSurfaces; }
+	int GetNumFaces() const		/* Should be 6 for cubemaps */															{ return NumFaces; }
+	int GetNumMipmaps() const																							{ return NumMipmaps; }
+	int GetNumLayersTotal() const																						{ return NumSurfaces * NumFaces * NumMipmaps; }
+
 	int GetWidth() const																								{ return IsValid() ? Width : 0; }
 	int GetHeight() const																								{ return IsValid() ? Height : 0; }
 
@@ -201,8 +204,19 @@ public:
 	tFrame* GetFrame(bool steal = true) override;
 
 	// Alternative to StealLayers. Gets the layers but you're not allowed to delete them, they're not yours. Make
-	// sure the list you supply doesn't delete them when it's destructed.
+	// sure the list you supply doesn't delete them when it's destructed. Same rules regarding cubemaps.
 	bool GetLayers(tList<tLayer>&) const;
+
+	// Similar to StealLayers except it steals up to 6 layer-lists if the object is a cubemap. If the tImagePVR
+	// is not a cubemap this function returns 0 and leaves the object (and list) unmodified. If you only steal a single
+	// cubemap side, the object becomes completely invalid afterwards. The six passed in list pointers must all be
+	// non-zero otherwise this function does nothing. The lists are appended to. Returns the number of layer-lists that
+	// were populated.
+	int StealCubemapLayers(tList<tLayer> layers[tFaceIndex_NumFaces], uint32 faceFlags = tFaceFlag_All);
+
+	// Alternative to StealCubemapLayers. Gets the layers but you're not allowed to delete them, they're not yours. Make
+	// sure the list you supply doesn't delete them when it's destructed.
+	int GetCubemapLayers(tList<tLayer> layers[tFaceIndex_NumFaces], uint32 faceFlags = tFaceFlag_All) const;
 
 	// You do not own the returned pointer.
 	tLayer* GetLayer(int layerNum, int imageNum) const;
@@ -227,7 +241,7 @@ public:
 
 private:
 	bool ParseMetaData(const uint8* metaData, int metaDataSize);
-	int LayerIdx(int surf, int face = 0, int mip = 0, int depth = 0);
+	int LayerIdx(int surf, int face = 0, int mip = 0, int depth = 0) const;
 	tLayer* CreateNewLayer(const LoadParams&, const uint8* srcPixelData, int numBytes, int width, int height);
 	void SetStateBit(StateBit state)		{ States |= 1 << int(state); }
 

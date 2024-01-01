@@ -12,7 +12,7 @@
 // useful at both pipeline and for runtime loading. To save to a tChunk file format a tTexture will call the Save
 // method of all the tLayers.
 //
-// Copyright (c) 2006, 2016, 2017, 2019, 2020 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2017, 2019, 2020, 2023 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -51,16 +51,12 @@ public:
 	// with compression or mip layers. What you put in the dds you get. correctRowOrder should normally be left set to
 	// true unless you are loading a cubemap surface. Essentially dds files are upside down in terms of row order, but
 	// only the cubemap loader know about it (and they use left handed side ordering).
-	tTexture
-	(
-		const tString& ddsFile, tImageDDS::tSurfIndex surface = tImageDDS::tSurfIndex_Default,
-		bool correctRowOrder = true
-	)																													{ Load(ddsFile, surface, correctRowOrder); }
+	tTexture(const tString& ddsFile, tFaceIndex face = tFaceIndex_Default, bool correctRowOrder = true)					{ Load(ddsFile, face, correctRowOrder); }
 
 	// Similar to above but accepts an in-memory object. The ddsObject will be invalid after as the layers are stolen
 	// from it. If necessary, a constructor can easily be added that does a copy and keeps it valid, but it will be
 	// less efficient.
-	tTexture(tImageDDS& ddsObject, tImageDDS::tSurfIndex surface = tImageDDS::tSurfIndex_Default)						{ Set(ddsObject, surface); }
+	tTexture(tImageDDS& ddsObject, tFaceIndex face = tFaceIndex_Default)												{ Set(ddsObject, face); }
 
 	// The other constructors require you to know a quality setting for resampling (mipmap generation) and compression.
 	// For simplicity there is only Fast and Production quality settings, and it affects resampling _and_ compression.
@@ -88,13 +84,8 @@ public:
 	// return true on success. On failure, the tTexture is left invalid and in the case of the layer list Set, the list
 	// is emptied.
 	bool Set(tList<tLayer>&);
-	bool Load
-	(
-		const tString& ddsFile, tImageDDS::tSurfIndex surface = tImageDDS::tSurfIndex_Default,
-		bool correctRowOrder = true
-	);
-	bool Set(tImageDDS& ddsObject, tImageDDS::tSurfIndex = tImageDDS::tSurfIndex_Default);
-
+	bool Load(const tString& ddsFile, tFaceIndex = tFaceIndex_Default, bool correctRowOrder = true);
+	bool Set(tImageDDS& ddsObject, tFaceIndex = tFaceIndex_Default);
 	bool Set
 	(
 		tPicture& imageObject, bool generateMipMaps, tPixelFormat = tPixelFormat::Auto,

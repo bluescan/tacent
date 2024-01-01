@@ -1015,47 +1015,47 @@ bool tImageDDS::GetLayers(tList<tLayer>& layers) const
 }
 
 
-int tImageDDS::StealCubemapLayers(tList<tLayer> layerLists[tSurfIndex_NumSurfaces], uint32 sideFlags)
+int tImageDDS::StealCubemapLayers(tList<tLayer> layerLists[tFaceIndex_NumFaces], uint32 faceFlags)
 {
-	if (!IsValid() || !IsCubemap() || !sideFlags)
+	if (!IsValid() || !IsCubemap() || !faceFlags)
 		return 0;
 
-	int sideCount = 0;
-	for (int side = 0; side < tSurfIndex_NumSurfaces; side++)
+	int faceCount = 0;
+	for (int face = 0; face < tFaceIndex_NumFaces; face++)
 	{
-		uint32 sideFlag = 1 << side;
-		if (!(sideFlag & sideFlags))
+		uint32 faceFlag = 1 << face;
+		if (!(faceFlag & faceFlags))
 			continue;
 
-		tList<tLayer>& layers = layerLists[side];
+		tList<tLayer>& layers = layerLists[face];
 		for (int mip = 0; mip < NumMipmapLayers; mip++)
 		{
-			layers.Append( Layers[mip][side] );
-			Layers[mip][side] = nullptr;
+			layers.Append( Layers[mip][face] );
+			Layers[mip][face] = nullptr;
 		}
-		sideCount++;
+		faceCount++;
 	}
 
 	Clear();
-	return sideCount;
+	return faceCount;
 }
 
 
-int tImageDDS::GetCubemapLayers(tList<tLayer> layerLists[tSurfIndex_NumSurfaces], uint32 sideFlags) const
+int tImageDDS::GetCubemapLayers(tList<tLayer> layerLists[tFaceIndex_NumFaces], uint32 faceFlags) const
 {
-	if (!IsValid() || !IsCubemap() || !sideFlags)
+	if (!IsValid() || !IsCubemap() || !faceFlags)
 		return 0;
 
 	int sideCount = 0;
-	for (int side = 0; side < tSurfIndex_NumSurfaces; side++)
+	for (int face = 0; face < tFaceIndex_NumFaces; face++)
 	{
-		uint32 sideFlag = 1 << side;
-		if (!(sideFlag & sideFlags))
+		uint32 faceFlag = 1 << face;
+		if (!(faceFlag & faceFlags))
 			continue;
 
-		tList<tLayer>& layers = layerLists[side];
+		tList<tLayer>& layers = layerLists[face];
 		for (int mip = 0; mip < NumMipmapLayers; mip++)
-			layers.Append( Layers[mip][side] );
+			layers.Append( Layers[mip][face] );
 
 		sideCount++;
 	}

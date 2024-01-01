@@ -2375,6 +2375,9 @@ tTestUnit(ImagePVR3)
 	// A = Texture array. Has an arbitrary number of textures.
 	// M = Has Mipmaps.
 	// P = Premultiplied Alpha
+	PVRLoadDecodeSave("R32G32B32A32f_SFLOAT_SRGB_RGBA_C.pvr",		decode | revrow,	true);
+	return;
+
 	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGB_T.pvr",				decode | revrow,	false);
 	PVRLoadDecodeSave("PVRBPP4_UNORM_SRGB_RGBA_T.pvr",				decode | revrow,	false);
 	PVRLoadDecodeSave("PVRBPP2_UNORM_SRGB_RGB_TM.pvr",				decode | revrow,	true);

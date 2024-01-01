@@ -1072,7 +1072,7 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 }
 
 
-int tImagePVR::LayerIdx(int surf, int face, int mip, int depth)
+int tImagePVR::LayerIdx(int surf, int face, int mip, int depth) const
 {
 	int index = depth + mip*(Depth) + face*(NumMipmaps*Depth) + surf*(NumFaces*NumMipmaps*Depth);
 	tAssert(index < NumLayers);
@@ -1334,7 +1334,7 @@ tFrame* tImagePVR::GetFrame(bool steal)
 
 bool tImagePVR::StealLayers(tList<tLayer>& layers)
 {
-	if (!IsValid())// || IsCubemap() || (NumImages <= 0))
+	if (!IsValid() || IsCubemap())
 		return false;
 
 	for (int layer = 0; layer < NumLayers; layer++)
@@ -1350,13 +1350,68 @@ bool tImagePVR::StealLayers(tList<tLayer>& layers)
 
 bool tImagePVR::GetLayers(tList<tLayer>& layers) const
 {
-	if (!IsValid())// || IsCubemap() || (NumImages <= 0))
+	if (!IsValid() || IsCubemap())
 		return false;
 
 	for (int layer = 0; layer < NumLayers; layer++)
 		layers.Append(Layers[layer]);
 
 	return true;
+}
+
+
+int tImagePVR::StealCubemapLayers(tList<tLayer> layerLists[tFaceIndex_NumFaces], uint32 faceFlags)
+{
+	if (!IsValid() || !IsCubemap() || !faceFlags)
+		return 0;
+
+	int faceCount = 0;
+	for (int face = 0; face < tFaceIndex_NumFaces; face++)
+	{
+		uint32 faceFlag = 1 << face;
+		if (!(faceFlag & faceFlags))
+			continue;
+
+		tList<tLayer>& dstLayers = layerLists[face];
+		for (int mip = 0; mip < NumMipmaps; mip++)
+		{
+			int index = LayerIdx(0, face, mip, 0);
+			tLayer* layer = Layers[index];
+			dstLayers.Append(layer);
+			Layers[index] = nullptr;
+		}
+		faceCount++;
+	}
+
+	Clear();
+	return faceCount;
+}
+
+
+int tImagePVR::GetCubemapLayers(tList<tLayer> layerLists[tFaceIndex_NumFaces], uint32 faceFlags) const
+{
+	if (!IsValid() || !IsCubemap() || !faceFlags)
+		return 0;
+
+	int faceCount = 0;
+	for (int face = 0; face < tFaceIndex_NumFaces; face++)
+	{
+		uint32 faceFlag = 1 << face;
+		if (!(faceFlag & faceFlags))
+			continue;
+
+		tList<tLayer>& dstLayers = layerLists[face];
+		for (int mip = 0; mip < NumMipmaps; mip++)
+		{
+			int index = LayerIdx(0, face, mip, 0);
+			tLayer* layer = Layers[index];
+			dstLayers.Append(layer);
+		}
+
+		faceCount++;
+	}
+
+	return faceCount;
 }
 
 
