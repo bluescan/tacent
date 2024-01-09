@@ -35,7 +35,7 @@
 //
 // For conversions of arbitrary types to tStrings, see tsPrint in the higher level System module.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019-2023 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019-2024 Tristan Grimmer.
 // Copyright (c) 2020 Stefan Wessels.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
@@ -113,7 +113,7 @@ struct tString
 	void Clear()																										{ StringLength = 0; CodeUnits[0] = '\0'; }
 
 	// The length in char8_t's (code-units), not the display length (which is not that useful).
-	// This length has nothing to do with how many null characters are in the string or where the are.
+	// This length has nothing to do with how many null characters are in the string or where they are.
 	int Length() const																									{ return StringLength; }
 
 	// Treats the tString as a null-terminated (C++) string and returns the length. Generally a tString would not treat

@@ -7,7 +7,7 @@
 // responds to the same parameter number. You may also collect all parameters in a single tParam by setting the
 // parameter number to -1.
 //
-// Copyright (c) 2017, 2020, 2023 Tristan Grimmer.
+// Copyright (c) 2017, 2020, 2023, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -149,6 +149,38 @@ void tCmdLine::tParse(int argc, char** argv)
 
 		// Arg may have spaces within it. Such arguments need to be enclosed in quotes.
 		tString argStr(arg);
+		if (argStr.FindChar(' ') != -1)
+			argStr = tString("\"") + argStr + tString("\"");
+
+		line += argStr;
+		if (a < (argc - 1))
+			line += " ";
+	}
+
+	tParse(line, true);
+}
+
+
+void tCmdLine::tParse(int argc, char16_t** argv)
+{
+	if (argc <= 0)
+		return;
+
+	// Create a single line string of all the separate argv's. Arguments with quotes and spaces will come in as
+	// distinct argv's, but they all get combined here. I don't believe two consecutive spaces will work.
+	tString line;
+	for (int a = 0; a < argc; a++)
+	{
+		char16_t* arg16 = argv[a];
+		if (!arg16)
+			continue;
+
+		// Arg may have spaces within it. Such arguments need to be enclosed in quotes.
+		// We can construct a UTF-8 tString from a UTF-16 char16_t pointer.
+		tString argStr(arg16);
+		if (argStr.IsEmpty())
+			continue;
+
 		if (argStr.FindChar(' ') != -1)
 			argStr = tString("\"") + argStr + tString("\"");
 

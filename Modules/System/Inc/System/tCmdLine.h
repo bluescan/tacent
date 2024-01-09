@@ -78,7 +78,7 @@
 // command line when the tParse call is made. You may have more than one tOption that responds to the same option name.
 // You may have more than one tParam that responds to the same parameter number.
 //
-// Copyright (c) 2017, 2020, 2023 Tristan Grimmer.
+// Copyright (c) 2017, 2020, 2023, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -168,9 +168,13 @@ namespace tCmdLine
 		bool ExcludeFromUsage;
 	};
 
-	// All strings are utf-8.
+	// All strings are UTF-8 for the next two functions -- including the char** one.
 	void tParse(int argc, char** argv);
 	void tParse(const char8_t* commandLine, bool fullCommandLine = false);
+
+	// We also support parsing from UTF-16. Internally we just convert to UTF-8.
+	void tParse(int argc, char16_t** argv);
+
 	void tPrintUsage(int versionMajor, int versionMinor = -1, int revision = -1);
 	void tPrintUsage(const char8_t* author, int versionMajor, int versionMinor = -1, int revision = -1);
 	void tPrintUsage(const char8_t* author, const char8_t* desc, int versionMajor, int versionMinor = -1, int revision = -1);
