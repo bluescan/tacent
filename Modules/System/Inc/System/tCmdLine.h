@@ -174,6 +174,9 @@ namespace tCmdLine
 
 	// We also support parsing from UTF-16. Internally we just convert to UTF-8.
 	void tParse(int argc, char16_t** argv);
+#ifdef PLATFORM_WINDOWS
+	void tParse(int argc, wchar_t** argv);
+#endif
 
 	void tPrintUsage(int versionMajor, int versionMinor = -1, int revision = -1);
 	void tPrintUsage(const char8_t* author, int versionMajor, int versionMinor = -1, int revision = -1);

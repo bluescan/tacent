@@ -193,6 +193,14 @@ void tCmdLine::tParse(int argc, char16_t** argv)
 }
 
 
+#ifdef PLATFORM_WINDOWS
+void tCmdLine::tParse(int argc, wchar_t** argv)
+{
+	tParse(argc, (char16_t**)argv);
+}
+#endif
+
+
 void tCmdLine::ExpandArgs(tList<tStringItem>& args)
 {
 	tList<tStringItem> expArgs(tListMode::ListOwns);
