@@ -4,7 +4,7 @@
 // png file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor
 // if a png file is specified. After the array is stolen the tImagePNG is invalid. This is purely for performance.
 //
-// Copyright (c) 2020, 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2020, 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -77,7 +77,12 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 		return false;
 	}
 
-	PixelFormatSrc = (pngImage.format & PNG_FORMAT_FLAG_ALPHA) ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
+	// This should only return 1 or 2.
+	int bytesPerComponent = PNG_IMAGE_SAMPLE_COMPONENT_SIZE(pngImage.format);
+	if (bytesPerComponent == 2)
+		PixelFormatSrc = (pngImage.format & PNG_FORMAT_FLAG_ALPHA) ? tPixelFormat::R16G16B16A16 : tPixelFormat::R16G16B16;
+	else
+		PixelFormatSrc = (pngImage.format & PNG_FORMAT_FLAG_ALPHA) ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
 
 	// We need to modify the format to match the type of the pixels we want to load into.
 	pngImage.format = PNG_FORMAT_RGBA;

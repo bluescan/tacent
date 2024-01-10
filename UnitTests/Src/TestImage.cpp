@@ -78,6 +78,11 @@ tTestUnit(ImageLoad)
 
 	tImagePNG imgPNG("TestData/Images/TacentTestPattern.png");
 	tRequire(imgPNG.IsValid());
+	tRequire(imgPNG.GetPixelFormatSrc() == tPixelFormat::R8G8B8A8);
+
+	tImagePNG imgPNG2("TestData/Images/Gradient_0-25_16bit.png");
+	tRequire(imgPNG2.IsValid());
+	tRequire(imgPNG2.GetPixelFormatSrc() == tPixelFormat::R16G16B16A16);
 
 	tImagePVR imgPVR("TestData/Images/PVR_V3/PVRBPP4_UNORM_SRGB_RGBA_T.png");
 	tRequire(!imgPVR.IsValid());

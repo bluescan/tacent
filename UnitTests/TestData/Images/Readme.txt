@@ -93,3 +93,10 @@ official Ericsson tool for generating pkm files. The other pkm files are photos
 from me and are ISC.
 
 -------------------------------------------------------------------------------
+
+The gradient image Gradient_0-25_16bit.png is under CC0-1.0 from
+https://github.com/jursonovicst/gradient/tree/master
+More information on CC0 is found here:
+https://creativecommons.org/publicdomain/zero/1.0/
+
+-------------------------------------------------------------------------------

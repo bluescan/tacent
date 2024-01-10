@@ -220,8 +220,6 @@ int load_apng(const char * szIn, std::vector<Image>& img)
   Image frameNext;
   int res = -1;
 
-  // @tacent printf("Reading '%s'...\n", szIn);
-
   if ((fileHandle = fopen(szIn, "rb")) != 0)
   {
     if (fread(sig, 1, 8, fileHandle) == 8 && png_sig_cmp(sig, 0, 8) == 0)
