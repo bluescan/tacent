@@ -234,6 +234,7 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 		C(RGBA_INTEGER):
 			switch (glType)
 			{
+				C(UNSIGNED_SHORT_4_4_4_4):		F(B4A4R4G4)									T(UINT)		break;
 				C(UNSIGNED_BYTE):				F(R8G8B8A8)									T(UINT)		break;
 				C(HALF_FLOAT):					F(R16G16B16A16f)	P(HDRa)					T(SFLOAT)	break;
 				C(FLOAT):						F(R32G32B32A32f)	P(HDRa)					T(SFLOAT)	break;
