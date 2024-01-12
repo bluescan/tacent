@@ -4,7 +4,7 @@
 // tLayer. If decode was requested the layer will store raw pixel data. The layer may be 'stolen'. IF it is the
 // tImagePKM is invalid afterwards. This is purely for performance.
 //
-// Copyright (c) 2023 Tristan Grimmer.
+// Copyright (c) 2023, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -215,13 +215,13 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 	}
 
 	tColour4f* decoded4f = nullptr;
-	tColour4i* decoded4i = nullptr;
-	DecodeResult result = tImage::DecodePixelData_Block(format, (uint8*)pkmData, pkmDataSize, width, height, decoded4i, decoded4f);
+	tColour4b* decoded4b = nullptr;
+	DecodeResult result = tImage::DecodePixelData_Block(format, (uint8*)pkmData, pkmDataSize, width, height, decoded4b, decoded4f);
 	if (result != DecodeResult::Success)
 		return false;
 
 	// Apply any decode flags.
-	tAssert(decoded4f || decoded4i);
+	tAssert(decoded4f || decoded4b);
 	bool flagSRGB = (params.Flags & tImagePKM::LoadFlag_SRGBCompression) ? true : false;
 	bool flagGama = (params.Flags & tImagePKM::LoadFlag_GammaCompression)? true : false;
 	if (decoded4f && (flagSRGB || flagGama))
@@ -235,28 +235,28 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 				colour.LinearToGamma(params.Gamma, tCompBit_RGB);
 		}
 	}
-	if (decoded4i && (flagSRGB || flagGama))
+	if (decoded4b && (flagSRGB || flagGama))
 	{
 		for (int p = 0; p < width*height; p++)
 		{
-			tColour4f colour(decoded4i[p]);
+			tColour4f colour(decoded4b[p]);
 			if (flagSRGB)
 				colour.LinearToSRGB(tCompBit_RGB);
 			if (flagGama)
 				colour.LinearToGamma(params.Gamma, tCompBit_RGB);
-			decoded4i[p].SetR(colour.R);
-			decoded4i[p].SetG(colour.G);
-			decoded4i[p].SetB(colour.B);
+			decoded4b[p].SetR(colour.R);
+			decoded4b[p].SetG(colour.G);
+			decoded4b[p].SetB(colour.B);
 		}
 	}
 
-	// Converts to RGBA32 into the decoded4i array.
+	// Converts to RGBA32 into the decoded4b array.
 	if (decoded4f)
 	{
-		tAssert(!decoded4i);
-		decoded4i = new tColour4i[width*height];
+		tAssert(!decoded4b);
+		decoded4b = new tColour4b[width*height];
 		for (int p = 0; p < width*height; p++)
-			decoded4i[p].Set(decoded4f[p]);
+			decoded4b[p].Set(decoded4f[p]);
 		delete[] decoded4f;
 	}
 
@@ -265,14 +265,14 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 	{
 		for (int p = 0; p < width*height; p++)
 		{
-			decoded4i[p].G = decoded4i[p].R;
-			decoded4i[p].B = decoded4i[p].R;
+			decoded4b[p].G = decoded4b[p].R;
+			decoded4b[p].B = decoded4b[p].R;
 		}
 	}
 
 	// Give decoded pixelData to layer.
 	tAssert(!Layer);
-	Layer = new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)decoded4i, true);
+	Layer = new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)decoded4b, true);
 	tAssert(Layer->OwnsData);
 
 	// We've got one more chance to reverse the rows here (if we still need to) because we were asked to decode.
@@ -292,7 +292,7 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 }
 
 
-bool tImagePKM::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImagePKM::Set(tPixel4* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -327,7 +327,7 @@ bool tImagePKM::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -345,14 +345,14 @@ tFrame* tImagePKM::GetFrame(bool steal)
 
 	if (steal)
 	{
-		frame->Pixels = (tPixel*)Layer->StealData();
+		frame->Pixels = (tPixel4*)Layer->StealData();
 		delete Layer;
 		Layer = nullptr;
 	}
 	else
 	{
-		frame->Pixels = new tPixel[frame->Width * frame->Height];
-		tStd::tMemcpy(frame->Pixels, (tPixel*)Layer->Data, frame->Width * frame->Height * sizeof(tPixel));
+		frame->Pixels = new tPixel4[frame->Width * frame->Height];
+		tStd::tMemcpy(frame->Pixels, (tPixel4*)Layer->Data, frame->Width * frame->Height * sizeof(tPixel4));
 	}
 
 	return frame;
@@ -368,7 +368,7 @@ bool tImagePKM::IsOpaque() const
 	{
 		case tPixelFormat::R8G8B8A8:
 		{
-			tPixel* pixels = (tPixel*)Layer->Data;
+			tPixel4* pixels = (tPixel4*)Layer->Data;
 			for (int p = 0; p < (Layer->Width * Layer->Height); p++)
 			{
 				if (pixels[p].A < 255)

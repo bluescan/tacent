@@ -12,7 +12,7 @@
 // useful at both pipeline and for runtime loading. To save to a tChunk file format a tTexture will call the Save
 // method of all the tLayers.
 //
-// Copyright (c) 2006, 2016, 2017, 2020, 2023 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2017, 2020, 2023, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -249,7 +249,7 @@ void tTexture::ProcessImageTo_G3B5R5G3(tPicture& image, bool generateMipmaps, tQ
 		uint8* layerData = new uint8[numDataBytes];
 
 		// We need to change the src data (RGBA) into 16bits.
-		tPixel* srcPixel = image.GetPixelPointer();
+		tPixel4* srcPixel = image.GetPixelPointer();
 		uint8* dstPixel = layerData;
 		for (int p = 0; p < width*height; p++)
 		{
@@ -331,7 +331,7 @@ void tTexture::ProcessImageTo_BCTC(tPicture& image, tPixelFormat pixelFormat, bo
 					throw tError("Unsupported BC pixel format %d.", int(pixelFormat));
 			}
 			blockDest += blockSize;
-			pixelSrc += sizeof(tPixel);
+			pixelSrc += sizeof(tPixel4);
 		}
 
 		// The last true in this call allows the layer constructor to steal the outputData pointer. Avoids extra memcpys.

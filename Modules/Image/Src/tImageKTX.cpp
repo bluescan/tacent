@@ -3,7 +3,7 @@
 // This knows how to load/save KTX files. It knows the details of the ktx and ktx2 file format and loads the data into
 // multiple tPixel arrays, one for each frame (KTKs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -562,7 +562,7 @@ void tImageKTX::Clear()
 }
 
 
-bool tImageKTX::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImageKTX::Set(tPixel4* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -589,7 +589,7 @@ bool tImageKTX::Set(tFrame* frame, bool steal)
 	if (!frame || !frame->IsValid())
 		return false;
 
-	tPixel* pixels = frame->GetPixels(steal);
+	tPixel4* pixels = frame->GetPixels(steal);
 	Set(pixels, frame->Width, frame->Height, steal);
 	if (steal)
 		delete frame;
@@ -605,7 +605,7 @@ bool tImageKTX::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -623,14 +623,14 @@ tFrame* tImageKTX::GetFrame(bool steal)
 
 	if (steal)
 	{
-		frame->Pixels = (tPixel*)Layers[0][0]->StealData();
+		frame->Pixels = (tPixel4*)Layers[0][0]->StealData();
 		delete Layers[0][0];
 		Layers[0][0] = nullptr;
 	}
 	else
 	{
-		frame->Pixels = new tPixel[frame->Width * frame->Height];
-		tStd::tMemcpy(frame->Pixels, (tPixel*)Layers[0][0]->Data, frame->Width * frame->Height * sizeof(tPixel));
+		frame->Pixels = new tPixel4[frame->Width * frame->Height];
+		tStd::tMemcpy(frame->Pixels, (tPixel4*)Layers[0][0]->Data, frame->Width * frame->Height * sizeof(tPixel4));
 	}
 
 	return frame;
@@ -975,15 +975,15 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 			int w = layer->Width;
 			int h = layer->Height;
 
-			// At the end of decoding _either_ decoded4i _or_ decoded4f will be valid, not both.
-			// The decoded4i format used for LDR images.
+			// At the end of decoding _either_ decoded4b _or_ decoded4f will be valid, not both.
+			// The decoded4b format used for LDR images.
 			// The decoded4f format used for HDR images.
-			tColour4i* decoded4i = nullptr;
+			tColour4b* decoded4b = nullptr;
 			tColour4f* decoded4f = nullptr;
 			DecodeResult result = DecodePixelData
 			(
 				layer->PixelFormat, layer->Data, layer->GetDataSize(),
-				w, h, decoded4i, decoded4f
+				w, h, decoded4b, decoded4f
 			);
 
 			if (result != DecodeResult::Success)
@@ -1000,7 +1000,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 			}
 
 			// Apply any decode flags.
-			tAssert(decoded4i || decoded4f);
+			tAssert(decoded4b || decoded4f);
 			bool flagTone = (params.Flags & tImageKTX::LoadFlag_ToneMapExposure) ? true : false;
 			bool flagSRGB = (params.Flags & tImageKTX::LoadFlag_SRGBCompression) ? true : false;
 			bool flagGama = (params.Flags & tImageKTX::LoadFlag_GammaCompression)? true : false;
@@ -1017,18 +1017,18 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 						colour.LinearToGamma(params.Gamma, tCompBit_RGB);
 				}
 			}
-			if (decoded4i && (flagSRGB || flagGama))
+			if (decoded4b && (flagSRGB || flagGama))
 			{
 				for (int p = 0; p < w*h; p++)
 				{
-					tColour4f colour(decoded4i[p]);
+					tColour4f colour(decoded4b[p]);
 					if (flagSRGB)
 						colour.LinearToSRGB(tCompBit_RGB);
 					if (flagGama)
 						colour.LinearToGamma(params.Gamma, tCompBit_RGB);
-					decoded4i[p].SetR(colour.R);
-					decoded4i[p].SetG(colour.G);
-					decoded4i[p].SetB(colour.B);
+					decoded4b[p].SetR(colour.R);
+					decoded4b[p].SetG(colour.G);
+					decoded4b[p].SetB(colour.B);
 				}
 			}
 
@@ -1037,10 +1037,10 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 			delete[] layer->Data;
 			if (decoded4f)
 			{
-				tAssert(!decoded4i);
-				decoded4i = new tColour4i[w*h];
+				tAssert(!decoded4b);
+				decoded4b = new tColour4b[w*h];
 				for (int p = 0; p < w*h; p++)
-					decoded4i[p].Set(decoded4f[p]);
+					decoded4b[p].Set(decoded4f[p]);
 				delete[] decoded4f;
 			}
 
@@ -1049,12 +1049,12 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 			{
 				for (int p = 0; p < w*h; p++)
 				{
-					decoded4i[p].G = decoded4i[p].R;
-					decoded4i[p].B = decoded4i[p].R;
+					decoded4b[p].G = decoded4b[p].R;
+					decoded4b[p].B = decoded4b[p].R;
 				}
 			}
 
-			layer->Data = (uint8*)decoded4i;
+			layer->Data = (uint8*)decoded4b;
 			layer->PixelFormat = tPixelFormat::R8G8B8A8;
 
 			// We've got one more chance to reverse the rows here (if we still need to) because we were asked to decode.
@@ -1072,7 +1072,7 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 			{
 				for (int xy = 0; xy < w*h; xy++)
 				{
-					tColour4i& col = ((tColour4i*)layer->Data)[xy];
+					tColour4b& col = ((tColour4b*)layer->Data)[xy];
 					tStd::tSwap(col.R, col.B);
 				}
 			}

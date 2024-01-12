@@ -4,7 +4,7 @@
 // and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if a xpm file is
 // specified. After the array is stolen the tImageXPM is invalid. This is purely for performance.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -54,10 +54,10 @@ bool tImageXPM::Load(const uint8* xpmFileInMemory, int numBytes)
 	Width = 256;
 	Height = 256;
 	int numPixels = Width * Height;
-	Pixels = new tPixel[numPixels];
+	Pixels = new tPixel4[numPixels];
 	for (int p = 0; p < Width*Height; p++)
 	{
-		Pixels[p] = tPixel::blue;
+		Pixels[p] = tPixel4::blue;
 	}
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 
@@ -65,7 +65,7 @@ bool tImageXPM::Load(const uint8* xpmFileInMemory, int numBytes)
 }
 
 
-bool tImageXPM::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImageXPM::Set(tPixel4* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -79,8 +79,8 @@ bool tImageXPM::Set(tPixel* pixels, int width, int height, bool steal)
 	}
 	else
 	{
-		Pixels = new tPixel[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
+		Pixels = new tPixel4[Width*Height];
+		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4));
 	}
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
@@ -88,9 +88,9 @@ bool tImageXPM::Set(tPixel* pixels, int width, int height, bool steal)
 }
 
 
-tPixel* tImageXPM::StealPixels()
+tPixel4* tImageXPM::StealPixels()
 {
-	tPixel* pixels = Pixels;
+	tPixel4* pixels = Pixels;
 	Pixels = nullptr;
 	Width = 0;
 	Height = 0;

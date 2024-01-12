@@ -12,7 +12,7 @@
 // The algrithm works well for larger numbers of colours (generally 128 to 256 or 255) but it can handle values as
 // low as 2.
 //
-// Modifications Copyright (c) 2022, 2023 Tristan Grimmer.
+// Modifications Copyright (c) 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -109,7 +109,7 @@ namespace tQuantizeNeu
 	void unbiasnet(State&);
 
 	// This gets the palette in the out variable.
-	int getColourMap(State&, tColour3i* out);
+	int getColourMap(State&, tColour3b* out);
 
 	// Insertion sort of network and building of netindex[0..255] (to do after unbias).
 	// We don't call this function since we do an exhaustive red-mean distance check.
@@ -126,7 +126,7 @@ namespace tQuantizeNeu
 	void altersingle(State&, int alpha, int i, int b, int g, int r);
 	void alterneigh(State&, int rad, int i, int b, int g, int r);
 
-	int FindIndexOfClosestColour_Redmean(const tColour3i* searchSpace, int searchSize, const tColour3i& searchColour);
+	int FindIndexOfClosestColour_Redmean(const tColour3b* searchSpace, int searchSize, const tColour3b& searchColour);
 }
 
 
@@ -178,7 +178,7 @@ void tQuantizeNeu::unbiasnet(State& state)
 }
 
 
-int tQuantizeNeu::getColourMap(State& state, tColour3i* out)
+int tQuantizeNeu::getColourMap(State& state, tColour3b* out)
 {
 	// Output colour map. The palette.
 	int index[maxnetsize];
@@ -511,7 +511,7 @@ void tQuantizeNeu::learn(State& state)
 }
 
 
-int tQuantizeNeu::FindIndexOfClosestColour_Redmean(const tColour3i* searchSpace, int searchSize, const tColour3i& colour)
+int tQuantizeNeu::FindIndexOfClosestColour_Redmean(const tColour3b* searchSpace, int searchSize, const tColour3b& colour)
 {
 	float closest = 1000.0f;
 	int closestIndex = -1;
@@ -536,7 +536,7 @@ int tQuantizeNeu::FindIndexOfClosestColour_Redmean(const tColour3i* searchSpace,
 
 bool tQuantizeNeu::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices,
+	int numColours, int width, int height, const tPixel3* pixels, tColour3b* destPalette, uint8* destIndices,
 	bool checkExact, int sampleFactor
 )
 {
@@ -581,7 +581,7 @@ bool tQuantizeNeu::QuantizeImage
 
 bool tQuantizeNeu::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel* pixels, tColour3i* destPalette, uint8* destIndices,
+	int numColours, int width, int height, const tPixel4* pixels, tColour3b* destPalette, uint8* destIndices,
 	bool checkExact, int sampleFactor
 )
 {

@@ -313,7 +313,7 @@ bool tWorld::CombinePolyModelInstances(tItList<tInstance>& polymodelInstances, t
 	newMesh->VertTableNormals				= newMesh->NumVertNormals > 0 ?			new tVector3[newMesh->NumVertNormals]				: nullptr;
 	newMesh->VertTableUVs					= newMesh->NumVertUVs > 0 ?				new tMath::tVector2[newMesh->NumVertUVs]			: nullptr;
 	newMesh->VertTableNormalMapUVs			= newMesh->NumVertNormalMapUVs > 0 ?	new tMath::tVector2[newMesh->NumVertNormalMapUVs]	: nullptr;
-	newMesh->VertTableColours				= newMesh->NumVertColours > 0 ?			new tColouri[newMesh->NumVertColours]				: nullptr;
+	newMesh->VertTableColours				= newMesh->NumVertColours > 0 ?			new tColour4b[newMesh->NumVertColours]				: nullptr;
 	newMesh->VertTableTangents				= newMesh->NumVertTangents > 0 ?		new tMath::tVector4[newMesh->NumVertTangents]		: nullptr;
 
 	int curFace = 0;
@@ -414,7 +414,7 @@ bool tWorld::CombinePolyModelInstances(tItList<tInstance>& polymodelInstances, t
 
 		tMemcpy(&newMesh->VertTableUVs[curUV],				mesh->VertTableUVs,				mesh->NumVertUVs * sizeof(tVector2));
 		tMemcpy(&newMesh->VertTableNormalMapUVs[curNMUV],	mesh->VertTableNormalMapUVs,	mesh->NumVertNormalMapUVs * sizeof(tVector2));
-		tMemcpy(&newMesh->VertTableColours[curColour],		mesh->VertTableColours,			mesh->NumVertColours* sizeof(tColouri));
+		tMemcpy(&newMesh->VertTableColours[curColour],		mesh->VertTableColours,			mesh->NumVertColours* sizeof(tColour4b));
 		tMemcpy(&newMesh->VertTableTangents[curTangent],	mesh->VertTableTangents,		mesh->NumVertTangents * sizeof(tVector4));
 		
 		curFace += mesh->NumFaces;

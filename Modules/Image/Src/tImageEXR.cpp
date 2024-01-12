@@ -4,7 +4,7 @@
 // file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if
 // an EXR file is specified. After the array is stolen the tImageEXR is invalid. This is purely for performance.
 //
-// Copyright (c) 2020-2022 Tristan Grimmer.
+// Copyright (c) 2020-2022, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -219,7 +219,7 @@ bool tImageEXR::Load(const tString& exrFile, const LoadParams& loadParams)
 		newFrame->PixelFormatSrc = tPixelFormat::OPENEXR;
 		newFrame->Width = width;
 		newFrame->Height = height;
-		newFrame->Pixels = new tPixel[width*height];
+		newFrame->Pixels = new tPixel4[width*height];
 
 		// Map floating-point pixel values 0.0 and 1.0 to the display's white and black respectively.
 		// if bool zerooneexposure true.
@@ -262,7 +262,7 @@ bool tImageEXR::Load(const tString& exrFile, const LoadParams& loadParams)
 			{
 				int idx = yi*width + xi;
 				const IMF::Rgba& rawPixel = pixels[idx];
-				newFrame->Pixels[p++] = tPixel
+				newFrame->Pixels[p++] = tPixel4
 				(
 					EXR::Dither( redGamma(rawPixel.r), xi, yi ),
 					EXR::Dither( grnGamma(rawPixel.g), xi, yi ),
@@ -302,7 +302,7 @@ bool tImage::tImageEXR::Set(tList<tFrame>& srcFrames, bool stealFrames)
 }
 
 
-bool tImageEXR::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImageEXR::Set(tPixel4* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -340,7 +340,7 @@ bool tImageEXR::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 

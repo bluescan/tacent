@@ -9,7 +9,7 @@
 //
 // The second format is a functional format. ex. a(b,c) See tFunExtression.
 //
-// Copyright (c) 2006, 2017, 2019, 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -113,7 +113,7 @@ public:
 	tMath::tQuaternion GetAtomQuaternion() const;
 	tMath::tMatrix2 GetAtomMatrix2() const;
 	tMath::tMatrix4 GetAtomMatrix4() const;
-	tColouri GetAtomColour() const;
+	tColour4b GetAtomColour() const;
 
 	// Implicit casting to various types. They can be used instead of the GetAtom methods. Notice that some of the
 	// common math types, like vectors, are supported also.
@@ -130,7 +130,7 @@ public:
 	operator tMath::tQuaternion() const																					{ if (IsAtom()) return GetAtomQuaternion(); else return tMath::tQuaternion::zero; }
 	operator tMath::tMatrix2() const																					{ if (IsAtom()) return GetAtomMatrix2(); else return tMath::tMatrix2::zero; }
 	operator tMath::tMatrix4() const																					{ if (IsAtom()) return GetAtomMatrix4(); else return tMath::tMatrix4::zero; }
-	operator tColouri() const																							{ if (IsAtom()) return GetAtomColour(); else return tColouri::black; }
+	operator tColour4b() const																							{ if (IsAtom()) return GetAtomColour(); else return tColour4b::black; }
 
 	// Here are some alternate names for the functions above.
 	tExpression Arg0() const								/* Arg0 is the command. */									{ return Car(); }
@@ -268,7 +268,7 @@ public:
 	void WriteAtom(const tMath::tQuaternion&, bool incBitRep = true);
 	void WriteAtom(const tMath::tMatrix2&, bool incBitRep = true);
 	void WriteAtom(const tMath::tMatrix4&, bool incBitRep = true);
-	void WriteAtom(const tColouri&);
+	void WriteAtom(const tColour4b&);
 
 	// These functions write a raw string. They do not check for spaces being used and will not add quotes if there is.
 	// This can be useful for qriting tuples like (a, b) that are still atoms even though they may contain a space after
@@ -317,7 +317,7 @@ public:
 	void Atom(const tMath::tQuaternion& q, bool incBitRep = true)														{ WriteAtom(q, incBitRep); }
 	void Atom(const tMath::tMatrix2& m, bool incBitRep = true)															{ WriteAtom(m, incBitRep); }
 	void Atom(const tMath::tMatrix4& m, bool incBitRep = true)															{ WriteAtom(m, incBitRep); }
-	void Atom(const tColouri& c)																						{ WriteAtom(c); }
+	void Atom(const tColour4b& c)																						{ WriteAtom(c); }
 
 	void Raw(const tString& s)																							{ WriteRaw(s); }
 	void Raw(const char* s)																								{ WriteRaw(s); }

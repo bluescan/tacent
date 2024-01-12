@@ -3,7 +3,7 @@
 // All scene objects may have attributes. Attributes are extra data (that has a type) that the content author
 // attributed to the scene object.
 //
-// Copyright (c) 2006, 2017, 2023 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2023, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -48,12 +48,12 @@ public:
 
 	bool GetAsBool() const																								{ if (Type != tType::Bool) return false; return Value ? true : false; }
 	int GetAsInt() const																								{ if (Type != tType::Int) return 0; return int(Value); }
-	tColouri GetAsColour() const																						{ if (Type != tType::Colour) return tColour::black; return *((tColouri*)(&Value)); }
+	tColour4b GetAsColour() const																						{ if (Type != tType::Colour) return tColour4b::black; return *((tColour4b*)(&Value)); }
 	float GetAsFloat() const																							{ if (Type != tType::Float) return 0.0f; return *((float*)(&Value)); }
 
 	operator bool() const																								{ return GetAsBool(); }
 	operator int() const																								{ return GetAsInt(); }
-	operator tColouri() const																							{ return GetAsColour(); }
+	operator tColour4b() const																							{ return GetAsColour(); }
 	operator float() const																								{ return GetAsFloat(); }
 	bool operator==(const tAttribute& a) const																			{ if (Name != a.Name) return false; if (Type != a.Type) return false; if (Value != a.Value) return false; return true; }
 	bool operator!=(const tAttribute& a) const																			{ return !(*this == a); }

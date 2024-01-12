@@ -3,7 +3,7 @@
 // This knows how to load/save WebPs. It knows the details of the webp file format and loads the data into multiple
 // tPixel arrays, one for each frame (WebPs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2023 Tristan Grimmer.
+// Copyright (c) 2020-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -35,7 +35,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	tImageWEBP(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+	tImageWEBP(tPixel4* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
 	// Sets from a single frame.
 	tImageWEBP(tFrame* frame, bool steal = true)																		{ Set(frame, steal); }
@@ -52,7 +52,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	bool Set(tPixel* pixels, int width, int height, bool steal = false) override;
+	bool Set(tPixel4* pixels, int width, int height, bool steal = false) override;
 
 	// Sets from a single frame.
 	bool Set(tFrame*, bool steal = true) override;
@@ -109,10 +109,10 @@ public:
 	// The background colour of webp files defaults to white only because that is what popular browsers default to.
 	// Animated webp files can override this colour. They store a background colour in the file itself.
 	// The Load function above sets this colour every time it is called.
-	tColour4i BackgroundColour = tColour4i::white;
+	tColour4b BackgroundColour = tColour4b::white;
 
 private:
-	bool CopyRegion(tPixel* dst, int dstW, int dstH, tPixel* src, int srcW, int srcH, int offsetX, int offsetY, bool blend);
+	bool CopyRegion(tPixel4* dst, int dstW, int dstH, tPixel4* src, int srcW, int srcH, int offsetX, int offsetY, bool blend);
 
 	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 };
@@ -156,7 +156,7 @@ inline void tImageWEBP::Clear()
 	PixelFormatSrc = tPixelFormat::Invalid;
 	while (tFrame* frame = Frames.Remove())
 		delete frame;
-	BackgroundColour = tColour4i::white;	
+	BackgroundColour = tColour4b::white;	
 }
 
 

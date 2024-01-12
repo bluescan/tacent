@@ -4,7 +4,7 @@
 // simply an array of tPixels (RGB). Index resolution is determined by the pixel format (1 to 8 bits). The number of
 // palette entries (colours) is 2 ^ the index-resolution.
 //
-// Copyright (c) 2022 Tristan Grimmer.
+// Copyright (c) 2022, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -42,8 +42,8 @@ bool tPaletteImage::Set(const tPaletteImage& src)
 
 	int palSize = src.GetPaletteSize();
 	tAssert((palSize > 0) && src.Palette);
-	Palette = new tColour3i[palSize];
-	tStd::tMemcpy(Palette, src.Palette, palSize*sizeof(tColour3i));
+	Palette = new tColour3b[palSize];
+	tStd::tMemcpy(Palette, src.Palette, palSize*sizeof(tColour3b));
 
 	return true;
 }
@@ -66,14 +66,14 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height)
 
 	int palSize = GetPaletteSize();
 	tAssert(palSize > 0);
-	Palette = new tColour3i[palSize];
-	tStd::tMemset(Palette, 0, palSize*sizeof(tColour3i));
+	Palette = new tColour3b[palSize];
+	tStd::tMemset(Palette, 0, palSize*sizeof(tColour3b));
 
 	return true;
 }
 
 
-bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const uint8* pixelData, const tColour3i* palette)
+bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const uint8* pixelData, const tColour3b* palette)
 {
 	Clear();
 	if (!tIsPaletteFormat(fmt) || (width <= 0) || (height <= 0) || !pixelData || !palette)
@@ -90,14 +90,14 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const uint8* pi
 
 	int palSize = GetPaletteSize();
 	tAssert(palSize > 0);
-	Palette = new tColour3i[palSize];
-	tStd::tMemcpy(Palette, palette, palSize*sizeof(tColour3i));
+	Palette = new tColour3b[palSize];
+	tStd::tMemcpy(Palette, palette, palSize*sizeof(tColour3b));
 
 	return true;
 }
 
 
-bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel* pixels, tQuantize::Method quantMethod)
+bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel4* pixels, tQuantize::Method quantMethod)
 {
 	Clear();
 	if (!tIsPaletteFormat(fmt) || (width <= 0) || (height <= 0) || !pixels)
@@ -127,7 +127,7 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* 
 	Width = width;
 	Height = height;
 	int numColours			= GetPaletteSize();
-	Palette					= new tColour3i[numColours];
+	Palette					= new tColour3b[numColours];
 	int dataSize			= GetDataSize();
 	PixelData				= new uint8[dataSize];
 
@@ -177,7 +177,7 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* 
 }
 
 
-bool tPaletteImage::Get(tPixel* pixels)
+bool tPaletteImage::Get(tPixel4* pixels)
 {
 	if (!IsValid() || !pixels)
 		return false;
@@ -191,7 +191,7 @@ bool tPaletteImage::Get(tPixel* pixels)
 		for (int x = 0; x < Width; x++)
 		{
 			uint8 palIdx = bitArray.GetBits(bitIndex, bpp);
-			tColour3i& colour = Palette[palIdx];
+			tColour3b& colour = Palette[palIdx];
 			pixels[x + y*Width].Set(colour.R, colour.G, colour.B);
 			bitIndex += bpp;
 		}
@@ -215,7 +215,7 @@ bool tPaletteImage::Get(tPixel3* pixels)
 		for (int x = 0; x < Width; x++)
 		{
 			uint8 palIdx = bitArray.GetBits(bitIndex, bpp);
-			tColour3i& colour = Palette[palIdx];
+			tColour3b& colour = Palette[palIdx];
 			pixels[x + y*Width].Set(colour.R, colour.G, colour.B);
 			bitIndex += bpp;
 		}

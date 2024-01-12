@@ -3,7 +3,7 @@
 // This knows how to load/save animated PNGs (APNGs). It knows the details of the apng file format and loads the data
 // into multiple tPixel arrays, one for each frame. These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2023 Tristan Grimmer.
+// Copyright (c) 2020-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -79,7 +79,7 @@ bool tImageAPNG::Load(const tString& apngFile)
 		int height = srcFrame.h;
 		newFrame->Width = width;
 		newFrame->Height = height;
-		newFrame->Pixels = new tPixel[width * height];
+		newFrame->Pixels = new tPixel4[width * height];
 
 		// From the official apng spec:
 		// The delay_num and delay_den parameters together specify a fraction indicating the time to display
@@ -140,7 +140,7 @@ bool tImageAPNG::Set(tList<tFrame>& srcFrames, bool stealFrames)
 }
 
 
-bool tImageAPNG::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImageAPNG::Set(tPixel4* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -178,7 +178,7 @@ bool tImageAPNG::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 

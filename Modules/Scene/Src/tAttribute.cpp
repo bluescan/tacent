@@ -3,7 +3,7 @@
 // All scene objects may have attributes. Attributes are extra data (that has a type) that the content author
 // attributed to the scene object.
 //
-// Copyright (c) 2006, 2017, 2023 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2023, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -106,7 +106,7 @@ void tAttribute::Load(const tChunk& attribChunk)
 
 					case tType::Colour:
 					{
-						tColouri val;
+						tColour4b val;
 						chunk.GetItem(val);
 						Value = *((uint32*)(&val));
 						break;

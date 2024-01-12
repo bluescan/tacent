@@ -5,7 +5,7 @@
 // tPicture's constructor if a jpg file is specified. After the array is stolen the tImageJPG is invalid. This is
 // purely for performance.
 //
-// Copyright (c) 2020, 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2020, 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -55,7 +55,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	tImageJPG(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+	tImageJPG(tPixel4* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
 	// Sets from a single frame.
 	tImageJPG(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
@@ -71,7 +71,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	bool Set(tPixel*, int width, int height, bool steal = false) override;
+	bool Set(tPixel4*, int width, int height, bool steal = false) override;
 
 	// Sets from a single frame.
 	bool Set(tFrame*, bool steal = true) override;
@@ -133,9 +133,9 @@ public:
 
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageJPG object is
 	// invalid afterwards.
-	tPixel* StealPixels();
+	tPixel4* StealPixels();
 	tFrame* GetFrame(bool steal = true) override;
-	tPixel* GetPixels() const																							{ return Pixels; }
+	tPixel4* GetPixels() const																							{ return Pixels; }
 	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
 	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 	tColourProfile GetColourProfileSrc() const override																	{ return IsValid() ? tColourProfile::sRGB : tColourProfile::Unspecified; }
@@ -157,7 +157,7 @@ private:
 	tPixelFormat PixelFormatSrc		= tPixelFormat::Invalid;
 	int Width						= 0;
 	int Height						= 0;
-	tPixel* Pixels					= nullptr;
+	tPixel4* Pixels					= nullptr;
 	uint8* MemImage					= nullptr;
 	int MemImageSize				= 0;
 };

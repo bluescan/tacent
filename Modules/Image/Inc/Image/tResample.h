@@ -2,7 +2,7 @@
 //
 // Resample an image using various filers like nearest-neighbour, box, bilinear, and various bicubics.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -78,8 +78,8 @@ extern const char* tResampleEdgeModeNamesSimple[int(tResampleEdgeMode::NumEdgeMo
 // since I'm not sure when this is useful, it is being excluded.
 bool Resample
 (
-	tPixel* src, int srcW, int srcH,
-	tPixel* dst, int dstW, int dstH,
+	tPixel4* src, int srcW, int srcH,
+	tPixel4* dst, int dstW, int dstH,
 	tResampleFilter = tResampleFilter::Bilinear,
 	tResampleEdgeMode = tResampleEdgeMode::Clamp
 );

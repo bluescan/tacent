@@ -2,7 +2,7 @@
 //
 // Abstract base class for all tImageTYPE classes that load and save to a specific format.
 //
-// Copyright (c) 2022 Tristan Grimmer.
+// Copyright (c) 2022, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -31,7 +31,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	virtual bool Set(tPixel* pixels, int width, int height, bool steal = false)		= 0;
+	virtual bool Set(tPixel4* pixels, int width, int height, bool steal = false)	= 0;
 
 	// For multi-frame image types (say an animated webp), the first frame is chosen. The 'steal' bool tells the object
 	// whether it is allowed to take ownership of the supplied frame, or whether it must copy the data out of it.

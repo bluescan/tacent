@@ -5,7 +5,7 @@
 // is less-than or equal to the number of colours available to the palette. Additionally a function to convert from
 // palette/index format back to straght pixels is provided.
 //
-// Copyright (c) 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -23,7 +23,7 @@ namespace tImage {
 
 namespace tQuantize
 {
-	int FindIndexOfExactColour(const tColour3i* searchSpace, int searchSize, const tColour3i& colour);
+	int FindIndexOfExactColour(const tColour3b* searchSpace, int searchSize, const tColour3b& colour);
 }
 
 
@@ -40,7 +40,7 @@ const char* tQuantize::GetMethodName(Method method)
 }
 
 
-int tQuantize::FindIndexOfExactColour(const tColour3i* searchSpace, int searchSize, const tColour3i& colour)
+int tQuantize::FindIndexOfExactColour(const tColour3b* searchSpace, int searchSize, const tColour3b& colour)
 {
 	for (int i = 0; i < searchSize; i++)
 		if (colour == searchSpace[i])
@@ -58,7 +58,7 @@ int tQuantize::FindIndexOfExactColour(const tColour3i* searchSpace, int searchSi
 bool tQuantize::QuantizeImageExact
 (
 	int numColours, int width, int height, const tPixel3* pixels,
-	tColour3i* destPalette, uint8* destIndices
+	tColour3b* destPalette, uint8* destIndices
 )
 {
 	if ((numColours < 2) || (numColours > 256) || (width <= 0) || (height <= 0) || !pixels || !destPalette || !destIndices)
@@ -84,7 +84,7 @@ bool tQuantize::QuantizeImageExact
 		return false;
 
 	// Populate the palette.
-	tStd::tMemset(destPalette, 0, numColours*sizeof(tColour3i));
+	tStd::tMemset(destPalette, 0, numColours*sizeof(tColour3b));
 	int entry = 0;
 	for (auto pair : pixelCountMap)
 		destPalette[entry++] = pair.Key();
@@ -104,7 +104,7 @@ bool tQuantize::QuantizeImageExact
 bool tQuantize::ConvertToPixels
 (
 	tPixel3* destPixels, int width, int height,
-	const tColour3i* srcPalette, const uint8* srcIndices
+	const tColour3b* srcPalette, const uint8* srcIndices
 )
 {
 	if (!destPixels || (width <= 0) || (height <= 0) || !srcPalette || !srcIndices)
@@ -116,7 +116,7 @@ bool tQuantize::ConvertToPixels
 		{
 			int index = x + y*width;
 			int palIndex = srcIndices[index];
-			tColour3i colour = srcPalette[palIndex];
+			tColour3b colour = srcPalette[palIndex];
 			destPixels[index] = colour;
 		}
 	}
@@ -127,8 +127,8 @@ bool tQuantize::ConvertToPixels
 
 bool tQuantize::ConvertToPixels
 (
-	tPixel* destPixels, int width, int height,
-	const tColour3i* srcPalette, const uint8* srcIndices, bool preserveDestAlpha
+	tPixel4* destPixels, int width, int height,
+	const tColour3b* srcPalette, const uint8* srcIndices, bool preserveDestAlpha
 )
 {
 	if (!destPixels || (width <= 0) || (height <= 0) || !srcPalette || !srcIndices)
@@ -140,7 +140,7 @@ bool tQuantize::ConvertToPixels
 		{
 			int index = x + y*width;
 			int palIndex = srcIndices[index];
-			tColour3i colour = srcPalette[palIndex];
+			tColour3b colour = srcPalette[palIndex];
 			if (preserveDestAlpha)
 				destPixels[index].SetRGB(colour.R, colour.G, colour.B);
 			else

@@ -3,7 +3,7 @@
 // This knows how to load/save TIFFs. It knows the details of the tiff file format and loads the data into multiple
 // tPixel arrays, one for each frame (in a TIFF thay are called pages). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2023 Tristan Grimmer.
+// Copyright (c) 2020-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -101,7 +101,7 @@ bool tImageTIFF::Load(const tString& tiffFile)
 		tFrame* frame = new tFrame;
 		frame->Width = width;
 		frame->Height = height;
-		frame->Pixels = new tPixel[width*height];
+		frame->Pixels = new tPixel4[width*height];
 		frame->PixelFormatSrc = tPixelFormat::R8G8B8A8;
 
 		// If duration not set we use a default of 1 second.
@@ -145,7 +145,7 @@ bool tImageTIFF::Set(tList<tFrame>& srcFrames, bool stealFrames)
 }
 
 
-bool tImageTIFF::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImageTIFF::Set(tPixel4* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -183,7 +183,7 @@ bool tImageTIFF::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 

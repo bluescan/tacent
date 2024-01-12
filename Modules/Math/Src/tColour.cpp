@@ -143,19 +143,19 @@ tChannelType tGetChannelType(const char* name)
 
 
 // Uses C++11 aggregate initialization syntax.
-const tColour4i tColour4i::black		= { 0x00, 0x00, 0x00, 0xFF };
-const tColour4i tColour4i::white		= { 0xFF, 0xFF, 0xFF, 0xFF };
-const tColour4i tColour4i::pink			= { 0xFF, 0x80, 0x80, 0xFF };
-const tColour4i tColour4i::red			= { 0xFF, 0x00, 0x00, 0xFF };
-const tColour4i tColour4i::green		= { 0x00, 0xFF, 0x00, 0xFF };
-const tColour4i tColour4i::blue			= { 0x00, 0x00, 0xFF, 0xFF };
-const tColour4i tColour4i::grey			= { 0x80, 0x80, 0x80, 0xFF };
-const tColour4i tColour4i::lightgrey	= { 0xC0, 0xC0, 0xC0, 0xFF };
-const tColour4i tColour4i::darkgrey		= { 0x40, 0x40, 0x40, 0xFF };
-const tColour4i tColour4i::cyan			= { 0x00, 0xFF, 0xFF, 0xFF };
-const tColour4i tColour4i::magenta		= { 0xFF, 0x00, 0xFF, 0xFF };
-const tColour4i tColour4i::yellow		= { 0xFF, 0xFF, 0x00, 0xFF };
-const tColour4i tColour4i::transparent	= { 0x00, 0x00, 0x00, 0x00 };
+const tColour4b tColour4b::black		= { 0x00, 0x00, 0x00, 0xFF };
+const tColour4b tColour4b::white		= { 0xFF, 0xFF, 0xFF, 0xFF };
+const tColour4b tColour4b::pink			= { 0xFF, 0x80, 0x80, 0xFF };
+const tColour4b tColour4b::red			= { 0xFF, 0x00, 0x00, 0xFF };
+const tColour4b tColour4b::green		= { 0x00, 0xFF, 0x00, 0xFF };
+const tColour4b tColour4b::blue			= { 0x00, 0x00, 0xFF, 0xFF };
+const tColour4b tColour4b::grey			= { 0x80, 0x80, 0x80, 0xFF };
+const tColour4b tColour4b::lightgrey	= { 0xC0, 0xC0, 0xC0, 0xFF };
+const tColour4b tColour4b::darkgrey		= { 0x40, 0x40, 0x40, 0xFF };
+const tColour4b tColour4b::cyan			= { 0x00, 0xFF, 0xFF, 0xFF };
+const tColour4b tColour4b::magenta		= { 0xFF, 0x00, 0xFF, 0xFF };
+const tColour4b tColour4b::yellow		= { 0xFF, 0xFF, 0x00, 0xFF };
+const tColour4b tColour4b::transparent	= { 0x00, 0x00, 0x00, 0x00 };
 
 
 const tColour4f tColour4f::invalid		= { -1.0f, -1.0f, -1.0f, -1.0f };
@@ -396,12 +396,12 @@ void tMath::tHSVToRGB(float& r, float& g, float& b, float h, float s, float v, t
 }
 
 
-tColour4i tMath::tGetColour(const char* colourName)
+tColour4b tMath::tGetColour(const char* colourName)
 {
 	tString lowerName(colourName);
 	lowerName.ToLower();
 	uint32 colourHash = tHash::tHashStringFast32(lowerName);
-	tColour4i colour = tColour4i::white;
+	tColour4b colour = tColour4b::white;
 
 	// This switch uses compile-time hashes. Collisions will be automatically detected by the compiler.
 	switch (colourHash)
@@ -415,7 +415,7 @@ tColour4i tMath::tGetColour(const char* colourName)
 }
 
 
-float tMath::tColourDiffRedmean(const tColour3i& aa, const tColour3i& bb)
+float tMath::tColourDiffRedmean(const tColour3b& aa, const tColour3b& bb)
 {
 	tVector3 a; aa.GetDenorm(a);
 	tVector3 b; bb.GetDenorm(b);
@@ -434,7 +434,7 @@ float tMath::tColourDiffRedmean(const tColour3i& aa, const tColour3i& bb)
 }
 
 
-float tMath::tColourDiffRedmean(const tColour4i& aa, const tColour4i& bb)
+float tMath::tColourDiffRedmean(const tColour4b& aa, const tColour4b& bb)
 {
 	tVector3 a; aa.GetDenorm(a);
 	tVector3 b; bb.GetDenorm(b);

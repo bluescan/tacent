@@ -10,7 +10,7 @@
 // The algrithm works well for larger numbers of colours (generally 128 to 256 or 255) but it can handle values as
 // low as 2.
 //
-// Modifications Copyright (c) 2022, 2023 Tristan Grimmer.
+// Modifications Copyright (c) 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -106,7 +106,7 @@ namespace tQuantizeWu
 	void Mark(Box* cube, int label, uint8* tag);
 
 	// By the time this is called all parameters must be valid. It assumes the first 3 arguments are > 0 and the latter 3 non-null.
-	void Quantize(int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices);
+	void Quantize(int numColours, int width, int height, const tPixel3* pixels, tColour3b* destPalette, uint8* destIndices);
 }
 
 
@@ -405,7 +405,7 @@ void tQuantizeWu::Mark(Box* cube, int label, uint8* tag)
 }
 
 
-void tQuantizeWu::Quantize(int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices)
+void tQuantizeWu::Quantize(int numColours, int width, int height, const tPixel3* pixels, tColour3b* destPalette, uint8* destIndices)
 {
 	Box	cube[MaxColour];
 	uint8 lut_r[MaxColour], lut_g[MaxColour], lut_b[MaxColour];
@@ -531,7 +531,7 @@ void tQuantizeWu::Quantize(int numColours, int width, int height, const tPixel3*
 
 bool tQuantizeWu::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices,
+	int numColours, int width, int height, const tPixel3* pixels, tColour3b* destPalette, uint8* destIndices,
 	bool checkExact
 )
 {
@@ -552,7 +552,7 @@ bool tQuantizeWu::QuantizeImage
 
 bool tQuantizeWu::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel* pixels, tColour3i* destPalette, uint8* destIndices,
+	int numColours, int width, int height, const tPixel4* pixels, tColour3b* destPalette, uint8* destIndices,
 	bool checkExact
 )
 {

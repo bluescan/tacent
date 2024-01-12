@@ -4,7 +4,7 @@
 // an exact palettization if the number of unique pixel colours is less-than or equal to the number of colours available
 // to the palette.
 //
-// Copyright (c) 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -25,7 +25,7 @@ namespace tImage {
 
 namespace tQuantizeFixed
 {
-	int FindIndexOfClosestColour_Redmean(const tColour3i* searchSpace, int searchSize, const tColour3i& colour);
+	int FindIndexOfClosestColour_Redmean(const tColour3b* searchSpace, int searchSize, const tColour3b& colour);
 
 	#ifdef QUANTIZE_GENERATE_FIXED_PALETTES
 	// This is the function used to generate the power of 2 palettes (2, 4, 8, 16, 32, 64, 128, and 256 colour).
@@ -64,7 +64,7 @@ void tQuantizeFixed::GenerateFixedPalette(tFileHandle file, int bitsR, int bitsG
 	int numColours = numR * numG * numB;
 
 	tfPrintf(file, "// Generated fixed %d colour palette.\n", numColours);
-	tfPrintf(file, "namespace tQuantizeFixed { tColour3i Palette%d[] =\n", numColours);
+	tfPrintf(file, "namespace tQuantizeFixed { tColour3b Palette%d[] =\n", numColours);
 	tfPrintf(file, "{\n");
 
 	int entriesPerRow = tMath::tMin(numColours, 8);
@@ -103,7 +103,7 @@ void tQuantizeFixed::GenerateFixedPalette(tFileHandle file, int bitsR, int bitsG
 
 
 // Generated fixed 256 colour palette.
-namespace tQuantizeFixed { tColour3i Palette256[] =
+namespace tQuantizeFixed { tColour3b Palette256[] =
 {
 	{ 0x00, 0x00, 0x00 }, { 0x00, 0x24, 0x00 }, { 0x00, 0x48, 0x00 }, { 0x00, 0x6D, 0x00 }, { 0x00, 0x91, 0x00 }, { 0x00, 0xB6, 0x00 }, { 0x00, 0xDA, 0x00 }, { 0x00, 0xFF, 0x00 },
 	{ 0x24, 0x00, 0x00 }, { 0x24, 0x24, 0x00 }, { 0x24, 0x48, 0x00 }, { 0x24, 0x6D, 0x00 }, { 0x24, 0x91, 0x00 }, { 0x24, 0xB6, 0x00 }, { 0x24, 0xDA, 0x00 }, { 0x24, 0xFF, 0x00 },
@@ -140,7 +140,7 @@ namespace tQuantizeFixed { tColour3i Palette256[] =
 }; tStaticAssert(tNumElements(tQuantizeFixed::Palette256) == 256); }
 
 // Generated fixed 128 colour palette.
-namespace tQuantizeFixed { tColour3i Palette128[] =
+namespace tQuantizeFixed { tColour3b Palette128[] =
 {
 	{ 0x00, 0x00, 0x00 }, { 0x00, 0x24, 0x00 }, { 0x00, 0x48, 0x00 }, { 0x00, 0x6D, 0x00 }, { 0x00, 0x91, 0x00 }, { 0x00, 0xB6, 0x00 }, { 0x00, 0xDA, 0x00 }, { 0x00, 0xFF, 0x00 },
 	{ 0x55, 0x00, 0x00 }, { 0x55, 0x24, 0x00 }, { 0x55, 0x48, 0x00 }, { 0x55, 0x6D, 0x00 }, { 0x55, 0x91, 0x00 }, { 0x55, 0xB6, 0x00 }, { 0x55, 0xDA, 0x00 }, { 0x55, 0xFF, 0x00 },
@@ -161,7 +161,7 @@ namespace tQuantizeFixed { tColour3i Palette128[] =
 }; tStaticAssert(tNumElements(tQuantizeFixed::Palette128) == 128); }
 
 // Generated fixed 64 colour palette.
-namespace tQuantizeFixed { tColour3i Palette64[] =
+namespace tQuantizeFixed { tColour3b Palette64[] =
 {
 	{ 0x00, 0x00, 0x00 }, { 0x00, 0x55, 0x00 }, { 0x00, 0xAA, 0x00 }, { 0x00, 0xFF, 0x00 }, { 0x55, 0x00, 0x00 }, { 0x55, 0x55, 0x00 }, { 0x55, 0xAA, 0x00 }, { 0x55, 0xFF, 0x00 },
 	{ 0xAA, 0x00, 0x00 }, { 0xAA, 0x55, 0x00 }, { 0xAA, 0xAA, 0x00 }, { 0xAA, 0xFF, 0x00 }, { 0xFF, 0x00, 0x00 }, { 0xFF, 0x55, 0x00 }, { 0xFF, 0xAA, 0x00 }, { 0xFF, 0xFF, 0x00 },
@@ -174,7 +174,7 @@ namespace tQuantizeFixed { tColour3i Palette64[] =
 }; tStaticAssert(tNumElements(tQuantizeFixed::Palette64) == 64); }
 
 // Generated fixed 32 colour palette.
-namespace tQuantizeFixed { tColour3i Palette32[] =
+namespace tQuantizeFixed { tColour3b Palette32[] =
 {
 	{ 0x00, 0x00, 0x00 }, { 0x00, 0x55, 0x00 }, { 0x00, 0xAA, 0x00 }, { 0x00, 0xFF, 0x00 }, { 0x55, 0x00, 0x00 }, { 0x55, 0x55, 0x00 }, { 0x55, 0xAA, 0x00 }, { 0x55, 0xFF, 0x00 },
 	{ 0xAA, 0x00, 0x00 }, { 0xAA, 0x55, 0x00 }, { 0xAA, 0xAA, 0x00 }, { 0xAA, 0xFF, 0x00 }, { 0xFF, 0x00, 0x00 }, { 0xFF, 0x55, 0x00 }, { 0xFF, 0xAA, 0x00 }, { 0xFF, 0xFF, 0x00 },
@@ -183,32 +183,32 @@ namespace tQuantizeFixed { tColour3i Palette32[] =
 }; tStaticAssert(tNumElements(tQuantizeFixed::Palette32) == 32); }
 
 // Generated fixed 16 colour palette.
-namespace tQuantizeFixed { tColour3i Palette16[] =
+namespace tQuantizeFixed { tColour3b Palette16[] =
 {
 	{ 0x00, 0x00, 0x00 }, { 0x00, 0x55, 0x00 }, { 0x00, 0xAA, 0x00 }, { 0x00, 0xFF, 0x00 }, { 0xFF, 0x00, 0x00 }, { 0xFF, 0x55, 0x00 }, { 0xFF, 0xAA, 0x00 }, { 0xFF, 0xFF, 0x00 },
 	{ 0x00, 0x00, 0xFF }, { 0x00, 0x55, 0xFF }, { 0x00, 0xAA, 0xFF }, { 0x00, 0xFF, 0xFF }, { 0xFF, 0x00, 0xFF }, { 0xFF, 0x55, 0xFF }, { 0xFF, 0xAA, 0xFF }, { 0xFF, 0xFF, 0xFF }
 }; tStaticAssert(tNumElements(tQuantizeFixed::Palette16) == 16); }
 
 // Generated fixed 8 colour palette.
-namespace tQuantizeFixed { tColour3i Palette8[] =
+namespace tQuantizeFixed { tColour3b Palette8[] =
 {
 	{ 0x00, 0x00, 0x00 }, { 0x00, 0xFF, 0x00 }, { 0xFF, 0x00, 0x00 }, { 0xFF, 0xFF, 0x00 }, { 0x00, 0x00, 0xFF }, { 0x00, 0xFF, 0xFF }, { 0xFF, 0x00, 0xFF }, { 0xFF, 0xFF, 0xFF }
 }; tStaticAssert(tNumElements(tQuantizeFixed::Palette8) == 8); }
 
 // Generated fixed 4 colour palette.
-namespace tQuantizeFixed { tColour3i Palette4[] =
+namespace tQuantizeFixed { tColour3b Palette4[] =
 {
 	{ 0x00, 0x00, 0x00 }, { 0x00, 0xFF, 0x00 }, { 0xFF, 0x00, 0x00 }, { 0xFF, 0xFF, 0xFF }
 }; tStaticAssert(tNumElements(tQuantizeFixed::Palette4) == 4); }
 
 // Generated fixed 2 colour palette.
-namespace tQuantizeFixed { tColour3i Palette2[] =
+namespace tQuantizeFixed { tColour3b Palette2[] =
 {
 	{ 0x00, 0x00, 0x00 }, { 0xFF, 0xFF, 0xFF }
 }; tStaticAssert(tNumElements(tQuantizeFixed::Palette2) == 2); }
 
 
-int tQuantizeFixed::FindIndexOfClosestColour_Redmean(const tColour3i* searchSpace, int searchSize, const tColour3i& colour)
+int tQuantizeFixed::FindIndexOfClosestColour_Redmean(const tColour3b* searchSpace, int searchSize, const tColour3b& colour)
 {
 	float closest = 1000.0f;
 	int closestIndex = -1;
@@ -233,7 +233,7 @@ int tQuantizeFixed::FindIndexOfClosestColour_Redmean(const tColour3i* searchSpac
 
 bool tQuantizeFixed::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices,
+	int numColours, int width, int height, const tPixel3* pixels, tColour3b* destPalette, uint8* destIndices,
 	bool checkExact
 )
 {
@@ -292,7 +292,7 @@ bool tQuantizeFixed::QuantizeImage
 		numSkipped++;
 	}
 
-	tColour3i* srcPalette = nullptr;
+	tColour3b* srcPalette = nullptr;
 	switch (tableSize)
 	{
 		case 2:		srcPalette = Palette2;		break;
@@ -331,7 +331,7 @@ bool tQuantizeFixed::QuantizeImage
 
 bool tQuantizeFixed::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel* pixels, tColour3i* destPalette, uint8* destIndices,
+	int numColours, int width, int height, const tPixel4* pixels, tColour3b* destPalette, uint8* destIndices,
 	bool checkExact
 )
 {

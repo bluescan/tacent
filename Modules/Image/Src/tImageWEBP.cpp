@@ -3,7 +3,7 @@
 // This knows how to load/save WebPs. It knows the details of the webp file format and loads the data into multiple
 // tPixel arrays, one for each frame (WebPs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2023 Tristan Grimmer.
+// Copyright (c) 2020-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -70,7 +70,7 @@ bool tImageWEBP::Load(const tString& webpFile)
 
 	// We start by creatng the initial canvas in memory set to the background colour.
 	// This is our 'working area' where we copy the individual frames out if.
-	tPixel* canvas = new tPixel[canvasWidth*canvasHeight];
+	tPixel4* canvas = new tPixel4[canvasWidth*canvasHeight];
 	for (int p = 0; p < canvasWidth*canvasHeight; p++)
 		canvas[p] = BackgroundColour;
 
@@ -118,7 +118,7 @@ bool tImageWEBP::Load(const tString& webpFile)
 				PixelFormatSrc = tPixelFormat::R8G8B8A8;
 			newFrame->Width = canvasWidth;
 			newFrame->Height = canvasHeight;
-			newFrame->Pixels = new tPixel[newFrame->Width * newFrame->Height];
+			newFrame->Pixels = new tPixel4[newFrame->Width * newFrame->Height];
 			newFrame->Duration = float(iter.duration) / 1000.0f;
 
 			// Next we need to grab the decoded pixels (which may be a sub-region of the canvas) and stick them in the canvas.
@@ -128,7 +128,7 @@ bool tImageWEBP::Load(const tString& webpFile)
 				blend = true;
 
 			// The flip flag doesn't fix the offsets for WebP so we need the canvasHeight - iter.y_offset - frameHeight.
-			bool copied = CopyRegion(canvas, canvasWidth, canvasHeight, (tPixel*)config.output.u.RGBA.rgba, fragWidth, fragHeight, iter.x_offset, canvasHeight - iter.y_offset - fragHeight, blend);
+			bool copied = CopyRegion(canvas, canvasWidth, canvasHeight, (tPixel4*)config.output.u.RGBA.rgba, fragWidth, fragHeight, iter.x_offset, canvasHeight - iter.y_offset - fragHeight, blend);
 			if (!copied)
 			{
 				delete newFrame;
@@ -136,7 +136,7 @@ bool tImageWEBP::Load(const tString& webpFile)
 			}
 
 			// Now the canvas is updated. Put the canvas in the new frame.
-			tStd::tMemcpy(newFrame->Pixels, canvas, canvasWidth * canvasHeight * sizeof(tPixel));
+			tStd::tMemcpy(newFrame->Pixels, canvas, canvasWidth * canvasHeight * sizeof(tPixel4));
 
 			WebPFreeDecBuffer(&config.output);
 			Frames.Append(newFrame);
@@ -154,7 +154,7 @@ bool tImageWEBP::Load(const tString& webpFile)
 }
 
 
-bool tImageWEBP::CopyRegion(tPixel* dst, int dstW, int dstH, tPixel* src, int srcW, int srcH, int offsetX, int offsetY, bool blend)
+bool tImageWEBP::CopyRegion(tPixel4* dst, int dstW, int dstH, tPixel4* src, int srcW, int srcH, int offsetX, int offsetY, bool blend)
 {
 	// Do nothing if anything wrong.
 	if (!dst || !src || (dstW*dstH <= 0) || (srcW*srcH <= 0))
@@ -170,18 +170,18 @@ bool tImageWEBP::CopyRegion(tPixel* dst, int dstW, int dstH, tPixel* src, int sr
 	for (int sy = 0; sy < srcH; sy++)
 	{
 		int rowWidth = srcW;
-		tPixel* dstRow = dst + ((offsetY+sy)*dstW + offsetX);
-		tPixel* srcRow = src + (sy*srcW);
+		tPixel4* dstRow = dst + ((offsetY+sy)*dstW + offsetX);
+		tPixel4* srcRow = src + (sy*srcW);
 		for (int sx = 0; sx < rowWidth; sx++)
 		{
 			if (blend)
 			{
-				tColourf scol(srcRow[sx]);
-				tColourf dcol(dstRow[sx]);
+				tColour4f scol(srcRow[sx]);
+				tColour4f dcol(dstRow[sx]);
 				float alpha = scol.A;
 				float oneMinusAlpha = 1.0f - alpha;
 
-				tColourf pixelCol = scol;
+				tColour4f pixelCol = scol;
 				pixelCol.R = pixelCol.R*alpha + dcol.R*oneMinusAlpha;
 				pixelCol.G = pixelCol.G*alpha + dcol.G*oneMinusAlpha;
 				pixelCol.B = pixelCol.B*alpha + dcol.B*oneMinusAlpha;
@@ -222,7 +222,7 @@ bool tImageWEBP::Set(tList<tFrame>& srcFrames, bool stealFrames)
 }
 
 
-bool tImageWEBP::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImageWEBP::Set(tPixel4* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -260,7 +260,7 @@ bool tImageWEBP::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -337,7 +337,7 @@ bool tImageWEBP::Save(const tString& webpFile, const SaveParams& params) const
 		//tFrame* frame = Frames.Head();
 		pic.width = normFrame.Width;
 		pic.height = normFrame.Height;
-		success = WebPPictureImportRGBA(&pic, (uint8*)normFrame.Pixels, normFrame.Width*sizeof(tPixel));
+		success = WebPPictureImportRGBA(&pic, (uint8*)normFrame.Pixels, normFrame.Width*sizeof(tPixel4));
 		if (!success)
 			continue;
 

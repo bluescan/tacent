@@ -4,7 +4,7 @@
 // tPicture's constructor if a targa file is specified. After the array is stolen the tImageTGA is invalid. This is
 // purely for performance.
 //
-// Copyright (c) 2006, 2017, 2019, 2020, 2023 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020, 2023, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -108,7 +108,7 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 	const uint8* endData = tgaFileInMemory + numBytes;
 
 	int numPixels = Width * Height;
-	Pixels = new tPixel[numPixels];
+	Pixels = new tPixel4[numPixels];
 
 	// Read the image data.
 	int bytesPerPixel = bitDepth >> 3;
@@ -133,7 +133,7 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 				uint8 rleChunk = srcData[0] & 0x80;
 				srcData += 1;
 
-				tColouri firstColour;
+				tColour4b firstColour;
 				ReadColourBytes(firstColour, srcData, bytesPerPixel);
 				Pixels[pixel] = firstColour;
 				pixel++;
@@ -193,7 +193,7 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 }
 
 
-void tImageTGA::ReadColourBytes(tColouri& dest, const uint8* src, int bytesPerPixel)
+void tImageTGA::ReadColourBytes(tColour4b& dest, const uint8* src, int bytesPerPixel)
 {
 	switch (bytesPerPixel)
 	{
@@ -225,7 +225,7 @@ void tImageTGA::ReadColourBytes(tColouri& dest, const uint8* src, int bytesPerPi
 }
 
 
-bool tImageTGA::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImageTGA::Set(tPixel4* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -240,8 +240,8 @@ bool tImageTGA::Set(tPixel* pixels, int width, int height, bool steal)
 	}
 	else
 	{
-		Pixels = new tPixel[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
+		Pixels = new tPixel4[Width*Height];
+		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4));
 	}
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
@@ -269,7 +269,7 @@ bool tImageTGA::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -381,7 +381,7 @@ bool tImageTGA::SaveUncompressed(const tString& tgaFile, tFormat format) const
 	int numPixels = Width*Height;
 	for (int p = 0; p < numPixels; p++)
 	{
-		tPixel& pixel = Pixels[p];
+		tPixel4& pixel = Pixels[p];
 		tPutc(pixel.B, file);
 		tPutc(pixel.G, file);
 		tPutc(pixel.R, file);
@@ -444,7 +444,7 @@ bool tImageTGA::SaveCompressed(const tString& tgaFile, tFormat format) const
 	while (index < numPixels)
 	{
 		bool rlePacket = false;
-		tPixel& pixelColour = Pixels[index];
+		tPixel4& pixelColour = Pixels[index];
 
 		// Note that we process alphas as zeros if we are writing 24bits only. This ensures the colour comparisons work
 		// properly -- we ignore alpha. Zero is used because the uint32 colour values are initialized to all 0s.
@@ -458,7 +458,7 @@ bool tImageTGA::SaveCompressed(const tString& tgaFile, tFormat format) const
 		// as the first bit of the count is used for the packet type.
 		while (index + rleCount < numPixels)
 		{
-			tPixel& nextPixelColour = Pixels[index+rleCount];
+			tPixel4& nextPixelColour = Pixels[index+rleCount];
 			uint8 alp = (bytesPerPixel == 4) ? nextPixelColour.A : 0;
 			uint32 nextCol = nextPixelColour.B + (nextPixelColour.G << 8) + (nextPixelColour.R << 16) + (alp << 24);
 
@@ -480,7 +480,7 @@ bool tImageTGA::SaveCompressed(const tString& tgaFile, tFormat format) const
 			rleCount = 1;
 			while (index + rleCount < numPixels)
 			{
-				tPixel& nextPixelColour = Pixels[index+rleCount];
+				tPixel4& nextPixelColour = Pixels[index+rleCount];
 				uint8 alp = (bytesPerPixel == 4) ? nextPixelColour.A : 0;
 				uint32 nextCol = nextPixelColour.B + (nextPixelColour.G << 8) + (nextPixelColour.R << 16) + (alp << 24);
 
@@ -527,9 +527,9 @@ bool tImageTGA::IsOpaque() const
 }
 
 
-tPixel* tImageTGA::StealPixels()
+tPixel4* tImageTGA::StealPixels()
 {
-	tPixel* pixels = Pixels;
+	tPixel4* pixels = Pixels;
 	Pixels = nullptr;
 	Width = 0;
 	Height = 0;

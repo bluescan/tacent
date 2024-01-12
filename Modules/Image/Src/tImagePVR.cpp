@@ -5,7 +5,7 @@
 // tImagePVR so that excessive memcpys are avoided. After they are stolen the tImagePVR is invalid. The tImagePVR
 // class supports V1, V2, and V3 pvr files.
 //
-// Copyright (c) 2023 Tristan Grimmer.
+// Copyright (c) 2023, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -605,15 +605,15 @@ void tPVR::Flip(tLayer* layer, bool horizontal)
 
 	int w = layer->Width;
 	int h = layer->Height;
-	tPixel* srcPixels = (tPixel*)layer->Data;
-	tPixel* newPixels = new tPixel[w*h];
+	tPixel4* srcPixels = (tPixel4*)layer->Data;
+	tPixel4* newPixels = new tPixel4[w*h];
 
 	for (int y = 0; y < h; y++)
 		for (int x = 0; x < w; x++)
 			newPixels[ GetIndex(x, y, w, h) ] = srcPixels[ GetIndex(horizontal ? w-1-x : x, horizontal ? y : h-1-y, w, h) ];
 
 	// We modify the existing data just in case layer doesn't own it.
-	tStd::tMemcpy(layer->Data, newPixels, w*h*sizeof(tPixel));
+	tStd::tMemcpy(layer->Data, newPixels, w*h*sizeof(tPixel4));
 	delete[] newPixels;
 }
 
@@ -652,7 +652,7 @@ void tImagePVR::Clear()
 }
 
 
-bool tImagePVR::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImagePVR::Set(tPixel4* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -690,7 +690,7 @@ bool tImagePVR::Set(tFrame* frame, bool steal)
 	if (!frame || !frame->IsValid())
 		return false;
 
-	tPixel* pixels = frame->GetPixels(steal);
+	tPixel4* pixels = frame->GetPixels(steal);
 	Set(pixels, frame->Width, frame->Height, steal);
 	if (steal)
 		delete frame;
@@ -705,7 +705,7 @@ bool tImagePVR::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -1101,16 +1101,16 @@ tLayer* tImagePVR::CreateNewLayer(const LoadParams& params, const uint8* srcPixe
 	// Decode to 32-bit RGBA.
 	bool didRowReversalAfterDecode = false;
 
-	// At the end of decoding _either_ decoded4i _or_ decoded4f will be valid, not both.
-	// The decoded4i format used for LDR images.
+	// At the end of decoding _either_ decoded4b _or_ decoded4f will be valid, not both.
+	// The decoded4b format used for LDR images.
 	// The decoded4f format used for HDR images.
-	tColour4i* decoded4i = nullptr;
+	tColour4b* decoded4b = nullptr;
 	tColour4f* decoded4f = nullptr;
 	tAssert(layer->GetDataSize() == numBytes);
 	DecodeResult result = DecodePixelData
 	(
 		layer->PixelFormat, layer->Data, numBytes,
-		width, height, decoded4i, decoded4f, tColourProfile::Auto, params.MaxRange
+		width, height, decoded4b, decoded4f, tColourProfile::Auto, params.MaxRange
 	);
 
 	if (result != DecodeResult::Success)
@@ -1128,7 +1128,7 @@ tLayer* tImagePVR::CreateNewLayer(const LoadParams& params, const uint8* srcPixe
 	}
 
 	// Apply any decode flags.
-	tAssert(decoded4f || decoded4i);
+	tAssert(decoded4f || decoded4b);
 	bool flagTone = (params.Flags & tImagePVR::LoadFlag_ToneMapExposure) ? true : false;
 	bool flagSRGB = (params.Flags & tImagePVR::LoadFlag_SRGBCompression) ? true : false;
 	bool flagGama = (params.Flags & tImagePVR::LoadFlag_GammaCompression)? true : false;
@@ -1145,18 +1145,18 @@ tLayer* tImagePVR::CreateNewLayer(const LoadParams& params, const uint8* srcPixe
 				colour.LinearToGamma(params.Gamma, tCompBit_RGB);
 		}
 	}
-	if (decoded4i && (flagSRGB || flagGama))
+	if (decoded4b && (flagSRGB || flagGama))
 	{
 		for (int p = 0; p < width*height; p++)
 		{
-			tColour4f colour(decoded4i[p]);
+			tColour4f colour(decoded4b[p]);
 			if (flagSRGB)
 				colour.LinearToSRGB(tCompBit_RGB);
 			if (flagGama)
 				colour.LinearToGamma(params.Gamma, tCompBit_RGB);
-			decoded4i[p].SetR(colour.R);
-			decoded4i[p].SetG(colour.G);
-			decoded4i[p].SetB(colour.B);
+			decoded4b[p].SetR(colour.R);
+			decoded4b[p].SetG(colour.G);
+			decoded4b[p].SetB(colour.B);
 		}
 	}
 
@@ -1165,10 +1165,10 @@ tLayer* tImagePVR::CreateNewLayer(const LoadParams& params, const uint8* srcPixe
 	delete[] layer->Data;
 	if (decoded4f)
 	{
-		tAssert(!decoded4i);
-		decoded4i = new tColour4i[width*height];
+		tAssert(!decoded4b);
+		decoded4b = new tColour4b[width*height];
 		for (int p = 0; p < width*height; p++)
-			decoded4i[p].Set(decoded4f[p]);
+			decoded4b[p].Set(decoded4f[p]);
 		delete[] decoded4f;
 	}
 
@@ -1177,12 +1177,12 @@ tLayer* tImagePVR::CreateNewLayer(const LoadParams& params, const uint8* srcPixe
 	{
 		for (int p = 0; p < width*height; p++)
 		{
-			decoded4i[p].G = decoded4i[p].R;
-			decoded4i[p].B = decoded4i[p].R;
+			decoded4b[p].G = decoded4b[p].R;
+			decoded4b[p].B = decoded4b[p].R;
 		}
 	}
 
-	layer->Data = (uint8*)decoded4i;
+	layer->Data = (uint8*)decoded4b;
 	layer->PixelFormat = tPixelFormat::R8G8B8A8;
 
 	// We've got one more chance to reverse the rows here (if we still need to) because we were asked to decode.
@@ -1275,14 +1275,14 @@ tFrame* tImagePVR::GetFrame(bool steal)
 
 	if (steal)
 	{
-		frame->Pixels = (tPixel*)layer->StealData();
+		frame->Pixels = (tPixel4*)layer->StealData();
 		delete layer;
 		Layers[ LayerIdx(0) ] = nullptr;
 	}
 	else
 	{
-		frame->Pixels = new tPixel[frame->Width * frame->Height];
-		tStd::tMemcpy(frame->Pixels, (tPixel*)layer->Data, frame->Width * frame->Height * sizeof(tPixel));
+		frame->Pixels = new tPixel4[frame->Width * frame->Height];
+		tStd::tMemcpy(frame->Pixels, (tPixel4*)layer->Data, frame->Width * frame->Height * sizeof(tPixel4));
 	}
 
 	return frame;

@@ -4,7 +4,7 @@
 // by the tPicture's constructor if a targa file is specified. After the array is stolen the tImageQOI is invalid. This
 // is purely for performance.
 //
-// Copyright (c) 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -64,7 +64,7 @@ bool tImageQOI::Load(const uint8* qoiFileInMemory, int numBytes)
 	tAssert((Width > 0) && (Height > 0));
 
 	// Reverse rows.
-	Pixels = new tPixel[Width*Height];
+	Pixels = new tPixel4[Width*Height];
 	int bytesPerRow = Width*4;
 	for (int y = Height-1; y >= 0; y--)
 		tStd::tMemcpy((uint8*)Pixels + ((Height-1)-y)*bytesPerRow, (uint8*)reversedPixels + y*bytesPerRow, bytesPerRow);
@@ -74,7 +74,7 @@ bool tImageQOI::Load(const uint8* qoiFileInMemory, int numBytes)
 }
 
 
-bool tImageQOI::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImageQOI::Set(tPixel4* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -89,8 +89,8 @@ bool tImageQOI::Set(tPixel* pixels, int width, int height, bool steal)
 	}
 	else
 	{
-		Pixels = new tPixel[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
+		Pixels = new tPixel4[Width*Height];
+		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4));
 	}
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
@@ -119,7 +119,7 @@ bool tImageQOI::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -188,7 +188,7 @@ tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, const SaveParams& par
 	qoiDesc.width		= Width;
 
 	// No matter the format, we need to reverse the rows before saving.
-	tPixel* reversedRows = new tPixel[Width*Height];
+	tPixel4* reversedRows = new tPixel4[Width*Height];
 	int bytesPerRow = Width*4;
 	for (int y = Height-1; y >= 0; y--)
 		tStd::tMemcpy((uint8*)reversedRows + ((Height-1)-y)*bytesPerRow, (uint8*)Pixels + y*bytesPerRow, bytesPerRow);
@@ -245,9 +245,9 @@ bool tImageQOI::IsOpaque() const
 }
 
 
-tPixel* tImageQOI::StealPixels()
+tPixel4* tImageQOI::StealPixels()
 {
-	tPixel* pixels = Pixels;
+	tPixel4* pixels = Pixels;
 	Pixels = nullptr;
 	Width = 0;
 	Height = 0;

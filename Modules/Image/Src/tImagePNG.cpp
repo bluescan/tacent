@@ -90,7 +90,7 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 	Height = pngImage.height;
 
 	int numPixels = Width * Height;
-	tPixel* reversedPixels = new tPixel[numPixels];
+	tPixel4* reversedPixels = new tPixel4[numPixels];
 	successCode = png_image_finish_read(&pngImage, nullptr, (uint8*)reversedPixels, 0, nullptr);
 	if (!successCode)
 	{
@@ -101,7 +101,7 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 	}
 
 	// Reverse rows.
-	Pixels = new tPixel[numPixels];
+	Pixels = new tPixel4[numPixels];
 	int bytesPerRow = Width*4;
 	for (int y = Height-1; y >= 0; y--)
 		tStd::tMemcpy((uint8*)Pixels + ((Height-1)-y)*bytesPerRow, (uint8*)reversedPixels + y*bytesPerRow, bytesPerRow);
@@ -111,7 +111,7 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 }
 
 
-bool tImagePNG::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImagePNG::Set(tPixel4* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -125,8 +125,8 @@ bool tImagePNG::Set(tPixel* pixels, int width, int height, bool steal)
 	}
 	else
 	{
-		Pixels = new tPixel[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
+		Pixels = new tPixel4[Width*Height];
+		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4));
 	}
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
@@ -154,7 +154,7 @@ bool tImagePNG::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -339,9 +339,9 @@ bool tImagePNG::IsOpaque() const
 }
 
 
-tPixel* tImagePNG::StealPixels()
+tPixel4* tImagePNG::StealPixels()
 {
-	tPixel* pixels = Pixels;
+	tPixel4* pixels = Pixels;
 	Pixels = nullptr;
 	Width = 0;
 	Height = 0;

@@ -2,7 +2,7 @@
 //
 // Helper functions for manipulating and parsing pixel-data in packed and compressed block formats.
 //
-// Copyright (c) 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -20,7 +20,7 @@ namespace tImage
 {
 
 
-// Given a pixel-format, pixel-data, and dimensions, this function decodes it into either an LDR buffer of tColour4i's
+// Given a pixel-format, pixel-data, and dimensions, this function decodes it into either an LDR buffer of tColour4b's
 // or an HDR buffer of tColour4f's. If Success returned, the function populates a width*height array of tColours in
 // either the dstLDR or dstHRD pointers you passed in. These decode buffers are now owned by you and you must delete[]
 // them. Depending on the pixel format, either LDR or HDR buffers will be populated, but not both. For safety, this
@@ -41,17 +41,17 @@ enum class DecodeResult
 DecodeResult DecodePixelData
 (
 	tPixelFormat, const uint8* data, int dataSize, int width, int height,
-	tColour4i*& dstLDR, tColour4f*& dstHDR,
+	tColour4b*& dstLDR, tColour4f*& dstHDR,
 	tColourProfile = tColourProfile::Auto,		// Only used for ASTC decodes.
 	float RGBM_RGBD_MaxRange = 8.0f				// Only used or RGBM and RGBD decodes.
 );
 
 
 // These do the same as above except for a subset of pixel formats. The above function ends up calling one of these.
-DecodeResult DecodePixelData_Packed	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4i*&, tColour4f*&, float RGBM_RGBD_MaxRange = 8.0f);
-DecodeResult DecodePixelData_Block	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4i*&, tColour4f*&);
+DecodeResult DecodePixelData_Packed	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4b*&, tColour4f*&, float RGBM_RGBD_MaxRange = 8.0f);
+DecodeResult DecodePixelData_Block	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4b*&, tColour4f*&);
 DecodeResult DecodePixelData_ASTC	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4f*&, tColourProfile = tColourProfile::Auto);
-DecodeResult DecodePixelData_PVR	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4i*&, tColour4f*&);
+DecodeResult DecodePixelData_PVR	(tPixelFormat, const uint8* data, int dataSize, int w, int h, tColour4b*&, tColour4f*&);
 
 
 constexpr uint32 FourCC(uint8 ch0, uint8 ch1, uint8 ch2, uint8 ch3);

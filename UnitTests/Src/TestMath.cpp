@@ -2,7 +2,7 @@
 //
 // Math module tests.
 //
-// Copyright (c) 2017, 2019-2021, 2023 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2021, 2023, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -586,8 +586,8 @@ tTestUnit(Geometry)
 
 tTestUnit(Colour)
 {
-	tColouri a = tColouri::black;
-	tColouri b = tColouri::white;
+	tColour4b a = tColour4b::black;
+	tColour4b b = tColour4b::white;
 	float colDiffLinSq = tColourDiffEuclideanSq(a, b);
 	tPrintf("Colour Diff (black white) Euclidean Squared: %f\n", colDiffLinSq);
 	float colDiffLin = tColourDiffEuclidean(a, b);
@@ -596,8 +596,8 @@ tTestUnit(Colour)
 	tPrintf("Colour Diff (black white) Redmean: %f\n", colDiffRedmean);
 	tRequire(colDiffLinSq >= colDiffLin);
 
-	a = tColouri::grey;
-	b = tColouri::cyan;
+	a = tColour4b::grey;
+	b = tColour4b::cyan;
 	colDiffLinSq = tColourDiffEuclideanSq(a, b);
 	tPrintf("Colour Diff (grey cyan) Euclidean Squared: %f\n", colDiffLinSq);
 	colDiffLin = tColourDiffEuclidean(a, b);
@@ -606,8 +606,8 @@ tTestUnit(Colour)
 	tPrintf("Colour Diff (grey cyan) Redmean: %f\n", colDiffRedmean);
 	tRequire(colDiffLinSq >= colDiffLin);
 
-	a = tColouri::yellow;
-	b = tColouri::yellow;
+	a = tColour4b::yellow;
+	b = tColour4b::yellow;
 	colDiffLinSq = tColourDiffEuclideanSq(a, b);
 	tPrintf("Colour Diff (yellow yellow) Euclidean Squared: %f\n", colDiffLinSq);
 	colDiffLin = tColourDiffEuclidean(a, b);

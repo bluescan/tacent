@@ -7,7 +7,7 @@
 // b) Supports embedded png images.
 // c) Supports widths and heights of 256.
 //
-// Copyright (c) 2020-2023 Tristan Grimmer.
+// Copyright (c) 2020-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -130,7 +130,7 @@ bool tImage::tImageICO::Set(tList<tFrame>& srcFrames, bool stealFrames)
 }
 
 
-bool tImageICO::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImageICO::Set(tPixel4* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -167,7 +167,7 @@ bool tImageICO::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -243,7 +243,7 @@ tFrame* tImageICO::CreateFrame(const uint8* cursor, int width, int height, int n
 		height = pngImage.GetHeight();
 		tAssert((width > 0) && (height > 0));
 
-		tPixel* pixels = pngImage.StealPixels();
+		tPixel4* pixels = pngImage.StealPixels();
 		bool isOpaque = pngImage.IsOpaque();
 		
 		tFrame* newFrame = new tFrame;
@@ -260,7 +260,7 @@ tFrame* tImageICO::CreateFrame(const uint8* cursor, int width, int height, int n
 	cursor += 40;
 	int numPixels = width * height;
 	
-	tPixel* pixels = new tPixel[numPixels];
+	tPixel4* pixels = new tPixel4[numPixels];
 	uint8* image = (uint8*)pixels;
 	tPixelFormat srcPixelFormat = tPixelFormat::Invalid;
 	

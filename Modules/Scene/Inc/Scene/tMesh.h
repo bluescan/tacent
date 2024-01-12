@@ -2,7 +2,7 @@
 //
 // This file implements a mesh. A tMesh is not a tObject, but rather a member of a tPolyModel.
 //
-// Copyright (c) 2006, 2017, 2023 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2023, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -150,11 +150,11 @@ public:
 
 	void SetNumVertColours(int numVertColours)																			{ NumVertColours = numVertColours; }
 	int GetNumVertColours() const																						{ return NumVertColours; }
-	int FindVertColourIndex(const tColouri& colour) const																{ for (int c = 0; c < NumVertColours; c++) if (VertTableColours[c] == colour) return c; return -1; }
-	void CreateVertTableColours()																						{ DestroyVertTableColours(); if (NumVertColours) VertTableColours = new tColouri[NumVertColours]; }
+	int FindVertColourIndex(const tColour4b& colour) const																{ for (int c = 0; c < NumVertColours; c++) if (VertTableColours[c] == colour) return c; return -1; }
+	void CreateVertTableColours()																						{ DestroyVertTableColours(); if (NumVertColours) VertTableColours = new tColour4b[NumVertColours]; }
 	void DestroyVertTableColours()																						{ delete[] VertTableColours; VertTableColours = nullptr; }
 	int NumVertColours;
-	tColouri* VertTableColours = nullptr;
+	tColour4b* VertTableColours = nullptr;
 
 	void SetNumVertTangents(int numVertTangents)																		{ NumVertTangents = numVertTangents; }
 	int GetNumVertTangents() const																						{ return NumVertTangents; }

@@ -10,7 +10,7 @@
 // colours. The official name of this algorith is 'scolorq'. Running on colours more than 32 takes a LONG time.
 // See https://github.com/samhocevar/scolorq/blob/master/spatial_color_quant.cpp
 //
-// Modifications Copyright (c) 2022, 2023 Tristan Grimmer.
+// Modifications Copyright (c) 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -837,7 +837,7 @@ double tQuantizeSpatial::ComputeBaseDither(int width, int height, int numColours
 
 bool tQuantizeSpatial::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel3* pixels, tColour3i* destPalette, uint8* destIndices,
+	int numColours, int width, int height, const tPixel3* pixels, tColour3b* destPalette, uint8* destIndices,
 	bool checkExact, double ditherLevel, int filterSize
 )
 {
@@ -939,7 +939,7 @@ bool tQuantizeSpatial::QuantizeImage
 
 bool tQuantizeSpatial::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel* pixels, tColour3i* destPalette, uint8* destIndices,
+	int numColours, int width, int height, const tPixel4* pixels, tColour3b* destPalette, uint8* destIndices,
 	bool checkExact, double ditherLevel, int filterSize
 )
 {

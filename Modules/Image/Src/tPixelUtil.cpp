@@ -2,7 +2,7 @@
 //
 // Helper functions for manipulating and parsing pixel-data in packed and compressed block formats.
 //
-// Copyright (c) 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -59,9 +59,9 @@ namespace tImage
 }
 
 
-tImage::DecodeResult tImage::DecodePixelData(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4i*& decoded4i, tColour4f*& decoded4f, tColourProfile profile, float RGBM_RGBD_MaxRange)
+tImage::DecodeResult tImage::DecodePixelData(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4b*& decoded4b, tColour4f*& decoded4f, tColourProfile profile, float RGBM_RGBD_MaxRange)
 {
-	if (decoded4i || decoded4f)
+	if (decoded4b || decoded4f)
 		return DecodeResult::BuffersNotClear;
 
 	if (!tIsPackedFormat(fmt) && !tIsBCFormat(fmt) && !tIsASTCFormat(fmt) && !tIsPVRFormat(fmt))
@@ -72,11 +72,11 @@ tImage::DecodeResult tImage::DecodePixelData(tPixelFormat fmt, const uint8* src,
 
 	if (tImage::tIsPackedFormat(fmt))
 	{
-		return DecodePixelData_Packed(fmt, src, srcSize, w, h, decoded4i, decoded4f, RGBM_RGBD_MaxRange);
+		return DecodePixelData_Packed(fmt, src, srcSize, w, h, decoded4b, decoded4f, RGBM_RGBD_MaxRange);
 	}
 	else if (tImage::tIsBCFormat(fmt))
 	{
-		return DecodePixelData_Block(fmt, src, srcSize, w, h, decoded4i, decoded4f);
+		return DecodePixelData_Block(fmt, src, srcSize, w, h, decoded4b, decoded4f);
 	}
 	else if (tImage::tIsASTCFormat(fmt))
 	{
@@ -84,7 +84,7 @@ tImage::DecodeResult tImage::DecodePixelData(tPixelFormat fmt, const uint8* src,
 	}
 	else if (tImage::tIsPVRFormat(fmt))
 	{
-		return DecodePixelData_PVR(fmt, src, srcSize, w, h, decoded4i, decoded4f);
+		return DecodePixelData_PVR(fmt, src, srcSize, w, h, decoded4b, decoded4f);
 	}
 	else // Unsupported PixelFormat
 	{
@@ -95,9 +95,9 @@ tImage::DecodeResult tImage::DecodePixelData(tPixelFormat fmt, const uint8* src,
 }
 
 
-tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4i*& decoded4i, tColour4f*& decoded4f, float RGBM_RGBD_MaxRange)
+tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4b*& decoded4b, tColour4f*& decoded4f, float RGBM_RGBD_MaxRange)
 {
-	if (decoded4i || decoded4f)
+	if (decoded4b || decoded4f)
 		return DecodeResult::BuffersNotClear;
 
 	if (!tIsPackedFormat(fmt))
@@ -110,11 +110,11 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 	{
 		case tPixelFormat::A8:
 			// Convert to 32-bit RGBA with alpha in A and 0s for RGB.
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			for (int ij = 0; ij < w*h; ij++)
 			{
-				tColour4i col(0u, 0u, 0u, src[ij]);
-				decoded4i[ij].Set(col);
+				tColour4b col(0u, 0u, 0u, src[ij]);
+				decoded4b[ij].Set(col);
 			}
 			break;
 
@@ -123,62 +123,62 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 		{
 			// Convert to 32-bit RGBA with red or luminance in R and 255 for A. If SpreadLuminance flag set,
 			// also set luminance or red in the GB channels, if not then GB get 0s.
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			for (int ij = 0; ij < w*h; ij++)
 			{
-				tColour4i col(src[ij], 0u, 0u, 255u);
-				decoded4i[ij].Set(col);
+				tColour4b col(src[ij], 0u, 0u, 255u);
+				decoded4b[ij].Set(col);
 			}
 			break;
 		}
 
 		case tPixelFormat::R8G8:
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			for (int ij = 0; ij < w*h; ij++)
 			{
-				tColour4i col(src[ij*2+0], src[ij*2+1], 0u, 255u);
-				decoded4i[ij].Set(col);
+				tColour4b col(src[ij*2+0], src[ij*2+1], 0u, 255u);
+				decoded4b[ij].Set(col);
 			}
 			break;
 
 		case tPixelFormat::R8G8B8:
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			for (int ij = 0; ij < w*h; ij++)
 			{
-				tColour4i col(src[ij*3+0], src[ij*3+1], src[ij*3+2], 255u);
-				decoded4i[ij].Set(col);
+				tColour4b col(src[ij*3+0], src[ij*3+1], src[ij*3+2], 255u);
+				decoded4b[ij].Set(col);
 			}
 			break;
 		
 		case tPixelFormat::R8G8B8A8:
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			for (int ij = 0; ij < w*h; ij++)
 			{
-				tColour4i col(src[ij*4+0], src[ij*4+1], src[ij*4+2], src[ij*4+3]);
-				decoded4i[ij].Set(col);
+				tColour4b col(src[ij*4+0], src[ij*4+1], src[ij*4+2], src[ij*4+3]);
+				decoded4b[ij].Set(col);
 			}
 			break;
 
 		case tPixelFormat::B8G8R8:
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			for (int ij = 0; ij < w*h; ij++)
 			{
-				tColour4i col(src[ij*3+2], src[ij*3+1], src[ij*3+0], 255u);
-				decoded4i[ij].Set(col);
+				tColour4b col(src[ij*3+2], src[ij*3+1], src[ij*3+0], 255u);
+				decoded4b[ij].Set(col);
 			}
 			break;
 
 		case tPixelFormat::B8G8R8A8:
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			for (int ij = 0; ij < w*h; ij++)
 			{
-				tColour4i col(src[ij*4+2], src[ij*4+1], src[ij*4+0], src[ij*4+3]);
-				decoded4i[ij].Set(col);
+				tColour4b col(src[ij*4+2], src[ij*4+1], src[ij*4+0], src[ij*4+3]);
+				decoded4b[ij].Set(col);
 			}
 			break;
 
 		case tPixelFormat::G3B5R5G3:
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			for (int ij = 0; ij < w*h; ij++)
 			{
 				// On an LE machine casting to a uint16 effectively swaps the bytes when doing bit ops.
@@ -201,13 +201,13 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 				float rf = (float(r) / 31.0f);		// Max is 2^5 - 1.
 				float gf = (float(g) / 63.0f);		// Max is 2^6 - 1.
 				float bf = (float(b) / 31.0f);		// Max is 2^5 - 1.
-				tColour4i col(rf, gf, bf, 1.0f);
-				decoded4i[ij].Set(col);
+				tColour4b col(rf, gf, bf, 1.0f);
+				decoded4b[ij].Set(col);
 			}
 			break;
 
 		case tPixelFormat::G4B4A4R4:
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			for (int ij = 0; ij < w*h; ij++)
 			{
 				// GGGGBBBB AAAARRRR in memory is AAAARRRR GGGGBBBB as a uint16.
@@ -223,13 +223,13 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 				float gf = float(g) / 15.0f;
 				float bf = float(b) / 15.0f;
 
-				tColour4i col(rf, gf, bf, af);
-				decoded4i[ij].Set(col);
+				tColour4b col(rf, gf, bf, af);
+				decoded4b[ij].Set(col);
 			}
 			break;
 
 		case tPixelFormat::B4A4R4G4:
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			for (int ij = 0; ij < w*h; ij++)
 			{
 				// BBBBAAAA RRRRGGGG in memory is RRRRGGGG BBBBAAAA as a uint16.
@@ -245,13 +245,13 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 				float gf = float(g) / 15.0f;
 				float bf = float(b) / 15.0f;
 
-				tColour4i col(rf, gf, bf, af);
-				decoded4i[ij].Set(col);
+				tColour4b col(rf, gf, bf, af);
+				decoded4b[ij].Set(col);
 			}
 			break;
 
 		case tPixelFormat::G3B5A1R5G2:
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			for (int ij = 0; ij < w*h; ij++)
 			{
 				// GGGBBBBB ARRRRRGG in memory is ARRRRRGG GGGBBBBB as a uint16.
@@ -266,13 +266,13 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 				float gf = float(g) / 31.0f;
 				float bf = float(b) / 31.0f;
 
-				tColour4i col(rf, gf, bf, a ? 1.0f : 0.0f);
-				decoded4i[ij].Set(col);
+				tColour4b col(rf, gf, bf, a ? 1.0f : 0.0f);
+				decoded4b[ij].Set(col);
 			}
 			break;
 
 		case tPixelFormat::G2B5A1R5G3:
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			for (int ij = 0; ij < w*h; ij++)
 			{
 				// GGBBBBBA RRRRRGGG in memory is RRRRRGGG GGBBBBBA as a uint16.
@@ -287,56 +287,56 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 				float gf = float(g) / 31.0f;
 				float bf = float(b) / 31.0f;
 
-				tColour4i col(rf, gf, bf, a ? 1.0f : 0.0f);
-				decoded4i[ij].Set(col);
+				tColour4b col(rf, gf, bf, a ? 1.0f : 0.0f);
+				decoded4b[ij].Set(col);
 			}
 			break;
 
 		case tPixelFormat::R16:
 		{
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			uint16* udata = (uint16*)src;
 			for (int ij = 0; ij < w*h; ij++)
 			{
 				uint8 r = udata[ij*1 + 0] >> 8;
-				tColour4i col(r, 0u, 0u, 255u);
-				decoded4i[ij].Set(col);
+				tColour4b col(r, 0u, 0u, 255u);
+				decoded4b[ij].Set(col);
 			}
 			break;
 		}
 
 		case tPixelFormat::R16G16:
 		{
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			uint16* udata = (uint16*)src;
 			for (int ij = 0; ij < w*h; ij++)
 			{
 				uint8 r = udata[ij*2 + 0] >> 8;
 				uint8 g = udata[ij*2 + 1] >> 8;
-				tColour4i col(r, g, 0u, 255u);
-				decoded4i[ij].Set(col);
+				tColour4b col(r, g, 0u, 255u);
+				decoded4b[ij].Set(col);
 			}
 			break;
 		}
 
 		case tPixelFormat::R16G16B16:
 		{
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			uint16* udata = (uint16*)src;
 			for (int ij = 0; ij < w*h; ij++)
 			{
 				uint8 r = udata[ij*3 + 0] >> 8;
 				uint8 g = udata[ij*3 + 1] >> 8;
 				uint8 b = udata[ij*3 + 2] >> 8;
-				tColour4i col(r, g, b, 255u);
-				decoded4i[ij].Set(col);
+				tColour4b col(r, g, b, 255u);
+				decoded4b[ij].Set(col);
 			}
 			break;
 		}
 
 		case tPixelFormat::R16G16B16A16:
 		{
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			uint16* udata = (uint16*)src;
 			for (int ij = 0; ij < w*h; ij++)
 			{
@@ -344,57 +344,57 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 				uint8 g = udata[ij*4 + 1] >> 8;
 				uint8 b = udata[ij*4 + 2] >> 8;
 				uint8 a = udata[ij*4 + 3] >> 8;
-				tColour4i col(r, g, b, a);
-				decoded4i[ij].Set(col);
+				tColour4b col(r, g, b, a);
+				decoded4b[ij].Set(col);
 			}
 			break;
 		}
 
 		case tPixelFormat::R32:
 		{
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			uint32* udata = (uint32*)src;
 			for (int ij = 0; ij < w*h; ij++)
 			{
 				uint8 r = udata[ij*1 + 0] >> 24;
-				tColour4i col(r, 0u, 0u, 255u);
-				decoded4i[ij].Set(col);
+				tColour4b col(r, 0u, 0u, 255u);
+				decoded4b[ij].Set(col);
 			}
 			break;
 		}
 
 		case tPixelFormat::R32G32:
 		{
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			uint32* udata = (uint32*)src;
 			for (int ij = 0; ij < w*h; ij++)
 			{
 				uint8 r = udata[ij*2 + 0] >> 24;
 				uint8 g = udata[ij*2 + 1] >> 24;
-				tColour4i col(r, g, 0u, 255u);
-				decoded4i[ij].Set(col);
+				tColour4b col(r, g, 0u, 255u);
+				decoded4b[ij].Set(col);
 			}
 			break;
 		}
 
 		case tPixelFormat::R32G32B32:
 		{
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			uint32* udata = (uint32*)src;
 			for (int ij = 0; ij < w*h; ij++)
 			{
 				uint8 r = udata[ij*3 + 0] >> 24;
 				uint8 g = udata[ij*3 + 1] >> 24;
 				uint8 b = udata[ij*3 + 2] >> 24;
-				tColour4i col(r, g, b, 255u);
-				decoded4i[ij].Set(col);
+				tColour4b col(r, g, b, 255u);
+				decoded4b[ij].Set(col);
 			}
 			break;
 		}
 
 		case tPixelFormat::R32G32B32A32:
 		{
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			uint32* udata = (uint32*)src;
 			for (int ij = 0; ij < w*h; ij++)
 			{
@@ -402,8 +402,8 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 				uint8 g = udata[ij*4 + 1] >> 24;
 				uint8 b = udata[ij*4 + 2] >> 24;
 				uint8 a = udata[ij*4 + 3] >> 24;
-				tColour4i col(r, g, b, a);
-				decoded4i[ij].Set(col);
+				tColour4b col(r, g, b, a);
+				decoded4b[ij].Set(col);
 			}
 			break;
 		}
@@ -651,9 +651,9 @@ tImage::DecodeResult tImage::DecodePixelData_Packed(tPixelFormat fmt, const uint
 }
 
 
-tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4i*& decoded4i, tColour4f*& decoded4f)
+tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4b*& decoded4b, tColour4f*& decoded4f)
 {
-	if (decoded4i || decoded4f)
+	if (decoded4b || decoded4f)
 		return DecodeResult::BuffersNotClear;
 
 	if (!tIsBCFormat(fmt))
@@ -667,14 +667,14 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 	// high will actually have row 6, 7, 8 written to.
 	int wfull = 4 * tGetNumBlocks(4, w);
 	int hfull = 4 * tGetNumBlocks(4, h);
-	tColour4i* decodedFull4i = nullptr;
+	tColour4b* decodedFull4i = nullptr;
 	tColour4f* decodedFull4f = nullptr;
 	switch (fmt)
 	{
 		case tPixelFormat::BC1DXT1:
 		case tPixelFormat::BC1DXT1A:
 		{
-			decodedFull4i = new tColour4i[wfull*hfull];
+			decodedFull4i = new tColour4b[wfull*hfull];
 			for (int y = 0; y < hfull; y += 4)
 				for (int x = 0; x < wfull; x += 4)
 				{
@@ -691,7 +691,7 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 
 		case tPixelFormat::BC2DXT2DXT3:
 		{
-			decodedFull4i = new tColour4i[wfull*hfull];
+			decodedFull4i = new tColour4b[wfull*hfull];
 			for (int y = 0; y < hfull; y += 4)
 				for (int x = 0; x < wfull; x += 4)
 				{
@@ -704,7 +704,7 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 
 		case tPixelFormat::BC3DXT4DXT5:
 		{
-			decodedFull4i = new tColour4i[wfull*hfull];
+			decodedFull4i = new tColour4b[wfull*hfull];
 			for (int y = 0; y < hfull; y += 4)
 				for (int x = 0; x < wfull; x += 4)
 				{
@@ -728,11 +728,11 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 				}
 
 			// Now convert to 32-bit RGBA.
-			decodedFull4i = new tColour4i[wfull*hfull];
+			decodedFull4i = new tColour4b[wfull*hfull];
 			for (int xy = 0; xy < wfull*hfull; xy++)
 			{
 				uint8 v = rdata[xy];
-				tColour4i col(v, 0u, 0u, 255u);
+				tColour4b col(v, 0u, 0u, 255u);
 				decodedFull4i[xy].Set(col);
 			}
 			delete[] rdata;
@@ -752,13 +752,13 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 				}
 
 			// Now convert to 32-bit RGBA.
-			decodedFull4i = new tColour4i[wfull*hfull];
+			decodedFull4i = new tColour4b[wfull*hfull];
 			for (int xy = 0; xy < wfull*hfull; xy++)
 			{
 				int vi = *((int8*)&rdata[xy]);
 				vi += 128;
 				uint8 v = uint8(vi);
-				tColour4i col(v, 0u, 0u, 255u);
+				tColour4b col(v, 0u, 0u, 255u);
 				decodedFull4i[xy].Set(col);
 			}
 			delete[] rdata;
@@ -780,10 +780,10 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 				}
 
 			// Now convert to 32-bit RGBA with 0,255 for B,A.
-			decodedFull4i = new tColour4i[wfull*hfull];
+			decodedFull4i = new tColour4b[wfull*hfull];
 			for (int xy = 0; xy < wfull*hfull; xy++)
 			{
-				tColour4i col(rgData[xy].R, rgData[xy].G, 0u, 255u);
+				tColour4b col(rgData[xy].R, rgData[xy].G, 0u, 255u);
 				decodedFull4i[xy].Set(col);
 			}
 			delete[] rgData;
@@ -805,14 +805,14 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 				}
 
 			// Now convert to 32-bit RGBA with 0,255 for B,A.
-			decodedFull4i = new tColour4i[wfull*hfull];
+			decodedFull4i = new tColour4b[wfull*hfull];
 			for (int xy = 0; xy < wfull*hfull; xy++)
 			{
 				int iR = *((int8*)&rgData[xy].R);
 				int iG = *((int8*)&rgData[xy].G);
 				iR += 128;
 				iG += 128;
-				tColour4i col(uint8(iR), uint8(iG), 0u, 255u);
+				tColour4b col(uint8(iR), uint8(iG), 0u, 255u);
 				decodedFull4i[xy].Set(col);
 			}
 			delete[] rgData;
@@ -847,7 +847,7 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 
 		case tPixelFormat::BC7:
 		{
-			decodedFull4i = new tColour4i[wfull*hfull];
+			decodedFull4i = new tColour4b[wfull*hfull];
 			for (int y = 0; y < hfull; y += 4)
 				for (int x = 0; x < wfull; x += 4)
 				{
@@ -861,7 +861,7 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 		case tPixelFormat::ETC1:
 		case tPixelFormat::ETC2RGB:				// Same decoder. Backwards compatible.
 		{
-			decodedFull4i = new tColour4i[wfull*hfull];
+			decodedFull4i = new tColour4b[wfull*hfull];
 			for (int y = 0; y < hfull; y += 4)
 				for (int x = 0; x < wfull; x += 4)
 				{
@@ -874,7 +874,7 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 
 		case tPixelFormat::ETC2RGBA:
 		{
-			decodedFull4i = new tColour4i[wfull*hfull];
+			decodedFull4i = new tColour4b[wfull*hfull];
 			for (int y = 0; y < hfull; y += 4)
 				for (int x = 0; x < wfull; x += 4)
 				{
@@ -887,7 +887,7 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 
 		case tPixelFormat::ETC2RGBA1:
 		{
-			decodedFull4i = new tColour4i[wfull*hfull];
+			decodedFull4i = new tColour4b[wfull*hfull];
 			for (int y = 0; y < hfull; y += 4)
 				for (int x = 0; x < wfull; x += 4)
 				{
@@ -912,11 +912,11 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 				}
 
 			// Now convert to 32-bit RGBA.
-			decodedFull4i = new tColour4i[wfull*hfull];
+			decodedFull4i = new tColour4b[wfull*hfull];
 			for (int xy = 0; xy < wfull*hfull; xy++)
 			{
 				uint8 v = uint8( (255*rdata[xy]) / 65535 );
-				tColour4i col(v, 0u, 0u, 255u);
+				tColour4b col(v, 0u, 0u, 255u);
 				decodedFull4i[xy].Set(col);
 			}
 			delete[] rdata;
@@ -937,12 +937,12 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 				}
 
 			// Now convert to 32-bit RGBA.
-			decodedFull4i = new tColour4i[wfull*hfull];
+			decodedFull4i = new tColour4b[wfull*hfull];
 			for (int xy = 0; xy < wfull*hfull; xy++)
 			{
 				float vf = tMath::tSaturate((rdata[xy]+1.0f) / 2.0f);
 				uint8 v = uint8( 255.0f * vf );
-				tColour4i col(v, 0u, 0u, 255u);
+				tColour4b col(v, 0u, 0u, 255u);
 				decodedFull4i[xy].Set(col);
 			}
 			delete[] rdata;
@@ -964,12 +964,12 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 				}
 
 			// Now convert to 32-bit RGBA.
-			decodedFull4i = new tColour4i[wfull*hfull];
+			decodedFull4i = new tColour4b[wfull*hfull];
 			for (int xy = 0; xy < wfull*hfull; xy++)
 			{
 				uint8 r = uint8( (255*rdata[xy].R) / 65535 );
 				uint8 g = uint8( (255*rdata[xy].G) / 65535 );
-				tColour4i col(r, g, 0u, 255u);
+				tColour4b col(r, g, 0u, 255u);
 				decodedFull4i[xy].Set(col);
 			}
 			delete[] rdata;
@@ -991,14 +991,14 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 				}
 
 			// Now convert to 32-bit RGBA.
-			decodedFull4i = new tColour4i[wfull*hfull];
+			decodedFull4i = new tColour4b[wfull*hfull];
 			for (int xy = 0; xy < wfull*hfull; xy++)
 			{
 				float rf = tMath::tSaturate((rdata[xy].R+1.0f) / 2.0f);
 				float gf = tMath::tSaturate((rdata[xy].G+1.0f) / 2.0f);
 				uint8 r = uint8( 255.0f * rf );
 				uint8 g = uint8( 255.0f * gf );
-				tColour4i col(r, g, 0u, 255u);
+				tColour4b col(r, g, 0u, 255u);
 				decodedFull4i[xy].Set(col);
 			}
 			delete[] rdata;
@@ -1016,22 +1016,22 @@ tImage::DecodeResult tImage::DecodePixelData_Block(tPixelFormat fmt, const uint8
 	// This is only inefficient if the dimensions were not a mult of 4, otherwise we can use the buffer directly.
 	tAssert((decodedFull4i || decodedFull4f) && !(decodedFull4i && decodedFull4f));
 
-	// At this point the job is to get decoded4i or decoded4f to be valid. First check if sizes match exactly.
+	// At this point the job is to get decoded4b or decoded4f to be valid. First check if sizes match exactly.
 	if ((wfull == w) && (hfull == h))
 	{
-		decoded4i = decodedFull4i;
+		decoded4b = decodedFull4i;
 		decoded4f = decodedFull4f;
 	}
 	else
 	{
 		if (decodedFull4i)
 		{
-			decoded4i = new tColour4i[w*h];
-			tColour4i* src = decodedFull4i;
-			tColour4i* dst = decoded4i;
+			decoded4b = new tColour4b[w*h];
+			tColour4b* src = decodedFull4i;
+			tColour4b* dst = decoded4b;
 			for (int r = 0; r < h; r++)
 			{
-				tStd::tMemcpy(dst, src, w*sizeof(tColour4i));
+				tStd::tMemcpy(dst, src, w*sizeof(tColour4b));
 				src += wfull;
 				dst += w;
 			}
@@ -1145,9 +1145,9 @@ tImage::DecodeResult tImage::DecodePixelData_ASTC(tPixelFormat fmt, const uint8*
 }
 
 
-tImage::DecodeResult tImage::DecodePixelData_PVR(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4i*& decoded4i, tColour4f*& decoded4f)
+tImage::DecodeResult tImage::DecodePixelData_PVR(tPixelFormat fmt, const uint8* src, int srcSize, int w, int h, tColour4b*& decoded4b, tColour4f*& decoded4f)
 {
-	if (decoded4i || decoded4f)
+	if (decoded4b || decoded4f)
 		return DecodeResult::BuffersNotClear;
 
 	if (!tIsPVRFormat(fmt))
@@ -1156,19 +1156,19 @@ tImage::DecodeResult tImage::DecodePixelData_PVR(tPixelFormat fmt, const uint8* 
 	if ((w <= 0) || (h <= 0) || !src)
 		return DecodeResult::InvalidInput;
 
-	// The PVRTDecompress calls expect the decoded destination array to be bug enough to handle w*h tColour4i pixels.
+	// The PVRTDecompress calls expect the decoded destination array to be bug enough to handle w*h tColour4b pixels.
 	// The function handles cases where the min width and height are too small, so even a 1x1 image can be handed off.
 	switch (fmt)
 	{
 		case tPixelFormat::PVRBPP4:
 		{
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			uint32_t do2bitMode = 0;
-			uint32_t numSrcBytesDecompressed = pvr::PVRTDecompressPVRTC(src, do2bitMode, w, h, (uint8_t*)decoded4i);
+			uint32_t numSrcBytesDecompressed = pvr::PVRTDecompressPVRTC(src, do2bitMode, w, h, (uint8_t*)decoded4b);
 			if (numSrcBytesDecompressed == 0)
 			{
-				delete[] decoded4i;
-				decoded4i = nullptr;
+				delete[] decoded4b;
+				decoded4b = nullptr;
 				return DecodeResult::PVRDecodeError;
 			}
 			break;
@@ -1176,13 +1176,13 @@ tImage::DecodeResult tImage::DecodePixelData_PVR(tPixelFormat fmt, const uint8* 
 
 		case tPixelFormat::PVRBPP2:
 		{
-			decoded4i = new tColour4i[w*h];
+			decoded4b = new tColour4b[w*h];
 			uint32_t do2bitMode = 1;
-			uint32_t numSrcBytesDecompressed = pvr::PVRTDecompressPVRTC(src, do2bitMode, w, h, (uint8_t*)decoded4i);
+			uint32_t numSrcBytesDecompressed = pvr::PVRTDecompressPVRTC(src, do2bitMode, w, h, (uint8_t*)decoded4b);
 			if (numSrcBytesDecompressed == 0)
 			{
-				delete[] decoded4i;
-				decoded4i = nullptr;
+				delete[] decoded4b;
+				decoded4b = nullptr;
 				return DecodeResult::PVRDecodeError;
 			}
 			break;

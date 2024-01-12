@@ -4,7 +4,7 @@
 // file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if
 // an HDR file is specified. After the array is stolen the tImageHDR is invalid. This is purely for performance.
 //
-// Copyright (c) 2020, 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2020, 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -65,7 +65,7 @@ public:
 	tImageHDR(uint8* hdrFileInMemory, int numBytes, const LoadParams& loadParams = LoadParams())						{ Load(hdrFileInMemory, numBytes, loadParams); }
 
 	// This one sets from a supplied pixel array. It just reads the data (or steals the array if steal set).
-	tImageHDR(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+	tImageHDR(tPixel4* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
 	// Sets from a single frame.
 	tImageHDR(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
@@ -80,7 +80,7 @@ public:
 	bool Load(uint8* hdrFileInMemory, int numBytes, const LoadParams& = LoadParams());
 
 	// This one sets from a supplied pixel array.
-	bool Set(tPixel* pixels, int width, int height, bool steal = false) override;
+	bool Set(tPixel4* pixels, int width, int height, bool steal = false) override;
 
 	// Sets from a single frame.
 	bool Set(tFrame*, bool steal = true) override;
@@ -97,9 +97,9 @@ public:
 
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageHDR object is
 	// invalid afterwards.
-	tPixel* StealPixels();
+	tPixel4* StealPixels();
 	tFrame* GetFrame(bool steal = true) override;
-	tPixel* GetPixels() const																							{ return Pixels; }
+	tPixel4* GetPixels() const																							{ return Pixels; }
 
 	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
 	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
@@ -107,10 +107,10 @@ public:
 	tColourProfile GetColourProfile() const override																	{ return GetColourProfileSrc(); }
 
 private:
-	bool LegacyReadRadianceColours(tPixel* scanline, int length);	// Older hdr files use this scanline format.
-	bool ReadRadianceColours(tPixel* scanline, int length);			// Most hdr files use the new scanline format. This will call the old as necessary.
-	bool ConvertRadianceToGammaCorrected(tPixel* scan, int len);
-	static void AdjustExposure(tPixel* scan, int len, int adjust);
+	bool LegacyReadRadianceColours(tPixel4* scanline, int length);	// Older hdr files use this scanline format.
+	bool ReadRadianceColours(tPixel4* scanline, int length);			// Most hdr files use the new scanline format. This will call the old as necessary.
+	bool ConvertRadianceToGammaCorrected(tPixel4* scan, int len);
+	static void AdjustExposure(tPixel4* scan, int len, int adjust);
 
 	void PutB(int v)												{ *WriteP++ = uint8(v); }
 	uint8 GetB()													{ return *ReadP++; }
@@ -120,7 +120,7 @@ private:
 	tColourProfile ColourProfileSrc = tColourProfile::Unspecified;
 	int Width					= 0;
 	int Height					= 0;
-	tPixel* Pixels				= nullptr;
+	tPixel4* Pixels				= nullptr;
 
 	// Read and write pointers used during processing.
 	uint8* ReadP				= nullptr;

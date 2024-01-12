@@ -32,7 +32,7 @@
 // the ID the same. You can now use the chunk name (tChunkID_NICENAME) elsewhere with a new ID. The obsolete chunk, of
 // course, must contain the same stuff as the original nice name chunk.
 //
-// Copyright (c) 2006, 2017, 2023 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2023, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -139,7 +139,7 @@ public:
 	int Write(char c)																									{ return Write( (void*)&c, sizeof(char) ); }
 	int Write(int8 c)																									{ return Write( (void*)&c, sizeof(int8) ); }
 	int Write(uint8 c)																									{ return Write( (void*)&c, sizeof(uint8) ); }
-	int Write(const tColouri& c)																						{ return Write( (void*)&c, sizeof(tColouri) ); }
+	int Write(const tColour4b& c)																						{ return Write( (void*)&c, sizeof(tColour4b) ); }
 	int Write(const char* s)																							{ return Write( (void*)s, int(tStd::tStrlen(s)) + 1 ); }
 	int Write(const tString& s)								/* Writes the null character as well. */					{ return Write( (const char8_t*)s, s.Length() + 1 ); }
 	int Write(const tMath::tVector2&);
@@ -159,7 +159,7 @@ public:
 	int Write(const char* data, int numItems)																			{ return Write( (void*)data, sizeof(char)*numItems ); }
 	int Write(const int8* data, int numItems)																			{ return Write( (void*)data, sizeof(int8)*numItems ); }
 	int Write(const uint8* data, int numItems)																			{ return Write( (void*)data, sizeof(uint8)*numItems ); }
-	int Write(const tColouri* data, int numItems)																		{ return Write( (void*)data, sizeof(tColouri)*numItems ); }
+	int Write(const tColour4b* data, int numItems)																		{ return Write( (void*)data, sizeof(tColour4b)*numItems ); }
 	int Write(const tString* data, int numItems)																		{ int bytes = 0; for (int i = 0; i < numItems; i++) { bytes += Write(*data); data++; } return bytes; }
 	int Write(const tMath::tVector2* data, int numItems);
 	int Write(const tMath::tVector3* data, int numItems);

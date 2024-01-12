@@ -1,6 +1,6 @@
 // tImageBMP.cpp
 //
-// This class knows how to load and save windows bitmap (.bmp) files into tPixel arrays. These tPixels may be 'stolen' by the
+// This class knows how to load and save windows bitmap (.bmp) files into tPixel4 arrays. These tPixels may be 'stolen' by the
 // tPicture's constructor if a targa file is specified. After the array is stolen the tImageBMP is invalid. This is
 // purely for performance.
 //
@@ -24,7 +24,7 @@
 //
 // The modifications to use Tacent datatypes and conversion to C++ are under the ISC licence:
 //
-// Copyright (c) 2020, 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2020, 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -158,13 +158,13 @@ bool tImageBMP::Load(const tString& bmpFile)
 			break;
 	}
 
-	Pixels = (tPixel*)buf;
+	Pixels = (tPixel4*)buf;
 	delete[] palette;
 	tCloseFile(file);
 
 	if (flipped)
 	{
-		tPixel* newPixels = new tPixel[Width * Height];
+		tPixel4* newPixels = new tPixel4[Width * Height];
 		for (int y = 0; y < Height; y++)
 			for (int x = 0; x < Width; x++)
 				newPixels[ y*Width + x ] = Pixels[ (Height-1-y)*Width + x ];
@@ -463,7 +463,7 @@ void tImageBMP::ReadRow_IndexedRLE4(tFileHandle file, uint8* dest, PaletteColour
 }
 
 
-bool tImageBMP::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImageBMP::Set(tPixel4* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -478,8 +478,8 @@ bool tImageBMP::Set(tPixel* pixels, int width, int height, bool steal)
 	}
 	else
 	{
-		Pixels = new tPixel[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
+		Pixels = new tPixel4[Width*Height];
+		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4));
 	}
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
@@ -507,7 +507,7 @@ bool tImageBMP::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -616,9 +616,9 @@ bool tImageBMP::IsOpaque() const
 }
 
 
-tPixel* tImageBMP::StealPixels()
+tPixel4* tImageBMP::StealPixels()
 {
-	tPixel* pixels = Pixels;
+	tPixel4* pixels = Pixels;
 	Pixels = nullptr;
 	Width = 0;
 	Height = 0;

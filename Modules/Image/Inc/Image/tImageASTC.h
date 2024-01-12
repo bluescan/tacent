@@ -4,7 +4,7 @@
 // stored in a tLayer. If decode was requested the layer will store raw pixel data. The layer may be 'stolen'. IF it
 // is the tImageASTC is invalid afterwards. This is purely for performance.
 //
-// Copyright (c) 2023 Tristan Grimmer.
+// Copyright (c) 2023, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -66,7 +66,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	tImageASTC(tPixel* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+	tImageASTC(tPixel4* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
 	// Sets from a single frame.
 	tImageASTC(tFrame* frame, bool steal = true)																		{ Set(frame, steal); }
@@ -82,7 +82,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	bool Set(tPixel* pixels, int width, int height, bool steal = false) override;
+	bool Set(tPixel4* pixels, int width, int height, bool steal = false) override;
 
 	// Sets from a single frame. After this is called the layer data will be in R8G8B8A8.
 	bool Set(tFrame*, bool steal = true) override;

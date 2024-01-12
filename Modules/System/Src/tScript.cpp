@@ -9,7 +9,7 @@
 //
 // The second format is a functional format. ex. a(b,c) See tFunExtression.
 //
-// Copyright (c) 2006, 2017, 2019, 2020, 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020, 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -398,11 +398,11 @@ tMatrix4 tExpression::GetAtomMatrix4() const
 }
 
 
-tColouri tExpression::GetAtomColour() const
+tColour4b tExpression::GetAtomColour() const
 {
 	// Colours should be of the form (r, g, b, a). Spaces or not after and before the commas.
 	tString str = GetAtomTupleString();
-	tColouri c;
+	tColour4b c;
 
 	tString component = str.ExtractLeft(',');
 	c.R = component.GetAsInt();
@@ -933,7 +933,7 @@ void tExprWriter::WriteAtom(const tMatrix4& m, bool incBitRep)
 }
 
 
-void tExprWriter::WriteAtom(const tColouri& c)
+void tExprWriter::WriteAtom(const tColour4b& c)
 {
 	tString str("(");
 	for (int e = 0; e < 4; e++)

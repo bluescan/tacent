@@ -2,7 +2,7 @@
 //
 // Resample an image using various filers like nearest-neighbour, box, bilinear, and various bicubics.
 //
-// Copyright (c) 2020 Tristan Grimmer.
+// Copyright (c) 2020, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -32,11 +32,11 @@ namespace tImage
 		union { float RatioV; float CubicCoeffC; };
 	};
 
-	tPixel KernelFilterNearest			(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
-	tPixel KernelFilterBox				(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
-	tPixel KernelFilterBilinear			(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
-	tPixel KernelFilterBicubic			(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
-	tPixel KernelFilterLanczos			(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
+	tPixel4 KernelFilterNearest			(const tPixel4* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
+	tPixel4 KernelFilterBox				(const tPixel4* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
+	tPixel4 KernelFilterBilinear		(const tPixel4* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
+	tPixel4 KernelFilterBicubic			(const tPixel4* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
+	tPixel4 KernelFilterLanczos			(const tPixel4* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
 
 	int GetSrcIndex(int idx, int count, tResampleEdgeMode);
 	float ComputeCubicWeight(float x, float b, float c);
@@ -112,8 +112,8 @@ inline int tImage::GetSrcIndex(int idx, int count, tResampleEdgeMode edgeMode)
 
 bool tImage::Resample
 (
-	tPixel* src, int srcW, int srcH,
-	tPixel* dst, int dstW, int dstH,
+	tPixel4* src, int srcW, int srcH,
+	tPixel4* dst, int dstW, int dstH,
 	tResampleFilter resampleFilter,
 	tResampleEdgeMode edgeMode
 )
@@ -134,7 +134,7 @@ bool tImage::Resample
 
 	// Decide what filer kernel to use. Different kernels may set different values in FilterParams.
 	FilterParams params;
-	typedef tPixel (*KernelFilterFn)(const tPixel* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
+	typedef tPixel4 (*KernelFilterFn)(const tPixel4* src, int srcW, int srcH, float x, float y, FilterDirection, tResampleEdgeMode, const FilterParams&);
 	KernelFilterFn kernel;
 	switch (resampleFilter)
 	{
@@ -204,14 +204,14 @@ bool tImage::Resample
 
 	// By convention do horizontal first. Outer loop is for each src row.
 	// hri stands for hozontal-resized-image.
-	tPixel* hri = new tPixel[dstW*srcH];
+	tPixel4* hri = new tPixel4[dstW*srcH];
 	for (int r = 0; r < srcH; r++)
 	{
 		// Fill in each dst pixel for the src row,
 		float y = float(r);
 		for (int c = 0; c < dstW; c++)
 		{
-			tPixel& dstPixel = hri[dstW*r + c];
+			tPixel4& dstPixel = hri[dstW*r + c];
 			float x = float(c) * ratioH;
 			dstPixel = kernel(src, srcW, srcH, x, y, FilterDirection::Horizontal, edgeMode, params);
 		}
@@ -223,7 +223,7 @@ bool tImage::Resample
 		float x = float(c);
 		for (int r = 0; r < dstH; r++)
 		{
-			tPixel& dstPixel = dst[dstW*r + c];
+			tPixel4& dstPixel = dst[dstW*r + c];
 			float y = float(r) * ratioV;
 			dstPixel = kernel(hri, dstW, srcH, x, y, FilterDirection::Vertical, edgeMode, params);
 		}
@@ -234,9 +234,9 @@ bool tImage::Resample
 }
 
 
-tPixel tImage::KernelFilterNearest
+tPixel4 tImage::KernelFilterNearest
 (
-	const tPixel* src, int srcW, int srcH, float x, float y,
+	const tPixel4* src, int srcW, int srcH, float x, float y,
 	FilterDirection dir, tResampleEdgeMode edgeMode, const FilterParams& params
 )
 {
@@ -246,9 +246,9 @@ tPixel tImage::KernelFilterNearest
 }
 
 
-tPixel tImage::KernelFilterBox
+tPixel4 tImage::KernelFilterBox
 (
-	const tPixel* src, int srcW, int srcH, float x, float y,
+	const tPixel4* src, int srcW, int srcH, float x, float y,
 	FilterDirection dir, tResampleEdgeMode edgeMode, const FilterParams& params
 )
 {
@@ -268,7 +268,7 @@ tPixel tImage::KernelFilterBox
 
 		int srcX = GetSrcIndex(ix ,srcW, edgeMode);
 		int srcY = GetSrcIndex(iy ,srcH, edgeMode);
-		tPixel srcPixel = src[srcW*srcY + srcX];
+		tPixel4 srcPixel = src[srcW*srcY + srcX];
 
 		if (ratio >= 1.0f)
 		{
@@ -291,7 +291,7 @@ tPixel tImage::KernelFilterBox
 
 	// Renormalize sampleTotal back to [0, 256).
 	sampleTotal /= weightTotal;
-	return tPixel
+	return tPixel4
 	(
 		tClamp(int(tRound(sampleTotal.x)), 0, 255),
 		tClamp(int(tRound(sampleTotal.y)), 0, 255),
@@ -301,9 +301,9 @@ tPixel tImage::KernelFilterBox
 }
 
 
-tPixel tImage::KernelFilterBilinear
+tPixel4 tImage::KernelFilterBilinear
 (
-	const tPixel* src, int srcW, int srcH, float x, float y,
+	const tPixel4* src, int srcW, int srcH, float x, float y,
 	FilterDirection dir, tResampleEdgeMode edgeMode, const FilterParams& params
 )
 {
@@ -315,8 +315,8 @@ tPixel tImage::KernelFilterBilinear
 	int srcXb = GetSrcIndex(ix+1, srcW, edgeMode);
 	int srcYb = GetSrcIndex(iy+1, srcH, edgeMode);
 
-	tPixel a = src[srcW*srcYa + srcXa];
-	tPixel b = (dir == FilterDirection::Horizontal) ?
+	tPixel4 a = src[srcW*srcYa + srcXa];
+	tPixel4 b = (dir == FilterDirection::Horizontal) ?
 		src[srcW*srcYa + srcXb] :
 		src[srcW*srcYb + srcXa];
 
@@ -331,7 +331,7 @@ tPixel tImage::KernelFilterBilinear
 	tiClamp(tiRound(rv.z), 0.0f, 255.0f);
 	tiClamp(tiRound(rv.w), 0.0f, 255.0f);
 
-	return tPixel(int(rv.x), int(rv.y), int(rv.z), int(rv.w));
+	return tPixel4(int(rv.x), int(rv.y), int(rv.z), int(rv.w));
 }
 
 
@@ -375,9 +375,9 @@ float tImage::ComputeCubicWeight(float x, float b, float c)
 }
 
 
-tPixel tImage::KernelFilterBicubic
+tPixel4 tImage::KernelFilterBicubic
 (
-	const tPixel* src, int srcW, int srcH, float x, float y,
+	const tPixel4* src, int srcW, int srcH, float x, float y,
 	FilterDirection dir, tResampleEdgeMode edgeMode, const FilterParams& params
 )
 {
@@ -394,7 +394,7 @@ tPixel tImage::KernelFilterBicubic
 
 		int srcX = GetSrcIndex(ix, srcW, edgeMode);
 		int srcY = GetSrcIndex(iy, srcH, edgeMode);
-		tPixel srcPixel = src[srcW*srcY + srcX];
+		tPixel4 srcPixel = src[srcW*srcY + srcX];
 
 		sampleTotal.x += srcPixel.R * weight;
 		sampleTotal.y += srcPixel.G * weight;
@@ -405,7 +405,7 @@ tPixel tImage::KernelFilterBicubic
 
 	// Renormalize sampleTotal back to [0, 256).
 	sampleTotal /= weightTotal;
-	return tPixel
+	return tPixel4
 	(
 		tClamp(int(tRound(sampleTotal.x)), 0, 255),
 		tClamp(int(tRound(sampleTotal.y)), 0, 255),
@@ -422,9 +422,9 @@ inline float tImage::ComputeLanczosWeight(float x, float a)
 }
 
 
-tPixel tImage::KernelFilterLanczos
+tPixel4 tImage::KernelFilterLanczos
 (
-	const tPixel* src, int srcW, int srcH, float x, float y,
+	const tPixel4* src, int srcW, int srcH, float x, float y,
 	FilterDirection dir, tResampleEdgeMode edgeMode, const FilterParams& params
 )
 {
@@ -442,7 +442,7 @@ tPixel tImage::KernelFilterLanczos
 
 		int srcX = GetSrcIndex(ix, srcW, edgeMode);
 		int srcY = GetSrcIndex(iy, srcH, edgeMode);
-		tPixel srcPixel = src[srcW*srcY + srcX];
+		tPixel4 srcPixel = src[srcW*srcY + srcX];
 
 		sampleTotal.x += srcPixel.R * weight;
 		sampleTotal.y += srcPixel.G * weight;
@@ -453,7 +453,7 @@ tPixel tImage::KernelFilterLanczos
 
 	// Renormalize totalSamples back to [0, 256).
 	sampleTotal /= weightTotal;
-	return tPixel
+	return tPixel4
 	(
 		tClamp(int(tRound(sampleTotal.x)), 0, 255),
 		tClamp(int(tRound(sampleTotal.y)), 0, 255),

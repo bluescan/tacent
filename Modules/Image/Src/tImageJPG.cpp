@@ -5,7 +5,7 @@
 // tPicture's constructor if a jpg file is specified. After the array is stolen the tImageJPG is invalid. This is
 // purely for performance. The loading and saving uses libjpeg-turbo. See Licence_LibJpegTurbo.txt for more info.
 //
-// Copyright (c) 2020, 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2020, 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -90,7 +90,7 @@ bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, const LoadParam
 		return false;
 
 	int numPixels = Width * Height;
-	Pixels = new tPixel[numPixels];
+	Pixels = new tPixel4[numPixels];
 
     int jpgPixelFormat = TJPF_RGBA;
 	int flags = 0;
@@ -180,7 +180,7 @@ bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, const LoadParam
 }
 
 
-bool tImageJPG::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImageJPG::Set(tPixel4* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -194,8 +194,8 @@ bool tImageJPG::Set(tPixel* pixels, int width, int height, bool steal)
 	}
 	else
 	{
-		Pixels = new tPixel[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel));
+		Pixels = new tPixel4[Width*Height];
+		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4));
 	}
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
@@ -223,7 +223,7 @@ bool tImageJPG::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -255,7 +255,7 @@ void tImageJPG::Rotate90(bool antiClockwise)
 	tAssert((Width > 0) && (Height > 0) && Pixels);
 	int newW = Height;
 	int newH = Width;
-	tPixel* newPixels = new tPixel[newW * newH];
+	tPixel4* newPixels = new tPixel4[newW * newH];
 
 	for (int y = 0; y < Height; y++)
 		for (int x = 0; x < Width; x++)
@@ -273,7 +273,7 @@ void tImageJPG::Flip(bool horizontal)
 	tAssert((Width > 0) && (Height > 0) && Pixels);
 	int newW = Width;
 	int newH = Height;
-	tPixel* newPixels = new tPixel[newW * newH];
+	tPixel4* newPixels = new tPixel4[newW * newH];
 
 	for (int y = 0; y < Height; y++)
 		for (int x = 0; x < Width; x++)
@@ -458,9 +458,9 @@ bool tImageJPG::Save(const tString& jpgFile, const SaveParams& params) const
 }
 
 
-tPixel* tImageJPG::StealPixels()
+tPixel4* tImageJPG::StealPixels()
 {
-	tPixel* pixels = Pixels;
+	tPixel4* pixels = Pixels;
 	Pixels = nullptr;
 	Width = 0;
 	Height = 0;

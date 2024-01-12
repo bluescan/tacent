@@ -4,7 +4,7 @@
 // stored in a tLayer. If decode was requested the layer will store raw pixel data. The layer may be 'stolen'. IF it
 // is the tImageASTC is invalid afterwards. This is purely for performance.
 //
-// Copyright (c) 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -146,7 +146,7 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 	}
 
 	tColour4f* decoded4f = nullptr;
-	tColour4i* decoded4i = nullptr;
+	tColour4b* decoded4b = nullptr;
 
 	// ASTC data is always decoded into a float buffer.
 	DecodeResult result = tImage::DecodePixelData_ASTC(format, astcData, astcDataSize, width, height, decoded4f);
@@ -172,16 +172,16 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 		}
 	}
 
-	// Converts to RGBA32 into the decoded4i array. Cleans up the float buffer.
-	tAssert(!decoded4i);
-	decoded4i = new tColour4i[width*height];
+	// Converts to RGBA32 into the decoded4b array. Cleans up the float buffer.
+	tAssert(!decoded4b);
+	decoded4b = new tColour4b[width*height];
 	for (int p = 0; p < width*height; p++)
-		decoded4i[p].Set(decoded4f[p]);
+		decoded4b[p].Set(decoded4f[p]);
 	delete[] decoded4f;
 
-	// Give decoded4i to layer.
+	// Give decoded4b to layer.
 	tAssert(!Layer);
-	Layer = new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)decoded4i, true);
+	Layer = new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)decoded4b, true);
 	tAssert(Layer->OwnsData);
 
 	// We've got one more chance to reverse the rows here (if we still need to) because we were asked to decode.
@@ -201,7 +201,7 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 }
 
 
-bool tImageASTC::Set(tPixel* pixels, int width, int height, bool steal)
+bool tImageASTC::Set(tPixel4* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -220,7 +220,7 @@ bool tImageASTC::Set(tFrame* frame, bool steal)
 	if (!frame || !frame->IsValid())
 		return false;
 
-	tPixel* pixels = frame->GetPixels(steal);
+	tPixel4* pixels = frame->GetPixels(steal);
 	Set(pixels, frame->Width, frame->Height, steal);
 	if (steal)
 		delete frame;
@@ -235,7 +235,7 @@ bool tImageASTC::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -253,14 +253,14 @@ tFrame* tImageASTC::GetFrame(bool steal)
 
 	if (steal)
 	{
-		frame->Pixels = (tPixel*)Layer->StealData();
+		frame->Pixels = (tPixel4*)Layer->StealData();
 		delete Layer;
 		Layer = nullptr;
 	}
 	else
 	{
-		frame->Pixels = new tPixel[frame->Width * frame->Height];
-		tStd::tMemcpy(frame->Pixels, (tPixel*)Layer->Data, frame->Width * frame->Height * sizeof(tPixel));
+		frame->Pixels = new tPixel4[frame->Width * frame->Height];
+		tStd::tMemcpy(frame->Pixels, (tPixel4*)Layer->Data, frame->Width * frame->Height * sizeof(tPixel4));
 	}
 
 	return frame;
@@ -274,7 +274,7 @@ bool tImageASTC::IsOpaque() const
 	
 	if (Layer->PixelFormat == tPixelFormat::R8G8B8A8)
 	{
-		tPixel* pixels = (tPixel*)Layer->Data;
+		tPixel4* pixels = (tPixel4*)Layer->Data;
 		for (int p = 0; p < (Layer->Width * Layer->Height); p++)
 		{
 			if (pixels[p].A < 255)

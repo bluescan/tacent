@@ -5,7 +5,7 @@
 // than one frame in a single image file (like gif, tiff, apng, and webp). A tFrame differs from a tLayer in that
 // they are much simpler and do not support multiple pixel formats.
 //
-// Copyright (c) 2021 Tristan Grimmer.
+// Copyright (c) 2021, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -29,23 +29,23 @@ struct tFrame : public tLink<tFrame>
 
 	// These mem copy the pixels from src.
 	tFrame(const tFrame& src)																							{ Set(src); }
-	tFrame(const tPixel* src, int width, int height, float duration)													{ Set(src, width, height, duration); }
+	tFrame(const tPixel4* src, int width, int height, float duration)													{ Set(src, width, height, duration); }
 
 	virtual ~tFrame()																									{ Clear(); }
 
 	// These mem copy the pixels from src.
 	bool Set(const tFrame& src);
-	bool Set(const tPixel* src, int width, int height, float duration = 0.0f);
+	bool Set(const tPixel4* src, int width, int height, float duration = 0.0f);
 
 	// Steals the pixels from the src frame.
 	bool StealFrom(tFrame& src);
 
 	// Takes ownership of the src pixel array.
-	bool StealFrom(tPixel* src, int width, int height, float duration = 0.0f);
+	bool StealFrom(tPixel4* src, int width, int height, float duration = 0.0f);
 
 	// If steal is true the frame will be invalid after and you must delete[] the returned pixels. They are yours.
 	// If steal is false the pixels remain owned by this tFrame. You can look or modify them, but they're not yours.
-	tPixel* GetPixels(bool steal = false)																				{ if (steal) { tPixel* p = Pixels; Pixels = nullptr; return p; } else return Pixels; }
+	tPixel4* GetPixels(bool steal = false)																				{ if (steal) { tPixel4* p = Pixels; Pixels = nullptr; return p; } else return Pixels; }
 
 	void Clear();
 	bool IsValid() const																								{ return (Width > 0) && (Height > 0) && Pixels; }
@@ -56,7 +56,7 @@ struct tFrame : public tLink<tFrame>
 	int Height																	= 0;
 	float Duration					/* Frame duration in seconds. */			= 0.0f;
 	tPixelFormat PixelFormatSrc		/* Use of PixelFormatSrc is optional. */	= tPixelFormat::Invalid;
-	tPixel* Pixels																= nullptr;
+	tPixel4* Pixels																= nullptr;
 };
 
 
@@ -77,14 +77,14 @@ inline bool tFrame::Set(const tFrame& frame)
 	PixelFormatSrc	= frame.PixelFormatSrc;
 
 	tAssert((frame.Width > 0) && (frame.Height > 0) && frame.Pixels);
-	Pixels = new tPixel[Width*Height];
-	tStd::tMemcpy(Pixels, frame.Pixels, Width*Height*sizeof(tPixel));
+	Pixels = new tPixel4[Width*Height];
+	tStd::tMemcpy(Pixels, frame.Pixels, Width*Height*sizeof(tPixel4));
 
 	return true;
 }
 
 
-inline bool tFrame::Set(const tPixel* srcPixels, int width, int height, float duration)
+inline bool tFrame::Set(const tPixel4* srcPixels, int width, int height, float duration)
 {
 	Clear();
 	if (!srcPixels || (width <= 0) || (height <= 0))
@@ -95,8 +95,8 @@ inline bool tFrame::Set(const tPixel* srcPixels, int width, int height, float du
 	Duration = duration;
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 
-	Pixels = new tPixel[Width*Height];
-	tStd::tMemcpy(Pixels, srcPixels, Width*Height*sizeof(tPixel));
+	Pixels = new tPixel4[Width*Height];
+	tStd::tMemcpy(Pixels, srcPixels, Width*Height*sizeof(tPixel4));
 	return true;
 }
 
@@ -117,7 +117,7 @@ inline bool tFrame::StealFrom(tFrame& frame)
 }
 
 
-inline bool tFrame::StealFrom(tPixel* src, int width, int height, float duration)
+inline bool tFrame::StealFrom(tPixel4* src, int width, int height, float duration)
 {
 	if (!src || (width <= 0) || (height <= 0))
 		return false;
@@ -145,10 +145,10 @@ inline void tFrame::Clear()
 inline void tFrame::ReverseRows()
 {
 	int numPixels = Width * Height;
-	tPixel* origPixels = Pixels;
-	Pixels = new tPixel[numPixels];
+	tPixel4* origPixels = Pixels;
+	Pixels = new tPixel4[numPixels];
 
-	int bytesPerRow = Width*sizeof(tPixel);
+	int bytesPerRow = Width*sizeof(tPixel4);
 	for (int y = Height-1; y >= 0; y--)
 		tStd::tMemcpy((uint8*)Pixels + ((Height-1)-y)*bytesPerRow, (uint8*)origPixels + y*bytesPerRow, bytesPerRow);
 

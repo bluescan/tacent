@@ -4,7 +4,7 @@
 // matches the fixed function pipeline of OpenGL. More advanced materials/shader-models are handled by explicitly
 // setting the ShaderFile member to point to a shader, in which case the Blinn-Phong parameters are ignored.
 //
-// Copyright (c) 2006, 2017, 2023 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2023, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -47,17 +47,17 @@ public:
 	bool operator!=(const tMaterial& mat) const																			{ return !(*this == mat); }
 	tMaterial& operator=(const tMaterial& src);
 
-	tColouri AmbientColour;
-	tColouri DiffuseColour;
-	tColouri SpecularColour;
+	tColour4b AmbientColour;
+	tColour4b DiffuseColour;
+	tColour4b SpecularColour;
 
 	float Shininess;																									// In [0.0, 1.0]
 	float Reflectivity;
 	float Diffusion;																									// In [0.0, 1.0]
 
-	tColouri ReflectedColour;
-	tColouri Transparency;
-	tColouri Incandescence;
+	tColour4b ReflectedColour;
+	tColour4b Transparency;
+	tColour4b Incandescence;
 	bool UseDiffuseColour;																								// Whether to use the diffuse colour, or the diffusion variable.  If the exporter supports it, this is better if it's true.
 
 	tString TextureDiffuse;

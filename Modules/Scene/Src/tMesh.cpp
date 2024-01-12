@@ -94,9 +94,9 @@ tMesh& tMesh::operator=(const tMesh& src)
 		tMemcpy(VertTableNormalMapUVs, src.VertTableNormalMapUVs, NumVertNormalMapUVs * sizeof(tVector2));
 
 	NumVertColours = src.NumVertColours;
-	VertTableColours = src.VertTableColours ? new tColouri[NumVertColours] : nullptr;
+	VertTableColours = src.VertTableColours ? new tColour4b[NumVertColours] : nullptr;
 	if (VertTableColours)
-		tMemcpy(VertTableColours, src.VertTableColours, NumVertColours * sizeof(tColouri));
+		tMemcpy(VertTableColours, src.VertTableColours, NumVertColours * sizeof(tColour4b));
 
 	NumVertTangents = src.NumVertTangents;
 	VertTableTangents = src.VertTableTangents ? new tVector4[NumVertTangents] : nullptr;
@@ -335,8 +335,8 @@ void tMesh::Load(const tChunk& meshChunk)
 			case tChunkID::Scene_VertTable_Colours:
 			{
 				tAssert(NumVertColours);
-				VertTableColours = new tColouri[NumVertColours];
-				tColouri* colours = (tColouri*)chunk.Data();
+				VertTableColours = new tColour4b[NumVertColours];
+				tColour4b* colours = (tColour4b*)chunk.Data();
 				for (int c = 0; c < NumVertColours; c++)
 					VertTableColours[c] = colours[c];
 
