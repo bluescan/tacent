@@ -171,6 +171,7 @@ void tKTX::GetFormatInfo_FromGLFormat(tPixelFormat& format, tColourProfile& prof
 		// B10G11R11uf and E5B9G9R9uf all convert to float rather than half. They are both unsigned.
 		C(R11F_G11F_B10F):						F(B10G11R11uf)		P(HDRa)					T(UFLOAT)	break;
 		C(RGB9_E5):								F(E5B9G9R9uf)		P(HDRa)					T(UFLOAT)	break;
+		C(RGBA4):								F(B4A4R4G4) 		P(lRGB)					T(UINT)		break;
 	}
 
 	if (format != tPixelFormat::Invalid)
