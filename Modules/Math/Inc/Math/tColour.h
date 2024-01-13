@@ -29,13 +29,12 @@
 // 'b' for byte  components (unsigned 8-bit  integer).
 // 's' for short components (unsigned 16-bit integer).
 // 'f' for float components (signed 32-bit float).
-class tColour3b;	//			tPixel3
-class tColour4b;	//			tPixel4
-// @wip
-// class tColour3s
-// class tColour4s
-class tColour3f;	//			tPixel3f
-class tColour4f;	//			tPixel4f
+class tColour3b;	// AKA tPixel3
+class tColour4b;	// AKA tPixel4
+class tColour3s;	// AKA tPixel3s
+class tColour4s;	// AKA tPixel4s
+class tColour3f;	// AKA tPixel3f
+class tColour4f;	// AKA tPixel4f
 
 
 // Generally floating point colour representations are considered to be in linear colour-space. Linear is where you
@@ -294,19 +293,20 @@ namespace tMath
 
 
 #pragma pack(push, 1)
+// The tColour3b class represents a colour in 24 bits and is made of 3 unsigned byte-size integers in the order RGB.
 class tColour3b
 {
 public:
 	tColour3b()						/* Does NOT set the colour values. */												{ }
-	tColour3b(const tColour3b& c)																						: R(c.R), G(c.G), B(c.B) { }
-	tColour3b(int r, int g, int b)																						{ R = tMath::tClamp(r, 0, 0xFF); G = tMath::tClamp(g, 0, 0xFF); B = tMath::tClamp(b, 0, 0xFF); }
-	tColour3b(uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)																: R(r), G(g), B(b) { }
+	tColour3b(const tColour3b& c)																						{ Set(c); }
+	tColour3b(int r, int g, int b)																						{ Set(r, g, b); }
+	tColour3b(uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)																{ Set(r, g, b); }
 
 	void Set(const tColour3b& c)																						{ R = c.R; G = c.G; B = c.B; }
 	void Set(int r, int g, int b)																						{ R = tMath::tClamp(r, 0, 0xFF); G = tMath::tClamp(g, 0, 0xFF); B = tMath::tClamp(b, 0, 0xFF); }
 	void Set(uint8 r, uint8 g, uint8 b)																					{ R = r; G = g; B = b; }
 
-	// These floating point get methods use a range of [0.0, 255.0] for each component.
+	// These floating point get methods use a range of [0.0, 255.0] for each component. Denorm means not normalized.
 	float GetDenormR() const																							{ return float(R); }
 	float GetDenormG() const																							{ return float(G); }
 	float GetDenormB() const																							{ return float(B); }
@@ -315,7 +315,7 @@ public:
 	void GetDenorm(float& r, float&g, float& b) const																	{ r = GetDenormR(); g = GetDenormG(); b = GetDenormB(); }
 	int Intensity() const			/* Returns intensity (average of RGB) in range [0, 255]. */							{ return (int(R)+int(G)+int(B))/3; }
 
-	// These allow tColour4b to be keys in a tMap.
+	// These allow tColour3b to be keys in a tMap.
 	explicit operator uint32()																							{ return (uint32(R)<<16) | (uint32(G)<<8) | uint32(B); }
 	explicit operator uint32() const																					{ return (uint32(R)<<16) | (uint32(G)<<8) | uint32(B); }
 	bool operator==(const tColour3b& c) const																			{ return (c.R == R) && (c.G == G) && (c.B == B); }
@@ -328,6 +328,7 @@ public:
 	};
 };
 #pragma pack(pop)
+tStaticAssert(sizeof(tColour3b) == 3);
 typedef tColour3b tPixel3;
 
 
@@ -336,11 +337,11 @@ class tColour4b
 {
 public:
 	tColour4b()												/* Does NOT set the colour values. */						{ }
-	tColour4b(const tColour4b& c)																						: BP(c.BP) { }
+	tColour4b(const tColour4b& c)																						{ Set(c); }
 	tColour4b(const tColour3b& c, int a = 0xFF)																			{ Set(c, a); }
-	tColour4b(int r, int g, int b, int a = 0xFF)																		{ R = tMath::tClamp(r, 0, 0xFF); G = tMath::tClamp(g, 0, 0xFF); B = tMath::tClamp(b, 0, 0xFF); A = tMath::tClamp(a, 0, 0xFF); }
-	tColour4b(uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)																: R(r), G(g), B(b), A(a) { }
-	tColour4b(uint32 bits)																								: BP(bits) { }
+	tColour4b(int r, int g, int b, int a = 0xFF)																		{ Set(r, g, b, a); }
+	tColour4b(uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)																{ Set(r, g, b, a); }
+	tColour4b(uint32 bits)																								{ Set(bits); }
 	tColour4b(const tColour4f& c)																						{ Set(c); }
 	tColour4b(const tColour3f& c, uint8 a)																				{ Set(c, a); }
 	tColour4b(const tColour3f& c, float a)																				{ Set(c, a); }
@@ -351,6 +352,7 @@ public:
 	void Set(const tColour3b& c, int a = 0xFF);
 	void Set(int r, int g, int b, int a = 255)																			{ R = tMath::tClamp(r, 0, 0xFF); G = tMath::tClamp(g, 0, 0xFF); B = tMath::tClamp(b, 0, 0xFF); A = tMath::tClamp(a, 0, 0xFF); }
 	void Set(uint8 r, uint8 g, uint8 b, uint8 a = 255)																	{ R = r; G = g; B = b; A = a; }
+	void Set(uint32 bits)																								{ BP = bits; }
 	void Set(const tColour4f& c);
 	void Set(const tColour3f& c, uint8 a);
 	void Set(const tColour3f& c, float a);
@@ -362,10 +364,10 @@ public:
 
 	// The floating point set methods use a range of [0.0, 1.0] for each component.
 	void Set(float r, float g, float b, float a = 1.0f)																	{ SetR(r); SetG(g); SetB(b); SetA(a); }
-	void SetR(float r)																									{ R = tMath::tClamp( tMath::tFloatToInt(r*255.0f), 0, 0xFF ); }
-	void SetG(float g)																									{ G = tMath::tClamp( tMath::tFloatToInt(g*255.0f), 0, 0xFF ); }
-	void SetB(float b)																									{ B = tMath::tClamp( tMath::tFloatToInt(b*255.0f), 0, 0xFF ); }
-	void SetA(float a)																									{ A = tMath::tClamp( tMath::tFloatToInt(a*255.0f), 0, 0xFF ); }
+	void SetR(float r)																									{ R = tMath::tClamp( int(r*256.0f), 0, 0xFF ); }
+	void SetG(float g)																									{ G = tMath::tClamp( int(g*256.0f), 0, 0xFF ); }
+	void SetB(float b)																									{ B = tMath::tClamp( int(b*256.0f), 0, 0xFF ); }
+	void SetA(float a)																									{ A = tMath::tClamp( int(a*256.0f), 0, 0xFF ); }
 
 	// The floating point get methods use a range of [0.0, 1.0] for each component.
 	float GetR() const																									{ return float(R) / 255.0f; }
@@ -474,7 +476,302 @@ public:
 		uint8 E[4];
 	};
 };
+tStaticAssert(sizeof(tColour4b) == 4);
 typedef tColour4b tPixel4;
+
+
+#pragma pack(push, 2)
+// The tColour3s class represents a colour in 48 bits and is made of 3 unsigned short (16-bit) integers in the order RGB.
+class tColour3s
+{
+public:
+	tColour3s()						/* Does NOT set the colour values. */												{ }
+	tColour3s(const tColour3s& c)																						{ Set(c); }
+	tColour3s(int r, int g, int b)																						{ Set(r, g, b); }
+	tColour3s(uint16 r, uint16 g, uint16 b, uint16 a = 0xFFFF)															{ Set(r, g, b); }
+
+	void Set(const tColour3s& c)																						{ R = c.R; G = c.G; B = c.B; }
+	void Set(int r, int g, int b)																						{ R = tMath::tClamp(r, 0, 0xFFFF); G = tMath::tClamp(g, 0, 0xFFFF); B = tMath::tClamp(b, 0, 0xFFFF); }
+	void Set(uint16 r, uint16 g, uint16 b)																				{ R = r; G = g; B = b; }
+
+	// These floating point get methods use a range of [0.0, 65535.0] for each component.
+	float GetDenormR() const																							{ return float(R); }
+	float GetDenormG() const																							{ return float(G); }
+	float GetDenormB() const																							{ return float(B); }
+	void GetDenorm(float* dest) const																					{ dest[0] = GetDenormR(); dest[1] = GetDenormG(); dest[2] = GetDenormB(); }
+	void GetDenorm(tMath::tVector3& dest) const																			{ dest.x = GetDenormR(); dest.y = GetDenormG(); dest.z = GetDenormB(); }
+	void GetDenorm(float& r, float&g, float& b) const																	{ r = GetDenormR(); g = GetDenormG(); b = GetDenormB(); }
+	int Intensity() const			/* Returns intensity (average of RGB) in range [0, 65535]. */						{ return (int(R)+int(G)+int(B))/3; }
+
+	// These allow tColour3s to be keys in a tMap. Doesn't need to be unique as the tMap deals with hash collisions.
+	// This 'hash' function simply places the green 16 bits in the middle overlapping (xor) the red and blue.
+	explicit operator uint32()																							{ return (uint32(R)<<16) | (uint32(G)<<8) | uint32(B); }
+	explicit operator uint32() const																					{ return (uint32(R)<<16) | (uint32(G)<<8) | uint32(B); }
+	bool operator==(const tColour3s& c) const																			{ return (c.R == R) && (c.G == G) && (c.B == B); }
+
+	union
+	{
+		struct { uint16 R, G, B; };
+		struct { uint16 H, S, V; };
+		uint16 E[3];					// Individual elements. Makes it easy to submit colours to OpenGL.
+	};
+};
+#pragma pack(pop)
+tStaticAssert(sizeof(tColour3s) == 6);
+typedef tColour3s tPixel3s;
+
+
+// The tColour4s class represents a colour in 64 bits and is made of 4 unsigned short (16-bit) integers in the order RGBA.
+class tColour4s
+{
+public:
+	tColour4s()												/* Does NOT set the colour values. */						{ }
+	tColour4s(const tColour4s& c)																						{ Set(c); }
+	tColour4s(const tColour3s& c, int a = 0xFFFF)																		{ Set(c, a); }
+	tColour4s(int r, int g, int b, int a = 0xFFFF)																		{ Set(r, g, b, a); }
+	tColour4s(uint16 r, uint16 g, uint16 b, uint16 a = 0xFFFF)															{ Set(r, g, b, a); }
+	tColour4s(uint64 bits)																								{ Set(bits); }
+	tColour4s(const tColour4f& c)																						{ Set(c); }
+	tColour4s(const tColour3f& c, uint16 a)																				{ Set(c, a); }
+	tColour4s(const tColour3f& c, float a)																				{ Set(c, a); }
+	tColour4s(float r, float g, float b, float a = 1.0f)																{ Set(r, g, b, a); }
+	tColour4s(const float* src)																							{ Set(src); }
+
+	void Set(const tColour4s& c)																						{ BP = c.BP; }
+	void Set(const tColour3s& c, int a = 0xFFFF)																		{ R = c.R; G = c.G; B = c.B; A = a; }
+	void Set(int r, int g, int b, int a = 65535)																		{ R = tMath::tClamp(r, 0, 0xFFFF); G = tMath::tClamp(g, 0, 0xFFFF); B = tMath::tClamp(b, 0, 0xFFFF); A = tMath::tClamp(a, 0, 0xFFFF); }
+	void Set(uint16 r, uint16 g, uint16 b, uint16 a = 65535)															{ R = r; G = g; B = b; A = a; }
+	void Set(uint64 bits)																								{ BP = bits; }
+	void Set(const tColour4f& c);
+	void Set(const tColour3f& c, uint16 a);
+	void Set(const tColour3f& c, float a);
+	void Set(const float* src)																							{ SetR(src[0]); SetG(src[1]); SetB(src[2]); SetA(src[3]); }
+
+	// These leave alpha at whatever value it was at before.
+	void SetRGB(int r, int g, int b)																					{ R = tMath::tClamp(r, 0, 0xFFFF); G = tMath::tClamp(g, 0, 0xFFFF); B = tMath::tClamp(b, 0, 0xFFFF); }
+	void SetRGB(uint16 r, uint16 g, uint16 b)																			{ R = r; G = g; B = b; }
+
+	// The floating point set methods use a range of [0.0, 1.0] for each component.
+	void Set(float r, float g, float b, float a = 1.0f)																	{ SetR(r); SetG(g); SetB(b); SetA(a); }
+	void SetR(float r)																									{ R = tMath::tClamp( int(r*65536.0f), 0, 0xFFFF ); }
+	void SetG(float g)																									{ G = tMath::tClamp( int(g*65536.0f), 0, 0xFFFF ); }
+	void SetB(float b)																									{ B = tMath::tClamp( int(b*65536.0f), 0, 0xFFFF ); }
+	void SetA(float a)																									{ A = tMath::tClamp( int(a*65536.0f), 0, 0xFFFF ); }
+
+	// The floating point get methods use a range of [0.0, 1.0] for each component.
+	float GetR() const																									{ return float(R) / 65535.0f; }
+	float GetG() const																									{ return float(G) / 65535.0f; }
+	float GetB() const																									{ return float(B) / 65535.0f; }
+	float GetA() const																									{ return float(A) / 65535.0f; }
+	void Get(float* dest) const																							{ dest[0] = GetR(); dest[1] = GetG(); dest[2] = GetB(); dest[3] = GetA(); }
+	void Get(tMath::tVector3& dest) const																				{ dest.x = GetR(); dest.y = GetG(); dest.z = GetB(); }
+	void Get(tMath::tVector4& dest) const																				{ dest.x = GetR(); dest.y = GetG(); dest.z = GetB(); dest.w = GetA(); }
+	void Get(float& r, float&g, float& b, float& a) const																{ r = GetR(); g = GetG(); b = GetB(); a = GetA(); }
+
+	// These floating point get methods use a range of [0.0, 65535.0] for each component.
+	float GetDenormR() const																							{ return float(R); }
+	float GetDenormG() const																							{ return float(G); }
+	float GetDenormB() const																							{ return float(B); }
+	float GetDenormA() const																							{ return float(A); }
+	void GetDenorm(float* dest) const																					{ dest[0] = GetDenormR(); dest[1] = GetDenormG(); dest[2] = GetDenormB(); dest[3] = GetDenormA(); }
+	void GetDenorm(tMath::tVector3& dest) const																			{ dest.x = GetDenormR(); dest.y = GetDenormG(); dest.z = GetDenormB(); }
+	void GetDenorm(tMath::tVector4& dest) const																			{ dest.x = GetDenormR(); dest.y = GetDenormG(); dest.z = GetDenormB(); dest.w = GetDenormA(); }
+	void GetDenorm(float& r, float&g, float& b, float& a) const															{ r = GetDenormR(); g = GetDenormG(); b = GetDenormB(); a = GetDenormA(); }
+
+	void Get(tColour4s& c) const																						{ c.BP = BP; }
+
+	// Returns intensity (average of chosen components) in range [0, 65535].
+	int Intensity(comp_t comps = tCompBit_RGB) const;
+
+	void MakeZero()																										{ R = 0x0000; G = 0x0000; B = 0x0000; A = 0x0000; }
+	void MakeBlack()																									{ R = 0x0000; G = 0x0000; B = 0x0000; A = 0xFFFF; }
+	void MakeWhite()																									{ R = 0xFFFF; G = 0xFFFF; B = 0xFFFF; A = 0xFFFF; }
+	void MakePink()																										{ R = 0xFFFF; G = 0x8000; B = 0x8000; A = 0xFFFF; }
+
+	void MakeRed()																										{ R = 0xFFFF; G = 0x0000; B = 0x0000; A = 0xFFFF; }
+	void MakeGreen()																									{ R = 0x0000; G = 0xFFFF; B = 0x0000; A = 0xFFFF; }
+	void MakeBlue()																										{ R = 0x0000; G = 0x0000; B = 0xFFFF; A = 0xFFFF; }
+
+	void MakeGrey()																										{ R = 0x8000; G = 0x8000; B = 0x8000; A = 0xFFFF; }
+	void MakeLightGrey()																								{ R = 0xC000; G = 0xC000; B = 0xC000; A = 0xFFFF; }
+	void MakeDarkGrey()																									{ R = 0x4000; G = 0x4000; B = 0x4000; A = 0xFFFF;}
+
+	void MakeCyan()																										{ R = 0x0000; G = 0xFFFF; B = 0xFFFF; A = 0xFFFF; }
+	void MakeMagenta()																									{ R = 0xFFFF; G = 0x0000; B = 0xFFFF; A = 0xFFFF; }
+	void MakeYellow()																									{ R = 0xFFFF; G = 0xFFFF; B = 0x0000; A = 0xFFFF; }
+
+	// These querying calls ignore alpha.
+	bool IsBlack() const																								{ return ((R == 0x0000) && (G == 0x0000) && (B == 0x0000)) ? true : false; }
+	bool IsWhite() const																								{ return ((R == 0xFFFF) && (G == 0xFFFF) && (B == 0xFFFF)) ? true : false; }
+	bool IsRed() const																									{ return ((R == 0xFFFF) && (G == 0x0000) && (B == 0x0000)) ? true : false; }
+	bool IsGreen() const																								{ return ((R == 0x0000) && (G == 0xFFFF) && (B == 0x0000)) ? true : false; }
+	bool IsBlue() const																									{ return ((R == 0x0000) && (G == 0x0000) && (B == 0xFFFF)) ? true : false; }
+
+	bool Equal(const tColour4s&, comp_t channels = tCompBit_All) const;
+	bool operator==(const tColour4s& c) const																			{ return (BP == c.BP); }
+	bool operator!=(const tColour4s& c) const 																			{ return (BP != c.BP); }
+	tColour4s& operator=(const tColour4s& c)																			{ BP = c.BP; return *this; }
+
+	tColour4s& operator*=(float f)																						{ R = uint16(float(R)*f); G = uint16(float(G)*f); B = uint16(float(B)*f); A = uint16(float(A)*f); return *this; }
+	const tColour4s operator*(float f) const																			{ tColour4s res(*this); res *= f; return res; }
+	tColour4s& operator+=(const tColour4s& c)																			{ R += c.R; G += c.G; B += c.B; A += c.A; return *this; }
+	const tColour4s operator+(const tColour4s& c) const																	{ tColour4s res(*this); res += c; return res; }
+
+	// These allow tColour4s to be keys in a tMap. Doesn't need to be unique as the tMap deals with hash collisions.
+	// This 'hash' function simply places the green 16 bits in the middle left and the blue in middle-right, overlapping
+	// (xor) the red (MSB) and alpha (LSB).
+	explicit operator uint32()																							{ return (uint32(R)<<16) | (uint32(G)<<12) | (uint32(B)<<8) | uint32(A); }
+	explicit operator uint32() const																					{ return (uint32(R)<<16) | (uint32(G)<<12) | (uint32(B)<<8) | uint32(A); }
+
+	// Predefined colours. Initialized using the C++11 aggregate initializer syntax. These may be used before main()
+	// in normally (non-aggregate syntax) constructed objects.
+	const static tColour4s black;
+	const static tColour4s white;
+	const static tColour4s pink;
+
+	const static tColour4s red;
+	const static tColour4s green;
+	const static tColour4s blue;
+
+	const static tColour4s grey;
+	const static tColour4s lightgrey;
+	const static tColour4s darkgrey;
+
+	const static tColour4s cyan;
+	const static tColour4s magenta;
+	const static tColour4s yellow;
+
+	const static tColour4s transparent;
+
+	union
+	{
+		struct { uint16 R, G, B, A; };
+		struct { uint16 H, S, V, O; };		// O for opacity. Some compilers don't like a repeated A.
+
+		// Bit Pattern member.
+		// Accessing the colour as a 64 bit value using the BP member means you must take the machine's endianness into
+		// account. This explains why the member isn't named something like RGBA. For example, in memory it's always in the
+		// RGBA no matter what endianness, but on a little endian machine you'd access the blue component with something
+		// like (colour.BP >> 16) % 0xFF
+		uint64 BP;
+
+		// Individual elements. Makes it easy to submit colours to OpenGL.
+		uint16 E[4];
+	};
+};
+tStaticAssert(sizeof(tColour4s) == 8);
+typedef tColour4s tPixel4s;
+
+
+// The tColour3f class represents a colour in 3 floats and is made of 3 floats in the order RGB.
+// The values of each float component are E [0.0, 1.0].
+class tColour3f
+{
+public:
+	tColour3f()																											{ }
+	tColour3f(const tColour3f& src)																						{ Set(src); }
+	tColour3f(float r, float g, float b)																				{ Set(r, g, b); }
+	tColour3f(const tMath::tVector3& c)																					{ Set(c); }
+	tColour3f(const tMath::tVector4& c)																					{ Set(c); }
+	tColour3f(const tColour4b& src)																						{ Set(src); }
+	tColour3f(uint8 r, uint8 g, uint8 b)																				{ Set(r, g, b); }
+	tColour3f(int r, int g, int b)																						{ Set(r, g, b); }
+
+	void Unset()																										{ R = -1.0f; G = -1.0f; B = -1.0f; }						// An unset colour has value (-1.0f, -1.0f, -1.0f).
+	bool IsSet() const																									{ return ((R != -1.0f) || (G != -1.0f) || (B != -1.0f)); }	// Any set component means the whole colour is considered set.
+	void Set(const tColour3f& c)																						{ R = c.R; G = c.G; B = c.B; }
+	void Set(float r, float g, float b)																					{ R = r; G = g; B = b; }
+	void Set(const float* src)																							{ R = src[0]; G = src[1]; B = src[2]; }
+	void Set(const tMath::tVector3& c)																					{ R = c.x; G = c.y; B = c.z; }
+	void Set(const tMath::tVector4& c)																					{ R = c.x; G = c.y; B = c.z; }
+	void Set(const tColour4b& c)																						{ Set(c.R, c.G, c.B); }
+
+	// The integer get and set methods use a range of [0, 255] for each component.
+	void Set(int r, int g, int b)																						{ SetR(r); SetG(g); SetB(b); }
+	void SetR(int r)																									{ R = float(r)/255.0f; }
+	void SetG(int g)																									{ G = float(g)/255.0f; }
+	void SetB(int b)																									{ B = float(b)/255.0f; }
+	int GetR() const																									{ return tMath::tClamp(int(R*256.0f), 0, 0xFF); }
+	int GetG() const																									{ return tMath::tClamp(int(G*256.0f), 0, 0xFF); }
+	int GetB() const																									{ return tMath::tClamp(int(B*256.0f), 0, 0xFF); }
+	void Get(int* dest) const																							{ dest[0] = GetR(); dest[1] = GetG(); dest[2] = GetB(); }
+
+	void Get(tMath::tVector3& dest) const																				{ dest.x = R; dest.y = G; dest.z = B; }
+	void Get(tMath::tVector4& dest) const																				{ dest.x = R; dest.y = G; dest.z = B; dest.w = 1.0f; }
+	void Get(float& r, float&g, float& b) const																			{ r = R; g = G; b = B; }
+	void Get(tColour3f& c) const																						{ c.R = R; c.G = G; c.B = B; }
+
+	void Saturate()																										{ tMath::tiSaturate(R); tMath::tiSaturate(G); tMath::tiSaturate(B); }
+	float Intensity() const			/* Returns intensity (average of RGB) in range [0.0f, 1.0f]. */						{ return (R+G+B)/3.0f; }
+
+	void MakeBlack()																									{ R = 0.0f; G = 0.0f; B = 0.0f; }
+	void MakeWhite()																									{ R = 1.0f; G = 1.0f; B = 1.0f; }
+	void MakePink()																										{ R = 1.0f; G = 0.5f; B = 0.5f; }
+
+	void MakeRed()																										{ R = 1.0f; G = 0.0f; B = 0.0f; }
+	void MakeGreen()																									{ R = 0.0f; G = 1.0f; B = 0.0f; }
+	void MakeBlue()																										{ R = 0.0f; G = 0.0f; B = 1.0f; }
+
+	void MakeGrey()																										{ R = 0.5f; G = 0.5f; B = 0.5f; }
+	void MakeLightGrey()																								{ R = 0.75f; G = 0.75f; B = 0.75f; }
+	void MakeDarkGrey()																									{ R = 0.25f; G = 0.25f; B = 0.25f; }
+
+	void MakeCyan()																										{ R = 0.0f; G = 1.0f; B = 1.0f; }
+	void MakeMagenta()																									{ R = 1.0f; G = 0.0f; B = 1.0f; }
+	void MakeYellow()																									{ R = 1.0f; G = 1.0f; B = 0.0f; }
+
+	// These querying calls ignore alpha.
+	bool IsBlack() const																								{ return ((R == 0.0f) && (G == 0.0f) && (B == 0.0f)); }
+	bool IsWhite() const																								{ return ((R == 1.0f) && (G == 1.0f) && (B == 1.0f)); }
+	bool IsRed() const																									{ return ((R == 1.0f) && (G == 0.0f) && (B == 0.0f)); }
+	bool IsGreen() const																								{ return ((R == 0.0f) && (G == 1.0f) && (B == 0.0f)); }
+	bool IsBlue() const																									{ return ((R == 0.0f) && (G == 0.0f) && (B == 1.0f)); }
+
+	// Colours in textures in files may be in Gamma space and ought to be converted to linear space before
+	// lighting calculations are made. They should then be converted back to Gamma space before being displayed.
+	// Gamma-space here should really be sRGB but we're just using an approximation by squaring (gamma=2) when the
+	// average sRGB gamma should be 2.2. To do the conversion properly, the gamma varies with intensity from 1 to 2.4,
+	// but, again, we're only approximating here.
+	void ToLinearSpaceApprox()																							{ R *= R; G *= G; B *= B; }
+	void ToGammaSpaceApprox()																							{ R = tMath::tSqrt(R); G = tMath::tSqrt(G); B = tMath::tSqrt(B); }
+
+	// When using the HSV representation of a tColour4f, the hue is in NormOne angle mode. See the tRGBToHSV and
+	// tHSVToRGB functions if you wish to use different angle units. All the components (h, s, v, r, g, b, a) are in
+	// [0.0, 1.0]. Both of the functions below leave the alpha unchanged.
+	void RGBToHSV();										// Assumes current values are RGB.
+	void HSVToRGB();										// Assumes current values are HSV.
+
+	bool operator==(const tColour4f& c) const;
+	bool operator!=(const tColour4f& c) const;
+	tColour3f& operator=(const tColour3f& c)																			{ R = c.R; G = c.G; B = c.B; return *this; }
+
+	// Predefined colours.
+	const static tColour3f invalid;
+	const static tColour3f black;
+	const static tColour3f white;
+	const static tColour3f hotpink;
+
+	const static tColour3f red;
+	const static tColour3f green;
+	const static tColour3f blue;
+
+	const static tColour3f grey;
+	const static tColour3f lightgrey;
+	const static tColour3f darkgrey;
+
+	const static tColour3f cyan;
+	const static tColour3f magenta;
+	const static tColour3f yellow;
+
+	union
+	{
+		struct { float R, G, B; };
+		struct { float H, S, V; };
+		float E[3];
+	};
+};
+tStaticAssert(sizeof(tColour3f) == 12);
+typedef tColour3f tPixel3f;
 
 
 // The tColour4f class represents a colour in 4 floats and is made of 4 floats in the order RGBA. The values of each
@@ -501,19 +798,20 @@ public:
 	void Set(const float* src)																							{ R = src[0]; G = src[1]; B = src[2]; A = src[3]; }
 	void Set(const tMath::tVector3& c, float a = 1.0f)																	{ R = c.x; G = c.y; B = c.z; A = a; }
 	void Set(const tMath::tVector4& ca)																					{ R = ca.x; G = ca.y; B = ca.z; A = ca.w; }
-	void Set(const tColour4b& c)																						{ Set(float(c.R)/255.0f, float(c.G)/255.0f, float(c.B)/255.0f, float(c.A)/255.0f); }
-	void Set(int r, int g, int b, int a = 255)																			{ Set(float(r)/255.0f, float(g)/255.0f, float(b)/255.0f, float(a)/255.0f); }
+	void Set(const tColour4b& c)																						{ Set(c.R, c.G, c.B, c.A); }
+
+	// The integer get and set methods use a range of [0, 255] for each component.
+	void Set(int r, int g, int b, int a = 255)																			{ SetR(r); SetG(g); SetB(b); SetA(a); }
 	void SetR(int r)																									{ R = float(r)/255.0f; }
 	void SetG(int g)																									{ G = float(g)/255.0f; }
 	void SetB(int b)																									{ B = float(b)/255.0f; }
 	void SetA(int a)																									{ A = float(a)/255.0f; }
-
-	// The integer get and set methods use a range of [0, 255] for each component.
-	int GetR() const																									{ return tMath::tFloatToInt(R * 255.0f); }
-	int GetG() const																									{ return tMath::tFloatToInt(G * 255.0f); }
-	int GetB() const																									{ return tMath::tFloatToInt(B * 255.0f); }
-	int GetA() const																									{ return tMath::tFloatToInt(A * 255.0f); }
+	int GetR() const																									{ return tMath::tClamp(int(R*256.0f), 0, 0xFF); }
+	int GetG() const																									{ return tMath::tClamp(int(G*256.0f), 0, 0xFF); }
+	int GetB() const																									{ return tMath::tClamp(int(B*256.0f), 0, 0xFF); }
+	int GetA() const																									{ return tMath::tClamp(int(A*256.0f), 0, 0xFF); }
 	void Get(int* dest) const																							{ dest[0] = GetR(); dest[1] = GetG(); dest[2] = GetB(); dest[3] = GetA(); }
+
 	void Get(tMath::tVector3& dest) const																				{ dest.x = R; dest.y = G; dest.z = B; }
 	void Get(tMath::tVector4& dest) const																				{ dest.x = R; dest.y = G; dest.z = B; dest.w = A; }
 	void Get(float& r, float&g, float& b, float& a) const																{ r = R; g = G; b = B; a = A; }
@@ -625,114 +923,8 @@ public:
 		float E[4];
 	};
 };
-
-
-// The tColour3f class represents a colour in 3 floats and is made of 3 floats in the order RGB.
-// The values of each float component are E [0.0, 1.0].
-class tColour3f
-{
-public:
-	tColour3f()																											{ }
-	tColour3f(const tColour3f& src)																						{ Set(src); }
-	tColour3f(float r, float g, float b)																				{ Set(r, g, b); }
-	tColour3f(const tMath::tVector3& c)																					{ Set(c); }
-	tColour3f(const tMath::tVector4& c)																					{ Set(c); }
-	tColour3f(const tColour4b& src)																						{ Set(src); }
-	tColour3f(uint8 r, uint8 g, uint8 b)																				{ Set(r, g, b); }
-	tColour3f(int r, int g, int b)																						{ Set(r, g, b); }
-
-	void Unset()																										{ R = -1.0f; G = -1.0f; B = -1.0f; }						// An unset colour has value (-1.0f, -1.0f, -1.0f).
-	bool IsSet() const																									{ return ((R != -1.0f) || (G != -1.0f) || (B != -1.0f)); }	// Any set component means the whole colour is considered set.
-	void Set(const tColour3f& c)																						{ R = c.R; G = c.G; B = c.B; }
-	void Set(float r, float g, float b)																					{ R = r; G = g; B = b; }
-	void Set(const float* src)																							{ R = src[0]; G = src[1]; B = src[2]; }
-	void Set(const tMath::tVector3& c)																					{ R = c.x; G = c.y; B = c.z; }
-	void Set(const tMath::tVector4& c)																					{ R = c.x; G = c.y; B = c.z; }
-	void Set(const tColour4b& c)																						{ Set(float(c.R)/255.0f, float(c.G)/255.0f, float(c.B)/255.0f); }
-	void Set(int r, int g, int b)																						{ Set(float(r)/255.0f, float(g)/255.0f, float(b)/255.0f); }
-	void SetR(int r)																									{ R = float(r)/255.0f; }
-	void SetG(int g)																									{ G = float(g)/255.0f; }
-	void SetB(int b)																									{ B = float(b)/255.0f; }
-
-	// The integer get and set methods use a range of [0, 255] for each component.
-	int GetR() const																									{ return tMath::tFloatToInt(R * 255.0f); }
-	int GetG() const																									{ return tMath::tFloatToInt(G * 255.0f); }
-	int GetB() const																									{ return tMath::tFloatToInt(B * 255.0f); }
-	void Get(int* dest) const																							{ dest[0] = GetR(); dest[1] = GetG(); dest[2] = GetB(); }
-	void Get(tMath::tVector3& dest) const																				{ dest.x = R; dest.y = G; dest.z = B; }
-	void Get(tMath::tVector4& dest) const																				{ dest.x = R; dest.y = G; dest.z = B; dest.w = 1.0f; }
-	void Get(float& r, float&g, float& b) const																			{ r = R; g = G; b = B; }
-	void Get(tColour3f& c) const																						{ c.R = R; c.G = G; c.B = B; }
-
-	void Saturate()																										{ tMath::tiSaturate(R); tMath::tiSaturate(G); tMath::tiSaturate(B); }
-	float Intensity() const			/* Returns intensity (average of RGB) in range [0.0f, 1.0f]. */						{ return (R+G+B)/3.0f; }
-
-	void MakeBlack()																									{ R = 0.0f; G = 0.0f; B = 0.0f; }
-	void MakeWhite()																									{ R = 1.0f; G = 1.0f; B = 1.0f; }
-	void MakePink()																										{ R = 1.0f; G = 0.5f; B = 0.5f; }
-
-	void MakeRed()																										{ R = 1.0f; G = 0.0f; B = 0.0f; }
-	void MakeGreen()																									{ R = 0.0f; G = 1.0f; B = 0.0f; }
-	void MakeBlue()																										{ R = 0.0f; G = 0.0f; B = 1.0f; }
-
-	void MakeGrey()																										{ R = 0.5f; G = 0.5f; B = 0.5f; }
-	void MakeLightGrey()																								{ R = 0.75f; G = 0.75f; B = 0.75f; }
-	void MakeDarkGrey()																									{ R = 0.25f; G = 0.25f; B = 0.25f; }
-
-	void MakeCyan()																										{ R = 0.0f; G = 1.0f; B = 1.0f; }
-	void MakeMagenta()																									{ R = 1.0f; G = 0.0f; B = 1.0f; }
-	void MakeYellow()																									{ R = 1.0f; G = 1.0f; B = 0.0f; }
-
-	// These querying calls ignore alpha.
-	bool IsBlack() const																								{ return ((R == 0.0f) && (G == 0.0f) && (B == 0.0f)); }
-	bool IsWhite() const																								{ return ((R == 1.0f) && (G == 1.0f) && (B == 1.0f)); }
-	bool IsRed() const																									{ return ((R == 1.0f) && (G == 0.0f) && (B == 0.0f)); }
-	bool IsGreen() const																								{ return ((R == 0.0f) && (G == 1.0f) && (B == 0.0f)); }
-	bool IsBlue() const																									{ return ((R == 0.0f) && (G == 0.0f) && (B == 1.0f)); }
-
-	// Colours in textures in files may be in Gamma space and ought to be converted to linear space before
-	// lighting calculations are made. They should then be converted back to Gamma space before being displayed.
-	// Gamma-space here should really be sRGB but we're just using an approximation by squaring (gamma=2) when the
-	// average sRGB gamma should be 2.2. To do the conversion properly, the gamma varies with intensity from 1 to 2.4,
-	// but, again, we're only approximating here.
-	void ToLinearSpaceApprox()																							{ R *= R; G *= G; B *= B; }
-	void ToGammaSpaceApprox()																							{ R = tMath::tSqrt(R); G = tMath::tSqrt(G); B = tMath::tSqrt(B); }
-
-	// When using the HSV representation of a tColour4f, the hue is in NormOne angle mode. See the tRGBToHSV and
-	// tHSVToRGB functions if you wish to use different angle units. All the components (h, s, v, r, g, b, a) are in
-	// [0.0, 1.0]. Both of the functions below leave the alpha unchanged.
-	void RGBToHSV();										// Assumes current values are RGB.
-	void HSVToRGB();										// Assumes current values are HSV.
-
-	bool operator==(const tColour4f& c) const																			{ return ((R == c.R) && (G == c.G) && (B == c.B)); }
-	bool operator!=(const tColour4f& c) const 																			{ return ((R != c.R) || (G != c.G) || (B != c.B)); }
-	tColour3f& operator=(const tColour3f& c)																			{ R = c.R; G = c.G; B = c.B; return *this; }
-
-	// Predefined colours.
-	const static tColour3f invalid;
-	const static tColour3f black;
-	const static tColour3f white;
-	const static tColour3f hotpink;
-
-	const static tColour3f red;
-	const static tColour3f green;
-	const static tColour3f blue;
-
-	const static tColour3f grey;
-	const static tColour3f lightgrey;
-	const static tColour3f darkgrey;
-
-	const static tColour3f cyan;
-	const static tColour3f magenta;
-	const static tColour3f yellow;
-
-	union
-	{
-		struct { float R, G, B; };
-		struct { float H, S, V; };
-		float E[3];
-	};
-};
+tStaticAssert(sizeof(tColour4f) == 16);
+typedef tColour4f tPixel4f;
 
 
 // Implementation below this line.
@@ -823,6 +1015,38 @@ inline float tMath::tTonemapReinhard(float linearComponent)
 }
 
 
+inline float tMath::tColourDiffEuclideanSq(const tColour3b& aa, const tColour3b& bb)
+{
+	tVector3 a; aa.GetDenorm(a);
+	tVector3 b; bb.GetDenorm(b);
+	return tDistBetweenSq(a, b);
+}
+
+
+inline float tMath::tColourDiffEuclideanSq(const tColour4b& aa, const tColour4b& bb)
+{
+	tVector3 a; aa.GetDenorm(a);
+	tVector3 b; bb.GetDenorm(b);
+	return tDistBetweenSq(a, b);
+}
+
+
+inline float tMath::tColourDiffEuclidean(const tColour3b& aa, const tColour3b& bb)
+{
+	tVector3 a; aa.GetDenorm(a);
+	tVector3 b; bb.GetDenorm(b);
+	return tDistBetween(a, b);
+}
+
+
+inline float tMath::tColourDiffEuclidean(const tColour4b& aa, const tColour4b& bb)
+{
+	tVector3 a; aa.GetDenorm(a);
+	tVector3 b; bb.GetDenorm(b);
+	return tDistBetween(a, b);
+}
+
+
 inline void tColour4b::Set(const tColour3b& c, int a)
 {
 	R = c.R; G = c.G; B = c.B; A = tMath::tClamp(a, 0, 0xFF);
@@ -900,6 +1124,66 @@ inline bool tColour4b::Equal(const tColour4b& colour, comp_t channels) const
 		return false;
 
 	return true;
+}
+
+//////////////////
+inline void tColour4s::Set(const tColour4f& c)
+{
+	Set(c.R, c.G, c.B, c.A);
+}
+
+
+inline void tColour4s::Set(const tColour3f& c, uint16 a)
+{
+	SetR(c.R); SetG(c.G); SetB(c.B); A = a;
+}
+
+
+inline void tColour4s::Set(const tColour3f& c, float a)
+{
+	Set(c.R, c.G, c.B, a);
+}
+
+
+inline int tColour4s::Intensity(comp_t comps) const
+{
+	int sum = 0; int count = 0;
+	if (comps & tCompBit_R) { sum += int(R); count++; }
+	if (comps & tCompBit_G) { sum += int(G); count++; }
+	if (comps & tCompBit_B) { sum += int(B); count++; }
+	if (comps & tCompBit_A) { sum += int(A); count++; }
+	if (!count) return -1;
+	return sum/count;
+}
+
+
+inline bool tColour4s::Equal(const tColour4s& colour, comp_t channels) const
+{
+	if ((channels & tCompBit_R) && (R != colour.R))
+		return false;
+
+	if ((channels & tCompBit_G) && (G != colour.G))
+		return false;
+
+	if ((channels & tCompBit_B) && (B != colour.B))
+		return false;
+
+	if ((channels & tCompBit_A) && (A != colour.A))
+		return false;
+
+	return true;
+}
+
+
+inline bool tColour3f::operator==(const tColour4f& c) const
+{
+	return ((R == c.R) && (G == c.G) && (B == c.B));
+}
+
+
+inline bool tColour3f::operator!=(const tColour4f& c) const
+{
+	return ((R != c.R) || (G != c.G) || (B != c.B));
 }
 
 
@@ -996,36 +1280,4 @@ inline void tColour4f::HSVToRGB()
 	float s = S;
 	float v = V;
 	tHSVToRGB(R, G, B, h, s, v, tMath::tAngleMode::NormOne);
-}
-
-
-inline float tMath::tColourDiffEuclideanSq(const tColour3b& aa, const tColour3b& bb)
-{
-	tVector3 a; aa.GetDenorm(a);
-	tVector3 b; bb.GetDenorm(b);
-	return tDistBetweenSq(a, b);
-}
-
-
-inline float tMath::tColourDiffEuclideanSq(const tColour4b& aa, const tColour4b& bb)
-{
-	tVector3 a; aa.GetDenorm(a);
-	tVector3 b; bb.GetDenorm(b);
-	return tDistBetweenSq(a, b);
-}
-
-
-inline float tMath::tColourDiffEuclidean(const tColour3b& aa, const tColour3b& bb)
-{
-	tVector3 a; aa.GetDenorm(a);
-	tVector3 b; bb.GetDenorm(b);
-	return tDistBetween(a, b);
-}
-
-
-inline float tMath::tColourDiffEuclidean(const tColour4b& aa, const tColour4b& bb)
-{
-	tVector3 a; aa.GetDenorm(a);
-	tVector3 b; bb.GetDenorm(b);
-	return tDistBetween(a, b);
 }

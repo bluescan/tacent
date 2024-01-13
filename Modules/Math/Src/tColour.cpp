@@ -158,20 +158,19 @@ const tColour4b tColour4b::yellow		= { 0xFF, 0xFF, 0x00, 0xFF };
 const tColour4b tColour4b::transparent	= { 0x00, 0x00, 0x00, 0x00 };
 
 
-const tColour4f tColour4f::invalid		= { -1.0f, -1.0f, -1.0f, -1.0f };
-const tColour4f tColour4f::black		= { 0.00f, 0.00f, 0.00f, 1.00f };
-const tColour4f tColour4f::white		= { 1.00f, 1.00f, 1.00f, 1.00f };
-const tColour4f tColour4f::hotpink		= { 1.00f, 0.50f, 0.50f, 1.00f };
-const tColour4f tColour4f::red			= { 1.00f, 0.00f, 0.00f, 1.00f };
-const tColour4f tColour4f::green		= { 0.00f, 1.00f, 0.00f, 1.00f };
-const tColour4f tColour4f::blue			= { 0.00f, 0.00f, 1.00f, 1.00f };
-const tColour4f tColour4f::grey			= { 0.50f, 0.50f, 0.50f, 1.00f };
-const tColour4f tColour4f::lightgrey	= { 0.75f, 0.75f, 0.75f, 1.00f };
-const tColour4f tColour4f::darkgrey		= { 0.25f, 0.25f, 0.25f, 1.00f };
-const tColour4f tColour4f::cyan			= { 0.00f, 1.00f, 1.00f, 1.00f };
-const tColour4f tColour4f::magenta		= { 1.00f, 0.00f, 1.00f, 1.00f };
-const tColour4f tColour4f::yellow		= { 1.00f, 1.00f, 0.00f, 1.00f };
-const tColour4f tColour4f::transparent	= { 0.00f, 0.00f, 0.00f, 0.00f };
+const tColour4s tColour4s::black		= { 0x0000, 0x0000, 0x0000, 0xFFFF };
+const tColour4s tColour4s::white		= { 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF };
+const tColour4s tColour4s::pink			= { 0xFFFF, 0x8000, 0x8000, 0xFFFF };
+const tColour4s tColour4s::red			= { 0xFFFF, 0x0000, 0x0000, 0xFFFF };
+const tColour4s tColour4s::green		= { 0x0000, 0xFFFF, 0x0000, 0xFFFF };
+const tColour4s tColour4s::blue			= { 0x0000, 0x0000, 0xFFFF, 0xFFFF };
+const tColour4s tColour4s::grey			= { 0x8000, 0x8000, 0x8000, 0xFFFF };
+const tColour4s tColour4s::lightgrey	= { 0xC000, 0xC000, 0xC000, 0xFFFF };
+const tColour4s tColour4s::darkgrey		= { 0x4000, 0x4000, 0x4000, 0xFFFF };
+const tColour4s tColour4s::cyan			= { 0x0000, 0xFFFF, 0xFFFF, 0xFFFF };
+const tColour4s tColour4s::magenta		= { 0xFFFF, 0x0000, 0xFFFF, 0xFFFF };
+const tColour4s tColour4s::yellow		= { 0xFFFF, 0xFFFF, 0x0000, 0xFFFF };
+const tColour4s tColour4s::transparent	= { 0x0000, 0x0000, 0x0000, 0x0000 };
 
 
 const tColour3f tColour3f::invalid		= { -1.0f, -1.0f, -1.0f };
@@ -187,6 +186,22 @@ const tColour3f tColour3f::darkgrey		= { 0.25f, 0.25f, 0.25f };
 const tColour3f tColour3f::cyan			= { 0.00f, 1.00f, 1.00f };
 const tColour3f tColour3f::magenta		= { 1.00f, 0.00f, 1.00f };
 const tColour3f tColour3f::yellow		= { 1.00f, 1.00f, 0.00f };
+
+
+const tColour4f tColour4f::invalid		= { -1.0f, -1.0f, -1.0f, -1.0f };
+const tColour4f tColour4f::black		= { 0.00f, 0.00f, 0.00f, 1.00f };
+const tColour4f tColour4f::white		= { 1.00f, 1.00f, 1.00f, 1.00f };
+const tColour4f tColour4f::hotpink		= { 1.00f, 0.50f, 0.50f, 1.00f };
+const tColour4f tColour4f::red			= { 1.00f, 0.00f, 0.00f, 1.00f };
+const tColour4f tColour4f::green		= { 0.00f, 1.00f, 0.00f, 1.00f };
+const tColour4f tColour4f::blue			= { 0.00f, 0.00f, 1.00f, 1.00f };
+const tColour4f tColour4f::grey			= { 0.50f, 0.50f, 0.50f, 1.00f };
+const tColour4f tColour4f::lightgrey	= { 0.75f, 0.75f, 0.75f, 1.00f };
+const tColour4f tColour4f::darkgrey		= { 0.25f, 0.25f, 0.25f, 1.00f };
+const tColour4f tColour4f::cyan			= { 0.00f, 1.00f, 1.00f, 1.00f };
+const tColour4f tColour4f::magenta		= { 1.00f, 0.00f, 1.00f, 1.00f };
+const tColour4f tColour4f::yellow		= { 1.00f, 1.00f, 0.00f, 1.00f };
+const tColour4f tColour4f::transparent	= { 0.00f, 0.00f, 0.00f, 0.00f };
 
 
 void tMath::tRGBToHSV(int& h, int& s, int& v, int r, int g, int b, tAngleMode angleMode)
