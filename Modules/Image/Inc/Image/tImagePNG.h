@@ -56,7 +56,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	tImagePNG(tPixel4* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+	tImagePNG(tPixel4b* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
 	// Sets from a single frame.
 	tImagePNG(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
@@ -72,7 +72,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	bool Set(tPixel4*, int width, int height, bool steal = false) override;
+	bool Set(tPixel4b*, int width, int height, bool steal = false) override;
 
 	// Sets from a single frame.
 	bool Set(tFrame*, bool steal = true) override;
@@ -113,9 +113,9 @@ public:
 
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImagePNG object is
 	// invalid afterwards.
-	tPixel4* StealPixels();
+	tPixel4b* StealPixels();
 	tFrame* GetFrame(bool steal = true) override;
-	tPixel4* GetPixels() const																							{ return Pixels; }
+	tPixel4b* GetPixels() const																							{ return Pixels; }
 
 	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
 	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
@@ -126,7 +126,7 @@ private:
 	// @todo We could just use a single tFrame here instead of the 3 members below. Might simplify it a bit.
 	int Width						= 0;
 	int Height						= 0;
-	tPixel4* Pixels					= nullptr;
+	tPixel4b* Pixels				= nullptr;
 };
 
 

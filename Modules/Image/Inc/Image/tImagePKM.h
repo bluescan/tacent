@@ -62,7 +62,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	tImagePKM(tPixel4* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+	tImagePKM(tPixel4b* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
 	// Sets from a single frame.
 	tImagePKM(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
@@ -78,7 +78,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	bool Set(tPixel4* pixels, int width, int height, bool steal = false) override;
+	bool Set(tPixel4b* pixels, int width, int height, bool steal = false) override;
 
 	// Sets from a single frame.
 	bool Set(tFrame*, bool steal) override;

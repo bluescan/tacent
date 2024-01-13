@@ -35,7 +35,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	tImageWEBP(tPixel4* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+	tImageWEBP(tPixel4b* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
 	// Sets from a single frame.
 	tImageWEBP(tFrame* frame, bool steal = true)																		{ Set(frame, steal); }
@@ -52,7 +52,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	bool Set(tPixel4* pixels, int width, int height, bool steal = false) override;
+	bool Set(tPixel4b* pixels, int width, int height, bool steal = false) override;
 
 	// Sets from a single frame.
 	bool Set(tFrame*, bool steal = true) override;
@@ -112,7 +112,7 @@ public:
 	tColour4b BackgroundColour = tColour4b::white;
 
 private:
-	bool CopyRegion(tPixel4* dst, int dstW, int dstH, tPixel4* src, int srcW, int srcH, int offsetX, int offsetY, bool blend);
+	bool CopyRegion(tPixel4b* dst, int dstW, int dstH, tPixel4b* src, int srcW, int srcH, int offsetX, int offsetY, bool blend);
 
 	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 };

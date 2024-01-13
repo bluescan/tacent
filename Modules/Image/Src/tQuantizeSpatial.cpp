@@ -837,7 +837,7 @@ double tQuantizeSpatial::ComputeBaseDither(int width, int height, int numColours
 
 bool tQuantizeSpatial::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel3* pixels, tColour3b* destPalette, uint8* destIndices,
+	int numColours, int width, int height, const tPixel3b* pixels, tColour3b* destPalette, uint8* destIndices,
 	bool checkExact, double ditherLevel, int filterSize
 )
 {
@@ -939,14 +939,14 @@ bool tQuantizeSpatial::QuantizeImage
 
 bool tQuantizeSpatial::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel4* pixels, tColour3b* destPalette, uint8* destIndices,
+	int numColours, int width, int height, const tPixel4b* pixels, tColour3b* destPalette, uint8* destIndices,
 	bool checkExact, double ditherLevel, int filterSize
 )
 {
 	if ((numColours < 2) || (numColours > 256) || (width <= 0) || (height <= 0) || !pixels || !destPalette || !destIndices)
 		return false;
 
-	tPixel3* pixels3 = new tPixel3[width*height];
+	tPixel3b* pixels3 = new tPixel3b[width*height];
 	for (int p = 0; p < width*height; p++)
 		pixels3[p].Set( pixels[p].R, pixels[p].G, pixels[p].B );
 

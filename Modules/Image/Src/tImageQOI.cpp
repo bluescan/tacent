@@ -64,7 +64,7 @@ bool tImageQOI::Load(const uint8* qoiFileInMemory, int numBytes)
 	tAssert((Width > 0) && (Height > 0));
 
 	// Reverse rows.
-	Pixels = new tPixel4[Width*Height];
+	Pixels = new tPixel4b[Width*Height];
 	int bytesPerRow = Width*4;
 	for (int y = Height-1; y >= 0; y--)
 		tStd::tMemcpy((uint8*)Pixels + ((Height-1)-y)*bytesPerRow, (uint8*)reversedPixels + y*bytesPerRow, bytesPerRow);
@@ -74,7 +74,7 @@ bool tImageQOI::Load(const uint8* qoiFileInMemory, int numBytes)
 }
 
 
-bool tImageQOI::Set(tPixel4* pixels, int width, int height, bool steal)
+bool tImageQOI::Set(tPixel4b* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -89,8 +89,8 @@ bool tImageQOI::Set(tPixel4* pixels, int width, int height, bool steal)
 	}
 	else
 	{
-		Pixels = new tPixel4[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4));
+		Pixels = new tPixel4b[Width*Height];
+		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4b));
 	}
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
@@ -119,7 +119,7 @@ bool tImageQOI::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -188,7 +188,7 @@ tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, const SaveParams& par
 	qoiDesc.width		= Width;
 
 	// No matter the format, we need to reverse the rows before saving.
-	tPixel4* reversedRows = new tPixel4[Width*Height];
+	tPixel4b* reversedRows = new tPixel4b[Width*Height];
 	int bytesPerRow = Width*4;
 	for (int y = Height-1; y >= 0; y--)
 		tStd::tMemcpy((uint8*)reversedRows + ((Height-1)-y)*bytesPerRow, (uint8*)Pixels + y*bytesPerRow, bytesPerRow);
@@ -245,9 +245,9 @@ bool tImageQOI::IsOpaque() const
 }
 
 
-tPixel4* tImageQOI::StealPixels()
+tPixel4b* tImageQOI::StealPixels()
 {
-	tPixel4* pixels = Pixels;
+	tPixel4b* pixels = Pixels;
 	Pixels = nullptr;
 	Width = 0;
 	Height = 0;

@@ -605,15 +605,15 @@ void tPVR::Flip(tLayer* layer, bool horizontal)
 
 	int w = layer->Width;
 	int h = layer->Height;
-	tPixel4* srcPixels = (tPixel4*)layer->Data;
-	tPixel4* newPixels = new tPixel4[w*h];
+	tPixel4b* srcPixels = (tPixel4b*)layer->Data;
+	tPixel4b* newPixels = new tPixel4b[w*h];
 
 	for (int y = 0; y < h; y++)
 		for (int x = 0; x < w; x++)
 			newPixels[ GetIndex(x, y, w, h) ] = srcPixels[ GetIndex(horizontal ? w-1-x : x, horizontal ? y : h-1-y, w, h) ];
 
 	// We modify the existing data just in case layer doesn't own it.
-	tStd::tMemcpy(layer->Data, newPixels, w*h*sizeof(tPixel4));
+	tStd::tMemcpy(layer->Data, newPixels, w*h*sizeof(tPixel4b));
 	delete[] newPixels;
 }
 
@@ -652,7 +652,7 @@ void tImagePVR::Clear()
 }
 
 
-bool tImagePVR::Set(tPixel4* pixels, int width, int height, bool steal)
+bool tImagePVR::Set(tPixel4b* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -690,7 +690,7 @@ bool tImagePVR::Set(tFrame* frame, bool steal)
 	if (!frame || !frame->IsValid())
 		return false;
 
-	tPixel4* pixels = frame->GetPixels(steal);
+	tPixel4b* pixels = frame->GetPixels(steal);
 	Set(pixels, frame->Width, frame->Height, steal);
 	if (steal)
 		delete frame;
@@ -705,7 +705,7 @@ bool tImagePVR::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -1275,14 +1275,14 @@ tFrame* tImagePVR::GetFrame(bool steal)
 
 	if (steal)
 	{
-		frame->Pixels = (tPixel4*)layer->StealData();
+		frame->Pixels = (tPixel4b*)layer->StealData();
 		delete layer;
 		Layers[ LayerIdx(0) ] = nullptr;
 	}
 	else
 	{
-		frame->Pixels = new tPixel4[frame->Width * frame->Height];
-		tStd::tMemcpy(frame->Pixels, (tPixel4*)layer->Data, frame->Width * frame->Height * sizeof(tPixel4));
+		frame->Pixels = new tPixel4b[frame->Width * frame->Height];
+		tStd::tMemcpy(frame->Pixels, (tPixel4b*)layer->Data, frame->Width * frame->Height * sizeof(tPixel4b));
 	}
 
 	return frame;

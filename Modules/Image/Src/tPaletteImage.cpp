@@ -97,13 +97,13 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const uint8* pi
 }
 
 
-bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel4* pixels, tQuantize::Method quantMethod)
+bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel4b* pixels, tQuantize::Method quantMethod)
 {
 	Clear();
 	if (!tIsPaletteFormat(fmt) || (width <= 0) || (height <= 0) || !pixels)
 		return false;
 
-	tPixel3* rgbPixels = new tPixel3[width*height];
+	tPixel3b* rgbPixels = new tPixel3b[width*height];
 	for (int i = 0; i < width*height; i++)
 	{
 		rgbPixels[i].R = pixels[i].R;
@@ -117,7 +117,7 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel4* 
 }
 
 
-bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* pixels, tQuantize::Method quantMethod)
+bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3b* pixels, tQuantize::Method quantMethod)
 {
 	Clear();
 	if (!tIsPaletteFormat(fmt) || (width <= 0) || (height <= 0) || !pixels)
@@ -177,7 +177,7 @@ bool tPaletteImage::Set(tPixelFormat fmt, int width, int height, const tPixel3* 
 }
 
 
-bool tPaletteImage::Get(tPixel4* pixels)
+bool tPaletteImage::Get(tPixel4b* pixels)
 {
 	if (!IsValid() || !pixels)
 		return false;
@@ -201,7 +201,7 @@ bool tPaletteImage::Get(tPixel4* pixels)
 }
 
 
-bool tPaletteImage::Get(tPixel3* pixels)
+bool tPaletteImage::Get(tPixel3b* pixels)
 {
 	if (!IsValid() || !pixels)
 		return false;

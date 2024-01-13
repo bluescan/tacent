@@ -90,7 +90,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out. Sets the colour space to sRGB.
-	tImageDDS(tPixel4* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+	tImageDDS(tPixel4b* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
 	// Sets from a single frame.
 	tImageDDS(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
@@ -150,7 +150,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	bool Set(tPixel4* pixels, int width, int height, bool steal = false) override;
+	bool Set(tPixel4b* pixels, int width, int height, bool steal = false) override;
 
 	// Sets from a single frame. After this is called the layer data will be in R8G8B8A8.
 	bool Set(tFrame*, bool steal = true) override;

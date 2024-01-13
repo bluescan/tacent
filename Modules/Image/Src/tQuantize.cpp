@@ -57,7 +57,7 @@ int tQuantize::FindIndexOfExactColour(const tColour3b* searchSpace, int searchSi
 
 bool tQuantize::QuantizeImageExact
 (
-	int numColours, int width, int height, const tPixel3* pixels,
+	int numColours, int width, int height, const tPixel3b* pixels,
 	tColour3b* destPalette, uint8* destIndices
 )
 {
@@ -66,7 +66,7 @@ bool tQuantize::QuantizeImageExact
 
 	// First we need to find how many unique colours are in the pixels.
 	// We do this using a tMap which forces uniqueness on the key. We'll use the int value to count occurrences.
-	tMap<tPixel3, int> pixelCountMap;
+	tMap<tPixel3b, int> pixelCountMap;
 	for (int xy = 0; xy < width*height; xy++)
 		pixelCountMap[ pixels[xy] ]++;
 
@@ -103,7 +103,7 @@ bool tQuantize::QuantizeImageExact
 
 bool tQuantize::ConvertToPixels
 (
-	tPixel3* destPixels, int width, int height,
+	tPixel3b* destPixels, int width, int height,
 	const tColour3b* srcPalette, const uint8* srcIndices
 )
 {
@@ -127,7 +127,7 @@ bool tQuantize::ConvertToPixels
 
 bool tQuantize::ConvertToPixels
 (
-	tPixel4* destPixels, int width, int height,
+	tPixel4b* destPixels, int width, int height,
 	const tColour3b* srcPalette, const uint8* srcIndices, bool preserveDestAlpha
 )
 {

@@ -35,7 +35,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out. Sets the colour space to sRGB. Call SetColourSpace after if you wanted linear.
-	tImageQOI(tPixel4* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+	tImageQOI(tPixel4b* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
 	// Sets from a single frame.
 	tImageQOI(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
@@ -52,7 +52,7 @@ public:
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out. After this call the objects ColourSpace is set to sRGB. If the data was all linear
 	// you can call SetColourSpace() manually afterwards.
-	bool Set(tPixel4* pixels, int width, int height, bool steal = false) override;
+	bool Set(tPixel4b* pixels, int width, int height, bool steal = false) override;
 
 	// Sets from a single frame.
 	bool Set(tFrame*, bool steal = true) override;
@@ -109,9 +109,9 @@ public:
 
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageQOI object is
 	// invalid afterwards.
-	tPixel4* StealPixels();
+	tPixel4b* StealPixels();
 	tFrame* GetFrame(bool steal = true) override;
-	tPixel4* GetPixels() const																							{ return Pixels; }
+	tPixel4b* GetPixels() const																							{ return Pixels; }
 
 	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
 	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
@@ -121,7 +121,7 @@ private:
 	tSpace ColourSpace			= tSpace::Invalid;
 	int Width					= 0;
 	int Height					= 0;
-	tPixel4* Pixels				= nullptr;
+	tPixel4b* Pixels			= nullptr;
 };
 
 

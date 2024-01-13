@@ -219,7 +219,7 @@ bool tImageEXR::Load(const tString& exrFile, const LoadParams& loadParams)
 		newFrame->PixelFormatSrc = tPixelFormat::OPENEXR;
 		newFrame->Width = width;
 		newFrame->Height = height;
-		newFrame->Pixels = new tPixel4[width*height];
+		newFrame->Pixels = new tPixel4b[width*height];
 
 		// Map floating-point pixel values 0.0 and 1.0 to the display's white and black respectively.
 		// if bool zerooneexposure true.
@@ -262,7 +262,7 @@ bool tImageEXR::Load(const tString& exrFile, const LoadParams& loadParams)
 			{
 				int idx = yi*width + xi;
 				const IMF::Rgba& rawPixel = pixels[idx];
-				newFrame->Pixels[p++] = tPixel4
+				newFrame->Pixels[p++] = tPixel4b
 				(
 					EXR::Dither( redGamma(rawPixel.r), xi, yi ),
 					EXR::Dither( grnGamma(rawPixel.g), xi, yi ),
@@ -302,7 +302,7 @@ bool tImage::tImageEXR::Set(tList<tFrame>& srcFrames, bool stealFrames)
 }
 
 
-bool tImageEXR::Set(tPixel4* pixels, int width, int height, bool steal)
+bool tImageEXR::Set(tPixel4b* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -340,7 +340,7 @@ bool tImageEXR::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 

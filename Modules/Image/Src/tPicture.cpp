@@ -117,7 +117,7 @@ void tPicture::Load(const tChunk& chunk)
 			case tChunkID::Image_PicturePixels:
 			{
 				tAssert(!Pixels && (GetNumPixels() > 0));
-				Pixels = new tPixel4[GetNumPixels()];
+				Pixels = new tPixel4b[GetNumPixels()];
 				ch.GetItems(Pixels, GetNumPixels());
 				break;
 			}
@@ -132,7 +132,7 @@ void tPicture::Rotate90(bool antiClockwise)
 	tAssert((Width > 0) && (Height > 0) && Pixels);
 	int newW = Height;
 	int newH = Width;
-	tPixel4* newPixels = new tPixel4[newW * newH];
+	tPixel4b* newPixels = new tPixel4b[newW * newH];
 
 	for (int y = 0; y < Height; y++)
 		for (int x = 0; x < Width; x++)
@@ -145,7 +145,7 @@ void tPicture::Rotate90(bool antiClockwise)
 }
 
 
-void tPicture::RotateCenter(float angle, const tPixel4& fill, tResampleFilter upFilter, tResampleFilter downFilter)
+void tPicture::RotateCenter(float angle, const tPixel4b& fill, tResampleFilter upFilter, tResampleFilter downFilter)
 {
 	if (!IsValid())
 		return;
@@ -168,7 +168,7 @@ void tPicture::RotateCenter(float angle, const tPixel4& fill, tResampleFilter up
 }
 
 
-void tPicture::RotateCenterNearest(const tMatrix2& rotMat, const tMatrix2& invRot, const tPixel4& fill)
+void tPicture::RotateCenterNearest(const tMatrix2& rotMat, const tMatrix2& invRot, const tPixel4b& fill)
 {
 	int srcW = Width;
 	int srcH = Height;
@@ -176,7 +176,7 @@ void tPicture::RotateCenterNearest(const tMatrix2& rotMat, const tMatrix2& invRo
 	// Rotate all corners to get new size. Memfill it with fill colour. Map from old to new.
 	float srcHalfW = float(Width)/2.0f;
 	float srcHalfH = float(Height)/2.0f;
-	tPixel4* srcPixels = Pixels;
+	tPixel4b* srcPixels = Pixels;
 
 	tVector2 tl(-srcHalfW,  srcHalfH);
 	tVector2 tr( srcHalfW,  srcHalfH);
@@ -191,7 +191,7 @@ void tPicture::RotateCenterNearest(const tMatrix2& rotMat, const tMatrix2& invRo
 	Width = maxx - minx;
 	Height = maxy - miny;
 
-	Pixels = new tPixel4[Width*Height];
+	Pixels = new tPixel4b[Width*Height];
 	float halfW = float(Width)/2.0f;
 	float halfH = float(Height)/2.0f;
 
@@ -210,7 +210,7 @@ void tPicture::RotateCenterNearest(const tMatrix2& rotMat, const tMatrix2& invRo
 			srcPos += tVector2(srcHalfW, srcHalfH);
 			srcPos -= tVector2(0.5f, 0.5f);
 
-			tPixel4 srcCol = tPixel4::black;
+			tPixel4b srcCol = tPixel4b::black;
 
 			int srcX = int(tRound(srcPos.x));
 			int srcY = int(tRound(srcPos.y));
@@ -226,7 +226,7 @@ void tPicture::RotateCenterNearest(const tMatrix2& rotMat, const tMatrix2& invRo
 
 void tPicture::RotateCenterResampled
 (
-	const tMatrix2& rotMat, const tMatrix2& invRot, const tPixel4& fill,
+	const tMatrix2& rotMat, const tMatrix2& invRot, const tPixel4b& fill,
 	tResampleFilter upFilter, tResampleFilter downFilter
 )
 {
@@ -269,7 +269,7 @@ void tPicture::Flip(bool horizontal)
 	tAssert((Width > 0) && (Height > 0) && Pixels);
 	int newW = Width;
 	int newH = Height;
-	tPixel4* newPixels = new tPixel4[newW * newH];
+	tPixel4b* newPixels = new tPixel4b[newW * newH];
 
 	for (int y = 0; y < Height; y++)
 		for (int x = 0; x < Width; x++)
@@ -317,7 +317,7 @@ void tPicture::Crop(int newW, int newH, int originX, int originY, const tColour4
 	if ((newW == Width) && (newH == Height) && (originX == 0) && (originY == 0))
 		return;
 
-	tPixel4* newPixels = new tPixel4[newW * newH];
+	tPixel4b* newPixels = new tPixel4b[newW * newH];
 
 	// Set the new pixel colours.
 	for (int y = 0; y < newH; y++)
@@ -563,7 +563,7 @@ bool tPicture::AdjustmentBegin()
 	if (!IsValid() || OriginalPixels)
 		return false;
 
-	OriginalPixels = new tPixel4[Width*Height];
+	OriginalPixels = new tPixel4b[Width*Height];
 
 	// We need to compute min and max component values so the extents of the brigtness parameter
 	// exactly match all black at 0 and full white at 1. We do this as we copy the pixel values.
@@ -776,7 +776,7 @@ bool tPicture::AdjustRestoreOriginal()
 	if (!IsValid() || !OriginalPixels)
 		return false;
 
-	tStd::tMemcpy(Pixels, OriginalPixels, Width*Height*sizeof(tPixel4));
+	tStd::tMemcpy(Pixels, OriginalPixels, Width*Height*sizeof(tPixel4b));
 	return true;
 }
 
@@ -813,7 +813,7 @@ bool tPicture::ScaleHalf()
 		newHeight = 1;
 
 	int numNewPixels = newWidth*newHeight;
-	tPixel4* newPixels = new tPixel4[numNewPixels];
+	tPixel4b* newPixels = new tPixel4b[numNewPixels];
 
 	// Deal with case where src height is 1 and src width is divisible by 2 OR where src width is 1 and src height is
 	// divisible by 2. Image is either a row or column vector in this case.
@@ -895,7 +895,7 @@ bool tPicture::Resample(int width, int height, tResampleFilter filter, tResample
 	if ((width == Width) && (height == Height))
 		return true;
 
-	tPixel4* newPixels = new tPixel4[width*height];
+	tPixel4b* newPixels = new tPixel4b[width*height];
 	bool success = tImage::Resample(Pixels, Width, Height, newPixels, width, height, filter, edgeMode);
 	if (!success)
 	{
@@ -936,13 +936,13 @@ int tPicture::GenerateLayers(tList<tLayer>& layers, tResampleFilter filter, tRes
 	{
 		int dstW = srcW >> 1; tiClampMin(dstW, 1);
 		int dstH = srcH >> 1; tiClampMin(dstH, 1);
-		uint8* dstPixels = new uint8[dstW*dstH*sizeof(tPixel4)];
+		uint8* dstPixels = new uint8[dstW*dstH*sizeof(tPixel4b)];
 
 		bool success = false;
 		if (chain)
-			success = tImage::Resample((tPixel4*)srcPixels, srcW, srcH, (tPixel4*)dstPixels, dstW, dstH, filter, edgeMode);
+			success = tImage::Resample((tPixel4b*)srcPixels, srcW, srcH, (tPixel4b*)dstPixels, dstW, dstH, filter, edgeMode);
 		else
-			success = tImage::Resample(GetPixelPointer(), Width, Height, (tPixel4*)dstPixels, dstW, dstH, filter, edgeMode);
+			success = tImage::Resample(GetPixelPointer(), Width, Height, (tPixel4b*)dstPixels, dstW, dstH, filter, edgeMode);
 		if (!success)
 			break;
 

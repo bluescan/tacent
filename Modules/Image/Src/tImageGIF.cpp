@@ -44,16 +44,16 @@ void tImageGIF::FrameLoadCallback(struct GIF_WHDR* whdr)
 	{
 		Width = whdr->xdim;
 		Height = whdr->ydim;
-		FrmPict = new tPixel4[Width * Height];
-		FrmPrev = new tPixel4[Width * Height];
+		FrmPict = new tPixel4b[Width * Height];
+		FrmPrev = new tPixel4b[Width * Height];
 
 		// tPixel constructor does not initialize its members for efficiency. Must explicitely clear.
-		tStd::tMemset(FrmPict, 0, Width * Height * sizeof(tPixel4));
-		tStd::tMemset(FrmPrev, 0, Width * Height * sizeof(tPixel4));
+		tStd::tMemset(FrmPict, 0, Width * Height * sizeof(tPixel4b));
+		tStd::tMemset(FrmPrev, 0, Width * Height * sizeof(tPixel4b));
 	}
 
-	tPixel4* pict = FrmPict;
-	tPixel4* prev = nullptr;
+	tPixel4b* pict = FrmPict;
+	tPixel4b* prev = nullptr;
 
     uint32 ddst = uint32(whdr->xdim * whdr->fryo + whdr->frxo);
 
@@ -71,13 +71,13 @@ void tImageGIF::FrameLoadCallback(struct GIF_WHDR* whdr)
 	tFrame* frame = new tFrame;
 	frame->Width = Width;
 	frame->Height = Height;
-	frame->Pixels = new tPixel4[Width*Height];
+	frame->Pixels = new tPixel4b[Width*Height];
 	frame->PixelFormatSrc = tPixelFormat::PAL8BIT;
 	frame->Duration = float(whdr->time) / 100.0f;
 
 	// We store rows starting from the bottom (lower left is 0,0).
 	for (int row = Height-1; row >= 0; row--)
-		tStd::tMemcpy(frame->Pixels + (row*Width), pict + ((Height-row-1)*Width), Width*sizeof(tPixel4));
+		tStd::tMemcpy(frame->Pixels + (row*Width), pict + ((Height-row-1)*Width), Width*sizeof(tPixel4b));
 
 	// The frame is ready. Append it.
 	Frames.Append(frame);
@@ -194,7 +194,7 @@ bool tImageGIF::Set(tList<tFrame>& srcFrames, bool stealFrames)
 }
 
 
-bool tImageGIF::Set(tPixel4* pixels, int width, int height, bool steal)
+bool tImageGIF::Set(tPixel4b* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -237,7 +237,7 @@ bool tImageGIF::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -285,7 +285,7 @@ bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams) const
 	int gifBitDepth			= tGetBitsPerPixel(params.Format);
 	int gifPaletteSize		= tMath::tPow2(gifBitDepth);
 
-	tPixel4* pixels			= nullptr;
+	tPixel4b* pixels			= nullptr;
 	int width				= 0;
 	int height				= 0;
 
@@ -300,8 +300,8 @@ bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams) const
 		// Create the uber image since numFrames > 1.
 		width = Width * numFrames;
 		height = Height;
-		pixels = new tPixel4[width*height];
-		tStd::tMemset(pixels, 0, width*height*sizeof(tPixel4));
+		pixels = new tPixel4b[width*height];
+		tStd::tMemset(pixels, 0, width*height*sizeof(tPixel4b));
 		int frameNum = 0;
 		for (tFrame* frame = Frames.First(); frame; frame = frame->Next(), frameNum++)
 		{

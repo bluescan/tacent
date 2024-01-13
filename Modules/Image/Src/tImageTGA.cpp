@@ -108,7 +108,7 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 	const uint8* endData = tgaFileInMemory + numBytes;
 
 	int numPixels = Width * Height;
-	Pixels = new tPixel4[numPixels];
+	Pixels = new tPixel4b[numPixels];
 
 	// Read the image data.
 	int bytesPerPixel = bitDepth >> 3;
@@ -225,7 +225,7 @@ void tImageTGA::ReadColourBytes(tColour4b& dest, const uint8* src, int bytesPerP
 }
 
 
-bool tImageTGA::Set(tPixel4* pixels, int width, int height, bool steal)
+bool tImageTGA::Set(tPixel4b* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -240,8 +240,8 @@ bool tImageTGA::Set(tPixel4* pixels, int width, int height, bool steal)
 	}
 	else
 	{
-		Pixels = new tPixel4[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4));
+		Pixels = new tPixel4b[Width*Height];
+		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4b));
 	}
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
@@ -269,7 +269,7 @@ bool tImageTGA::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -381,7 +381,7 @@ bool tImageTGA::SaveUncompressed(const tString& tgaFile, tFormat format) const
 	int numPixels = Width*Height;
 	for (int p = 0; p < numPixels; p++)
 	{
-		tPixel4& pixel = Pixels[p];
+		tPixel4b& pixel = Pixels[p];
 		tPutc(pixel.B, file);
 		tPutc(pixel.G, file);
 		tPutc(pixel.R, file);
@@ -444,7 +444,7 @@ bool tImageTGA::SaveCompressed(const tString& tgaFile, tFormat format) const
 	while (index < numPixels)
 	{
 		bool rlePacket = false;
-		tPixel4& pixelColour = Pixels[index];
+		tPixel4b& pixelColour = Pixels[index];
 
 		// Note that we process alphas as zeros if we are writing 24bits only. This ensures the colour comparisons work
 		// properly -- we ignore alpha. Zero is used because the uint32 colour values are initialized to all 0s.
@@ -458,7 +458,7 @@ bool tImageTGA::SaveCompressed(const tString& tgaFile, tFormat format) const
 		// as the first bit of the count is used for the packet type.
 		while (index + rleCount < numPixels)
 		{
-			tPixel4& nextPixelColour = Pixels[index+rleCount];
+			tPixel4b& nextPixelColour = Pixels[index+rleCount];
 			uint8 alp = (bytesPerPixel == 4) ? nextPixelColour.A : 0;
 			uint32 nextCol = nextPixelColour.B + (nextPixelColour.G << 8) + (nextPixelColour.R << 16) + (alp << 24);
 
@@ -480,7 +480,7 @@ bool tImageTGA::SaveCompressed(const tString& tgaFile, tFormat format) const
 			rleCount = 1;
 			while (index + rleCount < numPixels)
 			{
-				tPixel4& nextPixelColour = Pixels[index+rleCount];
+				tPixel4b& nextPixelColour = Pixels[index+rleCount];
 				uint8 alp = (bytesPerPixel == 4) ? nextPixelColour.A : 0;
 				uint32 nextCol = nextPixelColour.B + (nextPixelColour.G << 8) + (nextPixelColour.R << 16) + (alp << 24);
 
@@ -527,9 +527,9 @@ bool tImageTGA::IsOpaque() const
 }
 
 
-tPixel4* tImageTGA::StealPixels()
+tPixel4b* tImageTGA::StealPixels()
 {
-	tPixel4* pixels = Pixels;
+	tPixel4b* pixels = Pixels;
 	Pixels = nullptr;
 	Width = 0;
 	Height = 0;

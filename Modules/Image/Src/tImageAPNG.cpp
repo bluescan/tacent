@@ -79,7 +79,7 @@ bool tImageAPNG::Load(const tString& apngFile)
 		int height = srcFrame.h;
 		newFrame->Width = width;
 		newFrame->Height = height;
-		newFrame->Pixels = new tPixel4[width * height];
+		newFrame->Pixels = new tPixel4b[width * height];
 
 		// From the official apng spec:
 		// The delay_num and delay_den parameters together specify a fraction indicating the time to display
@@ -140,7 +140,7 @@ bool tImageAPNG::Set(tList<tFrame>& srcFrames, bool stealFrames)
 }
 
 
-bool tImageAPNG::Set(tPixel4* pixels, int width, int height, bool steal)
+bool tImageAPNG::Set(tPixel4b* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -178,7 +178,7 @@ bool tImageAPNG::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 

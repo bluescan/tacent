@@ -101,7 +101,7 @@ bool tImageTIFF::Load(const tString& tiffFile)
 		tFrame* frame = new tFrame;
 		frame->Width = width;
 		frame->Height = height;
-		frame->Pixels = new tPixel4[width*height];
+		frame->Pixels = new tPixel4b[width*height];
 		frame->PixelFormatSrc = tPixelFormat::R8G8B8A8;
 
 		// If duration not set we use a default of 1 second.
@@ -145,7 +145,7 @@ bool tImageTIFF::Set(tList<tFrame>& srcFrames, bool stealFrames)
 }
 
 
-bool tImageTIFF::Set(tPixel4* pixels, int width, int height, bool steal)
+bool tImageTIFF::Set(tPixel4b* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -183,7 +183,7 @@ bool tImageTIFF::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 

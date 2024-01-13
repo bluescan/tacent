@@ -112,7 +112,7 @@ bool tImageHDR::Load(const tString& hdrFile, const LoadParams& loadParams)
 }
 
 
-bool tImageHDR::LegacyReadRadianceColours(tPixel4* scanline, int len)
+bool tImageHDR::LegacyReadRadianceColours(tPixel4b* scanline, int len)
 {
 	int  rshift = 0;
 	int  i;
@@ -146,7 +146,7 @@ bool tImageHDR::LegacyReadRadianceColours(tPixel4* scanline, int len)
 }
 
 
-bool tImageHDR::ReadRadianceColours(tPixel4* scanline, int len)
+bool tImageHDR::ReadRadianceColours(tPixel4b* scanline, int len)
 {
 	int  i, j;
 	int  code, val;
@@ -218,7 +218,7 @@ bool tImageHDR::ReadRadianceColours(tPixel4* scanline, int len)
 }
 
 
-bool tImageHDR::ConvertRadianceToGammaCorrected(tPixel4* scan, int len)
+bool tImageHDR::ConvertRadianceToGammaCorrected(tPixel4b* scan, int len)
 {
 	if (!GammaTable)
 		return false;
@@ -267,7 +267,7 @@ bool tImageHDR::ConvertRadianceToGammaCorrected(tPixel4* scan, int len)
 }
 
 
-void tImageHDR::AdjustExposure(tPixel4* scan, int len, int adjust)
+void tImageHDR::AdjustExposure(tPixel4b* scan, int len, int adjust)
 {
 	// Shift a scanline of colors by 2^adjust.
 	if (adjust == 0)
@@ -347,8 +347,8 @@ bool tImageHDR::Load(uint8* hdrFileInMemory, int numBytes, const LoadParams& loa
 	Height = comps.First()->Next()->AsInt();
 	Width = comps.First()->Next()->Next()->Next()->AsInt();
 
-	Pixels = new tPixel4[Width*Height];
-	tPixel4* scanin = new tPixel4[Width];
+	Pixels = new tPixel4b[Width*Height];
+	tPixel4b* scanin = new tPixel4b[Width];
 
 	bool ok = true;
 	for (int y = Height-1; y >= 0; y--)
@@ -388,7 +388,7 @@ bool tImageHDR::Load(uint8* hdrFileInMemory, int numBytes, const LoadParams& loa
 }
 
 
-bool tImageHDR::Set(tPixel4* pixels, int width, int height, bool steal)
+bool tImageHDR::Set(tPixel4b* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -402,8 +402,8 @@ bool tImageHDR::Set(tPixel4* pixels, int width, int height, bool steal)
 	}
 	else
 	{
-		Pixels = new tPixel4[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4));
+		Pixels = new tPixel4b[Width*Height];
+		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4b));
 	}
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
@@ -432,7 +432,7 @@ bool tImageHDR::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -459,9 +459,9 @@ tFrame* tImageHDR::GetFrame(bool steal)
 }
 
 
-tPixel4* tImageHDR::StealPixels()
+tPixel4b* tImageHDR::StealPixels()
 {
-	tPixel4* pixels = Pixels;
+	tPixel4b* pixels = Pixels;
 	Pixels = nullptr;
 	Width = 0;
 	Height = 0;

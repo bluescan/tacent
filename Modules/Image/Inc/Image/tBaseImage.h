@@ -31,7 +31,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	virtual bool Set(tPixel4* pixels, int width, int height, bool steal = false)	= 0;
+	virtual bool Set(tPixel4b* pixels, int width, int height, bool steal = false)	= 0;
 
 	// For multi-frame image types (say an animated webp), the first frame is chosen. The 'steal' bool tells the object
 	// whether it is allowed to take ownership of the supplied frame, or whether it must copy the data out of it.

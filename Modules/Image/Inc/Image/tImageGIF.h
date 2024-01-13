@@ -39,7 +39,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	tImageGIF(tPixel4* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+	tImageGIF(tPixel4b* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
 	// Sets from a single frame.
 	tImageGIF(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
@@ -57,7 +57,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	bool Set(tPixel4* pixels, int width, int height, bool steal = false) override;
+	bool Set(tPixel4b* pixels, int width, int height, bool steal = false) override;
 
 	// Sets from a single frame.
 	bool Set(tFrame*, bool steal = true) override;
@@ -137,8 +137,8 @@ private:
 
 	// Variables used during load callback processing.
 	int FrmLast					= 0;
-	tPixel4* FrmPict			= nullptr;
-	tPixel4* FrmPrev			= nullptr;
+	tPixel4b* FrmPict			= nullptr;
+	tPixel4b* FrmPrev			= nullptr;
 
 	tPixelFormat PixelFormatSrc	= tPixelFormat::Invalid;
 	int Width					= 0;

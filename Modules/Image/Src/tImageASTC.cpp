@@ -201,7 +201,7 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 }
 
 
-bool tImageASTC::Set(tPixel4* pixels, int width, int height, bool steal)
+bool tImageASTC::Set(tPixel4b* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -220,7 +220,7 @@ bool tImageASTC::Set(tFrame* frame, bool steal)
 	if (!frame || !frame->IsValid())
 		return false;
 
-	tPixel4* pixels = frame->GetPixels(steal);
+	tPixel4b* pixels = frame->GetPixels(steal);
 	Set(pixels, frame->Width, frame->Height, steal);
 	if (steal)
 		delete frame;
@@ -235,7 +235,7 @@ bool tImageASTC::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -253,14 +253,14 @@ tFrame* tImageASTC::GetFrame(bool steal)
 
 	if (steal)
 	{
-		frame->Pixels = (tPixel4*)Layer->StealData();
+		frame->Pixels = (tPixel4b*)Layer->StealData();
 		delete Layer;
 		Layer = nullptr;
 	}
 	else
 	{
-		frame->Pixels = new tPixel4[frame->Width * frame->Height];
-		tStd::tMemcpy(frame->Pixels, (tPixel4*)Layer->Data, frame->Width * frame->Height * sizeof(tPixel4));
+		frame->Pixels = new tPixel4b[frame->Width * frame->Height];
+		tStd::tMemcpy(frame->Pixels, (tPixel4b*)Layer->Data, frame->Width * frame->Height * sizeof(tPixel4b));
 	}
 
 	return frame;
@@ -274,7 +274,7 @@ bool tImageASTC::IsOpaque() const
 	
 	if (Layer->PixelFormat == tPixelFormat::R8G8B8A8)
 	{
-		tPixel4* pixels = (tPixel4*)Layer->Data;
+		tPixel4b* pixels = (tPixel4b*)Layer->Data;
 		for (int p = 0; p < (Layer->Width * Layer->Height); p++)
 		{
 			if (pixels[p].A < 255)

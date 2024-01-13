@@ -29,23 +29,23 @@ struct tFrame : public tLink<tFrame>
 
 	// These mem copy the pixels from src.
 	tFrame(const tFrame& src)																							{ Set(src); }
-	tFrame(const tPixel4* src, int width, int height, float duration)													{ Set(src, width, height, duration); }
+	tFrame(const tPixel4b* src, int width, int height, float duration)													{ Set(src, width, height, duration); }
 
 	virtual ~tFrame()																									{ Clear(); }
 
 	// These mem copy the pixels from src.
 	bool Set(const tFrame& src);
-	bool Set(const tPixel4* src, int width, int height, float duration = 0.0f);
+	bool Set(const tPixel4b* src, int width, int height, float duration = 0.0f);
 
 	// Steals the pixels from the src frame.
 	bool StealFrom(tFrame& src);
 
 	// Takes ownership of the src pixel array.
-	bool StealFrom(tPixel4* src, int width, int height, float duration = 0.0f);
+	bool StealFrom(tPixel4b* src, int width, int height, float duration = 0.0f);
 
 	// If steal is true the frame will be invalid after and you must delete[] the returned pixels. They are yours.
 	// If steal is false the pixels remain owned by this tFrame. You can look or modify them, but they're not yours.
-	tPixel4* GetPixels(bool steal = false)																				{ if (steal) { tPixel4* p = Pixels; Pixels = nullptr; return p; } else return Pixels; }
+	tPixel4b* GetPixels(bool steal = false)																				{ if (steal) { tPixel4b* p = Pixels; Pixels = nullptr; return p; } else return Pixels; }
 
 	void Clear();
 	bool IsValid() const																								{ return (Width > 0) && (Height > 0) && Pixels; }
@@ -56,7 +56,7 @@ struct tFrame : public tLink<tFrame>
 	int Height																	= 0;
 	float Duration					/* Frame duration in seconds. */			= 0.0f;
 	tPixelFormat PixelFormatSrc		/* Use of PixelFormatSrc is optional. */	= tPixelFormat::Invalid;
-	tPixel4* Pixels																= nullptr;
+	tPixel4b* Pixels																= nullptr;
 };
 
 
@@ -77,14 +77,14 @@ inline bool tFrame::Set(const tFrame& frame)
 	PixelFormatSrc	= frame.PixelFormatSrc;
 
 	tAssert((frame.Width > 0) && (frame.Height > 0) && frame.Pixels);
-	Pixels = new tPixel4[Width*Height];
-	tStd::tMemcpy(Pixels, frame.Pixels, Width*Height*sizeof(tPixel4));
+	Pixels = new tPixel4b[Width*Height];
+	tStd::tMemcpy(Pixels, frame.Pixels, Width*Height*sizeof(tPixel4b));
 
 	return true;
 }
 
 
-inline bool tFrame::Set(const tPixel4* srcPixels, int width, int height, float duration)
+inline bool tFrame::Set(const tPixel4b* srcPixels, int width, int height, float duration)
 {
 	Clear();
 	if (!srcPixels || (width <= 0) || (height <= 0))
@@ -95,8 +95,8 @@ inline bool tFrame::Set(const tPixel4* srcPixels, int width, int height, float d
 	Duration = duration;
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 
-	Pixels = new tPixel4[Width*Height];
-	tStd::tMemcpy(Pixels, srcPixels, Width*Height*sizeof(tPixel4));
+	Pixels = new tPixel4b[Width*Height];
+	tStd::tMemcpy(Pixels, srcPixels, Width*Height*sizeof(tPixel4b));
 	return true;
 }
 
@@ -117,7 +117,7 @@ inline bool tFrame::StealFrom(tFrame& frame)
 }
 
 
-inline bool tFrame::StealFrom(tPixel4* src, int width, int height, float duration)
+inline bool tFrame::StealFrom(tPixel4b* src, int width, int height, float duration)
 {
 	if (!src || (width <= 0) || (height <= 0))
 		return false;
@@ -145,10 +145,10 @@ inline void tFrame::Clear()
 inline void tFrame::ReverseRows()
 {
 	int numPixels = Width * Height;
-	tPixel4* origPixels = Pixels;
-	Pixels = new tPixel4[numPixels];
+	tPixel4b* origPixels = Pixels;
+	Pixels = new tPixel4b[numPixels];
 
-	int bytesPerRow = Width*sizeof(tPixel4);
+	int bytesPerRow = Width*sizeof(tPixel4b);
 	for (int y = Height-1; y >= 0; y--)
 		tStd::tMemcpy((uint8*)Pixels + ((Height-1)-y)*bytesPerRow, (uint8*)origPixels + y*bytesPerRow, bytesPerRow);
 

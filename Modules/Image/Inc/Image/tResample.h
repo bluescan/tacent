@@ -78,8 +78,8 @@ extern const char* tResampleEdgeModeNamesSimple[int(tResampleEdgeMode::NumEdgeMo
 // since I'm not sure when this is useful, it is being excluded.
 bool Resample
 (
-	tPixel4* src, int srcW, int srcH,
-	tPixel4* dst, int dstW, int dstH,
+	tPixel4b* src, int srcW, int srcH,
+	tPixel4b* dst, int dstW, int dstH,
 	tResampleFilter = tResampleFilter::Bilinear,
 	tResampleEdgeMode = tResampleEdgeMode::Clamp
 );

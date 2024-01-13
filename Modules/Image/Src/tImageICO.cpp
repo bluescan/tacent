@@ -130,7 +130,7 @@ bool tImage::tImageICO::Set(tList<tFrame>& srcFrames, bool stealFrames)
 }
 
 
-bool tImageICO::Set(tPixel4* pixels, int width, int height, bool steal)
+bool tImageICO::Set(tPixel4b* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -167,7 +167,7 @@ bool tImageICO::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -243,7 +243,7 @@ tFrame* tImageICO::CreateFrame(const uint8* cursor, int width, int height, int n
 		height = pngImage.GetHeight();
 		tAssert((width > 0) && (height > 0));
 
-		tPixel4* pixels = pngImage.StealPixels();
+		tPixel4b* pixels = pngImage.StealPixels();
 		bool isOpaque = pngImage.IsOpaque();
 		
 		tFrame* newFrame = new tFrame;
@@ -260,7 +260,7 @@ tFrame* tImageICO::CreateFrame(const uint8* cursor, int width, int height, int n
 	cursor += 40;
 	int numPixels = width * height;
 	
-	tPixel4* pixels = new tPixel4[numPixels];
+	tPixel4b* pixels = new tPixel4b[numPixels];
 	uint8* image = (uint8*)pixels;
 	tPixelFormat srcPixelFormat = tPixelFormat::Invalid;
 	

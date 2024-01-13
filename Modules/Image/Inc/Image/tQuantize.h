@@ -35,7 +35,7 @@ namespace tQuantize
 	// destIndices should have space for width*height indices.
 	bool QuantizeImageExact
 	(
-		int numColours, int width, int height, const tPixel3* pixels, tColour3b* destPalette, uint8* destIndices
+		int numColours, int width, int height, const tPixel3b* pixels, tColour3b* destPalette, uint8* destIndices
 	);
 
 	// Given a palette, array of indices, and the width and height of an image, this funcion converts back into a raw
@@ -44,7 +44,7 @@ namespace tQuantize
 	// Returns true on success.
 	bool ConvertToPixels
 	(
-		tPixel3* destPixels, int width, int height,
+		tPixel3b* destPixels, int width, int height,
 		const tColour3b* srcPalette, const uint8* srcIndices
 	);
 
@@ -52,7 +52,7 @@ namespace tQuantize
 	// of the destPixels. Whatever was there before stays. If true, it writes 255 (fully opaque).
 	bool ConvertToPixels
 	(
-		tPixel4* destPixels, int width, int height,
+		tPixel4b* destPixels, int width, int height,
 		const tColour3b* srcPalette, const uint8* srcIndices, bool preserveDestAlpha = false
 	);
 }
@@ -83,12 +83,12 @@ namespace tQuantizeFixed
 	// The second variant is same as first but accepts RGBA pixels ignoring alpha.
 	bool QuantizeImage
 	(
-		int numColours, int width, int height, const tPixel3* pixels, tColour3b* destPalette, uint8* destIndices,
+		int numColours, int width, int height, const tPixel3b* pixels, tColour3b* destPalette, uint8* destIndices,
 		bool checkExact = true
 	);
 	bool QuantizeImage
 	(
-		int numColours, int width, int height, const tPixel4* pixels, tColour3b* destPalette, uint8* destIndices,
+		int numColours, int width, int height, const tPixel4b* pixels, tColour3b* destPalette, uint8* destIndices,
 		bool checkExact = true
 	);
 }
@@ -107,12 +107,12 @@ namespace tQuantizeSpatial
 	// The second variant is same as first but accepts RGBA pixels ignoring alpha.
 	bool QuantizeImage
 	(
-		int numColours, int width, int height, const tPixel3* pixels, tColour3b* destPalette, uint8* destIndices,
+		int numColours, int width, int height, const tPixel3b* pixels, tColour3b* destPalette, uint8* destIndices,
 		bool checkExact = true, double ditherLevel = 0.0, int filterSize = 3
 	);
 	bool QuantizeImage
 	(
-		int numColours, int width, int height, const tPixel4* pixels, tColour3b* destPalette, uint8* destIndices,
+		int numColours, int width, int height, const tPixel4b* pixels, tColour3b* destPalette, uint8* destIndices,
 		bool checkExact = true, double ditherLevel = 0.0, int filterSize = 3
 	);
 
@@ -135,12 +135,12 @@ namespace tQuantizeNeu
 	// The second variant is same as first but accepts RGBA pixels ignoring alpha.
 	bool QuantizeImage
 	(
-		int numColours, int width, int height, const tPixel3* pixels, tColour3b* destPalette, uint8* destIndices,
+		int numColours, int width, int height, const tPixel3b* pixels, tColour3b* destPalette, uint8* destIndices,
 		bool checkExact = true, int sampleFactor = 1
 	);
 	bool QuantizeImage
 	(
-		int numColours, int width, int height, const tPixel4* pixels, tColour3b* destPalette, uint8* destIndices,
+		int numColours, int width, int height, const tPixel4b* pixels, tColour3b* destPalette, uint8* destIndices,
 		bool checkExact = true, int sampleFactor = 1
 	);
 }
@@ -157,12 +157,12 @@ namespace tQuantizeWu
 	// The second variant is same as first but accepts RGBA pixels ignoring alpha.
 	bool QuantizeImage
 	(
-		int numColours, int width, int height, const tPixel3* pixels, tColour3b* destPalette, uint8* destIndices,
+		int numColours, int width, int height, const tPixel3b* pixels, tColour3b* destPalette, uint8* destIndices,
 		bool checkExact = true
 	);
 	bool QuantizeImage
 	(
-		int numColours, int width, int height, const tPixel4* pixels, tColour3b* destPalette, uint8* destIndices,
+		int numColours, int width, int height, const tPixel4b* pixels, tColour3b* destPalette, uint8* destIndices,
 		bool checkExact = true
 	);
 }

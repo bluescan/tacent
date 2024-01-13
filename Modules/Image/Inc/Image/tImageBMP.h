@@ -51,7 +51,7 @@ public:
 	tImageBMP(const tString& bmpFile)																					{ Load(bmpFile); }
 
 	// This one sets from a supplied pixel array. It just reads the data (or steals the array if steal set).
-	tImageBMP(tPixel4* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+	tImageBMP(tPixel4b* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
 	// Sets from a single frame.
 	tImageBMP(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
@@ -67,7 +67,7 @@ public:
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
-	bool Set(tPixel4* pixels, int width, int height, bool steal = false) override;
+	bool Set(tPixel4b* pixels, int width, int height, bool steal = false) override;
 
 	// Sets from a single frame.
 	bool Set(tFrame*, bool steal = true) override;
@@ -110,9 +110,9 @@ public:
 
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageBMP object is
 	// invalid afterwards.
-	tPixel4* StealPixels();
+	tPixel4b* StealPixels();
 	tFrame* GetFrame(bool steal = true) override;
-	tPixel4* GetPixels() const																							{ return Pixels; }
+	tPixel4b* GetPixels() const																							{ return Pixels; }
 	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
 	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 
@@ -165,7 +165,7 @@ private:
 	// So this is a neat C++11 feature. Allows simplified constructors.
 	int Width = 0;
 	int Height = 0;
-	tPixel4* Pixels = nullptr;
+	tPixel4b* Pixels = nullptr;
 };
 
 

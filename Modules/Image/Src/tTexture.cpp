@@ -249,7 +249,7 @@ void tTexture::ProcessImageTo_G3B5R5G3(tPicture& image, bool generateMipmaps, tQ
 		uint8* layerData = new uint8[numDataBytes];
 
 		// We need to change the src data (RGBA) into 16bits.
-		tPixel4* srcPixel = image.GetPixelPointer();
+		tPixel4b* srcPixel = image.GetPixelPointer();
 		uint8* dstPixel = layerData;
 		for (int p = 0; p < width*height; p++)
 		{
@@ -331,7 +331,7 @@ void tTexture::ProcessImageTo_BCTC(tPicture& image, tPixelFormat pixelFormat, bo
 					throw tError("Unsupported BC pixel format %d.", int(pixelFormat));
 			}
 			blockDest += blockSize;
-			pixelSrc += sizeof(tPixel4);
+			pixelSrc += sizeof(tPixel4b);
 		}
 
 		// The last true in this call allows the layer constructor to steal the outputData pointer. Avoids extra memcpys.

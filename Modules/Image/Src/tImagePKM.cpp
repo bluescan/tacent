@@ -292,7 +292,7 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 }
 
 
-bool tImagePKM::Set(tPixel4* pixels, int width, int height, bool steal)
+bool tImagePKM::Set(tPixel4b* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -327,7 +327,7 @@ bool tImagePKM::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -345,14 +345,14 @@ tFrame* tImagePKM::GetFrame(bool steal)
 
 	if (steal)
 	{
-		frame->Pixels = (tPixel4*)Layer->StealData();
+		frame->Pixels = (tPixel4b*)Layer->StealData();
 		delete Layer;
 		Layer = nullptr;
 	}
 	else
 	{
-		frame->Pixels = new tPixel4[frame->Width * frame->Height];
-		tStd::tMemcpy(frame->Pixels, (tPixel4*)Layer->Data, frame->Width * frame->Height * sizeof(tPixel4));
+		frame->Pixels = new tPixel4b[frame->Width * frame->Height];
+		tStd::tMemcpy(frame->Pixels, (tPixel4b*)Layer->Data, frame->Width * frame->Height * sizeof(tPixel4b));
 	}
 
 	return frame;
@@ -368,7 +368,7 @@ bool tImagePKM::IsOpaque() const
 	{
 		case tPixelFormat::R8G8B8A8:
 		{
-			tPixel4* pixels = (tPixel4*)Layer->Data;
+			tPixel4b* pixels = (tPixel4b*)Layer->Data;
 			for (int p = 0; p < (Layer->Width * Layer->Height); p++)
 			{
 				if (pixels[p].A < 255)

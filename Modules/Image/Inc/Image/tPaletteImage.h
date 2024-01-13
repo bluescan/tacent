@@ -51,10 +51,10 @@ public:
 	// This is the workhorse constructor because it needs to quantize the present colours to create the palette.
 	// Quantizing, or rather doing a good job of quantizing, is quite complex. The NeuQuant algorithm uses a neural net
 	// to accomplish this and gives good results. Alpha is ignored in the pixel array.
-	tPaletteImage(tPixelFormat fmt, int width, int height, const tPixel4* pixels, tQuantize::Method quantMethod)		{ Set(fmt, width, height, pixels, quantMethod); }
+	tPaletteImage(tPixelFormat fmt, int width, int height, const tPixel4b* pixels, tQuantize::Method quantMethod)		{ Set(fmt, width, height, pixels, quantMethod); }
 
 	// Same as above but processes pixel data in RGB directly.
-	tPaletteImage(tPixelFormat fmt, int width, int height, const tPixel3* pixels, tQuantize::Method quantMethod)		{ Set(fmt, width, height, pixels, quantMethod); }
+	tPaletteImage(tPixelFormat fmt, int width, int height, const tPixel3b* pixels, tQuantize::Method quantMethod)		{ Set(fmt, width, height, pixels, quantMethod); }
 
 	virtual ~tPaletteImage()																							{ Clear(); }
 
@@ -65,15 +65,15 @@ public:
 	bool Set(const tPaletteImage&);
 	bool Set(tPixelFormat, int width, int height);
 	bool Set(tPixelFormat, int width, int height, const uint8* pixelData, const tColour3b* palette);
-	bool Set(tPixelFormat, int width, int height, const tPixel4* pixels, tQuantize::Method);
-	bool Set(tPixelFormat, int width, int height, const tPixel3* pixels, tQuantize::Method);
+	bool Set(tPixelFormat, int width, int height, const tPixel4b* pixels, tQuantize::Method);
+	bool Set(tPixelFormat, int width, int height, const tPixel3b* pixels, tQuantize::Method);
 
 	// Populates the supplied pixel array. It is up to you to make sure there is enough room for width*height tPixels in
 	// the supplied array. Returns success. You'll get false if either this image is invalid or null is passed in.
-	bool Get(tPixel4* pixels);
+	bool Get(tPixel4b* pixels);
 
 	// Same as above but populates an RGB array.
-	bool Get(tPixel3* pixels);
+	bool Get(tPixel3b* pixels);
 
 	bool IsValid() const																								{ return (PixelData && Palette && Width && Height && tIsPaletteFormat(PixelFormat)); }
 

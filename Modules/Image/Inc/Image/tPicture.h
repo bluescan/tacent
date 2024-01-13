@@ -87,7 +87,7 @@ public:
 	// This constructor allows you to specify an external buffer of pixels to use. If copyPixels is true, it simply
 	// copies the values from the buffer you supply. If copyPixels is false, it means you are giving the buffer to the
 	// tPicture. In this case the tPicture will delete[] the buffer for you when appropriate.
-	tPicture(int width, int height, tPixel4* pixelBuffer, bool copyPixels = true)										{ Set(width, height, pixelBuffer, copyPixels); }
+	tPicture(int width, int height, tPixel4b* pixelBuffer, bool copyPixels = true)										{ Set(width, height, pixelBuffer, copyPixels); }
 
 	// Construct from a tFrame. If steal is true the tPicture will take ownership of the tFrame. If steal is false it
 	// will copy the pixels out. The frame duration is also taken from the frame.
@@ -110,14 +110,14 @@ public:
 
 	// Sets the image to the dimensions provided. Image will be opaque black after this call. Internally, if the
 	// existing buffer is the right size, it is reused. In all cases, the entire image is cleared to black.
-	void Set(int width, int height, const tPixel4& colour = tPixel4::black);
+	void Set(int width, int height, const tPixel4b& colour = tPixel4b::black);
 
 	// Sets the image to the dimensions provided. Allows you to specify an external buffer of pixels to use. If
 	// copyPixels is true, it simply copies the values from the buffer you supply. In this case it will attempt to
 	// reuse it's existing buffer if it can. If copyPixels is false, it means you are giving the buffer to the
 	// tPicture. In this case the tPicture will delete[] the buffer for you when appropriate. In all cases, existing
 	// pixel data is lost. Other members of the tPicture are unmodified.
-	void Set(int width, int height, tPixel4* pixelBuffer, bool copyPixels = true);
+	void Set(int width, int height, tPixel4b* pixelBuffer, bool copyPixels = true);
 
 	// Sets from a tFrame. If steal is true the tPicture will take ownership of the tFrame. If steal is false it will
 	// copy the pixels out. The frame duration is also taken from the frame.
@@ -140,12 +140,12 @@ public:
 	bool IsOpaque() const;
 
 	// These functions allow reading and writing pixels.
-	tPixel4& Pixel(int x, int y)																						{ return Pixels[ GetIndex(x, y) ]; }
-	tPixel4* operator[](int i)						/* Syntax: image[y][x] = colour;  No bounds checking performed. */	{ return Pixels + GetIndex(0, i); }
-	tPixel4 GetPixel(int x, int y) const																				{ return Pixels[ GetIndex(x, y) ]; }
-	tPixel4* GetPixelPointer(int x = 0, int y = 0) const																{ return &Pixels[ GetIndex(x, y) ]; }
-	tPixel4* GetPixels() const																							{ return Pixels; }
-	tPixel4* StealPixels()																								{ tPixel4* p = Pixels; Pixels = nullptr; return p; }
+	tPixel4b& Pixel(int x, int y)																						{ return Pixels[ GetIndex(x, y) ]; }
+	tPixel4b* operator[](int i)						/* Syntax: image[y][x] = colour;  No bounds checking performed. */	{ return Pixels + GetIndex(0, i); }
+	tPixel4b GetPixel(int x, int y) const																				{ return Pixels[ GetIndex(x, y) ]; }
+	tPixel4b* GetPixelPointer(int x = 0, int y = 0) const																{ return &Pixels[ GetIndex(x, y) ]; }
+	tPixel4b* GetPixels() const																							{ return Pixels; }
+	tPixel4b* StealPixels()																								{ tPixel4b* p = Pixels; Pixels = nullptr; return p; }
 
 	void SetPixel(int x, int y, const tColour4b& c)																		{ Pixels[ GetIndex(x, y) ] = c; }
 	void SetPixel(int x, int y, uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)												{ Pixels[ GetIndex(x, y) ] = tColour4b(r, g, b, a); }
@@ -196,7 +196,7 @@ public:
 	void RotateCenter
 	(
 		float angle,
-		const tPixel4& fill			= tPixel4::transparent,
+		const tPixel4b& fill		= tPixel4b::transparent,
 		tResampleFilter	upFilter	= tResampleFilter::None,
 		tResampleFilter	downFilter	= tResampleFilter::None
 	);
@@ -345,10 +345,10 @@ private:
 	int GetIndex(int x, int y) const																					{ tAssert((x >= 0) && (y >= 0) && (x < Width) && (y < Height)); return y * Width + x; }
 	static int GetIndex(int x, int y, int w, int h)																		{ tAssert((x >= 0) && (y >= 0) && (x < w) && (y < h)); return y * w + x; }
 
-	void RotateCenterNearest(const tMath::tMatrix2& rotMat, const tMath::tMatrix2& invRot, const tPixel4& fill);
+	void RotateCenterNearest(const tMath::tMatrix2& rotMat, const tMath::tMatrix2& invRot, const tPixel4b& fill);
 	void RotateCenterResampled
 	(
-		const tMath::tMatrix2& rotMat, const tMath::tMatrix2& invRot, const tPixel4& fill,
+		const tMath::tMatrix2& rotMat, const tMath::tMatrix2& invRot, const tPixel4b& fill,
 		tResampleFilter upFilter, tResampleFilter downFilter
 	);
 
@@ -361,8 +361,8 @@ private:
 
 	int Width				= 0;
 	int Height				= 0;
-	tPixel4* Pixels			= nullptr;
-	tPixel4* OriginalPixels	= nullptr;
+	tPixel4b* Pixels			= nullptr;
+	tPixel4b* OriginalPixels	= nullptr;
 };
 
 
@@ -382,7 +382,7 @@ inline void tPicture::Clear()
 }
 
 
-inline void tPicture::Set(int width, int height, const tPixel4& colour)
+inline void tPicture::Set(int width, int height, const tPixel4b& colour)
 {
 	tAssert((width > 0) && (height > 0));
 
@@ -390,7 +390,7 @@ inline void tPicture::Set(int width, int height, const tPixel4& colour)
 	if (width*height != Width*Height)
 	{
 		delete[] Pixels;
-		Pixels = new tPixel4[width*height];
+		Pixels = new tPixel4b[width*height];
 	}
 	Width = width;
 	Height = height;
@@ -401,7 +401,7 @@ inline void tPicture::Set(int width, int height, const tPixel4& colour)
 }
 
 
-inline void tPicture::Set(int width, int height, tPixel4* pixelBuffer, bool copyPixels)
+inline void tPicture::Set(int width, int height, tPixel4b* pixelBuffer, bool copyPixels)
 {
 	tAssert((width > 0) && (height > 0) && pixelBuffer);
 
@@ -412,7 +412,7 @@ inline void tPicture::Set(int width, int height, tPixel4* pixelBuffer, bool copy
 		if ((width*height != Width*Height) || !Pixels)
 		{
 			delete[] Pixels;
-			Pixels = new tPixel4[width*height];
+			Pixels = new tPixel4b[width*height];
 		}
 	}
 	else
@@ -424,7 +424,7 @@ inline void tPicture::Set(int width, int height, tPixel4* pixelBuffer, bool copy
 	Height = height;
 
 	if (copyPixels)
-		tStd::tMemcpy(Pixels, pixelBuffer, Width*Height*sizeof(tPixel4));
+		tStd::tMemcpy(Pixels, pixelBuffer, Width*Height*sizeof(tPixel4b));
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 }
@@ -509,7 +509,7 @@ inline void tPicture::Spread(tComp channel)
 	int numPixels = Width*Height;
 	for (int p = 0; p < numPixels; p++)
 	{
-		tPixel4& pixel = Pixels[p];
+		tPixel4b& pixel = Pixels[p];
 		switch (channel)
 		{
 			case tComp::R:	pixel.G = pixel.B = pixel.R;			break;
@@ -534,7 +534,7 @@ inline void tPicture::Swizzle(tComp R, tComp G, tComp B, tComp A)
 	if ((R == tComp::R) && (G == tComp::G) && (B == tComp::B) && (A == tComp::A))
 		return;
 
-	tPixel4* newPixels = new tPixel4[Width*Height];
+	tPixel4b* newPixels = new tPixel4b[Width*Height];
 	for (int p = 0; p < Width*Height; p++)
 	{
 		tColour4b& src = Pixels[p];
@@ -586,7 +586,7 @@ inline void tPicture::Intensity(comp_t channels)
 	int numPixels = Width*Height;
 	for (int p = 0; p < numPixels; p++)
 	{
-		tPixel4& pixel = Pixels[p];
+		tPixel4b& pixel = Pixels[p];
 		int intensity = pixel.Intensity();
 		if (channels & tCompBit_R) pixel.R = intensity;
 		if (channels & tCompBit_G) pixel.G = intensity;

@@ -29,8 +29,8 @@
 // 'b' for byte  components (unsigned 8-bit  integer).
 // 's' for short components (unsigned 16-bit integer).
 // 'f' for float components (signed 32-bit float).
-class tColour3b;	// AKA tPixel3
-class tColour4b;	// AKA tPixel4
+class tColour3b;	// AKA tPixel3b
+class tColour4b;	// AKA tPixel4b
 class tColour3s;	// AKA tPixel3s
 class tColour4s;	// AKA tPixel4s
 class tColour3f;	// AKA tPixel3f
@@ -329,7 +329,7 @@ public:
 };
 #pragma pack(pop)
 tStaticAssert(sizeof(tColour3b) == 3);
-typedef tColour3b tPixel3;
+typedef tColour3b tPixel3b;
 
 
 // The tColour4b class represents a colour in 32 bits and is made of 4 unsigned byte-size integers in the order RGBA.
@@ -477,7 +477,7 @@ public:
 	};
 };
 tStaticAssert(sizeof(tColour4b) == 4);
-typedef tColour4b tPixel4;
+typedef tColour4b tPixel4b;
 
 
 #pragma pack(push, 2)

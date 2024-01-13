@@ -65,7 +65,7 @@ public:
 	tImageHDR(uint8* hdrFileInMemory, int numBytes, const LoadParams& loadParams = LoadParams())						{ Load(hdrFileInMemory, numBytes, loadParams); }
 
 	// This one sets from a supplied pixel array. It just reads the data (or steals the array if steal set).
-	tImageHDR(tPixel4* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+	tImageHDR(tPixel4b* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
 	// Sets from a single frame.
 	tImageHDR(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
@@ -80,7 +80,7 @@ public:
 	bool Load(uint8* hdrFileInMemory, int numBytes, const LoadParams& = LoadParams());
 
 	// This one sets from a supplied pixel array.
-	bool Set(tPixel4* pixels, int width, int height, bool steal = false) override;
+	bool Set(tPixel4b* pixels, int width, int height, bool steal = false) override;
 
 	// Sets from a single frame.
 	bool Set(tFrame*, bool steal = true) override;
@@ -97,9 +97,9 @@ public:
 
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageHDR object is
 	// invalid afterwards.
-	tPixel4* StealPixels();
+	tPixel4b* StealPixels();
 	tFrame* GetFrame(bool steal = true) override;
-	tPixel4* GetPixels() const																							{ return Pixels; }
+	tPixel4b* GetPixels() const																							{ return Pixels; }
 
 	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
 	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
@@ -107,32 +107,32 @@ public:
 	tColourProfile GetColourProfile() const override																	{ return GetColourProfileSrc(); }
 
 private:
-	bool LegacyReadRadianceColours(tPixel4* scanline, int length);	// Older hdr files use this scanline format.
-	bool ReadRadianceColours(tPixel4* scanline, int length);			// Most hdr files use the new scanline format. This will call the old as necessary.
-	bool ConvertRadianceToGammaCorrected(tPixel4* scan, int len);
-	static void AdjustExposure(tPixel4* scan, int len, int adjust);
+	bool LegacyReadRadianceColours(tPixel4b* scanline, int length);		// Older hdr files use this scanline format.
+	bool ReadRadianceColours(tPixel4b* scanline, int length);			// Most hdr files use the new scanline format. This will call the old as necessary.
+	bool ConvertRadianceToGammaCorrected(tPixel4b* scan, int len);
+	static void AdjustExposure(tPixel4b* scan, int len, int adjust);
 
-	void PutB(int v)												{ *WriteP++ = uint8(v); }
-	uint8 GetB()													{ return *ReadP++; }
-	void UngetB(int v)												{ *(--ReadP) = v; }
+	void PutB(int v)																									{ *WriteP++ = uint8(v); }
+	uint8 GetB()																										{ return *ReadP++; }
+	void UngetB(int v)																									{ *(--ReadP) = v; }
 
 	tPixelFormat PixelFormatSrc	= tPixelFormat::Invalid;
 	tColourProfile ColourProfileSrc = tColourProfile::Unspecified;
-	int Width					= 0;
-	int Height					= 0;
-	tPixel4* Pixels				= nullptr;
+	int Width							= 0;
+	int Height							= 0;
+	tPixel4b* Pixels					= nullptr;
 
 	// Read and write pointers used during processing.
-	uint8* ReadP				= nullptr;
-	uint8* WriteP				= nullptr;
+	uint8* ReadP						= nullptr;
+	uint8* WriteP						= nullptr;
 
 	// While it would be more efficient to share these tables between instances, we need thread safety.
 	void SetupGammaTables(float gamma);
 	void CleanupGammaTables();
 
-	uint8* MantissaTable		= nullptr;
-	uint8* ExponentTable		= nullptr;
-	uint8 (*GammaTable)[256]	= nullptr;
+	uint8* MantissaTable				= nullptr;
+	uint8* ExponentTable				= nullptr;
+	uint8 (*GammaTable)[256]			= nullptr;
 
 	// Constants.
 	const static int MaxGammaShift		= 31;

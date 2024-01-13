@@ -106,7 +106,7 @@ namespace tQuantizeWu
 	void Mark(Box* cube, int label, uint8* tag);
 
 	// By the time this is called all parameters must be valid. It assumes the first 3 arguments are > 0 and the latter 3 non-null.
-	void Quantize(int numColours, int width, int height, const tPixel3* pixels, tColour3b* destPalette, uint8* destIndices);
+	void Quantize(int numColours, int width, int height, const tPixel3b* pixels, tColour3b* destPalette, uint8* destIndices);
 }
 
 
@@ -405,7 +405,7 @@ void tQuantizeWu::Mark(Box* cube, int label, uint8* tag)
 }
 
 
-void tQuantizeWu::Quantize(int numColours, int width, int height, const tPixel3* pixels, tColour3b* destPalette, uint8* destIndices)
+void tQuantizeWu::Quantize(int numColours, int width, int height, const tPixel3b* pixels, tColour3b* destPalette, uint8* destIndices)
 {
 	Box	cube[MaxColour];
 	uint8 lut_r[MaxColour], lut_g[MaxColour], lut_b[MaxColour];
@@ -434,7 +434,7 @@ void tQuantizeWu::Quantize(int numColours, int width, int height, const tPixel3*
 		for (int x = 0; x < width; x++)
 		{
 			int index = x + y*width;
-			const tPixel3& pixel = pixels[index];
+			const tPixel3b& pixel = pixels[index];
 			state.Ir[index] = pixel.R;
 			state.Ig[index] = pixel.G;
 			state.Ib[index] = pixel.B;
@@ -531,7 +531,7 @@ void tQuantizeWu::Quantize(int numColours, int width, int height, const tPixel3*
 
 bool tQuantizeWu::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel3* pixels, tColour3b* destPalette, uint8* destIndices,
+	int numColours, int width, int height, const tPixel3b* pixels, tColour3b* destPalette, uint8* destIndices,
 	bool checkExact
 )
 {
@@ -552,14 +552,14 @@ bool tQuantizeWu::QuantizeImage
 
 bool tQuantizeWu::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel4* pixels, tColour3b* destPalette, uint8* destIndices,
+	int numColours, int width, int height, const tPixel4b* pixels, tColour3b* destPalette, uint8* destIndices,
 	bool checkExact
 )
 {
 	if ((numColours < 2) || (numColours > 256) || (width <= 0) || (height <= 0) || !pixels || !destPalette || !destIndices)
 		return false;
 
-	tPixel3* pixels3 = new tPixel3[width*height];
+	tPixel3b* pixels3 = new tPixel3b[width*height];
 	for (int p = 0; p < width*height; p++)
 		pixels3[p].Set( pixels[p].R, pixels[p].G, pixels[p].B );
 

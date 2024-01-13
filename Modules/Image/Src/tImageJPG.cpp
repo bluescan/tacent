@@ -90,7 +90,7 @@ bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, const LoadParam
 		return false;
 
 	int numPixels = Width * Height;
-	Pixels = new tPixel4[numPixels];
+	Pixels = new tPixel4b[numPixels];
 
     int jpgPixelFormat = TJPF_RGBA;
 	int flags = 0;
@@ -180,7 +180,7 @@ bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, const LoadParam
 }
 
 
-bool tImageJPG::Set(tPixel4* pixels, int width, int height, bool steal)
+bool tImageJPG::Set(tPixel4b* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -194,8 +194,8 @@ bool tImageJPG::Set(tPixel4* pixels, int width, int height, bool steal)
 	}
 	else
 	{
-		Pixels = new tPixel4[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4));
+		Pixels = new tPixel4b[Width*Height];
+		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4b));
 	}
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
@@ -223,7 +223,7 @@ bool tImageJPG::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -255,7 +255,7 @@ void tImageJPG::Rotate90(bool antiClockwise)
 	tAssert((Width > 0) && (Height > 0) && Pixels);
 	int newW = Height;
 	int newH = Width;
-	tPixel4* newPixels = new tPixel4[newW * newH];
+	tPixel4b* newPixels = new tPixel4b[newW * newH];
 
 	for (int y = 0; y < Height; y++)
 		for (int x = 0; x < Width; x++)
@@ -273,7 +273,7 @@ void tImageJPG::Flip(bool horizontal)
 	tAssert((Width > 0) && (Height > 0) && Pixels);
 	int newW = Width;
 	int newH = Height;
-	tPixel4* newPixels = new tPixel4[newW * newH];
+	tPixel4b* newPixels = new tPixel4b[newW * newH];
 
 	for (int y = 0; y < Height; y++)
 		for (int x = 0; x < Width; x++)
@@ -458,9 +458,9 @@ bool tImageJPG::Save(const tString& jpgFile, const SaveParams& params) const
 }
 
 
-tPixel4* tImageJPG::StealPixels()
+tPixel4b* tImageJPG::StealPixels()
 {
-	tPixel4* pixels = Pixels;
+	tPixel4b* pixels = Pixels;
 	Pixels = nullptr;
 	Width = 0;
 	Height = 0;

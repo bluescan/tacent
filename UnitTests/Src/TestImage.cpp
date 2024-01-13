@@ -195,7 +195,7 @@ tTestUnit(ImageSave)
 	tImageTGA tga("TacentTestPattern32.tga");
 	int tgaW = tga.GetWidth();
 	int tgaH = tga.GetHeight();
-	tPixel4* tgaPixels = tga.StealPixels();
+	tPixel4b* tgaPixels = tga.StealPixels();
 	tImageQOI qoi(tgaPixels, tgaW, tgaH, true);
 	tImageQOI::tFormat result32 = qoi.Save("WrittenTacentTestPattern32.qoi", tImageQOI::tFormat::BPP32);
 	tRequire(result32 == tImageQOI::tFormat::BPP32);
@@ -460,7 +460,7 @@ tTestUnit(ImageQuantize)
 	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
 
 	tImageTGA srctga; srctga.Load("Dock512.tga");
-	int w = srctga.GetWidth(); int h = srctga.GetHeight(); tPixel4* srcpixels = srctga.GetPixels();
+	int w = srctga.GetWidth(); int h = srctga.GetHeight(); tPixel4b* srcpixels = srctga.GetPixels();
 
 	tColour3b* palette = new tColour3b[256];
 	uint8* indices = new uint8[w*h];
@@ -479,7 +479,7 @@ tTestUnit(ImageQuantize)
 		tQuantizeFixed::QuantizeImage(palSize, w, h, srcpixels, palette, indices, false);
 
 		// Get the quantization back into a pixel array.
-		tPixel4* dstpixels = new tPixel4[w*h];
+		tPixel4b* dstpixels = new tPixel4b[w*h];
 		tQuantize::ConvertToPixels(dstpixels, w, h, palette, indices);
 
 		// Give the pixels to the dsttga object. The true does this.
@@ -494,7 +494,7 @@ tTestUnit(ImageQuantize)
 	for (int palSize = minPalSize; palSize <= maxPalSize; palSize++)
 	{
 		tQuantizeSpatial::QuantizeImage(palSize, w, h, srcpixels, palette, indices, false);
-		tPixel4* dstpixels = new tPixel4[w*h];
+		tPixel4b* dstpixels = new tPixel4b[w*h];
 		tQuantize::ConvertToPixels(dstpixels, w, h, palette, indices);
 		tImageTGA dsttga; dsttga.Set(dstpixels, w, h, true);
 		tString filename; tsPrintf(filename, "Written_QuantizedSpatial_%03dColours.tga", palSize);
@@ -505,7 +505,7 @@ tTestUnit(ImageQuantize)
 	for (int palSize = minPalSize; palSize <= maxPalSize; palSize++)
 	{
 		tQuantizeNeu::QuantizeImage(palSize, w, h, srcpixels, palette, indices, false);
-		tPixel4* dstpixels = new tPixel4[w*h];
+		tPixel4b* dstpixels = new tPixel4b[w*h];
 		tQuantize::ConvertToPixels(dstpixels, w, h, palette, indices);
 		tImageTGA dsttga; dsttga.Set(dstpixels, w, h, true);
 		tString filename; tsPrintf(filename, "Written_QuantizedNeu_%03dColours.tga", palSize);
@@ -516,7 +516,7 @@ tTestUnit(ImageQuantize)
 	for (int palSize = minPalSize; palSize <= maxPalSize; palSize++)
 	{
 		tQuantizeWu::QuantizeImage(palSize, w, h, srcpixels, palette, indices, false);
-		tPixel4* dstpixels = new tPixel4[w*h];
+		tPixel4b* dstpixels = new tPixel4b[w*h];
 		tQuantize::ConvertToPixels(dstpixels, w, h, palette, indices);
 		tImageTGA dsttga; dsttga.Set(dstpixels, w, h, true);
 		tString filename; tsPrintf(filename, "Written_QuantizedWu_%03dColours.tga", palSize);
@@ -529,14 +529,14 @@ tTestUnit(ImageQuantize)
 }
 
 
-void PalettizeImage(int w, int h, tPixel4* pixels, tPixelFormat fmt, tImage::tQuantize::Method method)
+void PalettizeImage(int w, int h, tPixel4b* pixels, tPixelFormat fmt, tImage::tQuantize::Method method)
 {
 	bool ok;
 	tPaletteImage pal;
 	ok = pal.Set(fmt, w, h, pixels, method);			// Create a palettized image with a specific-sized palette.
 	tRequire(ok); if (!ok) return;
 
-	tPixel4* palpix = new tPixel4[w*h];
+	tPixel4b* palpix = new tPixel4b[w*h];
 	ok = pal.Get(palpix);								// Depalettize into a pixel buffer.
 	tRequire(ok); if (!ok) return;
 
@@ -557,7 +557,7 @@ tTestUnit(ImagePalette)
 	tString origDir = tSystem::tGetCurrentDir();
 	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
 
-	tImageTGA tga; int w = 0; int h = 0; tPixel4* pixels = nullptr;
+	tImageTGA tga; int w = 0; int h = 0; tPixel4b* pixels = nullptr;
 	
 	// We'll start by loading a test image with only 4 colours and text quantization.
 	// It should always find an exact match for 2-bit palette formats and higher.
@@ -1202,10 +1202,10 @@ tTestUnit(ImageGradient)
 
 	const int width = 640;
 	const int height = 90;
-	tPixel4* pixels = nullptr;
+	tPixel4b* pixels = nullptr;
 
 	// Gradient black to white.
-	pixels = new tPixel4[width*height];
+	pixels = new tPixel4b[width*height];
 	for (int y = 0; y < height; y++)
 		for (int x = 0; x < width; x++)
 			pixels[y*width + x] = tColour4b(256*x / width, 256*x / width, 256*x / width, 255);
@@ -1214,7 +1214,7 @@ tTestUnit(ImageGradient)
 	blackToWhite.Save("TestData/Images/Written_Gradient_BlackToWhite.tga", tImageTGA::tFormat::BPP24, tImageTGA::tCompression::RLE);
 
 	// Gradient black to transparent.
-	pixels = new tPixel4[width*height];
+	pixels = new tPixel4b[width*height];
 	for (int y = 0; y < height; y++)
 		for (int x = 0; x < width; x++)
 			pixels[y*width + x] = tColour4b(0, 0, 0, 255 - 256*x / width);
@@ -1223,7 +1223,7 @@ tTestUnit(ImageGradient)
 	blackToTrans.Save("TestData/Images/Written_Gradient_BlackToTrans.tga", tImageTGA::tFormat::BPP32, tImageTGA::tCompression::RLE);
 
 	// Gradient transparent to white.
-	pixels = new tPixel4[width*height];
+	pixels = new tPixel4b[width*height];
 	for (int y = 0; y < height; y++)
 		for (int x = 0; x < width; x++)
 			pixels[y*width + x] = tColour4b(255, 255, 255, 256*x / width);
@@ -1233,7 +1233,7 @@ tTestUnit(ImageGradient)
 
 	// Gradient red to yellow to green to cyan to blue to magenta to red.
 	const int section = width / 6;
-	pixels = new tPixel4[width*height];
+	pixels = new tPixel4b[width*height];
 	for (int y = 0; y < height; y++)
 	{
 		// Red to yellow.
@@ -1321,7 +1321,7 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 			int mipNum = 0;
 			for (tLayer* layer = layers.First(); layer; layer = layer->Next(), mipNum++)
 			{
-				tImageTGA tga((tPixel4*)layer->Data, layer->Width, layer->Height);
+				tImageTGA tga((tPixel4b*)layer->Data, layer->Width, layer->Height);
 				tString mipName;
 				tsPrintf(mipName, "Written_%s_Mip%02d.tga", savename.Chr(), mipNum);
 				tga.Save(mipName);
@@ -1331,7 +1331,7 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 		{
 			if (tLayer* layer = layers.First())
 			{
-				tImageTGA tga((tPixel4*)layer->Data, layer->Width, layer->Height);
+				tImageTGA tga((tPixel4b*)layer->Data, layer->Width, layer->Height);
 				tga.Save("Written_" + savename + ".tga");
 			}
 		}
@@ -1609,7 +1609,7 @@ void KTXLoadDecodeSave(const tString& ktxfile, uint32 loadFlags = 0, bool saveAl
 			int mipNum = 0;
 			for (tLayer* layer = layers.First(); layer; layer = layer->Next(), mipNum++)
 			{
-				tImageTGA tga((tPixel4*)layer->Data, layer->Width, layer->Height);
+				tImageTGA tga((tPixel4b*)layer->Data, layer->Width, layer->Height);
 				tString mipName;
 				tsPrintf(mipName, "Written_%s_Mip%02d.tga", savename.Chr(), mipNum);
 				tga.Save(mipName);
@@ -1619,7 +1619,7 @@ void KTXLoadDecodeSave(const tString& ktxfile, uint32 loadFlags = 0, bool saveAl
 		{
 			if (tLayer* layer = layers.First())
 			{
-				tImageTGA tga((tPixel4*)layer->Data, layer->Width, layer->Height);
+				tImageTGA tga((tPixel4b*)layer->Data, layer->Width, layer->Height);
 				tga.Save("Written_" + savename + ".tga");
 			}
 		}
@@ -2020,7 +2020,7 @@ void ASTCLoadDecodeSave(const tString& astcfile, const tImageASTC::LoadParams& p
 	tRequire(!(loadFlags & tImageASTC::LoadFlag_Decode) || (astcformat == tPixelFormat::R8G8B8A8));
 	if (astcformat == tPixelFormat::R8G8B8A8)
 	{
-		tImageTGA tga((tPixel4*)layer->Data, layer->Width, layer->Height);
+		tImageTGA tga((tPixel4b*)layer->Data, layer->Width, layer->Height);
 		tga.Save("Written_" + savename + ".tga");
 	}
 	else
@@ -2171,7 +2171,7 @@ void PKMLoadDecodeSave(const tString& pkmfile, uint32 loadFlags = 0)
 
 	if (pkmformat == tPixelFormat::R8G8B8A8)
 	{
-		tImageTGA tga((tPixel4*)layer->Data, layer->Width, layer->Height);
+		tImageTGA tga((tPixel4b*)layer->Data, layer->Width, layer->Height);
 		tga.Save("Written_" + savename + ".tga");
 	}
 	else
@@ -2303,7 +2303,7 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAl
 			int mipNum = 0;
 			for (tLayer* layer = layers.First(); layer; layer = layer->Next(), mipNum++)
 			{
-				tImageTGA tga((tPixel4*)layer->Data, layer->Width, layer->Height);
+				tImageTGA tga((tPixel4b*)layer->Data, layer->Width, layer->Height);
 				tString mipName;
 				tsPrintf(mipName, "Written_%s_Mip%02d.tga", savename.Chr(), mipNum);
 				tga.Save(mipName);
@@ -2313,7 +2313,7 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAl
 		{
 			if (tLayer* layer = layers.First())
 			{
-				tImageTGA tga((tPixel4*)layer->Data, layer->Width, layer->Height);
+				tImageTGA tga((tPixel4b*)layer->Data, layer->Width, layer->Height);
 				tga.Save("Written_" + savename + ".tga");
 			}
 		}

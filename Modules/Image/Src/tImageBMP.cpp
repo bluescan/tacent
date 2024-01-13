@@ -1,6 +1,6 @@
 // tImageBMP.cpp
 //
-// This class knows how to load and save windows bitmap (.bmp) files into tPixel4 arrays. These tPixels may be 'stolen' by the
+// This class knows how to load and save windows bitmap (.bmp) files into tPixel4b arrays. These tPixels may be 'stolen' by the
 // tPicture's constructor if a targa file is specified. After the array is stolen the tImageBMP is invalid. This is
 // purely for performance.
 //
@@ -158,13 +158,13 @@ bool tImageBMP::Load(const tString& bmpFile)
 			break;
 	}
 
-	Pixels = (tPixel4*)buf;
+	Pixels = (tPixel4b*)buf;
 	delete[] palette;
 	tCloseFile(file);
 
 	if (flipped)
 	{
-		tPixel4* newPixels = new tPixel4[Width * Height];
+		tPixel4b* newPixels = new tPixel4b[Width * Height];
 		for (int y = 0; y < Height; y++)
 			for (int x = 0; x < Width; x++)
 				newPixels[ y*Width + x ] = Pixels[ (Height-1-y)*Width + x ];
@@ -463,7 +463,7 @@ void tImageBMP::ReadRow_IndexedRLE4(tFileHandle file, uint8* dest, PaletteColour
 }
 
 
-bool tImageBMP::Set(tPixel4* pixels, int width, int height, bool steal)
+bool tImageBMP::Set(tPixel4b* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -478,8 +478,8 @@ bool tImageBMP::Set(tPixel4* pixels, int width, int height, bool steal)
 	}
 	else
 	{
-		Pixels = new tPixel4[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4));
+		Pixels = new tPixel4b[Width*Height];
+		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4b));
 	}
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
@@ -507,7 +507,7 @@ bool tImageBMP::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
-	tPixel4* pixels = steal ? picture.StealPixels() : picture.GetPixels();
+	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
 	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
 }
 
@@ -616,9 +616,9 @@ bool tImageBMP::IsOpaque() const
 }
 
 
-tPixel4* tImageBMP::StealPixels()
+tPixel4b* tImageBMP::StealPixels()
 {
-	tPixel4* pixels = Pixels;
+	tPixel4b* pixels = Pixels;
 	Pixels = nullptr;
 	Width = 0;
 	Height = 0;

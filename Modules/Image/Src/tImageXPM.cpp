@@ -54,10 +54,10 @@ bool tImageXPM::Load(const uint8* xpmFileInMemory, int numBytes)
 	Width = 256;
 	Height = 256;
 	int numPixels = Width * Height;
-	Pixels = new tPixel4[numPixels];
+	Pixels = new tPixel4b[numPixels];
 	for (int p = 0; p < Width*Height; p++)
 	{
-		Pixels[p] = tPixel4::blue;
+		Pixels[p] = tPixel4b::blue;
 	}
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 
@@ -65,7 +65,7 @@ bool tImageXPM::Load(const uint8* xpmFileInMemory, int numBytes)
 }
 
 
-bool tImageXPM::Set(tPixel4* pixels, int width, int height, bool steal)
+bool tImageXPM::Set(tPixel4b* pixels, int width, int height, bool steal)
 {
 	Clear();
 	if (!pixels || (width <= 0) || (height <= 0))
@@ -79,8 +79,8 @@ bool tImageXPM::Set(tPixel4* pixels, int width, int height, bool steal)
 	}
 	else
 	{
-		Pixels = new tPixel4[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4));
+		Pixels = new tPixel4b[Width*Height];
+		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4b));
 	}
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
@@ -88,9 +88,9 @@ bool tImageXPM::Set(tPixel4* pixels, int width, int height, bool steal)
 }
 
 
-tPixel4* tImageXPM::StealPixels()
+tPixel4b* tImageXPM::StealPixels()
 {
-	tPixel4* pixels = Pixels;
+	tPixel4b* pixels = Pixels;
 	Pixels = nullptr;
 	Width = 0;
 	Height = 0;
