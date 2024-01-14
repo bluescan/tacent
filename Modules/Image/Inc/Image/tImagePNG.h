@@ -28,23 +28,32 @@ class tImagePNG : public tBaseImage
 public:
 	enum LoadFlags
 	{
-		LoadFlag_None			= 0,
+		// Gamma-correct. Gamma compression using an encoding gamma of 1/2.2. Assumes (colour) data is linear and puts
+		// it in gamma-space (brighter) for diaplay on a monitor. Png files at 16 bpc are in linear space. Png files at
+		// 8 bpc abd sRGB.
+		LoadFlag_GammaCompression	= 1 << 0,
+		LoadFlag_SRGBCompression	= 1 << 1,	// Same as above but uses the official sRGB transformation. Linear -> sRGB. Approx encoding gamma of 1/2.4 for part of curve.
+		LoadFlag_AutoGamma			= 1 << 2,	// Applies sRGB compression for 16 bpc png images. Call GetColourSpace to see final colour profile.
+
+		// If a png is 16 bpc you can force it to load into an 8 bpc buffer with this flag.
+		LoadFlag_ForceToBpc8		= 1 << 3,
 
 		// Crazily some PNG files are actually JPG/JFIF files inside. I don't much like supporting this, but some
 		// software (ms-paint for example), will happily load such an invalid png. The world would be better if app
 		// developers wouldn't save things with the wrong extension, but they get away with it because other software
 		// loads this junk... and now this library is yet another.
-		LoadFlag_AllowJPG		= 1 << 0,
-		LoadFlags_Default		= LoadFlag_AllowJPG
+		LoadFlag_AllowJPG			= 1 << 4,
+		LoadFlags_Default			= LoadFlag_AutoGamma | LoadFlag_ForceToBpc8 | LoadFlag_AllowJPG
 	};
 
 	struct LoadParams
 	{
 		LoadParams()																									{ Reset(); }
-		LoadParams(const LoadParams& src)																				: Flags(src.Flags) { }
-		void Reset()																									{ Flags = LoadFlags_Default; }
-		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; return *this; }
+		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Gamma(src.Gamma) { }
+		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::DefaultGamma; }
+		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Gamma = src.Gamma; return *this; }
 		uint32 Flags;
+		float Gamma;
 	};
 
 	// Creates an invalid tImagePNG. You must call Load manually.
@@ -74,6 +83,9 @@ public:
 	// it just copies the data out.
 	bool Set(tPixel4b*, int width, int height, bool steal = false) override;
 
+	// Set from a 16-bpc buffer.
+	bool Set(tPixel4s*, int width, int height, bool steal = false);
+
 	// Sets from a single frame.
 	bool Set(tFrame*, bool steal = true) override;
 
@@ -82,10 +94,12 @@ public:
 
 	enum class tFormat
 	{
-		Invalid,	// Invalid must be 0.
-		BPP24,		// RGB.  24 bit colour.
-		BPP32,		// RGBA. 24 bit colour and 8 bits opacity in the alpha channel.
-		Auto		// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.
+		Invalid,			// Invalid must be 0.
+		BPP24_RGB_BPC8,		// 24-bit RGB.  3 8-bit  components.
+		BPP32_RGBA_BPC8,	// 32-bit RGBA. 4 8-bit  components.
+		BPP48_RGB_BPC16,	// 48-bit RGB.  3 16-bit components.
+		BPP64_RGBA_BPC16,	// 64-bit RGBA. 4 16-bit components.
+		Auto				// Save function will decide format. RGB_24BIT_8BPC if all image pixels are opaque and RGBA_32BIT_8BPC otherwise.
 	};
 
 	struct SaveParams
@@ -105,7 +119,7 @@ public:
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;
-	bool IsValid() const override																						{ return Pixels ? true : false; }
+	bool IsValid() const override																						{ return (Pixels8 || Pixels16) ? true : false; }
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
@@ -115,18 +129,33 @@ public:
 	// invalid afterwards.
 	tPixel4b* StealPixels();
 	tFrame* GetFrame(bool steal = true) override;
-	tPixel4b* GetPixels() const																							{ return Pixels; }
+	tPixel4b* GetPixels8() const																						{ return Pixels8; }
+	tPixel4s* GetPixels16() const																						{ return Pixels16; }
 
 	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
 	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 
+	// Returns the colour profile of the source file that was loaded. This may not match the current if, say, gamma
+	// correction was requested on load.
+	tColourProfile GetColourProfileSrc() const override																	{ return ColourProfileSrc; }
+
+	// Returns the current colour profile.
+	tColourProfile GetColourProfile() const override																	{ return ColourProfile; }
+
 private:
 	tPixelFormat PixelFormatSrc		= tPixelFormat::Invalid;
+	tPixelFormat PixelFormat		= tPixelFormat::Invalid;
 
-	// @todo We could just use a single tFrame here instead of the 3 members below. Might simplify it a bit.
+	// These are _not_ part of the pixel format in tacent.
+	tColourProfile ColourProfileSrc	= tColourProfile::Unspecified;
+	tColourProfile ColourProfile	= tColourProfile::Unspecified;
+
 	int Width						= 0;
 	int Height						= 0;
-	tPixel4b* Pixels				= nullptr;
+
+	// Only one of these may be valid at a time depending on if the pixels are 8 or 16 bpc.
+	tPixel4b* Pixels8				= nullptr;
+	tPixel4s* Pixels16				= nullptr;
 };
 
 
@@ -135,11 +164,17 @@ private:
 
 inline void tImagePNG::Clear()
 {
+	PixelFormatSrc					= tPixelFormat::Invalid;
+	PixelFormat						= tPixelFormat::Invalid;
+	ColourProfileSrc				= tColourProfile::Unspecified;
+	ColourProfile					= tColourProfile::Unspecified;
+
 	Width = 0;
 	Height = 0;
-	delete[] Pixels;
-	Pixels = nullptr;
-	PixelFormatSrc = tPixelFormat::Invalid;
+	delete[] Pixels8;
+	Pixels8 = nullptr;
+	delete[] Pixels16;
+	Pixels16 = nullptr;
 }
 
 

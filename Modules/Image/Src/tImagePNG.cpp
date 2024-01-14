@@ -47,15 +47,17 @@ bool tImagePNG::Load(const tString& pngFile, const LoadParams& params)
 }
 
 
-bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParams& params)
+bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParams& paramsIn)
 {
 	Clear();
 	if ((numBytes <= 0) || !pngFileInMemory)
 		return false;
 
+	LoadParams params(paramsIn);	
 	png_image pngImage;
 	tStd::tMemset(&pngImage, 0, sizeof(pngImage));
 	pngImage.version = PNG_IMAGE_VERSION;
+
 	int successCode = png_image_begin_read_from_memory(&pngImage, pngFileInMemory, numBytes);
 	if (!successCode)
 	{
@@ -67,31 +69,42 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 			if (!success)
 				return false;
 
-			PixelFormatSrc = tPixelFormat::R8G8B8;
-			Width = jpg.GetWidth();
-			Height = jpg.GetHeight();
-			Pixels = jpg.StealPixels();
+			PixelFormatSrc		= tPixelFormat::R8G8B8;
+			PixelFormat			= PixelFormatSrc;
+			ColourProfileSrc	= tColourProfile::sRGB;
+			ColourProfile		= ColourProfileSrc;
+			Width				= jpg.GetWidth();
+			Height				= jpg.GetHeight();
+			Pixels8				= jpg.StealPixels();
 			return true;
 		}
 
 		return false;
 	}
 
-	// This should only return 1 or 2.
+	// This should only return 1 or 2. If 2 it means the data is in lRGB space (PNG_FORMAT_FLAG_LINEAR).
 	int bytesPerComponent = PNG_IMAGE_SAMPLE_COMPONENT_SIZE(pngImage.format);
 	if (bytesPerComponent == 2)
 		PixelFormatSrc = (pngImage.format & PNG_FORMAT_FLAG_ALPHA) ? tPixelFormat::R16G16B16A16 : tPixelFormat::R16G16B16;
 	else
 		PixelFormatSrc = (pngImage.format & PNG_FORMAT_FLAG_ALPHA) ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
+	ColourProfileSrc = (bytesPerComponent == 2) ? tColourProfile::lRGB : tColourProfile::sRGB;
 
-	// We need to modify the format to match the type of the pixels we want to load into.
-	pngImage.format = PNG_FORMAT_RGBA;
+	// We need to modify the format to specify what to decode to. If bytesPerComponent is 1 or we are forcing 8bpc we
+	// decode into an 8-bpc buffer -- otherwise we decode into a 16-bpc buffer keeping the additional precision.
+	if ((params.Flags & LoadFlag_ForceToBpc8) || (bytesPerComponent == 1))
+		pngImage.format = PNG_FORMAT_RGBA;
+	else
+		pngImage.format = PNG_FORMAT_LINEAR_RGB_ALPHA;
+
 	Width = pngImage.width;
 	Height = pngImage.height;
 
 	int numPixels = Width * Height;
-	tPixel4b* reversedPixels = new tPixel4b[numPixels];
-	successCode = png_image_finish_read(&pngImage, nullptr, (uint8*)reversedPixels, 0, nullptr);
+	int destBPC = (pngImage.format == PNG_FORMAT_RGBA) ? 1 : 2;
+	int reversedPixelsSize = numPixels * 4 * destBPC;
+	uint8* reversedPixels = new uint8[reversedPixelsSize];
+	successCode = png_image_finish_read(&pngImage, nullptr, reversedPixels, 0, nullptr);
 	if (!successCode)
 	{
 		png_image_free(&pngImage);
@@ -100,12 +113,27 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 		return false;
 	}
 
-	// Reverse rows.
-	Pixels = new tPixel4b[numPixels];
-	int bytesPerRow = Width*4;
-	for (int y = Height-1; y >= 0; y--)
-		tStd::tMemcpy((uint8*)Pixels + ((Height-1)-y)*bytesPerRow, (uint8*)reversedPixels + y*bytesPerRow, bytesPerRow);
+	// Reverse rows as we copy into our final buffer.
+	if (pngImage.format == PNG_FORMAT_RGBA)
+	{
+		Pixels8 = new tPixel4b[numPixels];
+		int bytesPerRow = Width*sizeof(tPixel4b);
+		for (int y = Height-1; y >= 0; y--)
+			tStd::tMemcpy((uint8*)Pixels8 + ((Height-1)-y)*bytesPerRow, reversedPixels + y*bytesPerRow, bytesPerRow);
+	}
+	else
+	{
+		Pixels16 = new tPixel4s[numPixels];
+		int bytesPerRow = Width*sizeof(tPixel4s);
+		for (int y = Height-1; y >= 0; y--)
+			tStd::tMemcpy((uint8*)Pixels16 + ((Height-1)-y)*bytesPerRow, reversedPixels + y*bytesPerRow, bytesPerRow);
+	}
 	delete[] reversedPixels;
+
+	PixelFormat = Pixels8 ? tPixelFormat::R8G8B8A8 : tPixelFormat::R16G16B16A16;
+
+	// @wip consider autoconvert space here.
+	ColourProfile = ColourProfileSrc;
 
 	return true;
 }
@@ -121,15 +149,46 @@ bool tImagePNG::Set(tPixel4b* pixels, int width, int height, bool steal)
 	Height = height;
 	if (steal)
 	{
-		Pixels = pixels;
+		Pixels8 = pixels;
 	}
 	else
 	{
-		Pixels = new tPixel4b[Width*Height];
-		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4b));
+		Pixels8 = new tPixel4b[Width*Height];
+		tStd::tMemcpy(Pixels8, pixels, Width*Height*sizeof(tPixel4b));
 	}
 
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc		= tPixelFormat::R8G8B8A8;
+	PixelFormat			= PixelFormatSrc;
+	ColourProfileSrc	= tColourProfile::sRGB;
+	ColourProfile		= ColourProfileSrc;
+
+	return true;
+}
+
+
+bool tImagePNG::Set(tPixel4s* pixels, int width, int height, bool steal)
+{
+	Clear();
+	if (!pixels || (width <= 0) || (height <= 0))
+		return false;
+
+	Width = width;
+	Height = height;
+	if (steal)
+	{
+		Pixels16 = pixels;
+	}
+	else
+	{
+		Pixels16 = new tPixel4s[Width*Height];
+		tStd::tMemcpy(Pixels16, pixels, Width*Height*sizeof(tPixel4s));
+	}
+
+	PixelFormatSrc		= tPixelFormat::R16G16B16A16;
+	PixelFormat			= PixelFormatSrc;
+	ColourProfileSrc	= tColourProfile::lRGB;
+	ColourProfile		= ColourProfileSrc;
+
 	return true;
 }
 
@@ -169,12 +228,12 @@ tFrame* tImagePNG::GetFrame(bool steal)
 
 	if (steal)
 	{
-		frame->StealFrom(Pixels, Width, Height);
-		Pixels = nullptr;
+		frame->StealFrom(Pixels8, Width, Height);
+		Pixels8 = nullptr;
 	}
 	else
 	{
-		frame->Set(Pixels, Width, Height);
+		frame->Set(Pixels8, Width, Height);
 	}
 
 	return frame;
@@ -200,9 +259,9 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 	int srcBytesPerPixel = 0;
 	switch (params.Format)
 	{
-		case tFormat::Auto:		srcBytesPerPixel = IsOpaque() ? 3 : 4;	break;
-		case tFormat::BPP24:	srcBytesPerPixel = 3;					break;
-		case tFormat::BPP32:	srcBytesPerPixel = 4;					break;
+		case tFormat::Auto:				srcBytesPerPixel = IsOpaque() ? 3 : 4;	break;
+		case tFormat::BPP24_RGB_BPC8:	srcBytesPerPixel = 3;					break;
+		case tFormat::BPP32_RGBA_BPC8:	srcBytesPerPixel = 4;					break;
 	}
 	if (!srcBytesPerPixel)
 		return tFormat::Invalid;
@@ -213,16 +272,16 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 
 	// If it's 3 bytes per pixel we use the alternate no-alpha buffer. This should not be necessary
 	// but I can't figure out how to get libpng reading 32bit and writing 24.
-	uint8* srcPixels = (uint8*)Pixels;
+	uint8* srcPixels = (uint8*)Pixels8;
 	if (srcBytesPerPixel == 3)
 	{
 		srcPixels = new uint8[Width*Height*srcBytesPerPixel];
 		int dindex = 0;
 		for (int p = 0; p < Width*Height; p++)
 		{
-			srcPixels[dindex++] = Pixels[p].R;
-			srcPixels[dindex++] = Pixels[p].G;
-			srcPixels[dindex++] = Pixels[p].B;
+			srcPixels[dindex++] = Pixels8[p].R;
+			srcPixels[dindex++] = Pixels8[p].G;
+			srcPixels[dindex++] = Pixels8[p].B;
 		}
 	}
 
@@ -323,17 +382,22 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 	png_destroy_write_struct(&pngPtr, &infoPtr);
 	fclose(fp);
 
-	return (pngColourType == PNG_COLOR_TYPE_RGB_ALPHA) ? tFormat::BPP32 : tFormat::BPP24;
+	// @wip
+	return (pngColourType == PNG_COLOR_TYPE_RGB_ALPHA) ? tFormat::BPP32_RGBA_BPC8 : tFormat::BPP24_RGB_BPC8;
 }
 
 
 bool tImagePNG::IsOpaque() const
 {
-	for (int p = 0; p < (Width*Height); p++)
+	if (Pixels8)
 	{
-		if (Pixels[p].A < 255)
-			return false;
+		for (int p = 0; p < (Width*Height); p++)
+		{
+			if (Pixels8[p].A < 255)
+				return false;
+		}
 	}
+	// @wip Else do the 16 bpc.
 
 	return true;
 }
@@ -341,8 +405,8 @@ bool tImagePNG::IsOpaque() const
 
 tPixel4b* tImagePNG::StealPixels()
 {
-	tPixel4b* pixels = Pixels;
-	Pixels = nullptr;
+	tPixel4b* pixels = Pixels8;
+	Pixels8 = nullptr;
 	Width = 0;
 	Height = 0;
 	return pixels;
