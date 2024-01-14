@@ -202,11 +202,11 @@ tTestUnit(ImageSave)
 	tImageQOI::tFormat result24 = qoi.Save("WrittenTacentTestPattern24.qoi", tImageQOI::tFormat::BPP24);
 	tRequire(result24 == tImageQOI::tFormat::BPP24);
 
-	tImagePNG pngA("Xeyes.png");
+	tImagePNG pngA("PNG/Xeyes.png");
 	pngA.Save("WrittenNewA.png");
 	tRequire( tSystem::tFileExists("WrittenNewA.png"));
 
-	tImagePNG pngB("TextCursor.png");
+	tImagePNG pngB("PNG/TextCursor.png");
 	pngB.Save("WrittenNewB.png");
 	tRequire( tSystem::tFileExists("WrittenNewB.png"));
 
@@ -394,7 +394,7 @@ tTestUnit(ImagePicture)
 	tga.Save("WrittenIcos4D.tga");
 	tRequire( tSystem::tFileExists("WrittenIcos4D.png"));
 
-	png.Load("Xeyes.png");
+	png.Load("PNG/Xeyes.png");
 	png.Save("WrittenXeyes.png");
 	pic.Set(png); tga.Set(pic);
 	tga.Save("WrittenXeyes.tga");
@@ -850,7 +850,7 @@ tTestUnit(ImageRotation)
 		tSkipUnit(ImageRotation)
 
 	// Test writing rotated images.
-	tImagePNG aropng("TestData/Images/RightArrow.png");
+	tImagePNG aropng("TestData/Images/PNG/RightArrow.png");
 	int w = aropng.GetWidth(); int h = aropng.GetHeight();
 	tPicture aroPic(w, h, aropng.StealPixels(), false);
 	tRequire(aroPic.IsValid());
@@ -889,7 +889,7 @@ tTestUnit(ImageRotation)
 	}
 
 	tPrintf("Test 'plane' rotation.\n");
-	tImagePNG planepng("TestData/Images/plane.png");
+	tImagePNG planepng("TestData/Images/PNG/plane.png");
 	w = planepng.GetWidth(); h = planepng.GetHeight();
 	tPicture planePic(w, h, planepng.StealPixels(), false);
 	w = planePic.GetWidth();
@@ -904,14 +904,14 @@ tTestUnit(ImageCrop)
 		tSkipUnit(ImageCrop)
 
 	// Crop black pixels ignoring alpha (RGB channels only).
-	tImagePNG png("TestData/Images/plane.png");
+	tImagePNG png("TestData/Images/PNG/plane.png");
 	tPicture planePic(png);
 	int w = planePic.GetWidth();
 	int h = planePic.GetHeight();
 	planePic.Deborder(tColour4b::black, tCompBit_RGB);
 	planePic.Crop(w, h, tPicture::Anchor::MiddleMiddle, tColour4b::transparent);
 	png.Set(planePic);
-	tImagePNG::tFormat fmt = png.Save("TestData/Images/WrittenPlane.png");
+	tImagePNG::tFormat fmt = png.Save("TestData/Images/PNG/WrittenPlane.png");
 	tRequire(fmt != tImagePNG::tFormat::Invalid);
 }
 
@@ -1263,6 +1263,52 @@ tTestUnit(ImageGradient)
 	tImageTGA redToRed(pixels, width, height, true);
 	tRequire(redToRed.IsValid());
 	redToRed.Save("TestData/Images/Written_Gradient_RedToRed.tga", tImageTGA::tFormat::BPP24, tImageTGA::tCompression::RLE);	
+}
+
+
+tTestUnit(ImagePNG)
+{
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImagePNG)
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/PNG/");
+
+	tImagePNG png;
+	tImagePNG::LoadParams params;
+
+	tPrintf("Test RGB 8-BPC\n");
+	png.Load("TacentTestPattern_R8G8B8.png", params);
+	tRequire(png.IsValid());
+
+	tPrintf("Test RGBA 8-BPC\n");
+	png.Load("TacentTestPattern_R8G8B8A8.png", params);
+	tRequire(png.IsValid());
+
+	tPrintf("Test RGB 16-BPC into 8-BPC Buffer\n");
+	params.Flags |= tImagePNG::LoadFlag_ForceToBpc8;
+	png.Load("TacentTestPattern_R16G16B16.png", params);
+	tRequire(png.IsValid());
+	tRequire(png.GetPixels8());
+
+	tPrintf("Test RGBA 16-BPC into 8-BPC Buffer\n");
+	params.Flags |= tImagePNG::LoadFlag_ForceToBpc8;
+	png.Load("TacentTestPattern_R16G16B16A16.png", params);
+	tRequire(png.IsValid());
+	tRequire(png.GetPixels8());
+
+	tPrintf("Test RGB 16-BPC into 16-BPC Buffer\n");
+	params.Flags &= ~tImagePNG::LoadFlag_ForceToBpc8;
+	png.Load("TacentTestPattern_R16G16B16.png", params);
+	tRequire(png.IsValid());
+	tRequire(png.GetPixels16());
+
+	tPrintf("Test RGBA 16-BPC into 16-BPC Buffer\n");
+	params.Flags &= ~tImagePNG::LoadFlag_ForceToBpc8;
+	png.Load("TacentTestPattern_R16G16B16A16.png", params);
+	tRequire(png.IsValid());
+	tRequire(png.GetPixels16());
+
+	tSystem::tSetCurrentDir(origDir.Chr());
 }
 
 

@@ -177,6 +177,7 @@ int main(int argc, char** argv)
 	tTest(ImageFilter);
 	tTest(ImageMultiFrame);
 	tTest(ImageGradient);
+	tTest(ImagePNG);
 	tTest(ImageDDS);
 	tTest(ImageKTX1);
 	tTest(ImageKTX2);
@@ -208,7 +209,7 @@ int main(int argc, char** argv)
 	// tTest(Script);
 	// tTest(Rule);
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
-	tTest(ImageLoad);
+	// tTest(ImageLoad);
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
 	// tTest(ImageMultiFrame);
@@ -223,6 +224,7 @@ int main(int argc, char** argv)
 	// tTest(ImageCrop);
 	// tTest(ImageAdjustment);
 	// tTest(ImageDetection);
+	tTest(ImagePNG);
 	// tTest(ImageDDS);
 	// tTest(ImageKTX1);
 	// tTest(ImageKTX2);
