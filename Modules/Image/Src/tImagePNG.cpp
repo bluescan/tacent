@@ -88,7 +88,18 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 		PixelFormatSrc = (pngImage.format & PNG_FORMAT_FLAG_ALPHA) ? tPixelFormat::R16G16B16A16 : tPixelFormat::R16G16B16;
 	else
 		PixelFormatSrc = (pngImage.format & PNG_FORMAT_FLAG_ALPHA) ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
+	PixelFormat = PixelFormatSrc;
 	ColourProfileSrc = (bytesPerComponent == 2) ? tColourProfile::lRGB : tColourProfile::sRGB;
+	ColourProfile = ColourProfileSrc;
+
+	// Are we being asked to do auto-gamma-compression?
+	if (params.Flags & LoadFlag_AutoGamma)
+	{
+		// Clear all related flags.
+		params.Flags &= ~(LoadFlag_AutoGamma | LoadFlag_SRGBCompression | LoadFlag_GammaCompression);
+		if (ColourProfileSrc == tColourProfile::lRGB)
+			params.Flags |= LoadFlag_SRGBCompression;
+	}
 
 	// We need to modify the format to specify what to decode to. If bytesPerComponent is 1 or we are forcing 8bpc we
 	// decode into an 8-bpc buffer -- otherwise we decode into a 16-bpc buffer keeping the additional precision.
@@ -129,11 +140,43 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 			tStd::tMemcpy((uint8*)Pixels16 + ((Height-1)-y)*bytesPerRow, reversedPixels + y*bytesPerRow, bytesPerRow);
 	}
 	delete[] reversedPixels;
-
 	PixelFormat = Pixels8 ? tPixelFormat::R8G8B8A8 : tPixelFormat::R16G16B16A16;
 
-	// @wip consider autoconvert space here.
-	ColourProfile = ColourProfileSrc;
+	// Apply gamma or sRGB compression if necessary.
+	tAssert(Pixels8 || Pixels16);
+	bool flagSRGB = (params.Flags & LoadFlag_SRGBCompression) ? true : false;
+	bool flagGama = (params.Flags & LoadFlag_GammaCompression)? true : false;
+	if (Pixels8 && (flagSRGB || flagGama))
+	{
+		for (int p = 0; p < Width*Height; p++)
+		{
+			tColour4f colour(Pixels8[p]);
+			if (flagSRGB)
+				colour.LinearToSRGB(tCompBit_RGB);
+			if (flagGama)
+				colour.LinearToGamma(params.Gamma, tCompBit_RGB);
+			Pixels8[p].SetR(colour.R);
+			Pixels8[p].SetG(colour.G);
+			Pixels8[p].SetB(colour.B);
+		}
+	}
+	else if (Pixels16 && (flagSRGB || flagGama))
+	{
+		for (int p = 0; p < Width*Height; p++)
+		{
+			tColour4f colour(Pixels16[p]);
+			if (flagSRGB)
+				colour.LinearToSRGB(tCompBit_RGB);
+			if (flagGama)
+				colour.LinearToGamma(params.Gamma, tCompBit_RGB);
+			Pixels16[p].SetR(colour.R);
+			Pixels16[p].SetG(colour.G);
+			Pixels16[p].SetB(colour.B);
+		}
+	}
+
+	if (params.Flags & LoadFlag_SRGBCompression)  ColourProfile = tColourProfile::sRGB;
+	if (params.Flags & LoadFlag_GammaCompression) ColourProfile = tColourProfile::gRGB;
 
 	return true;
 }

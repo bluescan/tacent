@@ -787,6 +787,7 @@ public:
 	tColour4f(const tMath::tVector3& c, float a = 1.0f)																	{ Set(c, a); }
 	tColour4f(const tMath::tVector4& ca)																				{ Set(ca); }
 	tColour4f(const tColour4b& src)																						{ Set(src); }
+	tColour4f(const tColour4s& src)																						{ Set(src); }
 	tColour4f(uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)																{ Set(r, g, b, a); }
 	tColour4f(int r, int g, int b, int a = 255)																			{ Set(r, g, b, a); }
 
@@ -799,13 +800,20 @@ public:
 	void Set(const tMath::tVector3& c, float a = 1.0f)																	{ R = c.x; G = c.y; B = c.z; A = a; }
 	void Set(const tMath::tVector4& ca)																					{ R = ca.x; G = ca.y; B = ca.z; A = ca.w; }
 	void Set(const tColour4b& c)																						{ Set(c.R, c.G, c.B, c.A); }
+	void Set(const tColour4s& c)																						{ Set16(c.R, c.G, c.B, c.A); }
 
 	// The integer get and set methods use a range of [0, 255] for each component.
+	// @wip Can we use uint8's and get rid of the 16 suffix?
 	void Set(int r, int g, int b, int a = 255)																			{ SetR(r); SetG(g); SetB(b); SetA(a); }
+	void Set16(uint16 r, uint16 g, uint16 b, uint16 a = 65535)															{ SetR16(r); SetG16(g); SetB16(b); SetA16(a); }
 	void SetR(int r)																									{ R = float(r)/255.0f; }
 	void SetG(int g)																									{ G = float(g)/255.0f; }
 	void SetB(int b)																									{ B = float(b)/255.0f; }
 	void SetA(int a)																									{ A = float(a)/255.0f; }
+	void SetR16(uint16 r)																								{ R = float(r)/65535.0f; }
+	void SetG16(uint16 g)																								{ G = float(g)/65535.0f; }
+	void SetB16(uint16 b)																								{ B = float(b)/65535.0f; }
+	void SetA16(uint16 a)																								{ A = float(a)/65535.0f; }
 	int GetR() const																									{ return tMath::tClamp(int(R*256.0f), 0, 0xFF); }
 	int GetG() const																									{ return tMath::tClamp(int(G*256.0f), 0, 0xFF); }
 	int GetB() const																									{ return tMath::tClamp(int(B*256.0f), 0, 0xFF); }
@@ -1126,7 +1134,7 @@ inline bool tColour4b::Equal(const tColour4b& colour, comp_t channels) const
 	return true;
 }
 
-//////////////////
+
 inline void tColour4s::Set(const tColour4f& c)
 {
 	Set(c.R, c.G, c.B, c.A);
