@@ -114,12 +114,12 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 	int numPixels = Width * Height;
 	int destBPC = (pngImage.format == PNG_FORMAT_RGBA) ? 1 : 2;
 	int reversedPixelsSize = numPixels * 4 * destBPC;
-	uint8* reversedPixels = new uint8[reversedPixelsSize];
-	successCode = png_image_finish_read(&pngImage, nullptr, reversedPixels, 0, nullptr);
+	uint8* rawPixels = new uint8[reversedPixelsSize];
+	successCode = png_image_finish_read(&pngImage, nullptr, rawPixels, 0, nullptr);
 	if (!successCode)
 	{
 		png_image_free(&pngImage);
-		delete[] reversedPixels;
+		delete[] rawPixels;
 		Clear();
 		return false;
 	}
@@ -129,17 +129,33 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 	{
 		Pixels8 = new tPixel4b[numPixels];
 		int bytesPerRow = Width*sizeof(tPixel4b);
-		for (int y = Height-1; y >= 0; y--)
-			tStd::tMemcpy((uint8*)Pixels8 + ((Height-1)-y)*bytesPerRow, reversedPixels + y*bytesPerRow, bytesPerRow);
+		if (params.Flags & LoadFlag_ReverseRowOrder)
+		{
+			for (int y = Height-1; y >= 0; y--)
+				tStd::tMemcpy((uint8*)Pixels8 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
+		}
+		else
+		{
+			for (int y = 0; y < Height; y++)
+				tStd::tMemcpy((uint8*)Pixels8 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
+		}
 	}
 	else
 	{
 		Pixels16 = new tPixel4s[numPixels];
 		int bytesPerRow = Width*sizeof(tPixel4s);
-		for (int y = Height-1; y >= 0; y--)
-			tStd::tMemcpy((uint8*)Pixels16 + ((Height-1)-y)*bytesPerRow, reversedPixels + y*bytesPerRow, bytesPerRow);
+		if (params.Flags & LoadFlag_ReverseRowOrder)
+		{
+			for (int y = Height-1; y >= 0; y--)
+				tStd::tMemcpy((uint8*)Pixels16 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
+		}
+		else
+		{
+			for (int y = 0; y < Height; y++)
+				tStd::tMemcpy((uint8*)Pixels16 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
+		}
 	}
-	delete[] reversedPixels;
+	delete[] rawPixels;
 	PixelFormat = Pixels8 ? tPixelFormat::R8G8B8A8 : tPixelFormat::R16G16B16A16;
 
 	// Apply gamma or sRGB compression if necessary.

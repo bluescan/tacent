@@ -37,12 +37,13 @@ public:
 
 		// If a png is 16 bpc you can force it to load into an 8 bpc buffer with this flag.
 		LoadFlag_ForceToBpc8		= 1 << 3,
+		LoadFlag_ReverseRowOrder	= 1 << 4,	// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.
 
 		// Crazily some PNG files are actually JPG/JFIF files inside. I don't much like supporting this, but some
 		// software (ms-paint for example), will happily load such an invalid png. The world would be better if app
 		// developers wouldn't save things with the wrong extension, but they get away with it because other software
 		// loads this junk... and now this library is yet another.
-		LoadFlag_AllowJPG			= 1 << 4,
+		LoadFlag_AllowJPG			= 1 << 5,
 		LoadFlags_Default			= LoadFlag_AutoGamma | LoadFlag_ForceToBpc8 | LoadFlag_AllowJPG
 	};
 
