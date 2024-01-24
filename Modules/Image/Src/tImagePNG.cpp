@@ -113,8 +113,8 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 
 	int numPixels = Width * Height;
 	int destBPC = (pngImage.format == PNG_FORMAT_RGBA) ? 1 : 2;
-	int reversedPixelsSize = numPixels * 4 * destBPC;
-	uint8* rawPixels = new uint8[reversedPixelsSize];
+	int rawPixelsSize = numPixels * 4 * destBPC;
+	uint8* rawPixels = new uint8[rawPixelsSize];
 	successCode = png_image_finish_read(&pngImage, nullptr, rawPixels, 0, nullptr);
 	if (!successCode)
 	{
@@ -128,31 +128,29 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 	if (pngImage.format == PNG_FORMAT_RGBA)
 	{
 		Pixels8 = new tPixel4b[numPixels];
-		int bytesPerRow = Width*sizeof(tPixel4b);
 		if (params.Flags & LoadFlag_ReverseRowOrder)
 		{
+			int bytesPerRow = Width*sizeof(tPixel4b);
 			for (int y = Height-1; y >= 0; y--)
 				tStd::tMemcpy((uint8*)Pixels8 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
 		}
 		else
 		{
-			for (int y = 0; y < Height; y++)
-				tStd::tMemcpy((uint8*)Pixels8 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
+			tStd::tMemcpy((uint8*)Pixels8, rawPixels, rawPixelsSize);
 		}
 	}
 	else
 	{
 		Pixels16 = new tPixel4s[numPixels];
-		int bytesPerRow = Width*sizeof(tPixel4s);
 		if (params.Flags & LoadFlag_ReverseRowOrder)
 		{
+			int bytesPerRow = Width*sizeof(tPixel4s);
 			for (int y = Height-1; y >= 0; y--)
 				tStd::tMemcpy((uint8*)Pixels16 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
 		}
 		else
 		{
-			for (int y = 0; y < Height; y++)
-				tStd::tMemcpy((uint8*)Pixels16 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
+			tStd::tMemcpy((uint8*)Pixels16, rawPixels, rawPixelsSize);
 		}
 	}
 	delete[] rawPixels;
@@ -316,6 +314,8 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 		return tFormat::Invalid;
 
 	int srcBytesPerPixel = 0;
+
+	// @wip Need to support saving 16-bit-per-component.
 	switch (params.Format)
 	{
 		case tFormat::Auto:				srcBytesPerPixel = IsOpaque() ? 3 : 4;	break;

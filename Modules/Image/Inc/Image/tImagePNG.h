@@ -68,6 +68,9 @@ public:
 	// it just copies the data out.
 	tImagePNG(tPixel4b* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 
+	// Same as above except using a 16-bit-per-component tPixel4s array.
+	tImagePNG(tPixel4s* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
+
 	// Sets from a single frame.
 	tImagePNG(tFrame* frame, bool steal = true)																			{ Set(frame, steal); }
 
