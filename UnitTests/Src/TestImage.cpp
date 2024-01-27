@@ -852,7 +852,7 @@ tTestUnit(ImageRotation)
 	// Test writing rotated images.
 	tImagePNG aropng("TestData/Images/PNG/RightArrow.png");
 	int w = aropng.GetWidth(); int h = aropng.GetHeight();
-	tPicture aroPic(w, h, aropng.StealPixels(), false);
+	tPicture aroPic(w, h, aropng.StealPixels8(), false);
 	tRequire(aroPic.IsValid());
 
 	tPrintf("Image dimensions before rotate: W:%d H:%d\n", aroPic.GetWidth(), aroPic.GetHeight());
@@ -891,7 +891,7 @@ tTestUnit(ImageRotation)
 	tPrintf("Test 'plane' rotation.\n");
 	tImagePNG planepng("TestData/Images/PNG/plane.png");
 	w = planepng.GetWidth(); h = planepng.GetHeight();
-	tPicture planePic(w, h, planepng.StealPixels(), false);
+	tPicture planePic(w, h, planepng.StealPixels8(), false);
 	w = planePic.GetWidth();
 	h = planePic.GetHeight();
 	planePic.RotateCenter(-tMath::PiOver4, tColour4b::transparent);

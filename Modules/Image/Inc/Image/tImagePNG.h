@@ -116,8 +116,12 @@ public:
 	};
 
 	// Saves the tImagePNG to the PNG file specified. The type of filename must be PNG. If tFormat is Auto, this
-	// function will decide the format. BPP24 if all image pixels are opaque and BPP32 otherwise. Returns the format
-	// that the file was saved in, or tFormat::Invalid if there was a problem. Since Invalid is 0, you can use an 'if'.
+	// function will decide the format. If the internal buffer is 8-bpc it will choose between BPP24 and BPP32 depending
+	// on opacity (BPP24 is all pixels are opaque). In the internal buffer is 16-bpc it chooses between BPP48 and BPP64.
+	// When tFormat is explicitly one of the BPPNN choices, it may need to convert the data. For example, if the
+	// internal buffer is 8-bpc and you choose to save BPP48 or BPP64 (both 16-bpc formats), a conversion must take
+	// place. Returns the format that the file was saved in, or tFormat::Invalid if there was a problem. Since Invalid
+	// is 0, you can use an 'if' to check success.
 	tFormat Save(const tString& pngFile, tFormat) const;
 	tFormat Save(const tString& pngFile, const SaveParams& = SaveParams()) const;
 
@@ -129,15 +133,17 @@ public:
 	int GetHeight() const																								{ return Height; }
 	bool IsOpaque() const;
 
-	// After this call you are the owner of the pixels and must eventually delete[] them. This tImagePNG object is
-	// invalid afterwards.
-	tPixel4b* StealPixels();
+	// After this call you are the owner of the pixels and must eventually delete[] them. This call only returns the
+	// stolen pixel array if it was present. If it was, the tImagePNG object will be invalid afterwards.
+	tPixel4b* StealPixels8();
+	tPixel4s* StealPixels16();
+
 	tFrame* GetFrame(bool steal = true) override;
 	tPixel4b* GetPixels8() const																						{ return Pixels8; }
 	tPixel4s* GetPixels16() const																						{ return Pixels16; }
 
 	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
-	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
+	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? PixelFormat : tPixelFormat::Invalid; }
 
 	// Returns the colour profile of the source file that was loaded. This may not match the current if, say, gamma
 	// correction was requested on load.

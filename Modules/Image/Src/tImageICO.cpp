@@ -235,7 +235,9 @@ tFrame* tImageICO::CreateFrame(const uint8* cursor, int width, int height, int n
 	// ICO files may have embedded pngs.
 	if (icon->Header.Size == 0x474e5089)
 	{
-		tImagePNG pngImage(cursor, numBytes);
+		tImagePNG::LoadParams params;
+		tAssert(params.Flags & tImagePNG::LoadFlag_ForceToBpc8);
+		tImagePNG pngImage(cursor, numBytes, params);
 		if (!pngImage.IsValid())
 			return nullptr;
 
@@ -243,7 +245,7 @@ tFrame* tImageICO::CreateFrame(const uint8* cursor, int width, int height, int n
 		height = pngImage.GetHeight();
 		tAssert((width > 0) && (height > 0));
 
-		tPixel4b* pixels = pngImage.StealPixels();
+		tPixel4b* pixels = pngImage.StealPixels8();
 		bool isOpaque = pngImage.IsOpaque();
 		
 		tFrame* newFrame = new tFrame;

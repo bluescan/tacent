@@ -321,6 +321,8 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 		case tFormat::Auto:				srcBytesPerPixel = IsOpaque() ? 3 : 4;	break;
 		case tFormat::BPP24_RGB_BPC8:	srcBytesPerPixel = 3;					break;
 		case tFormat::BPP32_RGBA_BPC8:	srcBytesPerPixel = 4;					break;
+		// BPP48_RGB_BPC16,		// 48-bit RGB.  3 16-bit components.
+		// BPP64_RGBA_BPC16,	// 64-bit RGBA. 4 16-bit components.
 	}
 	if (!srcBytesPerPixel)
 		return tFormat::Invalid;
@@ -389,7 +391,8 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE
 	);
 
-	// Optional significant bit (sBIT) chunk.
+	// The sBIT chunk tells the decoder the number of significant bits in the pixel data. It is optional
+	// as the data is still stored as either 8 or 16 bits per component,
 	png_color_8 sigBit;
 	sigBit.red = 8;
 	sigBit.green = 8;
@@ -456,16 +459,39 @@ bool tImagePNG::IsOpaque() const
 				return false;
 		}
 	}
-	// @wip Else do the 16 bpc.
+	else if (Pixels16)
+	{
+		for (int p = 0; p < (Width*Height); p++)
+		{
+			if (Pixels16[p].A < 65535)
+				return false;
+		}
+	}
 
 	return true;
 }
 
 
-tPixel4b* tImagePNG::StealPixels()
+tPixel4b* tImagePNG::StealPixels8()
 {
+	if (!Pixels8)
+		return nullptr;
+
 	tPixel4b* pixels = Pixels8;
 	Pixels8 = nullptr;
+	Width = 0;
+	Height = 0;
+	return pixels;
+}
+
+
+tPixel4s* tImagePNG::StealPixels16()
+{
+	if (!Pixels16)
+		return nullptr;
+
+	tPixel4s* pixels = Pixels16;
+	Pixels16 = nullptr;
 	Width = 0;
 	Height = 0;
 	return pixels;
