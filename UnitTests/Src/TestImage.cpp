@@ -1293,7 +1293,7 @@ tTestUnit(ImagePNG)
 */
 
 	tPrintf("Test RGBA 16-BPC into 8-BPC Buffer\n");
-	params.Flags = tImagePNG::LoadFlag_ForceToBpc8 | tImagePNG::LoadFlag_AllowJPG | tImagePNG::LoadFlag_ReverseRowOrder;
+	params.Flags = tImagePNG::LoadFlag_ForceToBpc8 | tImagePNG::LoadFlag_AllowJPG | tImagePNG::LoadFlag_ReverseRowOrder;// | tImagePNG::LoadFlag_AutoGamma;
 	png.Load("TacentTestPattern_R16G16B16A16.png", params);
 	tRequire(png.IsValid());
 	tRequire(png.GetPixels8());

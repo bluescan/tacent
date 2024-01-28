@@ -103,17 +103,13 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 
 	// We need to modify the format to specify what to decode to. If bytesPerComponent is 1 or we are forcing 8bpc we
 	// decode into an 8-bpc buffer -- otherwise we decode into a 16-bpc buffer keeping the additional precision.
-	if ((params.Flags & LoadFlag_ForceToBpc8) || (bytesPerComponent == 1))
-		pngImage.format = PNG_FORMAT_RGBA;
-	else
-		pngImage.format = PNG_FORMAT_LINEAR_RGB_ALPHA;
-
+	pngImage.format = (bytesPerComponent == 1) ? PNG_FORMAT_RGBA : PNG_FORMAT_LINEAR_RGB_ALPHA;
 	Width = pngImage.width;
 	Height = pngImage.height;
 
 	int numPixels = Width * Height;
-	int destBPC = (pngImage.format == PNG_FORMAT_RGBA) ? 1 : 2;
-	int rawPixelsSize = numPixels * 4 * destBPC;
+	int destBytesPC = (pngImage.format == PNG_FORMAT_RGBA) ? 1 : 2;
+	int rawPixelsSize = numPixels * 4 * destBytesPC;
 	uint8* rawPixels = new uint8[rawPixelsSize];
 	successCode = png_image_finish_read(&pngImage, nullptr, rawPixels, 0, nullptr);
 	if (!successCode)
@@ -154,6 +150,21 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 		}
 	}
 	delete[] rawPixels;
+
+	if ((params.Flags & LoadFlag_ForceToBpc8) && Pixels16)
+	{
+		Pixels8 = new tPixel4b[Width*Height*sizeof(tPixel4b)];
+
+		int dindex = 0; tColour4b c;
+		for (int p = 0; p < Width*Height; p++)
+		{
+			c.Set(Pixels16[p]);
+			Pixels8[p].Set(c);
+		}
+		delete[] Pixels16;
+		Pixels16 = nullptr;
+	}
+
 	PixelFormat = Pixels8 ? tPixelFormat::R8G8B8A8 : tPixelFormat::R16G16B16A16;
 
 	// Apply gamma or sRGB compression if necessary.
