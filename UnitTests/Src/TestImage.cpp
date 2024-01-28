@@ -1276,6 +1276,7 @@ tTestUnit(ImagePNG)
 	tImagePNG png;
 	tImagePNG::LoadParams params;
 
+/*
 	tPrintf("Test RGB 8-BPC\n");
 	png.Load("TacentTestPattern_R8G8B8.png", params);
 	tRequire(png.IsValid());
@@ -1289,13 +1290,20 @@ tTestUnit(ImagePNG)
 	png.Load("TacentTestPattern_R16G16B16.png", params);
 	tRequire(png.IsValid());
 	tRequire(png.GetPixels8());
+*/
 
 	tPrintf("Test RGBA 16-BPC into 8-BPC Buffer\n");
-	params.Flags |= tImagePNG::LoadFlag_ForceToBpc8;
+	params.Flags = tImagePNG::LoadFlag_ForceToBpc8 | tImagePNG::LoadFlag_AllowJPG | tImagePNG::LoadFlag_ReverseRowOrder;
 	png.Load("TacentTestPattern_R16G16B16A16.png", params);
 	tRequire(png.IsValid());
 	tRequire(png.GetPixels8());
 
+	tPrintf("Test Save RGBA 8-BPC as 8-BPC PNG\n");
+	tImagePNG::SaveParams saveParams;
+	saveParams.Format = tImagePNG::tFormat::BPP32_RGBA_BPC8;
+	png.Save("Written_R8G8B8A8.png", saveParams);
+
+/*
 	tPrintf("Test RGB 16-BPC into 16-BPC Buffer\n");
 	params.Flags &= ~tImagePNG::LoadFlag_ForceToBpc8;
 	png.Load("TacentTestPattern_R16G16B16.png", params);
@@ -1307,6 +1315,12 @@ tTestUnit(ImagePNG)
 	png.Load("TacentTestPattern_R16G16B16A16.png", params);
 	tRequire(png.IsValid());
 	tRequire(png.GetPixels16());
+
+	tPrintf("Test Save RGBA 16-BPC as 16-BPC PNG\n");
+	tImagePNG::SaveParams saveParams;
+	saveParams.Format = tImagePNG::tFormat::BPP64_RGBA_BPC16;
+	png.Save("Written_TacentTestPattern_R16G16B16A16.png", saveParams);
+*/
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }

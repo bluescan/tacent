@@ -313,43 +313,110 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 	if (tSystem::tGetFileType(pngFile) != tSystem::tFileType::PNG)
 		return tFormat::Invalid;
 
-	int srcBytesPerPixel = 0;
+	int bytesPerPixel = 0;
 
-	// @wip Need to support saving 16-bit-per-component.
 	switch (params.Format)
 	{
-		case tFormat::Auto:				srcBytesPerPixel = IsOpaque() ? 3 : 4;	break;
-		case tFormat::BPP24_RGB_BPC8:	srcBytesPerPixel = 3;					break;
-		case tFormat::BPP32_RGBA_BPC8:	srcBytesPerPixel = 4;					break;
-		// BPP48_RGB_BPC16,		// 48-bit RGB.  3 16-bit components.
-		// BPP64_RGBA_BPC16,	// 64-bit RGBA. 4 16-bit components.
+		case tFormat::BPP24_RGB_BPC8:	bytesPerPixel = 3;	break;
+		case tFormat::BPP32_RGBA_BPC8:	bytesPerPixel = 4;	break;
+		case tFormat::BPP48_RGB_BPC16:	bytesPerPixel = 6;	break;
+		case tFormat::BPP64_RGBA_BPC16:	bytesPerPixel = 8;	break;
+		case tFormat::Auto:
+			bytesPerPixel = IsOpaque() ? 3 : 4;
+			if (Pixels16) bytesPerPixel <<= 1;
+			break;
 	}
-	if (!srcBytesPerPixel)
+	if (!bytesPerPixel)
 		return tFormat::Invalid;
 
-	// Guard against integer overflow.
-	if (Height > PNG_SIZE_MAX / (Width * srcBytesPerPixel))
+	// Guard against integer overflow when saving.
+	if (Height > PNG_SIZE_MAX / (Width * bytesPerPixel))
 		return tFormat::Invalid;
 
-	// If it's 3 bytes per pixel we use the alternate no-alpha buffer. This should not be necessary
-	// but I can't figure out how to get libpng reading 32bit and writing 24.
-	uint8* srcPixels = (uint8*)Pixels8;
-	if (srcBytesPerPixel == 3)
+	// If it's 3 or 6 bytes per pixel we make a no-alpha-channel buffer. This should not be
+	// necessary but I can't figure out how to get libpng reading 32bit/64bit and writing 24/48.
+	uint8* pixelData = new uint8[Width*Height*bytesPerPixel];
+
+	switch (bytesPerPixel)
 	{
-		srcPixels = new uint8[Width*Height*srcBytesPerPixel];
-		int dindex = 0;
-		for (int p = 0; p < Width*Height; p++)
+		case 3:
 		{
-			srcPixels[dindex++] = Pixels8[p].R;
-			srcPixels[dindex++] = Pixels8[p].G;
-			srcPixels[dindex++] = Pixels8[p].B;
+			int dindex = 0; tColour4b c;
+			for (int p = 0; p < Width*Height; p++)
+			{
+				if (Pixels8) c.Set(Pixels8[p]); else c.Set(Pixels16[p]);
+				pixelData[dindex++] = c.R;
+				pixelData[dindex++] = c.G;
+				pixelData[dindex++] = c.B;
+			}
+			break;
 		}
+
+		case 4:
+			if (Pixels8)
+			{
+				tStd::tMemcpy(pixelData, Pixels8, Width*Height*4);
+			}
+			else
+			{
+				int dindex = 0; tColour4b c;
+				for (int p = 0; p < Width*Height; p++)
+				{
+					c.Set(Pixels16[p]);
+					pixelData[dindex++] = c.R;
+					pixelData[dindex++] = c.G;
+					pixelData[dindex++] = c.B;
+					pixelData[dindex++] = c.A;
+				}
+			}
+			break;
+
+		case 6:
+		{
+			int dindex = 0; tColour4s c; uint16* pdata = (uint16*)pixelData;
+			for (int p = 0; p < Width*Height; p++)
+			{
+				if (Pixels8) c.Set(Pixels8[p]); else c.Set(Pixels16[p]);
+				pdata[dindex++] = c.R;
+				pdata[dindex++] = c.G;
+				pdata[dindex++] = c.B;
+			}
+			break;
+		}
+
+		case 8:
+			if (Pixels16)
+			{
+//				tStd::tMemcpy(pixelData, Pixels16, Width*Height*sizeof(tColour4s));
+				int dindex = 0; tColour4s c; uint16* pdata = (uint16*)pixelData;
+				for (int p = 0; p < Width*Height; p++)
+				{
+					c.Set(Pixels16[p]);
+					pdata[dindex++] = c.G>>8; //0x00FF;//tSwapEndian16(c.G);
+					pdata[dindex++] = c.G>>8; //0x0000;//tSwapEndian16(c.G);
+					pdata[dindex++] = c.G>>8; //0x0000;//tSwapEndian16(c.G);
+					pdata[dindex++] = c.A;
+				}
+			}
+			else
+			{
+				int dindex = 0; tColour4s c; uint16* pdata = (uint16*)pixelData;
+				for (int p = 0; p < Width*Height; p++)
+				{
+					c.Set(Pixels8[p]);
+					pdata[dindex++] = c.R;
+					pdata[dindex++] = c.G;
+					pdata[dindex++] = c.B;
+					pdata[dindex++] = c.A;
+				}
+			}
+			break;
 	}
 
 	FILE* fp = fopen(pngFile.Chr(), "wb");
 	if (!fp)
 	{
-		if (srcBytesPerPixel == 3) delete srcPixels;
+		delete[] pixelData;
 		return tFormat::Invalid;
 	}
 
@@ -358,7 +425,7 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 	if (!pngPtr)
 	{
 		fclose(fp);
-		if (srcBytesPerPixel == 3) delete srcPixels;
+		delete[] pixelData;
 		return tFormat::Invalid;
 	}
 
@@ -367,7 +434,7 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 	{
 		fclose(fp);
 		png_destroy_write_struct(&pngPtr, 0);
-		if (srcBytesPerPixel == 3) delete srcPixels;
+		delete[] pixelData;
 		return tFormat::Invalid;
 	}
 
@@ -376,15 +443,18 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 	{
 		fclose(fp);
 		png_destroy_write_struct(&pngPtr, &infoPtr);
-		if (srcBytesPerPixel == 3) delete srcPixels;
+		delete[] pixelData;
 		return tFormat::Invalid;
 	}
 
 	png_init_io(pngPtr, fp);
-	int bitDepth = 8;		// Supported depths are 1, 2, 4, 8, 16.
 
-	// We write either 24 or 32 bit images depending on whether we have an alpha channel.
-	uint32 pngColourType = (srcBytesPerPixel == 3) ? PNG_COLOR_TYPE_RGB : PNG_COLOR_TYPE_RGB_ALPHA;
+	// Supported depths are 1, 2, 4, 8, 16. We support 8 and 16.
+	int bitDepth = (bytesPerPixel <= 4) ? 8 : 16;
+
+	// We write either 24/32 or 48/64 bit images depending on whether we have an alpha channel.
+	uint32 pngColourType = ((bytesPerPixel == 3) || (bytesPerPixel == 6)) ? PNG_COLOR_TYPE_RGB : PNG_COLOR_TYPE_RGB_ALPHA;
+//	PNG_FORMAT_LINEAR_RGB_ALPHA
 	png_set_IHDR
 	(
 		pngPtr, infoPtr, Width, Height, bitDepth, pngColourType,
@@ -394,10 +464,10 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 	// The sBIT chunk tells the decoder the number of significant bits in the pixel data. It is optional
 	// as the data is still stored as either 8 or 16 bits per component,
 	png_color_8 sigBit;
-	sigBit.red = 8;
-	sigBit.green = 8;
-	sigBit.blue = 8;
-	sigBit.alpha = (srcBytesPerPixel == 3) ? 0 : 8;
+	sigBit.red		= bitDepth;
+	sigBit.green	= bitDepth;
+	sigBit.blue		= bitDepth;
+	sigBit.alpha	= ((bytesPerPixel == 3) || (bytesPerPixel == 6)) ? 0 : bitDepth;
 	png_set_sBIT(pngPtr, infoPtr, &sigBit);
 
 	// Optional gamma chunk is strongly suggested if you have any guess as to the correct gamma of the image.
@@ -428,7 +498,7 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 
 	// Set up pointers into the src data.
 	for (int r = 0; r < Height; r++)
-		rowPointers[Height-1-r] = srcPixels + r * Width * srcBytesPerPixel;
+		rowPointers[Height-1-r] = pixelData + r * Width * bytesPerPixel;
 
 	// tArray has an implicit cast operator. rowPointers is equivalient to rowPointers.GetElements().
 	png_write_image(pngPtr, rowPointers);
@@ -437,15 +507,22 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 	png_write_end(pngPtr, infoPtr);
 
 	// Clear the srcPixels if we created the buffer.
-	if (srcBytesPerPixel == 3) delete srcPixels;
-	srcPixels = nullptr;
+	delete[] pixelData;
+	pixelData = nullptr;
 
 	// Clean up.
 	png_destroy_write_struct(&pngPtr, &infoPtr);
 	fclose(fp);
 
-	// @wip
-	return (pngColourType == PNG_COLOR_TYPE_RGB_ALPHA) ? tFormat::BPP32_RGBA_BPC8 : tFormat::BPP24_RGB_BPC8;
+	switch (bytesPerPixel)
+	{
+		case 3:		return tFormat::BPP24_RGB_BPC8;
+		case 4:		return tFormat::BPP32_RGBA_BPC8;
+		case 6:		return tFormat::BPP48_RGB_BPC16;
+		case 8:		return tFormat::BPP64_RGBA_BPC16;
+	}
+
+	return tFormat::Invalid;
 }
 
 

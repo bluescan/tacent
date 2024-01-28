@@ -342,6 +342,8 @@ public:
 	tColour4b(int r, int g, int b, int a = 0xFF)																		{ Set(r, g, b, a); }
 	tColour4b(uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)																{ Set(r, g, b, a); }
 	tColour4b(uint32 bits)																								{ Set(bits); }
+	tColour4b(const tColour4s& c)																						{ Set(c); }
+	tColour4b(const tColour3s& c, uint16 a = 0xFFFF)																	{ Set(c, a); }
 	tColour4b(const tColour4f& c)																						{ Set(c); }
 	tColour4b(const tColour3f& c, uint8 a)																				{ Set(c, a); }
 	tColour4b(const tColour3f& c, float a)																				{ Set(c, a); }
@@ -353,6 +355,8 @@ public:
 	void Set(int r, int g, int b, int a = 255)																			{ R = tMath::tClamp(r, 0, 0xFF); G = tMath::tClamp(g, 0, 0xFF); B = tMath::tClamp(b, 0, 0xFF); A = tMath::tClamp(a, 0, 0xFF); }
 	void Set(uint8 r, uint8 g, uint8 b, uint8 a = 255)																	{ R = r; G = g; B = b; A = a; }
 	void Set(uint32 bits)																								{ BP = bits; }
+	void Set(const tColour4s& c);
+	void Set(const tColour3s& c, uint16 a = 0xFFFF);
 	void Set(const tColour4f& c);
 	void Set(const tColour3f& c, uint8 a);
 	void Set(const tColour3f& c, float a);
@@ -531,6 +535,8 @@ public:
 	tColour4s(int r, int g, int b, int a = 0xFFFF)																		{ Set(r, g, b, a); }
 	tColour4s(uint16 r, uint16 g, uint16 b, uint16 a = 0xFFFF)															{ Set(r, g, b, a); }
 	tColour4s(uint64 bits)																								{ Set(bits); }
+	tColour4s(const tColour4b& c)																						{ Set(c); }
+	tColour4s(const tColour3b& c, uint8 a = 0xFF)																		{ Set(c, a); }
 	tColour4s(const tColour4f& c)																						{ Set(c); }
 	tColour4s(const tColour3f& c, uint16 a)																				{ Set(c, a); }
 	tColour4s(const tColour3f& c, float a)																				{ Set(c, a); }
@@ -542,6 +548,8 @@ public:
 	void Set(int r, int g, int b, int a = 65535)																		{ R = tMath::tClamp(r, 0, 0xFFFF); G = tMath::tClamp(g, 0, 0xFFFF); B = tMath::tClamp(b, 0, 0xFFFF); A = tMath::tClamp(a, 0, 0xFFFF); }
 	void Set(uint16 r, uint16 g, uint16 b, uint16 a = 65535)															{ R = r; G = g; B = b; A = a; }
 	void Set(uint64 bits)																								{ BP = bits; }
+	void Set(const tColour4b& c);
+	void Set(const tColour3b& c, uint8 a = 0xFF);
 	void Set(const tColour4f& c);
 	void Set(const tColour3f& c, uint16 a);
 	void Set(const tColour3f& c, float a);
@@ -1061,6 +1069,24 @@ inline void tColour4b::Set(const tColour3b& c, int a)
 }
 
 
+inline void tColour4b::Set(const tColour4s& c)
+{
+	R = c.R >> 8;
+	G = c.G >> 8;
+	B = c.B >> 8;
+	A = c.A >> 8;
+}
+
+
+inline void tColour4b::Set(const tColour3s& c, uint16 a)
+{
+	R = c.R >> 8;
+	G = c.G >> 8;
+	B = c.B >> 8;
+	A = a >> 8;
+}
+
+
 inline void tColour4b::Set(const tColour4f& c)
 {
 	Set(c.R, c.G, c.B, c.A);
@@ -1132,6 +1158,24 @@ inline bool tColour4b::Equal(const tColour4b& colour, comp_t channels) const
 		return false;
 
 	return true;
+}
+
+
+inline void tColour4s::Set(const tColour4b& c)
+{
+	R = c.R << 8;
+	G = c.G << 8;
+	B = c.B << 8;
+	A = c.A << 8;
+}
+
+
+inline void tColour4s::Set(const tColour3b& c, uint8 a)
+{
+	R = c.R << 8;
+	G = c.G << 8;
+	B = c.B << 8;
+	A = a << 8;
 }
 
 
