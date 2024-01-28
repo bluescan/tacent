@@ -44,7 +44,7 @@ public:
 		// developers wouldn't save things with the wrong extension, but they get away with it because other software
 		// loads this junk... and now this library is yet another.
 		LoadFlag_AllowJPG			= 1 << 5,
-		LoadFlags_Default			= LoadFlag_AutoGamma | LoadFlag_ForceToBpc8 | LoadFlag_AllowJPG | LoadFlag_ReverseRowOrder
+		LoadFlags_Default			= LoadFlag_ForceToBpc8 | LoadFlag_AllowJPG | LoadFlag_ReverseRowOrder
 	};
 
 	struct LoadParams

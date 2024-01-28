@@ -1274,53 +1274,85 @@ tTestUnit(ImagePNG)
 	tSystem::tSetCurrentDir(origDir + "TestData/Images/PNG/");
 
 	tImagePNG png;
-	tImagePNG::LoadParams params;
-
-/*
-	tPrintf("Test RGB 8-BPC\n");
-	png.Load("TacentTestPattern_R8G8B8.png", params);
-	tRequire(png.IsValid());
-
-	tPrintf("Test RGBA 8-BPC\n");
-	png.Load("TacentTestPattern_R8G8B8A8.png", params);
-	tRequire(png.IsValid());
-
-	tPrintf("Test RGB 16-BPC into 8-BPC Buffer\n");
-	params.Flags |= tImagePNG::LoadFlag_ForceToBpc8;
-	png.Load("TacentTestPattern_R16G16B16.png", params);
-	tRequire(png.IsValid());
-	tRequire(png.GetPixels8());
-*/
-
-	tPrintf("Test RGBA 16-BPC into 8-BPC Buffer\n");
-	params.Flags = tImagePNG::LoadFlag_ForceToBpc8 | tImagePNG::LoadFlag_AllowJPG | tImagePNG::LoadFlag_ReverseRowOrder;// | tImagePNG::LoadFlag_AutoGamma;
-	png.Load("TacentTestPattern_R16G16B16A16.png", params);
-	tRequire(png.IsValid());
-	tRequire(png.GetPixels8());
-
-	tPrintf("Test Save RGBA 8-BPC as 8-BPC PNG\n");
+	tImagePNG::LoadParams loadParams;
 	tImagePNG::SaveParams saveParams;
-	saveParams.Format = tImagePNG::tFormat::BPP32_RGBA_BPC8;
-	png.Save("Written_R8G8B8A8.png", saveParams);
 
-/*
-	tPrintf("Test RGB 16-BPC into 16-BPC Buffer\n");
-	params.Flags &= ~tImagePNG::LoadFlag_ForceToBpc8;
-	png.Load("TacentTestPattern_R16G16B16.png", params);
-	tRequire(png.IsValid());
-	tRequire(png.GetPixels16());
 
-	tPrintf("Test RGBA 16-BPC into 16-BPC Buffer\n");
-	params.Flags &= ~tImagePNG::LoadFlag_ForceToBpc8;
-	png.Load("TacentTestPattern_R16G16B16A16.png", params);
-	tRequire(png.IsValid());
-	tRequire(png.GetPixels16());
-
-	tPrintf("Test Save RGBA 16-BPC as 16-BPC PNG\n");
-	tImagePNG::SaveParams saveParams;
+	#if 0
+	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder;
+	png.Load("../TacentTestPattern.png", loadParams);
 	saveParams.Format = tImagePNG::tFormat::BPP64_RGBA_BPC16;
-	png.Save("Written_TacentTestPattern_R16G16B16A16.png", saveParams);
-*/
+	png.Save("TEMPWRITTEN.png", saveParams);
+	return;
+	#endif
+
+	tPrintf("Test Load RGBA 8-BPC\n");
+	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder;
+	png.Load("TacentTestPattern_R8G8B8A8.png", loadParams);
+	tRequire(png.IsValid());
+
+	tPrintf("Test Load RGB 8-BPC\n");
+	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder;
+	png.Load("TacentTestPattern_R8G8B8.png", loadParams);
+	tRequire(png.IsValid());
+
+	tPrintf("Test Load RGBA 16-BPC into 8-BPC Buffer\n");
+	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder | tImagePNG::LoadFlag_ForceToBpc8;
+	png.Load("TacentTestPattern_R16G16B16A16.png", loadParams);
+	tRequire(png.IsValid());
+	tRequire(png.GetPixels8());
+
+	tPrintf("Test Load RGB 16-BPC into 8-BPC Buffer\n");
+	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder | tImagePNG::LoadFlag_ForceToBpc8;
+	png.Load("TacentTestPattern_R16G16B16.png", loadParams);
+	tRequire(png.IsValid());
+	tRequire(png.GetPixels8());
+
+	//
+	// Test saves of 8bpc.
+	//
+	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder;
+	png.Load("TacentTestPattern_R8G8B8A8.png", loadParams);
+	tRequire(png.GetPixels8());
+
+	tPrintf("Test Save RGBA 8-BPC as RGBA 8-BPC PNG\n");
+	saveParams.Format = tImagePNG::tFormat::BPP32_RGBA_BPC8;
+	png.Save("Written_R8G8B8A8_From_8BPC.png", saveParams);
+
+	tPrintf("Test Save RGBA 8-BPC as RGB 8-BPC PNG\n");
+	saveParams.Format = tImagePNG::tFormat::BPP24_RGB_BPC8;
+	png.Save("Written_R8G8B8_From_8BPC.png", saveParams);
+
+	tPrintf("Test Save RGBA 8-BPC as RGBA 16-BPC PNG\n");
+	saveParams.Format = tImagePNG::tFormat::BPP64_RGBA_BPC16;
+	png.Save("Written_R16G16B16A16_From_8BPC.png", saveParams);
+
+	tPrintf("Test Save RGBA 8-BPC as RGB 16-BPC PNG\n");
+	saveParams.Format = tImagePNG::tFormat::BPP48_RGB_BPC16;
+	png.Save("Written_R16G16B16_From_8BPC.png", saveParams);
+
+	//
+	// Test saves of 16bpc.
+	//
+	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder;
+	png.Load("TacentTestPattern_R16G16B16A16.png", loadParams);
+	tRequire(png.GetPixels16());
+
+	tPrintf("Test Save RGBA 16-BPC as RGBA 8-BPC PNG\n");
+	saveParams.Format = tImagePNG::tFormat::BPP32_RGBA_BPC8;
+	png.Save("Written_R8G8B8A8_From_16BPC.png", saveParams);
+
+	tPrintf("Test Save RGBA 16-BPC as RGB 8-BPC PNG\n");
+	saveParams.Format = tImagePNG::tFormat::BPP24_RGB_BPC8;
+	png.Save("Written_R8G8B8_From_16BPC.png", saveParams);
+
+	tPrintf("Test Save RGBA 16-BPC as RGBA 16-BPC PNG\n");
+	saveParams.Format = tImagePNG::tFormat::BPP64_RGBA_BPC16;
+	png.Save("Written_R16G16B16A16_From_16BPC.png", saveParams);
+
+	tPrintf("Test Save RGBA 16-BPC as RGB 16-BPC PNG\n");
+	saveParams.Format = tImagePNG::tFormat::BPP48_RGB_BPC16;
+	png.Save("Written_R16G16B16_From_16BPC.png", saveParams);
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }
