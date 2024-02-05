@@ -1289,14 +1289,13 @@ tTestUnit(ImagePNG)
 	tImagePNG whiteHalfAlpha(pixels, width, height, true);
 	tRequire(whiteHalfAlpha.IsValid());
 
-//	saveParams.Format = tImagePNG::tFormat::BPP32_RGBA_BPC8;
-//	whiteHalfAlpha.Save("Written_WhiteHalfAlpha_8BPC.png", saveParams);
+	saveParams.Format = tImagePNG::tFormat::BPP32_RGBA_BPC8;
+	whiteHalfAlpha.Save("Written_WhiteHalfAlpha_8BPC.png", saveParams);
 
 	saveParams.Format = tImagePNG::tFormat::BPP64_RGBA_BPC16;
 	whiteHalfAlpha.Save("Written_WhiteHalfAlpha_16BPC.png", saveParams);
- //
-// msk
-#else
+#endif
+
 	tPrintf("Test Load RGBA 8-BPC\n");
 	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder;
 	png.Load("TacentTestPattern_R8G8B8A8.png", loadParams);
@@ -1363,8 +1362,7 @@ tTestUnit(ImagePNG)
 
 	tPrintf("Test Save RGBA 16-BPC as RGB 16-BPC PNG\n");
 	saveParams.Format = tImagePNG::tFormat::BPP48_RGB_BPC16;
-	png.Save("Written_R16G16B16_From_16BPC.png", saveParams);
-#endif
+	png.Save("Written_R16G16B16_From_16BPC.png", saveParams); 
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }

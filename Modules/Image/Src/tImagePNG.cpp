@@ -48,6 +48,8 @@ bool tImagePNG::Load(const tString& pngFile, const LoadParams& params)
 }
 
 
+//#define USE_LIBPNG_LOAD
+#ifdef USE_LIBPNG_LOAD
 bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParams& paramsIn)
 {
 	Clear();
@@ -150,6 +152,7 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 			tStd::tMemcpy((uint8*)Pixels16, rawPixels, rawPixelsSize);
 		}
 	}
+	png_image_free(&pngImage);
 	delete[] rawPixels;
 
 	if ((params.Flags & LoadFlag_ForceToBpc8) && Pixels16)
@@ -206,6 +209,207 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 
 	return true;
 }
+#endif
+
+
+#define USE_SPNG_LOAD
+#ifdef USE_SPNG_LOAD
+bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParams& paramsIn)
+{
+	Clear();
+	if ((numBytes <= 0) || !pngFileInMemory)
+		return false;
+
+	LoadParams params(paramsIn);
+
+    spng_ctx* ctx = spng_ctx_new(0);
+    if (!ctx)
+        return false;
+
+    // Ignore and don't calculate chunk CRCs.
+    spng_set_crc_action(ctx, SPNG_CRC_USE, SPNG_CRC_USE);
+
+	// Set memory usage limits for storing standard and unknown chunks. This is important when reading untrusted files.
+	size_t limit = 1024 * 1024 * 64;
+    spng_set_chunk_limits(ctx, limit, limit);
+
+    // Tell the context about the source png image.
+	spng_set_png_buffer(ctx, pngFileInMemory, numBytes);
+
+    struct spng_ihdr ihdr;
+    int errCode = spng_get_ihdr(ctx, &ihdr);
+    if (errCode)
+    {
+        spng_ctx_free(ctx);
+		if ((params.Flags & LoadFlag_AllowJPG))
+		{
+			tImageJPG jpg;
+			bool success = jpg.Load(pngFileInMemory, numBytes);
+			if (!success)
+				return false;
+
+			PixelFormatSrc		= tPixelFormat::R8G8B8;
+			PixelFormat			= PixelFormatSrc;
+			ColourProfileSrc	= tColourProfile::sRGB;
+			ColourProfile		= ColourProfileSrc;
+			Width				= jpg.GetWidth();
+			Height				= jpg.GetHeight();
+			Pixels8				= jpg.StealPixels();
+			return true;
+		}
+
+		return false;
+    }
+
+	int bitDepth = ihdr.bit_depth;
+	bool hasAlpha = (ihdr.color_type == SPNG_COLOR_TYPE_GRAYSCALE_ALPHA) || (ihdr.color_type == SPNG_COLOR_TYPE_TRUECOLOR_ALPHA);
+	Width = ihdr.width;
+	Height = ihdr.height;
+	int numPixels = Width * Height;
+
+	// If the src bit depth is 16, RGBA are all linear. Otherwise RGB are  sRGB and A is linear.
+	if (bitDepth == 16)
+		PixelFormatSrc = hasAlpha ? tPixelFormat::R16G16B16A16 : tPixelFormat::R16G16B16;
+	else
+		PixelFormatSrc = hasAlpha ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
+	PixelFormat = PixelFormatSrc;
+	ColourProfileSrc = (bitDepth == 16) ? tColourProfile::lRGB : tColourProfile::sRGB;
+	ColourProfile = ColourProfileSrc;
+
+	// Are we being asked to do auto-gamma-compression?
+	if (params.Flags & LoadFlag_AutoGamma)
+	{
+		// Clear all related flags.
+		params.Flags &= ~(LoadFlag_AutoGamma | LoadFlag_SRGBCompression | LoadFlag_GammaCompression);
+		if (ColourProfileSrc == tColourProfile::lRGB)
+			params.Flags |= LoadFlag_SRGBCompression;
+	}
+
+    struct spng_plte plte = { 0 };
+    errCode = spng_get_plte(ctx, &plte);
+    if (errCode && (errCode != SPNG_ECHUNKAVAIL))
+    {
+        spng_ctx_free(ctx);
+		Clear();
+		return false;
+    }
+
+	// Output format, does not depend on source PNG format except for SPNG_FMT_PNG, which is the PNGs format in
+	// host-endian (or big-endian for SPNG_FMT_RAW). Note that for these two formats <8-bit images are left byte-packed.
+	// Here we decode to a 16 bit buffer if the src is 16 bit to keep full precision.
+    int fmt = (bitDepth == 16) ? SPNG_FMT_RGBA16 : SPNG_FMT_RGBA8;
+
+	// With SPNG_FMT_PNG indexed color images are output as palette indices, pick another format to expand them.
+	// if (ihdr.color_type == SPNG_COLOR_TYPE_INDEXED)
+	//     fmt = SPNG_FMT_RGBA8;
+	size_t rawPixelsSize = 0;
+	errCode = spng_decoded_image_size(ctx, fmt, &rawPixelsSize);
+    if (errCode)
+	{
+		spng_ctx_free(ctx);
+		Clear();
+		return false;
+	}
+
+	uint8* rawPixels = new uint8[rawPixelsSize];
+
+	// Decode the image in one go.
+	errCode = spng_decode_image(ctx, rawPixels, rawPixelsSize, fmt, 0);
+	if (errCode)
+	{
+		delete[] rawPixels;
+		spng_ctx_free(ctx);
+		Clear();
+		return false;
+	}
+
+	// Reverse rows as we copy into our final buffer.
+	if (fmt == SPNG_FMT_RGBA8)
+	{
+		Pixels8 = new tPixel4b[numPixels];
+		if (params.Flags & LoadFlag_ReverseRowOrder)
+		{
+			int bytesPerRow = Width*sizeof(tPixel4b);
+			for (int y = Height-1; y >= 0; y--)
+				tStd::tMemcpy((uint8*)Pixels8 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
+		}
+		else
+		{
+			tStd::tMemcpy((uint8*)Pixels8, rawPixels, rawPixelsSize);
+		}
+	}
+	else
+	{
+		Pixels16 = new tPixel4s[numPixels];
+		if (params.Flags & LoadFlag_ReverseRowOrder)
+		{
+			int bytesPerRow = Width*sizeof(tPixel4s);
+			for (int y = Height-1; y >= 0; y--)
+				tStd::tMemcpy((uint8*)Pixels16 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
+		}
+		else
+		{
+			tStd::tMemcpy((uint8*)Pixels16, rawPixels, rawPixelsSize);
+		}
+	}
+	delete[] rawPixels;
+	spng_ctx_free(ctx);
+
+	if ((params.Flags & LoadFlag_ForceToBpc8) && Pixels16)
+	{
+		Pixels8 = new tPixel4b[Width*Height*sizeof(tPixel4b)];
+
+		int dindex = 0; tColour4b c;
+		for (int p = 0; p < Width*Height; p++)
+		{
+			c.Set(Pixels16[p]);
+			Pixels8[p].Set(c);
+		}
+		delete[] Pixels16;
+		Pixels16 = nullptr;
+	}
+
+	PixelFormat = Pixels8 ? tPixelFormat::R8G8B8A8 : tPixelFormat::R16G16B16A16;
+
+	// Apply gamma or sRGB compression if necessary.
+	tAssert(Pixels8 || Pixels16);
+	bool flagSRGB = (params.Flags & LoadFlag_SRGBCompression) ? true : false;
+	bool flagGama = (params.Flags & LoadFlag_GammaCompression)? true : false;
+	if (Pixels8 && (flagSRGB || flagGama))
+	{
+		for (int p = 0; p < Width*Height; p++)
+		{
+			tColour4f colour(Pixels8[p]);
+			if (flagSRGB)
+				colour.LinearToSRGB(tCompBit_RGB);
+			if (flagGama)
+				colour.LinearToGamma(params.Gamma, tCompBit_RGB);
+			Pixels8[p].SetR(colour.R);
+			Pixels8[p].SetG(colour.G);
+			Pixels8[p].SetB(colour.B);
+		}
+	}
+	else if (Pixels16 && (flagSRGB || flagGama))
+	{
+		for (int p = 0; p < Width*Height; p++)
+		{
+			tColour4f colour(Pixels16[p]);
+			if (flagSRGB)
+				colour.LinearToSRGB(tCompBit_RGB);
+			if (flagGama)
+				colour.LinearToGamma(params.Gamma, tCompBit_RGB);
+			Pixels16[p].SetR(colour.R);
+			Pixels16[p].SetG(colour.G);
+			Pixels16[p].SetB(colour.B);
+		}
+	}
+
+	if (params.Flags & LoadFlag_SRGBCompression)  ColourProfile = tColourProfile::sRGB;
+	if (params.Flags & LoadFlag_GammaCompression) ColourProfile = tColourProfile::gRGB;
+
+	return true;
+}
+#endif
 
 
 bool tImagePNG::Set(tPixel4b* pixels, int width, int height, bool steal)
