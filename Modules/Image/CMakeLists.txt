@@ -78,6 +78,8 @@ add_library(
 	Contrib/GifLoad/gif_load.h
 	Contrib/LibKTX/include/ktx.h
 	Contrib/LibPNG/include/png.h
+	Contrib/LibSPNG/spng.h
+	Contrib/LibSPNG/spng.c
 	Contrib/LibTIFF/include/tiff.h
 	Contrib/OpenEXR/loadImage.h
 	Contrib/OpenEXR/loadImage.cpp
@@ -107,10 +109,12 @@ target_include_directories(
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TinyXML2>
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/include>
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/include>
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibSPNG>
 		$<INSTALL_INTERFACE:Contrib>
 		$<INSTALL_INTERFACE:Contrib/TinyXML2>
 		$<INSTALL_INTERFACE:Contrib/ZLib/include>
 		$<INSTALL_INTERFACE:Contrib/LibPNG/include>
+		$<INSTALL_INTERFACE:Contrib/LibSPNG>
 	PRIVATE
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ApngDis
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ApngAsm

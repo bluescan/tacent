@@ -1277,15 +1277,26 @@ tTestUnit(ImagePNG)
 	tImagePNG::LoadParams loadParams;
 	tImagePNG::SaveParams saveParams;
 
+#define PNG_TEST_WHITE_HALF_ALPHA 
+#ifdef PNG_TEST_WHITE_HALF_ALPHA
+	const int width = 640;
+	const int height = 90;
+	tPixel4b* pixels = nullptr;
+	pixels = new tPixel4b[width*height];
+	for (int y = 0; y < height; y++)
+		for (int x = 0; x < width; x++)
+			pixels[y*width + x] = tColour4b(255, 255, 255, 128);
+	tImagePNG whiteHalfAlpha(pixels, width, height, true);
+	tRequire(whiteHalfAlpha.IsValid());
 
-	#if 0
-	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder;
-	png.Load("../TacentTestPattern.png", loadParams);
+//	saveParams.Format = tImagePNG::tFormat::BPP32_RGBA_BPC8;
+//	whiteHalfAlpha.Save("Written_WhiteHalfAlpha_8BPC.png", saveParams);
+
 	saveParams.Format = tImagePNG::tFormat::BPP64_RGBA_BPC16;
-	png.Save("TEMPWRITTEN.png", saveParams);
-	return;
-	#endif
-
+	whiteHalfAlpha.Save("Written_WhiteHalfAlpha_16BPC.png", saveParams);
+ //
+// msk
+#else
 	tPrintf("Test Load RGBA 8-BPC\n");
 	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder;
 	png.Load("TacentTestPattern_R8G8B8A8.png", loadParams);
@@ -1353,6 +1364,7 @@ tTestUnit(ImagePNG)
 	tPrintf("Test Save RGBA 16-BPC as RGB 16-BPC PNG\n");
 	saveParams.Format = tImagePNG::tFormat::BPP48_RGB_BPC16;
 	png.Save("Written_R16G16B16_From_16BPC.png", saveParams);
+#endif
 
 	tSystem::tSetCurrentDir(origDir.Chr());
 }
