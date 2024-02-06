@@ -103,7 +103,10 @@ public:
 		BPP32_RGBA_BPC8,	// 32-bit RGBA. 4 8-bit  components.
 		BPP48_RGB_BPC16,	// 48-bit RGB.  3 16-bit components.
 		BPP64_RGBA_BPC16,	// 64-bit RGBA. 4 16-bit components.
-		Auto				// Save function will decide format. RGB_24BIT_8BPC if all image pixels are opaque and RGBA_32BIT_8BPC otherwise.
+
+		// Save function will decide format. If image is 8-bpc, RGB_24BIT_8BPC if all image pixels are opaque and
+		// RGBA_32BIT_8BPC otherwise. If image is 16-bpc, RGB_48BIT_16BPC for opaque, RGB_64BIT_16BPC otherwise.
+		Auto
 	};
 
 	struct SaveParams

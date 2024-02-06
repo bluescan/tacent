@@ -222,25 +222,25 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 
 	LoadParams params(paramsIn);
 
-    spng_ctx* ctx = spng_ctx_new(0);
-    if (!ctx)
-        return false;
+	spng_ctx* ctx = spng_ctx_new(0);
+	if (!ctx)
+		return false;
 
-    // Ignore and don't calculate chunk CRCs.
-    spng_set_crc_action(ctx, SPNG_CRC_USE, SPNG_CRC_USE);
+	// Ignore and don't calculate chunk CRCs.
+	spng_set_crc_action(ctx, SPNG_CRC_USE, SPNG_CRC_USE);
 
 	// Set memory usage limits for storing standard and unknown chunks. This is important when reading untrusted files.
 	size_t limit = 1024 * 1024 * 64;
-    spng_set_chunk_limits(ctx, limit, limit);
+	spng_set_chunk_limits(ctx, limit, limit);
 
-    // Tell the context about the source png image.
+	// Tell the context about the source png image.
 	spng_set_png_buffer(ctx, pngFileInMemory, numBytes);
 
-    struct spng_ihdr ihdr;
-    int errCode = spng_get_ihdr(ctx, &ihdr);
-    if (errCode)
-    {
-        spng_ctx_free(ctx);
+	struct spng_ihdr ihdr;
+	int errCode = spng_get_ihdr(ctx, &ihdr);
+	if (errCode)
+	{
+		spng_ctx_free(ctx);
 		if ((params.Flags & LoadFlag_AllowJPG))
 		{
 			tImageJPG jpg;
@@ -259,7 +259,7 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 		}
 
 		return false;
-    }
+	}
 
 	int bitDepth = ihdr.bit_depth;
 	bool hasAlpha = (ihdr.color_type == SPNG_COLOR_TYPE_GRAYSCALE_ALPHA) || (ihdr.color_type == SPNG_COLOR_TYPE_TRUECOLOR_ALPHA);
@@ -285,26 +285,26 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 			params.Flags |= LoadFlag_SRGBCompression;
 	}
 
-    struct spng_plte plte = { 0 };
-    errCode = spng_get_plte(ctx, &plte);
-    if (errCode && (errCode != SPNG_ECHUNKAVAIL))
-    {
-        spng_ctx_free(ctx);
+	struct spng_plte plte = { 0 };
+	errCode = spng_get_plte(ctx, &plte);
+	if (errCode && (errCode != SPNG_ECHUNKAVAIL))
+	{
+		spng_ctx_free(ctx);
 		Clear();
 		return false;
-    }
+	}
 
 	// Output format, does not depend on source PNG format except for SPNG_FMT_PNG, which is the PNGs format in
 	// host-endian (or big-endian for SPNG_FMT_RAW). Note that for these two formats <8-bit images are left byte-packed.
 	// Here we decode to a 16 bit buffer if the src is 16 bit to keep full precision.
-    int fmt = (bitDepth == 16) ? SPNG_FMT_RGBA16 : SPNG_FMT_RGBA8;
+	int fmt = (bitDepth == 16) ? SPNG_FMT_RGBA16 : SPNG_FMT_RGBA8;
 
 	// With SPNG_FMT_PNG indexed color images are output as palette indices, pick another format to expand them.
 	// if (ihdr.color_type == SPNG_COLOR_TYPE_INDEXED)
-	//     fmt = SPNG_FMT_RGBA8;
+	//	 fmt = SPNG_FMT_RGBA8;
 	size_t rawPixelsSize = 0;
 	errCode = spng_decoded_image_size(ctx, fmt, &rawPixelsSize);
-    if (errCode)
+	if (errCode)
 	{
 		spng_ctx_free(ctx);
 		Clear();
@@ -521,7 +521,7 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, tFormat format) const
 }
 
 
-#define USE_LIBPNG_SAVE
+//#define USE_LIBPNG_SAVE
 #ifdef USE_LIBPNG_SAVE
 tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& params) const
 {
@@ -727,7 +727,7 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 #endif
 
 
-//#define USE_SPNG_SAVE
+#define USE_SPNG_SAVE
 #ifdef USE_SPNG_SAVE
 tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& params) const
 {
@@ -737,27 +737,25 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 	if (tSystem::tGetFileType(pngFile) != tSystem::tFileType::PNG)
 		return tFormat::Invalid;
 
-	int dstBytesPerPixel = 0;
-
+	int bytesPerPixel = 0;
 	switch (params.Format)
 	{
-		case tFormat::BPP24_RGB_BPC8:	dstBytesPerPixel = 3;	break;
-		case tFormat::BPP32_RGBA_BPC8:	dstBytesPerPixel = 4;	break;
-		case tFormat::BPP48_RGB_BPC16:	dstBytesPerPixel = 6;	break;
-		case tFormat::BPP64_RGBA_BPC16:	dstBytesPerPixel = 8;	break;
+		case tFormat::BPP24_RGB_BPC8:	bytesPerPixel = 3;	break;
+		case tFormat::BPP32_RGBA_BPC8:	bytesPerPixel = 4;	break;
+		case tFormat::BPP48_RGB_BPC16:	bytesPerPixel = 6;	break;
+		case tFormat::BPP64_RGBA_BPC16:	bytesPerPixel = 8;	break;
 		case tFormat::Auto:
-			dstBytesPerPixel = IsOpaque() ? 3 : 4;
-			if (Pixels16) dstBytesPerPixel <<= 1;
+			bytesPerPixel = IsOpaque() ? 3 : 4;
+			if (Pixels16) bytesPerPixel <<= 1;
 			break;
 	}
-	if (!dstBytesPerPixel)
+	if (!bytesPerPixel)
 		return tFormat::Invalid;
 
 	// If it's 3 or 6 bytes per pixel we make a no-alpha-channel buffer. This should not be
 	// necessary but I can't figure out how to get libpng reading 32bit/64bit and writing 24/48.
-	uint8* pixelData = new uint8[Width*Height*dstBytesPerPixel];
-
-	switch (dstBytesPerPixel)
+	uint8* pixelData = new uint8[Width*Height*bytesPerPixel];
+	switch (bytesPerPixel)
 	{
 		case 3:
 		{
@@ -775,7 +773,7 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 		case 4:
 			if (Pixels8)
 			{
-				tStd::tMemcpy(pixelData, Pixels8, Width*Height*4);
+				tStd::tMemcpy(pixelData, Pixels8, Width*Height*bytesPerPixel);
 			}
 			else
 			{
@@ -797,23 +795,30 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 			for (int p = 0; p < Width*Height; p++)
 			{				
 				if (Pixels16) c.Set(Pixels16[p]); else c.Set(Pixels8[p]);
-				pdata[dindex++] = tSwapEndian16(c.R);
-				pdata[dindex++] = tSwapEndian16(c.G);
-				pdata[dindex++] = tSwapEndian16(c.B);
+				pdata[dindex++] = c.R;
+				pdata[dindex++] = c.G;
+				pdata[dindex++] = c.B;
 			}
 			break;
 		}
 
 		case 8:
 		{
-			int dindex = 0; tColour4s c; uint16* pdata = (uint16*)pixelData;
-			for (int p = 0; p < Width*Height; p++)
+			if (Pixels16)
 			{
-				if (Pixels16) c.Set(Pixels16[p]); else c.Set(Pixels8[p]);
-				pdata[dindex++] = 0xffff; //c.R;
-				pdata[dindex++] = 0xffff; //c.G;
-				pdata[dindex++] = 0xffff; //c.B;
-				pdata[dindex++] = 0x4000; //c.A;
+				tStd::tMemcpy(pixelData, Pixels16, Width*Height*bytesPerPixel);
+			}
+			else
+			{
+				int dindex = 0; tColour4s c; uint16* pdata = (uint16*)pixelData;
+				for (int p = 0; p < Width*Height; p++)
+				{
+					c.Set(Pixels8[p]);
+					pdata[dindex++] = c.R;
+					pdata[dindex++] = c.G;
+					pdata[dindex++] = c.B;
+					pdata[dindex++] = c.A;
+				}
 			}
 			break;
 		}
@@ -826,72 +831,46 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 		return tFormat::Invalid;
 	}
 
+	// Creating an encoder context requires a flag.
+	spng_ctx* ctx = spng_ctx_new(SPNG_CTX_ENCODER);
 
-//////////////////////////
-//int encode_image(void *image, size_t length, uint32_t width, uint32_t height, enum spng_color_type color_type, int bit_depth)
-//{
-    int fmt;
-    int ret = 0;
-    spng_ctx *ctx = NULL;
-    struct spng_ihdr ihdr = {0}; /* zero-initialize to set valid defaults */
-
-    /* Creating an encoder context requires a flag */
-    ctx = spng_ctx_new(SPNG_CTX_ENCODER);
-
-    /* Encode to internal buffer managed by the library */
-//    spng_set_option(ctx, SPNG_ENCODE_TO_BUFFER, 1);
-    spng_set_option(ctx, SPNG_ENCODE_TO_BUFFER, 0);
-
+	// Don't encode to internal buffer managed by the library. We'll be writing to a file.
+	spng_set_option(ctx, SPNG_ENCODE_TO_BUFFER, 0);
 	spng_set_png_file(ctx, fp);
-    /* Alternatively you can set an output FILE* or stream with spng_set_png_file() or spng_set_png_stream() */	
-
 	spng_set_option(ctx, SPNG_FILTER_CHOICE, SPNG_DISABLE_FILTERING);
-//	spng_set_option(ctx, SPNG_FILTER_CHOICE, SPNG_FILTER_CHOICE_NONE);
 
-    /* Set image properties, this determines the destination image format */
-    ihdr.width = Width;
-    ihdr.height = Height;
-    ihdr.color_type = SPNG_COLOR_TYPE_TRUECOLOR_ALPHA;
-    ihdr.bit_depth = 16;
-    /* Valid color type, bit depth combinations: https://www.w3.org/TR/2003/REC-PNG-20031110/#table111 */
+	// Set image properties, this determines the destination image format. Start by zero-initing ihdr.
+	struct spng_ihdr ihdr = { 0 };
+	ihdr.width = Width;
+	ihdr.height = Height;
 
-    spng_set_ihdr(ctx, &ihdr);
+	// See https://www.w3.org/TR/2003/REC-PNG-20031110/#table111 for valid color-type/bit-depth combinations.
+	switch (bytesPerPixel)
+	{
+		case 3: ihdr.color_type = SPNG_COLOR_TYPE_TRUECOLOR;		ihdr.bit_depth = 8;		break;
+		case 4: ihdr.color_type = SPNG_COLOR_TYPE_TRUECOLOR_ALPHA;	ihdr.bit_depth = 8;		break;
+		case 6: ihdr.color_type = SPNG_COLOR_TYPE_TRUECOLOR;		ihdr.bit_depth = 16;	break;
+		case 8: ihdr.color_type = SPNG_COLOR_TYPE_TRUECOLOR_ALPHA;	ihdr.bit_depth = 16;	break;
+	}
+	spng_set_ihdr(ctx, &ihdr);
 
-    /* When encoding fmt is the source format */
-    /* SPNG_FMT_PNG is a special value that matches the format in ihdr */
-    fmt = SPNG_FMT_PNG;
-//	fmt = SPNG_FMT_RAW;
-
-    /* SPNG_ENCODE_FINALIZE will finalize the PNG with the end-of-file marker */
-    ret = spng_encode_image(ctx, pixelData, Width*Height*sizeof(tColour4s), fmt, SPNG_ENCODE_FINALIZE);
-
-    if(ret)
-    {
-        //printf("spng_encode_image() error: %s\n", spng_strerror(ret));
+	// This is the source data format. SPNG_FMT_PNG is a special value that matches the format in ihdr
+	// The encode call only works if the format is SPNG_FMT_PNG (machine-endian) or SPNG_FMT_RAW (big-endian).
+	// SPNG_ENCODE_FINALIZE will finalize the PNG with the end-of-file marker.
+	int errCode = spng_encode_image(ctx, pixelData, Width*Height*bytesPerPixel, SPNG_FMT_PNG, SPNG_ENCODE_FINALIZE);
+	if (errCode)
+	{
+		fclose(fp);
 		spng_ctx_free(ctx);
+		delete[] pixelData;
 		return tFormat::Invalid;
-    }
+	}
 
-//    size_t png_size;
-//    void *png_buf = NULL;
-
-    /* Get the internal buffer of the finished PNG */
-//    png_buf = spng_get_png_buffer(ctx, &png_size, &ret);
-
-//    if(png_buf == NULL)
-//    {
-//        printf("spng_get_png_buffer() error: %s\n", spng_strerror(ret));
-//    }
-
-    /* User owns the buffer after a successful call */
-//    free(png_buf);
-
-//encode_error:
 	fclose(fp);
+	spng_ctx_free(ctx);
+	delete[] pixelData;
 
-    spng_ctx_free(ctx);
-
-	switch (dstBytesPerPixel)
+	switch (bytesPerPixel)
 	{
 		case 3:		return tFormat::BPP24_RGB_BPC8;
 		case 4:		return tFormat::BPP32_RGBA_BPC8;

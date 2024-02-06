@@ -1277,15 +1277,15 @@ tTestUnit(ImagePNG)
 	tImagePNG::LoadParams loadParams;
 	tImagePNG::SaveParams saveParams;
 
-#define PNG_TEST_WHITE_HALF_ALPHA 
+#define PNG_TEST_WHITE_HALF_ALPHA
 #ifdef PNG_TEST_WHITE_HALF_ALPHA
 	const int width = 640;
 	const int height = 90;
-	tPixel4b* pixels = nullptr;
-	pixels = new tPixel4b[width*height];
+	tPixel4s* pixels = nullptr;
+	pixels = new tPixel4s[width*height];
 	for (int y = 0; y < height; y++)
 		for (int x = 0; x < width; x++)
-			pixels[y*width + x] = tColour4b(255, 255, 255, 128);
+			pixels[y*width + x] = tColour4s(65535, 65535, 65535, 32768);
 	tImagePNG whiteHalfAlpha(pixels, width, height, true);
 	tRequire(whiteHalfAlpha.IsValid());
 
