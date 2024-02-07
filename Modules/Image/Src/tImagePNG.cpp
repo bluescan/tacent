@@ -14,13 +14,24 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 //
-// The loading and saving code in here is roughly based on the example code from the LibPNG library. The licence may be
-// found in the file Licence_LibPNG.txt.
+// The loading and saving code in here is roughly based on the example code from the LibPNG and SPNG libraries. The
+// licences may be found in Licence_LibPNG.txt and Licence_LibSPNG.txt.
 
 #include <Foundation/tArray.h>
 #include <System/tFile.h>
+
+// This define chooses between using LibPNG (the original png library) or the slightly cleaner/newer LibSPNG. While the
+// interface for SPNG isn't that much different, I did notice SPNG loads 16-bpc PNG files without multiplying the alpha
+// channel into the colours -- this is the desired behaviour and so SPNG is enabled. Note that apngasm and apngdis
+// depend on LibPNG, so we are keeping LibPNG around until SPNG supports animated PNGs. This is apparently work in
+// progress as of 2024.02.06.
+#define USE_SPNG_LIBRARY
+#ifndef USE_SPNG_LIBRARY
 #include "png.h"
-#include "spng.h"					// Testing the spng library.
+#else
+#include "spng.h"
+#endif
+
 #include "Image/tImagePNG.h"
 #include "Image/tImageJPG.h"		// Because some jpg/jfif files have a png extension in the wild. Scary but true.
 #include "Image/tPicture.h"
@@ -48,8 +59,7 @@ bool tImagePNG::Load(const tString& pngFile, const LoadParams& params)
 }
 
 
-//#define USE_LIBPNG_LOAD
-#ifdef USE_LIBPNG_LOAD
+#ifndef USE_SPNG_LIBRARY
 bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParams& paramsIn)
 {
 	Clear();
@@ -212,8 +222,7 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 #endif
 
 
-#define USE_SPNG_LOAD
-#ifdef USE_SPNG_LOAD
+#ifdef USE_SPNG_LIBRARY
 bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParams& paramsIn)
 {
 	Clear();
@@ -507,8 +516,7 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, tFormat format) const
 }
 
 
-//#define USE_LIBPNG_SAVE
-#ifdef USE_LIBPNG_SAVE
+#ifndef USE_SPNG_LIBRARY
 tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& params) const
 {
 	if (!IsValid())
@@ -713,8 +721,7 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 #endif
 
 
-#define USE_SPNG_SAVE
-#ifdef USE_SPNG_SAVE
+#ifdef USE_SPNG_LIBRARY
 tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& params) const
 {
 	if (!IsValid())

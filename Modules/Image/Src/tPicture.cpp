@@ -35,6 +35,7 @@ const char* ASTCENCODER_VERSION_STRING		= VERSION_STRING;
 #include "Math/tLinearAlgebra.h"
 #include <OpenEXR/loadImage.h>
 #include <zlib.h>
+#include <spng.h>
 #include <png.h>
 #include <apngdis.h>
 #include <apngasm.h>
@@ -68,6 +69,9 @@ int tImage::Version_BCDec_Major				= BCDEC_VERSION_MAJOR;
 int tImage::Version_BCDec_Minor				= BCDEC_VERSION_MINOR;
 int tImage::Version_ETCDec_Major			= ETCDEC_VERSION_MAJOR;
 int tImage::Version_ETCDec_Minor			= ETCDEC_VERSION_MINOR;
+int tImage::Version_SPNG_Major				= SPNG_VERSION_MAJOR;
+int tImage::Version_SPNG_Minor				= SPNG_VERSION_MINOR;
+int tImage::Version_SPNG_Patch				= SPNG_VERSION_PATCH;
 int tImage::Version_TinyXML2_Major			= TINYXML2_MAJOR_VERSION;
 int tImage::Version_TinyXML2_Minor			= TINYXML2_MINOR_VERSION;
 int tImage::Version_TinyXML2_Patch			= TINYXML2_PATCH_VERSION;
