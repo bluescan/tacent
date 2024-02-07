@@ -1,24 +1,19 @@
 Download linpng official src code from sourceforge.
+Download one of the compressed tar files.
+Something like libpng-1.6.42.tar.gz
 
 Windows:
 ========
-Download the .zip with windows line endings. Something like lpng1637.zip
-Open the vsstudio sln in vstudio directory.
+Open the vsstudio sln in vstudio directory.o
 Add x64 architecture.
 Select Release_Library (uses the Multithreaded non-dll libs. /MT)
-You may need to disable one of the switch warnings.
 Turn off /GL (whole prog opt in compiler settings)
 Turn off /LTCG (link time code gen, in librarian)
-Add ;5045 in advanced compiler warnings to disable.
-ZLIB: Get from sorceforge and put in folder 'zlib' sibling to the main libpng folder.
-
 Look for the .lib files in vstudio/x64/Release Library
 
 Linux:
 ------
-Download one of the compressed tar file. Something like libpng-1.6.37.tar.gz
-Configure in Linux does not like windows line endings.
-
+You can build from WSL Ubuntu in Windows. Just go into the /mnt/c folder.
 	ZLIB:
 	   apt install zlib1g
 	   apt install zlib1g-dev
@@ -30,13 +25,9 @@ Configure in Linux does not like windows line endings.
 It will build x64 libs from WSL. Any file in the dest that is 0 in size is a symlink.
 Look for lib/libpng16.a static x64 library.
 
-
 Both:
 -----
-I suggest using the Linux headers for both plats. Windows handles the LF endings gracefully.
-They will be in include/libpng16
+Grab the following headers. They will be in include/libpng16
 png.h
 pngconf.h
 pnglibconf.h
-
-
