@@ -37,14 +37,13 @@ public:
 
 		// If a png is 16 bpc you can force it to load into an 8 bpc buffer with this flag.
 		LoadFlag_ForceToBpc8		= 1 << 3,
-		LoadFlag_ReverseRowOrder	= 1 << 4,	// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.
 
 		// Crazily some PNG files are actually JPG/JFIF files inside. I don't much like supporting this, but some
 		// software (ms-paint for example), will happily load such an invalid png. The world would be better if app
 		// developers wouldn't save things with the wrong extension, but they get away with it because other software
 		// loads this junk... and now this library is yet another.
-		LoadFlag_AllowJPG			= 1 << 5,
-		LoadFlags_Default			= LoadFlag_ForceToBpc8 | LoadFlag_AllowJPG | LoadFlag_ReverseRowOrder
+		LoadFlag_AllowJPG			= 1 << 4,
+		LoadFlags_Default			= LoadFlag_ForceToBpc8 | LoadFlag_AllowJPG
 	};
 
 	struct LoadParams
@@ -138,9 +137,11 @@ public:
 
 	// After this call you are the owner of the pixels and must eventually delete[] them. This call only returns the
 	// stolen pixel array if it was present. If it was, the tImagePNG object will be invalid afterwards.
+	// The pixels are in OpenGL row-order -- bottom row first.
 	tPixel4b* StealPixels8();
 	tPixel4s* StealPixels16();
 
+	// The pixels are in OpenGL row-order -- bottom row first.
 	tFrame* GetFrame(bool steal = true) override;
 	tPixel4b* GetPixels8() const																						{ return Pixels8; }
 	tPixel4s* GetPixels16() const																						{ return Pixels16; }

@@ -1297,23 +1297,23 @@ tTestUnit(ImagePNG)
 #endif
 
 	tPrintf("Test Load RGBA 8-BPC\n");
-	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder;
+	loadParams.Flags = 0;
 	png.Load("TacentTestPattern_R8G8B8A8.png", loadParams);
 	tRequire(png.IsValid());
 
 	tPrintf("Test Load RGB 8-BPC\n");
-	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder;
+	loadParams.Flags = 0;
 	png.Load("TacentTestPattern_R8G8B8.png", loadParams);
 	tRequire(png.IsValid());
 
 	tPrintf("Test Load RGBA 16-BPC into 8-BPC Buffer\n");
-	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder | tImagePNG::LoadFlag_ForceToBpc8;
+	loadParams.Flags = tImagePNG::LoadFlag_ForceToBpc8;
 	png.Load("TacentTestPattern_R16G16B16A16.png", loadParams);
 	tRequire(png.IsValid());
 	tRequire(png.GetPixels8());
 
 	tPrintf("Test Load RGB 16-BPC into 8-BPC Buffer\n");
-	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder | tImagePNG::LoadFlag_ForceToBpc8;
+	loadParams.Flags = tImagePNG::LoadFlag_ForceToBpc8;
 	png.Load("TacentTestPattern_R16G16B16.png", loadParams);
 	tRequire(png.IsValid());
 	tRequire(png.GetPixels8());
@@ -1321,7 +1321,7 @@ tTestUnit(ImagePNG)
 	//
 	// Test saves of 8bpc.
 	//
-	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder;
+	loadParams.Flags = 0;
 	png.Load("TacentTestPattern_R8G8B8A8.png", loadParams);
 	tRequire(png.GetPixels8());
 
@@ -1344,7 +1344,7 @@ tTestUnit(ImagePNG)
 	//
 	// Test saves of 16bpc.
 	//
-	loadParams.Flags = tImagePNG::LoadFlag_ReverseRowOrder;
+	loadParams.Flags = 0;
 	png.Load("TacentTestPattern_R16G16B16A16.png", loadParams);
 	tRequire(png.GetPixels16());
 

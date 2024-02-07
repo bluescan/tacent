@@ -327,30 +327,16 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 	if (fmt == SPNG_FMT_RGBA8)
 	{
 		Pixels8 = new tPixel4b[numPixels];
-		if (params.Flags & LoadFlag_ReverseRowOrder)
-		{
-			int bytesPerRow = Width*sizeof(tPixel4b);
-			for (int y = Height-1; y >= 0; y--)
-				tStd::tMemcpy((uint8*)Pixels8 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
-		}
-		else
-		{
-			tStd::tMemcpy((uint8*)Pixels8, rawPixels, rawPixelsSize);
-		}
+		int bytesPerRow = Width*sizeof(tPixel4b);
+		for (int y = Height-1; y >= 0; y--)
+			tStd::tMemcpy((uint8*)Pixels8 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
 	}
 	else
 	{
 		Pixels16 = new tPixel4s[numPixels];
-		if (params.Flags & LoadFlag_ReverseRowOrder)
-		{
-			int bytesPerRow = Width*sizeof(tPixel4s);
-			for (int y = Height-1; y >= 0; y--)
-				tStd::tMemcpy((uint8*)Pixels16 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
-		}
-		else
-		{
-			tStd::tMemcpy((uint8*)Pixels16, rawPixels, rawPixelsSize);
-		}
+		int bytesPerRow = Width*sizeof(tPixel4s);
+		for (int y = Height-1; y >= 0; y--)
+			tStd::tMemcpy((uint8*)Pixels16 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
 	}
 	delete[] rawPixels;
 	spng_ctx_free(ctx);
@@ -752,74 +738,71 @@ tImagePNG::tFormat tImagePNG::Save(const tString& pngFile, const SaveParams& par
 	if (!bytesPerPixel)
 		return tFormat::Invalid;
 
-	// If it's 3 or 6 bytes per pixel we make a no-alpha-channel buffer. This should not be
-	// necessary but I can't figure out how to get libpng reading 32bit/64bit and writing 24/48.
+	// If it's 3 or 6 bytes per pixel we make a no-alpha-channel buffer. Basically we need the data
+	// in the correct layout before we save it. SPNG does not do it for us.
+	// The pixels need to be reordered so that the first row is at the top.
 	uint8* pixelData = new uint8[Width*Height*bytesPerPixel];
 	switch (bytesPerPixel)
 	{
 		case 3:
 		{
 			int dindex = 0; tColour4b c;
-			for (int p = 0; p < Width*Height; p++)
-			{
-				if (Pixels8) c.Set(Pixels8[p]); else c.Set(Pixels16[p]);
-				pixelData[dindex++] = c.R;
-				pixelData[dindex++] = c.G;
-				pixelData[dindex++] = c.B;
-			}
+			for (int y = Height-1; y >= 0; y--)
+				for (int x = 0; x < Width; x++)
+				{
+					int p = y*Width + x;
+					if (Pixels8) c.Set(Pixels8[p]); else c.Set(Pixels16[p]);
+					pixelData[dindex++] = c.R;
+					pixelData[dindex++] = c.G;
+					pixelData[dindex++] = c.B;
+				}
 			break;
 		}
 
 		case 4:
-			if (Pixels8)
-			{
-				tStd::tMemcpy(pixelData, Pixels8, Width*Height*bytesPerPixel);
-			}
-			else
-			{
-				int dindex = 0; tColour4b c;
-				for (int p = 0; p < Width*Height; p++)
+		{
+			int dindex = 0; tColour4b c;
+			for (int y = Height-1; y >= 0; y--)
+				for (int x = 0; x < Width; x++)
 				{
-					c.Set(Pixels16[p]);
+					int p = y*Width + x;
+					if (Pixels8) c.Set(Pixels8[p]); else c.Set(Pixels16[p]);
 					pixelData[dindex++] = c.R;
 					pixelData[dindex++] = c.G;
 					pixelData[dindex++] = c.B;
 					pixelData[dindex++] = c.A;
 				}
-			}
 			break;
+		}
 
 		case 6:
 		{
 			int dindex = 0; tColour4s c; uint16* pdata = (uint16*)pixelData;
-			for (int p = 0; p < Width*Height; p++)
-			{				
-				if (Pixels16) c.Set(Pixels16[p]); else c.Set(Pixels8[p]);
-				pdata[dindex++] = c.R;
-				pdata[dindex++] = c.G;
-				pdata[dindex++] = c.B;
-			}
+			for (int y = Height-1; y >= 0; y--)
+				for (int x = 0; x < Width; x++)
+				{
+					int p = y*Width + x;
+					if (Pixels16) c.Set(Pixels16[p]); else c.Set(Pixels8[p]);
+					pdata[dindex++] = c.R;
+					pdata[dindex++] = c.G;
+					pdata[dindex++] = c.B;
+				}
 			break;
 		}
 
 		case 8:
 		{
-			if (Pixels16)
-			{
-				tStd::tMemcpy(pixelData, Pixels16, Width*Height*bytesPerPixel);
-			}
-			else
-			{
-				int dindex = 0; tColour4s c; uint16* pdata = (uint16*)pixelData;
-				for (int p = 0; p < Width*Height; p++)
+			int dindex = 0; tColour4s c; uint16* pdata = (uint16*)pixelData;
+			for (int y = Height-1; y >= 0; y--)
+				for (int x = 0; x < Width; x++)
 				{
-					c.Set(Pixels8[p]);
+					int p = y*Width + x;
+					if (Pixels16) c.Set(Pixels16[p]); else c.Set(Pixels8[p]);
 					pdata[dindex++] = c.R;
 					pdata[dindex++] = c.G;
 					pdata[dindex++] = c.B;
 					pdata[dindex++] = c.A;
 				}
-			}
 			break;
 		}
 	}
