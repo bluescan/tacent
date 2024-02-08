@@ -1262,7 +1262,22 @@ tTestUnit(ImageGradient)
 	}
 	tImageTGA redToRed(pixels, width, height, true);
 	tRequire(redToRed.IsValid());
-	redToRed.Save("TestData/Images/Written_Gradient_RedToRed.tga", tImageTGA::tFormat::BPP24, tImageTGA::tCompression::RLE);	
+	redToRed.Save("TestData/Images/Written_Gradient_RedToRed.tga", tImageTGA::tFormat::BPP24, tImageTGA::tCompression::RLE);
+
+	// These gradients are 16-bpc png files that are useful for testing WCG (10 and 12-bit) monitors.
+	// For a 10-bpc display a width of 1024 means we should get different value displayed for every pixel.
+	const int wcgWidth = 1024;
+	const int wcgHeight = 128;
+	tPixel4s* wcgPixels = new tPixel4s[wcgWidth*wcgHeight];
+	for (int x = 0; x < wcgWidth; x++)
+		for (int y = 0; y < wcgHeight; y++)
+			wcgPixels[y*wcgWidth + x] = tColour4s(0, x*64, 0, 65535);
+	tImagePNG wcgGreenGradient(wcgPixels, wcgWidth, wcgHeight, true);
+	tRequire(wcgGreenGradient.IsValid());
+
+	tImagePNG::SaveParams saveParams;
+	saveParams.Format = tImagePNG::tFormat::BPP48_RGB_BPC16;
+	wcgGreenGradient.Save("TestData/Images/Written_WcgGreenGradient_16BPC.png", saveParams);
 }
 
 

@@ -217,14 +217,14 @@ int main(int argc, char** argv)
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);
 	// tTest(ImageFilter);
-	// tTest(ImageGradient);
+	tTest(ImageGradient);
 	// tTest(ImageMetaData);
 	// tTest(ImageLosslessTransform);
 	// tTest(ImageRotation);
 	// tTest(ImageCrop);
 	// tTest(ImageAdjustment);
 	// tTest(ImageDetection);
-	tTest(ImagePNG);
+	// tTest(ImagePNG);
 	// tTest(ImageDDS);
 	// tTest(ImageKTX1);
 	// tTest(ImageKTX2);
