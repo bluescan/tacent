@@ -47,7 +47,7 @@ jobs:
     - name: Unit Test Results
       uses: actions/upload-artifact@v4
       with:
-        name: unit-test-results
+        name: unit_test_results_windows_CM_VS_VC
         path: build/TacentInstall/Windows_TestResults.txt
 
   # The Ubuntu_CM_NI_CL job buildsand tests tacent on ubuntu. CMake Ninja Clang
@@ -78,5 +78,5 @@ jobs:
     - name: Unit Test Results
       uses: actions/upload-artifact@v4
       with:
-        name: unit-test-results
+        name: unit_test_results_ubuntu_CM_NI_CL
         path: build/TacentInstall/Ubuntu_TestResults.txt
