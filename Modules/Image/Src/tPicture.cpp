@@ -286,7 +286,7 @@ void tPicture::Flip(bool horizontal)
 }
 
 
-void tPicture::Crop(int newW, int newH, Anchor anchor, const tColour4b& fill)
+bool tPicture::Crop(int newW, int newH, Anchor anchor, const tColour4b& fill)
 {
 	int originx = 0;
 	int originy = 0;
@@ -306,20 +306,20 @@ void tPicture::Crop(int newW, int newH, Anchor anchor, const tColour4b& fill)
 		case Anchor::RightBottom:	originx = Width - newW;		originy = 0;				break;
 	}
 
-	Crop(newW, newH, originx, originy, fill);
+	return Crop(newW, newH, originx, originy, fill);
 }
 
 
-void tPicture::Crop(int newW, int newH, int originX, int originY, const tColour4b& fill)
+bool tPicture::Crop(int newW, int newH, int originX, int originY, const tColour4b& fill)
 {
 	if ((newW <= 0) || (newH <= 0))
 	{
 		Clear();
-		return;
+		return false;
 	}
 
 	if ((newW == Width) && (newH == Height) && (originX == 0) && (originY == 0))
-		return;
+		return false;
 
 	tPixel4b* newPixels = new tPixel4b[newW * newH];
 
@@ -341,12 +341,71 @@ void tPicture::Crop(int newW, int newH, int originX, int originY, const tColour4
 	Width = newW;
 	Height = newH;
 	Pixels = newPixels;
+	return true;
+}
+
+
+bool tPicture::CopyRegion(int regionW, int regionH, const tColour4b* regionPixels, int originX, int originY, comp_t channels)
+{
+	if (!IsValid() || (regionW <= 0) || (regionH <= 0) || !regionPixels)
+		return false;
+
+	if ((originX <= -regionW) || (originX >= Width))
+		return false;
+	if ((originY <= -regionH) || (originY >= Height))
+		return false;
+
+	for (int y = 0; y < regionH; y++)
+	{
+		int dstRow = originY + y;
+
+		// Is line above or below current canvas.
+		if ((dstRow < 0) || (dstRow >= Height))
+			continue;
+
+		for (int x = 0; x < regionW; x++)
+		{
+			int dstCol = originX + x;
+			if ((dstCol < 0) || (dstCol >= Width))
+				continue;
+			if (channels != tCompBit_RGBA)
+				SetPixel(dstCol, dstRow, regionPixels[y*regionW + x], channels);
+			else
+				SetPixel(dstCol, dstRow, regionPixels[y*regionW + x]);
+		}
+	}
+
+	return true;
+}
+
+
+bool tPicture::CopyRegion(int regW, int regH, const tColour4b* regionPixels, Anchor anchor, comp_t channels)
+{
+	int originx = 0;
+	int originy = 0;
+
+	switch (anchor)
+	{
+		case Anchor::LeftTop:		originx = 0;				originy = Height-regH;		break;
+		case Anchor::MiddleTop:		originx = Width/2 - regW/2;	originy = Height-regH;		break;
+		case Anchor::RightTop:		originx = Width - regW;		originy = Height-regH;		break;
+
+		case Anchor::LeftMiddle:	originx = 0;				originy = Height/2-regH/2;	break;
+		case Anchor::MiddleMiddle:	originx = Width/2 - regW/2;	originy = Height/2-regH/2;	break;
+		case Anchor::RightMiddle:	originx = Width - regW;		originy = Height/2-regH/2;	break;
+
+		case Anchor::LeftBottom:	originx = 0;				originy = 0;				break;
+		case Anchor::MiddleBottom:	originx = Width/2 - regW/2;	originy = 0;				break;
+		case Anchor::RightBottom:	originx = Width - regW;		originy = 0;				break;
+	}
+
+	return CopyRegion(regW, regH, regionPixels, originx, originy, channels);
 }
 
 
 bool tPicture::GetBordersSizes
 (
-	const tColour4b& colour, uint32 channels,
+	const tColour4b& colour, comp_t channels,
 	int& numBottomRows, int& numTopRows, int& numLeftCols, int& numRightCols
 ) const
 {
@@ -438,7 +497,7 @@ bool tPicture::GetBordersSizes
 }
 
 
-bool tPicture::Deborder(const tColour4b& colour, uint32 channels)
+bool tPicture::Deborder(const tColour4b& colour, comp_t channels)
 {
 	int numBottomRows = 0;
 	int numTopRows = 0;
@@ -456,7 +515,7 @@ bool tPicture::Deborder(const tColour4b& colour, uint32 channels)
 }
 
 
-bool tPicture::HasBorders(const tColour4b& colour, uint32 channels) const
+bool tPicture::HasBorders(const tColour4b& colour, comp_t channels) const
 {
 	int numBottomRows = 0;
 	int numTopRows = 0;

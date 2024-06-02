@@ -152,6 +152,7 @@ public:
 
 	void SetPixel(int x, int y, const tColour4b& c)																		{ Pixels[ GetIndex(x, y) ] = c; }
 	void SetPixel(int x, int y, uint8 r, uint8 g, uint8 b, uint8 a = 0xFF)												{ Pixels[ GetIndex(x, y) ] = tColour4b(r, g, b, a); }
+	void SetPixel(int x, int y, const tColour4b& c, comp_t channels);
 	void SetAll(const tColour4b& = tColour4b(0, 0, 0), comp_t channels = tCompBit_RGBA);
 
 	// Spreads the specified single channel to all RGB channels. If channel is R, G, or B, it spreads to the remainder
@@ -206,24 +207,29 @@ public:
 
 	void Flip(bool horizontal);
 
-	// Cropping. Can also perform a canvas enlargement. If width or height are smaller than the current size the image
-	// is cropped. If larger, the fill colour is used. Fill defaults to transparent-zero-alpha black pixels.
 	enum class Anchor
 	{
 		LeftTop,		MiddleTop,		RightTop,
 		LeftMiddle,		MiddleMiddle,	RightMiddle,
 		LeftBottom,		MiddleBottom,	RightBottom
 	};
-	void Crop(int newWidth, int newHeight, Anchor = Anchor::MiddleMiddle, const tColour4b& fill = tColour4b::transparent);
-	void Crop(int newWidth, int newHeight, int originX, int originY, const tColour4b& fill = tColour4b::transparent);
+
+	// Cropping. Can also perform a canvas enlargement. If width or height are smaller than the current size the image
+	// is cropped. If larger, the fill colour is used. Fill defaults to transparent-zero-alpha black pixels.
+	bool Crop(int newWidth, int newHeight, Anchor = Anchor::MiddleMiddle, const tColour4b& fill = tColour4b::transparent);
+	bool Crop(int newWidth, int newHeight, int originX, int originY, const tColour4b& fill = tColour4b::transparent);
+
+	// Copies a supplied rectangle into the image at the specified position.
+	bool CopyRegion(int regionW, int regionH, const tColour4b* regionPixels, int originX, int originY, comp_t channels = tCompBit_RGBA);
+	bool CopyRegion(int regionW, int regionH, const tColour4b* regionPixels, Anchor = Anchor::LeftBottom, comp_t channels = tCompBit_RGBA);
 
 	// Crops sides that match the specified colour. Optionally select only some channels to be considered.
 	// If this function wants to remove everything it returns false and leaves the image untouched.
 	// If this function wants to remove nothing it returns false and leaves the image untouched.
-	bool Deborder(const tColour4b& = tColour4b::transparent, uint32 channels = tCompBit_A);
+	bool Deborder(const tColour4b& = tColour4b::transparent, comp_t channels = tCompBit_A);
 
 	// Same as above but only check if borders exist. Does not modify picture.
-	bool HasBorders(const tColour4b& = tColour4b::transparent, uint32 channels = tCompBit_A) const;
+	bool HasBorders(const tColour4b& = tColour4b::transparent, comp_t channels = tCompBit_A) const;
 
 	// Quantize image colours based on a fixed palette. numColours must be 256 or less. checkExact means no change to
 	// the image will be made if it already contains fewer colours than numColours already. This may or may not be
@@ -358,7 +364,7 @@ private:
 	// Returns false if either no borders or the borders overlap because the image in homogenous in the channels.
 	bool GetBordersSizes
 	(
-		const tColour4b&, uint32 channels,
+		const tColour4b&, comp_t channels,
 		int& numBottomRows, int& numTopRows, int& numLeftCols, int& numRightCols
 	) const;
 
@@ -480,6 +486,17 @@ inline bool tPicture::IsOpaque() const
 	}
 
 	return true;
+}
+
+
+inline void tPicture::SetPixel(int x, int y, const tColour4b& c, comp_t channels)
+{
+	tPixel4b& pixel = Pixels[ GetIndex(x, y) ];
+
+	if (channels & tCompBit_R) pixel.R = c.R;
+	if (channels & tCompBit_G) pixel.G = c.G;
+	if (channels & tCompBit_B) pixel.B = c.B;
+	if (channels & tCompBit_A) pixel.A = c.A;
 }
 
 

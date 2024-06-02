@@ -916,6 +916,74 @@ tTestUnit(ImageCrop)
 }
 
 
+tTestUnit(ImageCopyRegion)
+{
+	if (!tSystem::tDirExists("TestData/Images/"))
+		tSkipUnit(ImageCopyRegion)
+
+	// The canvas is 1280x720. RGBA.
+	tImageTGA tgaCanvas("TestData/Images/TacentTestPattern32.tga");
+	tImageTGA tgaWrite;
+	tImageTGA::tFormat fmt = tImageTGA::tFormat::Invalid;
+	tPicture canvas;
+
+	// The region is 640x360. RGB.
+	tImageTGA tgaRegion("TestData/Images/Desk640.tga");
+	int regW = tgaRegion.GetWidth();
+	int regH = tgaRegion.GetHeight();
+	tColour4b* regP = tgaRegion.GetPixels();
+
+	// Left bottom.
+	canvas.Set(tgaCanvas, false);
+	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::LeftBottom);
+	tgaWrite.Set(canvas);
+	fmt = tgaWrite.Save("TestData/Images/Written_CopyRegion_LeftBottom.tga", tImageTGA::tFormat::BPP32);
+	tRequire(fmt == tImageTGA::tFormat::BPP32);
+
+	// Left top.
+	canvas.Set(tgaCanvas, false);
+	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::LeftTop);
+	tgaWrite.Set(canvas);
+	fmt = tgaWrite.Save("TestData/Images/Written_CopyRegion_LeftTop.tga", tImageTGA::tFormat::BPP32);
+	tRequire(fmt == tImageTGA::tFormat::BPP32);
+
+	// Right top.
+	canvas.Set(tgaCanvas, false);
+	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::RightTop);
+	tgaWrite.Set(canvas);
+	fmt = tgaWrite.Save("TestData/Images/Written_CopyRegion_RightTop.tga", tImageTGA::tFormat::BPP32);
+	tRequire(fmt == tImageTGA::tFormat::BPP32);
+
+	// Right bottom.
+	canvas.Set(tgaCanvas, false);
+	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::RightBottom);
+	tgaWrite.Set(canvas);
+	fmt = tgaWrite.Save("TestData/Images/Written_CopyRegion_RightBottom.tga", tImageTGA::tFormat::BPP32);
+	tRequire(fmt == tImageTGA::tFormat::BPP32);
+
+	// Middle middle.
+	canvas.Set(tgaCanvas, false);
+	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::MiddleMiddle);
+	tgaWrite.Set(canvas);
+	fmt = tgaWrite.Save("TestData/Images/Written_CopyRegion_MiddleMiddle.tga", tImageTGA::tFormat::BPP32);
+	tRequire(fmt == tImageTGA::tFormat::BPP32);
+
+	// LeftBottom Negative Half.
+	canvas.Set(tgaCanvas, false);
+	canvas.CopyRegion(regW, regH, regP, -regW/2, -regH/2);
+	tgaWrite.Set(canvas);
+	fmt = tgaWrite.Save("TestData/Images/Written_CopyRegion_LeftBottomNegHalf.tga", tImageTGA::tFormat::BPP32);
+	tRequire(fmt == tImageTGA::tFormat::BPP32);
+
+	// Left top green only.
+	canvas.Set(tgaCanvas, false);
+	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::LeftTop, tCompBit_G);
+	tgaWrite.Set(canvas);
+	fmt = tgaWrite.Save("TestData/Images/Written_CopyRegion_LeftTopGreenOnly.tga", tImageTGA::tFormat::BPP32);
+	tRequire(fmt == tImageTGA::tFormat::BPP32);
+}
+
+
 tTestUnit(ImageAdjustment)
 {
 	if (!tSystem::tDirExists("TestData/Images/"))

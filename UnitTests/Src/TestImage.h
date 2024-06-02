@@ -28,6 +28,7 @@ namespace tUnitTest
 	tTestUnit(ImageLosslessTransform);
 	tTestUnit(ImageRotation);
 	tTestUnit(ImageCrop);
+	tTestUnit(ImageCopyRegion);
 	tTestUnit(ImageAdjustment);
 	tTestUnit(ImageDetection);
 	tTestUnit(ImageFilter);
