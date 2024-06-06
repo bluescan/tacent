@@ -200,26 +200,19 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 
 	bool flipV = header->IsFlippedV();
 	bool flipH = header->IsFlippedH();
-	if (flipV)
+	if (flipV || flipH)
 	{
-		tPixel4b* flipped = new tPixel4b[numPixels];
+		tPixel4b* flipBuf = new tPixel4b[numPixels];
 		for (int y = 0; y < Height; y++)
 			for (int x = 0; x < Width; x++)
-				flipped[(Height-y-1)*Width + x] = Pixels[y*Width + x];
+			{
+				int row = flipV ? Height-y-1 : y;
+				int col = flipH ? Width-x-1  : x;
+				flipBuf[row*Width + col] = Pixels[y*Width + x];
+			}
 
 		delete[] Pixels;
-		Pixels = flipped;
-	}
-
-	if (flipH)
-	{
-		tPixel4b* flipped = new tPixel4b[numPixels];
-		for (int y = 0; y < Height; y++)
-			for (int x = 0; x < Width; x++)
-				flipped[y*Width + (Width-x-1)] = Pixels[y*Width + x];
-
-		delete[] Pixels;
-		Pixels = flipped;
+		Pixels = flipBuf;
 	}
 
 	return true;
