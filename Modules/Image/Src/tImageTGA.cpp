@@ -22,6 +22,37 @@ namespace tImage
 {
 
 
+// Helper functions, enums, and types for parsing DDS files.
+namespace tTGA
+{
+	#pragma pack(push, r1, 1)
+	struct Header
+	{
+		int8 IDLength;
+		int8 ColourMapType;
+		int8 DataTypeCode;
+		int16 ColourMapOrigin;
+		int16 ColourMapLength;
+		int8 ColourMapDepth;
+		int16 OriginX;
+		int16 OriginY;
+
+		int16 Width;
+		int16 Height;
+		int8 BitDepth;
+
+		// LS bits 0 to 3 give the alpha channel depth.
+		// Bit 4 (0-based) is left/right ordering.
+		// Bit 5 (0-based) is up/down ordering. If Bit 5 is set the image will be upside down (like BMP).
+		int8 ImageDesc;
+		bool IsFlippedH() const				{ return (ImageDesc & 0x10) ? true : false; }
+		bool IsFlippedV() const				{ return (ImageDesc & 0x20) ? true : false; }
+	};
+	#pragma pack(pop, r1)
+	tStaticAssert(sizeof(Header) == 18);
+}
+
+
 bool tImageTGA::Load(const tString& tgaFile)
 {
 	Clear();
@@ -47,34 +78,12 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 	if ((numBytes <= 0) || !tgaFileInMemory)
 		return false;
 
-	#pragma pack(push, r1, 1)
-	struct TGAHeader
-	{
-		int8 IDLength;
-		int8 ColourMapType;
-		int8 DataTypeCode;
-		int16 ColourMapOrigin;
-		int16 ColourMapLength;
-		int8 ColourMapDepth;
-		int16 OriginX;
-		int16 OriginY;
-
-		int16 Width;
-		int16 Height;
-		int8 BitDepth;
-
-		// If Bit 5 of orientation is set the image will be upside down (like BMP).
-		int8 Orientation;
-	};
-	#pragma pack(pop, r1)
-	tStaticAssert(sizeof(TGAHeader) == 18);
-
 	// Safety for corrupt files that aren't even as big as the tga header.
 	// Checks later on will ensure data size is sufficient.
-	if (numBytes < sizeof(TGAHeader))
+	if (numBytes < sizeof(tTGA::Header))
 		return false;
 
-	TGAHeader* header = (TGAHeader*)tgaFileInMemory;
+	tTGA::Header* header = (tTGA::Header*)tgaFileInMemory;
 	Width = header->Width;
 	Height = header->Height;
 	int bitDepth = header->BitDepth;
@@ -187,6 +196,30 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 				break;
 			}
 		}
+	}
+
+	bool flipV = header->IsFlippedV();
+	bool flipH = header->IsFlippedH();
+	if (flipV)
+	{
+		tPixel4b* flipped = new tPixel4b[numPixels];
+		for (int y = 0; y < Height; y++)
+			for (int x = 0; x < Width; x++)
+				flipped[(Height-y-1)*Width + x] = Pixels[y*Width + x];
+
+		delete[] Pixels;
+		Pixels = flipped;
+	}
+
+	if (flipH)
+	{
+		tPixel4b* flipped = new tPixel4b[numPixels];
+		for (int y = 0; y < Height; y++)
+			for (int x = 0; x < Width; x++)
+				flipped[y*Width + (Width-x-1)] = Pixels[y*Width + x];
+
+		delete[] Pixels;
+		Pixels = flipped;
 	}
 
 	return true;
@@ -355,7 +388,8 @@ bool tImageTGA::SaveUncompressed(const tString& tgaFile, tFormat format) const
 	// imageDesc has the following important fields:
 	// Bits 0-3:	Number of attribute bits associated with each pixel. For a 16bit image, this would be 0 or 1. For a
 	//				24-bit image, it should be 0. For a 32-bit image, it should be 8.
-	// Bit 5:		Orientation. If set, the image is upside down.
+	// Bit 4:		Horizontal col flip. If set, the image is left-to-right.
+	// Bit 5:		Vertical row flip. If set, the image is upside down.
 	uint8 imageDesc = 0x00;
 	imageDesc |= (bitDepth == 24) ? 0 : 8;
 
