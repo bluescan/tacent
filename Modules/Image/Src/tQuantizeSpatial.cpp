@@ -38,6 +38,7 @@
 #include <deque>
 #include <random>
 #include <math.h>
+#include <algorithm>
 #include <Math/tColour.h>
 #include <Math/tRandom.h>
 #include "Image/tQuantize.h"
