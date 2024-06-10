@@ -25,9 +25,12 @@
  * @snippet{doc} version.h API version
  */
 
+#include <limits.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <sys/types.h>
+
+#include <KHR/khr_df.h>
 
 /*
  * Don't use khrplatform.h in order not to break apps existing
@@ -154,6 +157,7 @@ extern "C" {
  * @brief Required unpack alignment
  */
 #define KTX_GL_UNPACK_ALIGNMENT 4
+#define KTX_FACESLICE_WHOLE_LEVEL UINT_MAX
 
 #define KTX_TRUE  true
 #define KTX_FALSE false
@@ -174,15 +178,17 @@ typedef enum ktx_error_code_e {
     KTX_FILE_WRITE_ERROR,    /*!< An error occurred while writing to the file. */
     KTX_GL_ERROR,            /*!< GL operations resulted in an error. */
     KTX_INVALID_OPERATION,   /*!< The operation is not allowed in the current state. */
-    KTX_INVALID_VALUE,       /*!< A parameter value was not valid */
-    KTX_NOT_FOUND,           /*!< Requested key was not found */
+    KTX_INVALID_VALUE,       /*!< A parameter value was not valid. */
+    KTX_NOT_FOUND,           /*!< Requested metadata key or required dynamically loaded GPU function was not found. */
     KTX_OUT_OF_MEMORY,       /*!< Not enough memory to complete the operation. */
     KTX_TRANSCODE_FAILED,    /*!< Transcoding of block compressed texture failed. */
     KTX_UNKNOWN_FILE_FORMAT, /*!< The file not a KTX file */
     KTX_UNSUPPORTED_TEXTURE_TYPE, /*!< The KTX file specifies an unsupported texture type. */
     KTX_UNSUPPORTED_FEATURE,  /*!< Feature not included in in-use library or not yet implemented. */
     KTX_LIBRARY_NOT_LINKED,  /*!< Library dependency (OpenGL or Vulkan) not linked into application. */
-    KTX_ERROR_MAX_ENUM = KTX_LIBRARY_NOT_LINKED /*!< For safety checks. */
+    KTX_DECOMPRESS_LENGTH_ERROR, /*!< Decompressed byte count does not match expected byte size */
+    KTX_DECOMPRESS_CHECKSUM_ERROR, /*!< Checksum mismatch when decompressing */
+    KTX_ERROR_MAX_ENUM = KTX_DECOMPRESS_CHECKSUM_ERROR /*!< For safety checks. */
 } ktx_error_code_e;
 /**
  * @deprecated
@@ -320,7 +326,7 @@ typedef struct ktxTexture {
  * KTX_TRUE if the texture is a cubemap or cubemap array.
  */
 /**
- * @typedef ktxTexture::isCubemap
+ * @typedef ktxTexture::isCompressed
  * @~English
  *
  * KTX_TRUE if the texture's format is a block compressed format.
@@ -332,7 +338,7 @@ typedef struct ktxTexture {
  * KTX_TRUE if mipmaps should be generated for the texture by
  * ktxTexture_GLUpload() or ktxTexture_VkUpload().
  */
-/**n
+/**
  * @typedef ktxTexture::baseWidth
  * @~English
  * @brief Width of the texture's base level.
@@ -519,7 +525,7 @@ typedef KTX_error_code
 /**
  * @~English
  * @brief Helper for calling the Destroy virtual method of a ktxTexture.
- * @copydoc ktxTexture2_Destroy
+ * @copydoc ktxTexture2.ktxTexture2_Destroy
  */
 #define ktxTexture_Destroy(This) (This)->vtbl->Destroy(This)
 
@@ -527,7 +533,7 @@ typedef KTX_error_code
  * @~English
  * @brief Helper for calling the GetImageOffset virtual method of a
  *        ktxTexture.
- * @copydoc ktxTexture2_GetImageOffset
+ * @copydoc ktxTexture2.ktxTexture2_GetImageOffset
  */
 #define ktxTexture_GetImageOffset(This, level, layer, faceSlice, pOffset) \
             (This)->vtbl->GetImageOffset(This, level, layer, faceSlice, pOffset)
@@ -538,7 +544,7 @@ typedef KTX_error_code
  *
  * For a ktxTexture1 this will always return the value of This->dataSize.
  *
- * @copydetails ktxTexture2_GetDataSizeUncompressed
+ * @copydetails ktxTexture2.ktxTexture2_GetDataSizeUncompressed
  */
 #define ktxTexture_GetDataSizeUncompressed(This) \
                                 (This)->vtbl->GetDataSizeUncompressed(This)
@@ -546,7 +552,7 @@ typedef KTX_error_code
 /**
  * @~English
  * @brief Helper for calling the GetImageSize virtual method of a ktxTexture.
- * @copydoc ktxTexture2_GetImageSize
+ * @copydoc ktxTexture2.ktxTexture2_GetImageSize
  */
 #define ktxTexture_GetImageSize(This, level) \
             (This)->vtbl->GetImageSize(This, level)
@@ -554,7 +560,7 @@ typedef KTX_error_code
 /**
  * @~English
  * @brief Helper for calling the IterateLevels virtual method of a ktxTexture.
- * @copydoc ktxTexture2_IterateLevels
+ * @copydoc ktxTexture2.ktxTexture2_IterateLevels
  */
 #define ktxTexture_IterateLevels(This, iterCb, userdata) \
                             (This)->vtbl->IterateLevels(This, iterCb, userdata)
@@ -563,7 +569,7 @@ typedef KTX_error_code
  * @~English
  * @brief Helper for calling the IterateLoadLevelFaces virtual method of a
  * ktxTexture.
- * @copydoc ktxTexture2_IterateLoadLevelFaces
+ * @copydoc ktxTexture2.ktxTexture2_IterateLoadLevelFaces
  */
  #define ktxTexture_IterateLoadLevelFaces(This, iterCb, userdata) \
                     (This)->vtbl->IterateLoadLevelFaces(This, iterCb, userdata)
@@ -571,7 +577,7 @@ typedef KTX_error_code
 /**
  * @~English
  * @brief Helper for calling the LoadImageData virtual method of a ktxTexture.
- * @copydoc ktxTexture2_LoadImageData
+ * @copydoc ktxTexture2.ktxTexture2_LoadImageData
  */
 #define ktxTexture_LoadImageData(This, pBuffer, bufSize) \
                     (This)->vtbl->LoadImageData(This, pBuffer, bufSize)
@@ -579,7 +585,7 @@ typedef KTX_error_code
 /**
  * @~English
  * @brief Helper for calling the NeedsTranscoding virtual method of a ktxTexture.
- * @copydoc ktxTexture2_NeedsTranscoding
+ * @copydoc ktxTexture2.ktxTexture2_NeedsTranscoding
  */
 #define ktxTexture_NeedsTranscoding(This) (This)->vtbl->NeedsTranscoding(This)
 
@@ -587,7 +593,7 @@ typedef KTX_error_code
  * @~English
  * @brief Helper for calling the SetImageFromMemory virtual method of a
  *        ktxTexture.
- * @copydoc ktxTexture2_SetImageFromMemory
+ * @copydoc ktxTexture2.ktxTexture2_SetImageFromMemory
  */
 #define ktxTexture_SetImageFromMemory(This, level, layer, faceSlice, \
                                       src, srcSize)                  \
@@ -597,7 +603,7 @@ typedef KTX_error_code
  * @~English
  * @brief Helper for calling the SetImageFromStdioStream virtual method of a
  *        ktxTexture.
- * @copydoc ktxTexture2_SetImageFromStdioStream
+ * @copydoc ktxTexture2.ktxTexture2_SetImageFromStdioStream
  */
 #define ktxTexture_SetImageFromStdioStream(This, level, layer, faceSlice, \
                                            src, srcSize)                  \
@@ -608,7 +614,7 @@ typedef KTX_error_code
  * @~English
  * @brief Helper for calling the WriteToStdioStream virtual method of a
  *        ktxTexture.
- * @copydoc ktxTexture2_WriteToStdioStream
+ * @copydoc ktxTexture2.ktxTexture2_WriteToStdioStream
  */
 #define ktxTexture_WriteToStdioStream(This, dstsstr) \
                                 (This)->vtbl->WriteToStdioStream(This, dstsstr)
@@ -617,7 +623,7 @@ typedef KTX_error_code
  * @~English
  * @brief Helper for calling the WriteToNamedfile virtual method of a
  *        ktxTexture.
- * @copydoc ktxTexture2_WriteToNamedFile
+ * @copydoc ktxTexture2.ktxTexture2_WriteToNamedFile
  */
 #define ktxTexture_WriteToNamedFile(This, dstname) \
                                 (This)->vtbl->WriteToNamedFile(This, dstname)
@@ -625,7 +631,7 @@ typedef KTX_error_code
 /**
  * @~English
  * @brief Helper for calling the WriteToMemory virtual method of a ktxTexture.
- * @copydoc ktxTexture2_WriteToMemory
+ * @copydoc ktxTexture2.ktxTexture2_WriteToMemory
  */
 #define ktxTexture_WriteToMemory(This, ppDstBytes, pSize) \
                   (This)->vtbl->WriteToMemory(This, ppDstBytes, pSize)
@@ -633,7 +639,7 @@ typedef KTX_error_code
 /**
  * @~English
  * @brief Helper for calling the WriteToStream virtual method of a ktxTexture.
- * @copydoc ktxTexture2_WriteToStream
+ * @copydoc ktxTexture2.ktxTexture2_WriteToStream
  */
 #define ktxTexture_WriteToStream(This, dststr) \
                   (This)->vtbl->WriteToStream(This, dststr)
@@ -670,8 +676,9 @@ typedef enum ktxSupercmpScheme {
     KTX_SS_NONE = 0,            /*!< No supercompression. */
     KTX_SS_BASIS_LZ = 1,        /*!< Basis LZ supercompression. */
     KTX_SS_ZSTD = 2,            /*!< ZStd supercompression. */
+    KTX_SS_ZLIB = 3,            /*!< ZLIB supercompression. */
     KTX_SS_BEGIN_RANGE = KTX_SS_NONE,
-    KTX_SS_END_RANGE = KTX_SS_ZSTD,
+    KTX_SS_END_RANGE = KTX_SS_ZLIB,
     KTX_SS_BEGIN_VENDOR_RANGE = 0x10000,
     KTX_SS_END_VENDOR_RANGE = 0x1ffff,
     KTX_SS_BEGIN_RESERVED = 0x20000,
@@ -701,15 +708,21 @@ typedef struct ktxTexture2 {
     struct ktxTexture2_private* _private;  /*!< Private data. */
 } ktxTexture2;
 
+/**
+ * @brief Helper for casting ktxTexture1 and ktxTexture2 to ktxTexture.
+ *
+ * Use with caution.
+ */
 #define ktxTexture(t) ((ktxTexture*)t)
 
 /**
  * @memberof ktxTexture
  * @~English
- * @brief Structure for passing texture information to ktxTexture1_Create() and
- *        ktxTexture2_Create().
+ * @brief Structure for passing texture information to ktxTexture1\_Create() and
+ *        ktxTexture2\_Create().
  *
- * @sa ktxTexture1_Create() and ktxTexture2_Create().
+ * @sa @ref ktxTexture1::ktxTexture1\_Create() "ktxTexture1_Create()"
+ * @sa @ref ktxTexture2::ktxTexture2\_Create() "ktxTexture2_Create()"
  */
 typedef struct
 {
@@ -764,9 +777,12 @@ enum ktxTextureCreateFlagBits {
     KTX_TEXTURE_CREATE_RAW_KVDATA_BIT = 0x02,
                                    /*!< Load the raw key-value data instead of
                                         creating a @c ktxHashList from it. */
-    KTX_TEXTURE_CREATE_SKIP_KVDATA_BIT = 0x04
+    KTX_TEXTURE_CREATE_SKIP_KVDATA_BIT = 0x04,
                                    /*!< Skip any key-value data. This overrides
                                         the RAW_KVDATA_BIT. */
+    KTX_TEXTURE_CREATE_CHECK_GLTF_BASISU_BIT = 0x08
+                                   /*!< Load texture compatible with the rules
+                                        of KHR_texture_basisu glTF extension */
 };
 /**
  * @memberof ktxTexture
@@ -889,6 +905,22 @@ struct ktxStream
  * functions.
  */
 
+/**
+ * @~English
+ * @brief typedef of function pointer returned by GLGetProcAddress functions.
+ */
+typedef void (KTX_APIENTRY* PFNVOIDFUNCTION)(void);
+/**
+ * @~English
+ * @brief typedef of pointer to function for retrieving OpenGL function pointers.
+ */
+typedef PFNVOIDFUNCTION (KTX_APIENTRY* PFNGLGETPROCADDRESS) (const char *proc);
+/*
+ * Load pointers for the OpenGL functions needed by ktxTexture_GLUpload.
+ */
+KTX_API KTX_error_code KTX_APIENTRY
+ktxLoadOpenGL(PFNGLGETPROCADDRESS pfnGLGetProcAddress);
+
 /*
  * These four create a ktxTexture1 or ktxTexture2 according to the data
  * header, and return a pointer to the base ktxTexture class.
@@ -979,6 +1011,8 @@ KTX_API KTX_error_code KTX_APIENTRY
 ktxTexture1_CreateFromStream(ktxStream* stream,
                              ktxTextureCreateFlags createFlags,
                              ktxTexture1** newTex);
+KTX_API void KTX_APIENTRY
+ktxTexture1_Destroy(ktxTexture1* This);
 
 KTX_API ktx_bool_t KTX_APIENTRY
 ktxTexture1_NeedsTranscoding(ktxTexture1* This);
@@ -1045,11 +1079,17 @@ ktxTexture2_CreateFromStream(ktxStream* stream,
                              ktxTextureCreateFlags createFlags,
                              ktxTexture2** newTex);
 
+KTX_API void KTX_APIENTRY
+ktxTexture2_Destroy(ktxTexture2* This);
+
 KTX_API KTX_error_code KTX_APIENTRY
 ktxTexture2_CompressBasis(ktxTexture2* This, ktx_uint32_t quality);
 
 KTX_API KTX_error_code KTX_APIENTRY
 ktxTexture2_DeflateZstd(ktxTexture2* This, ktx_uint32_t level);
+
+KTX_API KTX_error_code KTX_APIENTRY
+ktxTexture2_DeflateZLIB(ktxTexture2* This, ktx_uint32_t level);
 
 KTX_API void KTX_APIENTRY
 ktxTexture2_GetComponentInfo(ktxTexture2* This, ktx_uint32_t* numComponents,
@@ -1058,8 +1098,15 @@ ktxTexture2_GetComponentInfo(ktxTexture2* This, ktx_uint32_t* numComponents,
 KTX_API ktx_uint32_t KTX_APIENTRY
 ktxTexture2_GetNumComponents(ktxTexture2* This);
 
+KTX_API khr_df_transfer_e KTX_APIENTRY
+ktxTexture2_GetOETF_e(ktxTexture2* This);
+
+// For backward compatibility
 KTX_API ktx_uint32_t KTX_APIENTRY
 ktxTexture2_GetOETF(ktxTexture2* This);
+
+KTX_API khr_df_model_e KTX_APIENTRY
+ktxTexture2_GetColorModel_e(ktxTexture2* This);
 
 KTX_API ktx_bool_t KTX_APIENTRY
 ktxTexture2_GetPremultipliedAlpha(ktxTexture2* This);
@@ -1673,6 +1720,19 @@ KTX_API KTX_error_code KTX_APIENTRY ktxPrintInfoForStdioStream(FILE* stdioStream
 KTX_API KTX_error_code KTX_APIENTRY ktxPrintInfoForNamedFile(const char* const filename);
 KTX_API KTX_error_code KTX_APIENTRY ktxPrintInfoForMemory(const ktx_uint8_t* bytes, ktx_size_t size);
 
+/*===========================================================*
+ * Utilities for printing info about a KTX2 file.            *
+ *===========================================================*/
+
+KTX_API KTX_error_code KTX_APIENTRY ktxPrintKTX2InfoTextForMemory(const ktx_uint8_t* bytes, ktx_size_t size);
+KTX_API KTX_error_code KTX_APIENTRY ktxPrintKTX2InfoTextForNamedFile(const char* const filename);
+KTX_API KTX_error_code KTX_APIENTRY ktxPrintKTX2InfoTextForStdioStream(FILE* stdioStream);
+KTX_API KTX_error_code KTX_APIENTRY ktxPrintKTX2InfoTextForStream(ktxStream* stream);
+KTX_API KTX_error_code KTX_APIENTRY ktxPrintKTX2InfoJSONForMemory(const ktx_uint8_t* bytes, ktx_size_t size, ktx_uint32_t base_indent, ktx_uint32_t indent_width, bool minified);
+KTX_API KTX_error_code KTX_APIENTRY ktxPrintKTX2InfoJSONForNamedFile(const char* const filename, ktx_uint32_t base_indent, ktx_uint32_t indent_width, bool minified);
+KTX_API KTX_error_code KTX_APIENTRY ktxPrintKTX2InfoJSONForStdioStream(FILE* stdioStream, ktx_uint32_t base_indent, ktx_uint32_t indent_width, bool minified);
+KTX_API KTX_error_code KTX_APIENTRY ktxPrintKTX2InfoJSONForStream(ktxStream* stream, ktx_uint32_t base_indent, ktx_uint32_t indent_width, bool minified);
+
 #ifdef __cplusplus
 }
 #endif
@@ -1699,6 +1759,9 @@ KTX_API KTX_error_code KTX_APIENTRY ktxPrintInfoForMemory(const ktx_uint8_t* byt
 /**
 @~English
 @page libktx_history Revision History
+
+No longer updated. Kept to preserve ancient history. For more recent history see the repo log at
+https://github.com/KhronosGroup/KTX-Software. See also the Release Notes in the repo.
 
 @section v8 Version 4.0
 Added:

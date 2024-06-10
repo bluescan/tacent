@@ -47,5 +47,5 @@ Linux (or use WSL):
 * cmake . -B buildlinrel -G"Ninja" -DKTX_FEATURE_STATIC_LIBRARY=ON -DCMAKE_BUILD_TYPE=Release			// optional
 
 * cmake --build buildlinrel --config Release --target ktx
-* In folder buildlinrel you will find ktx.lib
+* In folder buildlinrel you will find libktx.a
 * See the windows notes above for the version include and how to parse.

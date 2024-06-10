@@ -214,7 +214,7 @@ int main(int argc, char** argv)
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
 	// tTest(ImageMultiFrame);
-	tTest(ImagePicture);
+	// tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);
 	// tTest(ImageFilter);
@@ -228,8 +228,8 @@ int main(int argc, char** argv)
 	// tTest(ImageDetection);
 	// tTest(ImagePNG);
 	// tTest(ImageDDS);
-	// tTest(ImageKTX1);
-	// tTest(ImageKTX2);
+	tTest(ImageKTX1);
+	tTest(ImageKTX2);
 	// tTest(ImageASTC);
 	// tTest(ImagePKM);
 	// tTest(ImagePVR2);
