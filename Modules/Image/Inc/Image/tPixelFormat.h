@@ -3,7 +3,7 @@
 // Pixel formats in Tacent. Not all formats are fully supported. Certainly BC 4, 5, and 7 may not have extensive HW
 // support at this time.
 //
-// Copyright (c) 2004-2006, 2017, 2019, 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2019, 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -107,130 +107,140 @@ namespace tImage
 
 enum class tPixelFormat
 {
-	Invalid				= -1,
-	Auto				= Invalid,
+	Invalid					= -1,
+	Auto					= Invalid,
 
-	FirstPacked,
-	R8					= FirstPacked,	// 8   bit. Unsigned representing red. Some file-types not supporting A8 or L8 (eg ktx2) will export to this.
-	R8G8,								// 16  bit. Unsigned representing red and green. Vulkan has an analagous format.
-	R8G8B8,								// 24  bit. Full colour. No alpha. Matches GL_RGB source ordering. Not efficient. Most drivers will swizzle to BGR.
-	R8G8B8A8,							// 32  bit. Full alpha. Matches GL_RGBA source ordering. Not efficient. Most drivers will swizzle to ABGR.
-	B8G8R8,								// 24  bit. Full colour. No alpha. Matches GL_BGR source ordering. Efficient. Most drivers do not need to swizzle.
-	B8G8R8A8,							// 32  bit. Full alpha. Matches GL_BGRA source ordering. Most drivers do not need to swizzle.
+	FirstValid,
+	FirstContiguous			= FirstValid,
+	FirstPacked				= FirstContiguous,
+	R8						= FirstPacked,		// 8   bit. Unsigned representing red. Some file-types not supporting A8 or L8 (eg ktx2) will export to this.
+	R8G8,										// 16  bit. Unsigned representing red and green. Vulkan has an analagous format.
+	R8G8B8,										// 24  bit. Full colour. No alpha. Matches GL_RGB source ordering. Not efficient. Most drivers will swizzle to BGR.
+	R8G8B8A8,									// 32  bit. Full alpha. Matches GL_RGBA source ordering. Not efficient. Most drivers will swizzle to ABGR.
+	B8G8R8,										// 24  bit. Full colour. No alpha. Matches GL_BGR source ordering. Efficient. Most drivers do not need to swizzle.
+	B8G8R8A8,									// 32  bit. Full alpha. Matches GL_BGRA source ordering. Most drivers do not need to swizzle.
 
-	G3B5R5G3,							// 16  bit. No alpha. Incorrectly AKA B5G6R5. The truth is in memory it is GGGBBBBB RRRRRGGG -> this is G3B5R5G3.
-	G4B4A4R4,							// 16  bit. 12 colour bits. 4 bit alpha. Incorrectly AKA B4G4R4A4.
-	B4A4R4G4,							// 16  bit. 12 colour bits. 4 bit alpha. Incorrectly AKA R4G4B4A4.
-	G3B5A1R5G2,							// 16  bit. 15 colour bits. Binary alpha. Incorrectly AKA B5G5R5A1.
-	G2B5A1R5G3,							// 16  bit. 15 colour bits. Binary alpha. Incorrectly AKA R5G5B5A1.
-	A8L8,								// 16  bit. Alpha and Luminance.
-	A8,									// 8   bit. Alpha only.
-	L8,									// 8   bit. Luminance only.
-	R16,								// 16  bit. 16 bit Red.
-	R16G16,								// 32  bit. 16 bit R. 16 bit G.
-	R16G16B16,							// 48  bit. 16 bit each RGB.
-	R16G16B16A16,						// 64  bit. 16 bit each RGBA.
-	R32,								// 32  bit. Red.
-	R32G32,								// 64  bit. Red Green.
-	R32G32B32,							// 96  bit. 32 bit each RGB.
-	R32G32B32A32,						// 128 bit. 32 bit each RGBA.
-	R16f,								// 16  bit. Half-float red/luminance channel only. HDR linear space.
-	R16G16f,							// 32  bit. Two half-floats per pixel. RG. HDR linear space.
-	R16G16B16f,							// 48  bit. Three half-floats per pixel. RGB. HDR linear space.
-	R16G16B16A16f,						// 64  bit. Four half-floats per pixel. RGBA. HDR linear space.
-	R32f,								// 32  bit. Float red/luminance channel only. HDR linear space.
-	R32G32f,							// 64  bit. Two floats per pixel. RG. HDR linear space.
-	R32G32B32f,							// 96  bit. Three floats per pixel. RGB. HDR linear space.
-	R32G32B32A32f,						// 128 bit. Four floats per pixel. RGBA. HDR linear space.
-	R11G11B10uf,						// 32  bit. Unsigned 11-bit floats for RG, and a 10-bit float for B. All use a 5-bit exponent.
-	B10G11R11uf,						// 32  bit. Unsigned 10-bit floats for B, and 11-bit floats for GR. All use a 5-bit exponent.
-	R9G9B9E5uf,							// 32  bit. Unsigned 14-bit floats for RGB. Always denorm and each share the same 5-bit exponent.
-	E5B9G9R9uf,							// 32  bit. Unsigned 14-bit floats for RGB. Always denorm and each share the same 5-bit exponent.
-	R8G8B8M8,							// 32  bit. Poor-man's HDR. RGB plus shared 8-bit multiplier. Must supply MaxRange when decoding.
-	R8G8B8D8,							// 32  bit. Poor-man's HDR. RGB plus shared 8-bit divisor. Must supply MaxRange when decoding.
-	LastPacked			= R8G8B8D8,
+	G3B5R5G3,									// 16  bit. No alpha. Incorrectly AKA B5G6R5. The truth is in memory it is GGGBBBBB RRRRRGGG -> this is G3B5R5G3.
+	G4B4A4R4,									// 16  bit. 12 colour bits. 4 bit alpha. Incorrectly AKA B4G4R4A4.
+	B4A4R4G4,									// 16  bit. 12 colour bits. 4 bit alpha. Incorrectly AKA R4G4B4A4.
+	G3B5A1R5G2,									// 16  bit. 15 colour bits. Binary alpha. Incorrectly AKA B5G5R5A1.
+	G2B5A1R5G3,									// 16  bit. 15 colour bits. Binary alpha. Incorrectly AKA R5G5B5A1.
+	A8L8,										// 16  bit. Alpha and Luminance.
+	A8,											// 8   bit. Alpha only.
+	L8,											// 8   bit. Luminance only.
+	R16,										// 16  bit. 16 bit Red.
+	R16G16,										// 32  bit. 16 bit R. 16 bit G.
+	R16G16B16,									// 48  bit. 16 bit each RGB.
+	R16G16B16A16,								// 64  bit. 16 bit each RGBA.
+	R32,										// 32  bit. Red.
+	R32G32,										// 64  bit. Red Green.
+	R32G32B32,									// 96  bit. 32 bit each RGB.
+	R32G32B32A32,								// 128 bit. 32 bit each RGBA.
+	R16f,										// 16  bit. Half-float red/luminance channel only. HDR linear space.
+	R16G16f,									// 32  bit. Two half-floats per pixel. RG. HDR linear space.
+	R16G16B16f,									// 48  bit. Three half-floats per pixel. RGB. HDR linear space.
+	R16G16B16A16f,								// 64  bit. Four half-floats per pixel. RGBA. HDR linear space.
+	R32f,										// 32  bit. Float red/luminance channel only. HDR linear space.
+	R32G32f,									// 64  bit. Two floats per pixel. RG. HDR linear space.
+	R32G32B32f,									// 96  bit. Three floats per pixel. RGB. HDR linear space.
+	R32G32B32A32f,								// 128 bit. Four floats per pixel. RGBA. HDR linear space.
+	R11G11B10uf,								// 32  bit. Unsigned 11-bit floats for RG, and a 10-bit float for B. All use a 5-bit exponent.
+	B10G11R11uf,								// 32  bit. Unsigned 10-bit floats for B, and 11-bit floats for GR. All use a 5-bit exponent.
+	R9G9B9E5uf,									// 32  bit. Unsigned 14-bit floats for RGB. Always denorm and each share the same 5-bit exponent.
+	E5B9G9R9uf,									// 32  bit. Unsigned 14-bit floats for RGB. Always denorm and each share the same 5-bit exponent.
+	R8G8B8M8,									// 32  bit. Poor-man's HDR. RGB plus shared 8-bit multiplier. Must supply MaxRange when decoding.
+	R8G8B8D8,									// 32  bit. Poor-man's HDR. RGB plus shared 8-bit divisor. Must supply MaxRange when decoding.
+	LastPacked				= R8G8B8D8,
 
 	FirstBC,
-	BC1DXT1				= FirstBC,		// BC 1, DXT1. No alpha.
-	BC1DXT1A,							// BC 1, DXT1. Binary alpha.
-	BC2DXT2DXT3,						// BC 2, DXT2 (premult-alpha) and DXT3 share the same format. Large alpha gradients (alpha banding).
-	BC3DXT4DXT5,						// BC 3, DXT4 (premult-alpha) and DXT5 share the same format. Variable alpha (smooth).
-	BC4ATI1U,							// BC 4. Unsigned. One colour channel only. May not be HW supported.
-	BC4ATI1S,							// BC 4. Signed. One colour channel only. May not be HW supported.
-	BC5ATI2U,							// BC 5. Unsigned. Two colour channels only. May not be HW supported.
-	BC5ATI2S,							// BC 5. Signed. Two colour channels only. May not be HW supported.
-	BC6U,								// BC 6 HDR. No alpha. 3 x 16bit unsigned half-floats per pixel.
-	BC6S,								// BC 6 HDR. No alpha. 3 x 16bit signed half-floats per pixel.
-	BC7,								// BC 7. Full colour. Variable alpha 0 to 8 bits.
+	BC1DXT1					= FirstBC,			// BC 1, DXT1. No alpha.
+	BC1DXT1A,									// BC 1, DXT1. Binary alpha.
+	BC2DXT2DXT3,								// BC 2, DXT2 (premult-alpha) and DXT3 share the same format. Large alpha gradients (alpha banding).
+	BC3DXT4DXT5,								// BC 3, DXT4 (premult-alpha) and DXT5 share the same format. Variable alpha (smooth).
+	BC4ATI1U,									// BC 4. Unsigned. One colour channel only. May not be HW supported.
+	BC4ATI1S,									// BC 4. Signed. One colour channel only. May not be HW supported.
+	BC5ATI2U,									// BC 5. Unsigned. Two colour channels only. May not be HW supported.
+	BC5ATI2S,									// BC 5. Signed. Two colour channels only. May not be HW supported.
+	BC6U,										// BC 6 HDR. No alpha. 3 x 16bit unsigned half-floats per pixel.
+	BC6S,										// BC 6 HDR. No alpha. 3 x 16bit signed half-floats per pixel.
+	BC7,										// BC 7. Full colour. Variable alpha 0 to 8 bits.
 
 	FirstETC,
-	ETC1				= FirstETC,		// ETC1. Ericsson Texture Compression. Similar to BC1. RGB-only. No alpha.
-	ETC2RGB,							// ETC2. Backwards compatible with ETC1. The sRGB version is the same pixel format.
-	ETC2RGBA,							// ETC2. RGBA. sRGB uses the same pixel format.
-	ETC2RGBA1,							// ETC2. RGB with binary alpha. sRGB uses the same pixel format.
-	LastETC				= ETC2RGBA1,
+	ETC1					= FirstETC,			// ETC1. Ericsson Texture Compression. Similar to BC1. RGB-only. No alpha.
+	ETC2RGB,									// ETC2. Backwards compatible with ETC1. The sRGB version is the same pixel format.
+	ETC2RGBA,									// ETC2. RGBA. sRGB uses the same pixel format.
+	ETC2RGBA1,									// ETC2. RGB with binary alpha. sRGB uses the same pixel format.
+	LastETC					= ETC2RGBA1,
 
 	FirstEAC,
-	EACR11U				= FirstEAC,		// EAC R11. Ericsson. Single channel.
-	EACR11S,							// EAC R11. Signed.
-	EACRG11U,							// EAC RG11. Ericsson. Two channels.
-	EACRG11S,							// EAC RG11. Signed.
-	LastEAC				= EACRG11S,
-	LastBC				= LastEAC,
+	EACR11U					= FirstEAC,			// EAC R11. Ericsson. Single channel.
+	EACR11S,									// EAC R11. Signed.
+	EACRG11U,									// EAC RG11. Ericsson. Two channels.
+	EACRG11S,									// EAC RG11. Signed.
+	LastEAC					= EACRG11S,
+	LastBC					= LastEAC,
 
-	FirstPVR,							// PowerVR. Imagination. 8-byte blocks. We do not consider the PVRTC formats to be BC formats because 4 blocks need to be accessed. i.e. The pixels are not 'confined' to the block they are in.
-	PVRBPP4				= FirstPVR,		// PVRTC Version 1. 4BPP representing RGB or RGBA channels. One block can encode 4x4 pixels (but needs access to adjacent blocks during decompress).
-	PVRBPP2,							// PVRTC Version 1. 2BPP representing RGB or RGBA channels. One block can encode 8x4 pixels.
-	PVRHDRBPP8,							// PVRTC Version 1. 8BPP representing HDR RGB.
-	PVRHDRBPP6,							// PVRTC Version 1. 6BPP representing HDR RGB.
-	PVR2BPP4,							// PVRTC Version 2. 4BPP representing RGB or RGBA channels.
-	PVR2BPP2,							// PVRTC Version 2. 2BPP representing RGB or RGBA channels.
-	PVR2HDRBPP8,						// PVRTC Version 2. 8BPP representing HDR RGB.
-	PVR2HDRBPP6,						// PVRTC Version 2. 6BPP representing HDR RGB.
-	LastPVR				= PVR2HDRBPP6,
+	FirstPVR,									// PowerVR. Imagination. 8-byte blocks. We do not consider the PVRTC formats to be BC formats because 4 blocks need to be accessed. i.e. The pixels are not 'confined' to the block they are in.
+	PVRBPP4					= FirstPVR,			// PVRTC Version 1. 4BPP representing RGB or RGBA channels. One block can encode 4x4 pixels (but needs access to adjacent blocks during decompress).
+	PVRBPP2,									// PVRTC Version 1. 2BPP representing RGB or RGBA channels. One block can encode 8x4 pixels.
+	PVRHDRBPP8,									// PVRTC Version 1. 8BPP representing HDR RGB.
+	PVRHDRBPP6,									// PVRTC Version 1. 6BPP representing HDR RGB.
+	PVR2BPP4,									// PVRTC Version 2. 4BPP representing RGB or RGBA channels.
+	PVR2BPP2,									// PVRTC Version 2. 2BPP representing RGB or RGBA channels.
+	PVR2HDRBPP8,								// PVRTC Version 2. 8BPP representing HDR RGB.
+	PVR2HDRBPP6,								// PVRTC Version 2. 6BPP representing HDR RGB.
+	LastPVR					= PVR2HDRBPP6,
 
 	FirstASTC,
-	ASTC4X4				= FirstASTC,	// 128 bits per 16  pixels. 8    bpp. LDR UNORM.
-	ASTC5X4,							// 128 bits per 20  pixels. 6.4  bpp. LDR UNORM.
-	ASTC5X5,							// 128 bits per 25  pixels. 5.12 bpp. LDR UNORM.
-	ASTC6X5,							// 128 bits per 30  pixels. 4.27 bpp. LDR UNORM.
-	ASTC6X6,							// 128 bits per 36  pixels. 3.56 bpp. LDR UNORM.
-	ASTC8X5,							// 128 bits per 40  pixels. 3.2  bpp. LDR UNORM.
-	ASTC8X6,							// 128 bits per 48  pixels. 2.67 bpp. LDR UNORM.
-	ASTC8X8,							// 128 bits per 64  pixels. 2.56 bpp. LDR UNORM.
-	ASTC10X5,							// 128 bits per 50  pixels. 2.13 bpp. LDR UNORM.
-	ASTC10X6,							// 128 bits per 60  pixels. 2    bpp. LDR UNORM.
-	ASTC10X8,							// 128 bits per 80  pixels. 1.6  bpp. LDR UNORM.
-	ASTC10X10,							// 128 bits per 100 pixels. 1.28 bpp. LDR UNORM.
-	ASTC12X10,							// 128 bits per 120 pixels. 1.07 bpp. LDR UNORM.
-	ASTC12X12,							// 128 bits per 144 pixels. 0.89 bpp. LDR UNORM.
-	LastASTC			= ASTC12X12,
+	ASTC4X4					= FirstASTC,		// 128 bits per 16  pixels. 8    bpp. LDR UNORM.
+	ASTC5X4,									// 128 bits per 20  pixels. 6.4  bpp. LDR UNORM.
+	ASTC5X5,									// 128 bits per 25  pixels. 5.12 bpp. LDR UNORM.
+	ASTC6X5,									// 128 bits per 30  pixels. 4.27 bpp. LDR UNORM.
+	ASTC6X6,									// 128 bits per 36  pixels. 3.56 bpp. LDR UNORM.
+	ASTC8X5,									// 128 bits per 40  pixels. 3.2  bpp. LDR UNORM.
+	ASTC8X6,									// 128 bits per 48  pixels. 2.67 bpp. LDR UNORM.
+	ASTC8X8,									// 128 bits per 64  pixels. 2.56 bpp. LDR UNORM.
+	ASTC10X5,									// 128 bits per 50  pixels. 2.13 bpp. LDR UNORM.
+	ASTC10X6,									// 128 bits per 60  pixels. 2    bpp. LDR UNORM.
+	ASTC10X8,									// 128 bits per 80  pixels. 1.6  bpp. LDR UNORM.
+	ASTC10X10,									// 128 bits per 100 pixels. 1.28 bpp. LDR UNORM.
+	ASTC12X10,									// 128 bits per 120 pixels. 1.07 bpp. LDR UNORM.
+	ASTC12X12,									// 128 bits per 144 pixels. 0.89 bpp. LDR UNORM.
+	LastASTC				= ASTC12X12,
+	LastContiguous			= LastASTC,
 
 	FirstVendor,
-	RADIANCE			= FirstVendor,	// Radiance HDR.
-	OPENEXR,							// OpenEXR HDR.
-	LastVendor			= OPENEXR,
+	RADIANCE				= FirstVendor,		// Radiance HDR.
+	OPENEXR,									// OpenEXR HDR.
+	LastVendor				= OPENEXR,
 
 	FirstPalette,
-	PAL1BIT				= FirstPalette,	// 1-bit indexes to a palette. 2 colour.   1 bpp. Often dithered B/W.
-	PAL2BIT,							// 2-bit indexes to a palette. 4 colour.   2 bpp.
-	PAL3BIT,							// 3-bit indexes to a palette. 8 colour.   3 bpp.
-	PAL4BIT,							// 4-bit indexes to a palette. 16 colour.  4 bpp.
-	PAL5BIT,							// 5-bit indexes to a palette. 32 colour.  5 bpp.
-	PAL6BIT,							// 6-bit indexes to a palette. 64 colour.  6 bpp.
-	PAL7BIT,							// 7-bit indexes to a palette. 128 colour. 7 bpp.
-	PAL8BIT,							// 8-bit indexes to a palette. 256 colour. 8 bpp.
-	LastPalette			= PAL8BIT,
+	PAL1BIT					= FirstPalette,		// 1-bit indexes to a palette. 2 colour.   1 bpp. Often dithered B/W.
+	PAL2BIT,									// 2-bit indexes to a palette. 4 colour.   2 bpp.
+	PAL3BIT,									// 3-bit indexes to a palette. 8 colour.   3 bpp.
+	PAL4BIT,									// 4-bit indexes to a palette. 16 colour.  4 bpp.
+	PAL5BIT,									// 5-bit indexes to a palette. 32 colour.  5 bpp.
+	PAL6BIT,									// 6-bit indexes to a palette. 64 colour.  6 bpp.
+	PAL7BIT,									// 7-bit indexes to a palette. 128 colour. 7 bpp.
+	PAL8BIT,									// 8-bit indexes to a palette. 256 colour. 8 bpp.
+	LastPalette				= PAL8BIT,
 
+	LastValid				= LastPalette,
 	NumPixelFormats,
-	NumPackedFormats	= LastPacked	- FirstPacked	+ 1,
-	NumBCFormats		= LastBC		- FirstBC		+ 1,
-	NumPVRFormats		= LastPVR		- FirstPVR		+ 1,
-	NumASTCFormats		= LastASTC		- FirstASTC		+ 1,
-	NumVendorFormats	= LastVendor	- FirstVendor	+ 1,
-	NumPaletteFormats	= LastPalette	- FirstPalette	+ 1
+	NumContiguousFormats	= LastContiguous	- FirstContiguous	+ 1,
+	NumPackedFormats		= LastPacked		- FirstPacked		+ 1,
+	NumBCFormats			= LastBC			- FirstBC			+ 1,
+	NumPVRFormats			= LastPVR			- FirstPVR			+ 1,
+	NumASTCFormats			= LastASTC			- FirstASTC			+ 1,
+	NumVendorFormats		= LastVendor		- FirstVendor		+ 1,
+	NumPaletteFormats		= LastPalette		- FirstPalette		+ 1
 };
 
+// Returns true if the supplied pixel format is a valid format and not an out of range marker.
+bool tIsValidFormat		(tPixelFormat);
+
+// Is the supplied format one in which the pixels are stored as a contiguous chunk of data.
+bool tIsContiguousFormat(tPixelFormat);
 
 // Simple RGB and RGBA formats with different numbers of bits per component and different orderings.
 bool tIsPackedFormat	(tPixelFormat);
@@ -412,75 +422,63 @@ void tReduceAspectRatio(tAspectRatio&);
 // Implementation below this line.
 
 
+inline bool tImage::tIsValidFormat(tPixelFormat format)
+{
+	return ((format >= tPixelFormat::FirstValid) && (format <= tPixelFormat::LastValid));
+}
+
+
+inline bool tImage::tIsContiguousFormat(tPixelFormat format)
+{
+	return ((format >= tPixelFormat::FirstContiguous) && (format <= tPixelFormat::LastContiguous));
+}
+
+
 inline bool tImage::tIsPackedFormat(tPixelFormat format)
 {
-	if ((format >= tPixelFormat::FirstPacked) && (format <= tPixelFormat::LastPacked))
-		return true;
-
-	return false;
+	return ((format >= tPixelFormat::FirstPacked) && (format <= tPixelFormat::LastPacked));
 }
 
 
 inline bool tImage::tIsBCFormat(tPixelFormat format)
 {
-	if ((format >= tPixelFormat::FirstBC) && (format <= tPixelFormat::LastBC))
-		return true;
-
-	return false;
+	return ((format >= tPixelFormat::FirstBC) && (format <= tPixelFormat::LastBC));
 }
 
 
 inline bool tImage::tIsETCFormat(tPixelFormat format)
 {
-	if ((format >= tPixelFormat::FirstETC) && (format <= tPixelFormat::LastETC))
-		return true;
-
-	return false;
+	return ((format >= tPixelFormat::FirstETC) && (format <= tPixelFormat::LastETC));
 }
 
 
 inline bool tImage::tIsEACFormat(tPixelFormat format)
 {
-	if ((format >= tPixelFormat::FirstEAC) && (format <= tPixelFormat::LastEAC))
-		return true;
-
-	return false;
+	return ((format >= tPixelFormat::FirstEAC) && (format <= tPixelFormat::LastEAC));
 }
 
 
 inline bool tImage::tIsPVRFormat(tPixelFormat format)
 {
-	if ((format >= tPixelFormat::FirstPVR) && (format <= tPixelFormat::LastPVR))
-		return true;
-
-	return false;
+	return ((format >= tPixelFormat::FirstPVR) && (format <= tPixelFormat::LastPVR));
 }
 
 
 inline bool tImage::tIsASTCFormat(tPixelFormat format)
 {
-	if ((format >= tPixelFormat::FirstASTC) && (format <= tPixelFormat::LastASTC))
-		return true;
-
-	return false;
+	return ((format >= tPixelFormat::FirstASTC) && (format <= tPixelFormat::LastASTC));
 }
 
 
 inline bool tImage::tIsVendorFormat(tPixelFormat format)
 {
-	if ((format >= tPixelFormat::FirstVendor) && (format <= tPixelFormat::LastVendor))
-		return true;
-
-	return false;
+	return ((format >= tPixelFormat::FirstVendor) && (format <= tPixelFormat::LastVendor));
 }
 
 
 inline bool tImage::tIsPaletteFormat(tPixelFormat format)
 {
-	if ((format >= tPixelFormat::FirstPalette) && (format <= tPixelFormat::LastPalette))
-		return true;
-
-	return false;
+	return ((format >= tPixelFormat::FirstPalette) && (format <= tPixelFormat::LastPalette));
 }
 
 
