@@ -23,8 +23,6 @@ namespace tImage
 {
 	const char* PixelFormatNames[] =
 	{
-		"Unknown",
-
 		// Packed formats.
 		"R8",
 		"R8G8",
@@ -124,7 +122,14 @@ namespace tImage
 		"PAL7BIT",
 		"PAL8BIT"
 	};
-	tStaticAssert(int(tPixelFormat::NumPixelFormats)+1 == tNumElements(PixelFormatNames));
+	tStaticAssert(int(tPixelFormat::NumPixelFormats) == tNumElements(PixelFormatNames));
+
+	const char** PixelFormatNames_Packed	= &PixelFormatNames[int(tPixelFormat::FirstPacked)];
+	const char** PixelFormatNames_Block		= &PixelFormatNames[int(tPixelFormat::FirstBC)];
+	const char** PixelFormatNames_PVR		= &PixelFormatNames[int(tPixelFormat::FirstPVR)];
+	const char** PixelFormatNames_ASTC		= &PixelFormatNames[int(tPixelFormat::FirstASTC)];
+	const char** PixelFormatNames_Vendor	= &PixelFormatNames[int(tPixelFormat::FirstVendor)];
+	const char** PixelFormatNames_Palette	= &PixelFormatNames[int(tPixelFormat::FirstPalette)];
 
 	int PackedFormat_BitsPerPixel[] =
 	{
@@ -380,10 +385,11 @@ int tImage::tGetBytesPerBlock(tPixelFormat format)
 }
 
 
-const char* tImage::tGetPixelFormatName(tPixelFormat pixelFormat)
+const char* tImage::tGetPixelFormatName(tPixelFormat fmt)
 {
-	int index = int(pixelFormat) + 1;
-	return PixelFormatNames[index];
+	if (!tIsValidFormat(fmt))
+		return "Unknown";
+	return PixelFormatNames[int(fmt)];
 }
 
 
@@ -393,7 +399,7 @@ tImage::tPixelFormat tImage::tGetPixelFormat(const char* name)
 		return tPixelFormat::Invalid;
 
 	for (int p = 0; p < int(tPixelFormat::NumPixelFormats); p++)
-		if (tStd::tStrcmp(PixelFormatNames[p+1], name) == 0)
+		if (tStd::tStrcmp(PixelFormatNames[p], name) == 0)
 			return tPixelFormat(p);
 
 	return tPixelFormat::Invalid;
