@@ -183,6 +183,8 @@ enum class tPixelFormat
 	FirstPVR,									// PowerVR. Imagination. 8-byte blocks. We do not consider the PVRTC formats to be BC formats because 4 blocks need to be accessed. i.e. The pixels are not 'confined' to the block they are in.
 	PVRBPP4					= FirstPVR,			// PVRTC Version 1. 4BPP representing RGB or RGBA channels. One block can encode 4x4 pixels (but needs access to adjacent blocks during decompress).
 	PVRBPP2,									// PVRTC Version 1. 2BPP representing RGB or RGBA channels. One block can encode 8x4 pixels.
+
+	#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
 	PVRHDRBPP8,									// PVRTC Version 1. 8BPP representing HDR RGB.
 	PVRHDRBPP6,									// PVRTC Version 1. 6BPP representing HDR RGB.
 	PVR2BPP4,									// PVRTC Version 2. 4BPP representing RGB or RGBA channels.
@@ -190,6 +192,9 @@ enum class tPixelFormat
 	PVR2HDRBPP8,								// PVRTC Version 2. 8BPP representing HDR RGB.
 	PVR2HDRBPP6,								// PVRTC Version 2. 6BPP representing HDR RGB.
 	LastPVR					= PVR2HDRBPP6,
+	#else
+	LastPVR					= PVRBPP2,
+	#endif
 
 	FirstASTC,
 	ASTC4X4					= FirstASTC,		// 128 bits per 16  pixels. 8    bpp. LDR UNORM.
@@ -569,10 +574,12 @@ inline bool tImage::tIsHDRFormat(tPixelFormat format)
 		case tPixelFormat::BC6S:
 		case tPixelFormat::RADIANCE:
 		case tPixelFormat::OPENEXR:
+		#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
 		case tPixelFormat::PVRHDRBPP8:
 		case tPixelFormat::PVRHDRBPP6:
 		case tPixelFormat::PVR2HDRBPP8:
 		case tPixelFormat::PVR2HDRBPP6:
+		#endif
 		case tPixelFormat::R8G8B8M8:
 		case tPixelFormat::R8G8B8D8:
 			return true;

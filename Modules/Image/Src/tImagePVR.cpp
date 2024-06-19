@@ -400,8 +400,11 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 			C(PVRTC_2BPP_RGBA):				F(PVRBPP2)												break;
 			C(PVRTC_4BPP_RGB):				F(PVRBPP4)												break;
 			C(PVRTC_4BPP_RGBA):				F(PVRBPP4)												break;
+
+			#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
 			C(PVRTC_II_2BPP):				F(PVR2BPP2)												break;
 			C(PVRTC_II_4BPP):				F(PVR2BPP4)												break;
+			#endif
 			C(ETC1):						F(ETC1)													break;
 
 			C(DXT1_BC1):					F(BC1DXT1)												break;

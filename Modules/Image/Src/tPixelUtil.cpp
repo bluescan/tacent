@@ -1188,6 +1188,7 @@ tImage::DecodeResult tImage::DecodePixelData_PVR(tPixelFormat fmt, const uint8* 
 			break;
 		}
 
+		#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
 		case tPixelFormat::PVR2BPP4:
 		case tPixelFormat::PVR2BPP2:
 			return DecodeResult::UnsupportedFormat;
@@ -1199,6 +1200,7 @@ tImage::DecodeResult tImage::DecodePixelData_PVR(tPixelFormat fmt, const uint8* 
 		case tPixelFormat::PVR2HDRBPP8:
 		case tPixelFormat::PVR2HDRBPP6:
 			return DecodeResult::UnsupportedFormat;
+		#endif
 
 		default:
 			return DecodeResult::PVRDecodeError;

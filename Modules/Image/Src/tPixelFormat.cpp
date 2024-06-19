@@ -85,12 +85,14 @@ namespace tImage
 		// PVR (Power VR by Imagination) formats.
 		"PVRBPP4",
 		"PVRBPP2",
+		#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
 		"PVRHDRBPP8",
 		"PVRHDRBPP6",
 		"PVR2BPP4",
 		"PVR2BPP2",
 		"PVR2HDRBPP8",
 		"PVR2HDRBPP6",
+		#endif
 
 		// ASTC (Adaptive Scalable Texture Compression) formats.
 		"ASTC4X4",
@@ -152,20 +154,20 @@ namespace tImage
 		"B8G8R8A8 : 32 bit. Full alpha. Matches GL_BGRA source ordering.\n"
 		"Most drivers do not need to swizzle.",
 
-		"G3B5R5G3 : 16 bit. No alpha. Also known as B5G6R5. In memory\n"
-		"it is GGGBBBBB RRRRRGGG which is more accurately G3B5R5G3.",
+		"G3B5R5G3 : 16 bit. No alpha. Also known as B5G6R5.\n"
+		"G3B5R5G3  .",
 
-		"G4B4A4R4 : 16 bit. 12 colour bits. 4 bit alpha. Also\n"
-		"known as B4G4R4A4. G4B4A4R4 describes the memory layout.",
+		"G4B4A4R4 : 16 bit. 12 colour bits. 4 bit alpha.\n"
+		"Also known as B4G4R4A4. G4B4A4R4 is the in-memory layout.",
 
-		"B4A4R4G4 : 16 bit. 12 colour bits. 4 bit alpha. Also\n"
-		"known as R4G4B4A4. B4A4R4G4 describes the memory layout.",
+		"B4A4R4G4 : 16 bit. 12 colour bits. 4 bit alpha.\n"
+		"Also known as R4G4B4A4. B4A4R4G4 is the in-memory layout.",
 
-		"G3B5A1R5G2 : 16 bit. 15 colour bits. Binary alpha. Also\n"
-		"known as B5G5R5A1. G3B5A1R5G2 describes the memory layout.",
+		"G3B5A1R5G2 : 16 bit. 15 colour bits. Binary alpha.\n"
+		"Also known as B5G5R5A1. G3B5A1R5G2 is the in-memory layout.",
 
-		"G2B5A1R5G3 : 16 bit. 15 colour bits. Binary alpha. Also\n"
-		"known as R5G5B5A1. G2B5A1R5G3 describes the memory layout.",
+		"G2B5A1R5G3 : 16 bit. 15 colour bits. Binary alpha.\n"
+		"Also known as R5G5B5A1. G2B5A1R5G3 is the in-memory layout.",
 
 		"L8A8 : 16 bit. Alpha and Luminance.",
 		"A8 : 8 bit. Alpha only.",
@@ -235,60 +237,80 @@ namespace tImage
 		"BC4ATI1U : BC 4. Unsigned. One colour channel only.\n"
 		"May not be HW supported.",
 
-		"BC4ATI1S",
-		"BC5ATI2U",
-		"BC5ATI2S",
-		"BC6U",
-		"BC6S",
-		"BC7",
-		"ETC1",
-		"ETC2RGB",
-		"ETC2RGBA",
-		"ETC2RGBA1",
-		"EACR11U",
-		"EACR11S",
-		"EACRG11U",
-		"EACRG11S",
+		"BC4ATI1S : BC 4. Signed. One colour channel only.\n"
+		"May not be HW supported.",
+
+		"BC5ATI2U : BC 5. Unsigned. Two colour channels only.\n"
+		"May not be HW supported.",
+
+		"BC5ATI2S : BC 5. Signed. Two colour channels only.\n"
+		"May not be HW supported.",
+
+		"BC6U : BC 6 HDR. No alpha. 3 x 16bit unsigned half-floats per pixel.",
+		"BC6S : BC 6 HDR. No alpha. 3 x 16bit signed half-floats per pixel.",
+		"BC7 : BC 7. Full colour. Variable alpha 0 to 8 bits.",
+
+		"ETC1 : Ericsson Texture Compression. Similar to BC1. RGB-only. No alpha.",
+
+		"ETC2RGB : ETC2. Backwards compatible with ETC1.\n"
+		"The pixels may be in the sRGB colour space.",
+
+		"ETC2RGBA : ETC2. RGBA.\n"
+		"The pixels may be in the sRGB colour space.",
+
+		"ETC2RGBA1 : ETC2. RGB with binary alpha.\n"
+		"The pixels may be in the sRGB colour space.",
+		
+		"EACR11U : EAC R11. Ericsson. Single channel unsigned.",
+		"EACR11S : EAC R11. Ericsson. Single channel signed.",
+		"EACRG11U : EAC R11G11. Ericsson. Two channel unsigned.",
+		"EACRG11S : EAC R11G11. Ericsson. Two channel signed.",
 
 		// PVR (Power VR by Imagination) formats.
-		"PVRBPP4",
-		"PVRBPP2",
-		"PVRHDRBPP8",
-		"PVRHDRBPP6",
-		"PVR2BPP4",
-		"PVR2BPP2",
-		"PVR2HDRBPP8",
-		"PVR2HDRBPP6",
+		"PVRBPP4 : PVRTC Version 1. 4BPP representing RGB or RGBA channels. One block\n"
+		"can encode 4x4 pixels but needs access to adjacent blocks during decompress.",
+
+		"PVRBPP2 : PVRTC Version 1. 2BPP representing RGB or RGBA channels. One block\n"
+		"can encode 8x4 pixels but needs access to adjacent blocks during decompress.",
+
+		#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
+		"PVRHDRBPP8 : PVRTC Version 1. 8BPP representing HDR RGB.",
+		"PVRHDRBPP6 : PVRTC Version 1. 6BPP representing HDR RGB.",
+		"PVR2BPP4 : PVRTC Version 2. 4BPP representing RGB or RGBA channels.",
+		"PVR2BPP2 : PVRTC Version 2. 2BPP representing RGB or RGBA channels.",
+		"PVR2HDRBPP8 : PVRTC Version 2. 8BPP representing HDR RGB.",
+		"PVR2HDRBPP6 : PVRTC Version 2. 6BPP representing HDR RGB.",
+		#endif
 
 		// ASTC (Adaptive Scalable Texture Compression) formats.
-		"ASTC4X4",
-		"ASTC5X4",
-		"ASTC5X5",
-		"ASTC6X5",
-		"ASTC6X6",
-		"ASTC8X5",
-		"ASTC8X6",
-		"ASTC8X8",
-		"ASTC10X5",
-		"ASTC10X6",
-		"ASTC10X8",
-		"ASTC10X10",
-		"ASTC12X10",
-		"ASTC12X12",
+		"ASTC4X4 : Adaptive scalable. 128 bits per 16 pixels. 8.0 bpp.",
+		"ASTC5X4 : Adaptive scalable. 128 bits per 20 pixels. 6.4 bpp.",
+		"ASTC5X5 : Adaptive scalable. 128 bits per 25 pixels. 5.12 bpp.",
+		"ASTC6X5 : Adaptive scalable. 128 bits per 30 pixels. 4.27 bpp.",
+		"ASTC6X6 : Adaptive scalable. 128 bits per 36 pixels. 3.56 bpp.",
+		"ASTC8X5 : Adaptive scalable. 128 bits per 40 pixels. 3.2 bpp.",
+		"ASTC8X6 : Adaptive scalable. 128 bits per 48 pixels. 2.67 bpp.",
+		"ASTC8X8 : Adaptive scalable. 128 bits per 64 pixels. 2.56 bpp.",
+		"ASTC10X5 : Adaptive scalable. 128 bits per 50 pixels. 2.13 bpp.",
+		"ASTC10X6 : Adaptive scalable. 128 bits per 60 pixels. 2.0 bpp.",
+		"ASTC10X8 : Adaptive scalable. 128 bits per 80 pixels. 1.6 bpp.",
+		"ASTC10X10 : Adaptive scalable. 128 bits per 100 pixels. 1.28 bpp.",
+		"ASTC12X10 : Adaptive scalable. 128 bits per 120 pixels. 1.07 bpp.",
+		"ASTC12X12 : Adaptive scalable. 128 bits per 144 pixels. 0.89 bpp.",
 		
 		// Vendor-specific formats.
-		"RADIANCE",
-		"OPENEXR",
+		"RADIANCE : Radiance HDR",
+		"OPENEXR : OpenEXR HDR",
 
 		// Palette formats.
-		"PAL1BIT",
-		"PAL2BIT",
-		"PAL3BIT",
-		"PAL4BIT",
-		"PAL5BIT",
-		"PAL6BIT",
-		"PAL7BIT",
-		"PAL8BIT"
+		"PAL1BIT : 1-bit indexes to a palette. 2 colour. 1 bpp. Often dithered B/W.",
+		"PAL2BIT : 2-bit indexes to a palette. 4 colour. 2 bpp.",
+		"PAL3BIT : 3-bit indexes to a palette. 8 colour. 3 bpp.",
+		"PAL4BIT : 4-bit indexes to a palette. 16 colour. 4 bpp.",
+		"PAL5BIT : 5-bit indexes to a palette. 32 colour. 5 bpp.",
+		"PAL6BIT : 6-bit indexes to a palette. 64 colour. 6 bpp.",
+		"PAL7BIT : 7-bit indexes to a palette. 128 colour. 7 bpp.",
+		"PAL8BIT : 8-bit indexes to a palette. 256 colour. 8 bpp."
 	};
 	tStaticAssert(int(tPixelFormat::NumPixelFormats) == tNumElements(PixelFormatDescs));
 	const char** PixelFormatDescs_Packed	= &PixelFormatDescs[int(tPixelFormat::FirstPacked)];
@@ -368,12 +390,14 @@ namespace tImage
 	{
 		4,				// PVRBPP4
 		8,				// PVRBPP2
+		#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
 		0,				// PVRHDRBPP8. Unknown block size.
 		0,				// PVRHDRBPP6. Unknown block size.
-		4,				// PVRBPP4
-		8,				// PVRBPP2
-		0,				// PVRHDRBPP8. Unknown block size.
-		0				// PVRHDRBPP6. Unknown block size.
+		4,				// PVR2BPP4
+		8,				// PVR2BPP2
+		0,				// PVR2HDRBPP8. Unknown block size.
+		0				// PVR2HDRBPP6. Unknown block size.
+		#endif
 	};
 	tStaticAssert(tNumElements(PVRFormat_BlockWidth) == int(tPixelFormat::NumPVRFormats));
 
@@ -381,12 +405,14 @@ namespace tImage
 	{
 		4,				// PVRBPP4
 		4,				// PVRBPP2
+		#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
 		0,				// PVRHDRBPP8. Unknown block size.
 		0,				// PVRHDRBPP6. Unknown block size.
-		4,				// PVRBPP4
-		4,				// PVRBPP2
-		0,				// PVRHDRBPP8. Unknown block size.
-		0				// PVRHDRBPP6. Unknown block size.
+		4,				// PVR2BPP4
+		4,				// PVR2BPP2
+		0,				// PVR2HDRBPP8. Unknown block size.
+		0				// PVR2HDRBPP6. Unknown block size.
+		#endif
 	};
 	tStaticAssert(tNumElements(PVRFormat_BlockHeight) == int(tPixelFormat::NumPVRFormats));
 
@@ -432,12 +458,14 @@ namespace tImage
 	{
 		4,				// PVRBPP4
 		2,				// PVRBPP2
+		#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
 		8,				// PVRHDRBPP8
 		6,				// PVRHDRBPP6
 		4,				// PVR2BPP4
 		2,				// PVR2BPP2
 		8,				// PVR2HDRBPP8
 		6,				// PVR2HDRBPP6
+		#endif
 	};
 	tStaticAssert(tNumElements(PVRFormat_BitsPerPixel) == int(tPixelFormat::NumPVRFormats));
 
