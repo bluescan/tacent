@@ -123,13 +123,180 @@ namespace tImage
 		"PAL8BIT"
 	};
 	tStaticAssert(int(tPixelFormat::NumPixelFormats) == tNumElements(PixelFormatNames));
-
 	const char** PixelFormatNames_Packed	= &PixelFormatNames[int(tPixelFormat::FirstPacked)];
 	const char** PixelFormatNames_Block		= &PixelFormatNames[int(tPixelFormat::FirstBC)];
 	const char** PixelFormatNames_PVR		= &PixelFormatNames[int(tPixelFormat::FirstPVR)];
 	const char** PixelFormatNames_ASTC		= &PixelFormatNames[int(tPixelFormat::FirstASTC)];
 	const char** PixelFormatNames_Vendor	= &PixelFormatNames[int(tPixelFormat::FirstVendor)];
 	const char** PixelFormatNames_Palette	= &PixelFormatNames[int(tPixelFormat::FirstPalette)];
+
+
+	const char* PixelFormatDescs[] =
+	{
+		// Packed formats.
+		"R8 : 8 bit. Unsigned representing red. Some file-types that\n"
+		"don't support A8 or L8 (eg. ktx2) will use this instead.",
+
+		"R8G8 : 16 bit. Unsigned representing red and green.\n"
+		"Vulkan has an analagous format.",
+
+		"R8G8B8 : 24 bit. Full colour. No alpha. Matches GL_RGB source\n"
+		"ordering. Not efficient. Most drivers will swizzle to BGR.",
+
+		"R8G8B8A8 : 32  bit. Full alpha. Matches GL_RGBA source ordering.\n"
+		"Not efficient. Most drivers will swizzle to ABGR.",
+
+		"B8G8R8 : 24 bit. Full colour. No alpha. Matches GL_BGR source\n"
+		"ordering. Efficient. Most drivers do not need to swizzle.",
+
+		"B8G8R8A8 : 32 bit. Full alpha. Matches GL_BGRA source ordering.\n"
+		"Most drivers do not need to swizzle.",
+
+		"G3B5R5G3 : 16 bit. No alpha. Also known as B5G6R5. In memory\n"
+		"it is GGGBBBBB RRRRRGGG which is more accurately G3B5R5G3.",
+
+		"G4B4A4R4 : 16 bit. 12 colour bits. 4 bit alpha. Also\n"
+		"known as B4G4R4A4. G4B4A4R4 describes the memory layout.",
+
+		"B4A4R4G4 : 16 bit. 12 colour bits. 4 bit alpha. Also\n"
+		"known as R4G4B4A4. B4A4R4G4 describes the memory layout.",
+
+		"G3B5A1R5G2 : 16 bit. 15 colour bits. Binary alpha. Also\n"
+		"known as B5G5R5A1. G3B5A1R5G2 describes the memory layout.",
+
+		"G2B5A1R5G3 : 16 bit. 15 colour bits. Binary alpha. Also\n"
+		"known as R5G5B5A1. G2B5A1R5G3 describes the memory layout.",
+
+		"L8A8 : 16 bit. Alpha and Luminance.",
+		"A8 : 8 bit. Alpha only.",
+		"L8 : 8 bit. Luminance only.",
+		"R16 : 16 bit. Red channel only.",
+		"R16G16 : 32 bit. 16 bit R. 16 bit G.",
+		"R16G16B16 : 48 bit. 16 bit each RGB.",
+		"R16G16B16A16 : 64 bit. 16 bit each RGBA.",
+
+		"R32 : 32 bit. Red channel only.",
+		"R32G32 : 64 bit. 32 bit R. 32 bit G.",
+		"R32G32B32 : 96 bit. 32 bit each RGB.",
+		"R32G32B32A32 : 128 bit. 32 bit each RGBA.",
+
+		"R16f : 16 bit. Half-float red/luminance channel only.\n"
+		"HDR linear space.",
+
+		"R16G16f : 32 bit. Two half-floats per pixel. RG.\n"
+		"HDR linear space.",
+
+		"R16G16B16f : 48 bit. Three half-floats per pixel. RGB.\n"
+		"HDR linear space.",
+
+		"R16G16B16A16f : 64 bit. Four half-floats per pixel. RGBA.\n"
+		"HDR linear space.",
+
+		"R32f : 32 bit. Float red/luminance channel only.\n"
+		"HDR linear space.",
+
+		"R32G32f : 64 bit. Two floats per pixel. RG.\n"
+		"HDR linear space.",
+
+		"R32G32B32f : 96 bit. Three floats per pixel. RGB.\n"
+		"HDR linear space.",
+
+		"R32G32B32A32f : 128 bit. Four floats per pixel. RGBA.\n"
+		"HDR linear space.",
+
+		"R11G11B10uf : 32 bit. Unsigned 11-bit floats for RG, and\n"
+		"a 10-bit float for B. All use a 5-bit exponent.",
+
+		"B10G11R11uf : 32 bit. Unsigned 10-bit floats for B, and 11-bit\n"
+		"floats for GR. All use a 5-bit exponent.",
+
+		"R9G9B9E5uf : 32 bit. Unsigned 14-bit floats for RGB. Always\n"
+		"denorm and each share the same 5-bit exponent.",
+
+		"E5B9G9R9uf : 32 bit. Unsigned 14-bit floats for RGB. Always\n"
+		"denorm and each share the same 5-bit exponent.",
+
+		"R8G8B8M8 : 32 bit. Poor-man's HDR. RGB plus shared 8-bit\n"
+		"multiplier. Must supply MaxRange when decoding.",
+
+		"R8G8B8D8 : 32 bit. Poor-man's HDR. RGB plus shared 8-bit\n"
+		"divisor. Must supply MaxRange when decoding.",
+
+		// Original BC (4x4 Block Compression) formats.
+		"BC1DXT1 : BC 1, DXT1. No alpha.",
+		"BC1DXT1A :BC 1, DXT1. Binary alpha.",
+
+		"BC2DXT2DXT3 : BC 2. DXT2 (premult-alpha) and DXT3 share the same\n"
+		"format. Large alpha gradients (alpha banding).",
+
+		"BC3DXT4DXT5 : BC 3. DXT4 (premult-alpha) and DXT5 share the same\n"
+		"format. Variable alpha (smooth).",
+
+		"BC4ATI1U : BC 4. Unsigned. One colour channel only.\n"
+		"May not be HW supported.",
+
+		"BC4ATI1S",
+		"BC5ATI2U",
+		"BC5ATI2S",
+		"BC6U",
+		"BC6S",
+		"BC7",
+		"ETC1",
+		"ETC2RGB",
+		"ETC2RGBA",
+		"ETC2RGBA1",
+		"EACR11U",
+		"EACR11S",
+		"EACRG11U",
+		"EACRG11S",
+
+		// PVR (Power VR by Imagination) formats.
+		"PVRBPP4",
+		"PVRBPP2",
+		"PVRHDRBPP8",
+		"PVRHDRBPP6",
+		"PVR2BPP4",
+		"PVR2BPP2",
+		"PVR2HDRBPP8",
+		"PVR2HDRBPP6",
+
+		// ASTC (Adaptive Scalable Texture Compression) formats.
+		"ASTC4X4",
+		"ASTC5X4",
+		"ASTC5X5",
+		"ASTC6X5",
+		"ASTC6X6",
+		"ASTC8X5",
+		"ASTC8X6",
+		"ASTC8X8",
+		"ASTC10X5",
+		"ASTC10X6",
+		"ASTC10X8",
+		"ASTC10X10",
+		"ASTC12X10",
+		"ASTC12X12",
+		
+		// Vendor-specific formats.
+		"RADIANCE",
+		"OPENEXR",
+
+		// Palette formats.
+		"PAL1BIT",
+		"PAL2BIT",
+		"PAL3BIT",
+		"PAL4BIT",
+		"PAL5BIT",
+		"PAL6BIT",
+		"PAL7BIT",
+		"PAL8BIT"
+	};
+	tStaticAssert(int(tPixelFormat::NumPixelFormats) == tNumElements(PixelFormatDescs));
+	const char** PixelFormatDescs_Packed	= &PixelFormatDescs[int(tPixelFormat::FirstPacked)];
+	const char** PixelFormatDescs_Block		= &PixelFormatDescs[int(tPixelFormat::FirstBC)];
+	const char** PixelFormatDescs_PVR		= &PixelFormatDescs[int(tPixelFormat::FirstPVR)];
+	const char** PixelFormatDescs_ASTC		= &PixelFormatDescs[int(tPixelFormat::FirstASTC)];
+	const char** PixelFormatDescs_Vendor	= &PixelFormatDescs[int(tPixelFormat::FirstVendor)];
+	const char** PixelFormatDescs_Palette	= &PixelFormatDescs[int(tPixelFormat::FirstPalette)];
 
 	int PackedFormat_BitsPerPixel[] =
 	{
@@ -390,6 +557,14 @@ const char* tImage::tGetPixelFormatName(tPixelFormat fmt)
 	if (!tIsValidFormat(fmt))
 		return "Unknown";
 	return PixelFormatNames[int(fmt)];
+}
+
+
+const char* tImage::tGetPixelFormatDesc(tPixelFormat fmt)
+{
+	if (!tIsValidFormat(fmt))
+		return "Unknown";
+	return PixelFormatDescs[int(fmt)];
 }
 
 

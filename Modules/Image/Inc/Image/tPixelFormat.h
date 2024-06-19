@@ -309,6 +309,15 @@ extern const char** PixelFormatNames_Vendor;
 extern const char** PixelFormatNames_Palette;
 const char* tGetPixelFormatName(tPixelFormat);
 
+extern const char* PixelFormatDescs[];
+extern const char** PixelFormatDescs_Packed;
+extern const char** PixelFormatDescs_Block;
+extern const char** PixelFormatDescs_PVR;
+extern const char** PixelFormatDescs_ASTC;
+extern const char** PixelFormatDescs_Vendor;
+extern const char** PixelFormatDescs_Palette;
+const char* tGetPixelFormatDesc(tPixelFormat);
+
 // Gets the pixel format from its name. Case sensitive. Slow. Use for testing/unit-tests only.
 tPixelFormat tGetPixelFormat(const char* name);
 
