@@ -3,7 +3,7 @@
 // Tacent functions and types that are standard across all platforms. Includes global functions like itoa which are not
 // available on some platforms, but are common enough that they should be.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020-2023 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -52,24 +52,26 @@ inline const void* tMemsrch(const void* haystack, int haystackNumBytes, const vo
 // UTF-16, we mean UTF-16 and not UCS2 -- it's the real deal. Look at the tUTF8, tUTF16, and tUTF32 functions for
 // straight UTF conversions (not null-terminated). String termination is not part of UTF, but it's common to support it.
 // Null-terminated versions of the functions have an 's' appended. The 'c' versions are for dealing with individual
-// codepoints.
+// codepoints. Note these functions return exactly -1 if a < b, 0 if equal, and 1 if a > b. This is in contrast to the
+// standard strcmp functions that only guarantee returning < 0, 0, or > 0. That is, implementations are free to return
+// either the ASCII difference of the strings or normalize the returns to -1, 0, 1.
 const int tCharInvalid																									= 0xFF;
-inline int tStrcmp(const char* a, const char* b)																		{ tAssert(a && b); return strcmp(a, b); }
-inline int tStrncmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); return strncmp(a, b, n); }
-inline int tStrcmp(const char8_t* a, const char8_t* b)																	{ tAssert(a && b); return strcmp((const char*)a, (const char*)b); }
-inline int tStrncmp(const char8_t* a, const char8_t* b, int n)															{ tAssert(a && b && n >= 0); return strncmp((const char*)a, (const char*)b, n); }
+inline int tStrcmp(const char* a, const char* b)																		{ tAssert(a && b); int r = strcmp(a, b); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
+inline int tStrncmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); int r = strncmp(a, b, n); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
+inline int tStrcmp(const char8_t* a, const char8_t* b)																	{ tAssert(a && b); int r = strcmp((const char*)a, (const char*)b); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
+inline int tStrncmp(const char8_t* a, const char8_t* b, int n)															{ tAssert(a && b && n >= 0); int r = strncmp((const char*)a, (const char*)b, n); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
 #if defined(PLATFORM_WINDOWS)
-inline int tStricmp(const char* a, const char* b)																		{ tAssert(a && b); return stricmp(a, b); }
-inline int tStrnicmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); return strnicmp(a, b, n); }
-inline int tStricmp(const char8_t* a, const char8_t* b)																	{ tAssert(a && b); return stricmp((const char*)a, (const char*)b); }
-inline int tStrnicmp(const char8_t* a, const char8_t* b, int n)															{ tAssert(a && b && n >= 0); return strnicmp((const char*)a, (const char*)b, n); }
+inline int tStricmp(const char* a, const char* b)																		{ tAssert(a && b); int r = stricmp(a, b); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
+inline int tStrnicmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); int r = strnicmp(a, b, n); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
+inline int tStricmp(const char8_t* a, const char8_t* b)																	{ tAssert(a && b); int r = stricmp((const char*)a, (const char*)b); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
+inline int tStrnicmp(const char8_t* a, const char8_t* b, int n)															{ tAssert(a && b && n >= 0); int r = strnicmp((const char*)a, (const char*)b, n); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
 #else
-// @todo Why on non-windows did I need to use strcasecmp? strcasecmp is not part of the C standard.
-inline int tStricmp(const char* a, const char* b)																		{ tAssert(a && b); return strcasecmp(a, b); }
-inline int tStrnicmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); return strncasecmp(a, b, n); }
-inline int tStricmp(const char8_t* a, const char8_t* b)																	{ tAssert(a && b); return strcasecmp((const char*)a, (const char*)b); }
-inline int tStrnicmp(const char8_t* a, const char8_t* b, int n)															{ tAssert(a && b && n >= 0); return strncasecmp((const char*)a, (const char*)b, n); }
+inline int tStricmp(const char* a, const char* b)																		{ tAssert(a && b); int r = strcasecmp(a, b); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
+inline int tStrnicmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); int r = strncasecmp(a, b, n); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
+inline int tStricmp(const char8_t* a, const char8_t* b)																	{ tAssert(a && b); int r = strcasecmp((const char*)a, (const char*)b); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
+inline int tStrnicmp(const char8_t* a, const char8_t* b, int n)															{ tAssert(a && b && n >= 0); int r = strncasecmp((const char*)a, (const char*)b, n); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
 #endif
+
 inline int tStrlen(const char* s)																						{ tAssert(s); return int(strlen(s)); }
 inline constexpr int tStrlenCT(const char* s)																			{ return *s ? 1 + tStrlenCT(s + 1) : 0; }
 inline char* tStrcpy(char* dst, const char* src)																		{ tAssert(dst && src); return strcpy(dst, src); }
