@@ -18,7 +18,7 @@
 // A note on variable naming of paths in this API. If it can be a file or directory, the word 'path' is used. If the
 // path must be a directory, the word 'dir' is used. If the path must be a file, the word 'file' is used.
 //
-// Copyright (c) 2004-2006, 2017, 2020-2023 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2020-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -93,7 +93,17 @@ tString tGetFileName(const tString& file);
 // c:/Stuff/Mess.max to Mess
 tString tGetFileBaseName(const tString& file);
 
-// Returns a path or fully qualified filename that is as simple as possible. Mainly this involves removing (and
+// Conversions to tacent-standard paths. Forward slashes where possible.
+// Windows does not allow forward slashes when dealing with network shares, a path like
+// \\machinename\sharename/dir/subdir/
+// _must_ have two backslashes before the machine name and 1 backslash before the sharename.
+// If this case is detected the three backslashes remain in-tact. This function does not simplify "."
+// or ".." strings that may be present. See tGetSimplifiedPath.
+void tPathStd    (tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There".
+void tPathStdDir (tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There/".
+void tPathStdFile(tString& path);	// "C:\Hello\There\" -> "C:/Hello/There".  "C:\Hello\There" -> "C:/Hello/There".
+
+// Returns a path (directory or filename) that is as simple as possible. Mainly this involves removing (and
 // resolving) any "." or ".." strings. This is a string manipulation call only -- it does not query the filesystem.
 // For example, if the input is:
 //
@@ -105,6 +115,17 @@ tString tGetFileBaseName(const tString& file);
 // are treated as directories and paths without a / are treated as files. If force is true, both are treated as dirs
 // and the returned path will end with a /.
 tString tGetSimplifiedPath(const tString& path, bool forceTreatAsDir = false);
+
+// Determines if two paths point to the same filesystem object. The main reason this is needed over a simple string
+// compare is that some platforms are case-sensitive (Linux) and some are not (Windows/Mac). If one path is a dir (ends
+// with a / or \), and the other does not, the paths are always considered different. If you know the paths do not have
+// ".."s or "."s in them you can leave forceSimplify false since it makes it more efficient. Returns true if the paths
+// point to the same filesystem object. This is a string manipulation call only -- it does not query the filesystem.
+bool tPathsEqual(const tString& pathA, const tString& pathB, bool forceSimplify = false);
+
+// Similar to above but compares the paths alphabetically and returns -1 if a<b, 0 if a==b, or 1 if a>b.
+int tComparePaths(const tString& pathA, const tString& pathB, bool forceSimplify = false);
+
 bool tIsAbsolutePath(const tString& path);
 bool tIsRelativePath(const tString& path);
 

@@ -8,7 +8,7 @@
 // use backslashes, but consistency in using forward slashes is advised. Directory path specifications always end with
 // a trailing slash. Without the trailing separator the path will be interpreted as a file.
 //
-// Copyright (c) 2004-2006, 2017, 2019-2023 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2019-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -41,14 +41,6 @@
 
 namespace tSystem
 {
-	// Conversions to tacent-standard paths. Forward slashes where possible.
-	// Windows does not allow forward slashes when dealing with network shares, a path like
-	// \\machinename\sharename/dir/subdir/
-	// _must_ have two backslashes before the machine name and 1 backslash before the sharename.
-	void tPathStd    (tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There".
-	void tPathStdDir (tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There/".
-	void tPathStdFile(tString& path);	// "C:\Hello\There\" -> "C:/Hello/There".  "C:\Hello\There" -> "C:/Hello/There".
-
 	// Conversions to windows-standard paths. Backwards slashes. Not seen externally.
 	void tPathWin    (tString& path);	// "C:/Hello/There/" -> "C:\Hello\There\". "C:/Hello/There" -> "C:\Hello\There".
 	void tPathWinDir (tString& path);	// "C:/Hello/There/" -> "C:\Hello\There\". "C:/Hello/There" -> "C:\Hello\There\".
@@ -258,6 +250,26 @@ tString tSystem::tGetSimplifiedPath(const tString& path, bool forceTreatAsDir)
 
 	tString res = simp + pth;
 	return res;
+}
+
+
+int tSystem::tComparePaths(const tString& pathA, const tString& pathB, bool forceSimplify)
+{
+	tString pthA = pathA;	tPathStd(pthA);
+	tString pthB = pathB;	tPathStd(pthB);
+	if (forceSimplify)
+	{
+		pthA = tGetSimplifiedPath(pthA);
+		pthB = tGetSimplifiedPath(pthB);
+	}
+
+	return tStd::tPstrcmp(pthA.Chars(), pthB.Chars());
+}
+
+
+bool tSystem::tPathsEqual(const tString& pathA, const tString& pathB, bool forceSimplify)
+{
+	return (tComparePaths(pathA, pathB, forceSimplify) == 0) ? true : false;
 }
 
 

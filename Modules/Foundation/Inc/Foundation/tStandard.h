@@ -72,6 +72,14 @@ inline int tStricmp(const char8_t* a, const char8_t* b)																	{ tAsser
 inline int tStrnicmp(const char8_t* a, const char8_t* b, int n)															{ tAssert(a && b && n >= 0); int r = strncasecmp((const char*)a, (const char*)b, n); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
 #endif
 
+// These are similar to the above but assume the strings represent filesystem paths and so choose between a case
+// sensitive (Linux) and case insensitive (Windows) compare. They do not deal with any other manipulation of the input
+// strings. Think of the P to mean Path or Platform.
+int tPstrcmp(const char* a, const char* b);
+int tPstrncmp(const char* a, const char* b, int n);
+int tPstrcmp(const char8_t* a, const char8_t* b);
+int tPstrncmp(const char8_t* a, const char8_t* b, int n);
+
 inline int tStrlen(const char* s)																						{ tAssert(s); return int(strlen(s)); }
 inline constexpr int tStrlenCT(const char* s)																			{ return *s ? 1 + tStrlenCT(s + 1) : 0; }
 inline char* tStrcpy(char* dst, const char* src)																		{ tAssert(dst && src); return strcpy(dst, src); }
@@ -414,6 +422,46 @@ extern const char8_t* u8SeparatorEStr;
 
 
 // Implementation below this line.
+
+
+inline int tStd::tPstrcmp(const char* a, const char* b)
+{
+	#ifdef PLATFORM_LINUX
+	return tStrcmp(a, b);
+	#else
+	return tStricmp(a, b);
+	#endif
+}
+
+
+inline int tStd::tPstrncmp(const char* a, const char* b, int n)
+{
+	#ifdef PLATFORM_LINUX
+	return tStrncmp(a, b, n);
+	#else
+	return tStrnicmp(a, b, n);
+	#endif
+}
+
+
+inline int tStd::tPstrcmp(const char8_t* a, const char8_t* b)
+{
+	#ifdef PLATFORM_LINUX
+	return tStrcmp(a, b);
+	#else
+	return tStricmp(a, b);
+	#endif
+}
+
+
+inline int tStd::tPstrncmp(const char8_t* a, const char8_t* b, int n)
+{
+	#ifdef PLATFORM_LINUX
+	return tStrncmp(a, b, n);
+	#else
+	return tStrnicmp(a, b, n);
+	#endif
+}
 
 
 template<typename IntegralType> inline IntegralType tStd::tStrtoiT(const char* str, int base)
