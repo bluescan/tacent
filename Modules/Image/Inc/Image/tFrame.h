@@ -47,6 +47,8 @@ struct tFrame : public tLink<tFrame>
 	// If steal is false the pixels remain owned by this tFrame. You can look or modify them, but they're not yours.
 	tPixel4b* GetPixels(bool steal = false)																				{ if (steal) { tPixel4b* p = Pixels; Pixels = nullptr; return p; } else return Pixels; }
 
+	void SetPixel(int x, int y, const tPixel4b& c)																		{ Pixels[ GetIndex(x, y) ] = c; }
+
 	void Clear();
 	bool IsValid() const																								{ return (Width > 0) && (Height > 0) && Pixels; }
 	void ReverseRows();
@@ -56,7 +58,10 @@ struct tFrame : public tLink<tFrame>
 	int Height																	= 0;
 	float Duration					/* Frame duration in seconds. */			= 0.0f;
 	tPixelFormat PixelFormatSrc		/* Use of PixelFormatSrc is optional. */	= tPixelFormat::Invalid;
-	tPixel4b* Pixels																= nullptr;
+	tPixel4b* Pixels															= nullptr;
+
+private:
+	int GetIndex(int x, int y) const																					{ tAssert((x >= 0) && (y >= 0) && (x < Width) && (y < Height)); return y * Width + x; }
 };
 
 

@@ -210,6 +210,9 @@ tImageAPNG::tFormat tImageAPNG::Save(const tString& apngFile, const SaveParams& 
 		return tFormat::Invalid;
 
 	// Currently apng_save will crash if all the images don't have the same size. We check that here.
+	// Additionally it seems the frame sizes in an APNG must match in size. From the spec: "Each frame
+	// is identical for each play, therefore it is safe for applications to cache the frames." This means
+	// we'll need to keep this check in.
 	int frameWidth = Frames.Head()->Width;
 	int frameHeight = Frames.Head()->Height;
 	if ((frameWidth <= 0) || (frameHeight <= 0))
