@@ -305,6 +305,38 @@ float tGetBitsPerPixelFloat(tPixelFormat);
 // Returns 0 otherwise.
 int tGetBytesPerBlock(tPixelFormat);
 
+// Since there are numerous size functions already in the pixel-format header it makes sense to also add functions to
+// query how many mipmaps would be needs for variously sized images. Note that due to various block sizes, you cannot
+// compite the total pixel-area. Each mimpap will need its own set of blocks in either direction. The highest mip level
+// (which will represent the smallest mipmap image of 1x1) will still use a single block. The lowest level (0) is the
+// image at full (highest) dimensions.
+
+// Width and height should be >= 1. Returns 0 otherwise.
+int tGetNumMipmapLevels(int width, int height);
+
+// Given a supplied width or height this function will return the next higher mip level dimension. Once the dimension
+// reaches 1 it stays there. The width or height should be >= 1. If it is <= 0, 0 is returned.
+int tGetNextMipmapLevelDim(int widthOrHeight);
+
+// Given a supplied width and height this function will return the next higher mip level dimensions. Once a dimension
+// reaches 1 it stays there. This function reads and writes width and height. Both width and height should be >= 1. If
+// one of them is <= 0, 0 is returned for that dimension.
+void tGetNextMipmapLevelDims(int& width, int& height);
+
+// Given a base width or height at level 0 this function computes the corresponding dimension at the supplied level.
+// The width or height should be >= 1. If it is <= 0, 0 is returned regardless of level.
+// Level should be E [0, NumMipmapLevels). Below this range widthOrHeight is returned. Above this range 1 is returned.
+int tGetMipmapDim(int widthOrHeight, int level);
+
+// Given level 0 width and height this function returns the width and height at the supplied level. This function
+// reads and writes width and height. The input width and height should be >= 1. If one is <= 0, 0 is returned for that
+// dimension regardless of level. Level should be E [0, NumMipmapLevels). Below this range width and height are
+// left unmodified. Above this range width and height are both set to 1.
+void tGetMipmapDims(int& width, int& height, int level);
+
+// Same as above but writes to mipWidth and mipHeight and reads from width and height.
+void tGetMipmapDims(int& mipWidth, int& mipHeight, int width, int height, int level);
+
 extern const char* PixelFormatNames[];
 extern const char** PixelFormatNames_Packed;
 extern const char** PixelFormatNames_Block;

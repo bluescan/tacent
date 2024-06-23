@@ -175,6 +175,7 @@ int main(int argc, char** argv)
 	tTest(ImageCopyRegion);
 	tTest(ImageAdjustment);
 	tTest(ImageDetection);
+	tTest(ImageMipmap);
 	tTest(ImageFilter);
 	tTest(ImageMultiFrame);
 	tTest(ImageGradient);
@@ -226,10 +227,11 @@ int main(int argc, char** argv)
 	// tTest(ImageCopyRegion);
 	// tTest(ImageAdjustment);
 	// tTest(ImageDetection);
+	tTest(ImageMipmap);
 	// tTest(ImagePNG);
 	// tTest(ImageDDS);
-	tTest(ImageKTX1);
-	tTest(ImageKTX2);
+	// tTest(ImageKTX1);
+	// tTest(ImageKTX2);
 	// tTest(ImageASTC);
 	// tTest(ImagePKM);
 	// tTest(ImagePVR2);

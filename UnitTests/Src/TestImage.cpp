@@ -1118,6 +1118,99 @@ tTestUnit(ImageDetection)
 }
 
 
+tTestUnit(ImageMipmap)
+{
+	// Tests for mipmap dimension and levels computations.
+	int numLevels = 0;
+	int dim = 0;
+	int width = 0;
+	int height = 0;
+	
+	numLevels = tGetNumMipmapLevels(1024, 512);
+	tRequire(numLevels == 11);				// 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1.
+	numLevels = tGetNumMipmapLevels(9, 9);	// 9, 4, 2, 1
+	tRequire(numLevels == 4);
+	numLevels = tGetNumMipmapLevels(9, 7);	// 9, 4, 2, 1
+	tRequire(numLevels == 4);
+	numLevels = tGetNumMipmapLevels(1, 1);	// 1
+	tRequire(numLevels == 1);
+	numLevels = tGetNumMipmapLevels(0, 1);	// Invalid.
+	tRequire(numLevels == 0);
+
+	dim = tGetNextMipmapLevelDim(2048);
+	tRequire(dim == 1024);
+	dim = tGetNextMipmapLevelDim(9);
+	tRequire(dim == 4);
+	dim = tGetNextMipmapLevelDim(7);
+	tRequire(dim == 3);
+	dim = tGetNextMipmapLevelDim(1);
+	tRequire(dim == 1);
+	dim = tGetNextMipmapLevelDim(-1);
+	tRequire(dim == 0);
+
+	width = 1024; height = 256;
+	tGetNextMipmapLevelDims(width, height);
+	tRequire((width == 512) && (height == 128));
+	width = 9; height = 7;
+	tGetNextMipmapLevelDims(width, height);
+	tRequire((width == 4) && (height == 3));
+	width = 0; height = 7;
+	tGetNextMipmapLevelDims(width, height);
+	tRequire((width == 0) && (height == 3));
+
+	dim = tGetMipmapDim(1, 40);
+	tRequire(dim == 1);
+	dim = tGetMipmapDim(0, 40);
+	tRequire(dim == 0);
+	dim = tGetMipmapDim(-1, 40);
+	tRequire(dim == 0);
+
+	dim = tGetMipmapDim(512, 0);
+	tRequire(dim == 512);
+	dim = tGetMipmapDim(512, 1);
+	tRequire(dim == 256);
+	dim = tGetMipmapDim(512, 2);
+	tRequire(dim == 128);
+
+	dim = tGetMipmapDim(9, -1);
+	tRequire(dim == 9);
+	dim = tGetMipmapDim(9, 0);
+	tRequire(dim == 9);
+	dim = tGetMipmapDim(9, 1);
+	tRequire(dim == 4);
+	dim = tGetMipmapDim(9, 2);
+	tRequire(dim == 2);
+	dim = tGetMipmapDim(9, 3);
+	tRequire(dim == 1);
+	dim = tGetMipmapDim(9, 4);
+	tRequire(dim == 1);
+
+	width = 256; height = 2048;
+	tGetMipmapDims(width, height, 0);
+	tRequire((width == 256) && (height == 2048));
+
+	width = 256; height = 2048;
+	tGetMipmapDims(width, height, 1);
+	tRequire((width == 128) && (height == 1024));
+
+	width = 256; height = 2048;
+	tGetMipmapDims(width, height, 2);
+	tRequire((width == 64) && (height == 512));
+
+	width = 9; height = 7;
+	int mipWidth; int mipHeight;
+	numLevels = tGetNumMipmapLevels(width, height);
+	int correctWidths[] = { 9, 4, 2, 1 };
+	int correctHeights[] = { 7, 3, 1, 1 };
+	for (int m = 0; m < numLevels; m++)
+	{
+		tGetMipmapDims(mipWidth, mipHeight, width, height, m);
+		tPrintf("Dim %dx%d Mip %d : %dx%d\n", width, height, m, mipWidth, mipHeight);
+		tRequire((correctWidths[m] == mipWidth) && (correctHeights[m] == mipHeight));
+	}
+}
+
+
 tTestUnit(ImageFilter)
 {
 	if (!tSystem::tDirExists("TestData/Images/"))

@@ -580,6 +580,60 @@ int tImage::tGetBytesPerBlock(tPixelFormat format)
 }
 
 
+int tImage::tGetNumMipmapLevels(int width, int height)
+{
+	if ((width < 1) || (height < 1))
+		return 0;
+
+	int maxDim = tMath::tMax(width, height);	
+	return tMath::tLog2(maxDim) + 1;
+}
+
+
+int tImage::tGetNextMipmapLevelDim(int widthOrHeight)
+{
+	if (widthOrHeight <= 0)
+		return 0;
+	if (widthOrHeight == 1)
+		return 1;
+	return widthOrHeight >> 1;
+}
+
+
+void tImage::tGetNextMipmapLevelDims(int& width, int& height)
+{
+	width = tGetNextMipmapLevelDim(width);
+	height = tGetNextMipmapLevelDim(height);
+}
+
+
+int tImage::tGetMipmapDim(int widthOrHeight, int level)
+{
+	if (widthOrHeight <= 0)
+		return 0;
+	if (level < 0)
+		return widthOrHeight;
+	int dim = widthOrHeight >> level;
+	if (dim <= 0)
+		dim = 1;
+	return dim;
+}
+
+
+void tImage::tGetMipmapDims(int& width, int& height, int level)
+{
+	width = tGetMipmapDim(width, level);
+	height = tGetMipmapDim(height, level);
+}
+
+
+void tImage::tGetMipmapDims(int& mipWidth, int& mipHeight, int width, int height, int level)
+{
+	mipWidth = tGetMipmapDim(width, level);
+	mipHeight = tGetMipmapDim(height, level);
+}
+
+
 const char* tImage::tGetPixelFormatName(tPixelFormat fmt)
 {
 	if (!tIsValidFormat(fmt))

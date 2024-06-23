@@ -31,6 +31,7 @@ namespace tUnitTest
 	tTestUnit(ImageCopyRegion);
 	tTestUnit(ImageAdjustment);
 	tTestUnit(ImageDetection);
+	tTestUnit(ImageMipmap);
 	tTestUnit(ImageFilter);
 	tTestUnit(ImageMultiFrame);
 	tTestUnit(ImageGradient);
