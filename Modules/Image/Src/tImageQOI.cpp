@@ -57,10 +57,10 @@ bool tImageQOI::Load(const uint8* qoiFileInMemory, int numBytes)
 	if (!reversedPixels)
 		return false;
 
-	Width			= results.width;	
-	Height			= results.height;
-	ColourSpace		= (results.colorspace == QOI_LINEAR) ? tSpace::Linear : tSpace::sRGB;
-	PixelFormatSrc	= (results.channels == 3) ? tPixelFormat::R8G8B8 : tPixelFormat::R8G8B8A8;
+	Width				= results.width;	
+	Height				= results.height;
+	ColourProfileSrc	= (results.colorspace == QOI_LINEAR) ? tColourProfile::lRGB : tColourProfile::sRGB;
+	PixelFormatSrc		= (results.channels == 3) ? tPixelFormat::R8G8B8 : tPixelFormat::R8G8B8A8;
 	tAssert((Width > 0) && (Height > 0));
 
 	// Reverse rows.
@@ -94,7 +94,7 @@ bool tImageQOI::Set(tPixel4b* pixels, int width, int height, bool steal)
 	}
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
-	ColourSpace = tSpace::sRGB;
+	ColourProfileSrc = tColourProfile::sRGB;
 	return true;
 }
 
@@ -146,11 +146,11 @@ tFrame* tImageQOI::GetFrame(bool steal)
 }
 
 
-tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, tFormat format, tSpace space) const
+tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, tFormat format, tColourProfile profile) const
 {
 	SaveParams params;
 	params.Format = format;
-	params.Space = space;
+	params.ColourProfile = profile;
 	return Save(qoiFile, params);
 }
 
@@ -158,7 +158,7 @@ tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, tFormat format, tSpac
 tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, const SaveParams& params) const
 {
 	tFormat format = params.Format;
-	tSpace space = params.Space;
+	tColourProfile profile = params.ColourProfile;
 	if (!IsValid() || (format == tFormat::Invalid))
 		return tFormat::Invalid;
 
@@ -172,8 +172,8 @@ tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, const SaveParams& par
 		else
 			format = tFormat::BPP32;
 	}
-	if (space == tSpace::Auto)
-		space = ColourSpace;
+	if (profile == tColourProfile::Auto)
+		profile = ColourProfileSrc;
 
 	tFileHandle file = tSystem::tOpenFile(qoiFile.Chr(), "wb");
 	if (!file)
@@ -183,7 +183,7 @@ tImageQOI::tFormat tImageQOI::Save(const tString& qoiFile, const SaveParams& par
 	qoiDesc.channels	= (format == tFormat::BPP24) ? 3 : 4;
 
 	// This also catches space being set to invalid. Basically if it's not linear, it's sRGB.
-	qoiDesc.colorspace	= (space == tSpace::Linear) ? QOI_LINEAR : QOI_SRGB;
+	qoiDesc.colorspace	= (profile == tColourProfile::lRGB) ? QOI_LINEAR : QOI_SRGB;
 	qoiDesc.height		= Height;
 	qoiDesc.width		= Width;
 

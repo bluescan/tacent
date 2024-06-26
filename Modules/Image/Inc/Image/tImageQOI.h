@@ -79,11 +79,11 @@ public:
 	struct SaveParams
 	{
 		SaveParams()																									{ Reset(); }
-		SaveParams(const SaveParams& src)																				: Format(src.Format), Space(src.Space) { }
-		void Reset()																									{ Format = tFormat::Auto; Space = tSpace::Auto; }
-		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Space = src.Space; return *this; }
+		SaveParams(const SaveParams& src)																				: Format(src.Format), ColourProfile(src.ColourProfile) { }
+		void Reset()																									{ Format = tFormat::Auto; ColourProfile = tColourProfile::Auto; }
+		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; ColourProfile = src.ColourProfile; return *this; }
 		tFormat Format;
-		tSpace Space;
+		tColourProfile ColourProfile;	// QOI supports lRGB and sRGB.
 	};
 
 	// Saves the tImageQOI to the file specified. The type of filename must be "qoi". If tFormat is Auto, this
@@ -91,7 +91,7 @@ public:
 	// that the file was saved in, or tFormat::Invalid if there was a problem. Since Invalid is 0, you can use an 'if'.
 	// The colour-space is also saved with the file. If space is set to auto it uses whatever the current space is in
 	// this object. If not set to auto, it overrides the space for the saved file. Setting it to invalid uses sRGB.
-	tFormat Save(const tString& qoiFile, tFormat, tSpace = tSpace::Auto) const;
+	tFormat Save(const tString& qoiFile, tFormat, tColourProfile = tColourProfile::Auto) const;
 	tFormat Save(const tString& qoiFile, const SaveParams& = SaveParams()) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
@@ -104,9 +104,6 @@ public:
 	// All pixels must be opaque (alpha = 255) for this to return true.
 	bool IsOpaque() const;
 
-	tSpace GetColourSpace() const																						{ return ColourSpace; }
-	void SetColourSpace(tSpace space)																					{ ColourSpace = space; }
-
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageQOI object is
 	// invalid afterwards.
 	tPixel4b* StealPixels();
@@ -116,12 +113,15 @@ public:
 	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
 	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 
+	tColourProfile GetColourProfileSrc() const override																	{ return IsValid() ?  ColourProfileSrc : tColourProfile::Invalid; }
+	tColourProfile GetColourProfile() const override																	{ return IsValid() ? tColourProfile::sRGB : tColourProfile::Invalid; }
+
 private:
-	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
-	tSpace ColourSpace			= tSpace::Invalid;
-	int Width					= 0;
-	int Height					= 0;
-	tPixel4b* Pixels			= nullptr;
+	tPixelFormat PixelFormatSrc		= tPixelFormat::Invalid;
+	tColourProfile ColourProfileSrc	= tColourProfile::Unspecified;
+	int Width						= 0;
+	int Height						= 0;
+	tPixel4b* Pixels				= nullptr;
 };
 
 
@@ -130,12 +130,12 @@ private:
 
 inline void tImageQOI::Clear()
 {
-	ColourSpace		= tSpace::Invalid;
-	Width			= 0;
-	Height			= 0;
-	delete[]		Pixels;
-	Pixels			= nullptr;
-	PixelFormatSrc	= tPixelFormat::Invalid;
+	ColourProfileSrc	= tColourProfile::Invalid;
+	Width				= 0;
+	Height				= 0;
+	delete[]			Pixels;
+	Pixels				= nullptr;
+	PixelFormatSrc		= tPixelFormat::Invalid;
 }
 
 
