@@ -68,14 +68,6 @@ public:
 		Auto		// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.
 	};
 
-	enum class tSpace
-	{
-		Invalid,
-		sRGB,		// sRGB (RGB in sRGB and A linear).
-		Linear,		// RGB(A) all linear.
-		Auto		// Save function will use the currently loaded space.
-	};
-
 	struct SaveParams
 	{
 		SaveParams()																									{ Reset(); }
