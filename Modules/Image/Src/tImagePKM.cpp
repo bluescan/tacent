@@ -270,6 +270,9 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 		}
 	}
 
+	// All images decoded. Can now set the object's pixel format. We do _not_ set the PixelFormatSrc here!
+	PixelFormat = tPixelFormat::R8G8B8A8;
+
 	// Give decoded pixelData to layer.
 	tAssert(!Layer);
 	Layer = new tLayer(PixelFormat, width, height, (uint8*)decoded4b, true);
@@ -284,9 +287,6 @@ bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParam
 		delete[] Layer->Data;
 		Layer->Data = reversedRowData;
 	}
-
-	// All images decoded. Can now set the object's pixel format. We do _not_ set the PixelFormatSrc here!
-	PixelFormat = tPixelFormat::R8G8B8A8;
 
 	// Maybe update the current colour profile.
 	if (params.Flags & LoadFlag_SRGBCompression)  ColourProfile = tColourProfile::sRGB;
