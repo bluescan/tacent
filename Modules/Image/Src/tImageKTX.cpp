@@ -754,19 +754,30 @@ bool tImageKTX::Load(const tString& ktxFile, const LoadParams& loadParams)
 		return false;
 	}
 
+	#if 0
 	int ktxSizeBytes = 0;
 	uint8* ktxData = (uint8*)tSystem::tLoadFile(ktxFile, 0, &ktxSizeBytes);
 	bool success = Load(ktxData, ktxSizeBytes, loadParams);
 	delete[] ktxData;
-
 	return success;
+	#endif
+
+	ktx_error_code_e result = KTX_SUCCESS;
+	ktxTexture* texture = nullptr;
+	result = ktxTexture_CreateFromNamedFile(ktxFile.Chr(), KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &texture);
+	if (!texture || (result != KTX_SUCCESS))
+	{
+		SetStateBit(StateBit::Fatal_CouldNotParseFile);
+		return false;
+	}
+
+	return LoadFromTexture(texture, loadParams);
 }
 
 
 bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& paramsIn)
 {
 	Clear();
-	LoadParams params(paramsIn);
 
 	ktx_error_code_e result = KTX_SUCCESS;
 	ktxTexture* texture = nullptr;
@@ -776,6 +787,16 @@ bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& p
 		SetStateBit(StateBit::Fatal_CouldNotParseFile);
 		return false;
 	}
+
+	return LoadFromTexture(texture, paramsIn);
+}
+
+
+bool tImageKTX::LoadFromTexture(ktxTexture* texture, const LoadParams& paramsIn)
+{
+	tAssert(texture);
+	LoadParams params(paramsIn);
+	ktx_error_code_e result = KTX_SUCCESS;
 
 	NumImages			= texture->numFaces;		// Number of faces. 1 or 6 for cubemaps.
 	int numLayers		= texture->numLayers;		// Number of array layers. I believe this will be > 1 for 3D textures that are made of an array of layers.

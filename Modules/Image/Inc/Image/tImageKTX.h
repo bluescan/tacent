@@ -19,6 +19,7 @@
 #include <Image/tPixelFormat.h>
 #include <Image/tLayer.h>
 #include <Image/tBaseImage.h>
+struct ktxTexture;
 namespace tImage
 {
 
@@ -212,6 +213,7 @@ public:
 	tString Filename;
 
 private:
+	bool LoadFromTexture(ktxTexture* texture, const LoadParams& paramsIn);
 	void SetStateBit(StateBit state)		{ States |= 1 << int(state); }
 
 	// The states are bits in this States member.
