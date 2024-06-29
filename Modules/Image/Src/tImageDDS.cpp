@@ -1538,6 +1538,7 @@ bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& pa
 	if (reverseRowOrderRequested && !RowReversalOperationPerformed && didRowReversalAfterDecode)
 		RowReversalOperationPerformed = true;
 
+	// Maybe update the current colour profile.
 	if (params.Flags & LoadFlag_SRGBCompression)  ColourProfile = tColourProfile::sRGB;
 	if (params.Flags & LoadFlag_GammaCompression) ColourProfile = tColourProfile::gRGB;
 

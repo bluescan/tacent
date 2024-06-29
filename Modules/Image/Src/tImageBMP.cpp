@@ -171,6 +171,10 @@ bool tImageBMP::Load(const tString& bmpFile)
 		delete[] Pixels;
 		Pixels = newPixels;
 	}
+
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;
+	ColourProfile		= tColourProfile::sRGB;
 	
 	return true;
 }

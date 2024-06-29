@@ -121,12 +121,16 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 	tPixelFormat format = tASTC::GetFormatFromBlockDimensions(blockW, blockH);
 	if (!tIsASTCFormat(format))
 		return false;
-
 	PixelFormat = format;
 	PixelFormatSrc = format;
+
 	const uint8* astcData = astcInMemory + sizeof(tASTC::Header);
 	int astcDataSize = numBytes - sizeof(tASTC::Header);
 	tAssert(!Layer);
+
+	// Update the colour profiles.
+	ColourProfileSrc	= (params.Profile != tColourProfile::Unspecified) ? params.Profile : tColourProfile::sRGB;
+	ColourProfile		= (params.Profile != tColourProfile::Unspecified) ? params.Profile : tColourProfile::sRGB;
 
 	// If we were not asked to decode we just get the data over to the Layer and we're done.
 	if (!(params.Flags & LoadFlag_Decode))
@@ -172,6 +176,10 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 		}
 	}
 
+	// We're decoded. Need to update the current colour profile.
+	if (flagSRGB) ColourProfile = tColourProfile::sRGB;
+	if (flagGama) ColourProfile = tColourProfile::gRGB;
+
 	// Converts to RGBA32 into the decoded4b array. Cleans up the float buffer.
 	tAssert(!decoded4b);
 	decoded4b = new tColour4b[width*height];
@@ -194,8 +202,9 @@ bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams&
 		Layer->Data = reversedRowData;
 	}
 
-	// Finally update the current pixel format -- but not the source format.
+	// Update the current pixel format -- but not the source format.
 	PixelFormat = tPixelFormat::R8G8B8A8;
+
 	tAssert(IsValid());
 	return true;
 }

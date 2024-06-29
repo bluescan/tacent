@@ -68,14 +68,11 @@ bool tImageAPNG::Load(const tString& apngFile)
 	if (result < 0)
 		return false;
 
-	// Now we load and populate the frames. @todo Ideally we would get this from load_apng.
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
-	PixelFormat = tPixelFormat::R8G8B8A8;
+	// Now we load and populate the frames.
 	for (int f = 0; f < frames.size(); f++)
 	{
 		APngDis::Image& srcFrame = frames[f];
 		tFrame* newFrame = new tFrame;
-		newFrame->PixelFormatSrc = tPixelFormat::R8G8B8A8;
 		int width = srcFrame.w;
 		int height = srcFrame.h;
 		newFrame->Width = width;
@@ -108,12 +105,19 @@ bool tImageAPNG::Load(const tString& apngFile)
 		frames[f].free();
 	frames.clear();
 
+	PixelFormatSrc		= tPixelFormat::R8G8B8A8;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+
+	// Assume colour profile is sRGB for source and current.
+	ColourProfileSrc	= tColourProfile::sRGB;
+	ColourProfile		= tColourProfile::sRGB;
+
 	if (IsOpaque())
-	{
 		PixelFormatSrc = tPixelFormat::R8G8B8;
-		for (tFrame* frame = Frames.Head(); frame; frame = frame->Next())
-			frame->PixelFormatSrc = PixelFormatSrc;
-	}
+
+	// Set every frame's source pixel format.
+	for (tFrame* frame = Frames.Head(); frame; frame = frame->Next())
+		frame->PixelFormatSrc = PixelFormatSrc;
 
 	return true;
 }

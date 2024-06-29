@@ -166,6 +166,9 @@ bool tImageGIF::Load(const uint8* gifFileInMemory, int numBytes)
 		case 256:	PixelFormatSrc = tPixelFormat::PAL8BIT; break;
 	}
 
+	// GIFs are nearly always ready for display on a computer screen and so are sRGB.
+	ColourProfileSrc	= tColourProfile::sRGB;
+	ColourProfile		= tColourProfile::sRGB;
 	return true;
 }
 
