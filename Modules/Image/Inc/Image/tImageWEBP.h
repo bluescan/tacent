@@ -47,6 +47,7 @@ public:
 
 	// Clears the current tImageWEBP before loading. If false returned object is invalid.
 	bool Load(const tString& webpFile);
+	bool Load(const uint8* webpFileInMemory, int numBytes);
 	
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
@@ -101,9 +102,6 @@ public:
 	// Returns a pointer to the frame, but it's not yours to delete. This object still owns it.
 	tFrame* GetFrame(int frameNum);
 
-	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
-	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
-
 	tList<tFrame> Frames;
 
 	// The background colour of webp files defaults to white only because that is what popular browsers default to.
@@ -113,8 +111,6 @@ public:
 
 private:
 	bool CopyRegion(tPixel4b* dst, int dstW, int dstH, tPixel4b* src, int srcW, int srcH, int offsetX, int offsetY, bool blend);
-
-	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 };
 
 
@@ -153,10 +149,11 @@ inline tFrame* tImage::tImageWEBP::GetFrame(int frameNum)
 
 inline void tImageWEBP::Clear()
 {
-	PixelFormatSrc = tPixelFormat::Invalid;
 	while (tFrame* frame = Frames.Remove())
 		delete frame;
 	BackgroundColour = tColour4b::white;	
+
+	tBaseImage::Clear();
 }
 
 

@@ -38,6 +38,18 @@ bool tImageWEBP::Load(const tString& webpFile)
 
 	int numBytes = 0;
 	uint8* webpFileInMemory = tLoadFile(webpFile, nullptr, &numBytes);
+	bool success = Load(webpFileInMemory, numBytes);
+	delete[] webpFileInMemory;
+
+	return success;
+}
+
+
+bool tImageWEBP::Load(const uint8* webpFileInMemory, int numBytes)
+{
+	Clear();
+	if ((numBytes <= 0) || !webpFileInMemory)
+		return false;
 
 	// Now we load and populate the frames.
 	WebPData webpData;
@@ -53,7 +65,6 @@ bool tImageWEBP::Load(const tString& webpFile)
 	if ((canvasWidth <= 0) || (canvasHeight <= 0) || (numFrames <= 0))
 	{
 		WebPDemuxDelete(demux);
-		delete[] webpFileInMemory;
 		return false;
 	}
 
@@ -75,7 +86,7 @@ bool tImageWEBP::Load(const tString& webpFile)
 		canvas[p] = BackgroundColour;
 
 	// Iterate over all frames.
-	PixelFormatSrc = tPixelFormat::R8G8B8;
+	tPixelFormat srcFormat = tPixelFormat::R8G8B8;
 	WebPIterator iter;
 	if (WebPDemuxGetFrame(demux, 1, &iter))
 	{
@@ -114,8 +125,10 @@ bool tImageWEBP::Load(const tString& webpFile)
 			// All frames in tacent are canvas-sized. We copy the current canvas into it.
 			tFrame* newFrame = new tFrame;
 			newFrame->PixelFormatSrc = iter.has_alpha ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
+
+			// If any frame has alpha we set the main src format to have alpha.
 			if (iter.has_alpha)
-				PixelFormatSrc = tPixelFormat::R8G8B8A8;
+				srcFormat = tPixelFormat::R8G8B8A8;
 			newFrame->Width = canvasWidth;
 			newFrame->Height = canvasHeight;
 			newFrame->Pixels = new tPixel4b[newFrame->Width * newFrame->Height];
@@ -148,9 +161,17 @@ bool tImageWEBP::Load(const tString& webpFile)
 
 	delete[] canvas;
 	WebPDemuxDelete(demux);
-	delete[] webpFileInMemory;
+	if (Frames.GetNumItems() <= 0)
+		return false;
 
-	return (Frames.GetNumItems() > 0);
+	PixelFormatSrc		= srcFormat;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+
+	// WEBP files are assumed to be in sRGB.
+	ColourProfileSrc	= tColourProfile::sRGB;
+	ColourProfile		= tColourProfile::sRGB;
+
+	return true;
 }
 
 
@@ -206,7 +227,12 @@ bool tImageWEBP::Set(tList<tFrame>& srcFrames, bool stealFrames)
 	if (srcFrames.GetNumItems() <= 0)
 		return false;
 
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	// This assumes the srcFrames all have the same format.
+	PixelFormatSrc		= srcFrames.Head()->PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume srcFrames must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
+
 	if (stealFrames)
 	{
 		while (tFrame* frame = srcFrames.Remove())
@@ -234,7 +260,12 @@ bool tImageWEBP::Set(tPixel4b* pixels, int width, int height, bool steal)
 	else
 		frame->Set(pixels, width, height);
 	Frames.Append(frame);
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+
+	PixelFormatSrc		= tPixelFormat::R8G8B8A8;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume pixels must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
+
 	return true;
 }
 
@@ -245,11 +276,16 @@ bool tImageWEBP::Set(tFrame* frame, bool steal)
 	if (!frame || !frame->IsValid())
 		return false;
 
+	PixelFormatSrc		= frame->PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume frame must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
+
 	if (steal)
 		Frames.Append(frame);
 	else
 		Frames.Append(new tFrame(*frame));
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+
 	return true;
 }
 
@@ -260,8 +296,19 @@ bool tImageWEBP::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
+	PixelFormatSrc		= picture.PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	// We don't know colour profile of tPicture.
+
+	// This is worth some explanation. If steal is true the picture becomes invalid and the
+	// 'set' call will steal the stolen pixels. If steal is false GetPixels is called and the
+	// 'set' call will memcpy them out... which makes sure the picture is still valid after and
+	// no-one is sharing the pixel buffer. We don't check the success of 'set' because it must
+	// succeed if picture was valid.
 	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
-	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+	bool success = Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+	tAssert(success);
+	return true;
 }
 
 

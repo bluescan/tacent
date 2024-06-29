@@ -52,24 +52,44 @@ public:
 	// possible (again it won't force a decode for, say, ktx2 files).
 	virtual tFrame* GetFrame(bool steal = true)										= 0;
 
-	// After this call no memory will be consumed by the object and it will be invalid.
-	virtual void Clear()															= 0;
+	// After this call no memory will be consumed by the object and it will be invalid. The base version here can be
+	// used just to clear the members in the base class.
+	virtual void Clear()															{ PixelFormatSrc = tPixelFormat::Unspecified; PixelFormat = tPixelFormat::Unspecified; ColourProfileSrc = tColourProfile::Unspecified; ColourProfile = tColourProfile::Unspecified; }
+
 	virtual bool IsValid() const													= 0;
 
-	// Returns the original (src) pixel format of the image.
-	virtual tPixelFormat GetPixelFormatSrc() const									= 0;
+	// Returns the original (source) pixel format of the image. The source may be a file, or a buffer in memory, or some
+	// other object like a picture. This format is only modified if you reload or set an image from new data. Saving to
+	// a file does not modify this.
+	virtual tPixelFormat GetPixelFormatSrc() const									{ return PixelFormatSrc; }
 
-	// Returns the current pixel format of the image. Load paramters may have modified it from the original.
-	virtual tPixelFormat GetPixelFormat() const										= 0;
+	// Returns the current in-memory pixel format of this image object. Load paramters often modify it from the source
+	// pixel format. For example, if you load a DDS and decide to decode, this format will return the decoded format,
+	// often R8G8B8A8. If you decide not to decode, it will match the source format. Another example is loading a
+	// RLE-compressed TGA, it also gets uncompressed to R8G8B8A8. Some tImage classes like tImagePNG support decodeing
+	// to R16G16B16A16, and in the future some might support R32G32B32A32f for the decompressed/generic HDR format.
+	virtual tPixelFormat GetPixelFormat() const										{ return PixelFormat; }
 
-	// Returns the original (src) colour profile of the image.
-	virtual tColourProfile GetColourProfileSrc() const								{ return tColourProfile::Unspecified; }
+	// Returns the original (source) colour profile of the image. See comment for GetPixelFormatSrc. It is worth noting
+	// that many image types do not store colour-space information at all, in which case the ColourProfile members will
+	// remain unspecified.
+	virtual tColourProfile GetColourProfileSrc() const								{ return ColourProfileSrc; }
 
-	// Returns the current colour profile of the image. Load paramters may have modified it from the original.
-	virtual tColourProfile GetColourProfile() const									{ return tColourProfile::Unspecified; }
+	// Returns the current colour profile of the pixels in this image object. Load paramters often modify it from the
+	// source profile. For example loading a linear-colour-space HDR file will likely decode it into sRGB for display
+	// purposes (if you asked it to do so with load parameters).
+	virtual tColourProfile GetColourProfile() const									{ return ColourProfile; }
 
 	virtual tAlphaMode GetAlphaMode() const											{ return tAlphaMode::Unspecified; }
 	virtual tChannelType GetChannelType() const										{ return tChannelType::Unspecified; }
+
+protected:
+
+	// Pretty sure all tImageXXX classes will find these useful.
+	tPixelFormat PixelFormatSrc														= tPixelFormat::Unspecified;
+	tPixelFormat PixelFormat														= tPixelFormat::Unspecified;
+	tColourProfile ColourProfileSrc													= tColourProfile::Unspecified;
+	tColourProfile ColourProfile													= tColourProfile::Unspecified;
 };
 
 

@@ -879,6 +879,7 @@ tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, const LoadParam
 
 void tImageDDS::Clear()
 {
+	tBaseImage::Clear();
 	for (int image = 0; image < NumImages; image++)
 	{
 		for (int layer = 0; layer < NumMipmapLayers; layer++)
@@ -889,10 +890,6 @@ void tImageDDS::Clear()
 	}
 
 	States							= 0;	// Image will be invalid now since Valid state not set.
-	PixelFormat						= tPixelFormat::Invalid;
-	PixelFormatSrc					= tPixelFormat::Invalid;
-	ColourProfile					= tColourProfile::Unspecified;
-	ColourProfileSrc				= tColourProfile::Unspecified;
 	AlphaMode						= tAlphaMode::Unspecified;
 	ChannelType						= tChannelType::Unspecified;
 	IsCubeMap						= false;
@@ -910,10 +907,6 @@ bool tImageDDS::Set(tPixel4b* pixels, int width, int height, bool steal)
 		return false;
 
 	Layers[0][0]					= new tLayer(tPixelFormat::R8G8B8A8, width, height, (uint8*)pixels, steal);
-	PixelFormat						= tPixelFormat::R8G8B8A8;
-	PixelFormatSrc					= tPixelFormat::R8G8B8A8;
-	ColourProfile					= tColourProfile::sRGB;
-	ColourProfileSrc				= tColourProfile::sRGB;
 	AlphaMode						= tAlphaMode::Normal;
 	ChannelType						= tChannelType::UNORM;
 	IsCubeMap						= false;
@@ -921,6 +914,11 @@ bool tImageDDS::Set(tPixel4b* pixels, int width, int height, bool steal)
 	RowReversalOperationPerformed	= false;
 	NumImages						= 1;
 	NumMipmapLayers					= 1;
+
+	PixelFormatSrc		= tPixelFormat::R8G8B8A8;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume pixels must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
 
 	SetStateBit(StateBit::Valid);
 	return true;
@@ -932,6 +930,11 @@ bool tImageDDS::Set(tFrame* frame, bool steal)
 	Clear();
 	if (!frame || !frame->IsValid())
 		return false;
+
+	PixelFormatSrc		= frame->PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume frame must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
 
 	tPixel4b* pixels = frame->GetPixels(steal);
 	Set(pixels, frame->Width, frame->Height, steal);
@@ -949,8 +952,19 @@ bool tImageDDS::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
+	PixelFormatSrc		= picture.PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	// We don't know colour profile of tPicture.
+
+	// This is worth some explanation. If steal is true the picture becomes invalid and the
+	// 'set' call will steal the stolen pixels. If steal is false GetPixels is called and the
+	// 'set' call will memcpy them out... which makes sure the picture is still valid after and
+	// no-one is sharing the pixel buffer. We don't check the success of 'set' because it must
+	// succeed if picture was valid.
 	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
-	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+	bool success = Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+	tAssert(success);
+	return true;
 }
 
 

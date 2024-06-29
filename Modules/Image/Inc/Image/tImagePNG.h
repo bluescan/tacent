@@ -146,24 +146,7 @@ public:
 	tPixel4b* GetPixels8() const																						{ return Pixels8; }
 	tPixel4s* GetPixels16() const																						{ return Pixels16; }
 
-	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
-	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? PixelFormat : tPixelFormat::Invalid; }
-
-	// Returns the colour profile of the source file that was loaded. This may not match the current if, say, gamma
-	// correction was requested on load.
-	tColourProfile GetColourProfileSrc() const override																	{ return ColourProfileSrc; }
-
-	// Returns the current colour profile.
-	tColourProfile GetColourProfile() const override																	{ return ColourProfile; }
-
 private:
-	tPixelFormat PixelFormatSrc		= tPixelFormat::Invalid;
-	tPixelFormat PixelFormat		= tPixelFormat::Invalid;
-
-	// These are _not_ part of the pixel format in tacent.
-	tColourProfile ColourProfileSrc	= tColourProfile::Unspecified;
-	tColourProfile ColourProfile	= tColourProfile::Unspecified;
-
 	int Width						= 0;
 	int Height						= 0;
 
@@ -178,17 +161,13 @@ private:
 
 inline void tImagePNG::Clear()
 {
-	PixelFormatSrc					= tPixelFormat::Invalid;
-	PixelFormat						= tPixelFormat::Invalid;
-	ColourProfileSrc				= tColourProfile::Unspecified;
-	ColourProfile					= tColourProfile::Unspecified;
-
 	Width = 0;
 	Height = 0;
 	delete[] Pixels8;
 	Pixels8 = nullptr;
 	delete[] Pixels16;
 	Pixels16 = nullptr;
+	tBaseImage::Clear();
 }
 
 

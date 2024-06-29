@@ -49,6 +49,9 @@ public:
 	// Clears the current tImageTIFF before loading. If false returned object is invalid.
 	bool Load(const tString& tiffFile);
 
+	// @todo No current in-memory loader.
+	// bool Load(const uint8* tiffFileInMemory, int numBytes);
+
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
@@ -109,14 +112,10 @@ public:
 	// Returns a pointer to the frame, but it's not yours to delete. This object still owns it.
 	tFrame* GetFrame(int frameNum);
 
-	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
-	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
-
 private:
 	int ReadSoftwarePageDuration(TIFF*) const;
 	bool WriteSoftwarePageDuration(TIFF*, int milliseconds) const;
 
-	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 	tList<tFrame> Frames;
 };
 
@@ -159,7 +158,7 @@ inline void tImageTIFF::Clear()
 	while (tFrame* frame = Frames.Remove())
 		delete frame;
 
-	PixelFormatSrc = tPixelFormat::Invalid;
+	tBaseImage::Clear();
 }
 
 

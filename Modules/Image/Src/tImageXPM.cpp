@@ -59,7 +59,12 @@ bool tImageXPM::Load(const uint8* xpmFileInMemory, int numBytes)
 	{
 		Pixels[p] = tPixel4b::blue;
 	}
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc 		= tPixelFormat::R8G8B8A8;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+
+	// XPM files are assumed to be in sRGB.
+	ColourProfileSrc	= tColourProfile::sRGB;
+	ColourProfile		= tColourProfile::sRGB;
 
 	return true;
 }
@@ -83,7 +88,11 @@ bool tImageXPM::Set(tPixel4b* pixels, int width, int height, bool steal)
 		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4b));
 	}
 
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc		= tPixelFormat::R8G8B8A8;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume pixels must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
+
 	return true;
 }
 

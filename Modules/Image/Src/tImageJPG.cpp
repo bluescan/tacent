@@ -28,7 +28,6 @@ namespace tImage
 
 void tImageJPG::Clear()
 {
-	PixelFormatSrc = tPixelFormat::Invalid;
 	Width = 0;
 	Height = 0;
 	delete[] Pixels;
@@ -36,6 +35,8 @@ void tImageJPG::Clear()
 	if (MemImage) tjFree(MemImage);
 	MemImage = nullptr;
 	MemImageSize = 0;
+
+	tBaseImage::Clear();
 }
 
 
@@ -128,7 +129,6 @@ bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, const LoadParam
 		Clear();
 		return false;
 	}
-	PixelFormatSrc = tPixelFormat::R8G8B8;
 
 	// The flips and rotates below do not clear the pixel format.
 	if ((params.Flags & LoadFlag_ExifOrient))
@@ -176,6 +176,13 @@ bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, const LoadParam
 		}
 	}
 
+	PixelFormatSrc = tPixelFormat::R8G8B8;
+	PixelFormat = tPixelFormat::R8G8B8A8;
+
+	// JPG file are assumed to be in sRGB.
+	ColourProfileSrc = tColourProfile::sRGB;
+	ColourProfile = tColourProfile::sRGB;
+
 	return true;
 }
 
@@ -198,7 +205,11 @@ bool tImageJPG::Set(tPixel4b* pixels, int width, int height, bool steal)
 		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4b));
 	}
 
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc		= tPixelFormat::R8G8B8A8;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume pixels must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
+
 	return true;
 }
 
@@ -209,10 +220,16 @@ bool tImageJPG::Set(tFrame* frame, bool steal)
 	if (!frame || !frame->IsValid())
 		return false;
 
+	PixelFormatSrc		= frame->PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume frame must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
+
 	Set(frame->GetPixels(steal), frame->Width, frame->Height, steal);
 	if (steal)
 		delete frame;
 
+	// We don't know the colour space of the pixels.
 	return true;
 }
 
@@ -223,8 +240,19 @@ bool tImageJPG::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
+	PixelFormatSrc		= picture.PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	// We don't know colour profile of tPicture.
+
+	// This is worth some explanation. If steal is true the picture becomes invalid and the
+	// 'set' call will steal the stolen pixels. If steal is false GetPixels is called and the
+	// 'set' call will memcpy them out... which makes sure the picture is still valid after and
+	// no-one is sharing the pixel buffer. We don't check the success of 'set' because it must
+	// succeed if picture was valid.
 	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
-	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+	bool success = Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+	tAssert(success);
+	return true;
 }
 
 

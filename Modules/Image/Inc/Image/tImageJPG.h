@@ -132,14 +132,11 @@ public:
 	bool LosslessTransform(Transform, bool allowImperfect = true);
 
 	// After this call you are the owner of the pixels and must eventually delete[] them. This tImageJPG object is
-	// invalid afterwards.
+	// invalid afterwards. The memory image of the JPG, if present, will still be present after. This means the object
+	// is still valid and can be losslessly transformed and saved to disk if desired.
 	tPixel4b* StealPixels();
 	tFrame* GetFrame(bool steal = true) override;
 	tPixel4b* GetPixels() const																							{ return Pixels; }
-	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
-	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
-	tColourProfile GetColourProfileSrc() const override																	{ return IsValid() ? tColourProfile::sRGB : tColourProfile::Unspecified; }
-	tColourProfile GetColourProfile() const override																	{ return GetColourProfileSrc(); }
 
 	// A place to store EXIF and XMP metadata. JPeg files often contain this metadata. This field is not populated if
 	// NoDecompress flag was used during load.
@@ -154,7 +151,6 @@ private:
 	void Rotate90(bool antiClockWise);
 	void Flip(bool horizontal);
 
-	tPixelFormat PixelFormatSrc		= tPixelFormat::Invalid;
 	int Width						= 0;
 	int Height						= 0;
 	tPixel4b* Pixels				= nullptr;

@@ -26,10 +26,10 @@
 // depend on LibPNG, so we are keeping LibPNG around until SPNG supports animated PNGs. This is apparently work in
 // progress as of 2024.02.06.
 #define USE_SPNG_LIBRARY
-#ifndef USE_SPNG_LIBRARY
-#include "png.h"
-#else
+#ifdef USE_SPNG_LIBRARY
 #include "spng.h"
+#else
+#include "png.h"
 #endif
 
 #include "Image/tImagePNG.h"
@@ -137,30 +137,22 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 	if (pngImage.format == PNG_FORMAT_RGBA)
 	{
 		Pixels8 = new tPixel4b[numPixels];
-		if (params.Flags & LoadFlag_ReverseRowOrder)
-		{
-			int bytesPerRow = Width*sizeof(tPixel4b);
-			for (int y = Height-1; y >= 0; y--)
-				tStd::tMemcpy((uint8*)Pixels8 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
-		}
-		else
-		{
-			tStd::tMemcpy((uint8*)Pixels8, rawPixels, rawPixelsSize);
-		}
+		int bytesPerRow = Width*sizeof(tPixel4b);
+		for (int y = Height-1; y >= 0; y--)
+			tStd::tMemcpy((uint8*)Pixels8 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
+
+		// For no reversal we would just do this:
+		// tStd::tMemcpy((uint8*)Pixels8, rawPixels, rawPixelsSize);
 	}
 	else
 	{
 		Pixels16 = new tPixel4s[numPixels];
-		if (params.Flags & LoadFlag_ReverseRowOrder)
-		{
-			int bytesPerRow = Width*sizeof(tPixel4s);
-			for (int y = Height-1; y >= 0; y--)
-				tStd::tMemcpy((uint8*)Pixels16 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
-		}
-		else
-		{
-			tStd::tMemcpy((uint8*)Pixels16, rawPixels, rawPixelsSize);
-		}
+		int bytesPerRow = Width*sizeof(tPixel4s);
+		for (int y = Height-1; y >= 0; y--)
+			tStd::tMemcpy((uint8*)Pixels16 + ((Height-1)-y)*bytesPerRow, rawPixels + y*bytesPerRow, bytesPerRow);
+
+		// For no reversal we would just do this:
+		// tStd::tMemcpy((uint8*)Pixels16, rawPixels, rawPixelsSize);
 	}
 	png_image_free(&pngImage);
 	delete[] rawPixels;
@@ -401,7 +393,6 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 
 	if (params.Flags & LoadFlag_SRGBCompression)  ColourProfile = tColourProfile::sRGB;
 	if (params.Flags & LoadFlag_GammaCompression) ColourProfile = tColourProfile::gRGB;
-
 	return true;
 }
 #endif
@@ -426,9 +417,9 @@ bool tImagePNG::Set(tPixel4b* pixels, int width, int height, bool steal)
 	}
 
 	PixelFormatSrc		= tPixelFormat::R8G8B8A8;
-	PixelFormat			= PixelFormatSrc;
-	ColourProfileSrc	= tColourProfile::sRGB;
-	ColourProfile		= ColourProfileSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume 4-byte pixels must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
 
 	return true;
 }
@@ -453,9 +444,9 @@ bool tImagePNG::Set(tPixel4s* pixels, int width, int height, bool steal)
 	}
 
 	PixelFormatSrc		= tPixelFormat::R16G16B16A16;
-	PixelFormat			= PixelFormatSrc;
-	ColourProfileSrc	= tColourProfile::lRGB;
-	ColourProfile		= ColourProfileSrc;
+	PixelFormat			= tPixelFormat::R16G16B16A16;
+	ColourProfileSrc	= tColourProfile::HDRa;		// We assume 4-short pixels must be HDRa.
+	ColourProfile		= tColourProfile::HDRa;
 
 	return true;
 }
@@ -466,6 +457,11 @@ bool tImagePNG::Set(tFrame* frame, bool steal)
 	Clear();
 	if (!frame || !frame->IsValid())
 		return false;
+
+	PixelFormatSrc		= frame->PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume frame must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
 
 	Set(frame->GetPixels(steal), frame->Width, frame->Height, steal);
 	if (steal)
@@ -481,8 +477,19 @@ bool tImagePNG::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
+	PixelFormatSrc		= picture.PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	// We don't know colour profile of tPicture.
+
+	// This is worth some explanation. If steal is true the picture becomes invalid and the
+	// 'set' call will steal the stolen pixels. If steal is false GetPixels is called and the
+	// 'set' call will memcpy them out... which makes sure the picture is still valid after and
+	// no-one is sharing the pixel buffer. We don't check the success of 'set' because it must
+	// succeed if picture was valid.
 	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
-	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+	bool success = Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+	tAssert(success);
+	return true;
 }
 
 

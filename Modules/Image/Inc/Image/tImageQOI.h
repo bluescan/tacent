@@ -102,15 +102,7 @@ public:
 	tFrame* GetFrame(bool steal = true) override;
 	tPixel4b* GetPixels() const																							{ return Pixels; }
 
-	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
-	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
-
-	tColourProfile GetColourProfileSrc() const override																	{ return IsValid() ?  ColourProfileSrc : tColourProfile::Invalid; }
-	tColourProfile GetColourProfile() const override																	{ return IsValid() ? tColourProfile::sRGB : tColourProfile::Invalid; }
-
 private:
-	tPixelFormat PixelFormatSrc		= tPixelFormat::Invalid;
-	tColourProfile ColourProfileSrc	= tColourProfile::Unspecified;
 	int Width						= 0;
 	int Height						= 0;
 	tPixel4b* Pixels				= nullptr;
@@ -122,12 +114,12 @@ private:
 
 inline void tImageQOI::Clear()
 {
-	ColourProfileSrc	= tColourProfile::Invalid;
 	Width				= 0;
 	Height				= 0;
 	delete[]			Pixels;
 	Pixels				= nullptr;
-	PixelFormatSrc		= tPixelFormat::Invalid;
+
+	tBaseImage::Clear();
 }
 
 

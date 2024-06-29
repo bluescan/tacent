@@ -60,6 +60,9 @@ public:
 	// Clears the current tImageEXR before loading. If false returned object is invalid.
 	bool Load(const tString& exrFile, const LoadParams& = LoadParams());
 
+	// @todo No current in-memory loader.
+	// bool Load(const uint8* exrFileInMemory, int numBytes, const LoadParams& = LoadParams());
+
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
@@ -92,11 +95,7 @@ public:
 	// Returns a pointer to the frame, but it's not yours to delete. This object still owns it.
 	tFrame* GetFrame(int frameNum);
 
-	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
-	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
-
 private:
-	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 	tList<tFrame> Frames;
 };
 
@@ -159,7 +158,7 @@ inline void tImageEXR::Clear()
 	while (tFrame* frame = Frames.Remove())
 		delete frame;
 
-	PixelFormatSrc = tPixelFormat::Invalid;
+	tBaseImage::Clear();
 }
 
 

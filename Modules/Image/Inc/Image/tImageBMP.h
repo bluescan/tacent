@@ -65,6 +65,9 @@ public:
 	// indexed, and run-length encoded RLE4 and RLE8. Returns success. If false returned, object is invalid.
 	bool Load(const tString& bmpFile);
 
+	// @todo No current in-memory loader.
+	// bool Load(const uint8* bmpFileInMemory, int numBytes);
+
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
 	bool Set(tPixel4b* pixels, int width, int height, bool steal = false) override;
@@ -113,11 +116,8 @@ public:
 	tPixel4b* StealPixels();
 	tFrame* GetFrame(bool steal = true) override;
 	tPixel4b* GetPixels() const																							{ return Pixels; }
-	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
-	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
 
 private:
-	tPixelFormat PixelFormatSrc		= tPixelFormat::Invalid;
 	const uint16 FourCC				= 0x4D42;
 
 	#pragma pack(push, r1, 1)
@@ -174,11 +174,11 @@ private:
 
 inline void tImageBMP::Clear()
 {
+	tBaseImage::Clear();
 	Width = 0;
 	Height = 0;
 	delete[] Pixels;
 	Pixels = nullptr;
-	PixelFormatSrc = tPixelFormat::Invalid;
 }
 
 

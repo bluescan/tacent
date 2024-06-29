@@ -109,6 +109,7 @@ enum class tPixelFormat
 {
 	Invalid					= -1,
 	Auto					= Invalid,
+	Unspecified				= Invalid,
 
 	FirstValid,
 	FirstContiguous			= FirstValid,

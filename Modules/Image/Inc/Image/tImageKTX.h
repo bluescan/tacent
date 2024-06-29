@@ -142,7 +142,7 @@ public:
 	// invalid object. A ktx may fail to load for a number of reasons: Volume textures are not supported, some
 	// pixel-formats may not yet be supported, or inconsistent flags. Returns true on success or conditional-success.
 	bool Load(const tString& ktxFile, const LoadParams& = LoadParams());
-	bool Load(const uint8* ktxMem, int numBytes, const LoadParams& = LoadParams());
+	bool Load(const uint8* ktxFileInMemory, int numBytes, const LoadParams& = LoadParams());
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -208,22 +208,7 @@ public:
 
 	// You do not own the returned pointer.
 	tLayer* GetLayer(int layerNum, int imageNum) const																	{ return Layers[layerNum][imageNum]; }
-
-	// Will return the format the ktx data was in, even if you chose to decode.
-	tPixelFormat GetPixelFormatSrc() const override																		{ return PixelFormatSrc; }
-
-	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the ktx data was in.
-	tPixelFormat GetPixelFormat() const override																		{ return PixelFormat; }
-
-	// Returns the current colour space.
-	tColourProfile GetColourProfile() const override																	{ return ColourProfile; }
-
-	// Returns the colour space of the source file that was loaded. This may not match the current if, say, gamma
-	// correction was requested on load.
-	tColourProfile GetColourProfileSrc() const override																	{ return ColourProfileSrc; }
-
 	tAlphaMode GetAlphaMode() const override																			{ return AlphaMode; }
-
 	tString Filename;
 
 private:
@@ -232,12 +217,6 @@ private:
 	// The states are bits in this States member.
 	uint32 States							= 0;
 
-	tPixelFormat PixelFormatSrc				= tPixelFormat::Invalid;
-	tPixelFormat PixelFormat				= tPixelFormat::Invalid;
-
-	// The colour-space, alpha-mode, and channel-type are _not_ part of the pixel format in tacent.
-	tColourProfile ColourProfileSrc			= tColourProfile::Unspecified;
-	tColourProfile ColourProfile			= tColourProfile::Unspecified;
 	tAlphaMode AlphaMode					= tAlphaMode::Unspecified;
 	tChannelType ChannelType				= tChannelType::Unspecified;
 

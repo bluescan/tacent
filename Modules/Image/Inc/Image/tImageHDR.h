@@ -101,11 +101,6 @@ public:
 	tFrame* GetFrame(bool steal = true) override;
 	tPixel4b* GetPixels() const																							{ return Pixels; }
 
-	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
-	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
-	tColourProfile GetColourProfileSrc() const override																	{ return IsValid() ? ColourProfileSrc : tColourProfile::Unspecified; }
-	tColourProfile GetColourProfile() const override																	{ return GetColourProfileSrc(); }
-
 private:
 	bool LegacyReadRadianceColours(tPixel4b* scanline, int length);		// Older hdr files use this scanline format.
 	bool ReadRadianceColours(tPixel4b* scanline, int length);			// Most hdr files use the new scanline format. This will call the old as necessary.
@@ -116,8 +111,6 @@ private:
 	uint8 GetB()																										{ return *ReadP++; }
 	void UngetB(int v)																									{ *(--ReadP) = v; }
 
-	tPixelFormat PixelFormatSrc	= tPixelFormat::Invalid;
-	tColourProfile ColourProfileSrc = tColourProfile::Unspecified;
 	int Width							= 0;
 	int Height							= 0;
 	tPixel4b* Pixels					= nullptr;
@@ -159,8 +152,7 @@ inline void tImageHDR::Clear()
 	Height = 0;
 	delete[] Pixels;
 	Pixels = nullptr;
-	PixelFormatSrc = tPixelFormat::Invalid;
-	ColourProfileSrc = tColourProfile::Unspecified;
+	tBaseImage::Clear();
 }
 
 

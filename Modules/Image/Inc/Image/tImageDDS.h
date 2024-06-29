@@ -146,7 +146,7 @@ public:
 	// invalid object. A dds may fail to load for a number of reasons: Volume textures are not supported, some
 	// pixel-formats may not yet be supported, or inconsistent flags. Returns true on success or conditional-success.
 	bool Load(const tString& ddsFile, const LoadParams& = LoadParams());
-	bool Load(const uint8* ddsMem, int numBytes, const LoadParams& = LoadParams());
+	bool Load(const uint8* ddsFileInMemory, int numBytes, const LoadParams& = LoadParams());
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -217,19 +217,6 @@ public:
 	// You do not own the returned pointer.
 	tLayer* GetLayer(int layerNum, int imageNum) const																	{ return Layers[layerNum][imageNum]; }
 
-	// Will return the format the dds data was in, even if you chose to decode.
-	tPixelFormat GetPixelFormatSrc() const override																		{ return PixelFormatSrc; }
-
-	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the dds data was in.
-	tPixelFormat GetPixelFormat() const override																		{ return PixelFormat; }
-
-	// Returns the colour space of the source file that was loaded. This may not match the current if, say, gamma
-	// correction was requested on load.
-	tColourProfile GetColourProfileSrc() const override																	{ return ColourProfileSrc; }
-
-	// Returns the current colour space.
-	tColourProfile GetColourProfile() const override																	{ return ColourProfile; }
-
 	tAlphaMode GetAlphaMode() const override																			{ return AlphaMode; }
 	tChannelType GetChannelType() const override																		{ return ChannelType; }
 
@@ -241,12 +228,7 @@ private:
 	// The states are bits in this States member.
 	uint32 States							= 0;
 
-	tPixelFormat PixelFormatSrc				= tPixelFormat::Invalid;
-	tPixelFormat PixelFormat				= tPixelFormat::Invalid;
-
 	// These two _not_ part of the pixel format in tacent.
-	tColourProfile ColourProfileSrc			= tColourProfile::Unspecified;
-	tColourProfile ColourProfile			= tColourProfile::Unspecified;
 	tAlphaMode AlphaMode					= tAlphaMode::Unspecified;
 	tChannelType ChannelType				= tChannelType::Unspecified;
 

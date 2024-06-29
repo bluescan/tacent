@@ -165,7 +165,7 @@ public:
 	// invalid object. A pvr may fail to load for a number of reasons: Some pixel-formats may not yet be supported, or
 	// inconsistent flags. Returns true on success or conditional-success.
 	bool Load(const tString& pvrFile, const LoadParams& = LoadParams());
-	bool Load(const uint8* pvrMem, int numBytes, const LoadParams& = LoadParams());
+	bool Load(const uint8* pvrFileInMemory, int numBytes, const LoadParams& = LoadParams());
 
 	// After a load you can call GetStates() to find out what, if anything, went wrong.
 	uint32 GetStates() const																							{ return States; }
@@ -221,19 +221,6 @@ public:
 	// You do not own the returned pointer.
 	tLayer* GetLayer(int layerNum, int imageNum) const;
 
-	// Will return the format the pvr data was in, even if you chose to decode.
-	tPixelFormat GetPixelFormatSrc() const override																		{ return PixelFormatSrc; }
-
-	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the pvr data was in.
-	tPixelFormat GetPixelFormat() const override																		{ return PixelFormat; }
-
-	// Returns the colour profile of the source file that was loaded. This may not match the current if, say, gamma
-	// correction was requested on load.
-	tColourProfile GetColourProfileSrc() const override																	{ return ColourProfileSrc; }
-
-	// Returns the current colour profile.
-	tColourProfile GetColourProfile() const override																	{ return ColourProfile; }
-
 	tAlphaMode GetAlphaMode() const override																			{ return AlphaMode; }
 	tChannelType GetChannelType() const override																		{ return ChannelType; }
 
@@ -247,15 +234,9 @@ private:
 
 	// The states are bits in this States member.
 	uint32 States							= 0;
-
 	int PVRVersion							= 0;
 
-	tPixelFormat PixelFormatSrc				= tPixelFormat::Invalid;
-	tPixelFormat PixelFormat				= tPixelFormat::Invalid;
-
-	// These four are _not_ part of the pixel format in tacent.
-	tColourProfile ColourProfileSrc			= tColourProfile::Unspecified;
-	tColourProfile ColourProfile			= tColourProfile::Unspecified;
+	// These are _not_ part of the pixel format in tacent.
 	tAlphaMode AlphaMode					= tAlphaMode::Unspecified;
 	tChannelType ChannelType				= tChannelType::Unspecified;
 

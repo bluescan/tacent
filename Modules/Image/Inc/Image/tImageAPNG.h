@@ -48,6 +48,9 @@ public:
 	// Clears the current tImageAPNG before loading. If false returned object is invalid.
 	bool Load(const tString& apngFile);
 
+	// @todo No current in-memory loader.
+	// bool Load(const uint8* apngFileInMemory, int numBytes);
+
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
@@ -119,13 +122,7 @@ public:
 	// better than APngDis, which could be further modified but is unfamiliar code.
 	static bool IsAnimatedPNG(const tString& pngFile);
 
-	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
-	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
-
 	tList<tFrame> Frames;
-
-private:
-	tPixelFormat PixelFormatSrc = tPixelFormat::Invalid;
 };
 
 
@@ -174,10 +171,10 @@ inline tFrame* tImage::tImageAPNG::GetFrame(int frameNum)
 
 inline void tImageAPNG::Clear()
 {
+	tBaseImage::Clear();
+
 	while (tFrame* frame = Frames.Remove())
 		delete frame;
-
-	PixelFormatSrc = tPixelFormat::Invalid;
 }
 
 

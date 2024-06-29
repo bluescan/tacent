@@ -64,6 +64,7 @@ public:
 
 	// Clears the current tImageICO before loading. If false returned object is invalid.
 	bool Load(const tString& icoFile);
+	bool Load(const uint8* icoFileInMemory, int numBytes);
 
 	// This one sets from a supplied pixel array.
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
@@ -95,16 +96,11 @@ public:
 	// Returns a pointer to the frame, but it's not yours to delete. This object still owns it.
 	tFrame* GetFrame(int frameNum);
 
-	// Different frames of an ICO file may have different pixel formats. This function uses bpp as the metric to find
-	// the 'best' one used in all frames.
-	tPixelFormat GetBestSrcPixelFormat() const;
-	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? GetBestSrcPixelFormat() : tPixelFormat::Invalid; }
-	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
-	tColourProfile GetColourProfileSrc() const override																	{ return IsValid() ? tColourProfile::sRGB : tColourProfile::Unspecified; }
-	tColourProfile GetColourProfile() const override																	{ return GetColourProfileSrc(); }
-
 private:
-	bool PopulateFrames(const uint8* buffer, int numBytes);	
+	// Different frames of an ICO file may have different pixel formats. This function uses bpp as the metric to find
+	// the 'best' one used in all frames. It uses this function to set PixelFormatSrc.
+	tPixelFormat GetBestSrcPixelFormat() const;
+
 	tFrame* CreateFrame(const uint8* buffer, int width, int height, int numBytes);
 
 	tList<tFrame> Frames;
@@ -148,6 +144,8 @@ inline void tImageICO::Clear()
 {
 	while (tFrame* frame = Frames.Remove())
 		delete frame;
+
+	tBaseImage::Clear();
 }
 
 

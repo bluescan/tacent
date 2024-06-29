@@ -102,10 +102,66 @@ bool tImageICO::Load(const tString& icoFile)
 
 	int numBytes = 0;
 	uint8* icoFileInMemory = tLoadFile(icoFile, nullptr, &numBytes);
-	bool success = PopulateFrames(icoFileInMemory, numBytes);	
+	bool success = Load(icoFileInMemory, numBytes);	
 	delete[] icoFileInMemory;
 
 	return success;
+}
+
+
+bool tImageICO::Load(const uint8* icoFileInMemory, int numBytes)
+{
+	Clear();
+	IconDir* icoDir = (IconDir*)icoFileInMemory;
+	int iconsCount = icoDir->Count;
+
+	if (icoDir->Reserved != 0)
+		return false;
+		
+	if (icoDir->Type != 1)
+		return false;
+
+	if (iconsCount == 0)
+		return false;
+		
+	if (iconsCount > 20)
+		return false;
+
+	const uint8* cursor = icoFileInMemory;
+	cursor += 6;
+	IconDirEntry* dirEntry = (IconDirEntry*)cursor;
+
+	for (int i = 0; i < iconsCount; i++)
+	{
+		int w = dirEntry->Width;
+		if (w == 0)
+			w = 256;
+			
+		int h = dirEntry->Height;
+		if (h == 0)
+			h = 256;
+			
+		int offset = dirEntry->ImageOffset;
+		if (!offset || (offset >= numBytes))
+			continue;
+			
+		tFrame* newFrame = CreateFrame(icoFileInMemory+offset, w, h, numBytes);
+		if (!newFrame)
+			continue;
+
+		Frames.Append(newFrame);
+		dirEntry++;
+	}
+	if (Frames.IsEmpty())
+		return false;
+
+	PixelFormatSrc = GetBestSrcPixelFormat();
+	PixelFormat = tPixelFormat::R8G8B8A8;
+
+	// From a file image we always assume it was sRGB.
+	ColourProfileSrc = tColourProfile::sRGB;
+	ColourProfile = tColourProfile::sRGB;
+	return true;
 }
 
 
@@ -126,6 +182,11 @@ bool tImage::tImageICO::Set(tList<tFrame>& srcFrames, bool stealFrames)
 			Frames.Append(new tFrame(*frame));
 	}
 
+	PixelFormatSrc		= GetBestSrcPixelFormat();
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume srcFrames must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
+
 	return true;
 }
 
@@ -142,6 +203,12 @@ bool tImageICO::Set(tPixel4b* pixels, int width, int height, bool steal)
 	else
 		frame->Set(pixels, width, height);
 	Frames.Append(frame);
+
+	PixelFormatSrc		= tPixelFormat::R8G8B8A8;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume pixels must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
+
 	return true;
 }
 
@@ -152,10 +219,17 @@ bool tImageICO::Set(tFrame* frame, bool steal)
 	if (!frame || !frame->IsValid())
 		return false;
 
+	PixelFormatSrc = frame->PixelFormatSrc;
+	PixelFormat = tPixelFormat::R8G8B8A8;
 	if (steal)
 		Frames.Append(frame);
 	else
 		Frames.Append(new tFrame(*frame));
+
+	PixelFormatSrc		= frame->PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume frame must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
 
 	return true;
 }
@@ -167,8 +241,19 @@ bool tImageICO::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
+	PixelFormatSrc		= picture.PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	// We don't know colour profile of tPicture.
+
+	// This is worth some explanation. If steal is true the picture becomes invalid and the
+	// 'set' call will steal the stolen pixels. If steal is false GetPixels is called and the
+	// 'set' call will memcpy them out... which makes sure the picture is still valid after and
+	// no-one is sharing the pixel buffer. We don't check the success of 'set' because it must
+	// succeed if picture was valid.
 	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
-	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+	bool success = Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+	tAssert(success);
+	return true;
 }
 
 
@@ -178,53 +263,6 @@ tFrame* tImageICO::GetFrame(bool steal)
 		return nullptr;
 
 	return steal ? Frames.Remove() : new tFrame( *Frames.First() );
-}
-
-
-bool tImageICO::PopulateFrames(const uint8* buffer, int numBytes)
-{
-	IconDir* icoDir = (IconDir*)buffer;
-	int iconsCount = icoDir->Count;
-
-	if (icoDir->Reserved != 0)
-		return false;
-		
-	if (icoDir->Type != 1)
-		return false;
-
-	if (iconsCount == 0)
-		return false;
-		
-	if (iconsCount > 20)
-		return false;
-
-	const uint8* cursor = buffer;
-	cursor += 6;
-	IconDirEntry* dirEntry = (IconDirEntry*)cursor;
-
-	for (int i = 0; i < iconsCount; i++)
-	{
-		int w = dirEntry->Width;
-		if (w == 0)
-			w = 256;
-			
-		int h = dirEntry->Height;
-		if (h == 0)
-			h = 256;
-			
-		int offset = dirEntry->ImageOffset;
-		if (!offset || (offset >= numBytes))
-			continue;
-			
-		tFrame* newFrame = CreateFrame(buffer+offset, w, h, numBytes);
-		if (!newFrame)
-			continue;
-
-		Frames.Append(newFrame);
-		dirEntry++;
-	}
-
-	return !Frames.IsEmpty();
 }
 
 

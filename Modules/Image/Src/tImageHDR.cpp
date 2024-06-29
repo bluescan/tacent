@@ -93,25 +93,6 @@ void tImageHDR::CleanupGammaTables()
 }
 
 
-bool tImageHDR::Load(const tString& hdrFile, const LoadParams& loadParams)
-{
-	Clear();
-
-	if (tSystem::tGetFileType(hdrFile) != tSystem::tFileType::HDR)
-		return false;
-
-	if (!tFileExists(hdrFile))
-		return false;
-
-	int numBytes = 0;
-	uint8* hdrFileInMemory = tLoadFile(hdrFile, nullptr, &numBytes, true);
-	bool success = Load(hdrFileInMemory, numBytes, loadParams);
-	delete[] hdrFileInMemory;
-
-	return success;
-}
-
-
 bool tImageHDR::LegacyReadRadianceColours(tPixel4b* scanline, int len)
 {
 	int  rshift = 0;
@@ -285,6 +266,25 @@ void tImageHDR::AdjustExposure(tPixel4b* scan, int len, int adjust)
 }
 
 
+bool tImageHDR::Load(const tString& hdrFile, const LoadParams& loadParams)
+{
+	Clear();
+
+	if (tSystem::tGetFileType(hdrFile) != tSystem::tFileType::HDR)
+		return false;
+
+	if (!tFileExists(hdrFile))
+		return false;
+
+	int numBytes = 0;
+	uint8* hdrFileInMemory = tLoadFile(hdrFile, nullptr, &numBytes, true);
+	bool success = Load(hdrFileInMemory, numBytes, loadParams);
+	delete[] hdrFileInMemory;
+
+	return success;
+}
+
+
 bool tImageHDR::Load(uint8* hdrFileInMemory, int numBytes, const LoadParams& loadParams)
 {
 	Clear();
@@ -335,7 +335,6 @@ bool tImageHDR::Load(uint8* hdrFileInMemory, int numBytes, const LoadParams& loa
 
 	tList<tStringItem> lines;
 	tStd::tExplode(lines, header, '\n');
-
 	// Display the header lines.
 	//	for (tStringItem* headerLine = lines.First(); headerLine; headerLine = headerLine->Next())
 	//		tPrintf("HDR Info: %s\n", headerLine->Chr());
@@ -383,7 +382,9 @@ bool tImageHDR::Load(uint8* hdrFileInMemory, int numBytes, const LoadParams& loa
 	}
 
 	PixelFormatSrc = tPixelFormat::RADIANCE;
-	ColourProfileSrc = tColourProfile::HDRa;
+	PixelFormat = tPixelFormat::R8G8B8A8;
+	ColourProfileSrc = tColourProfile::HDRa;	// The source pixels are HDR.
+	ColourProfile = tColourProfile::sRGB;		// The decoded pixels are in sRGB space.
 	return true;
 }
 
@@ -406,8 +407,11 @@ bool tImageHDR::Set(tPixel4b* pixels, int width, int height, bool steal)
 		tStd::tMemcpy(Pixels, pixels, Width*Height*sizeof(tPixel4b));
 	}
 
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
-	ColourProfileSrc = tColourProfile::Unspecified;
+	PixelFormatSrc		= tPixelFormat::R8G8B8A8;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume pixels must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
+
 	return true;
 }
 
@@ -417,6 +421,11 @@ bool tImageHDR::Set(tFrame* frame, bool steal)
 	Clear();
 	if (!frame || !frame->IsValid())
 		return false;
+	
+	PixelFormatSrc		= frame->PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume frame must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
 
 	Set(frame->GetPixels(steal), frame->Width, frame->Height, steal);
 	if (steal)
@@ -432,8 +441,19 @@ bool tImageHDR::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
+	PixelFormatSrc		= picture.PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	// We don't know colour profile of tPicture.
+
+	// This is worth some explanation. If steal is true the picture becomes invalid and the
+	// 'set' call will steal the stolen pixels. If steal is false GetPixels is called and the
+	// 'set' call will memcpy them out... which makes sure the picture is still valid after and
+	// no-one is sharing the pixel buffer. We don't check the success of 'set' because it must
+	// succeed if picture was valid.
 	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
-	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+	bool success = Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+	tAssert(success);
+	return true;
 }
 
 
@@ -463,8 +483,7 @@ tPixel4b* tImageHDR::StealPixels()
 {
 	tPixel4b* pixels = Pixels;
 	Pixels = nullptr;
-	Width = 0;
-	Height = 0;
+	Clear();
 	return pixels;
 }
 

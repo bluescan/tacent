@@ -128,9 +128,6 @@ public:
 	// Returns a pointer to the frame, but it's not yours to delete. This object still owns it.
 	tFrame* GetFrame(int frameNum);
 
-	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
-	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
-
 private:
 	static void FrameLoadCallbackBridge(void* imgGifRaw, struct GIF_WHDR*);
 	void FrameLoadCallback(struct GIF_WHDR*);
@@ -140,7 +137,6 @@ private:
 	tPixel4b* FrmPict			= nullptr;
 	tPixel4b* FrmPrev			= nullptr;
 
-	tPixelFormat PixelFormatSrc	= tPixelFormat::Invalid;
 	int Width					= 0;
 	int Height					= 0;
 	tList<tFrame> Frames;
@@ -194,7 +190,7 @@ inline void tImageGIF::Clear()
 	while (tFrame* frame = Frames.Remove())
 		delete frame;
 
-	PixelFormatSrc = tPixelFormat::Invalid;
+	tBaseImage::Clear();
 }
 
 

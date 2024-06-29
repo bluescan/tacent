@@ -103,28 +103,7 @@ public:
 	tLayer* GetLayer() const																							{ return Layer; }
 	tFrame* GetFrame(bool steal = true) override;
 
-	// Will return the format the astc data was originally in, even if you chose to decode.
-	tPixelFormat GetPixelFormatSrc() const override																		{ return PixelFormatSrc; }
-
-	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the pkm data is in.
-	tPixelFormat GetPixelFormat() const override																		{ return PixelFormat; }
-
-	// Returns the colour profile of the source file that was loaded. This may not match the current if, say, gamma
-	// correction was requested on load.
-	tColourProfile GetColourProfileSrc() const override																	{ return ColourProfileSrc; }
-
-	// Returns the current colour profile.
-	tColourProfile GetColourProfile() const override																	{ return ColourProfile; }
-
 private:
-	tPixelFormat PixelFormatSrc				= tPixelFormat::Invalid;
-	tPixelFormat PixelFormat				= tPixelFormat::Invalid;
-
-	// The colour-profile is _not_ part of the pixel format in tacent because, well, it doesn't change the format that
-	// the pixels are stored in. It's just how the values are interpreted.
-	tColourProfile ColourProfileSrc			= tColourProfile::Unspecified;
-	tColourProfile ColourProfile			= tColourProfile::Unspecified;
-
 	// We store the data in a tLayer because that's the container we use for pixel data than may be in any format.
 	// The user of tImagePKM is not required to decode, so we can't just use a tPixel array.
 	tLayer* Layer							= nullptr;
@@ -136,12 +115,9 @@ private:
 
 inline void tImagePKM::Clear()
 {
-	PixelFormat								= tPixelFormat::Invalid;
-	PixelFormatSrc							= tPixelFormat::Invalid;
-	ColourProfile							= tColourProfile::Unspecified;
-	ColourProfileSrc						= tColourProfile::Unspecified;
 	delete									Layer;
 	Layer									= nullptr;
+	tBaseImage::Clear();
 }
 
 

@@ -107,16 +107,7 @@ public:
 	tLayer* GetLayer() const																							{ return Layer; }
 	tFrame* GetFrame(bool steal = true) override;
 
-	// Will return the format the astc data was originally in, even if you chose to decode.
-	tPixelFormat GetPixelFormatSrc() const override																		{ return PixelFormatSrc; }
-
-	// Will return R8G8B8A8 if you chose to decode the layers. Otherwise it will be whatever format the astc data is in.
-	tPixelFormat GetPixelFormat() const override																		{ return PixelFormat; }
-
 private:
-	tPixelFormat PixelFormatSrc	= tPixelFormat::Invalid;
-	tPixelFormat PixelFormat	= tPixelFormat::Invalid;
-
 	// We store the data in a tLayer because that's the container we use for pixel data than may be in any format.
 	// The user of tImageASTC is not required to decode, so we can't just use a tPixel array.
 	tLayer* Layer				= nullptr;
@@ -128,8 +119,7 @@ private:
 
 inline void tImageASTC::Clear()
 {
-	PixelFormat					= tPixelFormat::Invalid;
-	PixelFormatSrc				= tPixelFormat::Invalid;
+	tBaseImage::Clear();
 	delete						Layer;
 	Layer						= nullptr;
 }

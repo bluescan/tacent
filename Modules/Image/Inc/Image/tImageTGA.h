@@ -109,15 +109,11 @@ public:
 	tFrame* GetFrame(bool steal = true) override;
 	tPixel4b* GetPixels() const																							{ return Pixels; }
 
-	tPixelFormat GetPixelFormatSrc() const override																		{ return IsValid() ? PixelFormatSrc : tPixelFormat::Invalid; }
-	tPixelFormat GetPixelFormat() const override																		{ return IsValid() ? tPixelFormat::R8G8B8A8 : tPixelFormat::Invalid; }
-
 private:
 	bool SaveUncompressed(const tString& tgaFile, tFormat) const;
 	bool SaveCompressed(const tString& tgaFile, tFormat) const;
 	void ReadColourBytes(tColour4b& dest, const uint8* src, int bitDepth);
 
-	tPixelFormat PixelFormatSrc	= tPixelFormat::Invalid;
 	int Width					= 0;
 	int Height					= 0;
 	tPixel4b* Pixels			= nullptr;
@@ -133,7 +129,8 @@ inline void tImageTGA::Clear()
 	Height = 0;
 	delete[] Pixels;
 	Pixels = nullptr;
-	PixelFormatSrc = tPixelFormat::Invalid;
+
+	tBaseImage::Clear();
 }
 
 

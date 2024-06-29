@@ -275,7 +275,10 @@ bool tImageEXR::Load(const tString& exrFile, const LoadParams& loadParams)
 		Frames.Append(newFrame);
 	}
 
+	PixelFormat = tPixelFormat::R8G8B8A8;
 	PixelFormatSrc = tPixelFormat::OPENEXR;
+	ColourProfile = tColourProfile::sRGB;
+	ColourProfileSrc = tColourProfile::HDRa;
 	return true;
 }
 
@@ -286,7 +289,11 @@ bool tImage::tImageEXR::Set(tList<tFrame>& srcFrames, bool stealFrames)
 	if (srcFrames.GetNumItems() <= 0)
 		return false;
 
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	PixelFormatSrc		= srcFrames.Head()->PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume srcFrames must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
+
 	if (stealFrames)
 	{
 		while (tFrame* frame = srcFrames.Remove())
@@ -314,7 +321,12 @@ bool tImageEXR::Set(tPixel4b* pixels, int width, int height, bool steal)
 	else
 		frame->Set(pixels, width, height);
 	Frames.Append(frame);
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+
+	PixelFormatSrc		= tPixelFormat::R8G8B8A8;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume pixels must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
+
 	return true;
 }
 
@@ -325,11 +337,16 @@ bool tImageEXR::Set(tFrame* frame, bool steal)
 	if (!frame || !frame->IsValid())
 		return false;
 
+	PixelFormatSrc		= frame->PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= tColourProfile::sRGB;		// We assume frame must be sRGB.
+	ColourProfile		= tColourProfile::sRGB;
+
 	if (steal)
 		Frames.Append(frame);
 	else
 		Frames.Append(new tFrame(*frame));
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+
 	return true;
 }
 
@@ -340,8 +357,19 @@ bool tImageEXR::Set(tPicture& picture, bool steal)
 	if (!picture.IsValid())
 		return false;
 
+	PixelFormatSrc		= picture.PixelFormatSrc;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	// We don't know colour profile of tPicture.
+
+	// This is worth some explanation. If steal is true the picture becomes invalid and the
+	// 'set' call will steal the stolen pixels. If steal is false GetPixels is called and the
+	// 'set' call will memcpy them out... which makes sure the picture is still valid after and
+	// no-one is sharing the pixel buffer. We don't check the success of 'set' because it must
+	// succeed if picture was valid.
 	tPixel4b* pixels = steal ? picture.StealPixels() : picture.GetPixels();
-	return Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+	bool success = Set(pixels, picture.GetWidth(), picture.GetHeight(), steal);
+	tAssert(success);
+	return true;
 }
 
 
