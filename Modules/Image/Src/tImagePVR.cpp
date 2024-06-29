@@ -1000,6 +1000,8 @@ bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& pa
 					{
 						int index = LayerIdx(surf, face, mip, slice);
 						tAssert(Layers[index] == nullptr);
+
+						// CreateNewLayer is the workhorse. It may or may not decode depending on params.
 						tLayer* newLayer = CreateNewLayer(params, srcPixelData, numBytes, width, height);
 						if (!newLayer)
 						{

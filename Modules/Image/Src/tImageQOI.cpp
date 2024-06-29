@@ -59,8 +59,10 @@ bool tImageQOI::Load(const uint8* qoiFileInMemory, int numBytes)
 
 	Width				= results.width;	
 	Height				= results.height;
-	ColourProfileSrc	= (results.colorspace == QOI_LINEAR) ? tColourProfile::lRGB : tColourProfile::sRGB;
 	PixelFormatSrc		= (results.channels == 3) ? tPixelFormat::R8G8B8 : tPixelFormat::R8G8B8A8;
+	PixelFormat			= tPixelFormat::R8G8B8A8;
+	ColourProfileSrc	= (results.colorspace == QOI_LINEAR) ? tColourProfile::lRGB : tColourProfile::sRGB;
+	ColourProfile		= ColourProfileSrc;
 	tAssert((Width > 0) && (Height > 0));
 
 	// Reverse rows.
@@ -69,9 +71,6 @@ bool tImageQOI::Load(const uint8* qoiFileInMemory, int numBytes)
 	for (int y = Height-1; y >= 0; y--)
 		tStd::tMemcpy((uint8*)Pixels + ((Height-1)-y)*bytesPerRow, (uint8*)reversedPixels + y*bytesPerRow, bytesPerRow);
 	free(reversedPixels);
-
-	ColourProfile		= ColourProfileSrc;
-	PixelFormat			= tPixelFormat::R8G8B8A8;
 
 	return true;
 }
