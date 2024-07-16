@@ -1,5 +1,28 @@
 Building libktx from Khronos
 
+NEW INSTRUCTIONS
+* Sync the bluescan KTX-Software fork in GitHub to pickup the latest changes from the Khronos official repo.
+* Find the latest TAG in the official repo and duplicate it at the head of the bluescan fork. The TAG must be a full (annotated) version tag.
+* Copy all headers from the fork over the existing tacent LibKTX headers.
+
+WINDOWS
+Open the folder in VSCode and go to the cmake extension settings. Under Cmake: Configure Args add
+-DKTX_FEATURE_STATIC_LIBRARY=ON
+-DASTCENC_ISA_SSE2=ON
+Choose the DEBUG build variant and hit F7
+Choose the RELEASE build variant and hit F7
+Copy the generated libs over to Tacent. You may need to rename the debug lib as it needs the 'd' in it.
+
+LINUX
+Open the folder in VSCode WSL and go to the cmake extension settings. Under Cmake: Configure Args add
+-DKTX_FEATURE_STATIC_LIBRARY=ON
+-DASTCENC_ISA_SSE2=ON
+Choose the RELEASE build variant and hit F7
+Copy the generated lib over to Tacent.
+
+
+OLD INSTRUCTIONS
+
 Windows:
 * Clone the repo from https://github.com/KhronosGroup/KTX-Software
 * You must clone and not download as a zip otherwise it won't grab the version number correctly.
