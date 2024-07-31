@@ -3,7 +3,7 @@
 // Tacent functions and types that are standard across all platforms. Includes global functions like itoa which are not
 // available on some platforms, but are common enough that they should be.
 //
-// Copyright (c) 2004-2006, 2015, 2023 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2023, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -59,6 +59,77 @@ void* tStd::tMemsrch(void* haystack, int haystackNumBytes, void* needle, int nee
 	}
 
 	return nullptr;
+}
+
+
+int tStd::tNstrcmp(const char* a, const char* b)
+{
+	// This implementation of tNstrcmp was written by GitHub user ClangPan.
+	enum class Mode
+	{
+		String,
+		Number
+	};
+	Mode mode = Mode::String;
+
+	while (*a && *b)
+	{
+		if (mode == Mode::String)
+		{
+			char aChar, bChar;
+			while ((aChar = tolower(*a)) && (bChar = tolower(*b))) // We lowercase the chars for proper comparison
+			{
+				// Check if the chars are digits
+				const bool aDigit = isdigit(aChar), bDigit = isdigit(bChar);
+
+				// If both chars are digits, we continue in NUMBER mode
+				if (aDigit && bDigit)
+				{
+					mode = Mode::Number;
+					break;
+				} 
+
+				// If only the left char is a digit, we have a result
+				if (aDigit) return -1;
+
+				// If only the right char is a digit, we have a result
+				if (bDigit) return +1;
+
+				// compute the difference of both characters
+				const int diff = aChar - bChar;
+
+				// If they differ we have a result
+				if (diff != 0) return diff;
+
+				// Otherwise process the next characters
+				++a; ++b;
+			}
+		}
+		else
+		{
+			char *end; // Represents the end of the number string
+
+			// Get the left number
+			unsigned long aInt = strtoul((char*) a, &end, 10);
+			a = end;
+
+			// Get the right number
+			unsigned long bInt = strtoul((char*) b, &end, 10);
+			b = end;
+
+			// if the difference is not equal to zero, we have a comparison result
+			const long diff = aInt - bInt;
+			if (diff != 0) return diff;
+
+			// otherwise we process the next substring in STRING mode
+			mode = Mode::String;
+		}
+	}
+
+	if (*b) return -1;
+	if (*a) return +1;
+
+	return 0;
 }
 
 

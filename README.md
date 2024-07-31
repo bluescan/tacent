@@ -168,6 +168,7 @@ Credits are found directly in the code where appropriate. Here is a list of some
 * Xiaolin Wu for the Wu colour quantizer.
 * Derrick Coetzee for the Scolorq spatial colour quantizer.
 * Khronos Group and Mark Callow for KTX-Software.
+* GitHub user ClangPan for the implementation of tNstrcmp.
 
 
 ### Legal

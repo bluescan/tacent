@@ -53,23 +53,24 @@ inline const void* tMemsrch(const void* haystack, int haystackNumBytes, const vo
 // straight UTF conversions (not null-terminated). String termination is not part of UTF, but it's common to support it.
 // Null-terminated versions of the functions have an 's' appended. The 'c' versions are for dealing with individual
 // codepoints. Note these functions return exactly -1 if a < b, 0 if equal, and 1 if a > b. This is in contrast to the
-// standard strcmp functions that only guarantee returning < 0, 0, or > 0. That is, implementations are free to return
-// either the ASCII difference of the strings or normalize the returns to -1, 0, 1.
+// standard strcmp functions that only guarantee returning < 0, 0, or > 0. That is, standard implementations are free to
+// return either the ASCII difference of the strings or normalize the returns to -1, 0, 1, but it's not helpful as you
+// can't be sure of which choice an implementation may have made.
 const int tCharInvalid																									= 0xFF;
 inline int tStrcmp(const char* a, const char* b)																		{ tAssert(a && b); int r = strcmp(a, b); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
+inline int tStrcmp(const char8_t* a, const char8_t* b)																	{ return tStrcmp((const char*)a, (const char*)b); }
 inline int tStrncmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); int r = strncmp(a, b, n); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
-inline int tStrcmp(const char8_t* a, const char8_t* b)																	{ tAssert(a && b); int r = strcmp((const char*)a, (const char*)b); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
-inline int tStrncmp(const char8_t* a, const char8_t* b, int n)															{ tAssert(a && b && n >= 0); int r = strncmp((const char*)a, (const char*)b, n); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
+inline int tStrncmp(const char8_t* a, const char8_t* b, int n)															{ return tStrncmp((const char*)a, (const char*)b, n); }
 #if defined(PLATFORM_WINDOWS)
 inline int tStricmp(const char* a, const char* b)																		{ tAssert(a && b); int r = stricmp(a, b); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
+inline int tStricmp(const char8_t* a, const char8_t* b)																	{ return tStricmp((const char*)a, (const char*)b); }
 inline int tStrnicmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); int r = strnicmp(a, b, n); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
-inline int tStricmp(const char8_t* a, const char8_t* b)																	{ tAssert(a && b); int r = stricmp((const char*)a, (const char*)b); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
-inline int tStrnicmp(const char8_t* a, const char8_t* b, int n)															{ tAssert(a && b && n >= 0); int r = strnicmp((const char*)a, (const char*)b, n); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
+inline int tStrnicmp(const char8_t* a, const char8_t* b, int n)															{ return tStrnicmp((const char*)a, (const char*)b, n); }
 #else
 inline int tStricmp(const char* a, const char* b)																		{ tAssert(a && b); int r = strcasecmp(a, b); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
+inline int tStricmp(const char8_t* a, const char8_t* b)																	{ return tStricmp((const char*)a, (const char*)b); }
 inline int tStrnicmp(const char* a, const char* b, int n)																{ tAssert(a && b && n >= 0); int r = strncasecmp(a, b, n); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
-inline int tStricmp(const char8_t* a, const char8_t* b)																	{ tAssert(a && b); int r = strcasecmp((const char*)a, (const char*)b); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
-inline int tStrnicmp(const char8_t* a, const char8_t* b, int n)															{ tAssert(a && b && n >= 0); int r = strncasecmp((const char*)a, (const char*)b, n); return (r < 0) ? -1 : ((r > 0) ? 1 : 0); }
+inline int tStrnicmp(const char8_t* a, const char8_t* b, int n)															{ return tStrnicmp((const char*)a, (const char*)b, n); }
 #endif
 
 // These are similar to the above but assume the strings represent filesystem paths and so choose between a case
@@ -79,6 +80,12 @@ int tPstrcmp(const char* a, const char* b);
 int tPstrncmp(const char* a, const char* b, int n);
 int tPstrcmp(const char8_t* a, const char8_t* b);
 int tPstrncmp(const char8_t* a, const char8_t* b, int n);
+
+// These do a 'natural' string compare by treating groups of base 10 digits as separate objects to be compared by
+// numeric value rather than alpha-numerically based on the encoding. This results in strings like "page10" coming
+// after "page2" because 10 > 2.
+int tNstrcmp(const char* a, const char* b);
+inline int tNstrcmp(const char8_t* a, const char8_t* b)																	{ return tNstrcmp((const char*)a, (const char*)b); }
 
 inline int tStrlen(const char* s)																						{ tAssert(s); return int(strlen(s)); }
 inline constexpr int tStrlenCT(const char* s)																			{ return *s ? 1 + tStrlenCT(s + 1) : 0; }
