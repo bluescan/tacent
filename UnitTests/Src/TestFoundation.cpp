@@ -329,7 +329,7 @@ struct BigNode : public NamedLink<BigNode>
 };
 
 
-bool BigSort(const BigNode& lhs, const BigNode& rhs)
+bool BigCompare(const BigNode& lhs, const BigNode& rhs)
 {
 	// Always always comes first.
 	if (lhs.Always)
@@ -380,23 +380,23 @@ tTestUnit(ListExtra)
 
 	// Goes in at head since it's the 1st node. Const args: Name, Dep, Gen, Always.
 	bigNode = new BigNode("A", nullptr, true, false);
-	bigList.Insert(bigNode, BigSort);
+	bigList.Insert(bigNode, BigCompare);
 
 	// Goes in at the head since Always is true
 	bigNode = new BigNode("B", nullptr, true, true);
-	bigList.Insert(bigNode, BigSort);
+	bigList.Insert(bigNode, BigCompare);
 
 	// Goes in after all other generate nodes (so after "E" if "E" is already there)
 	bigNode = new BigNode("C", "E", true, false);
-	bigList.Insert(bigNode, BigSort);
+	bigList.Insert(bigNode, BigCompare);
 
 	// Goes in after all the generate nodes
 	bigNode = new BigNode("D", nullptr, true, false);
-	bigList.Insert(bigNode, BigSort);
+	bigList.Insert(bigNode, BigCompare);
 
 	// Should go in before C since C depends on it.
 	bigNode = new BigNode("E", nullptr, true, false);
-	bigList.Insert(bigNode, BigSort);
+	bigList.Insert(bigNode, BigCompare);
 
 	tPrintf("Expected:\nB A E C D\nActual:\n");
 	tString result;
@@ -408,11 +408,105 @@ tTestUnit(ListExtra)
 	tPrintf("\n");
 	tRequire(result == "BAECD");
 
-	bigList.Sort(BigSort);
+	bigList.Sort(BigCompare);
 	tString result2;
 	for (BigNode* mn = bigList.Head(); mn; mn = mn->Next())
 		result2 += mn->Name;
 	tRequire(result2 == "BAECD");
+}
+
+
+// A test object with various member types that may be used as sort keys.
+struct MultiObj : public tLink<MultiObj>
+{
+	MultiObj(const tString& name, float floatVal = 0.0f, int intVal = 0)												: Name(name), FloatVal(floatVal), IntVal(intVal) { }
+	tString Name;
+	float FloatVal;
+	int IntVal;
+};
+
+
+// This is a 'FunctionObject'. Basically an object that acts like a function. This is sorta cool as it allows state
+// to be stored in the object. In this case we use it as the compare function for a Sort call. Instead of a
+// whackload of separate compare functions, we now only need one and we use the state information to determine the
+// desired sort key and direction (ascending or descending). Note: when compare functions are used to sort, they
+// result in ascending order if they return a < b and descending if they return a > b.
+struct MultiCompFunObj
+{
+	enum class SortKey { NameAlphaNumeric, NameNatural, Float, Int };
+	MultiCompFunObj(SortKey key, bool ascending)																		: Key(key), Ascending(ascending) { }
+	SortKey Key;
+	bool Ascending;
+
+	// This is what makes it a magical function object.
+	bool operator() (const MultiObj& a, const MultiObj& b) const;
+};
+
+
+bool MultiCompFunObj::operator()(const MultiObj& a, const MultiObj& b) const
+{
+	switch (Key)
+	{
+		case SortKey::NameAlphaNumeric:
+		{
+			const char8_t* A = a.Name.Chars();
+			const char8_t* B = b.Name.Chars();
+			return Ascending ? (tPstrcmp(A, B) < 0) : (tPstrcmp(A, B) > 0);
+		}
+
+		case SortKey::NameNatural:
+		{
+			const char8_t* A = a.Name.Chars();
+			const char8_t* B = b.Name.Chars();
+			return Ascending ? (tNstrcmp(A, B) < 0) : (tNstrcmp(A, B) > 0);
+		}
+	}
+	return false;
+}
+
+
+void PrintMultiObjList(const tList<MultiObj>& multiObjList)
+{
+	for (const MultiObj* obj = multiObjList.First(); obj; obj = obj->Next())
+		tPrintf("%s\n", obj->Name.Chr());
+}
+
+
+tTestUnit(ListSort)
+{
+	tList<MultiObj> multiObjList;
+	multiObjList.Append(new MultiObj("Page20"));
+	multiObjList.Append(new MultiObj("Page4"));
+	multiObjList.Append(new MultiObj("Page"));
+
+	bool ascending = true;
+	MultiCompFunObj compFunObj(MultiCompFunObj::SortKey::NameAlphaNumeric, ascending);
+	tPrintf("\nUnsorted\n");
+	PrintMultiObjList(multiObjList);
+
+	compFunObj.Key = MultiCompFunObj::SortKey::NameAlphaNumeric;
+	compFunObj.Ascending = true;
+	multiObjList.Sort(compFunObj);
+	tPrintf("\nSorted Alpha Numeric Ascending\n");
+	PrintMultiObjList(multiObjList);
+
+	compFunObj.Key = MultiCompFunObj::SortKey::NameAlphaNumeric;
+	compFunObj.Ascending = false;
+	multiObjList.Sort(compFunObj);
+	tPrintf("\nSorted Alpha Numeric Descending\n");
+	PrintMultiObjList(multiObjList);
+
+	compFunObj.Key = MultiCompFunObj::SortKey::NameNatural;
+	compFunObj.Ascending = true;
+	multiObjList.Sort(compFunObj);
+	tPrintf("\nSorted Natural Ascending\n");
+	PrintMultiObjList(multiObjList);
+
+	compFunObj.Key = MultiCompFunObj::SortKey::NameNatural;
+	compFunObj.Ascending = false;
+	multiObjList.Sort(compFunObj);
+	tPrintf("\nSorted Natural Descending\n");
+	PrintMultiObjList(multiObjList);
 }
 
 

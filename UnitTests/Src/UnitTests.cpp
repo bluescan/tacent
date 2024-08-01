@@ -115,6 +115,7 @@ int main(int argc, char** argv)
 	tTest(Array);
 	tTest(List);
 	tTest(ListExtra);
+	tTest(ListSort);
 	tTest(Map);
 	tTest(Promise);
 	tTest(Sort);
@@ -204,6 +205,7 @@ int main(int argc, char** argv)
 	// tTest(String);
 	// tTest(List);
 	// tTest(ListExtra);
+	tTest(ListSort);
 	// tTest(Colour);
 	// tTest(Print);
 	// tTest(Map);
@@ -211,7 +213,7 @@ int main(int argc, char** argv)
 	// tTest(Script);
 	// tTest(Rule);
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
-	tTest(ImageLoad);
+	// tTest(ImageLoad);
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
 	// tTest(ImageMultiFrame);

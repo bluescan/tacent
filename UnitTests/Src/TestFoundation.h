@@ -22,6 +22,7 @@ namespace tUnitTest
 	tTestUnit(Array);
 	tTestUnit(List);
 	tTestUnit(ListExtra);
+	tTestUnit(ListSort);
 	tTestUnit(Map);
 	tTestUnit(Promise);
 	tTestUnit(Sort);
