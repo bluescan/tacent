@@ -19,6 +19,7 @@
 #endif
 #include "Foundation/tStandard.h"
 #include "Foundation/tString.h"
+#include "Foundation/tFundamentals.h"
 #pragma warning (disable: 4146)
 #pragma warning (disable: 4018)
 
@@ -64,68 +65,69 @@ void* tStd::tMemsrch(void* haystack, int haystackNumBytes, void* needle, int nee
 
 int tStd::tNstrcmp(const char* a, const char* b)
 {
-	// This implementation of tNstrcmp was written by GitHub user ClangPan.
-	enum class Mode
-	{
-		String,
-		Number
-	};
-	Mode mode = Mode::String;
+	const char* origa = a;
+	const char* origb = b;
 
+	// This implementation of tNstrcmp is a modified version of the one written by GitHub user ClangPan.
 	while (*a && *b)
 	{
-		if (mode == Mode::String)
+		bool aDigit = tIsdigit(*a);
+		bool bDigit = tIsdigit(*b);
+
+		if (!aDigit && (*a == '-'))
 		{
-			char aChar, bChar;
-			while ((aChar = tolower(*a)) && (bChar = tolower(*b))) // We lowercase the chars for proper comparison
-			{
-				// Check if the chars are digits
-				const bool aDigit = isdigit(aChar), bDigit = isdigit(bChar);
-
-				// If both chars are digits, we continue in NUMBER mode
-				if (aDigit && bDigit)
-				{
-					mode = Mode::Number;
-					break;
-				} 
-
-				// If only the left char is a digit, we have a result
-				if (aDigit) return -1;
-
-				// If only the right char is a digit, we have a result
-				if (bDigit) return +1;
-
-				// compute the difference of both characters
-				const int diff = aChar - bChar;
-
-				// If they differ we have a result
-				if (diff != 0) return diff;
-
-				// Otherwise process the next characters
-				++a; ++b;
-			}
+			++a;
+			continue;
 		}
-		else
+
+		if (!bDigit && (*b == '-'))
 		{
-			char *end; // Represents the end of the number string
+			++b;
+			continue;
+		}
 
-			// Get the left number
-			unsigned long aInt = strtoul((char*) a, &end, 10);
-			a = end;
+		// We're comparing (possibly multidigit) numbers.
+		if (aDigit && bDigit)
+		{
+			char* enda;
+			char* endb;
 
-			// Get the right number
-			unsigned long bInt = strtoul((char*) b, &end, 10);
-			b = end;
+			// Get the left number.
+			int aInt = strtoul((char*)a, &enda, 10);
+
+			// Get the right number.
+			int bInt = strtoul((char*)b, &endb, 10);
 
 			// if the difference is not equal to zero, we have a comparison result
-			const long diff = aInt - bInt;
-			if (diff != 0) return diff;
+			int sign = tMath::tSign(aInt - bInt);
+			if (sign) return sign;
 
-			// otherwise we process the next substring in STRING mode
-			mode = Mode::String;
-		}
+			a = enda;
+			b = endb;
+			continue;
+		} 
+
+		// If only the left char is a digit, we have a result.
+		if (aDigit) return +1;
+
+		// If only the right char is a digit, we have a result.
+		if (bDigit) return -1;
+
+		// compute the difference of both characters
+		int sign = tMath::tSign(tToLower(*a) - tToLower(*b));
+
+		// If they differ we have a result.
+		if (sign) return sign;
+
+		// Otherwise process the next characters.
+		++a; ++b;
 	}
 
+	// If both a and b are at end, we consider letter-case and compare as if we had never done the tToLowers.
+	if (!(*a) && !(*b))
+		return tStrcmp(origa, origb);
+
+	// Now only one of *a or *b are non-zero.
 	if (*b) return -1;
 	if (*a) return +1;
 

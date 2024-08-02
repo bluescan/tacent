@@ -83,7 +83,11 @@ int tPstrncmp(const char8_t* a, const char8_t* b, int n);
 
 // These do a 'natural' string compare by treating groups of base 10 digits as separate objects to be compared by
 // numeric value rather than alpha-numerically based on the encoding. This results in strings like "page10" coming
-// after "page2" because 10 > 2.
+// after "page2" because 10 > 2. This function can become arbitrarily complex. Some discussion on the topic is here:
+// https://blog.codinghorror.com/sorting-for-humans-natural-sort-order/
+// See the unit tests for examples that match windows explorer sorting. In particular the hyphen character may be
+// skipped when sorting and we fall back to case-sensitive compare all things being equal.
+// The implementation of tNstrcmp is a modified version of the one written by GitHub user ClangPan.
 int tNstrcmp(const char* a, const char* b);
 inline int tNstrcmp(const char8_t* a, const char8_t* b)																	{ return tNstrcmp((const char*)a, (const char*)b); }
 

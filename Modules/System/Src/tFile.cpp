@@ -196,14 +196,18 @@ tString tSystem::tGetFileName(const tString& file)
 {
 	tString retStr(file);
 	tPathStd(retStr);
-	return retStr.Right('/');
+	if (retStr.FindChar('/') != -1)
+		return retStr.Right('/');
+	return retStr;
 }
 
 
 tString tSystem::tGetFileBaseName(const tString& file)
 {
 	tString r = tGetFileName(file);
-	return r.Left('.');
+	if (r.FindChar('.') != -1)
+		return r.Left('.');
+	return r;
 }
 
 
@@ -1900,11 +1904,7 @@ tStaticAssert(tNumElements(tSystem::FileTypeExtTable) == int(tSystem::tFileType:
 
 tString tSystem::tGetFileExtension(const tString& file)
 {
-	tString ext = file.Right('.'); 
-	if(ext == file)
-		ext.Clear();
-
-	return ext;
+	return file.Right('.');
 }
 
 

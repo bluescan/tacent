@@ -475,9 +475,40 @@ void PrintMultiObjList(const tList<MultiObj>& multiObjList)
 tTestUnit(ListSort)
 {
 	tList<MultiObj> multiObjList;
+
+	// Add items with an extension.
+	multiObjList.Append(new MultiObj("page100.txt"));
+	multiObjList.Append(new MultiObj("Page20.txt"));
+	multiObjList.Append(new MultiObj("Page4.txt"));
+	multiObjList.Append(new MultiObj("Page.txt"));
+	multiObjList.Append(new MultiObj("PagE.txt"));
+	multiObjList.Append(new MultiObj("page5.txt"));
+	multiObjList.Append(new MultiObj("Page5.txt"));
+	multiObjList.Append(new MultiObj("aaa.txt"));
+	multiObjList.Append(new MultiObj("AAA.txt"));
+	multiObjList.Append(new MultiObj("zzz.txt"));
+	multiObjList.Append(new MultiObj("ZZZ.txt"));
+	multiObjList.Append(new MultiObj("Page-90.txt"));
+	multiObjList.Append(new MultiObj("page -90.txt"));
+	multiObjList.Append(new MultiObj("page-8.txt"));
+	multiObjList.Append(new MultiObj("page -8.txt"));
+
+	// Add the same items without an extension.
+	multiObjList.Append(new MultiObj("page100"));
 	multiObjList.Append(new MultiObj("Page20"));
 	multiObjList.Append(new MultiObj("Page4"));
 	multiObjList.Append(new MultiObj("Page"));
+	multiObjList.Append(new MultiObj("PagE"));
+	multiObjList.Append(new MultiObj("page5"));
+	multiObjList.Append(new MultiObj("Page5"));
+	multiObjList.Append(new MultiObj("aaa"));
+	multiObjList.Append(new MultiObj("AAA"));
+	multiObjList.Append(new MultiObj("zzz"));
+	multiObjList.Append(new MultiObj("ZZZ"));
+	multiObjList.Append(new MultiObj("Page-90"));
+	multiObjList.Append(new MultiObj("page -90"));
+	multiObjList.Append(new MultiObj("page-8"));
+	multiObjList.Append(new MultiObj("page -8"));
 
 	bool ascending = true;
 	MultiCompFunObj compFunObj(MultiCompFunObj::SortKey::NameAlphaNumeric, ascending);
@@ -486,26 +517,28 @@ tTestUnit(ListSort)
 
 	compFunObj.Key = MultiCompFunObj::SortKey::NameAlphaNumeric;
 	compFunObj.Ascending = true;
-	multiObjList.Sort(compFunObj);
 	tPrintf("\nSorted Alpha Numeric Ascending\n");
+	multiObjList.Sort(compFunObj);
 	PrintMultiObjList(multiObjList);
 
 	compFunObj.Key = MultiCompFunObj::SortKey::NameAlphaNumeric;
 	compFunObj.Ascending = false;
-	multiObjList.Sort(compFunObj);
 	tPrintf("\nSorted Alpha Numeric Descending\n");
+	multiObjList.Sort(compFunObj);
 	PrintMultiObjList(multiObjList);
 
+	// Except for the fact that there are extra items that are not supported by NTFS since you can't have two files
+	// that only differ by case, when this list gets sorted naturally it results in the same order as Windows explorer.
 	compFunObj.Key = MultiCompFunObj::SortKey::NameNatural;
 	compFunObj.Ascending = true;
-	multiObjList.Sort(compFunObj);
 	tPrintf("\nSorted Natural Ascending\n");
+	multiObjList.Sort(compFunObj);
 	PrintMultiObjList(multiObjList);
 
 	compFunObj.Key = MultiCompFunObj::SortKey::NameNatural;
 	compFunObj.Ascending = false;
-	multiObjList.Sort(compFunObj);
 	tPrintf("\nSorted Natural Descending\n");
+	multiObjList.Sort(compFunObj);
 	PrintMultiObjList(multiObjList);
 }
 
