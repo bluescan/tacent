@@ -189,8 +189,7 @@ struct tString
 	// 'continuation-aware'. This comment applies to all below functions with the words 'Left', 'Right', and 'Mid' in
 	// them except for functions that take in a char8_t* or char* prefix or suffix. Those work for ASCII and UTF-8.
 	//
-	// Returns a tString of the characters before the first marker. Returns the entire string if marker was not found.
-	// Think of left as excluding the marker and characters to the right, then returning the whole string makes sense.
+	// Returns a tString of the characters before the first marker. Returns an empty string if marker was not found.
 	tString Left(const char marker = ' ') const;
 	tString Right(const char marker = ' ') const;			// Same as Left but chars after last marker.
 

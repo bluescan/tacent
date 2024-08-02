@@ -66,9 +66,7 @@ tString::operator uint32() const
 tString tString::Left(const char marker) const
 {
 	int pos = FindChar(marker);
-	if (pos == -1)
-		return *this;
-	if (pos == 0)
+	if (pos <= 0)
 		return tString();
 
 	tString buf(pos);
@@ -80,15 +78,11 @@ tString tString::Left(const char marker) const
 tString tString::Right(const char marker) const
 {
 	int pos = FindChar(marker, true);
-	if (pos == -1)
-		return *this;
-
-	int length = StringLength;
-	if (pos == (length-1))
+	if ((pos == -1) || (pos == (StringLength-1)))
 		return tString();
 
-	tString buf(length - 1 - pos);
-	tStd::tMemcpy(buf.CodeUnits, CodeUnits + pos + 1, length - 1 - pos);
+	tString buf(StringLength - 1 - pos);
+	tStd::tMemcpy(buf.CodeUnits, CodeUnits + pos + 1, StringLength - 1 - pos);
 	return buf;
 }
 
