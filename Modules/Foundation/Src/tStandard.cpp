@@ -68,6 +68,9 @@ int tStd::tNstrcmp(const char* a, const char* b)
 	const char* origa = a;
 	const char* origb = b;
 
+	bool aStartsDig = a && tIsdigit(*a);	
+	bool bStartsDig = b && tIsdigit(*b);	
+
 	// This implementation of tNstrcmp is a modified version of the one written by GitHub user ClangPan.
 	while (*a && *b)
 	{
@@ -108,10 +111,10 @@ int tStd::tNstrcmp(const char* a, const char* b)
 		} 
 
 		// If only the left char is a digit, we have a result.
-		if (aDigit) return +1;
+		if (aDigit) return aStartsDig ? -1 : +1;
 
 		// If only the right char is a digit, we have a result.
-		if (bDigit) return -1;
+		if (bDigit) return bStartsDig ? +1 : -1;
 
 		// compute the difference of both characters
 		int sign = tMath::tSign(tToLower(*a) - tToLower(*b));

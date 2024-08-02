@@ -477,6 +477,8 @@ tTestUnit(ListSort)
 	tList<MultiObj> multiObjList;
 
 	// Add items with an extension.
+	multiObjList.Append(new MultiObj("21Num.txt"));
+	multiObjList.Append(new MultiObj("7Num.txt"));
 	multiObjList.Append(new MultiObj("page100.txt"));
 	multiObjList.Append(new MultiObj("Page20.txt"));
 	multiObjList.Append(new MultiObj("Page4.txt"));
@@ -494,6 +496,8 @@ tTestUnit(ListSort)
 	multiObjList.Append(new MultiObj("page -8.txt"));
 
 	// Add the same items without an extension.
+	multiObjList.Append(new MultiObj("21Num"));
+	multiObjList.Append(new MultiObj("7Num"));
 	multiObjList.Append(new MultiObj("page100"));
 	multiObjList.Append(new MultiObj("Page20"));
 	multiObjList.Append(new MultiObj("Page4"));
