@@ -10,7 +10,7 @@
 // iterator syntax similar to the STL containers. Supports the new C++11 range-based for loop syntax.
 // tItList disadvantages: More memory allocs. Not quite as fast.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020, 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020, 2022-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -169,6 +169,28 @@ private:
 	T* HeadItem;
 	T* TailItem;
 	int ItemCount;
+};
+
+
+// Same as a tList but the default constructor puts the list in External mode.
+template<typename T> class teList : public tList<T>
+{
+public:
+	// The default constructor has the list not owning the items. List mode is External.
+	teList()																											: tList<T>(tListMode::External) { }
+	teList(tListMode mode)																								: tList<T>(mode) { }
+	virtual ~teList()																									{ }
+};
+
+
+// Same as a tList but the default constructor puts the list in Static mode.
+template<typename T> class tzList : public tList<T>
+{
+public:
+	// The default constructor sets the list mode as Static.
+	tzList()																											: tList<T>(tListMode::Static) { }
+	tzList(tListMode mode)																								: tList<T>(mode) { }
+	virtual ~tzList()																									{ }
 };
 
 

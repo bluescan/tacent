@@ -199,8 +199,9 @@ public:
 	bool StealLayers(tList<tLayer>&);
 	tFrame* GetFrame(bool steal = true) override;
 
-	// Alternative to StealLayers. Gets the layers but you're not allowed to delete them, they're not yours. Make
-	// sure the list you supply doesn't delete them when it's destructed.
+	// @wip
+	// Gets the layers but you're not allowed to delete them, they're not yours. Make sure the list you supply doesn't
+	// delete them when it's destructed. Returns the number of items appended to the list.
 	bool GetLayers(tList<tLayer>&) const;
 
 	// Similar to StealLayers except it steals up to 6 layer-lists if the object is a cubemap. If the tImageDDS
