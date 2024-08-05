@@ -1017,15 +1017,15 @@ bool tImageDDS::StealLayers(tList<tLayer>& layers)
 }
 
 
-bool tImageDDS::GetLayers(tList<tLayer>& layers) const
+int tImageDDS::GetLayers(tList<tLayer>& layers) const
 {
 	if (!IsValid() || IsCubemap() || (NumImages <= 0))
-		return false;
+		return 0;
 
 	for (int mip = 0; mip < NumMipmapLayers; mip++)
 		layers.Append(Layers[mip][0]);
 
-	return true;
+	return NumMipmapLayers;
 }
 
 

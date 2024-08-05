@@ -170,8 +170,8 @@ public:
 	bool IsStateSet(StateBit state) const																				{ return (States & (1<<int(state))); }
 	static const char* GetStateDesc(StateBit);
 
-	bool IsMipmapped() const																							{ return (NumMipmapLayers > 1) ? true : false; }
-	bool IsCubemap() const																								{ return IsCubeMap; }
+	bool IsMipmapped() const override																					{ return (NumMipmapLayers > 1) ? true : false; }
+	bool IsCubemap() const override																						{ return IsCubeMap; }
 
 	// Returns true if the loaded dds was a 'modern' dds file and contained the DX10 FourCC in the header. Essentially
 	// modern means the newer DXGI pixel formats were specified in the dds, Returns false for legacy dds files.
@@ -199,10 +199,9 @@ public:
 	bool StealLayers(tList<tLayer>&);
 	tFrame* GetFrame(bool steal = true) override;
 
-	// @wip
 	// Gets the layers but you're not allowed to delete them, they're not yours. Make sure the list you supply doesn't
 	// delete them when it's destructed. Returns the number of items appended to the list.
-	bool GetLayers(tList<tLayer>&) const;
+	int GetLayers(tList<tLayer>&) const override;
 
 	// Similar to StealLayers except it steals up to 6 layer-lists if the object is a cubemap. If the tImageDDS
 	// is not a cubemap this function returns 0 and leaves the object (and list) unmodified. If you only steal a single
@@ -213,7 +212,7 @@ public:
 
 	// Alternative to StealCubemapLayers. Gets the layers but you're not allowed to delete them, they're not yours. Make
 	// sure the list you supply doesn't delete them when it's destructed.
-	int GetCubemapLayers(tList<tLayer> layers[tFaceIndex_NumFaces], uint32 faceFlags = tFaceFlag_All) const;
+	int GetCubemapLayers(tList<tLayer> layers[tFaceIndex_NumFaces], uint32 faceFlags = tFaceFlag_All) const override;
 
 	// You do not own the returned pointer.
 	tLayer* GetLayer(int layerNum, int imageNum) const																	{ return Layers[layerNum][imageNum]; }

@@ -172,8 +172,8 @@ public:
 	bool IsStateSet(StateBit state) const																				{ return (States & (1<<int(state))); }
 	static const char* GetStateDesc(StateBit);
 
-	bool IsMipmapped() const																							{ return (NumMipmaps > 1) ? true : false; }
-	bool IsCubemap() const																								{ return (NumFaces == 6); }
+	bool IsMipmapped() const override																					{ return (NumMipmaps > 1) ? true : false; }
+	bool IsCubemap() const override																						{ return (NumFaces == 6); }
 
 	// Returns the pvr container format version. If the tImagePVR is not valid -1 is returned. If the tImagePVR is valid
 	// but was not loaded from a .pvr file, 0 is returned. Otherwise 1 is returned for V1, 2 is returned for V2, and 3
@@ -203,9 +203,9 @@ public:
 	bool StealLayers(tList<tLayer>&);
 	tFrame* GetFrame(bool steal = true) override;
 
-	// Alternative to StealLayers. Gets the layers but you're not allowed to delete them, they're not yours. Make
-	// sure the list you supply doesn't delete them when it's destructed. Same rules regarding cubemaps.
-	bool GetLayers(tList<tLayer>&) const;
+	// Gets the layers but you're not allowed to delete them, they're not yours. Make sure the list you supply doesn't
+	// delete them when it's destructed. Returns the number of items appended to the list.
+	int GetLayers(tList<tLayer>&) const override;
 
 	// Similar to StealLayers except it steals up to 6 layer-lists if the object is a cubemap. If the tImagePVR
 	// is not a cubemap this function returns 0 and leaves the object (and list) unmodified. If you only steal a single
@@ -214,9 +214,9 @@ public:
 	// were populated.
 	int StealCubemapLayers(tList<tLayer> layers[tFaceIndex_NumFaces], uint32 faceFlags = tFaceFlag_All);
 
-	// Alternative to StealCubemapLayers. Gets the layers but you're not allowed to delete them, they're not yours. Make
-	// sure the list you supply doesn't delete them when it's destructed.
-	int GetCubemapLayers(tList<tLayer> layers[tFaceIndex_NumFaces], uint32 faceFlags = tFaceFlag_All) const;
+	// Gets the layers but you're not allowed to delete them, they're not yours. Make sure the list you supply doesn't
+	// delete them when it's destructed. Returns the number of items appended to the list.
+	int GetCubemapLayers(tList<tLayer> layers[tFaceIndex_NumFaces], uint32 faceFlags = tFaceFlag_All) const override;
 
 	// You do not own the returned pointer.
 	tLayer* GetLayer(int layerNum, int imageNum) const;

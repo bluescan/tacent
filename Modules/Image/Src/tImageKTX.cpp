@@ -676,15 +676,15 @@ bool tImageKTX::StealLayers(tList<tLayer>& layers)
 }
 
 
-bool tImageKTX::GetLayers(tList<tLayer>& layers) const
+int tImageKTX::GetLayers(tList<tLayer>& layers) const
 {
 	if (!IsValid() || IsCubemap() || (NumImages <= 0))
-		return false;
+		return 0;
 
 	for (int mip = 0; mip < NumMipmapLayers; mip++)
 		layers.Append(Layers[mip][0]);
 
-	return true;
+	return NumMipmapLayers;
 }
 
 

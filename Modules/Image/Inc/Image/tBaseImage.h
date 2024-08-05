@@ -20,6 +20,33 @@
 namespace tImage
 {
 class tPicture;
+class tLayer;
+
+
+// These are hany for all image types that may contain cubemaps.
+enum tFaceIndex				: uint32
+{
+	tFaceIndex_Default,
+	tFaceIndex_PosX			= tFaceIndex_Default,
+	tFaceIndex_NegX,
+	tFaceIndex_PosY,
+	tFaceIndex_NegY,
+	tFaceIndex_PosZ,
+	tFaceIndex_NegZ,
+	tFaceIndex_NumFaces
+};
+
+// Faces are always specified using a left-handed coord system even when using the OpenGL functions.
+enum tFaceFlag				: uint32
+{
+	tFaceFlag_PosX			= 1 << tFaceIndex_PosX,
+	tFaceFlag_NegX			= 1 << tFaceIndex_NegX,
+	tFaceFlag_PosY			= 1 << tFaceIndex_PosY,
+	tFaceFlag_NegY			= 1 << tFaceIndex_NegY,
+	tFaceFlag_PosZ			= 1 << tFaceIndex_PosZ,
+	tFaceFlag_NegZ			= 1 << tFaceIndex_NegZ,
+	tFaceFlag_All			= 0xFFFFFFFF
+};
 
 
 // Abstract base class for all tImage types. At a minumum all tImageEXTs need to be able to be set from a single tFrame
@@ -83,54 +110,21 @@ public:
 	virtual tAlphaMode GetAlphaMode() const																				{ return tAlphaMode::Unspecified; }
 	virtual tChannelType GetChannelType() const																			{ return tChannelType::Unspecified; }
 
-// @wip
-#if 0
 	// Not all derived classes need to support these next four functions.
-	virtual bool IsMipmapped() const;
-	virtual bool IsCubemap() const;
+	virtual bool IsMipmapped() const																					{ return false; }
+	virtual bool IsCubemap() const																						{ return false; }
 
 	// Gets the layers but you're not allowed to delete them, they're not yours. Make sure the list you supply doesn't
 	// delete them when it's destructed. Returns the number of items appended to the list.
-	virtual int GetLayers(tList<tLayer>&) const;
-
-	// Gets the layers but you're not allowed to delete them, they're not yours. Make sure the list you supply doesn't
-	// delete them when it's destructed. Returns the number of items appended to the list.
-	virtual int GetCubemapLayers(tList<tLayer> layers[tFaceIndex_NumFaces], uint32 faceFlags = tFaceFlag_All) const;
-#endif
+	virtual int GetLayers(tList<tLayer>&) const																			{ return 0; }
+	virtual int GetCubemapLayers(tList<tLayer> layers[tFaceIndex_NumFaces], uint32 faceFlags = tFaceFlag_All) const		{ return 0; }
 
 protected:
-
 	// Pretty sure all tImageXXX classes will find these useful.
 	tPixelFormat PixelFormatSrc														= tPixelFormat::Unspecified;
 	tPixelFormat PixelFormat														= tPixelFormat::Unspecified;
 	tColourProfile ColourProfileSrc													= tColourProfile::Unspecified;
 	tColourProfile ColourProfile													= tColourProfile::Unspecified;
-};
-
-
-// These are hany for all image types that may contain cubemaps.
-enum tFaceIndex				: uint32
-{
-	tFaceIndex_Default,
-	tFaceIndex_PosX			= tFaceIndex_Default,
-	tFaceIndex_NegX,
-	tFaceIndex_PosY,
-	tFaceIndex_NegY,
-	tFaceIndex_PosZ,
-	tFaceIndex_NegZ,
-	tFaceIndex_NumFaces
-};
-
-// Faces are always specified using a left-handed coord system even when using the OpenGL functions.
-enum tFaceFlag				: uint32
-{
-	tFaceFlag_PosX			= 1 << tFaceIndex_PosX,
-	tFaceFlag_NegX			= 1 << tFaceIndex_NegX,
-	tFaceFlag_PosY			= 1 << tFaceIndex_PosY,
-	tFaceFlag_NegY			= 1 << tFaceIndex_NegY,
-	tFaceFlag_PosZ			= 1 << tFaceIndex_PosZ,
-	tFaceFlag_NegZ			= 1 << tFaceIndex_NegZ,
-	tFaceFlag_All			= 0xFFFFFFFF
 };
 
 

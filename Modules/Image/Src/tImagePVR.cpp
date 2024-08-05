@@ -1325,15 +1325,15 @@ bool tImagePVR::StealLayers(tList<tLayer>& layers)
 }
 
 
-bool tImagePVR::GetLayers(tList<tLayer>& layers) const
+int tImagePVR::GetLayers(tList<tLayer>& layers) const
 {
 	if (!IsValid() || IsCubemap())
-		return false;
+		return 0;
 
 	for (int layer = 0; layer < NumLayers; layer++)
 		layers.Append(Layers[layer]);
 
-	return true;
+	return NumLayers;
 }
 
 
