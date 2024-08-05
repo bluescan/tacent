@@ -12,7 +12,7 @@
 // and height. A higher level system, for example, may want to ensure power-of-two sizes, or multiple of 4, but that
 // shouldn't and doesn't happen here.
 //
-// Copyright (c) 2006, 2017, 2022 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2022, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -77,6 +77,11 @@ public:
 	// layer owns the data is considered irrelevant for equivalency purposes.
 	bool operator==(const tLayer&) const;
 	bool operator!=(const tLayer& src) const																			{ return !(*this == src); }
+
+	// The following functions are a convenience if the layer pixel format happens to be R8G8B8A8. For example,
+	// block compressed images may have been told to decompress in which case the layers they contain will be R8G8B8A8.
+	int GetIndex(int x, int y) const																					{ tAssert((x >= 0) && (y >= 0) && (x < Width) && (y < Height) && (PixelFormat == tPixelFormat::R8G8B8A8)); return y * Width + x; }
+	tPixel4b GetPixel(int x, int y) const																				{ return ((tPixel4b*)Data)[ GetIndex(x, y) ]; }
 
 	tPixelFormat PixelFormat	= tPixelFormat::Invalid;
 	int Width					= 0;
