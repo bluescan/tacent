@@ -201,11 +201,12 @@ int main(int argc, char** argv)
 	// tTest(FindRec);
 	// tTest(Network);
 	// tTest(Time);
+	tTest(Machine);
 	// tTest(CmdLine);
 	// tTest(String);
 	// tTest(List);
 	// tTest(ListExtra);
-	tTest(ListSort);
+	// tTest(ListSort);
 	// tTest(Colour);
 	// tTest(Print);
 	// tTest(Map);

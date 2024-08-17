@@ -1440,6 +1440,54 @@ tTestUnit(Machine)
 
 	tString pathEnvVar = tSystem::tGetEnvVar("PATH");
 	tPrintf("PATH Env Var:%s\n", pathEnvVar.Chr());
+
+	#ifdef PLATFORM_LINUX
+	tPrintf("Testing XDG Base Directories\n");
+
+	tString dataHome;
+	bool dataHomeSet = tSystem::tGetXDGDataHome(dataHome);
+	tPrintf("XDGDataHome Set:%'B Dir:%s\n", dataHomeSet, dataHome.Chr());
+	tRequire(tIsAbsolutePath(dataHome));
+
+	tString configHome;
+	bool configHomeSet = tSystem::tGetXDGConfigHome(configHome);
+	tPrintf("XDGConfigHome Set:%'B Dir:%s\n", configHomeSet, configHome.Chr());
+	tRequire(tIsAbsolutePath(configHome));
+
+	tString stateHome;
+	bool stateHomeSet = tSystem::tGetXDGStateHome(stateHome);
+	tPrintf("XDGStateHome Set:%'B Dir:%s\n", stateHomeSet, stateHome.Chr());
+	tRequire(tIsAbsolutePath(stateHome));
+
+	tString exeHome;
+	tSystem::tGetXDGExeHome(exeHome);
+	tPrintf("XDGExeHome Dir:%s\n", exeHome.Chr());
+	tRequire(tIsAbsolutePath(exeHome));
+
+	tList<tStringItem> dataDirs;
+	bool dataDirsSet = tSystem::tGetXDGDataDirs(dataDirs);
+	tPrintf("XDGDataDirs Set:%'B\n", dataDirsSet);
+	for (tStringItem* dir = dataDirs.First(); dir; dir = dir->Next())
+		tPrintf("   Dir:%s\n", dir->Chr());
+	tRequire(!dataDirs.IsEmpty());
+
+	tList<tStringItem> configDirs;
+	bool configDirsSet = tSystem::tGetXDGConfigDirs(configDirs);
+	tPrintf("XDGConfigDirs Set:%'B\n", configDirsSet);
+	for (tStringItem* dir = configDirs.First(); dir; dir = dir->Next())
+		tPrintf("   Dir:%s\n", dir->Chr());
+	tRequire(!configDirs.IsEmpty());
+
+	tString cacheHome;
+	bool cacheHomeSet = tSystem::tGetXDGCacheHome(cacheHome);
+	tPrintf("XDGCacheHome Set:%'B Dir:%s\n", cacheHomeSet, cacheHome.Chr());
+	tRequire(tIsAbsolutePath(cacheHome));
+
+	tString runtimeDir;
+	bool runtimeDirSet = tSystem::tGetXDGRuntimeDir(runtimeDir);
+	tPrintf("XDGRuntimeDir Set:%'B Dir:%s\n", runtimeDirSet, runtimeDir.Chr());
+	tRequire(tIsAbsolutePath(runtimeDir) || runtimeDir.IsEmpty());
+	#endif
 }
 
 

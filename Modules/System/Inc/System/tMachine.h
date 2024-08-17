@@ -46,15 +46,14 @@ bool tOpenSystemFileExplorer(const tString& fullFilename);
 // in Tacent's path format with trailing / for directories. All paths are absolute as defined by the spec. Clients using
 // these functions should NOT place data directly in the returned directories -- they should make a subdirectory,
 // usually the name of the app in lowercase, and put their files there.
-bool tGetXDGDataHome(tString& xdgDataHome);				// $XDG_DATA_HOME
-bool tGetXDGConfigHome(tString& xdgConfigHome);			// $XDG_CONFIG_HOME
-bool tGetXDGStateHome(tString& xdgStateHome);			// $XDG_STATE_HOME
-void tGetXDGExeHome(tString& xdgExeHome);				// Not defined by an XDG env variable. Always: $HOME/.local/bin/
-
+bool tGetXDGDataHome(tString& xdgDataHome);					// $XDG_DATA_HOME
+bool tGetXDGConfigHome(tString& xdgConfigHome);				// $XDG_CONFIG_HOME
+bool tGetXDGStateHome(tString& xdgStateHome);				// $XDG_STATE_HOME
+void tGetXDGExeHome(tString& xdgExeHome);					// Not defined by an XDG env variable. Always: $HOME/.local/bin/
 bool tGetXDGDataDirs(tList<tStringItem>& xdgDataDirs);		// $XDG_DATA_DIRS. Priority list of directories to search.
 bool tGetXDGConfigDirs(tList<tStringItem>& xdgConfigDirs);	// $XDG_CONFIG_DIRS. Priority list of directories to search.
-bool tGetXDGCacheHome(tString& xdgCacheHome);			// $XDG_CACHE_HOME
-bool tGetXDGRuntimeDir(tString& xdgRuntimeDir);			// $XDG_RUNTIME_DIR
+bool tGetXDGCacheHome(tString& xdgCacheHome);				// $XDG_CACHE_HOME
+bool tGetXDGRuntimeDir(tString& xdgRuntimeDir);				// $XDG_RUNTIME_DIR
 #endif
 
 }

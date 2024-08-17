@@ -138,7 +138,8 @@ namespace tSystem
 //					Using the 0 prefix flag works differently on Linux vs Windows with non-integral types like %c.
 //					Tacent behaves (on purpose) like Windows where the leading 0s are printed even though the type is
 //					not integral.
-//		Enhanced:	Underscore (_) or single-quote (') chooses a more readable decorative or alternative printing method.
+//		Enhanced:	Underscore (_) or single-quote (') chooses a more readable decorative or alternative printing
+//					method. They do not necessarily do the same thing as each other.
 //					Integral Types:
 //						For built-in integral types, an _ inserts an underscore every 4 characters starting from the
 //						right. Handy for making binary values readable. For Tacent integer types like tint128 and
@@ -196,7 +197,8 @@ namespace tSystem
 //		String:		s				You must call pod(string) or string.Pod() for tStrings, or use char*.
 //					t				Windows only. Allows passing of non-POD tString directly. Warning: You cannot pass
 //									in an tStringItem! You must either cast to an tString or call pod() and use %s.
-//		Boolean:	B				For printing a bool as either "true" or "false".
+//		Boolean:	B				For printing a bool as either "true" or "false" or the alternate formats T or F
+//									when _ used and Y or N when ' used.
 //		Percent:	%				Displays percent sign.
 //
 // The functions return the number of characters printed. They do NOT care about channels in that they always report
