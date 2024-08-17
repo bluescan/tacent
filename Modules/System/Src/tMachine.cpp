@@ -1,9 +1,9 @@
 // tMachine.cpp
 //
-// Hardware ans OS access functions like querying supported instruction sets, number or cores, and computer name/ip
-// accessors.
+// Hardware ans OS access functions like querying supported instruction sets, number or cores, computer name/ip.
+// Includes parsing environment variables from the XDG Base Directory Specification (Linux-only).
 //
-// Copyright (c) 2004-2006, 2017, 2019-2022 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2019-2022, 2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -25,6 +25,15 @@
 #include "Foundation/tStandard.h"
 #include "System/tFile.h"
 #include "System/tMachine.h"
+
+
+#ifdef PLATFORM_LINUX
+namespace tSystem
+{
+	bool tGetXDGSingleEnvVar(tString& xdgEnvVar, const tString& xdgEnvVarName, const tString& xdgEnvVarDefault);
+	bool tGetXDGMultipleEnvVar(tList<tStringItem>& xdgEnvVars, const tString& xdgEnvVarName, const tString& xdgEnvVarDefaults);
+};
+#endif
 
 
 bool tSystem::tSupportsSSE()
@@ -107,6 +116,8 @@ tString tSystem::tGetEnvVar(const tString& envVarName)
 {
 	if (envVarName.IsEmpty())
 		return tString();
+
+	// The tString constructor handles possible nullptr input from getenv.
 	return tString(std::getenv(envVarName.Chr()));
 }
 
@@ -212,3 +223,146 @@ bool tSystem::tOpenSystemFileExplorer(const tString& fullFilename)
 {
 	return tOpenSystemFileExplorer(tSystem::tGetDir(fullFilename), tSystem::tGetFileName(fullFilename));
 }
+
+
+#if defined(PLATFORM_LINUX)
+bool tSystem::tGetXDGSingleEnvVar(tString& xdgEnvVar, const tString& xdgEnvVarName, const tString& xdgEnvVarDefault)
+{
+	if (xdgEnvVarName.IsEmpty())
+	{
+		xdgEnvVar.Clear();
+		return false;
+	}
+	xdgEnvVar = tGetEnvVar(xdgEnvVarName);
+	bool envVarSet = xdgEnvVar.IsValid();
+	if (envVarSet)
+	{
+		tPathStdDir(xdgEnvVar);
+
+		// According to the spec xdgEnvVar should be an absolute path and ignored if relative.
+		if (tIsRelativePath(xdgEnvVar))
+			xdgEnvVar = xdgEnvVarDefault;
+	}
+	else
+	{
+		xdgEnvVar = xdgEnvVarDefault;
+	}
+
+	return envVarSet;
+}
+
+
+bool tSystem::tGetXDGMultipleEnvVar(tList<tStringItem>& xdgEnvVars, const tString& xdgEnvVarName, const tString& xdgEnvVarDefaults)
+{
+	xdgEnvVars.Empty();
+	if (xdgEnvVarName.IsEmpty())
+		return false;
+
+	tString xdgEnvVar = tGetEnvVar(xdgEnvVarName);
+	bool envVarSet = xdgEnvVar.IsValid();
+	tList<tStringItem> paths;
+	tStd::tExplode(paths, xdgEnvVar, ':');
+
+	while (paths.Head())
+	{
+		tStringItem* path = paths.Remove();
+		tPathStdDir(*path);
+
+		// According to the spec 'path' should be an absolute path and ignored if relative.
+		if (tIsRelativePath(*path))
+			delete path;
+		else
+			xdgEnvVars.Append(path);
+	}
+
+	if (xdgEnvVars.IsEmpty())
+	{
+		tList<tStringItem> defaultPaths;
+		tStd::tExplode(defaultPaths, xdgEnvVarDefaults, ':');
+		while (defaultPaths.Head())
+			xdgEnvVars.Append(defaultPaths.Remove());
+	}
+
+	return envVarSet;
+}
+
+
+bool tSystem::tGetXDGDataHome(tString& xdgDataHome)
+{
+	// From https://specifications.freedesktop.org/basedir-spec/latest/
+	// There is a single base directory relative to which user-specific data files should be written.
+	// This directory is defined by the environment variable $XDG_DATA_HOME.
+	tString defaultPath = tGetHomeDir() + ".local/share/";
+	return tGetXDGSingleEnvVar(xdgDataHome, "XDG_DATA_HOME", defaultPath);
+}
+
+
+bool tSystem::tGetXDGConfigHome(tString& xdgConfigHome)
+{
+	// From https://specifications.freedesktop.org/basedir-spec/latest/
+	// There is a single base directory relative to which user-specific configuration files should be written.
+	// This directory is defined by the environment variable $XDG_CONFIG_HOME.
+	tString defaultPath = tGetHomeDir() + ".config/";
+	return tGetXDGSingleEnvVar(xdgConfigHome, "XDG_CONFIG_HOME", defaultPath);
+}
+
+
+bool tSystem::tGetXDGStateHome(tString& xdgStateHome)
+{
+	// From https://specifications.freedesktop.org/basedir-spec/latest/
+	// There is a single base directory relative to which user-specific state data should be written.
+	// This directory is defined by the environment variable $XDG_STATE_HOME.
+	tString defaultPath = tGetHomeDir() + ".local/state/";
+	return tGetXDGSingleEnvVar(xdgStateHome, "XDG_STATE_HOME", defaultPath);
+}
+
+
+void tSystem::tGetXDGExeHome(tString& xdgExeHome)
+{
+	// From https://specifications.freedesktop.org/basedir-spec/latest/
+	// There is a single base directory relative to which user-specific executable files may be written.
+	xdgExeHome = tGetHomeDir() + ".local/bin/";
+}
+
+
+bool tSystem::tGetXDGDataDirs(tList<tStringItem>& xdgDataDirs)
+{
+	// From https://specifications.freedesktop.org/basedir-spec/latest/
+	// There is a set of preference ordered base directories relative to which data files should be searched.
+	// This set of directories is defined by the environment variable $XDG_DATA_DIRS.
+	tString defaultPaths = "/usr/local/share/:/usr/share/";
+	return tGetXDGMultipleEnvVar(xdgDataDirs, "XDG_DATA_DIRS", defaultPaths);
+}
+
+
+bool tSystem::tGetXDGConfigDirs(tList<tStringItem>& xdgConfigDirs)
+{
+	// From https://specifications.freedesktop.org/basedir-spec/latest/
+	// There is a set of preference ordered base directories relative to which configuration files should be searched.
+	// This set of directories is defined by the environment variable $XDG_CONFIG_DIRS.
+	tString defaultPaths = "/etc/xdg/";
+	return tGetXDGMultipleEnvVar(xdgConfigDirs, "XDG_CONFIG_DIRS", defaultPaths);	
+}
+
+
+bool tSystem::tGetXDGCacheHome(tString& xdgCacheHome)
+{
+	// From https://specifications.freedesktop.org/basedir-spec/latest/
+	// There is a single base directory relative to which user-specific non-essential (cached) data should be written.
+	// This directory is defined by the environment variable $XDG_CACHE_HOME.
+	tString defaultPath = tGetHomeDir() + ".cache/";
+	return tGetXDGSingleEnvVar(xdgCacheHome, "XDG_CACHE_HOME", defaultPath);
+}
+
+
+bool tSystem::tGetXDGRuntimeDir(tString& xdgRuntimeDir)
+{
+	// From https://specifications.freedesktop.org/basedir-spec/latest/
+	// There is a single base directory relative to which user-specific runtime files and other file objects should be placed.
+	// This directory is defined by the environment variable $XDG_RUNTIME_DIR.
+	//
+	// The defalut is empty on purpose for this one.
+	tString defaultPath;
+	return tGetXDGSingleEnvVar(xdgRuntimeDir, "XDG_RUNTIME_DIR", defaultPath);
+}
+#endif
