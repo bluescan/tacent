@@ -3125,13 +3125,26 @@ bool tSystem::tCreateDir(const tString& dir)
 
 	#else
 	tPathStdFile(dirPath);
-	bool ok = std::filesystem::create_directory(dirPath.Chr());
-	if (!ok)
+	bool success = std::filesystem::create_directory(dirPath.Chr());
+	if (!success)
 		return tDirExists(dirPath);
 
-	return ok;
+	return success;
 
 	#endif
+}
+
+
+bool tSystem::tCreateDirs(const tString& dirs)
+{
+	tString dirsPath = dirs;
+	tPathStdFile(dirsPath);
+	
+	bool success = std::filesystem::create_directories(dirsPath.Chr());
+	if (!success)
+		return tDirExists(dirsPath);
+
+	return success;
 }
 
 

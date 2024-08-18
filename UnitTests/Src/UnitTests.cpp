@@ -197,11 +197,11 @@ int main(int argc, char** argv)
 	// tTest(Interval);
 	// tTest(FileTypes);
 	// tTest(Directories);
-	// tTest(File);
+	tTest(File);
 	// tTest(FindRec);
 	// tTest(Network);
 	// tTest(Time);
-	tTest(Machine);
+	// tTest(Machine);
 	// tTest(CmdLine);
 	// tTest(String);
 	// tTest(List);

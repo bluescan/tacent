@@ -644,12 +644,17 @@ bool tFindFilesRec(tList<tFileInfo>&   files, const tString& dir, bool hidden = 
 bool tFindFilesRec(tList<tFileInfo>&   files, const tString& dir, const tString& ext, bool hidden = true, Backend = Backend::Native);
 bool tFindFilesRec(tList<tFileInfo>&   files, const tString& dir, const tExtensions&, bool hidden = true, Backend = Backend::Native);
 
-// Creates a directory. It can also handle creating all the directories in a path. Calling with a string like
-// "C:/DirA/DirB/" will ensure that DirA and DirB exist. Returns true if successful.
+// Creates a directory. The parent directory must already exist. For example, if you pass "C:/DirA/DirB/", DirB will
+// only be created if C:/DirA/ already existed.
 bool tCreateDir(const tString& dir);
 
+// Creates multiple directories in one go. Calling with a string like "C:/DirA/DirB/" will ensure that DirA and DirB
+// both exist. Returns true if successful.
+bool tCreateDirs(const tString& dirs);
+
 // A relentless delete. Doesn't care about read-only unless deleteReadOnly is false. This call does a recursive delete.
-// If a file has an open handle, however, this fn will fail. If the directory didn't exist before the call then this function silently returns. Returns true if dir existed and was deleted.
+// If a file has an open handle, however, this fn will fail. If the directory didn't exist before the call then this
+// function silently returns. Returns true if dir existed and was deleted.
 bool tDeleteDir(const tString& directory, bool deleteReadOnly = true);
 
 // @todo Implement the tFile class. Right now we're basically just reserving the class name.

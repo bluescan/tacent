@@ -2,7 +2,7 @@
 //
 // System module tests.
 //
-// Copyright (c) 2017, 2019-2023 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2024 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -1173,7 +1173,7 @@ tTestUnit(File)
 	for (tStringItem* subd = subDirs.Head(); subd; subd = subd->Next())
 		tPrintf("SubDir: %s\n", subd->Text());
 
-	// Create a directory. Create a file in it. Then delete them all.
+	// Create a directory. Create a file in it. Then delete the directory with the file in it.
 	tCreateDir("TestData/CreatedDirectory/");
 	tRequire(tDirExists("TestData/CreatedDirectory/"));
 	tRequire(!tIsReadOnly("TestData/CreatedDirectory/"));
@@ -1183,6 +1183,13 @@ tTestUnit(File)
 
 	tDeleteDir("TestData/CreatedDirectory/");
 	tRequire(!tDirExists("TestData/CreatedDirectory/"));
+
+	// Create multiple directories in one go.
+	tCreateDirs("TestData/CreatedA/CreatedB/CreatedC/");
+	tRequire(tDirExists("TestData/CreatedA/CreatedB/CreatedC/"));
+
+	tDeleteDir("TestData/CreatedA/");
+	tRequire(!tDirExists("TestData/CreatedA/"));
 
 	tString normalPath = "Q:/Projects/Calamity/Crypto/../../Reign/./Squiggle/";
 	tPrintf("Testing GetSimplifiedPath on '%s'\n", normalPath.Pod());
