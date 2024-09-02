@@ -400,6 +400,12 @@ tTestUnit(ImagePicture)
 	tga.Save("WrittenXeyes.tga");
 	tRequire( tSystem::tFileExists("WrittenXeyes.png"));
 
+	png.Load("PNG/Mouse.png");
+	png.Save("WrittenMouse.png");
+	pic.Set(png); tga.Set(pic);
+	tga.Save("WrittenMouse.tga");
+	tRequire( tSystem::tFileExists("WrittenMouse.png"));
+
 	tImageQOI qoi;
 	qoi.Load("TacentTestPattern32.qoi");
 	qoi.Save("WrittenTacentTestPattern32.qoi");

@@ -197,7 +197,7 @@ int main(int argc, char** argv)
 	// tTest(Interval);
 	// tTest(FileTypes);
 	// tTest(Directories);
-	tTest(File);
+	// tTest(File);
 	// tTest(FindRec);
 	// tTest(Network);
 	// tTest(Time);
@@ -218,7 +218,7 @@ int main(int argc, char** argv)
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
 	// tTest(ImageMultiFrame);
-	// tTest(ImagePicture);
+	tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);
 	// tTest(ImageFilter);

@@ -262,19 +262,39 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 		return false;
 	}
 
-	int bitDepth = ihdr.bit_depth;
-	bool hasAlpha = (ihdr.color_type == SPNG_COLOR_TYPE_GRAYSCALE_ALPHA) || (ihdr.color_type == SPNG_COLOR_TYPE_TRUECOLOR_ALPHA);
 	Width = ihdr.width;
 	Height = ihdr.height;
 	int numPixels = Width * Height;
+	int bitDepth = ihdr.bit_depth;
 
-	// If the src bit depth is 16, RGBA are all linear. Otherwise RGB are  sRGB and A is linear.
-	if (bitDepth == 16)
-		PixelFormatSrc = hasAlpha ? tPixelFormat::R16G16B16A16 : tPixelFormat::R16G16B16;
+	if (ihdr.color_type == SPNG_COLOR_TYPE_INDEXED)
+	{
+		switch (bitDepth)
+		{
+			case 1:		PixelFormatSrc = tPixelFormat::PAL1BIT;		break;
+			case 2:		PixelFormatSrc = tPixelFormat::PAL2BIT;		break;
+			case 3:		PixelFormatSrc = tPixelFormat::PAL3BIT;		break;
+			case 4:		PixelFormatSrc = tPixelFormat::PAL4BIT;		break;
+			case 5:		PixelFormatSrc = tPixelFormat::PAL5BIT;		break;
+			case 6:		PixelFormatSrc = tPixelFormat::PAL6BIT;		break;
+			case 7:		PixelFormatSrc = tPixelFormat::PAL7BIT;		break;
+			default:
+			case 8:		PixelFormatSrc = tPixelFormat::PAL8BIT;		break;
+		}		
+	}
 	else
-		PixelFormatSrc = hasAlpha ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
+	{
+		bool hasAlpha = (ihdr.color_type == SPNG_COLOR_TYPE_GRAYSCALE_ALPHA) || (ihdr.color_type == SPNG_COLOR_TYPE_TRUECOLOR_ALPHA);
+
+		// If the src bit depth is 16, RGBA are all linear. Otherwise RGB are  sRGB and A is linear.
+		if (bitDepth == 16)
+			PixelFormatSrc = hasAlpha ? tPixelFormat::R16G16B16A16 : tPixelFormat::R16G16B16;
+		else
+			PixelFormatSrc = hasAlpha ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
+		ColourProfileSrc = (bitDepth == 16) ? tColourProfile::lRGB : tColourProfile::sRGB;
+	}
+
 	PixelFormat = PixelFormatSrc;
-	ColourProfileSrc = (bitDepth == 16) ? tColourProfile::lRGB : tColourProfile::sRGB;
 	ColourProfile = ColourProfileSrc;
 
 	// Are we being asked to do auto-gamma-compression?
@@ -296,13 +316,11 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 	}
 
 	// Output format, does not depend on source PNG format except for SPNG_FMT_PNG, which is the PNGs format in
-	// host-endian (or big-endian for SPNG_FMT_RAW). Note that for these two formats <8-bit images are left byte-packed.
-	// Here we decode to a 16 bit buffer if the src is 16 bit to keep full precision.
+	// host-endian (or big-endian for SPNG_FMT_RAW). Note that for these two formats < 8-bit images are left byte-packed.
+	// Here we decode to a 16 bit buffer if the src is 16 bit to keep full precision. For non-16-bit per component
+	// buffers, including palettized, we decode to RGBA8.
 	int fmt = (bitDepth == 16) ? SPNG_FMT_RGBA16 : SPNG_FMT_RGBA8;
 
-	// With SPNG_FMT_PNG indexed color images are output as palette indices, pick another format to expand them.
-	// if (ihdr.color_type == SPNG_COLOR_TYPE_INDEXED)
-	//	 fmt = SPNG_FMT_RGBA8;
 	size_t rawPixelsSize = 0;
 	errCode = spng_decoded_image_size(ctx, fmt, &rawPixelsSize);
 	if (errCode)
@@ -314,8 +332,9 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 
 	uint8* rawPixels = new uint8[rawPixelsSize];
 
-	// Decode the image in one go.
-	errCode = spng_decode_image(ctx, rawPixels, rawPixelsSize, fmt, 0);
+	// Decode the image in one go. I'm pretty sure we always want to decode transparency.
+	// Certainly for palettized images it is required.
+	errCode = spng_decode_image(ctx, rawPixels, rawPixelsSize, fmt, SPNG_DECODE_TRNS);
 	if (errCode)
 	{
 		delete[] rawPixels;
