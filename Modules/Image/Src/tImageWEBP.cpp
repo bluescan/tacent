@@ -68,9 +68,9 @@ bool tImageWEBP::Load(const uint8* webpFileInMemory, int numBytes)
 		return false;
 	}
 
-	if (numFrames > 1)
+	bool animated = (numFrames > 1);
+	if (animated)
 	{
-		// From the WebP 
 		// Bits 00 to 07: Alpha. Bits 08 to 15: Red. Bits 16 to 23: Green. Bits 24 to 31: Blue.
 		uint32 col = WebPDemuxGetI(demux, WEBP_FF_BACKGROUND_COLOR);
 		BackgroundColour.R = (col >> 8 ) & 0xFF;
@@ -80,10 +80,10 @@ bool tImageWEBP::Load(const uint8* webpFileInMemory, int numBytes)
 	}
 
 	// We start by creatng the initial canvas in memory set to the background colour.
-	// This is our 'working area' where we copy the individual frames out if.
+	// This is our 'working area' where we put the decoded frames. See CopyRegion below.
 	tPixel4b* canvas = new tPixel4b[canvasWidth*canvasHeight];
 	for (int p = 0; p < canvasWidth*canvasHeight; p++)
-		canvas[p] = BackgroundColour;
+		canvas[p] = tColour4b::transparent;
 
 	// Iterate over all frames.
 	tPixelFormat srcFormat = tPixelFormat::R8G8B8;
@@ -105,16 +105,11 @@ bool tImageWEBP::Load(const uint8* webpFileInMemory, int numBytes)
 			// What do we do with the canvas? If not animated it's not going to matter. From WebP source:
 			// Dispose method (animation only). Indicates how the area used by the current
 			// frame is to be treated before rendering the next frame on the canvas.
-			switch (iter.dispose_method)
+			bool dispose = (iter.dispose_method == WEBP_MUX_DISPOSE_BACKGROUND);
+			if (dispose)
 			{
-				case WEBP_MUX_DISPOSE_BACKGROUND:
-					for (int p = 0; p < canvasWidth*canvasHeight; p++)
-						canvas[p] = BackgroundColour;
-					break;
-
-				default:
-				case WEBP_MUX_DISPOSE_NONE:
-					break;
+				for (int p = 0; p < canvasWidth*canvasHeight; p++)
+					canvas[p] = tColour4b::transparent;
 			}
 
 			int fragWidth = config.output.width;
@@ -122,7 +117,7 @@ bool tImageWEBP::Load(const uint8* webpFileInMemory, int numBytes)
 			if ((fragWidth <= 0) || (fragHeight <= 0))
 				continue;
 
-			// All frames in tacent are canvas-sized. We copy the current canvas into it.
+			// All frames in tacent are canvas-sized.
 			tFrame* newFrame = new tFrame;
 			newFrame->PixelFormatSrc = iter.has_alpha ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
 
@@ -206,7 +201,7 @@ bool tImageWEBP::CopyRegion(tPixel4b* dst, int dstW, int dstH, tPixel4b* src, in
 				pixelCol.R = pixelCol.R*alpha + dcol.R*oneMinusAlpha;
 				pixelCol.G = pixelCol.G*alpha + dcol.G*oneMinusAlpha;
 				pixelCol.B = pixelCol.B*alpha + dcol.B*oneMinusAlpha;
-				pixelCol.A = alpha;
+				pixelCol.A = alpha > 0.0f ? alpha : dcol.A;
 
 				dstRow[sx].Set(pixelCol);
 			}

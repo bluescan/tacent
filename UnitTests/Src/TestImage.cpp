@@ -1296,12 +1296,6 @@ tTestUnit(ImageMultiFrame)
 	tiffDst1.Save("TestData/Images/Demux_Confused.tiff");
 	tRequire(tSystem::tFileExists("TestData/Images/WrittenDemux_Confused.tiff"));
 	return;
-
-	// Test loading an animated webp and saving as multpage tiff.
-	tImageWEBP webpSrc("TestData/Images/WEBP/AnimatedTest.webp");
-	tImageTIFF tiffDst2(webpSrc.Frames, true);
-	tiffDst2.Save("TestData/Images/WrittenAnimatedTestManyFrames.tiff");
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenAnimatedTestManyFrames.tiff"));
 	#endif
 
 	tImageTIFF tif;
@@ -1365,6 +1359,12 @@ tTestUnit(ImageMultiFrame)
 	tImageTIFF tiffWithDur("TestData/Images/WrittenIcos4DManyFrames.tiff");
 	tiffWithDur.Save("TestData/Images/WrittenIcos4DManyFrames2.tiff");
 	tRequire(tSystem::tFileExists("TestData/Images/WrittenIcos4DManyFrames2.tiff"));
+
+	// Test loading an animated webp and saving as multpage tiff.
+	tImageWEBP webpSrc("TestData/Images/WEBP/AnimatedTest.webp");
+	tImageTIFF tiffDst2(webpSrc.Frames, true);
+	tiffDst2.Save("TestData/Images/WrittenAnimatedTestManyFrames.tiff");
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenAnimatedTestManyFrames.tiff"));
 }
 
 
