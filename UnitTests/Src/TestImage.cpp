@@ -99,7 +99,7 @@ tTestUnit(ImageLoad)
 	tImageTIFF imgTIFF("TestData/Images/Tiff_NoComp.tif");
 	tRequire(imgTIFF.IsValid());
 
-	tImageWEBP imgWEBP("TestData/Images/RockyBeach.webp");
+	tImageWEBP imgWEBP("TestData/Images/WEBP/RockyBeach.webp");
 	tRequire(imgWEBP.IsValid());
 }
 
@@ -443,7 +443,7 @@ tTestUnit(ImagePicture)
 	tRequire( tSystem::tFileExists("WrittenTiff_ZIP.tif"));
 
 	tImageWEBP webp;
-	webp.Load("RockyBeach.webp");
+	webp.Load("WEBP/RockyBeach.webp");
 	webp.Save("WrittenRockyBeach.webp");
 	pic.Set(webp); tga.Set(pic);
 	tga.Save("WrittenRockyBeach.tga");
@@ -1296,6 +1296,12 @@ tTestUnit(ImageMultiFrame)
 	tiffDst1.Save("TestData/Images/Demux_Confused.tiff");
 	tRequire(tSystem::tFileExists("TestData/Images/WrittenDemux_Confused.tiff"));
 	return;
+
+	// Test loading an animated webp and saving as multpage tiff.
+	tImageWEBP webpSrc("TestData/Images/WEBP/AnimatedTest.webp");
+	tImageTIFF tiffDst2(webpSrc.Frames, true);
+	tiffDst2.Save("TestData/Images/WrittenAnimatedTestManyFrames.tiff");
+	tRequire(tSystem::tFileExists("TestData/Images/WrittenAnimatedTestManyFrames.tiff"));
 	#endif
 
 	tImageTIFF tif;

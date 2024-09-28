@@ -217,8 +217,8 @@ int main(int argc, char** argv)
 	// tTest(ImageLoad);
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
-	// tTest(ImageMultiFrame);
-	tTest(ImagePicture);
+	tTest(ImageMultiFrame);
+	// tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);
 	// tTest(ImageFilter);
