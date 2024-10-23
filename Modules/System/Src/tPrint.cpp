@@ -397,7 +397,7 @@ void tSystem::Receiver::Receive(const char* str, int numChars)
 		
 void tSystem::Receiver::Receive(const tArray<char>& buf)
 {
-	int len = buf.GetNumAppendedElements();
+	int len = buf.GetNumElements();
 	Receive(buf.GetElements(), len);
 }
 
@@ -1216,9 +1216,9 @@ void tSystem::Handler_b(Receiver& receiver, const FormatSpec& spec, void* data)
 	else
 		HandlerHelper_IntegerTacent(convInt, spec, data, treatAsUnsigned, bitSize, upperCase, base);
 
-	HandlerHelper_JustificationProlog(receiver, convInt.GetNumAppendedElements(), spec);
+	HandlerHelper_JustificationProlog(receiver, convInt.GetNumElements(), spec);
 	receiver.Receive(convInt);
-	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumAppendedElements(), spec);
+	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumElements(), spec);
 }
 
 
@@ -1240,9 +1240,9 @@ void tSystem::Handler_o(Receiver& receiver, const FormatSpec& spec, void* data)
 	else
 		HandlerHelper_IntegerTacent(convInt, spec, data, treatAsUnsigned, bitSize, upperCase, base);
 
-	HandlerHelper_JustificationProlog(receiver, convInt.GetNumAppendedElements(), spec);
+	HandlerHelper_JustificationProlog(receiver, convInt.GetNumElements(), spec);
 	receiver.Receive(convInt);
-	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumAppendedElements(), spec);
+	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumElements(), spec);
 }
 
 
@@ -1264,9 +1264,9 @@ void tSystem::Handler_d(Receiver& receiver, const FormatSpec& spec, void* data)
 	else
 		HandlerHelper_IntegerTacent(convInt, spec, data, treatAsUnsigned, bitSize, upperCase, base);
 
-	HandlerHelper_JustificationProlog(receiver, convInt.GetNumAppendedElements(), spec);
+	HandlerHelper_JustificationProlog(receiver, convInt.GetNumElements(), spec);
 	receiver.Receive(convInt);
-	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumAppendedElements(), spec);
+	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumElements(), spec);
 }
 
 
@@ -1288,9 +1288,9 @@ void tSystem::Handler_i(Receiver& receiver, const FormatSpec& spec, void* data)
 	else
 		HandlerHelper_IntegerTacent(convInt, spec, data, treatAsUnsigned, bitSize, upperCase, base);
 
-	HandlerHelper_JustificationProlog(receiver, convInt.GetNumAppendedElements(), spec);
+	HandlerHelper_JustificationProlog(receiver, convInt.GetNumElements(), spec);
 	receiver.Receive(convInt);
-	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumAppendedElements(), spec);
+	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumElements(), spec);
 }
 
 
@@ -1312,9 +1312,9 @@ void tSystem::Handler_u(Receiver& receiver, const FormatSpec& spec, void* data)
 	else
 		HandlerHelper_IntegerTacent(convInt, spec, data, treatAsUnsigned, bitSize, upperCase, base);
 
-	HandlerHelper_JustificationProlog(receiver, convInt.GetNumAppendedElements(), spec);
+	HandlerHelper_JustificationProlog(receiver, convInt.GetNumElements(), spec);
 	receiver.Receive(convInt);
-	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumAppendedElements(), spec);
+	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumElements(), spec);
 }
 
 
@@ -1336,9 +1336,9 @@ void tSystem::Handler_x(Receiver& receiver, const FormatSpec& spec, void* data)
 	else
 		HandlerHelper_IntegerTacent(convInt, spec, data, treatAsUnsigned, bitSize, upperCase, base);
 
-	HandlerHelper_JustificationProlog(receiver, convInt.GetNumAppendedElements(), spec);
+	HandlerHelper_JustificationProlog(receiver, convInt.GetNumElements(), spec);
 	receiver.Receive(convInt);
-	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumAppendedElements(), spec);
+	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumElements(), spec);
 }
 
 
@@ -1360,9 +1360,9 @@ void tSystem::Handler_X(Receiver& receiver, const FormatSpec& spec, void* data)
 	else
 		HandlerHelper_IntegerTacent(convInt, spec, data, treatAsUnsigned, bitSize, upperCase, base);
 
-	HandlerHelper_JustificationProlog(receiver, convInt.GetNumAppendedElements(), spec);
+	HandlerHelper_JustificationProlog(receiver, convInt.GetNumElements(), spec);
 	receiver.Receive(convInt);
-	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumAppendedElements(), spec);
+	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumElements(), spec);
 }
 
 
@@ -1380,9 +1380,9 @@ void tSystem::Handler_p(Receiver& receiver, const FormatSpec& spec, void* data)
 	tArray<char> convInt(64, 0);
 	HandlerHelper_IntegerNative(convInt, pspec, data, treatAsUnsigned, bitSize, upperCase, base, forcePrefixLowerCase);
 
-	HandlerHelper_JustificationProlog(receiver, convInt.GetNumAppendedElements(), pspec);
+	HandlerHelper_JustificationProlog(receiver, convInt.GetNumElements(), pspec);
 	receiver.Receive(convInt);
-	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumAppendedElements(), pspec);
+	HandlerHelper_JustificationEpilog(receiver, convInt.GetNumElements(), pspec);
 }
 
 
@@ -1641,7 +1641,7 @@ tSystem::PrologHelperFloat tSystem::HandlerHelper_FloatNormal(tArray<char>& conv
 	{
 		// Round. We need to start at the end and work BACKWARDS to the left.
 		// We gave already reserved a character at the beginning of the buffer for a possible carry.
-		char* end = buf.GetElements() + buf.GetNumAppendedElements() - 1;
+		char* end = buf.GetElements() + buf.GetNumElements() - 1;
 		while (1)
 		{
 			if (*end == '9')
@@ -1710,7 +1710,7 @@ void tSystem::Handler_f(Receiver& receiver, const FormatSpec& spec, void* data)
 		res = HandlerHelper_FloatNormal(convFloat, spec, value);
 
 	FormatSpec modSpec(spec);
-	int effectiveLength = convFloat.GetNumAppendedElements();
+	int effectiveLength = convFloat.GetNumElements();
 	switch (res)
 	{
 		case PrologHelperFloat::NeedsNeg:		receiver.Receive('-');	effectiveLength++;	break;
@@ -1749,7 +1749,7 @@ void tSystem::Handler_g(Receiver& receiver, const FormatSpec& spec, void* data)
 			res = HandlerHelper_FloatNormal(convBuf, spec, v, true);
 
 		FormatSpec modSpec(spec);
-		int effectiveLength = convBuf.GetNumAppendedElements();
+		int effectiveLength = convBuf.GetNumElements();
 		switch (res)
 		{
 			case PrologHelperFloat::NeedsNeg:		receiver.Receive('-');	effectiveLength++;	break;

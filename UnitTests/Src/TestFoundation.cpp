@@ -66,18 +66,18 @@ tTestUnit(Array)
 	// Grow by 3.
 	arr.Append(6);
 
-	tRequire(arr.GetNumAppendedElements() == 6);
+	tRequire(arr.GetNumElements() == 6);
 	tRequire(arr.GetCapacity() == 8);
 
-	for (int i = 0; i < arr.GetNumAppendedElements(); i++)
+	for (int i = 0; i < arr.GetNumElements(); i++)
 		tPrintf("Array index %d has value %d\n", i, arr[i]);
-	tPrintf("Num appended items: %d  Capacity: %d\n", arr.GetNumAppendedElements(), arr.GetCapacity());
+	tPrintf("Num appended items: %d  Capacity: %d\n", arr.GetNumElements(), arr.GetCapacity());
 
 	tPrintf("Index 2 value change to 42.\n");
 	arr[2] = 42;
-	for (int i = 0; i < arr.GetNumAppendedElements(); i++)
+	for (int i = 0; i < arr.GetNumElements(); i++)
 		tPrintf("Array index %d has value %d\n", i, arr[i]);
-	tPrintf("Num appended items: %d  Capacity: %d\n", arr.GetNumAppendedElements(), arr.GetCapacity());
+	tPrintf("Num appended items: %d  Capacity: %d\n", arr.GetNumElements(), arr.GetCapacity());
 	tRequire(arr.GetElements()[2] == 42);
 }
 
