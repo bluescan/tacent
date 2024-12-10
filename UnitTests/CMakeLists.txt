@@ -47,33 +47,12 @@ set_target_properties(
 )
 
 if (NOT IsArm)
-	target_link_libraries(
-		${PROJECT_NAME}
-		PUBLIC
-			Foundation Math System Image Pipeline Scene
-
-			# I'm a little surprised cmake doesn't do these for me on Linux. The odd thing is they are
-			# unnecessary if using VSCode/Cmake Tools, even in Ubuntu. They are, however, needed when
-			# building from bash.
-			$<$<PLATFORM_ID:Linux>:m>
-			$<$<PLATFORM_ID:Linux>:stdc++>
-
-			$<$<PLATFORM_ID:Windows>:shlwapi.lib>
+	target_link_libraries(${PROJECT_NAME} PUBLIC
+		Foundation Math System Image Pipeline Scene
 	)
 else()
-	target_link_libraries(
-		${PROJECT_NAME}
-		PUBLIC
-			Foundation Math System
-
-			# I'm a little surprised cmake doesn't do these for me on Linux. The odd thing is they are
-			# unnecessary if using VSCode/Cmake Tools, even in Ubuntu. They are, however, needed when
-			# building from bash.
-			$<$<PLATFORM_ID:Linux>:m>
-			$<$<PLATFORM_ID:Linux>:stdc++>
-			$<$<PLATFORM_ID:Linux>:stdc++fs>
-
-			$<$<PLATFORM_ID:Windows>:shlwapi.lib>
+	target_link_libraries(${PROJECT_NAME} PUBLIC
+		Foundation Math System
 	)
 endif()
 

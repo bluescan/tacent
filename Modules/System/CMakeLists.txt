@@ -33,10 +33,9 @@ tacent_target_compile_features(${PROJECT_NAME})
 tacent_set_target_properties(${PROJECT_NAME})
 
 # Note that since Math happens to also depend on Foundation, we could have left Foundation out and it would work.
-target_link_libraries(
-	${PROJECT_NAME}
-	PUBLIC
+target_link_libraries(${PROJECT_NAME} PUBLIC
 		Foundation Math
+		$<$<PLATFORM_ID:Windows>:shlwapi.lib>
 )
 
 tacent_install(${PROJECT_NAME})

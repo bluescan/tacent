@@ -51,6 +51,15 @@ tacent_target_compile_options(${PROJECT_NAME})
 tacent_target_compile_features(${PROJECT_NAME})
 tacent_set_target_properties(${PROJECT_NAME})
 
-# If we had dependencies, we would use target_link_libraries here.
+# Library dependencies.
+tacent_is_arch_arm(IsArm)
+target_link_libraries(${PROJECT_NAME} PUBLIC
+	# I'm a little surprised cmake doesn't do these for me on Linux. The odd thing is they are
+	# unnecessary if using VSCode/Cmake Tools, even in Ubuntu. They are, however, needed when
+	# building from bash.
+	$<$<PLATFORM_ID:Linux>:m>
+	$<$<PLATFORM_ID:Linux>:stdc++>
+	$<$<AND:$<BOOL:${IsArm}>,$<PLATFORM_ID:Linux>>:stdc++fs>
+)
 
 tacent_install(${PROJECT_NAME})
