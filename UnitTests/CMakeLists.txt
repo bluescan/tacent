@@ -76,7 +76,6 @@ target_include_directories(
 )
 
 if (NOT IsArm)
-	message(STATUS "Tacent -- Arm Architecture. Excluding Some Modules.")
 	target_include_directories(
 		"${PROJECT_NAME}"
 		PRIVATE
@@ -84,6 +83,8 @@ if (NOT IsArm)
 			$<TARGET_PROPERTY:Pipeline,INTERFACE_INCLUDE_DIRECTORIES>
 			$<TARGET_PROPERTY:Scene,INTERFACE_INCLUDE_DIRECTORIES>
 	)
+else()
+	message(STATUS "Tacent -- Arm Architecture. Excluding Some Modules.")
 endif()
 
 

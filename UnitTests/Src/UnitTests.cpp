@@ -146,7 +146,6 @@ int main(int argc, char** argv)
 	tTest(Print);
 	tTest(Regex);
 	tTest(Script);
-	tTest(Rule);
 	tTest(Chunk);
 	tTest(FileTypes);
 	tTest(Directories);
@@ -156,9 +155,10 @@ int main(int argc, char** argv)
 	tTest(Time);
 	tTest(Machine);
 
-	// Build tests.
+	// Pipeline tests.
 	#ifdef PLATFORM_WINDOWS
 	tTest(Process);
+	tTest(Rule);
 	#endif
 
 	// Image tests.
