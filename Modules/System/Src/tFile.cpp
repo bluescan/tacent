@@ -81,7 +81,7 @@ namespace tSystem
 }
 
 
-inline void tSystem::tPathStd(tString& path)
+void tSystem::tPathStd(tString& path)
 {
 	path.Replace('\\', '/');
 	bool network = (path.Left(2) == "//");
@@ -95,7 +95,7 @@ inline void tSystem::tPathStd(tString& path)
 }
 
 
-inline void tSystem::tPathStdDir(tString& path)
+void tSystem::tPathStdDir(tString& path)
 {
 	tPathStd(path);
 	if (path[path.Length() - 1] != '/')
@@ -103,7 +103,7 @@ inline void tSystem::tPathStdDir(tString& path)
 }
 
 
-inline void tSystem::tPathStdFile(tString& path)
+void tSystem::tPathStdFile(tString& path)
 {
 	tPathStd(path);
 	if (path[path.Length()-1] == '/')

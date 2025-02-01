@@ -22,7 +22,7 @@ target_link_libraries(
 	PUBLIC
 		Foundation Math System
 
-		# I'm a little surprised cmake doesn't do these for me on Linux. The odd thing is they are
+		# I'm a little surprised cmake doesn't do these for me on Linux. The thing is they are
 		# unnecessary if using VSCode/Cmake Tools, even in Ubuntu. They are, however, needed when
 		# building from bash.
 		$<$<PLATFORM_ID:Linux>:m>
