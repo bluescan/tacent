@@ -22,7 +22,7 @@ namespace tImage
 {
 
 
-// Helper functions, enums, and types for parsing DDS files.
+// Helper functions, enums, and types for parsing TGA files.
 namespace tTGA
 {
 	#pragma pack(push, r1, 1)
@@ -30,6 +30,16 @@ namespace tTGA
 	{
 		int8 IDLength;
 		int8 ColourMapType;
+
+		// 0   -  No image data included.
+		// 1   -  Uncompressed, color-mapped images.
+		// 2   -  [Supported] Uncompressed, RGB images.
+		// 3   -  Uncompressed, black and white images.
+		// 9   -  Runlength encoded color-mapped images.
+		// 10  -  [Supported] Runlength encoded RGB images.
+ 		// 11  -  Compressed, black and white images.
+		// 32  -  Compressed color-mapped data, using Huffman, Delta, and runlength encoding.
+		// 33  -  Compressed color-mapped data, using Huffman, Delta, and runlength encoding. 4-pass quadtree-type process.
 		int8 DataTypeCode;
 		int16 ColourMapOrigin;
 		int16 ColourMapLength;
@@ -247,7 +257,11 @@ void tImageTGA::ReadColourBytes(tColour4b& dest, const uint8* src, int bytesPerP
 			dest.R = (src[1] & 0x7c) << 1;
 			dest.G = ((src[1] & 0x03) << 6) | ((src[0] & 0xe0) >> 2);
 			dest.B = (src[0] & 0x1f) << 3;
-			dest.A = (src[1] & 0x80);
+
+			// According to Wikipedia: If the pixel depth is 16 bits, the topmost bit is reserved for transparency.
+			// Me: Note that it says transparency and not opacity. Opacity is normally how an alpha channel is interpreted.
+			// The code below treats the 1-bit alpha channel as transparency. A zero yields no transparency (fully opaque).
+			dest.A = (src[1] & 0x80) ? 0 : 255;
 			break;
 
 		default:
