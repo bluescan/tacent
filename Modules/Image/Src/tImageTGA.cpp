@@ -63,7 +63,7 @@ namespace tTGA
 }
 
 
-bool tImageTGA::Load(const tString& tgaFile)
+bool tImageTGA::Load(const tString& tgaFile, const LoadParams& params)
 {
 	Clear();
 
@@ -75,14 +75,14 @@ bool tImageTGA::Load(const tString& tgaFile)
 
 	int numBytes = 0;
 	uint8* tgaFileInMemory = tLoadFile(tgaFile, nullptr, &numBytes);
-	bool success = Load(tgaFileInMemory, numBytes);
+	bool success = Load(tgaFileInMemory, numBytes, params);
 	delete[] tgaFileInMemory;
 
 	return success;
 }
 
 
-bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
+bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes, const LoadParams& params)
 {
 	Clear();
 	if ((numBytes <= 0) || !tgaFileInMemory)
@@ -152,8 +152,8 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 				uint8 rleChunk = srcData[0] & 0x80;
 				srcData += 1;
 
-				tColour4b firstColour;
-				ReadColourBytes(firstColour, srcData, bytesPerPixel);
+				tColour4b firstColour;				
+				ReadColourBytes(firstColour, srcData, bytesPerPixel, (params.Flags & LoadFlag_AlphaOpacity));
 				Pixels[pixel] = firstColour;
 				pixel++;
 				srcData += bytesPerPixel;
@@ -180,7 +180,7 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 					// Chunk is normal.
 					for (int i = 0; i < j; i++)
 					{
-						ReadColourBytes(Pixels[pixel], srcData, bytesPerPixel);
+						ReadColourBytes(Pixels[pixel], srcData, bytesPerPixel, (params.Flags & LoadFlag_AlphaOpacity));
 						pixel++;
 						srcData += bytesPerPixel;
 					}
@@ -200,7 +200,7 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 				}
 
 				// Not compressed.
-				ReadColourBytes(Pixels[pixel], srcData, bytesPerPixel);
+				ReadColourBytes(Pixels[pixel], srcData, bytesPerPixel, (params.Flags & LoadFlag_AlphaOpacity));
 				pixel++;
 				srcData += bytesPerPixel;
 				break;
@@ -235,7 +235,7 @@ bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes)
 }
 
 
-void tImageTGA::ReadColourBytes(tColour4b& dest, const uint8* src, int bytesPerPixel)
+void tImageTGA::ReadColourBytes(tColour4b& dest, const uint8* src, int bytesPerPixel, bool alphaOpacity)
 {
 	switch (bytesPerPixel)
 	{
@@ -243,7 +243,7 @@ void tImageTGA::ReadColourBytes(tColour4b& dest, const uint8* src, int bytesPerP
 			dest.R = src[2];
 			dest.G = src[1];
 			dest.B = src[0];
-			dest.A = src[3];
+			dest.A = alphaOpacity ? src[3] : (0xFF - src[3]);
 			break;
 
 		case 3:
@@ -257,11 +257,10 @@ void tImageTGA::ReadColourBytes(tColour4b& dest, const uint8* src, int bytesPerP
 			dest.R = (src[1] & 0x7c) << 1;
 			dest.G = ((src[1] & 0x03) << 6) | ((src[0] & 0xe0) >> 2);
 			dest.B = (src[0] & 0x1f) << 3;
-
-			// According to Wikipedia: If the pixel depth is 16 bits, the topmost bit is reserved for transparency.
-			// Me: Note that it says transparency and not opacity. Opacity is normally how an alpha channel is interpreted.
-			// The code below treats the 1-bit alpha channel as transparency. A zero yields no transparency (fully opaque).
-			dest.A = (src[1] & 0x80) ? 0 : 255;
+			if (alphaOpacity)
+				dest.A = (src[1] & 0x80) ? 0xFF : 0;
+			else
+				dest.A = (src[1] & 0x80) ? 0 : 0xFF;
 			break;
 
 		default:

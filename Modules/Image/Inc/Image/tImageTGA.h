@@ -27,12 +27,37 @@ class tPicture;
 class tImageTGA : public tBaseImage
 {
 public:
-	// Creates an invalid tImageTGA. You must call Load manually.
+	enum LoadFlags
+	{
+		LoadFlag_None			= 0,
+
+		// The most common way to interpret the alpha channel is as opacity (0.0 is fully transarent and 1.0 is fully
+		// opaque). However there are some 16-bit TGAs (5551 with 1-bit alpha) in the wild that are saved with a 0 in
+		// the alpha channel and are expected to be visible. The TGA specification is a bit vague on this point:
+		// "If the pixel depth is 16 bits, the topmost bit is reserved for transparency." This statement was probably
+		// intended to mean the topmpst bit was for the 'attribute'/alpha channel and should be interpreted as opacity.
+		// In any case, these files exist, so the LoadFlag_AlphaOpacity flag is available to be disabled if necessary.
+		// LoadFlag_AlphaOpacity Present    : Interpret alpha normally (as opacity).      0 = transparent. 1 = opaque.
+		// LoadFlag_AlphaOpacity Not Present: Interpret alpha reversed (as transparency). 0 = opaque. 1 = transparent.
+		LoadFlag_AlphaOpacity	= 1 << 0,
+		LoadFlags_Default		= LoadFlag_AlphaOpacity
+	};
+
+	struct LoadParams
+	{
+		LoadParams()																									{ Reset(); }
+		LoadParams(const LoadParams& src)																				: Flags(src.Flags) { }
+		void Reset()																									{ Flags = LoadFlags_Default; }
+		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; return *this; }
+		uint32 Flags;
+	};
+
+	// Creates an invalid tImageTGA. You must call Load or Set manually.
 	tImageTGA()																											{ }
-	tImageTGA(const tString& tgaFile)																					{ Load(tgaFile); }
+	tImageTGA(const tString& tgaFile, const LoadParams& params = LoadParams())											{ Load(tgaFile, params); }
 
 	// The data is copied out of tgaFileInMemory. Go ahead and delete after if you want.
-	tImageTGA(const uint8* tgaFileInMemory, int numBytes)																{ Load(tgaFileInMemory, numBytes); }
+	tImageTGA(const uint8* tgaFileInMemory, int numBytes, const LoadParams& params = LoadParams())						{ Load(tgaFileInMemory, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -49,8 +74,8 @@ public:
 	// Clears the current tImageTGA before loading. 16, 24, or 32 bit targas can be loaded. The tga may be uncompressed
 	// or RLE compressed. Other compression methods are rare and unsupported. Returns success. If false returned,
 	// object is invalid.
-	bool Load(const tString& tgaFile);
-	bool Load(const uint8* tgaFileInMemory, int numBytes);
+	bool Load(const tString& tgaFile, const LoadParams& params = LoadParams());
+	bool Load(const uint8* tgaFileInMemory, int numBytes, const LoadParams& params = LoadParams());
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -112,7 +137,7 @@ public:
 private:
 	bool SaveUncompressed(const tString& tgaFile, tFormat) const;
 	bool SaveCompressed(const tString& tgaFile, tFormat) const;
-	void ReadColourBytes(tColour4b& dest, const uint8* src, int bitDepth);
+	void ReadColourBytes(tColour4b& dest, const uint8* src, int bitDepth, bool alphaOpacity);
 
 	int Width					= 0;
 	int Height					= 0;
