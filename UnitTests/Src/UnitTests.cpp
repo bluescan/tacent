@@ -215,9 +215,9 @@ int main(int argc, char** argv)
 	// tTest(Rule);
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
 	// tTest(ImageLoad);
-	// tTest(ImageSave);
+	tTest(ImageSave);
 	// tTest(ImageTexture);
-	tTest(ImageMultiFrame);
+	// tTest(ImageMultiFrame);
 	// tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);

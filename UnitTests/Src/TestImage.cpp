@@ -152,6 +152,26 @@ tTestUnit(ImageSave)
 	tString origDir = tSystem::tGetCurrentDir();
 	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
 
+	tImageTGA::LoadParams tgaParams;
+	tgaParams.Flags &= ~tImageTGA::LoadFlag_AlphaOpacity;
+	tImageTGA tgaReversed("ReversedAlpha16Bit_5551.tga", tgaParams);
+	int rtgaW = tgaReversed.GetWidth();
+	int rtgaH = tgaReversed.GetHeight();
+	tPixel4b* rtgaPixels = tgaReversed.StealPixels();
+	tImageQOI rqoi(rtgaPixels, rtgaW, rtgaH, true);
+	tImageQOI::tFormat rresult32 = rqoi.Save("WrittenReversedAlpha16Bit_5551.qoi", tImageQOI::tFormat::BPP32);
+	tRequire(rresult32 == tImageQOI::tFormat::BPP32);
+
+	tImageTGA tgaPattern("TacentTestPattern32.tga");
+	int tgaW = tgaPattern.GetWidth();
+	int tgaH = tgaPattern.GetHeight();
+	tPixel4b* tgaPixels = tgaPattern.StealPixels();
+	tImageQOI qoi(tgaPixels, tgaW, tgaH, true);
+	tImageQOI::tFormat result32 = qoi.Save("WrittenTacentTestPattern32.qoi", tImageQOI::tFormat::BPP32);
+	tRequire(result32 == tImageQOI::tFormat::BPP32);
+	tImageQOI::tFormat result24 = qoi.Save("WrittenTacentTestPattern24.qoi", tImageQOI::tFormat::BPP24);
+	tRequire(result24 == tImageQOI::tFormat::BPP24);
+	
 	tList<tFrame> frames;
 
 	// Test dither from 0.0f (auto) to 1.5f.
@@ -191,16 +211,6 @@ tTestUnit(ImageSave)
 	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL6BIT, tQuantize::Method::Wu,		true);
 	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL7BIT, tQuantize::Method::Wu,		true);
 	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL8BIT, tQuantize::Method::Wu,		true);
-
-	tImageTGA tga("TacentTestPattern32.tga");
-	int tgaW = tga.GetWidth();
-	int tgaH = tga.GetHeight();
-	tPixel4b* tgaPixels = tga.StealPixels();
-	tImageQOI qoi(tgaPixels, tgaW, tgaH, true);
-	tImageQOI::tFormat result32 = qoi.Save("WrittenTacentTestPattern32.qoi", tImageQOI::tFormat::BPP32);
-	tRequire(result32 == tImageQOI::tFormat::BPP32);
-	tImageQOI::tFormat result24 = qoi.Save("WrittenTacentTestPattern24.qoi", tImageQOI::tFormat::BPP24);
-	tRequire(result24 == tImageQOI::tFormat::BPP24);
 
 	tImagePNG pngA("PNG/Xeyes.png");
 	pngA.Save("WrittenNewA.png");
