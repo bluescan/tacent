@@ -221,13 +221,13 @@ int tPrintf(tSystem::tChannel channels, const char* format, ...);
 int tvPrintf(tSystem::tChannel channels, const char* format, va_list);
 
 // These are some shortcut debug print functions. In Ship and Profile configurations these become empty inlines.
-int tdPrint(const char* format, ...);
-int tdPrintGameplay(const char* format, ...);
-int tdPrintPhysics(const char* format, ...);
-int tdPrintSound(const char* format, ...);
-int tdPrintRendering(const char* format, ...);
-int tdPrintAI(const char* format, ...);
-int tdPrintInput(const char* format, ...);
+int tdPrintf(const char* format, ...);
+int tdPrintfGameplay(const char* format, ...);
+int tdPrintfPhysics(const char* format, ...);
+int tdPrintfSound(const char* format, ...);
+int tdPrintfRendering(const char* format, ...);
+int tdPrintfAI(const char* format, ...);
+int tdPrintfInput(const char* format, ...);
 
 // In some cases, possibly before reserving buffer space, you need to know how many characters would be used in an
 // actual printf call. The next two functions work that out. They are not affected by what channels are turned on.
@@ -329,7 +329,7 @@ inline int tPrintf(tSystem::tChannel c, const char* f, ...)
 
 
 #if !defined(CONFIG_PROFILE) && !defined(CONFIG_SHIP)
-inline int tdPrint(const char* f, ...)
+inline int tdPrintf(const char* f, ...)
 {
 	va_list l;			va_start(l, f);
 	int n = tvPrintf	(tSystem::tChannel_Debug, f, l);
@@ -337,7 +337,7 @@ inline int tdPrint(const char* f, ...)
 }
 
 
-inline int tdPrintGameplay(const char* f, ...)
+inline int tdPrintfGameplay(const char* f, ...)
 {
 	va_list l;			va_start(l, f);
 	int n = tvPrintf	(tSystem::tChannel_DebugGameplay, f, l);
@@ -345,7 +345,7 @@ inline int tdPrintGameplay(const char* f, ...)
 }
 
 
-inline int tdPrintPhysics(const char* f, ...)
+inline int tdPrintfPhysics(const char* f, ...)
 {
 	va_list l;			va_start(l, f);
 	int n = tvPrintf	(tSystem::tChannel_DebugPhysics, f, l);
@@ -353,7 +353,7 @@ inline int tdPrintPhysics(const char* f, ...)
 }
 
 
-inline int tdPrintSound(const char* f, ...)
+inline int tdPrintfSound(const char* f, ...)
 {
 	va_list l;			va_start(l, f);
 	int n = tvPrintf	(tSystem::tChannel_DebugSound, f, l);
@@ -361,7 +361,7 @@ inline int tdPrintSound(const char* f, ...)
 }
 
 
-inline int tdPrintRendering(const char* f, ...)
+inline int tdPrintfRendering(const char* f, ...)
 {
 	va_list l;			va_start(l, f);
 	int n = tvPrintf	(tSystem::tChannel_DebugRendering, f, l);
@@ -369,7 +369,7 @@ inline int tdPrintRendering(const char* f, ...)
 }
 
 
-inline int tdPrintAI(const char* f, ...)
+inline int tdPrintfAI(const char* f, ...)
 {
 	va_list l;			va_start(l, f);
 	int n = tvPrintf	(tSystem::tChannel_DebugAI, f, l);
@@ -377,7 +377,7 @@ inline int tdPrintAI(const char* f, ...)
 }
 
 
-inline int tdPrintInput(const char* f, ...)
+inline int tdPrintfInput(const char* f, ...)
 {
 	va_list l;			va_start(l, f);
 	int n = tvPrintf	(tSystem::tChannel_DebugInput, f, l);
@@ -386,17 +386,17 @@ inline int tdPrintInput(const char* f, ...)
 
 
 #else
-inline int tdPrint(const char* format, ...)																				{ return 0; }
-inline int tdPrintGameplay(const char* format, ...)																		{ return 0; }
-inline int tdPrintPhysics(const char* format, ...)																		{ return 0; }
-inline int tdPrintSound(const char* format, ...)																		{ return 0; }
-inline int tdPrintRendering(const char* format, ...)																	{ return 0; }
-inline int tdPrintAI(const char* format, ...)																			{ return 0; }
-inline int tdPrintInput(const char* format, ...)																		{ return 0; }
+inline int tdPrintf(const char* format, ...)																				{ return 0; }
+inline int tdPrintfGameplay(const char* format, ...)																		{ return 0; }
+inline int tdPrintfPhysics(const char* format, ...)																		{ return 0; }
+inline int tdPrintfSound(const char* format, ...)																		{ return 0; }
+inline int tdPrintfRendering(const char* format, ...)																	{ return 0; }
+inline int tdPrintfAI(const char* format, ...)																			{ return 0; }
+inline int tdPrintfInput(const char* format, ...)																		{ return 0; }
 #endif
 
 
-inline int tdsPrintf(char* dest, const char* format, ...)
+inline int tmsPrintf(char* dest, const char* format, ...)
 {
 	va_list marker;
 	va_start(marker, format);
@@ -405,7 +405,7 @@ inline int tdsPrintf(char* dest, const char* format, ...)
 }
 
 
-inline int tdsPrintf(tSystem::tChannel channels, char* dest, const char* format, ...)
+inline int tmsPrintf(tSystem::tChannel channels, char* dest, const char* format, ...)
 {
 	va_list marker;
 	va_start(marker, format);
@@ -414,7 +414,7 @@ inline int tdsPrintf(tSystem::tChannel channels, char* dest, const char* format,
 }
 
 
-inline tString& tdsPrintf(tString& dest, const char* format, ...)
+inline tString& tmsPrintf(tString& dest, const char* format, ...)
 {
 	va_list marker;
 	va_start(marker, format);
@@ -423,7 +423,7 @@ inline tString& tdsPrintf(tString& dest, const char* format, ...)
 }
 
 
-inline tString& tdsPrintf(tSystem::tChannel channels, tString& dest, const char* format, ...)
+inline tString& tmsPrintf(tSystem::tChannel channels, tString& dest, const char* format, ...)
 {
 	va_list marker;
 	va_start(marker, format);
@@ -432,7 +432,7 @@ inline tString& tdsPrintf(tSystem::tChannel channels, tString& dest, const char*
 }
 
 
-inline int tdsPrintf(char* dest, int destSize, const char* format, ...)
+inline int tmsPrintf(char* dest, int destSize, const char* format, ...)
 {
 	va_list marker;
 	va_start(marker, format);
@@ -441,7 +441,7 @@ inline int tdsPrintf(char* dest, int destSize, const char* format, ...)
 }
 
 
-inline int tdsPrintf(tSystem::tChannel channels, char* dest, int destSize, const char* format, ...)
+inline int tmsPrintf(tSystem::tChannel channels, char* dest, int destSize, const char* format, ...)
 {
 	va_list marker;
 	va_start(marker, format);
@@ -450,7 +450,7 @@ inline int tdsPrintf(tSystem::tChannel channels, char* dest, int destSize, const
 }
 
 
-inline int tdfPrintf(tFileHandle dest, const char* format, ...)
+inline int tmfPrintf(tFileHandle dest, const char* format, ...)
 {
 	va_list marker;
 	va_start(marker, format);
@@ -459,7 +459,7 @@ inline int tdfPrintf(tFileHandle dest, const char* format, ...)
 }
 
 
-inline int tdfPrintf(tSystem::tChannel channels, tFileHandle dest, const char* format, ...)
+inline int tmfPrintf(tSystem::tChannel channels, tFileHandle dest, const char* format, ...)
 {
 	va_list marker;
 	va_start(marker, format);
