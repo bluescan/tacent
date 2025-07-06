@@ -6,7 +6,19 @@ buildType:
       short: Debug
       long: Build Debug
       buildType: Debug
+    develop:
+      short: Develop
+      long: Build Develop
+      buildType: Develop
+    profile:
+      short: Profile
+      long: Build Profile
+      buildType: Profile
     release:
       short: Release
       long: Build Release
       buildType: Release
+    ship:
+      short: Ship
+      long: Build Ship
+      buildType: Ship

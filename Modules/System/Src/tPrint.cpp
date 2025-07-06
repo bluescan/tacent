@@ -77,7 +77,7 @@ namespace tSystem
 
 	// Channel system. This is lazy initialized (using the name hash as the state) without any need for shutdown.
 	uint32 ComputerNameHash																								= 0;
-	tChannel OutputChannels																								= tChannel_Systems;
+	tChannel OutputChannels																								= tChannel_Default | tChannel_Debugs;
 	bool SupplementaryDebuggerOutput																					= false;
 	RedirectCallback* StdoutRedirectCallback																			= nullptr;
 

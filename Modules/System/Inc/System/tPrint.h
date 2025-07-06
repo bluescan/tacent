@@ -29,15 +29,16 @@ namespace tSystem
 	// const Channel Channel_Core = { 0x0000000000000000ull, 0x0000000000000002ull };
 	typedef uint64 tChannel;
 	const tChannel tChannel_None							= 0x0000000000000000ull;
-
 	const tChannel tChannel_Default							= 0x0000000000000001ull;
-	const tChannel tChannel_Core							= 0x0000000000000002ull;
-	const tChannel tChannel_Gameplay						= 0x0000000000000004ull;
-	const tChannel tChannel_Physics							= 0x0000000000000008ull;
-	const tChannel tChannel_Sound							= 0x0000000000000010ull;
-	const tChannel tChannel_Rendering						= 0x0000000000000020ull;
-	const tChannel tChannel_AI								= 0x0000000000000040ull;
-	const tChannel tChannel_Input							= 0x0000000000000080ull;
+
+	// Debug channels. The helper print functions for the debug channels do nothing in Profile and Ship configurations.
+	const tChannel tChannel_Debug							= 0x0000000000000002ull;
+	const tChannel tChannel_DebugGameplay					= 0x0000000000000004ull;
+	const tChannel tChannel_DebugPhysics					= 0x0000000000000008ull;
+	const tChannel tChannel_DebugSound						= 0x0000000000000010ull;
+	const tChannel tChannel_DebugRendering					= 0x0000000000000020ull;
+	const tChannel tChannel_DebugAI							= 0x0000000000000040ull;
+	const tChannel tChannel_DebugInput						= 0x0000000000000080ull;
 
 	const tChannel tChannel_User0							= 0x0000000000000100ull;
 	const tChannel tChannel_User1							= 0x0000000000000200ull;
@@ -54,15 +55,14 @@ namespace tSystem
 	const tChannel tChannel_Verbosity2						= 0x0000000000080000ull;
 
 	const tChannel tChannel_All								= 0xFFFFFFFFFFFFFFFFull;
-	const tChannel tChannel_Systems							= tChannel_Default	| tChannel_Core			|
-															  tChannel_Gameplay	| tChannel_Physics		|
-															  tChannel_Sound	| tChannel_Rendering	|
-															  tChannel_AI		| tChannel_Input		;
-	const tChannel tChannel_Users							= tChannel_User0	| tChannel_User1		|
-															  tChannel_User2	| tChannel_User3		|
-															  tChannel_User4	| tChannel_User5		|
-															  tChannel_User6	| tChannel_User7		;
-	const tChannel tChannel_Tristan							= tChannel_User0;
+	const tChannel tChannel_Debugs							= tChannel_Debug			|
+															  tChannel_DebugGameplay	| tChannel_DebugPhysics		|
+															  tChannel_DebugSound		| tChannel_DebugRendering	|
+															  tChannel_DebugAI			| tChannel_DebugInput		;
+	const tChannel tChannel_Users							= tChannel_User0			| tChannel_User1			|
+															  tChannel_User2			| tChannel_User3			|
+															  tChannel_User4			| tChannel_User5			|
+															  tChannel_User6			| tChannel_User7			;
 
 	// To only see specific channels, simply call this with your machine name and the bitwise or of the channels you
 	// wish to see (on your machine). If this is not called you will see the Systems channels. For many programmers
@@ -220,16 +220,14 @@ int tvPrintf(const char* format, va_list);					// Prints to generic channel.
 int tPrintf(tSystem::tChannel channels, const char* format, ...);
 int tvPrintf(tSystem::tChannel channels, const char* format, va_list);
 
-// These are a few shortcut functions. Notice that in release, these become inline empty functions. By these, I only
-// mean the ones below that output to the screen or stdout.
-int tPrintCore(const char* format, ...);
-int tPrintGameplay(const char* format, ...);
-int tPrintPhysics(const char* format, ...);
-int tPrintSound(const char* format, ...);
-int tPrintRendering(const char* format, ...);
-int tPrintAI(const char* format, ...);
-int tPrintInput(const char* format, ...);
-int tPrintT(const char* format, ...);
+// These are some shortcut debug print functions. In Ship and Profile configurations these become empty inlines.
+int tdPrint(const char* format, ...);
+int tdPrintGameplay(const char* format, ...);
+int tdPrintPhysics(const char* format, ...);
+int tdPrintSound(const char* format, ...);
+int tdPrintRendering(const char* format, ...);
+int tdPrintAI(const char* format, ...);
+int tdPrintInput(const char* format, ...);
 
 // In some cases, possibly before reserving buffer space, you need to know how many characters would be used in an
 // actual printf call. The next two functions work that out. They are not affected by what channels are turned on.
@@ -297,24 +295,23 @@ int ttfPrintf(tFileHandle dest, const char* format, ...);
 // tSystem::tOpenFile.
 void tFlush(tFileHandle);
 
-// The tdPrintf variations print to both the destination string or file, as well as printing to whatever channels are
-// specified. The 'd' is for dual. Useful for things like log files and unit tests that also need to print to stdout.
-// The dest file or string is always printed to. The channels only affect what is output to stdout and the return
-// values will match what the plain print-to-string (or file) would have returned.
-int tdsPrintf(char* dest, const char* format, ...);
-int tdsPrintf(tSystem::tChannel channels, char* dest, const char* format, ...);
-tString& tdsPrintf(tString& dest, const char* format, ...);
-tString& tdsPrintf(tSystem::tChannel channels, tString& dest, const char* format, ...);
-int tdsPrintf(char* dest, int destSize, const char* format, ...);
-int tdsPrintf(tSystem::tChannel channels, char* dest, int destSize, const char* format, ...);
-int tdfPrintf(tFileHandle dest, const char* format, ...);
-int tdfPrintf(tSystem::tChannel channels, tFileHandle dest, const char* format, ...);
+// The tmPrintf variations print to both the destination string or file, as well as printing to whatever channels are
+// specified. The 'm' is for multiple. Useful for things like log files and unit tests that also need to print to
+// stdout. The dest file or string is always printed to. The channels only affect what is output to stdout and the
+// return values will match what the plain print-to-string (or file) would have returned.
+int tmsPrintf(char* dest, const char* format, ...);
+int tmsPrintf(tSystem::tChannel channels, char* dest, const char* format, ...);
+tString& tmsPrintf(tString& dest, const char* format, ...);
+tString& tmsPrintf(tSystem::tChannel channels, tString& dest, const char* format, ...);
+int tmsPrintf(char* dest, int destSize, const char* format, ...);
+int tmsPrintf(tSystem::tChannel channels, char* dest, int destSize, const char* format, ...);
+int tmfPrintf(tFileHandle dest, const char* format, ...);
+int tmfPrintf(tSystem::tChannel channels, tFileHandle dest, const char* format, ...);
 
 
 // Implementation below this line.
 
 
-#if !defined(CONFIG_PROFILE) && !defined(CONFIG_SHIP)
 inline int tPrintf(const char* f, ...)
 {
 	va_list l;			va_start(l, f);
@@ -331,83 +328,71 @@ inline int tPrintf(tSystem::tChannel c, const char* f, ...)
 }
 
 
-inline int tPrintCore(const char* f, ...)
+#if !defined(CONFIG_PROFILE) && !defined(CONFIG_SHIP)
+inline int tdPrint(const char* f, ...)
 {
 	va_list l;			va_start(l, f);
-	int n = tvPrintf	(tSystem::tChannel_Core, f, l);
+	int n = tvPrintf	(tSystem::tChannel_Debug, f, l);
 	va_end(l);			return n;
 }
 
 
-inline int tPrintGameplay(const char* f, ...)
+inline int tdPrintGameplay(const char* f, ...)
 {
 	va_list l;			va_start(l, f);
-	int n = tvPrintf	(tSystem::tChannel_Gameplay, f, l);
+	int n = tvPrintf	(tSystem::tChannel_DebugGameplay, f, l);
 	va_end(l);			return n;
 }
 
 
-inline int tPrintPhysics(const char* f, ...)
+inline int tdPrintPhysics(const char* f, ...)
 {
 	va_list l;			va_start(l, f);
-	int n = tvPrintf	(tSystem::tChannel_Physics, f, l);
+	int n = tvPrintf	(tSystem::tChannel_DebugPhysics, f, l);
 	va_end(l);			return n;
 }
 
 
-inline int tPrintSound(const char* f, ...)
+inline int tdPrintSound(const char* f, ...)
 {
 	va_list l;			va_start(l, f);
-	int n = tvPrintf	(tSystem::tChannel_Sound, f, l);
+	int n = tvPrintf	(tSystem::tChannel_DebugSound, f, l);
 	va_end(l);			return n;
 }
 
 
-inline int tPrintRendering(const char* f, ...)
+inline int tdPrintRendering(const char* f, ...)
 {
 	va_list l;			va_start(l, f);
-	int n = tvPrintf	(tSystem::tChannel_Rendering, f, l);
+	int n = tvPrintf	(tSystem::tChannel_DebugRendering, f, l);
 	va_end(l);			return n;
 }
 
 
-inline int tPrintAI(const char* f, ...)
+inline int tdPrintAI(const char* f, ...)
 {
 	va_list l;			va_start(l, f);
-	int n = tvPrintf	(tSystem::tChannel_AI, f, l);
+	int n = tvPrintf	(tSystem::tChannel_DebugAI, f, l);
 	va_end(l);			return n;
 }
 
 
-inline int tPrintInput(const char* f, ...)
+inline int tdPrintInput(const char* f, ...)
 {
 	va_list l;			va_start(l, f);
-	int n = tvPrintf	(tSystem::tChannel_Input, f, l);
-	va_end(l);			return n;
-}
-
-
-inline int tPrintT(const char* f, ...)
-{
-	va_list l;			va_start(l, f);
-	int n = tvPrintf	(tSystem::tChannel_Tristan, f, l);
+	int n = tvPrintf	(tSystem::tChannel_DebugInput, f, l);
 	va_end(l);			return n;
 }
 
 
 #else
-inline int tPrintf(const char* format, ...)																				{ return 0; }
-inline int tvPrintf(const char* format, va_list)																		{ return 0; }
-inline int tPrintf(uint32 channels, const char* format, ...)															{ return 0; }
-inline int tvPrintf(uint32 channels, const char* format, va_list)														{ return 0; }
-inline int tPrintCore(const char* format, ...)																			{ return 0; }
-inline int tPrintGameplay(const char* format, ...)																		{ return 0; }
-inline int tPrintPhysics(const char* format, ...)																		{ return 0; }
-inline int tPrintSound(const char* format, ...)																			{ return 0; }
-inline int tPrintRendering(const char* format, ...)																		{ return 0; }
-inline int tPrintAI(const char* format, ...)																			{ return 0; }
-inline int tPrintInput(const char* format, ...)																			{ return 0; }
-inline int tPrintT(const char* format, ...)																				{ return 0; }
+inline int tdPrint(const char* format, ...)																				{ return 0; }
+inline int tdPrintGameplay(const char* format, ...)																		{ return 0; }
+inline int tdPrintPhysics(const char* format, ...)																		{ return 0; }
+inline int tdPrintSound(const char* format, ...)																		{ return 0; }
+inline int tdPrintRendering(const char* format, ...)																	{ return 0; }
+inline int tdPrintAI(const char* format, ...)																			{ return 0; }
+inline int tdPrintInput(const char* format, ...)																		{ return 0; }
 #endif
 
 

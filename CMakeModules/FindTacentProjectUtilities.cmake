@@ -39,7 +39,10 @@ function(tacent_target_compile_definitions PROJNAME)
 		PUBLIC
 			# ARCHITECTURE_X64
 			$<$<CONFIG:Debug>:CONFIG_DEBUG>
+			$<$<CONFIG:Develop>:CONFIG_DEVELOP>
+			$<$<CONFIG:Profile>:CONFIG_PROFILE>
 			$<$<CONFIG:Release>:CONFIG_RELEASE>
+			$<$<CONFIG:Ship>:CONFIG_SHIP>
 			$<$<CXX_COMPILER_ID:MSVC>:_CRT_SECURE_NO_DEPRECATE _LIB>
 			# $<$<PLATFORM_ID:Windows>:_ITERATOR_DEBUG_LEVEL=0>
 			$<$<PLATFORM_ID:Windows>:PLATFORM_WINDOWS>
@@ -59,7 +62,10 @@ function(tacent_target_compile_options PROJNAME)
 			# MSVC compiler. Warning /utf-8 is needed for MSVC to support UTF-8 source files. Basically u8 string literals won't work without it.
 			$<$<CXX_COMPILER_ID:MSVC>:/utf-8 /W2 /GS /Gy /Zc:wchar_t /Gm- /Zc:inline /fp:precise /WX- /Zc:forScope /Gd /FC>
 			$<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/Od>
+			$<$<AND:$<CONFIG:Develop>,$<CXX_COMPILER_ID:MSVC>>:/O2>
+			$<$<AND:$<CONFIG:Profile>,$<CXX_COMPILER_ID:MSVC>>:/O2>
 			$<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/O2>
+			$<$<AND:$<CONFIG:Ship>,$<CXX_COMPILER_ID:MSVC>>:/O2>
 
 			# Clang compiler.
 
@@ -72,7 +78,10 @@ function(tacent_target_compile_options PROJNAME)
 			$<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wno-switch>
 
 			$<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O0>
+			$<$<AND:$<CONFIG:Develop>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O2>
+			$<$<AND:$<CONFIG:Profile>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O2>
 			$<$<AND:$<CONFIG:Release>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O2>
+			$<$<AND:$<CONFIG:Ship>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O2>
 	)
 endfunction(tacent_target_compile_options)
 

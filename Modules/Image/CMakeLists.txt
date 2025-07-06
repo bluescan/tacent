@@ -166,14 +166,23 @@ target_link_libraries(
 
 		# ASTCEncoder
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/debug/libastcenc-sse2-static.a>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/release/libastcenc-sse2-static.a>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/release/libastcenc-sse2-static.a>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/release/libastcenc-sse2-static.a>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/release/libastcenc-sse2-static.a>
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/debug/astcenc-sse2-static.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/release/astcenc-sse2-static.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/release/astcenc-sse2-static.lib>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/release/astcenc-sse2-static.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ASTCEncoder/lib/release/astcenc-sse2-static.lib>
 
 		# LibKTX
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/lib/libktx.a>
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/lib/ktxd.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/lib/ktx.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/lib/ktx.lib>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/lib/ktx.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/lib/ktx.lib>
 
 		# LibPNG
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/lib/libpng16.a>
@@ -181,17 +190,35 @@ target_link_libraries(
 
 		# LibEXR
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Half-2_5_d.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Half-2_5.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Half-2_5.lib>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Half-2_5.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Half-2_5.lib>
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Iex-2_5_d.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Iex-2_5.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Iex-2_5.lib>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Iex-2_5.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Iex-2_5.lib>
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IexMath-2_5_d.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IexMath-2_5.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IexMath-2_5.lib>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IexMath-2_5.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IexMath-2_5.lib>
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IlmImf-2_5_d.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IlmImf-2_5.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IlmImf-2_5.lib>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IlmImf-2_5.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IlmImf-2_5.lib>
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IlmThread-2_5_d.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IlmThread-2_5.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IlmThread-2_5.lib>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IlmThread-2_5.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/IlmThread-2_5.lib>
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Imath-2_5_d.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Imath-2_5.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Imath-2_5.lib>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Imath-2_5.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/Imath-2_5.lib>
 		# Only linking to release libs in Linux.
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/libIlmImf-2_5.a>
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/libHalf-2_5.a>
@@ -202,7 +229,10 @@ target_link_libraries(
 
 		# ZLib. Shared by a few different image formats.
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstaticd.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/libz.a>
 
 		# LibTIFF.
