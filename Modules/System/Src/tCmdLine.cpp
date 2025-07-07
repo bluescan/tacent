@@ -7,7 +7,7 @@
 // responds to the same parameter number. You may also collect all parameters in a single tParam by setting the
 // parameter number to -1.
 //
-// Copyright (c) 2017, 2020, 2023, 2024 Tristan Grimmer.
+// Copyright (c) 2017, 2020, 2023-2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -26,7 +26,11 @@ namespace tCmdLine
 {
 	// Any single-hyphen combined option arguments are expanded here. Ex. -abc becomes -a -b -c.
 	void ExpandArgs(tList<tStringItem>& args);
-	int IndentSpaces(int numSpaces);
+	int IndentSpaces(tString* dest, int numSpaces);
+
+	void SyntaxInternal(tString* dest);
+	void VersionAuthorInternal(tString& verAuthDest, const char8_t* author, int major, int minor = -1, int revision = -1);
+	void UsageInternal(tString* dest, const char8_t* verAuth, const char8_t* desc);
 
 	// I'm relying on zero initialization here. It's all zeroes before any items are constructed.
 	tList<tParam> Params(tListMode::StaticZero);
@@ -114,10 +118,10 @@ tCmdLine::tOption::tOption(const char* description, const char* longName, int nu
 }
 
 
-int tCmdLine::IndentSpaces(int numSpaces)
+int tCmdLine::IndentSpaces(tString* dest, int numSpaces)
 {
 	for (int s = 0; s < numSpaces; s++)
-		tPrintf(" ");
+		tsaPrintf(dest, " ");
 
 	return numSpaces;
 }
@@ -398,7 +402,7 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 }
 
 
-void tCmdLine::tPrintSyntax()
+void tCmdLine::SyntaxInternal(tString* dest)
 {
 	tString syntax =
 R"SYNTAX(Syntax Help:
@@ -463,61 +467,58 @@ fileB.txt is the second.
 
 The '--log log.txt' is an option with a single argument, log.txt. Flags may be
 combined. The -pat in the example expands to -p -a -t. It is suggested only to
-combine flag options as only the last option would get any arguments.
+combine flag (boolean) options as only the last option would get any arguments.
 
 )SYNTAX";
 
-	tPrintf("%s", syntax.Pod());
+	tsaPrintf(dest, "%s", syntax.Pod());
 }
 
 
-void tCmdLine::tPrintUsage(int versionMajor, int versionMinor, int revision)
+void tCmdLine::tPrintSyntax()
 {
-	tPrintUsage(nullptr, versionMajor, versionMinor, revision);
+	SyntaxInternal(nullptr);
 }
 
 
-void tCmdLine::tPrintUsage(const char8_t* author, int versionMajor, int versionMinor, int revision)
+void tCmdLine::tStringSyntax(tString& dest)
 {
-	tPrintUsage(author, nullptr, versionMajor, versionMinor, revision);
+	SyntaxInternal(&dest);
 }
 
 
-void tCmdLine::tPrintUsage(const char8_t* author, const char8_t* desc, int versionMajor, int versionMinor, int revision)
+void tCmdLine::VersionAuthorInternal(tString& verAuth, const char8_t* author, int major, int minor, int revision)
 {
-	tAssert(versionMajor >= 0);
-	tAssert((versionMinor >= 0) || (revision < 0));		// Not allowed a valid revision number if minor is not also valid.
+	tAssert(major >= 0);
+	tAssert((minor >= 0) || (revision < 0));		// Not allowed a valid revision number if minor is not also valid.
 
-	char8_t verAuth[128];
-	char8_t* va = verAuth;
-	va += tsPrintf((char*)va, "Version %d", versionMajor);
-	if (versionMinor >= 0)
+	verAuth.Clear();
+	tsaPrintf(verAuth, "Version %d", major);
+	if (minor >= 0)
 	{
-		va += tsPrintf((char*)va, ".%d", versionMinor);
+		tsaPrintf(verAuth, ".%d", minor);
 		if (revision >= 0)
-			va += tsPrintf((char*)va, ".%d", revision);
+			tsaPrintf(verAuth, ".%d", revision);
 	}
 
 	if (author)
-		va += tsPrintf((char*)va, " by %s", author);
-
-	tPrintUsage(verAuth, desc);
+		tsaPrintf(verAuth, " by %s", author);
 }
 
 
-void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* desc)
+void tCmdLine::UsageInternal(tString* dest, const char8_t* verAuth, const char8_t* desc)
 {
 	tString exeName = "Program";
 	if (!tCmdLine::Program.IsEmpty())
 		exeName = tSystem::tGetFileName(tCmdLine::Program);
 
-	if (versionAuthorString)
-		tPrintf("%s %s\n\n", tPod(tSystem::tGetFileBaseName(exeName)), versionAuthorString);
+	if (verAuth)
+		tsaPrintf(dest, "%s %s\n\n", tPod(tSystem::tGetFileBaseName(exeName)), verAuth);
 
 	if (Options.IsEmpty())
-		tPrintf("USAGE: %s ", exeName.Pod());
+		tsaPrintf(dest, "USAGE: %s ", exeName.Pod());
 	else
-		tPrintf("USAGE: %s [options] ", exeName.Pod());
+		tsaPrintf(dest, "USAGE: %s [options] ", exeName.Pod());
 
 	for (tParam* param = Params.First(); param; param = param->Next())
 	{
@@ -525,20 +526,20 @@ void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* de
 			continue;
 
 		if (!param->Name.IsEmpty() && (param->ParamNumber > 0))
-			tPrintf("%s ", param->Name.Pod());
+			tsaPrintf(dest, "%s ", param->Name.Pod());
 		else if (!param->Name.IsEmpty() && (param->ParamNumber == 0))
-			tPrintf("[%s] ", param->Name.Pod());
+			tsaPrintf(dest, "[%s] ", param->Name.Pod());
 		else if (param->ParamNumber > 0)
-			tPrintf("param%d ", param->ParamNumber);
+			tsaPrintf(dest, "param%d ", param->ParamNumber);
 		else
-			tPrintf("[params] ");
+			tsaPrintf(dest, "[params] ");
 	}
 
-	tPrintf("\n\n");
+	tsaPrintf(dest, "\n\n");
 	if (desc)
 	{
-		tPrintf("%s", desc);
-		tPrintf("\n\n");
+		tsaPrintf(dest, "%s", desc);
+		tsaPrintf(dest, "\n\n");
 	}
 
 	int indent = 0;
@@ -592,7 +593,7 @@ void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* de
 
 	if (numUsageOptions > 0)
 	{
-		tPrintf("Options:\n");
+		tsaPrintf(dest, "Options:\n");
 		for (tOption* option = Options.First(); option; option = option->Next())
 		{
 			if (option->ExcludeFromUsage)
@@ -600,29 +601,29 @@ void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* de
 
 			int numPrinted = 0;
 			if (!option->LongName.IsEmpty())
-				numPrinted += tPrintf("--%s ", option->LongName.Pod());
+				numPrinted += tsaPrintf(dest, "--%s ", option->LongName.Pod());
 			if (!option->ShortName.IsEmpty())
-				numPrinted += tPrintf("-%s ", option->ShortName.Pod());
+				numPrinted += tsaPrintf(dest, "-%s ", option->ShortName.Pod());
 
 			if (option->NumArgsPerOption <= 2)
 			{
 				for (int a = 0; a < option->NumArgsPerOption; a++)
-					numPrinted += tPrintf("arg%c ", '1'+a);
+					numPrinted += tsaPrintf(dest, "arg%c ", '1'+a);
 			}
 			else
 			{
-				numPrinted += tPrintf("[%d args] ", option->NumArgsPerOption);
+				numPrinted += tsaPrintf(dest, "[%d args] ", option->NumArgsPerOption);
 			}
 
-			IndentSpaces(indent-numPrinted);
-			tPrintf(" : %s\n", option->Description.Pod());
+			IndentSpaces(dest, indent-numPrinted);
+			tsaPrintf(dest, " : %s\n", option->Description.Pod());
 		}
-		tPrintf("\n");
+		tsaPrintf(dest, "\n");
 	}
 
 	if (numUsageParams > 0)
 	{
-		tPrintf("Parameters:\n");
+		tsaPrintf(dest, "Parameters:\n");
 		for (tParam* param = Params.First(); param; param = param->Next())
 		{
 			if (param->ExcludeFromUsage)
@@ -630,23 +631,75 @@ void tCmdLine::tPrintUsage(const char8_t* versionAuthorString, const char8_t* de
 
 			int numPrinted = 0;
 			if (!param->Name.IsEmpty() && (param->ParamNumber > 0))
-				numPrinted = tPrintf("%s ", param->Name.Pod());
+				numPrinted = tsaPrintf(dest, "%s ", param->Name.Pod());
 			else if (!param->Name.IsEmpty() && (param->ParamNumber == 0))
-				numPrinted = tPrintf("[%s] ", param->Name.Pod());
+				numPrinted = tsaPrintf(dest, "[%s] ", param->Name.Pod());
 			else if (param->ParamNumber > 0)
-				numPrinted = tPrintf("param%d ", param->ParamNumber);
+				numPrinted = tsaPrintf(dest, "param%d ", param->ParamNumber);
 			else
-				numPrinted = tPrintf("[params] ");
+				numPrinted = tsaPrintf(dest, "[params] ");
 
-			IndentSpaces(indent - numPrinted);
+			IndentSpaces(dest, indent - numPrinted);
 
 			if (!param->Description.IsEmpty())
-				tPrintf(" : %s", param->Description.Pod());
+				tsaPrintf(dest, " : %s", param->Description.Pod());
 			else
-				tPrintf(" : No description");
+				tsaPrintf(dest, " : No description");
 
-			tPrintf("\n");
+			tsaPrintf(dest, "\n");
 		}
-		tPrintf("\n");
+		tsaPrintf(dest, "\n");
 	}
+}
+
+
+void tCmdLine::tPrintUsage(int major, int minor, int revision)
+{
+	tPrintUsage(nullptr, major, minor, revision);
+}
+
+
+void tCmdLine::tPrintUsage(const char8_t* author, int major, int minor, int revision)
+{
+	tPrintUsage(author, nullptr, major, minor, revision);
+}
+
+
+void tCmdLine::tPrintUsage(const char8_t* author, const char8_t* desc, int major, int minor, int revision)
+{
+	tString verAuth;
+	VersionAuthorInternal(verAuth, author, major, minor, revision);
+	tPrintUsage(verAuth.Pod(), desc);
+}
+
+
+void tCmdLine::tPrintUsage(const char8_t* verAuth, const char8_t* desc)
+{
+	UsageInternal(nullptr, verAuth, desc);
+}
+
+
+void tCmdLine::tStringUsage(tString& dest, int major, int minor, int revision)
+{
+	tStringUsage(dest, nullptr, major, minor, revision);
+}
+
+
+void tCmdLine::tStringUsage(tString& dest, const char8_t* author, int major, int minor, int revision)
+{
+	tStringUsage(dest, author, nullptr, major, minor, revision);
+}
+
+
+void tCmdLine::tStringUsage(tString& dest, const char8_t* author, const char8_t* desc, int major, int minor, int revision)
+{
+	tString verAuth;
+	VersionAuthorInternal(verAuth, author, major, minor, revision);
+	tStringUsage(dest, verAuth.Pod(), desc);
+}
+
+
+void tCmdLine::tStringUsage(tString& dest, const char8_t* verAuth, const char8_t* desc)
+{
+	UsageInternal(&dest, verAuth, desc);
 }

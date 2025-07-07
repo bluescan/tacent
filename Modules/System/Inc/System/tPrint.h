@@ -246,6 +246,11 @@ tString& tsPrintf(tString& dest, const char* format, ...);
 tString& tsavPrintf(tString& dest, const char* format, va_list);
 tString& tsaPrintf(tString& dest, const char* format, ...);
 
+// These variants also append, but if the dest tString pointer is nullptr a regular print is performed.
+// They both return the number of characters printed or appended.
+int tsavPrintf(tString* dest, const char* format, va_list);
+int tsaPrintf(tString* dest, const char* format, ...);
+
 // Similar to above but return a tString (sr). Useful if you want to convert formatted input to a tString directly.
 // These required different function names than above so compilers do not confuse with the first vararg being a char*.
 inline tString tsrvPrintf(const char* format, va_list args)																{ tString dest; return tsvPrintf(dest, format, args); }

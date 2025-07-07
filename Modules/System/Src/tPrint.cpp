@@ -556,6 +556,33 @@ tString& tsaPrintf(tString& dest, const char* format, ...)
 }
 
 
+int tsavPrintf(tString* dest, const char* format, va_list argList)
+{
+	if (dest)
+	{
+		int countBefore = dest->Length();
+		tsavPrintf(*dest, format, argList);
+		return dest->Length() - countBefore;
+	}
+
+	return tvPrintf(format, argList);
+}
+
+
+int tsaPrintf(tString* dest, const char* format, ...)
+{
+	va_list argList;
+	va_start(argList, format);
+	int count = 0;
+	if (dest)
+		count = tsavPrintf(dest, format, argList);
+	else
+		count = tvPrintf(format, argList);
+	va_end(argList);
+	return count;
+}
+
+
 int tsvPrintf(char* dest, int destSize, const char* format, va_list argList)
 {
 	if (!dest || !format || (destSize <= 0))

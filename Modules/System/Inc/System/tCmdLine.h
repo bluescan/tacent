@@ -78,7 +78,7 @@
 // command line when the tParse call is made. You may have more than one tOption that responds to the same option name.
 // You may have more than one tParam that responds to the same parameter number.
 //
-// Copyright (c) 2017, 2020, 2023, 2024 Tristan Grimmer.
+// Copyright (c) 2017, 2020, 2023-2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -178,11 +178,20 @@ namespace tCmdLine
 	void tParse(int argc, wchar_t** argv);
 #endif
 
-	void tPrintUsage(int versionMajor, int versionMinor = -1, int revision = -1);
-	void tPrintUsage(const char8_t* author, int versionMajor, int versionMinor = -1, int revision = -1);
-	void tPrintUsage(const char8_t* author, const char8_t* desc, int versionMajor, int versionMinor = -1, int revision = -1);
-	void tPrintUsage(const char8_t* versionAuthor = nullptr, const char8_t* desc = nullptr);
 	void tPrintSyntax();
+	void tPrintUsage(int versionMajor, int versionMinor = -1, int versionRevision = -1);
+	void tPrintUsage(const char8_t* author, int versionMajor, int versionMinor = -1, int versionRevision = -1);
+	void tPrintUsage(const char8_t* author, const char8_t* desc, int versionMajor, int versionMinor = -1, int versionRevision = -1);
+	void tPrintUsage(const char8_t* versionAuthor = nullptr, const char8_t* desc = nullptr);
+
+	// The following functions are the same as the tPrint ones above except they populate a tString instead of
+	// printing. This is handy if you need, for example, to display usage instructins in a message box or someehere
+	// other than direct stdout. For all these functions the dest string is appended to and not cleared first.
+	void tStringSyntax(tString& dest);
+	void tStringUsage(tString& dest, int versionMajor, int versionMinor = -1, int versionRevision = -1);
+	void tStringUsage(tString& dest, const char8_t* author, int versionMajor, int versionMinor = -1, int versionRevision = -1);
+	void tStringUsage(tString& dest, const char8_t* author, const char8_t* desc, int versionMajor, int versionMinor = -1, int versionRevision = -1);
+	void tStringUsage(tString& dest, const char8_t* versionAuthor = nullptr, const char8_t* desc = nullptr);
 
 	// Returns the program name assuming you have already called tParse.
 	tString tGetProgram();
