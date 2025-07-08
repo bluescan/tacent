@@ -510,7 +510,16 @@ void tCmdLine::UsageInternal(tString* dest, const char8_t* verAuth, const char8_
 {
 	tString exeName = "Program";
 	if (!tCmdLine::Program.IsEmpty())
+	{
 		exeName = tSystem::tGetFileName(tCmdLine::Program);
+	}
+	else
+	{
+		tString fullPath = tSystem::tGetProgramPath();
+		tString fileName = tSystem::tGetFileName(fullPath);
+		if (fileName.IsValid())
+			exeName = fileName;
+	}
 
 	if (verAuth)
 		tsaPrintf(dest, "%s %s\n\n", tPod(tSystem::tGetFileBaseName(exeName)), verAuth);
