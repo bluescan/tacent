@@ -25,8 +25,8 @@
 // with -. Note that arguments that start with a hyphen but are not recognized as a valid option just get turned into
 // parameters. This means interpreting a hyphen directly instead of as an option specifier will happen automatically if
 // there are no options matching what comes after the hyphen. Eg. 'tool -.85 --add 33 -87.98 --notpresent' work just
-// fine as long as there are no options that have a short form with digits or a decimal. In this example the -.85 will be
-// the first parameter, --notpresent will be the second. The --add is assumed to take in two number arguments.
+// fine as long as there are no options that have a short form with digits or a decimal. In this example the -.85 will
+// be the first parameter, --notpresent will be the second. The --add is assumed to take in two number arguments.
 //
 // ESCAPES:
 // In some cases you may need a particular character to appear inside an argument. For example you
@@ -192,6 +192,13 @@ namespace tCmdLine
 	void tStringUsage(tString& dest, const char8_t* author, int versionMajor, int versionMinor = -1, int versionRevision = -1);
 	void tStringUsage(tString& dest, const char8_t* author, const char8_t* desc, int versionMajor, int versionMinor = -1, int versionRevision = -1);
 	void tStringUsage(tString& dest, const char8_t* versionAuthor = nullptr, const char8_t* desc = nullptr);
+
+	// These variants of tStringUsage are for cases where a monospaced font will not be used. In this case it makes
+	// little sense to try to indent things nicely. NI = no indentation.
+	void tStringUsageNI(tString& dest, int versionMajor, int versionMinor = -1, int versionRevision = -1);
+	void tStringUsageNI(tString& dest, const char8_t* author, int versionMajor, int versionMinor = -1, int versionRevision = -1);
+	void tStringUsageNI(tString& dest, const char8_t* author, const char8_t* desc, int versionMajor, int versionMinor = -1, int versionRevision = -1);
+	void tStringUsageNI(tString& dest, const char8_t* versionAuthor = nullptr, const char8_t* desc = nullptr);
 
 	// Returns the program name assuming you have already called tParse.
 	tString tGetProgram();

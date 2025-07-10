@@ -30,7 +30,7 @@ namespace tCmdLine
 
 	void SyntaxInternal(tString* dest, int width);
 	void VersionAuthorInternal(tString& verAuthDest, const char8_t* author, int major, int minor = -1, int revision = -1);
-	void UsageInternal(tString* dest, const char8_t* verAuth, const char8_t* desc);
+	void UsageInternal(tString* dest, bool indent, const char8_t* verAuth, const char8_t* desc);
 
 	// I'm relying on zero initialization here. It's all zeroes before any items are constructed.
 	tList<tParam> Params(tListMode::StaticZero);
@@ -531,7 +531,7 @@ void tCmdLine::VersionAuthorInternal(tString& verAuth, const char8_t* author, in
 }
 
 
-void tCmdLine::UsageInternal(tString* dest, const char8_t* verAuth, const char8_t* desc)
+void tCmdLine::UsageInternal(tString* dest, bool doIndent, const char8_t* verAuth, const char8_t* desc)
 {
 	tString exeName = "program";
 	if (!tCmdLine::Program.IsEmpty())
@@ -602,7 +602,8 @@ void tCmdLine::UsageInternal(tString* dest, const char8_t* verAuth, const char8_
 			numPrint += tcPrintf("[%d args] ", option->NumArgsPerOption);
 		}
 
-		indent = tMath::tMax(indent, numPrint);
+		if (doIndent)
+			indent = tMath::tMax(indent, numPrint);
 		numUsageOptions++;
 	}
 
@@ -621,7 +622,8 @@ void tCmdLine::UsageInternal(tString* dest, const char8_t* verAuth, const char8_
 		else
 			numPrint = tcPrintf("[params] ");
 
-		indent = tMath::tMax(indent, numPrint);
+		if (doIndent)
+			indent = tMath::tMax(indent, numPrint);
 		numUsageParams++;
 	}
 
@@ -649,8 +651,9 @@ void tCmdLine::UsageInternal(tString* dest, const char8_t* verAuth, const char8_
 				numPrinted += tsaPrintf(dest, "[%d args] ", option->NumArgsPerOption);
 			}
 
-			IndentSpaces(dest, indent-numPrinted);
-			tsaPrintf(dest, " : %s\n", option->Description.Pod());
+			if (doIndent)
+				IndentSpaces(dest, indent-numPrinted);
+			tsaPrintf(dest, ": %s\n", option->Description.Pod());
 		}
 		tsaPrintf(dest, "\n");
 	}
@@ -673,12 +676,13 @@ void tCmdLine::UsageInternal(tString* dest, const char8_t* verAuth, const char8_
 			else
 				numPrinted = tsaPrintf(dest, "[params] ");
 
-			IndentSpaces(dest, indent - numPrinted);
+			if (doIndent)
+				IndentSpaces(dest, indent - numPrinted);
 
 			if (!param->Description.IsEmpty())
-				tsaPrintf(dest, " : %s", param->Description.Pod());
+				tsaPrintf(dest, ": %s", param->Description.Pod());
 			else
-				tsaPrintf(dest, " : No description");
+				tsaPrintf(dest, ": No description");
 
 			tsaPrintf(dest, "\n");
 		}
@@ -709,7 +713,7 @@ void tCmdLine::tPrintUsage(const char8_t* author, const char8_t* desc, int major
 
 void tCmdLine::tPrintUsage(const char8_t* verAuth, const char8_t* desc)
 {
-	UsageInternal(nullptr, verAuth, desc);
+	UsageInternal(nullptr, true, verAuth, desc);
 }
 
 
@@ -735,5 +739,31 @@ void tCmdLine::tStringUsage(tString& dest, const char8_t* author, const char8_t*
 
 void tCmdLine::tStringUsage(tString& dest, const char8_t* verAuth, const char8_t* desc)
 {
-	UsageInternal(&dest, verAuth, desc);
+	UsageInternal(&dest, true, verAuth, desc);
+}
+
+
+void tCmdLine::tStringUsageNI(tString& dest, int major, int minor, int revision)
+{
+	tStringUsageNI(dest, nullptr, major, minor, revision);
+}
+
+
+void tCmdLine::tStringUsageNI(tString& dest, const char8_t* author, int major, int minor, int revision)
+{
+	tStringUsageNI(dest, author, nullptr, major, minor, revision);
+}
+
+
+void tCmdLine::tStringUsageNI(tString& dest, const char8_t* author, const char8_t* desc, int major, int minor, int revision)
+{
+	tString verAuth;
+	VersionAuthorInternal(verAuth, author, major, minor, revision);
+	tStringUsageNI(dest, verAuth.Pod(), desc);
+}
+
+
+void tCmdLine::tStringUsageNI(tString& dest, const char8_t* verAuth, const char8_t* desc)
+{
+	UsageInternal(&dest, false, verAuth, desc);
 }
