@@ -28,7 +28,7 @@ namespace tCmdLine
 	void ExpandArgs(tList<tStringItem>& args);
 	int IndentSpaces(tString* dest, int numSpaces);
 
-	void SyntaxInternal(tString* dest);
+	void SyntaxInternal(tString* dest, int width);
 	void VersionAuthorInternal(tString& verAuthDest, const char8_t* author, int major, int minor = -1, int revision = -1);
 	void UsageInternal(tString* dest, const char8_t* verAuth, const char8_t* desc);
 
@@ -235,7 +235,7 @@ void tCmdLine::ExpandArgs(tList<tStringItem>& args)
 			continue;
 		}
 
-		// By now it's a single hyphen and is expandble. eg. -abc -> -a -b -c
+		// By now it's a single hyphen and is expandble. e.g. -abc -> -a -b -c
 		for (int flag = 1; flag < arg->Length(); flag++)
 		{
 			tString newArg = "-" + tString((*arg)[flag]);
@@ -402,88 +402,113 @@ void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
 }
 
 
-void tCmdLine::SyntaxInternal(tString* dest)
+void tCmdLine::SyntaxInternal(tString* dest, int width)
 {
-	tString syntax =
-R"SYNTAX(Syntax Help:
+	tString syntaxRaw =
+R"SYNTAX(Command Line Syntax Guide
 program [arg1 arg2 arg3 ...]
 
 ARGUMENTS:
-Arguments are separated by spaces. An argument must be enclosed in quotes
-(single or double) if it has spaces in it or you want the argument to start
-with a hyphen literal. Hat (^) escape sequences can be used to put either type
-of quote inside. If you need to specify file paths you may use forward or back
-slashes. An ARGUMENT is either an OPTION or PARAMETER.
+Arguments are separated by spaces. An argument must be enclosed in quotes (single or double) if it has spaces in it or you want the argument to start with a hyphen literal. Hat (^) escape sequences can be used to put either type of quote inside. If you need to specify file paths you may use forward or back slashes. An ARGUMENT is either an OPTION or PARAMETER.
 
 OPTIONS:
-An option is simply an argument that starts with a hyphen (-). An option has a
-short syntax and a long syntax. Short syntax is a - followed by a single
-non-hyphen character. The long form is -- followed by a word. All options
-support either long, short, or both forms. Options may have 0 or more
-arguments separated by spaces. Options can be specified in any order. Short
-form options may be combined: Eg. -al expands to -a -l.
+An option is simply an argument that starts with a hyphen (-). An option has a short syntax and a long syntax. Short syntax is a - followed by a single non-hyphen character. The long form is -- followed by a word. All options support either long, short, or both forms. Options may have 0 or more arguments separated by spaces. Options can be specified in any order. Short form options may be combined: e.g. -al expands to -a -l.
 
 FLAGS:
-If an option takes zero arguments it is called a flag. You can only test for a
-FLAGs presence or lack thereof.
+If an option takes zero arguments it is called a flag. You can only test for a FLAG's presence or lack thereof.
 
 PARAMETERS:
-A parameter is simply an argument that is not one of the available options. It
-can be read as a string and parsed however is needed (converted to an integer,
-float etc.) Order is important when specifying parameters. If you need a
-hyphen in a parameter at the start you will need put the parameter in quotes.
-For example, a filename _can_ start with -. Note that arguments that start
-with a hyphen but are not recognized as a valid option just get turned into
-parameters. This means interpreting a hyphen directly instead of as an option
-specifier will happen automatically if there are no options matching what
-comes after the hyphen. Eg. 'tool -.85 --add 33 -87.98 --notpresent' work
-just fine as long as there are no options that have a short form with digits
-or a decimal. In this example the -.85 will be the first parameter,
---notpresent will be the second. The --add is assumed to take in two number
-arguments.
+A parameter is simply an argument that is not one of the available options. It can be read as a string and parsed however is needed (converted to an integer, float etc.) Order is important when specifying parameters. If you need a hyphen in a parameter at the start you will need put the parameter in quotes. For example, a filename _can_ start with -. Note that arguments that start with a hyphen but are not recognized as a valid option just get turned into parameters. This means interpreting a hyphen directly instead of as an option specifier will happen automatically if there are no options matching what comes after the hyphen. e.g. 'tool -.85 --add 33 -87.98 --notpresent' work just fine as long as there are no options that have a short form with digits or a decimal. In this example the -.85 will be the first parameter, --notpresent will be the second. The --add is assumed to take in two number arguments.
 
 ESCAPES:
-Sometimes you need a particular character to appear inside an argument. For
-example you may need a single or double quote to apprear inside a parameter.
-The hat (^) followed by the character you need is used for this purpose.
-Eg: ^^ yields ^ | ^' yields ' | ^" yields "
+Sometimes you need a particular character to appear inside an argument. For example you may need a single or double quote to apprear inside a parameter. The hat (^) followed by the character you need is used for this purpose.
+e.g. ^^ yields ^ | ^' yields ' | ^" yields "
 
 VARIABLE ARGUMENTS:
-A variable number of space-separated parameters may be specified if the tool
-supports them. The parsing system will collect them all up if the parameter
-number is unset (-1).
-A variable number of option arguments is not directly supported due to the
-more complex parsing that would be needed. The same result is achieved by
-entering the same option more than once. Order is preserved. This can also
-be done with options that take more than one argument.
-Eg. tool -I /patha/include/ -I /pathb/include
+A variable number of space-separated parameters may be specified if the tool supports them. The parsing system will collect them all up if the parameter number is unset (-1).
+A variable number of option arguments is not directly supported due to the more complex parsing that would be needed. The same result is achieved by entering the same option more than once. Order is preserved. This can also be done with options that take more than one argument.
+e.g. tool -I /patha/include/ -I /pathb/include
 
 EXAMPLE:
 mycopy -R --overwrite fileA.txt -pat fileB.txt --log log.txt
 
-The fileA.txt and fileB.txt in the above example are parameters (assuming
-the overwrite option is a flag). fileA.txt is the first parameter and
-fileB.txt is the second.
+The fileA.txt and fileB.txt in the above example are parameters (assuming the overwrite option is a flag). fileA.txt is the first parameter and fileB.txt is the second.
 
-The '--log log.txt' is an option with a single argument, log.txt. Flags may be
-combined. The -pat in the example expands to -p -a -t. It is suggested only to
-combine flag (boolean) options as only the last option would get any arguments.
-
+The '--log log.txt' is an option with a single argument, log.txt. Flags may be combined. The -pat in the example expands to -p -a -t. It is suggested only to combine flag (boolean) options as only the last option would get any arguments.
 )SYNTAX";
+
+	// Support column width by processing each line of syntaxRaw and adding to the final syntax string.
+	tString syntax;
+	while (syntaxRaw.IsValid())
+	{
+		tString line = syntaxRaw.ExtractLeft('\n');
+		if (line.IsEmpty())
+		{
+			syntax += "\n";
+			continue;
+		}
+
+		// The separator is so we can test if the word we're extracting is the last of the line.
+		line += tStd::SeparatorAStr;
+		line += " ";
+		int col = 0;
+		do
+		{
+			tString word = line.ExtractLeft(' ');
+			bool lastWord = false;
+			if (word.FindChar(tStd::SeparatorA, true) != -1)
+			{
+				word.RemoveLast();
+				lastWord = true;
+			}
+
+			int wlen = word.Length();
+			if (wlen > width)
+			{
+				// If the word is super long we're stuck. Just add it and move on. We don't break single words.
+				syntax += word;
+				col = 0;
+				continue;
+			}
+			if (col+wlen <= width)
+			{
+				syntax += word;
+				col += wlen;
+
+				// We only add the space after the word if it's not the last one of the input line.
+				if (!lastWord)
+				{
+					syntax += " ";
+					col++;
+				}
+			}
+			else
+			{
+				// No room on the current output line. PPlace the word on the next line and add a space.
+				syntax.RemoveLast();
+				syntax += "\n";
+				syntax += word;
+				syntax += " ";
+				col = wlen+1;
+			}
+		}
+		while (line.IsValid());
+		syntax += "\n";
+	}
 
 	tsaPrintf(dest, "%s", syntax.Pod());
 }
 
 
-void tCmdLine::tPrintSyntax()
+void tCmdLine::tPrintSyntax(int width)
 {
-	SyntaxInternal(nullptr);
+	SyntaxInternal(nullptr, width);
 }
 
 
-void tCmdLine::tStringSyntax(tString& dest)
+void tCmdLine::tStringSyntax(tString& dest, int width)
 {
-	SyntaxInternal(&dest);
+	SyntaxInternal(&dest, width);
 }
 
 
@@ -508,7 +533,7 @@ void tCmdLine::VersionAuthorInternal(tString& verAuth, const char8_t* author, in
 
 void tCmdLine::UsageInternal(tString* dest, const char8_t* verAuth, const char8_t* desc)
 {
-	tString exeName = "Program";
+	tString exeName = "program";
 	if (!tCmdLine::Program.IsEmpty())
 	{
 		exeName = tSystem::tGetFileName(tCmdLine::Program);

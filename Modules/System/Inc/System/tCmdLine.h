@@ -178,7 +178,7 @@ namespace tCmdLine
 	void tParse(int argc, wchar_t** argv);
 #endif
 
-	void tPrintSyntax();
+	void tPrintSyntax(int columnWidth = 80);
 	void tPrintUsage(int versionMajor, int versionMinor = -1, int versionRevision = -1);
 	void tPrintUsage(const char8_t* author, int versionMajor, int versionMinor = -1, int versionRevision = -1);
 	void tPrintUsage(const char8_t* author, const char8_t* desc, int versionMajor, int versionMinor = -1, int versionRevision = -1);
@@ -187,7 +187,7 @@ namespace tCmdLine
 	// The following functions are the same as the tPrint ones above except they populate a tString instead of
 	// printing. This is handy if you need, for example, to display usage instructins in a message box or someehere
 	// other than direct stdout. For all these functions the dest string is appended to and not cleared first.
-	void tStringSyntax(tString& dest);
+	void tStringSyntax(tString& dest, int columnWidth = 80);
 	void tStringUsage(tString& dest, int versionMajor, int versionMinor = -1, int versionRevision = -1);
 	void tStringUsage(tString& dest, const char8_t* author, int versionMajor, int versionMinor = -1, int versionRevision = -1);
 	void tStringUsage(tString& dest, const char8_t* author, const char8_t* desc, int versionMajor, int versionMinor = -1, int versionRevision = -1);
