@@ -169,13 +169,13 @@ namespace tCmdLine
 	};
 
 	// All strings are UTF-8 for the next two functions -- including the char** one.
-	void tParse(int argc, char** argv);
-	void tParse(const char8_t* commandLine, bool fullCommandLine = false);
+	void tParse(int argc, char** argv, bool sortOptions = true);
+	void tParse(const char8_t* commandLine, bool fullCommandLine = false, bool sortOptions = true);
 
 	// We also support parsing from UTF-16. Internally we just convert to UTF-8.
-	void tParse(int argc, char16_t** argv);
+	void tParse(int argc, char16_t** argv, bool sortOptions = true);
 #ifdef PLATFORM_WINDOWS
-	void tParse(int argc, wchar_t** argv);
+	void tParse(int argc, wchar_t** argv, bool sortOptions = true);
 #endif
 
 	void tPrintSyntax(int columnWidth = 80);

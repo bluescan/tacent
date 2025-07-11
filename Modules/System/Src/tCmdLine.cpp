@@ -137,7 +137,7 @@ const tString& tCmdLine::tOption::ArgN(int n) const
 }
 
 
-void tCmdLine::tParse(int argc, char** argv)
+void tCmdLine::tParse(int argc, char** argv, bool sortOptions)
 {
 	if (argc <= 0)
 		return;
@@ -161,11 +161,11 @@ void tCmdLine::tParse(int argc, char** argv)
 			line += " ";
 	}
 
-	tParse(line, true);
+	tParse(line, true, sortOptions);
 }
 
 
-void tCmdLine::tParse(int argc, char16_t** argv)
+void tCmdLine::tParse(int argc, char16_t** argv, bool sortOptions)
 {
 	if (argc <= 0)
 		return;
@@ -193,14 +193,14 @@ void tCmdLine::tParse(int argc, char16_t** argv)
 			line += " ";
 	}
 
-	tParse(line, true);
+	tParse(line, true, sortOptions);
 }
 
 
 #ifdef PLATFORM_WINDOWS
-void tCmdLine::tParse(int argc, wchar_t** argv)
+void tCmdLine::tParse(int argc, wchar_t** argv, bool sortOptions)
 {
-	tParse(argc, (char16_t**)argv);
+	tParse(argc, (char16_t**)argv, sortOptions);
 }
 #endif
 
@@ -269,15 +269,18 @@ static bool OptionSortFnLong(const tCmdLine::tOption& a, const tCmdLine::tOption
 }
 
 
-void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine)
+void tCmdLine::tParse(const char8_t* commandLine, bool fullCommandLine, bool sortOptions)
 {
 	// At this point the constructors for all tOptions and tParams will have been called and both Params and Options
-	// lists are populated. Options can be specified in any order, but we're going to order them alphabetically by short
-	// flag name so they get printed nicely by tPrintUsage. Params must be printed in order based on their param num
-	// so we'll do that sort here too.
+	// lists are populated. Options can be specified in any order. By default we are going to order them alphabetically
+	// by short flag name so they get printed nicely by tPrintUsage. Params must be printed in order based on their param num
+	// so we'll do that sort here too. Param sorting cannot be disabled.
 	Params.Sort(ParamSortFn);
-	Options.Sort(OptionSortFnShort);
-	Options.Sort(OptionSortFnLong);
+	if (sortOptions)
+	{
+		Options.Sort(OptionSortFnShort);
+		Options.Sort(OptionSortFnLong);
+	}
 
 	tString line(commandLine);
 
