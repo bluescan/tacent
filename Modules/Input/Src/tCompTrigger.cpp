@@ -1,7 +1,7 @@
-// tUnitDisp.h
+// tCompTrigger.cpp
 //
-// This file implements the displacement input unit. Units read single values from hardware. One or more units
-// make a component.
+// This file implements a trigger input component. Components are input classes that are grouped together
+// in a device.
 //
 // Copyright (c) 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -13,18 +13,11 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#pragma once
-#include "Input/tUnit.h"
+#include "Input/tCompTrigger.h"
+using namespace tMath;
+using namespace tStd;
 namespace tInput
 {
-
-
-class tUnitDisp : public tUnit
-{
-public:
-	tUnitDisp()																											{ }
-	virtual ~tUnitDisp()																								{ }
-};
 
 
 }

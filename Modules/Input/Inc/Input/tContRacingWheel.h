@@ -1,6 +1,6 @@
-// tContGamepad.h
+// tContRacingWheel.h
 //
-// This file implements a tacing wheel controller. Controllers represent physical input devices.
+// This file implements a racing wheel controller. Controllers represent physical input devices.
 //
 // Copyright (c) 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby

@@ -1,6 +1,6 @@
-// tController.h
+// tInputSystem.h
 //
-// This file implements the base class for a controller. Controllers represent physical devices like gamepads.
+// This file implements the main API for the input system.
 //
 // Copyright (c) 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -18,11 +18,11 @@ namespace tInput
 {
 
 
-class tController
+class tInputSystem
 {
 public:
-	tController()																										{ }
-	virtual ~tController()																								{ }
+	tInputSystem()																										{ }
+	virtual ~tInputSystem()																								{ }
 };
 
 

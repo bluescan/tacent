@@ -1,7 +1,6 @@
-// tUnitDisp.h
+// tInputSystem.cpp
 //
-// This file implements the displacement input unit. Units read single values from hardware. One or more units
-// make a component.
+// This file implements the main API for the input system.
 //
 // Copyright (c) 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -13,18 +12,11 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#pragma once
-#include "Input/tUnit.h"
+#include "Input/tInputSystem.h"
+using namespace tMath;
+using namespace tStd;
 namespace tInput
 {
-
-
-class tUnitDisp : public tUnit
-{
-public:
-	tUnitDisp()																											{ }
-	virtual ~tUnitDisp()																								{ }
-};
 
 
 }

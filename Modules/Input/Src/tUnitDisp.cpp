@@ -1,4 +1,4 @@
-// tUnitDisp.h
+// tUnitDisp.cpp
 //
 // This file implements the displacement input unit. Units read single values from hardware. One or more units
 // make a component.
@@ -13,18 +13,11 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#pragma once
-#include "Input/tUnit.h"
+#include "Input/tUnitDisp.h"
+using namespace tMath;
+using namespace tStd;
 namespace tInput
 {
-
-
-class tUnitDisp : public tUnit
-{
-public:
-	tUnitDisp()																											{ }
-	virtual ~tUnitDisp()																								{ }
-};
 
 
 }
