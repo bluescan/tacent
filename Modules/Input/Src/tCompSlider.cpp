@@ -14,8 +14,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include "Input/tCompSlider.h"
-using namespace tMath;
-using namespace tStd;
 namespace tInput
 {
 

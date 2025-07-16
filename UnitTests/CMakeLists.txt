@@ -5,21 +5,22 @@ tacent_is_arch_arm(IsArm)
 if (NOT IsArm)
 	add_executable(
 		${PROJECT_NAME}
+		Src/UnitTests.h
+		Src/UnitTests.cpp
 		Src/TestFoundation.h
 		Src/TestFoundation.cpp
 		Src/TestMath.h
 		Src/TestMath.cpp
 		Src/TestSystem.h
 		Src/TestSystem.cpp
-		Src/UnitTests.h
-		Src/UnitTests.cpp
-
 		Src/TestImage.h
 		Src/TestImage.cpp
 		Src/TestScene.h
 		Src/TestScene.cpp
 		Src/TestPipeline.h
 		Src/TestPipeline.cpp
+		Src/TestInput.h
+		Src/TestInput.cpp
 	)
 else()
 	add_executable(
@@ -48,7 +49,7 @@ set_target_properties(
 
 if (NOT IsArm)
 	target_link_libraries(${PROJECT_NAME} PUBLIC
-		Foundation Math System Image Pipeline Scene
+		Foundation Math System Image Pipeline Scene Input
 	)
 else()
 	target_link_libraries(${PROJECT_NAME} PUBLIC

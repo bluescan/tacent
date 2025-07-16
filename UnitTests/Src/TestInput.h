@@ -1,7 +1,6 @@
-// tCompButton.cpp
+// TestInput.h
 //
-// This file implements a button input component. Components are input classes that are grouped together
-// in a device.
+// Input module tests.
 //
 // Copyright (c) 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -13,9 +12,12 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#include "Input/tCompButton.h"
-namespace tInput
+#pragma once
+#include "UnitTests.h"
+
+
+namespace tUnitTest
 {
-
-
+	tTestUnit(GamepadJoysticks);
+	tTestUnit(GamepadButtons);
 }

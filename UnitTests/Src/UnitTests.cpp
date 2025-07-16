@@ -23,6 +23,7 @@
 #include "TestSystem.h"
 #if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
 #include "TestPipeline.h"
+#include "TestInput.h"
 #include "TestImage.h"
 #include "TestScene.h"
 #endif
@@ -160,6 +161,10 @@ int main(int argc, char** argv)
 	tTest(Process);
 	tTest(Rule);
 	#endif
+
+	// Input tests.
+	tTest(GamepadJoysticks);
+	tTest(GamepadButtons);
 
 	// Image tests.
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)

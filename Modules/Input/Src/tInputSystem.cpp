@@ -13,10 +13,37 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include "Input/tInputSystem.h"
-using namespace tMath;
-using namespace tStd;
+#ifdef PLATFORM_WINDOWS
+#include <windows.h>
+#include <xinput.h>
+#endif
 namespace tInput
 {
+
+
+void TestFun()
+{
+#ifdef PLATFORM_WINDOWS
+	DWORD dwResult;    
+	for (DWORD i=0; i< XUSER_MAX_COUNT; i++ )
+	{
+		XINPUT_STATE state;
+		ZeroMemory( &state, sizeof(XINPUT_STATE) );
+
+		// Simply get the state of the controller from XInput.
+		dwResult = XInputGetState( i, &state );
+
+		if( dwResult == ERROR_SUCCESS )
+		{
+			// Controller is connected
+		}
+		else
+		{
+			// Controller is not connected
+		}	
+	}
+#endif
+}
 
 
 }

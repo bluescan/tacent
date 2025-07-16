@@ -13,8 +13,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include "Input/tContGamepad.h"
-using namespace tMath;
-using namespace tStd;
 namespace tInput
 {
 
