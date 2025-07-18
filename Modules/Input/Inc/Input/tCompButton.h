@@ -15,6 +15,7 @@
 
 #pragma once
 #include "Input/tComp.h"
+#include "Input/tUnitBoolState.h"
 namespace tInput
 {
 
@@ -24,6 +25,10 @@ class tCompButton : public tComponent
 public:
 	tCompButton()																										: tComponent() { }
 	virtual ~tCompButton()																								{ }
+
+private:
+	// These are private because they need to be mutex-protected. Use the accessors.
+	tUnitBoolState State;
 };
 
 

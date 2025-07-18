@@ -15,6 +15,7 @@
 
 #pragma once
 #include "Input/tComp.h"
+#include "Input/tUnitBoolState.h"
 namespace tInput
 {
 
@@ -24,6 +25,13 @@ class tCompDirPad : public tComponent
 public:
 	tCompDirPad()																										: tComponent() { }
 	virtual ~tCompDirPad()																								{ }
+
+private:
+	// These are private because they need to be mutex-protected. Use the accessors.
+	tUnitBoolState Left;		// -X
+	tUnitBoolState Right;		// +X
+	tUnitBoolState Down;		// -Y
+	tUnitBoolState Up;			// +Y
 };
 
 

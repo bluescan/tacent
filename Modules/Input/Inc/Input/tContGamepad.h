@@ -14,6 +14,10 @@
 
 #pragma once
 #include "Input/tCont.h"
+#include "Input/tCompJoystick.h"		// A gamepad has 2 joysticks. Joysticks contain the push button.
+#include "Input/tCompDirPad.h"			// A gamepad has 1 DPad.
+#include "Input/tCompTrigger.h"			// A gamepad has 2 Triggers.
+#include "Input/tCompButton.h"			// A gamepad has 8 Buttons.
 namespace tInput
 {
 
@@ -23,6 +27,20 @@ class tContGamepad : public tController
 public:
 	tContGamepad()																										: tController() { }
 	virtual ~tContGamepad()																								{ }
+
+	tCompJoystick LStick;		// Contains the Button and 2 axes.
+	tCompJoystick RStick;		// Contains the Button and 2 axes.
+	tCompDirPad DPad;
+	tCompTrigger LTrigger;
+	tCompTrigger RTrigger;
+	tCompButton View;			// On Left
+	tCompButton Menu;			// On Right.
+	tCompButton LBumper;
+	tCompButton RBumper;
+	tCompButton X;
+	tCompButton Y;
+	tCompButton A;
+	tCompButton B;
 };
 
 

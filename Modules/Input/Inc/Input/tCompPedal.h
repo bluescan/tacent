@@ -15,6 +15,7 @@
 
 #pragma once
 #include "Input/tComp.h"
+#include "Input/tUnitDisp.h"
 namespace tInput
 {
 
@@ -24,6 +25,10 @@ class tCompPedal : public tComponent
 public:
 	tCompPedal()																										: tComponent() { }
 	virtual ~tCompPedal()																								{ }
+
+private:
+	// These are private because they need to be mutex-protected. Use the accessors.
+	tUnitDisp Value;
 };
 
 

@@ -15,6 +15,8 @@
 
 #pragma once
 #include "Input/tComp.h"
+#include "Input/tUnitAxis.h"
+#include "Input/tUnitBoolState.h"
 namespace tInput
 {
 
@@ -24,6 +26,12 @@ class tCompJoystick : public tComponent
 public:
 	tCompJoystick()																										: tComponent() { }
 	virtual ~tCompJoystick()																							{ }
+
+private:
+	// These are private because they need to be mutex-protected. Use the accessors.
+	tUnitAxis XAxis;		// Horizontal.
+	tUnitAxis YAxis;		// Vertical.
+	tUnitBoolState Button;
 };
 
 
