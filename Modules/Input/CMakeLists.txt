@@ -24,7 +24,7 @@ add_library(
 	Src/tCont.cpp
 	Src/tContGamepad.cpp
 	Src/tContRacingWheel.cpp
-	Src/tInputSystem.cpp
+	Src/tControllerSystem.cpp
 	Inc/Input/tUnit.h
 	Inc/Input/tUnitContinuousAxis.h
 	Inc/Input/tUnitContinuousDisp.h
@@ -46,7 +46,7 @@ add_library(
 	Inc/Input/tCont.h
 	Inc/Input/tContGamepad.h
 	Inc/Input/tContRacingWheel.h
-	Inc/Input/tInputSystem.h
+	Inc/Input/tControllerSystem.h
 )
 
 tacent_target_include_directories(${PROJECT_NAME})

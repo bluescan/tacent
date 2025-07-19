@@ -1,4 +1,4 @@
-// tInputSystem.cpp
+// tControllerSystem.h
 //
 // This file implements the main API for the input system.
 //
@@ -12,38 +12,33 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#include "Input/tInputSystem.h"
-#ifdef PLATFORM_WINDOWS
-#include <windows.h>
-#include <xinput.h>
-#endif
+#pragma once
+#include <Foundation/tStandard.h>
+#include <Input/tContGamepad.h>
 namespace tInput
 {
 
 
-void TestFun()
+class tControllerSystem
 {
-#ifdef PLATFORM_WINDOWS
-	DWORD dwResult;    
-	for (DWORD i=0; i< XUSER_MAX_COUNT; i++ )
+public:
+	tControllerSystem();
+	virtual ~tControllerSystem()																						{ }
+
+	enum class tControllerID
 	{
-		XINPUT_STATE state;
-		ZeroMemory( &state, sizeof(XINPUT_STATE) );
+		Invalid,
+		C1, C2, C3, C4,
+		MaxControllers = C4
+	};
 
-		// Simply get the state of the controller from XInput.
-		dwResult = XInputGetState( i, &state );
-
-		if( dwResult == ERROR_SUCCESS )
-		{
-			// Controller is connected
-		}
-		else
-		{
-			// Controller is not connected
-		}	
-	}
-#endif
-}
+private:
+	// To simplify the implementation we are going to support up to precisely 4 gamepads. This matches the maximum
+	// supported by xinput on windows and restricts the number of gamepads on Linux to 4, which seems perfectly
+	// reasonable. By simply having an array of gamepads that are always present it also makes reading controller values
+	// a simple process. Just loop through the controllers and ignore any that are in the disconnected state.
+	tContGamepad Gamepads[int(tControllerID::MaxControllers)];
+};
 
 
 }

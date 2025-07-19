@@ -1,4 +1,4 @@
-// tInputSystem.h
+// tControllerSystem.cpp
 //
 // This file implements the main API for the input system.
 //
@@ -12,21 +12,38 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#pragma once
-#include <Foundation/tStandard.h>
+#include "Input/tControllerSystem.h"
+#ifdef PLATFORM_WINDOWS
+#include <windows.h>
+#include <xinput.h>
+#endif
 namespace tInput
 {
 
 
-class tInputSystem
+tControllerSystem::tControllerSystem()
 {
-public:
-	tInputSystem()																										{ }
-	virtual ~tInputSystem()																								{ }
-};
+#ifdef PLATFORM_WINDOWS
+	DWORD dwResult;    
+	for (DWORD i=0; i< XUSER_MAX_COUNT; i++ )
+	{
+		XINPUT_STATE state;
+		ZeroMemory( &state, sizeof(XINPUT_STATE) );
 
+		// Simply get the state of the controller from XInput.
+		dwResult = XInputGetState( i, &state );
 
-void TestFun();
+		if( dwResult == ERROR_SUCCESS )
+		{
+			// Controller is connected
+		}
+		else
+		{
+			// Controller is not connected
+		}	
+	}
+#endif
+}
 
 
 }

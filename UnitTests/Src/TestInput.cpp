@@ -12,7 +12,7 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#include <Input/tInputSystem.h>
+#include <Input/tControllerSystem.h>
 #include "UnitTests.h"
 namespace tUnitTest
 {
@@ -20,7 +20,7 @@ namespace tUnitTest
 
 tTestUnit(GamepadJoysticks)
 {
-	tInput::TestFun();
+	tInput::tControllerSystem coontrollerSystem;
 	tRequire(true);
 }
 
