@@ -1,4 +1,4 @@
-// tUnitDisp.cpp
+// tUnitContinuousDisp.cpp
 //
 // This file implements the displacement input unit. Units read single values from hardware. One or more units
 // make a component.
@@ -13,7 +13,7 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#include "Input/tUnitDisp.h"
+#include "Input/tUnitContinuousDisp.h"
 namespace tInput
 {
 
