@@ -1,6 +1,6 @@
 // tControllerSystem.h
 //
-// This file implements the main API for the input system.
+// This file implements the main API for the input system. It manages all attached controllers.
 //
 // Copyright (c) 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
