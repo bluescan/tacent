@@ -3,6 +3,12 @@ project(Input VERSION ${TACENT_VERSION} LANGUAGES CXX)
 
 add_library(
 	${PROJECT_NAME}
+	Src/tUnit.cpp
+	Src/tUnitContinuousAxis.cpp
+	Src/tUnitContinuousDisp.cpp
+	Src/tUnitContinuousWind.cpp
+	Src/tUnitDiscreteBool.cpp
+	Src/tUnitDiscreteMulti.cpp
 	Src/tComp.cpp
 	Src/tCompButton.cpp
 	Src/tCompSelector.cpp
@@ -19,12 +25,12 @@ add_library(
 	Src/tContGamepad.cpp
 	Src/tContRacingWheel.cpp
 	Src/tInputSystem.cpp
-	Src/tUnit.cpp
-	Src/tUnitContinuousAxis.cpp
-	Src/tUnitContinuousDisp.cpp
-	Src/tUnitContinuousWind.cpp
-	Src/tUnitDiscreteBool.cpp
-	Src/tUnitDiscreteMulti.cpp
+	Inc/Input/tUnit.h
+	Inc/Input/tUnitContinuousAxis.h
+	Inc/Input/tUnitContinuousDisp.h
+	Inc/Input/tUnitContinuousWind.h
+	Inc/Input/tUnitDiscreteBool.h
+	Inc/Input/tUnitDiscreteMulti.h
 	Inc/Input/tComp.h
 	Inc/Input/tCompButton.h
 	Inc/Input/tCompSelector.h
@@ -41,12 +47,6 @@ add_library(
 	Inc/Input/tContGamepad.h
 	Inc/Input/tContRacingWheel.h
 	Inc/Input/tInputSystem.h
-	Inc/Input/tUnit.h
-	Inc/Input/tUnitContinuousAxis.h
-	Inc/Input/tUnitContinuousDisp.h
-	Inc/Input/tUnitContinuousWind.h
-	Inc/Input/tUnitDiscreteBool.h
-	Inc/Input/tUnitDiscreteMulti.h
 )
 
 tacent_target_include_directories(${PROJECT_NAME})
