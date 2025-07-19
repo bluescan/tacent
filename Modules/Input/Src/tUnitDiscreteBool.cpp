@@ -1,6 +1,6 @@
-// tUnitAxis.h
+// tUnitDiscreteBool.cpp
 //
-// This file implements the axis input unit. Units read single values from hardware. One or more units
+// This file implements the boolean state input unit. Units read single values from hardware. One or more units
 // make a component.
 //
 // Copyright (c) 2025 Tristan Grimmer.
@@ -13,18 +13,9 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#pragma once
-#include "Input/tUnit.h"
+#include "Input/tUnitDiscreteBool.h"
 namespace tInput
 {
-
-
-class tUnitAxis : public tUnit
-{
-public:
-	tUnitAxis()																											{ }
-	virtual ~tUnitAxis()																								{ }
-};
 
 
 }

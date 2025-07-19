@@ -1,6 +1,6 @@
-// tUnitBoolState.cpp
+// tUnitDiscreteMulti.cpp
 //
-// This file implements the boolean state input unit. Units read single values from hardware. One or more units
+// This file implements the multi-state input unit. Units read single values from hardware. One or more units
 // make a component.
 //
 // Copyright (c) 2025 Tristan Grimmer.
@@ -13,7 +13,7 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#include "Input/tUnitBoolState.h"
+#include "Input/tUnitDiscreteMulti.h"
 namespace tInput
 {
 

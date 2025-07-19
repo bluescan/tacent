@@ -15,8 +15,8 @@
 
 #pragma once
 #include "Input/tComp.h"
-#include "Input/tUnitAxis.h"
-#include "Input/tUnitBoolState.h"
+#include "Input/tUnitContinuousAxis.h"
+#include "Input/tUnitDiscreteBool.h"
 namespace tInput
 {
 
@@ -29,9 +29,14 @@ public:
 
 private:
 	// These are private because they need to be mutex-protected. Use the accessors.
-	tUnitAxis XAxis;		// Horizontal.
-	tUnitAxis YAxis;		// Vertical.
-	tUnitBoolState Button;
+	tUnitContinuousAxis XAxis;		// Horizontal.
+	tUnitContinuousAxis YAxis;		// Vertical.
+
+	// Pressing down on the stick. By having this button in the joystick component we can, if we want, deal with the
+	// fact that there is mechanical linkage between the button and the axes. There is likely more unwanted movement in
+	// the axes after the button is pressed. Of course before the actual click-down there will be extra movement also,
+	// but we have no way to detect that.
+	tUnitDiscreteBool Button;
 };
 
 

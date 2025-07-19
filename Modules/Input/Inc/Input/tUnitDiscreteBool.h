@@ -1,6 +1,6 @@
-// tUnitMultiState.h
+// tUnitDiscreteBool.h
 //
-// This file implements the multi-state input unit. Units read single values from hardware. One or more units
+// This file implements the boolean state input unit. Units read single values from hardware. One or more units
 // make a component.
 //
 // Copyright (c) 2025 Tristan Grimmer.
@@ -19,11 +19,11 @@ namespace tInput
 {
 
 
-class tUnitMultiState : public tUnit
+class tUnitDiscreteBool : public tUnit
 {
 public:
-	tUnitMultiState()																									{ }
-	virtual ~tUnitMultiState()																							{ }
+	tUnitDiscreteBool()																									{ }
+	virtual ~tUnitDiscreteBool()																							{ }
 };
 
 

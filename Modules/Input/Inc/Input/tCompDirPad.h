@@ -15,7 +15,7 @@
 
 #pragma once
 #include "Input/tComp.h"
-#include "Input/tUnitBoolState.h"
+#include "Input/tUnitDiscreteBool.h"
 namespace tInput
 {
 
@@ -28,10 +28,10 @@ public:
 
 private:
 	// These are private because they need to be mutex-protected. Use the accessors.
-	tUnitBoolState Left;		// -X
-	tUnitBoolState Right;		// +X
-	tUnitBoolState Down;		// -Y
-	tUnitBoolState Up;			// +Y
+	tUnitDiscreteBool Left;		// -X
+	tUnitDiscreteBool Right;		// +X
+	tUnitDiscreteBool Down;		// -Y
+	tUnitDiscreteBool Up;			// +Y
 };
 
 

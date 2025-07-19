@@ -15,7 +15,7 @@
 
 #pragma once
 #include "Input/tComp.h"
-#include "Input/tUnitDisp.h"
+#include "Input/tUnitContinuousDisp.h"
 namespace tInput
 {
 
@@ -28,7 +28,7 @@ public:
 
 private:
 	// These are private because they need to be mutex-protected. Use the accessors.
-	tUnitDisp Value;
+	tUnitContinuousDisp Value;
 };
 
 

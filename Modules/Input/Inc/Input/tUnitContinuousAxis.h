@@ -1,6 +1,6 @@
-// tUnitBoolState.h
+// tUnitContinuousAxis.h
 //
-// This file implements the boolean state input unit. Units read single values from hardware. One or more units
+// This file implements the axis input unit. Units read single values from hardware. One or more units
 // make a component.
 //
 // Copyright (c) 2025 Tristan Grimmer.
@@ -19,11 +19,14 @@ namespace tInput
 {
 
 
-class tUnitBoolState : public tUnit
+// An axis unit is a container for a float in [-1.0, 1.0].
+class tUnitContinuousAxis : public tUnit
 {
 public:
-	tUnitBoolState()																									{ }
-	virtual ~tUnitBoolState()																							{ }
+	tUnitContinuousAxis()																											{ }
+	virtual ~tUnitContinuousAxis()																								{ }
+
+	float Value;
 };
 
 

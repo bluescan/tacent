@@ -1,4 +1,4 @@
-// tUnitDisp.h
+// tUnitContinuousDisp.h
 //
 // This file implements the displacement input unit. Units read single values from hardware. One or more units
 // make a component.
@@ -19,11 +19,11 @@ namespace tInput
 {
 
 
-class tUnitDisp : public tUnit
+class tUnitContinuousDisp : public tUnit
 {
 public:
-	tUnitDisp()																											{ }
-	virtual ~tUnitDisp()																								{ }
+	tUnitContinuousDisp()																											{ }
+	virtual ~tUnitContinuousDisp()																								{ }
 };
 
 

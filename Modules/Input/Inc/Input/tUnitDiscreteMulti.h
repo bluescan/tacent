@@ -1,4 +1,4 @@
-// tUnitMultiState.cpp
+// tUnitDiscreteMulti.h
 //
 // This file implements the multi-state input unit. Units read single values from hardware. One or more units
 // make a component.
@@ -13,9 +13,18 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#include "Input/tUnitMultiState.h"
+#pragma once
+#include "Input/tUnit.h"
 namespace tInput
 {
+
+
+class tUnitDiscreteMulti : public tUnit
+{
+public:
+	tUnitDiscreteMulti()																									{ }
+	virtual ~tUnitDiscreteMulti()																							{ }
+};
 
 
 }

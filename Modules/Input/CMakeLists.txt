@@ -17,10 +17,10 @@ add_library(
 	Src/tContRacingWheel.cpp
 	Src/tInputSystem.cpp
 	Src/tUnit.cpp
-	Src/tUnitAxis.cpp
-	Src/tUnitBoolState.cpp
-	Src/tUnitDisp.cpp
-	Src/tUnitMultiState.cpp
+	Src/tUnitContinuousAxis.cpp
+	Src/tUnitDiscreteBool.cpp
+	Src/tUnitContinuousDisp.cpp
+	Src/tUnitDiscreteMulti.cpp
 	Inc/Input/tComp.h
 	Inc/Input/tCompButton.h
 	Inc/Input/tCompDial.h
@@ -35,10 +35,10 @@ add_library(
 	Inc/Input/tContRacingWheel.h
 	Inc/Input/tInputSystem.h
 	Inc/Input/tUnit.h
-	Inc/Input/tUnitAxis.h
-	Inc/Input/tUnitBoolState.h
-	Inc/Input/tUnitDisp.h
-	Inc/Input/tUnitMultiState.h
+	Inc/Input/tUnitContinuousAxis.h
+	Inc/Input/tUnitDiscreteBool.h
+	Inc/Input/tUnitContinuousDisp.h
+	Inc/Input/tUnitDiscreteMulti.h
 )
 
 tacent_target_include_directories(${PROJECT_NAME})
