@@ -5,7 +5,10 @@ add_library(
 	${PROJECT_NAME}
 	Src/tComp.cpp
 	Src/tCompButton.cpp
+	Src/tCompSelector.cpp
 	Src/tCompDial.cpp
+	Src/tCompWheel.cpp
+	Src/tCompScrubber.cpp
 	Src/tCompDirPad.cpp
 	Src/tCompJoystick.cpp
 	Src/tCompPedal.cpp
@@ -18,12 +21,16 @@ add_library(
 	Src/tInputSystem.cpp
 	Src/tUnit.cpp
 	Src/tUnitContinuousAxis.cpp
-	Src/tUnitDiscreteBool.cpp
 	Src/tUnitContinuousDisp.cpp
+	Src/tUnitContinuousWind.cpp
+	Src/tUnitDiscreteBool.cpp
 	Src/tUnitDiscreteMulti.cpp
 	Inc/Input/tComp.h
 	Inc/Input/tCompButton.h
+	Inc/Input/tCompSelector.h
 	Inc/Input/tCompDial.h
+	Inc/Input/tCompWheel.h
+	Inc/Input/tCompScrubber.h
 	Inc/Input/tCompDirPad.h
 	Inc/Input/tCompJoystick.h
 	Inc/Input/tCompPedal.h
@@ -36,8 +43,9 @@ add_library(
 	Inc/Input/tInputSystem.h
 	Inc/Input/tUnit.h
 	Inc/Input/tUnitContinuousAxis.h
-	Inc/Input/tUnitDiscreteBool.h
 	Inc/Input/tUnitContinuousDisp.h
+	Inc/Input/tUnitContinuousWind.h
+	Inc/Input/tUnitDiscreteBool.h
 	Inc/Input/tUnitDiscreteMulti.h
 )
 
