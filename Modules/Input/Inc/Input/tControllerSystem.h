@@ -49,6 +49,8 @@ private:
 	// a simple process. Just loop through the controllers and ignore any that are in the disconnected state.
 	tContGamepad Gamepads[int(tGamepadID::MaxGamepads)];
 
+	// The PollExitRequested predicate is required to avoid spurious wakeups.
+	bool PollExitRequested = false;
 	std::condition_variable PollExitCondition;
 	std::thread PollingThread;
 	mutable std::mutex Mutex;

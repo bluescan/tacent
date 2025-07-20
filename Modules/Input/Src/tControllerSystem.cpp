@@ -32,6 +32,10 @@ tControllerSystem::tControllerSystem()
 
 tControllerSystem::~tControllerSystem()
 {
+	{
+		const std::lock_guard<std::mutex> lock(Mutex);
+		PollExitRequested = true;
+	}
 	// Notify that we want to cooperatively stop the polling thread. Notify one (thread) should be sufficient.
 	// Notify_all would alse work but is overkill since only one (polling) thread is waiting. By using a condition
 	// variable we've made it so we don't have to wait for the current polling cycle sleep to complete.
@@ -72,10 +76,8 @@ void tControllerSystem::Poll()
 		tPrintf("Poll: %d\n", pollNum++);
 
 		std::unique_lock<std::mutex> lock(Mutex);
-		std::cv_status waitResult = PollExitCondition.wait_for(lock, std::chrono::seconds(1));
-
-		// If we didn't reach the timeout, it means the PollExitCondition was notified and we should finish up.
-		if (waitResult == std::cv_status::no_timeout)
+		bool exitRequested = PollExitCondition.wait_for(lock, std::chrono::seconds(1), [this]{ return PollExitRequested; });
+		if (exitRequested)
 			break;
 	}
 }
