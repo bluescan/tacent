@@ -162,10 +162,6 @@ int main(int argc, char** argv)
 	tTest(Rule);
 	#endif
 
-	// Input tests.
-	tTest(GamepadJoysticks);
-	tTest(GamepadButtons);
-
 	// Image tests.
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
 	tTest(ImageLoad);
@@ -193,6 +189,11 @@ int main(int argc, char** argv)
 	tTest(ImagePKM);
 	tTest(ImagePVR2);
 	tTest(ImagePVR3);
+
+	// Input tests.
+	tTest(GamepadJoysticks);
+	tTest(GamepadButtons);
+
 	#endif
 
 	#else
@@ -207,7 +208,7 @@ int main(int argc, char** argv)
 	// tTest(Network);
 	// tTest(Time);
 	// tTest(Machine);
-	tTest(CmdLine);
+	// tTest(CmdLine);
 	// tTest(String);
 	// tTest(List);
 	// tTest(ListExtra);
@@ -251,6 +252,8 @@ int main(int argc, char** argv)
 	// tTest(BitField);
 	// tTest(FixInt);
 	// tTest(SmallFloat);
+	tTest(GamepadJoysticks);
+	// tTest(GamepadButtons);
 
 	#endif
 

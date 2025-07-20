@@ -208,6 +208,11 @@ public:
 	tsList(tListMode mode)																								: tList<T>(mode) { }
 	virtual ~tsList()																									{ }
 
+	// The below functions use an RAII std::lock_guard that locks the mutex for the duration of the scope of the guard,
+	// The pattern below calls a function in the return. The function called in the return _is_ protected and in the
+	// critical section protected by the mutex. This is because the function is called _before_ the guard goes out of
+	// scope. It is only before the actual 'return' that the guard goes out of scope, the destructor called, and the
+	// mutex released.
 	T* Insert(T* item)																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Insert(item); }
 	T* Insert(T* item, T* here)																							{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Insert(item, here); }
 	T* Append(T* item)																									{ const std::lock_guard<std::mutex> lock(Mutex); return tList<T>::Append(item); }

@@ -13,6 +13,9 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <mutex>
+#include <thread>
+#include <condition_variable>
 #include <Foundation/tStandard.h>
 #include <Input/tContGamepad.h>
 namespace tInput
@@ -23,21 +26,32 @@ class tControllerSystem
 {
 public:
 	tControllerSystem();
-	virtual ~tControllerSystem()																						{ }
+	virtual ~tControllerSystem();
 
-	enum class tControllerID
+	// Call this periodically from the main thread loop. When this is called any callbacks are executed and all
+	// controller state is updated.
+	void Update();
+
+	enum class tGamepadID
 	{
 		Invalid,
-		C1, C2, C3, C4,
-		MaxControllers = C4
+		GP1, GP2, GP3, GP4,
+		MaxGamepads = GP4
 	};
+	tContGamepad& GetGetpad(tGamepadID);
 
 private:
+	void Poll();
+
 	// To simplify the implementation we are going to support up to precisely 4 gamepads. This matches the maximum
 	// supported by xinput on windows and restricts the number of gamepads on Linux to 4, which seems perfectly
 	// reasonable. By simply having an array of gamepads that are always present it also makes reading controller values
 	// a simple process. Just loop through the controllers and ignore any that are in the disconnected state.
-	tContGamepad Gamepads[int(tControllerID::MaxControllers)];
+	tContGamepad Gamepads[int(tGamepadID::MaxGamepads)];
+
+	std::condition_variable PollExitCondition;
+	std::thread PollingThread;
+	mutable std::mutex Mutex;
 };
 
 

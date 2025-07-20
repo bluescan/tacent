@@ -12,37 +12,77 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#include "Input/tControllerSystem.h"
+#include <chrono>
 #ifdef PLATFORM_WINDOWS
 #include <windows.h>
 #include <xinput.h>
 #endif
+#include "Foundation/tPlatform.h"
+#include "System/tPrint.h"
+#include "Input/tControllerSystem.h"
 namespace tInput
 {
 
 
 tControllerSystem::tControllerSystem()
 {
-#ifdef PLATFORM_WINDOWS
-	DWORD dwResult;    
-	for (DWORD i=0; i< XUSER_MAX_COUNT; i++ )
+	PollingThread = std::thread(&tControllerSystem::Poll, this);
+}
+
+
+tControllerSystem::~tControllerSystem()
+{
+	// Notify that we want to cooperatively stop the polling thread. Notify one (thread) should be sufficient.
+	// Notify_all would alse work but is overkill since only one (polling) thread is waiting. By using a condition
+	// variable we've made it so we don't have to wait for the current polling cycle sleep to complete.
+	PollExitCondition.notify_one();
+
+	// The join just blocks until the polling thread has finished.
+	PollingThread.join();
+}
+
+
+void tControllerSystem::Poll()
+{
+	while (1)
 	{
-		XINPUT_STATE state;
-		ZeroMemory( &state, sizeof(XINPUT_STATE) );
-
-		// Simply get the state of the controller from XInput.
-		dwResult = XInputGetState( i, &state );
-
-		if( dwResult == ERROR_SUCCESS )
+		// Do the poll.
+		// const std::lock_guard<std::mutex> lock(Mutex);
+		#ifdef PLATFORM_WINDOWS
+		for (int g = 0; g < int(tGamepadID::MaxGamepads); g++)
 		{
-			// Controller is connected
+			WinXInputState state;
+			tStd::tMemclr(&state, sizeof(WinXInputState));
+
+			// Get the state of the controller from XInput.
+			WinDWord result = XInputGetState(g, &state);
+
+			if (result == WinErrorSuccess)
+			{
+				// Controller is connected.
+			}
+			else
+			{
+				// Controller is not connected.
+			}
 		}
-		else
-		{
-			// Controller is not connected
-		}	
+		#endif
+
+		static int pollNum = 0;
+		tPrintf("Poll: %d\n", pollNum++);
+
+		std::unique_lock<std::mutex> lock(Mutex);
+		std::cv_status waitResult = PollExitCondition.wait_for(lock, std::chrono::seconds(1));
+
+		// If we didn't reach the timeout, it means the PollExitCondition was notified and we should finish up.
+		if (waitResult == std::cv_status::no_timeout)
+			break;
 	}
-#endif
+}
+
+
+void tControllerSystem::Update()
+{
 }
 
 

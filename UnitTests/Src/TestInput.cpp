@@ -21,6 +21,9 @@ namespace tUnitTest
 tTestUnit(GamepadJoysticks)
 {
 	tInput::tControllerSystem coontrollerSystem;
+
+	// Keep controllerSystem alive for a while.
+	std::this_thread::sleep_for(std::chrono::seconds(10));
 	tRequire(true);
 }
 

@@ -41,6 +41,10 @@ public:
 	tCompButton Y;
 	tCompButton A;
 	tCompButton B;
+
+private:
+	// Connectedness is mutex protected.
+	bool Connected;
 };
 
 
