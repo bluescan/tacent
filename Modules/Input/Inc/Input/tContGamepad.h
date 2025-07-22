@@ -13,6 +13,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <mutex>
 #include "Input/tCont.h"
 #include "Input/tCompJoystick.h"		// A gamepad has 2 joysticks. Joysticks contain the push button.
 #include "Input/tCompDirPad.h"			// A gamepad has 1 DPad.
@@ -25,7 +26,7 @@ namespace tInput
 class tContGamepad : public tController
 {
 public:
-	tContGamepad()																										: tController() { }
+	tContGamepad(std::mutex& mutex)																						: tController(), Mutex(mutex) { }
 	virtual ~tContGamepad()																								{ }
 
 	tCompJoystick LStick;		// Contains the Button and 2 axes.
@@ -42,7 +43,20 @@ public:
 	tCompButton A;
 	tCompButton B;
 
+	bool IsConnected() const
+	{
+		const std::lock_guard<std::mutex> lock(Mutex);
+		return Connected;
+	}
+	void SetConnected(int connected)
+	{
+		const std::lock_guard<std::mutex> lock(Mutex);
+		Connected = connected;
+	}
+
 private:
+	std::mutex& Mutex;
+
 	// Connectedness is mutex protected.
 	bool Connected;
 };

@@ -195,7 +195,7 @@ public:
 
 
 // Same as a tList but thread-safe. tListMode can be Static, External, or Intrernal. The 'thread-safeness' of a tsList
-// extends only to keeping the list consisten (adding, removing, sorting, etc) -- it does _not_ extend to managing and
+// extends only to keeping the list consistent (adding, removing, sorting, etc) -- it does _not_ extend to managing and
 // synchronizing the lifetime of the items you put on the list. That is your job. For this reason, be careful with
 // Internal list-mode, as the list destructor deletes the items just like a regular tList.
 template<typename T> class tsList : public tList<T>
