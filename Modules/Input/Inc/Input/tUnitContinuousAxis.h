@@ -23,10 +23,10 @@ namespace tInput
 class tUnitContinuousAxis : public tUnit
 {
 public:
-	tUnitContinuousAxis()																											{ }
-	virtual ~tUnitContinuousAxis()																								{ }
+	tUnitContinuousAxis()																								{ }
+	virtual ~tUnitContinuousAxis()																						{ }
 
-	float Value;
+	float Value = 0.0f;
 };
 
 

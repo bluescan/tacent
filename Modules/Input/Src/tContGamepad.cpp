@@ -46,7 +46,8 @@ void tContGamepad::StopPolling()
 	if (!IsPolling())
 		return;
 
-	// We don't want to wait around to exit the polling thread so we use a condition_variable.
+	// We don't want to wait around to exit the polling thread to finish its sleep cycle so we use a condition_variable
+	// that uses PollingExitRequested as the predecate.
 	{
 		const std::lock_guard<std::mutex> lock(Mutex);
 		PollingExitRequested = true;
@@ -76,6 +77,16 @@ void tContGamepad::Poll()
 		{
 			// Controller connected. We can read its state and update components.
 			// Make sure it is mutex protected as main thread may read input unit values.
+			if (state.dwPacketNumber != PollingPacketNumber)
+			{
+				float leftTriggerNorm = float(state.Gamepad.bLeftTrigger) / 255.0f;
+				LTrigger.SetDisplacement(leftTriggerNorm);
+
+				float rightTriggerNorm = float(state.Gamepad.bRightTrigger) / 255.0f;
+				RTrigger.SetDisplacement(rightTriggerNorm);
+
+				PollingPacketNumber = state.dwPacketNumber;
+			}
 		}
 		else
 		{

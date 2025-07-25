@@ -35,7 +35,8 @@ class tContGamepad : public tController
 {
 public:
 	// Constructs an initially disconnected (non-polling) controller.
-	tContGamepad()																										: tController() { }
+	tContGamepad() :
+		tController(), Mutex(), LTrigger(Mutex), RTrigger(Mutex) { }
 	virtual ~tContGamepad()																								{ }
 
 	tCompJoystick LStick;		// Contains the Button and 2 axes.
@@ -73,6 +74,7 @@ private:
 	// We consider the controller connected if the PollingThread is joinable.
 	std::thread PollingThread;
 
+	ulong PollingPacketNumber = ulong(-1);
 	tGamepadID PollingGamepadID = tGamepadID::Invalid;
 	int PollingPeriod = 0;
 };

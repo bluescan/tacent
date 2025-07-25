@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <mutex>
 #include "Input/tComp.h"
 #include "Input/tUnitContinuousDisp.h"
 namespace tInput
@@ -23,12 +24,28 @@ namespace tInput
 class tCompTrigger : public tComponent
 {
 public:
-	tCompTrigger()																										: tComponent() { }
+	tCompTrigger(std::mutex& dispMutex)																					: tComponent(), DispMutex(dispMutex) { }
 	virtual ~tCompTrigger()																								{ }
 
+	float GetDisplacement() const
+	{
+		std::lock_guard<std::mutex> lock(DispMutex);
+		return Disp.GetValue();
+	}
+
+	void SetDisplacement(float displacement)
+	{
+		std::lock_guard<std::mutex> lock(DispMutex);
+		Disp.SetValue(displacement);
+	}
+
 private:
+	// This is the same mutex the polling thread will use to update/write the input unit Value. When the main thread
+	// reads the Value using the public accessors, it is also protected by this mutex.
+	std::mutex& DispMutex;
+
 	// These are private because they need to be mutex-protected. Use the accessors.
-	tUnitContinuousDisp Value;
+	tUnitContinuousDisp Disp;
 };
 
 

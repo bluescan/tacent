@@ -14,16 +14,24 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tFundamentals.h>
 #include "Input/tUnit.h"
 namespace tInput
 {
 
 
+// A continuous displacement unit is a container for a float in [0.0, 1.0].
 class tUnitContinuousDisp : public tUnit
 {
 public:
-	tUnitContinuousDisp()																											{ }
-	virtual ~tUnitContinuousDisp()																								{ }
+	tUnitContinuousDisp()																								{ }
+	virtual ~tUnitContinuousDisp()																						{ }
+
+	float GetValue() const { return Value; }
+	void SetValue(float value) { tMath::tiClamp(value, 0.0f, 1.0f); Value = value; }
+
+private:
+	float Value = 0.0f;
 };
 
 
