@@ -46,15 +46,12 @@ public:
 	// controller state is updated.
 	void Update();
 
-	enum class tGamepadID
-	{
-		GP0, GP1, GP2, GP3,
-		MaxGamepads
-	};
 	tContGamepad& GetGetpad(tGamepadID);
 
 private:
-	void Poll();
+	// This function runs on a different thread.
+	void Detect();
+
 	int DeterminePollingPeriodForConnectedControllers();
 
 	// This mutex protects PollExitRequested, the gamepad Connected state variable, and all tUnit members in the
@@ -63,7 +60,7 @@ private:
 
 	bool PollingPeriodAutoDetect = false;
 	int PollingPeriod = 8;
-	int PollingControllerDetectionPeriod = 1000;
+	int DetectPeriod = 1000;
 
 	// To simplify the implementation we are going to support up to precisely 4 gamepads. This matches the maximum
 	// supported by xinput on windows and restricts the number of gamepads on Linux to 4, which seems perfectly
@@ -72,10 +69,10 @@ private:
 	// Parts of tContGamepad mutex protected: the connected bool and tUnit values in the components.
 	std::vector<tContGamepad> Gamepads;
 
-	// The PollExitRequested predicate is required to avoid spurious wakeups. Mutex protected.
-	bool PollExitRequested = false;
-	std::condition_variable PollExitCondition;
-	std::thread PollingThread;
+	// The DetectExitRequested predicate is required to avoid spurious wakeups. Mutex protected.
+	bool DetectExitRequested = false;
+	std::condition_variable DetectExitCondition;
+	std::thread DetectThread;
 };
 
 

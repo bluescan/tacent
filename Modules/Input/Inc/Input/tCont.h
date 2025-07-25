@@ -23,6 +23,8 @@ class tController
 public:
 	tController()																										{ }
 	virtual ~tController()																								{ }
+
+	// @todo Move stuff from tContGamepad once it's all working.
 };
 
 

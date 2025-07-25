@@ -23,10 +23,19 @@ namespace tInput
 {
 
 
+enum class tGamepadID
+{
+	Invalid = -1,
+	GP0, GP1, GP2, GP3,
+	MaxGamepads
+};
+
+
 class tContGamepad : public tController
 {
 public:
-	tContGamepad(std::mutex& mutex)																						: tController(), Mutex(mutex) { }
+	// Constructs an initially disconnected (non-polling) controller.
+	tContGamepad()																										: tController() { }
 	virtual ~tContGamepad()																								{ }
 
 	tCompJoystick LStick;		// Contains the Button and 2 axes.
@@ -43,22 +52,29 @@ public:
 	tCompButton A;
 	tCompButton B;
 
-	bool IsConnected() const
-	{
-		const std::lock_guard<std::mutex> lock(Mutex);
-		return Connected;
-	}
-	void SetConnected(int connected)
-	{
-		const std::lock_guard<std::mutex> lock(Mutex);
-		Connected = connected;
-	}
+	void StartPolling(int pollingPeriod, tGamepadID);
+	void StopPolling();
+	bool IsPolling() const { return PollingThread.joinable(); }
+	bool IsConnected() const { return IsPolling(); }
 
 private:
-	std::mutex& Mutex;
 
-	// Connectedness is mutex protected.
-	bool Connected;
+	// This function runs on the polling thread for this controller.
+	void Poll();
+
+	// Protects updates to all the components since they may be read by the main thread at any time.
+	// Protects PollExitRequested.
+	std::mutex Mutex;
+
+	// The PollExitRequested predicate is required to avoid 'spurious wakeups'. Mutex protected.
+	bool PollingExitRequested = false;
+	std::condition_variable PollingExitCondition;
+
+	// We consider the controller connected if the PollingThread is joinable.
+	std::thread PollingThread;
+
+	tGamepadID PollingGamepadID = tGamepadID::Invalid;
+	int PollingPeriod = 0;
 };
 
 
