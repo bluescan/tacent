@@ -65,6 +65,7 @@ void tContGamepad::Poll()
 		static int pollNum = 0;
 		tPrintf("Poll: %d\n", pollNum++);
 
+		#ifdef PLATFORM_WINDOWS
 		WinXInputState state;
 		tStd::tMemclr(&state, sizeof(WinXInputState));
 
@@ -97,7 +98,7 @@ void tContGamepad::Poll()
 			// detection thread calls StopPolling.
 			break;
 		}
-
+		#endif
 
 		// This unique_lock is just a more powerful version of lock_guard. Supports subsequent unlocking/locking which
 		// is presumably needed by wait_for. In any case, wait_for needs this type of lock.

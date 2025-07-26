@@ -14,6 +14,7 @@
 
 #pragma once
 #include <mutex>
+#include <condition_variable>
 #include "Input/tCont.h"
 #include "Input/tCompJoystick.h"		// A gamepad has 2 joysticks. Joysticks contain the push button.
 #include "Input/tCompDirPad.h"			// A gamepad has 1 DPad.
