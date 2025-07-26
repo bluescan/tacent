@@ -372,6 +372,8 @@ template<typename T> inline T tHtoN(T val)
 #define WinWord WORD
 #define WinWParam WPARAM
 #define WinWsaData WSADATA
+#define WinXInputCapabilities XINPUT_CAPABILITIES
+#define WinXInputFlagGamepad XINPUT_FLAG_GAMEPAD
 #define WinXInputState XINPUT_STATE
 #define snprintf _snprintf
 inline bool WinSucceeded(long hresult)																					{ return (hresult >= 0) ? true : false; }

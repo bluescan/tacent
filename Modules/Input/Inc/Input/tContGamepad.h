@@ -37,7 +37,7 @@ public:
 	// Constructs an initially disconnected (non-polling) controller.
 	tContGamepad() :
 		tController(), Mutex(), LTrigger(Mutex), RTrigger(Mutex) { }
-	virtual ~tContGamepad()																								{ }
+	virtual ~tContGamepad()																								{ StopPolling(); }
 
 	tCompJoystick LStick;		// Contains the Button and 2 axes.
 	tCompJoystick RStick;		// Contains the Button and 2 axes.

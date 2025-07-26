@@ -46,7 +46,7 @@ tControllerSystem::tControllerSystem(int pollingPeriod, int detectionPeriod) :
 tControllerSystem::~tControllerSystem()
 {
 	{
-		const std::lock_guard<std::mutex> lock(Mutex);
+		std::lock_guard<std::mutex> lock(Mutex);
 		DetectExitRequested = true;
 	}
 	// Notify that we want to cooperatively stop the polling thread. Notify one (thread) should be sufficient.
@@ -68,12 +68,46 @@ void tControllerSystem::Detect()
 
 		for (int g = 0; g < int(tGamepadID::MaxGamepads); g++)
 		{
-			// Test 
-			//	DWORD XInputGetCapabilities(
-			//  [in]  DWORD               dwUserIndex,
-			//  [in]  DWORD               dwFlags,
-			//  [out] XINPUT_CAPABILITIES *pCapabilities
-			//);
+			// XInputGetState is generally faster for detecting device connectedness.
+			WinXInputState state;
+			tStd::tMemclr(&state, sizeof(WinXInputState));
+			WinDWord result = XInputGetState(g, &state);
+
+			if (result == WinErrorSuccess)
+			{
+				// If we're already polling then move on.
+				if (Gamepads[g].IsPolling())
+					continue;
+
+				// Controller connected. Can go ahead and try to figure out polling rate to use.
+				int pollingPeriod = 0;
+				if (PollingPeriodAutoDetect)
+				{
+					// In auto detect mode we use XInputGetCapabilities to try to retrieve a good polling rate.
+					WinXInputCapabilities capabilities;
+					tStd::tMemclr(&capabilities, sizeof(WinXInputCapabilities));
+					WinDWord capResult = XInputGetCapabilities(g, WinXInputFlagGamepad, &capabilities);
+					pollingPeriod = 8;	// TEMP.
+				}
+				else
+				{
+					pollingPeriod = PollingPeriod;
+				}
+				tAssert(pollingPeriod > 0);
+
+				// Now we need to start polling the controller and queue a message that a controller has
+				// been connected for the main Update to pick up.
+				Gamepads[g].StartPolling(pollingPeriod, tGamepadID(g));
+			}
+			else
+			{
+				// Either ERROR_DEVICE_NOT_CONNECTED or some other error. Either way treat controller as disconnected.
+				if (Gamepads[g].IsPolling())
+				{
+					// Now we need to stop polling and queue a disconnect message to for the main update to pick up.
+					Gamepads[g].StopPolling();
+				}
+			}
 		}
 		#endif
 
@@ -83,7 +117,7 @@ void tControllerSystem::Detect()
 		// This unique_lock is just a more powerful version of lock_guard. Supports subsequent unlocking/locking which
 		// is presumably needed by wait_for. In any case, wait_for needs this type of lock.
 		std::unique_lock<std::mutex> lock(Mutex);
-		bool exitRequested = DetectExitCondition.wait_for(lock, std::chrono::seconds(1), [this]{ return DetectExitRequested; });
+		bool exitRequested = DetectExitCondition.wait_for(lock, std::chrono::milliseconds(DetectPeriod), [this]{ return DetectExitRequested; });
 		if (exitRequested)
 			break;
 	}

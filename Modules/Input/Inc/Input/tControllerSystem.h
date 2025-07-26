@@ -56,10 +56,10 @@ private:
 
 	// This mutex protects PollExitRequested, the gamepad Connected state variable, and all tUnit members in the
 	// components of the gamepads -- ditto for other controller types when we get around to implementing them.
-	mutable std::mutex Mutex;
+	std::mutex Mutex;
 
 	bool PollingPeriodAutoDetect = false;
-	int PollingPeriod = 8;
+	int PollingPeriod = 8;	// 125Hz.
 	int DetectPeriod = 1000;
 
 	// To simplify the implementation we are going to support up to precisely 4 gamepads. This matches the maximum

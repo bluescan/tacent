@@ -76,9 +76,10 @@ void tContGamepad::Poll()
 		if (result == WinErrorSuccess)
 		{
 			// Controller connected. We can read its state and update components.
-			// Make sure it is mutex protected as main thread may read input unit values.
 			if (state.dwPacketNumber != PollingPacketNumber)
 			{
+				// The set calls to the components below are all mutex protected internally. Main thread may read input
+				// unit valuesmso we want the protection.
 				float leftTriggerNorm = float(state.Gamepad.bLeftTrigger) / 255.0f;
 				LTrigger.SetDisplacement(leftTriggerNorm);
 
