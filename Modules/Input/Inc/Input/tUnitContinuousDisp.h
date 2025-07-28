@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <mutex>
 #include <Foundation/tFundamentals.h>
 #include "Input/tUnit.h"
 namespace tInput
@@ -24,14 +25,40 @@ namespace tInput
 class tUnitContinuousDisp : public tUnit
 {
 public:
-	tUnitContinuousDisp()																								{ }
+	tUnitContinuousDisp(std::mutex& mutex)																				: Mutex(mutex) { }
 	virtual ~tUnitContinuousDisp()																						{ }
 
-	float GetValue() const { return Value; }
-	void SetValue(float value) { tMath::tiClamp(value, 0.0f, 1.0f); Value = value; }
+	// Read by the main system update to sent change notification events.
+	// May also be used directly by client code in main thread.
+	float GetDisplacement() const
+	{
+		std::lock_guard<std::mutex> lock(Mutex);
+		return Displacement;
+	}
 
 private:
-	float Value = 0.0f;
+	friend class tCompTrigger;
+
+	// Called by the the controller polling thread.
+	void SetDisplacementRaw(float disp)
+	{
+		std::lock_guard<std::mutex> lock(Mutex);
+		tMath::tiClamp(disp, 0.0f, 1.0f);
+		DisplacementRaw = disp;
+	}
+
+	// Called by the the controller component in the update function of the main thread. It is the component that does
+	// anti-jitter and dead zone to read the raw value and convert it to the actual.
+	void SetDisplacement(float disp)
+	{
+		tAssert(tMath::tInInterval(disp, 0.0f, 1.0f));
+		std::lock_guard<std::mutex> lock(Mutex);
+		DisplacementRaw = disp;
+	}
+
+	std::mutex& Mutex;
+	float DisplacementRaw = 0.0f;		// Mutex protected.
+	float Displacement = 0.0f;			// Mutel protected.
 };
 
 

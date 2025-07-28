@@ -23,7 +23,7 @@ class tUnitDiscreteBool : public tUnit
 {
 public:
 	tUnitDiscreteBool()																									{ }
-	virtual ~tUnitDiscreteBool()																							{ }
+	virtual ~tUnitDiscreteBool()																						{ }
 };
 
 

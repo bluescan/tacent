@@ -58,6 +58,7 @@ public:
 	void StopPolling();
 	bool IsPolling() const { return PollingThread.joinable(); }
 	bool IsConnected() const { return IsPolling(); }
+	void Update();
 
 private:
 

@@ -25,7 +25,6 @@ namespace tInput
 
 
 tControllerSystem::tControllerSystem(int pollingPeriod, int detectionPeriod) :
-//	Gamepads(int(tGamepadID::MaxGamepads), tContGamepad(Mutex))
 	Gamepads(int(tGamepadID::MaxGamepads))
 {
 	// If auto-detect is turned on there is no need to set the PollingPeriod.
@@ -126,6 +125,10 @@ void tControllerSystem::Detect()
 
 void tControllerSystem::Update()
 {
+	for (int g = 0; g < int(tGamepadID::MaxGamepads); g++)
+	{
+		Gamepads[g].Update();
+	}
 }
 
 

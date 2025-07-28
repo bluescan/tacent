@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <mutex>
 #include "Input/tComp.h"
 #include "Input/tUnitContinuousDisp.h"
 namespace tInput
@@ -23,12 +24,12 @@ namespace tInput
 class tCompDial : public tComponent
 {
 public:
-	tCompDial()																											: tComponent() { }
+	tCompDial(std::mutex& mutex)																						: tComponent(), Displacement(mutex) { }
 	virtual ~tCompDial()																								{ }
 
 private:
 	// These are private because they need to be mutex-protected. Use the accessors.
-	tUnitContinuousDisp Value;
+	tUnitContinuousDisp Displacement;
 };
 
 

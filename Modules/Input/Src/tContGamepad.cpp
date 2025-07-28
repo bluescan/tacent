@@ -82,10 +82,10 @@ void tContGamepad::Poll()
 				// The set calls to the components below are all mutex protected internally. Main thread may read input
 				// unit valuesmso we want the protection.
 				float leftTriggerNorm = float(state.Gamepad.bLeftTrigger) / 255.0f;
-				LTrigger.SetDisplacement(leftTriggerNorm);
+				LTrigger.SetDisplacementRaw(leftTriggerNorm);
 
 				float rightTriggerNorm = float(state.Gamepad.bRightTrigger) / 255.0f;
-				RTrigger.SetDisplacement(rightTriggerNorm);
+				RTrigger.SetDisplacementRaw(rightTriggerNorm);
 
 				PollingPacketNumber = state.dwPacketNumber;
 			}
@@ -107,6 +107,13 @@ void tContGamepad::Poll()
 		if (exitRequested)
 			break;
 	}
+}
+
+
+void tContGamepad::Update()
+{
+	LTrigger.Update();
+	RTrigger.Update();
 }
 
 
