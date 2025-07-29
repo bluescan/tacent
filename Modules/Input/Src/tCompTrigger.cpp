@@ -18,4 +18,10 @@ namespace tInput
 {
 
 
+void tCompTrigger::Update()
+{
+	// Deals with dead zone and anti-jitter. Goes from raw to actual.
+}
+
+
 }

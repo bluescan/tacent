@@ -53,6 +53,7 @@ void tContGamepad::StopPolling()
 		PollingExitRequested = true;
 	}
 
+	// Joins back up to the detection thread.
 	PollingThread.join();
 	PollingGamepadID = tGamepadID::Invalid;
 }
@@ -80,7 +81,30 @@ void tContGamepad::Poll()
 			if (state.dwPacketNumber != PollingPacketNumber)
 			{
 				// The set calls to the components below are all mutex protected internally. Main thread may read input
-				// unit valuesmso we want the protection.
+				// unit values so we require the protection.
+
+				// Note there is a bit more precision for the neg integral values. -32768 to 32767 maps to [-1.0, 1.0]
+				int16 rawLX = state.Gamepad.sThumbLX;
+				float axisLXNorm = (rawLX < 0) ? float(rawLX)/float(32768.0f) : float(rawLX)/float(32767.0f);
+				// @todo Set LStick X.
+
+				int16 rawLY = state.Gamepad.sThumbLY;
+				float axisLYNorm = (rawLY < 0) ? float(rawLY)/float(32768.0f) : float(rawLY)/float(32767.0f);
+				// @todo Set LStick Y.
+
+				bool rawLB = (state.Gamepad.wButtons & XINPUT_GAMEPAD_LEFT_THUMB) ? true : false;
+				// @todo Set LStick B.
+
+				int16 rawRX = state.Gamepad.sThumbRX;
+				float axisRXNorm = (rawRX < 0) ? float(rawRX)/float(32768.0f) : float(rawRX)/float(32767.0f);
+				// @todo Set RStick X.
+
+				int16 rawRY = state.Gamepad.sThumbRY;
+				float axisRYNorm = (rawRY < 0) ? float(rawRY)/float(32768.0f) : float(rawRY)/float(32767.0f);
+				// @todo Set RStick Y.
+
+				bool rawRB = (state.Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_THUMB) ? true : false;
+
 				float leftTriggerNorm = float(state.Gamepad.bLeftTrigger) / 255.0f;
 				LTrigger.SetDisplacementRaw(leftTriggerNorm);
 
@@ -93,9 +117,12 @@ void tContGamepad::Poll()
 		else
 		{
 			// Controller is not connected. This can happen if the detection thread of the controller system has not
-			// realized yet that the controller was disconnected. In this case we can just stop polling. Note that
-			// exiting the loop does not stop the thread from being joinable. It is still considered connected until the
-			// detection thread calls StopPolling.
+			// realized yet that the controller was disconnected (and stopped the polling thread). In this case we can
+			// just stop polling. Note that exiting the loop does not stop the thread from being joinable. It is still
+			// considered connected until the detection thread calls StopPolling. In the mean time, it only makes sense
+			// to reset the components.
+			LTrigger.Reset();
+			RTrigger.Reset();
 			break;
 		}
 		#endif

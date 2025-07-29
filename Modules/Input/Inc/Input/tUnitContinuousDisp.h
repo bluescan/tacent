@@ -36,6 +36,12 @@ public:
 		return Displacement;
 	}
 
+	void Reset()
+	{
+		SetDisplacementRaw(0.0f);
+		SetDisplacement(0.0f);
+	}
+
 private:
 	friend class tCompTrigger;
 
@@ -57,8 +63,8 @@ private:
 	}
 
 	std::mutex& Mutex;
-	float DisplacementRaw = 0.0f;		// Mutex protected.
-	float Displacement = 0.0f;			// Mutel protected.
+	float DisplacementRaw		= 0.0f;			// Mutex protected.
+	float Displacement			= 0.0f;			// Mutel protected.
 };
 
 

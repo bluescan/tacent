@@ -27,31 +27,20 @@ public:
 	tCompTrigger(std::mutex& mutex)																						: tComponent(), Disp(mutex) { }
 	virtual ~tCompTrigger()																								{ }
 
-	float GetDisplacement() const
-	{
-		return Disp.GetDisplacement();
-	}
-
-	void Update() { } // Deals with dead zone and anti-jitter. Goes from raw to actual.
+	float GetDisplacement() const																						{ return Disp.GetDisplacement(); }
+	void Reset()																										{ Disp.Reset(); }
+	void Update();
 
 private:
 	// The tContGamepad is allowed to set the raw displacement directly. We don't want any writers to be in the public
-	// interface that clients on the main thread use. It is the update call that processes antijitter and dead zomes
-	// because the behaviour if in the polling thread would be the same, but in Update it's more efficient since there
-	// are fewer updates than polls.
+	// interface that clients on the main thread use. It is the update call that processes antijitter and dead zones
+	// because the result would be the same if it were done in the polling thread, but in Update it's more efficient
+	// since there are fewer updates than polls.
 	friend class tContGamepad;
-	void SetDisplacementRaw(float displacement)
-	{
-//		std::lock_guard<std::mutex> lock(Mutex);
-		Disp.SetDisplacementRaw(displacement);
-	}
+	void SetDisplacementRaw(float displacement)																			{ Disp.SetDisplacementRaw(displacement); }
+	void SetDisplacement(float displacement)																			{ Disp.SetDisplacement(displacement); }
 
-	// This is the same mutex the polling thread for the controller that owns the trigger will use to update/write the
-	// input unit Value. When the main thread reads the Value using the public accessors, it is also protected by this
-	// mutex.
-//	std::mutex& Mutex;
-
-	// These are private because they need to be mutex-protected. Use the accessors.
+	// The tUnit has been cnstructed with the mutex ref. Calls made to it are mutex protected.
 	tUnitContinuousDisp Disp;
 };
 
