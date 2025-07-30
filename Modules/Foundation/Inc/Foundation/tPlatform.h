@@ -374,7 +374,26 @@ template<typename T> inline T tHtoN(T val)
 #define WinWsaData WSADATA
 #define WinXInputCapabilities XINPUT_CAPABILITIES
 #define WinXInputFlagGamepad XINPUT_FLAG_GAMEPAD
+#define WinXInputGamepadDPadUp XINPUT_GAMEPAD_DPAD_UP
+#define WinXInputGamepadDPadDOWN XINPUT_GAMEPAD_DPAD_DOWN
+#define WinXInputGamepadDPadLeft XINPUT_GAMEPAD_DPAD_LEFT
+#define WinXInputGamepadDPadRight XINPUT_GAMEPAD_DPAD_RIGHT
+#define WinXInputGamepadStart XINPUT_GAMEPAD_START
+#define WinXInputGamepadBack XINPUT_GAMEPAD_BACK
+#define WinXInputGamepadLeftThumb XINPUT_GAMEPAD_LEFT_THUMB
+#define WinXInputGamepadRightThumb XINPUT_GAMEPAD_RIGHT_THUMB
+#define WinXInputGamepadLeftShoulder XINPUT_GAMEPAD_LEFT_SHOULDER
+#define WinXInputGamepadRightShoulder XINPUT_GAMEPAD_RIGHT_SHOULDER
+#define WinXInputGamepadA XINPUT_GAMEPAD_A
+#define WinXInputGamepadB XINPUT_GAMEPAD_B
+#define WinXInputGamepadX XINPUT_GAMEPAD_X
+#define WinXInputGamepadY XINPUT_GAMEPAD_Y
+#define WinXInputGamepadLeftThumbDeadzone XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE
+#define WinXInputGamepadRightThumbDeadzone XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE
+#define WinXInputGamepadTriggrtThtrdhold XINPUT_GAMEPAD_TRIGGER_THRESHOLD // Threshold for pressedness.
 #define WinXInputState XINPUT_STATE
+
+
 #define snprintf _snprintf
 inline bool WinSucceeded(long hresult)																					{ return (hresult >= 0) ? true : false; }
 inline bool WinFailed(long hresult)																						{ return (hresult < 0) ? true : false; }
