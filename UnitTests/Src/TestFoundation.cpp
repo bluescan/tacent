@@ -2,7 +2,7 @@
 //
 // Foundation module tests.
 //
-// Copyright (c) 2017, 2019-2022 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2022, 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -17,6 +17,7 @@
 #include <Foundation/tVersion.cmake.h>
 #include <Foundation/tStandard.h>
 #include <Foundation/tString.h>
+#include <Foundation/tName.h>
 #include <Foundation/tArray.h>
 #include <Foundation/tBitArray.h>
 #include <Foundation/tBitField.h>
@@ -1564,6 +1565,10 @@ tTestUnit(UTF)
 	tStringUTF16 utf16String(utf8String);
 	tRequire(utf16String.Length() == numUTF16UnitsNeeded);
 	tRequire(*(utf16String.Units() + utf16String.Length()) == 0);
+	tString constructedFromStringUTF16(utf16String);
+	tRequire(constructedFromStringUTF16.IsValid());
+	tString constructedFromUTF16Ptr(utf16String.Chars(), utf16String.Length());
+	tRequire(constructedFromUTF16Ptr.IsValid());
 
 	int numUTF32UnitsNeeded = tStd::tUTF32(nullptr, utf8String.Units(), utf8String.Length());
 	int numUTF32UnitsNeededStr = tStd::tUTF32s(nullptr, utf8String.Units());
@@ -1571,6 +1576,17 @@ tTestUnit(UTF)
 	tStringUTF32 utf32String(utf8String);
 	tRequire(utf32String.Length() == numUTF32UnitsNeeded);
 	tRequire(*(utf32String.Units() + utf32String.Length()) == 0);
+	tString constructedFromStringUTF32(utf32String);
+	tRequire(constructedFromStringUTF32.IsValid());
+	tString constructedFromUTF32Ptr(utf32String.Chars(), utf32String.Length());
+	tRequire(constructedFromUTF32Ptr.IsValid());
+}
+
+
+tTestUnit(Name)
+{
+	tName name;
+	tRequire(name.IsInvalid());
 }
 
 

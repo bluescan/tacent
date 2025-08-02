@@ -15,10 +15,12 @@
 
 #pragma once
 #include <Foundation/tStandard.h>
+#include <Foundation/tName.h>
 namespace tInput
 {
 
 
+// tComponents will eventually be the things that can be remapped by (controller) configurations.
 class tComponent
 {
 public:

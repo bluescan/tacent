@@ -4,7 +4,7 @@
 // requirements. One of PLATFORM_NNN, ARCHITECTURE_NNN, and CONFIG_NNN need to be defined. If you haven't bothered
 // to define these in the project file with a /D switch, an attempt is made to define them automatically for you.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021, 2023 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021, 2023, 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -375,7 +375,7 @@ template<typename T> inline T tHtoN(T val)
 #define WinXInputCapabilities XINPUT_CAPABILITIES
 #define WinXInputFlagGamepad XINPUT_FLAG_GAMEPAD
 #define WinXInputGamepadDPadUp XINPUT_GAMEPAD_DPAD_UP
-#define WinXInputGamepadDPadDOWN XINPUT_GAMEPAD_DPAD_DOWN
+#define WinXInputGamepadDPadDown XINPUT_GAMEPAD_DPAD_DOWN
 #define WinXInputGamepadDPadLeft XINPUT_GAMEPAD_DPAD_LEFT
 #define WinXInputGamepadDPadRight XINPUT_GAMEPAD_DPAD_RIGHT
 #define WinXInputGamepadStart XINPUT_GAMEPAD_START
@@ -390,7 +390,7 @@ template<typename T> inline T tHtoN(T val)
 #define WinXInputGamepadY XINPUT_GAMEPAD_Y
 #define WinXInputGamepadLeftThumbDeadzone XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE
 #define WinXInputGamepadRightThumbDeadzone XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE
-#define WinXInputGamepadTriggrtThtrdhold XINPUT_GAMEPAD_TRIGGER_THRESHOLD // Threshold for pressedness.
+#define WinXInputGamepadTriggerThreshold XINPUT_GAMEPAD_TRIGGER_THRESHOLD // Threshold for pressedness.
 #define WinXInputState XINPUT_STATE
 
 

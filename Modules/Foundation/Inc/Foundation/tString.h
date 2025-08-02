@@ -23,7 +23,7 @@
 // when a memory-size-changing operation takes place. By default a constant amount of extra memory is reserved.
 //
 // A few of the salient functions related to the above are:
-// Lenght		:	Returns how many code-units are used by the string. This is NOT like a strlen call as it does not
+// Length		:	Returns how many code-units are used by the string. This is NOT like a strlen call as it does not
 //					rely on nul-termination. It does not need to iterate as the length is stored explicitely.
 // Capacity		:	Returns the current capacity of the tString in code-units.
 // Reserve		:	This is instead of a SetCapacity call. There is no SetCapacity as we could not guarantee that a
@@ -35,7 +35,7 @@
 //
 // For conversions of arbitrary types to tStrings, see tsPrint in the higher level System module.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019-2024 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019-2025 Tristan Grimmer.
 // Copyright (c) 2020 Stefan Wessels.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
@@ -76,8 +76,8 @@ struct tString
 	tString(const char32_t*			src)																				{ Set(src); }
 	tString(const char*				src, int srcLen)																	{ Set(src, srcLen); }
 	tString(const char8_t*			src, int srcLen)																	{ Set(src, srcLen); }
-	tString(const char16_t*			src, int srcLen);
-	tString(const char32_t*			src, int srcLen);
+	tString(const char16_t*			src, int srcLen)																	{ Set(src, srcLen); }
+	tString(const char32_t*			src, int srcLen)																	{ Set(src, srcLen); }
 
 	// The tStringUTF constructors allow the src strings to have multiple nulls in them.
 	tString(const tStringUTF16&		src)																				{ Set(src); }
@@ -145,7 +145,7 @@ struct tString
 	int Grow(int numUnits)																								{ return Reserve(CurrCapacity + numUnits); }
 
 	bool IsEmpty() const																								{ return (StringLength <= 0); }
-	bool IsValid() const			/* Returns true is string is not empty. */											{ return !IsEmpty(); }
+	bool IsValid() const			/* Returns true if string is not empty. */											{ return !IsEmpty(); }
 
 	tString& operator=(const tString&);
 
@@ -163,6 +163,9 @@ struct tString
 	bool IsEqualCI(const char*		str, int strLen) const																{ return IsEqualCI((const char8_t*)str, strLen); }
 	bool IsEqualCI(const char8_t*	str, int strLen) const;
 
+	// Appends supplied suffix string to this string.
+	tString& Append(const tString& suffix);
+
 	// These allow for implicit conversion to a UTF-8 code-unit pointer. By not including implicit casts to const char*
 	// we are encouraging further proper use of char8_t. You can either make the function you are calling take the
 	// proper UTF-* type, or explicitly call Chr() or Txt() to get an old char-based pointer.
@@ -174,11 +177,14 @@ struct tString
 	// interpreted as an ASCII char since char8_t are what is used in UTF-8 continuations. This also allows the result
 	// to be used with the char-constructor of another string if desired.
 	char& operator[](int i)																								{ return ((char*)CodeUnits)[i]; }
+
+	// These return the fast 32bit hash of the string data (code units). They take into account the full represented
+	// string -- not just up to the first null. That is, they use StringLength as the data-set size.
 	explicit operator uint32();
 	explicit operator uint32() const;
 
 	friend tString operator+(const tString& prefix, const tString& suffix);
-	tString& operator+=(const tString&);
+	tString& operator+=(const tString& suffix)																			{ return Append(suffix); }
 
 	// All non-null characters must meet the criteria for these functions to return true.
 	bool IsAlphabetic(bool includeUnderscore = true) const;
@@ -324,7 +330,7 @@ struct tString
 	tString Upper() const																								{ tString s(*this); s.ToUpper(); return s; }
 	tString Lower() const																								{ tString s(*this); s.ToLower(); return s; }
 
-	// The GetAs functions consider the contents of the current bSstring up to the first null encountered. See comment
+	// The GetAs functions consider the contents of the current tString up to the first null encountered. See comment
 	// for tStrtoiT in tStandard.h for format requirements. The summary is that if base is -1, the function looks one of
 	// the following prefixes in the string, defaulting to base 10 if none found.
 	//
@@ -761,29 +767,29 @@ inline bool tString::IsEqualCI(const char8_t* str, int strLen) const
 }
 
 
-inline tString operator+(const tString& preStr, const tString& sufStr)
+inline tString& tString::Append(const tString& suffix)
 {
-	tString buf( preStr.Length() + sufStr.Length() );
-
-	tStd::tMemcpy(buf.CodeUnits, preStr.CodeUnits, preStr.Length());
-	tStd::tMemcpy(buf.CodeUnits + preStr.Length(), sufStr.CodeUnits, sufStr.Length());
-	return buf;
-}
-
-
-inline tString& tString::operator+=(const tString& sufStr)
-{
-	if (sufStr.IsEmpty())
+	if (suffix.IsEmpty())
 		return *this;
 
 	int oldLen = Length();
-	int newLen = oldLen + sufStr.Length();
+	int newLen = oldLen + suffix.Length();
 	UpdateCapacity(newLen, true);
 
 	// The plus one is so we get the terminating null with the memcpy.
-	tStd::tMemcpy(CodeUnits + oldLen, sufStr.CodeUnits, sufStr.Length()+1);
+	tStd::tMemcpy(CodeUnits + oldLen, suffix.CodeUnits, suffix.Length()+1);
 	StringLength = newLen;
 	return *this;
+}
+
+
+inline tString operator+(const tString& prefix, const tString& suffix)
+{
+	tString buf( prefix.Length() + suffix.Length() );
+
+	tStd::tMemcpy(buf.CodeUnits, prefix.CodeUnits, prefix.Length());
+	tStd::tMemcpy(buf.CodeUnits + prefix.Length(), suffix.CodeUnits, suffix.Length());
+	return buf;
 }
 
 
