@@ -12,11 +12,14 @@
 //
 // Unlike tString, tName does NOT maintain a buffer with higher capacity than the string length or manage growing or
 // shrinking the buffer. What it does is allocate a buffer for the precise size required (number of code-units plus one
-// for the terminating null). If the string is very small, it uses what would be reserved for the code-unit array
-// pointer as the data itself and avoids a heap allocation. When compiling as x64, you get up to 7 code-units in length
-// (the eighth byte is for the null). When compiling for x86 or any target with 4 byte pointers this feature is
-// disabled. This feature makes tName well-suited to store FourCCs. tName also maintains the length as a separate 4 byte
-// integer. In total:
+// for the terminating null).
+//
+// @todo If the string is very small, it could be modified to use what would be reserved for the code-unit array
+// pointer as the data itself and avoids a heap allocation. When compiling as x64, you would get up to 7 code-units in
+// length (the eighth byte is for the null). When compiling for x86 or any target with 4 byte pointers this feature
+// would be disabled. It would make tName well-suited to store FourCCs.
+//
+// tName also maintains the length as a separate 4 byte integer. In total:
 //  * 8 bytes of hash.
 //  * 8 bytes (either pointer-to-data or data).
 //  * 4 bytes length.
@@ -116,6 +119,11 @@ struct tName
 	// is not set (invalid). The tName may have multiple nulls in it. This is fine, it does not stop at the first one.
 	int Length() const																									{ return CodeUnitsSize - 1; }
 
+	uint64 GetHash() const																								{ return Hash; }
+	uint64 GetID() const																								{ return GetHash(); }
+	uint64 ID() const																									{ return GetHash(); }
+	uint64 AsID() const																									{ return GetHash(); }
+
 	bool IsEmpty() const			/* Returns true for the empty name (length 0). This is a valid name. */				{ return (CodeUnitsSize == 1); }		// The 1 accounts for the internal null terminator.
 	bool IsValid() const			/* Returns true for empty name "" (length 0) or any string with length >= 1 */		{ return (CodeUnitsSize != 0); }
 	bool IsInvalid() const			/* Returns true for an invalid tName (length -1). */								{ return (CodeUnitsSize == 0); }
@@ -150,10 +158,14 @@ struct tName
 	// to be used with the char-constructor of another string if desired.
 	char& operator[](int i)																								{ return ((char*)CodeUnits)[i]; }
 
-	// These return the fast 32bit hash of the string data (code units). They take into account the full represented
-	// string -- not just up to the first null. That is, they use StringLength as the data-set size.
+	// These return the fast 32 bit hash of the string data (code units). They take into account the full
+	// represented string -- not just up to the first null. That is, they use StringLength as the data-set size.
 	explicit operator uint32();
 	explicit operator uint32() const;
+
+	// Similar to above but return the 64 bit hash (not a fast version).
+	explicit operator uint64()																							{ return GetHash(); }
+	explicit operator uint64() const																					{ return GetHash(); }
 
 	// Accesses the raw UTF-8 codeunits represented by the 'official' unsigned UTF-8 character datatype char8_t. An
 	// unset (invalid) tName will return nullptr. Charz, additionally, will return nullptr for tNames that are the empty
@@ -228,7 +240,7 @@ struct tName
 	int SetUTF32(const char32_t* src, int srcLen = -1);
 
 protected:
-	// Assumes CodeUnits and CodeUnitsSize are set appropriately. If CodeUnits is nullptr or CodeunitsSize is 0,
+	// Assumes CodeUnits and CodeUnitsSize are set appropriately. If CodeUnitsSize is 0 (implying CodeUnits is nullptr)
 	// the tName is invalid and returns 0 for the hash. Note that the empty string does NOT get a 0 hash.
 	uint64 ComputeHash() const;
 
@@ -280,10 +292,35 @@ public:
 
 inline uint64 tName::ComputeHash() const
 {
-	if (!CodeUnits || !CodeUnitsSize)
+	if (IsInvalid())
 		return 0;
 
-	return tHash::tHashData64((const uint8*)CodeUnits, CodeUnitsSize);
+	// This call deals with Length=0 gracefully (empty string). It does not deref the data pointer in this case.
+	uint64 hash = tHash::tHashData64((const uint8*)CodeUnits, Length());
+	if (hash == 0)
+		hash = 0xFFFFFFFFFFFFFFFF;
+
+	return hash;
+}
+
+
+inline tName::operator uint32()
+{
+	if (IsInvalid())
+		return 0;
+
+	// This call deals with Length=0 gracefully (empty string). It does not deref the data pointer in this case.
+	return tHash::tHashDataFast32((const uint8*)CodeUnits, Length());
+}
+
+
+inline tName::operator uint32() const
+{
+	if (IsInvalid())
+		return 0;
+
+	// This function deals with a Length of zero gracefully. It does not deref the data pointer in this case.
+	return tHash::tHashDataFast32((const uint8*)CodeUnits, Length());
 }
 
 
@@ -399,26 +436,6 @@ inline bool tName::IsEqual(const char8_t* str, int strLen) const
 		return true;
 
 	return !tStd::tMemcmp(CodeUnits, str, strLen);
-}
-
-
-inline tName::operator uint32()
-{
-	if (IsInvalid())
-		return 0;
-
-	// This function deals with a Length of zero gracefully. It does not deref the data pointer in this case.
-	return tHash::tHashDataFast32((const uint8*)CodeUnits, Length());
-}
-
-
-inline tName::operator uint32() const
-{
-	if (IsInvalid())
-		return 0;
-
-	// This function deals with a Length of zero gracefully. It does not deref the data pointer in this case.
-	return tHash::tHashDataFast32((const uint8*)CodeUnits, Length());
 }
 
 
