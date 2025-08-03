@@ -1585,8 +1585,23 @@ tTestUnit(UTF)
 
 tTestUnit(Name)
 {
-	tName name;
-	tRequire(name.IsInvalid());
+	tName nameA;
+	tPrintf("NameA hash (invalid): %_016X\n", nameA.GetHash());
+	tRequire(nameA.IsInvalid());
+	tRequire(nameA.GetHash() == 0);
+
+	nameA.Set("AB");
+	tPrintf("NameA hash (AB)   : %_016|64X\n", nameA.GetHash());
+	tRequire(nameA.IsValid());
+	tRequire(nameA.GetHash() != 0);
+
+	tName nameB("ABC");
+	tPrintf("NameB hash (ABC)  : %_016|64X\n", nameB.GetHash());
+	tRequire(nameA != nameB);
+
+	nameB.Set("AB");
+	tPrintf("NameB hash (ABC)  : %_016|64X\n", nameB.GetHash());
+	tRequire(nameA == nameB);
 }
 
 
