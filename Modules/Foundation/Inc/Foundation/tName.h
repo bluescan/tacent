@@ -47,7 +47,9 @@ struct tName
 	// Copy cons.
 	tName(const tName& src)																								{ Set(src); }
 
-	// Construct from tString.
+	// Construct from tString. tString has a different concept of IsValid (it is the empty string). For this reason
+	// after this constructor the tName will always be valid (IsSet true). An empty tString generates a valid tName set
+	// to the empty string.
 	tName(const tString& src)																							{ Set(src); }
 
 	// Creates a tName with a single character, Note the char type here. A char8_t can't be guaranteed to store a
@@ -57,14 +59,14 @@ struct tName
 
 	// These constructors expect the string pointers to be null-terminated. You can create a UTF-8 tName from an ASCII
 	// string (char*) since all ASCII strings are valid UTF-8. Constructors taking char8_t, char16_t, or chat32_t
-	// pointers assume the src is UTF encoded.
+	// pointers assume the src is UTF encoded. If src is nullptr, an invalid tName is created.
 	tName(const char*				src)																				{ Set(src); }
 	tName(const char8_t*			src)																				{ Set(src); }
 	tName(const char16_t*			src)																				{ Set(src); }
 	tName(const char32_t*			src)																				{ Set(src); }
 
 	// These constructors, that specify the input length, allow you to have more than one null be present in the tName.
-	// The internal hash is computed on the full number of code-units stored minus the internal terminating null.
+	// The internal hash is computed on the number of code-units stored minus the internal terminating null.
 	// For example, with 0 meaning '\0'.
 	//
 	// AB0CD0 with srcLen = 5 will be stored in the tName as AB0CD0
@@ -74,7 +76,8 @@ struct tName
 	// AB0CD0 with srcLen = 2 will be stored in the tName as AB0
 	// AB0CD0 with srcLen = 3 will be stored in the tName as AB00
 	//
-	// In all cases the length returned by Length() will match the supplied srcLen.
+	// In all cases the length returned by Length() will match the supplied srcLen. If src is nullptr or srcLen < 0, the
+	// resulting tName is invalid.
 	tName(const char*				src, int srcLen)																	{ Set(src, srcLen); }
 	tName(const char8_t*			src, int srcLen)																	{ Set(src, srcLen); }
 	tName(const char16_t*			src, int srcLen)																	{ Set(src, srcLen); }
@@ -89,14 +92,20 @@ struct tName
 	void Set(const tName&			src);
 	void Set(const tString&			src);
 	void Set(char);
+
+	// For Set functions that take in a pointer, if the src pointer is nullptr, the resulting tName is invalid.
 	void Set(const char*			src)																				{ Set((const char8_t*)src); }
 	void Set(const char8_t*			src);
 	void Set(const char16_t*		src)																				{ SetUTF16(src); }
 	void Set(const char32_t*		src)																				{ SetUTF32(src); }
+
+	// For Set functions that take in a pointer and a length (allowing multiple nulls), if src is nullptr or srcLen < 0,
+	// the resulting tName is invalid. In all cases the length returned by Length() will match the supplied srcLen.
 	void Set(const char*			src, int srcLen)																	{ Set((const char8_t*)src, srcLen); }
 	void Set(const char8_t*			src, int srcLen);
 	void Set(const char16_t*		src, int srcLen);
 	void Set(const char32_t*		src, int srcLen);
+
 	void Set(const tStringUTF16&	src);
 	void Set(const tStringUTF32&	src);
 
@@ -104,7 +113,7 @@ struct tName
 	void Empty()					/* Makes the string a valid empty string. */										{ Clear(); CodeUnitsSize = 1; CodeUnits = new char8_t[CodeUnitsSize]; CodeUnits[0] = '\0'; Hash = ComputeHash(); }
 
 	// The length in char8_t's (code-units), not the display length (which is not that useful). Returns -1 if the tName
-	// is not set (invalid).
+	// is not set (invalid). The tName may have multiple nulls in it. This is fine, it does not stop at the first one.
 	int Length() const																									{ return CodeUnitsSize - 1; }
 
 	bool IsEmpty() const			/* Returns true for the empty name (length 0). This is a valid name. */				{ return (CodeUnitsSize == 1); }		// The 1 accounts for the internal null terminator.
@@ -114,23 +123,20 @@ struct tName
 	bool IsSet() const				/* Synonym for IsValid. Also returns true for the empty name. */					{ return IsValid(); }
 	bool IsNotSet() const			/* Synonym for IsInvalid. Only returns true for tNames that haven't been set. */	{ return IsInvalid(); }
 
-	tName& operator=(const tName&);
+	tName& operator=(const tName& str)																					{ Set(str); return *this; }
 
 	// The IsEqual variants taking (only) pointers assume null-terminated inputs. Two empty names are considered equal.
 	// If the input is nullptr (for functions taking pointers) it is not considered equal to an empty name. A nullptr is
 	// treated as an unset/invalid name and is not equal to anything (including another invalid name). For variants
-	// taking pointers and a length, all characters are checked (multiple null chars supported).
-	// ********WIP********
-	bool IsEqual(const tName&		nam) const																			{ return IsEqual(nam.CodeUnits, nam.Length()); }
-	bool IsEqual(const char*		str) const																			{ return IsEqual(str, str ? tStd::tStrlen(str) : 0); }
-	bool IsEqual(const char8_t*		str) const																			{ return IsEqual(str, str ? tStd::tStrlen(str) : 0); }
-	bool IsEqual(const char*		str, int strLen) const																{ return IsEqual((const char8_t*)str, strLen); }
-	bool IsEqual(const char8_t*		str, int strLen) const;
-	bool IsEqualCI(const tName&		nam) const																			{ return IsEqualCI(nam.CodeUnits, nam.Length()); }
-	bool IsEqualCI(const char*		str) const																			{ return IsEqualCI(str, str ? tStd::tStrlen(str) : 0); }
-	bool IsEqualCI(const char8_t*	str) const																			{ return IsEqualCI(str, str ? tStd::tStrlen(str) : 0); }
-	bool IsEqualCI(const char*		str, int strLen) const																{ return IsEqualCI((const char8_t*)str, strLen); }
-	bool IsEqualCI(const char8_t*	str, int strLen) const;
+	// taking pointers and a length, all characters are checked (multiple null chars supported). If strLen < 0 the input
+	// is treated as invalid and equality is guaranteed false. For variants taking no length, the name is considered
+	// equal if the characters match up to the first null in the tName (even if there are more of them internally). For
+	// the IsEqual that takes in another tName, the comparisons are very fast as only the hash is compared.
+	bool IsEqual(const tName&		nam) const				/* Fast. Compares hashes. */								{ if (IsInvalid() || nam.IsInvalid()) return false; return (Hash == nam.Hash); }
+	bool IsEqual(const char*		str) const				/* A nullptr str is treated as an invalid string. */ 		{ return IsEqual(str, str ? tStd::tStrlen(str) : -1); }
+	bool IsEqual(const char8_t*		str) const																			{ return IsEqual(str, str ? tStd::tStrlen(str) : -1); }
+	bool IsEqual(const char*		str, int strLen) const	/* strLen = 0 and non-null str is the empty string. */		{ return IsEqual((const char8_t*)str, strLen); }
+	bool IsEqual(const char8_t*		str, int strLen) const;	/* Defined inline below. */
 
 	// These allow for implicit conversion to a UTF-8 code-unit pointer. By not including implicit casts to const char*
 	// we are encouraging further proper use of char8_t. You can either make the function you are calling take the
@@ -165,9 +171,9 @@ struct tName
 	const char* Chz() const			/* Like Chr() but returns nullptr if the string is empty, not a pointer to "". */	{ return IsEmpty() ? nullptr : (const char*)CodeUnits; }
 	char8_t* Pod() const			/* Plain Old Data */																{ return CodeUnits; }
 
-	// The GetAs functions consider the contents of the current tString up to the first null encountered. See comment
+	// The GetAs functions consider the contents of the current tName up to the first null encountered. See comment
 	// for tStrtoiT in tStandard.h for format requirements. The summary is that if base is -1, the function looks one of
-	// the following prefixes in the string, defaulting to base 10 if none found.
+	// the following prefixes in the string, defaulting to base 10 if none found. For invalid names 0 is returned.
 	//
 	// Base 16 prefixes: x X 0x 0X #
 	// Base 10 prefixes: d D 0d 0D
@@ -199,8 +205,8 @@ struct tName
 	float AsFloat() const																								{ return GetAsFloat(); }
 	double AsDouble() const																								{ return GetAsDouble(); }
 
-	// Same as above but return false on any parse error instead of just returning 0.
-	// @todo Float and double versions.
+	// Same as above but return false on any parse error instead of just returning 0. These return false if the tName is
+	// invalid. @todo Float and double versions.
 	bool ToInt(int& v, int base = -1) const																				{ return ToInt32(v, base); }
 	bool ToInt32(int32& v, int base = -1) const																			{ return tStd::tStrtoi32(v, CodeUnits, base); }
 	bool ToInt64(int64& v, int base = -1) const																			{ return tStd::tStrtoi64(v, CodeUnits, base); }
@@ -210,13 +216,14 @@ struct tName
 
 	// tName UTF encoding/decoding functions. tName is encoded in UTF-8. These functions allow you to convert from tName
 	// to UTF-16/32 arrays. If dst is nullptr returns the number of charN codeunits needed. If incNullTerminator is
-	// false the number needed will be one fower. If dst is valid, writes the codeunits to dst and returns number of
-	// charN codeunits written.
+	// false the number needed will be one fewer. If dst is valid, writes the codeunits to dst and returns number of
+	// charNN codeunits written. If tName is invalid OR empty, 0 is returned and dst (if provided) is not modified.
 	int GetUTF16(char16_t* dst, bool incNullTerminator = true) const;
 	int GetUTF32(char32_t* dst, bool incNullTerminator = true) const;
 
 	// Sets the tName from a UTF codeunit array. If srcLen is -1 assumes supplied array is null-terminated, otherwise
-	// specify how long it is. Returns new length (not including null terminator) of the tName.
+	// specify how long it is. Returns new length (not including null terminator) of the tName. If either src is
+	// nullptr or srcLen is 0, the result is an invalid tName and 0 is returned.
 	int SetUTF16(const char16_t* src, int srcLen = -1);
 	int SetUTF32(const char32_t* src, int srcLen = -1);
 
@@ -238,7 +245,7 @@ protected:
 };
 
 
-// Binary operator overloads should be outside the class so we can do things like if ("a" == b) where b is a tString.
+// Binary operator overloads should be outside the class so we can do things like if ("a" == b) where b is a tName.
 // Operators below that take char or char8_t pointers assume they are null-terminated.
 inline bool operator==(const tName& a, const tName& b)																	{ return a.IsEqual(b); }
 inline bool operator!=(const tName& a, const tName& b)																	{ return !a.IsEqual(b); }
@@ -256,15 +263,14 @@ struct tNameItem : public tLink<tNameItem>, public tName
 public:
 	tNameItem()																											: tName() { }
 
-	// The tNameItem copy cons is missing, because as a list item can only be on one list at a time.
+	// The tNameItem copy cons is missing because as an intrusive list-item it can only be on one list at a time.
 	tNameItem(const tName& s)																							: tName(s) { }
 	tNameItem(const tStringUTF16& s)																					: tName(s) { }
 	tNameItem(const tStringUTF32& s)																					: tName(s) { }
-	tNameItem(int length)																								: tName(length) { }
 	tNameItem(const char8_t* c)																							: tName(c) { }
 	tNameItem(char c)																									: tName(c) { }
 
-	// This call does NOT change the list that the tStringItem is on. The link remains unmodified.
+	// This call does NOT change the list that the tNameItem is on. The link remains unmodified.
 	tNameItem& operator=(const tNameItem&);
 };
 
@@ -281,7 +287,233 @@ inline uint64 tName::ComputeHash() const
 }
 
 
-inline tName& tName::operator=(const tName& src)
+inline void tName::Set(const tName& src)
+{
+	if (this == &src)
+		return;
+
+	Clear();
+	if (src.IsInvalid())
+		return;
+
+	CodeUnitsSize = src.CodeUnitsSize;
+	CodeUnits = new char8_t[CodeUnitsSize];
+	tStd::tMemcpy(CodeUnits, src.CodeUnits, CodeUnitsSize);
+	Hash = src.Hash;
+}
+
+
+inline void tName::Set(const tString& src)
+{
+	// We happen to know that tString internally always has a trailing null so we can leverage that and add 1 to the
+	// length.
+	if (src.IsEmpty())
+	{
+		Empty();
+		return;
+	}
+
+	Clear();
+	CodeUnitsSize = src.Length() + 1;
+	CodeUnits = new char8_t[CodeUnitsSize];
+	tStd::tMemcpy(CodeUnits, src.Units(), CodeUnitsSize);
+	Hash = ComputeHash();
+}
+
+
+inline void tName::Set(char c)
+{
+	Clear();
+	CodeUnitsSize = 2;
+	CodeUnits = new char8_t[CodeUnitsSize];
+	CodeUnits[0] = c;
+	CodeUnits[1] = '\0';
+	Hash = ComputeHash();
+}
+
+
+inline void tName::Set(const char8_t* src)
+{
+	Clear();
+	if (!src)
+		return;
+
+	CodeUnitsSize = tStd::tStrlen(src) + 1;
+	CodeUnits = new char8_t[CodeUnitsSize];
+	tStd::tMemcpy(CodeUnits, src, CodeUnitsSize);		// Includes the terminating null.
+	Hash = ComputeHash();
+}
+
+
+inline void tName::Set(const char8_t* src, int srcLen)
+{
+	Clear();
+	if (!src || (srcLen < 0))
+		return;
+
+	CodeUnitsSize = srcLen + 1;
+	CodeUnits = new char8_t[CodeUnitsSize];
+	if (srcLen > 0)
+		tStd::tMemcpy(CodeUnits, src, srcLen);
+	CodeUnits[srcLen] = '\0';
+	Hash = ComputeHash();
+}
+
+
+inline void tName::Set(const char16_t* src, int srcLen)
+{
+	Clear();
+	if (!src || (srcLen < 0))
+		return;
+	SetUTF16(src, srcLen);
+}
+
+
+inline void tName::Set(const char32_t* src, int srcLen)
+{
+	Clear();
+	if (!src || (srcLen < 0))
+		return;
+	SetUTF32(src, srcLen);
+}
+
+
+inline void tName::Set(const tStringUTF16& src)
+{
+	SetUTF16(src.Units(), src.Length());
+}
+
+
+inline void tName::Set(const tStringUTF32& src)
+{
+	SetUTF32(src.Units(), src.Length());
+}
+
+
+inline bool tName::IsEqual(const char8_t* str, int strLen) const
+{
+	if (IsInvalid() || !str || (strLen < 0) || (Length() != strLen))
+		return false;
+
+	if ((strLen == 0) && IsEmpty())
+		return true;
+
+	return !tStd::tMemcmp(CodeUnits, str, strLen);
+}
+
+
+inline tName::operator uint32()
+{
+	if (IsInvalid())
+		return 0;
+
+	// This function deals with a Length of zero gracefully. It does not deref the data pointer in this case.
+	return tHash::tHashDataFast32((const uint8*)CodeUnits, Length());
+}
+
+
+inline tName::operator uint32() const
+{
+	if (IsInvalid())
+		return 0;
+
+	// This function deals with a Length of zero gracefully. It does not deref the data pointer in this case.
+	return tHash::tHashDataFast32((const uint8*)CodeUnits, Length());
+}
+
+
+inline int tName::GetUTF16(char16_t* dst, bool incNullTerminator) const
+{
+	if (IsInvalid() || IsEmpty())
+		return 0;
+
+	if (!dst)
+		return tStd::tUTF16(nullptr, CodeUnits, Length()) + (incNullTerminator ? 1 : 0);
+
+	int numUnitsWritten = tStd::tUTF16(dst, CodeUnits, Length());
+	if (incNullTerminator)
+	{
+		dst[numUnitsWritten] = 0;
+		numUnitsWritten++;
+	}
+
+	return numUnitsWritten;
+}
+
+
+inline int tName::GetUTF32(char32_t* dst, bool incNullTerminator) const
+{
+	if (IsInvalid() || IsEmpty())
+		return 0;
+
+	if (!dst)
+		return tStd::tUTF32(nullptr, CodeUnits, Length()) + (incNullTerminator ? 1 : 0);
+
+	int numUnitsWritten = tStd::tUTF32(dst, CodeUnits, Length());
+	if (incNullTerminator)
+	{
+		dst[numUnitsWritten] = 0;
+		numUnitsWritten++;
+	}
+
+	return numUnitsWritten;
+}
+
+
+inline int tName::SetUTF16(const char16_t* src, int srcLen)
+{
+	Clear();
+	if (!src || (srcLen == 0))
+		return 0;
+
+	// If srcLen < 0 it means ignore srcLen and assume src is null-terminated.
+	if (srcLen < 0)
+	{
+		CodeUnitsSize = tStd::tUTF8s(nullptr, src) + 1;	// +1 for the internal null termination.
+		CodeUnits = new char8_t[CodeUnitsSize];
+		tStd::tUTF8s(CodeUnits, src);					// Writes the null terminator.
+	}
+	else
+	{
+		int len = tStd::tUTF8(nullptr, src, srcLen);
+		CodeUnitsSize = len + 1;						// +1 for the internal null termination.
+		CodeUnits = new char8_t[CodeUnitsSize];
+		tStd::tUTF8(CodeUnits, src, srcLen);
+		CodeUnits[len] = '\0';
+	}
+
+	Hash = ComputeHash();
+	return Length();
+}
+
+
+inline int tName::SetUTF32(const char32_t* src, int srcLen)
+{
+	Clear();
+	if (!src || (srcLen == 0))
+		return 0;
+
+	// If srcLen < 0 it means ignore srcLen and assume src is null-terminated.
+	if (srcLen < 0)
+	{
+		CodeUnitsSize = tStd::tUTF8s(nullptr, src) + 1;	// +1 for the internal null termination.
+		CodeUnits = new char8_t[CodeUnitsSize];
+		tStd::tUTF8s(CodeUnits, src);
+	}
+	else
+	{
+		int len = tStd::tUTF8(nullptr, src, srcLen);
+		CodeUnitsSize = len + 1;						// +1 for the internal null termination.
+		tStd::tUTF8(CodeUnits, src, srcLen);
+		CodeUnits[len] = '\0';
+	}
+
+	Hash = ComputeHash();
+	return Length();
+}
+
+
+inline tNameItem& tNameItem::operator=(const tNameItem& src)
 {
 	if (this == &src)
 		return *this;
@@ -294,548 +526,6 @@ inline tName& tName::operator=(const tName& src)
 	CodeUnits = new char8_t[CodeUnitsSize];
 	tStd::tMemcpy(CodeUnits, src.CodeUnits, CodeUnitsSize);
 	Hash = src.Hash;
+
 	return *this;
 }
-
-#if 0
-inline void tString::Set(const tString& src)
-{
-	int srcLen = src.Length();
-	UpdateCapacity(srcLen, false);
-
-	StringLength = srcLen;
-	tStd::tMemcpy(CodeUnits, src.CodeUnits, StringLength);
-	CodeUnits[StringLength] = '\0';
-}
-
-
-inline void tString::Set(int length)
-{
-	tAssert(length >= 0);
-	UpdateCapacity(length, false);
-	tStd::tMemset(CodeUnits, 0, length+1);
-	StringLength = length;
-}
-
-
-inline void tString::Set(char c)
-{
-	UpdateCapacity(1, false);
-	CodeUnits[0] = c;
-	CodeUnits[1] = '\0';
-	StringLength = 1;
-}
-
-
-inline void tString::Set(const char8_t* src)
-{
-	int srcLen = src ? tStd::tStrlen(src) : 0;
-	UpdateCapacity(srcLen, false);
-	if (srcLen > 0)
-	{
-		tStd::tMemcpy(CodeUnits, src, srcLen);
-		CodeUnits[srcLen] = '\0';
-		StringLength = srcLen;
-	}
-}
-
-
-inline void tString::Set(const char8_t* src, int srcLen)
-{
-	if (!src || (srcLen < 0))
-		srcLen = 0;
-	UpdateCapacity(srcLen, false);
-	if (srcLen > 0)
-		tStd::tMemcpy(CodeUnits, src, srcLen);
-	CodeUnits[srcLen] = '\0';
-	StringLength = srcLen;
-}
-
-
-inline void tString::Set(const char16_t* src, int srcLen)
-{
-	if (srcLen <= 0)
-	{
-		Clear();
-		return;
-	}
-	SetUTF16(src, srcLen);
-}
-
-
-inline void tString::Set(const char32_t* src, int srcLen)
-{
-	if (srcLen <= 0)
-	{
-		Clear();
-		return;
-	}
-	SetUTF32(src, srcLen);
-}
-
-
-inline void tString::Set(const tStringUTF16& src)
-{
-	SetUTF16(src.Units(), src.Length());
-}
-
-
-inline void tString::Set(const tStringUTF32& src)
-{
-	SetUTF32(src.Units(), src.Length());
-}
-
-
-inline bool tString::IsEqual(const char8_t* str, int strLen) const
-{
-	if (!str || (Length() != strLen))
-		return false;
-
-	// We also compare the null so that we can compare strings of length 0.
-	return !tStd::tMemcmp(CodeUnits, str, strLen+1);
-}
-
-
-inline bool tString::IsEqualCI(const char8_t* str, int strLen) const
-{
-	if (!str || (Length() != strLen))
-		return false;
-
-	for (int n = 0; n < strLen; n++)
-		if (tStd::tToLower(CodeUnits[n]) != tStd::tToLower(str[n]))
-			return false;
-
-	return true;
-}
-
-
-inline bool tString::IsAlphabetic(bool includeUnderscore) const 
-{
-	for (int n = 0; n < StringLength; n++)
-	{
-		char c = char(CodeUnits[n]);
-		if ( !(tStd::tIsalpha(c) || (includeUnderscore && (c == '_'))) )
-			return false;
-	}
-
-	return true;
-}
-
-
-inline bool tString::IsNumeric(bool includeDecimal) const 
-{
-	for (int n = 0; n < StringLength; n++)
-	{
-		char c = char(CodeUnits[n]);
-		if ( !(tStd::tIsdigit(c) || (includeDecimal && (c == '.'))) )
-			return false;
-	}
-
-	return true;
-}
-
-
-inline bool tString::IsAlphaNumeric(bool includeUnderscore, bool includeDecimal) const
-{
-	// Doing them both in one loop.
-	for (int n = 0; n < StringLength; n++)
-	{
-		char c = char(CodeUnits[n]);
-		if ( !(tStd::tIsalnum(c) || (includeUnderscore && (c == '_')) || (includeDecimal && (c == '.'))) )
-			return false;
-	}
-
-	return true;
-}
-
-
-inline int tString::CountChar(char c) const
-{
-	int count = 0;
-	for (int i = 0; i < StringLength; i++)
-		if (char(CodeUnits[i]) == c)
-			count++;
-	return count;
-}
-
-
-inline int tString::FindChar(const char c, bool reverse, int start) const
-{
-	const char8_t* pc = nullptr;
-
-	if (start == -1)
-	{
-		if (reverse)
-			start = Length() - 1;
-		else
-			start = 0;
-	}
-
-	if (reverse)
-	{
-		for (int i = start; i >= 0; i--)
-			if (CodeUnits[i] == c)
-			{
-				pc = CodeUnits + i;
-				break;
-			}
-	}
-	else
-	{
-		for (int i = start; i < StringLength; i++)
-			if (CodeUnits[i] == c)
-			{
-				pc = CodeUnits + i;
-				break;
-			}
-	}
-
-	if (!pc)
-		return -1;
-
-	// Returns the index.
-	return int(pc - CodeUnits);
-}
-
-
-inline int tString::FindAny(const char* chars) const
-{
-	if (StringLength == 0)
-		return -1;
-	
-	for (int i = 0; i < StringLength; i++)
-	{
-		char t = char(CodeUnits[i]);
-		int j = 0;
-		while (chars[j])
-		{
-			if (chars[j] == t)
-				return i;
-			j++;
-		}
-	}
-	return -1;
-}
-
-
-inline int tString::FindString(const char8_t* str, int start) const
-{
-	if (IsEmpty())
-		return -1;
-
-	tAssert((start >= 0) && (start < StringLength));
-	const char8_t* found = tStd::tStrstr(&CodeUnits[start], str);
-	if (found)
-		return int(found - CodeUnits);
-
-	return -1;
-}
-
-
-inline int tString::Replace(const char search, const char replace)
-{
-	int numReplaced = 0;
-	for (int i = 0; i < StringLength; i++)
-	{
-		if (CodeUnits[i] == search)
-		{
-			numReplaced++;
-			CodeUnits[i] = replace;
-		}
-	}
-
-	return numReplaced;
-}
-
-
-inline void tString::SetLength(int length, bool preserve)
-{
-	tAssert(length >= 0);		
-	if (length > CurrCapacity)
-		UpdateCapacity(length, preserve);
-	
-	// If new length is bigger, pad with zeros. The UpdateCapacity call will NOT modify the string length when preserve is true.
-	if (preserve && (length > StringLength))
-		tStd::tMemset(CodeUnits+StringLength, 0, length - StringLength);
-	StringLength = length;
-	CodeUnits[StringLength] = '\0';
-}
-
-
-inline tStringUTF16::tStringUTF16(int length)
-{
-	if (length <= 0)
-		return;
-
-	CodeUnits = new char16_t[1+length];
-	tStd::tMemset(CodeUnits, 0, 2*(1+length));
-	StringLength = length;
-}
-
-
-inline void tStringUTF16::Set(const tString& src)
-{
-	Clear();
-	if (src.IsValid())
-		Set(src.Units(), src.Length());
-}
-
-
-inline void tStringUTF16::Set(const tStringUTF16& src)
-{
-	Clear();
-	if (src.IsValid())
-		Set(src.CodeUnits, src.StringLength);
-}
-
-
-inline void tStringUTF16::Set(const tStringUTF32& src)
-{
-	Clear();
-	if (src.IsValid())
-		Set(src.Units(), src.Length());
-}
-
-
-inline void tStringUTF16::Set(const char8_t* src)
-{
-	int lenSrc = src ? tStd::tStrlen(src) : 0;
-	Set(src, lenSrc);
-}
-
-
-inline void tStringUTF16::Set(const char16_t* src)
-{
-	int lenSrc = src ? tStd::tStrlen(src) : 0;
-	Set(src, lenSrc);
-}
-
-
-inline void tStringUTF16::Set(const char32_t* src)
-{
-	int lenSrc = src ? tStd::tStrlen(src) : 0;
-	Set(src, lenSrc);
-}
-
-
-inline void tStringUTF16::Set(const char8_t* src, int lenSrc)
-{
-	Clear();
-	if (!src || (lenSrc <= 0))
-		return;
-
-	int len16 = tStd::tUTF16(nullptr, src, lenSrc);
-	CodeUnits = new char16_t[len16+1];
-	StringLength = tStd::tUTF16(CodeUnits, src, lenSrc);
-	tAssert(StringLength == len16);
-	CodeUnits[StringLength] = 0;
-}
-
-
-inline void tStringUTF16::Set(const char16_t* src, int lenSrc)
-{
-	Clear();
-	if (!src || (lenSrc <= 0))
-		return;
-
-	CodeUnits = new char16_t[lenSrc+1];
-	for (int cu = 0; cu < lenSrc; cu++)
-		CodeUnits[cu] = src[cu];
-	StringLength = lenSrc;
-	CodeUnits[StringLength] = 0;
-}
-
-
-inline void tStringUTF16::Set(const char32_t* src, int lenSrc)
-{
-	Clear();
-	if (!src || (lenSrc <= 0))
-		return;
-
-	int len16 = tStd::tUTF16(nullptr, src, lenSrc);
-	CodeUnits = new char16_t[len16+1];
-	StringLength = tStd::tUTF16(CodeUnits, src, lenSrc);
-	tAssert(StringLength == len16);
-	CodeUnits[StringLength] = 0;
-}
-
-
-inline void tStringUTF16::SetLength(int length, bool preserve)
-{
-	tAssert(length >= 0);
-	if (length == StringLength)
-		return;
-
-	if (length == 0)
-	{
-		delete[] CodeUnits;
-		CodeUnits = nullptr;
-		StringLength = 0;
-		return;
-	}
-	
-	// If new length is bigger, pad with zeros. The UpdateCapacity call will NOT modify the string length when preserve is true.
-	if (length > StringLength)
-	{
-		char16_t* newUnits = new char16_t[length+1];
-		if (preserve)
-		{
-			tStd::tMemcpy(newUnits, CodeUnits, StringLength*sizeof(char16_t));
-			tStd::tMemset(newUnits + StringLength, 0, (length - StringLength)*sizeof(char16_t));
-		}
-		delete[] CodeUnits;
-		CodeUnits = newUnits;
-	}
-	StringLength = length;
-	CodeUnits[StringLength] = 0;
-}
-
-
-inline tStringUTF32::tStringUTF32(int length)
-{
-	if (length <= 0)
-		return;
-
-	CodeUnits = new char32_t[1+length];
-	tStd::tMemset(CodeUnits, 0, 4*(1+length));
-	StringLength = length;
-}
-
-
-inline void tStringUTF32::Set(const tString& src)
-{
-	Clear();
-	if (src.IsValid())
-		Set(src.Units(), src.Length());
-}
-
-
-inline void tStringUTF32::Set(const tStringUTF16& src)
-{
-	Clear();
-	if (src.IsValid())
-		Set(src.Units(), src.Length());
-}
-
-
-inline void tStringUTF32::Set(const tStringUTF32& src)
-{
-	Clear();
-	if (src.IsValid())
-		Set(CodeUnits, StringLength);
-}
-
-
-inline void tStringUTF32::Set(const char8_t* src)
-{
-	int lenSrc = src ? tStd::tStrlen(src) : 0;
-	Set(src, lenSrc);
-}
-
-
-inline void tStringUTF32::Set(const char16_t* src)
-{
-	int lenSrc = src ? tStd::tStrlen(src) : 0;
-	Set(src, lenSrc);
-}
-
-
-inline void tStringUTF32::Set(const char32_t* src)
-{
-	int lenSrc = src ? tStd::tStrlen(src) : 0;
-	Set(src, lenSrc);
-}
-
-
-inline void tStringUTF32::Set(const char8_t* src, int lenSrc)
-{
-	Clear();
-	if (!src || (lenSrc <= 0))
-		return;
-
-	int len32 = tStd::tUTF32(nullptr, src, lenSrc);
-	CodeUnits = new char32_t[len32+1];
-	StringLength = tStd::tUTF32(CodeUnits, src, lenSrc);
-	CodeUnits[lenSrc] = 0;
-	StringLength = len32;
-	tAssert(StringLength == len32);
-	CodeUnits[StringLength] = 0;
-}
-
-
-inline void tStringUTF32::Set(const char16_t* src, int lenSrc)
-{
-	Clear();
-	if (!src || (lenSrc <= 0))
-		return;
-
-	int len32 = tStd::tUTF32(nullptr, src, lenSrc);
-	CodeUnits = new char32_t[len32+1];
-	StringLength = tStd::tUTF32(CodeUnits, src, lenSrc);
-	CodeUnits[lenSrc] = 0;
-	StringLength = len32;
-	tAssert(StringLength == len32);
-	CodeUnits[StringLength] = 0;
-}
-
-
-inline void tStringUTF32::Set(const char32_t* src, int lenSrc)
-{
-	Clear();
-	if (!src || (lenSrc <= 0))
-		return;
-
-	CodeUnits = new char32_t[lenSrc+1];
-	for (int cu = 0; cu < lenSrc; cu++)
-		CodeUnits[cu] = src[cu];
-	StringLength = lenSrc;
-	CodeUnits[StringLength] = 0;
-}
-
-
-inline void tStringUTF32::SetLength(int length, bool preserve)
-{
-	tAssert(length >= 0);
-	if (length == StringLength)
-		return;
-
-	if (length == 0)
-	{
-		delete[] CodeUnits;
-		CodeUnits = nullptr;
-		StringLength = 0;
-		return;
-	}
-	
-	// If new length is bigger, pad with zeros. The UpdateCapacity call will NOT modify the string length when preserve is true.
-	if (length > StringLength)
-	{
-		char32_t* newUnits = new char32_t[length+1];
-		if (preserve)
-		{
-			tStd::tMemcpy(newUnits, CodeUnits, StringLength*sizeof(char32_t));
-			tStd::tMemset(newUnits + StringLength, 0, (length - StringLength)*sizeof(char32_t));
-		}
-		delete[] CodeUnits;
-		CodeUnits = newUnits;
-	}
-	StringLength = length;
-	CodeUnits[StringLength] = 0;
-}
-
-
-inline tStringItem& tStringItem::operator=(const tStringItem& src)
-{
-	if (this == &src)
-		return *this;
-
-	UpdateCapacity(src.Length(), false);
-	StringLength = src.Length();
-
-	// The +1 gets us the internal null terminator in a single memcpy and also works with a StringLength of 0.
-	tStd::tMemcpy(CodeUnits, src.CodeUnits, StringLength+1);
-	return *this;
-}
-
-
-#endif

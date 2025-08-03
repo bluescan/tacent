@@ -375,13 +375,14 @@ struct tString
 
 	// tString UTF encoding/decoding functions. tString is encoded in UTF-8. These functions allow you to convert from
 	// tString to UTF-16/32 arrays. If dst is nullptr returns the number of charN codeunits needed. If incNullTerminator
-	// is false the number needed will be one fower. If dst is valid, writes the codeunits to dst and returns number
-	// of charN codeunits written.
+	// is false the number needed will be one fewer. If dst is valid, writes the codeunits to dst and returns number
+	// of charNN codeunits written. If tString is invalid, 0 is returned and dst (if provided) is not modified.
 	int GetUTF16(char16_t* dst, bool incNullTerminator = true) const;
 	int GetUTF32(char32_t* dst, bool incNullTerminator = true) const;
 
 	// Sets the tString from a UTF codeunit array. If srcLen is -1 assumes supplied array is null-terminated, otherwise
-	// specify how long it is. Returns new length (not including null terminator) of the tString.
+	// specify how long it is. Returns new length (not including null terminator) of the tString. If either src is
+	// nullptr or srcLen is 0, the result is an invalid tString and 0 is returned.
 	int SetUTF16(const char16_t* src, int srcLen = -1);
 	int SetUTF32(const char32_t* src, int srcLen = -1);
 
@@ -419,7 +420,7 @@ protected:
 	// If GrowParam is zero, everthing still works, you just don't get the extra code-units so it's less efficient.
 	int GrowParam					= 64;
 
-	// The length of the tString currently used in code-units.
+	// The length of the tString in code-units. Does NOT include the internal terminating null.
 	int StringLength				= 0;
 
 	// The capacity. The number of allocated CodeUnuts is always one more than this.
@@ -466,7 +467,7 @@ struct tStringUTF16
 	void Set(const char8_t*  src);				// Assumes src is null-terminated.
 	void Set(const char16_t* src);				// Assumes src is null-terminated.
 	void Set(const char32_t* src);				// Assumes src is null-terminated.
-	void Set(const char8_t*  src, int length);	// As meny nulls as you like.
+	void Set(const char8_t*  src, int length);	// As many nulls as you like.
 	void Set(const char16_t* src, int length);	// As many nulls as you like.
 	void Set(const char32_t* src, int length);	// As many nulls as you like.
 
@@ -499,7 +500,7 @@ struct tStringUTF16
 	#endif
 
 private:
-	int StringLength	= 0;					// In char16_t codeunits, not including terminating null.
+	int StringLength	= 0;					// In char16_t codeunits, not including internal terminating null.
 	char16_t* CodeUnits	= nullptr;
 };
 
@@ -559,7 +560,7 @@ struct tStringUTF32
 	char32_t* Pod() const			/* Plain Old Data */																{ return CodeUnits; }
 
 private:
-	int StringLength	= 0;		// In char32_t codeunits, not including terminating null.
+	int StringLength	= 0;		// In char32_t codeunits, not including internal terminating null.
 	char32_t* CodeUnits	= nullptr;
 };
 
@@ -582,7 +583,7 @@ struct tStringItem : public tLink<tStringItem>, public tString
 public:
 	tStringItem()																										: tString() { }
 
-	// The tStringItem copy cons is missing, because as a list item can only be on one list at a time.
+	// The tStringItem copy cons is missing, because as an intrusive list-item it can only be on one list at a time.
 	tStringItem(const tString& s)																						: tString(s) { }
 	tStringItem(const tStringUTF16& s)																					: tString(s) { }
 	tStringItem(const tStringUTF32& s)																					: tString(s) { }

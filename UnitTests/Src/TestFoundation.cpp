@@ -51,7 +51,7 @@ tTestUnit(Types)
 	tRequire(sizeof(int32) == 4);
 	tRequire(sizeof(int64) == 8);
 }
-	
+
 
 tTestUnit(Array)
 {

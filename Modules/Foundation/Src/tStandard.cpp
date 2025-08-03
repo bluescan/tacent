@@ -3,7 +3,7 @@
 // Tacent functions and types that are standard across all platforms. Includes global functions like itoa which are not
 // available on some platforms, but are common enough that they should be.
 //
-// Copyright (c) 2004-2006, 2015, 2023, 2024 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2023-2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -158,6 +158,10 @@ bool tStd::tStrtob(const char* str)
 
 float tStd::tStrtof(const char* s)
 {
+	// Both tStrchr and tStrlen assert on nullptrs so we check here.
+	if (!s)
+		return 0.0f;
+
 	char* hash = tStrchr(s, '#');
 	if (hash && (tStrlen(hash+1) == 8))
 	{
@@ -171,6 +175,10 @@ float tStd::tStrtof(const char* s)
 
 double tStd::tStrtod(const char* s)
 {
+	// tStrlen asserts on nullptrs so we check here.
+	if (!s)
+		return 0.0;
+
 	int l = tStrlen(s);
 	if (!l)
 		return 0.0;
