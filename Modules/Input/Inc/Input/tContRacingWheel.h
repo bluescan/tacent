@@ -13,6 +13,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tName.h>
 #include "Input/tCont.h"
 namespace tInput
 {
@@ -21,7 +22,7 @@ namespace tInput
 class tContRacingWheel : public tController
 {
 public:
-	tContRacingWheel()																									: tController() { }
+	tContRacingWheel(const tName& name)																					: tController(name) { }
 	virtual ~tContRacingWheel()																							{ }
 };
 

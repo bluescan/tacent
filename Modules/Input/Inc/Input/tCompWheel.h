@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tName.h>
 #include "Input/tComp.h"
 #include "Input/tUnitContinuousWind.h"
 namespace tInput
@@ -23,7 +24,7 @@ namespace tInput
 class tCompWheel : public tComponent
 {
 public:
-	tCompWheel()																										: tComponent() { }
+	tCompWheel(const tName& name)																						: tComponent(name) { }
 	virtual ~tCompWheel()																								{ }
 
 private:

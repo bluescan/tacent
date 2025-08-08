@@ -14,6 +14,7 @@
 
 #pragma once
 #include <Foundation/tStandard.h>
+#include <Foundation/tName.h>
 namespace tInput
 {
 
@@ -21,10 +22,11 @@ namespace tInput
 class tController
 {
 public:
-	tController()																										{ }
+	tController(const tName& name)																						: Name(name) { }
 	virtual ~tController()																								{ }
 
 	// @todo Move stuff from tContGamepad once it's all working.
+	tName Name;
 };
 
 

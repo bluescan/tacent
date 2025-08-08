@@ -26,7 +26,7 @@ namespace tInput
 
 void tContGamepad::StartPolling(int pollingPeriod, tGamepadID gamepadID)
 {
-	tAssert((pollingPeriod >= 1) && (gamepadID != tGamepadID::Invalid) && (gamepadID != tGamepadID::MaxGamepads));
+	tAssert((pollingPeriod >= 1) && (gamepadID != tGamepadID::Invalid) && (gamepadID != tGamepadID::NumGamepads));
 
 	// If it's already running do nothing. We also don't update the period if we're already running.
 	if (IsPolling())

@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tName.h>
 #include "Input/tComp.h"
 #include "Input/tUnitDiscreteBool.h"
 namespace tInput
@@ -23,7 +24,7 @@ namespace tInput
 class tCompButton : public tComponent
 {
 public:
-	tCompButton()																										: tComponent() { }
+	tCompButton(const tName& name)																						: tComponent(name) { }
 	virtual ~tCompButton()																								{ }
 
 private:

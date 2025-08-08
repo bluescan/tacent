@@ -15,6 +15,7 @@
 
 #pragma once
 #include <mutex>
+#include <Foundation/tName.h>
 #include "Input/tComp.h"
 #include "Input/tUnitContinuousDisp.h"
 namespace tInput
@@ -24,7 +25,7 @@ namespace tInput
 class tCompDial : public tComponent
 {
 public:
-	tCompDial(std::mutex& mutex)																						: tComponent(), Displacement(mutex) { }
+	tCompDial(const tName& name, std::mutex& mutex)																		: tComponent(name), Displacement(mutex) { }
 	virtual ~tCompDial()																								{ }
 
 private:

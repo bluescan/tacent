@@ -24,8 +24,10 @@ namespace tInput
 class tComponent
 {
 public:
-	tComponent()																										{ }
+	tComponent(const tName& name)																						: Name(name) { }
 	virtual ~tComponent()																								{ }
+
+	tName Name;
 };
 
 

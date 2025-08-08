@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tName.h>
 #include "Input/tComp.h"
 #include "Input/tUnitContinuousAxis.h"
 #include "Input/tUnitDiscreteBool.h"
@@ -24,7 +25,7 @@ namespace tInput
 class tCompJoystick : public tComponent
 {
 public:
-	tCompJoystick()																										: tComponent() { }
+	tCompJoystick(const tName& name)																					: tComponent(name) { }
 	virtual ~tCompJoystick()																							{ }
 
 private:

@@ -46,7 +46,10 @@ public:
 	// controller state is updated.
 	void Update();
 
-	tContGamepad& GetGetpad(tGamepadID);
+	tContGamepad& GetGetpad(tGamepadID gid)
+	{
+		return Gamepads[int(gid)];
+	}
 
 private:
 	// This function runs on a different thread.

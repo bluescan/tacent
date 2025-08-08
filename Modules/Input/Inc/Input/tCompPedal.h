@@ -15,6 +15,7 @@
 
 #pragma once
 #include <mutex>
+#include <Foundation/tName.h>
 #include "Input/tComp.h"
 #include "Input/tUnitContinuousDisp.h"
 namespace tInput
@@ -24,7 +25,7 @@ namespace tInput
 class tCompPedal : public tComponent
 {
 public:
-	tCompPedal(std::mutex& mutex)																						: tComponent(), Disp(mutex) { }
+	tCompPedal(const tName& name, std::mutex& mutex)																	: tComponent(name), Disp(mutex) { }
 	virtual ~tCompPedal()																								{ }
 
 private:

@@ -24,7 +24,7 @@ namespace tInput
 class tCompTrigger : public tComponent
 {
 public:
-	tCompTrigger(std::mutex& mutex)																						: tComponent(), Disp(mutex) { }
+	tCompTrigger(const tName& name, std::mutex& mutex)																	: tComponent(name), Disp(mutex) { }
 	virtual ~tCompTrigger()																								{ }
 
 	float GetDisplacement() const																						{ return Disp.GetDisplacement(); }

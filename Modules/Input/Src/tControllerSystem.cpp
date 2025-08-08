@@ -18,15 +18,21 @@
 #include <xinput.h>
 #endif
 #include "Foundation/tPlatform.h"
+#include "Foundation/tName.h"
 #include "System/tPrint.h"
 #include "Input/tControllerSystem.h"
 namespace tInput
 {
 
 
-tControllerSystem::tControllerSystem(int pollingPeriod, int detectionPeriod) :
-	Gamepads(int(tGamepadID::MaxGamepads))
+tControllerSystem::tControllerSystem(int pollingPeriod, int detectionPeriod)
 {
+	Gamepads.reserve(int(tGamepadID::NumGamepads));
+	Gamepads.emplace_back("Gamepad1", tGamepadID::GP0);
+	Gamepads.emplace_back("Gamepad2", tGamepadID::GP1);
+	Gamepads.emplace_back("Gamepad3", tGamepadID::GP2);
+	Gamepads.emplace_back("Gamepad4", tGamepadID::GP3);
+
 	// If auto-detect is turned on there is no need to set the PollingPeriod.
 	if (pollingPeriod > 0)
 		PollingPeriod = pollingPeriod;
@@ -65,7 +71,7 @@ void tControllerSystem::Detect()
 		// Detect controllers connected and disconnected.
 		#ifdef PLATFORM_WINDOWS
 
-		for (int g = 0; g < int(tGamepadID::MaxGamepads); g++)
+		for (int g = 0; g < int(tGamepadID::NumGamepads); g++)
 		{
 			// XInputGetState is generally faster for detecting device connectedness.
 			WinXInputState state;
@@ -125,7 +131,7 @@ void tControllerSystem::Detect()
 
 void tControllerSystem::Update()
 {
-	for (int g = 0; g < int(tGamepadID::MaxGamepads); g++)
+	for (int g = 0; g < int(tGamepadID::NumGamepads); g++)
 	{
 		Gamepads[g].Update();
 	}

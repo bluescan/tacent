@@ -22,6 +22,10 @@ tTestUnit(GamepadJoysticks)
 {
 	tInput::tControllerSystem coontrollerSystem;
 
+	tPrintf("LEFT STICK  : %s\n", coontrollerSystem.GetGetpad(tInput::tGamepadID::GP0).LStick.Name.Chr());
+	tPrintf("DPAD        : %s\n", coontrollerSystem.GetGetpad(tInput::tGamepadID::GP0).DPad.Name.Chr());
+	tPrintf("LEFT TRIGGER: %s\n", coontrollerSystem.GetGetpad(tInput::tGamepadID::GP0).LTrigger.Name.Chr());
+
 	// Keep controllerSystem alive for a while.
 	std::this_thread::sleep_for(std::chrono::seconds(10));
 	tRequire(true);

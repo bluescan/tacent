@@ -3,6 +3,9 @@
 // This file implements the base class for all input units. Units read single values from hardware. One or more units
 // make a component.
 //
+// @todo It is at the unit level where remappings (input configurations) will be implemented. This allows any input unit
+// to map to any other compatable input unit.
+//
 // Copyright (c) 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
@@ -24,6 +27,8 @@ class tUnit
 public:
 	tUnit()																												{ }
 	virtual ~tUnit()																									{ }
+
+	
 };
 
 

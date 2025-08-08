@@ -248,13 +248,13 @@ int main(int argc, char** argv)
 	// tTest(ImagePVR3);
 	#endif
 	// tTest(UTF);
-	tTest(Name);
+	// tTest(Name);
 	// tTest(Hash);
 	// tTest(BitArray);
 	// tTest(BitField);
 	// tTest(FixInt);
 	// tTest(SmallFloat);
-	// tTest(GamepadJoysticks);
+	tTest(GamepadJoysticks);
 	// tTest(GamepadButtons);
 
 	#endif

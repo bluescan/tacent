@@ -131,8 +131,6 @@ struct tName
 	bool IsSet() const				/* Synonym for IsValid. Also returns true for the empty name. */					{ return IsValid(); }
 	bool IsNotSet() const			/* Synonym for IsInvalid. Only returns true for tNames that haven't been set. */	{ return IsInvalid(); }
 
-	tName& operator=(const tName& str)																					{ Set(str); return *this; }
-
 	// The IsEqual variants taking (only) pointers assume null-terminated inputs. Two empty names are considered equal.
 	// If the input is nullptr (for functions taking pointers) it is not considered equal to an empty name. A nullptr is
 	// treated as an unset/invalid name and is not equal to anything (including another invalid name). For variants
@@ -145,6 +143,16 @@ struct tName
 	bool IsEqual(const char8_t*		str) const																			{ return IsEqual(str, str ? tStd::tStrlen(str) : -1); }
 	bool IsEqual(const char*		str, int strLen) const	/* strLen = 0 and non-null str is the empty string. */		{ return IsEqual((const char8_t*)str, strLen); }
 	bool IsEqual(const char8_t*		str, int strLen) const;	/* Defined inline below. */
+
+	// Appends supplied suffix name to this name. Handles the full length of suffix -- including multiple nulls if there
+	// are any.
+	tName& Append(const tName& suffix);
+	tName& operator=(const tName& nam)																					{ Set(nam); return *this; }
+
+	// These are not particulary fast, but they are useful if you just want to construct a concatenated tName and not
+	// modify it afterwards.
+	friend tName operator+(const tName& prefix, const tName& suffix);
+	tName& operator+=(const tName& suffix)																				{ return Append(suffix); }
 
 	// These allow for implicit conversion to a UTF-8 code-unit pointer. By not including implicit casts to const char*
 	// we are encouraging further proper use of char8_t. You can either make the function you are calling take the
@@ -436,6 +444,43 @@ inline bool tName::IsEqual(const char8_t* str, int strLen) const
 		return true;
 
 	return !tStd::tMemcmp(CodeUnits, str, strLen);
+}
+
+
+inline tName& tName::Append(const tName& suffix)
+{
+	// Empty is guaranteed to have CodeUnitsSize == 1, a single null character.
+	if (suffix.IsInvalid() || suffix.IsEmpty())
+		return *this;
+
+	if (IsInvalid() || IsEmpty())
+	{
+		Set(suffix);
+		return *this;
+	}
+
+	int thisSize = Length();
+	int thatSize = suffix.Length();
+	int newSize = thisSize + thatSize + 1;
+
+	char8_t* newUnits = new char8_t[newSize];
+	tStd::tMemcpy(newUnits, CodeUnits, thisSize);
+
+	// The plus one is so we get the terminating null with the memcpy.
+	tStd::tMemcpy(newUnits+thisSize, suffix.CodeUnits, thatSize+1);
+	Clear();
+
+	CodeUnits = newUnits;
+	CodeUnitsSize = newSize;
+	Hash = ComputeHash();
+	return *this;
+}
+
+
+inline tName operator+(const tName& prefix, const tName& suffix)
+{
+	tName concatenated(prefix);
+	return concatenated.Append(suffix);
 }
 
 

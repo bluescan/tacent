@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tName.h>
 #include "Input/tComp.h"
 #include "Input/tUnitDiscreteMulti.h"
 namespace tInput
@@ -23,7 +24,7 @@ namespace tInput
 class tCompSelector : public tComponent
 {
 public:
-	tCompSelector()																										: tComponent() { }
+	tCompSelector(const tName& name)																					: tComponent(name) { }
 	virtual ~tCompSelector()																							{ }
 
 private:
