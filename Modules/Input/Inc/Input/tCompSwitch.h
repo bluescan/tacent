@@ -14,7 +14,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include <Foundation/tName.h>
 #include "Input/tComp.h"
 #include "Input/tUnitDiscreteBool.h"
 namespace tInput
@@ -24,8 +23,12 @@ namespace tInput
 class tCompSwitch : public tComponent
 {
 public:
-	tCompSwitch(const tName& name)																						: tComponent(name) { }
+	tCompSwitch(const tName& name, std::mutex& mutex) :
+		tComponent(name),
+		InitUnit(State)																									{ }
 	virtual ~tCompSwitch()																								{ }
+
+	void Update()																										{ }
 
 private:
 	// These are private because they need to be mutex-protected. Use the accessors.

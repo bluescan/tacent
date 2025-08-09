@@ -14,8 +14,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include <mutex>
-#include <Foundation/tName.h>
 #include "Input/tComp.h"
 #include "Input/tUnitContinuousDisp.h"
 namespace tInput
@@ -25,8 +23,12 @@ namespace tInput
 class tCompPedal : public tComponent
 {
 public:
-	tCompPedal(const tName& name, std::mutex& mutex)																	: tComponent(name), Disp(mutex) { }
+	tCompPedal(const tName& name, std::mutex& mutex) :
+		tComponent(name),
+		InitUnit(Disp)																									{ }
 	virtual ~tCompPedal()																								{ }
+
+	void Update()																										{ }
 
 private:
 	// These are private because they need to be mutex-protected. Use the accessors.

@@ -14,7 +14,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include <Foundation/tName.h>
 #include "Input/tComp.h"
 #include "Input/tUnitDiscreteBool.h"
 namespace tInput
@@ -24,8 +23,15 @@ namespace tInput
 class tCompDirPad : public tComponent
 {
 public:
-	tCompDirPad(const tName& name)																						: tComponent(name) { }
+	tCompDirPad(const tName& name, std::mutex& mutex) :
+		tComponent(name),
+		InitUnit(Left),
+		InitUnit(Right),
+		InitUnit(Down),
+		InitUnit(Up)																									{ }
 	virtual ~tCompDirPad()																								{ }
+
+	void Update()																										{ }
 
 private:
 	// These are private because they need to be mutex-protected. Use the accessors.

@@ -13,8 +13,11 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <mutex>
 #include <Foundation/tStandard.h>
 #include <Foundation/tName.h>
+#define InitCompMove(n) n(src.Name+"|" #n, Mutex)
+#define InitCompCopy(n) n(name+"|" #n, Mutex)
 namespace tInput
 {
 
@@ -27,6 +30,10 @@ public:
 
 	// @todo Move stuff from tContGamepad once it's all working.
 	tName Name;
+
+	// Protects updates to all the components since they may be read by the main thread at any time.
+	// Protects PollExitRequested.
+	std::mutex Mutex;
 };
 
 

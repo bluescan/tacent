@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tName.h>
 #include "Input/tUnit.h"
 namespace tInput
 {
@@ -22,8 +23,8 @@ namespace tInput
 class tUnitContinuousWind : public tUnit
 {
 public:
-	tUnitContinuousWind()																									{ }
-	virtual ~tUnitContinuousWind()																							{ }
+	tUnitContinuousWind(const tName& name, std::mutex& mutex)															: tUnit(name, mutex) { }
+	virtual ~tUnitContinuousWind()																						{ }
 };
 
 

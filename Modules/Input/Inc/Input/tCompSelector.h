@@ -14,7 +14,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include <Foundation/tName.h>
 #include "Input/tComp.h"
 #include "Input/tUnitDiscreteMulti.h"
 namespace tInput
@@ -24,8 +23,12 @@ namespace tInput
 class tCompSelector : public tComponent
 {
 public:
-	tCompSelector(const tName& name)																					: tComponent(name) { }
+	tCompSelector(const tName& name, std::mutex& mutex) :
+		tComponent(name),
+		InitUnit(State)																									{ }
 	virtual ~tCompSelector()																							{ }
+
+	void Update()																										{ }
 
 private:
 	// These are private because they need to be mutex-protected. Use the accessors.

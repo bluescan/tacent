@@ -13,7 +13,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include <Foundation/tName.h>
 #include "Input/tCont.h"
 namespace tInput
 {

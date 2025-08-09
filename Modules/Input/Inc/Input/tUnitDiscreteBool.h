@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tName.h>
 #include "Input/tUnit.h"
 namespace tInput
 {
@@ -22,7 +23,7 @@ namespace tInput
 class tUnitDiscreteBool : public tUnit
 {
 public:
-	tUnitDiscreteBool()																									{ }
+	tUnitDiscreteBool(const tName& name, std::mutex& mutex)																: tUnit(name, mutex) { }
 	virtual ~tUnitDiscreteBool()																						{ }
 };
 

@@ -14,7 +14,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include <Foundation/tName.h>
 #include "Input/tComp.h"
 #include "Input/tUnitContinuousWind.h"
 namespace tInput
@@ -24,8 +23,12 @@ namespace tInput
 class tCompScrubber : public tComponent
 {
 public:
-	tCompScrubber(const tName& name)																					: tComponent(name) { }
+	tCompScrubber(const tName& name, std::mutex& mutex) :
+		tComponent(name),
+		InitUnit(Value)																									{ }
 	virtual ~tCompScrubber()																							{ }
+
+	void Update()																										{ }
 
 private:
 	// These are private because they need to be mutex-protected. Use the accessors.

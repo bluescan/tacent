@@ -13,7 +13,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include <mutex>
 #include <condition_variable>
 #include "Input/tCont.h"
 #include "Input/tCompJoystick.h"		// A gamepad has 2 joysticks. Joysticks contain the push button.
@@ -32,9 +31,6 @@ enum class tGamepadID
 };
 
 
-#define InitCompMove(n) n(src.Name+"|##n")
-#define InitCompMovM(n) n(src.Name+"|##n", Mutex)
-
 class tContGamepad : public tController
 {
 public:
@@ -44,43 +40,36 @@ public:
 		InitCompMove(LStick),
 		InitCompMove(RStick),
 		InitCompMove(DPad),
-		InitCompMovM(LTrigger),
-
-		/// WIP
-		RTrigger(src.Name+"|RTrigger", Mutex),
-
-		View(src.Name+"|View"),
-		Menu(src.Name+"|Menu"),
-		LBumper(src.Name+"|LBumper"),
-		RBumper(src.Name+"|RBumper"),
-		X(src.Name+"|X"),
-		Y(src.Name+"|Y"),
-		A(src.Name+"|A"),
-		B(src.Name+"|B"),
-		GamepadID()
-	{		
-	}
+		InitCompMove(LTrigger),
+		InitCompMove(RTrigger),
+		InitCompMove(LViewButton),
+		InitCompMove(RMenuButton),
+		InitCompMove(LBumperButton),
+		InitCompMove(RBumperButton),
+		InitCompMove(XButton),
+		InitCompMove(YButton),
+		InitCompMove(AButton),
+		InitCompMove(BButton),
+		GamepadID(src.GamepadID)																						{ }
 
 	// Constructs an initially disconnected (non-polling) controller. All gamepads must be contructed with an ID and a
 	// unique tName.
 	tContGamepad(const tName& name, tGamepadID id) :
 		tController(name),
-		LStick(name+"|LStick"),
-		RStick(name+"|RStick"),
-		DPad(name+"|DPad"),
-		LTrigger(name+"|LTrigger", Mutex),
-		RTrigger(name+"|RTrigger", Mutex),
-		View(name+"|View"),
-		Menu(name+"|Menu"),
-		LBumper(name+"|LBumper"),
-		RBumper(name+"|RBumper"),
-		X(name+"|X"),
-		Y(name+"|Y"),
-		A(name+"|A"),
-		B(name+"|B"),
-		GamepadID(id)
-	{
-	}
+		InitCompCopy(LStick),
+		InitCompCopy(RStick),
+		InitCompCopy(DPad),
+		InitCompCopy(LTrigger),
+		InitCompCopy(RTrigger),
+		InitCompCopy(LViewButton),
+		InitCompCopy(RMenuButton),
+		InitCompCopy(LBumperButton),
+		InitCompCopy(RBumperButton),
+		InitCompCopy(XButton),
+		InitCompCopy(YButton),
+		InitCompCopy(AButton),
+		InitCompCopy(BButton),
+		GamepadID(id)																									{ }
 	virtual ~tContGamepad()																								{ StopPolling(); }
 
 	tCompJoystick LStick;		// Contains the Button and 2 axes.
@@ -88,14 +77,14 @@ public:
 	tCompDirPad DPad;
 	tCompTrigger LTrigger;
 	tCompTrigger RTrigger;
-	tCompButton View;			// On Left
-	tCompButton Menu;			// On Right.
-	tCompButton LBumper;
-	tCompButton RBumper;
-	tCompButton X;
-	tCompButton Y;
-	tCompButton A;
-	tCompButton B;
+	tCompButton LViewButton;
+	tCompButton RMenuButton;
+	tCompButton LBumperButton;
+	tCompButton RBumperButton;
+	tCompButton XButton;
+	tCompButton YButton;
+	tCompButton AButton;
+	tCompButton BButton;
 
 	void StartPolling(int pollingPeriod, tGamepadID);
 	void StopPolling();
@@ -109,10 +98,6 @@ private:
 	void Poll();
 
 	tGamepadID GamepadID = tGamepadID::Invalid;
-
-	// Protects updates to all the components since they may be read by the main thread at any time.
-	// Protects PollExitRequested.
-	std::mutex Mutex;
 
 	// The PollExitRequested predicate is required to avoid 'spurious wakeups'. Mutex protected.
 	bool PollingExitRequested = false;

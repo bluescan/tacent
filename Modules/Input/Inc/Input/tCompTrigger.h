@@ -14,7 +14,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include <mutex>
 #include "Input/tComp.h"
 #include "Input/tUnitContinuousDisp.h"
 namespace tInput
@@ -24,7 +23,9 @@ namespace tInput
 class tCompTrigger : public tComponent
 {
 public:
-	tCompTrigger(const tName& name, std::mutex& mutex)																	: tComponent(name), Disp(mutex) { }
+	tCompTrigger(const tName& name, std::mutex& mutex) :
+		tComponent(name),
+		InitUnit(Disp)																									{ }
 	virtual ~tCompTrigger()																								{ }
 
 	float GetDisplacement() const																						{ return Disp.GetDisplacement(); }

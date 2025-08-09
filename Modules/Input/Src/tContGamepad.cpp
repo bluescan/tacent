@@ -139,8 +139,19 @@ void tContGamepad::Poll()
 
 void tContGamepad::Update()
 {
+	LStick.Update();
+	RStick.Update();
+	DPad.Update();
 	LTrigger.Update();
 	RTrigger.Update();
+	LViewButton.Update();
+	RMenuButton.Update();
+	LBumperButton.Update();
+	RBumperButton.Update();
+	XButton.Update();
+	YButton.Update();
+	AButton.Update();
+	BButton.Update();
 }
 
 

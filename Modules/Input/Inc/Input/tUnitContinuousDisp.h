@@ -25,7 +25,7 @@ namespace tInput
 class tUnitContinuousDisp : public tUnit
 {
 public:
-	tUnitContinuousDisp(std::mutex& mutex)																				: Mutex(mutex) { }
+	tUnitContinuousDisp(const tName& name, std::mutex& mutex)															: tUnit(name, mutex) { }
 	virtual ~tUnitContinuousDisp()																						{ }
 
 	// Read by the main system update to sent change notification events.
@@ -62,7 +62,6 @@ private:
 		DisplacementRaw = disp;
 	}
 
-	std::mutex& Mutex;
 	float DisplacementRaw		= 0.0f;			// Mutex protected.
 	float Displacement			= 0.0f;			// Mutel protected.
 };

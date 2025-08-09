@@ -17,7 +17,11 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <mutex>
 #include <Foundation/tStandard.h>
+#include <Foundation/tName.h>
+#include <System/tPrint.h>
+#define InitUnit(n) n(name+"|" #n, mutex)
 namespace tInput
 {
 
@@ -25,10 +29,13 @@ namespace tInput
 class tUnit
 {
 public:
-	tUnit()																												{ }
+	// All units have a name and a mutex. The mutex is a ref because it is shared with other components of a particular
+	// controller.
+	tUnit(const tName& name, std::mutex& mutex)																			: Name(name), Mutex(mutex) { }
 	virtual ~tUnit()																									{ }
 
-	
+	tName Name;
+	std::mutex& Mutex;
 };
 
 

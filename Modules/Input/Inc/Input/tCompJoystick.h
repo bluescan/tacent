@@ -14,7 +14,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include <Foundation/tName.h>
 #include "Input/tComp.h"
 #include "Input/tUnitContinuousAxis.h"
 #include "Input/tUnitDiscreteBool.h"
@@ -25,8 +24,14 @@ namespace tInput
 class tCompJoystick : public tComponent
 {
 public:
-	tCompJoystick(const tName& name)																					: tComponent(name) { }
+	tCompJoystick(const tName& name, std::mutex& mutex) :
+		tComponent(name),
+		InitUnit(XAxis),
+		InitUnit(YAxis),
+		InitUnit(Button)																								{ }
 	virtual ~tCompJoystick()																							{ }
+
+	void Update()																										{ }
 
 private:
 	// These are private because they need to be mutex-protected. Use the accessors.

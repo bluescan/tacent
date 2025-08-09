@@ -14,7 +14,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include <Foundation/tName.h>
 #include "Input/tComp.h"
 #include "Input/tUnitContinuousWind.h"
 namespace tInput
@@ -24,8 +23,12 @@ namespace tInput
 class tCompWheel : public tComponent
 {
 public:
-	tCompWheel(const tName& name)																						: tComponent(name) { }
+	tCompWheel(const tName& name, std::mutex& mutex) :
+		tComponent(name),
+		InitUnit(Value)																									{ }
 	virtual ~tCompWheel()																								{ }
+
+	void Update()																										{ }
 
 private:
 	// These are private because they need to be mutex-protected. Use the accessors.

@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tName.h>
 #include "Input/tUnit.h"
 namespace tInput
 {
@@ -23,9 +24,10 @@ namespace tInput
 class tUnitContinuousAxis : public tUnit
 {
 public:
-	tUnitContinuousAxis()																								{ }
+	tUnitContinuousAxis(const tName& name, std::mutex& mutex)															: tUnit(name, mutex) { }
 	virtual ~tUnitContinuousAxis()																						{ }
 
+	// @todo Add accessors and make this private.
 	float Value = 0.0f;
 };
 
