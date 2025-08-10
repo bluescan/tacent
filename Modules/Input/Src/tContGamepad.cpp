@@ -64,7 +64,7 @@ void tContGamepad::Poll()
 	while (true)
 	{
 		static int pollNum = 0;
-		tPrintf("Poll: %d\n", pollNum++);
+//		tPrintf("Poll: %d\n", pollNum++);
 
 		#ifdef PLATFORM_WINDOWS
 		WinXInputState state;

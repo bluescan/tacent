@@ -55,7 +55,9 @@ private:
 	// This function runs on a different thread.
 	void Detect();
 
-	int DeterminePollingPeriodForConnectedControllers();
+	// Scrapes gamepad capabilities/hardware-info to try to determine the optimal polling period in ms for the specified
+	// gampepad ID. If it fails, which is not unlikely, returns 0.
+	int DetermineGamepadPollingPeriodFromHardwareInfo(tGamepadID);
 
 	// This mutex protects PollExitRequested, the gamepad Connected state variable, and all tUnit members in the
 	// components of the gamepads -- ditto for other controller types when we get around to implementing them.

@@ -21,6 +21,23 @@
 #include "Foundation/tName.h"
 #include "System/tPrint.h"
 #include "Input/tControllerSystem.h"
+
+
+// Missing from xinput.h.
+#ifdef PLATFORM_WINDOWS
+struct XINPUT_CAPABILITIES_EX
+{
+    XINPUT_CAPABILITIES Capabilities;
+    WORD vendorId;
+    WORD productId;
+    WORD revisionId;
+    DWORD a4; //unknown
+};
+typedef DWORD(_stdcall* _XInputGetCapabilitiesEx)(DWORD a1, DWORD dwUserIndex, DWORD dwFlags, XINPUT_CAPABILITIES_EX* pCapabilities);
+_XInputGetCapabilitiesEx XInputGetCapabilitiesEx;
+#endif
+
+
 namespace tInput
 {
 
@@ -41,8 +58,14 @@ tControllerSystem::tControllerSystem(int pollingPeriod, int detectionPeriod)
 
 	if (detectionPeriod > 0)
 		DetectPeriod = detectionPeriod;
-	else
-		DetectPeriod = 1000;
+
+	#ifdef PLATFORM_WINDOWS
+	// This is better than LoadLibrary(TEXT("XInput1_4.dll") in two ways:
+	// 1) The module is already loaded using the import library.
+	// 2) We use the xinput.h header define in case xinput is ever updated.
+    HMODULE moduleHandle = GetModuleHandle(TEXT(XINPUT_DLL));
+    XInputGetCapabilitiesEx = (_XInputGetCapabilitiesEx)GetProcAddress(moduleHandle, (char*)108);
+	#endif
 
 	DetectThread = std::thread(&tControllerSystem::Detect, this);
 }
@@ -73,6 +96,9 @@ void tControllerSystem::Detect()
 
 		for (int g = 0; g < int(tGamepadID::NumGamepads); g++)
 		{
+			tControllerSystem::DetermineGamepadPollingPeriodFromHardwareInfo(tGamepadID(g));
+
+
 			// XInputGetState is generally faster for detecting device connectedness.
 			WinXInputState state;
 			tStd::tMemclr(&state, sizeof(WinXInputState));
@@ -85,18 +111,14 @@ void tControllerSystem::Detect()
 					continue;
 
 				// Controller connected. Can go ahead and try to figure out polling rate to use.
-				int pollingPeriod = 0;
+				int pollingPeriod = PollingPeriod;
 				if (PollingPeriodAutoDetect)
 				{
-					// In auto detect mode we use XInputGetCapabilities to try to retrieve a good polling rate.
-					WinXInputCapabilities capabilities;
-					tStd::tMemclr(&capabilities, sizeof(WinXInputCapabilities));
-					WinDWord capResult = XInputGetCapabilities(g, WinXInputFlagGamepad, &capabilities);
-					pollingPeriod = 8;	// TEMP.
-				}
-				else
-				{
-					pollingPeriod = PollingPeriod;
+					// In auto detect mode we try to determin the polling rate from the hardware.
+					// Do not modify pollingPeriod if detection fails.
+					int optimalPollingPeriod = DetermineGamepadPollingPeriodFromHardwareInfo(tGamepadID(g));
+					if (optimalPollingPeriod)
+						pollingPeriod = optimalPollingPeriod;
 				}
 				tAssert(pollingPeriod > 0);
 
@@ -126,6 +148,40 @@ void tControllerSystem::Detect()
 		if (exitRequested)
 			break;
 	}
+}
+
+
+int tControllerSystem::DetermineGamepadPollingPeriodFromHardwareInfo(tGamepadID g)
+{
+	#ifdef PLATFORM_WINDOWS
+	// In Windows use XInputGetCapabilities to try to retrieve a good polling rate.
+//	WinXInputCapabilities capabilities;
+//	tStd::tMemclr(&capabilities, sizeof(WinXInputCapabilities));
+//	WinDWord capResult = XInputGetCapabilities(int(g), WinXInputFlagGamepad, &capabilities);
+	////////////////
+
+
+    int i = int(g);
+	printf("Gamepad %d ", i);
+
+	XINPUT_CAPABILITIES_EX capsEx;
+	tStd::tMemclr(&capsEx, sizeof(XINPUT_CAPABILITIES_EX));
+	if (XInputGetCapabilitiesEx(1, i, 0, &capsEx) == ERROR_SUCCESS)
+	{
+		printf("connected, vid = 0x%04X pid = 0x%04X\n", (int)capsEx.vendorId, (int)capsEx.productId);
+	}
+	else
+	{
+		printf("not connected\n");
+	}
+
+	////////////////
+	return 0;
+
+	#else
+	return 0;
+
+	#endif
 }
 
 
