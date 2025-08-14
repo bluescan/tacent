@@ -93,12 +93,11 @@ tString tGetFileName(const tString& file);
 // c:/Stuff/Mess.max to Mess
 tString tGetFileBaseName(const tString& file);
 
-// Conversions to tacent-standard paths. Forward slashes where possible.
-// Windows does not allow forward slashes when dealing with network shares, a path like
-// \\machinename\sharename/dir/subdir/
-// _must_ have two backslashes before the machine name and 1 backslash before the sharename.
-// If this case is detected the three backslashes remain in-tact. This function does not simplify "."
-// or ".." strings that may be present. See tGetSimplifiedPath.
+// Conversions to tacent-standard paths. Forward slashes where possible. Windows does not allow forward slashes when
+// dealing with network shares, a path like \\machinename\sharename/dir/subdir/ must have two backslashes before the
+// machine name and 1 backslash before the sharename. If this case is detected the three backslashes remain in-tact.
+// This function does not simplify "." or ".." strings that may be present. See tGetSimplifiedPath. This function _does_
+// remove any "s since they are invalid characters in a path but are sometimes present when paths have spaces.
 void tPathStd    (tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There".
 void tPathStdDir (tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There/".
 void tPathStdFile(tString& path);	// "C:\Hello\There\" -> "C:/Hello/There".  "C:\Hello\There" -> "C:/Hello/There".

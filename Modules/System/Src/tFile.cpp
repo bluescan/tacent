@@ -83,6 +83,7 @@ namespace tSystem
 
 void tSystem::tPathStd(tString& path)
 {
+	path.Remove('"');
 	path.Replace('\\', '/');
 	bool network = (path.Left(2) == "//");
 	if (network)
