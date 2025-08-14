@@ -63,7 +63,7 @@ tControllerSystem::tControllerSystem(int pollingPeriod, int detectionPeriod)
 	// This is better than LoadLibrary(TEXT("XInput1_4.dll") in two ways:
 	// 1) The module is already loaded using the import library.
 	// 2) We use the xinput.h header define in case xinput is ever updated.
-    HMODULE moduleHandle = GetModuleHandle(TEXT(XINPUT_DLL));
+    HMODULE moduleHandle = GetModuleHandle(XINPUT_DLL);
     XInputGetCapabilitiesEx = (_XInputGetCapabilitiesEx)GetProcAddress(moduleHandle, (char*)108);
 	#endif
 
