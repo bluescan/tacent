@@ -16,7 +16,6 @@
 
 #pragma once
 #include <Foundation/tStandard.h>
-#include <Input/tContGamepad.h>
 namespace tInput
 {
 
@@ -29,10 +28,38 @@ struct tControllerVidPid
 };
 
 
+enum class tDisplacementTechnology
+{
+	Unknown = -1,
+	POT,			// Potentiometer. Physical contact. May drift.
+	HALL,			// Hall effect. No physical contact.
+	TMR				// Tunnel MagnetoResistance. No physical contact.
+};
+
+
 struct tControllerInfo
 {
 	const char* Name;
-	int32 PollingPeriod;	// In milliseconds. -1 means unknown.
+
+	// Polling frequency in Hz. From this an appropriate polling period can be computed. This is the "max" frequency in
+	// the sense that a particular controller may poll at a different frequency for buttons vs analog inputs like
+	// triggers and sticks. However, the xinput API reads everything at once so we need a polling rate that is as fast
+	// as the highest component polling rate in the controller.
+	int32 MaxPollingFreq;
+
+	// Displacement tech used by the joysticks.
+	tDisplacementTechnology DispTechSticks;
+
+	// Displacement tech used by the triggers.
+	tDisplacementTechnology DispTechTriggers;
+	
+	// Stick dead zone expressed as a percent.
+	float StickDeadZone;
+
+	// Trigger dead zone expressed as percent.
+	float TriggerDeadZone;
+	
+	
 };
 
 
