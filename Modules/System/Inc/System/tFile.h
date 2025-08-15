@@ -522,6 +522,7 @@ struct tFileTypes
 
 	// Selects the type only if it's already in the list. Returns success.
 	bool Select(tFileType);
+	bool IsSelected(tFileType) const;
 	tFileType GetFirstSelectedType() const;
 	enum class Separator { Comma, Space, CommaSpace };
 	tString GetSelectedString(Separator sepType = Separator::CommaSpace, int maxBeforeEllipsis = -1) const;
@@ -1040,6 +1041,17 @@ inline bool tSystem::tFileTypes::Select(tFileType type)
 			typeItem->Selected = true;
 			return true;
 		}
+	}
+	return false;
+}
+
+
+inline bool tSystem::tFileTypes::IsSelected(tFileType type) const
+{
+	for (tFileTypeItem* typeItem = First(); typeItem; typeItem = typeItem->Next())
+	{
+		if ((typeItem->FileType == type) && typeItem->Selected)
+			return true;
 	}
 	return false;
 }
