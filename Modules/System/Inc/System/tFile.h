@@ -519,6 +519,9 @@ struct tFileTypes
 	// Utility functions dealing with selected state.
 	void ClearSelected();
 	bool AnySelected() const;
+
+	// Selects the type only if it's already in the list. Returns success.
+	bool Select(tFileType);
 	tFileType GetFirstSelectedType() const;
 	enum class Separator { Comma, Space, CommaSpace };
 	tString GetSelectedString(Separator sepType = Separator::CommaSpace, int maxBeforeEllipsis = -1) const;
@@ -1024,6 +1027,20 @@ inline bool tSystem::tFileTypes::AnySelected() const
 	for (tFileTypeItem* typeItem = First(); typeItem; typeItem = typeItem->Next())
 		if (typeItem->Selected)
 			return true;
+	return false;
+}
+
+
+inline bool tSystem::tFileTypes::Select(tFileType type)
+{
+	for (tFileTypeItem* typeItem = First(); typeItem; typeItem = typeItem->Next())
+	{
+		if (typeItem->FileType == type)
+		{
+			typeItem->Selected = true;
+			return true;
+		}
+	}
 	return false;
 }
 
