@@ -621,9 +621,9 @@ tTestUnit(Colour)
 
 tTestUnit(Filter)
 {
-	double cutoffFreq = 100.0;
 	double fixedDeltaTime = 1.0/60.0;
-	tMath::tLowPassFilter_FixDbl lowPass(cutoffFreq, fixedDeltaTime);
+	double cutoffFreq = 100.0;
+	tMath::tLowPassFilter_FixDbl lowPass(fixedDeltaTime, cutoffFreq);
 }
 
 

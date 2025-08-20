@@ -23,8 +23,8 @@ namespace tMath
 // input with the previous filtered value -- the bigger the weight, the less lag and less filtering (higher cutoff
 // frequency). Specifying the weight directly is not useful as it doesn't take into account how often the update
 // function is called. For this reason delta-time and cutoff-frequency are used instead. Cutoff-frequency determines the
-// frequency at which signals begin to be attenuated. Lower cutoff frequencies result in more smoothing/jitter-reduction
-// but introduce more lag.
+// frequency at which signals begin to be attenuated (reduced in amplitude). Lower cutoff frequencies result in more
+// smoothing/jitter-reduction but introduce more lag.
 //
 // Optionally the delta-time and a time-constant (Tau) can be used. Tau is related to cutoff-frequency and represents
 // the time (in seconds) it takes for the filter's output to reach approximately 63% of a raw input value. Tau can be
@@ -35,20 +35,22 @@ namespace tMath
 // Classes with Fix in the name should be used if you know the timestep and it is constant. Classes with Dyn should be
 // used if you need to supply the delta-time each update. There are also variants that use either float or double (for
 // more accuracy) -- these have either Dbl or Flt in their name.
-//
-// @todo Tau constructors.
 class tLowPassFilter_FixFlt
 {
 public:
-	tLowPassFilter_FixFlt(float cutoffFrequency, float fixedDeltaTime)
+	// If tauAttenuation is false attenuation is specified as a cutoffFrequency. If tauAttenuation is true attenuation
+	// is specified as 'tau'. Cutoff-frequency is in Hz above which the signal is attenuated (reduced in amplitude). Tau
+	// is specified in seconds and is the time it takes for the filter's output to reach approximately 63% of a raw
+	// input value. FixedDeltaTime is in seconds.
+	tLowPassFilter_FixFlt(float fixedDeltaTime, float attenuation, bool tauAttenuation = false, float initialValue = 0.0f) :
+		FixedDeltaTime(fixedDeltaTime),
+		Value(initialValue)
 	{
 		// Calculate the weight. It doesn't change since fixedDeltaTime is unchanging.
-		// Tau = 1 / (2 * pi * cutoffFrequency).  Weight = 1 - exp(-deltaTime / tau).
-		tiClampMin(cutoffFrequency, tMath::Epsilon);
-		float tau = 1.0f / (tMath::TwoPi * cutoffFrequency);
-		Weight = 1.0f - tMath::tExp( -fixedDeltaTime / tau );
+		tiClampMin(attenuation, tMath::Epsilon);
+		float tau = tauAttenuation ? attenuation : 1.0f / (tMath::TwoPi * attenuation);
+		Weight = 1.0f - tMath::tExp( -FixedDeltaTime / tau );
 		tiSaturate(Weight);
-		Value = 0.0f;
 	}
 
 	// Given the new value returns the filtered value. Call this every fixedDeltaTime seconds.
@@ -58,24 +60,44 @@ public:
         return Value;
     }
 
+	float GetValue() const { return Value; }
+
+	void SetCutoffFreq(float cutoffFreq)
+	{
+		float tau = 1.0f / (tMath::TwoPi * cutoffFreq);
+		Weight = 1.0f - tMath::tExp( -FixedDeltaTime / tau );
+		tiSaturate(Weight);
+	}
+
+	void SetTau(float tau)
+	{
+		Weight = 1.0f - tMath::tExp( -FixedDeltaTime / tau );
+		tiSaturate(Weight);
+	}
+
 private:
-    double Weight;
-    double Value;
+	float FixedDeltaTime;			// Stored so we can adjust weight dynamically.
+    float Weight;					// Internal only. You cannot get or set this directly.
+    float Value;					// The current filtered value.
 };
 
 
 class tLowPassFilter_FixDbl
 {
 public:
-	tLowPassFilter_FixDbl(double cutoffFrequency, double fixedDeltaTime)
+	// If tauAttenuation is false attenuation is specified as a cutoffFrequency. If tauAttenuation is true attenuation
+	// is specified as 'tau'. Cutoff-frequency is in Hz above which the signal is attenuated (reduced in amplitude). Tau
+	// is specified in seconds and is the time it takes for the filter's output to reach approximately 63% of a raw
+	// input value. FixedDeltaTime is in seconds.
+	tLowPassFilter_FixDbl(double fixedDeltaTime, double attenuation, bool tauAttenuation = false, double initialValue = 0.0f) :
+		FixedDeltaTime(fixedDeltaTime),
+		Value(initialValue)
 	{
 		// Calculate the weight. It doesn't change since fixedDeltaTime is unchanging.
-		// Tau = 1 / (2 * pi * cutoffFrequency).  Weight = 1 - exp(-deltaTime / tau).
-		tiClampMin(cutoffFrequency, tMath::EpsilonDbl);
-		double tau = 1.0 / (tMath::TwoPi * cutoffFrequency);
-		Weight = 1.0 - tMath::tExp( -fixedDeltaTime / tau );
+		tiClampMin(attenuation, tMath::EpsilonDbl);
+		double tau = tauAttenuation ? attenuation : 1.0/ (tMath::TwoPi * attenuation);
+		Weight = 1.0 - tMath::tExp( -FixedDeltaTime / tau );
 		tiSaturate(Weight);
-		Value = 0.0;
 	}
 
 	// Given the new value returns the filtered value. Call this every fixedDeltaTime seconds.
@@ -85,59 +107,124 @@ public:
         return Value;
     }
 
+	// Call this after Update if it's difficult to store the result immediately.
+	double GetValue() const { return Value; }
+
+	void SetCutoffFreq(double cutoffFreq)
+	{
+		double tau = 1.0 / (tMath::TwoPi * cutoffFreq);
+		Weight = 1.0 - tMath::tExp( -FixedDeltaTime / tau );
+		tiSaturate(Weight);
+	}
+
+	void SetTau(double tau)
+	{
+		Weight = 1.0 - tMath::tExp( -FixedDeltaTime / tau );
+		tiSaturate(Weight);
+	}
+
 private:
-    double Weight;
-    double Value;
+	double FixedDeltaTime;		// Stored so we can adjust weight dynamically.
+    double Weight;				// Internal only. You cannot get or set this directly.
+    double Value;				// The current filtered value.
 };
 
 
-class LowPassFilter_DynFlt
+class tLowPassFilter_DynFlt
 {
 public:
-	LowPassFilter_DynFlt(float cutoffFrequency)
+	// If tauAttenuation is false attenuation is specified as a cutoffFrequency. If tauAttenuation is true attenuation
+	// is specified as 'tau'. Cutoff-frequency is in Hz above which the signal is attenuated (reduced in amplitude). Tau
+	// is specified in seconds and is the time it takes for the filter's output to reach approximately 63% of a raw
+	// input value.
+	tLowPassFilter_DynFlt(float attenuation, bool tauAttenuation = false, float initialValue = 0.0f) :
+		Value(initialValue)
 	{
-		tiClampMin(cutoffFrequency, tMath::Epsilon);
-		Tau = 1.0f / (tMath::TwoPi * cutoffFrequency);
-		Value = 0.0f;
+		tiClampMin(attenuation, tMath::Epsilon);
+		Tau = tauAttenuation ? attenuation : 1.0f / (tMath::TwoPi * attenuation);
 	}
 
 	float Update(float inputValue, float deltaTime)
 	{
-		// Less accurate approx.
-		// weight = deltaTime / (Tau + deltaTime);
 		float weight = 1.0f - tMath::tExp(-deltaTime / Tau);
 		Value = weight * inputValue + (1.0f - weight) * Value;
 		return Value;
 	}
 
+	// A less accurate but faster update that uses an approximation to compute the weight instead of exp.
+	float UpdateFast(float inputValue, float deltaTime)
+	{
+		// Less accurate approx.
+		float weight = deltaTime / (Tau + deltaTime);
+		Value = weight * inputValue + (1.0f - weight) * Value;
+		return Value;
+	}
+
+	// Call this after Update if it's difficult to store the result immediately.
+	float GetValue() const { return Value; }
+
+	void SetCutoffFreq(float cutoffFreq)
+	{
+		Tau = 1.0f / (tMath::TwoPi * cutoffFreq);
+	}
+
+	void SetTau(float tau)
+	{
+		Tau = tau;
+	}
+
 private:
-	double Tau;
-	double Value;
+	float Tau;
+	float Value;
 };
 
 
-class LowPassFilter_DynDbl
+class tLowPassFilter_DynDbl
 {
 public:
-	LowPassFilter_DynDbl(double cutoffFrequency)
+	// If tauAttenuation is false attenuation is specified as a cutoffFrequency. If tauAttenuation is true attenuation
+	// is specified as 'tau'. Cutoff-frequency is in Hz above which the signal is attenuated (reduced in amplitude). Tau
+	// is specified in seconds and is the time it takes for the filter's output to reach approximately 63% of a raw
+	// input value.
+	tLowPassFilter_DynDbl(double attenuation, bool tauAttenuation = false, double initialValue = 0.0)
 	{
-		tiClampMin(cutoffFrequency, tMath::EpsilonDbl);
-		Tau = 1.0 / (tMath::TwoPi * cutoffFrequency);
-		Value = 0.0;
+		tiClampMin(attenuation, tMath::EpsilonDbl);
+		Tau = tauAttenuation ? attenuation : 1.0 / (tMath::TwoPi * attenuation);
+		Value = initialValue;
 	}
 
 	double Update(double inputValue, double deltaTime)
 	{
-		// Less accurate approx.
-		// weight = deltaTime / (Tau + deltaTime);
 		double weight = 1.0 - tMath::tExp(-deltaTime / Tau);
 		Value = weight * inputValue + (1.0 - weight) * Value;
 		return Value;
 	}
 
+	// A less accurate but faster update that uses an approximation to compute the weight instead of exp.
+	double UpdateFast(double inputValue, double deltaTime)
+	{
+		// Less accurate approx.
+		double weight = deltaTime / (Tau + deltaTime);
+		Value = weight * inputValue + (1.0 - weight) * Value;
+		return Value;
+	}
+
+	// Call this after Update if it's difficult to store the result immediately.
+	double GetValue() const { return Value; }
+
+	void SetCutoffFreq(double cutoffFreq)
+	{
+		Tau = 1.0 / (tMath::TwoPi * cutoffFreq);
+	}
+
+	void SetTau(double tau)
+	{
+		Tau = tau;
+	}
+
 private:
-	double Tau;
-	double Value;
+	float Tau;
+	float Value;
 };
 
 
