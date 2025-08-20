@@ -2,7 +2,7 @@
 //
 // Math module tests.
 //
-// Copyright (c) 2017, 2019-2021, 2023, 2024 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2021, 2023-2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -18,6 +18,7 @@
 #include <Math/tQuaternion.h>
 #include <Math/tColour.h>
 #include <Math/tInterval.h>
+#include <Math/tFilter.h>
 #include "UnitTests.h"
 using namespace tMath;
 namespace tUnitTest
@@ -615,6 +616,14 @@ tTestUnit(Colour)
 	colDiffRedmean = tColourDiffRedmean(a, b);
 	tPrintf("Colour Diff (yellow yellow) Redmean: %f\n", colDiffRedmean);
 	tRequire(colDiffLinSq >= colDiffLin);
+}
+
+
+tTestUnit(Filter)
+{
+	double cutoffFreq = 100.0;
+	double fixedDeltaTime = 1.0/60.0;
+	tMath::tLowPassFilter_FixDbl lowPass(cutoffFreq, fixedDeltaTime);
 }
 
 

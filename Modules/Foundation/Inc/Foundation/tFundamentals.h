@@ -14,12 +14,9 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include <math.h>
+#include <cmath>
 #include <functional>
-#include "Foundation/tPlatform.h"
 #include "Foundation/tConstants.h"
-#include "Foundation/tList.h"
-#include "Foundation/tString.h"
 namespace tMath
 {
 

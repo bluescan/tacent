@@ -29,6 +29,7 @@ const float MaxFloat							= 3.402823466e+38f;
 
 // This is a practical epsilon that can be used in many circumstances. One one millionth.
 const float Epsilon								= 0.000001f;
+const double EpsilonDbl							= 0.000001;
 
 // This is the smallest effective positive float such that 1.0f+EpsilonEff != 1.0f.
 const float EpsilonEff							= 1.192092896e-07f;

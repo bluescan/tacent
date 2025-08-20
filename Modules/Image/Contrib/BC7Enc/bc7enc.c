@@ -2,7 +2,7 @@
 // Currently supports modes 1, 6 for RGB blocks, and modes 5, 6, 7 for RGBA blocks.
 // NOTE: This module is still a work in progress as of 3/31/2020. It needs to support mode modes for RGB content.
 #include "bc7enc.h"
-#include <math.h>
+#include <cmath>
 #include <memory.h>
 #include <assert.h>
 #include <limits.h>

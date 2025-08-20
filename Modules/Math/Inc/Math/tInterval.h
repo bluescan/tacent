@@ -21,6 +21,7 @@
 
 #pragma once
 #include <Foundation/tFundamentals.h>
+#include <Foundation/tString.h>
 namespace tMath
 {
 

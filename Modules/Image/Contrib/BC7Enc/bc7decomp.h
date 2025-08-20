@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <algorithm>
-#include <math.h>
+#include <cmath>
 #include <assert.h>
 
 namespace bc7decomp 

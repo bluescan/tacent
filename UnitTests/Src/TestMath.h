@@ -26,4 +26,5 @@ namespace tUnitTest
 	tTestUnit(Quaternion);
 	tTestUnit(Geometry);
 	tTestUnit(Colour);
+	tTestUnit(Filter);
 }

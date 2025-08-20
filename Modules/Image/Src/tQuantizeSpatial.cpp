@@ -37,12 +37,11 @@
 
 #include <deque>
 #include <random>
-#include <math.h>
+#include <cmath>
 #include <algorithm>
 #include <Math/tColour.h>
 #include <Math/tRandom.h>
 #include "Image/tQuantize.h"
-using namespace std;
 namespace tImage {
 	
 	
@@ -53,7 +52,7 @@ namespace tQuantizeSpatial
 	public:
 		vector_fixed()																									{ for (int i=0; i<length; i++) data[i] = 0; }
 		vector_fixed(const vector_fixed<T, length>& rhs)																{ for (int i=0; i<length; i++) data[i] = rhs.data[i]; }
-		vector_fixed(const vector<T>& rhs)																				{ for (int i=0; i<length; i++) data[i] = rhs[i]; }
+		vector_fixed(const std::vector<T>& rhs)																			{ for (int i=0; i<length; i++) data[i] = rhs[i]; }
 
 		T& operator()(int i)																							{ return data[i]; }
 		int get_length()																								{ return length; }
@@ -91,7 +90,7 @@ namespace tQuantizeSpatial
 
 		array2d<T>& operator*=(T scalar)																				{ for (int i=0; i<width; i++) for (int j=0; j<height; j++) (*this)(i,j) *= scalar; return *this; }
 		array2d<T> operator*(T scalar)																					{ array2d<T> result(*this); result *= scalar; return result; }
-		vector<T> operator*(vector<T> vec)																				{ vector<T> result; T sum; for(int row=0; row<get_height(); row++) { sum = 0; for (int col=0; col<get_width(); col++) sum += (*this)(col,row) * vec[col]; result.push_back(sum); } return result; }
+		std::vector<T> operator*(std::vector<T> vec)																	{ std::vector<T> result; T sum; for(int row=0; row<get_height(); row++) { sum = 0; for (int col=0; col<get_width(); col++) sum += (*this)(col,row) * vec[col]; result.push_back(sum); } return result; }
 		array2d<T>& multiply_row_scalar(int row, double mult)															{ for (int i=0; i<get_width(); i++) { (*this)(i,row) *= mult; } return *this; }
 		array2d<T>& add_row_multiple(int from_row, int to_row, double mult)												{ for (int i=0; i<get_width(); i++) { (*this)(i,to_row) += mult*(*this)(i,from_row); } return *this; }
 
@@ -162,24 +161,24 @@ namespace tQuantizeSpatial
 	void fill_random(array3d<double>& a, tMath::tRandom::tGenerator& gen);
 	double get_initial_temperature();
 	double get_final_temperature();
-	void random_permutation(int count, vector<int>& result, std::default_random_engine& randEng);
-	void random_permutation_2d(int width, int height, deque< pair<int, int> >& result, std::default_random_engine& randEng);
+	void random_permutation(int count, std::vector<int>& result, std::default_random_engine& randEng);
+	void random_permutation_2d(int width, int height, std::deque< std::pair<int, int> >& result, std::default_random_engine& randEng);
 	void compute_b_array(array2d< vector_fixed<double, 3> >& filter_weights, array2d< vector_fixed<double, 3> >& b);
 	vector_fixed<double, 3> b_value(array2d< vector_fixed<double, 3> >& b, int i_x, int i_y, int j_x, int j_y);
 	void compute_a_image(array2d< vector_fixed<double, 3> >& image, array2d< vector_fixed<double, 3> >& b, array2d< vector_fixed<double, 3> >& a);
 	void sum_coarsen(array2d< vector_fixed<double, 3> >& fine, array2d< vector_fixed<double, 3> >& coarse);
 	template <typename T, int length> array2d<T> extract_vector_layer_2d(array2d< vector_fixed<T, length> > s, int k);
-	template <typename T, int length> vector<T> extract_vector_layer_1d(vector< vector_fixed<T, length> > s, int k);
-	int best_match_color(array3d<double>& vars, int i_x, int i_y, vector< vector_fixed<double, 3> >& palette);
+	template <typename T, int length> std::vector<T> extract_vector_layer_1d(std::vector< vector_fixed<T, length> > s, int k);
+	int best_match_color(array3d<double>& vars, int i_x, int i_y, std::vector< vector_fixed<double, 3> >& palette);
 	void zoom_double(array3d<double>& small, array3d<double>& big);
 	void compute_initial_s(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_variables, array2d< vector_fixed<double, 3> >& b);
 	void update_s(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_variables, array2d< vector_fixed<double, 3> >& b, int j_x, int j_y, int alpha, double delta);
-	void refine_palette(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_variables, array2d< vector_fixed<double, 3> >& a, vector< vector_fixed<double, 3> >& palette);
-	void compute_initial_j_palette_sum(array2d< vector_fixed<double, 3> >& j_palette_sum, array3d<double>& coarse_variables, vector< vector_fixed<double, 3> >& palette);
+	void refine_palette(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_variables, array2d< vector_fixed<double, 3> >& a, std::vector< vector_fixed<double, 3> >& palette);
+	void compute_initial_j_palette_sum(array2d< vector_fixed<double, 3> >& j_palette_sum, array3d<double>& coarse_variables, std::vector< vector_fixed<double, 3> >& palette);
 	bool spatial_color_quant
 	(
 		array2d< vector_fixed<double, 3> >& image, array2d< vector_fixed<double, 3> >& filter_weights, array2d< int >& quantized_image,
-		vector< vector_fixed<double, 3> >& palette, array3d<double>*& p_coarse_variables,
+		std::vector< vector_fixed<double, 3> >& palette, array3d<double>*& p_coarse_variables,
 		double initial_temperature, double final_temperature, int temps_per_level, int repeats_per_temp,
 		tMath::tRandom::tGenerator& randGen, std::default_random_engine& randEng
 	);
@@ -223,7 +222,7 @@ double tQuantizeSpatial::get_final_temperature()
 }
 
 
-void tQuantizeSpatial::random_permutation(int count, vector<int>& result, std::default_random_engine& randEng)
+void tQuantizeSpatial::random_permutation(int count, std::vector<int>& result, std::default_random_engine& randEng)
 {
 	result.clear();
 	for(int i=0; i<count; i++)
@@ -233,15 +232,15 @@ void tQuantizeSpatial::random_permutation(int count, vector<int>& result, std::d
 }
 
 
-void tQuantizeSpatial::random_permutation_2d(int width, int height, deque< pair<int, int> >& result, std::default_random_engine& randEng)
+void tQuantizeSpatial::random_permutation_2d(int width, int height, std::deque< std::pair<int, int> >& result, std::default_random_engine& randEng)
 {
-	vector<int> perm1d;
+	std::vector<int> perm1d;
 	random_permutation(width*height, perm1d, randEng);
 	while(!perm1d.empty())
 	{
 		int idx = perm1d.back();
 		perm1d.pop_back();
-		result.push_back(pair<int,int>(idx % width, idx / width));
+		result.push_back(std::pair<int,int>(idx % width, idx / width));
 	}
 }
 
@@ -352,9 +351,9 @@ template <typename T, int length> tQuantizeSpatial::array2d<T> tQuantizeSpatial:
 }
 
 
-template <typename T, int length> vector<T> tQuantizeSpatial::extract_vector_layer_1d(vector< vector_fixed<T, length> > s, int k)
+template <typename T, int length> std::vector<T> tQuantizeSpatial::extract_vector_layer_1d(std::vector< vector_fixed<T, length> > s, int k)
 {
-	vector<T> result;
+	std::vector<T> result;
 	for (unsigned int i=0; i < s.size(); i++)
 	{
 		result.push_back(s[i](k));
@@ -363,7 +362,7 @@ template <typename T, int length> vector<T> tQuantizeSpatial::extract_vector_lay
 }
 
 
-int tQuantizeSpatial::best_match_color(array3d<double>& vars, int i_x, int i_y, vector< vector_fixed<double, 3> >& palette)
+int tQuantizeSpatial::best_match_color(array3d<double>& vars, int i_x, int i_y, std::vector< vector_fixed<double, 3> >& palette)
 {
 	int max_v = 0;
 	double max_weight = vars(i_x, i_y, 0);
@@ -387,8 +386,8 @@ void tQuantizeSpatial::zoom_double(array3d<double>& small, array3d<double>& big)
 	{
 		for (int x=0; x<big.get_width()/2*2; x++)
 		{
-			double left = max(0.0, (x-0.1)/2.0), right  = min(small.get_width()-0.001, (x+1.1)/2.0);
-			double top  = max(0.0, (y-0.1)/2.0), bottom = min(small.get_height()-0.001, (y+1.1)/2.0);
+			double left = std::max(0.0, (x-0.1)/2.0), right  = std::min(small.get_width()-0.001, (x+1.1)/2.0);
+			double top  = std::max(0.0, (y-0.1)/2.0), bottom = std::min(small.get_height()-0.001, (y+1.1)/2.0);
 			int x_left = (int)floor(left), x_right  = (int)floor(right);
 			int y_top  = (int)floor(top),  y_bottom = (int)floor(bottom);
 			double area = (right-left)*(bottom-top);
@@ -443,11 +442,11 @@ void tQuantizeSpatial::compute_initial_s(array2d< vector_fixed<double,3> >& s, a
 	{
 		for (int i_x=0; i_x<coarse_width; i_x++)
 		{
-			int max_j_x = min(coarse_width,  i_x - center_x + b.get_width());
-			int max_j_y = min(coarse_height, i_y - center_y + b.get_height());
-			for (int j_y=max(0, i_y - center_y); j_y<max_j_y; j_y++)
+			int max_j_x = std::min(coarse_width,  i_x - center_x + b.get_width());
+			int max_j_y = std::min(coarse_height, i_y - center_y + b.get_height());
+			for (int j_y=std::max(0, i_y - center_y); j_y<max_j_y; j_y++)
 			{
-				for (int j_x=max(0, i_x - center_x); j_x<max_j_x; j_x++)
+				for (int j_x=std::max(0, i_x - center_x); j_x<max_j_x; j_x++)
 				{
 					if (i_x == j_x && i_y == j_y) continue;
 					vector_fixed<double,3> b_ij = b_value(b,i_x,i_y,j_x,j_y);
@@ -478,11 +477,11 @@ void tQuantizeSpatial::update_s(array2d< vector_fixed<double,3> >& s, array3d<do
 	int coarse_width  = coarse_variables.get_width();
 	int coarse_height = coarse_variables.get_height();
 	int center_x = (b.get_width()-1)/2, center_y = (b.get_height()-1)/2;
-	int max_i_x = min(coarse_width,  j_x + center_x + 1);
-	int max_i_y = min(coarse_height, j_y + center_y + 1);
-	for (int i_y=max(0, j_y - center_y); i_y<max_i_y; i_y++)
+	int max_i_x = std::min(coarse_width,  j_x + center_x + 1);
+	int max_i_y = std::min(coarse_height, j_y + center_y + 1);
+	for (int i_y=std::max(0, j_y - center_y); i_y<max_i_y; i_y++)
 	{
-		for (int i_x=max(0, j_x - center_x); i_x<max_i_x; i_x++)
+		for (int i_x=std::max(0, j_x - center_x); i_x<max_i_x; i_x++)
 		{
 			vector_fixed<double,3> delta_b_ij = delta*b_value(b,i_x,i_y,j_x,j_y);
 			if (i_x == j_x && i_y == j_y) continue;
@@ -506,7 +505,7 @@ void tQuantizeSpatial::update_s(array2d< vector_fixed<double,3> >& s, array3d<do
 }
 
 
-void tQuantizeSpatial::refine_palette(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_variables, array2d< vector_fixed<double, 3> >& a, vector< vector_fixed<double, 3> >& palette)
+void tQuantizeSpatial::refine_palette(array2d< vector_fixed<double,3> >& s, array3d<double>& coarse_variables, array2d< vector_fixed<double, 3> >& a, std::vector< vector_fixed<double, 3> >& palette)
 {
 	// We only computed the half of S above the diagonal - reflect it
 	for (int v=0; v<s.get_width(); v++)
@@ -517,7 +516,7 @@ void tQuantizeSpatial::refine_palette(array2d< vector_fixed<double,3> >& s, arra
 		}
 	}
 
-	vector< vector_fixed<double,3> > r(palette.size());
+	std::vector< vector_fixed<double,3> > r(palette.size());
 	for (unsigned int v=0; v<palette.size(); v++)
 	{
 		for (int i_y=0; i_y<coarse_variables.get_height(); i_y++)
@@ -532,8 +531,8 @@ void tQuantizeSpatial::refine_palette(array2d< vector_fixed<double,3> >& s, arra
 	for (unsigned int k=0; k<3; k++)
 	{
 		array2d<double> S_k = extract_vector_layer_2d(s, k);
-		vector<double> R_k = extract_vector_layer_1d(r, k);
-		vector<double> palette_channel = -1.0*((2.0*S_k).matrix_inverse())*R_k;
+		std::vector<double> R_k = extract_vector_layer_1d(r, k);
+		std::vector<double> palette_channel = -1.0*((2.0*S_k).matrix_inverse())*R_k;
 		for (unsigned int v=0; v<palette.size(); v++)
 		{
 			double val = palette_channel[v];
@@ -545,7 +544,7 @@ void tQuantizeSpatial::refine_palette(array2d< vector_fixed<double,3> >& s, arra
 }
 
 
-void tQuantizeSpatial::compute_initial_j_palette_sum(array2d< vector_fixed<double, 3> >& j_palette_sum, array3d<double>& coarse_variables, vector< vector_fixed<double, 3> >& palette)
+void tQuantizeSpatial::compute_initial_j_palette_sum(array2d< vector_fixed<double, 3> >& j_palette_sum, array3d<double>& coarse_variables, std::vector< vector_fixed<double, 3> >& palette)
 {
 	for (int j_y=0; j_y<coarse_variables.get_height(); j_y++)
 	{
@@ -565,7 +564,7 @@ void tQuantizeSpatial::compute_initial_j_palette_sum(array2d< vector_fixed<doubl
 bool tQuantizeSpatial::spatial_color_quant
 (
 	array2d< vector_fixed<double, 3> >& image, array2d< vector_fixed<double, 3> >& filter_weights, array2d< int >& quantized_image,
-	vector< vector_fixed<double, 3> >& palette, array3d<double>*& p_coarse_variables,
+	std::vector< vector_fixed<double, 3> >& palette, array3d<double>*& p_coarse_variables,
 	double initial_temperature, double final_temperature, int temps_per_level, int repeats_per_temp,
 	tMath::tRandom::tGenerator& randGen, std::default_random_engine& randEng
 )
@@ -588,7 +587,7 @@ bool tQuantizeSpatial::spatial_color_quant
 	compute_a_image(image, b0, a0);
 
 	// Compute a_I^l, b_{IJ}^l according to (18)
-	vector< array2d< vector_fixed<double, 3> > > a_vec, b_vec;
+	std::vector< array2d< vector_fixed<double, 3> > > a_vec, b_vec;
 	a_vec.push_back(a0);
 	b_vec.push_back(b0);
 
@@ -597,7 +596,7 @@ bool tQuantizeSpatial::spatial_color_quant
 	{
 		int radius_width  = (filter_weights.get_width() - 1)/2, radius_height = (filter_weights.get_height() - 1)/2;
 		array2d< vector_fixed<double, 3> >
-		bi(max(3, b_vec.back().get_width()-2), max(3, b_vec.back().get_height()-2));
+		bi(std::max(3, b_vec.back().get_width()-2), std::max(3, b_vec.back().get_height()-2));
 		for (int J_y=0; J_y<bi.get_height(); J_y++)
 		{
 			for (int J_x=0; J_x<bi.get_width(); J_x++)
@@ -626,7 +625,7 @@ bool tQuantizeSpatial::spatial_color_quant
 	// Multiscale annealing
 	coarse_level = max_coarse_level;
 	const int iters_per_level = temps_per_level;
-	double temperature_multiplier = pow(final_temperature/initial_temperature, 1.0/(max(3, max_coarse_level*iters_per_level)));
+	double temperature_multiplier = std::pow(final_temperature/initial_temperature, 1.0/(std::max(3, max_coarse_level*iters_per_level)));
 
 	int iters_at_current_level = 0;
 	bool skip_palette_maintenance = false;
@@ -647,7 +646,7 @@ bool tQuantizeSpatial::spatial_color_quant
 		for (int repeat=0; repeat<repeats_per_temp; repeat++)
 		{
 			int pixels_changed = 0, pixels_visited = 0;
-			deque< pair<int, int> > visit_queue;
+			std::deque< std::pair<int, int> > visit_queue;
 			random_permutation_2d(coarse_variables.get_width(), coarse_variables.get_height(), visit_queue, randEng);
 
 			// Compute 2*sum(j in extended neighborhood of i, j != i) b_ij
@@ -682,8 +681,8 @@ bool tQuantizeSpatial::spatial_color_quant
 				p_i *= 2.0;
 				p_i += a(i_x, i_y);
 
-				vector<double> meanfield_logs, meanfields;
-				double max_meanfield_log = -numeric_limits<double>::infinity();
+				std::vector<double> meanfield_logs, meanfields;
+				double max_meanfield_log = -std::numeric_limits<double>::infinity();
 				double meanfield_sum = 0.0;
 				for (unsigned int v=0; v < palette.size(); v++)
 				{
@@ -732,13 +731,13 @@ bool tQuantizeSpatial::spatial_color_quant
 					// faster but cause a little bit of distortion
 					//for (int y=center_y-1; y<center_y+1; y++) {
 					//   for (int x=center_x-1; x<center_x+1; x++) {
-					for (int y=min(1,center_y-1); y<max(b.get_height()-1,center_y+1); y++)
+					for (int y=std::min(1,center_y-1); y<std::max(b.get_height()-1,center_y+1); y++)
 					{
-						for (int x=min(1,center_x-1); x<max(b.get_width()-1,center_x+1); x++)
+						for (int x=std::min(1,center_x-1); x<std::max(b.get_width()-1,center_x+1); x++)
 						{
 							int j_x = x - center_x + i_x, j_y = y - center_y + i_y;
 							if (j_x < 0 || j_y < 0 || j_x >= coarse_variables.get_width() || j_y >= coarse_variables.get_height()) continue;
-							visit_queue.push_back(pair<int,int>(j_x,j_y));
+							visit_queue.push_back(std::pair<int,int>(j_x,j_y));
 						}
 					}
 				}
@@ -867,7 +866,7 @@ bool tQuantizeSpatial::QuantizeImage
 	array2d< vector_fixed<double, 3> > filter3_weights(3, 3);
 	array2d< vector_fixed<double, 3> > filter5_weights(5, 5);
 	array2d< int > quantized_image(width, height);
-	vector< vector_fixed<double, 3> > palette;
+	std::vector< vector_fixed<double, 3> > palette;
 
 	for(int k=0; k<3; k++)
 		filter1_weights(0,0)(k) = 1.0;

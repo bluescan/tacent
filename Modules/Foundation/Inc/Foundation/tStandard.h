@@ -18,7 +18,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include <math.h>
+#include <cmath>
 #include "Foundation/tPlatform.h"
 #include "Foundation/tAssert.h"
 #pragma warning (disable: 4996)
