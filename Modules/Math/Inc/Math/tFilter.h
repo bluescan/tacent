@@ -35,6 +35,35 @@ namespace tMath
 // Classes with Fix in the name should be used if you know the timestep and it is constant. Classes with Dyn should be
 // used if you need to supply the delta-time each update. There are also variants that use either float or double (for
 // more accuracy) -- these have either Dbl or Flt in their name.
+//
+// @todo Tau constructors.
+class tLowPassFilter_FixFlt
+{
+public:
+	tLowPassFilter_FixFlt(float cutoffFrequency, float fixedDeltaTime)
+	{
+		// Calculate the weight. It doesn't change since fixedDeltaTime is unchanging.
+		// Tau = 1 / (2 * pi * cutoffFrequency).  Weight = 1 - exp(-deltaTime / tau).
+		tiClampMin(cutoffFrequency, tMath::Epsilon);
+		float tau = 1.0f / (tMath::TwoPi * cutoffFrequency);
+		Weight = 1.0f - tMath::tExp( -fixedDeltaTime / tau );
+		tiSaturate(Weight);
+		Value = 0.0f;
+	}
+
+	// Given the new value returns the filtered value. Call this every fixedDeltaTime seconds.
+    float Update(float inputValue)
+	{
+        Value = Weight * inputValue + (1.0f - Weight) * Value;
+        return Value;
+    }
+
+private:
+    double Weight;
+    double Value;
+};
+
+
 class tLowPassFilter_FixDbl
 {
 public:
@@ -62,9 +91,29 @@ private:
 };
 
 
-///////////////////// WIP
-//class tLowPassFilter_FixFlt
-//class tLowPassFilter_DynFlt
+class LowPassFilter_DynFlt
+{
+public:
+	LowPassFilter_DynFlt(float cutoffFrequency)
+	{
+		tiClampMin(cutoffFrequency, tMath::Epsilon);
+		Tau = 1.0f / (tMath::TwoPi * cutoffFrequency);
+		Value = 0.0f;
+	}
+
+	float Update(float inputValue, float deltaTime)
+	{
+		// Less accurate approx.
+		// weight = deltaTime / (Tau + deltaTime);
+		float weight = 1.0f - tMath::tExp(-deltaTime / Tau);
+		Value = weight * inputValue + (1.0f - weight) * Value;
+		return Value;
+	}
+
+private:
+	double Tau;
+	double Value;
+};
 
 
 class LowPassFilter_DynDbl
@@ -80,7 +129,7 @@ public:
 	double Update(double inputValue, double deltaTime)
 	{
 		// Less accurate approx.
-		// double weight = deltaTime / (Tau + deltaTime);
+		// weight = deltaTime / (Tau + deltaTime);
 		double weight = 1.0 - tMath::tExp(-deltaTime / Tau);
 		Value = weight * inputValue + (1.0 - weight) * Value;
 		return Value;
