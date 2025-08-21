@@ -1,8 +1,9 @@
 // tControllerInfo.h
 //
-// This file contains a table of all know controllers, In particular a table entry contains the vendor ID, the
-// product ID, the suspected polling period, and a decriptive name. The list is based on the gist of nondebug as found
-// here: https://gist.github.com/nondebug/aec93dff7f0f1969f4cc2291b24a3171
+// This file contains a table specifying the properties of various controller models. In particular the controller
+// properties may be looked up if you supply the vendor ID and the product ID. The suspected polling period, a
+// descriptive name, component technology used, plus latency and jitter information are all included. The data is based
+// on https://gist.github.com/nondebug/aec93dff7f0f1969f4cc2291b24a3171 and https://gamepadla.com/
 //
 // Copyright (c) 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
@@ -23,9 +24,18 @@ namespace tInput
 // The VidPid acts as a key when retreiving information for a controller.
 struct tControllerVidPid
 {
+	tControllerVidPid(uint16 vid, uint16 pid)		: VID(vid), PID(pid) { }
 	uint16 VID;				// Vendor ID.
 	uint16 PID;				// Product ID.
+
+	// These are needed so that a VidPid can be used as a key in a tMap.
+	explicit operator uint32()																							{ return (VID << 16) | PID; }
+	explicit operator uint32() const																					{ return (VID << 16) | PID; }
 };
+inline bool operator==(const tControllerVidPid& a, const tControllerVidPid& b)
+{
+	return (a.VID == b.VID) && (a.PID == b.PID);
+}
 
 
 enum class tDisplacementTechnology
@@ -44,7 +54,7 @@ struct tControllerInfo
 	// Polling frequency in Hz. From this an appropriate polling period can be computed. This is the "max" frequency in
 	// the sense that a particular controller may poll at a different frequency for buttons vs analog inputs like
 	// triggers and sticks. However, the xinput API reads everything at once so we need a polling rate that is as fast
-	// as the highest component polling rate in the controller.
+	// as the fastest component polling rate in the controller.
 	int32 MaxPollingFreq;
 
 	// Displacement tech used by the joysticks.
@@ -53,19 +63,27 @@ struct tControllerInfo
 	// Displacement tech used by the triggers.
 	tDisplacementTechnology DispTechTriggers;
 	
-	// Stick dead zone expressed as a percent.
+	// Stick dead zone expressed as a percent [0.0,1.0]. Assumes multiple sticks have the same deat-zone.
 	float StickDeadZone;
 
-	// Trigger dead zone expressed as percent.
+	// Trigger dead zone expressed as percent [0.0, 1.0].
 	float TriggerDeadZone;
 	
-	
+	// Latency here is the average time in milliseconds between an input change and the controller reporting the change.
+	float LatencyAxes;
+	float LatencyButtons;
+
+	// Jitter represents inconsistencies in the time-domain reporting of input changes. It is listed here as the
+	// standard deviation of latency measurements in milliseconds. There is a 68.2% probability of a sample being
+	// within +- one standard deviation from the average latency. Jitter values can be used to control the 'tau' value
+	// in a low-pass filter. Such a filter mitigate both jitter and noise.
+	float JitterAxes;
+	float JitterButtons;
 };
 
 
 const tControllerInfo* FindControllerInfo(const tControllerVidPid& vidpid);
-const char* FindControllerName(const tControllerVidPid& vidpid));
-int32 FindControllerName(const tControllerVidPid& vidpid));
+const char* FindControllerName(const tControllerVidPid& vidpid);
 
 
 #if 0
