@@ -38,110 +38,82 @@ namespace tMath
 {
 
 
-// An abstract base class for low-pass filters.
-template<typename T> class tLowPassFilter_Base
+// An abstract base class for 1st order low-pass filters.
+template<typename T> class tLowPassFilter
 {
 public:
-	virtual T GetValue() const = 0;
+	tLowPassFilter(T initialValue)																						: Value(initialValue) { }
+	
+	// Call this after Update if it's difficult to store the result immediately.
+	T GetValue() const																									{ return Value; }
+	virtual void SetCutoffFreq(T cutoffFreq)																			= 0;
+	virtual void SetTau(T tau)																							= 0;
+
+protected:
+	T ComputeTau(T cutoffFreq) const																					{ return T(1.0) / (tMath::TwoPi * cutoffFreq); }
+	T ComputeWeight(T dt, T tau) const																					{ return tSaturate(T(1.0) - tMath::tExp(-dt / tau)); }
+	T ComputeWeightFast(T dt, T tau) const																				{ return tSaturate(dt / (tau + dt)); }
+	T UpdateValue(T weight, T inputValue)																				{ Value = weight*inputValue + (T(1.0) - weight)*Value; return Value; }
+
+	// The current filtered value.
+	T Value;
 };
 
 
-template <typename T> class tLowPassFilterFixed : public tLowPassFilter_Base<T>
+template <typename T> class tLowPassFilterFixed : public tLowPassFilter<T>
 {
 public:
 	// If tauAttenuation is false attenuation is specified as a cutoffFrequency. If tauAttenuation is true attenuation
 	// is specified as 'tau'. Cutoff-frequency is in Hz above which the signal is attenuated (reduced in amplitude). Tau
 	// is specified in seconds and is the time it takes for the filter's output to reach approximately 63% of a raw
 	// input value. FixedDeltaTime is in seconds.
-	tLowPassFilterFixed(T fixedDeltaTime, T attenuation, bool tauAttenuation = false, T initialValue = T(0.0)) :
-		FixedDeltaTime(fixedDeltaTime),
-		Value(initialValue)
-	{
-		// Calculate the weight. It doesn't change since fixedDeltaTime is unchanging.
-		tiClampMin(attenuation, T(tMath::Epsilon));
-		T tau = tauAttenuation ? attenuation : T(1.0) / (tMath::TwoPi * attenuation);
-		Weight = T(1.0) - tMath::tExp( -FixedDeltaTime / tau );
-		tiSaturate(Weight);
-	}
+	tLowPassFilterFixed(T fixedDeltaTime, T attenuation, bool tauAttenuation = false, T initialValue = T(0.0));
 
 	// Given the new value returns the filtered value. Call this every fixedDeltaTime seconds.
-	T Update(T inputValue)
-	{
-		Value = Weight * inputValue + (T(1.0) - Weight) * Value;
-		return Value;
-	}
+	T Update(T inputValue);
 
-	T GetValue() const override { return Value; }
-
-	void SetCutoffFreq(T cutoffFreq)
-	{
-		T tau = T(1.0) / (tMath::TwoPi * cutoffFreq);
-		Weight = T(1.0) - tMath::tExp( -FixedDeltaTime / tau );
-		tiSaturate(Weight);
-	}
-
-	void SetTau(T tau)
-	{
-		Weight = T(1.0) - tMath::tExp( -FixedDeltaTime / tau );
-		tiSaturate(Weight);
-	}
+	void SetCutoffFreq(T cutoffFreq) override;
+	void SetTau(T tau) override;
 
 private:
-	T FixedDeltaTime;			// Stored so we can adjust weight dynamically.
-	T Weight;					// Internal only. You cannot get or set this directly.
-	T Value;					// The current filtered value.
+	// We need to bring required base class functions into scope. The base template class hasn't been instantiated yet.
+	using tLowPassFilter<T>::ComputeTau;
+	using tLowPassFilter<T>::ComputeWeight;
+	using tLowPassFilter<T>::UpdateValue;
+
+	T FixedDeltaTime;						// Stored so we can adjust weight dynamically.
+	T Weight;								// Internal only. You cannot get or set this directly.
 };
 typedef tLowPassFilterFixed<float>  tLowPassFilter_FixFlt;
 typedef tLowPassFilterFixed<double> tLowPassFilter_FixDbl;
 typedef tLowPassFilterFixed<long double> tLowPassFilter_FixLongDbl;
 
 
-template <typename T> class tLowPassFilterDynamic : public tLowPassFilter_Base<T>
+template <typename T> class tLowPassFilterDynamic : public tLowPassFilter<T>
 {
 public:
 	// If tauAttenuation is false attenuation is specified as a cutoffFrequency. If tauAttenuation is true attenuation
 	// is specified as 'tau'. Cutoff-frequency is in Hz above which the signal is attenuated (reduced in amplitude). Tau
 	// is specified in seconds and is the time it takes for the filter's output to reach approximately 63% of a raw
 	// input value.
-	tLowPassFilterDynamic(T attenuation, bool tauAttenuation = false, T initialValue = T(0.0)) :
-		Value(initialValue)
-	{
-		tiClampMin(attenuation, tMath::Epsilon);
-		Tau = tauAttenuation ? attenuation : T(1.0) / (tMath::TwoPi * attenuation);
-	}
+	tLowPassFilterDynamic(T attenuation, bool tauAttenuation = false, T initialValue = T(0.0));
 
-	T Update(T inputValue, T deltaTime)
-	{
-		T weight = T(1.0) - tMath::tExp(-deltaTime / Tau);
-		Value = weight * inputValue + (T(1.0) - weight) * Value;
-		return Value;
-	}
+	// Given the new value returns the filtered value. Call this often and specify the deltaTime in seconds.
+	T Update(T inputValue, T deltaTime);
 
 	// A less accurate but faster update that uses an approximation to compute the weight instead of exp.
-	T UpdateFast(T inputValue, T deltaTime)
-	{
-		// Less accurate approx.
-		T weight = deltaTime / (Tau + deltaTime);
-		Value = weight * inputValue + (T(1.0) - weight) * Value;
-		return Value;
-	}
+	T UpdateFast(T inputValue, T deltaTime);
 
-	// Call this after Update if it's difficult to store the result immediately.
-	T GetValue() const override { return Value; }
-
-	void SetCutoffFreq(T cutoffFreq)
-	{
-		Tau = T(1.0) / (tMath::TwoPi * cutoffFreq);
-	}
-
-	void SetTau(T tau)
-	{
-		Tau = tau;
-	}
+	void SetCutoffFreq(T cutoffFreq) override;
+	void SetTau(T tau) override;
 
 private:
+	// We need to bring required base class functions into scope. The base template class hasn't been instantiated yet.
+	using tLowPassFilter<T>::ComputeTau;
+	using tLowPassFilter<T>::ComputeWeight;
+	using tLowPassFilter<T>::UpdateValue;
+
 	T Tau;
-	T Value;
 };
 typedef tLowPassFilterDynamic<float>  tLowPassFilter_DynFlt;
 typedef tLowPassFilterDynamic<double> tLowPassFilter_DynDbl;
@@ -152,3 +124,68 @@ typedef tLowPassFilterDynamic<long double> tLowPassFilter_DynLongDbl;
 
 
 // Implementation below this line.
+
+
+template<typename T> inline tMath::tLowPassFilterFixed<T>::tLowPassFilterFixed(T fixedDeltaTime, T attenuation, bool tauAttenuation, T initialValue) :
+	tLowPassFilter<T>(initialValue),
+	FixedDeltaTime(fixedDeltaTime)
+{
+	// Calculate the weight. It doesn't change since fixedDeltaTime is unchanging.
+	tiClampMin<T>(attenuation, T(tMath::Epsilon));
+	T tau = tauAttenuation ? attenuation : ComputeTau(attenuation);
+	Weight = ComputeWeight(FixedDeltaTime, tau);
+}
+
+
+template<typename T> inline T tMath::tLowPassFilterFixed<T>::Update(T inputValue)
+{
+	return UpdateValue(Weight, inputValue);
+}
+
+
+template<typename T> inline void tMath::tLowPassFilterFixed<T>::SetCutoffFreq(T cutoffFreq)
+{
+	T tau = ComputeTau(cutoffFreq);
+	Weight = ComputeWeight(FixedDeltaTime, tau);
+}
+
+
+template<typename T> inline void tMath::tLowPassFilterFixed<T>::SetTau(T tau)
+{
+	Weight = ComputeWeight(FixedDeltaTime, tau);
+}
+
+
+template<typename T> inline tMath::tLowPassFilterDynamic<T>::tLowPassFilterDynamic(T attenuation, bool tauAttenuation, T initialValue) :
+	tLowPassFilter<T>(initialValue)
+{
+	tiClampMin<T>(attenuation, tMath::Epsilon);
+	Tau = tauAttenuation ? attenuation : ComputeTau(attenuation);
+}
+
+
+template<typename T> inline T tMath::tLowPassFilterDynamic<T>::Update(T inputValue, T deltaTime)
+{
+	T weight = ComputeWeight(deltaTime, Tau);
+	return UpdateValue(weight, inputValue);
+}
+
+
+template<typename T> inline T tMath::tLowPassFilterDynamic<T>::UpdateFast(T inputValue, T deltaTime)
+{
+	// Less accurate but faster approximation.
+	T weight = ComputeWeightFast(deltaTime, Tau);
+	return UpdateValue(weight, inputValue);
+}
+
+
+template<typename T> inline void tMath::tLowPassFilterDynamic<T>::SetCutoffFreq(T cutoffFreq)
+{
+	Tau = ComputeTau(cutoffFreq);
+}
+
+
+template<typename T> inline void tMath::tLowPassFilterDynamic<T>::SetTau(T tau)
+{
+	Tau = tau;
+}

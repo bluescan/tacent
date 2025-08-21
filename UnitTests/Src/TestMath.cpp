@@ -621,9 +621,16 @@ tTestUnit(Colour)
 
 tTestUnit(Filter)
 {
-	double fixedDeltaTime = 1.0/60.0;
-	double cutoffFreq = 100.0;
-	tMath::tLowPassFilter_FixDbl lowPass(fixedDeltaTime, cutoffFreq);
+	float fixedDeltaTimeF = 1.0f/60.0f;
+	float cutoffFreqF = 100.0f;
+	tMath::tLowPassFilter_FixFlt lowPassFixF(fixedDeltaTimeF, cutoffFreqF);
+
+	double fixedDeltaTimeD = 1.0/60.0;
+	double cutoffFreqD = 100.0;
+	tMath::tLowPassFilter_FixDbl lowPassFixD(fixedDeltaTimeD, cutoffFreqD);
+
+	tMath::tLowPassFilter_DynFlt lowPassDynF(cutoffFreqF);
+	tMath::tLowPassFilter_DynDbl lowPassDynD(cutoffFreqD);
 }
 
 
