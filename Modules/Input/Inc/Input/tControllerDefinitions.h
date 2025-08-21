@@ -1,4 +1,4 @@
-// tControllerInfo.h
+// tControllerDefinitions.h
 //
 // This file contains a table specifying the properties of various controller models. In particular the controller
 // properties may be looked up if you supply the vendor ID and the product ID. The suspected polling period, a
@@ -22,9 +22,10 @@ namespace tInput
 
 
 // The VidPid acts as a key when retreiving information for a controller.
-struct tControllerVidPid
+struct tVidPid
 {
-	tControllerVidPid(uint16 vid, uint16 pid)		: VID(vid), PID(pid) { }
+	tVidPid()																											: VID(0), PID(0) { }
+	tVidPid(uint16 vid, uint16 pid)																						: VID(vid), PID(pid) { }
 	uint16 VID;				// Vendor ID.
 	uint16 PID;				// Product ID.
 
@@ -32,24 +33,27 @@ struct tControllerVidPid
 	explicit operator uint32()																							{ return (VID << 16) | PID; }
 	explicit operator uint32() const																					{ return (VID << 16) | PID; }
 };
-inline bool operator==(const tControllerVidPid& a, const tControllerVidPid& b)
-{
-	return (a.VID == b.VID) && (a.PID == b.PID);
-}
+inline bool operator==(const tVidPid& a, const tVidPid& b)																{ return (a.VID == b.VID) && (a.PID == b.PID); }
 
 
-enum class tDisplacementTechnology
+// The controller component displacement technology.
+enum class tDispTech
 {
-	Unknown = -1,
+	UNK = -1,		// Unknown.
 	POT,			// Potentiometer. Physical contact. May drift.
-	HALL,			// Hall effect. No physical contact.
+	HAL,			// Hall effect. No physical contact.
 	TMR				// Tunnel MagnetoResistance. No physical contact.
 };
 
 
-struct tControllerInfo
+// The controller definition stored in the dictionary. Unfortunately some controllers have multiple ways to connect with
+// different latency characteristics. Usually the 2.4GHz dongles are pretty close to wired. Also quite often bluetooth
+// connected controllers aren't recognized by XInput (plus BT has a lot more latency). For this reason the wired
+// definitions are used in the table below.
+struct tContDefn
 {
-	const char* Name;
+	const char* Vendor;
+	const char* Product;
 
 	// Polling frequency in Hz. From this an appropriate polling period can be computed. This is the "max" frequency in
 	// the sense that a particular controller may poll at a different frequency for buttons vs analog inputs like
@@ -58,10 +62,10 @@ struct tControllerInfo
 	int32 MaxPollingFreq;
 
 	// Displacement tech used by the joysticks.
-	tDisplacementTechnology DispTechSticks;
+	tDispTech DispTechSticks;
 
 	// Displacement tech used by the triggers.
-	tDisplacementTechnology DispTechTriggers;
+	tDispTech DispTechTriggers;
 	
 	// Stick dead zone expressed as a percent [0.0,1.0]. Assumes multiple sticks have the same deat-zone.
 	float StickDeadZone;
@@ -82,8 +86,8 @@ struct tControllerInfo
 };
 
 
-const tControllerInfo* FindControllerInfo(const tControllerVidPid& vidpid);
-const char* FindControllerName(const tControllerVidPid& vidpid);
+// The lookup calls are fast since the dictionary uses a tMap. The Find calls are slow because they have to iterate.
+const tContDefn* tLookupContDefn(const tVidPid& vidpid);
 
 
 #if 0
