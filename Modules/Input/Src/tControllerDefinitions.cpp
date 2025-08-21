@@ -1,4 +1,4 @@
-// tControllerInfo.cpp
+// tControllerDefinitions.cpp
 //
 // This file contains a table specifying the properties of various controller models. In particular the controller
 // properties may be looked up if you supply the vendor ID and the product ID. The suspected polling period, a
@@ -16,42 +16,52 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <Foundation/tMap.h>
-#include "Input/tControllerInfo.h"
+#include "Input/tControllerDefinitions.h"
 
 
 namespace tInput
 {
-	tMap<tControllerVidPid, tControllerInfo> ControllerDictionary;
+	// The controller dictionary. Lookup by vidpid and contains the controller definitions.
+	tMap<tVidPid, tContDefn> ContDict;
 
-	bool ControllerDictionaryPopulated = false;
-	void PopulateControllerDictionary();
+	bool ContDictPopulated = false;
+	void tPopulateContDict();
 }
 
 
-const tInput::tControllerInfo* tInput::FindControllerInfo(const tControllerVidPid& vidpid)
+const tInput::tContDefn* tInput::tLookupContDefn(const tVidPid& vidpid)
 {
-	if (!ControllerDictionaryPopulated)
+	if (!ContDictPopulated)
 	{
-		PopulateControllerDictionary();
-		ControllerDictionaryPopulated = true;
+		tPopulateContDict();
+		ContDictPopulated = true;
 	}
 
-	return &ControllerDictionary[vidpid];
+	return ContDict.GetValue(vidpid);
 }
 
 
-void tInput::PopulateControllerDictionary()
+void tInput::tPopulateContDict()
 {
-	ControllerDictionary[{0x1234, 0x5678}] =
+	ContDict[ {0x2DC8, 0x310B} ] =
 	{
-		"testname", 1000,
-		tDisplacementTechnology::TMR, tDisplacementTechnology::TMR,
-		0.1f, 0.0f, 4.0f, 3.0f, 0.5f, 0.4f
+//		Vendor					Product
+		"8BitDo",				"Ultimate 2 Wireless Controller",
+
+//		Poll	StickTech		TriggerTech		JoyDead	TrgDead	AxesLat	ButnLat	AxesJit	ButnJit
+//		(Hz)									(%)		(%)		(ms)	(ms)	(ms)	(ms)
+		956,	tDispTech::TMR,	tDispTech::HAL,	0.05f,	0.00f,	7.02f,	2.81f,	0.45f,	0.35f		// No dead zone.
 	};
-	ControllerDictionary[{0x4321, 0xABCD}] =
+
+	ContDict[ {0x2DC8, 0x3106} ] =
 	{
-		"testname2", 125,
-		tDisplacementTechnology::HALL, tDisplacementTechnology::HALL,
-		0.1f, 0.0f, 4.0f, 3.0f, 0.5f, 0.4f
+		"8BitDo",				"Ultimate Bluetooth Controller",
+		100,	tDispTech::HAL,	tDispTech::HAL,	0.05f,	0.00f,	16.22f,	10.11f,	2.68f,	2.56f		// No dead zone.
+	};
+
+	ContDict[ {0x045E, 0x02FF} ] =
+	{
+		"Microsoft",			"XBox One Controller",
+		125,	tDispTech::POT,	tDispTech::POT,	0.05f,	0.00f,	5.54f,	5.54f,	2.24f,	2.24f		// No dead zone. Latencies and jitter not measures separately so they match.
 	};
 }
