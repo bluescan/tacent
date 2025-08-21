@@ -2,9 +2,10 @@
 //
 // A map class (dictionary) that keeps track of keys and associated values, both of which may be any type. The
 // requirements are: The key type must be copyable, comparable, and convertable to a uint32. The value type must be
-// copyable. tMap is implemented as a hash-table with lists to resolve collisions and has expected O(1) running
-// time for insertions and value retrievals. The hash table automatically grows when a threshold percentage of the hash
-// table is used (defaulting to 60%). Keys are unique -- the last value assigned to a key is the one stored in the tMap.
+// copyable and should have a default constructor. tMap is implemented as a hash-table with lists to resolve collisions
+// and has expected O(1) running time for insertions and value retrievals. The hash table automatically grows when a
+// threshold percentage of the hash table is used (defaulting to 60%). Keys are unique -- the last value assigned to a
+// key is the one stored in the tMap.
 //
 // You may iterate through a tMap to retrieve all keys and values. Range-based for loops are supported. Note that this
 // is slightly less efficient than iterating through a tList though, as empty nodes in the hash table are visited.
@@ -33,7 +34,9 @@ public:
 	tMap(int initialLog2Size = 8, float rekeyPercent = 0.6f);
 	~tMap();
 
-	// These are fast with expected O(1) running time.
+	// These are fast with expected O(1) running time. GetInsert and op[] will add a value to the map if the key is not
+	// found. The value will be default constructed. GetValue returns nullptr if the key can't be found.
+	V* GetValue(const K&);
 	V& GetInsert(const K&);
 	V& operator[](const K&);
 	bool Remove(const K&);
@@ -156,6 +159,24 @@ template<typename K, typename V> inline V& tMap<K,V>::GetInsert(const K& key)
 		HashTableEntryCount++;
 	NumItems++;
 	return item.Pairs.Append(new Pair(key))->Value;
+}
+
+
+template<typename K, typename V> inline V* tMap<K,V>::GetValue(const K& key)
+{
+	uint32 hash = uint32(key);
+	int hashBits = 	tMath::tLog2(HashTableSize);
+	hash = hash & (0xFFFFFFFF >> (32-hashBits));
+	tAssert(hash < HashTableSize);
+
+	HashTableItem& item = HashTable[hash];
+	for (Pair& pair : item.Pairs)
+	{
+		if (pair.Key == key)
+			return &pair.Value;
+	}
+
+	return nullptr;
 }
 
 

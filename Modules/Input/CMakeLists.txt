@@ -24,7 +24,7 @@ add_library(
 	Src/tCont.cpp
 	Src/tContGamepad.cpp
 	Src/tContRacingWheel.cpp
-	Src/tControllerInfo.cpp
+	Src/tControllerDefinitions.cpp
 	Src/tControllerSystem.cpp
 	Inc/Input/tUnit.h
 	Inc/Input/tUnitContinuousAxis.h
@@ -47,7 +47,7 @@ add_library(
 	Inc/Input/tCont.h
 	Inc/Input/tContGamepad.h
 	Inc/Input/tContRacingWheel.h
-	Inc/Input/tControllerInfo.h
+	Inc/Input/tControllerDefinitions.h
 	Inc/Input/tControllerSystem.h
 )
 

@@ -17,10 +17,11 @@
 #include <windows.h>
 #include <xinput.h>
 #endif
-#include "Foundation/tPlatform.h"
-#include "Foundation/tName.h"
-#include "System/tPrint.h"
+#include <Foundation/tPlatform.h>
+#include <Foundation/tName.h>
+#include <System/tPrint.h>
 #include "Input/tControllerSystem.h"
+#include "Input/tControllerDefinitions.h"
 
 
 // Missing from xinput.h.
@@ -96,9 +97,6 @@ void tControllerSystem::Detect()
 
 		for (int g = 0; g < int(tGamepadID::NumGamepads); g++)
 		{
-			tControllerSystem::DetermineGamepadPollingPeriodFromHardwareInfo(tGamepadID(g));
-
-
 			// XInputGetState is generally faster for detecting device connectedness.
 			WinXInputState state;
 			tStd::tMemclr(&state, sizeof(WinXInputState));
@@ -128,7 +126,7 @@ void tControllerSystem::Detect()
 			}
 			else
 			{
-				// Either ERROR_DEVICE_NOT_CONNECTED or some other error. Either way treat controller as disconnected.
+				// Either WinErrorDeviceNotConnected or some other error. Either way treat controller as disconnected.
 				if (Gamepads[g].IsPolling())
 				{
 					// Now we need to stop polling and queue a disconnect message to for the main update to pick up.
@@ -154,34 +152,34 @@ void tControllerSystem::Detect()
 int tControllerSystem::DetermineGamepadPollingPeriodFromHardwareInfo(tGamepadID g)
 {
 	#ifdef PLATFORM_WINDOWS
-	// In Windows use XInputGetCapabilities to try to retrieve a good polling rate.
-//	WinXInputCapabilities capabilities;
-//	tStd::tMemclr(&capabilities, sizeof(WinXInputCapabilities));
-//	WinDWord capResult = XInputGetCapabilities(int(g), WinXInputFlagGamepad, &capabilities);
-	////////////////
-
 
     int i = int(g);
-	printf("Gamepad %d ", i);
+	tPrintf("Gamepad %d ", i);
 
-	XINPUT_CAPABILITIES_EX capsEx;
-	tStd::tMemclr(&capsEx, sizeof(XINPUT_CAPABILITIES_EX));
-	if (XInputGetCapabilitiesEx(1, i, 0, &capsEx) == ERROR_SUCCESS)
+	WinXInputCapabilitiesEx capsEx;
+	tStd::tMemclr(&capsEx, sizeof(WinXInputCapabilitiesEx));
+	if (XInputGetCapabilitiesEx(1, i, 0, &capsEx) == WinErrorSuccess)
 	{
-		printf("connected, vid = 0x%04X pid = 0x%04X\n", (int)capsEx.vendorId, (int)capsEx.productId);
+		tVidPid vidpid(uint16(capsEx.vendorId), uint16(capsEx.productId));
+		const tContDefn* defn = tLookupContDefn(vidpid);
+		const char* vendor = defn ? defn->Vendor : "unknown";
+		const char* product = defn ? defn->Product : "unknown";
+		tPrintf
+		(
+			"connected. vid = 0x%04X pid = 0x%04X Vendor:%s Product:%s\n",
+			int(capsEx.vendorId), int(capsEx.productId), vendor, product
+		);
+		if (defn && defn->MaxPollingFreq)
+			return int(1000000.0f/defn->MaxPollingFreq);
 	}
 	else
 	{
-		printf("not connected\n");
+		tPrintf("not connected\n");
 	}
 
-	////////////////
-	return 0;
-
 	#else
-	return 0;
-
 	#endif
+	return 0;
 }
 
 

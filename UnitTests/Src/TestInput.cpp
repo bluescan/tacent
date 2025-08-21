@@ -20,14 +20,14 @@ namespace tUnitTest
 
 tTestUnit(GamepadJoysticks)
 {
-	tInput::tControllerSystem coontrollerSystem;
+	tInput::tControllerSystem controllerSystem;
 
-	tPrintf("LEFT STICK  : %s\n", coontrollerSystem.GetGetpad(tInput::tGamepadID::GP0).LStick.Name.Chr());
-	tPrintf("DPAD        : %s\n", coontrollerSystem.GetGetpad(tInput::tGamepadID::GP0).DPad.Name.Chr());
-	tPrintf("LEFT TRIGGER: %s\n", coontrollerSystem.GetGetpad(tInput::tGamepadID::GP0).LTrigger.Name.Chr());
+	tPrintf("LEFT STICK  : %s\n", controllerSystem.GetGetpad(tInput::tGamepadID::GP0).LStick.Name.Chr());
+	tPrintf("DPAD        : %s\n", controllerSystem.GetGetpad(tInput::tGamepadID::GP0).DPad.Name.Chr());
+	tPrintf("LEFT TRIGGER: %s\n", controllerSystem.GetGetpad(tInput::tGamepadID::GP0).LTrigger.Name.Chr());
 
 	// Keep controllerSystem alive for a while.
-	std::this_thread::sleep_for(std::chrono::seconds(10));
+	std::this_thread::sleep_for(std::chrono::seconds(30));
 	tRequire(true);
 }
 

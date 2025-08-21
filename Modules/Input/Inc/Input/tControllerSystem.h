@@ -26,8 +26,8 @@ namespace tInput
 class tControllerSystem
 {
 public:
-	// Polling period and pollingControllerDetectionPeriod are both in milliseconds. A value of 0 means auto-determine
-	// both the pollingPeriod and the pollingControllerDetectionPeriod. In auto-determine mode
+	// PollingPeriod is in nanoseconds. PollingControllerDetectionPeriod is in milliseconds. A value of 0 means
+	// auto-determine both the pollingPeriod and the pollingControllerDetectionPeriod. In auto-determine mode
 	// pollingControllerDetectionPeriod is set to 1 second and pollingPeriod tries to detect the controller
 	// manufacturers and use an appropriate pollingPeriod. For example the polling rate of an 8BitDo is 1000Hz so it
 	// will set the pollingPeriod to 1ms.
@@ -38,7 +38,7 @@ public:
 	// XBoxOne controller (gamepad) polling rate.
 	tControllerSystem
 	(
-		int pollingPeriod = 0, int pollingControllerDetectionPeriod = 0
+		int pollingPeriod_ns = 0, int pollingControllerDetectionPeriod_ms = 0
 	);
 	virtual ~tControllerSystem();
 
@@ -55,8 +55,9 @@ private:
 	// This function runs on a different thread.
 	void Detect();
 
-	// Scrapes gamepad capabilities/hardware-info to try to determine the optimal polling period in ms for the specified
-	// gampepad ID. If it fails, which is not unlikely, returns 0.
+	// Scrapes gamepad capabilities/hardware-info to try to determine the optimal polling period in ns for the specified
+	// gampepad ID. If it fails, which is not unlikely, returns 0. We use nano-seconds because some controllers can poll
+	// in the multiple thousands of Hz.
 	int DetermineGamepadPollingPeriodFromHardwareInfo(tGamepadID);
 
 	// This mutex protects PollExitRequested, the gamepad Connected state variable, and all tUnit members in the
@@ -64,8 +65,8 @@ private:
 	std::mutex Mutex;
 
 	bool PollingPeriodAutoDetect = false;
-	int PollingPeriod = 8;	// 125Hz.
-	int DetectPeriod = 1000;
+	int PollingPeriod = 8000;	// In nanoseconds. 8000ns -> 125Hz.
+	int DetectPeriod = 1000;	// In milliseconds.
 
 	// To simplify the implementation we are going to support up to precisely 4 gamepads. This matches the maximum
 	// supported by xinput on windows and restricts the number of gamepads on Linux to 4, which seems perfectly

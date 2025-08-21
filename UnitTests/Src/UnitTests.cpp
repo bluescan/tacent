@@ -254,8 +254,8 @@ int main(int argc, char** argv)
 	// tTest(BitField);
 	// tTest(FixInt);
 	// tTest(SmallFloat);
-	tTest(Filter);
-	// tTest(GamepadJoysticks);
+	// tTest(Filter);
+	tTest(GamepadJoysticks);
 	// tTest(GamepadButtons);
 
 	#endif

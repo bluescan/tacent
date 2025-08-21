@@ -63,9 +63,6 @@ void tContGamepad::Poll()
 {
 	while (true)
 	{
-		static int pollNum = 0;
-//		tPrintf("Poll: %d\n", pollNum++);
-
 		#ifdef PLATFORM_WINDOWS
 		WinXInputState state;
 		tStd::tMemclr(&state, sizeof(WinXInputState));
@@ -85,22 +82,25 @@ void tContGamepad::Poll()
 
 				// Note there is a bit more precision for the neg integral values. -32768 to 32767 maps to [-1.0, 1.0]
 				int16 rawLX = state.Gamepad.sThumbLX;
-				float axisLXNorm = (rawLX < 0) ? float(rawLX)/float(32768.0f) : float(rawLX)/float(32767.0f);
+				float axisLXNorm = (rawLX < 0) ? float(rawLX)/32768.0f : float(rawLX)/32767.0f;
+				tPrintf("LX: %05.3f ", axisLXNorm);
 				// @todo Set LStick X.
 
 				int16 rawLY = state.Gamepad.sThumbLY;
-				float axisLYNorm = (rawLY < 0) ? float(rawLY)/float(32768.0f) : float(rawLY)/float(32767.0f);
+				float axisLYNorm = (rawLY < 0) ? float(rawLY)/32768.0f : float(rawLY)/32767.0f;
+				tPrintf("LY: %05.3f ", axisLXNorm);
 				// @todo Set LStick Y.
 
 				bool rawLB = (state.Gamepad.wButtons & XINPUT_GAMEPAD_LEFT_THUMB) ? true : false;
+				tPrintf("LB: %s\n", rawLB ? "down" : "up");
 				// @todo Set LStick B.
 
 				int16 rawRX = state.Gamepad.sThumbRX;
-				float axisRXNorm = (rawRX < 0) ? float(rawRX)/float(32768.0f) : float(rawRX)/float(32767.0f);
+				float axisRXNorm = (rawRX < 0) ? float(rawRX)/32768.0f : float(rawRX)/32767.0f;
 				// @todo Set RStick X.
 
 				int16 rawRY = state.Gamepad.sThumbRY;
-				float axisRYNorm = (rawRY < 0) ? float(rawRY)/float(32768.0f) : float(rawRY)/float(32767.0f);
+				float axisRYNorm = (rawRY < 0) ? float(rawRY)/32768.0f : float(rawRY)/32767.0f;
 				// @todo Set RStick Y.
 
 				bool rawRB = (state.Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_THUMB) ? true : false;
@@ -130,7 +130,7 @@ void tContGamepad::Poll()
 		// This unique_lock is just a more powerful version of lock_guard. Supports subsequent unlocking/locking which
 		// is presumably needed by wait_for. In any case, wait_for needs this type of lock.
 		std::unique_lock<std::mutex> lock(Mutex);
-		bool exitRequested = PollingExitCondition.wait_for(lock, std::chrono::milliseconds(PollingPeriod), [this]{ return PollingExitRequested; });
+		bool exitRequested = PollingExitCondition.wait_for(lock, std::chrono::nanoseconds(PollingPeriod), [this]{ return PollingExitRequested; });
 		if (exitRequested)
 			break;
 	}

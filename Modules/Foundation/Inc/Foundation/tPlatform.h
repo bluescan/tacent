@@ -310,6 +310,7 @@ template<typename T> inline T tHtoN(T val)
 #define WinCriticalSection CRITICAL_SECTION
 #define WinDetachedProcess DETACHED_PROCESS
 #define WinDWord DWORD
+#define WinErrorDeviceNotConnected ERROR_DEVICE_NOT_CONNECTED
 #define WinErrorSuccess ERROR_SUCCESS
 #define WinFalse FALSE
 #define WinFileTime FILETIME
@@ -373,6 +374,7 @@ template<typename T> inline T tHtoN(T val)
 #define WinWParam WPARAM
 #define WinWsaData WSADATA
 #define WinXInputCapabilities XINPUT_CAPABILITIES
+#define WinXInputCapabilitiesEx XINPUT_CAPABILITIES_EX
 #define WinXInputFlagGamepad XINPUT_FLAG_GAMEPAD
 #define WinXInputGamepadDPadUp XINPUT_GAMEPAD_DPAD_UP
 #define WinXInputGamepadDPadDown XINPUT_GAMEPAD_DPAD_DOWN
