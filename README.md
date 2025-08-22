@@ -1,4 +1,4 @@
-![Build](https://github.com/bluescan/tacent/workflows/Build/badge.svg) [![latest](https://img.shields.io/github/v/release/bluescan/tacent.svg)](https://github.com/bluescan/tacent/releases) ![Unit Tests](https://github.com/bluescan/tacent/workflows/Unit%20Tests/badge.svg)
+[![latest](https://img.shields.io/github/v/release/bluescan/tacent.svg)](https://github.com/bluescan/tacent/releases) ![Unit Tests](https://github.com/bluescan/tacent/workflows/Unit%20Tests/badge.svg)
 
 # Tacent
 Tacent is a C++ library designed to be the foundation of a game engine or other interactive project. Originally the code was the backbone of the Tactile 3D project.
