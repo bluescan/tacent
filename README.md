@@ -1,9 +1,11 @@
-![Unit Tests](https://github.com/bluescan/tacent/workflows/Unit%20Tests/badge.svg)
+![Build](https://github.com/bluescan/tacent/workflows/Build/badge.svg) [![latest](https://img.shields.io/github/v/release/bluescan/tacent.svg)](https://github.com/bluescan/tacent/releases) ![Unit Tests](https://github.com/bluescan/tacent/workflows/Unit%20Tests/badge.svg)
 
 # Tacent
 Tacent is a C++ library designed to be the foundation of a game engine or other interactive project. Originally the code was the backbone of the Tactile 3D project.
 
 Modern CMake (target-based) is used to generate the build files. Generators for makefiles, ninja, NMake, and Visual Studio solutions have been tested. Tacent may be compiled with gcc, clang, or msvc.
+
+[Tacent Homepage](https://bluescan.github.io/tacent)
 
 Thanks to Woboq, the source may be viewed in a web browser [here](http://upperboundsinteractive.com/Tacent/Modules/index.html).
 
