@@ -138,6 +138,69 @@ int tStd::tNstrcmp(const char* a, const char* b)
 }
 
 
+int tStd::tNstrcmpEx(const char* a, const char* b)
+{
+	if (tStrcmp(a, b) == 0)
+		return 0;
+
+	// Code modified from https://github.com/scopeInfinity/NaturalSort
+	bool foundSpace1 = false;
+	bool foundSpace2 = false;
+
+	// Loop on every character.
+	while (*a && *b)
+	{
+		// Ignore More than one continous space.
+		while (foundSpace1 && *a && *a == ' ')
+			a++;
+		foundSpace1 = false;
+		if (*a == ' ')
+			foundSpace1 = true;
+
+		while (foundSpace2 && *b && *b == ' ')
+			b++;
+		foundSpace2 = false;
+		if (*b == ' ')
+			foundSpace2 = true;
+
+		// If one character is alphanumeric, compare as usual. Edge case when we encounter a zero first, to avoid
+		// problematic situations like '01.png' & '001.png' that would otherwise be considered equal.
+		if (!tIsdigit(*a) || !tIsdigit(*b) || (*a == '0') || (*b == '0'))
+		{
+			// Normal comparision if any of character is non digit character.
+			if (tToLower(*a) < tToLower(*b))
+				return -1;
+
+			if (tToLower(*b) < tToLower(*a))
+				return +1;
+
+			a++; b++;
+		}
+		// If both characters are numbers do a numeral comparison.
+		else
+		{
+			// Get the full number with tAtoi() to account for when you're comparing e.g. '1.png' & '10.png'.
+			int digit1 = tAtoi((const char*)a);
+			int digit2 = tAtoi((const char*)b);
+
+			// Compare the numbers. If they are the same we just continue.
+			if (digit1 < digit2)
+				return -1;
+			if (digit2 < digit1)
+				return +1;
+
+			using namespace tMath;
+
+			// Advance the pointers by the length of the digits (math, yay).
+			a += int(tFloor(tLog10(float(digit1)))) + 1;
+			b += int(tFloor(tLog10(float(digit2)))) + 1;
+		}
+	}
+
+	return +1;
+}
+
+
 bool tStd::tStrtob(const char* str)
 {
 	tString lower(str);

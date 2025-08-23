@@ -189,7 +189,10 @@ inline float tArcTan(float y, float x)						/* Order is y, x. Returns angle of a
 inline float tArcTan(float m)																							{ return atanf(m); }
 inline float tExp(float a)																								{ return expf(a); }
 inline double tExp(double a)																							{ return exp(a); }
-inline float tLog(float x)									/* Natural logarithm. */									{ return logf(x); }
+inline float tLog(float x)									/* Natural logarithm. */									{ return std::logf(x); }
+inline double tLog(double x)								/* Natural logarithm. */									{ return std::log(x); }
+inline float tLog10(float x)								/* Base 10 logarithm. */									{ return std::log10f(x); }
+inline double tLog10(double x)								/* Base 10 logarithm. */									{ return std::log10(x); }
 inline float tSa(float x)									/* Unnormalized (sampling) sinc. */							{ if (x == 0.0f) return 1.0f; return tSin(x) / x; }
 inline float tSinc(float x)									/* Normalized sinc. */										{ if (x == 0.0f) return 1.0f; float pix = Pi*x; return tSin(pix) / pix; }
 inline float tPow(float a, float b)																						{ return powf(a, b); }

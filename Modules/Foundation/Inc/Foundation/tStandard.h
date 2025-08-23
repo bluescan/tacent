@@ -92,6 +92,12 @@ int tPstrncmp(const char8_t* a, const char8_t* b, int n);
 int tNstrcmp(const char* a, const char* b);
 inline int tNstrcmp(const char8_t* a, const char8_t* b)																	{ return tNstrcmp((const char*)a, (const char*)b); }
 
+// Experimental. This is a natural string compare function that may give slightly different results. Note for
+// example that page5.tx and page-8.txt sort in the same order in Windows explorer and tNstrcmp but sorts in the
+// opposite order when using tNstrcmpEx.
+int tNstrcmpEx(const char* a, const char* b);
+inline int tNstrcmpEx(const char8_t* a, const char8_t* b)																{ return tNstrcmpEx((const char*)a, (const char*)b); }
+
 inline int tStrlen(const char* s)																						{ tAssert(s); return int(strlen(s)); }
 inline constexpr int tStrlenCT(const char* s)																			{ return *s ? 1 + tStrlenCT(s + 1) : 0; }
 inline char* tStrcpy(char* dst, const char* src)																		{ tAssert(dst && src); return strcpy(dst, src); }

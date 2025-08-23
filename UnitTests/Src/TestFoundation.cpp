@@ -434,7 +434,7 @@ struct MultiObj : public tLink<MultiObj>
 // result in ascending order if they return a < b and descending if they return a > b.
 struct MultiCompFunObj
 {
-	enum class SortKey { NameAlphaNumeric, NameNatural, Float, Int };
+	enum class SortKey { NameAlphaNumeric, NameNatural, NameNaturalEx, Float, Int };
 	MultiCompFunObj(SortKey key, bool ascending)																		: Key(key), Ascending(ascending) { }
 	SortKey Key;
 	bool Ascending;
@@ -460,6 +460,13 @@ bool MultiCompFunObj::operator()(const MultiObj& a, const MultiObj& b) const
 			const char8_t* A = a.Name.Chars();
 			const char8_t* B = b.Name.Chars();
 			return Ascending ? (tNstrcmp(A, B) < 0) : (tNstrcmp(A, B) > 0);
+		}
+
+		case SortKey::NameNaturalEx:
+		{
+			const char8_t* A = a.Name.Chars();
+			const char8_t* B = b.Name.Chars();
+			return Ascending ? (tNstrcmpEx(A, B) < 0) : (tNstrcmpEx(A, B) > 0);
 		}
 	}
 	return false;
@@ -540,9 +547,21 @@ tTestUnit(ListSort)
 	multiObjList.Sort(compFunObj);
 	PrintMultiObjList(multiObjList);
 
+	compFunObj.Key = MultiCompFunObj::SortKey::NameNaturalEx;
+	compFunObj.Ascending = true;
+	tPrintf("\nSorted NaturalEx Ascending\n");
+	multiObjList.Sort(compFunObj);
+	PrintMultiObjList(multiObjList);
+
 	compFunObj.Key = MultiCompFunObj::SortKey::NameNatural;
 	compFunObj.Ascending = false;
 	tPrintf("\nSorted Natural Descending\n");
+	multiObjList.Sort(compFunObj);
+	PrintMultiObjList(multiObjList);
+
+	compFunObj.Key = MultiCompFunObj::SortKey::NameNaturalEx;
+	compFunObj.Ascending = false;
+	tPrintf("\nSorted NaturalEx Descending\n");
 	multiObjList.Sort(compFunObj);
 	PrintMultiObjList(multiObjList);
 }
